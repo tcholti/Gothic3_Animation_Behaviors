@@ -208,21 +208,33 @@ The P3-to-P1 Dual Quick file is visually meaningful but may not be selected by t
 
 Status: **Unknown runtime use**.
 
-## 10. Stumble Set Reserved for R/L Analysis
+## 10. R/L Attack and Stumble Inventory Analysis
 
-The supplied list includes selected exact 1H and 2H stumble names, including:
+Analysis of all 5,991 native names found 540 Hero-family stumble entries. Counts include Hit and Recover resources across equipment families:
 
-- `LightStumble`;
-- `StumbleL`;
-- `StumbleR`;
-- `PierceStumble`;
-- `ParadeStumbleL`;
-- `ParadeStumbleR`;
-- `QuickStumble`.
+| Serialized action token | Final token | Count |
+|---|---:|---:|
+| `LightStumble` | `U` | 68 |
+| `ParadeStumbleL` | none | 24 |
+| `ParadeStumbleR` | none | 24 |
+| `PierceStumble` | none | 102 |
+| `QuickStumble` | none | 104 |
+| `StumbleL` | none | 109 |
+| `StumbleR` | none | 109 |
 
-They preserve source poses, destination/composite poses, directions, distances, and sometimes final R/L/U tokens.
+`QuickStumble` is a systematic non-R/L family rather than an isolated missing suffix. Human melee variants include P0, P1 -> P10, P2 -> P20, and P3 -> P30 transitions across 1H, Staff, Shield+1H, and Torch+1H. A QuickStumble may therefore lean strongly or change stance without belonging to an R/L action pair.
 
-No interpretation of their R/L meaning is frozen here. They are cataloged so the animation-author hypothesis can be evaluated against attacks and non-attack reactions together.
+The native action enum likewise contains one `gEAction_QuickStumble` but separate `gEAction_StumbleR` and `gEAction_StumbleL` values. `LightStumble` appears in filenames even though the SDK has no separate `gEAction_LightStumble`; its exact runtime action mapping remains open.
+
+The attack inventory shows strong direction correlations:
+
+- 11 indexed Hero QuickAttackR Hit files all end in `R`;
+- 16 indexed Hero QuickAttackL Hit files all end in `L`;
+- 10 Normal `N_Left` Hits all end in `L`;
+- 10 Normal `N_Right` Hits all end in `R`;
+- 20 forward Normal Hits consistently map P0/P2 to `R` and P1/P3 to `L`.
+
+Current interpretation: R/L is logical attack/hit-direction metadata that may participate in selecting directional reaction actions. It is not physical weapon-trajectory measurement and is not a collision-hand selector. Exact causality among action R/L, final filename R/L, `Routine.HitDirection`, and victim `StumbleR/L` remains unproven and is not required by current v0.7, Raise, or speed plans.
 
 ## 11. Catalog Maintenance Rules
 
@@ -239,7 +251,6 @@ When new animation information becomes important for future reasoning:
 
 ## 12. Next Catalog Steps
 
-1. Compare the complete inventory against the supplied grouped list.
-2. Mark stock-only, author-created, absent, duplicate-pattern, and possibly unused entries.
-3. Expand beyond human melee into movement, blocks, reactions, interactions, creatures, and other animation families as useful.
-4. Evaluate the animation author's R/L hypothesis using both attack and stumble names.
+1. Continue distinguishing stock, author-created, absent, duplicate-pattern, and possibly unused entries when that distinction affects implementation.
+2. Expand beyond human melee into movement, blocks, reactions, interactions, creatures, and other animation families as useful.
+3. If logical hit direction later affects a planned feature, add controlled logging/testing that pairs attacker `Routine.HitDirection` with the victim's selected reaction action and motion.
