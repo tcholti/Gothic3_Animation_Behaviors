@@ -99,9 +99,9 @@ The full known mapping is maintained in `ANIMATION_RULES.md`.
 
 ### 4.2 Action profiles
 
-Configuration may group closely related native actions for user-facing simplicity. Runtime code should still read and log the exact `gEAction` when it is useful for profiles, diagnostics, or behavior that genuinely differs by action.
+Configuration may group closely related native actions for user-facing simplicity, but runtime implementation must still identify the exact `gEAction` where the global marker dispatcher needs to correlate an authored marker with a supported callback family.
 
-For frame-collision ownership, an exact-action whitelist is not required when the named native callback, Hit phase, and exact-motion marker already provide sufficient scope. Do not add an action dependency unless it changes behavior or protects a demonstrated engine case.
+For v0.7 Quick collision, `OnAI_QuickAttack` scopes native-timer suppression at callback time. The marker fires later through global `StartEffect`, which does not receive the earlier callback identity. Exact Quick/QuickR/QuickL action values are therefore the smallest stateless correlation mechanism. A future per-execution ownership record could replace this check, but would add state and cleanup complexity.
 
 Minimum intended groups:
 
@@ -213,19 +213,20 @@ They remain **proposals only**. Generic source markers are preferred over separa
 
 Do not mass-author these names into animation libraries until source activation, OFF-state tracking, Fist/body behavior, and multi-hit rearming are validated.
 
-## 8. Callback + Phase + Marker Model
+## 8. Callback + Action + Phase + Marker Model
 
 The preferred collision-control model is:
 
 1. the named native callback identifies the collision path that must be intercepted;
-2. `gEPhase_Hit` confirms the currently supported phase;
-3. exact current-motion marker presence declares frame-controlled ownership;
-4. a source resolver or source-explicit marker chooses the logical/physical damage source;
-5. marker execution performs the activation/rearm operation.
+2. exact `gEAction` identifies a supported member of that callback family when the marker later reaches the global dispatcher;
+3. `gEPhase_Hit` confirms the currently supported phase;
+4. exact current-motion marker presence declares frame-controlled ownership;
+5. a source resolver or source-explicit marker chooses the logical/physical damage source;
+6. marker execution performs the activation/rearm operation.
 
-The exact `gEAction` should remain available for logging, profiles, and any future behavior that demonstrably differs by action. It should not be a hard-coded ownership whitelist when callback + phase + exact marker already provide sufficient scope.
+The action check does not help Gothic 3 select or play an animation. It correlates the later global `StartEffect` marker with the attack family whose native callback was suppressed. Without it, the current stateless prototype would need either a filename-family heuristic or stored per-execution ownership state.
 
-This avoids both a generic filename substring such as `_Attack_Hit_` as sole authority and unnecessary dependencies that duplicate the callback's family semantics.
+This avoids a generic filename substring such as `_Attack_Hit_` as sole authority while keeping v0.7 simpler than a new state-lifecycle system.
 
 ## 9. Current Callback Families of Interest
 
@@ -239,7 +240,7 @@ Known attack callbacks include:
 - `OnAI_SimpleWhirl`
 - `OnAI_WhirlAttack`
 
-`OnAI_QuickAttack` covers native actions including QuickAttackR and QuickAttackL. Their exact `Routine.Action` values should be logged, but the current collision design does not require a Quick/QuickR/QuickL whitelist: the named callback, Hit phase, and exact marked motion are the ownership gate.
+`OnAI_QuickAttack` covers native actions including QuickAttackR and QuickAttackL. At callback time it scopes the native timer path. The global marker handler later uses exact Quick/QuickR/QuickL `Routine.Action` values plus Hit phase and exact-motion marker to confirm that the marker belongs to this supported family.
 
 ## 10. Current Source-Selection Knowledge
 
@@ -305,7 +306,7 @@ Unmarked/unconfigured attacks must remain compatible with existing behavior.
 ## 12. Implementation Strategy
 
 1. Keep proven Normal marker-controlled collision unchanged.
-2. Add QuickAttack ownership using its native callback, Hit phase, and exact-motion marker; log exact actions without using them as an ownership whitelist.
+2. Add QuickAttack ownership using its native callback, exact Quick/QuickR/QuickL actions, Hit phase, and exact-motion marker.
 3. Validate player and NPC Staff Quick cases.
 4. Run the dedicated Fist causality test.
 5. Generalize source resolution.
