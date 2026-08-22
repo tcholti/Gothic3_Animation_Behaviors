@@ -119,6 +119,8 @@ Active causal-test source:
 
 v0.9 retains the validated v0.8 behavior and skips only the weapon-style collision-group request when the resolved source raw UseType is Fist or PhysicalFist. Triggered-list clearing remains active.
 
+Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and adds exact player left/right equipped-entity labels to the passive global collision-group log. It is committed but not yet locally compiled or runtime validated.
+
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. Runtime contact validation is in progress, with the native-motion left-hand baseline passed.
 
 ## 8. QuickAttack Finding and Validated Fix
@@ -211,7 +213,7 @@ Completed focused-target contacts:
 - native left hand — passed at marker frame 3;
 - custom right hand — passed at marker frame 3;
 - custom left leg — passed at marker frame 3;
-- custom right leg — passed at marker frame 2, an authored-fixture deviation;
+- custom right leg — passed at marker frame 2; Blender inspection confirmed collision and whoosh were accidentally swapped (collision 2, whoosh 3);
 - custom head — passed at marker frame 3.
 
 All five visibly damaged the target. Every accepted path resolved Fist UseType
@@ -241,12 +243,12 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. general source resolver;
-2. production collision helper API;
-3. freeze marker vocabulary;
-4. migrate frame collision into `Script_G3AnimationBehaviors`;
-5. generalize Raise;
-6. implement safe profile-aware speed authority.
+1. compile and install the passive v0.10 Dual-source diagnostic committed at `6914039`;
+2. run one unmarked, targetless Dual P0/P1 Normal/Quick/Pierce/Power source-discovery session;
+3. separately resolve SimpleWhirl/Whirl, BOTH activation, repeated rearm, `ResetOnUntouch`, and explicit-OFF needs;
+4. add collision callback adapters one family at a time and validate the main human melee collision families;
+5. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+6. generalize Raise and speed initially for Normal and Quick, using 12-frame Hit + 4-frame Raise as an authoring convention and logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 
