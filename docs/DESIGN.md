@@ -415,7 +415,7 @@ Unmarked/unconfigured attacks must remain compatible with existing behavior.
 ## 12. Implementation Strategy
 
 1. Preserve the validated Normal and QuickR/L marker-controlled paths and the v0.9 Fist/body rearm result.
-2. Preserve the completed Dual Normal/Quick/Pierce/Power source map; extend passive diagnostics to `ClearTriggeredList`, target identity, Dual SimpleWhirl, and the separate 2H/Staff full-Whirl path without changing native behavior.
+2. Preserve the completed Dual Normal/Quick/Pierce/Power source map; extend passive diagnostics to `ClearTriggeredList`, Dual SimpleWhirl, and the separate 2H/Staff full-Whirl path without changing native behavior. Add damaged-target identity only if later same-target results are ambiguous.
 3. Generalize the source helper into explicit weapon activation versus Fist/body rearming; Fist skips the weapon group request and clears its logical source list.
 4. Add collision ownership adapters one callback family at a time. Collision scope should cover the main human melee families before production integration, but Raise and speed remain initially scoped to Normal and Quick.
 5. Treat BOTH group activation as proven but incomplete: validate Dual Power's third-contact rearm, multi-target versus same-target list behavior, SimpleWhirl source/contact intent, full-Whirl `ResetOnUntouch`, and explicit OFF for authored inactive gaps.

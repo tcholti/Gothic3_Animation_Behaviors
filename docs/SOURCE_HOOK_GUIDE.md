@@ -316,10 +316,11 @@ build-specific, and source alone does not provide the authored-frame timing.
 
 SDK `eCTrigger_PS` exposes `EntitiesVisited`, `EntitiesVisitedCount`,
 `ClearTriggeredList()`, and `ClearTriggeredList(eCEntity *)`. Treat this as
-structural evidence that visit suppression is tracked per target. A diagnostic
-should log both source and damaged-target identity before deciding whether a
-clear is required for different opponents, repeated contact with one opponent,
-or both.
+structural evidence that visit suppression is tracked per target. Marked v0.10
+2H testing already confirms that one cleared window can damage multiple distinct
+opponents. Prioritize passive source/list-clear logging; add damaged-target
+identity only if a later same-target rearm result cannot be interpreted
+reliably from the clear sequence and observed damage.
 
 ### `OnAI_WhirlAttack`
 

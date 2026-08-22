@@ -253,7 +253,7 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build a passive `ClearTriggeredList` plus damaged-target-identity diagnostic, then resolve Dual SimpleWhirl source/contact intent and Power third-contact rearm; BOTH group activation/reset alone is already confirmed but incomplete;
+1. build a passive `ClearTriggeredList` diagnostic, then resolve Dual SimpleWhirl source/contact intent and Power third-contact rearm; BOTH group activation/reset alone is already confirmed but incomplete. Add damaged-target identity only if same-target results are ambiguous;
 2. separately validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF needs;
 3. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
 4. add collision callback adapters one family at a time;
