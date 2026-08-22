@@ -113,13 +113,13 @@ Validated baseline:
 
 v0.8 successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. The installed DLL matched the built DLL at SHA-256 `18DDE8B770400C76709063FA0888EFEF888F41C2FE03B3449508BC43DA120858`. Controlled player Staff QuickAttackR/action 4, QuickAttackL/action 5, and marked Normal/action 1 all passed runtime validation. A controlled human-NPC session then confirmed two QuickAttackR/action 4 and five QuickAttackL/action 5 executions on `OutNovice_01` using its own `It_Halberd_01`; all seven passed the same marker/bookkeeping/reset checks.
 
-Active corrected causal-test source:
+Active causal-test source:
 
-`Script_FrameCollisionTest v0.9` at commit `9b4a73c`
+`Script_FrameCollisionTest v0.9` at commit `11f2a1b`
 
 v0.9 retains the validated v0.8 behavior and skips only the weapon-style collision-group request when the resolved source raw UseType is Fist or PhysicalFist. Triggered-list clearing remains active.
 
-The initial `89f36d8` build failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. The corrected candidate reads through `Entity.GetInstance()` and underlying `eCEntity::GetUseType()`. The installed v0.8 DLL was never replaced. Corrected rebuild/runtime validation is pending.
+Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. The current candidate passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)`. The installed v0.8 DLL was never replaced. Rebuild/runtime validation is pending.
 
 ## 8. QuickAttack Finding and Validated Fix
 
@@ -197,7 +197,7 @@ QuickR/L Staff support has passed controlled player and NPC tests.
 
 v0.9 is implemented to isolate one remaining Fist question:
 
-- resolve raw source UseType through the underlying `eCEntity`, not the script `Entity` wrapper;
+- resolve raw source UseType with static `gCEntity::GetUseType(eCEntity*)`, using the pointer from `Entity.GetInstance()`;
 - raw source `gEUseType_Fist` or `gEUseType_PhysicalFist`: skip `SetCollisionGroup(Item_Attack)`;
 - every other source: retain the validated group request;
 - all accepted sources: retain `ClearTriggeredList`;
@@ -208,7 +208,7 @@ The log now records `ResolvedSourceUseTypeAtMarker` and
 
 Next execution steps:
 
-1. pull corrected commit `9b4a73c` and rebuild v0.9;
+1. pull corrected commit `11f2a1b` and rebuild v0.9;
 2. install it and verify build/install hashes;
 3. repeat the existing marked Fist contacts with left leg, right leg, right hand, and left hand;
 4. preserve both the runtime log and the observed damage result for each contact.
