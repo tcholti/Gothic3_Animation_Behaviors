@@ -254,9 +254,14 @@ Controlled Hit requirements:
 - 8 frames for every variant, matching the native Hit length;
 - the same whoosh effect at frame 2;
 - `G3AB_COL_TEST` at frame 3;
-- the same filename, action, P0 -> P1 transition, timing, Recover file, target
-  setup, and v0.9 DLL;
-- only the contacting body part/motion changes.
+- the same filename, action, P0 -> P1 transition, Hit timing, Recover filename
+  and phase role, target setup, and v0.9 DLL;
+- only the contacting body part/motion changes during Hit.
+
+Each variant may use a custom Recover whose motion starts from that variant's
+final Hit pose and returns to idle. Recover animation data and length do not
+need to be identical across variants. Recover must not contain
+`G3AB_COL_TEST` or introduce a second intended test contact.
 
 Separate variants:
 
@@ -265,6 +270,19 @@ Separate variants:
 3. custom left-leg contact;
 4. custom right-leg contact;
 5. custom head contact — additional useful case.
+
+Current result:
+
+- native P0 left-hand baseline — **PASSED**;
+- visible damage connected;
+- `PC_Hero` marker ownership suppressed the original Normal callback;
+- eight accepted frame-3 markers resolved raw Fist UseType 8;
+- all eight skipped the group request, remained group 0 -> 0, and cleared the
+  triggered list.
+
+The baseline session used an attacking Boar target whose own unmarked Fist path
+remained legacy/native. A passive target is preferred for later variants when
+practical so unrelated native Fist group requests do not add diagnostic noise.
 
 The untouched stock file without `G3AB_COL_TEST` is not a valid v0.9 causal
 case because it would leave native collision ownership active.
