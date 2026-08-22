@@ -195,7 +195,7 @@ Current causal source candidate: `v0.9` at commit `11f2a1b`.
 - logs the raw source UseType and whether the group request was skipped;
 - leaves every non-Fist activation path unchanged.
 
-Build `89f36d8` failed because the script-layer `Entity` wrapper has no `GetUseType()` member. Build `9b4a73c` then failed because the base `eCEntity` returned by `GetInstance()` also has no member `GetUseType()`. Commit `11f2a1b` uses the SDK-declared game-layer static resolver `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the successful build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback copy remains preserved. Runtime contact validation is pending.
+Build `89f36d8` failed because the script-layer `Entity` wrapper has no `GetUseType()` member. Build `9b4a73c` then failed because the base `eCEntity` returned by `GetInstance()` also has no member `GetUseType()`. Commit `11f2a1b` uses the SDK-declared game-layer static resolver `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the successful build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback copy remains preserved. Runtime contact validation is in progress: the native-motion left-hand baseline passed.
 
 ### Prototype marker
 
@@ -263,7 +263,7 @@ v0.7 same-execution reactivation.
 Generic Quick/action 3 remains untested. Neither controlled player nor NPC
 session selected it.
 
-## 8. Fist Causal Test — BUILD/INSTALL PASSED; CONTACT MATRIX NEXT
+## 8. Fist Causal Test — LEFT-HAND BASELINE PASSED; MATRIX IN PROGRESS
 
 Current causal question:
 
@@ -311,7 +311,9 @@ Controlled timing for every Hit variant:
 
 - whoosh effect at frame 2;
 - `G3AB_COL_TEST` at frame 3;
-- all other timing, filename, pose transition, target setup, and DLL unchanged.
+- all other Hit timing, filename, pose transition, target setup, and DLL unchanged;
+- each variant may use a custom Recover beginning at its own final Hit pose and returning to idle;
+- Recover motion/length may vary, but it must have no collision marker or intended test contact.
 
 Run and preserve a separate log for:
 
@@ -320,6 +322,18 @@ Run and preserve a separate log for:
 3. custom left-leg contact;
 4. custom right-leg contact;
 5. custom head contact.
+
+Completed baseline:
+
+- native P0 left-hand motion visibly damaged the target;
+- Hero ownership was frame-controlled and suppressed the original Normal callback;
+- eight accepted markers resolved Fist UseType 8;
+- all eight skipped the group request, remained group 0 -> 0, and cleared the triggered list;
+- therefore the group request is unnecessary for this tested left-hand contact.
+
+The target Boar's own unmarked Fist attack remained legacy/native and added
+separate group-request entries. Prefer a passive target for remaining variants
+when practical.
 
 For every launch, record whether contact damages and verify that the log reports
 raw UseType 8 or 55, `SKIPPED_FOR_FIST_CAUSAL_TEST`, and
