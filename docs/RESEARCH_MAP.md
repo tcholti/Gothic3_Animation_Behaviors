@@ -154,19 +154,24 @@ Proven concepts:
 
 ### Script_FrameCollisionTest
 
-Current known prototype: `v0.6`.
+Current source candidate: `v0.7` at commit `04d12f8`.
 
-Proven:
+Previously proven behavior retained in source:
 
 - exact-motion marker ownership;
-- normal attack path;
+- Normal attack path;
 - generalized player/NPC eligibility;
 - Staff normal;
 - natural weapon collision reset.
 
-Current limitation:
+New implementation, build/runtime validation pending:
 
-- Normal-specific eligibility still blocks QuickAttack ownership.
+- separate `OnAI_QuickAttack` hook;
+- exact Quick/QuickR/QuickL action plus Hit-phase eligibility;
+- exact current-motion marker ownership;
+- original Quick callback fallback for unmarked, unsupported-phase/action, or unresolved-source executions;
+- unchanged right-hand prototype source meaning;
+- no Staff/UseType/Pose gate.
 
 ### Prototype marker
 
@@ -174,11 +179,9 @@ Current limitation:
 
 Status: proven research marker, not finalized production vocabulary.
 
-## 6. Immediate Next Implementation — v0.7
+## 6. v0.7 Candidate Implementation — BUILD/RUNTIME VALIDATION PENDING
 
-Preserve the proven Normal path unchanged.
-
-Add QuickAttack frame-collision ownership by:
+The candidate preserves the proven Normal callback path and adds QuickAttack frame-collision ownership by:
 
 1. using `OnAI_QuickAttack`;
 2. accepting exact actions:
