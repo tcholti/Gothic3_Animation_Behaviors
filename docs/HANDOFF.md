@@ -119,7 +119,7 @@ Active causal-test source:
 
 v0.9 retains the validated v0.8 behavior and skips only the weapon-style collision-group request when the resolved source raw UseType is Fist or PhysicalFist. Triggered-list clearing remains active.
 
-Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and adds exact player left/right equipped-entity labels to the passive global collision-group log. It is committed but not yet locally compiled or runtime validated.
+Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and adds exact player left/right equipped-entity labels to the passive global collision-group log. Its Win32 Release build passed on 2026-08-22 with only the pre-existing Windows SDK C5105 warning; runtime behavior remains unvalidated.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. Runtime contact validation is in progress, with the native-motion left-hand baseline passed.
 
