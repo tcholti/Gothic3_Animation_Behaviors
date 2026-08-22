@@ -1,7 +1,7 @@
 # Gothic 3 Animation Rules
 
 **Status:** Canonical engine-facing animation reference  
-**Date:** 2026-08-20
+**Date:** 2026-08-22
 
 ## 1. Purpose
 
@@ -313,6 +313,8 @@ The full enum continues through `gEAction_Count = 145`.
 
 Use the exact native action rather than collapsing QuickAttackR/L into a filename heuristic. In the current stateless marker prototype, exact Quick/QuickR/QuickL action values also let global `StartEffect` correlate the marker with the Quick callback family whose native timer was suppressed.
 
+Inventory caveat: serialized action tokens are not proven to map 1:1 to enum names in every family. Native filenames contain `LightStumble`, while the SDK exposes `gEAction_Stumble` but no separate `gEAction_LightStumble`. A mapping from `gEAction_Stumble` to the `LightStumble` resource token is plausible but remains unverified.
+
 ## 9. `gEPhase`
 
 ```cpp
@@ -442,11 +444,19 @@ This can require archive/resource management when changing distance-encoded anim
 
 Examples: `L`, `R`.
 
-The supplied source describes this as likely related to attack direction/side.
+The native SDK exposes a separate two-valued `gEHitDirection` (`Left`, `Right`) on `gCScriptRoutine_PS`. The complete native filename inventory strongly correlates attack-side naming with the final token:
 
-**Status: WORKING HYPOTHESIS.**
+- every indexed Hero `QuickAttackR` Hit ends in `R`;
+- every indexed Hero `QuickAttackL` Hit ends in `L`;
+- every indexed Hero Normal `N_Left` Hit ends in `L`;
+- every indexed Hero Normal `N_Right` Hit ends in `R`;
+- forward Normal attacks use P0/P2 -> `R` and P1/P3 -> `L` across the indexed human equipment families.
 
-Do not build physical collision-source ownership solely from this token.
+Jackydima's commented Normal-Attack experiment assigns `PropertyHitDirection` using the same P0/P2 -> Right and P1/P3 -> Left pattern. Because that block is disabled reconstruction/reference code, it supports the correlation but does not prove the native assignment pipeline.
+
+**Status: STRONGLY SUPPORTED as logical attack/hit-direction metadata; exact causal pipeline remains UNKNOWN.**
+
+This direction channel is not a physical collision-arm selector. Animation-author runtime evidence shows that changing the visible swing direction without changing animation identity does not change gameplay behavior, and known Torch+1H/Dual cases can use the left-hand source independently of QuickAttackR/QuickAttackL. Never use the final token or action-side letter alone to choose right-hand, left-hand, or both collision sources.
 
 ## 17. Human Melee Pose Patterns
 
