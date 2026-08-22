@@ -399,6 +399,11 @@ near state time 0.32–0.34, two duplicate late dispatches near 0.77, and one
 natural phase-3 reset. The duplicate late clear did not create a third visual
 damage contact.
 
+The v0.11 regression repeated the same two-marker motion six times. Every
+execution kept one early and one late accepted marker, ignored one duplicate
+late dispatch at identical state time, cleared the list twice, and naturally
+reset once. Two-contact behavior remained visible against two targets.
+
 ## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:

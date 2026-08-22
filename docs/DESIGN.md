@@ -413,6 +413,11 @@ Production marker handling must ignore an identical actor + motion + marker +
 source dispatch repeated within the same animation update, while preserving
 genuinely different simultaneous source markers.
 
+v0.11 validates that rule for the tested right-source Normal path. Across six
+executions it preserved both authored contacts, ignored one duplicate late
+callback per attack, and reduced list clearing from three calls to the intended
+two without losing two-contact damage.
+
 ### Fist
 
 The logical Fist source does not behave like a normal equipped weapon collision group.

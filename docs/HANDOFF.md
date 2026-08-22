@@ -121,7 +121,7 @@ v0.9 retains the validated v0.8 behavior and skips only the weapon-style collisi
 
 Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and adds exact player left/right equipped-entity labels to the passive global collision-group log. Its Win32 Release build passed on 2026-08-22 with only the pre-existing Windows SDK C5105 warning. The installed DLL matches the build at SHA-256 `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`; the validated v0.9 rollback DLL is preserved at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`. Controlled unmarked player Dual runtime passed and produced the complete tested Normal/Quick/Pierce/Power slot map with paired activation/reset records.
 
-Current v0.11 source candidate preserves v0.10 behavior and adds only same-update duplicate-marker suppression. The guard runs after marker ownership and source resolution but before `SetCollisionGroup` or `ClearTriggeredList`. Its identity key is actor + resolved source + current motion + marker name + action + phase + state time, with a wall-clock window of at most 5 ms. Different state times remain independent authored contacts. Build and runtime validation are pending.
+Validated v0.11 at commit `0bbc377` preserves v0.10 behavior and adds only same-update duplicate-marker suppression. The guard runs after marker ownership and source resolution but before `SetCollisionGroup` or `ClearTriggeredList`. Its identity key is actor + resolved source + current motion + marker name + action + phase + state time, with a wall-clock window of at most 5 ms. Different state times remain independent authored contacts. Win32 Release build and installation passed at SHA-256 `F47EAD5B403DA701F32CCD23B2A2A429BDB16491DDE0864E0CF10CF76C78D154`; the validated v0.10 rollback is `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -180,7 +180,10 @@ contact motion, native/no-marker and frame-4-only marker variants hit once;
 frame-4 plus frame-15 markers hit the same opponent at both intended contacts.
 The second source marker therefore rearms the weapon; OFF remains a timing-gap
 feature. The later marker dispatched twice at the same `StateTime` in every
-tested attack, so production needs same-update duplicate suppression.
+v0.10 attack. v0.11 retained two genuine contacts and ignored exactly one
+same-update duplicate in each of six regression executions: 12 accepts, six
+ignored duplicates, 12 clears, and six natural resets. Two-contact damage was
+observed against two targets.
 
 ## 11. v0.8 Validation — PLAYER AND NPC PASSED
 
@@ -262,14 +265,13 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build the isolated v0.11 same-update duplicate-marker candidate, then rerun the two-marker Normal fixture and confirm two accepted authored contacts plus one ignored duplicate rather than three clears per attack;
-2. implement a provisional OFF test marker under the proven Normal path and validate RIGHT/test marker -> OFF -> RIGHT/test marker using the same double-contact motion;
-3. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.10: its marker handler intentionally accepts only Normal/Quick Hit contexts;
-4. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
-5. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-6. add collision callback adapters one family at a time;
-7. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-8. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. implement a provisional OFF test marker under the proven Normal path and validate RIGHT/test marker -> OFF -> RIGHT/test marker using the same double-contact motion;
+2. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.11: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
+4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+5. add collision callback adapters one family at a time;
+6. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+7. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 

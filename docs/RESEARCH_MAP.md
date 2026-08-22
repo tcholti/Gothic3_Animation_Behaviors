@@ -208,8 +208,7 @@ Current diagnostic candidate: `v0.10` at commit `6914039`.
 - validated v0.9 rollback SHA-256 is `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`;
 - controlled unmarked player Dual runtime passed: exact slot labels produced the complete Normal/Quick/Pierce/Power source map and paired activation/reset records.
 
-Current duplicate-dispatch candidate: `v0.11` (source committed after the
-v0.10 same-target test).
+Validated duplicate-dispatch prototype: `v0.11` at commit `0bbc377`.
 
 - preserves v0.10 ownership, source selection, Fist handling, Quick
   bookkeeping, and diagnostics;
@@ -220,7 +219,15 @@ v0.10 same-target test).
   ignored duplicate;
 - leaves a genuine later marker at a different state time eligible to activate
   and rearm normally;
-- Win32 build and the exact two-marker runtime regression are pending.
+- Win32 Release build/install passed at SHA-256
+  `F47EAD5B403DA701F32CCD23B2A2A429BDB16491DDE0864E0CF10CF76C78D154`;
+  the v0.10 rollback is preserved at SHA-256
+  `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`;
+- the exact two-marker regression passed across six executions: 12 genuine
+  accepts/clears, six ignored same-update duplicates, and six natural resets;
+- ignored callbacks had zero state-time delta, arrived 0.0574–0.1162 ms after
+  the accepted late callback, and performed no collision/list mutation;
+- two-contact damage remained observable against two targets.
 
 ### Prototype marker
 
@@ -445,8 +452,9 @@ target without requiring OFF.
 
 The later authored marker dispatched twice at identical `StateTime` in all four
 two-marker attacks, yielding three accepted clears per attack. Only two damage
-contacts occurred. v0.11 adds the narrow same-update guard described above; it
-still requires build and runtime validation before promotion.
+contacts occurred. v0.11 validates the narrow same-update guard described
+above: six repeated executions each retained the early and late marker while
+ignoring exactly one duplicate late callback.
 Current v0.10 also logs the first matching authored frame for every dispatch, so
 accepted-marker count and `StateTime` remain the authoritative diagnostic.
 Actual Whirl is still a separate callback-ownership test and is unsupported by
