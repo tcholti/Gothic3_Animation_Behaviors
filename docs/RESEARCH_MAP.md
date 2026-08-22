@@ -356,7 +356,7 @@ Needed future validation still includes:
 
 1. Compile and install the passive v0.10 diagnostic.
 2. Use unmarked Dual animation files and run only the FrameCollision diagnostic DLL for this isolated session.
-3. Without a target, perform P0/P1 Normal, Quick, Pierce, and Power, using intervening Normal/SimpleWhirl stance changes as needed.
+3. Without a target, perform P0/P1 Normal, Quick, Pierce, and Power, using intervening Normal attacks to change stance. Each Pierce input must be preceded by pressing and holding Block, then pressing the left mouse button; the two Block actions are expected session context rather than additional attack-source cases.
 4. Preserve one complete log; use exact action, pose, current animation, and `PlayerSlotMatch` rather than weapon names to classify each activation.
 5. Compare observed native transitions with the pinned Jackydima source map.
 6. Follow with separate SimpleWhirl/Whirl and multi-contact tests; those need repeated-contact/rearm evidence, not merely the first source transition.
