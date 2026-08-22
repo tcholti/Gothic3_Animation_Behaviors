@@ -101,7 +101,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.8 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.9 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -117,13 +117,17 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.\n");
 
+        std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
+
+        std::fprintf(g_pLog, "FIST CAUSAL TEST: ClearTriggeredList remains active.\n");
+
         std::fprintf(g_pLog, "Prototype source resolver: current actor RIGHT-HAND equipped item.\n");
 
         std::fprintf(g_pLog, "If a marked animation has no right-hand item, its original attack callback is NOT suppressed.\n");
 
         std::fprintf(g_pLog, "This protects unarmed/monster attacks until body-source resolution is implemented.\n");
 
-        std::fprintf(g_pLog, "Marker action: source -> Item_Attack + ClearTriggeredList.\n");
+        std::fprintf(g_pLog, "Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.\n");
 
         std::fprintf(g_pLog, "No custom collision-OFF cleanup; Gothic 3 owns Hit->Recover reset.\n");
 
@@ -186,8 +190,8 @@ static bool IsQuickAttackHit(Entity &actor)
 
 static Entity GetPrototypeCollisionSource(Entity &actor)
 {
-    // v0.7 intentionally supports all actors/weapon types but only one
-    // source-resolution rule:
+    // The prototype intentionally supports all actors/weapon types but only
+    // one source-resolution rule:
     //
     //     G3AB_COL_TEST -> actor's current right-hand equipped item.
     //
@@ -195,6 +199,16 @@ static Entity GetPrototypeCollisionSource(Entity &actor)
     // (2H, Staff, 1H, etc.) without pretending that monster body attacks
     // are already solved.
     return actor.Inventory.GetItemFromSlot(gESlot_RightHand);
+}
+
+static bool IsFistCollisionSource(Entity &source)
+{
+    if (source == None)
+        return false;
+
+    gEUseType useType = source.GetUseType();
+
+    return useType == gEUseType_Fist || useType == gEUseType_PhysicalFist;
 }
 
 // -----------------------------------------------------------------------------
@@ -419,6 +433,8 @@ static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const 
     {
         std::fprintf(g_pLog, "ResolvedSource: %s\n", source.GetName().GetText());
 
+        std::fprintf(g_pLog, "ResolvedSourceUseType: %d\n", static_cast<GEInt>(source.GetUseType()));
+
         std::fprintf(g_pLog, "ResolvedSourceCollisionGroup: %d\n", static_cast<GEInt>(source.GetCollisionGroup()));
     }
 
@@ -465,6 +481,8 @@ static void LogMarkerContext(Entity &actor, Entity &source)
     if (source != None)
     {
         std::fprintf(g_pLog, "ResolvedSource: %s\n", source.GetName().GetText());
+
+        std::fprintf(g_pLog, "ResolvedSourceUseType: %d\n", static_cast<GEInt>(source.GetUseType()));
 
         std::fprintf(g_pLog, "ResolvedSourceCollisionGroup: %d\n", static_cast<GEInt>(source.GetCollisionGroup()));
     }
@@ -701,6 +719,10 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     GEInt beforeGroup = static_cast<GEInt>(source.GetCollisionGroup());
 
+    GEInt sourceUseType = static_cast<GEInt>(source.GetUseType());
+
+    bool skipCollisionGroupForFist = IsFistCollisionSource(source);
+
     GEInt quickStatePositionBeforeMarker = -1;
 
     GEInt quickStatePositionAfterMarker = -1;
@@ -711,7 +733,14 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
             static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
     }
 
-    source.SetCollisionGroup(eECollisionGroup_Item_Attack);
+    // v0.9 causal isolation:
+    // keep ownership, native suppression, marker timing, source resolution,
+    // and triggered-list rearming unchanged. Skip only the weapon-style group
+    // request when the resolved raw source is Fist/PhysicalFist.
+    if (!skipCollisionGroupForFist)
+    {
+        source.SetCollisionGroup(eECollisionGroup_Item_Attack);
+    }
 
     source.TouchDamage.ClearTriggeredList();
 
@@ -741,6 +770,12 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         std::fprintf(g_pLog, "CollisionGroupBeforeMarker: %d\n", beforeGroup);
 
         std::fprintf(g_pLog, "CollisionGroupAfterMarker: %d\n", afterGroup);
+
+        std::fprintf(g_pLog, "ResolvedSourceUseTypeAtMarker: %d\n", sourceUseType);
+
+        std::fprintf(g_pLog, "SetCollisionGroupAction: %s\n",
+                     skipCollisionGroupForFist ? "SKIPPED_FOR_FIST_CAUSAL_TEST"
+                                               : "REQUESTED_ITEM_ATTACK");
 
         std::fprintf(g_pLog, "TriggeredDamageList: CLEARED\n");
 
