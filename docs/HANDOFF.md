@@ -155,14 +155,16 @@ Controlled v0.10 player Dual runtime established:
 - P0 Normal: left; P1 Normal: right.
 - P0 QuickAttackR/L: right; P1 QuickAttackR/L: left.
 - P0 Pierce: right; P1 Pierce: left.
-- P0 and P1 Power: both.
-- every one of the 17 activation records had a matching 7 -> 5 reset in phase 3.
+- P0 and P1 Power: both initially; P0 visually contacts right -> left -> right and P1 left -> right -> left, so the first weapon needs later rearm for the third contact.
+- native Dual Power is reported to damage only twice; Jackydima later clears both lists again, plausibly enabling the third contact.
+- every one of the 17 group-activation records had a matching 7 -> 5 reset in phase 3.
 - Quick R/L action/filename direction did not select collision hand.
 
 Preserve these remaining distinctions:
 
 - Dual P3 Quick file should be left visually; runtime use remains unconfirmed.
-- Dual SimpleWhirl/Whirl and repeated-contact rearm remain untested in this project.
+- Dual has SimpleWhirl only, despite `WhirlAttack` in its filenames; source/contact intent and Power third-contact rearm remain untested.
+- the separate full Whirl belongs to human 2H/Staff; ordinary 1H has none and hand-to-hand coverage is unknown.
 - Torch+1H P1/P3 Quick: left torch.
 - Some native Torch+1H P0 Normal left-torch activations are considered erroneous; Jackydima corrects regular Normal collision to the right weapon.
 - One Dual finishing source remains unconfirmed.
@@ -249,11 +251,12 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. separately resolve Dual SimpleWhirl/Whirl, repeated rearm, `ResetOnUntouch`, and explicit-OFF needs; BOTH group activation/reset is already confirmed for P0/P1 Power;
-2. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-3. add collision callback adapters one family at a time;
-4. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-5. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. build a passive `ClearTriggeredList` diagnostic, then resolve Dual SimpleWhirl source/contact intent and Power third-contact rearm; BOTH group activation/reset alone is already confirmed but incomplete;
+2. separately validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF needs;
+3. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+4. add collision callback adapters one family at a time;
+5. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 
