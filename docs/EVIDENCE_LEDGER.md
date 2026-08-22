@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Ledger
 
 **Status:** Canonical evidence ledger  
-**Date:** 2026-08-20
+**Date:** 2026-08-22
 
 ## 1. Purpose
 
@@ -45,14 +45,14 @@ Statuses:
 | EV-024 | Staff normal marker-controlled collision works on player. | CONFIRMED | v0.6 | Source resolver can support Staff item path. |
 | EV-025 | Staff normal marker-controlled collision works on human NPC's own halberd. | CONFIRMED | v0.6 NPC test | System is not inherently player-only. |
 | EV-026 | QuickAttack markers fire on Staff Quick animations. | CONFIRMED | runtime | Marker channel itself works for Quick. |
-| EV-027 | v0.6 rejects Quick ownership because of Normal-specific `_Attack_Hit_` eligibility. | CONFIRMED | runtime/prototype logic | Replace filename-only eligibility with callback+action+phase+marker. |
+| EV-027 | v0.6 rejects Quick ownership because of Normal-specific `_Attack_Hit_` eligibility. | CONFIRMED | runtime/prototype logic | Replace filename-only eligibility with named callback + Hit phase + exact-motion marker. |
 | EV-028 | `OnAI_QuickAttack` is the relevant callback family for QuickAttackR/L variants. | CONFIRMED | Jackydima source/runtime action values | v0.7 should handle this callback. |
 | EV-029 | Marked Fist tests can damage via left leg, right leg, right hand, and left hand with native timed activation suppressed. | CONFIRMED | controlled tests | Physical contact is not tied to a literal right-hand weapon. |
 | EV-030 | Logical right-slot Fist entity remains collision group 0 when SetCollisionGroup(Item_Attack) is called. | CONFIRMED | runtime logging | Fist does not behave like normal weapon collision group. |
 | EV-031 | Fist `SetCollisionGroup` is unnecessary for damage. | WORKING HYPOTHESIS | not yet isolated | Test by removing only group call while keeping ClearTriggeredList. |
 | EV-032 | Triggered-list clearing is the critical Fist rearm operation. | STRONGLY SUPPORTED | current observations | Needs dedicated causal isolation. |
 | EV-033 | Repeated multi-hit strikes need rearming/triggered-list clearing. | STRONGLY SUPPORTED | dual-power/whirl source + behavior | Production multi-hit helper should support repeated rearm. |
-| EV-034 | `PRIMARY / SECONDARY / ALL / OFF` are final marker names. | UNKNOWN / PROPOSAL | design draft only | Do not mass-author yet. |
+| EV-034 | `RIGHT / LEFT / BOTH / OFF` are final marker names. | UNKNOWN / PROPOSAL | current preferred design direction only | Keep generic source markers as candidates; do not mass-author yet. |
 | EV-035 | Same-function hooks from independent DLLs chain safely. | UNKNOWN | hook implementation not fully validated | Do not rely on load order. |
 | EV-036 | Human actors share Hero-family animations despite different body/armature object names. | STRONGLY SUPPORTED | extensive animation modding + NPC test | Hero must not be treated as player-only. |
 | EV-037 | Composite Pxx pose labels are meaningful and must be preserved. | STRONGLY SUPPORTED | repeated asset/runtime behavior | Do not simplify pose identifiers. |
@@ -64,6 +64,16 @@ Statuses:
 | EV-043 | Missing configuration should leave native behavior untouched. | DESIGN DECISION | project safety principle | Required production fallback. |
 | EV-044 | Unmarked animation should leave legacy/native collision ownership untouched. | DESIGN DECISION + PROVEN PROTOTYPE PATTERN | v0.5/v0.6 | Required frame-collision opt-in behavior. |
 | EV-045 | Jackydima current WhirlAttack path sets `PropertyResetOnUntouch = GETrue`. | CONFIRMED | commit `da61a791...` | Relevant to repeated-contact Whirl behavior. |
+| EV-046 | Exact Quick/QuickR/QuickL action values are required as a frame-collision ownership whitelist inside `OnAI_QuickAttack`. | DESIGN DECISION: NO | callback already scopes the native collision family; exact motion marker opts in | Log exact action, but do not add an ownership dependency without demonstrated need. |
+| EV-047 | Dual P0 Normal uses the left weapon as collision source. | STRONGLY SUPPORTED | animation-author empirical evidence + current third-party source behavior | Preserve when source-explicit markers/general resolver replace the right-hand prototype. |
+| EV-048 | Dual P1 Quick uses the left weapon as collision source. | STRONGLY SUPPORTED | animation-author empirical evidence + current third-party source behavior | Left-source Quick support is required before marking this animation. |
+| EV-049 | A Dual P3 Quick file exists and should visually use the left weapon, but Gothic 3 currently resolves it in normal play. | WORKING HYPOTHESIS / UNKNOWN USE | animation-file evidence; runtime use not confirmed | Catalog the file; do not claim native runtime use yet. |
+| EV-050 | Torch+1H P1 and P3 Quick attacks use the left torch as collision source. | STRONGLY SUPPORTED | animation-author empirical evidence; P1 also converges with third-party source | Left-source marker/resolver must cover both poses before marking these animations. |
+| EV-051 | Some Torch+1H P0 Normal attacks natively activate left-torch collision, but that is unintended for those animations; Jackydima routes regular Torch+1H Normal collision to the right weapon. | STRONGLY SUPPORTED + CONFIRMED THIRD-PARTY CORRECTION | animation-author evidence + `Script_AttackCollision` source/comment | Do not preserve the erroneous native left-source behavior as intended design. |
+| EV-052 | Dual P1 Pierce uses the left weapon as collision source. | STRONGLY SUPPORTED | animation-author empirical evidence + current third-party source behavior | Required future Pierce source case. |
+| EV-053 | Jackydima's Dual Power path activates both equipped weapons and rearms both for later contact. | CONFIRMED THIRD-PARTY BEHAVIOR | current `Script_AttackCollision` source | Good reference for eventual BOTH marker and multi-hit rearm. |
+| EV-054 | Native Dual P0 Power may use the left weapon. | WORKING HYPOTHESIS | user recollection; not isolated | Keep separate from confirmed desired BOTH behavior. |
+| EV-055 | One Dual finishing animation may visually contact with both weapons while only one source damages; the exact native source is known. | UNKNOWN | animation-author recollection not yet isolated | One damaging source is acceptable for that specific animation, but do not generalize. |
 
 ## 3. Evidence Promotion Rule
 
