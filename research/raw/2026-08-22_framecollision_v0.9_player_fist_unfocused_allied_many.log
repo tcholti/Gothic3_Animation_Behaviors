@@ -1,0 +1,375 @@
+Script_FrameCollisionTest v0.9 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: current animation contains _Attack_Hit_ and G3AB_COL_TEST.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + G3AB_COL_TEST.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+Prototype source resolver: current actor RIGHT-HAND equipped item.
+If a marked animation has no right-hand item, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+No custom collision-OFF cleanup; Gothic 3 owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+
+Installing hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 30713.063
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 3
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 30825.707
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.126007
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 3
+CollisionGroupBeforeMarker: 0
+CollisionGroupAfterMarker: 0
+ResolvedSourceUseTypeAtMarker: 8
+SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 32977.095
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 33232.458
+Entity: Fist
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 34373.111
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 3
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 34477.347
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.124014
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 3
+CollisionGroupBeforeMarker: 0
+CollisionGroupAfterMarker: 0
+ResolvedSourceUseTypeAtMarker: 8
+SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 35711.314
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.133989
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 3
+CollisionGroupBeforeMarker: 0
+CollisionGroupAfterMarker: 0
+ResolvedSourceUseTypeAtMarker: 8
+SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 36577.175
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36833.446
+Entity: Fist
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 37520.849
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 3
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 37641.074
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.132943
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 3
+CollisionGroupBeforeMarker: 0
+CollisionGroupAfterMarker: 0
+ResolvedSourceUseTypeAtMarker: 8
+SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 38099.917
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38376.947
+Entity: Fist
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 38693.554
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 3
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 38810.696
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.128967
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 3
+CollisionGroupBeforeMarker: 0
+CollisionGroupAfterMarker: 0
+ResolvedSourceUseTypeAtMarker: 8
+SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 40013.450
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.135960
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 3
+CollisionGroupBeforeMarker: 0
+CollisionGroupAfterMarker: 0
+ResolvedSourceUseTypeAtMarker: 8
+SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 40572.937
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40818.248
+Entity: Fist
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 41417.441
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 3
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 41535.969
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.128986
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 3
+CollisionGroupBeforeMarker: 0
+CollisionGroupAfterMarker: 0
+ResolvedSourceUseTypeAtMarker: 8
+SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 41997.414
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42249.887
+Entity: Fist
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+Script_FrameCollisionTest unloading.
