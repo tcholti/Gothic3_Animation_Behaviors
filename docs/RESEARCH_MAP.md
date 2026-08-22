@@ -154,7 +154,7 @@ Proven concepts:
 
 ### Script_FrameCollisionTest
 
-Current source candidate: `v0.8` at commit `f4d2946`.
+Current validated prototype: `v0.8` at commit `f4d2946`.
 
 Retained proven behavior:
 
@@ -174,14 +174,17 @@ v0.7 runtime result:
 - after every natural 7 -> 5 reset, an unmarked 5 -> 7 reactivation occurred;
 - v0.7 failed runtime validation.
 
-v0.8 source change:
+v0.8 player runtime result:
 
-- accepted Quick marker sets `Routine.PropertyStatePosition` to 1;
-- before/after values are logged;
-- Normal marker behavior is not mutated;
+- standalone Win32 Release build succeeded;
+- installed DLL matched the build at SHA-256 `18DDE8B770400C76709063FA0888EFEF888F41C2FE03B3449508BC43DA120858`;
+- QuickAttackR/action 4 and QuickAttackL/action 5 each activated only at marker frame 6;
+- each accepted Quick marker changed `Routine.PropertyStatePosition` 0 -> 1;
+- both executions naturally reset collision 7 -> 5 without the v0.7 post-reset reactivation;
+- one marked Normal/action 1 regression retained marker-frame-5 activation and natural reset;
 - no per-actor ownership state was introduced.
 
-Build and runtime validation are pending.
+Player validation is complete. NPC Staff Quick validation is next.
 
 ### Prototype marker
 
@@ -189,25 +192,25 @@ Build and runtime validation are pending.
 
 Status: proven research marker, not finalized production vocabulary.
 
-## 6. v0.8 Candidate Implementation — BUILD/RUNTIME PENDING
+## 6. v0.8 Implementation — PLAYER RUNTIME PASSED
 
-The candidate keeps the v0.7 callback/action/phase/marker ownership model and
-completes the Quick callback's one-shot bookkeeping only at accepted marker time.
+v0.8 keeps the v0.7 callback/action/phase/marker ownership model and completes
+the Quick callback's one-shot bookkeeping only at accepted marker time.
 
-The change is intentionally narrow:
+The implementation remains intentionally narrow:
 
 1. resolve Normal versus Quick marker context;
-2. retain all existing ownership/source checks;
+2. retain all ownership and source checks;
 3. activate the right-hand prototype source and clear its triggered list;
 4. for Quick only, set `PropertyStatePosition = 1`;
 5. log Quick state position before and after;
 6. leave Normal behavior unchanged.
 
-The cause remains **STRONGLY SUPPORTED**, not promoted to exact native source
-fact: v0.7 logged StatePosition 0 at each marker, the late reactivation was
-observed directly, and current reference Quick callback code uses StatePosition
-0/1 as its one-shot collision gate. The verified disassembly did not expose a
-searchable symbolic `OnAI_QuickAttack` name.
+The controlled player test confirms the predicted correction: both Quick markers
+observed state position 0 and changed it to 1; neither natural 7 -> 5 reset was
+followed by the v0.7 delayed 5 -> 7 reactivation. This promotes the fix's tested
+behavior to **CONFIRMED**, while the exact unobserved native callback internals
+behind the original defect remain **STRONGLY SUPPORTED**.
 
 The current `G3AB_COL_TEST` marker still means the actor's right-hand equipped
 item. Do not mark Dual or Torch+1H Quick animations until explicit source
@@ -215,29 +218,29 @@ handling exists.
 
 ## 7. v0.8 Test Matrix
 
-### Player Staff Quick
+### Player Staff Quick — PASSED
 
-Required:
+Confirmed for QuickAttackR/action 4 and QuickAttackL/action 5:
 
-- QuickAttackR/action 4 and QuickAttackL/action 5 are frame-controlled;
-- marker frame 6 performs the only 5 -> 7 activation;
-- log shows Quick StatePosition changing to 1;
-- natural 7 -> 5 reset remains;
-- no immediate post-reset 5 -> 7 occurs;
-- subsequent attacks begin from collision group 5.
+- marker frame 6 performed the only 5 -> 7 activation;
+- Quick StatePosition changed 0 -> 1;
+- natural 7 -> 5 reset remained;
+- no immediate post-reset 5 -> 7 occurred;
+- the following attack began from collision group 5.
 
-### Player Staff Normal regression
+### Player Staff Normal regression — PASSED
 
-Repeat at least one marked Normal attack and confirm its marker activation and
-natural reset remain unchanged.
+One marked Normal/action 1 activated at marker frame 5 and naturally reset
+7 -> 5. The separate Normal adapter remained compatible with the shared
+activation/reset core.
 
-### NPC Staff Quick
+### NPC Staff Quick — NEXT
 
-Run only after both player tests pass. Confirm the same behavior on the NPC's
-own equipped Staff/Halberd.
+Repeat marked QuickR/L using a human NPC and confirm the same behavior on the
+NPC's own equipped Staff/Halberd.
 
-Generic Quick/action 3 remains untested. The attempted moving input selected
-QuickAttackR/action 4 again.
+Generic Quick/action 3 remains untested. The attempted moving player input
+selected QuickAttackR/action 4 again.
 
 ## 8. Fist Causal Test — Next Dedicated Diagnostic
 
