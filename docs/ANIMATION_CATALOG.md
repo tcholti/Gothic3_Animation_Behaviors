@@ -259,12 +259,14 @@ Results:
 | native left hand | 3 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
 | custom right hand | 3 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
 | custom left leg | 3 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
-| custom right leg | 2 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
+| custom right leg | 2 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared; collision/whoosh frames were accidentally swapped |
 | custom head | 3 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
 
-The right-leg marker frame 2 differs from the planned common frame 3. Because it
-still damaged while the group request was omitted, it remains valid source/contact
-evidence but is not an identical marker-timing comparison.
+The right-leg marker frame 2 differs from the planned common frame 3 because the
+author accidentally placed collision on frame 2 and whoosh on frame 3. This is a
+confirmed fixture-authoring mistake, not a discovered engine timing rule. Because
+the attack still damaged while the group request was omitted, it remains valid
+source/contact evidence but is not an identical marker-timing comparison.
 
 The four focused-neutral custom-motion sessions were closed quickly after
 contact, so Recover completion was not established. This does not weaken the
