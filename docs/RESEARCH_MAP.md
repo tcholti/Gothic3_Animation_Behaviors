@@ -194,6 +194,8 @@ The action check is not used for animation resolution. It lets the later global 
 
 The current `G3AB_COL_TEST` prototype marker continues to mean the actor's right-hand equipped item. Staff is the first controlled asset/test case, but there is no Staff restriction in the callback code. Dual and Torch+1H Quick animations remain unmarked/native until explicit left/right source markers or equivalent source handling are implemented.
 
+QuickAttackR/QuickAttackL and final filename R/L are logical direction evidence, not physical hand-source selectors. They must not replace explicit RIGHT/LEFT/BOTH collision-source handling.
+
 ## 7. v0.7 Test Matrix
 
 ### Player Staff Quick
@@ -321,6 +323,7 @@ Recover interruptibility has shown inconsistencies among attack variants and may
 7. Which Whirl/SimpleWhirl attacks should opt into Raise.
 8. Multi-hit source/rearm semantics across all supported weapon families.
 9. Monster-specific physical damage-source resolution.
+10. Exact relationship among action R/L, final filename R/L, `Routine.HitDirection`, and victim reaction selection; no current implementation depends on it.
 
 ## 15. Superseded Earlier Continuation Points
 
@@ -336,6 +339,12 @@ The following old "next tasks" are historical, not current:
 Those questions produced later results and should not be restarted unless a new regression specifically requires them.
 
 ## 16. Later Research
+
+### Optional logical hit-direction diagnostic
+
+CombatMoveLogger v0.4 does not currently log `Routine.HitDirection`. No current collision, Raise, or speed plan requires it.
+
+If a later feature depends on reaction-side selection, extend the consolidated logger rather than creating a separate temporary DLL. The useful record should pair attacker action/pose/current motion and `HitDirection` with the victim's selected reaction action/current motion at the damage event. A controlled follow-up may force only HitDirection Left versus Right while preserving attack frames and collision.
 
 ### Intended target
 
