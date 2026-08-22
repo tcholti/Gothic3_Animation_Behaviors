@@ -1,0 +1,207 @@
+Script_FrameCollisionTest v0.7 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: current animation contains _Attack_Hit_ and G3AB_COL_TEST.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + G3AB_COL_TEST.
+Prototype source resolver: current actor RIGHT-HAND equipped item.
+If a marked animation has no right-hand item, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: source -> Item_Attack + ClearTriggeredList.
+No custom collision-OFF cleanup; Gothic 3 owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+
+Installing hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 25384.138
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: Wrestling Staff_BBM
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 25619.338
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.245897
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Wrestling Staff_BBM
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 25619.364
+Entity: Wrestling Staff_BBM
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 25824.083
+Entity: Wrestling Staff_BBM
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 25824.133
+Entity: Wrestling Staff_BBM
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 27235.690
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: Wrestling Staff_BBM
+ResolvedSourceCollisionGroup: 7
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 27467.582
+Actor: PC_Hero
+Action: 5
+AniPhase: 1
+StateTime: 0.242989
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Wrestling Staff_BBM
+ResolvedSourceCollisionGroup: 7
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 27467.597
+Entity: Wrestling Staff_BBM
+RequestedGroup: 7
+BeforeGroup: 7
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 7
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 27682.808
+Entity: Wrestling Staff_BBM
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 27682.858
+Entity: Wrestling Staff_BBM
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 29822.223
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: Wrestling Staff_BBM
+ResolvedSourceCollisionGroup: 7
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 30057.397
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.243002
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: Wrestling Staff_BBM
+ResolvedSourceCollisionGroup: 7
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30057.412
+Entity: Wrestling Staff_BBM
+RequestedGroup: 7
+BeforeGroup: 7
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 7
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30279.644
+Entity: Wrestling Staff_BBM
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30279.700
+Entity: Wrestling Staff_BBM
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+Script_FrameCollisionTest unloading.
