@@ -259,32 +259,49 @@ Known attack callbacks include:
 
 Source may depend on weapon configuration and pose/action logic. A simple right-hand assumption is not sufficient for all final cases.
 
-Current animation-author evidence:
+Controlled v0.10 player runtime evidence:
 
 - Dual P0 Normal uses the left weapon.
+- Dual P1 Normal uses the right weapon.
+- every tested activation naturally reset 7 -> 5 in phase 3.
+
+Other current evidence:
+
 - Some Torch+1H P0 Normal attacks natively activate the left torch; this is considered erroneous for those animations.
 - Jackydima's `Script_AttackCollision` deliberately sends regular Torch+1H Normal attacks to the right weapon.
 
 ### QuickAttack
 
-Current animation-author evidence:
+Controlled v0.10 player runtime evidence:
 
-- Dual P1 Quick uses the left weapon.
+- Dual P0 QuickAttackR and QuickAttackL both use the right weapon.
+- Dual P1 QuickAttackR and QuickAttackL both use the left weapon.
+- all four tested activations naturally reset 7 -> 5 in phase 3.
+- Quick R/L direction metadata does not select the physical weapon hand.
+
+Other current evidence:
+
 - A Dual P3 Quick animation file exists and should visually use the left weapon, but whether Gothic 3 currently resolves/uses that file is unconfirmed.
 - Torch+1H P1 and P3 Quick attacks use the left torch.
-- Other currently understood Quick cases commonly use the right-hand item.
 
 These pose/UseType rules are useful evidence for the prototype resolver, not the preferred final authoring interface. Source-explicit animation markers would remove the need to infer the intended hand from pose and equipment.
 
 ### PierceAttack
 
-Dual P1 Pierce uses the left weapon according to animation-author evidence and is also represented as a left-source special case in current third-party code.
+Controlled v0.10 player runtime shows Dual P0 Pierce using the right weapon and
+Dual P1 Pierce using the left weapon. Both naturally reset 7 -> 5 in phase 3.
+This matches the current third-party source rule.
 
 ### PowerAttack
 
-Jackydima's current source activates both right and left weapons for Dual Power attacks and later re-clears their triggered lists. This is the preferred known behavior for those attacks.
+Controlled v0.10 player runtime shows both P0 and P1 Dual Power activating the
+right and left weapons at the same logged state time, then naturally resetting
+both to 5 in phase 3. This contradicts the earlier recollection that P0 might be
+left-only.
 
-A recollection that the native Dual P0 Power path may be left-source is not yet isolated and remains a working hypothesis.
+Jackydima's current source matches the observed BOTH group activation and also
+later re-clears both triggered lists. That later repeated-contact rearm was not
+observed by the v0.10 group-only diagnostic and remains separate work.
 
 ### FinishingAttack
 
