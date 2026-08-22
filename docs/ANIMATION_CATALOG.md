@@ -236,11 +236,10 @@ The attack inventory shows strong direction correlations:
 
 Current interpretation: R/L is logical attack/hit-direction metadata that may participate in selecting directional reaction actions. It is not physical weapon-trajectory measurement and is not a collision-hand selector. Exact causality among action R/L, final filename R/L, `Routine.HitDirection`, and victim `StumbleR/L` remains unproven and is not required by current v0.7, Raise, or speed plans.
 
-## 11. Fist v0.9 Causal-Test Fixture
+## 11. Fist v0.9 Causal-Test Fixture and Results
 
-This test does not use several different attack slots in one game session. Each
-variant replaces the same P0 Hit animation and therefore requires a separate
-game launch and separate preserved log.
+Each variant replaced the same P0 Hit animation and used a separate game launch
+and preserved log.
 
 Exact runtime files:
 
@@ -249,48 +248,35 @@ Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R
 Hero_Stand_None_Fist_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
 ```
 
-Controlled Hit requirements:
+All Hit variants were eight frames long and retained the same filename, action,
+P0 -> P1 transition, target-focus requirement, and v0.9 DLL. Each variant could
+use a custom marker-free Recover starting from its own final pose.
 
-- 8 frames for every variant, matching the native Hit length;
-- the same whoosh effect at frame 2;
-- `G3AB_COL_TEST` at frame 3;
-- the same filename, action, P0 -> P1 transition, Hit timing, Recover filename
-  and phase role, target setup, and v0.9 DLL;
-- only the contacting body part/motion changes during Hit.
+Results:
 
-Each variant may use a custom Recover whose motion starts from that variant's
-final Hit pose and returns to idle. Recover animation data and length do not
-need to be identical across variants. Recover must not contain
-`G3AB_COL_TEST` or introduce a second intended test contact.
+| Contact motion | Marker frame | Damage | Marker path |
+|---|---:|---|---|
+| native left hand | 3 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
+| custom right hand | 3 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
+| custom left leg | 3 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
+| custom right leg | 2 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
+| custom head | 3 | passed | UseType 8; group 0 -> 0; group request skipped; list cleared |
 
-Separate variants:
+The right-leg marker frame 2 differs from the planned common frame 3. Because it
+still damaged while the group request was omitted, it remains valid source/contact
+evidence but is not an identical marker-timing comparison.
 
-1. native P0 motion baseline — left-hand contact, with the test marker added;
-2. custom right-hand contact;
-3. custom left-leg contact;
-4. custom right-leg contact;
-5. custom head contact — additional useful case.
+The four focused-neutral custom-motion sessions were closed quickly after
+contact, so Recover completion was not established. This does not weaken the
+Fist group-call causal result.
 
-Current results:
+An unfocused allied human did not receive damage from repeated marked P0 or
+unmarked legacy/native P1 Fist attacks, while a marked 2H weapon attack could
+damage that unfocused setup. Future Fist/body tests require a focusable target.
 
-- native P0 left-hand baseline — **PASSED**;
-- custom right-hand contact against a focused neutral target — **PASSED**;
-- both successful contacts visibly damaged the target while accepted frame-3
-  markers resolved raw Fist UseType 8, skipped the group request, remained group
-  0 -> 0, and cleared the triggered list.
-
-Target setup is now controlled more narrowly. An unfocused allied human did not
-receive damage from repeated marked P0 or unmarked legacy/native P1 Fist attacks,
-while a marked 2H weapon attack could damage the unfocused allied setup. For the
-remaining left-leg, right-leg, and head variants, use a focusable neutral target;
-a green-name allied NPC that cannot be focused is not a valid Fist contact test.
-
-The untouched stock file without `G3AB_COL_TEST` is not a valid v0.9 causal
-case because it would leave native collision ownership active.
-
-The head case can establish behavior for the tested head contact. Even if all
-five cases damage, describe the result as tested hand/leg/head contacts rather
-than claiming that literally every body part is a damage source.
+Describe the completed result as tested left/right hand, left/right leg, and head
+contacts. Do not claim that every body part, PhysicalFist, or monster body is a
+proven source.
 
 ## 12. Catalog Maintenance Rules
 

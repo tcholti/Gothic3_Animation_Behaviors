@@ -263,101 +263,53 @@ v0.7 same-execution reactivation.
 Generic Quick/action 3 remains untested. Neither controlled player nor NPC
 session selected it.
 
-## 8. Fist Causal Test — LEFT- AND RIGHT-HAND PASSED; MATRIX IN PROGRESS
+## 8. Fist Causal Test — COMPLETE AND PASSED
 
-Current causal question:
+Question answered: `SetCollisionGroup(Item_Attack)` is unnecessary for the
+five tested player Fist body contacts when the logical Fist source is rearmed by
+clearing its triggered-damage list.
 
-Does `SetCollisionGroup(Item_Attack)` contribute to marked Fist damage, or is
-triggered-list rearming the effective operation?
+Validated v0.9 branch:
 
-v0.9 obtains the base pointer with `source.GetInstance()` and passes it to the
-SDK-declared game-layer resolver `gCEntity::GetUseType(eCEntity*)`. It changes
-exactly one operation for a source whose raw UseType is `Fist` or
-`PhysicalFist`:
+- raw Fist/PhysicalFist detection uses static
+  `gCEntity::GetUseType(eCEntity*)`;
+- Fist/PhysicalFist skips the weapon-style group request;
+- `ClearTriggeredList` remains active;
+- all non-Fist marker paths remain unchanged.
 
-- skip `SetCollisionGroup(Item_Attack)`;
-- keep `ClearTriggeredList`.
+Passed contact motions:
 
-Unchanged controls:
+1. native left hand — marker frame 3;
+2. custom right hand — marker frame 3;
+3. custom left leg — marker frame 3;
+4. custom right leg — marker frame 2;
+5. custom head — marker frame 3.
 
-- exact-motion marker ownership;
-- Normal callback suppression;
-- right-slot source resolution;
-- marker timing;
-- all non-Fist group activation;
-- Quick callback/bookkeeping code.
+All five visibly damaged a focused target while the accepted marker resolved
+UseType 8, kept group 0 -> 0, skipped the group request, and cleared the list.
+The right-leg frame-2 marker is a controlled-fixture deviation, but a positive
+result still proves that the omitted group request was not required for that
+contact.
 
-Build history:
+Production consequence:
 
-- initial commit `89f36d8`: failed with MSVC C2039 because the script `Entity` wrapper has no `GetUseType()`;
-- first correction `9b4a73c`: failed because base `eCEntity` also has no member `GetUseType()`;
-- current correction `11f2a1b`: calls static `gCEntity::GetUseType(eCEntity*)`; Win32 Release build and hash-matched installation passed.
+- distinguish weapon activation from Fist/body rearming in the collision helper;
+- a Fist marker should rearm the logical Fist source without requesting
+  `Item_Attack`;
+- keep claims limited to the tested player Fist contacts;
+- separately validate PhysicalFist 55 and monster-specific body sources when
+  those families are implemented.
 
-Required separate-launch runtime matrix:
+Limitations retained:
 
-All variants replace the same 8-frame Hit file:
+- the four focused-neutral custom-motion sessions may have ended before Recover
+  completed, so they are not Recover/reset tests;
+- unfocused allied humans are invalid Fist targets;
+- accepted-marker counts exceeded fresh ownership decisions in repeated
+  unfocused input, whose callback/action-state cause remains open.
 
-```text
-Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R
-```
-
-All use the same Recover:
-
-```text
-Hero_Stand_None_Fist_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
-```
-
-Controlled timing for every Hit variant:
-
-- whoosh effect at frame 2;
-- `G3AB_COL_TEST` at frame 3;
-- all other Hit timing, filename, pose transition, target setup, and DLL unchanged;
-- each variant may use a custom Recover beginning at its own final Hit pose and returning to idle;
-- Recover motion/length may vary, but it must have no collision marker or intended test contact.
-
-Run and preserve a separate log for:
-
-1. native P0 motion/left-hand contact with the marker added;
-2. custom right-hand contact;
-3. custom left-leg contact;
-4. custom right-leg contact;
-5. custom head contact.
-
-Completed contacts:
-
-- native P0 left-hand motion visibly damaged the target;
-- custom right-hand motion visibly damaged a focused neutral target;
-- both successful marked paths resolved Fist UseType 8, skipped the group
-  request, remained group 0 -> 0, and cleared the triggered list;
-- therefore the group request is unnecessary for the tested left- and right-hand
-  contacts.
-
-Target/focus control:
-
-- `invisibility` stopped preventing retaliation once the target was struck;
-- two unfocused allied-human sessions produced no observed Fist damage despite
-  12 accepted marked-P0 events and eight unmarked P1 legacy/native callbacks;
-- a marked 2H control visibly damaged the unfocused allied setup after normal
-  weapon activation 5 -> 7;
-- this confirms that an unfocused allied target is unsuitable for the Fist
-  matrix and strongly supports Fist-specific target/focus gating;
-- use a focusable neutral target for left-leg, right-leg, and head tests.
-
-The unfocused sessions also showed accepted marker counts greater than fresh
-frame-controlled ownership decisions (5 versus 4 and 7 versus 5). Exact cause is
-open; production design must not assume a strict 1:1 callback/marker count until
-that continuous-action pattern is understood.
-
-For every remaining launch, record whether contact damages and verify that the
-log reports raw UseType 8 or 55, `SKIPPED_FOR_FIST_CAUSAL_TEST`, and
-`TriggeredDamageList: CLEARED`.
-
-If all controlled contacts still damage, the weapon-style group call is
-unnecessary for the tested hand/leg/head contacts. If damage fails, the call
-contributes despite the logical Fist entity remaining collision group 0.
-
-Only if the result remains ambiguous should the inverse isolation be built:
-restore the group call and remove only triggered-list clearing.
+No inverse isolation is required unless later evidence contradicts the positive
+matrix.
 
 ## 9. Source-Resolver Work After Quick + Fist
 

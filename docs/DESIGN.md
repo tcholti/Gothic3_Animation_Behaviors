@@ -287,9 +287,11 @@ Known third-party code historically used right-hand activation and has needed re
 
 The logical Fist source does not behave like a normal equipped weapon collision group.
 
-Marked Fist tests have produced damage from multiple limbs while the logical Fist entity remained collision group `0`.
+The completed v0.9 player matrix produced damage from the native left hand and custom right hand, left leg, right leg, and head while the logical Fist entity remained collision group `0`, the weapon-style `SetCollisionGroup(Item_Attack)` request was skipped, and the triggered-damage list was cleared.
 
-The exact causal role of `SetCollisionGroup` versus triggered-list rearming is still under test.
+**Production direction:** treat Fist as a logical body-contact rearm source. The marker helper should clear/rearm the logical Fist source without requesting the weapon `Item_Attack` group.
+
+This conclusion is limited to the tested player `gEUseType_Fist = 8` contacts. It does not prove every body part, `gEUseType_PhysicalFist = 55`, or monster-specific bodies. The matrix retained triggered-list clearing, so its independent necessity was not isolated.
 
 ## 11. Compatibility Rules
 
@@ -305,14 +307,12 @@ Unmarked/unconfigured attacks must remain compatible with existing behavior.
 
 ## 12. Implementation Strategy
 
-1. Keep proven Normal marker-controlled collision unchanged.
-2. Add QuickAttack ownership using its native callback, exact Quick/QuickR/QuickL actions, Hit phase, and exact-motion marker.
-3. Validate player and NPC Staff Quick cases.
-4. Run the dedicated Fist causality test.
-5. Generalize source resolution.
-6. Freeze a production marker vocabulary only after source/rearm behavior is understood.
-7. Integrate the validated behavior into `Script_G3AnimationBehaviors`.
-8. Expand Raise and speed control incrementally using the same evidence discipline.
+1. Preserve the validated Normal and QuickR/L marker-controlled paths.
+2. Generalize the source helper into explicit weapon activation versus Fist/body rearming; Fist skips the weapon group request and clears its logical source list.
+3. Resolve right/left/both equipped-weapon selection deliberately before marking Dual or Torch+1H attacks.
+4. Freeze a production marker vocabulary only after source selection, OFF-state tracking, and repeated-hit semantics are understood.
+5. Integrate the validated behavior into `Script_G3AnimationBehaviors`.
+6. Expand Raise and speed control incrementally using the same evidence discipline.
 
 ## 13. Non-Goals for the Current Iteration
 

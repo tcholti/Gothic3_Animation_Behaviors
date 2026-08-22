@@ -191,87 +191,53 @@ v0.8 controlled NPC result:
 
 Staff QuickR/L validation is complete for the player and a human NPC. Generic Quick/action 3 remains untested because neither controlled session selected it.
 
-## 12. Current v0.9 Fist Causal Test
+## 12. FrameCollision v0.9 Fist Causal Matrix — PASSED
 
-QuickR/L Staff support has passed controlled player and NPC tests. v0.9 has
-compiled, been installed with a matching hash, and preserves a validated v0.8
-rollback DLL.
+v0.9 compiled, was installed with a matching hash, and preserves the validated
+v0.8 rollback DLL. It isolates raw `gEUseType_Fist` and
+`gEUseType_PhysicalFist`: those sources skip the weapon-style
+`SetCollisionGroup(Item_Attack)` request while retaining
+`ClearTriggeredList`. Every non-Fist path is unchanged.
 
-v0.9 isolates one Fist question:
-
-- resolve raw source UseType with static `gCEntity::GetUseType(eCEntity*)`;
-- raw source `gEUseType_Fist` or `gEUseType_PhysicalFist`: skip `SetCollisionGroup(Item_Attack)`;
-- every other source: retain the validated group request;
-- all accepted sources: retain `ClearTriggeredList`;
-- ownership, native suppression, marker timing, and Quick bookkeeping: unchanged.
-
-The log records `ResolvedSourceUseTypeAtMarker` and
-`SetCollisionGroupAction`.
-
-The contact variants cannot be exercised in one game session. Each variant
-replaces the same Hit file and requires its own launch and preserved log.
+Exact player fixture:
 
 ```text
 Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R
 Hero_Stand_None_Fist_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
 ```
 
-Every Hit variant must remain 8 frames long, use the whoosh effect at frame 2,
-and use `G3AB_COL_TEST` at frame 3. Keep the same Hit filename, P0 -> P1
-transition, Recover filename/phase role, target setup, and DLL. Change only the
-contacting Hit motion.
+Completed focused-target contacts:
 
-Each variant may use its own custom Recover starting from that Hit's final pose
-and returning to idle. Recover motion and length need not be identical, but
-Recover must have no `G3AB_COL_TEST` marker or intended test contact.
+- native left hand — passed at marker frame 3;
+- custom right hand — passed at marker frame 3;
+- custom left leg — passed at marker frame 3;
+- custom right leg — passed at marker frame 2, an authored-fixture deviation;
+- custom head — passed at marker frame 3.
 
-Run separately:
+All five visibly damaged the target. Every accepted path resolved Fist UseType
+8, kept collision group 0 -> 0, skipped the group request, and cleared the
+triggered list. The tested result is therefore conclusive: requesting the weapon
+`Item_Attack` group is unnecessary for these hand/leg/head Fist contacts.
+Production Fist handling should treat the logical Fist entity as a body-contact
+rearm source rather than a right-hand weapon collision group.
 
-1. native P0 motion/left-hand contact, with the marker added;
-2. custom right-hand contact;
-3. custom left-leg contact;
-4. custom right-leg contact;
-5. custom head contact.
+Scope and limitations:
 
-Completed contacts:
+- this proves five player Fist/UseType-8 motions, not literally every body part;
+- PhysicalFist/UseType 55 and monster bodies remain runtime-unproven;
+- the right-leg marker was frame 2 rather than the planned frame 3, so the
+  matrix is a source/contact proof rather than an identical timing comparison;
+- the four focused-neutral custom-motion logs unload immediately after marker
+  acceptance, so Recover completion and Hit -> Recover cleanup were not
+  observed; no repeat is needed for the group-call causal result;
+- a target that cannot be focused is invalid for Fist contact testing, even
+  though a 2H weapon can hit the same unfocused allied setup;
+- repeated unfocused attacks produced more accepted markers than fresh ownership
+  decisions (5 versus 4 and 7 versus 5); that continuous-action relationship is
+  separately unresolved and must not be assumed 1:1 in production.
 
-- native-motion left-hand baseline visibly damaged the target;
-- custom right-hand motion visibly damaged a focused neutral target spawned with
-  `spawn sh`;
-- both accepted paths resolved Fist UseType 8, skipped the group request, kept
-  group 0 -> 0, and cleared the triggered list;
-- conclusion so far: the weapon-style group request is unnecessary for the
-  tested left- and right-hand Fist contacts.
-
-Target-control finding:
-
-- `invisibility` did not keep an attacked target passive after contact;
-- marked P0 and unmarked legacy/native P1 Fist attacks did not damage an
-  unfocused allied human across two sessions;
-- a marked 2H attack visibly damaged the same unfocused allied setup after its
-  normal 5 -> 7 weapon activation;
-- therefore an unfocused allied target is not a valid control for the remaining
-  Fist matrix; use a focusable neutral target and preserve focus during contact.
-
-The unfocused sessions also recorded more accepted marked-P0 events than fresh
-frame-controlled ownership decisions (5 versus 4 and 7 versus 5). The exact
-continuous-action/callback cause is unresolved and is recorded separately; it
-does not invalidate the focused right-hand contact result.
-
-For each remaining left-leg, right-leg, and head launch, use a newly spawned,
-focusable neutral target, exit before relaunching, copy the log under a
-variant-specific name, and record whether contact damaged the target. Do not
-save the test session after attacking the spawned helper.
-
-Required log fields for every case:
-
-- raw source UseType 8 or 55;
-- `SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST`;
-- `TriggeredDamageList: CLEARED`.
-
-Do not use an untouched stock Hit without the marker; that would leave native
-ownership active. Do not generalize successful hand/leg/head contacts to every
-possible body part.
+The Fist causal matrix is complete. Do not build the inverse isolation unless a
+future regression contradicts these positive results.
 
 ## 13. Then
 
