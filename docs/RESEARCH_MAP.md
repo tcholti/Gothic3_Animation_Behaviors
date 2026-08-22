@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Research Map
 
 **Status:** Canonical engineering-state map  
-**Date:** 2026-08-20  
+**Date:** 2026-08-22  
 **Supersedes:** the "current/next" state in the older v0.2 Research & Implementation Map and v0.1 handoff.
 
 ## 1. Purpose
@@ -181,16 +181,13 @@ Preserve the proven Normal path unchanged.
 Add QuickAttack frame-collision ownership by:
 
 1. using `OnAI_QuickAttack`;
-2. using `gEPhase_Hit`;
-3. accepting exact actions:
-   - `gEAction_QuickAttack`
-   - `gEAction_QuickAttackR`
-   - `gEAction_QuickAttackL`
-4. inspecting the exact current Hit motion for the marker;
-5. suppressing native QuickAttack timed activation only when that exact motion is marked;
-6. letting the authored marker trigger the collision operation.
+2. requiring `gEPhase_Hit`;
+3. inspecting the exact current Hit motion for the marker;
+4. suppressing native QuickAttack timed activation only when that exact motion is marked and the prototype source resolves;
+5. letting the authored marker trigger the collision operation;
+6. logging the exact `Routine.Action` without using Quick/QuickR/QuickL as an ownership whitelist.
 
-For the first Staff Quick prototype, the source resolver may remain intentionally narrow if needed, but it must not be mistaken for final general source-selection architecture.
+The current `G3AB_COL_TEST` prototype marker continues to mean the actor's right-hand equipped item. Staff is the first controlled asset/test case, but there is no Staff restriction in the callback code. Dual and Torch+1H Quick animations remain unmarked/native until explicit left/right source markers or equivalent source handling are implemented.
 
 ## 7. v0.7 Test Matrix
 
@@ -230,9 +227,21 @@ Then, if useful, perform the inverse test: keep the group call while removing th
 
 ## 9. Source-Resolver Work After Quick + Fist
 
-The production collision API must separate callback/action family, primary/secondary logical attack source, and physical body contact mechanism.
+The production collision API must separate callback/action family, authored source choice, and physical body-contact mechanism.
 
-Needed future validation includes:
+Current animation/source evidence to preserve:
+
+- Dual P0 Normal: left weapon.
+- Dual P1 Quick: left weapon.
+- Dual P3 Quick file: should be left visually; whether the game currently uses it is unconfirmed.
+- Dual P1 Pierce: left weapon.
+- Dual P0 Power may be left natively: working hypothesis.
+- Dual Power in Jackydima's current implementation: both weapons activated and rearmed.
+- Torch+1H P1 and P3 Quick: left torch.
+- Some Torch+1H P0 Normal attacks natively use the left torch incorrectly; Jackydima's correction sends regular Torch+1H Normal collision to the right weapon.
+- One Dual finishing animation may visually use both weapons; exact native source remains unconfirmed and one damaging source is acceptable for that animation.
+
+Needed future validation still includes:
 
 - 1H;
 - Torch + 1H;
@@ -246,9 +255,9 @@ Needed future validation includes:
 
 ## 10. Production Marker Vocabulary — NOT FROZEN
 
-Possible terms such as PRIMARY/SECONDARY/ALL/OFF remain design candidates.
+Current preferred candidates are generic source-explicit markers such as RIGHT/LEFT/BOTH/OFF, shared across attack callback families.
 
-Do not mass-author them until source resolution and repeated-hit semantics are proven.
+They are not frozen. Do not mass-author them until source activation, OFF-state tracking, Fist/body behavior, and repeated-hit semantics are proven.
 
 ## 11. Raise Generalization — After Collision Core Stabilizes
 
