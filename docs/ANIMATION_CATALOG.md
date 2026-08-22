@@ -236,7 +236,44 @@ The attack inventory shows strong direction correlations:
 
 Current interpretation: R/L is logical attack/hit-direction metadata that may participate in selecting directional reaction actions. It is not physical weapon-trajectory measurement and is not a collision-hand selector. Exact causality among action R/L, final filename R/L, `Routine.HitDirection`, and victim `StumbleR/L` remains unproven and is not required by current v0.7, Raise, or speed plans.
 
-## 11. Catalog Maintenance Rules
+## 11. Fist v0.9 Causal-Test Fixture
+
+This test does not use several different attack slots in one game session. Each
+variant replaces the same P0 Hit animation and therefore requires a separate
+game launch and separate preserved log.
+
+Exact runtime files:
+
+```text
+Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_Stand_None_Fist_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+```
+
+Controlled Hit requirements:
+
+- 8 frames for every variant, matching the native Hit length;
+- the same whoosh effect at frame 2;
+- `G3AB_COL_TEST` at frame 3;
+- the same filename, action, P0 -> P1 transition, timing, Recover file, target
+  setup, and v0.9 DLL;
+- only the contacting body part/motion changes.
+
+Separate variants:
+
+1. native P0 motion baseline — left-hand contact, with the test marker added;
+2. custom right-hand contact;
+3. custom left-leg contact;
+4. custom right-leg contact;
+5. custom head contact — additional useful case.
+
+The untouched stock file without `G3AB_COL_TEST` is not a valid v0.9 causal
+case because it would leave native collision ownership active.
+
+The head case can establish behavior for the tested head contact. Even if all
+five cases damage, describe the result as tested hand/leg/head contacts rather
+than claiming that literally every body part is a damage source.
+
+## 12. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:
 
@@ -249,7 +286,7 @@ When new animation information becomes important for future reasoning:
 7. add raw bulk inventories under `data/animation_names/`;
 8. update this curated catalog when a new pattern changes project reasoning.
 
-## 12. Next Catalog Steps
+## 13. Next Catalog Steps
 
 1. Continue distinguishing stock, author-created, absent, duplicate-pattern, and possibly unused entries when that distinction affects implementation.
 2. Expand beyond human melee into movement, blocks, reactions, interactions, creatures, and other animation families as useful.
