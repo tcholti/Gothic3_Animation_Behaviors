@@ -111,13 +111,13 @@ Current source candidate:
 
 `Script_FrameCollisionTest v0.8` at commit `f4d2946`
 
-The candidate successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. A controlled player Staff P0/P1 Normal regression passed. Player Staff QuickR/L reached marker-controlled activation, but v0.7 failed runtime validation because each natural 7 -> 5 reset was immediately followed by an unmarked 5 -> 7 reactivation.
+v0.8 successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. The installed DLL matched the built DLL at SHA-256 `18DDE8B770400C76709063FA0888EFEF888F41C2FE03B3449508BC43DA120858`. Controlled player Staff QuickAttackR/action 4, QuickAttackL/action 5, and marked Normal/action 1 all passed runtime validation.
 
-## 8. QuickAttack Finding and Implemented Candidate
+## 8. QuickAttack Finding and Validated Fix
 
 Staff Quick markers were previously confirmed to fire, with native QuickAttackR/L action values observed. v0.6 could not own them because its eligibility path assumed literal Normal `_Attack_Hit_` naming.
 
-v0.7 proved pre-marker QuickR/L ownership but failed after reset because it left the callback one-shot gate at 0. The v0.8 candidate preserves the Normal callback body and adds only the missing accepted-Quick-marker bookkeeping.
+v0.7 proved pre-marker QuickR/L ownership but failed after reset because it left the callback one-shot gate at 0. v0.8 preserves the Normal callback body and adds only the missing accepted-Quick-marker bookkeeping. In the controlled player test, both Quick actions changed `StatePosition` 0 -> 1 at marker frame 6, naturally reset collision 7 -> 5, and produced no delayed unmarked 5 -> 7 reactivation.
 
 ## 9. v0.8 Implementation Contract
 
@@ -153,7 +153,7 @@ Preserve these distinctions for later source-explicit markers/general resolution
 
 Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. Names are not frozen.
 
-## 11. v0.8 Validation
+## 11. v0.8 Validation — PLAYER PASSED
 
 v0.7 baseline retained for comparison:
 
@@ -162,24 +162,17 @@ v0.7 baseline retained for comparison:
 - no native 5 -> 7 occurred before those markers;
 - v0.7 then failed because every natural 7 -> 5 reset was followed by an unmarked 5 -> 7.
 
-v0.8 candidate:
+v0.8 controlled player result:
 
-- implemented at commit `f4d2946`;
-- accepted Quick marker sets `PropertyStatePosition` from its observed value to 1;
-- before/after state values are logged;
-- the Normal marker path is unchanged;
-- standalone build and runtime validation are pending.
+- built and installed successfully; build/install SHA-256 matched;
+- marked Staff QuickAttackR/action 4 activated only at marker frame 6;
+- marked Staff QuickAttackL/action 5 activated only at marker frame 6;
+- both Quick markers changed `StatePosition` 0 -> 1;
+- each Quick activation naturally reset 7 -> 5;
+- neither reset was followed by the v0.7 unmarked reactivation;
+- one marked Staff Normal/action 1 retained marker-frame-5 activation and natural reset.
 
-Required player retest:
-
-1. marked Staff QuickAttackR/action 4;
-2. marked Staff QuickAttackL/action 5;
-3. verify marker log reports state-position transition to 1;
-4. verify one 5 -> 7 occurs at each marker;
-5. verify natural 7 -> 5 is not followed by reactivation;
-6. repeat one marked Staff Normal attack as regression.
-
-Only after these pass, repeat Staff Quick on an NPC. Generic Quick/action 3 remains untested because the moving attempt selected action 4 again.
+Immediate next validation: repeat marked Staff QuickR/L on a human NPC and confirm that collision is applied to the NPC's own equipped Staff/Halberd. Generic Quick/action 3 remains untested because the moving player attempt selected action 4 again.
 
 ## 12. Next Dedicated Fist Test
 
@@ -216,9 +209,13 @@ cmake -S . -B build -G "Visual Studio 17 2022" -A Win32
 cmake --build build --config Release --target Script_FrameCollisionTest
 ```
 
-Validated v0.7 DLL output:
+Validated v0.8 DLL output:
 
 `build/prototypes/Script_FrameCollisionTest/Release/Script_FrameCollisionTest.dll`
+
+Validated v0.8 build/install SHA-256:
+
+`18DDE8B770400C76709063FA0888EFEF888F41C2FE03B3449508BC43DA120858`
 
 ## 15. Current Source Layout
 
