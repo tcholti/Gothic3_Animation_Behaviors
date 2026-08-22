@@ -186,6 +186,17 @@ v0.8 player runtime result:
 
 Player and human-NPC Staff QuickR/L validation are complete. In the NPC test, `OutNovice_01` produced two QuickAttackR/action 4 and five QuickAttackL/action 5 executions using its own `It_Halberd_01`; all seven passed marker, bookkeeping, and reset checks.
 
+Active causal source candidate: `v0.9` at commit `89f36d8`.
+
+- identifies only raw `gEUseType_Fist` and `gEUseType_PhysicalFist`;
+- skips `SetCollisionGroup(Item_Attack)` only for those resolved sources;
+- keeps `ClearTriggeredList` unconditional;
+- preserves Normal/Quick ownership and Quick StatePosition bookkeeping;
+- logs the raw source UseType and whether the group request was skipped;
+- leaves every non-Fist activation path unchanged.
+
+Static source review passed; build and runtime validation are pending.
+
 ### Prototype marker
 
 `G3AB_COL_TEST`
@@ -252,22 +263,42 @@ v0.7 same-execution reactivation.
 Generic Quick/action 3 remains untested. Neither controlled player nor NPC
 session selected it.
 
-## 8. Fist Causal Test — NEXT DEDICATED DIAGNOSTIC
+## 8. Fist Causal Test — SOURCE IMPLEMENTED; BUILD/RUNTIME NEXT
 
-Current question:
+Current causal question:
 
-Does `SetCollisionGroup(Item_Attack)` contribute to marked Fist damage, or is triggered-list rearming the effective operation?
+Does `SetCollisionGroup(Item_Attack)` contribute to marked Fist damage, or is
+triggered-list rearming the effective operation?
 
-Preferred controlled test:
+v0.9 changes exactly one operation for a source whose raw SDK UseType is
+`Fist` or `PhysicalFist`:
 
-1. keep frame ownership and native suppression unchanged;
-2. remove only the Fist `SetCollisionGroup` call;
-3. keep `ClearTriggeredList`;
-4. repeat controlled contact tests with left leg, right leg, right hand, and left hand.
+- skip `SetCollisionGroup(Item_Attack)`;
+- keep `ClearTriggeredList`.
 
-If damage remains, `SetCollisionGroup` is likely irrelevant for the Fist path.
+Unchanged controls:
 
-Then, if useful, perform the inverse test: keep the group call while removing the triggered-list clear.
+- exact-motion marker ownership;
+- Normal callback suppression;
+- right-slot source resolution;
+- marker timing;
+- all non-Fist group activation;
+- Quick callback/bookkeeping code.
+
+Required runtime evidence:
+
+1. log confirms source raw UseType 8 or 55;
+2. log confirms `SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST`;
+3. log confirms `TriggeredDamageList: CLEARED`;
+4. repeat marked contact using left leg, right leg, right hand, and left hand;
+5. record whether each contact still damages the target.
+
+If all controlled contacts still damage, the weapon-style group call is
+unnecessary for the tested Fist/body-contact path. If damage fails, the call
+contributes despite the logical Fist entity remaining collision group 0.
+
+Only if the result remains ambiguous should the inverse isolation be built:
+restore the group call and remove only triggered-list clearing.
 
 ## 9. Source-Resolver Work After Quick + Fist
 
