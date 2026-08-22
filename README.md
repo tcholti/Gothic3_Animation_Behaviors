@@ -15,4 +15,4 @@ General Gothic 3 animation-behavior research and implementation for configurable
 ## Searchable animation-name data
 
 - [Author-grouped attacks and stumbles](data/animation_names/author_grouped_attacks_and_stumbles.txt)
-- `data/animation_names/all_animation_names.txt` — planned complete generated inventory
+- [Complete native animation-name inventory](data/animation_names/all_animation_names.txt) — 5,991 sorted unique names from extracted `pak` + `p00` sources
