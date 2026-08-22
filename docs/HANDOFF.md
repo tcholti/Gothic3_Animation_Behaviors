@@ -111,7 +111,7 @@ Current source candidate:
 
 `Script_FrameCollisionTest v0.7` at commit `04d12f8`
 
-The candidate successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. Runtime validation remains pending. Previously proven Normal behavior must be regression-checked before the candidate is promoted.
+The candidate successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. A controlled player Staff P0/P1 Normal regression passed: marker-frame activation/rearm and natural 7 -> 5 reset were preserved. Quick runtime validation remains pending.
 
 ## 8. QuickAttack Finding and Implemented Candidate
 
@@ -153,7 +153,12 @@ Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF
 
 ## 11. v0.7 Validation
 
-Player Staff Quick:
+Completed:
+
+- player Staff marked Normal P0/P1 regression passed;
+- the first attempted Quick test resolved to Normal animations (`Action: 1`, `_Attack_Hit_`) and therefore did not test Quick ownership.
+
+Still required — player Staff Quick:
 
 - no native `5 -> 7` before marker;
 - marker triggers activation/rearm;
