@@ -11,8 +11,10 @@ For a new implementation session/chat, use:
 2. `docs/RESEARCH_MAP.md` — current state and next work.
 3. `docs/EVIDENCE_LEDGER.md` — fact/hypothesis status.
 4. `docs/ANIMATION_RULES.md` — engine-facing animation semantics.
-5. `docs/SOURCE_HOOK_GUIDE.md` — search/hook/build method.
-6. current actual source files in `src/` and `prototypes/` once migrated.
+5. `docs/ANIMATION_CATALOG.md` — exact animation families, examples, and author observations.
+6. `data/animation_names/` — verbatim and generated searchable animation-name inventories.
+7. `docs/SOURCE_HOOK_GUIDE.md` — search/hook/build method.
+8. current actual source files in `src/` and `prototypes/` once migrated.
 
 If an old historical document conflicts with these, use the canonical files above.
 
@@ -231,8 +233,14 @@ docs/
     RESEARCH_MAP.md
     SOURCE_HOOK_GUIDE.md
     ANIMATION_RULES.md
+    ANIMATION_CATALOG.md
     EVIDENCE_LEDGER.md
     HANDOFF.md
+
+data/
+    animation_names/
+        author_grouped_attacks_and_stumbles.txt
+        all_animation_names.txt  # planned generated inventory
 ```
 
 Do not force this structure if the actual source dependencies show a better minimal layout.
@@ -262,7 +270,8 @@ For isolated collision tests, avoid loading old collision/logger DLLs unless tha
 - use animation-mod evidence as real engineering evidence;
 - challenge unsupported assumptions;
 - do not over-redesign working components;
-- do not ask the user to repeat information already preserved in the project/docs/code.
+- do not ask the user to repeat information already preserved in the project/docs/code;
+- when new information materially affects future reasoning, record it in the appropriate canonical document or evidence ledger during the next logical documentation checkpoint.
 
 ## 18. Historical Documents
 
