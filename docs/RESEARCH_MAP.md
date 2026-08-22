@@ -184,7 +184,7 @@ v0.8 player runtime result:
 - one marked Normal/action 1 regression retained marker-frame-5 activation and natural reset;
 - no per-actor ownership state was introduced.
 
-Player validation is complete. NPC Staff Quick validation is next.
+Player and human-NPC Staff QuickR/L validation are complete. In the NPC test, `OutNovice_01` produced two QuickAttackR/action 4 and five QuickAttackL/action 5 executions using its own `It_Halberd_01`; all seven passed marker, bookkeeping, and reset checks.
 
 ### Prototype marker
 
@@ -192,7 +192,7 @@ Player validation is complete. NPC Staff Quick validation is next.
 
 Status: proven research marker, not finalized production vocabulary.
 
-## 6. v0.8 Implementation — PLAYER RUNTIME PASSED
+## 6. v0.8 Implementation — PLAYER AND NPC RUNTIME PASSED
 
 v0.8 keeps the v0.7 callback/action/phase/marker ownership model and completes
 the Quick callback's one-shot bookkeeping only at accepted marker time.
@@ -208,9 +208,11 @@ The implementation remains intentionally narrow:
 
 The controlled player test confirms the predicted correction: both Quick markers
 observed state position 0 and changed it to 1; neither natural 7 -> 5 reset was
-followed by the v0.7 delayed 5 -> 7 reactivation. This promotes the fix's tested
-behavior to **CONFIRMED**, while the exact unobserved native callback internals
-behind the original defect remain **STRONGLY SUPPORTED**.
+followed by the v0.7 delayed 5 -> 7 reactivation. A controlled human-NPC test
+then reproduced the corrected sequence seven times on the NPC's own equipped
+Halberd. This promotes the fix's tested player/NPC behavior to **CONFIRMED**,
+while the exact unobserved native callback internals behind the original defect
+remain **STRONGLY SUPPORTED**.
 
 The current `G3AB_COL_TEST` marker still means the actor's right-hand equipped
 item. Do not mark Dual or Torch+1H Quick animations until explicit source
@@ -234,15 +236,23 @@ One marked Normal/action 1 activated at marker frame 5 and naturally reset
 7 -> 5. The separate Normal adapter remained compatible with the shared
 activation/reset core.
 
-### NPC Staff Quick — NEXT
+### NPC Staff Quick — PASSED
 
-Repeat marked QuickR/L using a human NPC and confirm the same behavior on the
-NPC's own equipped Staff/Halberd.
+For `OutNovice_01` using its own `It_Halberd_01`:
 
-Generic Quick/action 3 remains untested. The attempted moving player input
-selected QuickAttackR/action 4 again.
+- QuickAttackR/action 4 occurred twice;
+- QuickAttackL/action 5 occurred five times;
+- all seven marker events changed StatePosition 0 -> 1;
+- all seven activated 5 -> 7 and naturally reset 7 -> 5;
+- no immediate post-reset reactivation occurred.
 
-## 8. Fist Causal Test — Next Dedicated Diagnostic
+Other later unmarked collision cycles were separated native NPC attacks, not the
+v0.7 same-execution reactivation.
+
+Generic Quick/action 3 remains untested. Neither controlled player nor NPC
+session selected it.
+
+## 8. Fist Causal Test — NEXT DEDICATED DIAGNOSTIC
 
 Current question:
 
