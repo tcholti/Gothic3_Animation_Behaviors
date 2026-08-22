@@ -111,7 +111,7 @@ Current source candidate:
 
 `Script_FrameCollisionTest v0.7` at commit `04d12f8`
 
-The candidate successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. A controlled player Staff P0/P1 Normal regression passed: marker-frame activation/rearm and natural 7 -> 5 reset were preserved. Quick runtime validation remains pending.
+The candidate successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. A controlled player Staff P0/P1 Normal regression passed. Player Staff QuickR/L reached marker-controlled activation, but v0.7 failed runtime validation because each natural 7 -> 5 reset was immediately followed by an unmarked 5 -> 7 reactivation.
 
 ## 8. QuickAttack Finding and Implemented Candidate
 
@@ -130,9 +130,9 @@ The v0.7 candidate preserves the Normal callback body and adds Quick support.
 
 The exact action check does not control animation resolution. It lets global `StartEffect` confirm that the later marker belongs to the Quick callback family whose native timer was suppressed.
 
-Expected behavior, not yet runtime-confirmed:
+Observed v0.7 behavior:
 
-marked Quick execution with a valid right-hand source suppresses native timed activation and waits for the authored marker. Unmarked or unresolved executions remain native.
+marked QuickR/L execution with a valid right-hand source suppresses pre-marker native activation and waits for authored marker frame 6. However, after the natural 7 -> 5 reset, the original Quick callback later reactivates 5 -> 7 because marker ownership did not complete the callback's one-shot state bookkeeping. v0.7 is therefore not a valid Quick implementation.
 
 Staff is the first controlled animation/test case, not a Staff restriction in code. Do not mark Dual or Torch+1H Quick animations while `G3AB_COL_TEST` still means right-hand source.
 
@@ -156,20 +156,29 @@ Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF
 Completed:
 
 - player Staff marked Normal P0/P1 regression passed;
-- the first attempted Quick test resolved to Normal animations (`Action: 1`, `_Attack_Hit_`) and therefore did not test Quick ownership.
+- player Staff QuickAttackR/action 4 and QuickAttackL/action 5 were claimed;
+- their first 5 -> 7 activation waited for marker frame 6;
+- no native 5 -> 7 occurred before those markers.
 
-Still required — player Staff Quick:
+Failure:
 
-- no native `5 -> 7` before marker;
-- marker triggers activation/rearm;
-- both R/L variants work;
-- natural reset after Hit.
+- each natural 7 -> 5 reset was immediately followed by an unmarked 5 -> 7;
+- later attacks therefore began with the Staff already in Item_Attack;
+- v0.7 must not be promoted or expanded.
 
-NPC Staff Quick:
+Strongly supported cause:
 
-- same behavior on NPC's own equipped item.
+- marker-time logs show `PropertyStatePosition == 0`;
+- Quick callback source uses this property as its one-shot activation gate and sets it to 1 after native activation;
+- v0.7 activates collision at the marker but leaves the gate at 0, allowing the original callback to activate later.
 
-Do not expand further until these pass.
+Smallest next candidate:
+
+- when and only when an accepted Quick marker activates/rearms its source, set `PropertyStatePosition` to 1;
+- leave the proven Normal marker path unchanged;
+- rebuild and repeat player QuickR/L plus Normal regression before NPC testing.
+
+The attempted moving input selected QuickAttackR/action 4 again. Generic Quick/action 3 remains untested.
 
 ## 12. Next Dedicated Fist Test
 
