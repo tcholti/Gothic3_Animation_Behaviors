@@ -348,7 +348,29 @@ Describe the completed result as tested left/right hand, left/right leg, and hea
 contacts. Do not claim that every body part, PhysicalFist, or monster body is a
 proven source.
 
-## 12. Catalog Maintenance Rules
+## 12. Marked 2H Normal Multi-Target Fixture
+
+The controlled v0.10 player fixture used:
+
+- Raise frame range 0 through 4 inclusive (5 sampled frames);
+- Hit frame range 0 through 12 inclusive (13 sampled frames);
+- whoosh at Hit frame 6;
+- `G3AB_COL_TEST` collision marker at Hit frame 7;
+- right-hand 2H source `It_2H_Sword_Flamberge`;
+- three spawned wolves, with god mode used to keep the test stable;
+- NewBalance and `Script_AttackCollision` absent.
+
+Four marked Normal attacks alternated the P0/P1 Hit files. Every attack produced
+one accepted frame-7 marker, one right-weapon 5 -> 7 activation/list clear, and
+one natural 7 -> 5 reset in phase 3, with no additional player weapon
+activation. Visually, one swing damaged three wolves and at least two swings
+damaged two wolves. This confirms that one marker-controlled 2H weapon window
+can damage multiple distinct targets physically reached by the blade.
+
+It does not establish completely unmodified native behavior or repeated damage
+to the same target without a second source marker.
+
+## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:
 

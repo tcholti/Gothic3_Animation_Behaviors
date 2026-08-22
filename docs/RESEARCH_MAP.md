@@ -394,14 +394,16 @@ follow-up target.
 Next Dual work is SimpleWhirl plus Power multi-contact rearming. Dual does not
 have the separate full Whirl used by 2H/Staff. The diagnostic must observe
 `ClearTriggeredList`, because first group activation alone cannot distinguish
-native two-hit Power from the intended three-contact sequence. It should also
-record damaged-target identity: SDK structure exposes per-entity visited state,
-and the tester's NewBalance-enabled setup allows one Normal/Quick swing to hit
-several different opponents, but the native baseline is unknown. Pinned
-NewBalance independently clears both Dual weapon lists through
-`FixDualOneHanded`, so the rearm fix is not exclusive to
-`Script_AttackCollision`. Separate later 2H/Staff Whirl work should observe
-`ResetOnUntouch` and OFF-gap needs.
+native two-hit Power from the intended three-contact sequence. Marked v0.10 2H
+Normal testing without NewBalance or `Script_AttackCollision` established that
+one marker activation/list clear can damage multiple distinct opponents: four
+attacks logged one frame-7 activation and one natural reset each, while one
+observed swing hit three wolves and at least two hit two wolves. Target-identity
+logging remains useful for future automatic evidence, but the project marker
+path is no longer blocked on basic multi-target capability. Pinned NewBalance
+independently clears both Dual weapon lists through `FixDualOneHanded`, so the
+rearm fix is not exclusive to `Script_AttackCollision`. Separate later 2H/Staff
+Whirl work should observe `ResetOnUntouch` and OFF-gap needs.
 
 ## 11. Production Marker Vocabulary — NOT FROZEN
 

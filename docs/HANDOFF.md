@@ -160,6 +160,7 @@ Controlled v0.10 player Dual runtime established:
 - every one of the 17 group-activation records had a matching 7 -> 5 reset in phase 3.
 - Quick R/L action/filename direction did not select collision hand.
 - SDK trigger state is per entity (`EntitiesVisited` / `EntitiesVisitedCount`); a NewBalance-enabled Normal/Quick swing has been observed hitting several distinct opponents, while the native baseline remains untested.
+- current project behavior is stronger than that historical observation: with NewBalance and `Script_AttackCollision` absent, four marked 2H Normal attacks each logged one frame-7 activation/list clear and one natural reset; one observed swing hit three wolves and at least two hit two wolves. A marker clear therefore does not limit one active window to one target.
 
 Preserve these remaining distinctions:
 
@@ -252,13 +253,12 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. use the existing marked 2H Normal path, with NewBalance and `Script_AttackCollision` absent, for a controlled one-swing/two-or-more-target gameplay probe; record whether each distinct opponent is damaged and keep the session log;
-2. build a passive `ClearTriggeredList` plus damaged-target-identity diagnostic, then resolve Dual SimpleWhirl source/contact intent and Power third-contact rearm; BOTH group activation/reset alone is already confirmed but incomplete;
-3. separately validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF needs;
-4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-5. add collision callback adapters one family at a time;
-6. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-7. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. build a passive `ClearTriggeredList` plus damaged-target-identity diagnostic, then resolve Dual SimpleWhirl source/contact intent and Power third-contact rearm; BOTH group activation/reset alone is already confirmed but incomplete;
+2. separately validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF needs;
+3. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+4. add collision callback adapters one family at a time;
+5. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 

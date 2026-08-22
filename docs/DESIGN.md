@@ -329,7 +329,8 @@ The hook location is build-specific and does not yet establish the exact
 animation time of the clear.
 
 The engine trigger structure keeps `EntitiesVisited` and
-`EntitiesVisitedCount`. The working interpretation is therefore:
+`EntitiesVisitedCount`. Controlled marked-2H testing confirms the first part of
+the resulting model for the current project path:
 
 - a weapon may hit several different entities during one active window;
 - an entity already visited by that weapon cannot normally be damaged again
@@ -337,9 +338,11 @@ The engine trigger structure keeps `EntitiesVisited` and
 - clearing at a new source marker starts a fresh authored contact for that
   source.
 
-This interpretation fits both multi-opponent swings and Dual Power rearming,
-but native versus NewBalance behavior still needs a controlled target-identity
-comparison.
+The marked v0.10 2H Normal path damaged two or three distinct wolves during one
+window after a single list clear, while each of four attacks logged only one
+player activation and one natural reset. Multi-target behavior is therefore
+confirmed for the current marker-controlled weapon path. Completely unmodified
+native behavior and same-target rearming remain separate questions.
 
 ### FinishingAttack
 
