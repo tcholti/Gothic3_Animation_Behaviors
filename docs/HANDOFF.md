@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Continuation Handoff
 
 **Status:** Canonical continuation handoff  
-**Date:** 2026-08-20
+**Date:** 2026-08-22
 
 ## 1. Authority Order
 
@@ -52,7 +52,7 @@ Preserve native behavior for unconfigured/unmarked cases.
 
 ## 4. Core Architecture in One Paragraph
 
-Use native callback family + exact `gEAction` + `gEPhase` + normalized animation UseTypes for behavior identity, and inspect the exact current motion for a reserved frame marker when collision ownership is relevant. Marker presence declares that exact execution frame-controlled, allowing native timed activation to be suppressed before the marker fires. When the marker is dispatched, invoke the appropriate action-family/source activation/rearm helper. Keep physical damage-source resolution separate from action/phase identity.
+Use the named native callback family + `gEPhase` + exact current motion marker for frame-collision ownership. Marker presence declares that exact execution frame-controlled, allowing the native timed activation in that callback to be suppressed before the marker fires. Read and log exact `gEAction` values, but do not add an action whitelist when callback + phase + marker already provide sufficient scope. When the marker is dispatched, invoke the appropriate source activation/rearm helper. Keep physical damage-source resolution separate from callback/phase identity.
 
 ## 5. Proven Raise State
 
@@ -127,21 +127,35 @@ Preserve proven Normal code unchanged.
 
 Add Quick support through:
 
-- `OnAI_QuickAttack`
-- Hit phase
-- exact actions:
-  - QuickAttack
-  - QuickAttackR
-  - QuickAttackL
-- exact current-motion marker presence
+- `OnAI_QuickAttack`;
+- Hit phase;
+- exact current-motion marker presence;
+- the existing right-hand prototype source resolver.
+
+Log Quick/QuickR/QuickL action values, but do not use them as an ownership whitelist.
 
 Required behavior:
 
-marked Quick execution suppresses native timed activation and waits for authored marker.
+marked Quick execution with a valid right-hand source suppresses native timed activation and waits for the authored marker. Unmarked or unresolved executions call the original callback.
 
-First source resolver can remain deliberately narrow for Staff if that is the smallest safe proof.
+Staff is the first controlled animation/test case, not a Staff restriction in code. Do not mark Dual or Torch+1H Quick animations while `G3AB_COL_TEST` still means right-hand source.
 
-## 10. v0.7 Validation
+## 10. Current Hand-Source Evidence
+
+Preserve these distinctions for later source-explicit markers/general resolution:
+
+- Dual P0 Normal: left.
+- Dual P1 Quick: left.
+- Dual P3 Quick file: should be left; runtime use unconfirmed.
+- Dual P1 Pierce: left.
+- Dual Power in Jackydima's current implementation: both.
+- Torch+1H P1/P3 Quick: left torch.
+- Some native Torch+1H P0 Normal left-torch activations are considered erroneous; Jackydima corrects regular Normal collision to the right weapon.
+- Native Dual P0 Power left-source and one Dual finishing source remain unconfirmed.
+
+Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. Names are not frozen.
+
+## 11. v0.7 Validation
 
 Player Staff Quick:
 
@@ -156,7 +170,7 @@ NPC Staff Quick:
 
 Do not expand further until these pass.
 
-## 11. Next Dedicated Fist Test
+## 12. Next Dedicated Fist Test
 
 After Quick support:
 
@@ -166,7 +180,7 @@ Goal:
 
 isolate whether Fist damage requires the weapon-style collision group at all.
 
-## 12. Then
+## 13. Then
 
 1. general source resolver;
 2. production collision helper API;
@@ -175,7 +189,7 @@ isolate whether Fist damage requires the weapon-style collision group at all.
 5. generalize Raise;
 6. implement safe profile-aware speed authority.
 
-## 13. Code Files to Request From User Before Migration
+## 14. Code Files to Request From User Before Migration
 
 The user will supply the actual latest code.
 
@@ -191,7 +205,7 @@ At minimum request/upload the latest real copies of:
 
 Do not reconstruct these files from conversation memory if the user can provide the actual files.
 
-## 14. Intended Repository Placement After Review
+## 15. Intended Repository Placement After Review
 
 Likely structure:
 
@@ -222,7 +236,7 @@ docs/
 
 Do not force this structure if the actual source dependencies show a better minimal layout.
 
-## 15. Runtime Test Environment
+## 16. Runtime Test Environment
 
 Gothic 3:
 
@@ -238,7 +252,7 @@ INI:
 
 For isolated collision tests, avoid loading old collision/logger DLLs unless that test explicitly requires them.
 
-## 16. Collaboration Rules
+## 17. Collaboration Rules
 
 - preserve proven work;
 - one manageable change at a time;
@@ -249,7 +263,7 @@ For isolated collision tests, avoid loading old collision/logger DLLs unless tha
 - do not over-redesign working components;
 - do not ask the user to repeat information already preserved in the project/docs/code.
 
-## 17. Historical Documents
+## 18. Historical Documents
 
 Older source documents remain useful for provenance but are not current authority:
 
