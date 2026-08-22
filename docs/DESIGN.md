@@ -390,6 +390,22 @@ Exact restoration and cleanup rules must be proven before marker names freeze.
 A same-source double attack simply repeats that source marker after OFF; for
 example, RIGHT -> OFF -> RIGHT.
 
+Before OFF exists, v0.10 can isolate same-target list rearming under the proven
+Normal path by reusing one identical double-contact 2H motion in three variants:
+
+1. no marker: native-timer baseline;
+2. first-contact marker only: one authored activation/list clear across both
+   visual contacts;
+3. first- and second-contact markers: the second marker clears the same weapon
+   list again while collision is already active.
+
+Only marker placement changes between variants. If variant 2 damages the target
+once and variant 3 damages it twice, the second marker's list clear is the
+isolated cause. OFF is then added and tested separately for the inactive gap.
+The source-level clear semantics do not need exhaustive repetition across every
+action family; callback-specific tests instead validate ownership and native
+timer suppression.
+
 ### Fist
 
 The logical Fist source does not behave like a normal equipped weapon collision group.

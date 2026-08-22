@@ -328,6 +328,14 @@ Recent Jackydima source added `PropertyResetOnUntouch = GETrue` to the right-wea
 
 This is relevant evidence for repeated-contact/rearm behavior.
 
+Current v0.10 marker limitation: motion scanning stops at the first matching
+`G3AB_COL_TEST`, so `AuthoredMarkerFrame` reports that first frame even when the
+same motion contains and dispatches a later marker with the same name. The
+global `StartEffect` hook still receives and processes each dispatch, and each
+accepted dispatch calls `ClearTriggeredList`. Count received/accepted marker
+blocks and compare their `StateTime`; do not treat the repeated first-frame
+label as evidence that the later marker failed to fire.
+
 ## 11. Current Marker-Control Research Pattern
 
 At callback entry / Hit start:

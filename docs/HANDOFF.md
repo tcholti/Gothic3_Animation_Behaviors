@@ -253,12 +253,15 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build a passive `ClearTriggeredList` diagnostic, then resolve Dual SimpleWhirl source/contact intent and Power third-contact rearm; BOTH group activation/reset alone is already confirmed but incomplete. Add damaged-target identity only if same-target results are ambiguous;
-2. separately validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF needs;
-3. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-4. add collision callback adapters one family at a time;
-5. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. reuse the same custom 2H double-contact motion as a P0 Normal attack in three otherwise identical variants: no marker, first-contact marker only, and first-plus-second-contact markers. Test one sturdy focused target with NewBalance and `Script_AttackCollision` absent, saving a separate log for each variant;
+2. use v0.10 for this Normal isolation. It accepts every dispatched `G3AB_COL_TEST`, so the two-marker variant will clear the right-hand list twice, although its ownership scan/logged `AuthoredMarkerFrame` reports only the first matching marker frame;
+3. build a passive `ClearTriggeredList` diagnostic only if the three-way result or native baseline needs deeper timing evidence. Add damaged-target identity only if same-target results remain ambiguous;
+4. after Normal proves source rearm, perform one Quick regression if useful. Do not test the actual Whirl callback with v0.10: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+5. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
+6. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+7. add collision callback adapters one family at a time;
+8. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+9. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 
