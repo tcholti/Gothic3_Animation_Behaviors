@@ -1,0 +1,1057 @@
+Script_FrameCollisionTest v0.8 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: current animation contains _Attack_Hit_ and G3AB_COL_TEST.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + G3AB_COL_TEST.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Prototype source resolver: current actor RIGHT-HAND equipped item.
+If a marked animation has no right-hand item, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: source -> Item_Attack + ClearTriggeredList.
+No custom collision-OFF cleanup; Gothic 3 owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+
+Installing hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 28106.332
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 5
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 28386.500
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.292986
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 28386.527
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 28676.554
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30588.107
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31066.295
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 36775.633
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.286971
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36775.658
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37076.020
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38909.901
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39389.298
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 40941.730
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.288888
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40941.754
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 41234.121
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 42488.759
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 5
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 42764.450
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.286616
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42764.476
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 43063.849
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45160.583
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45770.509
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48623.125
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49204.938
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 51312.241
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 5
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 51588.041
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.285891
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51588.068
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51882.850
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 53141.349
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 53374.851
+Actor: OutNovice_01
+Action: 5
+AniPhase: 1
+StateTime: 0.243995
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53374.877
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53586.169
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 55211.551
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 55764.645
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 57045.091
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 5
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 57327.515
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.293590
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 57327.540
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 57614.226
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 62343.635
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 62945.593
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 65379.372
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.288779
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 65379.398
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 65669.514
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 67304.636
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.294978
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 67304.663
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 67596.612
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 69500.894
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 69994.715
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 75722.655
+Actor: OutNovice_01
+Action: 1
+AniPhase: 1
+StateTime: 0.294226
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 75722.681
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 5
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 76005.750
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 77257.035
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 77489.819
+Actor: OutNovice_01
+Action: 5
+AniPhase: 1
+StateTime: 0.245848
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 77489.844
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 77692.553
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 79055.429
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 79285.777
+Actor: OutNovice_01
+Action: 4
+AniPhase: 1
+StateTime: 0.242198
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 79285.801
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 79493.394
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 84944.109
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 85177.565
+Actor: OutNovice_01
+Action: 5
+AniPhase: 1
+StateTime: 0.243273
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 85177.589
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 85384.132
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 86701.849
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 86937.585
+Actor: OutNovice_01
+Action: 5
+AniPhase: 1
+StateTime: 0.248010
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 86937.611
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 87143.022
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 89084.680
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 89571.491
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 91003.542
+Actor: OutNovice_01
+Action: 5
+AniPhase: 1
+StateTime: 0.247988
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 91003.566
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 91214.666
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 93285.751
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 93892.770
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 96316.423
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 96874.453
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 99611.982
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 100223.715
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 103349.808
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 103966.247
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 106182.338
+Actor: OutNovice_01
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 6
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 106419.800
+Actor: OutNovice_01
+Action: 4
+AniPhase: 1
+StateTime: 0.249014
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_Halberd_01
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 106419.825
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+AuthoredMarkerFrame: 6
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 106624.488
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 109187.478
+Entity: It_Halberd_01
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 109786.542
+Entity: It_Halberd_01
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+Script_FrameCollisionTest unloading.
