@@ -248,8 +248,9 @@ Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R
 Hero_Stand_None_Fist_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
 ```
 
-All Hit variants were eight frames long and retained the same filename, action,
-P0 -> P1 transition, target-focus requirement, and v0.9 DLL. Each variant could
+All Hit variants were authored from frame 0 through frame 8 inclusive
+(9 sampled frames) and retained the same filename, action, P0 -> P1 transition,
+target-focus requirement, and v0.9 DLL. Each variant could
 use a custom marker-free Recover starting from its own final pose.
 
 Results:
