@@ -45,7 +45,7 @@ Statuses:
 | EV-024 | Staff normal marker-controlled collision works on player. | CONFIRMED | v0.6 | Source resolver can support Staff item path. |
 | EV-025 | Staff normal marker-controlled collision works on human NPC's own halberd. | CONFIRMED | v0.6 NPC test | System is not inherently player-only. |
 | EV-026 | QuickAttack markers fire on Staff Quick animations. | CONFIRMED | runtime | Marker channel itself works for Quick. |
-| EV-027 | v0.6 rejects Quick ownership because of Normal-specific `_Attack_Hit_` eligibility. | CONFIRMED | runtime/prototype logic | Replace filename-only eligibility with named callback + Hit phase + exact-motion marker. |
+| EV-027 | v0.6 rejects Quick ownership because of Normal-specific `_Attack_Hit_` eligibility. | CONFIRMED | runtime/prototype logic | Replace filename-only eligibility with callback + exact action + Hit phase + exact-motion marker. |
 | EV-028 | `OnAI_QuickAttack` is the relevant callback family for QuickAttackR/L variants. | CONFIRMED | Jackydima source/runtime action values | v0.7 should handle this callback. |
 | EV-029 | Marked Fist tests can damage via left leg, right leg, right hand, and left hand with native timed activation suppressed. | CONFIRMED | controlled tests | Physical contact is not tied to a literal right-hand weapon. |
 | EV-030 | Logical right-slot Fist entity remains collision group 0 when SetCollisionGroup(Item_Attack) is called. | CONFIRMED | runtime logging | Fist does not behave like normal weapon collision group. |
@@ -64,7 +64,7 @@ Statuses:
 | EV-043 | Missing configuration should leave native behavior untouched. | DESIGN DECISION | project safety principle | Required production fallback. |
 | EV-044 | Unmarked animation should leave legacy/native collision ownership untouched. | DESIGN DECISION + PROVEN PROTOTYPE PATTERN | v0.5/v0.6 | Required frame-collision opt-in behavior. |
 | EV-045 | Jackydima current WhirlAttack path sets `PropertyResetOnUntouch = GETrue`. | CONFIRMED | commit `da61a791...` | Relevant to repeated-contact Whirl behavior. |
-| EV-046 | Exact Quick/QuickR/QuickL action values should be required as a frame-collision ownership whitelist inside `OnAI_QuickAttack`. | DESIGN DECISION | callback already scopes the native collision family; exact-motion marker opts in | No: log exact action, but do not add an ownership dependency without demonstrated need. |
+| EV-046 | Exact Quick/QuickR/QuickL action values are required by the current stateless v0.7 marker path. | DESIGN DECISION | `OnAI_QuickAttack` scopes suppression earlier, but global `StartEffect` later lacks callback identity | Use exact action + Hit phase + exact marker to correlate the global marker; avoid per-execution state until needed. |
 | EV-047 | Dual P0 Normal uses the left weapon as collision source. | STRONGLY SUPPORTED | animation-author empirical evidence + current third-party source behavior | Preserve when source-explicit markers/general resolver replace the right-hand prototype. |
 | EV-048 | Dual P1 Quick uses the left weapon as collision source. | STRONGLY SUPPORTED | animation-author empirical evidence + current third-party source behavior | Left-source Quick support is required before marking this animation. |
 | EV-049 | A Dual P3 Quick animation file exists and visually represents a left-weapon attack. | STRONGLY SUPPORTED | animation-author file/animation evidence | Catalog the exact file when the animation list is added. |
