@@ -337,15 +337,20 @@ Controlled v0.10 player Dual runtime source map:
 - P0 and P1 Power: both weapons.
 - all 17 activation records had paired 7 -> 5 resets in phase 3.
 
-The Power result contradicts the earlier P0-left-only recollection and converges
-with Jackydima's BOTH implementation. The diagnostic did not observe later
-triggered-list re-clearing, so repeated Power contact remains separate work.
+The Power group result contradicts the earlier P0-left-only recollection and
+converges with Jackydima's initial BOTH activation. It does not prove all three
+visual contacts can damage: P0 is right -> left -> right and P1 is left -> right
+-> left, while native behavior is reported to damage only twice. The first
+weapon must be rearmed for its second contact. Jackydima later clears both lists
+again; v0.10 did not observe that operation.
 
 Other source evidence to preserve:
 
 - Dual P3 Quick file: should be left visually; whether the game currently uses it is unconfirmed.
-- Dual P1 SimpleWhirl uses the left weapon in Jackydima's current implementation; its other SimpleWhirl cases use right.
-- Jackydima Whirl activates the right weapon and enables `PropertyResetOnUntouch`.
+- Dual has SimpleWhirl only; its files use the `WhirlAttack` name token and its exact source/contact intent remains to be tested.
+- Jackydima's SimpleWhirl code uses left in Dual P1 and right otherwise.
+- Human 2H/Staff have the separate full Whirl; Jackydima activates right and enables `PropertyResetOnUntouch`.
+- ordinary human 1H families have no Whirl; hand-to-hand coverage remains unknown.
 - Torch+1H P1 and P3 Quick: left torch.
 - Some Torch+1H P0 Normal attacks natively use the left torch incorrectly; Jackydima's correction sends regular Torch+1H Normal collision to the right weapon.
 - One Dual finishing animation may visually use both weapons; exact native source remains unconfirmed and one damaging source is acceptable for that animation.
@@ -358,7 +363,8 @@ Needed future validation still includes:
 - 2H;
 - Staff;
 - Fist beyond the completed player UseType-8 matrix;
-- Dual SimpleWhirl/Whirl and multi-hit/rearm behavior;
+- Dual SimpleWhirl source/contact intent and Dual Power third-contact rearm;
+- separate 2H/Staff full-Whirl recontact/`ResetOnUntouch` behavior;
 - later monster-specific cases.
 
 ## 10. Dual Normal/Quick/Pierce/Power Source Discovery — COMPLETE
@@ -381,15 +387,15 @@ and both Power poses.
 | P0 Power | RIGHT + LEFT |
 | P1 Power | RIGHT + LEFT |
 
-Every activation had a paired 7 -> 5 reset in phase 3. The Pierce resets show
-that collision cleanup completed despite uncertainty about whether Block was
-released early enough for the full Recover animation to finish. The current
-movement name still referenced Hit at reset, so do not promote this to proof
-that each Recover animation visibly completed.
+Every activation had a paired 7 -> 5 reset in phase 3. Pierce collision and
+cleanup passed; Pierce Recover is known-good and is not a project issue or
+follow-up target.
 
-Next Dual work is separate SimpleWhirl/Whirl and multi-contact testing. That
-work must observe triggered-list rearming/`ResetOnUntouch` and OFF-gap needs,
-not merely the first collision-group source.
+Next Dual work is SimpleWhirl plus Power multi-contact rearming. Dual does not
+have the separate full Whirl used by 2H/Staff. The diagnostic must observe
+`ClearTriggeredList`, because first group activation alone cannot distinguish
+native two-hit Power from the intended three-contact sequence. Separate later
+2H/Staff Whirl work should observe `ResetOnUntouch` and OFF-gap needs.
 
 ## 11. Production Marker Vocabulary — NOT FROZEN
 
