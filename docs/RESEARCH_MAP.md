@@ -203,7 +203,10 @@ Current diagnostic candidate: `v0.10` at commit `6914039`.
 - the global `SetCollisionGroup` observer now compares the changed entity pointer with the player's exact left- and right-slot entity pointers;
 - every transition involving `Item_Attack` is labelled `LEFT`, `RIGHT`, `BOTH`, `NONE`, or `NO_PLAYER` and includes current player action, phase, primary pose, state time/position, animation, and both slot snapshots;
 - no Pierce, Power, SimpleWhirl, or Whirl callback is newly intercepted for behavior;
-- Win32 Release compilation passed on 2026-08-22 with only the pre-existing Windows SDK C5105 warning; runtime behavior remains unvalidated.
+- Win32 Release compilation passed on 2026-08-22 with only the pre-existing Windows SDK C5105 warning;
+- installed/build SHA-256 matches at `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`;
+- validated v0.9 rollback SHA-256 is `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`;
+- runtime behavior remains unvalidated.
 
 ### Prototype marker
 
