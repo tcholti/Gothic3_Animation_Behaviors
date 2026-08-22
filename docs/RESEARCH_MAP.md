@@ -181,11 +181,16 @@ Preserve the proven Normal path unchanged.
 Add QuickAttack frame-collision ownership by:
 
 1. using `OnAI_QuickAttack`;
-2. requiring `gEPhase_Hit`;
-3. inspecting the exact current Hit motion for the marker;
-4. suppressing native QuickAttack timed activation only when that exact motion is marked and the prototype source resolves;
-5. letting the authored marker trigger the collision operation;
-6. logging the exact `Routine.Action` without using Quick/QuickR/QuickL as an ownership whitelist.
+2. accepting exact actions:
+   - `gEAction_QuickAttack`
+   - `gEAction_QuickAttackR`
+   - `gEAction_QuickAttackL`
+3. requiring `gEPhase_Hit`;
+4. inspecting the exact current Hit motion for the marker;
+5. suppressing native QuickAttack timed activation only when that exact motion is marked and the prototype source resolves;
+6. letting the authored marker trigger the collision operation.
+
+The action check is not used for animation resolution. It lets the later global `StartEffect` handler correlate the marker with the Quick callback family without adding per-actor/per-execution ownership state.
 
 The current `G3AB_COL_TEST` prototype marker continues to mean the actor's right-hand equipped item. Staff is the first controlled asset/test case, but there is no Staff restriction in the callback code. Dual and Torch+1H Quick animations remain unmarked/native until explicit left/right source markers or equivalent source handling are implemented.
 
