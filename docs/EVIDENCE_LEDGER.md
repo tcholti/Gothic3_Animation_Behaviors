@@ -76,6 +76,14 @@ Statuses:
 | EV-055 | Jackydima's Dual Power path activates both equipped weapons and rearms both for later contact. | CONFIRMED | current `Script_AttackCollision` source | Good reference for eventual BOTH marker and multi-hit rearm. |
 | EV-056 | Native Dual P0 Power may use the left weapon. | WORKING HYPOTHESIS | user recollection; not isolated | Keep separate from confirmed desired BOTH behavior. |
 | EV-057 | One Dual finishing animation may visually contact with both weapons while only one source damages; the exact native source is not yet known. | UNKNOWN | animation-author recollection not yet isolated | One damaging source is acceptable for that specific animation, but do not generalize. |
+| EV-058 | `gCScriptRoutine_PS` exposes a two-valued `HitDirection` property (`Left`, `Right`). | CONFIRMED | official SDK enum + property-set declaration | Logical left/right combat state exists independently of physical collision geometry. |
+| EV-059 | Attack/reaction R/L is a physical right-hand/left-hand collision-source selector. | CONTRADICTED | Torch+1H and Dual empirical source cases; both QuickAttackR/L can use the same left source | Never resolve collision hand from action R/L or final filename R/L. |
+| EV-060 | Final attack R/L and R/L action variants correlate with logical attack/hit direction. | STRONGLY SUPPORTED | complete 5,991-name inventory; SDK `HitDirection`; Jackydima's disabled Normal pose mapping | Preserve as direction metadata for later analysis, not as current runtime authority. |
+| EV-061 | The exact causal pipeline from action/final R/L through `Routine.HitDirection` to victim `StumbleR/L` is known. | UNKNOWN | correlation only; no controlled property-forcing test or native reaction source trace | No current plan depends on it; test only if a later feature needs it. |
+| EV-062 | Hero QuickStumble is a systematic non-R/L family. | CONFIRMED AS INVENTORY OBSERVATION | 104 native Hero entries; P0/P1/P2/P3 patterns across 1H, Staff, Shield+1H, Torch+1H | A large visual lean or stance change does not imply an R/L reaction action. |
+| EV-063 | Visible weapon travel determines Gothic 3's logical left/right hit direction at contact time. | CONTRADICTED | animation-author controlled visual reversal retained gameplay behavior | Treat direction as authored/selected combat state, not physics-derived motion analysis. |
+| EV-064 | CombatMoveLogger v0.4 currently records `Routine.HitDirection`. | CONTRADICTED | current logger source audit | Optional future diagnostic: add HitDirection only if direction becomes relevant to implementation. |
+| EV-065 | Native filenames contain `LightStumble`, but the SDK declares a separate `gEAction_LightStumble`. | CONTRADICTED | inventory + official `gEAction` enum | Do not assume every serialized action token is a 1:1 enum spelling; exact LightStumble mapping remains open. |
 
 ## 3. Evidence Promotion Rule
 
