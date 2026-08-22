@@ -205,7 +205,7 @@ static gEUseType GetCollisionSourceUseType(Entity &source)
 {
     eCEntity *instance = source.GetInstance();
 
-    return instance != nullptr ? instance->GetUseType() : gEUseType_None;
+    return instance != nullptr ? gCEntity::GetUseType(instance) : gEUseType_None;
 }
 
 static bool IsFistCollisionSource(Entity &source)
