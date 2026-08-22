@@ -336,6 +336,15 @@ accepted dispatch calls `ClearTriggeredList`. Count received/accepted marker
 blocks and compare their `StateTime`; do not treat the repeated first-frame
 label as evidence that the later marker failed to fire.
 
+Observed complication: in the controlled frame-4/frame-15 fixture, frame 15
+dispatched twice at identical `StateTime` on every one of four attacks. The
+motion scan reported four total frame effects, matching two whooshes plus two
+authored markers, so the repeated runtime call is not explained by a third
+authored marker. Production should debounce an identical same-update dispatch
+keyed by actor, current motion/execution, marker opcode, and source. Do not
+collapse different simultaneous source opcodes; use BOTH when both hands are
+intentionally authored together.
+
 ## 11. Current Marker-Control Research Pattern
 
 At callback entry / Hit start:

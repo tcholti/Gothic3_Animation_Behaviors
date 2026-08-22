@@ -370,6 +370,35 @@ can damage multiple distinct targets physically reached by the blade.
 It does not establish completely unmodified native behavior or repeated damage
 to the same target without a second source marker.
 
+### Same-motion 2H Normal double-contact fixture
+
+All three controlled variants replaced only:
+
+```text
+Hero_Stand_None_2H_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R
+Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+```
+
+Fixture timing:
+
+- Raise: frame 0 through 4 inclusive (5 sampled frames);
+- Hit: frame 0 through 20 inclusive (21 sampled frames);
+- whooshes: Hit frames 4 and 15;
+- authored marker variants: none, frame 4 only, or frames 4 and 15;
+- markers were placed one authored frame before intended visual contact.
+
+Native/no-marker and frame-4-only variants each damaged the same target once per
+attack. The frame-4 plus frame-15 variant damaged the same target at both visual
+contacts, including confirmation against two separately tested targets. This is
+the controlled proof that repeating a source marker rearms the weapon against an
+already visited target.
+
+The two-marker log contains four attacks. Each has one early accepted marker
+near state time 0.32–0.34, two duplicate late dispatches near 0.77, and one
+natural phase-3 reset. The duplicate late clear did not create a third visual
+damage contact.
+
 ## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:

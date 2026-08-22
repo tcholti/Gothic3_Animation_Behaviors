@@ -173,6 +173,13 @@ Preserve these remaining distinctions:
 
 Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. There is no separate ON marker: RIGHT/LEFT/BOTH each activate and rearm their named source set, while OFF creates a deterministic inactive gap by disabling marker-owned sources. Thus a same-weapon double attack can use RIGHT -> OFF -> RIGHT. This is especially needed for authored 2H/Staff double attacks whose second motion can touch a nearby target too early. Names and exact restoration rules are not frozen.
 
+The same-target Normal isolation is complete. With one identical 2H double-
+contact motion, native/no-marker and frame-4-only marker variants hit once;
+frame-4 plus frame-15 markers hit the same opponent at both intended contacts.
+The second source marker therefore rearms the weapon; OFF remains a timing-gap
+feature. The later marker dispatched twice at the same `StateTime` in every
+tested attack, so production needs same-update duplicate suppression.
+
 ## 11. v0.8 Validation — PLAYER AND NPC PASSED
 
 v0.7 baseline retained for comparison:
@@ -253,15 +260,14 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. reuse the same custom 2H double-contact motion as a P0 Normal attack in three otherwise identical variants: no marker, first-contact marker only, and first-plus-second-contact markers. Test one sturdy focused target with NewBalance and `Script_AttackCollision` absent, saving a separate log for each variant;
-2. use v0.10 for this Normal isolation. It accepts every dispatched `G3AB_COL_TEST`, so the two-marker variant will clear the right-hand list twice, although its ownership scan/logged `AuthoredMarkerFrame` reports only the first matching marker frame;
-3. build a passive `ClearTriggeredList` diagnostic only if the three-way result or native baseline needs deeper timing evidence. Add damaged-target identity only if same-target results remain ambiguous;
-4. after Normal proves source rearm, perform one Quick regression if useful. Do not test the actual Whirl callback with v0.10: its marker handler intentionally accepts only Normal/Quick Hit contexts;
-5. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
-6. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-7. add collision callback adapters one family at a time;
-8. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-9. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. add same-update duplicate-marker suppression as one isolated prototype change, then rerun the two-marker Normal fixture and confirm two accepted authored contacts rather than three clears per attack;
+2. implement a provisional OFF test marker under the proven Normal path and validate RIGHT/test marker -> OFF -> RIGHT/test marker using the same double-contact motion;
+3. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.10: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+4. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
+5. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+6. add collision callback adapters one family at a time;
+7. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+8. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 

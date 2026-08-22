@@ -422,13 +422,20 @@ activation behavior already carried by RIGHT/LEFT/BOTH. A multi-contact file
 can therefore author RIGHT at the first contact, OFF after that swing, and
 RIGHT again at the next contact; each RIGHT opens a fresh right-source window.
 
-The first same-target causal test can precede OFF implementation. Reuse one 2H
-double-contact motion under the proven Normal callback and compare no marker,
-first-contact marker only, and first-plus-second-contact markers. The two-marker
-variant should clear the same right-hand source twice. Current v0.10 logs the
-first matching authored frame for both dispatches, so use accepted-marker count
-and `StateTime` to distinguish them. Actual Whirl remains a separate callback-
-ownership test and is unsupported by the v0.10 marker handler.
+The same-target causal test is complete. One identical 2H double-contact motion
+was tested under the proven Normal callback with no marker, first-contact marker
+only, and first-plus-second-contact markers. Native and one-marker variants hit
+the target once; the two-marker variant hit at both intended contacts. This
+confirms that a repeated source marker rearms the same weapon against the same
+target without requiring OFF.
+
+The later authored marker dispatched twice at identical `StateTime` in all four
+two-marker attacks, yielding three accepted clears per attack. Only two damage
+contacts occurred. Add same-update duplicate suppression before production.
+Current v0.10 also logs the first matching authored frame for every dispatch, so
+accepted-marker count and `StateTime` remain the authoritative diagnostic.
+Actual Whirl is still a separate callback-ownership test and is unsupported by
+the v0.10 marker handler.
 
 This separation is important for custom 2H/Staff double attacks: explicit OFF
 can prevent a nearby target from being struck by the second weapon motion before

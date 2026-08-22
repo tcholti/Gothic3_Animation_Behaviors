@@ -536,13 +536,22 @@ For marker-controlled attacks:
 - marker presence declares that execution frame-controlled;
 - the current system must not infer ownership from source pose alone.
 
-For the tested 2H normal attack authored from frame 0 through frame 12 inclusive
-(13 sampled frames):
+The animation author's general working preference is to place collision one
+authored frame before the intended visual contact. Exact-contact placement can
+look as though collision begins only after the weapon has entered the target.
+This is an authoring judgement, not a hardcoded engine delay; marker timing must
+remain per animation.
+
+For the earlier tested 2H normal attack authored from frame 0 through frame 12
+inclusive (13 sampled frames):
 
 - first plausible visual contact: frame 9;
 - marker at frame 8 felt best in controlled testing.
 
-This is a tested guideline for that attack, not a universal "one frame early" rule for every animation.
+The later double-contact fixture used markers and whooshes at frames 4 and 15,
+one authored frame before its intended visual contacts. These fixtures support
+the preference, but do not prove why the one-frame lead looks better or require
+other animators/animations to use the same offset.
 
 ## 21. Filename Rule vs Runtime Rule
 
