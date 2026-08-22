@@ -263,7 +263,7 @@ v0.7 same-execution reactivation.
 Generic Quick/action 3 remains untested. Neither controlled player nor NPC
 session selected it.
 
-## 8. Fist Causal Test — LEFT-HAND BASELINE PASSED; MATRIX IN PROGRESS
+## 8. Fist Causal Test — LEFT- AND RIGHT-HAND PASSED; MATRIX IN PROGRESS
 
 Current causal question:
 
@@ -323,20 +323,33 @@ Run and preserve a separate log for:
 4. custom right-leg contact;
 5. custom head contact.
 
-Completed baseline:
+Completed contacts:
 
 - native P0 left-hand motion visibly damaged the target;
-- Hero ownership was frame-controlled and suppressed the original Normal callback;
-- eight accepted markers resolved Fist UseType 8;
-- all eight skipped the group request, remained group 0 -> 0, and cleared the triggered list;
-- therefore the group request is unnecessary for this tested left-hand contact.
+- custom right-hand motion visibly damaged a focused neutral target;
+- both successful marked paths resolved Fist UseType 8, skipped the group
+  request, remained group 0 -> 0, and cleared the triggered list;
+- therefore the group request is unnecessary for the tested left- and right-hand
+  contacts.
 
-The target Boar's own unmarked Fist attack remained legacy/native and added
-separate group-request entries. Prefer a passive target for remaining variants
-when practical.
+Target/focus control:
 
-For every launch, record whether contact damages and verify that the log reports
-raw UseType 8 or 55, `SKIPPED_FOR_FIST_CAUSAL_TEST`, and
+- `invisibility` stopped preventing retaliation once the target was struck;
+- two unfocused allied-human sessions produced no observed Fist damage despite
+  12 accepted marked-P0 events and eight unmarked P1 legacy/native callbacks;
+- a marked 2H control visibly damaged the unfocused allied setup after normal
+  weapon activation 5 -> 7;
+- this confirms that an unfocused allied target is unsuitable for the Fist
+  matrix and strongly supports Fist-specific target/focus gating;
+- use a focusable neutral target for left-leg, right-leg, and head tests.
+
+The unfocused sessions also showed accepted marker counts greater than fresh
+frame-controlled ownership decisions (5 versus 4 and 7 versus 5). Exact cause is
+open; production design must not assume a strict 1:1 callback/marker count until
+that continuous-action pattern is understood.
+
+For every remaining launch, record whether contact damages and verify that the
+log reports raw UseType 8 or 55, `SKIPPED_FOR_FIST_CAUSAL_TEST`, and
 `TriggeredDamageList: CLEARED`.
 
 If all controlled contacts still damage, the weapon-style group call is

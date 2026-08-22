@@ -271,18 +271,19 @@ Separate variants:
 4. custom right-leg contact;
 5. custom head contact — additional useful case.
 
-Current result:
+Current results:
 
 - native P0 left-hand baseline — **PASSED**;
-- visible damage connected;
-- `PC_Hero` marker ownership suppressed the original Normal callback;
-- eight accepted frame-3 markers resolved raw Fist UseType 8;
-- all eight skipped the group request, remained group 0 -> 0, and cleared the
-  triggered list.
+- custom right-hand contact against a focused neutral target — **PASSED**;
+- both successful contacts visibly damaged the target while accepted frame-3
+  markers resolved raw Fist UseType 8, skipped the group request, remained group
+  0 -> 0, and cleared the triggered list.
 
-The baseline session used an attacking Boar target whose own unmarked Fist path
-remained legacy/native. A passive target is preferred for later variants when
-practical so unrelated native Fist group requests do not add diagnostic noise.
+Target setup is now controlled more narrowly. An unfocused allied human did not
+receive damage from repeated marked P0 or unmarked legacy/native P1 Fist attacks,
+while a marked 2H weapon attack could damage the unfocused allied setup. For the
+remaining left-leg, right-leg, and head variants, use a focusable neutral target;
+a green-name allied NPC that cannot be focused is not a valid Fist contact test.
 
 The untouched stock file without `G3AB_COL_TEST` is not a valid v0.9 causal
 case because it would leave native collision ownership active.

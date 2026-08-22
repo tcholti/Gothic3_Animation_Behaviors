@@ -233,20 +233,35 @@ Run separately:
 4. custom right-leg contact;
 5. custom head contact.
 
-Completed:
+Completed contacts:
 
 - native-motion left-hand baseline visibly damaged the target;
-- Hero ownership suppressed the original Normal callback;
-- eight accepted frame-3 markers resolved Fist UseType 8;
-- every marker skipped the group request, kept group 0 -> 0, and cleared the list;
-- conclusion: the group request is unnecessary for this tested left-hand contact.
+- custom right-hand motion visibly damaged a focused neutral target spawned with
+  `spawn sh`;
+- both accepted paths resolved Fist UseType 8, skipped the group request, kept
+  group 0 -> 0, and cleared the triggered list;
+- conclusion so far: the weapon-style group request is unnecessary for the
+  tested left- and right-hand Fist contacts.
 
-The test target was an attacking Boar. Its separate unmarked Fist path remained
-legacy/native and added group-request noise. Prefer a passive target for later
-variants when practical.
+Target-control finding:
 
-After each launch, exit before relaunching, copy the log under a variant-specific
-name, and record whether the contact damaged the target.
+- `invisibility` did not keep an attacked target passive after contact;
+- marked P0 and unmarked legacy/native P1 Fist attacks did not damage an
+  unfocused allied human across two sessions;
+- a marked 2H attack visibly damaged the same unfocused allied setup after its
+  normal 5 -> 7 weapon activation;
+- therefore an unfocused allied target is not a valid control for the remaining
+  Fist matrix; use a focusable neutral target and preserve focus during contact.
+
+The unfocused sessions also recorded more accepted marked-P0 events than fresh
+frame-controlled ownership decisions (5 versus 4 and 7 versus 5). The exact
+continuous-action/callback cause is unresolved and is recorded separately; it
+does not invalidate the focused right-hand contact result.
+
+For each remaining left-leg, right-leg, and head launch, use a newly spawned,
+focusable neutral target, exit before relaunching, copy the log under a
+variant-specific name, and record whether contact damaged the target. Do not
+save the test session after attacking the spawned helper.
 
 Required log fields for every case:
 
