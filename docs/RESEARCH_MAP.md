@@ -206,7 +206,7 @@ Current diagnostic candidate: `v0.10` at commit `6914039`.
 - Win32 Release compilation passed on 2026-08-22 with only the pre-existing Windows SDK C5105 warning;
 - installed/build SHA-256 matches at `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`;
 - validated v0.9 rollback SHA-256 is `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`;
-- runtime behavior remains unvalidated.
+- controlled unmarked player Dual runtime passed: exact slot labels produced the complete Normal/Quick/Pierce/Power source map and paired activation/reset records.
 
 ### Prototype marker
 
@@ -326,14 +326,24 @@ matrix.
 
 The production collision API must separate callback/action family, authored source choice, and physical body-contact mechanism.
 
-Current animation/source evidence to preserve:
+Controlled v0.10 player Dual runtime source map:
 
-- Dual P0 Normal: left weapon.
-- Dual P1 Quick: left weapon.
+- P0 Normal: left weapon.
+- P1 Normal: right weapon.
+- P0 QuickAttackR and QuickAttackL: right weapon.
+- P1 QuickAttackR and QuickAttackL: left weapon.
+- P0 Pierce: right weapon.
+- P1 Pierce: left weapon.
+- P0 and P1 Power: both weapons.
+- all 17 activation records had paired 7 -> 5 resets in phase 3.
+
+The Power result contradicts the earlier P0-left-only recollection and converges
+with Jackydima's BOTH implementation. The diagnostic did not observe later
+triggered-list re-clearing, so repeated Power contact remains separate work.
+
+Other source evidence to preserve:
+
 - Dual P3 Quick file: should be left visually; whether the game currently uses it is unconfirmed.
-- Dual P1 Pierce: left weapon.
-- Dual P0 Power may be left natively: working hypothesis.
-- Dual Power in Jackydima's current implementation: right and left weapons activated, then both triggered lists cleared again at the later Dual-power threshold.
 - Dual P1 SimpleWhirl uses the left weapon in Jackydima's current implementation; its other SimpleWhirl cases use right.
 - Jackydima Whirl activates the right weapon and enables `PropertyResetOnUntouch`.
 - Torch+1H P1 and P3 Quick: left torch.
@@ -345,23 +355,41 @@ Needed future validation still includes:
 - 1H;
 - Torch + 1H;
 - Shield + 1H;
-- Dual;
 - 2H;
 - Staff;
-- Fist;
-- multi-hit Power/Whirl;
+- Fist beyond the completed player UseType-8 matrix;
+- Dual SimpleWhirl/Whirl and multi-hit/rearm behavior;
 - later monster-specific cases.
 
-## 10. Immediate Dual Source-Discovery Sequence
+## 10. Dual Normal/Quick/Pierce/Power Source Discovery — COMPLETE
 
-1. Compile and install the passive v0.10 diagnostic.
-2. Use unmarked Dual animation files and run only the FrameCollision diagnostic DLL for this isolated session.
-3. Without a target, perform P0/P1 Normal, Quick, Pierce, and Power, using intervening Normal attacks to change stance. Each Pierce input must be preceded by pressing and holding Block, then pressing the left mouse button; the two Block actions are expected session context rather than additional attack-source cases.
-4. Preserve one complete log; use exact action, pose, current animation, and `PlayerSlotMatch` rather than weapon names to classify each activation.
-5. Compare observed native transitions with the pinned Jackydima source map.
-6. Follow with separate SimpleWhirl/Whirl and multi-contact tests; those need repeated-contact/rearm evidence, not merely the first source transition.
+The controlled targetless player session used unmarked Dual animations, two
+distinct equipped 1H entity instances, seven Normal attacks for stance changes,
+both Quick variants in P0 and P1, two Block prerequisites, both Pierce poses,
+and both Power poses.
 
-A single controlled Dual session is acceptable for the first source map because every transition is now timestamped and slot-labelled. Do not place `G3AB_COL_TEST` in these discovery animations: marked Normal/Quick would intentionally invoke the prototype's right-hand behavior and invalidate the native-source observation.
+| Tested execution | Logged source |
+|---|---|
+| P0 Normal | LEFT |
+| P1 Normal | RIGHT |
+| P0 QuickAttackR | RIGHT |
+| P0 QuickAttackL | RIGHT |
+| P1 QuickAttackR | LEFT |
+| P1 QuickAttackL | LEFT |
+| P0 Pierce | RIGHT |
+| P1 Pierce | LEFT |
+| P0 Power | RIGHT + LEFT |
+| P1 Power | RIGHT + LEFT |
+
+Every activation had a paired 7 -> 5 reset in phase 3. The Pierce resets show
+that collision cleanup completed despite uncertainty about whether Block was
+released early enough for the full Recover animation to finish. The current
+movement name still referenced Hit at reset, so do not promote this to proof
+that each Recover animation visibly completed.
+
+Next Dual work is separate SimpleWhirl/Whirl and multi-contact testing. That
+work must observe triggered-list rearming/`ResetOnUntouch` and OFF-gap needs,
+not merely the first collision-group source.
 
 ## 11. Production Marker Vocabulary — NOT FROZEN
 
