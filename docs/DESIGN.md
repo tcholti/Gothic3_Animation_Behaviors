@@ -207,6 +207,18 @@ An explicit OFF capability may still be useful for deliberate inactive gaps insi
 
 For a later hit in the same attack to damage the same target again, the relevant triggered-damage list must be rearmed/cleared at the later authored strike.
 
+A source marker may therefore repeat within one Hit. Dual Power is the current
+reference case:
+
+- P0 visual contacts: RIGHT, LEFT, RIGHT;
+- P1 visual contacts: LEFT, RIGHT, LEFT.
+
+The repeated first-hand marker must rearm that source for its second contact.
+`BOTH` means both sources activate/rearm at that authored moment; it must not
+be treated as shorthand for solving every later contact in the attack. An OFF
+marker is needed only if an inactive gap must prevent unintended contact, not
+merely because the same source will be rearmed later.
+
 The final generalized rearm/source API is not yet frozen.
 
 ### 7.5 Marker vocabulary
