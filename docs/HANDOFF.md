@@ -111,7 +111,7 @@ Current source candidate:
 
 `Script_FrameCollisionTest v0.7` at commit `04d12f8`
 
-Build and runtime validation are pending. Previously proven Normal behavior must be regression-checked before the candidate is promoted.
+The candidate successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. Runtime validation remains pending. Previously proven Normal behavior must be regression-checked before the candidate is promoted.
 
 ## 8. QuickAttack Finding and Implemented Candidate
 
@@ -185,58 +185,35 @@ isolate whether Fist damage requires the weapon-style collision group at all.
 5. generalize Raise;
 6. implement safe profile-aware speed authority.
 
-## 14. Code Files to Request From User Before Migration
+## 14. Repository and Build State
 
-The user will supply the actual latest code.
+The source migration and standalone build migration are complete.
 
-At minimum request/upload the latest real copies of:
+The project root owns the build through its top-level `CMakeLists.txt` and the
+pinned official SDK submodule. Routine builds must use this repository directly,
+not copied source in `gothic3sdk-examples`.
 
-- `Script_G3AnimationBehaviors.cpp`
-- its `CMakeLists.txt`
-- current config/INI parsing source if separate
-- `Script_FrameCollisionTest.cpp` v0.6/latest
-- FrameCollision prototype `CMakeLists.txt`
-- any helper/header files those targets currently depend on
-- latest CombatMove/collision logger source only if still needed for verification
+Validated configuration/build commands:
 
-Do not reconstruct these files from conversation memory if the user can provide the actual files.
-
-## 15. Intended Repository Placement After Review
-
-Likely structure:
-
-```text
-src/
-    Script_G3AnimationBehaviors/
-        CMakeLists.txt
-        Script_G3AnimationBehaviors.cpp
-        ...
-
-prototypes/
-    Script_FrameCollisionTest/
-        CMakeLists.txt
-        Script_FrameCollisionTest.cpp
-        ...
-
-config/
-    G3AnimationBehaviors.ini
-
-docs/
-    DESIGN.md
-    RESEARCH_MAP.md
-    SOURCE_HOOK_GUIDE.md
-    ANIMATION_RULES.md
-    ANIMATION_CATALOG.md
-    EVIDENCE_LEDGER.md
-    HANDOFF.md
-
-data/
-    animation_names/
-        author_grouped_attacks_and_stumbles.txt
-        all_animation_names.txt  # 5,991 native names; generated 2026-08-22
+```powershell
+git submodule update --init --recursive
+cmake -S . -B build -G "Visual Studio 17 2022" -A Win32
+cmake --build build --config Release --target Script_FrameCollisionTest
 ```
 
-Do not force this structure if the actual source dependencies show a better minimal layout.
+Validated v0.7 DLL output:
+
+`build/prototypes/Script_FrameCollisionTest/Release/Script_FrameCollisionTest.dll`
+
+## 15. Current Source Layout
+
+- production: `src/Script_G3AnimationBehaviors/`
+- active collision prototype: `prototypes/Script_FrameCollisionTest/`
+- historical frame-effect proof: `prototypes/Script_FrameEffectLogger/`
+- consolidated diagnostic logger: `tools/Script_CombatMoveLogger/`
+- project configuration: `config/`
+- canonical documentation: `docs/`
+- animation-name inventories: `data/animation_names/`
 
 ## 16. Runtime Test Environment
 
