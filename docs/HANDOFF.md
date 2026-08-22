@@ -119,9 +119,9 @@ Active causal-test source:
 
 v0.9 retains the validated v0.8 behavior and skips only the weapon-style collision-group request when the resolved source raw UseType is Fist or PhysicalFist. Triggered-list clearing remains active.
 
-Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and adds exact player left/right equipped-entity labels to the passive global collision-group log. Its Win32 Release build passed on 2026-08-22 with only the pre-existing Windows SDK C5105 warning. The installed DLL matches the build at SHA-256 `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`; the validated v0.9 rollback DLL is preserved at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`. Runtime behavior remains unvalidated.
+Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and adds exact player left/right equipped-entity labels to the passive global collision-group log. Its Win32 Release build passed on 2026-08-22 with only the pre-existing Windows SDK C5105 warning. The installed DLL matches the build at SHA-256 `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`; the validated v0.9 rollback DLL is preserved at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`. Controlled unmarked player Dual runtime passed and produced the complete tested Normal/Quick/Pierce/Power slot map with paired activation/reset records.
 
-Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. Runtime contact validation is in progress, with the native-motion left-hand baseline passed.
+Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
 ## 8. QuickAttack Finding and Validated Fix
 
@@ -150,16 +150,22 @@ Staff is the first controlled animation/test case, not a Staff restriction in co
 
 ## 10. Current Hand-Source Evidence
 
-Preserve these distinctions for later source-explicit markers/general resolution:
+Controlled v0.10 player Dual runtime established:
 
-- Dual P0 Normal: left.
-- Dual P1 Quick: left.
-- Dual P3 Quick file: should be left; runtime use unconfirmed.
-- Dual P1 Pierce: left.
-- Dual Power in Jackydima's current implementation: both.
+- P0 Normal: left; P1 Normal: right.
+- P0 QuickAttackR/L: right; P1 QuickAttackR/L: left.
+- P0 Pierce: right; P1 Pierce: left.
+- P0 and P1 Power: both.
+- every one of the 17 activation records had a matching 7 -> 5 reset in phase 3.
+- Quick R/L action/filename direction did not select collision hand.
+
+Preserve these remaining distinctions:
+
+- Dual P3 Quick file should be left visually; runtime use remains unconfirmed.
+- Dual SimpleWhirl/Whirl and repeated-contact rearm remain untested in this project.
 - Torch+1H P1/P3 Quick: left torch.
 - Some native Torch+1H P0 Normal left-torch activations are considered erroneous; Jackydima corrects regular Normal collision to the right weapon.
-- Native Dual P0 Power left-source and one Dual finishing source remain unconfirmed.
+- One Dual finishing source remains unconfirmed.
 
 Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. Names are not frozen.
 
@@ -243,12 +249,11 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. compile and install the passive v0.10 Dual-source diagnostic committed at `6914039`;
-2. run one unmarked, targetless Dual P0/P1 Normal/Quick/Pierce/Power source-discovery session;
-3. separately resolve SimpleWhirl/Whirl, BOTH activation, repeated rearm, `ResetOnUntouch`, and explicit-OFF needs;
-4. add collision callback adapters one family at a time and validate the main human melee collision families;
-5. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. separately resolve Dual SimpleWhirl/Whirl, repeated rearm, `ResetOnUntouch`, and explicit-OFF needs; BOTH group activation/reset is already confirmed for P0/P1 Power;
+2. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+3. add collision callback adapters one family at a time;
+4. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+5. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 
