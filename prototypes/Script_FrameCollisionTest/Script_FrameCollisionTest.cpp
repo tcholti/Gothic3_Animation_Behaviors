@@ -184,11 +184,6 @@ static bool IsQuickAttackHit(Entity &actor)
     return IsQuickAttackAction(action) && actor.GetCurrentAniPhase() == gEPhase_Hit;
 }
 
-static bool IsSupportedMarkerHit(Entity &actor)
-{
-    return IsAttackHit(actor) || IsQuickAttackHit(actor);
-}
-
 static Entity GetPrototypeCollisionSource(Entity &actor)
 {
     // v0.7 intentionally supports all actors/weapon types but only one
@@ -706,8 +701,15 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     GEInt beforeGroup = static_cast<GEInt>(source.GetCollisionGroup());
 
-    GEInt statePositionBeforeMarker =
-        static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    GEInt quickStatePositionBeforeMarker = -1;
+
+    GEInt quickStatePositionAfterMarker = -1;
+
+    if (isQuickAttackHit)
+    {
+        quickStatePositionBeforeMarker =
+            static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    }
 
     source.SetCollisionGroup(eECollisionGroup_Item_Attack);
 
@@ -723,10 +725,10 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     if (isQuickAttackHit)
     {
         actor.Routine.AccessProperty<PSRoutine::PropertyStatePosition>() = 1;
-    }
 
-    GEInt statePositionAfterMarker =
-        static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+        quickStatePositionAfterMarker =
+            static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    }
 
     GEInt afterGroup = static_cast<GEInt>(source.GetCollisionGroup());
 
@@ -744,9 +746,9 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
         if (isQuickAttackHit)
         {
-            std::fprintf(g_pLog, "QuickStatePositionBeforeMarker: %d\n", statePositionBeforeMarker);
+            std::fprintf(g_pLog, "QuickStatePositionBeforeMarker: %d\n", quickStatePositionBeforeMarker);
 
-            std::fprintf(g_pLog, "QuickStatePositionAfterMarker: %d\n", statePositionAfterMarker);
+            std::fprintf(g_pLog, "QuickStatePositionAfterMarker: %d\n", quickStatePositionAfterMarker);
         }
 
         std::fprintf(g_pLog, "Original StartEffect for marker: NOT CALLED\n");
