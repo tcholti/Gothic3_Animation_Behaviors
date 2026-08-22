@@ -373,15 +373,19 @@ has needed reset/rearm fixes. Current upstream Jackydima work added
 For authored 2H/Staff double attacks, automatic reset-on-untouch is not a full
 replacement for an explicit inactive window. A nearby opponent can intersect
 the second swing before its intended acceleration. The preferred marker model
-is:
+is source-explicit; there is no separate marker literally named ON:
 
-1. source ON marker: activate and clear that source's triggered list;
+1. RIGHT/LEFT/BOTH marker: activate and clear the named source set's triggered
+   list;
 2. generic OFF marker: return every source owned by this marked execution to
    its inactive/equipped collision state;
-3. later source ON marker: reactivate and rearm only the authored next contact.
+3. later RIGHT/LEFT/BOTH marker: reactivate and rearm only the authored next
+   contact.
 
 OFF controls physical timing; it does not itself rearm or produce damage.
 Exact restoration and cleanup rules must be proven before marker names freeze.
+A same-source double attack simply repeats that source marker after OFF; for
+example, RIGHT -> OFF -> RIGHT.
 
 ### Fist
 

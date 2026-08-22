@@ -415,9 +415,14 @@ Current proposed responsibilities:
 - OFF does not clear lists by itself; the next source marker performs the
   rearm.
 
+There is no separate generic ON marker. "ON" is only shorthand for the
+activation behavior already carried by RIGHT/LEFT/BOTH. A multi-contact file
+can therefore author RIGHT at the first contact, OFF after that swing, and
+RIGHT again at the next contact; each RIGHT opens a fresh right-source window.
+
 This separation is important for custom 2H/Staff double attacks: explicit OFF
 can prevent a nearby target from being struck by the second weapon motion before
-its intended acceleration, while the next ON marker opens a clean second
+its intended acceleration, while the next source marker opens a clean second
 contact window.
 
 They are not frozen. Do not mass-author them until source activation, OFF-state tracking, Fist/body behavior, and repeated-hit semantics are proven.
