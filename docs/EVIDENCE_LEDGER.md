@@ -85,6 +85,7 @@ Statuses:
 | EV-064 | CombatMoveLogger v0.4 currently records `Routine.HitDirection`. | CONTRADICTED | current logger source audit | Optional future diagnostic: add HitDirection only if direction becomes relevant to implementation. |
 | EV-065 | Native filenames contain `LightStumble`, but the SDK declares a separate `gEAction_LightStumble`. | CONTRADICTED | inventory + official `gEAction` enum | Do not assume every serialized action token is a 1:1 enum spelling; exact LightStumble mapping remains open. |
 | EV-066 | FrameCollision v0.7 candidate implements marked Quick/QuickR/QuickL ownership through `OnAI_QuickAttack`, Hit phase, exact-motion marker, and the unchanged right-hand source resolver. | CONFIRMED AS SOURCE IMPLEMENTATION AND BUILD; RUNTIME PENDING | commit `04d12f8`; static diff review; standalone Win32 Release build completed 2026-08-22 | Run player/NPC Staff Quick validation and Normal regression before promoting runtime behavior to confirmed. |
+| EV-067 | FrameCollision v0.7 preserves marked player Staff Normal P0/P1 behavior: each execution suppressed the native callback, activated the right-hand Staff only at authored marker frame 5, cleared the triggered list, and naturally reset 7 -> 5. | CONFIRMED | controlled v0.7 runtime log, 2026-08-22; both executions were `Action: 1` and `_Attack_Hit_` | Normal regression path passed; this run does not validate Quick ownership. |
 
 ## 3. Evidence Promotion Rule
 
