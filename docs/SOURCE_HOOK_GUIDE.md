@@ -344,23 +344,30 @@ Then invert if needed.
 
 This isolates the logical rearm operation from a weapon-style collision-group operation.
 
-## 14. Build/Test Workflow Before Project Migration
+## 14. Standalone Build/Test Workflow
 
-Known historical examples build:
+The project repository is now the authoritative build workspace. The separate
+`gothic3sdk-examples` checkout remains historical/reference infrastructure and
+is no longer required for routine project builds.
 
-```bat
-cd /d "E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\gothic3sdk-examples"
+From the `Gothic3_Animation_Behaviors` repository root:
+
+```powershell
+git submodule update --init --recursive
 cmake -S . -B build -G "Visual Studio 17 2022" -A Win32
 cmake --build build --config Release --target <TargetName>
 ```
 
-If `Script_FrameCollisionTest` appears to use stale objects:
+Current build targets:
 
-```bat
-rmdir /s /q "build\examples\Script_FrameCollisionTest\Script_FrameCollisionTest.dir\Release"
-```
+- `Script_G3AnimationBehaviors`
+- `Script_FrameCollisionTest`
+- `Script_FrameEffectLogger`
+- `Script_CombatMoveLogger`
 
-then rebuild and verify the compile line points to the intended source.
+Build output and generated Visual Studio files remain under the ignored
+repository-local `build/` directory. Build the source directly from this
+repository; do not copy current source into the examples checkout.
 
 ## 15. Runtime Test Installation
 
