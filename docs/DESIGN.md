@@ -299,17 +299,45 @@ right and left weapons at the same logged state time, then naturally resetting
 both to 5 in phase 3. This contradicts the earlier recollection that P0 might be
 left-only.
 
-Jackydima's current source matches the observed BOTH group activation and also
-later re-clears both triggered lists. That later repeated-contact rearm was not
-observed by the v0.10 group-only diagnostic and remains separate work.
+Dual Power is a three-contact animation: P0 visually strikes right -> left ->
+right, while P1 strikes left -> right -> left. Initial BOTH activation only
+allows each weapon entity to damage the same target once until its triggered
+list is rearmed. Native behavior is reported to produce only two effective hits.
+
+Jackydima's current source matches the observed BOTH group activation and later
+re-clears both triggered lists at a Dual-specific threshold. That rearm plausibly
+enables the first weapon's third visual contact, but v0.10 observed only
+collision-group transitions. Production must not treat BOTH activation alone as
+complete Dual Power behavior.
 
 ### FinishingAttack
 
 One Dual finishing animation may visually contact with both weapons while only one source actually damages. The exact native source is not yet confirmed; for that particular animation, a single damaging source is considered acceptable.
 
+For human 2H/Staff, Block + held attack selects Finishing rather than Whirl. In
+front of a downed enemy, death is timer-driven rather than collision-driven.
+Animation-length tests strongly support that the execution timer begins with Hit
+and is insensitive to Raise-length changes. Preserve the established Finishing
+Hit timing when replacing these assets. Standing-target selection may become
+HackAttack, but that branch remains a working hypothesis.
+
 ### WhirlAttack
 
-Known third-party code historically used right-hand activation and has needed reset/rearm fixes. Current upstream Jackydima work added `PropertyResetOnUntouch = GETrue` to WhirlAttack handling.
+Human attack-family coverage is equipment-specific:
+
+- Dual has SimpleWhirl only, although its animation filenames serialize
+  `WhirlAttack`; it is selected by holding attack slightly less than Power.
+- 2H and Staff have full Whirl, selected by Block + quick attack.
+- ordinary 1H families have no Whirl.
+- hand-to-hand coverage remains unknown.
+
+The Dual SimpleWhirl visually turns the actor with one sword extended forward
+and the other backward; whether one or both should damage is unconfirmed.
+Filename spelling must not substitute for logging the native action/callback.
+
+Known third-party full-Whirl code historically used right-hand activation and
+has needed reset/rearm fixes. Current upstream Jackydima work added
+`PropertyResetOnUntouch = GETrue` to WhirlAttack handling.
 
 ### Fist
 
@@ -336,10 +364,10 @@ Unmarked/unconfigured attacks must remain compatible with existing behavior.
 ## 12. Implementation Strategy
 
 1. Preserve the validated Normal and QuickR/L marker-controlled paths and the v0.9 Fist/body rearm result.
-2. Use passive source diagnostics to map native left/right/both behavior for Dual Normal, Quick, Pierce, Power, SimpleWhirl, and Whirl without changing those native callbacks.
+2. Preserve the completed Dual Normal/Quick/Pierce/Power source map; extend passive diagnostics to `ClearTriggeredList`, Dual SimpleWhirl, and the separate 2H/Staff full-Whirl path without changing native behavior.
 3. Generalize the source helper into explicit weapon activation versus Fist/body rearming; Fist skips the weapon group request and clears its logical source list.
 4. Add collision ownership adapters one callback family at a time. Collision scope should cover the main human melee families before production integration, but Raise and speed remain initially scoped to Normal and Quick.
-5. Validate BOTH activation, repeated-list rearming, `ResetOnUntouch`, and whether explicit OFF is needed for inactive gaps inside multi-contact animations.
+5. Treat BOTH group activation as proven but incomplete: validate Dual Power's third-contact rearm, SimpleWhirl source/contact intent, full-Whirl `ResetOnUntouch`, and whether explicit OFF is needed for inactive gaps.
 6. Freeze a production marker vocabulary only after source-set tracking and repeated-hit/OFF semantics are understood.
 7. Integrate the validated collision core into `Script_G3AnimationBehaviors`.
 8. Generalize Raise and speed control incrementally, calibrating provisional speeds against logged native Normal/Quick durations.
