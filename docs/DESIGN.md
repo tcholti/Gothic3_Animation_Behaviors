@@ -164,6 +164,15 @@ There is intentionally no planned user-facing `RecoverSpeed` tuning key.
 
 This is a project behavior requirement, not a claim that vanilla Gothic 3 always does this automatically.
 
+### 6.5 Initial authoring and calibration scope
+
+Raise and playback-speed work should initially target Normal and Quick attacks.
+The animation-authoring baseline is currently 12 Hit frames plus a 4-frame Raise;
+this is an asset convention, not an engine hardcode. Provisional family speeds
+(Quick above 1.0, 1H near 1.0, 2H near 0.95, Staff near 0.9 or 0.8) must not be
+frozen until native Normal/Quick durations are recorded and compared through the
+logger.
+
 ## 7. Frame-Controlled Collision Architecture
 
 ### 7.1 Ownership declaration
@@ -307,12 +316,14 @@ Unmarked/unconfigured attacks must remain compatible with existing behavior.
 
 ## 12. Implementation Strategy
 
-1. Preserve the validated Normal and QuickR/L marker-controlled paths.
-2. Generalize the source helper into explicit weapon activation versus Fist/body rearming; Fist skips the weapon group request and clears its logical source list.
-3. Resolve right/left/both equipped-weapon selection deliberately before marking Dual or Torch+1H attacks.
-4. Freeze a production marker vocabulary only after source selection, OFF-state tracking, and repeated-hit semantics are understood.
-5. Integrate the validated behavior into `Script_G3AnimationBehaviors`.
-6. Expand Raise and speed control incrementally using the same evidence discipline.
+1. Preserve the validated Normal and QuickR/L marker-controlled paths and the v0.9 Fist/body rearm result.
+2. Use passive source diagnostics to map native left/right/both behavior for Dual Normal, Quick, Pierce, Power, SimpleWhirl, and Whirl without changing those native callbacks.
+3. Generalize the source helper into explicit weapon activation versus Fist/body rearming; Fist skips the weapon group request and clears its logical source list.
+4. Add collision ownership adapters one callback family at a time. Collision scope should cover the main human melee families before production integration, but Raise and speed remain initially scoped to Normal and Quick.
+5. Validate BOTH activation, repeated-list rearming, `ResetOnUntouch`, and whether explicit OFF is needed for inactive gaps inside multi-contact animations.
+6. Freeze a production marker vocabulary only after source-set tracking and repeated-hit/OFF semantics are understood.
+7. Integrate the validated collision core into `Script_G3AnimationBehaviors`.
+8. Generalize Raise and speed control incrementally, calibrating provisional speeds against logged native Normal/Quick durations.
 
 ## 13. Non-Goals for the Current Iteration
 
