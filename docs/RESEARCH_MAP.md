@@ -195,7 +195,15 @@ Current causal source candidate: `v0.9` at commit `11f2a1b`.
 - logs the raw source UseType and whether the group request was skipped;
 - leaves every non-Fist activation path unchanged.
 
-Build `89f36d8` failed because the script-layer `Entity` wrapper has no `GetUseType()` member. Build `9b4a73c` then failed because the base `eCEntity` returned by `GetInstance()` also has no member `GetUseType()`. Commit `11f2a1b` uses the SDK-declared game-layer static resolver `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the successful build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback copy remains preserved. Runtime contact validation is in progress: the native-motion left-hand baseline passed.
+Build `89f36d8` failed because the script-layer `Entity` wrapper has no `GetUseType()` member. Build `9b4a73c` then failed because the base `eCEntity` returned by `GetInstance()` also has no member `GetUseType()`. Commit `11f2a1b` uses the SDK-declared game-layer static resolver `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the successful build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback copy remains preserved. Runtime contact validation is complete: the native left hand and custom right hand, left leg, right leg, and head all passed. The right-leg fixture's collision effect was accidentally authored on frame 2 and its whoosh on frame 3; this does not change the Fist source conclusion.
+
+Current diagnostic candidate: `v0.10` at commit `6914039`.
+
+- marked Normal/Quick ownership and activation behavior remain v0.9;
+- the global `SetCollisionGroup` observer now compares the changed entity pointer with the player's exact left- and right-slot entity pointers;
+- every transition involving `Item_Attack` is labelled `LEFT`, `RIGHT`, `BOTH`, `NONE`, or `NO_PLAYER` and includes current player action, phase, primary pose, state time/position, animation, and both slot snapshots;
+- no Pierce, Power, SimpleWhirl, or Whirl callback is newly intercepted for behavior;
+- source is committed but not yet locally compiled or runtime validated.
 
 ### Prototype marker
 
@@ -322,7 +330,9 @@ Current animation/source evidence to preserve:
 - Dual P3 Quick file: should be left visually; whether the game currently uses it is unconfirmed.
 - Dual P1 Pierce: left weapon.
 - Dual P0 Power may be left natively: working hypothesis.
-- Dual Power in Jackydima's current implementation: both weapons activated and rearmed.
+- Dual Power in Jackydima's current implementation: right and left weapons activated, then both triggered lists cleared again at the later Dual-power threshold.
+- Dual P1 SimpleWhirl uses the left weapon in Jackydima's current implementation; its other SimpleWhirl cases use right.
+- Jackydima Whirl activates the right weapon and enables `PropertyResetOnUntouch`.
 - Torch+1H P1 and P3 Quick: left torch.
 - Some Torch+1H P0 Normal attacks natively use the left torch incorrectly; Jackydima's correction sends regular Torch+1H Normal collision to the right weapon.
 - One Dual finishing animation may visually use both weapons; exact native source remains unconfirmed and one damaging source is acceptable for that animation.
@@ -339,13 +349,24 @@ Needed future validation still includes:
 - multi-hit Power/Whirl;
 - later monster-specific cases.
 
-## 10. Production Marker Vocabulary — NOT FROZEN
+## 10. Immediate Dual Source-Discovery Sequence
+
+1. Compile and install the passive v0.10 diagnostic.
+2. Use unmarked Dual animation files and run only the FrameCollision diagnostic DLL for this isolated session.
+3. Without a target, perform P0/P1 Normal, Quick, Pierce, and Power, using intervening Normal/SimpleWhirl stance changes as needed.
+4. Preserve one complete log; use exact action, pose, current animation, and `PlayerSlotMatch` rather than weapon names to classify each activation.
+5. Compare observed native transitions with the pinned Jackydima source map.
+6. Follow with separate SimpleWhirl/Whirl and multi-contact tests; those need repeated-contact/rearm evidence, not merely the first source transition.
+
+A single controlled Dual session is acceptable for the first source map because every transition is now timestamped and slot-labelled. Do not place `G3AB_COL_TEST` in these discovery animations: marked Normal/Quick would intentionally invoke the prototype's right-hand behavior and invalidate the native-source observation.
+
+## 11. Production Marker Vocabulary — NOT FROZEN
 
 Current preferred candidates are generic source-explicit markers such as RIGHT/LEFT/BOTH/OFF, shared across attack callback families.
 
 They are not frozen. Do not mass-author them until source activation, OFF-state tracking, Fist/body behavior, and repeated-hit semantics are proven.
 
-## 11. Raise Generalization — After Collision Core Stabilizes
+## 12. Raise Generalization — After Collision Core Stabilizes
 
 Known starting point: 2H Normal works.
 
@@ -362,7 +383,7 @@ Likely controlled expansion:
 
 At each step verify resolved Raise, source/destination pose, Hit, Recover, speed, collision, and player/NPC behavior where relevant.
 
-## 12. Speed-System Continuation
+## 13. Speed-System Continuation
 
 Current design goal:
 
@@ -377,7 +398,7 @@ What is the safest final point for production speed authority?
 
 A downstream CombatMove `AniSpeedScale` intervention remains a leading option.
 
-## 13. Recover Policy
+## 14. Recover Policy
 
 Confirmed engine behavior:
 
@@ -391,7 +412,7 @@ Separate issue:
 
 Recover interruptibility has shown inconsistencies among attack variants and may later need a dedicated diagnostic.
 
-## 14. Important Current Unknowns
+## 15. Important Current Unknowns
 
 1. Final production collision marker names.
 2. General primary/secondary/all source resolver.
@@ -404,7 +425,7 @@ Recover interruptibility has shown inconsistencies among attack variants and may
 9. Monster-specific physical damage-source resolution.
 10. Exact relationship among action R/L, final filename R/L, `Routine.HitDirection`, and victim reaction selection; no current implementation depends on it.
 
-## 15. Superseded Earlier Continuation Points
+## 16. Superseded Earlier Continuation Points
 
 The following old "next tasks" are historical, not current:
 
@@ -417,7 +438,7 @@ The following old "next tasks" are historical, not current:
 
 Those questions produced later results and should not be restarted unless a new regression specifically requires them.
 
-## 16. Later Research
+## 17. Later Research
 
 ### Optional logical hit-direction diagnostic
 
