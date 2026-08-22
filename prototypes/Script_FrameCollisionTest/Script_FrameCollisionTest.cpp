@@ -201,12 +201,19 @@ static Entity GetPrototypeCollisionSource(Entity &actor)
     return actor.Inventory.GetItemFromSlot(gESlot_RightHand);
 }
 
+static gEUseType GetCollisionSourceUseType(Entity &source)
+{
+    eCEntity *instance = source.GetInstance();
+
+    return instance != nullptr ? instance->GetUseType() : gEUseType_None;
+}
+
 static bool IsFistCollisionSource(Entity &source)
 {
     if (source == None)
         return false;
 
-    gEUseType useType = source.GetUseType();
+    gEUseType useType = GetCollisionSourceUseType(source);
 
     return useType == gEUseType_Fist || useType == gEUseType_PhysicalFist;
 }
@@ -433,7 +440,7 @@ static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const 
     {
         std::fprintf(g_pLog, "ResolvedSource: %s\n", source.GetName().GetText());
 
-        std::fprintf(g_pLog, "ResolvedSourceUseType: %d\n", static_cast<GEInt>(source.GetUseType()));
+        std::fprintf(g_pLog, "ResolvedSourceUseType: %d\n", static_cast<GEInt>(GetCollisionSourceUseType(source)));
 
         std::fprintf(g_pLog, "ResolvedSourceCollisionGroup: %d\n", static_cast<GEInt>(source.GetCollisionGroup()));
     }
@@ -482,7 +489,7 @@ static void LogMarkerContext(Entity &actor, Entity &source)
     {
         std::fprintf(g_pLog, "ResolvedSource: %s\n", source.GetName().GetText());
 
-        std::fprintf(g_pLog, "ResolvedSourceUseType: %d\n", static_cast<GEInt>(source.GetUseType()));
+        std::fprintf(g_pLog, "ResolvedSourceUseType: %d\n", static_cast<GEInt>(GetCollisionSourceUseType(source)));
 
         std::fprintf(g_pLog, "ResolvedSourceCollisionGroup: %d\n", static_cast<GEInt>(source.GetCollisionGroup()));
     }
@@ -719,7 +726,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     GEInt beforeGroup = static_cast<GEInt>(source.GetCollisionGroup());
 
-    GEInt sourceUseType = static_cast<GEInt>(source.GetUseType());
+    GEInt sourceUseType = static_cast<GEInt>(GetCollisionSourceUseType(source));
 
     bool skipCollisionGroupForFist = IsFistCollisionSource(source);
 
