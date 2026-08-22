@@ -311,7 +311,7 @@ enum gEAction
 
 The full enum continues through `gEAction_Count = 145`.
 
-Read and log the exact native action rather than collapsing QuickAttackR/L into a filename heuristic. For marker-controlled collision, do not make Quick/QuickR/QuickL a hard-coded ownership whitelist when `OnAI_QuickAttack` + Hit phase + exact-motion marker already provide sufficient scope.
+Use the exact native action rather than collapsing QuickAttackR/L into a filename heuristic. In the current stateless marker prototype, exact Quick/QuickR/QuickL action values also let global `StartEffect` correlate the marker with the Quick callback family whose native timer was suppressed.
 
 ## 9. `gEPhase`
 
