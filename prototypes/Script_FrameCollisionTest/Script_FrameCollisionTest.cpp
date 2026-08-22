@@ -135,6 +135,8 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.\n");
 
+        std::fprintf(g_pLog, "A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.\n");
+
         std::fprintf(g_pLog, "Marked Normal/Quick collision behavior remains the validated v0.9 behavior.\n\n");
 
         std::fflush(g_pLog);
