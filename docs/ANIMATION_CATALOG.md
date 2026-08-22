@@ -140,6 +140,24 @@ Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F
 
 These are annotated as using `Slot_LeftHand_Weapon`.
 
+Controlled v0.10 player runtime established the broader Dual source map:
+
+| Exact execution | Source |
+|---|---|
+| `Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R` | LEFT |
+| `Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L` | RIGHT |
+| `Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R` | RIGHT |
+| `Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L` | RIGHT |
+| `Hero_Stand_1H_1H_P1_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R` | LEFT |
+| `Hero_Stand_1H_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P1_100_L` | LEFT |
+| `Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F` | RIGHT |
+| `Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F` | LEFT |
+| `Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R` | RIGHT + LEFT |
+| `Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L` | RIGHT + LEFT |
+
+The two P0 Quick variants sharing RIGHT and the two P1 variants sharing LEFT
+confirm that QuickAttackR/L naming is not a collision-hand selector.
+
 The supplied Dual P3 Quick file is visually left-handed, but its runtime use is unconfirmed:
 
 ```text
@@ -159,7 +177,7 @@ Hero_Stand_1H_1H_P0_Attack_Hit_N_Left_00_%_00_P0_90_L
 Hero_Stand_1H_1H_P1_Attack_Hit_N_Left_00_%_00_P21_90_L
 ```
 
-Dual Power attacks are visually whirl-like. Jackydima's current collision code activates both equipped weapons, which matches the desired visual behavior:
+Dual Power attacks are visually whirl-like. Controlled v0.10 runtime confirmed both equipped weapons activate for P0 and P1, converging with Jackydima's current collision code:
 
 ```text
 Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R
