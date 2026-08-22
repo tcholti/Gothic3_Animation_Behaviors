@@ -107,11 +107,17 @@ Confirmed:
 - Staff normal works for player;
 - Staff normal works for human NPC.
 
-Current source candidate:
+Validated baseline:
 
 `Script_FrameCollisionTest v0.8` at commit `f4d2946`
 
 v0.8 successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. The installed DLL matched the built DLL at SHA-256 `18DDE8B770400C76709063FA0888EFEF888F41C2FE03B3449508BC43DA120858`. Controlled player Staff QuickAttackR/action 4, QuickAttackL/action 5, and marked Normal/action 1 all passed runtime validation. A controlled human-NPC session then confirmed two QuickAttackR/action 4 and five QuickAttackL/action 5 executions on `OutNovice_01` using its own `It_Halberd_01`; all seven passed the same marker/bookkeeping/reset checks.
+
+Active causal-test source:
+
+`Script_FrameCollisionTest v0.9` at commit `89f36d8`
+
+v0.9 retains the validated v0.8 behavior and skips only the weapon-style collision-group request when the resolved source raw UseType is Fist or PhysicalFist. Triggered-list clearing remains active. Static review passed; build/runtime validation is pending.
 
 ## 8. QuickAttack Finding and Validated Fix
 
@@ -183,15 +189,29 @@ v0.8 controlled NPC result:
 
 Staff QuickR/L validation is complete for the player and a human NPC. Generic Quick/action 3 remains untested because neither controlled session selected it.
 
-## 12. Next Dedicated Fist Test
+## 12. Current v0.9 Fist Causal Test
 
-QuickR/L Staff support has passed its controlled player and NPC tests.
+QuickR/L Staff support has passed controlled player and NPC tests.
 
-The next isolated experiment is to remove only Fist `SetCollisionGroup`, keep `ClearTriggeredList`, and repeat controlled limb-contact tests.
+v0.9 is implemented to isolate one remaining Fist question:
 
-Goal:
+- raw source `gEUseType_Fist` or `gEUseType_PhysicalFist`: skip `SetCollisionGroup(Item_Attack)`;
+- every other source: retain the validated group request;
+- all accepted sources: retain `ClearTriggeredList`;
+- ownership, native suppression, marker timing, and Quick bookkeeping: unchanged.
 
-isolate whether Fist damage requires the weapon-style collision group at all.
+The log now records `ResolvedSourceUseTypeAtMarker` and
+`SetCollisionGroupAction`.
+
+Next execution steps:
+
+1. pull and build v0.9;
+2. install it and verify build/install hashes;
+3. repeat the existing marked Fist contacts with left leg, right leg, right hand, and left hand;
+4. preserve both the runtime log and the observed damage result for each contact.
+
+Do not conclude that the group call is unnecessary merely from the source entity
+remaining group 0. The behavior-changing contact test is the causal evidence.
 
 ## 13. Then
 
