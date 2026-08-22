@@ -119,7 +119,7 @@ Active causal-test source:
 
 v0.9 retains the validated v0.8 behavior and skips only the weapon-style collision-group request when the resolved source raw UseType is Fist or PhysicalFist. Triggered-list clearing remains active.
 
-Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. Runtime contact validation is pending.
+Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. Runtime contact validation is in progress, with the native-motion left-hand baseline passed.
 
 ## 8. QuickAttack Finding and Validated Fix
 
@@ -217,8 +217,13 @@ Hero_Stand_None_Fist_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
 ```
 
 Every Hit variant must remain 8 frames long, use the whoosh effect at frame 2,
-and use `G3AB_COL_TEST` at frame 3. Keep the same filename, P0 -> P1
-transition, Recover, target setup, and DLL. Change only the contacting motion.
+and use `G3AB_COL_TEST` at frame 3. Keep the same Hit filename, P0 -> P1
+transition, Recover filename/phase role, target setup, and DLL. Change only the
+contacting Hit motion.
+
+Each variant may use its own custom Recover starting from that Hit's final pose
+and returning to idle. Recover motion and length need not be identical, but
+Recover must have no `G3AB_COL_TEST` marker or intended test contact.
 
 Run separately:
 
@@ -227,6 +232,18 @@ Run separately:
 3. custom left-leg contact;
 4. custom right-leg contact;
 5. custom head contact.
+
+Completed:
+
+- native-motion left-hand baseline visibly damaged the target;
+- Hero ownership suppressed the original Normal callback;
+- eight accepted frame-3 markers resolved Fist UseType 8;
+- every marker skipped the group request, kept group 0 -> 0, and cleared the list;
+- conclusion: the group request is unnecessary for this tested left-hand contact.
+
+The test target was an attacking Boar. Its separate unmarked Fist path remained
+legacy/native and added group-request noise. Prefer a passive target for later
+variants when practical.
 
 After each launch, exit before relaunching, copy the log under a variant-specific
 name, and record whether the contact damaged the target.
