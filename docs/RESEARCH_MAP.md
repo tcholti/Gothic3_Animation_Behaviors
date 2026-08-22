@@ -195,7 +195,7 @@ Current causal source candidate: `v0.9` at commit `11f2a1b`.
 - logs the raw source UseType and whether the group request was skipped;
 - leaves every non-Fist activation path unchanged.
 
-Build `89f36d8` failed because the script-layer `Entity` wrapper has no `GetUseType()` member. Build `9b4a73c` then failed because the base `eCEntity` returned by `GetInstance()` also has no member `GetUseType()`. Commit `11f2a1b` now uses the SDK-declared game-layer static resolver `gCEntity::GetUseType(eCEntity*)`. The installed v0.8 DLL remained untouched through both failures. Source review passed; rebuild and runtime validation are pending.
+Build `89f36d8` failed because the script-layer `Entity` wrapper has no `GetUseType()` member. Build `9b4a73c` then failed because the base `eCEntity` returned by `GetInstance()` also has no member `GetUseType()`. Commit `11f2a1b` uses the SDK-declared game-layer static resolver `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the successful build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback copy remains preserved. Runtime contact validation is pending.
 
 ### Prototype marker
 
@@ -263,7 +263,7 @@ v0.7 same-execution reactivation.
 Generic Quick/action 3 remains untested. Neither controlled player nor NPC
 session selected it.
 
-## 8. Fist Causal Test — GAME-LAYER ACCESSOR; REBUILD NEXT
+## 8. Fist Causal Test — BUILD/INSTALL PASSED; CONTACT MATRIX NEXT
 
 Current causal question:
 
@@ -291,18 +291,42 @@ Build history:
 
 - initial commit `89f36d8`: failed with MSVC C2039 because the script `Entity` wrapper has no `GetUseType()`;
 - first correction `9b4a73c`: failed because base `eCEntity` also has no member `GetUseType()`;
-- current correction `11f2a1b`: calls static `gCEntity::GetUseType(eCEntity*)`; rebuild pending.
+- current correction `11f2a1b`: calls static `gCEntity::GetUseType(eCEntity*)`; Win32 Release build and hash-matched installation passed.
 
-Required runtime evidence:
+Required separate-launch runtime matrix:
 
-1. log confirms source raw UseType 8 or 55;
-2. log confirms `SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST`;
-3. log confirms `TriggeredDamageList: CLEARED`;
-4. repeat marked contact using left leg, right leg, right hand, and left hand;
-5. record whether each contact still damages the target.
+All variants replace the same 8-frame Hit file:
+
+```text
+Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R
+```
+
+All use the same Recover:
+
+```text
+Hero_Stand_None_Fist_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+```
+
+Controlled timing for every Hit variant:
+
+- whoosh effect at frame 2;
+- `G3AB_COL_TEST` at frame 3;
+- all other timing, filename, pose transition, target setup, and DLL unchanged.
+
+Run and preserve a separate log for:
+
+1. native P0 motion/left-hand contact with the marker added;
+2. custom right-hand contact;
+3. custom left-leg contact;
+4. custom right-leg contact;
+5. custom head contact.
+
+For every launch, record whether contact damages and verify that the log reports
+raw UseType 8 or 55, `SKIPPED_FOR_FIST_CAUSAL_TEST`, and
+`TriggeredDamageList: CLEARED`.
 
 If all controlled contacts still damage, the weapon-style group call is
-unnecessary for the tested Fist/body-contact path. If damage fails, the call
+unnecessary for the tested hand/leg/head contacts. If damage fails, the call
 contributes despite the logical Fist entity remaining collision group 0.
 
 Only if the result remains ambiguous should the inverse isolation be built:
