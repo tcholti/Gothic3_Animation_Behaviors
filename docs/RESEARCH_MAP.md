@@ -154,24 +154,34 @@ Proven concepts:
 
 ### Script_FrameCollisionTest
 
-Current source candidate: `v0.7` at commit `04d12f8`.
+Current source candidate: `v0.8` at commit `f4d2946`.
 
-Previously proven behavior retained in source:
+Retained proven behavior:
 
 - exact-motion marker ownership;
-- Normal attack path;
+- marked Normal attack path;
 - generalized player/NPC eligibility;
-- Staff normal;
-- natural weapon collision reset.
-
-New implementation, build/runtime validation pending:
-
-- separate `OnAI_QuickAttack` hook;
-- exact Quick/QuickR/QuickL action plus Hit-phase eligibility;
-- exact current-motion marker ownership;
-- original Quick callback fallback for unmarked, unsupported-phase/action, or unresolved-source executions;
-- unchanged right-hand prototype source meaning;
+- Staff Normal;
+- natural weapon collision reset;
+- separate Quick/QuickR/QuickL callback/action/Hit eligibility;
+- right-hand prototype source meaning;
 - no Staff/UseType/Pose gate.
+
+v0.7 runtime result:
+
+- QuickR/action 4 and QuickL/action 5 first activated at marker frame 6;
+- no pre-marker native activation occurred;
+- after every natural 7 -> 5 reset, an unmarked 5 -> 7 reactivation occurred;
+- v0.7 failed runtime validation.
+
+v0.8 source change:
+
+- accepted Quick marker sets `Routine.PropertyStatePosition` to 1;
+- before/after values are logged;
+- Normal marker behavior is not mutated;
+- no per-actor ownership state was introduced.
+
+Build and runtime validation are pending.
 
 ### Prototype marker
 
@@ -179,44 +189,55 @@ New implementation, build/runtime validation pending:
 
 Status: proven research marker, not finalized production vocabulary.
 
-## 6. v0.7 Candidate Implementation — BUILD/RUNTIME VALIDATION PENDING
+## 6. v0.8 Candidate Implementation — BUILD/RUNTIME PENDING
 
-The candidate preserves the proven Normal callback path and adds QuickAttack frame-collision ownership by:
+The candidate keeps the v0.7 callback/action/phase/marker ownership model and
+completes the Quick callback's one-shot bookkeeping only at accepted marker time.
 
-1. using `OnAI_QuickAttack`;
-2. accepting exact actions:
-   - `gEAction_QuickAttack`
-   - `gEAction_QuickAttackR`
-   - `gEAction_QuickAttackL`
-3. requiring `gEPhase_Hit`;
-4. inspecting the exact current Hit motion for the marker;
-5. suppressing native QuickAttack timed activation only when that exact motion is marked and the prototype source resolves;
-6. letting the authored marker trigger the collision operation.
+The change is intentionally narrow:
 
-The action check is not used for animation resolution. It lets the later global `StartEffect` handler correlate the marker with the Quick callback family without adding per-actor/per-execution ownership state.
+1. resolve Normal versus Quick marker context;
+2. retain all existing ownership/source checks;
+3. activate the right-hand prototype source and clear its triggered list;
+4. for Quick only, set `PropertyStatePosition = 1`;
+5. log Quick state position before and after;
+6. leave Normal behavior unchanged.
 
-The current `G3AB_COL_TEST` prototype marker continues to mean the actor's right-hand equipped item. Staff is the first controlled asset/test case, but there is no Staff restriction in the callback code. Dual and Torch+1H Quick animations remain unmarked/native until explicit left/right source markers or equivalent source handling are implemented.
+The cause remains **STRONGLY SUPPORTED**, not promoted to exact native source
+fact: v0.7 logged StatePosition 0 at each marker, the late reactivation was
+observed directly, and current reference Quick callback code uses StatePosition
+0/1 as its one-shot collision gate. The verified disassembly did not expose a
+searchable symbolic `OnAI_QuickAttack` name.
 
-QuickAttackR/QuickAttackL and final filename R/L are logical direction evidence, not physical hand-source selectors. They must not replace explicit RIGHT/LEFT/BOTH collision-source handling.
+The current `G3AB_COL_TEST` marker still means the actor's right-hand equipped
+item. Do not mark Dual or Torch+1H Quick animations until explicit source
+handling exists.
 
-## 7. v0.7 Test Matrix
+## 7. v0.8 Test Matrix
 
 ### Player Staff Quick
 
-Required observations:
+Required:
 
-- no native `5 -> 7` before marker;
-- marker causes activation/rearm at authored frame;
-- QuickAttackR and QuickAttackL both work;
-- natural reset occurs after Hit.
+- QuickAttackR/action 4 and QuickAttackL/action 5 are frame-controlled;
+- marker frame 6 performs the only 5 -> 7 activation;
+- log shows Quick StatePosition changing to 1;
+- natural 7 -> 5 reset remains;
+- no immediate post-reset 5 -> 7 occurs;
+- subsequent attacks begin from collision group 5.
+
+### Player Staff Normal regression
+
+Repeat at least one marked Normal attack and confirm its marker activation and
+natural reset remain unchanged.
 
 ### NPC Staff Quick
 
-Repeat with a controlled human NPC.
+Run only after both player tests pass. Confirm the same behavior on the NPC's
+own equipped Staff/Halberd.
 
-Required result:
-
-same authored-frame behavior on the NPC's own equipped Staff/Halberd.
+Generic Quick/action 3 remains untested. The attempted moving input selected
+QuickAttackR/action 4 again.
 
 ## 8. Fist Causal Test — Next Dedicated Diagnostic
 
