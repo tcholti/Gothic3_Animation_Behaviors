@@ -107,39 +107,32 @@ Confirmed:
 - Staff normal works for player;
 - Staff normal works for human NPC.
 
-Current prototype reference:
+Current source candidate:
 
-`Script_FrameCollisionTest v0.6`
+`Script_FrameCollisionTest v0.7` at commit `04d12f8`
 
-## 8. Current QuickAttack Problem
+Build and runtime validation are pending. Previously proven Normal behavior must be regression-checked before the candidate is promoted.
 
-Staff Quick markers fire.
+## 8. QuickAttack Finding and Implemented Candidate
 
-Actions include QuickAttackR/L.
+Staff Quick markers were previously confirmed to fire, with native QuickAttackR/L action values observed. v0.6 could not own them because its eligibility path assumed literal Normal `_Attack_Hit_` naming.
 
-`v0.6` does not take ownership because the eligibility path still assumes literal Normal `_Attack_Hit_` naming.
+The v0.7 candidate preserves the Normal callback body and adds Quick support.
 
-Native collision therefore activates before the marker.
+## 9. v0.7 Implementation Contract
 
-This is the immediate coding problem.
-
-## 9. Exact Next Coding Step — FrameCollision v0.7
-
-Preserve proven Normal code unchanged.
-
-Add Quick support through:
-
-- `OnAI_QuickAttack`;
-- exact Quick, QuickR, and QuickL actions;
-- Hit phase;
-- exact current-motion marker presence;
-- the existing right-hand prototype source resolver.
+- `OnAI_QuickAttack` is hooked separately;
+- exact Quick, QuickR, and QuickL actions plus Hit phase identify the Quick family at callback and marker time;
+- exact current-motion marker presence declares ownership;
+- the existing right-hand prototype source resolver is unchanged;
+- unmarked, wrong-action/phase, or unresolved-source executions call the original Quick callback;
+- there is no Staff, raw-UseType, or pose restriction.
 
 The exact action check does not control animation resolution. It lets global `StartEffect` confirm that the later marker belongs to the Quick callback family whose native timer was suppressed.
 
-Required behavior:
+Expected behavior, not yet runtime-confirmed:
 
-marked Quick execution with a valid right-hand source suppresses native timed activation and waits for the authored marker. Unmarked or unresolved executions call the original callback.
+marked Quick execution with a valid right-hand source suppresses native timed activation and waits for the authored marker. Unmarked or unresolved executions remain native.
 
 Staff is the first controlled animation/test case, not a Staff restriction in code. Do not mark Dual or Torch+1H Quick animations while `G3AB_COL_TEST` still means right-hand source.
 
