@@ -52,7 +52,7 @@ Preserve native behavior for unconfigured/unmarked cases.
 
 ## 4. Core Architecture in One Paragraph
 
-Use the named native callback family + `gEPhase` + exact current motion marker for frame-collision ownership. Marker presence declares that exact execution frame-controlled, allowing the native timed activation in that callback to be suppressed before the marker fires. Read and log exact `gEAction` values, but do not add an action whitelist when callback + phase + marker already provide sufficient scope. When the marker is dispatched, invoke the appropriate source activation/rearm helper. Keep physical damage-source resolution separate from callback/phase identity.
+Use the named native callback family + exact `gEAction` + `gEPhase` + exact current-motion marker for frame-collision ownership. The named callback scopes native-timer suppression; when the marker later reaches global `StartEffect`, exact action and phase correlate it with the supported family without new per-execution state. Marker presence declares that exact execution frame-controlled. When dispatched, invoke the appropriate source activation/rearm helper. Keep physical damage-source resolution separate from callback/action/phase identity.
 
 ## 5. Proven Raise State
 
@@ -128,11 +128,12 @@ Preserve proven Normal code unchanged.
 Add Quick support through:
 
 - `OnAI_QuickAttack`;
+- exact Quick, QuickR, and QuickL actions;
 - Hit phase;
 - exact current-motion marker presence;
 - the existing right-hand prototype source resolver.
 
-Log Quick/QuickR/QuickL action values, but do not use them as an ownership whitelist.
+The exact action check does not control animation resolution. It lets global `StartEffect` confirm that the later marker belongs to the Quick callback family whose native timer was suppressed.
 
 Required behavior:
 
