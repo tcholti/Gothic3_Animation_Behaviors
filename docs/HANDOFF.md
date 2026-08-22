@@ -240,7 +240,7 @@ docs/
 data/
     animation_names/
         author_grouped_attacks_and_stumbles.txt
-        all_animation_names.txt  # planned generated inventory
+        all_animation_names.txt  # 5,991 native names; generated 2026-08-22
 ```
 
 Do not force this structure if the actual source dependencies show a better minimal layout.
