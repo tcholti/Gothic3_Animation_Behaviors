@@ -119,7 +119,7 @@ Active causal-test source:
 
 v0.9 retains the validated v0.8 behavior and skips only the weapon-style collision-group request when the resolved source raw UseType is Fist or PhysicalFist. Triggered-list clearing remains active.
 
-Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. The current candidate passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)`. The installed v0.8 DLL was never replaced. Rebuild/runtime validation is pending.
+Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. Runtime contact validation is pending.
 
 ## 8. QuickAttack Finding and Validated Fix
 
@@ -193,28 +193,53 @@ Staff QuickR/L validation is complete for the player and a human NPC. Generic Qu
 
 ## 12. Current v0.9 Fist Causal Test
 
-QuickR/L Staff support has passed controlled player and NPC tests.
+QuickR/L Staff support has passed controlled player and NPC tests. v0.9 has
+compiled, been installed with a matching hash, and preserves a validated v0.8
+rollback DLL.
 
-v0.9 is implemented to isolate one remaining Fist question:
+v0.9 isolates one Fist question:
 
-- resolve raw source UseType with static `gCEntity::GetUseType(eCEntity*)`, using the pointer from `Entity.GetInstance()`;
+- resolve raw source UseType with static `gCEntity::GetUseType(eCEntity*)`;
 - raw source `gEUseType_Fist` or `gEUseType_PhysicalFist`: skip `SetCollisionGroup(Item_Attack)`;
 - every other source: retain the validated group request;
 - all accepted sources: retain `ClearTriggeredList`;
 - ownership, native suppression, marker timing, and Quick bookkeeping: unchanged.
 
-The log now records `ResolvedSourceUseTypeAtMarker` and
+The log records `ResolvedSourceUseTypeAtMarker` and
 `SetCollisionGroupAction`.
 
-Next execution steps:
+The contact variants cannot be exercised in one game session. Each variant
+replaces the same Hit file and requires its own launch and preserved log.
 
-1. pull corrected commit `11f2a1b` and rebuild v0.9;
-2. install it and verify build/install hashes;
-3. repeat the existing marked Fist contacts with left leg, right leg, right hand, and left hand;
-4. preserve both the runtime log and the observed damage result for each contact.
+```text
+Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_Stand_None_Fist_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+```
 
-Do not conclude that the group call is unnecessary merely from the source entity
-remaining group 0. The behavior-changing contact test is the causal evidence.
+Every Hit variant must remain 8 frames long, use the whoosh effect at frame 2,
+and use `G3AB_COL_TEST` at frame 3. Keep the same filename, P0 -> P1
+transition, Recover, target setup, and DLL. Change only the contacting motion.
+
+Run separately:
+
+1. native P0 motion/left-hand contact, with the marker added;
+2. custom right-hand contact;
+3. custom left-leg contact;
+4. custom right-leg contact;
+5. custom head contact.
+
+After each launch, exit before relaunching, copy the log under a variant-specific
+name, and record whether the contact damaged the target.
+
+Required log fields for every case:
+
+- raw source UseType 8 or 55;
+- `SetCollisionGroupAction: SKIPPED_FOR_FIST_CAUSAL_TEST`;
+- `TriggeredDamageList: CLEARED`.
+
+Do not use an untouched stock Hit without the marker; that would leave native
+ownership active. Do not generalize successful hand/leg/head contacts to every
+possible body part.
 
 ## 13. Then
 
