@@ -84,6 +84,7 @@ Statuses:
 | EV-063 | Visible weapon travel determines Gothic 3's logical left/right hit direction at contact time. | CONTRADICTED | animation-author controlled visual reversal retained gameplay behavior | Treat direction as authored/selected combat state, not physics-derived motion analysis. |
 | EV-064 | CombatMoveLogger v0.4 currently records `Routine.HitDirection`. | CONTRADICTED | current logger source audit | Optional future diagnostic: add HitDirection only if direction becomes relevant to implementation. |
 | EV-065 | Native filenames contain `LightStumble`, but the SDK declares a separate `gEAction_LightStumble`. | CONTRADICTED | inventory + official `gEAction` enum | Do not assume every serialized action token is a 1:1 enum spelling; exact LightStumble mapping remains open. |
+| EV-066 | FrameCollision v0.7 candidate implements marked Quick/QuickR/QuickL ownership through `OnAI_QuickAttack`, Hit phase, exact-motion marker, and the unchanged right-hand source resolver. | CONFIRMED AS SOURCE IMPLEMENTATION; BUILD/RUNTIME PENDING | commit `04d12f8`; static diff review | Compile locally, then run player/NPC Staff Quick validation before promoting behavior to confirmed. |
 
 ## 3. Evidence Promotion Rule
 
