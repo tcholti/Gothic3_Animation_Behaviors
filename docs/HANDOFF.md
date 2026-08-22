@@ -248,7 +248,7 @@ future regression contradicts these positive results.
 3. separately resolve SimpleWhirl/Whirl, BOTH activation, repeated rearm, `ResetOnUntouch`, and explicit-OFF needs;
 4. add collision callback adapters one family at a time and validate the main human melee collision families;
 5. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-6. generalize Raise and speed initially for Normal and Quick, using 12-frame Hit + 4-frame Raise as an authoring convention and logger-measured native durations for speed calibration.
+6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 
