@@ -39,15 +39,32 @@ Contents:
 
 The source file is authoritative for the exact names and original annotations. This catalog summarizes it without replacing it.
 
-### Complete game animation-name inventory
+### Complete native animation-name inventory
 
-Planned generated source:
+Generated source:
 
 `data/animation_names/all_animation_names.txt`
 
-This will be generated from the user's actual Gothic 3 animation files. It does not exist yet.
+Generated: 2026-08-22.
 
-The complete inventory should remain a raw, sorted, unique list. Curated interpretations belong in this document rather than inside the generated file.
+Extraction sources:
+
+- `_compiledAnimation_pak`
+- `_compiledAnimation_p00`
+
+The two extracted sources are dated 2026-08-10 in the user's working archive and together represent all natively used animations available to this catalog.
+
+Generation method:
+
+- recursively enumerate `.xmot` files in both sources;
+- remove only the `.xmot` extension;
+- combine both sources;
+- sort names;
+- remove duplicate names.
+
+Result: **5,991 unique animation names**.
+
+The inventory remains a raw, sorted, unique list. Curated interpretations belong in this document rather than inside the generated file.
 
 ## 3. Evidence Labels Used Here
 
@@ -222,8 +239,7 @@ When new animation information becomes important for future reasoning:
 
 ## 12. Next Catalog Steps
 
-1. Generate `data/animation_names/all_animation_names.txt` from the user's actual Gothic 3 animation files.
-2. Compare the complete inventory against the supplied grouped list.
-3. Mark stock-only, author-created, absent, duplicate-pattern, and possibly unused entries.
-4. Expand beyond human melee into movement, blocks, reactions, interactions, creatures, and other animation families as useful.
-5. Evaluate the animation author's R/L hypothesis using both attack and stumble names.
+1. Compare the complete inventory against the supplied grouped list.
+2. Mark stock-only, author-created, absent, duplicate-pattern, and possibly unused entries.
+3. Expand beyond human melee into movement, blocks, reactions, interactions, creatures, and other animation families as useful.
+4. Evaluate the animation author's R/L hypothesis using both attack and stumble names.
