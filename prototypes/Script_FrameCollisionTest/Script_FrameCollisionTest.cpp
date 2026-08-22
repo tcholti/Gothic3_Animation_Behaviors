@@ -101,7 +101,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.9 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.10 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -131,7 +131,11 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "No custom collision-OFF cleanup; Gothic 3 owns Hit->Recover reset.\n");
 
-        std::fprintf(g_pLog, "Known collision groups: Item_Equipped=5, Item_Attack=7.\n\n");
+        std::fprintf(g_pLog, "Known collision groups: Item_Equipped=5, Item_Attack=7.\n");
+
+        std::fprintf(g_pLog, "PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.\n");
+
+        std::fprintf(g_pLog, "Marked Normal/Quick collision behavior remains the validated v0.9 behavior.\n\n");
 
         std::fflush(g_pLog);
     }
@@ -216,6 +220,78 @@ static bool IsFistCollisionSource(Entity &source)
     gEUseType useType = GetCollisionSourceUseType(source);
 
     return useType == gEUseType_Fist || useType == gEUseType_PhysicalFist;
+}
+
+static void LogPlayerSlotIdentity(eCEntity *changedEntity)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    Entity player = Entity::GetPlayer();
+
+    if (player == None)
+    {
+        std::fprintf(g_pLog, "PlayerSlotMatch: NO_PLAYER\n");
+
+        return;
+    }
+
+    Entity leftItem = player.Inventory.GetItemFromSlot(gESlot_LeftHand);
+
+    Entity rightItem = player.Inventory.GetItemFromSlot(gESlot_RightHand);
+
+    eCEntity *leftInstance = leftItem != None ? leftItem.GetInstance() : nullptr;
+
+    eCEntity *rightInstance = rightItem != None ? rightItem.GetInstance() : nullptr;
+
+    bool matchesLeft = changedEntity != nullptr && changedEntity == leftInstance;
+
+    bool matchesRight = changedEntity != nullptr && changedEntity == rightInstance;
+
+    char const *slotMatch = matchesLeft && matchesRight ? "BOTH"
+                          : matchesLeft                 ? "LEFT"
+                          : matchesRight                ? "RIGHT"
+                                                        : "NONE";
+
+    bCString currentAni = player.NPC.GetCurrentMovementAni();
+
+    std::fprintf(g_pLog, "ChangedEntityAddress: %p\n", static_cast<void *>(changedEntity));
+
+    std::fprintf(g_pLog, "PlayerSlotMatch: %s\n", slotMatch);
+
+    std::fprintf(g_pLog, "PlayerAction: %d\n",
+                 static_cast<GEInt>(player.Routine.GetProperty<PSRoutine::PropertyAction>()));
+
+    std::fprintf(g_pLog, "PlayerAniPhase: %d\n", static_cast<GEInt>(player.GetCurrentAniPhase()));
+
+    std::fprintf(g_pLog, "PlayerPrimaryPose: %d\n", static_cast<GEInt>(player.NPC.GetPrimaryPose()));
+
+    std::fprintf(g_pLog, "PlayerStateTime: %.6f\n", player.Routine.GetStateTime());
+
+    std::fprintf(g_pLog, "PlayerStatePosition: %d\n",
+                 static_cast<GEInt>(player.Routine.GetProperty<PSRoutine::PropertyStatePosition>()));
+
+    std::fprintf(g_pLog, "PlayerCurrentMovementAni: %s\n", currentAni.GetText());
+
+    std::fprintf(g_pLog, "PlayerLeftItem: %s\n", leftItem != None ? leftItem.GetName().GetText() : "<none>");
+
+    std::fprintf(g_pLog, "PlayerLeftItemAddress: %p\n", static_cast<void *>(leftInstance));
+
+    std::fprintf(g_pLog, "PlayerLeftUseType: %d\n",
+                 leftItem != None ? static_cast<GEInt>(GetCollisionSourceUseType(leftItem)) : -1);
+
+    std::fprintf(g_pLog, "PlayerLeftCollisionGroup: %d\n",
+                 leftItem != None ? static_cast<GEInt>(leftItem.GetCollisionGroup()) : -1);
+
+    std::fprintf(g_pLog, "PlayerRightItem: %s\n", rightItem != None ? rightItem.GetName().GetText() : "<none>");
+
+    std::fprintf(g_pLog, "PlayerRightItemAddress: %p\n", static_cast<void *>(rightInstance));
+
+    std::fprintf(g_pLog, "PlayerRightUseType: %d\n",
+                 rightItem != None ? static_cast<GEInt>(GetCollisionSourceUseType(rightItem)) : -1);
+
+    std::fprintf(g_pLog, "PlayerRightCollisionGroup: %d\n",
+                 rightItem != None ? static_cast<GEInt>(rightItem.GetCollisionGroup()) : -1);
 }
 
 // -----------------------------------------------------------------------------
@@ -531,6 +607,8 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n", GetElapsedMilliseconds());
 
     std::fprintf(g_pLog, "Entity: %s\n", changedEntity.GetName().GetText());
+
+    LogPlayerSlotIdentity(pThis);
 
     std::fprintf(g_pLog, "RequestedGroup: %d\n", static_cast<GEInt>(a_Group));
 
