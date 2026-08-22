@@ -322,6 +322,25 @@ enables the first weapon's third visual contact, but v0.10 observed only
 collision-group transitions. Production must not treat BOTH activation alone as
 complete Dual Power behavior.
 
+Pinned NewBalance contains an independent `FixDualOneHanded` call hook that
+clears both Dual weapon lists at `RVA_ScriptGame(0x482e7)`. This confirms the
+rearm fix is present in NewBalance itself, not only in `Script_AttackCollision`.
+The hook location is build-specific and does not yet establish the exact
+animation time of the clear.
+
+The engine trigger structure keeps `EntitiesVisited` and
+`EntitiesVisitedCount`. The working interpretation is therefore:
+
+- a weapon may hit several different entities during one active window;
+- an entity already visited by that weapon cannot normally be damaged again
+  until its visit entry is cleared or reset;
+- clearing at a new source marker starts a fresh authored contact for that
+  source.
+
+This interpretation fits both multi-opponent swings and Dual Power rearming,
+but native versus NewBalance behavior still needs a controlled target-identity
+comparison.
+
 ### FinishingAttack
 
 One Dual finishing animation may visually contact with both weapons while only one source actually damages. The exact native source is not yet confirmed; for that particular animation, a single damaging source is considered acceptable.
@@ -351,6 +370,19 @@ Known third-party full-Whirl code historically used right-hand activation and
 has needed reset/rearm fixes. Current upstream Jackydima work added
 `PropertyResetOnUntouch = GETrue` to WhirlAttack handling.
 
+For authored 2H/Staff double attacks, automatic reset-on-untouch is not a full
+replacement for an explicit inactive window. A nearby opponent can intersect
+the second swing before its intended acceleration. The preferred marker model
+is:
+
+1. source ON marker: activate and clear that source's triggered list;
+2. generic OFF marker: return every source owned by this marked execution to
+   its inactive/equipped collision state;
+3. later source ON marker: reactivate and rearm only the authored next contact.
+
+OFF controls physical timing; it does not itself rearm or produce damage.
+Exact restoration and cleanup rules must be proven before marker names freeze.
+
 ### Fist
 
 The logical Fist source does not behave like a normal equipped weapon collision group.
@@ -376,10 +408,10 @@ Unmarked/unconfigured attacks must remain compatible with existing behavior.
 ## 12. Implementation Strategy
 
 1. Preserve the validated Normal and QuickR/L marker-controlled paths and the v0.9 Fist/body rearm result.
-2. Preserve the completed Dual Normal/Quick/Pierce/Power source map; extend passive diagnostics to `ClearTriggeredList`, Dual SimpleWhirl, and the separate 2H/Staff full-Whirl path without changing native behavior.
+2. Preserve the completed Dual Normal/Quick/Pierce/Power source map; extend passive diagnostics to `ClearTriggeredList`, target identity, Dual SimpleWhirl, and the separate 2H/Staff full-Whirl path without changing native behavior.
 3. Generalize the source helper into explicit weapon activation versus Fist/body rearming; Fist skips the weapon group request and clears its logical source list.
 4. Add collision ownership adapters one callback family at a time. Collision scope should cover the main human melee families before production integration, but Raise and speed remain initially scoped to Normal and Quick.
-5. Treat BOTH group activation as proven but incomplete: validate Dual Power's third-contact rearm, SimpleWhirl source/contact intent, full-Whirl `ResetOnUntouch`, and whether explicit OFF is needed for inactive gaps.
+5. Treat BOTH group activation as proven but incomplete: validate Dual Power's third-contact rearm, multi-target versus same-target list behavior, SimpleWhirl source/contact intent, full-Whirl `ResetOnUntouch`, and explicit OFF for authored inactive gaps.
 6. Freeze a production marker vocabulary only after source-set tracking and repeated-hit/OFF semantics are understood.
 7. Integrate the validated collision core into `Script_G3AnimationBehaviors`.
 8. Generalize Raise and speed control incrementally, calibrating provisional speeds against logged native Normal/Quick durations.

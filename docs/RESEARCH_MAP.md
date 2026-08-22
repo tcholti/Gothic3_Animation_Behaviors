@@ -394,12 +394,31 @@ follow-up target.
 Next Dual work is SimpleWhirl plus Power multi-contact rearming. Dual does not
 have the separate full Whirl used by 2H/Staff. The diagnostic must observe
 `ClearTriggeredList`, because first group activation alone cannot distinguish
-native two-hit Power from the intended three-contact sequence. Separate later
-2H/Staff Whirl work should observe `ResetOnUntouch` and OFF-gap needs.
+native two-hit Power from the intended three-contact sequence. It should also
+record damaged-target identity: SDK structure exposes per-entity visited state,
+and the tester's NewBalance-enabled setup allows one Normal/Quick swing to hit
+several different opponents, but the native baseline is unknown. Pinned
+NewBalance independently clears both Dual weapon lists through
+`FixDualOneHanded`, so the rearm fix is not exclusive to
+`Script_AttackCollision`. Separate later 2H/Staff Whirl work should observe
+`ResetOnUntouch` and OFF-gap needs.
 
 ## 11. Production Marker Vocabulary — NOT FROZEN
 
 Current preferred candidates are generic source-explicit markers such as RIGHT/LEFT/BOTH/OFF, shared across attack callback families.
+
+Current proposed responsibilities:
+
+- RIGHT/LEFT/BOTH activate and rearm the named source set for that authored
+  contact;
+- OFF deactivates the source set owned by the current marked execution;
+- OFF does not clear lists by itself; the next source marker performs the
+  rearm.
+
+This separation is important for custom 2H/Staff double attacks: explicit OFF
+can prevent a nearby target from being struck by the second weapon motion before
+its intended acceleration, while the next ON marker opens a clean second
+contact window.
 
 They are not frozen. Do not mass-author them until source activation, OFF-state tracking, Fist/body behavior, and repeated-hit semantics are proven.
 

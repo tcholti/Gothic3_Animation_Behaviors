@@ -304,6 +304,23 @@ This is the immediate next callback family to integrate.
 
 Third-party source demonstrates both-hand behavior for Dual and repeated triggered-list clearing.
 
+Pinned NewBalance also implements the Dual rearm independently:
+
+- `scripts/Script_NewBalance/CallHook.cpp` defines `FixDualOneHanded`;
+- it requires 1H in both hands and clears both weapon `TouchDamage` lists;
+- it is inserted at `RVA_ScriptGame(0x482e7)`;
+- the code comment identifies it as a Dual 1H PowerAttack hit-detection fix.
+
+This proves the fix is present in NewBalance itself. The address is
+build-specific, and source alone does not provide the authored-frame timing.
+
+SDK `eCTrigger_PS` exposes `EntitiesVisited`, `EntitiesVisitedCount`,
+`ClearTriggeredList()`, and `ClearTriggeredList(eCEntity *)`. Treat this as
+structural evidence that visit suppression is tracked per target. A diagnostic
+should log both source and damaged-target identity before deciding whether a
+clear is required for different opponents, repeated contact with one opponent,
+or both.
+
 ### `OnAI_WhirlAttack`
 
 Recent Jackydima source added `PropertyResetOnUntouch = GETrue` to the right-weapon Whirl activation path.

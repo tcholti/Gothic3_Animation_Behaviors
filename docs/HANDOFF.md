@@ -156,9 +156,10 @@ Controlled v0.10 player Dual runtime established:
 - P0 QuickAttackR/L: right; P1 QuickAttackR/L: left.
 - P0 Pierce: right; P1 Pierce: left.
 - P0 and P1 Power: both initially; P0 visually contacts right -> left -> right and P1 left -> right -> left, so the first weapon needs later rearm for the third contact.
-- native Dual Power is reported to damage only twice; Jackydima later clears both lists again, plausibly enabling the third contact.
+- native Dual Power is reported to damage only twice; both pinned NewBalance (`FixDualOneHanded`) and `Script_AttackCollision` contain later both-list clearing, plausibly enabling the third contact.
 - every one of the 17 group-activation records had a matching 7 -> 5 reset in phase 3.
 - Quick R/L action/filename direction did not select collision hand.
+- SDK trigger state is per entity (`EntitiesVisited` / `EntitiesVisitedCount`); a NewBalance-enabled Normal/Quick swing has been observed hitting several distinct opponents, while the native baseline remains untested.
 
 Preserve these remaining distinctions:
 
@@ -169,7 +170,7 @@ Preserve these remaining distinctions:
 - Some native Torch+1H P0 Normal left-torch activations are considered erroneous; Jackydima corrects regular Normal collision to the right weapon.
 - One Dual finishing source remains unconfirmed.
 
-Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. Names are not frozen.
+Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. ON/source markers activate and rearm; OFF creates a deterministic inactive gap by disabling marker-owned sources. This is especially needed for authored 2H/Staff double attacks whose second motion can touch a nearby target too early. Names and exact restoration rules are not frozen.
 
 ## 11. v0.8 Validation — PLAYER AND NPC PASSED
 
