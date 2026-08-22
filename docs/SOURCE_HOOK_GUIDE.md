@@ -354,6 +354,15 @@ six exact-fixture executions, the guard retained 12 genuine markers and ignored
 six same-update late duplicates; every ignored callback performed no collision
 or list mutation.
 
+v0.12 adds a separate actor-local marker-owned weapon-window record for
+provisional `G3AB_COL_OFF_TEST`. Accepted non-Fist ON stores actor + source +
+motion + action + phase. OFF may request `Item_Equipped` only when that record
+still matches and the source remains `Item_Attack`; it performs no list clear.
+The global collision-group observer retires the record whenever the source is
+no longer `Item_Attack`, covering both explicit OFF and natural reset. OFF-only
+motions do not claim callback ownership because ON remains the declaration that
+suppresses the native timer.
+
 ## 11. Current Marker-Control Research Pattern
 
 At callback entry / Hit start:

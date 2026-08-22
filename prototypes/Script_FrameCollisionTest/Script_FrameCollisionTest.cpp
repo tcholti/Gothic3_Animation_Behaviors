@@ -22,6 +22,9 @@ static FILE *g_pLog = nullptr;
 static LARGE_INTEGER g_StartCounter = {};
 static LARGE_INTEGER g_Frequency = {};
 
+static char const *const g_CollisionOnMarker = "G3AB_COL_TEST";
+static char const *const g_CollisionOffMarker = "G3AB_COL_OFF_TEST";
+
 // Last animation name logged per actor.
 // Diagnostic only; it prevents the v0.5 per-frame suppression spam.
 static std::unordered_map<eCEntity *, std::string> g_LastLoggedAni;
@@ -55,6 +58,19 @@ struct LastAcceptedMarkerDispatch
 };
 
 static std::unordered_map<eCEntity *, LastAcceptedMarkerDispatch> g_LastAcceptedMarkerDispatchByActor;
+
+// OFF may only close a weapon collision window opened by this prototype for
+// the same actor/source/motion/action/phase. Natural engine reset and explicit
+// OFF both retire the record through the SetCollisionGroup hook.
+struct MarkerOwnedCollisionWindow
+{
+    eCEntity *sourceInstance;
+    std::string animationName;
+    GEInt action;
+    GEInt phase;
+};
+
+static std::unordered_map<eCEntity *, MarkerOwnedCollisionWindow> g_MarkerOwnedWindowByActor;
 
 // -----------------------------------------------------------------------------
 // Results
@@ -118,7 +134,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.11 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.12 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -146,7 +162,13 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.\n");
 
-        std::fprintf(g_pLog, "No custom collision-OFF cleanup; Gothic 3 owns Hit->Recover reset.\n");
+        std::fprintf(g_pLog, "G3AB_COL_OFF_TEST closes only a weapon window opened by this prototype.\n");
+
+        std::fprintf(g_pLog, "OFF requests Item_Equipped and never clears the triggered list.\n");
+
+        std::fprintf(g_pLog, "OFF before ON or after natural reset is consumed as a logged no-op.\n");
+
+        std::fprintf(g_pLog, "Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.\n");
 
         std::fprintf(g_pLog, "Known collision groups: Item_Equipped=5, Item_Attack=7.\n");
 
@@ -156,7 +178,7 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Marked Normal/Quick collision behavior remains the validated v0.9 behavior.\n\n");
 
-        std::fprintf(g_pLog, "v0.11: identical same-update marker dispatches are ignored before collision/list changes.\n");
+        std::fprintf(g_pLog, "v0.12 preserves v0.11 same-update marker deduplication for ON and OFF.\n");
 
         std::fprintf(g_pLog, "Dedup key: actor + source + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
 
@@ -248,6 +270,61 @@ static void RememberAcceptedMarker(eCEntity *actorInstance, eCEntity *sourceInst
     g_LastAcceptedMarkerDispatchByActor[actorInstance] = record;
 }
 
+static void RememberMarkerOwnedWindow(eCEntity *actorInstance, eCEntity *sourceInstance,
+                                      char const *animationName, GEInt action, GEInt phase)
+{
+    MarkerOwnedCollisionWindow record = {};
+
+    record.sourceInstance = sourceInstance;
+    record.animationName = animationName != nullptr ? animationName : "";
+    record.action = action;
+    record.phase = phase;
+
+    g_MarkerOwnedWindowByActor[actorInstance] = record;
+}
+
+static bool HasMatchingMarkerOwnedWindow(eCEntity *actorInstance, eCEntity *sourceInstance,
+                                         char const *animationName, GEInt action, GEInt phase)
+{
+    auto found = g_MarkerOwnedWindowByActor.find(actorInstance);
+
+    if (found == g_MarkerOwnedWindowByActor.end())
+        return false;
+
+    MarkerOwnedCollisionWindow const &record = found->second;
+
+    return record.sourceInstance == sourceInstance
+        && SameFileName(record.animationName.c_str(), animationName)
+        && record.action == action
+        && record.phase == phase;
+}
+
+static void ForgetMarkerOwnedWindowForActor(eCEntity *actorInstance)
+{
+    if (actorInstance != nullptr)
+    {
+        g_MarkerOwnedWindowByActor.erase(actorInstance);
+    }
+}
+
+static void ForgetMarkerOwnedWindowsForSource(eCEntity *sourceInstance)
+{
+    if (sourceInstance == nullptr)
+        return;
+
+    for (auto entry = g_MarkerOwnedWindowByActor.begin(); entry != g_MarkerOwnedWindowByActor.end();)
+    {
+        if (entry->second.sourceInstance == sourceInstance)
+        {
+            entry = g_MarkerOwnedWindowByActor.erase(entry);
+        }
+        else
+        {
+            ++entry;
+        }
+    }
+}
+
 static bool IsAttackHit(Entity &actor)
 {
     bCString ani = actor.NPC.GetCurrentMovementAni();
@@ -272,7 +349,8 @@ static Entity GetPrototypeCollisionSource(Entity &actor)
     // The prototype intentionally supports all actors/weapon types but only
     // one source-resolution rule:
     //
-    //     G3AB_COL_TEST -> actor's current right-hand equipped item.
+    //     G3AB_COL_TEST / G3AB_COL_OFF_TEST -> actor's current right-hand
+    //     equipped item.
     //
     // This covers the human melee weapon families we can immediately test
     // (2H, Staff, 1H, etc.) without pretending that monster body attacks
@@ -422,7 +500,7 @@ static FrameEffectScanResult ScanFrameEffects(eCResourceAnimationMotion_PS const
 
         char const *effectName = effectString->GetText();
 
-        if (effectName != nullptr && std::strcmp(effectName, "G3AB_COL_TEST") == 0)
+        if (effectName != nullptr && std::strcmp(effectName, g_CollisionOnMarker) == 0)
         {
             result.foundMarker = true;
 
@@ -610,14 +688,14 @@ static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const 
     std::fflush(g_pLog);
 }
 
-static void LogMarkerContext(Entity &actor, Entity &source)
+static void LogMarkerContext(char const *markerName, Entity &actor, Entity &source)
 {
     if (g_pLog == nullptr)
         return;
 
     bCString ani = actor.NPC.GetCurrentMovementAni();
 
-    std::fprintf(g_pLog, "===== G3AB_COL_TEST RECEIVED =====\n");
+    std::fprintf(g_pLog, "===== %s RECEIVED =====\n", markerName != nullptr ? markerName : "<null>");
 
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n", GetElapsedMilliseconds());
 
@@ -661,6 +739,11 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
     eECollisionGroup beforeGroup = pThis != nullptr ? pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
 
     Hook_SetCollisionGroup.GetOriginalFunction (&SetCollisionGroup_FrameCollisionTest)(a_Group);
+
+    if (pThis != nullptr && pThis->GetCollisionGroup() != eECollisionGroup_Item_Attack)
+    {
+        ForgetMarkerOwnedWindowsForSource(pThis);
+    }
 
     if (pThis == nullptr || g_pLog == nullptr)
     {
@@ -783,10 +866,11 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 // -----------------------------------------------------------------------------
 // StartEffect
 //
-// G3AB_COL_TEST remains a PROTOTYPE marker.
-// In v0.7 its meaning is:
+// G3AB_COL_TEST and G3AB_COL_OFF_TEST remain PROTOTYPE markers.
+// Their current right-source meanings are:
 //
-//     activate current actor's right-hand equipped item.
+//     ON  -> activate/rearm the current actor's right-hand equipped item.
+//     OFF -> close only a matching marker-owned weapon window.
 //
 // It is deliberately NOT yet the final PRIMARY/SECONDARY/ALL vocabulary.
 // -----------------------------------------------------------------------------
@@ -796,7 +880,11 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 {
     GELPCChar effectName = a_EffectName.GetText();
 
-    if (effectName == nullptr || std::strcmp(effectName, "G3AB_COL_TEST") != 0)
+    bool isCollisionOnMarker = effectName != nullptr && std::strcmp(effectName, g_CollisionOnMarker) == 0;
+
+    bool isCollisionOffMarker = effectName != nullptr && std::strcmp(effectName, g_CollisionOffMarker) == 0;
+
+    if (!isCollisionOnMarker && !isCollisionOffMarker)
     {
         return Hook_StartEffect.GetOriginalFunction(&StartEffect_FrameCollisionTest)(a_EffectName, a_pEntity1,
                                                                                      a_pEntity2, a_pMatrix, a_bUnknown);
@@ -804,12 +892,12 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     // Reserved test marker is consumed even if the actor/source cannot be
     // resolved, so the engine never tries to find a real effect resource
-    // named G3AB_COL_TEST.
+    // named G3AB_COL_TEST / G3AB_COL_OFF_TEST.
     if (a_pEntity1 == nullptr)
     {
         if (g_pLog != nullptr)
         {
-            std::fprintf(g_pLog, "===== G3AB_COL_TEST RECEIVED =====\n");
+            std::fprintf(g_pLog, "===== %s RECEIVED =====\n", effectName);
 
             std::fprintf(g_pLog, "MarkerAction: REJECTED - Entity1 == NULL\n");
 
@@ -825,7 +913,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     Entity source = GetPrototypeCollisionSource(actor);
 
-    LogMarkerContext(actor, source);
+    LogMarkerContext(effectName, actor, source);
 
     bool isNormalAttackHit = IsAttackHit(actor);
 
@@ -925,6 +1013,65 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     bool skipCollisionGroupForFist = IsFistCollisionSource(source);
 
+    if (isCollisionOffMarker)
+    {
+        bool ownsMatchingWindow = HasMatchingMarkerOwnedWindow(
+            a_pEntity1, source.GetInstance(), currentAnimation.GetText(), markerAction, markerPhase);
+
+        bool sourceIsActive = beforeGroup == static_cast<GEInt>(eECollisionGroup_Item_Attack);
+
+        bool offApplied = !skipCollisionGroupForFist && ownsMatchingWindow && sourceIsActive;
+
+        if (offApplied)
+        {
+            source.SetCollisionGroup(eECollisionGroup_Item_Equipped);
+        }
+        else if (ownsMatchingWindow && !sourceIsActive)
+        {
+            ForgetMarkerOwnedWindowForActor(a_pEntity1);
+        }
+
+        RememberAcceptedMarker(a_pEntity1, source.GetInstance(), currentAnimation.GetText(), effectName,
+                               markerAction, markerPhase, markerStateTime, markerElapsedMs);
+
+        GEInt afterOffGroup = static_cast<GEInt>(source.GetCollisionGroup());
+
+        if (g_pLog != nullptr)
+        {
+            std::fprintf(g_pLog, "MarkerAction: %s\n",
+                         skipCollisionGroupForFist ? "OFF_UNSUPPORTED_FIST_BODY"
+                         : offApplied              ? "OFF_ACCEPTED"
+                                                   : "OFF_NO_MARKER_OWNED_WINDOW");
+
+            std::fprintf(g_pLog, "MarkerName: %s\n", effectName);
+
+            std::fprintf(g_pLog, "MotionFirstOnMarkerFrame: %d\n", decision.markerFrame);
+
+            std::fprintf(g_pLog, "CollisionGroupBeforeMarker: %d\n", beforeGroup);
+
+            std::fprintf(g_pLog, "CollisionGroupAfterMarker: %d\n", afterOffGroup);
+
+            std::fprintf(g_pLog, "ResolvedSourceUseTypeAtMarker: %d\n", sourceUseType);
+
+            std::fprintf(g_pLog, "MarkerOwnedWindowMatched: %d\n", ownsMatchingWindow ? 1 : 0);
+
+            std::fprintf(g_pLog, "SetCollisionGroupAction: %s\n",
+                         skipCollisionGroupForFist ? "NOT_REQUESTED_FIST_BODY_UNSUPPORTED"
+                         : offApplied              ? "REQUESTED_ITEM_EQUIPPED"
+                                                   : "NOT_REQUESTED_NO_MARKER_OWNED_WINDOW");
+
+            std::fprintf(g_pLog, "TriggeredDamageList: NOT_CLEARED_OFF\n");
+
+            std::fprintf(g_pLog, "Original StartEffect for marker: NOT CALLED\n");
+
+            std::fprintf(g_pLog, "=================================\n\n");
+
+            std::fflush(g_pLog);
+        }
+
+        return nullptr;
+    }
+
     GEInt quickStatePositionBeforeMarker = -1;
 
     GEInt quickStatePositionAfterMarker = -1;
@@ -942,6 +1089,12 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     if (!skipCollisionGroupForFist)
     {
         source.SetCollisionGroup(eECollisionGroup_Item_Attack);
+
+        if (source.GetCollisionGroup() == eECollisionGroup_Item_Attack)
+        {
+            RememberMarkerOwnedWindow(a_pEntity1, source.GetInstance(), currentAnimation.GetText(),
+                                      markerAction, markerPhase);
+        }
     }
 
     source.TouchDamage.ClearTriggeredList();
@@ -969,6 +1122,8 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     if (g_pLog != nullptr)
     {
         std::fprintf(g_pLog, "MarkerAction: ACCEPTED\n");
+
+        std::fprintf(g_pLog, "MarkerName: %s\n", effectName);
 
         std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n", decision.markerFrame);
 

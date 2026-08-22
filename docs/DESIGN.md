@@ -390,6 +390,14 @@ Exact restoration and cleanup rules must be proven before marker names freeze.
 A same-source double attack simply repeats that source marker after OFF; for
 example, RIGHT -> OFF -> RIGHT.
 
+The first OFF proof must use distinct targets because an already visited target
+cannot reveal whether collision remained active. Use an identical horizontal
+2H sweep as ON-only control and ON -> OFF variant; later wolves crossed by the
+continuing blade must remain unharmed after OFF. Then reuse the validated double
+attack for ON -> OFF -> ON to prove that the next source marker restores the
+weapon window and rearms the list. The current v0.12 prototype limits OFF to a
+matching marker-owned weapon window; Fist/body OFF remains separate work.
+
 Before OFF existed, v0.10 isolated same-target list rearming under the proven
 Normal path by reusing one identical double-contact 2H motion in three variants:
 

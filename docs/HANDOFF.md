@@ -123,6 +123,8 @@ Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and add
 
 Validated v0.11 at commit `0bbc377` preserves v0.10 behavior and adds only same-update duplicate-marker suppression. The guard runs after marker ownership and source resolution but before `SetCollisionGroup` or `ClearTriggeredList`. Its identity key is actor + resolved source + current motion + marker name + action + phase + state time, with a wall-clock window of at most 5 ms. Different state times remain independent authored contacts. Win32 Release build and installation passed at SHA-256 `F47EAD5B403DA701F32CCD23B2A2A429BDB16491DDE0864E0CF10CF76C78D154`; the validated v0.10 rollback is `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`.
 
+Current v0.12 source candidate adds only provisional `G3AB_COL_OFF_TEST`. ON remains the exact-motion ownership declaration. Accepted weapon ON records an actor/source/motion/action/phase-owned window; OFF requests `Item_Equipped` only when that exact window is still active, never clears the triggered list, and retires the window. The global collision observer also retires ownership on Gothic 3's natural reset. OFF before ON, after reset, or for Fist/body is consumed as a logged no-op. The v0.11 duplicate guard distinguishes marker name and applies to both ON and OFF. Build and runtime validation are pending.
+
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
 ## 8. QuickAttack Finding and Validated Fix
@@ -265,13 +267,14 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. implement a provisional OFF test marker under the proven Normal path and validate RIGHT/test marker -> OFF -> RIGHT/test marker using the same double-contact motion;
-2. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.11: its marker handler intentionally accepts only Normal/Quick Hit contexts;
-3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
-4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-5. add collision callback adapters one family at a time;
-6. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-7. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. build v0.12, then validate ON -> OFF with the identical horizontal 2H multi-target sweep: the ON-only control should hit several wolves, while OFF must prevent later new-target contacts in the continuing sweep;
+2. reuse the validated double attack for ON -> OFF -> ON and confirm `5 -> 7`, `7 -> 5`, `5 -> 7`, two list clears, and two intended contacts;
+3. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.12: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+4. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
+5. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+6. add collision callback adapters one family at a time;
+7. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+8. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 

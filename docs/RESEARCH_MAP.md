@@ -229,6 +229,26 @@ Validated duplicate-dispatch prototype: `v0.11` at commit `0bbc377`.
   the accepted late callback, and performed no collision/list mutation;
 - two-contact damage remained observable against two targets.
 
+Current explicit-OFF candidate: `v0.12`.
+
+- recognizes provisional `G3AB_COL_OFF_TEST` only inside a Normal/Quick Hit
+  whose exact motion is already owned by `G3AB_COL_TEST`;
+- records a weapon-style ON window by actor, resolved source, exact motion,
+  action, and phase;
+- OFF requests `Item_Equipped` only while that matching marker-owned source is
+  still in `Item_Attack`;
+- OFF never clears the triggered list;
+- OFF before ON, after natural reset, or for Fist/body is consumed as a logged
+  no-op rather than changing unrelated collision state;
+- natural engine reset and accepted OFF both retire marker ownership;
+- v0.11 same-update deduplication applies independently to ON and OFF names;
+- build and runtime validation are pending.
+
+The first causal test uses an identical horizontal 2H sweep against several
+wolves: ON-only control versus ON -> OFF, with OFF placed while the blade still
+has later distinct targets to cross. The second reuses the validated double
+attack for ON -> OFF -> ON and expects two clears but no clear at OFF.
+
 ### Prototype marker
 
 `G3AB_COL_TEST`
