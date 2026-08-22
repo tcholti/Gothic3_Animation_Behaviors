@@ -493,7 +493,24 @@ The source material states that multiple movement modes are needed for blending 
 
 The interpretation that the numeric values are literal blending weights/dominance values is a **working hypothesis** and should not be promoted to confirmed without runtime/source verification.
 
-## 19. Authoring Rule for Frame Collision
+## 19. Frame Indexing and Duration Convention
+
+Gothic 3 animations are authored starting at frame 0. Therefore a Blender range
+from frame 0 through frame N inclusive contains N + 1 sampled frames.
+
+Canonical documentation should state both values when timing or rescaling matters:
+
+- `0–12 inclusive` = 13 sampled frames;
+- `0–4 inclusive` = 5 sampled frames;
+- `0–8 inclusive` = 9 sampled frames.
+
+A bare phrase such as "12-frame animation" is ambiguous in this project because
+the animation author has often used the ending frame number as shorthand. Ask
+whether the number means the inclusive ending index or the actual sampled-frame
+count before performing duration, speed, or rescaling calculations. Authored
+marker indices such as frame 2, 3, or 8 remain literal Blender frame indices.
+
+## 20. Authoring Rule for Frame Collision
 
 For marker-controlled attacks:
 
@@ -502,14 +519,15 @@ For marker-controlled attacks:
 - marker presence declares that execution frame-controlled;
 - the current system must not infer ownership from source pose alone.
 
-For the tested 12-frame 2H normal attack:
+For the tested 2H normal attack authored from frame 0 through frame 12 inclusive
+(13 sampled frames):
 
 - first plausible visual contact: frame 9;
 - marker at frame 8 felt best in controlled testing.
 
 This is a tested guideline for that attack, not a universal "one frame early" rule for every animation.
 
-## 20. Filename Rule vs Runtime Rule
+## 21. Filename Rule vs Runtime Rule
 
 Use filenames for authoring, asset inspection, debugging, identifying serialized state, and cases where no higher-level semantic API is available.
 
