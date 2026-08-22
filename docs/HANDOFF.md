@@ -111,13 +111,13 @@ Current source candidate:
 
 `Script_FrameCollisionTest v0.8` at commit `f4d2946`
 
-v0.8 successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. The installed DLL matched the built DLL at SHA-256 `18DDE8B770400C76709063FA0888EFEF888F41C2FE03B3449508BC43DA120858`. Controlled player Staff QuickAttackR/action 4, QuickAttackL/action 5, and marked Normal/action 1 all passed runtime validation.
+v0.8 successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. The installed DLL matched the built DLL at SHA-256 `18DDE8B770400C76709063FA0888EFEF888F41C2FE03B3449508BC43DA120858`. Controlled player Staff QuickAttackR/action 4, QuickAttackL/action 5, and marked Normal/action 1 all passed runtime validation. A controlled human-NPC session then confirmed two QuickAttackR/action 4 and five QuickAttackL/action 5 executions on `OutNovice_01` using its own `It_Halberd_01`; all seven passed the same marker/bookkeeping/reset checks.
 
 ## 8. QuickAttack Finding and Validated Fix
 
 Staff Quick markers were previously confirmed to fire, with native QuickAttackR/L action values observed. v0.6 could not own them because its eligibility path assumed literal Normal `_Attack_Hit_` naming.
 
-v0.7 proved pre-marker QuickR/L ownership but failed after reset because it left the callback one-shot gate at 0. v0.8 preserves the Normal callback body and adds only the missing accepted-Quick-marker bookkeeping. In the controlled player test, both Quick actions changed `StatePosition` 0 -> 1 at marker frame 6, naturally reset collision 7 -> 5, and produced no delayed unmarked 5 -> 7 reactivation.
+v0.7 proved pre-marker QuickR/L ownership but failed after reset because it left the callback one-shot gate at 0. v0.8 preserves the Normal callback body and adds only the missing accepted-Quick-marker bookkeeping. In the controlled player test, both Quick actions changed `StatePosition` 0 -> 1 at marker frame 6, naturally reset collision 7 -> 5, and produced no delayed unmarked 5 -> 7 reactivation. The controlled NPC test reproduced the corrected sequence on the NPC's own equipped Halberd, confirming that the fix is not player-specific.
 
 ## 9. v0.8 Implementation Contract
 
@@ -153,7 +153,7 @@ Preserve these distinctions for later source-explicit markers/general resolution
 
 Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. Names are not frozen.
 
-## 11. v0.8 Validation — PLAYER PASSED
+## 11. v0.8 Validation — PLAYER AND NPC PASSED
 
 v0.7 baseline retained for comparison:
 
@@ -172,13 +172,22 @@ v0.8 controlled player result:
 - neither reset was followed by the v0.7 unmarked reactivation;
 - one marked Staff Normal/action 1 retained marker-frame-5 activation and natural reset.
 
-Immediate next validation: repeat marked Staff QuickR/L on a human NPC and confirm that collision is applied to the NPC's own equipped Staff/Halberd. Generic Quick/action 3 remains untested because the moving player attempt selected action 4 again.
+v0.8 controlled NPC result:
+
+- actor `OutNovice_01` resolved its own `It_Halberd_01`;
+- two QuickAttackR/action 4 and five QuickAttackL/action 5 executions were recorded;
+- all seven changed `StatePosition` 0 -> 1 at marker frame 6;
+- all seven activated 5 -> 7 and naturally reset 7 -> 5;
+- no immediate post-reset reactivation occurred;
+- other later unmarked collision cycles were separate native NPC attacks.
+
+Staff QuickR/L validation is complete for the player and a human NPC. Generic Quick/action 3 remains untested because neither controlled session selected it.
 
 ## 12. Next Dedicated Fist Test
 
-After Quick support:
+QuickR/L Staff support has passed its controlled player and NPC tests.
 
-remove only Fist `SetCollisionGroup`, keep `ClearTriggeredList`, and repeat controlled limb-contact tests.
+The next isolated experiment is to remove only Fist `SetCollisionGroup`, keep `ClearTriggeredList`, and repeat controlled limb-contact tests.
 
 Goal:
 
