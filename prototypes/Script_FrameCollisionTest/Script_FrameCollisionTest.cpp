@@ -115,7 +115,7 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + G3AB_COL_TEST.\n");
 
-        std::fprintf(g_pLog, "Accepted Quick marker completes native one-shot bookkeeping: StatePosition -> 1.\n");
+        std::fprintf(g_pLog, "Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.\n");
 
         std::fprintf(g_pLog, "Prototype source resolver: current actor RIGHT-HAND equipped item.\n");
 
@@ -715,11 +715,11 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     source.TouchDamage.ClearTriggeredList();
 
-    // The native Quick callback uses StatePosition as its one-shot collision
-    // activation gate and sets it to 1 after activating. Because marker
-    // ownership suppresses that timed activation, the accepted Quick marker
-    // must complete the same bookkeeping. Otherwise the original callback can
-    // run after Hit and reactivate collision after Gothic 3's natural reset.
+    // Reference Quick callback implementations use StatePosition as their
+    // one-shot collision activation gate and set it to 1 after activating.
+    // v0.7 runtime left this gate at 0, after which the original callback
+    // reactivated collision following Gothic 3's natural reset. Complete that
+    // bookkeeping here when the accepted Quick marker owns activation.
     //
     // Keep the proven Normal path unchanged.
     if (isQuickAttackHit)
