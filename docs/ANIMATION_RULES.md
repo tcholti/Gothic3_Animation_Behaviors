@@ -311,7 +311,7 @@ enum gEAction
 
 The full enum continues through `gEAction_Count = 145`.
 
-For current combat code, use the exact native action rather than collapsing QuickAttackR/L into a filename heuristic.
+Read and log the exact native action rather than collapsing QuickAttackR/L into a filename heuristic. For marker-controlled collision, do not make Quick/QuickR/QuickL a hard-coded ownership whitelist when `OnAI_QuickAttack` + Hit phase + exact-motion marker already provide sufficient scope.
 
 ## 9. `gEPhase`
 
