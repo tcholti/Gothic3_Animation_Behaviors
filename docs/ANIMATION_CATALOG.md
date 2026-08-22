@@ -177,14 +177,63 @@ Hero_Stand_1H_1H_P0_Attack_Hit_N_Left_00_%_00_P0_90_L
 Hero_Stand_1H_1H_P1_Attack_Hit_N_Left_00_%_00_P21_90_L
 ```
 
-Dual Power attacks are visually whirl-like. Controlled v0.10 runtime confirmed both equipped weapons activate for P0 and P1, converging with Jackydima's current collision code:
+Dual Power attacks are visually whirl-like. Controlled v0.10 runtime confirmed
+both equipped weapons activate for P0 and P1, converging with Jackydima's
+initial collision code:
 
 ```text
 Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R
 Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L
 ```
 
-Dual Finishing attacks may also visually contact with both weapons, but execution death timing was observed to be timer-based rather than impact-frame-based. A single damaging source is acceptable for those particular animations until there is a gameplay reason to require both.
+The visual contact order is:
+
+- P0: right -> left -> right;
+- P1: left -> right -> left.
+
+Native gameplay is reported to damage only twice. Initial BOTH activation lets
+each weapon hit once, but the first weapon needs its triggered list rearmed
+before the third visual contact. Jackydima's later Dual-specific list clearing
+is intended to address this missing repeated contact; exact runtime rearm timing
+still needs logging.
+
+### Dual SimpleWhirl
+
+Dual has SimpleWhirl rather than the separate full Whirl used by 2H/Staff, even
+though its exact filenames contain `WhirlAttack`. Supplied files:
+
+```text
+Hero_Stand_1H_1H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P1_100_L
+Hero_Stand_1H_1H_P1_WhirlAttack_Recover_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_1H_1H_P1_WhirlAttack_Hit_N_Fwd_00_%_00_P0_100_R
+Hero_Stand_1H_1H_P1_WhirlAttack_Recover_N_Fwd_00_%_00_P1_0_L
+```
+
+It is selected by holding attack slightly less than the PowerAttack threshold,
+making accidental Power selection easy. Visually the actor turns and finishes
+with one sword extended forward and the other backward. Whether one or both
+weapons are intended to damage is unknown. The P0 Hit has an older left-source
+annotation, while Jackydima's SimpleWhirl pose rule would use right in P0 and
+left in P1; controlled runtime logging must resolve this conflict.
+
+### Full Whirl and Finishing coverage
+
+For human melee:
+
+- full Whirl exists for 2H and Staff and is selected by Block + quick attack;
+- ordinary 1H families have no Whirl;
+- hand-to-hand coverage is not yet known;
+- Block + held attack with 2H/Staff selects Finishing rather than Whirl.
+
+On a downed enemy, Finishing death timing is timer-based rather than collision-
+impact-based. Raise-length changes did not disturb the timing, strongly
+supporting that the timer begins with Hit. Preserve the established Hit length
+when authoring replacements. A standing target may select HackAttack instead,
+but that exact selection remains a working hypothesis.
+
+Dual Finishing attacks may also visually contact with both weapons. A single
+damaging source is acceptable for those particular animations until there is a
+gameplay reason to require both.
 
 ## 8. Custom Recover Files in the Supplied Set
 
