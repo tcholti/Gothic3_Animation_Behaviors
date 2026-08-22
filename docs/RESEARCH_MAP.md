@@ -101,7 +101,7 @@ A mandatory end marker is not needed for ordinary single-hit attacks.
 
 ### 4.8 Playback-speed synchronization of marker — COMPLETE
 
-For a tested 12-frame 2H normal Hit:
+For a tested 2H normal Hit authored from frame 0 through frame 12 inclusive (13 sampled frames):
 
 - marker frame stayed tied to the authored animation frame when playback speed changed;
 - marker timing shifted in real time as expected with speed;
