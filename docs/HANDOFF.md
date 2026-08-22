@@ -109,7 +109,7 @@ Confirmed:
 
 Current source candidate:
 
-`Script_FrameCollisionTest v0.7` at commit `04d12f8`
+`Script_FrameCollisionTest v0.8` at commit `f4d2946`
 
 The candidate successfully configured and compiled as a standalone Win32 Release target on 2026-08-22. A controlled player Staff P0/P1 Normal regression passed. Player Staff QuickR/L reached marker-controlled activation, but v0.7 failed runtime validation because each natural 7 -> 5 reset was immediately followed by an unmarked 5 -> 7 reactivation.
 
@@ -117,16 +117,18 @@ The candidate successfully configured and compiled as a standalone Win32 Release
 
 Staff Quick markers were previously confirmed to fire, with native QuickAttackR/L action values observed. v0.6 could not own them because its eligibility path assumed literal Normal `_Attack_Hit_` naming.
 
-The v0.7 candidate preserves the Normal callback body and adds Quick support.
+v0.7 proved pre-marker QuickR/L ownership but failed after reset because it left the callback one-shot gate at 0. The v0.8 candidate preserves the Normal callback body and adds only the missing accepted-Quick-marker bookkeeping.
 
-## 9. v0.7 Implementation Contract
+## 9. v0.8 Implementation Contract
 
 - `OnAI_QuickAttack` is hooked separately;
 - exact Quick, QuickR, and QuickL actions plus Hit phase identify the Quick family at callback and marker time;
 - exact current-motion marker presence declares ownership;
 - the existing right-hand prototype source resolver is unchanged;
 - unmarked, wrong-action/phase, or unresolved-source executions call the original Quick callback;
-- there is no Staff, raw-UseType, or pose restriction.
+- there is no Staff, raw-UseType, or pose restriction;
+- only an accepted Quick marker sets `Routine.PropertyStatePosition` to 1 and logs the before/after values;
+- accepted Normal markers do not read or mutate this Quick bookkeeping.
 
 The exact action check does not control animation resolution. It lets global `StartEffect` confirm that the later marker belongs to the Quick callback family whose native timer was suppressed.
 
@@ -151,34 +153,33 @@ Preserve these distinctions for later source-explicit markers/general resolution
 
 Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. Names are not frozen.
 
-## 11. v0.7 Validation
+## 11. v0.8 Validation
 
-Completed:
+v0.7 baseline retained for comparison:
 
 - player Staff marked Normal P0/P1 regression passed;
-- player Staff QuickAttackR/action 4 and QuickAttackL/action 5 were claimed;
-- their first 5 -> 7 activation waited for marker frame 6;
-- no native 5 -> 7 occurred before those markers.
+- player Staff QuickAttackR/action 4 and QuickAttackL/action 5 first activated at marker frame 6;
+- no native 5 -> 7 occurred before those markers;
+- v0.7 then failed because every natural 7 -> 5 reset was followed by an unmarked 5 -> 7.
 
-Failure:
+v0.8 candidate:
 
-- each natural 7 -> 5 reset was immediately followed by an unmarked 5 -> 7;
-- later attacks therefore began with the Staff already in Item_Attack;
-- v0.7 must not be promoted or expanded.
+- implemented at commit `f4d2946`;
+- accepted Quick marker sets `PropertyStatePosition` from its observed value to 1;
+- before/after state values are logged;
+- the Normal marker path is unchanged;
+- standalone build and runtime validation are pending.
 
-Strongly supported cause:
+Required player retest:
 
-- marker-time logs show `PropertyStatePosition == 0`;
-- Quick callback source uses this property as its one-shot activation gate and sets it to 1 after native activation;
-- v0.7 activates collision at the marker but leaves the gate at 0, allowing the original callback to activate later.
+1. marked Staff QuickAttackR/action 4;
+2. marked Staff QuickAttackL/action 5;
+3. verify marker log reports state-position transition to 1;
+4. verify one 5 -> 7 occurs at each marker;
+5. verify natural 7 -> 5 is not followed by reactivation;
+6. repeat one marked Staff Normal attack as regression.
 
-Smallest next candidate:
-
-- when and only when an accepted Quick marker activates/rearms its source, set `PropertyStatePosition` to 1;
-- leave the proven Normal marker path unchanged;
-- rebuild and repeat player QuickR/L plus Normal regression before NPC testing.
-
-The attempted moving input selected QuickAttackR/action 4 again. Generic Quick/action 3 remains untested.
+Only after these pass, repeat Staff Quick on an NPC. Generic Quick/action 3 remains untested because the moving attempt selected action 4 again.
 
 ## 12. Next Dedicated Fist Test
 
