@@ -167,8 +167,10 @@ This is a project behavior requirement, not a claim that vanilla Gothic 3 always
 ### 6.5 Initial authoring and calibration scope
 
 Raise and playback-speed work should initially target Normal and Quick attacks.
-The animation-authoring baseline is currently 12 Hit frames plus a 4-frame Raise;
-this is an asset convention, not an engine hardcode. Provisional family speeds
+The animation-authoring baseline is currently a Hit authored from frame 0 through
+frame 12 inclusive (13 sampled frames) plus a Raise authored from frame 0 through
+frame 4 inclusive (5 sampled frames). These are asset conventions, not engine
+hardcodes. Provisional family speeds
 (Quick above 1.0, 1H near 1.0, 2H near 0.95, Staff near 0.9 or 0.8) must not be
 frozen until native Normal/Quick durations are recorded and compared through the
 logger.
