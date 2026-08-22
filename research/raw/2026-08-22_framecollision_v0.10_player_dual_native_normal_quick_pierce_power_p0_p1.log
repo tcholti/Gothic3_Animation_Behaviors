@@ -1,0 +1,1073 @@
+Script_FrameCollisionTest v0.10 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: current animation contains _Attack_Hit_ and G3AB_COL_TEST.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + G3AB_COL_TEST.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+Prototype source resolver: current actor RIGHT-HAND equipped item.
+If a marked animation has no right-hand item, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+No custom collision-OFF cleanup; Gothic 3 owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Marked Normal/Quick collision behavior remains the validated v0.9 behavior.
+
+Installing hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 29545.890
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 29796.291
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.250900
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30082.997
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.539420
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 31871.068
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 32123.506
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.252621
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 32404.777
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.534470
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 34852.018
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34954.308
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.104588
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 35252.723
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.401575
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 37550.208
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37655.253
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 5
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.105992
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37954.260
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 5
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.404952
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 40142.847
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40398.320
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.254997
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40685.306
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.539622
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 42458.949
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P1_100_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42562.509
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 5
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.102020
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P1_100_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42865.837
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 5
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.406258
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P1_100_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 45017.819
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45118.510
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.100012
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45421.070
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 4
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.403945
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 47739.901
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48000.843
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.261562
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48279.023
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.540887
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52303.913
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 11
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.808259
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52461.086
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 11
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.965571
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 56372.717
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 56632.370
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.259971
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 56911.861
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.538190
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 59792.224
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 11
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.807492
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 59959.138
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 11
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.974806
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 63418.144
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 63675.491
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.257321
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 63960.118
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.541950
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 66998.733
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.489193
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 66998.773
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.489193
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 67802.242
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.293658
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 67802.286
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.293658
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 70501.156
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+RightHandSourceResolved: 1
+ResolvedSource: It_1H_Sword_Rust_01
+ResolvedSourceUseType: 2
+ResolvedSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 70755.010
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.254988
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 71037.596
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.538578
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 74089.202
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.484566
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 74089.247
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.484566
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 74888.229
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.284770
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 74888.286
+Entity: It_1H_OrcSlayer_01
+ChangedEntityAddress: E6A06010
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.284770
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_OrcSlayer_01
+PlayerLeftItemAddress: E6A06010
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+Script_FrameCollisionTest unloading.
