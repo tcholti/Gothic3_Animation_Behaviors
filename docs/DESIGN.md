@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical working design  
-**Date:** 2026-08-20  
+**Date:** 2026-08-22  
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## 1. Purpose
@@ -99,7 +99,9 @@ The full known mapping is maintained in `ANIMATION_RULES.md`.
 
 ### 4.2 Action profiles
 
-Configuration may group closely related native actions for user-facing simplicity, but the runtime implementation must still identify the exact `gEAction`.
+Configuration may group closely related native actions for user-facing simplicity. Runtime code should still read and log the exact `gEAction` when it is useful for profiles, diagnostics, or behavior that genuinely differs by action.
+
+For frame-collision ownership, an exact-action whitelist is not required when the named native callback, Hit phase, and exact-motion marker already provide sufficient scope. Do not add an action dependency unless it changes behavior or protects a demonstrated engine case.
 
 Minimum intended groups:
 
@@ -200,22 +202,30 @@ The final generalized rearm/source API is not yet frozen.
 
 The prototype marker `G3AB_COL_TEST` is proven.
 
-Possible production terms such as `G3AB_COL_PRIMARY`, `G3AB_COL_SECONDARY`, `G3AB_COL_ALL`, and `G3AB_COL_OFF` remain **proposals only**.
+Current preferred production candidates are source-explicit, action-family-independent markers such as:
 
-Do not mass-author those names into animation libraries until source resolution and multi-hit behavior are validated across the intended attack families.
+- `G3AB_COL_RIGHT`
+- `G3AB_COL_LEFT`
+- `G3AB_COL_BOTH`
+- `G3AB_COL_OFF`
 
-## 8. Callback + Action + Phase + Marker Model
+They remain **proposals only**. Generic source markers are preferred over separate Normal/Quick/Power marker vocabularies because the native callback already supplies the attack-family context.
 
-The preferred collision control model is:
+Do not mass-author these names into animation libraries until source activation, OFF-state tracking, Fist/body behavior, and multi-hit rearming are validated.
 
-1. native callback family identifies the broad collision mechanism;
-2. `gEAction` identifies the exact action;
-3. `gEPhase` confirms the relevant phase;
-4. exact current-motion marker presence declares frame-controlled ownership;
-5. a source resolver chooses the logical/physical damage source;
-6. marker execution performs that action family's activation/rearm operation.
+## 8. Callback + Phase + Marker Model
 
-This avoids using a generic filename substring such as `_Attack_Hit_` as the sole eligibility test.
+The preferred collision-control model is:
+
+1. the named native callback identifies the collision path that must be intercepted;
+2. `gEPhase_Hit` confirms the currently supported phase;
+3. exact current-motion marker presence declares frame-controlled ownership;
+4. a source resolver or source-explicit marker chooses the logical/physical damage source;
+5. marker execution performs the activation/rearm operation.
+
+The exact `gEAction` should remain available for logging, profiles, and any future behavior that demonstrably differs by action. It should not be a hard-coded ownership whitelist when callback + phase + exact marker already provide sufficient scope.
+
+This avoids both a generic filename substring such as `_Attack_Hit_` as sole authority and unnecessary dependencies that duplicate the callback's family semantics.
 
 ## 9. Current Callback Families of Interest
 
@@ -229,7 +239,7 @@ Known attack callbacks include:
 - `OnAI_SimpleWhirl`
 - `OnAI_WhirlAttack`
 
-`OnAI_QuickAttack` covers native actions including QuickAttackR and QuickAttackL; the exact `Routine.Action`/`gEAction` is therefore still required.
+`OnAI_QuickAttack` covers native actions including QuickAttackR and QuickAttackL. Their exact `Routine.Action` values should be logged, but the current collision design does not require a Quick/QuickR/QuickL whitelist: the named callback, Hit phase, and exact marked motion are the ownership gate.
 
 ## 10. Current Source-Selection Knowledge
 
@@ -237,13 +247,36 @@ Known attack callbacks include:
 
 Source may depend on weapon configuration and pose/action logic. A simple right-hand assumption is not sufficient for all final cases.
 
+Current animation-author evidence:
+
+- Dual P0 Normal uses the left weapon.
+- Some Torch+1H P0 Normal attacks natively activate the left torch; this is considered erroneous for those animations.
+- Jackydima's `Script_AttackCollision` deliberately sends regular Torch+1H Normal attacks to the right weapon.
+
 ### QuickAttack
 
-Known third-party behavior selects left-hand collision for some Dual and Torch+1H P1 contexts; otherwise right-hand is commonly used.
+Current animation-author evidence:
+
+- Dual P1 Quick uses the left weapon.
+- A Dual P3 Quick animation file exists and should visually use the left weapon, but whether Gothic 3 currently resolves/uses that file is unconfirmed.
+- Torch+1H P1 and P3 Quick attacks use the left torch.
+- Other currently understood Quick cases commonly use the right-hand item.
+
+These pose/UseType rules are useful evidence for the prototype resolver, not the preferred final authoring interface. Source-explicit animation markers would remove the need to infer the intended hand from pose and equipment.
+
+### PierceAttack
+
+Dual P1 Pierce uses the left weapon according to animation-author evidence and is also represented as a left-source special case in current third-party code.
 
 ### PowerAttack
 
-Known third-party behavior can activate both right and left sources for Dual wield and later re-clear them for subsequent hit behavior.
+Jackydima's current source activates both right and left weapons for Dual Power attacks and later re-clears their triggered lists. This is the preferred known behavior for those attacks.
+
+A recollection that the native Dual P0 Power path may be left-source is not yet isolated and remains a working hypothesis.
+
+### FinishingAttack
+
+One Dual finishing animation may visually contact with both weapons while only one source actually damages. The exact native source is not yet confirmed; for that particular animation, a single damaging source is considered acceptable.
 
 ### WhirlAttack
 
@@ -272,7 +305,7 @@ Unmarked/unconfigured attacks must remain compatible with existing behavior.
 ## 12. Implementation Strategy
 
 1. Keep proven Normal marker-controlled collision unchanged.
-2. Add QuickAttack ownership using its native callback and exact action checks.
+2. Add QuickAttack ownership using its native callback, Hit phase, and exact-motion marker; log exact actions without using them as an ownership whitelist.
 3. Validate player and NPC Staff Quick cases.
 4. Run the dedicated Fist causality test.
 5. Generalize source resolution.
