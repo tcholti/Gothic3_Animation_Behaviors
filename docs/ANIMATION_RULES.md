@@ -315,6 +315,23 @@ Use the exact native action rather than collapsing QuickAttackR/L into a filenam
 
 Inventory caveat: serialized action tokens are not proven to map 1:1 to enum names in every family. Native filenames contain `LightStumble`, while the SDK exposes `gEAction_Stumble` but no separate `gEAction_LightStumble`. A mapping from `gEAction_Stumble` to the `LightStumble` resource token is plausible but remains unverified.
 
+### 8.1 Whirl-family naming and input coverage
+
+Do not equate a serialized `WhirlAttack` filename token with the full
+`gEAction_WhirlAttack` path without runtime action logging.
+
+Current human-melee observations:
+
+- Dual has SimpleWhirl only, but its exact Hit/Recover filenames use
+  `WhirlAttack`; input is an attack hold slightly shorter than PowerAttack.
+- 2H and Staff have full Whirl; input is Block + quick attack.
+- Block + held attack with 2H/Staff selects Finishing rather than Whirl.
+- ordinary 1H families have no Whirl.
+- hand-to-hand coverage remains unknown.
+
+This family mismatch is another reason to use native callback/action identity for
+behavior and filenames for exact asset selection/cataloging.
+
 ## 9. `gEPhase`
 
 ```cpp
