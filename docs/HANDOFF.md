@@ -121,6 +121,8 @@ v0.9 retains the validated v0.8 behavior and skips only the weapon-style collisi
 
 Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and adds exact player left/right equipped-entity labels to the passive global collision-group log. Its Win32 Release build passed on 2026-08-22 with only the pre-existing Windows SDK C5105 warning. The installed DLL matches the build at SHA-256 `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`; the validated v0.9 rollback DLL is preserved at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`. Controlled unmarked player Dual runtime passed and produced the complete tested Normal/Quick/Pierce/Power slot map with paired activation/reset records.
 
+Current v0.11 source candidate preserves v0.10 behavior and adds only same-update duplicate-marker suppression. The guard runs after marker ownership and source resolution but before `SetCollisionGroup` or `ClearTriggeredList`. Its identity key is actor + resolved source + current motion + marker name + action + phase + state time, with a wall-clock window of at most 5 ms. Different state times remain independent authored contacts. Build and runtime validation are pending.
+
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
 ## 8. QuickAttack Finding and Validated Fix
@@ -260,7 +262,7 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. add same-update duplicate-marker suppression as one isolated prototype change, then rerun the two-marker Normal fixture and confirm two accepted authored contacts rather than three clears per attack;
+1. build the isolated v0.11 same-update duplicate-marker candidate, then rerun the two-marker Normal fixture and confirm two accepted authored contacts plus one ignored duplicate rather than three clears per attack;
 2. implement a provisional OFF test marker under the proven Normal path and validate RIGHT/test marker -> OFF -> RIGHT/test marker using the same double-contact motion;
 3. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.10: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;

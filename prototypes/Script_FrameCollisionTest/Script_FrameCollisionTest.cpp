@@ -39,6 +39,23 @@ struct CachedMarkerInfo
 
 static std::unordered_map<std::string, CachedMarkerInfo> g_MarkerCache;
 
+// Gothic 3 can dispatch the same authored frame effect more than once during
+// one animation update. Preserve genuine later markers, but suppress an
+// identical actor/source/motion marker repeated at the same state time within
+// a very small wall-clock window.
+struct LastAcceptedMarkerDispatch
+{
+    eCEntity *sourceInstance;
+    std::string animationName;
+    std::string markerName;
+    GEInt action;
+    GEInt phase;
+    GEFloat stateTime;
+    double elapsedMs;
+};
+
+static std::unordered_map<eCEntity *, LastAcceptedMarkerDispatch> g_LastAcceptedMarkerDispatchByActor;
+
 // -----------------------------------------------------------------------------
 // Results
 // -----------------------------------------------------------------------------
@@ -101,7 +118,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.10 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.11 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -139,6 +156,10 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Marked Normal/Quick collision behavior remains the validated v0.9 behavior.\n\n");
 
+        std::fprintf(g_pLog, "v0.11: identical same-update marker dispatches are ignored before collision/list changes.\n");
+
+        std::fprintf(g_pLog, "Dedup key: actor + source + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
+
         std::fflush(g_pLog);
     }
 }
@@ -173,6 +194,58 @@ static bool SameFileName(char const *a, char const *b)
         return false;
 
     return _stricmp(BaseName(a), BaseName(b)) == 0;
+}
+
+static GEFloat AbsoluteFloat(GEFloat value)
+{
+    return value < 0.0f ? -value : value;
+}
+
+static bool IsDuplicateSameUpdateMarker(eCEntity *actorInstance, eCEntity *sourceInstance,
+                                        char const *animationName, char const *markerName,
+                                        GEInt action, GEInt phase, GEFloat stateTime,
+                                        double elapsedMs, GEFloat &stateTimeDelta,
+                                        double &elapsedMsDelta)
+{
+    stateTimeDelta = 0.0f;
+    elapsedMsDelta = 0.0;
+
+    auto found = g_LastAcceptedMarkerDispatchByActor.find(actorInstance);
+
+    if (found == g_LastAcceptedMarkerDispatchByActor.end())
+        return false;
+
+    LastAcceptedMarkerDispatch const &previous = found->second;
+
+    stateTimeDelta = AbsoluteFloat(stateTime - previous.stateTime);
+    elapsedMsDelta = elapsedMs - previous.elapsedMs;
+
+    return previous.sourceInstance == sourceInstance
+        && SameFileName(previous.animationName.c_str(), animationName)
+        && previous.markerName == (markerName != nullptr ? markerName : "")
+        && previous.action == action
+        && previous.phase == phase
+        && stateTimeDelta <= 0.000001f
+        && elapsedMsDelta >= 0.0
+        && elapsedMsDelta <= 5.0;
+}
+
+static void RememberAcceptedMarker(eCEntity *actorInstance, eCEntity *sourceInstance,
+                                   char const *animationName, char const *markerName,
+                                   GEInt action, GEInt phase, GEFloat stateTime,
+                                   double elapsedMs)
+{
+    LastAcceptedMarkerDispatch record = {};
+
+    record.sourceInstance = sourceInstance;
+    record.animationName = animationName != nullptr ? animationName : "";
+    record.markerName = markerName != nullptr ? markerName : "";
+    record.action = action;
+    record.phase = phase;
+    record.stateTime = stateTime;
+    record.elapsedMs = elapsedMs;
+
+    g_LastAcceptedMarkerDispatchByActor[actorInstance] = record;
 }
 
 static bool IsAttackHit(Entity &actor)
@@ -804,6 +877,48 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         return nullptr;
     }
 
+    bCString currentAnimation = actor.NPC.GetCurrentMovementAni();
+
+    GEInt markerAction = static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+
+    GEInt markerPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
+
+    GEFloat markerStateTime = actor.Routine.GetStateTime();
+
+    double markerElapsedMs = GetElapsedMilliseconds();
+
+    GEFloat duplicateStateTimeDelta = 0.0f;
+
+    double duplicateElapsedMsDelta = 0.0;
+
+    if (IsDuplicateSameUpdateMarker(a_pEntity1, source.GetInstance(), currentAnimation.GetText(), effectName,
+                                    markerAction, markerPhase, markerStateTime, markerElapsedMs,
+                                    duplicateStateTimeDelta, duplicateElapsedMsDelta))
+    {
+        if (g_pLog != nullptr)
+        {
+            std::fprintf(g_pLog, "MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED\n");
+
+            std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n", decision.markerFrame);
+
+            std::fprintf(g_pLog, "DuplicateStateTimeDelta: %.9f\n", duplicateStateTimeDelta);
+
+            std::fprintf(g_pLog, "DuplicateElapsedMsDelta: %.6f\n", duplicateElapsedMsDelta);
+
+            std::fprintf(g_pLog, "SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE\n");
+
+            std::fprintf(g_pLog, "TriggeredDamageList: NOT_CLEARED_DUPLICATE\n");
+
+            std::fprintf(g_pLog, "Original StartEffect for marker: NOT CALLED\n");
+
+            std::fprintf(g_pLog, "=================================\n\n");
+
+            std::fflush(g_pLog);
+        }
+
+        return nullptr;
+    }
+
     GEInt beforeGroup = static_cast<GEInt>(source.GetCollisionGroup());
 
     GEInt sourceUseType = static_cast<GEInt>(GetCollisionSourceUseType(source));
@@ -845,6 +960,9 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         quickStatePositionAfterMarker =
             static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
     }
+
+    RememberAcceptedMarker(a_pEntity1, source.GetInstance(), currentAnimation.GetText(), effectName,
+                           markerAction, markerPhase, markerStateTime, markerElapsedMs);
 
     GEInt afterGroup = static_cast<GEInt>(source.GetCollisionGroup());
 

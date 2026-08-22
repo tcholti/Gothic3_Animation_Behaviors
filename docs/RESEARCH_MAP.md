@@ -208,6 +208,20 @@ Current diagnostic candidate: `v0.10` at commit `6914039`.
 - validated v0.9 rollback SHA-256 is `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`;
 - controlled unmarked player Dual runtime passed: exact slot labels produced the complete Normal/Quick/Pierce/Power source map and paired activation/reset records.
 
+Current duplicate-dispatch candidate: `v0.11` (source committed after the
+v0.10 same-target test).
+
+- preserves v0.10 ownership, source selection, Fist handling, Quick
+  bookkeeping, and diagnostics;
+- records the last accepted marker per actor;
+- ignores only the same actor + source + motion + marker + action + phase +
+  state-time tuple repeated within 5 ms;
+- performs no collision-group request and no triggered-list clear for the
+  ignored duplicate;
+- leaves a genuine later marker at a different state time eligible to activate
+  and rearm normally;
+- Win32 build and the exact two-marker runtime regression are pending.
+
 ### Prototype marker
 
 `G3AB_COL_TEST`
@@ -431,7 +445,8 @@ target without requiring OFF.
 
 The later authored marker dispatched twice at identical `StateTime` in all four
 two-marker attacks, yielding three accepted clears per attack. Only two damage
-contacts occurred. Add same-update duplicate suppression before production.
+contacts occurred. v0.11 adds the narrow same-update guard described above; it
+still requires build and runtime validation before promotion.
 Current v0.10 also logs the first matching authored frame for every dispatch, so
 accepted-marker count and `StateTime` remain the authoritative diagnostic.
 Actual Whirl is still a separate callback-ownership test and is unsupported by

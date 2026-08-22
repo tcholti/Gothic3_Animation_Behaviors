@@ -345,6 +345,12 @@ keyed by actor, current motion/execution, marker opcode, and source. Do not
 collapse different simultaneous source opcodes; use BOTH when both hands are
 intentionally authored together.
 
+The v0.11 candidate implements this as an actor-local last-accepted record. It
+also includes action, phase, exact state time, and a maximum 5 ms wall-clock
+window in the key. The check occurs before collision activation or list
+clearing. This is deliberately a duplicate-dispatch guard, not a general marker
+cooldown: a second authored contact at a later state time must still pass.
+
 ## 11. Current Marker-Control Research Pattern
 
 At callback entry / Hit start:
