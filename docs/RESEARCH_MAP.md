@@ -186,7 +186,7 @@ v0.8 player runtime result:
 
 Player and human-NPC Staff QuickR/L validation are complete. In the NPC test, `OutNovice_01` produced two QuickAttackR/action 4 and five QuickAttackL/action 5 executions using its own `It_Halberd_01`; all seven passed marker, bookkeeping, and reset checks.
 
-Active causal source candidate: `v0.9` at commit `89f36d8`.
+Corrected causal source candidate: `v0.9` at commit `9b4a73c`.
 
 - identifies only raw `gEUseType_Fist` and `gEUseType_PhysicalFist`;
 - skips `SetCollisionGroup(Item_Attack)` only for those resolved sources;
@@ -195,7 +195,7 @@ Active causal source candidate: `v0.9` at commit `89f36d8`.
 - logs the raw source UseType and whether the group request was skipped;
 - leaves every non-Fist activation path unchanged.
 
-Static source review passed; build and runtime validation are pending.
+The initial `89f36d8` build failed because the script-layer `Entity` wrapper has no `GetUseType()` member. Commit `9b4a73c` corrects the access through `Entity.GetInstance()` and underlying `eCEntity::GetUseType()`. The installed v0.8 DLL remained untouched. Corrected-source review passed; rebuild and runtime validation are pending.
 
 ### Prototype marker
 
@@ -263,15 +263,16 @@ v0.7 same-execution reactivation.
 Generic Quick/action 3 remains untested. Neither controlled player nor NPC
 session selected it.
 
-## 8. Fist Causal Test — SOURCE IMPLEMENTED; BUILD/RUNTIME NEXT
+## 8. Fist Causal Test — CORRECTED SOURCE; REBUILD NEXT
 
 Current causal question:
 
 Does `SetCollisionGroup(Item_Attack)` contribute to marked Fist damage, or is
 triggered-list rearming the effective operation?
 
-v0.9 changes exactly one operation for a source whose raw SDK UseType is
-`Fist` or `PhysicalFist`:
+v0.9 reads the raw SDK UseType from the underlying engine entity through
+`source.GetInstance()->GetUseType()`. It changes exactly one operation for a
+source whose raw UseType is `Fist` or `PhysicalFist`:
 
 - skip `SetCollisionGroup(Item_Attack)`;
 - keep `ClearTriggeredList`.
@@ -284,6 +285,11 @@ Unchanged controls:
 - marker timing;
 - all non-Fist group activation;
 - Quick callback/bookkeeping code.
+
+Build history:
+
+- initial commit `89f36d8`: failed with MSVC C2039 because the script `Entity` wrapper has no `GetUseType()`;
+- corrected commit `9b4a73c`: uses the underlying `eCEntity`; rebuild pending.
 
 Required runtime evidence:
 
