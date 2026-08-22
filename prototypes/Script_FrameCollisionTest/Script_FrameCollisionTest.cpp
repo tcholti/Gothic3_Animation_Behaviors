@@ -15,6 +15,7 @@
 
 static mCFunctionHook Hook_StartEffect;
 static mCFunctionHook Hook_OnAI_Attack;
+static mCFunctionHook Hook_OnAI_QuickAttack;
 static mCFunctionHook Hook_SetCollisionGroup;
 
 static FILE *g_pLog = nullptr;
@@ -100,7 +101,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.6 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.7 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -110,11 +111,13 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "NO P0/P1/P2 restriction.\n");
 
-        std::fprintf(g_pLog, "Eligibility: current animation contains _Attack_Hit_ and G3AB_COL_TEST.\n");
+        std::fprintf(g_pLog, "Normal eligibility: current animation contains _Attack_Hit_ and G3AB_COL_TEST.\n");
+
+        std::fprintf(g_pLog, "Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + G3AB_COL_TEST.\n");
 
         std::fprintf(g_pLog, "Prototype source resolver: current actor RIGHT-HAND equipped item.\n");
 
-        std::fprintf(g_pLog, "If marked animation has no right-hand item, original OnAI_Attack is NOT suppressed.\n");
+        std::fprintf(g_pLog, "If a marked animation has no right-hand item, its original attack callback is NOT suppressed.\n");
 
         std::fprintf(g_pLog, "This protects unarmed/monster attacks until body-source resolution is implemented.\n");
 
@@ -167,9 +170,26 @@ static bool IsAttackHit(Entity &actor)
     return Contains(ani.GetText(), "_Attack_Hit_");
 }
 
+static bool IsQuickAttackAction(gEAction action)
+{
+    return action == gEAction_QuickAttack || action == gEAction_QuickAttackR || action == gEAction_QuickAttackL;
+}
+
+static bool IsQuickAttackHit(Entity &actor)
+{
+    gEAction action = actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+
+    return IsQuickAttackAction(action) && actor.GetCurrentAniPhase() == gEPhase_Hit;
+}
+
+static bool IsSupportedMarkerHit(Entity &actor)
+{
+    return IsAttackHit(actor) || IsQuickAttackHit(actor);
+}
+
 static Entity GetPrototypeCollisionSource(Entity &actor)
 {
-    // v0.6 intentionally supports all actors/weapon types but only one
+    // v0.7 intentionally supports all actors/weapon types but only one
     // source-resolution rule:
     //
     //     G3AB_COL_TEST -> actor's current right-hand equipped item.
@@ -411,7 +431,7 @@ static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const 
 
     if (decision.markerPresent && source == None)
     {
-        std::fprintf(g_pLog, "Reason: marker exists but v0.6 has no valid right-hand item source.\n");
+        std::fprintf(g_pLog, "Reason: marker exists but the prototype has no valid right-hand item source.\n");
     }
 
     std::fprintf(g_pLog, "=====================================\n\n");
@@ -548,10 +568,48 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 }
 
 // -----------------------------------------------------------------------------
+// OnAI_QuickAttack
+//
+// v0.7 adds only the native Quick callback family.
+//
+// Exact Quick/QuickR/QuickL action and Hit phase replace filename-family
+// parsing for this path. Marker ownership and right-hand source resolution
+// remain identical to the proven Normal prototype behavior.
+// -----------------------------------------------------------------------------
+
+DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+
+    if (!IsQuickAttackHit(SelfEntity))
+    {
+        return Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
+    }
+
+    CurrentMotionMarkerResult decision = GetCurrentMarkerDecision(SelfEntity);
+
+    Entity source = GetPrototypeCollisionSource(SelfEntity);
+
+    bool willSuppress = decision.foundMatchingMotion && decision.markerPresent && source != None;
+
+    if (ShouldLogOwnership(SelfEntity))
+    {
+        LogOwnershipDecision(SelfEntity, decision, source, willSuppress);
+    }
+
+    if (willSuppress)
+    {
+        return GETrue;
+    }
+
+    return Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
+}
+
+// -----------------------------------------------------------------------------
 // StartEffect
 //
 // G3AB_COL_TEST remains a PROTOTYPE marker.
-// In v0.6 its meaning is:
+// In v0.7 its meaning is:
 //
 //     activate current actor's right-hand equipped item.
 //
@@ -594,11 +652,11 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     LogMarkerContext(actor, source);
 
-    if (!IsAttackHit(actor))
+    if (!IsSupportedMarkerHit(actor))
     {
         if (g_pLog != nullptr)
         {
-            std::fprintf(g_pLog, "MarkerAction: REJECTED - current animation is not Attack_Hit\n");
+            std::fprintf(g_pLog, "MarkerAction: REJECTED - unsupported Normal/Quick Hit context\n");
 
             std::fprintf(g_pLog, "=================================\n\n");
 
@@ -630,7 +688,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         {
             std::fprintf(
                 g_pLog,
-                "MarkerAction: UNSUPPORTED SOURCE - no right-hand item; original attack callback was left active\n");
+                "MarkerAction: UNSUPPORTED SOURCE - no right-hand item; original attack-family callback was left active\n");
 
             std::fprintf(g_pLog, "=================================\n\n");
 
@@ -680,6 +738,10 @@ static void InstallHooks()
 
     Hook_OnAI_Attack.Hook(GetScriptAdminExt().GetScriptAICallback("OnAI_Attack")->m_funcScriptAICallback,
                           &OnAI_Attack_FrameCollisionTest);
+
+    Hook_OnAI_QuickAttack.Hook(
+        GetScriptAdminExt().GetScriptAICallback("OnAI_QuickAttack")->m_funcScriptAICallback,
+        &OnAI_QuickAttack_FrameCollisionTest);
 
     Hook_StartEffect.Prepare(RVA_Game(0x60850), &StartEffect_FrameCollisionTest, mCBaseHook::mEHookType_ThisCall)
         .Hook();
