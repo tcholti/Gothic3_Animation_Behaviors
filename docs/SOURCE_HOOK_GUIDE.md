@@ -500,6 +500,15 @@ original Normal/Quick callback active. Fist/logical sources still skip the
 weapon-group request; only successfully activated weapon bits remain in the
 marker-owned window.
 
+The first v0.17 runtime gate passed. Sixteen P0 Dual Normal executions each
+accepted one authored BOTH occurrence and produced exactly two independent
+group requests, two triggered-list clears, and marker-owned RIGHT|LEFT mask 3.
+The right -> left -> right fixture visibly produced only the first two contacts,
+as expected when the first weapon is not rearmed. Fifteen P1 alternating-marker
+positive controls retained three accepted source occurrences and could produce
+all three contacts. Repeated BOTH, mixed exact-set transitions, and missing-slot
+fallback remain separate tests.
+
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the
 Normal/Quick context gate. The two probe logs contain 45 and 55 such rejected

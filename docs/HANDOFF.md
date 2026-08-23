@@ -248,12 +248,23 @@ Unmarked GetUpAttack/GetUpParade activity remained native. This closes the
 tested weapon-path blocker before BOTH; the callback rollback diagnostic did
 not fire in this run because natural source retirement supplied the boundary.
 
-The v0.17 source candidate now adds provisional `G3AB_COL_BOTH_TEST` as the
-fourth source-set opcode. BOTH requires both equipped slot entities, publishes
-the exact RIGHT|LEFT set, requests `Item_Attack` and clears the triggered list
-once per selected entity, and records per-slot activation diagnostics. RIGHT,
-LEFT, OFF, Quick bookkeeping, occurrence/deduplication guards, and v0.16
-execution retirement are unchanged. Build and runtime validation are pending.
+Validated v0.17 at source commit `931cc32` adds provisional
+`G3AB_COL_BOTH_TEST` as the fourth source-set opcode. BOTH requires both
+equipped slot entities, publishes the exact RIGHT|LEFT set, requests
+`Item_Attack`, and clears the triggered list once per selected entity. The
+Win32 Release build/install matched at SHA-256
+`F1E141BF33BE1821DDC6D17C8EBB63751FEFE092AB7193A60EA4ACFD8E25AB5A`.
+
+The isolated runtime session contained 16 marked P0 Dual Normal executions.
+Every single authored BOTH occurrence was accepted exactly once with required
+source mask 3, two independent collision-group requests, two triggered-list
+clears, and marker-owned mask 3. Gameplay consistently produced two contacts:
+the first right-hand and middle left-hand swings connected, while the final
+right-hand swing did not re-hit because no later rearm was authored. Fifteen P1
+positive-control executions retained their previously validated alternating
+LEFT -> RIGHT -> LEFT schedule and could produce all three contacts. Basic BOTH
+activation therefore passes; repeated BOTH rearm and missing-slot native
+fallback remain untested.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -404,8 +415,8 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build v0.17 and validate one authored BOTH marker on the Dual Normal P0/P1 three-contact fixture: both equipped weapons must independently request `Item_Attack` and clear once, while a missing required slot must leave the callback native;
-2. repeat BOTH later in the same motion to validate two-source rearm, then exercise exact-set transitions among RIGHT, LEFT, BOTH, and OFF without changing callback families;
+1. repeat BOTH at later authored contacts in the Dual Normal fixture to validate coordinated two-source rearm, then test the missing-required-slot case to confirm native callback fallback;
+2. exercise exact-set transitions among RIGHT, LEFT, BOTH, and OFF without changing callback families;
 3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
 5. add collision callback adapters one family at a time, freeze marker vocabulary, and migrate the validated core into `Script_G3AnimationBehaviors`;
