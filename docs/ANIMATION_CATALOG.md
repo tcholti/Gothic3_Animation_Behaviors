@@ -114,6 +114,10 @@ This is not yet a complete inventory of every combat animation or every actor fa
 | Dual Power/Pierce | Raise works | Preserve native behavior |
 | Dual Whirl/Finishing | Raise not needed in supplied notes | No immediate Raise work |
 
+The v0.13 2H Quick collision regression played no Raise. This is the expected
+current implementation state: the test validates collision ownership and Quick
+bookkeeping only; custom Quick Raise insertion has not yet been enabled.
+
 ## 6. Known Left-Hand Collision Annotations
 
 The usual weapon collision source is reported as `Slot_RightHand_Weapon`. The supplied source explicitly annotates the following exceptions.
@@ -303,6 +307,40 @@ The attack inventory shows strong direction correlations:
 
 Current interpretation: R/L is logical attack/hit-direction metadata that may participate in selecting directional reaction actions. It is not physical weapon-trajectory measurement and is not a collision-hand selector. Exact causality among action R/L, final filename R/L, `Routine.HitDirection`, and victim `StumbleR/L` remains unproven and is not required by current v0.7, Raise, or speed plans.
 
+### 10.1 2H/Staff Quick selection and movement observations
+
+The controlled v0.13 repeated-marker log selected these exact 2H Hit motions:
+
+```text
+Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R
+Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L
+```
+
+Three no-target executions used QuickAttackR/action 4. The final targeted
+execution used QuickAttackL/action 5. All four began in P0 and transitioned
+toward P1 according to the serialized Hit names.
+
+Separate animation-author observation, outside the preserved log, found:
+
+- the first 2H Quick after drawing the weapon selected P0 QuickAttackR;
+- returning from P1 to P0 through a Normal attack and then requesting Quick
+  selected QuickAttackR again;
+- 2H movement resources such as
+  `Hero_Stand_None_2H_P0_Move_Run_N_Fwd_00_%_00_P0_400` and the corresponding
+  P1-to-P0 resource reset the visible pose to P0;
+- after a movement reset, QuickAttackL could be selected, while a subsequent
+  movement reset was followed by QuickAttackR;
+- the same broad behavior was observed with Staff, while a few preliminary 1H
+  observations appeared to alternate R/L more consistently.
+
+These observations disprove the earlier tentative description of a separate
+"moving Quick attack." Melee Quick actions cancel locomotion and play their own
+non-overlay attack motion. They do not yet establish the hidden engine state or
+complete selection algorithm that chooses QuickAttackR versus QuickAttackL.
+That algorithm is not required for marker ownership: the callback/action/phase
+adapter accepts both exact Quick sides, and each exact marked motion carries
+its own authored collision schedule.
+
 ## 11. Fist v0.9 Causal-Test Fixture and Results
 
 Each variant replaced the same P0 Hit animation and used a separate game launch
@@ -427,6 +465,15 @@ and extra ON, cleared the list twice, and naturally reset once. Both intended
 swings remained visually effective against each of two independently tested
 targets on their first attack. The animation asset and marker placement were
 unchanged; only runtime replay filtering changed.
+
+The same 0–20 ON-f4/OFF-f10/ON-f15 schedule was then applied to 2H Quick. Four
+Quick executions—three QuickAttackR/action 4 and one QuickAttackL/action 5—each
+accepted exactly two ON/clears and one OFF/no-clear, rejected the replayed OFF
+by occurrence budget, rejected the final repeated ON by the same-update guard,
+and naturally reset once. The targeted QuickAttackL damaged the opponent on
+both intended swings. The first genuine ON changed Quick StatePosition 0 -> 1;
+the second genuine ON preserved 1 -> 1. This completes the family-specific
+Quick regression without adding Whirl ownership.
 
 ## 13. Catalog Maintenance Rules
 

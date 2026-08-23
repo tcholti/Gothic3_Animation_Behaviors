@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Research Map
 
 **Status:** Canonical engineering-state map  
-**Date:** 2026-08-22  
+**Date:** 2026-08-23
 **Supersedes:** the "current/next" state in the older v0.2 Research & Implementation Map and v0.1 handoff.
 
 ## 1. Purpose
@@ -68,6 +68,11 @@ A previously unused 2H normal-Attack Raise was successfully prepended with `PREP
 The engine resolved the correct P0/P1 Raise automatically.
 
 Original Hit, target propagation, collision, pose alternation, and Recover remained intact.
+
+This proof currently covers the Normal path. The v0.13 2H Quick collision
+regression played no Raise because Quick Raise insertion has not yet been
+generalized or enabled; existing 2H/Staff Quick Raise assets remain future
+integration targets rather than current behavior.
 
 ### 4.4 Initial speed override — COMPLETE AS PROOF
 
@@ -293,6 +298,15 @@ callback requested neither collision mutation nor list clearing. Both intended
 swings visibly damaged each of two separately tested targets on their first
 attack. Large-battle performance is not yet profiled; the event-driven/cached
 cost model is confirmed by source structure, not by this functional test.
+
+The family-specific Quick regression is also complete. Four 2H executions—
+three QuickAttackR/action 4 and one QuickAttackL/action 5—each reproduced the
+same exact budget result: two accepted ON/clears, one accepted OFF/no-clear,
+one budget-rejected replayed OFF, one duplicate-rejected final ON, and one
+natural cleanup. Each first ON changed Quick StatePosition 0 -> 1 and each
+second genuine ON preserved 1 -> 1. The targeted QuickAttackL visibly damaged
+the opponent at both intended contacts. Actual Whirl remains unsupported until
+its named callback/action/phase adapter is added separately.
 
 ### Prototype marker
 

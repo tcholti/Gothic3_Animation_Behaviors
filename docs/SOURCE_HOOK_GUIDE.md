@@ -395,6 +395,14 @@ same-update duplicate guard. Every rejected callback logged no collision-group
 request and no triggered-list clear. Each new attack reset its actor execution
 budget, and every late genuine ON received Gothic 3's natural cleanup.
 
+A separate four-execution 2H Quick regression confirms the same ordering in the
+Quick callback family: three QuickAttackR/action 4 and one QuickAttackL/action 5
+each accepted two ON and one OFF, rejected the same two replay callbacks, and
+naturally cleaned up. The first genuine ON performed the required Quick
+StatePosition 0 -> 1 bookkeeping; the second genuine ON preserved 1 -> 1.
+This validates reuse of the occurrence core across Normal and Quick while
+keeping callback-family adapters explicit. It does not make Whirl eligible.
+
 ## 11. Current Marker-Control Research Pattern
 
 At callback entry / Hit start:

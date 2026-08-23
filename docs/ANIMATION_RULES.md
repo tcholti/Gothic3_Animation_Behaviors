@@ -378,7 +378,31 @@ The supplied naming analysis identifies:
 - `O` — overlay animation;
 - `I` — interaction animation.
 
-This classification is useful for filename analysis.
+Animation-author observation adds an important behavioral distinction:
+
+- known melee attacks use their own non-overlay action and take priority over
+  locomotion, even while a movement key remains held. They may contain authored
+  forward movement such as a short step, but the player does not continue
+  steering through the locomotion animation during the attack;
+- actions that genuinely remain controllable while moving have separate
+  `_O_` resources. These can animate only the required upper-body region and
+  layer over the continuing locomotion animation;
+- the same logical action can therefore have both standing/non-overlay and
+  moving/overlay resources. Native 2H `HoldRight` provides a direct example:
+
+```text
+Hero_Stand_None_2H_P0_HoldRight_Begin_N_Fwd_00_%_00_P0_0
+Hero_Stand_None_2H_P0_HoldRight_End_N_Fwd_00_%_00_P0_0
+Hero_Stand_None_2H_P0_HoldRight_Begin_O_Fwd_00_%_00_P0_0
+Hero_Stand_None_2H_P0_HoldRight_End_O_Fwd_00_%_00_P0_0
+```
+
+No separate moving melee-Quick family is currently known. A Quick request made
+while a movement key is held cancels locomotion and enters the normal Quick
+action; holding movement at request time does not make the selected asset a
+locomotion overlay.
+
+This classification is useful for filename and authoring analysis.
 
 Exact engine enum/internal representation should be source-verified before using these one-letter tokens as runtime authority.
 

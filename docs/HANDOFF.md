@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Continuation Handoff
 
 **Status:** Canonical continuation handoff  
-**Date:** 2026-08-22
+**Date:** 2026-08-23
 
 ## 1. Authority Order
 
@@ -73,6 +73,10 @@ Result:
 - collision/Recover preserved.
 
 Do not re-prove basic Raise feasibility.
+
+Quick Raise has not yet been generalized or enabled. Existing 2H/Staff Quick
+Raise assets remain intended future targets; the v0.13 Quick collision test
+correctly played no custom Raise and does not change the collision result.
 
 ## 6. Proven Speed State
 
@@ -146,6 +150,14 @@ list mutation. Both intended swings visibly damaged each of two independently
 tested targets on their first attack. The verbose test logger remains
 diagnostic overhead and must not be treated as the release DLL's performance
 baseline; large-battle profiling is still future production validation.
+
+The subsequent 2H Quick regression also passed. Three QuickAttackR/action 4
+executions and one QuickAttackL/action 5 execution used the same two-ON/one-OFF
+fixture. Each accepted exactly the authored contacts, rejected the replayed OFF
+and final repeated ON without mutation, and naturally reset. First ON completed
+Quick StatePosition 0 -> 1; second genuine ON preserved 1 -> 1. The targeted
+QuickAttackL damaged the opponent twice. v0.13 is therefore validated for this
+repeated-marker schedule in both Normal and Quick callback families.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -296,12 +308,11 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.13: its marker handler intentionally accepts only Normal/Quick Hit contexts;
-2. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
-3. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-4. add collision callback adapters one family at a time;
-5. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with v0.13 unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+2. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+3. add collision callback adapters one family at a time;
+4. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
+5. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 
