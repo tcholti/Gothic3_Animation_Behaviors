@@ -450,6 +450,12 @@ Before BOTH, change Normal marker eligibility to require all three conditions:
 Then force an interruption before a later marker and confirm that the marker is
 consumed as unsupported without collision-group or triggered-list mutation.
 
+v0.15 implements this as one shared `IsNormalAttackHit` predicate used by both
+`OnAI_Attack` and `StartEffect`. The predicate requires
+`gEAction_Attack`, `gEPhase_Hit`, and the current `_Attack_Hit_` motion. This
+keeps the callback and marker gates identical and avoids maintaining a second
+interruption mechanism. Build/runtime proof remains required.
+
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the
 Normal/Quick context gate. The two probe logs contain 45 and 55 such rejected

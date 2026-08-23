@@ -181,7 +181,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.14 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.15 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -191,7 +191,7 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "NO P0/P1/P2 restriction.\n");
 
-        std::fprintf(g_pLog, "Normal eligibility: current animation contains _Attack_Hit_ and a RIGHT/LEFT source marker.\n");
+        std::fprintf(g_pLog, "Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT source marker.\n");
 
         std::fprintf(g_pLog, "Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT source marker.\n");
 
@@ -207,7 +207,7 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "RIGHT and LEFT use exact-set semantics: the selected source replaces the previous marker-owned set.\n");
 
-        std::fprintf(g_pLog, "BOTH is intentionally disabled until LEFT and preserved RIGHT pass runtime validation.\n");
+        std::fprintf(g_pLog, "BOTH remains intentionally disabled until the v0.15 Normal interruption guard passes runtime validation.\n");
 
         std::fprintf(g_pLog, "If any source required by the exact motion is missing, its original attack callback is NOT suppressed.\n");
 
@@ -229,9 +229,11 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.\n");
 
-        std::fprintf(g_pLog, "Preserved RIGHT Normal/Quick behavior remains the validated v0.9 path; LEFT is new and provisional.\n\n");
+        std::fprintf(g_pLog, "Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.\n\n");
 
-        std::fprintf(g_pLog, "v0.14 preserves same-update marker deduplication for RIGHT, LEFT, and OFF.\n");
+        std::fprintf(g_pLog, "v0.15 preserves same-update marker deduplication for RIGHT, LEFT, and OFF.\n");
+
+        std::fprintf(g_pLog, "v0.15 safety change: stale _Attack_Hit_ names cannot authorize Normal markers after action/phase interruption.\n");
 
         std::fprintf(g_pLog, "Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
 
@@ -580,11 +582,15 @@ static void RetireMarkerOwnedSource(eCEntity *sourceInstance)
     }
 }
 
-static bool IsAttackHit(Entity &actor)
+static bool IsNormalAttackHit(Entity &actor)
 {
     bCString ani = actor.NPC.GetCurrentMovementAni();
 
-    return Contains(ani.GetText(), "_Attack_Hit_");
+    gEAction action = actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+
+    return action == gEAction_Attack
+        && actor.GetCurrentAniPhase() == gEPhase_Hit
+        && Contains(ani.GetText(), "_Attack_Hit_");
 }
 
 static bool IsQuickAttackAction(gEAction action)
@@ -1123,6 +1129,10 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
 // A marked Attack_Hit is controlled only when every equipped source required
 // by the exact motion can be resolved.
 //
+// v0.15 also requires the native Attack action and Hit phase at callback and
+// marker time, so a stale Attack_Hit animation name cannot retain ownership
+// after terrain slide, damage, or another interruption changes the action.
+//
 // If source cannot be resolved, original callback remains untouched.
 // -----------------------------------------------------------------------------
 
@@ -1130,7 +1140,7 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
 
-    if (!IsAttackHit(SelfEntity))
+    if (!IsNormalAttackHit(SelfEntity))
     {
         return Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
     }
@@ -1243,7 +1253,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     LogMarkerContext(effectName, markerOpcode, actor, sources);
 
-    bool isNormalAttackHit = IsAttackHit(actor);
+    bool isNormalAttackHit = IsNormalAttackHit(actor);
 
     bool isQuickAttackHit = IsQuickAttackHit(actor);
 
@@ -1251,7 +1261,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     {
         if (g_pLog != nullptr)
         {
-            std::fprintf(g_pLog, "MarkerAction: REJECTED - unsupported Normal/Quick Hit context\n");
+            std::fprintf(g_pLog, "MarkerAction: REJECTED - unsupported Normal/Quick action or Hit phase\n");
 
             std::fprintf(g_pLog, "=================================\n\n");
 

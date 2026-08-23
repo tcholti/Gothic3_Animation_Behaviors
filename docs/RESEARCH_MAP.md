@@ -549,6 +549,12 @@ small Normal safety correction: require `gEAction_Attack` and `gEPhase_Hit` at
 marker time, then reproduce an interruption. BOTH remains disabled until that
 regression passes.
 
+The v0.15 source candidate now applies the same exact Normal predicate at
+`OnAI_Attack` callback entry and global reserved-marker dispatch:
+`gEAction_Attack` + `gEPhase_Hit` + current `_Attack_Hit_` motion. It changes no
+source-set or timing behavior and adds no per-frame work. Build and interruption
+runtime validation are pending.
+
 Real Dual Power is still deliberately outside callback ownership. In two probe
 logs every Power-context RIGHT/LEFT marker was rejected before mutation, while
 native Power activated and reset both weapons. The user's three-contact visual

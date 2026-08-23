@@ -433,6 +433,12 @@ must require native `gEAction_Attack` and `gEPhase_Hit` in addition to the exact
 marked motion, then pass an interruption regression. This is a bounded guard,
 not a new callback family or per-frame system.
 
+The v0.15 source candidate implements that conjunction in the single shared
+Normal predicate used by callback ownership and marker-time acceptance. It does
+not add cleanup, scanning, or another execution record. Runtime promotion still
+requires one complete alternating regression plus one interrupted late-marker
+rejection before BOTH.
+
 The first OFF proof must use distinct targets because an already visited target
 cannot reveal whether collision remained active. Use an identical horizontal
 2H sweep as ON-only control and ON -> OFF variant; later wolves crossed by the
