@@ -633,6 +633,25 @@ contact window.
 
 They are not frozen. Do not mass-author them until source activation, OFF-state tracking, Fist/body behavior, and repeated-hit semantics are proven.
 
+The compact Dual Quick mixed-set checkpoint is complete. Forty-seven fresh
+executions covered all four tested P0/P1 QuickAttackR/L variants; 45 completed
+the full P0 BOTH -> LEFT -> OFF -> BOTH or P1
+BOTH -> RIGHT -> OFF -> BOTH schedule and two stopped safely after OFF. Every
+first BOTH performed Quick StatePosition 0 -> 1 and every later source marker
+preserved 1 -> 1. No malformed sequence or delayed native reactivation was
+found. The shared marker-source core is therefore validated across the tested
+Normal and Quick families.
+
+The next decision is the production marker API: final names plus any temporary
+compatibility alias for the existing RIGHT marker. This is an animator-facing
+format and should be agreed before code renaming or mass authoring. After that,
+add Whirl and Power as separate callback adapters rather than broadening the
+shared core implicitly. A quiet prototype-disabled/enabled battle comparison
+remains required before claiming negligible release overhead. Visible target
+stumble is not a reliable damage proxy during rapid repeated hits; health loss
+was still observed, while close-overlap geometry also caused separate genuine
+misses. A damage/health logger extension is optional future diagnostic work.
+
 ## 12. Raise Generalization — After Collision Core Stabilizes
 
 Known starting point: 2H Normal works.

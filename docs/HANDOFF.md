@@ -306,6 +306,25 @@ Normal/Quick gate, and no Quick or Power marker was accepted. All three logs
 loaded and unloaded normally. This is functional/stability stress evidence,
 not a frame-time benchmark; prototype diagnostics are intentionally verbose.
 
+The compact Dual Quick mixed-set regression also passes. Forty-seven fresh
+Quick executions covered all four tested Dual variants: 19 P0 QuickAttackR,
+13 P0 QuickAttackL, nine P1 QuickAttackL, and six P1 QuickAttackR. Forty-five
+completed the full authored schedule; two P0 QuickAttackR executions ended
+safely after OFF. P0 used BOTH -> LEFT -> OFF -> BOTH and P1 used
+BOTH -> RIGHT -> OFF -> BOTH. Every first BOTH reset the execution budget and
+performed Quick StatePosition 0 -> 1. Every later accepted source marker
+preserved 1 -> 1. No execution was malformed and no delayed native
+reactivation followed cleanup. The author observed all three intended contacts.
+
+Target stumble response is not a reliable damage proxy in prolonged rapid-hit
+testing. In this session some later contacts stopped producing visible
+stumbles while the target's health still decreased; a smaller number of
+genuine geometry misses occurred when the attacker stood nearly inside the
+target. The exact rage/stumble-immunity threshold and New Balance configuration
+are not established by this log. A future damage/health observer would improve
+contact diagnosis, but it is not required to accept the collision-source-set
+result.
+
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
 ## 8. QuickAttack Finding and Validated Fix
@@ -455,12 +474,13 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. run one compact Dual Quick mixed-set regression, including first-marker StatePosition bookkeeping and later BOTH reactivation, then decide whether the validated marker vocabulary is ready to freeze;
-2. before release integration, build a quiet diagnostic configuration and compare a repeatable battle with the prototype disabled/enabled; current stress logs prove functional stability, not negligible performance cost;
-3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
-4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-5. add collision callback adapters one family at a time, freeze marker vocabulary, and migrate the validated core into `Script_G3AnimationBehaviors`;
-6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. decide and freeze the production marker vocabulary and compatibility policy. The tested provisional names remain `G3AB_COL_TEST` (RIGHT), `G3AB_COL_LEFT_TEST`, `G3AB_COL_BOTH_TEST`, and `G3AB_COL_OFF_TEST`; do not rename code or mass-author assets until the final spelling and any temporary alias are agreed;
+2. add Whirl ownership as a separate callback adapter, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+3. add Power ownership separately after Whirl; the existing Power logs are native/source evidence, not marker-controlled validation;
+4. before release integration, build a quiet diagnostic configuration and compare a repeatable battle with the prototype disabled/enabled; current stress logs prove functional stability, not negligible performance cost;
+5. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+6. migrate the validated collision core into `Script_G3AnimationBehaviors` only after the marker API and callback-family staging are agreed;
+7. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 

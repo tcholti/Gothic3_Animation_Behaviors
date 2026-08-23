@@ -566,6 +566,24 @@ At callback entry / Hit start:
 - use player + NPC tests for actor-general behavior;
 - do not rely on visual hit impression when a collision-group/logger diagnostic is available.
 
+The final planned pre-vocabulary Quick regression passed the same shared core.
+Forty-seven fresh Dual Quick executions covered P0/P1 QuickAttackR and
+QuickAttackL: 45 complete schedules and two valid prefixes ending after OFF.
+P0 used BOTH -> LEFT -> OFF -> BOTH; P1 used
+BOTH -> RIGHT -> OFF -> BOTH. Every first BOTH reset the occurrence budget and
+performed the required Quick StatePosition 0 -> 1 update. Later side/BOTH
+markers preserved 1 -> 1, exact-set transitions and OFF used the expected
+masks, and no delayed native reactivation appeared after cleanup. This closes
+the tested Normal/Quick shared-core gate before production marker spelling is
+frozen. It does not authorize Whirl or Power callbacks.
+
+For gameplay diagnosis, visible stumble is not a sufficient hit signal. Rapid
+repeated contacts may reduce or remove the target's stumble response while
+health still decreases, and close-overlap geometry can also produce genuine
+misses. Keep those cases separate. If future callback-family tests require
+per-contact certainty, extend the consolidated logger with a narrowly scoped
+damage/health observer rather than inferring damage from animation response.
+
 ## 13. Current Fist Causality Diagnostic
 
 Preferred next isolated test after Quick support:
