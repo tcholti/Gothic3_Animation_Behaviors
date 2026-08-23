@@ -24,20 +24,23 @@ static LARGE_INTEGER g_Frequency = {};
 
 static char const *const g_CollisionOnMarker = "G3AB_COL_TEST";
 static char const *const g_CollisionLeftMarker = "G3AB_COL_LEFT_TEST";
+static char const *const g_CollisionBothMarker = "G3AB_COL_BOTH_TEST";
 static char const *const g_CollisionOffMarker = "G3AB_COL_OFF_TEST";
 
 enum MarkerOpcode
 {
     MarkerOpcode_Right = 0,
     MarkerOpcode_Left = 1,
-    MarkerOpcode_Off = 2,
-    MarkerOpcode_Count = 3,
+    MarkerOpcode_Both = 2,
+    MarkerOpcode_Off = 3,
+    MarkerOpcode_Count = 4,
     MarkerOpcode_Invalid = -1
 };
 
 static unsigned int const SourceMask_None = 0;
 static unsigned int const SourceMask_Right = 1u << 0;
 static unsigned int const SourceMask_Left = 1u << 1;
+static unsigned int const SourceMask_Both = SourceMask_Right | SourceMask_Left;
 
 struct EquippedCollisionSources
 {
@@ -83,7 +86,7 @@ struct LastAcceptedMarkerDispatch
 static std::unordered_map<eCEntity *, LastAcceptedMarkerDispatch> g_LastAcceptedMarkerDispatchByActor;
 
 // The occurrence guard rejects interleaved marker replay. The exact motion
-// scan supplies the authored RIGHT/LEFT/OFF counts once, then each actor keeps
+// scan supplies the authored RIGHT/LEFT/BOTH/OFF counts once, then each actor keeps
 // only a small execution record. No actor/world scan or per-frame work is
 // needed.
 struct MarkerExecutionBudget
@@ -182,7 +185,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.16 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.17 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -192,9 +195,9 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "NO P0/P1/P2 restriction.\n");
 
-        std::fprintf(g_pLog, "Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT source marker.\n");
+        std::fprintf(g_pLog, "Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT/BOTH source marker.\n");
 
-        std::fprintf(g_pLog, "Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT source marker.\n");
+        std::fprintf(g_pLog, "Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT/BOTH source marker.\n");
 
         std::fprintf(g_pLog, "Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.\n");
 
@@ -206,9 +209,11 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "G3AB_COL_LEFT_TEST is the provisional LEFT-hand marker.\n");
 
-        std::fprintf(g_pLog, "RIGHT and LEFT use exact-set semantics: the selected source replaces the previous marker-owned set.\n");
+        std::fprintf(g_pLog, "G3AB_COL_BOTH_TEST is the provisional BOTH-hand marker.\n");
 
-        std::fprintf(g_pLog, "BOTH remains intentionally disabled until the v0.16 execution-boundary guard passes runtime validation.\n");
+        std::fprintf(g_pLog, "RIGHT, LEFT, and BOTH use exact-set semantics: the selected source set replaces the previous marker-owned set.\n");
+
+        std::fprintf(g_pLog, "BOTH activates/rearms the right and left equipped slot entities independently at one authored marker.\n");
 
         std::fprintf(g_pLog, "If any source required by the exact motion is missing, its original attack callback is NOT suppressed.\n");
 
@@ -232,17 +237,15 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.\n\n");
 
-        std::fprintf(g_pLog, "v0.16 preserves same-update marker deduplication for RIGHT, LEFT, and OFF.\n");
+        std::fprintf(g_pLog, "v0.17 preserves same-update marker deduplication for RIGHT, LEFT, BOTH, and OFF.\n");
 
-        std::fprintf(g_pLog, "v0.16 preserves the v0.15 action/phase interruption guard.\n");
+        std::fprintf(g_pLog, "v0.17 preserves the validated v0.16 interruption and execution-boundary guards.\n");
 
-        std::fprintf(g_pLog, "v0.16 execution boundary: controlled callback state-time rollback retires the previous marker budget.\n");
-
-        std::fprintf(g_pLog, "v0.16 natural-reset fallback: marker-owned source retirement at state-time rollback also retires the budget.\n");
+        std::fprintf(g_pLog, "v0.17 adds only BOTH recognition and two-source activation/rearm inside the existing source-set core.\n");
 
         std::fprintf(g_pLog, "Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
 
-        std::fprintf(g_pLog, "Authored-occurrence budgets are cached separately for RIGHT, LEFT, and OFF.\n");
+        std::fprintf(g_pLog, "Authored-occurrence budgets are cached separately for RIGHT, LEFT, BOTH, and OFF.\n");
 
         std::fprintf(g_pLog, "Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase.\n");
 
@@ -272,6 +275,9 @@ static MarkerOpcode GetMarkerOpcode(char const *effectName)
     if (std::strcmp(effectName, g_CollisionLeftMarker) == 0)
         return MarkerOpcode_Left;
 
+    if (std::strcmp(effectName, g_CollisionBothMarker) == 0)
+        return MarkerOpcode_Both;
+
     if (std::strcmp(effectName, g_CollisionOffMarker) == 0)
         return MarkerOpcode_Off;
 
@@ -284,6 +290,7 @@ static char const *GetMarkerOpcodeName(MarkerOpcode opcode)
     {
         case MarkerOpcode_Right: return "RIGHT";
         case MarkerOpcode_Left:  return "LEFT";
+        case MarkerOpcode_Both:  return "BOTH";
         case MarkerOpcode_Off:   return "OFF";
         default:                 return "INVALID";
     }
@@ -295,13 +302,14 @@ static unsigned int GetMarkerDesiredSourceMask(MarkerOpcode opcode)
     {
         case MarkerOpcode_Right: return SourceMask_Right;
         case MarkerOpcode_Left:  return SourceMask_Left;
+        case MarkerOpcode_Both:  return SourceMask_Both;
         default:                 return SourceMask_None;
     }
 }
 
 static bool IsSourceMarker(MarkerOpcode opcode)
 {
-    return opcode == MarkerOpcode_Right || opcode == MarkerOpcode_Left;
+    return opcode == MarkerOpcode_Right || opcode == MarkerOpcode_Left || opcode == MarkerOpcode_Both;
 }
 
 static GEInt GetAuthoredMarkerCount(CurrentMotionMarkerResult const &decision, MarkerOpcode opcode)
@@ -1306,10 +1314,8 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 //
 //     G3AB_COL_TEST      -> exact active set { RIGHT }.
 //     G3AB_COL_LEFT_TEST -> exact active set { LEFT }.
+//     G3AB_COL_BOTH_TEST -> exact active set { RIGHT, LEFT }.
 //     G3AB_COL_OFF_TEST  -> exact active set { } for the matching window.
-//
-// BOTH remains deliberately unrecognized until LEFT and preserved RIGHT are
-// validated independently.
 // -----------------------------------------------------------------------------
 
 static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
@@ -1326,7 +1332,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     // Reserved test marker is consumed even if the actor/source cannot be
     // resolved, so the engine never tries to find a real effect resource
-    // named G3AB_COL_TEST / G3AB_COL_LEFT_TEST / G3AB_COL_OFF_TEST.
+    // named G3AB_COL_TEST / G3AB_COL_LEFT_TEST / G3AB_COL_BOTH_TEST / G3AB_COL_OFF_TEST.
     if (a_pEntity1 == nullptr)
     {
         if (g_pLog != nullptr)
@@ -1568,21 +1574,39 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     }
 
     unsigned int desiredSourceMask = GetMarkerDesiredSourceMask(markerOpcode);
-    eCEntity *selectedSourceInstance = GetSourceInstance(sources, desiredSourceMask);
 
-    // Required-source preflight above guarantees this for a valid source
-    // marker. Keep the guard explicit so malformed future opcode changes fail
-    // closed without dereferencing a null entity.
-    if (selectedSourceInstance == nullptr)
+    // Required-source preflight above guarantees every source selected by a
+    // valid RIGHT/LEFT/BOTH marker. Keep the mask guard explicit so malformed
+    // future opcode changes fail closed.
+    if (desiredSourceMask == SourceMask_None)
     {
         if (g_pLog != nullptr)
         {
-            std::fprintf(g_pLog, "MarkerAction: REJECTED - selected source is missing\n");
+            std::fprintf(g_pLog, "MarkerAction: REJECTED - source marker selected an empty source set\n");
             std::fprintf(g_pLog, "=================================\n\n");
             std::fflush(g_pLog);
         }
 
         return nullptr;
+    }
+
+    for (GEInt i = 0; i < 2; ++i)
+    {
+        unsigned int sourceMask = i == 0 ? SourceMask_Right : SourceMask_Left;
+
+        if ((desiredSourceMask & sourceMask) != 0
+            && GetSourceInstance(sources, sourceMask) == nullptr)
+        {
+            if (g_pLog != nullptr)
+            {
+                std::fprintf(g_pLog, "MarkerAction: REJECTED - selected source set is incomplete at activation\n");
+                std::fprintf(g_pLog, "MissingSourceMask: %u\n", sourceMask);
+                std::fprintf(g_pLog, "=================================\n\n");
+                std::fflush(g_pLog);
+            }
+
+            return nullptr;
+        }
     }
 
     MarkerOwnedCollisionWindow *previousWindow = FindMatchingMarkerOwnedWindow(
@@ -1599,6 +1623,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
                               currentAnimation.GetText(), markerAction, markerPhase);
 
     unsigned int sourceMasks[2] = { SourceMask_Right, SourceMask_Left };
+    char const *sourceLabels[2] = { "Right", "Left" };
     GEInt retiredSourceCount = 0;
 
     for (GEInt i = 0; i < 2; ++i)
@@ -1623,50 +1648,78 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         }
     }
 
-    Entity selectedSource(selectedSourceInstance);
-    GEInt beforeGroup = static_cast<GEInt>(selectedSource.GetCollisionGroup());
-    GEInt sourceUseType = static_cast<GEInt>(GetCollisionSourceUseType(selectedSource));
-    bool skipCollisionGroupForFist = IsFistCollisionSource(selectedSource);
+    GEInt sourceGroupBefore[2] = { -1, -1 };
+    GEInt sourceGroupAfter[2] = { -1, -1 };
+    GEInt sourceUseTypes[2] = { -1, -1 };
+    bool sourceSkippedGroupForFist[2] = { false, false };
+    bool sourceGroupRequested[2] = { false, false };
+    bool sourceListCleared[2] = { false, false };
+    GEInt activatedSourceCount = 0;
+    GEInt collisionGroupRequestCount = 0;
+    GEInt fistSourceCount = 0;
+    GEInt triggeredListClearCount = 0;
+    unsigned int markerOwnedWeaponMask = SourceMask_None;
+
+    for (GEInt i = 0; i < 2; ++i)
+    {
+        unsigned int sourceMask = sourceMasks[i];
+
+        if ((desiredSourceMask & sourceMask) == 0)
+            continue;
+
+        eCEntity *sourceInstance = GetSourceInstance(sources, sourceMask);
+
+        Entity selectedSource(sourceInstance);
+        sourceGroupBefore[i] = static_cast<GEInt>(selectedSource.GetCollisionGroup());
+        sourceUseTypes[i] = static_cast<GEInt>(GetCollisionSourceUseType(selectedSource));
+        sourceSkippedGroupForFist[i] = IsFistCollisionSource(selectedSource);
+
+        if (!sourceSkippedGroupForFist[i])
+        {
+            selectedSource.SetCollisionGroup(eECollisionGroup_Item_Attack);
+            sourceGroupRequested[i] = true;
+            ++collisionGroupRequestCount;
+
+            if (selectedSource.GetCollisionGroup() == eECollisionGroup_Item_Attack)
+                markerOwnedWeaponMask |= sourceMask;
+        }
+        else
+        {
+            ++fistSourceCount;
+        }
+
+        selectedSource.TouchDamage.ClearTriggeredList();
+        sourceListCleared[i] = true;
+        ++triggeredListClearCount;
+        ++activatedSourceCount;
+        sourceGroupAfter[i] = static_cast<GEInt>(selectedSource.GetCollisionGroup());
+    }
+
+    // Fist/body sources are rearmed through their logical trigger list but do
+    // not own a weapon Item_Attack window. Preserve any successfully activated
+    // weapon bits in a mixed source set; remove the record if no weapon bit is
+    // active.
+    if (markerOwnedWeaponMask != SourceMask_None)
+    {
+        RememberMarkerOwnedWindow(a_pEntity1, sources, markerOwnedWeaponMask,
+                                  currentAnimation.GetText(), markerAction, markerPhase);
+    }
+    else
+    {
+        ForgetMarkerOwnedWindowForActor(a_pEntity1);
+    }
 
     GEInt quickStatePositionBeforeMarker = -1;
-
     GEInt quickStatePositionAfterMarker = -1;
 
     if (isQuickAttackHit)
     {
         quickStatePositionBeforeMarker =
             static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
-    }
 
-    // v0.9 causal isolation:
-    // keep ownership, native suppression, marker timing, source resolution,
-    // and triggered-list rearming unchanged. Skip only the weapon-style group
-    // request when the resolved raw source is Fist/PhysicalFist.
-    if (!skipCollisionGroupForFist)
-    {
-        selectedSource.SetCollisionGroup(eECollisionGroup_Item_Attack);
-
-        if (selectedSource.GetCollisionGroup() != eECollisionGroup_Item_Attack)
-            ForgetMarkerOwnedWindowForActor(a_pEntity1);
-    }
-    else
-    {
-        // Fist/body OFF is still deliberately unsupported, so do not publish
-        // a marker-owned weapon window for this source.
-        ForgetMarkerOwnedWindowForActor(a_pEntity1);
-    }
-
-    selectedSource.TouchDamage.ClearTriggeredList();
-
-    // Reference Quick callback implementations use StatePosition as their
-    // one-shot collision activation gate and set it to 1 after activating.
-    // v0.7 runtime left this gate at 0, after which the original callback
-    // reactivated collision following Gothic 3's natural reset. Complete that
-    // bookkeeping here when the accepted Quick marker owns activation.
-    //
-    // Keep the proven Normal path unchanged.
-    if (isQuickAttackHit)
-    {
+        // Reference Quick callback implementations use StatePosition as their
+        // one-shot collision activation gate and set it to 1 after activating.
+        // Complete that bookkeeping once for the accepted source-set marker.
         actor.Routine.AccessProperty<PSRoutine::PropertyStatePosition>() = 1;
 
         quickStatePositionAfterMarker =
@@ -1676,7 +1729,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     RememberAcceptedMarker(a_pEntity1, sources, currentAnimation.GetText(), effectName,
                            markerAction, markerPhase, markerStateTime, markerElapsedMs);
 
-    GEInt afterGroup = static_cast<GEInt>(selectedSource.GetCollisionGroup());
+    GEInt diagnosticIndex = (desiredSourceMask & SourceMask_Right) != 0 ? 0 : 1;
 
     if (g_pLog != nullptr)
     {
@@ -1686,13 +1739,9 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         std::fprintf(g_pLog, "MarkerOpcode: %s\n", GetMarkerOpcodeName(markerOpcode));
 
         std::fprintf(g_pLog, "AuthoredMarkerOccurrences: %d\n", authoredMarkerCount);
-
         std::fprintf(g_pLog, "AcceptedMarkerOccurrencesBefore: %d\n", acceptedMarkerCountBefore);
-
         std::fprintf(g_pLog, "AcceptedMarkerOccurrencesAfter: %d\n", acceptedMarkerCountAfter);
-
         std::fprintf(g_pLog, "ExecutionBudgetReset: %d\n", executionBudgetReset ? 1 : 0);
-
         std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n",
                      GetFirstAuthoredMarkerFrame(decision, markerOpcode));
 
@@ -1700,18 +1749,47 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         std::fprintf(g_pLog, "DesiredMarkerOwnedSourceMask: %u\n", desiredSourceMask);
         std::fprintf(g_pLog, "RetiredMarkerOwnedSourceMask: %u\n", retiredSourceMask);
         std::fprintf(g_pLog, "RetiredSourceCount: %d\n", retiredSourceCount);
+        std::fprintf(g_pLog, "MarkerOwnedWeaponSourceMaskAfterActivation: %u\n",
+                     markerOwnedWeaponMask);
 
-        std::fprintf(g_pLog, "CollisionGroupBeforeMarker: %d\n", beforeGroup);
+        // Preserve the singular diagnostic fields for RIGHT/LEFT regressions.
+        // For BOTH they describe RIGHT, while the complete per-slot fields
+        // below remain authoritative.
+        std::fprintf(g_pLog, "CollisionGroupBeforeMarker: %d\n", sourceGroupBefore[diagnosticIndex]);
+        std::fprintf(g_pLog, "CollisionGroupAfterMarker: %d\n", sourceGroupAfter[diagnosticIndex]);
+        std::fprintf(g_pLog, "ResolvedSourceUseTypeAtMarker: %d\n", sourceUseTypes[diagnosticIndex]);
 
-        std::fprintf(g_pLog, "CollisionGroupAfterMarker: %d\n", afterGroup);
+        std::fprintf(g_pLog, "ActivatedSourceCount: %d\n", activatedSourceCount);
+        std::fprintf(g_pLog, "CollisionGroupRequestCount: %d\n", collisionGroupRequestCount);
+        std::fprintf(g_pLog, "FistSourceCount: %d\n", fistSourceCount);
+        std::fprintf(g_pLog, "TriggeredDamageListClearCount: %d\n", triggeredListClearCount);
 
-        std::fprintf(g_pLog, "ResolvedSourceUseTypeAtMarker: %d\n", sourceUseType);
+        for (GEInt i = 0; i < 2; ++i)
+        {
+            if ((desiredSourceMask & sourceMasks[i]) == 0)
+                continue;
+
+            std::fprintf(g_pLog, "%sCollisionGroupBeforeMarker: %d\n",
+                         sourceLabels[i], sourceGroupBefore[i]);
+            std::fprintf(g_pLog, "%sCollisionGroupAfterMarker: %d\n",
+                         sourceLabels[i], sourceGroupAfter[i]);
+            std::fprintf(g_pLog, "%sResolvedSourceUseTypeAtMarker: %d\n",
+                         sourceLabels[i], sourceUseTypes[i]);
+            std::fprintf(g_pLog, "%sSetCollisionGroupRequested: %d\n",
+                         sourceLabels[i], sourceGroupRequested[i] ? 1 : 0);
+            std::fprintf(g_pLog, "%sSkippedCollisionGroupForFist: %d\n",
+                         sourceLabels[i], sourceSkippedGroupForFist[i] ? 1 : 0);
+            std::fprintf(g_pLog, "%sTriggeredDamageListCleared: %d\n",
+                         sourceLabels[i], sourceListCleared[i] ? 1 : 0);
+        }
 
         std::fprintf(g_pLog, "SetCollisionGroupAction: %s\n",
-                     skipCollisionGroupForFist ? "SKIPPED_FOR_FIST_CAUSAL_TEST"
-                                               : "REQUESTED_ITEM_ATTACK");
+                     collisionGroupRequestCount == 0 ? "SKIPPED_FOR_FIST_CAUSAL_TEST"
+                   : activatedSourceCount > 1       ? "REQUESTED_ITEM_ATTACK_FOR_SOURCE_SET"
+                                                     : "REQUESTED_ITEM_ATTACK");
 
-        std::fprintf(g_pLog, "TriggeredDamageList: CLEARED\n");
+        std::fprintf(g_pLog, "TriggeredDamageList: %s\n",
+                     triggeredListClearCount > 1 ? "CLEARED_FOR_SOURCE_SET" : "CLEARED");
 
         if (isQuickAttackHit)
         {
@@ -1721,7 +1799,6 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         }
 
         std::fprintf(g_pLog, "Original StartEffect for marker: NOT CALLED\n");
-
         std::fprintf(g_pLog, "=================================\n\n");
 
         std::fflush(g_pLog);

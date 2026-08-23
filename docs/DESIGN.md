@@ -392,7 +392,7 @@ example, RIGHT -> OFF -> RIGHT.
 
 ### Staged source-set prototype
 
-The next candidate implements the agreed source-set core before adding more
+The staged prototype implements the agreed source-set core before adding more
 attack callbacks:
 
 - existing `G3AB_COL_TEST` remains the provisional RIGHT alias so the proven
@@ -400,13 +400,13 @@ attack callbacks:
 - provisional `G3AB_COL_LEFT_TEST` selects the equipped left-hand item;
 - RIGHT and LEFT have exact-set semantics: selecting one retires the other
   source only when that other source is owned by the same marked execution;
-- OFF retires the complete marker-owned set and never clears a triggered list;
-- BOTH remains deliberately unrecognized until LEFT and preserved RIGHT pass
-  runtime validation.
+- provisional `G3AB_COL_BOTH_TEST` selects both equipped slot entities as one
+  exact active set and independently activates/rearms each source;
+- OFF retires the complete marker-owned set and never clears a triggered list.
 
 The runtime record is a fixed pair of equipped entity pointers plus a two-bit
 active-source mask. Occurrence budgets are kept independently for RIGHT, LEFT,
-and OFF. This is bounded actor-local state updated only by callbacks and
+BOTH, and OFF. This is bounded actor-local state updated only by callbacks and
 reserved frame effects; it adds no per-frame actor/world scan and no dynamic
 container per contact. If the exact motion requires a slot that is absent, the
 attack-family callback is left native rather than partially taking ownership.
@@ -428,16 +428,24 @@ three contacts.
 However, an interrupted P1 execution changed from Normal action 1 to action 59
 while its stale `_Attack_Hit_` movement-animation name remained current. A later
 RIGHT marker was accepted after the first source had naturally reset. This is
-not valid ownership. Before BOTH is recognized, Normal marker-time eligibility
-must require native `gEAction_Attack` and `gEPhase_Hit` in addition to the exact
+not valid ownership. That result made it necessary for Normal marker-time eligibility to
+require native `gEAction_Attack` and `gEPhase_Hit` in addition to the exact
 marked motion, then pass an interruption regression. This is a bounded guard,
 not a new callback family or per-frame system.
 
-The v0.15 source candidate implements that conjunction in the single shared
-Normal predicate used by callback ownership and marker-time acceptance. It does
-not add cleanup, scanning, or another execution record. Runtime promotion still
-requires one complete alternating regression plus one interrupted late-marker
-rejection before BOTH.
+v0.15 implemented that conjunction in the single shared Normal predicate used
+by callback ownership and marker-time acceptance. The subsequent v0.16
+execution-boundary regression closed the separate stale occurrence-budget
+lifetime defect for the tested weapon path: all 38 marked executions began
+fresh, including seven attacks interrupted after their first RIGHT marker.
+
+The v0.17 candidate therefore recognizes provisional `G3AB_COL_BOTH_TEST`
+without changing the state model. BOTH maps to the existing two-bit
+RIGHT|LEFT exact set, requires both equipped slot entities during callback
+preflight, requests `Item_Attack` and clears the triggered list independently
+for each selected source, and preserves all v0.16 execution-boundary,
+occurrence, duplicate, exact-set switching, and OFF rules. Runtime promotion
+requires isolated BOTH activation and rearm tests.
 
 The first OFF proof must use distinct targets because an already visited target
 cannot reveal whether collision remained active. Use an identical horizontal

@@ -489,6 +489,17 @@ supplied the boundary; retain that callback path for Fist/logical sources.
 Unmarked GetUpAttack/GetUpParade actions produced native collision diagnostics
 but no reserved-marker dispatch.
 
+The v0.17 candidate adds BOTH as one new opcode, not a new callback adapter.
+`G3AB_COL_BOTH_TEST` contributes RIGHT|LEFT to exact-motion source preflight
+and has its own authored-occurrence budget. At marker time the existing exact-
+set transition publishes both bits, retires only sources outside that desired
+set, then independently requests `Item_Attack` and clears the triggered list
+for each equipped slot entity. Per-slot group/use-type/clear fields supplement
+the preserved singular diagnostics. Missing either required slot keeps the
+original Normal/Quick callback active. Fist/logical sources still skip the
+weapon-group request; only successfully activated weapon bits remain in the
+marker-owned window.
+
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the
 Normal/Quick context gate. The two probe logs contain 45 and 55 such rejected
