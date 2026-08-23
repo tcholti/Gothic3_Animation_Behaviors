@@ -423,6 +423,15 @@ There is no per-frame actor/world scan. Verbose prototype logging is not part
 of the intended production cost and must be disabled or removed in the release
 DLL.
 
+v0.13 validates the combined guard in seven executions of the exact double
+fixture. Each execution accepted two ON and one OFF, rejected the replayed OFF
+by occurrence budget, rejected the final extra ON as an exact same-update
+duplicate, and naturally cleaned up once. Rejected calls performed no
+collision/list mutation. Both genuine contacts remained visually effective
+against two independently tested targets. This validates function and
+execution reset for the tested Normal path; it does not replace future
+large-battle profiling or entity-lifecycle review for production.
+
 Before OFF existed, v0.10 isolated same-target list rearming under the proven
 Normal path by reusing one identical double-contact 2H motion in three variants:
 

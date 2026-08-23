@@ -421,6 +421,13 @@ ON entries, and one OFF. Nevertheless, every late contact dispatched `ON, OFF,
 ON` at identical state time. This is runtime marker replay, not evidence of
 additional authored entries; occurrence-aware suppression is required.
 
+v0.13 repeated the exact double fixture seven times. Every execution admitted
+only the authored two ON and one OFF operations, rejected the replayed late OFF
+and extra ON, cleared the list twice, and naturally reset once. Both intended
+swings remained visually effective against each of two independently tested
+targets on their first attack. The animation asset and marker placement were
+unchanged; only runtime replay filtering changed.
+
 ## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:

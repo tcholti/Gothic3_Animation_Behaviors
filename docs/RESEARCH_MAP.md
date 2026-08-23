@@ -263,8 +263,9 @@ three 5 -> 7 operations, two explicit 7 -> 5 OFF operations, and one natural
 7 -> 5 cleanup instead of the authored two ON and one OFF.
 
 The v0.11 last-accepted guard is insufficient when marker names interleave.
-Current v0.13 source candidate retains that guard as the first layer and adds a
-second per-execution authored-occurrence budget. Retaining both is necessary:
+Validated v0.13 at commit `7a0f1b7` retains that guard as the first layer and
+adds a second per-execution authored-occurrence budget. Retaining both is
+necessary:
 same-update identical suppression prevents an early duplicate from consuming
 the budget intended for a later genuine contact, while the occurrence budget
 rejects replay with interleaved marker names.
@@ -279,9 +280,19 @@ rejects replay with interleaved marker names.
 - the test DLL's verbose logging is diagnostic overhead, not intended release
   behavior.
 
-Build/runtime expectations for the double fixture: two ON accepts/clears, one
-OFF accept/no-clear, one replayed OFF rejected by the budget, one final ON
-rejected as an exact same-update duplicate, and one natural cleanup per attack.
+Win32 Release build/install passed at SHA-256
+`0E4A50AD5ED6F7D641FD23503298011F4CE7943628AC09AC3D257F075FC1D692`;
+the v0.12 rollback is preserved at SHA-256
+`F268FEDB96B1FDED304443FE34A62BA19A02BE214D6084C1B9A014FBD159758B`.
+
+All seven double-fixture executions matched the contract independently: two ON
+accepts/clears, one OFF accept/no-clear, one replayed OFF rejected by the
+budget, one final ON rejected as an exact same-update duplicate, and one
+natural cleanup. Every first ON logged execution-budget reset; every rejected
+callback requested neither collision mutation nor list clearing. Both intended
+swings visibly damaged each of two separately tested targets on their first
+attack. Large-battle performance is not yet profiled; the event-driven/cached
+cost model is confirmed by source structure, not by this functional test.
 
 ### Prototype marker
 

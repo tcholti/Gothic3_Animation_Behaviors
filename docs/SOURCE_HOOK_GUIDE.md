@@ -369,7 +369,7 @@ replay. The authored ON-f4/OFF-f10/ON-f15 motion dispatches `ON, OFF, ON` at the
 late state time. All three pass because each differs from the immediately
 previous marker.
 
-The v0.13 source candidate uses two ordered guards:
+Validated v0.13 uses two ordered guards:
 
 1. retain v0.11 exact same-update identical-marker suppression;
 2. consume one cached authored occurrence for that marker name.
@@ -387,6 +387,13 @@ animation name and the result is cached. Each actor that fires a reserved
 marker has at most one current execution record. Checks occur only in reserved
 `StartEffect` callbacks; there is no per-frame actor/world scan. Release code
 must disable or remove the prototype's verbose `fprintf` diagnostics.
+
+Seven exact-fixture executions confirm the ordering. Each attack accepted the
+early ON, intended OFF, and late ON; rejected the replayed OFF through the
+occurrence budget; then rejected the final extra ON through the unchanged
+same-update duplicate guard. Every rejected callback logged no collision-group
+request and no triggered-list clear. Each new attack reset its actor execution
+budget, and every late genuine ON received Gothic 3's natural cleanup.
 
 ## 11. Current Marker-Control Research Pattern
 
