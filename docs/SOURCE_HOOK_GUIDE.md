@@ -506,8 +506,15 @@ group requests, two triggered-list clears, and marker-owned RIGHT|LEFT mask 3.
 The right -> left -> right fixture visibly produced only the first two contacts,
 as expected when the first weapon is not rearmed. Fifteen P1 alternating-marker
 positive controls retained three accepted source occurrences and could produce
-all three contacts. Repeated BOTH, mixed exact-set transitions, and missing-slot
-fallback remain separate tests.
+all three contacts. Repeated BOTH rearm then passed. Seventeen complete P0 executions accepted
+BOTH -> BOTH -> BOTH and performed six source requests plus six list clears per
+attack; all three intended same-target contacts were observed. Four P0 attacks
+interrupted after the second BOTH reset both sources during Hit without
+contaminating the next execution. Eleven complete P1 alternating-source
+controls and one interrupted P1 retained expected behavior. Unmarked
+GetUpAttack and side-Normal activity remained native; the suspected accidental
+SimpleWhirl was not present in the log. Mixed exact-set transitions and
+missing-slot fallback remain separate tests.
 
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the

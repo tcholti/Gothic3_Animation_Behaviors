@@ -263,8 +263,19 @@ the first right-hand and middle left-hand swings connected, while the final
 right-hand swing did not re-hit because no later rearm was authored. Fifteen P1
 positive-control executions retained their previously validated alternating
 LEFT -> RIGHT -> LEFT schedule and could produce all three contacts. Basic BOTH
-activation therefore passes; repeated BOTH rearm and missing-slot native
-fallback remain untested.
+activation therefore passes.
+
+Repeated BOTH rearm also passes in the larger v0.17 session. Seventeen complete
+P0 executions each accepted BOTH -> BOTH -> BOTH, producing six source
+operations and six triggered-list clears per attack; gameplay repeatedly
+damaged the same target on all three intended contacts. Four additional P0
+executions were interrupted after their second BOTH and reset both weapon
+sources during Hit. Eleven complete P1 positive controls retained
+LEFT -> RIGHT -> LEFT and one P1 execution was interrupted after its first
+LEFT. Every accepted execution began with a fresh budget. Four unmarked
+GetUpAttack executions and one unmarked side Normal remained native; no
+WhirlAttack motion appears in the log. Missing-slot native fallback and mixed
+exact-set transitions remain untested.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -415,7 +426,7 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. repeat BOTH at later authored contacts in the Dual Normal fixture to validate coordinated two-source rearm, then test the missing-required-slot case to confirm native callback fallback;
+1. test the missing-required-slot case to confirm native callback fallback for a motion that requires BOTH;
 2. exercise exact-set transitions among RIGHT, LEFT, BOTH, and OFF without changing callback families;
 3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;

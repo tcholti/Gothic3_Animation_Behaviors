@@ -314,11 +314,15 @@ Release build/install SHA-256 is
 The v0.16 interruption-boundary correction remains intact, and the first
 isolated BOTH gate passed. Sixteen P0 Dual Normal executions each accepted one
 BOTH occurrence, activated and cleared RIGHT plus LEFT independently, and
-published exact mask 3. The right -> left -> right fixture visibly produced two
-contacts because the first weapon was not later rearmed. Fifteen P1
-alternating-source positive controls retained three-contact behavior. Next
-repeat BOTH later in one execution and test missing-slot fallback; Power and
-Whirl remain separate callback adapters.
+published exact mask 3. The single-marker right -> left -> right fixture visibly produced two contacts
+because the first weapon was not later rearmed. A subsequent repeated-BOTH
+session contained 17 complete P0 BOTH -> BOTH -> BOTH executions, each with six
+source requests and six list clears; all three same-target contacts were
+observed. Four P0 interruptions after the second BOTH reset both sources, and
+all later executions began fresh. Eleven complete P1 alternating-source
+controls plus one interrupted P1 retained expected behavior. Next test
+missing-slot fallback and mixed exact-set transitions; Power and Whirl remain
+separate callback adapters.
 
 ### Prototype marker
 
