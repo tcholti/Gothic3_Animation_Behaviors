@@ -1,0 +1,1300 @@
+Script_FrameCollisionTest v0.13 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: current animation contains _Attack_Hit_ and G3AB_COL_TEST.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + G3AB_COL_TEST.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+Prototype source resolver: current actor RIGHT-HAND equipped item.
+If a marked animation has no right-hand item, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+G3AB_COL_OFF_TEST closes only a weapon window opened by this prototype.
+OFF requests Item_Equipped and never clears the triggered list.
+OFF before ON or after natural reset is consumed as a logged no-op.
+Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Marked Normal/Quick collision behavior remains the validated v0.9 behavior.
+
+v0.13 preserves v0.11 same-update marker deduplication for ON and OFF.
+Dedup key: actor + source + motion + marker + action + phase + state time; wall window <= 5 ms.
+
+v0.13 adds cached authored-occurrence budgets per exact motion and actor execution.
+Budget key: actor + source + motion + action + phase; state-time rollback starts a new execution.
+Natural collision reset outside the owning Hit execution retires the actor budget.
+No per-frame actor scan; budget work occurs only when a reserved marker is received.
+
+Installing hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 38743.731
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 5
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 4
+AuthoredOnMarkerCount: 2
+AuthoredOffMarkerCount: 1
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 38902.944
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.167631
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38902.973
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.167631
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF_TEST RECEIVED =====
+ElapsedMs: 39142.223
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.409537
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39142.254
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.409537
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+MotionFirstOnMarkerFrame: 4
+CollisionGroupBeforeMarker: 7
+CollisionGroupAfterMarker: 5
+ResolvedSourceUseTypeAtMarker: 3
+MarkerOwnedWindowMatched: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 39336.903
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.601529
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39336.930
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.601529
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 1
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF_TEST RECEIVED =====
+ElapsedMs: 39336.984
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.601529
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 39337.006
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.601529
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.097800
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39543.652
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.802456
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 42403.536
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 7
+AuthoredOnMarkerCount: 1
+AuthoredOffMarkerCount: 0
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 42677.361
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.444874
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42677.389
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.444874
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 7
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42887.962
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.646187
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 45027.238
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 5
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 4
+AuthoredOnMarkerCount: 2
+AuthoredOffMarkerCount: 1
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 45185.743
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.167308
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45185.772
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.167308
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF_TEST RECEIVED =====
+ElapsedMs: 45423.560
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.405941
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45423.592
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.405941
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+MotionFirstOnMarkerFrame: 4
+CollisionGroupBeforeMarker: 7
+CollisionGroupAfterMarker: 5
+ResolvedSourceUseTypeAtMarker: 3
+MarkerOwnedWindowMatched: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 45617.460
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.600220
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45617.488
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.600220
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 1
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF_TEST RECEIVED =====
+ElapsedMs: 45617.623
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.600220
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 45617.673
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.600220
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.206700
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45832.186
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.807160
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 49758.001
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 7
+AuthoredOnMarkerCount: 1
+AuthoredOffMarkerCount: 0
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 50033.037
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.449601
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 50033.062
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.449601
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 7
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 50247.910
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.655591
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 51596.248
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 5
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 4
+AuthoredOnMarkerCount: 2
+AuthoredOffMarkerCount: 1
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 51754.441
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.168592
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51754.469
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.168592
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF_TEST RECEIVED =====
+ElapsedMs: 51992.880
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.408537
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51992.909
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.408537
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+MotionFirstOnMarkerFrame: 4
+CollisionGroupBeforeMarker: 7
+CollisionGroupAfterMarker: 5
+ResolvedSourceUseTypeAtMarker: 3
+MarkerOwnedWindowMatched: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 52188.010
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.605125
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52188.036
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.605125
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 1
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF_TEST RECEIVED =====
+ElapsedMs: 52188.095
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.605125
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 52188.117
+Actor: PC_Hero
+Action: 4
+AniPhase: 1
+StateTime: 0.605125
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.100900
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52396.072
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 4
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.804682
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 66156.621
+Actor: Boar
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 3
+Contains_G3AB_COL_TEST: 0
+MarkerFrame: -1
+AuthoredOnMarkerCount: 0
+AuthoredOffMarkerCount: 0
+RightHandSourceResolved: 1
+ResolvedSource: Fist
+ResolvedSourceUseType: 8
+ResolvedSourceCollisionGroup: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 66407.315
+Entity: Fist
+ChangedEntityAddress: E7012E10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 4.893382
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 66933.351
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 5
+Contains_G3AB_COL_TEST: 1
+MarkerFrame: 4
+AuthoredOnMarkerCount: 2
+AuthoredOffMarkerCount: 1
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 67074.054
+Actor: PC_Hero
+Action: 5
+AniPhase: 1
+StateTime: 0.160592
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 67074.083
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 5
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.160592
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 0
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF_TEST RECEIVED =====
+ElapsedMs: 67309.705
+Actor: PC_Hero
+Action: 5
+AniPhase: 1
+StateTime: 0.400730
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 67309.735
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 5
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.400730
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+MotionFirstOnMarkerFrame: 4
+CollisionGroupBeforeMarker: 7
+CollisionGroupAfterMarker: 5
+ResolvedSourceUseTypeAtMarker: 3
+MarkerOwnedWindowMatched: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 67508.988
+Actor: PC_Hero
+Action: 5
+AniPhase: 1
+StateTime: 0.604283
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 67509.015
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 5
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.604283
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 3
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+QuickStatePositionBeforeMarker: 1
+QuickStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF_TEST RECEIVED =====
+ElapsedMs: 67509.069
+Actor: PC_Hero
+Action: 5
+AniPhase: 1
+StateTime: 0.604283
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF_TEST
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 67509.095
+Actor: PC_Hero
+Action: 5
+AniPhase: 1
+StateTime: 0.604283
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+RightHandSourceResolved: 1
+ResolvedSource: It_2H_Sword_Flamberge
+ResolvedSourceUseType: 3
+ResolvedSourceCollisionGroup: 7
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.101300
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 67727.754
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 5
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.808441
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 68801.156
+Entity: Fist
+ChangedEntityAddress: E7012E10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.990449
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+Script_FrameCollisionTest unloading.
