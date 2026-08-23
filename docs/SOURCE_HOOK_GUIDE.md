@@ -403,6 +403,25 @@ StatePosition 0 -> 1 bookkeeping; the second genuine ON preserved 1 -> 1.
 This validates reuse of the occurrence core across Normal and Quick while
 keeping callback-family adapters explicit. It does not make Whirl eligible.
 
+### v0.14 LEFT-first candidate
+
+Source inspection now confirms that the left-hand operation is not a different
+collision primitive. Jackydima's current `Script_AttackCollision` resolves
+`gESlot_LeftHand`, requests `Item_Attack`, and clears that entity's triggered
+list. Its Dual Power paths perform the corresponding operations on both slot
+entities, and NewBalance `FixDualOneHanded` clears the two lists separately.
+Therefore BOTH should be represented as a coordinated source set rather than
+as a singular synthetic source.
+
+The v0.14 candidate refactors the validated singular record into two fixed slot
+snapshots and a two-bit active mask. It recognizes the preserved RIGHT alias
+`G3AB_COL_TEST`, provisional LEFT `G3AB_COL_LEFT_TEST`, and existing OFF.
+RIGHT/LEFT replace the exact marker-owned active set; OFF closes it. Authored
+occurrence counts are independent per opcode. The callback preflight requires
+every source named anywhere in the exact motion, preventing partial ownership
+when a required slot is absent. BOTH remains disabled pending isolated LEFT and
+RIGHT regression logs.
+
 ## 11. Current Marker-Control Research Pattern
 
 At callback entry / Hit start:

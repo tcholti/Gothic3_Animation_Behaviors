@@ -517,6 +517,16 @@ Current proposed responsibilities:
 - OFF does not clear lists by itself; the next source marker performs the
   rearm.
 
+Implementation staging now makes the proposal concrete without freezing the
+production names. The v0.14 candidate keeps `G3AB_COL_TEST` as RIGHT for
+regression compatibility and adds `G3AB_COL_LEFT_TEST`. RIGHT and LEFT replace
+the exact active source set owned by the current marked execution; selecting
+LEFT after RIGHT therefore retires only marker-owned RIGHT. OFF retires the
+whole set. The actor record is two equipped-source pointers plus a two-bit mask,
+and the cached occurrence budget has separate RIGHT/LEFT/OFF counters. BOTH is
+not recognized yet, but the fixed source-set representation is intentionally
+ready for it after LEFT and RIGHT validation.
+
 There is no separate generic ON marker. "ON" is only shorthand for the
 activation behavior already carried by RIGHT/LEFT/BOTH. A multi-contact file
 can therefore author RIGHT at the first contact, OFF after that swing, and

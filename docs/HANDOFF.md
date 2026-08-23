@@ -159,6 +159,14 @@ Quick StatePosition 0 -> 1; second genuine ON preserved 1 -> 1. The targeted
 QuickAttackL damaged the opponent twice. v0.13 is therefore validated for this
 repeated-marker schedule in both Normal and Quick callback families.
 
+The current unvalidated source candidate is v0.14. It preserves
+`G3AB_COL_TEST` as RIGHT, adds provisional `G3AB_COL_LEFT_TEST`, and refactors
+the actor execution state to fixed right/left slot snapshots plus a two-bit
+active mask. RIGHT/LEFT are exact sets, OFF closes the complete marker-owned
+set, and occurrence budgets are separate per opcode. Exact-motion preflight
+leaves the original callback active if any required slot is missing. BOTH is
+intentionally disabled until LEFT and preserved RIGHT pass runtime tests.
+
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
 ## 8. QuickAttack Finding and Validated Fix
@@ -308,11 +316,12 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with v0.13 unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
-2. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-3. add collision callback adapters one family at a time;
-4. freeze marker vocabulary and migrate the validated collision core into `Script_G3AnimationBehaviors`;
-5. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. build v0.14, test `G3AB_COL_LEFT_TEST` on a known native left-source Dual Normal motion, then regress the existing RIGHT marker fixture; do not enable BOTH before both logs pass;
+2. enable and validate BOTH using the already-fixed two-source representation, including exact-set transitions among RIGHT, LEFT, BOTH, and OFF;
+3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+5. add collision callback adapters one family at a time, freeze marker vocabulary, and migrate the validated core into `Script_G3AnimationBehaviors`;
+6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 

@@ -390,6 +390,27 @@ Exact restoration and cleanup rules must be proven before marker names freeze.
 A same-source double attack simply repeats that source marker after OFF; for
 example, RIGHT -> OFF -> RIGHT.
 
+### Staged source-set prototype
+
+The next candidate implements the agreed source-set core before adding more
+attack callbacks:
+
+- existing `G3AB_COL_TEST` remains the provisional RIGHT alias so the proven
+  Normal/Quick fixtures remain valid;
+- provisional `G3AB_COL_LEFT_TEST` selects the equipped left-hand item;
+- RIGHT and LEFT have exact-set semantics: selecting one retires the other
+  source only when that other source is owned by the same marked execution;
+- OFF retires the complete marker-owned set and never clears a triggered list;
+- BOTH remains deliberately unrecognized until LEFT and preserved RIGHT pass
+  runtime validation.
+
+The runtime record is a fixed pair of equipped entity pointers plus a two-bit
+active-source mask. Occurrence budgets are kept independently for RIGHT, LEFT,
+and OFF. This is bounded actor-local state updated only by callbacks and
+reserved frame effects; it adds no per-frame actor/world scan and no dynamic
+container per contact. If the exact motion requires a slot that is absent, the
+attack-family callback is left native rather than partially taking ownership.
+
 The first OFF proof must use distinct targets because an already visited target
 cannot reveal whether collision remained active. Use an identical horizontal
 2H sweep as ON-only control and ON -> OFF variant; later wolves crossed by the

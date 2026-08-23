@@ -23,7 +23,27 @@ static LARGE_INTEGER g_StartCounter = {};
 static LARGE_INTEGER g_Frequency = {};
 
 static char const *const g_CollisionOnMarker = "G3AB_COL_TEST";
+static char const *const g_CollisionLeftMarker = "G3AB_COL_LEFT_TEST";
 static char const *const g_CollisionOffMarker = "G3AB_COL_OFF_TEST";
+
+enum MarkerOpcode
+{
+    MarkerOpcode_Right = 0,
+    MarkerOpcode_Left = 1,
+    MarkerOpcode_Off = 2,
+    MarkerOpcode_Count = 3,
+    MarkerOpcode_Invalid = -1
+};
+
+static unsigned int const SourceMask_None = 0;
+static unsigned int const SourceMask_Right = 1u << 0;
+static unsigned int const SourceMask_Left = 1u << 1;
+
+struct EquippedCollisionSources
+{
+    eCEntity *rightInstance;
+    eCEntity *leftInstance;
+};
 
 // Last animation name logged per actor.
 // Diagnostic only; it prevents the v0.5 per-frame suppression spam.
@@ -37,9 +57,9 @@ struct CachedMarkerInfo
     bool foundMatchingMotion;
     bool markerPresent;
     GEInt frameEffectCount;
-    GEInt markerFrame;
-    GEInt onMarkerCount;
-    GEInt offMarkerCount;
+    GEInt firstMarkerFrames[MarkerOpcode_Count];
+    GEInt markerCounts[MarkerOpcode_Count];
+    unsigned int requiredSourceMask;
 };
 
 static std::unordered_map<std::string, CachedMarkerInfo> g_MarkerCache;
@@ -50,7 +70,8 @@ static std::unordered_map<std::string, CachedMarkerInfo> g_MarkerCache;
 // a very small wall-clock window.
 struct LastAcceptedMarkerDispatch
 {
-    eCEntity *sourceInstance;
+    eCEntity *rightSourceInstance;
+    eCEntity *leftSourceInstance;
     std::string animationName;
     std::string markerName;
     GEInt action;
@@ -61,30 +82,32 @@ struct LastAcceptedMarkerDispatch
 
 static std::unordered_map<eCEntity *, LastAcceptedMarkerDispatch> g_LastAcceptedMarkerDispatchByActor;
 
-// v0.13 adds a second guard for interleaved marker replay. The exact motion
-// scan supplies the authored ON/OFF counts once, then each actor keeps only a
-// small execution record. No actor/world scan and no per-frame work is needed.
+// The occurrence guard rejects interleaved marker replay. The exact motion
+// scan supplies the authored RIGHT/LEFT/OFF counts once, then each actor keeps
+// only a small execution record. No actor/world scan or per-frame work is
+// needed.
 struct MarkerExecutionBudget
 {
-    eCEntity *sourceInstance;
+    eCEntity *rightSourceInstance;
+    eCEntity *leftSourceInstance;
     std::string animationName;
     GEInt action;
     GEInt phase;
-    GEInt authoredOnCount;
-    GEInt authoredOffCount;
-    GEInt acceptedOnCount;
-    GEInt acceptedOffCount;
+    GEInt authoredCounts[MarkerOpcode_Count];
+    GEInt acceptedCounts[MarkerOpcode_Count];
     GEFloat lastMarkerStateTime;
 };
 
 static std::unordered_map<eCEntity *, MarkerExecutionBudget> g_MarkerExecutionBudgetByActor;
 
-// OFF may only close a weapon collision window opened by this prototype for
-// the same actor/source/motion/action/phase. Natural engine reset and explicit
-// OFF both retire the record through the SetCollisionGroup hook.
+// OFF may only close a source set opened by this prototype for the same
+// actor/slot-snapshot/motion/action/phase. Natural engine reset retires each
+// active source bit through the SetCollisionGroup hook.
 struct MarkerOwnedCollisionWindow
 {
-    eCEntity *sourceInstance;
+    eCEntity *rightSourceInstance;
+    eCEntity *leftSourceInstance;
+    unsigned int activeSourceMask;
     std::string animationName;
     GEInt action;
     GEInt phase;
@@ -101,9 +124,9 @@ struct FrameEffectScanResult
     bool layoutLookedValid;
     bool foundMarker;
     GEInt count;
-    GEInt markerFrame;
-    GEInt onMarkerCount;
-    GEInt offMarkerCount;
+    GEInt firstMarkerFrames[MarkerOpcode_Count];
+    GEInt markerCounts[MarkerOpcode_Count];
+    unsigned int requiredSourceMask;
 };
 
 struct CurrentMotionMarkerResult
@@ -111,9 +134,9 @@ struct CurrentMotionMarkerResult
     bool foundMatchingMotion;
     bool markerPresent;
     GEInt frameEffectCount;
-    GEInt markerFrame;
-    GEInt onMarkerCount;
-    GEInt offMarkerCount;
+    GEInt firstMarkerFrames[MarkerOpcode_Count];
+    GEInt markerCounts[MarkerOpcode_Count];
+    unsigned int requiredSourceMask;
 };
 
 // -----------------------------------------------------------------------------
@@ -158,7 +181,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.13 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.14 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -168,9 +191,9 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "NO P0/P1/P2 restriction.\n");
 
-        std::fprintf(g_pLog, "Normal eligibility: current animation contains _Attack_Hit_ and G3AB_COL_TEST.\n");
+        std::fprintf(g_pLog, "Normal eligibility: current animation contains _Attack_Hit_ and a RIGHT/LEFT source marker.\n");
 
-        std::fprintf(g_pLog, "Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + G3AB_COL_TEST.\n");
+        std::fprintf(g_pLog, "Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT source marker.\n");
 
         std::fprintf(g_pLog, "Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.\n");
 
@@ -178,9 +201,15 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "FIST CAUSAL TEST: ClearTriggeredList remains active.\n");
 
-        std::fprintf(g_pLog, "Prototype source resolver: current actor RIGHT-HAND equipped item.\n");
+        std::fprintf(g_pLog, "G3AB_COL_TEST is the preserved RIGHT-hand marker alias.\n");
 
-        std::fprintf(g_pLog, "If a marked animation has no right-hand item, its original attack callback is NOT suppressed.\n");
+        std::fprintf(g_pLog, "G3AB_COL_LEFT_TEST is the provisional LEFT-hand marker.\n");
+
+        std::fprintf(g_pLog, "RIGHT and LEFT use exact-set semantics: the selected source replaces the previous marker-owned set.\n");
+
+        std::fprintf(g_pLog, "BOTH is intentionally disabled until LEFT and preserved RIGHT pass runtime validation.\n");
+
+        std::fprintf(g_pLog, "If any source required by the exact motion is missing, its original attack callback is NOT suppressed.\n");
 
         std::fprintf(g_pLog, "This protects unarmed/monster attacks until body-source resolution is implemented.\n");
 
@@ -200,15 +229,15 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.\n");
 
-        std::fprintf(g_pLog, "Marked Normal/Quick collision behavior remains the validated v0.9 behavior.\n\n");
+        std::fprintf(g_pLog, "Preserved RIGHT Normal/Quick behavior remains the validated v0.9 path; LEFT is new and provisional.\n\n");
 
-        std::fprintf(g_pLog, "v0.13 preserves v0.11 same-update marker deduplication for ON and OFF.\n");
+        std::fprintf(g_pLog, "v0.14 preserves same-update marker deduplication for RIGHT, LEFT, and OFF.\n");
 
-        std::fprintf(g_pLog, "Dedup key: actor + source + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
+        std::fprintf(g_pLog, "Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
 
-        std::fprintf(g_pLog, "v0.13 adds cached authored-occurrence budgets per exact motion and actor execution.\n");
+        std::fprintf(g_pLog, "Authored-occurrence budgets are cached separately for RIGHT, LEFT, and OFF.\n");
 
-        std::fprintf(g_pLog, "Budget key: actor + source + motion + action + phase; state-time rollback starts a new execution.\n");
+        std::fprintf(g_pLog, "Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase; state-time rollback starts a new execution.\n");
 
         std::fprintf(g_pLog, "Natural collision reset outside the owning Hit execution retires the actor budget.\n");
 
@@ -221,6 +250,59 @@ static void OpenLog()
 static bool Contains(char const *text, char const *token)
 {
     return text != nullptr && token != nullptr && std::strstr(text, token) != nullptr;
+}
+
+static MarkerOpcode GetMarkerOpcode(char const *effectName)
+{
+    if (effectName == nullptr)
+        return MarkerOpcode_Invalid;
+
+    if (std::strcmp(effectName, g_CollisionOnMarker) == 0)
+        return MarkerOpcode_Right;
+
+    if (std::strcmp(effectName, g_CollisionLeftMarker) == 0)
+        return MarkerOpcode_Left;
+
+    if (std::strcmp(effectName, g_CollisionOffMarker) == 0)
+        return MarkerOpcode_Off;
+
+    return MarkerOpcode_Invalid;
+}
+
+static char const *GetMarkerOpcodeName(MarkerOpcode opcode)
+{
+    switch (opcode)
+    {
+        case MarkerOpcode_Right: return "RIGHT";
+        case MarkerOpcode_Left:  return "LEFT";
+        case MarkerOpcode_Off:   return "OFF";
+        default:                 return "INVALID";
+    }
+}
+
+static unsigned int GetMarkerDesiredSourceMask(MarkerOpcode opcode)
+{
+    switch (opcode)
+    {
+        case MarkerOpcode_Right: return SourceMask_Right;
+        case MarkerOpcode_Left:  return SourceMask_Left;
+        default:                 return SourceMask_None;
+    }
+}
+
+static bool IsSourceMarker(MarkerOpcode opcode)
+{
+    return opcode == MarkerOpcode_Right || opcode == MarkerOpcode_Left;
+}
+
+static GEInt GetAuthoredMarkerCount(CurrentMotionMarkerResult const &decision, MarkerOpcode opcode)
+{
+    return opcode >= 0 && opcode < MarkerOpcode_Count ? decision.markerCounts[opcode] : 0;
+}
+
+static GEInt GetFirstAuthoredMarkerFrame(CurrentMotionMarkerResult const &decision, MarkerOpcode opcode)
+{
+    return opcode >= 0 && opcode < MarkerOpcode_Count ? decision.firstMarkerFrames[opcode] : -1;
 }
 
 static char const *BaseName(char const *path)
@@ -255,7 +337,7 @@ static GEFloat AbsoluteFloat(GEFloat value)
     return value < 0.0f ? -value : value;
 }
 
-static bool IsDuplicateSameUpdateMarker(eCEntity *actorInstance, eCEntity *sourceInstance,
+static bool IsDuplicateSameUpdateMarker(eCEntity *actorInstance, EquippedCollisionSources const &sources,
                                         char const *animationName, char const *markerName,
                                         GEInt action, GEInt phase, GEFloat stateTime,
                                         double elapsedMs, GEFloat &stateTimeDelta,
@@ -274,7 +356,8 @@ static bool IsDuplicateSameUpdateMarker(eCEntity *actorInstance, eCEntity *sourc
     stateTimeDelta = AbsoluteFloat(stateTime - previous.stateTime);
     elapsedMsDelta = elapsedMs - previous.elapsedMs;
 
-    return previous.sourceInstance == sourceInstance
+    return previous.rightSourceInstance == sources.rightInstance
+        && previous.leftSourceInstance == sources.leftInstance
         && SameFileName(previous.animationName.c_str(), animationName)
         && previous.markerName == (markerName != nullptr ? markerName : "")
         && previous.action == action
@@ -284,14 +367,15 @@ static bool IsDuplicateSameUpdateMarker(eCEntity *actorInstance, eCEntity *sourc
         && elapsedMsDelta <= 5.0;
 }
 
-static void RememberAcceptedMarker(eCEntity *actorInstance, eCEntity *sourceInstance,
+static void RememberAcceptedMarker(eCEntity *actorInstance, EquippedCollisionSources const &sources,
                                    char const *animationName, char const *markerName,
                                    GEInt action, GEInt phase, GEFloat stateTime,
                                    double elapsedMs)
 {
     LastAcceptedMarkerDispatch record = {};
 
-    record.sourceInstance = sourceInstance;
+    record.rightSourceInstance = sources.rightInstance;
+    record.leftSourceInstance = sources.leftInstance;
     record.animationName = animationName != nullptr ? animationName : "";
     record.markerName = markerName != nullptr ? markerName : "";
     record.action = action;
@@ -311,14 +395,14 @@ static void ForgetMarkerExecutionForActor(eCEntity *actorInstance)
     g_LastAcceptedMarkerDispatchByActor.erase(actorInstance);
 }
 
-static bool TryConsumeAuthoredMarkerOccurrence(eCEntity *actorInstance, eCEntity *sourceInstance,
+static bool TryConsumeAuthoredMarkerOccurrence(eCEntity *actorInstance, EquippedCollisionSources const &sources,
                                                char const *animationName, GEInt action, GEInt phase,
-                                               GEFloat stateTime, bool isOnMarker,
-                                               GEInt authoredOnCount, GEInt authoredOffCount,
+                                               GEFloat stateTime, MarkerOpcode opcode,
+                                               CurrentMotionMarkerResult const &decision,
                                                GEInt &authoredCount, GEInt &acceptedBefore,
                                                GEInt &acceptedAfter, bool &executionReset)
 {
-    authoredCount = isOnMarker ? authoredOnCount : authoredOffCount;
+    authoredCount = GetAuthoredMarkerCount(decision, opcode);
     acceptedBefore = 0;
     acceptedAfter = 0;
     executionReset = false;
@@ -331,27 +415,35 @@ static bool TryConsumeAuthoredMarkerOccurrence(eCEntity *actorInstance, eCEntity
     {
         MarkerExecutionBudget const &previous = found->second;
 
-        startsNewExecution = previous.sourceInstance != sourceInstance
+        startsNewExecution = previous.rightSourceInstance != sources.rightInstance
+                          || previous.leftSourceInstance != sources.leftInstance
                           || !SameFileName(previous.animationName.c_str(), animationName)
                           || previous.action != action
                           || previous.phase != phase
-                          || previous.authoredOnCount != authoredOnCount
-                          || previous.authoredOffCount != authoredOffCount
                           || stateTime + 0.000001f < previous.lastMarkerStateTime;
+
+        for (GEInt i = 0; !startsNewExecution && i < MarkerOpcode_Count; ++i)
+        {
+            startsNewExecution = previous.authoredCounts[i] != decision.markerCounts[i];
+        }
     }
 
     if (startsNewExecution)
     {
         MarkerExecutionBudget record = {};
 
-        record.sourceInstance = sourceInstance;
+        record.rightSourceInstance = sources.rightInstance;
+        record.leftSourceInstance = sources.leftInstance;
         record.animationName = animationName != nullptr ? animationName : "";
         record.action = action;
         record.phase = phase;
-        record.authoredOnCount = authoredOnCount;
-        record.authoredOffCount = authoredOffCount;
-        record.acceptedOnCount = 0;
-        record.acceptedOffCount = 0;
+
+        for (GEInt i = 0; i < MarkerOpcode_Count; ++i)
+        {
+            record.authoredCounts[i] = decision.markerCounts[i];
+            record.acceptedCounts[i] = 0;
+        }
+
         record.lastMarkerStateTime = stateTime;
 
         g_MarkerExecutionBudgetByActor[actorInstance] = record;
@@ -360,7 +452,11 @@ static bool TryConsumeAuthoredMarkerOccurrence(eCEntity *actorInstance, eCEntity
     }
 
     MarkerExecutionBudget &record = found->second;
-    GEInt &acceptedCount = isOnMarker ? record.acceptedOnCount : record.acceptedOffCount;
+
+    if (opcode < 0 || opcode >= MarkerOpcode_Count)
+        return false;
+
+    GEInt &acceptedCount = record.acceptedCounts[opcode];
 
     acceptedBefore = acceptedCount;
     acceptedAfter = acceptedCount;
@@ -375,12 +471,15 @@ static bool TryConsumeAuthoredMarkerOccurrence(eCEntity *actorInstance, eCEntity
     return true;
 }
 
-static void RememberMarkerOwnedWindow(eCEntity *actorInstance, eCEntity *sourceInstance,
-                                      char const *animationName, GEInt action, GEInt phase)
+static void RememberMarkerOwnedWindow(eCEntity *actorInstance, EquippedCollisionSources const &sources,
+                                      unsigned int activeSourceMask, char const *animationName,
+                                      GEInt action, GEInt phase)
 {
     MarkerOwnedCollisionWindow record = {};
 
-    record.sourceInstance = sourceInstance;
+    record.rightSourceInstance = sources.rightInstance;
+    record.leftSourceInstance = sources.leftInstance;
+    record.activeSourceMask = activeSourceMask;
     record.animationName = animationName != nullptr ? animationName : "";
     record.action = action;
     record.phase = phase;
@@ -388,20 +487,25 @@ static void RememberMarkerOwnedWindow(eCEntity *actorInstance, eCEntity *sourceI
     g_MarkerOwnedWindowByActor[actorInstance] = record;
 }
 
-static bool HasMatchingMarkerOwnedWindow(eCEntity *actorInstance, eCEntity *sourceInstance,
-                                         char const *animationName, GEInt action, GEInt phase)
+static MarkerOwnedCollisionWindow *FindMatchingMarkerOwnedWindow(eCEntity *actorInstance,
+                                                                 EquippedCollisionSources const &sources,
+                                                                 char const *animationName,
+                                                                 GEInt action, GEInt phase)
 {
     auto found = g_MarkerOwnedWindowByActor.find(actorInstance);
 
     if (found == g_MarkerOwnedWindowByActor.end())
-        return false;
+        return nullptr;
 
-    MarkerOwnedCollisionWindow const &record = found->second;
+    MarkerOwnedCollisionWindow &record = found->second;
 
-    return record.sourceInstance == sourceInstance
-        && SameFileName(record.animationName.c_str(), animationName)
-        && record.action == action
-        && record.phase == phase;
+    bool matches = record.rightSourceInstance == sources.rightInstance
+                && record.leftSourceInstance == sources.leftInstance
+                && SameFileName(record.animationName.c_str(), animationName)
+                && record.action == action
+                && record.phase == phase;
+
+    return matches ? &record : nullptr;
 }
 
 static void ForgetMarkerOwnedWindowForActor(eCEntity *actorInstance)
@@ -428,21 +532,46 @@ static bool MarkerWindowStillMatchesActorExecution(eCEntity *actorInstance,
         && record.phase == currentPhase;
 }
 
-static void ForgetMarkerOwnedWindowsForSource(eCEntity *sourceInstance)
+static void RetireMarkerOwnedSource(eCEntity *sourceInstance)
 {
     if (sourceInstance == nullptr)
         return;
 
     for (auto entry = g_MarkerOwnedWindowByActor.begin(); entry != g_MarkerOwnedWindowByActor.end();)
     {
-        if (entry->second.sourceInstance == sourceInstance)
+        MarkerOwnedCollisionWindow &record = entry->second;
+
+        bool retiredSource = false;
+
+        if ((record.activeSourceMask & SourceMask_Right) != 0
+            && record.rightSourceInstance == sourceInstance)
         {
-            if (!MarkerWindowStillMatchesActorExecution(entry->first, entry->second))
+            record.activeSourceMask &= ~SourceMask_Right;
+            retiredSource = true;
+        }
+
+        if ((record.activeSourceMask & SourceMask_Left) != 0
+            && record.leftSourceInstance == sourceInstance)
+        {
+            record.activeSourceMask &= ~SourceMask_Left;
+            retiredSource = true;
+        }
+
+        if (retiredSource)
+        {
+            if (!MarkerWindowStillMatchesActorExecution(entry->first, record))
             {
                 ForgetMarkerExecutionForActor(entry->first);
             }
 
-            entry = g_MarkerOwnedWindowByActor.erase(entry);
+            if (record.activeSourceMask == SourceMask_None)
+            {
+                entry = g_MarkerOwnedWindowByActor.erase(entry);
+            }
+            else
+            {
+                ++entry;
+            }
         }
         else
         {
@@ -470,18 +599,39 @@ static bool IsQuickAttackHit(Entity &actor)
     return IsQuickAttackAction(action) && actor.GetCurrentAniPhase() == gEPhase_Hit;
 }
 
-static Entity GetPrototypeCollisionSource(Entity &actor)
+static EquippedCollisionSources GetEquippedCollisionSources(Entity &actor)
 {
-    // The prototype intentionally supports all actors/weapon types but only
-    // one source-resolution rule:
-    //
-    //     G3AB_COL_TEST / G3AB_COL_OFF_TEST -> actor's current right-hand
-    //     equipped item.
-    //
-    // This covers the human melee weapon families we can immediately test
-    // (2H, Staff, 1H, etc.) without pretending that monster body attacks
-    // are already solved.
-    return actor.Inventory.GetItemFromSlot(gESlot_RightHand);
+    EquippedCollisionSources result = {};
+
+    Entity right = actor.Inventory.GetItemFromSlot(gESlot_RightHand);
+    Entity left = actor.Inventory.GetItemFromSlot(gESlot_LeftHand);
+
+    result.rightInstance = right != None ? right.GetInstance() : nullptr;
+    result.leftInstance = left != None ? left.GetInstance() : nullptr;
+
+    return result;
+}
+
+static bool HasRequiredCollisionSources(EquippedCollisionSources const &sources, unsigned int requiredMask)
+{
+    if ((requiredMask & SourceMask_Right) != 0 && sources.rightInstance == nullptr)
+        return false;
+
+    if ((requiredMask & SourceMask_Left) != 0 && sources.leftInstance == nullptr)
+        return false;
+
+    return true;
+}
+
+static eCEntity *GetSourceInstance(EquippedCollisionSources const &sources, unsigned int sourceMask)
+{
+    if (sourceMask == SourceMask_Right)
+        return sources.rightInstance;
+
+    if (sourceMask == SourceMask_Left)
+        return sources.leftInstance;
+
+    return nullptr;
 }
 
 static gEUseType GetCollisionSourceUseType(Entity &source)
@@ -595,9 +745,13 @@ static FrameEffectScanResult ScanFrameEffects(eCResourceAnimationMotion_PS const
     result.layoutLookedValid = false;
     result.foundMarker = false;
     result.count = 0;
-    result.markerFrame = -1;
-    result.onMarkerCount = 0;
-    result.offMarkerCount = 0;
+    result.requiredSourceMask = SourceMask_None;
+
+    for (GEInt i = 0; i < MarkerOpcode_Count; ++i)
+    {
+        result.firstMarkerFrames[i] = -1;
+        result.markerCounts[i] = 0;
+    }
 
     if (motion == nullptr)
         return result;
@@ -628,19 +782,22 @@ static FrameEffectScanResult ScanFrameEffects(eCResourceAnimationMotion_PS const
 
         char const *effectName = effectString->GetText();
 
-        if (effectName != nullptr && std::strcmp(effectName, g_CollisionOnMarker) == 0)
+        MarkerOpcode opcode = GetMarkerOpcode(effectName);
+
+        if (opcode == MarkerOpcode_Invalid)
+            continue;
+
+        ++result.markerCounts[opcode];
+
+        if (result.firstMarkerFrames[opcode] < 0)
+        {
+            result.firstMarkerFrames[opcode] = static_cast<GEInt>(authoredFrame);
+        }
+
+        if (IsSourceMarker(opcode))
         {
             result.foundMarker = true;
-            ++result.onMarkerCount;
-
-            if (result.markerFrame < 0)
-            {
-                result.markerFrame = static_cast<GEInt>(authoredFrame);
-            }
-        }
-        else if (effectName != nullptr && std::strcmp(effectName, g_CollisionOffMarker) == 0)
-        {
-            ++result.offMarkerCount;
+            result.requiredSourceMask |= GetMarkerDesiredSourceMask(opcode);
         }
     }
 
@@ -654,9 +811,13 @@ static CurrentMotionMarkerResult ScanCurrentMotionForMarker(Entity &actor)
     result.foundMatchingMotion = false;
     result.markerPresent = false;
     result.frameEffectCount = 0;
-    result.markerFrame = -1;
-    result.onMarkerCount = 0;
-    result.offMarkerCount = 0;
+    result.requiredSourceMask = SourceMask_None;
+
+    for (GEInt i = 0; i < MarkerOpcode_Count; ++i)
+    {
+        result.firstMarkerFrames[i] = -1;
+        result.markerCounts[i] = 0;
+    }
 
     eCEntity *instance = actor.GetInstance();
 
@@ -700,11 +861,13 @@ static CurrentMotionMarkerResult ScanCurrentMotionForMarker(Entity &actor)
 
         result.markerPresent = scan.layoutLookedValid && scan.foundMarker;
 
-        result.markerFrame = scan.markerFrame;
+        result.requiredSourceMask = scan.requiredSourceMask;
 
-        result.onMarkerCount = scan.onMarkerCount;
-
-        result.offMarkerCount = scan.offMarkerCount;
+        for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
+        {
+            result.firstMarkerFrames[opcode] = scan.firstMarkerFrames[opcode];
+            result.markerCounts[opcode] = scan.markerCounts[opcode];
+        }
 
         return result;
     }
@@ -730,11 +893,13 @@ static CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor)
 
         result.frameEffectCount = found->second.frameEffectCount;
 
-        result.markerFrame = found->second.markerFrame;
+        result.requiredSourceMask = found->second.requiredSourceMask;
 
-        result.onMarkerCount = found->second.onMarkerCount;
-
-        result.offMarkerCount = found->second.offMarkerCount;
+        for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
+        {
+            result.firstMarkerFrames[opcode] = found->second.firstMarkerFrames[opcode];
+            result.markerCounts[opcode] = found->second.markerCounts[opcode];
+        }
 
         return result;
     }
@@ -749,11 +914,13 @@ static CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor)
 
     cached.frameEffectCount = scanned.frameEffectCount;
 
-    cached.markerFrame = scanned.markerFrame;
+    cached.requiredSourceMask = scanned.requiredSourceMask;
 
-    cached.onMarkerCount = scanned.onMarkerCount;
-
-    cached.offMarkerCount = scanned.offMarkerCount;
+    for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
+    {
+        cached.firstMarkerFrames[opcode] = scanned.firstMarkerFrames[opcode];
+        cached.markerCounts[opcode] = scanned.markerCounts[opcode];
+    }
 
     g_MarkerCache[currentName] = cached;
 
@@ -787,7 +954,28 @@ static bool ShouldLogOwnership(Entity &actor)
     return true;
 }
 
-static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const &decision, Entity &source,
+static void LogResolvedSource(char const *label, eCEntity *sourceInstance)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "%sSourceResolved: %d\n", label, sourceInstance != nullptr ? 1 : 0);
+
+    if (sourceInstance == nullptr)
+        return;
+
+    Entity source(sourceInstance);
+
+    std::fprintf(g_pLog, "%sSource: %s\n", label, source.GetName().GetText());
+    std::fprintf(g_pLog, "%sSourceAddress: %p\n", label, static_cast<void *>(sourceInstance));
+    std::fprintf(g_pLog, "%sSourceUseType: %d\n", label,
+                 static_cast<GEInt>(GetCollisionSourceUseType(source)));
+    std::fprintf(g_pLog, "%sSourceCollisionGroup: %d\n", label,
+                 static_cast<GEInt>(source.GetCollisionGroup()));
+}
+
+static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const &decision,
+                                 EquippedCollisionSources const &sources,
                                  bool willSuppress)
 {
     if (g_pLog == nullptr)
@@ -807,32 +995,27 @@ static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const 
 
     std::fprintf(g_pLog, "FrameEffectCount: %d\n", decision.frameEffectCount);
 
-    std::fprintf(g_pLog, "Contains_G3AB_COL_TEST: %d\n", decision.markerPresent ? 1 : 0);
+    std::fprintf(g_pLog, "ContainsReservedSourceMarker: %d\n", decision.markerPresent ? 1 : 0);
+    std::fprintf(g_pLog, "RequiredSourceMask: %u\n", decision.requiredSourceMask);
 
-    std::fprintf(g_pLog, "MarkerFrame: %d\n", decision.markerFrame);
-
-    std::fprintf(g_pLog, "AuthoredOnMarkerCount: %d\n", decision.onMarkerCount);
-
-    std::fprintf(g_pLog, "AuthoredOffMarkerCount: %d\n", decision.offMarkerCount);
-
-    std::fprintf(g_pLog, "RightHandSourceResolved: %d\n", source != None ? 1 : 0);
-
-    if (source != None)
+    for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
     {
-        std::fprintf(g_pLog, "ResolvedSource: %s\n", source.GetName().GetText());
-
-        std::fprintf(g_pLog, "ResolvedSourceUseType: %d\n", static_cast<GEInt>(GetCollisionSourceUseType(source)));
-
-        std::fprintf(g_pLog, "ResolvedSourceCollisionGroup: %d\n", static_cast<GEInt>(source.GetCollisionGroup()));
+        std::fprintf(g_pLog, "Authored%sMarkerCount: %d\n",
+                     GetMarkerOpcodeName(static_cast<MarkerOpcode>(opcode)), decision.markerCounts[opcode]);
+        std::fprintf(g_pLog, "First%sMarkerFrame: %d\n",
+                     GetMarkerOpcodeName(static_cast<MarkerOpcode>(opcode)), decision.firstMarkerFrames[opcode]);
     }
+
+    LogResolvedSource("RightHand", sources.rightInstance);
+    LogResolvedSource("LeftHand", sources.leftInstance);
 
     std::fprintf(g_pLog, "Decision: %s\n",
                  willSuppress ? "FRAME-CONTROLLED - suppress original timer callback"
                               : "LEGACY/NATIVE - call original timer callback");
 
-    if (decision.markerPresent && source == None)
+    if (decision.markerPresent && !HasRequiredCollisionSources(sources, decision.requiredSourceMask))
     {
-        std::fprintf(g_pLog, "Reason: marker exists but the prototype has no valid right-hand item source.\n");
+        std::fprintf(g_pLog, "Reason: at least one source required by the exact motion is missing.\n");
     }
 
     std::fprintf(g_pLog, "=====================================\n\n");
@@ -840,7 +1023,8 @@ static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const 
     std::fflush(g_pLog);
 }
 
-static void LogMarkerContext(char const *markerName, Entity &actor, Entity &source)
+static void LogMarkerContext(char const *markerName, MarkerOpcode opcode, Entity &actor,
+                             EquippedCollisionSources const &sources)
 {
     if (g_pLog == nullptr)
         return;
@@ -863,17 +1047,10 @@ static void LogMarkerContext(char const *markerName, Entity &actor, Entity &sour
                  static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>()));
 
     std::fprintf(g_pLog, "CurrentMovementAni: %s\n", ani.GetText());
+    std::fprintf(g_pLog, "MarkerOpcode: %s\n", GetMarkerOpcodeName(opcode));
 
-    std::fprintf(g_pLog, "RightHandSourceResolved: %d\n", source != None ? 1 : 0);
-
-    if (source != None)
-    {
-        std::fprintf(g_pLog, "ResolvedSource: %s\n", source.GetName().GetText());
-
-        std::fprintf(g_pLog, "ResolvedSourceUseType: %d\n", static_cast<GEInt>(GetCollisionSourceUseType(source)));
-
-        std::fprintf(g_pLog, "ResolvedSourceCollisionGroup: %d\n", static_cast<GEInt>(source.GetCollisionGroup()));
-    }
+    LogResolvedSource("RightHand", sources.rightInstance);
+    LogResolvedSource("LeftHand", sources.leftInstance);
 }
 
 // -----------------------------------------------------------------------------
@@ -894,7 +1071,7 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
 
     if (pThis != nullptr && pThis->GetCollisionGroup() != eECollisionGroup_Item_Attack)
     {
-        ForgetMarkerOwnedWindowsForSource(pThis);
+        RetireMarkerOwnedSource(pThis);
     }
 
     if (pThis == nullptr || g_pLog == nullptr)
@@ -943,8 +1120,8 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
 //     ANY weapon/use type.
 //     ANY P-position.
 //
-// A marked Attack_Hit is controlled only when the provisional right-hand
-// source resolver succeeds.
+// A marked Attack_Hit is controlled only when every equipped source required
+// by the exact motion can be resolved.
 //
 // If source cannot be resolved, original callback remains untouched.
 // -----------------------------------------------------------------------------
@@ -960,13 +1137,14 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 
     CurrentMotionMarkerResult decision = GetCurrentMarkerDecision(SelfEntity);
 
-    Entity source = GetPrototypeCollisionSource(SelfEntity);
+    EquippedCollisionSources sources = GetEquippedCollisionSources(SelfEntity);
 
-    bool willSuppress = decision.foundMatchingMotion && decision.markerPresent && source != None;
+    bool willSuppress = decision.foundMatchingMotion && decision.markerPresent
+                     && HasRequiredCollisionSources(sources, decision.requiredSourceMask);
 
     if (ShouldLogOwnership(SelfEntity))
     {
-        LogOwnershipDecision(SelfEntity, decision, source, willSuppress);
+        LogOwnershipDecision(SelfEntity, decision, sources, willSuppress);
     }
 
     if (willSuppress)
@@ -983,8 +1161,8 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 // v0.7 adds only the native Quick callback family.
 //
 // Exact Quick/QuickR/QuickL action and Hit phase replace filename-family
-// parsing for this path. Marker ownership and right-hand source resolution
-// remain identical to the proven Normal prototype behavior.
+// parsing for this path. Marker ownership and equipped-slot preflight remain
+// identical to the Normal path.
 // -----------------------------------------------------------------------------
 
 DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
@@ -998,13 +1176,14 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 
     CurrentMotionMarkerResult decision = GetCurrentMarkerDecision(SelfEntity);
 
-    Entity source = GetPrototypeCollisionSource(SelfEntity);
+    EquippedCollisionSources sources = GetEquippedCollisionSources(SelfEntity);
 
-    bool willSuppress = decision.foundMatchingMotion && decision.markerPresent && source != None;
+    bool willSuppress = decision.foundMatchingMotion && decision.markerPresent
+                     && HasRequiredCollisionSources(sources, decision.requiredSourceMask);
 
     if (ShouldLogOwnership(SelfEntity))
     {
-        LogOwnershipDecision(SelfEntity, decision, source, willSuppress);
+        LogOwnershipDecision(SelfEntity, decision, sources, willSuppress);
     }
 
     if (willSuppress)
@@ -1018,25 +1197,23 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 // -----------------------------------------------------------------------------
 // StartEffect
 //
-// G3AB_COL_TEST and G3AB_COL_OFF_TEST remain PROTOTYPE markers.
-// Their current right-source meanings are:
+// These remain PROTOTYPE markers. Their current meanings are:
 //
-//     ON  -> activate/rearm the current actor's right-hand equipped item.
-//     OFF -> close only a matching marker-owned weapon window.
+//     G3AB_COL_TEST      -> exact active set { RIGHT }.
+//     G3AB_COL_LEFT_TEST -> exact active set { LEFT }.
+//     G3AB_COL_OFF_TEST  -> exact active set { } for the matching window.
 //
-// It is deliberately NOT yet the final PRIMARY/SECONDARY/ALL vocabulary.
+// BOTH remains deliberately unrecognized until LEFT and preserved RIGHT are
+// validated independently.
 // -----------------------------------------------------------------------------
 
 static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
                                                bCMatrix const *a_pMatrix, GEBool a_bUnknown)
 {
     GELPCChar effectName = a_EffectName.GetText();
+    MarkerOpcode markerOpcode = GetMarkerOpcode(effectName);
 
-    bool isCollisionOnMarker = effectName != nullptr && std::strcmp(effectName, g_CollisionOnMarker) == 0;
-
-    bool isCollisionOffMarker = effectName != nullptr && std::strcmp(effectName, g_CollisionOffMarker) == 0;
-
-    if (!isCollisionOnMarker && !isCollisionOffMarker)
+    if (markerOpcode == MarkerOpcode_Invalid)
     {
         return Hook_StartEffect.GetOriginalFunction(&StartEffect_FrameCollisionTest)(a_EffectName, a_pEntity1,
                                                                                      a_pEntity2, a_pMatrix, a_bUnknown);
@@ -1044,7 +1221,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     // Reserved test marker is consumed even if the actor/source cannot be
     // resolved, so the engine never tries to find a real effect resource
-    // named G3AB_COL_TEST / G3AB_COL_OFF_TEST.
+    // named G3AB_COL_TEST / G3AB_COL_LEFT_TEST / G3AB_COL_OFF_TEST.
     if (a_pEntity1 == nullptr)
     {
         if (g_pLog != nullptr)
@@ -1062,10 +1239,9 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     }
 
     Entity actor(a_pEntity1);
+    EquippedCollisionSources sources = GetEquippedCollisionSources(actor);
 
-    Entity source = GetPrototypeCollisionSource(actor);
-
-    LogMarkerContext(effectName, actor, source);
+    LogMarkerContext(effectName, markerOpcode, actor, sources);
 
     bool isNormalAttackHit = IsAttackHit(actor);
 
@@ -1087,7 +1263,8 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     CurrentMotionMarkerResult decision = GetCurrentMarkerDecision(actor);
 
-    if (!decision.foundMatchingMotion || !decision.markerPresent)
+    if (!decision.foundMatchingMotion || !decision.markerPresent
+        || GetAuthoredMarkerCount(decision, markerOpcode) <= 0)
     {
         if (g_pLog != nullptr)
         {
@@ -1101,13 +1278,15 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         return nullptr;
     }
 
-    if (source == None)
+    if (!HasRequiredCollisionSources(sources, decision.requiredSourceMask))
     {
         if (g_pLog != nullptr)
         {
             std::fprintf(
                 g_pLog,
-                "MarkerAction: UNSUPPORTED SOURCE - no right-hand item; original attack-family callback was left active\n");
+                "MarkerAction: UNSUPPORTED SOURCE - exact motion requires a missing equipped slot; original attack-family callback was left active\n");
+
+            std::fprintf(g_pLog, "RequiredSourceMask: %u\n", decision.requiredSourceMask);
 
             std::fprintf(g_pLog, "=================================\n\n");
 
@@ -1131,7 +1310,7 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     double duplicateElapsedMsDelta = 0.0;
 
-    if (IsDuplicateSameUpdateMarker(a_pEntity1, source.GetInstance(), currentAnimation.GetText(), effectName,
+    if (IsDuplicateSameUpdateMarker(a_pEntity1, sources, currentAnimation.GetText(), effectName,
                                     markerAction, markerPhase, markerStateTime, markerElapsedMs,
                                     duplicateStateTimeDelta, duplicateElapsedMsDelta))
     {
@@ -1139,7 +1318,8 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         {
             std::fprintf(g_pLog, "MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED\n");
 
-            std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n", decision.markerFrame);
+            std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n",
+                         GetFirstAuthoredMarkerFrame(decision, markerOpcode));
 
             std::fprintf(g_pLog, "DuplicateStateTimeDelta: %.9f\n", duplicateStateTimeDelta);
 
@@ -1168,8 +1348,8 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     bool executionBudgetReset = false;
 
     bool occurrenceAccepted = TryConsumeAuthoredMarkerOccurrence(
-        a_pEntity1, source.GetInstance(), currentAnimation.GetText(), markerAction, markerPhase,
-        markerStateTime, isCollisionOnMarker, decision.onMarkerCount, decision.offMarkerCount,
+        a_pEntity1, sources, currentAnimation.GetText(), markerAction, markerPhase,
+        markerStateTime, markerOpcode, decision,
         authoredMarkerCount, acceptedMarkerCountBefore, acceptedMarkerCountAfter, executionBudgetReset);
 
     if (!occurrenceAccepted)
@@ -1202,43 +1382,57 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         return nullptr;
     }
 
-    GEInt beforeGroup = static_cast<GEInt>(source.GetCollisionGroup());
-
-    GEInt sourceUseType = static_cast<GEInt>(GetCollisionSourceUseType(source));
-
-    bool skipCollisionGroupForFist = IsFistCollisionSource(source);
-
-    if (isCollisionOffMarker)
+    if (markerOpcode == MarkerOpcode_Off)
     {
-        bool ownsMatchingWindow = HasMatchingMarkerOwnedWindow(
-            a_pEntity1, source.GetInstance(), currentAnimation.GetText(), markerAction, markerPhase);
+        MarkerOwnedCollisionWindow *window = FindMatchingMarkerOwnedWindow(
+            a_pEntity1, sources, currentAnimation.GetText(), markerAction, markerPhase);
 
-        bool sourceIsActive = beforeGroup == static_cast<GEInt>(eECollisionGroup_Item_Attack);
+        unsigned int ownedMask = window != nullptr ? window->activeSourceMask : SourceMask_None;
+        GEInt deactivatedSourceCount = 0;
 
-        bool offApplied = !skipCollisionGroupForFist && ownsMatchingWindow && sourceIsActive;
+        // Remove marker ownership before requesting Item_Equipped so the
+        // SetCollisionGroup hook observes an intentional OFF transition and
+        // does not retire this execution's remaining occurrence budget.
+        if (window != nullptr)
+            window->activeSourceMask = SourceMask_None;
 
-        if (offApplied)
+        unsigned int sourceMasks[2] = { SourceMask_Right, SourceMask_Left };
+
+        for (GEInt i = 0; i < 2; ++i)
         {
-            source.SetCollisionGroup(eECollisionGroup_Item_Equipped);
+            unsigned int sourceMask = sourceMasks[i];
+
+            if ((ownedMask & sourceMask) == 0)
+                continue;
+
+            eCEntity *sourceInstance = GetSourceInstance(sources, sourceMask);
+
+            if (sourceInstance == nullptr)
+                continue;
+
+            Entity source(sourceInstance);
+
+            if (!IsFistCollisionSource(source)
+                && source.GetCollisionGroup() == eECollisionGroup_Item_Attack)
+            {
+                source.SetCollisionGroup(eECollisionGroup_Item_Equipped);
+                ++deactivatedSourceCount;
+            }
         }
-        else if (ownsMatchingWindow && !sourceIsActive)
-        {
+
+        if (window != nullptr)
             ForgetMarkerOwnedWindowForActor(a_pEntity1);
-        }
 
-        RememberAcceptedMarker(a_pEntity1, source.GetInstance(), currentAnimation.GetText(), effectName,
+        RememberAcceptedMarker(a_pEntity1, sources, currentAnimation.GetText(), effectName,
                                markerAction, markerPhase, markerStateTime, markerElapsedMs);
-
-        GEInt afterOffGroup = static_cast<GEInt>(source.GetCollisionGroup());
 
         if (g_pLog != nullptr)
         {
             std::fprintf(g_pLog, "MarkerAction: %s\n",
-                         skipCollisionGroupForFist ? "OFF_UNSUPPORTED_FIST_BODY"
-                         : offApplied              ? "OFF_ACCEPTED"
-                                                   : "OFF_NO_MARKER_OWNED_WINDOW");
+                         ownedMask != SourceMask_None ? "OFF_ACCEPTED" : "OFF_NO_MARKER_OWNED_WINDOW");
 
             std::fprintf(g_pLog, "MarkerName: %s\n", effectName);
+            std::fprintf(g_pLog, "MarkerOpcode: %s\n", GetMarkerOpcodeName(markerOpcode));
 
             std::fprintf(g_pLog, "AuthoredMarkerOccurrences: %d\n", authoredMarkerCount);
 
@@ -1248,20 +1442,13 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
             std::fprintf(g_pLog, "ExecutionBudgetReset: %d\n", executionBudgetReset ? 1 : 0);
 
-            std::fprintf(g_pLog, "MotionFirstOnMarkerFrame: %d\n", decision.markerFrame);
-
-            std::fprintf(g_pLog, "CollisionGroupBeforeMarker: %d\n", beforeGroup);
-
-            std::fprintf(g_pLog, "CollisionGroupAfterMarker: %d\n", afterOffGroup);
-
-            std::fprintf(g_pLog, "ResolvedSourceUseTypeAtMarker: %d\n", sourceUseType);
-
-            std::fprintf(g_pLog, "MarkerOwnedWindowMatched: %d\n", ownsMatchingWindow ? 1 : 0);
-
+            std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n",
+                         GetFirstAuthoredMarkerFrame(decision, markerOpcode));
+            std::fprintf(g_pLog, "MarkerOwnedSourceMaskBeforeOff: %u\n", ownedMask);
+            std::fprintf(g_pLog, "DeactivatedSourceCount: %d\n", deactivatedSourceCount);
             std::fprintf(g_pLog, "SetCollisionGroupAction: %s\n",
-                         skipCollisionGroupForFist ? "NOT_REQUESTED_FIST_BODY_UNSUPPORTED"
-                         : offApplied              ? "REQUESTED_ITEM_EQUIPPED"
-                                                   : "NOT_REQUESTED_NO_MARKER_OWNED_WINDOW");
+                         deactivatedSourceCount > 0 ? "REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES"
+                                                    : "NO_ACTIVE_WEAPON_SOURCE_TO_DEACTIVATE");
 
             std::fprintf(g_pLog, "TriggeredDamageList: NOT_CLEARED_OFF\n");
 
@@ -1274,6 +1461,67 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
         return nullptr;
     }
+
+    unsigned int desiredSourceMask = GetMarkerDesiredSourceMask(markerOpcode);
+    eCEntity *selectedSourceInstance = GetSourceInstance(sources, desiredSourceMask);
+
+    // Required-source preflight above guarantees this for a valid source
+    // marker. Keep the guard explicit so malformed future opcode changes fail
+    // closed without dereferencing a null entity.
+    if (selectedSourceInstance == nullptr)
+    {
+        if (g_pLog != nullptr)
+        {
+            std::fprintf(g_pLog, "MarkerAction: REJECTED - selected source is missing\n");
+            std::fprintf(g_pLog, "=================================\n\n");
+            std::fflush(g_pLog);
+        }
+
+        return nullptr;
+    }
+
+    MarkerOwnedCollisionWindow *previousWindow = FindMatchingMarkerOwnedWindow(
+        a_pEntity1, sources, currentAnimation.GetText(), markerAction, markerPhase);
+    unsigned int previousSourceMask = previousWindow != nullptr
+                                    ? previousWindow->activeSourceMask
+                                    : SourceMask_None;
+    unsigned int retiredSourceMask = previousSourceMask & ~desiredSourceMask;
+
+    // Publish the exact desired set before retiring an old source. The
+    // SetCollisionGroup hook then sees that retirement as intentional and
+    // leaves the current execution budget intact.
+    RememberMarkerOwnedWindow(a_pEntity1, sources, desiredSourceMask,
+                              currentAnimation.GetText(), markerAction, markerPhase);
+
+    unsigned int sourceMasks[2] = { SourceMask_Right, SourceMask_Left };
+    GEInt retiredSourceCount = 0;
+
+    for (GEInt i = 0; i < 2; ++i)
+    {
+        unsigned int sourceMask = sourceMasks[i];
+
+        if ((retiredSourceMask & sourceMask) == 0)
+            continue;
+
+        eCEntity *sourceInstance = GetSourceInstance(sources, sourceMask);
+
+        if (sourceInstance == nullptr)
+            continue;
+
+        Entity retiredSource(sourceInstance);
+
+        if (!IsFistCollisionSource(retiredSource)
+            && retiredSource.GetCollisionGroup() == eECollisionGroup_Item_Attack)
+        {
+            retiredSource.SetCollisionGroup(eECollisionGroup_Item_Equipped);
+            ++retiredSourceCount;
+        }
+    }
+
+    Entity selectedSource(selectedSourceInstance);
+    GEInt beforeGroup = static_cast<GEInt>(selectedSource.GetCollisionGroup());
+    GEInt sourceUseType = static_cast<GEInt>(GetCollisionSourceUseType(selectedSource));
+    bool skipCollisionGroupForFist = IsFistCollisionSource(selectedSource);
 
     GEInt quickStatePositionBeforeMarker = -1;
 
@@ -1291,16 +1539,19 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     // request when the resolved raw source is Fist/PhysicalFist.
     if (!skipCollisionGroupForFist)
     {
-        source.SetCollisionGroup(eECollisionGroup_Item_Attack);
+        selectedSource.SetCollisionGroup(eECollisionGroup_Item_Attack);
 
-        if (source.GetCollisionGroup() == eECollisionGroup_Item_Attack)
-        {
-            RememberMarkerOwnedWindow(a_pEntity1, source.GetInstance(), currentAnimation.GetText(),
-                                      markerAction, markerPhase);
-        }
+        if (selectedSource.GetCollisionGroup() != eECollisionGroup_Item_Attack)
+            ForgetMarkerOwnedWindowForActor(a_pEntity1);
+    }
+    else
+    {
+        // Fist/body OFF is still deliberately unsupported, so do not publish
+        // a marker-owned weapon window for this source.
+        ForgetMarkerOwnedWindowForActor(a_pEntity1);
     }
 
-    source.TouchDamage.ClearTriggeredList();
+    selectedSource.TouchDamage.ClearTriggeredList();
 
     // Reference Quick callback implementations use StatePosition as their
     // one-shot collision activation gate and set it to 1 after activating.
@@ -1317,16 +1568,17 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
             static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
     }
 
-    RememberAcceptedMarker(a_pEntity1, source.GetInstance(), currentAnimation.GetText(), effectName,
+    RememberAcceptedMarker(a_pEntity1, sources, currentAnimation.GetText(), effectName,
                            markerAction, markerPhase, markerStateTime, markerElapsedMs);
 
-    GEInt afterGroup = static_cast<GEInt>(source.GetCollisionGroup());
+    GEInt afterGroup = static_cast<GEInt>(selectedSource.GetCollisionGroup());
 
     if (g_pLog != nullptr)
     {
         std::fprintf(g_pLog, "MarkerAction: ACCEPTED\n");
 
         std::fprintf(g_pLog, "MarkerName: %s\n", effectName);
+        std::fprintf(g_pLog, "MarkerOpcode: %s\n", GetMarkerOpcodeName(markerOpcode));
 
         std::fprintf(g_pLog, "AuthoredMarkerOccurrences: %d\n", authoredMarkerCount);
 
@@ -1336,7 +1588,13 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
         std::fprintf(g_pLog, "ExecutionBudgetReset: %d\n", executionBudgetReset ? 1 : 0);
 
-        std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n", decision.markerFrame);
+        std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n",
+                     GetFirstAuthoredMarkerFrame(decision, markerOpcode));
+
+        std::fprintf(g_pLog, "PreviousMarkerOwnedSourceMask: %u\n", previousSourceMask);
+        std::fprintf(g_pLog, "DesiredMarkerOwnedSourceMask: %u\n", desiredSourceMask);
+        std::fprintf(g_pLog, "RetiredMarkerOwnedSourceMask: %u\n", retiredSourceMask);
+        std::fprintf(g_pLog, "RetiredSourceCount: %d\n", retiredSourceCount);
 
         std::fprintf(g_pLog, "CollisionGroupBeforeMarker: %d\n", beforeGroup);
 
