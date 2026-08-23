@@ -467,6 +467,17 @@ boundary (or add an equivalent execution generation) while preserving the
 existing rule that explicit OFF and exact-set switching do not retire the
 current budget.
 
+The v0.16 candidate uses both available event boundaries. While a marked
+Normal/Quick callback is controlled, the cached record observes callback state
+time and is retired on rollback before a later marker. For weapon sources, the
+existing `SetCollisionGroup` hook independently treats rollback during natural
+retirement of a still marker-owned source as an execution end. OFF and exact-
+set switching publish an empty/replacement owned mask before requesting
+`Item_Equipped`, so those intentional transitions do not trigger retirement.
+The callback path is also relevant to logical/Fist sources, which deliberately
+skip weapon `Item_Attack` group changes. Both checks are event-driven and add no
+per-frame actor/world scan.
+
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the
 Normal/Quick context gate. The two probe logs contain 45 and 55 such rejected

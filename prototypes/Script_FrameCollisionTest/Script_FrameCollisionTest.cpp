@@ -96,6 +96,7 @@ struct MarkerExecutionBudget
     GEInt authoredCounts[MarkerOpcode_Count];
     GEInt acceptedCounts[MarkerOpcode_Count];
     GEFloat lastMarkerStateTime;
+    GEFloat lastControlledCallbackStateTime;
 };
 
 static std::unordered_map<eCEntity *, MarkerExecutionBudget> g_MarkerExecutionBudgetByActor;
@@ -181,7 +182,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.15 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.16 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -207,7 +208,7 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "RIGHT and LEFT use exact-set semantics: the selected source replaces the previous marker-owned set.\n");
 
-        std::fprintf(g_pLog, "BOTH remains intentionally disabled until the v0.15 Normal interruption guard passes runtime validation.\n");
+        std::fprintf(g_pLog, "BOTH remains intentionally disabled until the v0.16 execution-boundary guard passes runtime validation.\n");
 
         std::fprintf(g_pLog, "If any source required by the exact motion is missing, its original attack callback is NOT suppressed.\n");
 
@@ -231,15 +232,21 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.\n\n");
 
-        std::fprintf(g_pLog, "v0.15 preserves same-update marker deduplication for RIGHT, LEFT, and OFF.\n");
+        std::fprintf(g_pLog, "v0.16 preserves same-update marker deduplication for RIGHT, LEFT, and OFF.\n");
 
-        std::fprintf(g_pLog, "v0.15 safety change: stale _Attack_Hit_ names cannot authorize Normal markers after action/phase interruption.\n");
+        std::fprintf(g_pLog, "v0.16 preserves the v0.15 action/phase interruption guard.\n");
+
+        std::fprintf(g_pLog, "v0.16 execution boundary: controlled callback state-time rollback retires the previous marker budget.\n");
+
+        std::fprintf(g_pLog, "v0.16 natural-reset fallback: marker-owned source retirement at state-time rollback also retires the budget.\n");
 
         std::fprintf(g_pLog, "Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
 
         std::fprintf(g_pLog, "Authored-occurrence budgets are cached separately for RIGHT, LEFT, and OFF.\n");
 
-        std::fprintf(g_pLog, "Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase; state-time rollback starts a new execution.\n");
+        std::fprintf(g_pLog, "Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase.\n");
+
+        std::fprintf(g_pLog, "Marker-time or controlled-callback state-time rollback starts a new execution.\n");
 
         std::fprintf(g_pLog, "Natural collision reset outside the owning Hit execution retires the actor budget.\n");
 
@@ -447,6 +454,7 @@ static bool TryConsumeAuthoredMarkerOccurrence(eCEntity *actorInstance, Equipped
         }
 
         record.lastMarkerStateTime = stateTime;
+        record.lastControlledCallbackStateTime = stateTime;
 
         g_MarkerExecutionBudgetByActor[actorInstance] = record;
         found = g_MarkerExecutionBudgetByActor.find(actorInstance);
@@ -471,6 +479,62 @@ static bool TryConsumeAuthoredMarkerOccurrence(eCEntity *actorInstance, Equipped
     acceptedAfter = acceptedCount;
 
     return true;
+}
+
+static bool ObserveControlledAttackCallback(Entity &actor, EquippedCollisionSources const &sources)
+{
+    eCEntity *actorInstance = actor.GetInstance();
+
+    if (actorInstance == nullptr)
+        return false;
+
+    auto found = g_MarkerExecutionBudgetByActor.find(actorInstance);
+
+    if (found == g_MarkerExecutionBudgetByActor.end())
+        return false;
+
+    bCString currentAnimation = actor.NPC.GetCurrentMovementAni();
+    GEInt currentAction = static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEInt currentPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
+    GEFloat currentStateTime = actor.Routine.GetStateTime();
+
+    MarkerExecutionBudget &previous = found->second;
+
+    bool keyChanged = previous.rightSourceInstance != sources.rightInstance
+                   || previous.leftSourceInstance != sources.leftInstance
+                   || !SameFileName(previous.animationName.c_str(), currentAnimation.GetText())
+                   || previous.action != currentAction
+                   || previous.phase != currentPhase;
+
+    bool stateTimeRolledBack = currentStateTime + 0.000001f < previous.lastControlledCallbackStateTime;
+
+    if (keyChanged || stateTimeRolledBack)
+    {
+        if (g_pLog != nullptr)
+        {
+            std::fprintf(g_pLog, "===== CONTROLLED CALLBACK EXECUTION BOUNDARY =====\n");
+            std::fprintf(g_pLog, "ElapsedMs: %.3f\n", GetElapsedMilliseconds());
+            std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+            std::fprintf(g_pLog, "CurrentMovementAni: %s\n", currentAnimation.GetText());
+            std::fprintf(g_pLog, "Action: %d\n", currentAction);
+            std::fprintf(g_pLog, "AniPhase: %d\n", currentPhase);
+            std::fprintf(g_pLog, "PreviousControlledCallbackStateTime: %.6f\n",
+                         previous.lastControlledCallbackStateTime);
+            std::fprintf(g_pLog, "CurrentControlledCallbackStateTime: %.6f\n", currentStateTime);
+            std::fprintf(g_pLog, "ExecutionBoundaryKeyChanged: %d\n", keyChanged ? 1 : 0);
+            std::fprintf(g_pLog, "ExecutionBoundaryStateTimeRollback: %d\n",
+                         stateTimeRolledBack ? 1 : 0);
+            std::fprintf(g_pLog, "MarkerExecutionBudget: RETIRED_BEFORE_MARKER\n");
+            std::fprintf(g_pLog, "=====================================\n\n");
+            std::fflush(g_pLog);
+        }
+
+        ForgetMarkerExecutionForActor(actorInstance);
+        return true;
+    }
+
+    previous.lastControlledCallbackStateTime = currentStateTime;
+    return false;
 }
 
 static void RememberMarkerOwnedWindow(eCEntity *actorInstance, EquippedCollisionSources const &sources,
@@ -529,15 +593,29 @@ static bool MarkerWindowStillMatchesActorExecution(eCEntity *actorInstance,
     GEInt currentAction = static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyAction>());
     GEInt currentPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
 
-    return SameFileName(record.animationName.c_str(), currentAnimation.GetText())
-        && record.action == currentAction
-        && record.phase == currentPhase;
+    bool semanticIdentityMatches = SameFileName(record.animationName.c_str(), currentAnimation.GetText())
+                                && record.action == currentAction
+                                && record.phase == currentPhase;
+
+    if (!semanticIdentityMatches)
+        return false;
+
+    auto budget = g_MarkerExecutionBudgetByActor.find(actorInstance);
+
+    if (budget == g_MarkerExecutionBudgetByActor.end())
+        return true;
+
+    GEFloat currentStateTime = actor.Routine.GetStateTime();
+
+    return currentStateTime + 0.000001f >= budget->second.lastMarkerStateTime;
 }
 
-static void RetireMarkerOwnedSource(eCEntity *sourceInstance)
+static GEInt RetireMarkerOwnedSource(eCEntity *sourceInstance)
 {
     if (sourceInstance == nullptr)
-        return;
+        return 0;
+
+    GEInt retiredExecutionCount = 0;
 
     for (auto entry = g_MarkerOwnedWindowByActor.begin(); entry != g_MarkerOwnedWindowByActor.end();)
     {
@@ -564,6 +642,7 @@ static void RetireMarkerOwnedSource(eCEntity *sourceInstance)
             if (!MarkerWindowStillMatchesActorExecution(entry->first, record))
             {
                 ForgetMarkerExecutionForActor(entry->first);
+                ++retiredExecutionCount;
             }
 
             if (record.activeSourceMask == SourceMask_None)
@@ -580,6 +659,8 @@ static void RetireMarkerOwnedSource(eCEntity *sourceInstance)
             ++entry;
         }
     }
+
+    return retiredExecutionCount;
 }
 
 static bool IsNormalAttackHit(Entity &actor)
@@ -1075,9 +1156,11 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
 
     Hook_SetCollisionGroup.GetOriginalFunction (&SetCollisionGroup_FrameCollisionTest)(a_Group);
 
+    GEInt retiredMarkerExecutionCount = 0;
+
     if (pThis != nullptr && pThis->GetCollisionGroup() != eECollisionGroup_Item_Attack)
     {
-        RetireMarkerOwnedSource(pThis);
+        retiredMarkerExecutionCount = RetireMarkerOwnedSource(pThis);
     }
 
     if (pThis == nullptr || g_pLog == nullptr)
@@ -1112,6 +1195,8 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
     std::fprintf(g_pLog, "Item_EquippedValue: %d\n", static_cast<GEInt>(eECollisionGroup_Item_Equipped));
 
     std::fprintf(g_pLog, "Item_AttackValue: %d\n", static_cast<GEInt>(eECollisionGroup_Item_Attack));
+
+    std::fprintf(g_pLog, "RetiredMarkerExecutionCount: %d\n", retiredMarkerExecutionCount);
 
     std::fprintf(g_pLog, "====================================\n\n");
 
@@ -1152,6 +1237,11 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
     bool willSuppress = decision.foundMatchingMotion && decision.markerPresent
                      && HasRequiredCollisionSources(sources, decision.requiredSourceMask);
 
+    if (willSuppress)
+    {
+        ObserveControlledAttackCallback(SelfEntity, sources);
+    }
+
     if (ShouldLogOwnership(SelfEntity))
     {
         LogOwnershipDecision(SelfEntity, decision, sources, willSuppress);
@@ -1190,6 +1280,11 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 
     bool willSuppress = decision.foundMatchingMotion && decision.markerPresent
                      && HasRequiredCollisionSources(sources, decision.requiredSourceMask);
+
+    if (willSuppress)
+    {
+        ObserveControlledAttackCallback(SelfEntity, sources);
+    }
 
     if (ShouldLogOwnership(SelfEntity))
     {
