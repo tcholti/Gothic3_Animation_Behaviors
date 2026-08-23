@@ -475,6 +475,22 @@ both intended swings. The first genuine ON changed Quick StatePosition 0 -> 1;
 the second genuine ON preserved 1 -> 1. This completes the family-specific
 Quick regression without adding Whirl ownership.
 
+### Dual Normal LEFT-source fixture
+
+v0.14 used one custom left-hand strike motion in these exact player Dual files:
+
+```text
+Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R
+Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L
+```
+
+The Hit ran from frame 0 through frame 8 inclusive, with whoosh at frame 3 and
+provisional `G3AB_COL_LEFT_TEST` at frame 4. The mixed test marked only P0 and
+left P1 native. The replacement test marked both files. Six P0 and five P1
+replacement executions each activated/reset only the equipped left item and
+all visibly damaged their targets. The filename suffixes `_R`/`_L` did not
+select the physical collision source; the exact-motion marker did.
+
 ## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:

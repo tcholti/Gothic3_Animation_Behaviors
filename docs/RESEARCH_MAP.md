@@ -527,6 +527,15 @@ and the cached occurrence budget has separate RIGHT/LEFT/OFF counters. BOTH is
 not recognized yet, but the fixed source-set representation is intentionally
 ready for it after LEFT and RIGHT validation.
 
+LEFT runtime validation is now complete for the tested player Dual Normal
+family. The mixed P0-only log preserves unmarked native P1 behavior, while the
+stronger P0/P1 replacement log contains six P0 and five P1 marked executions.
+Those 11 contacts produced 11 left activations/clears and 11 left resets with
+no player right activation. Because native P1 normally uses RIGHT, the P1
+result directly proves source replacement rather than additive activation.
+The remaining staging gate is the preserved RIGHT regression before BOTH is
+recognized.
+
 There is no separate generic ON marker. "ON" is only shorthand for the
 activation behavior already carried by RIGHT/LEFT/BOTH. A multi-contact file
 can therefore author RIGHT at the first contact, OFF after that swing, and

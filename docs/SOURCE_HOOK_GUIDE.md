@@ -422,6 +422,16 @@ every source named anywhere in the exact motion, preventing partial ownership
 when a required slot is absent. BOTH remains disabled pending isolated LEFT and
 RIGHT regression logs.
 
+The LEFT runtime gate passed. A mixed session retained native behavior for an
+unmarked P1 motion while two marked P0 motions used only LEFT. A second session
+marked both P0 and P1 replacement motions LEFT: six P0 plus five P1 accepts
+mapped one-for-one to 11 left 5 -> 7/list clears and 11 natural left 7 -> 5
+resets, with no player right activation, duplicate rejection, occurrence-budget
+rejection, or delayed reactivation. Since tested native P1 normally uses RIGHT,
+this is direct evidence that callback ownership replaces the native source.
+Do not enable BOTH until the preserved RIGHT marker path is regressed under the
+same v0.14 refactor.
+
 ## 11. Current Marker-Control Research Pattern
 
 At callback entry / Hit start:

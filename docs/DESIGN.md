@@ -411,6 +411,14 @@ reserved frame effects; it adds no per-frame actor/world scan and no dynamic
 container per contact. If the exact motion requires a slot that is absent, the
 attack-family callback is left native rather than partially taking ownership.
 
+Runtime status: v0.14 LEFT validation passed for player Dual Normal. Across a
+replacement session containing six P0 and five P1 executions, every authored
+LEFT marker produced one left activation/list clear and one natural reset, and
+the player right slot never requested collision activation. This demonstrates
+that exact-motion LEFT ownership replaces the native P1 RIGHT path rather than
+stacking a second source. The fixed source-set design remains unchanged; BOTH
+is still gated on a preserved-RIGHT regression.
+
 The first OFF proof must use distinct targets because an already visited target
 cannot reveal whether collision remained active. Use an identical horizontal
 2H sweep as ON-only control and ON -> OFF variant; later wolves crossed by the

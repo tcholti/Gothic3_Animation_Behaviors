@@ -159,13 +159,24 @@ Quick StatePosition 0 -> 1; second genuine ON preserved 1 -> 1. The targeted
 QuickAttackL damaged the opponent twice. v0.13 is therefore validated for this
 repeated-marker schedule in both Normal and Quick callback families.
 
-The current unvalidated source candidate is v0.14. It preserves
-`G3AB_COL_TEST` as RIGHT, adds provisional `G3AB_COL_LEFT_TEST`, and refactors
-the actor execution state to fixed right/left slot snapshots plus a two-bit
+The current source candidate is v0.14 at commit `918c02d`. It built and
+installed successfully at SHA-256
+`F52BBC58258C1F10EFE0BB35AC28F6B8208F2C65ADA3B3D9B48795F1B4ED88EB`;
+validated v0.13 is backed up at SHA-256
+`0E4A50AD5ED6F7D641FD23503298011F4CE7943628AC09AC3D257F075FC1D692`.
+v0.14 preserves `G3AB_COL_TEST` as RIGHT, adds provisional
+`G3AB_COL_LEFT_TEST`, and uses fixed right/left slot snapshots plus a two-bit
 active mask. RIGHT/LEFT are exact sets, OFF closes the complete marker-owned
-set, and occurrence budgets are separate per opcode. Exact-motion preflight
-leaves the original callback active if any required slot is missing. BOTH is
-intentionally disabled until LEFT and preserved RIGHT pass runtime tests.
+set, and occurrence budgets are separate per opcode.
+
+LEFT Normal validation passed. The mixed P0-only session produced two clean
+marked left cycles while unmarked P1 remained native. The stronger replacement
+session produced 11 clean marked cycles—six P0 and five P1—with exactly 11 left
+5 -> 7/list clears, 11 left 7 -> 5 resets, and no player right activation. All
+attacks visibly connected. This proves that marked P1 LEFT suppresses/replaces
+its native RIGHT activation rather than adding a second source. No duplicate,
+budget, or delayed-reactivation anomaly appeared. Preserved RIGHT regression
+remains required before BOTH is enabled.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
