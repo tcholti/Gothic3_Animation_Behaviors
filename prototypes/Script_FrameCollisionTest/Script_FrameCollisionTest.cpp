@@ -22,10 +22,10 @@ static FILE *g_pLog = nullptr;
 static LARGE_INTEGER g_StartCounter = {};
 static LARGE_INTEGER g_Frequency = {};
 
-static char const *const g_CollisionOnMarker = "G3AB_COL_TEST";
-static char const *const g_CollisionLeftMarker = "G3AB_COL_LEFT_TEST";
-static char const *const g_CollisionBothMarker = "G3AB_COL_BOTH_TEST";
-static char const *const g_CollisionOffMarker = "G3AB_COL_OFF_TEST";
+static char const *const g_CollisionRightMarker = "G3AB_COL_RIGHT";
+static char const *const g_CollisionLeftMarker = "G3AB_COL_LEFT";
+static char const *const g_CollisionBothMarker = "G3AB_COL_BOTH";
+static char const *const g_CollisionOffMarker = "G3AB_COL_OFF";
 
 enum MarkerOpcode
 {
@@ -185,7 +185,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.17 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.18 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -205,11 +205,11 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "FIST CAUSAL TEST: ClearTriggeredList remains active.\n");
 
-        std::fprintf(g_pLog, "G3AB_COL_TEST is the preserved RIGHT-hand marker alias.\n");
+        std::fprintf(g_pLog, "G3AB_COL_RIGHT is the final RIGHT equipped-slot marker.\n");
 
-        std::fprintf(g_pLog, "G3AB_COL_LEFT_TEST is the provisional LEFT-hand marker.\n");
+        std::fprintf(g_pLog, "G3AB_COL_LEFT is the final LEFT equipped-slot marker.\n");
 
-        std::fprintf(g_pLog, "G3AB_COL_BOTH_TEST is the provisional BOTH-hand marker.\n");
+        std::fprintf(g_pLog, "G3AB_COL_BOTH is the final BOTH equipped-slot marker.\n");
 
         std::fprintf(g_pLog, "RIGHT, LEFT, and BOTH use exact-set semantics: the selected source set replaces the previous marker-owned set.\n");
 
@@ -221,7 +221,7 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.\n");
 
-        std::fprintf(g_pLog, "G3AB_COL_OFF_TEST closes only a weapon window opened by this prototype.\n");
+        std::fprintf(g_pLog, "G3AB_COL_OFF closes only a weapon window opened by this prototype.\n");
 
         std::fprintf(g_pLog, "OFF requests Item_Equipped and never clears the triggered list.\n");
 
@@ -237,11 +237,11 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.\n\n");
 
-        std::fprintf(g_pLog, "v0.17 preserves same-update marker deduplication for RIGHT, LEFT, BOTH, and OFF.\n");
+        std::fprintf(g_pLog, "v0.18 freezes the final equipped-slot marker vocabulary and removes all provisional _TEST names.\n");
 
-        std::fprintf(g_pLog, "v0.17 preserves the validated v0.16 interruption and execution-boundary guards.\n");
+        std::fprintf(g_pLog, "v0.18 preserves the validated v0.17 RIGHT/LEFT/BOTH/OFF exact-set semantics and replay guards.\n");
 
-        std::fprintf(g_pLog, "v0.17 adds only BOTH recognition and two-source activation/rearm inside the existing source-set core.\n");
+        std::fprintf(g_pLog, "No collision-source, timing, bookkeeping, or cleanup behavior changed from v0.17.\n");
 
         std::fprintf(g_pLog, "Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
 
@@ -269,7 +269,7 @@ static MarkerOpcode GetMarkerOpcode(char const *effectName)
     if (effectName == nullptr)
         return MarkerOpcode_Invalid;
 
-    if (std::strcmp(effectName, g_CollisionOnMarker) == 0)
+    if (std::strcmp(effectName, g_CollisionRightMarker) == 0)
         return MarkerOpcode_Right;
 
     if (std::strcmp(effectName, g_CollisionLeftMarker) == 0)
@@ -1310,12 +1310,12 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 // -----------------------------------------------------------------------------
 // StartEffect
 //
-// These remain PROTOTYPE markers. Their current meanings are:
+// These are the frozen equipped-slot marker commands. Their meanings are:
 //
-//     G3AB_COL_TEST      -> exact active set { RIGHT }.
-//     G3AB_COL_LEFT_TEST -> exact active set { LEFT }.
-//     G3AB_COL_BOTH_TEST -> exact active set { RIGHT, LEFT }.
-//     G3AB_COL_OFF_TEST  -> exact active set { } for the matching window.
+//     G3AB_COL_RIGHT -> exact active set { RIGHT }.
+//     G3AB_COL_LEFT  -> exact active set { LEFT }.
+//     G3AB_COL_BOTH  -> exact active set { RIGHT, LEFT }.
+//     G3AB_COL_OFF   -> exact active set { } for the matching window.
 // -----------------------------------------------------------------------------
 
 static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
@@ -1330,9 +1330,9 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
                                                                                      a_pEntity2, a_pMatrix, a_bUnknown);
     }
 
-    // Reserved test marker is consumed even if the actor/source cannot be
+    // Reserved collision marker is consumed even if the actor/source cannot be
     // resolved, so the engine never tries to find a real effect resource
-    // named G3AB_COL_TEST / G3AB_COL_LEFT_TEST / G3AB_COL_BOTH_TEST / G3AB_COL_OFF_TEST.
+    // named G3AB_COL_RIGHT / G3AB_COL_LEFT / G3AB_COL_BOTH / G3AB_COL_OFF.
     if (a_pEntity1 == nullptr)
     {
         if (g_pLog != nullptr)

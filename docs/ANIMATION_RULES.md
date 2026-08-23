@@ -560,6 +560,20 @@ For marker-controlled attacks:
 - marker presence declares that execution frame-controlled;
 - the current system must not infer ownership from source pose alone.
 
+The frozen equipped-slot command names are:
+
+- `G3AB_COL_RIGHT` — exact active set `{RIGHT}`, with RIGHT rearmed;
+- `G3AB_COL_LEFT` — exact active set `{LEFT}`, with LEFT rearmed;
+- `G3AB_COL_BOTH` — exact active set `{RIGHT, LEFT}`, with both rearmed;
+- `G3AB_COL_OFF` — close the marker-owned set without clearing hit lists.
+
+RIGHT and LEFT identify Gothic 3 equipped slots, not the final filename
+direction token. Use no more than one collision command on an authored frame.
+Use BOTH instead of same-frame RIGHT+LEFT, and keep OFF plus the next activation
+on different frames. Repeating a source command later in the Hit authors a new
+contact. The old `*_TEST` spellings are not supported aliases. Body, unarmed,
+Fist, and monster-source command terminology is not yet frozen.
+
 The animation author's general working preference is to place collision one
 authored frame before the intended visual contact. Exact-contact placement can
 look as though collision begins only after the weapon has entered the target.

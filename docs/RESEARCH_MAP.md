@@ -536,20 +536,22 @@ independently clears both Dual weapon lists through `FixDualOneHanded`, so the
 rearm fix is not exclusive to `Script_AttackCollision`. Separate later 2H/Staff
 Whirl work should observe `ResetOnUntouch` and OFF-gap needs.
 
-## 11. Production Marker Vocabulary — NOT FROZEN
+## 11. Production Marker Vocabulary — EQUIPPED-SLOT API FROZEN
 
-Current preferred candidates are generic source-explicit markers such as RIGHT/LEFT/BOTH/OFF, shared across attack callback families.
+The equipped-slot API is now frozen and shared across attack callback families:
 
-Current proposed responsibilities:
+- `G3AB_COL_RIGHT` publishes/rearms the exact RIGHT slot set;
+- `G3AB_COL_LEFT` publishes/rearms the exact LEFT slot set;
+- `G3AB_COL_BOTH` publishes/rearms both equipped slot entities;
+- `G3AB_COL_OFF` closes the marker-owned set without clearing lists.
 
-- RIGHT/LEFT/BOTH activate and rearm the named source set for that authored
-  contact;
-- OFF deactivates the source set owned by the current marked execution;
-- OFF does not clear lists by itself; the next source marker performs the
-  rearm.
+RIGHT/LEFT are equipped-slot identities, not filename direction letters. New
+animations must use only these final names; v0.18 deliberately provides no
+`*_TEST` aliases. Body/unarmed/Fist/monster naming remains a separate open
+design problem.
 
-Implementation staging now makes the proposal concrete without freezing the
-production names. The v0.14 candidate keeps `G3AB_COL_TEST` as RIGHT for
+Historical implementation staging made this contract concrete before the names
+were frozen. The v0.14 candidate keeps `G3AB_COL_TEST` as RIGHT for
 regression compatibility and adds `G3AB_COL_LEFT_TEST`. RIGHT and LEFT replace
 the exact active source set owned by the current marked execution; selecting
 LEFT after RIGHT therefore retires only marker-owned RIGHT. OFF retires the
@@ -631,8 +633,6 @@ can prevent a nearby target from being struck by the second weapon motion before
 its intended acceleration, while the next source marker opens a clean second
 contact window.
 
-They are not frozen. Do not mass-author them until source activation, OFF-state tracking, Fist/body behavior, and repeated-hit semantics are proven.
-
 The compact Dual Quick mixed-set checkpoint is complete. Forty-seven fresh
 executions covered all four tested P0/P1 QuickAttackR/L variants; 45 completed
 the full P0 BOTH -> LEFT -> OFF -> BOTH or P1
@@ -642,15 +642,15 @@ preserved 1 -> 1. No malformed sequence or delayed native reactivation was
 found. The shared marker-source core is therefore validated across the tested
 Normal and Quick families.
 
-The next decision is the production marker API: final names plus any temporary
-compatibility alias for the existing RIGHT marker. This is an animator-facing
-format and should be agreed before code renaming or mass authoring. After that,
-add Whirl and Power as separate callback adapters rather than broadening the
-shared core implicitly. A quiet prototype-disabled/enabled battle comparison
-remains required before claiming negligible release overhead. Visible target
-stumble is not a reliable damage proxy during rapid repeated hits; health loss
-was still observed, while close-overlap geometry also caused separate genuine
-misses. A damage/health logger extension is optional future diagnostic work.
+The v0.18 source candidate implements the clean rename with no semantic change.
+Its immediate gate is a build plus one controlled Normal and one controlled
+Quick regression authored with the final names. After that, add Whirl and Power
+as separate callback adapters rather than broadening the shared core implicitly.
+A quiet prototype-disabled/enabled battle comparison remains required before
+claiming negligible release overhead. Visible target stumble is not a reliable
+damage proxy during rapid repeated hits; health loss was still observed, while
+close-overlap geometry also caused separate genuine misses. A damage/health
+logger extension is optional future diagnostic work.
 
 ## 12. Raise Generalization — After Collision Core Stabilizes
 
@@ -700,7 +700,7 @@ Recover interruptibility has shown inconsistencies among attack variants and may
 
 ## 15. Important Current Unknowns
 
-1. Final production collision marker names.
+1. Final body/unarmed/Fist/monster collision marker terminology.
 2. General primary/secondary/all source resolver.
 3. Exact Fist activation/rearm causality.
 4. Safe compatibility strategy when multiple DLLs hook the same callback/function.

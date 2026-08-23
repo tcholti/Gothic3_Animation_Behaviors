@@ -325,6 +325,17 @@ are not established by this log. A future damage/health observer would improve
 contact diagnosis, but it is not required to accept the collision-source-set
 result.
 
+The v0.18 source candidate freezes the equipped-slot authoring API as
+`G3AB_COL_RIGHT`, `G3AB_COL_LEFT`, `G3AB_COL_BOTH`, and
+`G3AB_COL_OFF`. It performs a clean break: the provisional `*_TEST` names
+are no longer recognized and no aliases were added. RIGHT/LEFT refer to
+equipped slot entities rather than animation-direction suffixes. Exact-set,
+rearm, OFF, occurrence, duplicate, interruption, Quick bookkeeping, source
+resolution, and cleanup behavior are unchanged from validated v0.17. Final
+body/unarmed/monster marker terminology remains deliberately unresolved.
+Build and runtime regression are pending.
+
+
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
 ## 8. QuickAttack Finding and Validated Fix
@@ -375,7 +386,7 @@ Preserve these remaining distinctions:
 - Some native Torch+1H P0 Normal left-torch activations are considered erroneous; Jackydima corrects regular Normal collision to the right weapon.
 - One Dual finishing source remains unconfirmed.
 
-Preferred future marker direction is generic source-explicit RIGHT/LEFT/BOTH/OFF across callback families. There is no separate ON marker: RIGHT/LEFT/BOTH each activate and rearm their named source set, while OFF creates a deterministic inactive gap by disabling marker-owned sources. Thus a same-weapon double attack can use RIGHT -> OFF -> RIGHT. This is especially needed for authored 2H/Staff double attacks whose second motion can touch a nearby target too early. Names and exact restoration rules are not frozen.
+The equipped-slot marker vocabulary is frozen as `G3AB_COL_RIGHT`, `G3AB_COL_LEFT`, `G3AB_COL_BOTH`, and `G3AB_COL_OFF` across callback families. There is no separate ON marker: RIGHT/LEFT/BOTH each publish and rearm their exact named source set, while OFF creates a deterministic inactive gap by disabling marker-owned sources. Thus a same-weapon double attack can use RIGHT -> OFF -> RIGHT. This is especially needed for authored 2H/Staff double attacks whose second motion can touch a nearby target too early. Body/unarmed/monster marker terminology remains open.
 
 The same-target Normal isolation is complete. With one identical 2H double-
 contact motion, native/no-marker and frame-4-only marker variants hit once;
@@ -474,7 +485,7 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. decide and freeze the production marker vocabulary and compatibility policy. The tested provisional names remain `G3AB_COL_TEST` (RIGHT), `G3AB_COL_LEFT_TEST`, `G3AB_COL_BOTH_TEST`, and `G3AB_COL_OFF_TEST`; do not rename code or mass-author assets until the final spelling and any temporary alias are agreed;
+1. build/install v0.18, update one controlled Normal and one controlled Quick fixture to the final marker names, and confirm that both retain the validated schedule; an old `*_TEST` fixture may be used once as a negative control if convenient, but is not required;
 2. add Whirl ownership as a separate callback adapter, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 3. add Power ownership separately after Whirl; the existing Power logs are native/source evidence, not marker-controlled validation;
 4. before release integration, build a quiet diagnostic configuration and compare a repeatable battle with the prototype disabled/enabled; current stress logs prove functional stability, not negligible performance cost;

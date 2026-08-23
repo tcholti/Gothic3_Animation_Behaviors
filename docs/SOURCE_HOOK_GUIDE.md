@@ -577,6 +577,16 @@ masks, and no delayed native reactivation appeared after cleanup. This closes
 the tested Normal/Quick shared-core gate before production marker spelling is
 frozen. It does not authorize Whirl or Power callbacks.
 
+The equipped-slot spelling is now frozen for v0.18:
+`G3AB_COL_RIGHT`, `G3AB_COL_LEFT`, `G3AB_COL_BOTH`, and
+`G3AB_COL_OFF`. The parser recognizes only these final names; historical
+`*_TEST` spellings are not aliases. RIGHT/LEFT identify equipped slot sources,
+and each source command remains an exact-set rearm operation. Use at most one
+G3AB collision command per authored frame, use BOTH rather than simultaneous
+RIGHT+LEFT, and keep OFF plus the next activation on separate frames. Final
+body/unarmed/monster marker terminology remains outside this frozen subset.
+
+
 For gameplay diagnosis, visible stumble is not a sufficient hit signal. Rapid
 repeated contacts may reduce or remove the target's stumble response while
 health still decreases, and close-overlap geometry can also produce genuine

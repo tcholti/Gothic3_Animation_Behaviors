@@ -223,18 +223,36 @@ The final generalized rearm/source API is not yet frozen.
 
 ### 7.5 Marker vocabulary
 
-The prototype marker `G3AB_COL_TEST` is proven.
-
-Current preferred production candidates are source-explicit, action-family-independent markers such as:
+The equipped-slot production vocabulary is frozen:
 
 - `G3AB_COL_RIGHT`
 - `G3AB_COL_LEFT`
 - `G3AB_COL_BOTH`
 - `G3AB_COL_OFF`
 
-They remain **proposals only**. Generic source markers are preferred over separate Normal/Quick/Power marker vocabularies because the native callback already supplies the attack-family context.
+These names are source-explicit and action-family-independent because the
+native callback/action/phase gate supplies the attack-family context. RIGHT and
+LEFT mean the entities in Gothic 3's right-hand and left-hand equipped slots;
+they do not mean the final `R`/`L` direction token in an animation filename.
 
-Do not mass-author these names into animation libraries until source activation, OFF-state tracking, Fist/body behavior, and multi-hit rearming are validated.
+The commands use exact-set semantics. RIGHT publishes and rearms
+`{RIGHT}`; LEFT publishes and rearms `{LEFT}`; BOTH publishes and rearms
+`{RIGHT, LEFT}`; OFF closes the marker-owned set without clearing a triggered
+list. A repeated source marker later in the same Hit is a new authored contact.
+
+Authoring rules:
+
+- use at most one G3AB collision command on one authored frame;
+- use BOTH instead of simultaneous RIGHT and LEFT commands;
+- place OFF and a later activation on different frames;
+- marker timing, including the author's usual one-frame lead before visual
+  contact, remains animation-specific rather than hardcoded;
+- the provisional `*_TEST` names are not compatibility aliases.
+
+Body, unarmed, Fist, and monster-source terminology remains open. No final
+`BODY`-style marker should be added until its logical/physical source resolver
+is understood. Historical logs retain the provisional names that their tested
+builds actually used.
 
 ## 8. Callback + Action + Phase + Marker Model
 
@@ -555,8 +573,8 @@ Unmarked/unconfigured attacks must remain compatible with existing behavior.
 2. Preserve the completed Dual Normal/Quick/Pierce/Power source map; extend passive diagnostics to `ClearTriggeredList`, Dual SimpleWhirl, and the separate 2H/Staff full-Whirl path without changing native behavior. Add damaged-target identity only if later same-target results are ambiguous.
 3. Generalize the source helper into explicit weapon activation versus Fist/body rearming; Fist skips the weapon group request and clears its logical source list.
 4. Add collision ownership adapters one callback family at a time. Collision scope should cover the main human melee families before production integration, but Raise and speed remain initially scoped to Normal and Quick.
-5. Treat BOTH group activation as proven but incomplete: validate Dual Power's third-contact rearm, multi-target versus same-target list behavior, SimpleWhirl source/contact intent, full-Whirl `ResetOnUntouch`, and explicit OFF for authored inactive gaps.
-6. Freeze a production marker vocabulary only after source-set tracking and repeated-hit/OFF semantics are understood.
+5. Preserve the validated exact-set, repeated-contact, OFF-gap, interruption, and actor-local behavior while adding Whirl and Power ownership separately.
+6. Use only the frozen `G3AB_COL_RIGHT`, `G3AB_COL_LEFT`, `G3AB_COL_BOTH`, and `G3AB_COL_OFF` names for new equipped-weapon authoring; keep body/unarmed marker design separate.
 7. Integrate the validated collision core into `Script_G3AnimationBehaviors`.
 8. Generalize Raise and speed control incrementally, calibrating provisional speeds against logged native Normal/Quick durations.
 
