@@ -536,8 +536,18 @@ result directly proves source replacement rather than additive activation.
 The preserved RIGHT regression has also passed. Four 2H Normal
 RIGHT-f4/OFF-f10/RIGHT-f15 executions retained exactly the accepted/rejected
 marker pattern and physical collision sequence proven in v0.13, with no LEFT
-activation. The next staging gate is an in-execution exact-set alternation test
-under Normal before BOTH is recognized.
+activation. The alternating exact-set gate passed for 29 complete Dual Normal
+executions: P0 accepted RIGHT -> LEFT -> RIGHT and P1 accepted the mirror, with
+source retirement/rearm at each change and three visible same-target contacts.
+One accidental unmarked side Normal remained native.
+
+Two marked attacks were interrupted. The important case changed to action 59
+after the first source naturally reset, yet a later RIGHT marker was accepted
+because Normal marker-time eligibility used the still-current `_Attack_Hit_`
+filename without checking action/phase. The immediate next gate is therefore a
+small Normal safety correction: require `gEAction_Attack` and `gEPhase_Hit` at
+marker time, then reproduce an interruption. BOTH remains disabled until that
+regression passes.
 
 Real Dual Power is still deliberately outside callback ownership. In two probe
 logs every Power-context RIGHT/LEFT marker was rejected before mutation, while

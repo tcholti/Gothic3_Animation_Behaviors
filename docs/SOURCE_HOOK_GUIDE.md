@@ -435,6 +435,21 @@ RIGHT-f4/OFF-f10/RIGHT-f15 executions: two RIGHT accepts/clears, one OFF accept,
 the expected occurrence/dedupe rejections, and right
 `5 -> 7 -> 5 -> 7 -> 5` with no LEFT activation.
 
+The subsequent Dual Normal exact-set test passed all complete executions:
+29 attacks accepted RIGHT -> LEFT -> RIGHT or LEFT -> RIGHT -> LEFT and visibly
+rearmed the same target for the third contact. It also found a marker-time
+interruption hazard. Normal currently treats any current `_Attack_Hit_` filename
+as Normal Hit. During one interruption, action had already changed to 59 while
+the stale attack filename persisted, so a later RIGHT marker was accepted.
+Before BOTH, change Normal marker eligibility to require all three conditions:
+
+- the exact current motion is a marked Normal `_Attack_Hit_` motion;
+- `Routine.PropertyAction == gEAction_Attack`;
+- current animation phase is `gEPhase_Hit`.
+
+Then force an interruption before a later marker and confirm that the marker is
+consumed as unsupported without collision-group or triggered-list mutation.
+
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the
 Normal/Quick context gate. The two probe logs contain 45 and 55 such rejected

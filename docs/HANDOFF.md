@@ -187,10 +187,22 @@ separate LEFT and RIGHT gates.
 Two real Dual Power probes do not validate marker control: Power is not yet an
 owned callback family, so all 45 and 55 Power-context marker dispatches were
 consumed as unsupported before mutation. Native Power activated/reset both
-weapons and produced the user's visual contact observations. The next controlled
-test should reuse the three-contact Power motion under Normal P0/P1 filenames
-with RIGHT -> LEFT -> RIGHT and LEFT -> RIGHT -> LEFT. This validates exact-set
-switching before adding BOTH. Actual Power ownership remains a separate adapter.
+weapons and produced the user's visual contact observations. The three-contact
+motion was then reused under Normal P0/P1 filenames. Twenty-nine complete
+executions accepted the exact RIGHT -> LEFT -> RIGHT / LEFT -> RIGHT -> LEFT
+sequences, retired the previously owned source at each switch, and rearmed the
+first source for its third contact. Repeated targeted attacks visibly damaged
+the same opponent three times. The accidental unmarked P0 side Normal remained
+legacy/native.
+
+The same log exposed an interruption guard defect. One P1 execution was
+interrupted after LEFT; LEFT naturally reset, action changed from Normal 1 to
+59, but a later RIGHT frame effect was still accepted while the stale forward
+`_Attack_Hit_` movement-animation name remained current. v0.14 Normal marker
+eligibility checks the filename token without requiring action 1 and Hit phase.
+The next candidate must add those two native semantic checks and run one
+controlled interruption regression before enabling BOTH. Actual Power ownership
+remains a separate adapter.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -341,7 +353,7 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build v0.14, test `G3AB_COL_LEFT_TEST` on a known native left-source Dual Normal motion, then regress the existing RIGHT marker fixture; do not enable BOTH before both logs pass;
+1. build the next narrow candidate with exact Normal action-1 + Hit-phase checks at marker time; force an interruption before a later marker and confirm rejection without collision/list mutation, while preserving a complete three-contact alternating execution;
 2. enable and validate BOTH using the already-fixed two-source representation, including exact-set transitions among RIGHT, LEFT, BOTH, and OFF;
 3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;

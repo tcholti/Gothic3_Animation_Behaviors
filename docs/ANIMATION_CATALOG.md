@@ -514,6 +514,25 @@ difficult-to-judge final swing, but the current logger does not prove per-target
 damage. Reuse this motion under Normal filenames for controlled exact-set and
 future BOTH tests.
 
+### Dual Normal alternating-source fixture
+
+The same frame-0-through-18 Hit motions were exported under the exact forward
+Normal files:
+
+```text
+Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R
+Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L
+```
+
+P0 authored RIGHT frame 1, LEFT frame 6, RIGHT frame 16; P1 authored the mirror.
+Twenty-nine complete v0.14 executions accepted all three contacts and visibly
+damaged the same target three times when positioning allowed the weapon to
+reach it. One accidental unmarked
+`Hero_Stand_1H_1H_P0_Attack_Hit_N_Right_00_%_00_P11_110_R` remained native.
+Two forward executions were interrupted; one demonstrated that a stale current
+animation name can outlive Normal action 1, so future marker-time ownership must
+also require the native Normal action and Hit phase.
+
 ## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:

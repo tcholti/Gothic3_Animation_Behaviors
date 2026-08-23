@@ -420,9 +420,18 @@ stacking a second source. The fixed source-set design remains unchanged; BOTH
 was gated on a preserved-RIGHT regression. That regression has now passed: four
 repeated RIGHT -> OFF -> RIGHT executions preserved the v0.13 occurrence and
 duplicate guards, produced the exact expected right collision sequence, and
-never activated LEFT. Before enabling BOTH, use a three-contact Dual motion
-under the proven Normal callback to validate exact-set alternation in one
-execution: RIGHT -> LEFT -> RIGHT and its mirrored LEFT -> RIGHT -> LEFT.
+never activated LEFT. The in-execution exact-set alternation gate also passed
+for complete executions: 29 Dual Normal attacks accepted RIGHT -> LEFT -> RIGHT
+or its mirror, and targeted attacks visibly damaged the same opponent on all
+three contacts.
+
+However, an interrupted P1 execution changed from Normal action 1 to action 59
+while its stale `_Attack_Hit_` movement-animation name remained current. A later
+RIGHT marker was accepted after the first source had naturally reset. This is
+not valid ownership. Before BOTH is recognized, Normal marker-time eligibility
+must require native `gEAction_Attack` and `gEPhase_Hit` in addition to the exact
+marked motion, then pass an interruption regression. This is a bounded guard,
+not a new callback family or per-frame system.
 
 The first OFF proof must use distinct targets because an already visited target
 cannot reveal whether collision remained active. Use an identical horizontal
