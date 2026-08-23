@@ -586,6 +586,22 @@ G3AB collision command per authored frame, use BOTH rather than simultaneous
 RIGHT+LEFT, and keep OFF plus the next activation on separate frames. Final
 body/unarmed/monster marker terminology remains outside this frozen subset.
 
+v0.18 runtime validates the clean rename with no aliases. The log contains 24
+complete final-name executions: 12 Normal and 12 Quick covering both poses and
+all four tested QuickAttackR/L variants. Each accepted exactly
+BOTH -> side -> OFF -> BOTH, began with a fresh budget, rejected the expected
+two occurrence replays plus one same-update duplicate, and retired both sources
+naturally. All Quick first markers performed StatePosition 0 -> 1; later source
+markers preserved 1 -> 1. No `*_TEST` marker, unsupported final marker,
+malformed sequence, or extra native player activation appeared.
+
+For the next callback family, do not add generic filename permission. Map the
+native `OnAI_WhirlAttack` entry plus exact action and Hit phase first. Confirm
+whether 2H/Staff full Whirl and Dual SimpleWhirl share that callback before
+deciding whether one adapter can own both. Preserve the validated marker parser,
+source-set transition helper, occurrence guard, duplicate guard, and execution
+cleanup unchanged.
+
 
 For gameplay diagnosis, visible stumble is not a sufficient hit signal. Rapid
 repeated contacts may reduce or remove the target's stumble response while

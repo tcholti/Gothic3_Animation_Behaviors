@@ -642,15 +642,26 @@ preserved 1 -> 1. No malformed sequence or delayed native reactivation was
 found. The shared marker-source core is therefore validated across the tested
 Normal and Quick families.
 
-The v0.18 source candidate implements the clean rename with no semantic change.
-Its immediate gate is a build plus one controlled Normal and one controlled
-Quick regression authored with the final names. After that, add Whirl and Power
-as separate callback adapters rather than broadening the shared core implicitly.
+v0.18 is validated. Its Win32 Release build/install matched at SHA-256
+`427A7CF4EB72BF76DBA573768BCCE5C45151994C6D36B99EA23D7A5869AACBCC`.
+Twenty-four complete final-name executions covered P0/P1 Normal and all four
+tested P0/P1 QuickAttackR/L variants. Every execution accepted the exact
+BOTH -> side -> OFF -> BOTH schedule, began with a fresh budget, rejected only
+the expected replay callbacks, and naturally cleaned up both sources. Quick
+StatePosition bookkeeping remained correct, no delayed native player
+activation appeared, and all three intended contacts were visually confirmed.
+This closes the equipped-slot vocabulary plus shared Normal/Quick marker core
+for the current stage.
+
+The next active investigation is Whirl ownership. First map
+`OnAI_WhirlAttack`, exact action/phase semantics, and whether 2H/Staff full
+Whirl and Dual SimpleWhirl share a native callback. Then add one narrow adapter
+without changing the shared source-set core and validate the 2H/Staff
+RIGHT/OFF/RIGHT double-contact fixture. Power remains a later separate adapter.
 A quiet prototype-disabled/enabled battle comparison remains required before
 claiming negligible release overhead. Visible target stumble is not a reliable
-damage proxy during rapid repeated hits; health loss was still observed, while
-close-overlap geometry also caused separate genuine misses. A damage/health
-logger extension is optional future diagnostic work.
+damage proxy during rapid repeated hits; a damage/health logger extension
+remains optional diagnostic work.
 
 ## 12. Raise Generalization — After Collision Core Stabilizes
 

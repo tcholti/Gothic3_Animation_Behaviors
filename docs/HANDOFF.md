@@ -325,15 +325,31 @@ are not established by this log. A future damage/health observer would improve
 contact diagnosis, but it is not required to accept the collision-source-set
 result.
 
-The v0.18 source candidate freezes the equipped-slot authoring API as
-`G3AB_COL_RIGHT`, `G3AB_COL_LEFT`, `G3AB_COL_BOTH`, and
-`G3AB_COL_OFF`. It performs a clean break: the provisional `*_TEST` names
-are no longer recognized and no aliases were added. RIGHT/LEFT refer to
-equipped slot entities rather than animation-direction suffixes. Exact-set,
-rearm, OFF, occurrence, duplicate, interruption, Quick bookkeeping, source
-resolution, and cleanup behavior are unchanged from validated v0.17. Final
-body/unarmed/monster marker terminology remains deliberately unresolved.
-Build and runtime regression are pending.
+Validated v0.18 at source commit `7550723` freezes the equipped-slot
+authoring API as `G3AB_COL_RIGHT`, `G3AB_COL_LEFT`,
+`G3AB_COL_BOTH`, and `G3AB_COL_OFF`. It performs a clean break: the
+provisional `*_TEST` names are no longer recognized and no aliases were
+added. RIGHT/LEFT refer to equipped slot entities rather than animation-
+direction suffixes. Final body/unarmed/monster marker terminology remains
+deliberately unresolved.
+
+Win32 Release build/install matched at SHA-256
+`427A7CF4EB72BF76DBA573768BCCE5C45151994C6D36B99EA23D7A5869AACBCC`;
+validated v0.17 is backed up at
+`F1E141BF33BE1821DDC6D17C8EBB63751FEFE092AB7193A60EA4ACFD8E25AB5A`.
+The final-name runtime log contains 24 complete player executions: six P0 and
+six P1 Normal, plus 12 Quick covering four P0 QuickAttackR, three P0
+QuickAttackL, three P1 QuickAttackL, and two P1 QuickAttackR. P0 consistently
+accepted BOTH -> LEFT -> OFF -> BOTH; P1 accepted
+BOTH -> RIGHT -> OFF -> BOTH. All 24 began with a fresh execution budget,
+accepted exactly four authored operations, rejected exactly two interleaved
+replays by occurrence budget and one final replay by same-update dedupe, and
+naturally retired both weapon sources. The 12 Quick executions all performed
+first-marker StatePosition 0 -> 1 and preserved 1 -> 1 at later source markers.
+There were no unsupported/rejected final markers, malformed schedules, or
+extra native player activations. The author visually confirmed all three
+intended contacts for every tested Normal and Quick type. v0.18 is the current
+validated collision prototype.
 
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
@@ -485,13 +501,14 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build/install v0.18, update one controlled Normal and one controlled Quick fixture to the final marker names, and confirm that both retain the validated schedule; an old `*_TEST` fixture may be used once as a negative control if convenient, but is not required;
-2. add Whirl ownership as a separate callback adapter, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
-3. add Power ownership separately after Whirl; the existing Power logs are native/source evidence, not marker-controlled validation;
-4. before release integration, build a quiet diagnostic configuration and compare a repeatable battle with the prototype disabled/enabled; current stress logs prove functional stability, not negligible performance cost;
-5. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-6. migrate the validated collision core into `Script_G3AnimationBehaviors` only after the marker API and callback-family staging are agreed;
-7. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. begin the next session with a focused Whirl ownership investigation at High reasoning: inspect the official SDK and pinned Jackydima source for `OnAI_WhirlAttack`, the exact Whirl action/phase gate, and whether 2H/Staff full Whirl and Dual SimpleWhirl actually share one native callback path;
+2. after that mapping is explicit, return to Medium and add one narrow Whirl callback adapter without changing the validated Normal/Quick/source-set core;
+3. validate 2H/Staff full Whirl first with the final RIGHT/OFF/RIGHT double-contact fixture, including native-timer suppression, repeated same-target contact, the inactive gap, natural cleanup, and the known `ResetOnUntouch` concern. Treat Dual SimpleWhirl as a separate validation even if it shares the callback;
+4. add Power ownership separately after Whirl; the existing Power logs are native/source evidence, not marker-controlled validation;
+5. before release integration, build a quiet diagnostic configuration and compare a repeatable battle with the prototype disabled/enabled; current stress logs prove functional stability, not negligible performance cost;
+6. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+7. migrate the validated collision core into `Script_G3AnimationBehaviors` only after callback-family staging is complete enough for production;
+8. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 
