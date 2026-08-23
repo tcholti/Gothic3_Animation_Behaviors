@@ -226,14 +226,27 @@ accepted as occurrence 2/2 with `ExecutionBudgetReset: 0`; its genuine late
 RIGHT was then rejected as exhausted. BOTH must wait for a narrow execution-
 generation/reset correction and regression.
 
-The v0.16 source candidate implements that correction with two event-driven
-signals. Repeated controlled Normal/Quick callbacks observe state-time rollback
-and retire the old actor budget before a new marker. Natural 7 -> 5 retirement
-of a still marker-owned weapon source also retires the budget when actor state
-time rolled behind the last accepted marker. Explicit OFF and exact-set source
-switching remain intra-execution because they remove the retiring source from
-marker ownership before requesting `Item_Equipped`. The candidate adds no
-actor/world scan; build and runtime validation are pending.
+Validated v0.16 at commit `286c7bf` implements that correction with two
+event-driven signals. Repeated controlled Normal/Quick callbacks observe
+state-time rollback and can retire the old actor budget before a new marker.
+Natural 7 -> 5 retirement of a still marker-owned weapon source independently
+retires the budget when actor state time rolled behind the last accepted
+marker. Explicit OFF and exact-set source switching remain intra-execution
+because they remove the retiring source from marker ownership before requesting
+`Item_Equipped`. The implementation adds no actor/world scan.
+
+Build/install passed at SHA-256
+`D7E0B425926C626DC9D8F6E9F3A5307DA89415694279B3B59AD7960030B6E02F`;
+validated v0.15 is backed up at
+`20DF9146EFC33F1FDDCA5A7B48A771E43EC43B4E6D44F79DB00C6E1A16D85DED`.
+The runtime matrix contained 38 fresh executions: 25 complete 2H Normal
+double attacks, seven first-RIGHT interruptions, four complete Quick doubles,
+and two complete Dual alternating-source attacks. All 38 natural marker-owned
+retirements removed one execution record. Every complete schedule retained its
+later genuine contact and no new attack inherited an earlier occurrence count.
+Unmarked GetUpAttack/GetUpParade activity remained native. This closes the
+tested weapon-path blocker before BOTH; the callback rollback diagnostic did
+not fire in this run because natural source retirement supplied the boundary.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -384,12 +397,11 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build v0.16 and repeat the complete Normal/Quick/Dual fixtures; interrupt a two-contact 2H Normal after its first RIGHT, then immediately perform a complete new attack and confirm fresh occurrence 1/2 followed by accepted occurrence 2/2;
-2. enable and validate BOTH using the already-fixed two-source representation, including exact-set transitions among RIGHT, LEFT, BOTH, and OFF;
-3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
-4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
-5. add collision callback adapters one family at a time, freeze marker vocabulary, and migrate the validated core into `Script_G3AnimationBehaviors`;
-6. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+1. enable and validate BOTH using the existing two-source representation, including exact-set transitions among RIGHT, LEFT, BOTH, and OFF;
+2. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+3. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
+4. add collision callback adapters one family at a time, freeze marker vocabulary, and migrate the validated core into `Script_G3AnimationBehaviors`;
+5. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 

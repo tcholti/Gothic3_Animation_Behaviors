@@ -478,6 +478,17 @@ The callback path is also relevant to logical/Fist sources, which deliberately
 skip weapon `Item_Attack` group changes. Both checks are event-driven and add no
 per-frame actor/world scan.
 
+v0.16 runtime validation passed for the tested weapon path. Across 38 marked
+executions, every natural marker-owned retirement removed exactly one cached
+execution. The matrix contained 25 complete 2H Normal doubles, seven
+first-RIGHT interruptions, four complete Quick doubles, and two complete Dual
+alternating-source attacks. Every complete attack began with a fresh budget and
+retained its later genuine contact. The controlled-callback rollback diagnostic
+did not trigger in this session because natural weapon-source retirement
+supplied the boundary; retain that callback path for Fist/logical sources.
+Unmarked GetUpAttack/GetUpParade actions produced native collision diagnostics
+but no reserved-marker dispatch.
+
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the
 Normal/Quick context gate. The two probe logs contain 45 and 55 such rejected

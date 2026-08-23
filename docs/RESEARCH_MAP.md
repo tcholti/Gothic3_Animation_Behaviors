@@ -308,6 +308,18 @@ second genuine ON preserved 1 -> 1. The targeted QuickAttackL visibly damaged
 the opponent at both intended contacts. Actual Whirl remains unsupported until
 its named callback/action/phase adapter is added separately.
 
+Current validated boundary prototype: v0.16 at commit `286c7bf`. Its
+Win32 Release build/install SHA-256 is
+`D7E0B425926C626DC9D8F6E9F3A5307DA89415694279B3B59AD7960030B6E02F`.
+The mixed regression recorded 38 independently reset executions: 25 complete
+2H Normal doubles, seven first-RIGHT interruptions, four complete 2H Quick
+doubles, and two complete Dual alternating-source Normals. All 38 natural
+marker-owned source retirements removed one cached execution. No complete
+attack inherited an earlier occurrence count, and unmarked get-up actions
+produced no reserved-marker callback. The tested weapon-path occurrence
+lifetime defect is closed. Next isolate BOTH; Power and Whirl remain separate
+callback adapters.
+
 ### Prototype marker
 
 `G3AB_COL_TEST`

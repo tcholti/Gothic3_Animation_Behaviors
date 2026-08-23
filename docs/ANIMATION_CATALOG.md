@@ -533,6 +533,31 @@ Two forward executions were interrupted; one demonstrated that a stale current
 animation name can outlive Normal action 1, so future marker-time ownership must
 also require the native Normal action and Hit phase.
 
+### Knockdown get-up negative-control animations
+
+The interruption regression supplied these exact native 2H get-up families:
+
+```text
+Hero_SitKnockDown_None_2H_P0_GetUpAttack_Raise_N_Back_00_%_00_P0_0_R
+Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Back_00_%_00_P1_100_R
+Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Back_00_%_00_P1_0_R
+
+Hero_SitKnockDown_None_2H_P0_GetUpAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+Hero_SitKnockDown_None_2H_P0_GetUpParade_Hit_N_Fwd_00_%_00_P0_0
+Hero_SitKnockDown_None_2H_P0_GetUpParade_Recover_N_Fwd_00_%_00_P0_0
+Hero_SitKnockDown_None_2H_P0_GetUpParade_Hit_N_Back_00_%_00_P0_0
+Hero_SitKnockDown_None_2H_P0_GetUpParade_Recover_N_Back_00_%_00_P0_0
+```
+
+The v0.16 log directly observed native collision activity during the forward
+GetUpAttack Hit and forward GetUpParade Hit. None of these unmarked get-up
+actions dispatched a reserved project marker, so they served as negative
+controls after interrupted marked attacks rather than becoming collision-owned
+actions.
+
 ## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:
