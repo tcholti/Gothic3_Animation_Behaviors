@@ -229,7 +229,7 @@ Validated duplicate-dispatch prototype: `v0.11` at commit `0bbc377`.
   the accepted late callback, and performed no collision/list mutation;
 - two-contact damage remained observable against two targets.
 
-Current explicit-OFF candidate: `v0.12`.
+Tested explicit-OFF prototype: `v0.12` at commit `685bbb7`.
 
 - recognizes provisional `G3AB_COL_OFF_TEST` only inside a Normal/Quick Hit
   whose exact motion is already owned by `G3AB_COL_TEST`;
@@ -242,12 +242,32 @@ Current explicit-OFF candidate: `v0.12`.
   no-op rather than changing unrelated collision state;
 - natural engine reset and accepted OFF both retire marker ownership;
 - v0.11 same-update deduplication applies independently to ON and OFF names;
-- build and runtime validation are pending.
+- Win32 Release build/install passed at SHA-256
+  `F268FEDB96B1FDED304443FE34A62BA19A02BE214D6084C1B9A014FBD159758B`;
+  the v0.11 rollback is preserved at SHA-256
+  `F47EAD5B403DA701F32CCD23B2A2A429BDB16491DDE0864E0CF10CF76C78D154`.
 
-The first causal test uses an identical horizontal 2H sweep against several
-wolves: ON-only control versus ON -> OFF, with OFF placed while the blade still
-has later distinct targets to cross. The second reuses the validated double
-attack for ON -> OFF -> ON and expects two clears but no clear at OFF.
+Physical OFF passed in the horizontal 2H sweep. Three ON-only executions each
+logged one activation/clear and one natural reset and could damage all three
+wolves. Seven ON-f7/OFF-f9 executions each logged one 5 -> 7 and one 7 -> 5;
+they usually hit one wolf and sometimes two when tightly grouped. Ten
+ON-f7/OFF-f8 executions produced the same clean state sequence and never hit
+more than one wolf. OFF performed no list clear in all 17 executions.
+
+Later ON also restores collision physically, but the double fixture exposed a
+new replay defect. Each of four single-target and three multi-target executions
+visually retained both swings, while the late state-time batch was `ON, OFF,
+ON`. The single-target log therefore contains 12 ON accepts/clears and eight
+OFF accepts; the multi-target log contains nine and six. Each attack performs
+three 5 -> 7 operations, two explicit 7 -> 5 OFF operations, and one natural
+7 -> 5 cleanup instead of the authored two ON and one OFF.
+
+The v0.11 last-accepted guard is insufficient when marker names interleave.
+Preferred next candidate: scan authored occurrence counts per reserved marker
+name, track accepted counts for the current actor/motion/action/phase execution,
+and reject calls beyond that budget. For the tested motion, accept ON twice and
+OFF once. This preserves generic repeated marker names without numbering every
+contact.
 
 ### Prototype marker
 

@@ -123,7 +123,9 @@ Diagnostic-only v0.10 source at commit `6914039` preserves v0.9 behavior and add
 
 Validated v0.11 at commit `0bbc377` preserves v0.10 behavior and adds only same-update duplicate-marker suppression. The guard runs after marker ownership and source resolution but before `SetCollisionGroup` or `ClearTriggeredList`. Its identity key is actor + resolved source + current motion + marker name + action + phase + state time, with a wall-clock window of at most 5 ms. Different state times remain independent authored contacts. Win32 Release build and installation passed at SHA-256 `F47EAD5B403DA701F32CCD23B2A2A429BDB16491DDE0864E0CF10CF76C78D154`; the validated v0.10 rollback is `647B8C36C0FEA9D16C898F069894028DE0769FF7C4D7A30A84DDE2F0422B0C6D`.
 
-Current v0.12 source candidate adds only provisional `G3AB_COL_OFF_TEST`. ON remains the exact-motion ownership declaration. Accepted weapon ON records an actor/source/motion/action/phase-owned window; OFF requests `Item_Equipped` only when that exact window is still active, never clears the triggered list, and retires the window. The global collision observer also retires ownership on Gothic 3's natural reset. OFF before ON, after reset, or for Fist/body is consumed as a logged no-op. The v0.11 duplicate guard distinguishes marker name and applies to both ON and OFF. Build and runtime validation are pending.
+Tested v0.12 at commit `685bbb7` adds provisional `G3AB_COL_OFF_TEST`. ON remains the exact-motion ownership declaration. Accepted weapon ON records an actor/source/motion/action/phase-owned window; OFF requests `Item_Equipped` only when that exact window is still active, never clears the triggered list, and retires the window. The global collision observer also retires ownership on Gothic 3's natural reset. OFF before ON, after reset, or for Fist/body is consumed as a logged no-op. Win32 Release build/install passed at SHA-256 `F268FEDB96B1FDED304443FE34A62BA19A02BE214D6084C1B9A014FBD159758B`; the validated v0.11 rollback is `F47EAD5B403DA701F32CCD23B2A2A429BDB16491DDE0864E0CF10CF76C78D154`.
+
+v0.12 physically validates OFF but is not production-ready. In the horizontal 2H sweep, ON-only could hit all three wolves; OFF at frame 9 usually limited damage to one wolf and OFF at frame 8 never allowed more than one. All 17 OFF executions changed 7 -> 5 and never cleared the list. In the double attack, later ON restored collision and both swings could hit one or multiple targets. However, every late frame-15 update dispatched `ON, OFF, ON` at the same state time. The last-accepted-only dedupe guard accepts this interleaved replay, producing three ON and two OFF operations per attack instead of the authored two ON and one OFF.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -186,6 +188,13 @@ v0.10 attack. v0.11 retained two genuine contacts and ignored exactly one
 same-update duplicate in each of six regression executions: 12 accepts, six
 ignored duplicates, 12 clears, and six natural resets. Two-contact damage was
 observed against two targets.
+
+Explicit OFF is now physically proven against distinct targets. The 0–12
+horizontal sweep used ON at frame 7: ON-only could hit all three wolves, OFF at
+frame 9 usually limited the sweep to one target, and OFF at frame 8 never hit
+more than one. The 0–20 double attack used ON frames 4/15 and OFF frame 10;
+both intended swings still hit one or multiple targets, but its late
+interleaved marker replay requires a stronger occurrence-based guard.
 
 ## 11. v0.8 Validation — PLAYER AND NPC PASSED
 
@@ -267,8 +276,8 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build v0.12, then validate ON -> OFF with the identical horizontal 2H multi-target sweep: the ON-only control should hit several wolves, while OFF must prevent later new-target contacts in the continuing sweep;
-2. reuse the validated double attack for ON -> OFF -> ON and confirm `5 -> 7`, `7 -> 5`, `5 -> 7`, two list clears, and two intended contacts;
+1. replace last-accepted-only dedupe with a per-execution authored-occurrence budget: accept each reserved marker name no more times than it exists in the exact motion;
+2. rerun the ON-f4/OFF-f10/ON-f15 double fixture and confirm exactly two ON accepts/clears, one OFF accept without clear, and one natural cleanup per attack;
 3. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.12: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
 5. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;

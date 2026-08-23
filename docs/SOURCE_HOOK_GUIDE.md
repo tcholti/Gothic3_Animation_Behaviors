@@ -363,6 +363,20 @@ no longer `Item_Attack`, covering both explicit OFF and natural reset. OFF-only
 motions do not claim callback ownership because ON remains the declaration that
 suppresses the native timer.
 
+Runtime qualification: v0.12 physically proves OFF and later ON restoration,
+but its actor-local last-accepted dedupe record is too narrow for interleaved
+replay. The authored ON-f4/OFF-f10/ON-f15 motion dispatches `ON, OFF, ON` at the
+late state time. All three pass because each differs from the immediately
+previous marker.
+
+Next guard design: extend exact-motion scanning to count occurrences of each
+reserved marker name. Maintain accepted counts for the current
+actor/motion/action/phase execution and ignore callbacks after that marker's
+authored count is exhausted. Reset the execution counters when a new execution
+begins. This accepts the tested motion's two ON and one OFF operations while
+rejecting its replayed late OFF and extra ON, without requiring numbered marker
+names.
+
 ## 11. Current Marker-Control Research Pattern
 
 At callback entry / Hit start:

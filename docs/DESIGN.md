@@ -398,6 +398,22 @@ attack for ON -> OFF -> ON to prove that the next source marker restores the
 weapon window and rearms the list. The current v0.12 prototype limits OFF to a
 matching marker-owned weapon window; Fist/body OFF remains separate work.
 
+v0.12 validates the physical rule. In the tested horizontal sweep, ON-only
+could hit all three wolves; OFF at frame 9 usually limited damage to one, and
+OFF at frame 8 never allowed more than one. The double attack retained two
+intended damage contacts after ON -> OFF -> ON, including multi-target contacts
+on both swings.
+
+The double log also proves that last-marker-only dedupe is not the final
+architecture. At the late contact Gothic 3 dispatches `ON, OFF, ON` at one
+state time, replaying already-consumed marker names around the genuine late ON.
+Because the names interleave, comparing only with the immediately previous
+marker accepts all three. Production should instead budget accepted callbacks
+by authored marker-name occurrence within the current execution. Two authored
+ON entries permit two accepts; one authored OFF entry permits one. Calls beyond
+those counts are replay and must not mutate collision or lists. This retains the
+generic marker vocabulary without per-contact numbering.
+
 Before OFF existed, v0.10 isolated same-target list rearming under the proven
 Normal path by reusing one identical double-contact 2H motion in three variants:
 

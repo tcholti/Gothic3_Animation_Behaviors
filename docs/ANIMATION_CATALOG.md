@@ -404,6 +404,23 @@ execution kept one early and one late accepted marker, ignored one duplicate
 late dispatch at identical state time, cleared the list twice, and naturally
 reset once. Two-contact behavior remained visible against two targets.
 
+v0.12 added two controlled fixture groups:
+
+- horizontal 2H sweep: Raise frames 0–4, Hit frames 0–12, whoosh frame 6,
+  ON frame 7, with either no OFF, OFF frame 9, or OFF frame 8;
+- double attack: Raise frames 0–4, Hit frames 0–20, whooshes/ON frames 4 and
+  15, OFF frame 10.
+
+The horizontal ON-only control could damage all three grouped wolves. OFF at
+frame 9 usually limited the sweep to one target and sometimes two when wolves
+stood very close; OFF at frame 8 never allowed more than one. The double attack
+still damaged one or multiple targets on both intended swings.
+
+The double motion has five authored frame effects, matching two whooshes, two
+ON entries, and one OFF. Nevertheless, every late contact dispatched `ON, OFF,
+ON` at identical state time. This is runtime marker replay, not evidence of
+additional authored entries; occurrence-aware suppression is required.
+
 ## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:
