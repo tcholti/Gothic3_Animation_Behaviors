@@ -491,6 +491,29 @@ replacement executions each activated/reset only the equipped left item and
 all visibly damaged their targets. The filename suffixes `_R`/`_L` did not
 select the physical collision source; the exact-motion marker did.
 
+### Dual Power three-contact probe fixture
+
+The author-created P0/P1 Power motions both run from frame 0 through frame 18
+inclusive for Raise and Hit, with whooshes at Hit frames 1, 7, and 16:
+
+```text
+Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R
+Hero_Stand_1H_1H_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_R
+
+Hero_Stand_1H_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L
+Hero_Stand_1H_1H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_L
+```
+
+The probe authored P0 RIGHT frame 1, LEFT frame 6, RIGHT frame 16; P1 mirrored
+LEFT, RIGHT, LEFT. Because v0.14 does not own Power, all Power-context markers
+were rejected without collision/list mutation and native Power activated both
+weapons. The user observed contacts across the three swings, including a
+difficult-to-judge final swing, but the current logger does not prove per-target
+damage. Reuse this motion under Normal filenames for controlled exact-set and
+future BOTH tests.
+
 ## 13. Catalog Maintenance Rules
 
 When new animation information becomes important for future reasoning:

@@ -533,8 +533,17 @@ stronger P0/P1 replacement log contains six P0 and five P1 marked executions.
 Those 11 contacts produced 11 left activations/clears and 11 left resets with
 no player right activation. Because native P1 normally uses RIGHT, the P1
 result directly proves source replacement rather than additive activation.
-The remaining staging gate is the preserved RIGHT regression before BOTH is
-recognized.
+The preserved RIGHT regression has also passed. Four 2H Normal
+RIGHT-f4/OFF-f10/RIGHT-f15 executions retained exactly the accepted/rejected
+marker pattern and physical collision sequence proven in v0.13, with no LEFT
+activation. The next staging gate is an in-execution exact-set alternation test
+under Normal before BOTH is recognized.
+
+Real Dual Power is still deliberately outside callback ownership. In two probe
+logs every Power-context RIGHT/LEFT marker was rejected before mutation, while
+native Power activated and reset both weapons. The user's three-contact visual
+observations are therefore native evidence only. Reuse the motion under Normal
+filenames for marker tests; add `OnAI_PowerAttack` ownership separately later.
 
 There is no separate generic ON marker. "ON" is only shorthand for the
 activation behavior already carried by RIGHT/LEFT/BOTH. A multi-contact file

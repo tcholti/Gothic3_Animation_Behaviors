@@ -175,8 +175,22 @@ session produced 11 clean marked cycles—six P0 and five P1—with exactly 11 l
 5 -> 7/list clears, 11 left 7 -> 5 resets, and no player right activation. All
 attacks visibly connected. This proves that marked P1 LEFT suppresses/replaces
 its native RIGHT activation rather than adding a second source. No duplicate,
-budget, or delayed-reactivation anomaly appeared. Preserved RIGHT regression
-remains required before BOTH is enabled.
+budget, or delayed-reactivation anomaly appeared.
+
+The preserved RIGHT regression also passed. Four executions of the exact
+2H ON-f4/OFF-f10/ON-f15 fixture each accepted two RIGHT markers and one OFF,
+rejected the expected replayed OFF and repeated RIGHT, cleared twice, and
+produced right `5 -> 7 -> 5 -> 7 -> 5` without any LEFT activation. The target
+was visibly damaged by both intended swings. v0.14 therefore passes the
+separate LEFT and RIGHT gates.
+
+Two real Dual Power probes do not validate marker control: Power is not yet an
+owned callback family, so all 45 and 55 Power-context marker dispatches were
+consumed as unsupported before mutation. Native Power activated/reset both
+weapons and produced the user's visual contact observations. The next controlled
+test should reuse the three-contact Power motion under Normal P0/P1 filenames
+with RIGHT -> LEFT -> RIGHT and LEFT -> RIGHT -> LEFT. This validates exact-set
+switching before adding BOTH. Actual Power ownership remains a separate adapter.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 

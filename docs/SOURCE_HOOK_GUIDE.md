@@ -430,7 +430,17 @@ resets, with no player right activation, duplicate rejection, occurrence-budget
 rejection, or delayed reactivation. Since tested native P1 normally uses RIGHT,
 this is direct evidence that callback ownership replaces the native source.
 Do not enable BOTH until the preserved RIGHT marker path is regressed under the
-same v0.14 refactor.
+same v0.14 refactor. That regression passed in four exact
+RIGHT-f4/OFF-f10/RIGHT-f15 executions: two RIGHT accepts/clears, one OFF accept,
+the expected occurrence/dedupe rejections, and right
+`5 -> 7 -> 5 -> 7 -> 5` with no LEFT activation.
+
+Do not infer Power support from globally received frame effects. v0.14 consumes
+reserved marker names in real `PowerAttack_Hit` motions but rejects them at the
+Normal/Quick context gate. The two probe logs contain 45 and 55 such rejected
+Power callbacks; native Power independently activates both equipped weapons.
+Test the same motion data under a Normal filename for source-set work, then add
+a Power callback adapter as its own change.
 
 ## 11. Current Marker-Control Research Pattern
 

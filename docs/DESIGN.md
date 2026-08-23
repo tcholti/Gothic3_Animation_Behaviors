@@ -417,7 +417,12 @@ LEFT marker produced one left activation/list clear and one natural reset, and
 the player right slot never requested collision activation. This demonstrates
 that exact-motion LEFT ownership replaces the native P1 RIGHT path rather than
 stacking a second source. The fixed source-set design remains unchanged; BOTH
-is still gated on a preserved-RIGHT regression.
+was gated on a preserved-RIGHT regression. That regression has now passed: four
+repeated RIGHT -> OFF -> RIGHT executions preserved the v0.13 occurrence and
+duplicate guards, produced the exact expected right collision sequence, and
+never activated LEFT. Before enabling BOTH, use a three-contact Dual motion
+under the proven Normal callback to validate exact-set alternation in one
+execution: RIGHT -> LEFT -> RIGHT and its mirrored LEFT -> RIGHT -> LEFT.
 
 The first OFF proof must use distinct targets because an already visited target
 cannot reveal whether collision remained active. Use an identical horizontal
