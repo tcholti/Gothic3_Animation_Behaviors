@@ -513,8 +513,15 @@ interrupted after the second BOTH reset both sources during Hit without
 contaminating the next execution. Eleven complete P1 alternating-source
 controls and one interrupted P1 retained expected behavior. Unmarked
 GetUpAttack and side-Normal activity remained native; the suspected accidental
-SimpleWhirl was not present in the log. Mixed exact-set transitions and
-missing-slot fallback remain separate tests.
+SimpleWhirl was not present in the log.
+
+The missing-slot fallback passed separately. Ten P0 2H Normal BOTH callbacks
+resolved RIGHT but not LEFT, retained the original callback, and consumed the
+reserved marker as unsupported with zero custom group request or list clear.
+Native timing independently produced ten right-source activations near state
+time 0.25 and ten Recover resets. The all-or-nothing preflight therefore
+prevents partial BOTH ownership in the tested path. Mixed exact-set transitions
+remain the next source-set test.
 
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the

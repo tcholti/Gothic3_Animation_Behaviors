@@ -274,8 +274,16 @@ sources during Hit. Eleven complete P1 positive controls retained
 LEFT -> RIGHT -> LEFT and one P1 execution was interrupted after its first
 LEFT. Every accepted execution began with a fresh budget. Four unmarked
 GetUpAttack executions and one unmarked side Normal remained native; no
-WhirlAttack motion appears in the log. Missing-slot native fallback and mixed
-exact-set transitions remain untested.
+WhirlAttack motion appears in the log.
+
+The missing-slot fallback also passes. Ten P0 2H Normal BOTH marker deliveries
+resolved RIGHT Flamberge but no LEFT source, reported required mask 3, and were
+consumed as unsupported without any custom collision request or list clear.
+The original callback remained active and produced ten native RIGHT 5 -> 7
+activations near state time 0.25 plus ten Recover 7 -> 5 resets. Gameplay's
+single-contact behavior matched that delayed native window. Basic BOTH
+activation, repeated rearm, interruption cleanup, and incomplete-source
+fallback are now validated; mixed exact-set transitions remain untested.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -426,8 +434,8 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. test the missing-required-slot case to confirm native callback fallback for a motion that requires BOTH;
-2. exercise exact-set transitions among RIGHT, LEFT, BOTH, and OFF without changing callback families;
+1. exercise exact-set transitions among RIGHT, LEFT, BOTH, and OFF without changing callback families;
+2. run a compact Normal/Quick regression after the mixed-set fixture, then decide whether the validated marker vocabulary is ready to freeze;
 3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
 5. add collision callback adapters one family at a time, freeze marker vocabulary, and migrate the validated core into `Script_G3AnimationBehaviors`;

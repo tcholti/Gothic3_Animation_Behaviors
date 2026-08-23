@@ -320,9 +320,12 @@ session contained 17 complete P0 BOTH -> BOTH -> BOTH executions, each with six
 source requests and six list clears; all three same-target contacts were
 observed. Four P0 interruptions after the second BOTH reset both sources, and
 all later executions began fresh. Eleven complete P1 alternating-source
-controls plus one interrupted P1 retained expected behavior. Next test
-missing-slot fallback and mixed exact-set transitions; Power and Whirl remain
-separate callback adapters.
+controls plus one interrupted P1 retained expected behavior. The separate
+missing-left test delivered ten BOTH markers with required mask 3 but no LEFT
+source; every marker was consumed without custom mutation while the untouched
+native callback activated/reset RIGHT ten times. Basic BOTH activation, rearm,
+interruption cleanup, and incomplete-source fallback now pass. Next test mixed
+exact-set transitions; Power and Whirl remain separate callback adapters.
 
 ### Prototype marker
 
