@@ -324,8 +324,20 @@ controls plus one interrupted P1 retained expected behavior. The separate
 missing-left test delivered ten BOTH markers with required mask 3 but no LEFT
 source; every marker was consumed without custom mutation while the untouched
 native callback activated/reset RIGHT ten times. Basic BOTH activation, rearm,
-interruption cleanup, and incomplete-source fallback now pass. Next test mixed
-exact-set transitions; Power and Whirl remain separate callback adapters.
+interruption cleanup, and incomplete-source fallback now pass. Mixed exact-set
+control also passed: 28 complete controlled player schedules plus four
+interrupted prefixes preserved BOTH/LEFT-or-RIGHT/OFF/BOTH ordering, all three
+visual contacts, occurrence/dedupe protection, and no-clear OFF behavior. The
+multi-target follow-up retained damage across opponents.
+
+A larger overlapping battle produced 39 fresh marked executions across
+PC_Hero, AssWarrior_07, and Silvio: 19 complete and 20 valid interrupted
+prefixes, using distinct source addresses with no observed cross-actor
+contamination. Sixty-six markers received in actual Power motions were rejected
+at the Normal/Quick gate. This proves tested functional stability, not low
+release overhead; verbose logging remained enabled and frame time was not
+measured. Next run a compact Dual Quick mixed-set regression, then consider the
+source vocabulary freeze. Power and Whirl remain separate callback adapters.
 
 ### Prototype marker
 

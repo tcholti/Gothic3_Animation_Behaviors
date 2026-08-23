@@ -520,8 +520,23 @@ resolved RIGHT but not LEFT, retained the original callback, and consumed the
 reserved marker as unsupported with zero custom group request or list clear.
 Native timing independently produced ten right-source activations near state
 time 0.25 and ten Recover resets. The all-or-nothing preflight therefore
-prevents partial BOTH ownership in the tested path. Mixed exact-set transitions
-remain the next source-set test.
+prevents partial BOTH ownership in the tested path.
+
+Mixed exact-set transitions also passed. In 28 complete controlled player
+executions, P0 used BOTH -> LEFT -> OFF -> BOTH and P1 used
+BOTH -> RIGHT -> OFF -> BOTH. LEFT/RIGHT replaced mask 3 with mask 2/1,
+retired the opposite source, and rearmed the desired source. OFF deactivated
+that single owned source without clearing. Final BOTH reactivated/cleared both.
+Four interrupted executions remained valid prefixes. A multi-target follow-up
+preserved the same ordering and observed damage across multiple opponents.
+
+The overlapping NPC battle reproduced 19 complete and 20 interrupted valid
+prefixes across PC_Hero, AssWarrior_07, and Silvio. Each actor resolved distinct
+slot-entity addresses; no malformed or cross-actor sequence appeared. Actual
+Power motions generated 66 reserved callbacks, all rejected at the
+Normal/Quick context gate without acceptance. These logs are strong functional
+stress evidence but not a performance benchmark: verbose prototype logging
+dominates the session, and no frame-time comparison was recorded.
 
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the

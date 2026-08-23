@@ -283,7 +283,28 @@ The original callback remained active and produced ten native RIGHT 5 -> 7
 activations near state time 0.25 plus ten Recover 7 -> 5 resets. Gameplay's
 single-contact behavior matched that delayed native window. Basic BOTH
 activation, repeated rearm, interruption cleanup, and incomplete-source
-fallback are now validated; mixed exact-set transitions remain untested.
+fallback are now validated.
+
+Mixed exact-set transitions now pass as well. The controlled player log
+contains 32 fresh executions: 17 complete P0
+BOTH -> LEFT -> OFF -> BOTH, 11 complete P1
+BOTH -> RIGHT -> OFF -> BOTH, and four interrupted valid prefixes. All 28
+complete executions accepted one OFF, rejected the two replayed middle
+callbacks by authored budget, rejected the replayed final BOTH by same-update
+dedupe, and visibly retained all three intended contacts. Every OFF closed the
+one source then owned by LEFT or RIGHT and never cleared a triggered list.
+
+The multi-target follow-up contained three complete P1 schedules plus one
+interruption after OFF; all remained valid prefixes and the complete attacks
+could damage multiple opponents. The larger battle session contained 39 fresh
+marked executions across PC_Hero, AssWarrior_07, and Silvio: 19 complete and 20
+interrupted prefixes, with no malformed sequence. The three actors resolved
+distinct right/left entity addresses, retained actor-local budgets, and
+visually allowed NPC three-contact attacks. All 66 reserved callbacks received
+during actual Dual Power motions were rejected at the unsupported
+Normal/Quick gate, and no Quick or Power marker was accepted. All three logs
+loaded and unloaded normally. This is functional/stability stress evidence,
+not a frame-time benchmark; prototype diagnostics are intentionally verbose.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -434,8 +455,8 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. exercise exact-set transitions among RIGHT, LEFT, BOTH, and OFF without changing callback families;
-2. run a compact Normal/Quick regression after the mixed-set fixture, then decide whether the validated marker vocabulary is ready to freeze;
+1. run one compact Dual Quick mixed-set regression, including first-marker StatePosition bookkeeping and later BOTH reactivation, then decide whether the validated marker vocabulary is ready to freeze;
+2. before release integration, build a quiet diagnostic configuration and compare a repeatable battle with the prototype disabled/enabled; current stress logs prove functional stability, not negligible performance cost;
 3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
 5. add collision callback adapters one family at a time, freeze marker vocabulary, and migrate the validated core into `Script_G3AnimationBehaviors`;
