@@ -38,6 +38,8 @@ struct CachedMarkerInfo
     bool markerPresent;
     GEInt frameEffectCount;
     GEInt markerFrame;
+    GEInt onMarkerCount;
+    GEInt offMarkerCount;
 };
 
 static std::unordered_map<std::string, CachedMarkerInfo> g_MarkerCache;
@@ -58,6 +60,24 @@ struct LastAcceptedMarkerDispatch
 };
 
 static std::unordered_map<eCEntity *, LastAcceptedMarkerDispatch> g_LastAcceptedMarkerDispatchByActor;
+
+// v0.13 adds a second guard for interleaved marker replay. The exact motion
+// scan supplies the authored ON/OFF counts once, then each actor keeps only a
+// small execution record. No actor/world scan and no per-frame work is needed.
+struct MarkerExecutionBudget
+{
+    eCEntity *sourceInstance;
+    std::string animationName;
+    GEInt action;
+    GEInt phase;
+    GEInt authoredOnCount;
+    GEInt authoredOffCount;
+    GEInt acceptedOnCount;
+    GEInt acceptedOffCount;
+    GEFloat lastMarkerStateTime;
+};
+
+static std::unordered_map<eCEntity *, MarkerExecutionBudget> g_MarkerExecutionBudgetByActor;
 
 // OFF may only close a weapon collision window opened by this prototype for
 // the same actor/source/motion/action/phase. Natural engine reset and explicit
@@ -82,6 +102,8 @@ struct FrameEffectScanResult
     bool foundMarker;
     GEInt count;
     GEInt markerFrame;
+    GEInt onMarkerCount;
+    GEInt offMarkerCount;
 };
 
 struct CurrentMotionMarkerResult
@@ -90,6 +112,8 @@ struct CurrentMotionMarkerResult
     bool markerPresent;
     GEInt frameEffectCount;
     GEInt markerFrame;
+    GEInt onMarkerCount;
+    GEInt offMarkerCount;
 };
 
 // -----------------------------------------------------------------------------
@@ -134,7 +158,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.12 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.13 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -178,9 +202,17 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Marked Normal/Quick collision behavior remains the validated v0.9 behavior.\n\n");
 
-        std::fprintf(g_pLog, "v0.12 preserves v0.11 same-update marker deduplication for ON and OFF.\n");
+        std::fprintf(g_pLog, "v0.13 preserves v0.11 same-update marker deduplication for ON and OFF.\n");
 
         std::fprintf(g_pLog, "Dedup key: actor + source + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
+
+        std::fprintf(g_pLog, "v0.13 adds cached authored-occurrence budgets per exact motion and actor execution.\n");
+
+        std::fprintf(g_pLog, "Budget key: actor + source + motion + action + phase; state-time rollback starts a new execution.\n");
+
+        std::fprintf(g_pLog, "Natural collision reset outside the owning Hit execution retires the actor budget.\n");
+
+        std::fprintf(g_pLog, "No per-frame actor scan; budget work occurs only when a reserved marker is received.\n\n");
 
         std::fflush(g_pLog);
     }
@@ -270,6 +302,79 @@ static void RememberAcceptedMarker(eCEntity *actorInstance, eCEntity *sourceInst
     g_LastAcceptedMarkerDispatchByActor[actorInstance] = record;
 }
 
+static void ForgetMarkerExecutionForActor(eCEntity *actorInstance)
+{
+    if (actorInstance == nullptr)
+        return;
+
+    g_MarkerExecutionBudgetByActor.erase(actorInstance);
+    g_LastAcceptedMarkerDispatchByActor.erase(actorInstance);
+}
+
+static bool TryConsumeAuthoredMarkerOccurrence(eCEntity *actorInstance, eCEntity *sourceInstance,
+                                               char const *animationName, GEInt action, GEInt phase,
+                                               GEFloat stateTime, bool isOnMarker,
+                                               GEInt authoredOnCount, GEInt authoredOffCount,
+                                               GEInt &authoredCount, GEInt &acceptedBefore,
+                                               GEInt &acceptedAfter, bool &executionReset)
+{
+    authoredCount = isOnMarker ? authoredOnCount : authoredOffCount;
+    acceptedBefore = 0;
+    acceptedAfter = 0;
+    executionReset = false;
+
+    auto found = g_MarkerExecutionBudgetByActor.find(actorInstance);
+
+    bool startsNewExecution = found == g_MarkerExecutionBudgetByActor.end();
+
+    if (!startsNewExecution)
+    {
+        MarkerExecutionBudget const &previous = found->second;
+
+        startsNewExecution = previous.sourceInstance != sourceInstance
+                          || !SameFileName(previous.animationName.c_str(), animationName)
+                          || previous.action != action
+                          || previous.phase != phase
+                          || previous.authoredOnCount != authoredOnCount
+                          || previous.authoredOffCount != authoredOffCount
+                          || stateTime + 0.000001f < previous.lastMarkerStateTime;
+    }
+
+    if (startsNewExecution)
+    {
+        MarkerExecutionBudget record = {};
+
+        record.sourceInstance = sourceInstance;
+        record.animationName = animationName != nullptr ? animationName : "";
+        record.action = action;
+        record.phase = phase;
+        record.authoredOnCount = authoredOnCount;
+        record.authoredOffCount = authoredOffCount;
+        record.acceptedOnCount = 0;
+        record.acceptedOffCount = 0;
+        record.lastMarkerStateTime = stateTime;
+
+        g_MarkerExecutionBudgetByActor[actorInstance] = record;
+        found = g_MarkerExecutionBudgetByActor.find(actorInstance);
+        executionReset = true;
+    }
+
+    MarkerExecutionBudget &record = found->second;
+    GEInt &acceptedCount = isOnMarker ? record.acceptedOnCount : record.acceptedOffCount;
+
+    acceptedBefore = acceptedCount;
+    acceptedAfter = acceptedCount;
+
+    if (authoredCount <= 0 || acceptedCount >= authoredCount)
+        return false;
+
+    ++acceptedCount;
+    record.lastMarkerStateTime = stateTime;
+    acceptedAfter = acceptedCount;
+
+    return true;
+}
+
 static void RememberMarkerOwnedWindow(eCEntity *actorInstance, eCEntity *sourceInstance,
                                       char const *animationName, GEInt action, GEInt phase)
 {
@@ -307,6 +412,22 @@ static void ForgetMarkerOwnedWindowForActor(eCEntity *actorInstance)
     }
 }
 
+static bool MarkerWindowStillMatchesActorExecution(eCEntity *actorInstance,
+                                                    MarkerOwnedCollisionWindow const &record)
+{
+    if (actorInstance == nullptr)
+        return false;
+
+    Entity actor(actorInstance);
+    bCString currentAnimation = actor.NPC.GetCurrentMovementAni();
+    GEInt currentAction = static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEInt currentPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
+
+    return SameFileName(record.animationName.c_str(), currentAnimation.GetText())
+        && record.action == currentAction
+        && record.phase == currentPhase;
+}
+
 static void ForgetMarkerOwnedWindowsForSource(eCEntity *sourceInstance)
 {
     if (sourceInstance == nullptr)
@@ -316,6 +437,11 @@ static void ForgetMarkerOwnedWindowsForSource(eCEntity *sourceInstance)
     {
         if (entry->second.sourceInstance == sourceInstance)
         {
+            if (!MarkerWindowStillMatchesActorExecution(entry->first, entry->second))
+            {
+                ForgetMarkerExecutionForActor(entry->first);
+            }
+
             entry = g_MarkerOwnedWindowByActor.erase(entry);
         }
         else
@@ -470,6 +596,8 @@ static FrameEffectScanResult ScanFrameEffects(eCResourceAnimationMotion_PS const
     result.foundMarker = false;
     result.count = 0;
     result.markerFrame = -1;
+    result.onMarkerCount = 0;
+    result.offMarkerCount = 0;
 
     if (motion == nullptr)
         return result;
@@ -503,10 +631,16 @@ static FrameEffectScanResult ScanFrameEffects(eCResourceAnimationMotion_PS const
         if (effectName != nullptr && std::strcmp(effectName, g_CollisionOnMarker) == 0)
         {
             result.foundMarker = true;
+            ++result.onMarkerCount;
 
-            result.markerFrame = static_cast<GEInt>(authoredFrame);
-
-            break;
+            if (result.markerFrame < 0)
+            {
+                result.markerFrame = static_cast<GEInt>(authoredFrame);
+            }
+        }
+        else if (effectName != nullptr && std::strcmp(effectName, g_CollisionOffMarker) == 0)
+        {
+            ++result.offMarkerCount;
         }
     }
 
@@ -521,6 +655,8 @@ static CurrentMotionMarkerResult ScanCurrentMotionForMarker(Entity &actor)
     result.markerPresent = false;
     result.frameEffectCount = 0;
     result.markerFrame = -1;
+    result.onMarkerCount = 0;
+    result.offMarkerCount = 0;
 
     eCEntity *instance = actor.GetInstance();
 
@@ -566,6 +702,10 @@ static CurrentMotionMarkerResult ScanCurrentMotionForMarker(Entity &actor)
 
         result.markerFrame = scan.markerFrame;
 
+        result.onMarkerCount = scan.onMarkerCount;
+
+        result.offMarkerCount = scan.offMarkerCount;
+
         return result;
     }
 
@@ -592,6 +732,10 @@ static CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor)
 
         result.markerFrame = found->second.markerFrame;
 
+        result.onMarkerCount = found->second.onMarkerCount;
+
+        result.offMarkerCount = found->second.offMarkerCount;
+
         return result;
     }
 
@@ -606,6 +750,10 @@ static CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor)
     cached.frameEffectCount = scanned.frameEffectCount;
 
     cached.markerFrame = scanned.markerFrame;
+
+    cached.onMarkerCount = scanned.onMarkerCount;
+
+    cached.offMarkerCount = scanned.offMarkerCount;
 
     g_MarkerCache[currentName] = cached;
 
@@ -662,6 +810,10 @@ static void LogOwnershipDecision(Entity &actor, CurrentMotionMarkerResult const 
     std::fprintf(g_pLog, "Contains_G3AB_COL_TEST: %d\n", decision.markerPresent ? 1 : 0);
 
     std::fprintf(g_pLog, "MarkerFrame: %d\n", decision.markerFrame);
+
+    std::fprintf(g_pLog, "AuthoredOnMarkerCount: %d\n", decision.onMarkerCount);
+
+    std::fprintf(g_pLog, "AuthoredOffMarkerCount: %d\n", decision.offMarkerCount);
 
     std::fprintf(g_pLog, "RightHandSourceResolved: %d\n", source != None ? 1 : 0);
 
@@ -1007,6 +1159,49 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         return nullptr;
     }
 
+    GEInt authoredMarkerCount = 0;
+
+    GEInt acceptedMarkerCountBefore = 0;
+
+    GEInt acceptedMarkerCountAfter = 0;
+
+    bool executionBudgetReset = false;
+
+    bool occurrenceAccepted = TryConsumeAuthoredMarkerOccurrence(
+        a_pEntity1, source.GetInstance(), currentAnimation.GetText(), markerAction, markerPhase,
+        markerStateTime, isCollisionOnMarker, decision.onMarkerCount, decision.offMarkerCount,
+        authoredMarkerCount, acceptedMarkerCountBefore, acceptedMarkerCountAfter, executionBudgetReset);
+
+    if (!occurrenceAccepted)
+    {
+        if (g_pLog != nullptr)
+        {
+            std::fprintf(g_pLog, "MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED\n");
+
+            std::fprintf(g_pLog, "MarkerName: %s\n", effectName);
+
+            std::fprintf(g_pLog, "AuthoredMarkerOccurrences: %d\n", authoredMarkerCount);
+
+            std::fprintf(g_pLog, "AcceptedMarkerOccurrencesBefore: %d\n", acceptedMarkerCountBefore);
+
+            std::fprintf(g_pLog, "AcceptedMarkerOccurrencesAfter: %d\n", acceptedMarkerCountAfter);
+
+            std::fprintf(g_pLog, "ExecutionBudgetReset: %d\n", executionBudgetReset ? 1 : 0);
+
+            std::fprintf(g_pLog, "SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED\n");
+
+            std::fprintf(g_pLog, "TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED\n");
+
+            std::fprintf(g_pLog, "Original StartEffect for marker: NOT CALLED\n");
+
+            std::fprintf(g_pLog, "=================================\n\n");
+
+            std::fflush(g_pLog);
+        }
+
+        return nullptr;
+    }
+
     GEInt beforeGroup = static_cast<GEInt>(source.GetCollisionGroup());
 
     GEInt sourceUseType = static_cast<GEInt>(GetCollisionSourceUseType(source));
@@ -1044,6 +1239,14 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
                                                    : "OFF_NO_MARKER_OWNED_WINDOW");
 
             std::fprintf(g_pLog, "MarkerName: %s\n", effectName);
+
+            std::fprintf(g_pLog, "AuthoredMarkerOccurrences: %d\n", authoredMarkerCount);
+
+            std::fprintf(g_pLog, "AcceptedMarkerOccurrencesBefore: %d\n", acceptedMarkerCountBefore);
+
+            std::fprintf(g_pLog, "AcceptedMarkerOccurrencesAfter: %d\n", acceptedMarkerCountAfter);
+
+            std::fprintf(g_pLog, "ExecutionBudgetReset: %d\n", executionBudgetReset ? 1 : 0);
 
             std::fprintf(g_pLog, "MotionFirstOnMarkerFrame: %d\n", decision.markerFrame);
 
@@ -1124,6 +1327,14 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
         std::fprintf(g_pLog, "MarkerAction: ACCEPTED\n");
 
         std::fprintf(g_pLog, "MarkerName: %s\n", effectName);
+
+        std::fprintf(g_pLog, "AuthoredMarkerOccurrences: %d\n", authoredMarkerCount);
+
+        std::fprintf(g_pLog, "AcceptedMarkerOccurrencesBefore: %d\n", acceptedMarkerCountBefore);
+
+        std::fprintf(g_pLog, "AcceptedMarkerOccurrencesAfter: %d\n", acceptedMarkerCountAfter);
+
+        std::fprintf(g_pLog, "ExecutionBudgetReset: %d\n", executionBudgetReset ? 1 : 0);
 
         std::fprintf(g_pLog, "AuthoredMarkerFrame: %d\n", decision.markerFrame);
 

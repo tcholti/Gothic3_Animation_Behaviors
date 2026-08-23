@@ -127,6 +127,16 @@ Tested v0.12 at commit `685bbb7` adds provisional `G3AB_COL_OFF_TEST`. ON remain
 
 v0.12 physically validates OFF but is not production-ready. In the horizontal 2H sweep, ON-only could hit all three wolves; OFF at frame 9 usually limited damage to one wolf and OFF at frame 8 never allowed more than one. All 17 OFF executions changed 7 -> 5 and never cleared the list. In the double attack, later ON restored collision and both swings could hit one or multiple targets. However, every late frame-15 update dispatched `ON, OFF, ON` at the same state time. The last-accepted-only dedupe guard accepts this interleaved replay, producing three ON and two OFF operations per attack instead of the authored two ON and one OFF.
 
+Current v0.13 source candidate preserves the validated v0.11 exact
+same-update identical-marker guard and adds a second authored-occurrence
+budget. Exact-motion ON/OFF counts are cached once by animation name. Each
+participating actor keeps one current source/motion/action/phase execution
+record; state-time rollback or natural collision cleanup outside the owning
+Hit retires/resets it. Runtime work occurs only on reserved marker dispatch,
+with no per-frame actor/world scan. The verbose test logger is diagnostic and
+must not be treated as the release DLL's performance baseline. Build and
+runtime validation are pending.
+
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
 ## 8. QuickAttack Finding and Validated Fix
@@ -276,9 +286,9 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. replace last-accepted-only dedupe with a per-execution authored-occurrence budget: accept each reserved marker name no more times than it exists in the exact motion;
-2. rerun the ON-f4/OFF-f10/ON-f15 double fixture and confirm exactly two ON accepts/clears, one OFF accept without clear, and one natural cleanup per attack;
-3. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.12: its marker handler intentionally accepts only Normal/Quick Hit contexts;
+1. build v0.13 and verify the startup log reports cached authored-occurrence budgeting;
+2. rerun the ON-f4/OFF-f10/ON-f15 double fixture and confirm exactly two ON accepts/clears, one OFF accept without clear, one replayed OFF rejected by the occurrence budget, one final ON rejected by the same-update duplicate guard, and one natural cleanup per attack;
+3. perform one Quick repeated-marker regression if useful. Do not test the actual Whirl callback with v0.13: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion;
 5. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
 6. add collision callback adapters one family at a time;

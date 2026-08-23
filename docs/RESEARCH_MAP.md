@@ -263,11 +263,25 @@ three 5 -> 7 operations, two explicit 7 -> 5 OFF operations, and one natural
 7 -> 5 cleanup instead of the authored two ON and one OFF.
 
 The v0.11 last-accepted guard is insufficient when marker names interleave.
-Preferred next candidate: scan authored occurrence counts per reserved marker
-name, track accepted counts for the current actor/motion/action/phase execution,
-and reject calls beyond that budget. For the tested motion, accept ON twice and
-OFF once. This preserves generic repeated marker names without numbering every
-contact.
+Current v0.13 source candidate retains that guard as the first layer and adds a
+second per-execution authored-occurrence budget. Retaining both is necessary:
+same-update identical suppression prevents an early duplicate from consuming
+the budget intended for a later genuine contact, while the occurrence budget
+rejects replay with interleaved marker names.
+
+- exact-motion ON/OFF counts are scanned once and cached by animation name;
+- accepted counts are actor + source + motion + action + phase specific;
+- state-time rollback starts a new execution;
+- natural collision cleanup outside the owning Hit retires the execution;
+- the tested motion budgets two ON and one OFF;
+- runtime lookup/checking occurs only when a reserved marker fires; there is no
+  per-frame actor/world scan;
+- the test DLL's verbose logging is diagnostic overhead, not intended release
+  behavior.
+
+Build/runtime expectations for the double fixture: two ON accepts/clears, one
+OFF accept/no-clear, one replayed OFF rejected by the budget, one final ON
+rejected as an exact same-update duplicate, and one natural cleanup per attack.
 
 ### Prototype marker
 

@@ -369,13 +369,24 @@ replay. The authored ON-f4/OFF-f10/ON-f15 motion dispatches `ON, OFF, ON` at the
 late state time. All three pass because each differs from the immediately
 previous marker.
 
-Next guard design: extend exact-motion scanning to count occurrences of each
-reserved marker name. Maintain accepted counts for the current
-actor/motion/action/phase execution and ignore callbacks after that marker's
-authored count is exhausted. Reset the execution counters when a new execution
-begins. This accepts the tested motion's two ON and one OFF operations while
-rejecting its replayed late OFF and extra ON, without requiring numbered marker
-names.
+The v0.13 source candidate uses two ordered guards:
+
+1. retain v0.11 exact same-update identical-marker suppression;
+2. consume one cached authored occurrence for that marker name.
+
+The order matters. Layer one prevents an immediate duplicate ON from consuming
+an occurrence intended for a later genuine ON. Layer two rejects interleaved
+replay after the exact motion's authored count is exhausted. The execution key
+is actor + source + motion + action + phase. State-time rollback starts a new
+execution; natural collision cleanup after leaving the owning Hit retires the
+record. This accepts the tested motion's two ON and one OFF operations without
+requiring numbered marker names.
+
+Performance contract: the exact frame-effect array is scanned once per
+animation name and the result is cached. Each actor that fires a reserved
+marker has at most one current execution record. Checks occur only in reserved
+`StartEffect` callbacks; there is no per-frame actor/world scan. Release code
+must disable or remove the prototype's verbose `fprintf` diagnostics.
 
 ## 11. Current Marker-Control Research Pattern
 

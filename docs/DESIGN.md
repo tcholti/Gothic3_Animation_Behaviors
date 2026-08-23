@@ -408,11 +408,20 @@ The double log also proves that last-marker-only dedupe is not the final
 architecture. At the late contact Gothic 3 dispatches `ON, OFF, ON` at one
 state time, replaying already-consumed marker names around the genuine late ON.
 Because the names interleave, comparing only with the immediately previous
-marker accepts all three. Production should instead budget accepted callbacks
-by authored marker-name occurrence within the current execution. Two authored
-ON entries permit two accepts; one authored OFF entry permits one. Calls beyond
-those counts are replay and must not mutate collision or lists. This retains the
-generic marker vocabulary without per-contact numbering.
+marker accepts all three. The v0.13 source candidate therefore keeps the v0.11
+same-update identical-marker guard as layer one and adds an authored-occurrence
+budget as layer two. The first layer prevents an immediate duplicate from
+consuming a later genuine occurrence; the second rejects interleaved replay.
+Two authored ON entries permit two accepts and one authored OFF entry permits
+one. Calls beyond those counts do not mutate collision or lists. This retains
+the generic marker vocabulary without per-contact numbering.
+
+The guard is event-driven. Exact-motion ON/OFF counts are scanned once and
+cached by animation name; runtime work occurs only when a reserved marker is
+dispatched. Each participating actor has at most one current execution record.
+There is no per-frame actor/world scan. Verbose prototype logging is not part
+of the intended production cost and must be disabled or removed in the release
+DLL.
 
 Before OFF existed, v0.10 isolated same-target list rearming under the proven
 Normal path by reusing one identical double-contact 2H motion in three variants:
