@@ -481,6 +481,16 @@ against two independently tested targets. This validates function and
 execution reset for the tested Normal path; it does not replace future
 large-battle profiling or entity-lifecycle review for production.
 
+v0.15 interruption testing narrows the execution-reset contract. State-time
+rollback at the next marker is insufficient when an attack is interrupted
+after its first authored occurrence: the next attack's first occurrence may
+have a slightly greater state time and inherit the old budget. Natural
+retirement of a still marker-owned collision source must be able to end that
+execution when rollback/transition evidence is present. Explicit OFF and
+exact-set source retirement already remove marker ownership before requesting
+`Item_Equipped`; they must remain intra-execution operations and must not reset
+the occurrence budget.
+
 Before OFF existed, v0.10 isolated same-target list rearming under the proven
 Normal path by reusing one identical double-contact 2H motion in three variants:
 

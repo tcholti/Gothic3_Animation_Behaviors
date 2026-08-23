@@ -549,11 +549,23 @@ small Normal safety correction: require `gEAction_Attack` and `gEPhase_Hit` at
 marker time, then reproduce an interruption. BOTH remains disabled until that
 regression passes.
 
-The v0.15 source candidate now applies the same exact Normal predicate at
+The v0.15 implementation applies the same exact Normal predicate at
 `OnAI_Attack` callback entry and global reserved-marker dispatch:
 `gEAction_Attack` + `gEPhase_Hit` + current `_Attack_Hit_` motion. It changes no
-source-set or timing behavior and adds no per-frame work. Build and interruption
-runtime validation are pending.
+source-set or timing behavior and adds no per-frame work. It built and installed
+successfully. Two interruption sessions preserved 21 complete Dual alternating
+executions and repeated 2H Normal/Quick behavior. Damage reactions stopped
+later marker delivery, so no invalid-action marker mutation occurred, but the
+exact action-59 late-marker rejection branch was not directly reproduced.
+
+Those sessions exposed a different boundary problem in the v0.13 occurrence
+record. One 2H Normal ended after its first RIGHT. Natural 7 -> 5 cleanup
+occurred at state time 0 while stale action/phase/motion still matched, so the
+budget was retained. The next attack's first RIGHT was accepted as occurrence
+2/2 without reset and its genuine second RIGHT was rejected. A new-execution
+signal must therefore be recognized at natural marker-owned retirement (or by
+an equivalent generation mechanism), without treating explicit OFF or
+same-execution source switching as a new attack. This correction precedes BOTH.
 
 Real Dual Power is still deliberately outside callback ownership. In two probe
 logs every Power-context RIGHT/LEFT marker was rejected before mutation, while

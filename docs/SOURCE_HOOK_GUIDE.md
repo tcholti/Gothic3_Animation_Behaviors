@@ -454,7 +454,18 @@ v0.15 implements this as one shared `IsNormalAttackHit` predicate used by both
 `OnAI_Attack` and `StartEffect`. The predicate requires
 `gEAction_Attack`, `gEPhase_Hit`, and the current `_Attack_Hit_` motion. This
 keeps the callback and marker gates identical and avoids maintaining a second
-interruption mechanism. Build/runtime proof remains required.
+interruption mechanism. Build/install and valid-path regression passed. Damage
+interruptions stopped later marker delivery, so the invalid-action rejection
+branch was not directly observed at runtime.
+
+The same test found a separate cache-lifetime edge: natural 7 -> 5 retirement
+after only the first authored source marker can occur while action, phase, and
+the stale Hit filename still match. If the next attack's first marker state
+time is slightly greater, rollback-at-marker does not reset the occurrence
+record. The next implementation should recognize this natural-retirement
+boundary (or add an equivalent execution generation) while preserving the
+existing rule that explicit OFF and exact-set switching do not retire the
+current budget.
 
 Do not infer Power support from globally received frame effects. v0.14 consumes
 reserved marker names in real `PowerAttack_Hit` motions but rejects them at the

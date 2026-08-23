@@ -204,12 +204,27 @@ The next candidate must add those two native semantic checks and run one
 controlled interruption regression before enabling BOTH. Actual Power ownership
 remains a separate adapter.
 
-The narrow v0.15 source candidate now implements that guard in the shared
+The narrow v0.15 implementation applies that guard in the shared
 Normal predicate used at both `OnAI_Attack` callback entry and reserved-marker
 dispatch. Normal requires `gEAction_Attack`, `gEPhase_Hit`, and the current
 `_Attack_Hit_` motion. No Quick, source-set, collision, list-clear, occurrence,
-duplicate, or per-frame behavior changed. Build and runtime validation are
-pending.
+duplicate, or per-frame behavior changed. It built and installed at SHA-256
+`20DF9146EFC33F1FDDCA5A7B48A771E43EC43B4E6D44F79DB00C6E1A16D85DED`.
+
+The two v0.15 interruption sessions preserved 21 complete Dual alternating
+executions plus repeated 2H Normal and Quick fixtures. Damage reactions entered
+actions 26, 29, and 31 and stopped later attack markers; no reserved marker
+arrived after the action had become invalid, so no unsafe post-interruption
+mutation occurred. The exact v0.14 action-59 late-marker case was not
+reproduced, and direct runtime proof of the new rejection branch remains open.
+
+The logs found a separate occurrence-budget boundary defect. After one 2H
+Normal was interrupted following its first RIGHT marker, the weapon naturally
+reset 7 -> 5 at attack state time 0, but the cached budget survived because the
+stale action/phase/motion still matched. The next new attack's first RIGHT was
+accepted as occurrence 2/2 with `ExecutionBudgetReset: 0`; its genuine late
+RIGHT was then rejected as exhausted. BOTH must wait for a narrow execution-
+generation/reset correction and regression.
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -360,7 +375,7 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. build v0.15; force an interruption before a later marker and confirm rejection without collision/list mutation, while preserving a complete three-contact alternating execution;
+1. correct occurrence-budget execution boundaries after an interrupted marker-owned window, preserving explicit OFF and same-execution exact-set switching; rebuild and repeat the 2H interrupted-first-contact fixture;
 2. enable and validate BOTH using the already-fixed two-source representation, including exact-set transitions among RIGHT, LEFT, BOTH, and OFF;
 3. add Whirl ownership separately, then validate 2H/Staff full-Whirl `ResetOnUntouch`, repeated contact, and explicit-OFF gaps using the same motion. Do not test the actual Whirl callback with the current prototype unchanged: its marker handler intentionally accepts only Normal/Quick Hit contexts;
 4. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
@@ -419,6 +434,8 @@ For isolated collision tests, avoid loading old collision/logger DLLs unless tha
 
 ## 17. Collaboration Rules
 
+- `docs/COLLABORATION_RULES.md` is the current project protocol and takes
+  precedence over this short reminder.
 - preserve proven work;
 - one manageable change at a time;
 - give exact paths/complete replacement files when implementation starts;
