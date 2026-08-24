@@ -661,13 +661,20 @@ evidence establishes two separate paths:
   the logged P0 filename/runtime pose 2 case and RIGHT for the logged P1
   filename/runtime pose 1 case.
 
-The v0.19 source candidate at `a78f231` adds only the full-Whirl adapter. It
-reuses the closed v0.18 source-set/rearm/OFF core, sets StatePosition to 1 on
-accepted source markers, leaves SimpleWhirl native, and does not enable
-`ResetOnUntouch`. Build/runtime validation is next: test 2H and Staff
-RIGHT -> OFF -> RIGHT separately, including two same-target contacts, the OFF
-gap, cleanup, bookkeeping, and absence of delayed native activation. Then add
-SimpleWhirl independently. Power remains a later separate adapter. A quiet
+The v0.19 adapter at `a78f231` adds only full Whirl. It reuses the closed
+v0.18 source-set/rearm/OFF core, sets StatePosition to 1 on accepted source
+markers, leaves SimpleWhirl native, and does not enable `ResetOnUntouch`.
+Its 2H runtime gate now passes: 19 complete native-configuration
+RIGHT -> OFF -> RIGHT executions retained exact bookkeeping, rearm, gap,
+replay protection, and cleanup, with both contacts observed and no premature
+second-swing damage. New Balance without `Script_AttackCollision.dll` also
+passed seven complete executions plus two safe first-marker interruptions;
+its different pacing/block behavior did not add a competing Whirl activation.
+
+Staff is the next controlled full-Whirl fixture. Then add SimpleWhirl
+independently. Power remains a later separate adapter. Actual coexistence with
+Jackydima's separate collision DLL is a later load-order/ownership test and
+must not be conflated with the passing New Balance-only session. A quiet
 prototype-disabled/enabled battle comparison remains required before claiming
 negligible release overhead. Visible target stumble is not a reliable damage
 proxy during rapid repeated hits; a damage/health logger extension remains

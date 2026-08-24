@@ -616,6 +616,20 @@ window. Our repeated source markers already clear the triggered list, and OFF
 defines the deliberate inactive interval; automatic reset-on-untouch would add
 an un-authored geometry-dependent rearm path.
 
+v0.19 runtime validates this adapter for 2H. Nineteen native-configuration
+executions completed RIGHT -> OFF -> RIGHT with exact StatePosition and
+5 -> 7 -> 5 -> 7 -> 5 behavior. A second session with New Balance enabled but
+`Script_AttackCollision.dll` absent produced seven complete sequences and two
+safe first-marker interruptions, with no extra Whirl activation. New Balance
+altered pacing and post-Recover block behavior but did not contest collision
+ownership in that configuration.
+
+Keep compatibility layers distinct. New Balance without its separate collision
+DLL is now tested. Actual `Script_AttackCollision.dll` coexistence is not:
+both DLLs may hook/own `OnAI_WhirlAttack`, and load order must be measured
+rather than assumed. If two owners conflict, do not dilute marker semantics;
+select or coordinate one authoritative collision implementation.
+
 
 For gameplay diagnosis, visible stumble is not a sufficient hit signal. Rapid
 repeated contacts may reduce or remove the target's stumble response while

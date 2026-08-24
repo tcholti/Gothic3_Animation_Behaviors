@@ -404,6 +404,16 @@ already rearm through `ClearTriggeredList()`, while explicit OFF markers own
 the inactive gap. Automatic reset-on-untouch would add an implicit
 geometry-dependent rearm path inside a marker-owned window.
 
+Compatibility is a release requirement, but it must be tested in layers.
+v0.19 is runtime-compatible with New Balance when Jackydima's separate
+`Script_AttackCollision.dll` is absent. Coexistence with that collision DLL
+remains untested because both implementations can own Whirl collision behavior.
+Do not weaken authored marker timing merely to preserve two competing owners.
+Before release, determine hook/load-order behavior and prefer one authoritative
+collision implementation. Acceptable outcomes include direct coexistence,
+coordination with Jackydima, or a clearly documented replacement/integration
+path; no packaging decision is frozen yet.
+
 For authored 2H/Staff double attacks, automatic reset-on-untouch is not a full
 replacement for an explicit inactive window. A nearby opponent can intersect
 the second swing before its intended acceleration. The preferred marker model
