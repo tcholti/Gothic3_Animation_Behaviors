@@ -1,0 +1,2435 @@
+Script_FrameCollisionTest v0.19 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT/BOTH source marker.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl eligibility: OnAI_WhirlAttack + exact WhirlAttack action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.
+Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+G3AB_COL_RIGHT is the final RIGHT equipped-slot marker.
+G3AB_COL_LEFT is the final LEFT equipped-slot marker.
+G3AB_COL_BOTH is the final BOTH equipped-slot marker.
+RIGHT, LEFT, and BOTH use exact-set semantics: the selected source set replaces the previous marker-owned set.
+BOTH activates/rearms the right and left equipped slot entities independently at one authored marker.
+If any source required by the exact motion is missing, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+G3AB_COL_OFF closes only a weapon window opened by this prototype.
+OFF requests Item_Equipped and never clears the triggered list.
+OFF before ON or after natural reset is consumed as a logged no-op.
+Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.
+
+v0.19 adds only the full 2H/Staff OnAI_WhirlAttack adapter.
+v0.19 preserves the validated v0.18 Normal/Quick RIGHT/LEFT/BOTH/OFF core unchanged.
+No Dual SimpleWhirl, Power, collision-source, timing, or cleanup behavior is added in v0.19.
+Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.
+
+Authored-occurrence budgets are cached separately for RIGHT, LEFT, BOTH, and OFF.
+Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase.
+Marker-time or controlled-callback state-time rollback starts a new execution.
+Natural collision reset outside the owning Hit execution retires the actor budget.
+No per-frame actor scan; budget work occurs only when a reserved marker is received.
+
+Installing hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 41972.416
+Actor: PC_Hero
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 5
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 1
+AuthoredRIGHTMarkerCount: 2
+FirstRIGHTMarkerFrame: 4
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredBOTHMarkerCount: 0
+FirstBOTHMarkerFrame: -1
+AuthoredOFFMarkerCount: 1
+FirstOFFMarkerFrame: 10
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 42130.756
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.168047
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42130.787
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.168047
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 0
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 42366.710
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.405032
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42366.748
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.405032
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 10
+MarkerOwnedSourceMaskBeforeOff: 1
+DeactivatedSourceCount: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 42571.748
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.609973
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42571.777
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.609973
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 1
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 42571.849
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.609973
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 42571.873
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.609973
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.118300
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== CONTROLLED CALLBACK EXECUTION BOUNDARY =====
+ElapsedMs: 46681.254
+Actor: PC_Hero
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+Action: 10
+AniPhase: 1
+PreviousControlledCallbackStateTime: 0.667999
+CurrentControlledCallbackStateTime: 0.000000
+ExecutionBoundaryKeyChanged: 0
+ExecutionBoundaryStateTimeRollback: 1
+MarkerExecutionBudget: RETIRED_BEFORE_MARKER
+=====================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 46844.960
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.172959
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 46844.981
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.172959
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 7
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 1
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 7
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 7
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 0
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 47077.957
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.405962
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 47077.988
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.405962
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 10
+MarkerOwnedSourceMaskBeforeOff: 1
+DeactivatedSourceCount: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 47273.792
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.601955
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 47273.823
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.601955
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 1
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 47273.946
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.601955
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 47273.972
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.601955
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.173200
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 47485.778
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.803954
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 1
+====================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 51160.767
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.164943
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51160.800
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.164943
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 0
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 51400.097
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.403981
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51400.132
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.403981
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 10
+MarkerOwnedSourceMaskBeforeOff: 1
+DeactivatedSourceCount: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 51597.198
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.600954
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51597.227
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.600954
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 1
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 51597.304
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.600954
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 51597.329
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.600954
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.124300
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51812.343
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.806233
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 1
+====================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 78590.364
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.164004
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 78590.403
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.164004
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 0
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 78827.747
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.400958
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 78827.777
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.400958
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 10
+MarkerOwnedSourceMaskBeforeOff: 1
+DeactivatedSourceCount: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 79033.867
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.606928
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 79033.898
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.606928
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 1
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 79033.968
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.606928
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 79033.993
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.606928
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.119800
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 79246.040
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.807912
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 1
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 80614.347
+Actor: Golem
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 3
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredBOTHMarkerCount: 0
+FirstBOTHMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: Fist
+RightHandSourceAddress: E6EA5010
+RightHandSourceUseType: 8
+RightHandSourceCollisionGroup: 0
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 80661.852
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.162984
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 80661.882
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.162984
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 0
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 80902.322
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.402970
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 80902.353
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.402970
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 10
+MarkerOwnedSourceMaskBeforeOff: 1
+DeactivatedSourceCount: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 81103.186
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.603947
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 81103.217
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.603947
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 1
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 81103.284
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.603947
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 81103.313
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.603947
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.120900
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 81310.700
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.801241
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 1
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 82164.591
+Entity: Fist
+ChangedEntityAddress: E6EA5010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.848904
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 82332.812
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.167971
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 82332.844
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.167971
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 0
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 82575.168
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.409966
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 82575.214
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.409966
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 10
+MarkerOwnedSourceMaskBeforeOff: 1
+DeactivatedSourceCount: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 82768.107
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602959
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 82768.138
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.602959
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 1
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 82768.211
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602959
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 82768.239
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602959
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.126500
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 82982.618
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.807931
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 1
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 83815.103
+Entity: Fist
+ChangedEntityAddress: E6EA5010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.822895
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 85127.049
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.167000
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 85127.081
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.167000
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 0
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 85363.393
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.402973
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 85363.424
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.402973
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 10
+MarkerOwnedSourceMaskBeforeOff: 1
+DeactivatedSourceCount: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 85562.384
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.601888
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 85562.415
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.601888
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 1
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 85562.489
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.601888
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 85562.515
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.601888
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.124600
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 85777.110
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.806875
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 1
+====================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 86305.856
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.160004
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 86305.887
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.160004
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 0
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 86550.422
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.403987
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 86550.452
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.403987
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: OFF_ACCEPTED
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 10
+MarkerOwnedSourceMaskBeforeOff: 1
+DeactivatedSourceCount: 1
+SetCollisionGroupAction: REQUESTED_ITEM_EQUIPPED_FOR_OWNED_SOURCES
+TriggeredDamageList: NOT_CLEARED_OFF
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 86751.848
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.605976
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 86751.879
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.605976
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+MarkerOwnedWeaponSourceMaskAfterActivation: 1
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 12
+ActivatedSourceCount: 1
+CollisionGroupRequestCount: 1
+FistSourceCount: 0
+TriggeredDamageListClearCount: 1
+RightCollisionGroupBeforeMarker: 5
+RightCollisionGroupAfterMarker: 7
+RightResolvedSourceUseTypeAtMarker: 12
+RightSetCollisionGroupRequested: 1
+RightSkippedCollisionGroupForFist: 0
+RightTriggeredDamageListCleared: 1
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+WhirlStatePositionBeforeMarker: 1
+WhirlStatePositionAfterMarker: 1
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_OFF RECEIVED =====
+ElapsedMs: 86751.962
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.605976
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: OFF
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+MarkerName: G3AB_COL_OFF
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+SetCollisionGroupAction: NOT_REQUESTED_BUDGET_EXHAUSTED
+TriggeredDamageList: NOT_CLEARED_BUDGET_EXHAUSTED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== G3AB_COL_RIGHT RECEIVED =====
+ElapsedMs: 86751.987
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.605976
+StatePosition: 1
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70DC010
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 0
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+AuthoredMarkerFrame: 4
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.132900
+SetCollisionGroupAction: NOT_REQUESTED_DUPLICATE
+TriggeredDamageList: NOT_CLEARED_DUPLICATE
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 86966.087
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70DC010
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.809932
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 1
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 87908.311
+Entity: Fist
+ChangedEntityAddress: E6EA5010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.932884
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70DC010
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+Script_FrameCollisionTest unloading.
