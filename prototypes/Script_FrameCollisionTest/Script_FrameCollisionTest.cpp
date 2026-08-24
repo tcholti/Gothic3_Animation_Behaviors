@@ -16,6 +16,7 @@
 static mCFunctionHook Hook_StartEffect;
 static mCFunctionHook Hook_OnAI_Attack;
 static mCFunctionHook Hook_OnAI_QuickAttack;
+static mCFunctionHook Hook_OnAI_WhirlAttack;
 static mCFunctionHook Hook_SetCollisionGroup;
 
 static FILE *g_pLog = nullptr;
@@ -185,7 +186,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.18 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.19 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -200,6 +201,14 @@ static void OpenLog()
         std::fprintf(g_pLog, "Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT/BOTH source marker.\n");
 
         std::fprintf(g_pLog, "Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.\n");
+
+        std::fprintf(g_pLog, "Full Whirl eligibility: OnAI_WhirlAttack + exact WhirlAttack action + Hit phase + a RIGHT/LEFT/BOTH source marker.\n");
+
+        std::fprintf(g_pLog, "Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.\n");
+
+        std::fprintf(g_pLog, "Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.\n");
+
+        std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
 
         std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
 
@@ -237,11 +246,11 @@ static void OpenLog()
 
         std::fprintf(g_pLog, "Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.\n\n");
 
-        std::fprintf(g_pLog, "v0.18 freezes the final equipped-slot marker vocabulary and removes all provisional _TEST names.\n");
+        std::fprintf(g_pLog, "v0.19 adds only the full 2H/Staff OnAI_WhirlAttack adapter.\n");
 
-        std::fprintf(g_pLog, "v0.18 preserves the validated v0.17 RIGHT/LEFT/BOTH/OFF exact-set semantics and replay guards.\n");
+        std::fprintf(g_pLog, "v0.19 preserves the validated v0.18 Normal/Quick RIGHT/LEFT/BOTH/OFF core unchanged.\n");
 
-        std::fprintf(g_pLog, "No collision-source, timing, bookkeeping, or cleanup behavior changed from v0.17.\n");
+        std::fprintf(g_pLog, "No Dual SimpleWhirl, Power, collision-source, timing, or cleanup behavior is added in v0.19.\n");
 
         std::fprintf(g_pLog, "Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.\n\n");
 
@@ -692,6 +701,13 @@ static bool IsQuickAttackHit(Entity &actor)
     gEAction action = actor.Routine.GetProperty<PSRoutine::PropertyAction>();
 
     return IsQuickAttackAction(action) && actor.GetCurrentAniPhase() == gEPhase_Hit;
+}
+
+static bool IsWhirlAttackHit(Entity &actor)
+{
+    gEAction action = actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+
+    return action == gEAction_WhirlAttack && actor.GetCurrentAniPhase() == gEPhase_Hit;
 }
 
 static EquippedCollisionSources GetEquippedCollisionSources(Entity &actor)
@@ -1308,6 +1324,49 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 }
 
 // -----------------------------------------------------------------------------
+// OnAI_WhirlAttack
+//
+// v0.19 adds only the full 2H/Staff Whirl callback family. Exact action and
+// Hit-phase ownership keep Dual SimpleWhirl (action 6 / OnAI_SimpleWhirl) on
+// the original callback. The accepted source marker completes the native
+// one-shot StatePosition bookkeeping; explicit markers own rearm/OFF timing.
+// -----------------------------------------------------------------------------
+
+DECLARE_SCRIPT_CALLBACK(OnAI_WhirlAttack_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+
+    if (!IsWhirlAttackHit(SelfEntity))
+    {
+        return Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
+    }
+
+    CurrentMotionMarkerResult decision = GetCurrentMarkerDecision(SelfEntity);
+
+    EquippedCollisionSources sources = GetEquippedCollisionSources(SelfEntity);
+
+    bool willSuppress = decision.foundMatchingMotion && decision.markerPresent
+                     && HasRequiredCollisionSources(sources, decision.requiredSourceMask);
+
+    if (willSuppress)
+    {
+        ObserveControlledAttackCallback(SelfEntity, sources);
+    }
+
+    if (ShouldLogOwnership(SelfEntity))
+    {
+        LogOwnershipDecision(SelfEntity, decision, sources, willSuppress);
+    }
+
+    if (willSuppress)
+    {
+        return GETrue;
+    }
+
+    return Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
+}
+
+// -----------------------------------------------------------------------------
 // StartEffect
 //
 // These are the frozen equipped-slot marker commands. Their meanings are:
@@ -1358,11 +1417,13 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     bool isQuickAttackHit = IsQuickAttackHit(actor);
 
-    if (!isNormalAttackHit && !isQuickAttackHit)
+    bool isWhirlAttackHit = IsWhirlAttackHit(actor);
+
+    if (!isNormalAttackHit && !isQuickAttackHit && !isWhirlAttackHit)
     {
         if (g_pLog != nullptr)
         {
-            std::fprintf(g_pLog, "MarkerAction: REJECTED - unsupported Normal/Quick action or Hit phase\n");
+            std::fprintf(g_pLog, "MarkerAction: REJECTED - unsupported Normal/Quick/full-Whirl action or Hit phase\n");
 
             std::fprintf(g_pLog, "=================================\n\n");
 
@@ -1711,19 +1772,32 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
 
     GEInt quickStatePositionBeforeMarker = -1;
     GEInt quickStatePositionAfterMarker = -1;
+    GEInt whirlStatePositionBeforeMarker = -1;
+    GEInt whirlStatePositionAfterMarker = -1;
 
-    if (isQuickAttackHit)
+    if (isQuickAttackHit || isWhirlAttackHit)
     {
-        quickStatePositionBeforeMarker =
+        GEInt statePositionBeforeMarker =
             static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
 
-        // Reference Quick callback implementations use StatePosition as their
+        // Reference Quick and full-Whirl callbacks use StatePosition as their
         // one-shot collision activation gate and set it to 1 after activating.
-        // Complete that bookkeeping once for the accepted source-set marker.
+        // Complete that bookkeeping once for each accepted source-set marker.
         actor.Routine.AccessProperty<PSRoutine::PropertyStatePosition>() = 1;
 
-        quickStatePositionAfterMarker =
+        GEInt statePositionAfterMarker =
             static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+
+        if (isQuickAttackHit)
+        {
+            quickStatePositionBeforeMarker = statePositionBeforeMarker;
+            quickStatePositionAfterMarker = statePositionAfterMarker;
+        }
+        else
+        {
+            whirlStatePositionBeforeMarker = statePositionBeforeMarker;
+            whirlStatePositionAfterMarker = statePositionAfterMarker;
+        }
     }
 
     RememberAcceptedMarker(a_pEntity1, sources, currentAnimation.GetText(), effectName,
@@ -1798,6 +1872,13 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
             std::fprintf(g_pLog, "QuickStatePositionAfterMarker: %d\n", quickStatePositionAfterMarker);
         }
 
+        if (isWhirlAttackHit)
+        {
+            std::fprintf(g_pLog, "WhirlStatePositionBeforeMarker: %d\n", whirlStatePositionBeforeMarker);
+
+            std::fprintf(g_pLog, "WhirlStatePositionAfterMarker: %d\n", whirlStatePositionAfterMarker);
+        }
+
         std::fprintf(g_pLog, "Original StartEffect for marker: NOT CALLED\n");
         std::fprintf(g_pLog, "=================================\n\n");
 
@@ -1821,6 +1902,10 @@ static void InstallHooks()
     Hook_OnAI_QuickAttack.Hook(
         GetScriptAdminExt().GetScriptAICallback("OnAI_QuickAttack")->m_funcScriptAICallback,
         &OnAI_QuickAttack_FrameCollisionTest);
+
+    Hook_OnAI_WhirlAttack.Hook(
+        GetScriptAdminExt().GetScriptAICallback("OnAI_WhirlAttack")->m_funcScriptAICallback,
+        &OnAI_WhirlAttack_FrameCollisionTest);
 
     Hook_StartEffect.Prepare(RVA_Game(0x60850), &StartEffect_FrameCollisionTest, mCBaseHook::mEHookType_ThisCall)
         .Hook();
