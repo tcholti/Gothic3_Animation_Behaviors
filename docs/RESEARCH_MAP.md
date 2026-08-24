@@ -671,10 +671,15 @@ second-swing damage. New Balance without `Script_AttackCollision.dll` also
 passed seven complete executions plus two safe first-marker interruptions;
 its different pacing/block behavior did not add a competing Whirl activation.
 
+The explicit combined test with current `Script_AttackCollision.dll` from
+commit `5f046b0` and its original 0.25 Whirl threshold also passed for the
+marked 2H fixture: ten complete RIGHT -> OFF -> RIGHT executions and two safe
+first-marker interruptions produced no extra timer activation. This is bounded
+to the tested installation/load order and markers occurring before 0.25; retest
+if those conditions change.
+
 Staff is the next controlled full-Whirl fixture. Then add SimpleWhirl
-independently. Power remains a later separate adapter. Actual coexistence with
-Jackydima's separate collision DLL is a later load-order/ownership test and
-must not be conflated with the passing New Balance-only session. A quiet
+independently. Power remains a later separate adapter. A quiet
 prototype-disabled/enabled battle comparison remains required before claiming
 negligible release overhead. Visible target stumble is not a reliable damage
 proxy during rapid repeated hits; a damage/health logger extension remains

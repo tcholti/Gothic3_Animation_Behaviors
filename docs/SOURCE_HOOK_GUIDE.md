@@ -625,10 +625,19 @@ altered pacing and post-Recover block behavior but did not contest collision
 ownership in that configuration.
 
 Keep compatibility layers distinct. New Balance without its separate collision
-DLL is now tested. Actual `Script_AttackCollision.dll` coexistence is not:
-both DLLs may hook/own `OnAI_WhirlAttack`, and load order must be measured
-rather than assumed. If two owners conflict, do not dilute marker semantics;
-select or coordinate one authoritative collision implementation.
+DLL and the explicit combined configuration are now both tested. In the
+combined run, current `Script_AttackCollision.dll` from commit `5f046b0`
+used `ActiveWhirlAttackStartTime=0.25`. Ten complete marked 2H Whirls retained
+exact RIGHT -> OFF -> RIGHT behavior and two first-marker interruptions cleaned
+up safely. The first RIGHT occurred before 0.25, completed StatePosition
+bookkeeping, and no additional timer-owned 5 -> 7 activation appeared.
+
+This validates the current marked fixture and installation/load order only. It
+does not prove arbitrary same-function hook chaining, an unmarked Whirl path, or
+a source marker authored after the third-party threshold. Retest if DLL naming,
+load order, packaging, or relevant marker timing changes. If a future
+configuration creates two active owners, do not dilute marker semantics; select
+or coordinate one authoritative collision implementation.
 
 
 For gameplay diagnosis, visible stumble is not a sufficient hit signal. Rapid
