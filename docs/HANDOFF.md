@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Continuation Handoff
 
 **Status:** Canonical continuation handoff  
-**Date:** 2026-08-23
+**Date:** 2026-08-24
 
 ## 1. Authority Order
 
@@ -349,7 +349,18 @@ first-marker StatePosition 0 -> 1 and preserved 1 -> 1 at later source markers.
 There were no unsupported/rejected final markers, malformed schedules, or
 extra native player activations. The author visually confirmed all three
 intended contacts for every tested Normal and Quick type. v0.18 is the current
-validated collision prototype.
+runtime-validated collision prototype.
+
+The 2026-08-24 native Whirl baseline and source trace resolve callback
+ownership. Full 2H/Staff Whirl is `OnAI_WhirlAttack` with action 10 and RIGHT;
+Dual SimpleWhirl is the separate `OnAI_SimpleWhirl` path with action 6, using
+LEFT for the logged P0 filename/runtime pose 2 case and RIGHT for the logged P1
+filename/runtime pose 1 case. Commit `a78f231` is the v0.19 source candidate:
+it adds only the full-Whirl adapter, requires exact action 10 + Hit phase +
+exact-motion marker ownership, completes accepted source-marker StatePosition
+bookkeeping to 1, and leaves SimpleWhirl native. It intentionally does not set
+`ResetOnUntouch`; marker rearm and OFF remain the sole authored window
+controls. v0.19 has not yet been built or runtime-tested.
 
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
@@ -501,10 +512,11 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. begin the next session with a focused Whirl ownership investigation at High reasoning: inspect the official SDK and pinned Jackydima source for `OnAI_WhirlAttack`, the exact Whirl action/phase gate, and whether 2H/Staff full Whirl and Dual SimpleWhirl actually share one native callback path;
-2. after that mapping is explicit, return to Medium and add one narrow Whirl callback adapter without changing the validated Normal/Quick/source-set core;
-3. validate 2H/Staff full Whirl first with the final RIGHT/OFF/RIGHT double-contact fixture, including native-timer suppression, repeated same-target contact, the inactive gap, natural cleanup, and the known `ResetOnUntouch` concern. Treat Dual SimpleWhirl as a separate validation even if it shares the callback;
-4. add Power ownership separately after Whirl; the existing Power logs are native/source evidence, not marker-controlled validation;
+1. return to Medium reasoning for the controlled v0.19 build/test loop;
+2. pull and build the v0.19 full-Whirl candidate, preserve the v0.18 DLL, install v0.19, and verify hashes;
+3. validate 2H full Whirl and Staff full Whirl separately with the final RIGHT -> OFF -> RIGHT double-contact fixture. Confirm first-marker StatePosition 0 -> 1, two intended same-target contacts, a real inactive gap, natural cleanup, and no delayed native reactivation;
+4. after full Whirl passes, add `OnAI_SimpleWhirl` as its own action-6 adapter and validate P0/LEFT plus P1/RIGHT before considering BOTH authoring;
+5. add Power ownership separately after Whirl; the existing Power logs are native/source evidence, not marker-controlled validation;
 5. before release integration, build a quiet diagnostic configuration and compare a repeatable battle with the prototype disabled/enabled; current stress logs prove functional stability, not negligible performance cost;
 6. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
 7. migrate the validated collision core into `Script_G3AnimationBehaviors` only after callback-family staging is complete enough for production;

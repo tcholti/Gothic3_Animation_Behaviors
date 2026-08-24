@@ -385,11 +385,24 @@ Human attack-family coverage is equipment-specific:
 
 The Dual SimpleWhirl visually turns the actor with one sword extended forward
 and the other backward; whether one or both should damage is unconfirmed.
-Filename spelling must not substitute for logging the native action/callback.
+Native logging and source inspection now establish that filename spelling does
+not identify callback ownership:
+
+- full 2H/Staff Whirl uses `OnAI_WhirlAttack`, exact
+  `gEAction_WhirlAttack` (10), and the Hit phase;
+- Dual SimpleWhirl uses the separate `OnAI_SimpleWhirl`, exact
+  `gEAction_SimpleWhirl` (6), and the Hit phase;
+- native full Whirl activates RIGHT; native Dual SimpleWhirl selects LEFT for
+  the logged P0 filename/runtime pose 2 case and RIGHT for the logged P1
+  filename/runtime pose 1 case.
 
 Known third-party full-Whirl code historically used right-hand activation and
 has needed reset/rearm fixes. Current upstream Jackydima work added
-`PropertyResetOnUntouch = GETrue` to WhirlAttack handling.
+`PropertyResetOnUntouch = GETrue` to WhirlAttack handling. The authored marker
+adapter deliberately does not enable this property: repeated source markers
+already rearm through `ClearTriggeredList()`, while explicit OFF markers own
+the inactive gap. Automatic reset-on-untouch would add an implicit
+geometry-dependent rearm path inside a marker-owned window.
 
 For authored 2H/Staff double attacks, automatic reset-on-untouch is not a full
 replacement for an explicit inactive window. A nearby opponent can intersect

@@ -595,12 +595,26 @@ naturally. All Quick first markers performed StatePosition 0 -> 1; later source
 markers preserved 1 -> 1. No `*_TEST` marker, unsupported final marker,
 malformed sequence, or extra native player activation appeared.
 
-For the next callback family, do not add generic filename permission. Map the
-native `OnAI_WhirlAttack` entry plus exact action and Hit phase first. Confirm
-whether 2H/Staff full Whirl and Dual SimpleWhirl share that callback before
-deciding whether one adapter can own both. Preserve the validated marker parser,
-source-set transition helper, occurrence guard, duplicate guard, and execution
-cleanup unchanged.
+Whirl ownership is now mapped. Official SDK enums and the native v0.18 trace
+separate `gEAction_WhirlAttack` (10) from `gEAction_SimpleWhirl` (6).
+Pinned Jackydima source independently hooks `OnAI_WhirlAttack` and
+`OnAI_SimpleWhirl` separately. Full 2H/Staff Whirl uses RIGHT; the logged
+Dual SimpleWhirl P0 filename/runtime pose 2 case uses LEFT and the P1
+filename/runtime pose 1 case uses RIGHT.
+
+v0.19 therefore adds only an `OnAI_WhirlAttack` adapter gated by exact action
+10, Hit phase, exact-motion marker ownership, and complete source preflight.
+The first accepted source marker completes the native one-shot
+StatePosition -> 1 bookkeeping; later source markers preserve 1. The validated
+marker parser, source-set transitions, occurrence guard, duplicate guard, and
+cleanup are unchanged. Dual SimpleWhirl remains native until its separate
+adapter/test.
+
+Do not copy Jackydima's `PropertyResetOnUntouch = GETrue` into the marker-owned
+full-Whirl path. That property compensates for a long timer-owned native
+window. Our repeated source markers already clear the triggered list, and OFF
+defines the deliberate inactive interval; automatic reset-on-untouch would add
+an un-authored geometry-dependent rearm path.
 
 
 For gameplay diagnosis, visible stumble is not a sufficient hit signal. Rapid

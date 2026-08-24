@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Research Map
 
 **Status:** Canonical engineering-state map  
-**Date:** 2026-08-23
+**Date:** 2026-08-24
 **Supersedes:** the "current/next" state in the older v0.2 Research & Implementation Map and v0.1 handoff.
 
 ## 1. Purpose
@@ -653,15 +653,25 @@ activation appeared, and all three intended contacts were visually confirmed.
 This closes the equipped-slot vocabulary plus shared Normal/Quick marker core
 for the current stage.
 
-The next active investigation is Whirl ownership. First map
-`OnAI_WhirlAttack`, exact action/phase semantics, and whether 2H/Staff full
-Whirl and Dual SimpleWhirl share a native callback. Then add one narrow adapter
-without changing the shared source-set core and validate the 2H/Staff
-RIGHT/OFF/RIGHT double-contact fixture. Power remains a later separate adapter.
-A quiet prototype-disabled/enabled battle comparison remains required before
-claiming negligible release overhead. Visible target stumble is not a reliable
-damage proxy during rapid repeated hits; a damage/health logger extension
-remains optional diagnostic work.
+Whirl ownership is now mapped. Native logging plus official/pinned source
+evidence establishes two separate paths:
+
+- full 2H/Staff Whirl: `OnAI_WhirlAttack`, action 10, Hit phase, RIGHT;
+- Dual SimpleWhirl: `OnAI_SimpleWhirl`, action 6, Hit phase, with LEFT for
+  the logged P0 filename/runtime pose 2 case and RIGHT for the logged P1
+  filename/runtime pose 1 case.
+
+The v0.19 source candidate at `a78f231` adds only the full-Whirl adapter. It
+reuses the closed v0.18 source-set/rearm/OFF core, sets StatePosition to 1 on
+accepted source markers, leaves SimpleWhirl native, and does not enable
+`ResetOnUntouch`. Build/runtime validation is next: test 2H and Staff
+RIGHT -> OFF -> RIGHT separately, including two same-target contacts, the OFF
+gap, cleanup, bookkeeping, and absence of delayed native activation. Then add
+SimpleWhirl independently. Power remains a later separate adapter. A quiet
+prototype-disabled/enabled battle comparison remains required before claiming
+negligible release overhead. Visible target stumble is not a reliable damage
+proxy during rapid repeated hits; a damage/health logger extension remains
+optional diagnostic work.
 
 ## 12. Raise Generalization — After Collision Core Stabilizes
 
