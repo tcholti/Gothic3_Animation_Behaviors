@@ -379,6 +379,32 @@ set StatePosition to 1, and no extra timer activation appeared. This proves the
 current marked 2H fixture, not every possible DLL load order, unmarked path, or
 marker scheduled after the third-party threshold.
 
+Staff now passes the same marker-controlled contact schedule, but exposes one
+rare cleanup boundary that remains open. Across the initial Staff run plus
+idle/chained/control follow-ups, 20 complete Staff Whirls accepted
+RIGHT -> OFF -> RIGHT and delivered the intended contact behavior; 19 received
+the natural final 7 -> 5 reset/retirement. One complete initial execution did
+not reset after its second RIGHT, and the next Whirl began about 4.27 seconds
+later with the right source still at group 7 and the previous owned mask still
+present. A separate chained execution changed to action 0 after RIGHT -> OFF
+but before the late RIGHT; remaining marker replays were rejected and the
+source was already safely closed. Nine 2H control Whirls also cleaned normally.
+
+Do not add a second ordinary `G3AB_COL_OFF` as a speculative fix. Gothic
+replays earlier frame-effect names at the late marker time; an additional OFF
+can exhaust the authored OFF budget during that replay and immediately close
+the intended second contact window. The next step is a targeted native Staff
+block-timeout/Recover-skip reproduction. If it reproduces, use High reasoning
+to choose a cleanup boundary mechanism; otherwise keep the anomaly explicit
+and continue to SimpleWhirl with a release-regression test reserved.
+
+Native 2H and Staff full Whirl also skipped their Raise animations in these
+tests. Add both families to the later Raise-generalization scope; do not mix
+that work into the current collision diagnosis. For Power compatibility, keep
+the agreed order: native first, then New Balance, then New Balance plus current
+`Script_AttackCollision.dll`, followed by a broader combined-mod pass before
+release.
+
 
 Build `89f36d8` failed because the script-layer `Entity` wrapper does not expose `GetUseType()`. Build `9b4a73c` failed because base `eCEntity` also has no member `GetUseType()`. Commit `11f2a1b` passes the `eCEntity*` from `Entity.GetInstance()` to the SDK-declared static `gCEntity::GetUseType(eCEntity*)` and compiled successfully. The installed v0.9 DLL matches the build at SHA-256 `16B2F35DBA817F344F24BADED3ABEA7ED5A237ACDCED631008CEAF675A9F3140`; the validated v0.8 rollback DLL is preserved. The completed player Fist matrix passed native left hand plus custom right hand, left leg, right leg, and head contacts.
 
@@ -529,15 +555,15 @@ future regression contradicts these positive results.
 
 ## 13. Then
 
-1. remain at Medium reasoning for the controlled v0.19 test loop;
-2. validate Staff full Whirl with the same RIGHT -> OFF -> RIGHT fixture used by the now-passing 2H test;
-3. after Staff passes, add `OnAI_SimpleWhirl` as its own action-6 adapter and validate P0/LEFT plus P1/RIGHT before considering BOTH authoring;
-4. add Power ownership separately after Whirl; the existing Power logs are native/source evidence, not marker-controlled validation;
-5. preserve the passing current `Script_AttackCollision.dll` coexistence result, but retest if DLL naming/load order, packaging, or marker timing relative to its 0.25 Whirl threshold changes;
+1. start at Medium reasoning and run the targeted native Staff block-timeout/Recover-skip cleanup probe recorded below;
+2. if the stale post-second-RIGHT state reproduces, switch to High reasoning before choosing an action-boundary, distinct terminal marker/opcode, or other cleanup design; if it does not reproduce after reasonable attempts, retain it as a rare release-regression case;
+3. only after that disposition, add `OnAI_SimpleWhirl` as its own action-6 adapter and validate P0/LEFT plus P1/RIGHT before considering BOTH authoring;
+4. add Power ownership separately after Whirl; test native first, then New Balance, then New Balance plus current `Script_AttackCollision.dll`;
+5. preserve the passing marked-2H `Script_AttackCollision.dll` coexistence result, but retest if DLL naming/load order, packaging, or marker timing relative to its 0.25 Whirl threshold changes;
 6. before release integration, build a quiet diagnostic configuration and compare a repeatable battle with the prototype disabled/enabled; current stress logs prove functional stability, not negligible performance cost;
 7. validate remaining human melee source families, beginning with Torch+1H and other left-source exceptions where needed;
 8. migrate the validated collision core into `Script_G3AnimationBehaviors` only after callback-family staging is complete enough for production;
-9. generalize Raise and speed initially for Normal and Quick, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
+9. generalize Raise and speed initially for Normal, Quick, and tested 2H/Staff full Whirl, using frame 0–12 inclusive for Hit (13 sampled frames) and frame 0–4 inclusive for Raise (5 sampled frames) as authoring conventions, with logger-measured native durations for speed calibration.
 
 ## 14. Repository and Build State
 

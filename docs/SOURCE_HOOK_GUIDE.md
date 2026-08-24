@@ -639,6 +639,26 @@ load order, packaging, or relevant marker timing changes. If a future
 configuration creates two active owners, do not dilute marker semantics; select
 or coordinate one authoritative collision implementation.
 
+Staff confirms that the full-Whirl adapter is source-agnostic for the tested
+right-slot 2H/Staff families: all 20 complete Staff executions accepted the
+same RIGHT -> OFF -> RIGHT schedule and contact behavior. Cleanup is not yet
+fully closed. Nineteen executions naturally reset/retired after the second
+RIGHT; one complete initial execution left the right source at group 7 until
+the next Whirl approximately 4.27 seconds later. Controlled idle, chained, and
+broad 2H/Staff runs did not reproduce that exact stale state. A separate
+interruption after RIGHT -> OFF changed action to 0 before the late RIGHT; the
+context gate rejected all later replay callbacks while OFF kept the source
+safe.
+
+Do not treat a second ordinary OFF marker as an automatic terminal cleanup.
+The engine replays earlier frame-effect names at later marker dispatches, and
+the authored-occurrence budget is per opcode name. Adding a second OFF can let
+the replayed middle OFF consume the terminal occurrence and close the intended
+second attack window immediately. First reproduce the suspected block-timeout
+Recover skip. If confirmed, compare a distinct terminal marker/opcode,
+action-boundary cleanup, or another execution-aware mechanism before editing
+the validated source-set core.
+
 
 For gameplay diagnosis, visible stumble is not a sufficient hit signal. Rapid
 repeated contacts may reduce or remove the target's stumble response while

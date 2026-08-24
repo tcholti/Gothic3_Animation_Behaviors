@@ -678,8 +678,26 @@ first-marker interruptions produced no extra timer activation. This is bounded
 to the tested installation/load order and markers occurring before 0.25; retest
 if those conditions change.
 
-Staff is the next controlled full-Whirl fixture. Then add SimpleWhirl
-independently. Power remains a later separate adapter. A quiet
+Staff contact ownership now passes the same fixture. Across 20 complete Staff
+Whirls, every execution accepted RIGHT -> OFF -> RIGHT; 19 received the natural
+final 7 -> 5 reset/retirement. One complete initial execution did not reset
+after the second RIGHT, and the next attack began about 4.27 seconds later with
+the source still at group 7 and its prior marker-owned mask still present.
+Idle, ordinary chained, and broad 2H/Staff controls did not reproduce that
+post-second-marker stale state. One different chained interruption changed to
+action 0 after RIGHT -> OFF but before the late RIGHT; the remaining callbacks
+were rejected and OFF had already left the source safe.
+
+Treat full-Whirl contact/rearm/OFF as confirmed, but cleanup completion as open.
+First isolate the suspected community-patch block-duration/Recover-skip
+boundary. Do not add a second ordinary OFF speculatively: replayed earlier
+marker names could consume the final OFF occurrence at the late RIGHT and close
+the second intended window immediately. After cleanup disposition, add
+SimpleWhirl independently. Power remains a later separate adapter, tested
+native first and then with New Balance and current AttackCollision together.
+
+Native 2H and Staff full Whirl did not play their Raise files in the tested
+runtime path. Include both in the later Raise-generalization scope. A quiet
 prototype-disabled/enabled battle comparison remains required before claiming
 negligible release overhead. Visible target stumble is not a reliable damage
 proxy during rapid repeated hits; a damage/health logger extension remains

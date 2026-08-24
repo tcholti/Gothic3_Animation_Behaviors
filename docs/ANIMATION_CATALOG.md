@@ -104,10 +104,10 @@ This is not yet a complete inventory of every combat animation or every actor fa
 | Shield+1H Quick | Raise files do not exist in the supplied set | New Raises must be authored |
 | 2H Normal | Raise files exist but do not work natively | Custom insertion already proven |
 | 2H Quick | Raise files exist but do not work natively | Current/future custom Raise target |
-| 2H Parade Whirl | Raise probably does not work | Selected future Raise candidate |
+| 2H Parade Whirl | Raise did not play in the tested native Whirl path | Future custom Raise target |
 | Staff Normal | Raise files exist but do not work natively | Same broad problem family as 2H |
 | Staff Quick | Raise files exist but do not work natively | Current/future custom Raise target |
-| Staff Parade Whirl | Raise probably does not work | Selected future Raise candidate |
+| Staff Parade Whirl | Raise did not play in the tested native Whirl path | Future custom Raise target |
 | Dual Forward Normal | Raise files absent | New Raises must be authored |
 | Dual directional Normal | Raise files exist but do not work natively | Future custom Raise target |
 | Dual Quick | Raise files absent | New Raises must be authored |
@@ -228,6 +228,12 @@ For human melee:
 - ordinary 1H families have no Whirl;
 - hand-to-hand coverage is not yet known;
 - Block + held attack with 2H/Staff selects Finishing rather than Whirl.
+
+The 2026-08-24 native runtime baseline and v0.19 validation showed full Whirl
+entering Hit without playing the corresponding 2H or Staff Raise. This is a
+confirmed observation for the tested files, not merely an inference from file
+existence. Later Raise generalization should therefore include both full-Whirl
+families while preserving collision work as a separate subsystem.
 
 On a downed enemy, Finishing death timing is timer-based rather than collision-
 impact-based. Raise-length changes did not disturb the timing, strongly
