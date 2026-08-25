@@ -379,24 +379,42 @@ set StatePosition to 1, and no extra timer activation appeared. This proves the
 current marked 2H fixture, not every possible DLL load order, unmarked path, or
 marker scheduled after the third-party threshold.
 
-Staff now passes the same marker-controlled contact schedule, but exposes one
-rare cleanup boundary that remains open. Across the initial Staff run plus
-idle/chained/control follow-ups, 20 complete Staff Whirls accepted
-RIGHT -> OFF -> RIGHT and delivered the intended contact behavior; 19 received
-the natural final 7 -> 5 reset/retirement. One complete initial execution did
-not reset after its second RIGHT, and the next Whirl began about 4.27 seconds
-later with the right source still at group 7 and the previous owned mask still
-present. A separate chained execution changed to action 0 after RIGHT -> OFF
-but before the late RIGHT; remaining marker replays were rejected and the
-source was already safely closed. Nine 2H control Whirls also cleaned normally.
+Staff passes the marker-controlled RIGHT -> OFF -> RIGHT contact schedule,
+but the block-timeout path exposes a real native cleanup defect. The original
+Staff work produced 20 complete marked Whirls with 19 final natural resets and
+one stale group-7 source. The focused marked timeout probe then showed both
+forms of failure: some complete second-RIGHT executions never reset, while
+three action-10 -> action-0 transitions occurred before authored OFF, causing
+the exact action/phase gate to reject the remaining markers while the source
+stayed active.
 
-Do not add a second ordinary `G3AB_COL_OFF` as a speculative fix. Gothic
-replays earlier frame-effect names at the late marker time; an additional OFF
-can exhaust the authored OFF budget during that replay and immediately close
-the intended second contact window. The next step is a targeted native Staff
-block-timeout/Recover-skip reproduction. If it reproduces, use High reasoning
-to choose a cleanup boundary mechanism; otherwise keep the anomaly explicit
-and continue to SimpleWhirl with a release-regression test reserved.
+The original unmarked Staff animation reproduces this independently of our
+prototype. Fifteen native activations produced only ten 7 -> 5 resets; five
+remained group 7 and later attacks began with 7 -> 7 requests. In the strongest
+control, one native activation received no reset and the Staff repeatedly
+damaged an NPC while the player was only running. This is a native lifecycle
+bug with a physical gameplay consequence, not marker bookkeeping.
+
+Paired Shield+1H and 1H Quick controls also establish that Recover is not the
+universal cleanup owner. With custom Recover assets, native Quick reset during
+phase 3 near state time 0.40; without those Recover assets, it reset at the same
+boundary while the logger still reported Hit/phase 1. Therefore neither a
+terminal authored `G3AB_COL_OFF` nor Recover-dependent cleanup is acceptable.
+`G3AB_COL_OFF` remains optional authored early shutoff only.
+
+Commit `4afb58d` is the read-only v0.20 PrimaryFirst lifetime probe. It hooks
+the existing `OnTick` script path but performs animation work only for actors
+that already have a marker-owned collision window. It records the actual
+primary motion instance/running state, motion filename, play/max time and speed,
+plus action/phase/movement changes. It deliberately changes neither marker
+acceptance nor cleanup. Build it and compare two cases: (1) Staff block timeout
+where action becomes 0 but the same Hit visibly continues, and (2) a genuine
+damage/terrain interruption. The intended production rule is to retain the
+owned window only while the same actual Hit execution survives, accept later
+markers for that owned execution despite harmless action drift, then close all
+owned sources at actual Hit end/replacement. A true motion replacement must
+close immediately. Adopt that rule only after v0.20 proves a stable engine
+signal.
 
 Native 2H and Staff full Whirl also skipped their Raise animations in these
 tests. Add both families to the later Raise-generalization scope; do not mix
