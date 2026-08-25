@@ -17,6 +17,7 @@ static mCFunctionHook Hook_StartEffect;
 static mCFunctionHook Hook_OnAI_Attack;
 static mCFunctionHook Hook_OnAI_QuickAttack;
 static mCFunctionHook Hook_OnAI_WhirlAttack;
+static mCFunctionHook Hook_OnTick;
 static mCFunctionHook Hook_SetCollisionGroup;
 
 static FILE *g_pLog = nullptr;
@@ -116,6 +117,19 @@ struct MarkerOwnedCollisionWindow
     std::string animationName;
     GEInt action;
     GEInt phase;
+
+    // v0.20 read-only lifetime probe. These fields describe the actual
+    // PrimaryFirst motion while a marker-owned collision window exists.
+    // They do not change collision behavior.
+    bool lifetimeSnapshotInitialized;
+    bool lastHasPrimaryMotionInstance;
+    bool lastPrimaryMotionRunning;
+    GEDouble lastPrimaryPlayTime;
+    GEDouble lastPrimaryMaxTime;
+    GEInt lastObservedAction;
+    GEInt lastObservedPhase;
+    std::string lastObservedMovementAni;
+    std::string lastPrimaryMotionName;
 };
 
 static std::unordered_map<eCEntity *, MarkerOwnedCollisionWindow> g_MarkerOwnedWindowByActor;
@@ -186,7 +200,7 @@ static void OpenLog()
 
     if (g_pLog != nullptr)
     {
-        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.19 loaded.\n");
+        std::fprintf(g_pLog, "Script_FrameCollisionTest v0.20 loaded.\n");
 
         std::fprintf(g_pLog, "GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.\n");
 
@@ -207,6 +221,10 @@ static void OpenLog()
         std::fprintf(g_pLog, "Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.\n");
 
         std::fprintf(g_pLog, "Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.\n");
+
+        std::fprintf(g_pLog, "v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.\n");
+
+        std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
 
         std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
 
@@ -597,6 +615,170 @@ static void ForgetMarkerOwnedWindowForActor(eCEntity *actorInstance)
     {
         g_MarkerOwnedWindowByActor.erase(actorInstance);
     }
+}
+
+
+struct PrimaryMotionLifetimeSnapshot
+{
+    bool available;
+    bool hasMotionInstance;
+    bool motionRunning;
+    GEDouble playTime;
+    GEDouble maxTime;
+    GEFloat playSpeed;
+    std::string motionName;
+};
+
+static bool TryGetPrimaryMotionLifetimeSnapshot(Entity &actor,
+                                                PrimaryMotionLifetimeSnapshot &snapshot)
+{
+    snapshot = {};
+
+    if (actor == None || !actor.Animation.IsValid())
+        return false;
+
+    eCVisualAnimation_PS *animationPS =
+        static_cast<eCVisualAnimation_PS *>(actor.Animation.m_pEngineEntityPropertySet);
+
+    if (animationPS == nullptr || !animationPS->HasActor())
+        return false;
+
+    eCWrapper_emfx2Actor *animationActor = animationPS->GetActor();
+
+    if (animationActor == nullptr)
+        return false;
+
+    // The base SDK does not name eEMotionType values. Jackydima's adjusted
+    // SDK confirms that PrimaryFirst is value 0.
+    eCWrapper_emfx2Actor::eEMotionType const primaryFirst =
+        static_cast<eCWrapper_emfx2Actor::eEMotionType>(0);
+
+    snapshot.available = true;
+    snapshot.hasMotionInstance = animationActor->HasMotionInstance(primaryFirst);
+
+    if (!snapshot.hasMotionInstance)
+        return true;
+
+    snapshot.motionRunning = animationActor->IsMotionRunning(primaryFirst);
+    snapshot.playTime = animationActor->GetPlayTime(primaryFirst);
+    snapshot.maxTime = animationActor->GetMaxTime(primaryFirst);
+    snapshot.playSpeed = animationActor->GetPlaySpeed(primaryFirst);
+    snapshot.motionName = animationPS->GetMotionDesc(primaryFirst).GetMotionFilename().GetText();
+
+    return true;
+}
+
+static void ObserveMarkerOwnedLifetimeOnTick(Entity &actor)
+{
+    if (actor == None)
+        return;
+
+    eCEntity *actorInstance = actor.GetInstance();
+
+    auto found = g_MarkerOwnedWindowByActor.find(actorInstance);
+
+    if (found == g_MarkerOwnedWindowByActor.end())
+        return;
+
+    MarkerOwnedCollisionWindow &record = found->second;
+
+    bCString currentMovementAni = actor.NPC.GetCurrentMovementAni();
+    GEInt currentAction =
+        static_cast<GEInt>(actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEInt currentPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
+
+    PrimaryMotionLifetimeSnapshot snapshot = {};
+    bool snapshotAvailable = TryGetPrimaryMotionLifetimeSnapshot(actor, snapshot);
+
+    bool firstSnapshot = !record.lifetimeSnapshotInitialized;
+    bool movementChanged =
+        !firstSnapshot
+        && !SameFileName(record.lastObservedMovementAni.c_str(), currentMovementAni.GetText());
+    bool actionChanged = !firstSnapshot && record.lastObservedAction != currentAction;
+    bool phaseChanged = !firstSnapshot && record.lastObservedPhase != currentPhase;
+    bool instanceChanged =
+        !firstSnapshot
+        && record.lastHasPrimaryMotionInstance != snapshot.hasMotionInstance;
+    bool runningChanged =
+        !firstSnapshot
+        && record.lastPrimaryMotionRunning != snapshot.motionRunning;
+    bool primaryNameChanged =
+        !firstSnapshot
+        && !SameFileName(record.lastPrimaryMotionName.c_str(), snapshot.motionName.c_str());
+    bool playTimeRolledBack =
+        !firstSnapshot
+        && snapshot.hasMotionInstance
+        && record.lastHasPrimaryMotionInstance
+        && snapshot.playTime + 0.000001 < record.lastPrimaryPlayTime;
+
+    bool atMotionEnd =
+        snapshot.hasMotionInstance
+        && snapshot.maxTime > 0.0
+        && snapshot.playTime + 0.001 >= snapshot.maxTime;
+
+    bool previouslyAtMotionEnd =
+        !firstSnapshot
+        && record.lastHasPrimaryMotionInstance
+        && record.lastPrimaryMaxTime > 0.0
+        && record.lastPrimaryPlayTime + 0.001 >= record.lastPrimaryMaxTime;
+
+    bool crossedMotionEnd = atMotionEnd && !previouslyAtMotionEnd;
+
+    bool logTransition = firstSnapshot || movementChanged || actionChanged || phaseChanged
+                      || instanceChanged || runningChanged || primaryNameChanged
+                      || playTimeRolledBack || crossedMotionEnd;
+
+    if (logTransition && g_pLog != nullptr)
+    {
+        std::fprintf(g_pLog, "===== MARKER-OWNED PRIMARY MOTION LIFETIME =====\n");
+        std::fprintf(g_pLog, "ElapsedMs: %.3f\n", GetElapsedMilliseconds());
+        std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+        std::fprintf(g_pLog, "OwnedAnimation: %s\n", record.animationName.c_str());
+        std::fprintf(g_pLog, "OwnedAction: %d\n", record.action);
+        std::fprintf(g_pLog, "OwnedPhase: %d\n", record.phase);
+        std::fprintf(g_pLog, "ActiveSourceMask: %u\n", record.activeSourceMask);
+        std::fprintf(g_pLog, "CurrentMovementAni: %s\n", currentMovementAni.GetText());
+        std::fprintf(g_pLog, "CurrentAction: %d\n", currentAction);
+        std::fprintf(g_pLog, "CurrentAniPhase: %d\n", currentPhase);
+        std::fprintf(g_pLog, "PrimarySnapshotAvailable: %d\n", snapshotAvailable ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryHasMotionInstance: %d\n",
+                     snapshot.hasMotionInstance ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryMotionRunning: %d\n", snapshot.motionRunning ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryMotionName: %s\n", snapshot.motionName.c_str());
+        std::fprintf(g_pLog, "PrimaryPlayTime: %.6f\n", snapshot.playTime);
+        std::fprintf(g_pLog, "PrimaryMaxTime: %.6f\n", snapshot.maxTime);
+        std::fprintf(g_pLog, "PrimaryPlaySpeed: %.6f\n", snapshot.playSpeed);
+        std::fprintf(g_pLog, "CurrentMovementMatchesOwned: %d\n",
+                     SameFileName(record.animationName.c_str(), currentMovementAni.GetText()) ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryMotionMatchesOwned: %d\n",
+                     SameFileName(record.animationName.c_str(), snapshot.motionName.c_str()) ? 1 : 0);
+        std::fprintf(g_pLog, "CurrentActionPhaseMatchesOwned: %d\n",
+                     record.action == currentAction && record.phase == currentPhase ? 1 : 0);
+        std::fprintf(g_pLog, "FirstLifetimeSnapshot: %d\n", firstSnapshot ? 1 : 0);
+        std::fprintf(g_pLog, "MovementChanged: %d\n", movementChanged ? 1 : 0);
+        std::fprintf(g_pLog, "ActionChanged: %d\n", actionChanged ? 1 : 0);
+        std::fprintf(g_pLog, "PhaseChanged: %d\n", phaseChanged ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryInstanceChanged: %d\n", instanceChanged ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryRunningChanged: %d\n", runningChanged ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryNameChanged: %d\n", primaryNameChanged ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryPlayTimeRolledBack: %d\n",
+                     playTimeRolledBack ? 1 : 0);
+        std::fprintf(g_pLog, "PrimaryCrossedMotionEnd: %d\n",
+                     crossedMotionEnd ? 1 : 0);
+        std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
+        std::fprintf(g_pLog, "=====================================\n\n");
+        std::fflush(g_pLog);
+    }
+
+    record.lifetimeSnapshotInitialized = true;
+    record.lastHasPrimaryMotionInstance = snapshot.hasMotionInstance;
+    record.lastPrimaryMotionRunning = snapshot.motionRunning;
+    record.lastPrimaryPlayTime = snapshot.playTime;
+    record.lastPrimaryMaxTime = snapshot.maxTime;
+    record.lastObservedAction = currentAction;
+    record.lastObservedPhase = currentPhase;
+    record.lastObservedMovementAni = currentMovementAni.GetText();
+    record.lastPrimaryMotionName = snapshot.motionName;
 }
 
 static bool MarkerWindowStillMatchesActorExecution(eCEntity *actorInstance,
@@ -1888,6 +2070,37 @@ static GELPVoid StartEffect_FrameCollisionTest(bCString const &a_EffectName, eCE
     return nullptr;
 }
 
+
+static GEInt GE_STDCALL OnTick_FrameCollisionTest(gCScriptProcessingUnit *a_pSPU,
+                                                  GELPVoid a_pSelfEntity,
+                                                  GELPVoid a_pOtherEntity,
+                                                  GEInt a_iArgs)
+{
+    GEInt result = Hook_OnTick.GetOriginalFunction(&OnTick_FrameCollisionTest)(
+        a_pSPU, a_pSelfEntity, a_pOtherEntity, a_iArgs);
+
+    // The hook itself is global, but the diagnostic performs no entity or
+    // animation work unless at least one marker-owned collision window exists.
+    if (g_MarkerOwnedWindowByActor.empty())
+        return result;
+
+    Entity actor;
+
+    if (a_pSelfEntity != nullptr)
+    {
+        actor = *static_cast<Entity *>(a_pSelfEntity);
+    }
+    else if (a_pSPU != nullptr)
+    {
+        actor.AttachTo(a_pSPU->GetSelfEntity());
+    }
+
+    if (actor != None)
+        ObserveMarkerOwnedLifetimeOnTick(actor);
+
+    return result;
+}
+
 // -----------------------------------------------------------------------------
 // Install
 // -----------------------------------------------------------------------------
@@ -1906,6 +2119,18 @@ static void InstallHooks()
     Hook_OnAI_WhirlAttack.Hook(
         GetScriptAdminExt().GetScriptAICallback("OnAI_WhirlAttack")->m_funcScriptAICallback,
         &OnAI_WhirlAttack_FrameCollisionTest);
+
+    gSScript const *onTickScript = GetScriptAdminExt().GetScript("OnTick");
+
+    if (onTickScript != nullptr)
+    {
+        Hook_OnTick.Hook(onTickScript->m_funcScript, &OnTick_FrameCollisionTest);
+    }
+    else if (g_pLog != nullptr)
+    {
+        std::fprintf(g_pLog, "WARNING: OnTick script not found; primary-motion lifetime probe disabled.\n");
+        std::fflush(g_pLog);
+    }
 
     Hook_StartEffect.Prepare(RVA_Game(0x60850), &StartEffect_FrameCollisionTest, mCBaseHook::mEHookType_ThisCall)
         .Hook();
