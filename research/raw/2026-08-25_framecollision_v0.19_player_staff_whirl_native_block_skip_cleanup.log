@@ -1,0 +1,746 @@
+Script_FrameCollisionTest v0.19 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT/BOTH source marker.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl eligibility: OnAI_WhirlAttack + exact WhirlAttack action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.
+Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+G3AB_COL_RIGHT is the final RIGHT equipped-slot marker.
+G3AB_COL_LEFT is the final LEFT equipped-slot marker.
+G3AB_COL_BOTH is the final BOTH equipped-slot marker.
+RIGHT, LEFT, and BOTH use exact-set semantics: the selected source set replaces the previous marker-owned set.
+BOTH activates/rearms the right and left equipped slot entities independently at one authored marker.
+If any source required by the exact motion is missing, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+G3AB_COL_OFF closes only a weapon window opened by this prototype.
+OFF requests Item_Equipped and never clears the triggered list.
+OFF before ON or after natural reset is consumed as a logged no-op.
+Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.
+
+v0.19 adds only the full 2H/Staff OnAI_WhirlAttack adapter.
+v0.19 preserves the validated v0.18 Normal/Quick RIGHT/LEFT/BOTH/OFF core unchanged.
+No Dual SimpleWhirl, Power, collision-source, timing, or cleanup behavior is added in v0.19.
+Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.
+
+Authored-occurrence budgets are cached separately for RIGHT, LEFT, BOTH, and OFF.
+Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase.
+Marker-time or controlled-callback state-time rollback starts a new execution.
+Natural collision reset outside the owning Hit execution retires the actor budget.
+No per-frame actor scan; budget work occurs only when a reserved marker is received.
+
+Installing hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 38657.186
+Actor: PC_Hero
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredBOTHMarkerCount: 0
+FirstBOTHMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: Wrestling Staff_BBM
+RightHandSourceAddress: E70D8610
+RightHandSourceUseType: 12
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38910.774
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.258986
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39458.856
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.802933
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45132.537
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.256007
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 56570.196
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.257992
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 7
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 57118.117
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.807943
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 63663.205
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.251949
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 71664.052
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.257967
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 7
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 72210.246
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.804910
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 80986.061
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.255995
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 81541.774
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.807884
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 88211.993
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.259979
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 88762.010
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.809936
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 92675.885
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.250983
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 93233.907
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.807942
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 96961.831
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.251982
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 97524.776
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.808950
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 101732.817
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.252970
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 102280.657
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.800952
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 114063.224
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.257030
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 121296.033
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.250989
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 7
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 121852.460
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.807855
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 127068.341
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.255970
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 133301.570
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.252972
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 7
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 133853.051
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.803926
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 138892.977
+Entity: Wrestling Staff_BBM
+ChangedEntityAddress: E70D8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.259974
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: Wrestling Staff_BBM
+PlayerRightItemAddress: E70D8610
+PlayerRightUseType: 12
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+Script_FrameCollisionTest unloading.
