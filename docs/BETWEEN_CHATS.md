@@ -28,15 +28,17 @@ Established:
 
 Working block-skip hypothesis, not yet proven internally:
 
-> the skip may abandon some CombatMove/action ownership while the physical Hit motion keeps playing. If collision is already active, later replacement can then occur without normal cleanup.
+> the skip may abandon some CombatMove/action ownership or bookkeeping while the physical Hit motion keeps playing. A skip during an active Hit is therefore potentially harmful whether offensive collision has already activated or not. If it occurs before native collision activation, the attack may lose the remaining native timing/behavior needed to make a visually connecting strike damage correctly. If it occurs after collision activation, later replacement can miss normal cleanup and leave the source stale. The exact interrupted state and whether collision activation itself is lost in the early-Hit case are not yet logger-confirmed.
 
 Animation-author visual observation additionally suggests engine-driven forward attack movement may stop immediately at the same skip. Treat this as possible evidence of a broader native CombatMove teardown bug, not yet logger-confirmed.
+
+A long Raise is not treated as a fix. It may only move the vulnerable skip before the offensive Hit begins; if the later Hit starts fresh, its native timing, movement, collision activation, and cleanup can proceed normally.
 
 ## Research-order decision
 
 Finish the **universal execution-level collision safety solution first**. It must remain independent of the cause of Hit termination and later cover marked/native attacks, block skip, terrain interruption, damage interruption, and other genuine replacements.
 
-Investigating/fixing the deeper native block-skip teardown itself is a separate later project question; do not make universal collision safety depend on it.
+Investigating/fixing the deeper native block-skip teardown itself is a separate later project question; do not make universal collision safety depend on it. A later deeper fix may need to preserve more than cleanup, including attack movement and collision activation/timing.
 
 ## Step B4 — BOUNDED NATIVE CLEANUP CALL-SITE PROBE
 
