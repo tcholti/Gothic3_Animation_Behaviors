@@ -20,6 +20,14 @@ Use it to learn:
 
 If another document's old "next step" conflicts with `SESSION_ENTRYPOINT.md`, use `SESSION_ENTRYPOINT.md` for the current continuation state.
 
+### `BETWEEN_CHATS.md`
+
+The short transient bridge between normal Chat and Work.
+
+Use it for only the latest bounded handoff so the user does not need to paste long Work reports into Chat or long Chat instructions into Work.
+
+It should be **overwritten, not accumulated**. Durable technical facts and decisions still belong in their proper canonical documents.
+
 ### `WORK_IMPLEMENTATION_PROTOCOL.md`
 
 The execution contract for a coding/Work session.
@@ -40,7 +48,7 @@ Canonical overall project design for:
 - native/fallback behavior;
 - general actor scope.
 
-Use this for the broad intended architecture of `Gothic3_Animation_Behaviors`.
+Use this for the broad intended architecture of `Gothic3_AnimationBehaviors`.
 
 ### `COLLISION_LIFECYCLE_PLAN.md`
 
@@ -180,6 +188,7 @@ Use this rule of thumb:
 | Question | First document |
 |---|---|
 | What are we doing right now? | `SESSION_ENTRYPOINT.md` |
+| What did the other Chat/Work session just do or ask for? | `BETWEEN_CHATS.md` |
 | How must Work implement it? | `WORK_IMPLEMENTATION_PROTOCOL.md` |
 | What is the overall intended mod architecture? | `DESIGN.md` |
 | What is the current collision design? | `COLLISION_LIFECYCLE_PLAN.md` |
@@ -207,5 +216,7 @@ Prefer merging when two files:
 Do not merge merely to reduce file count when the documents serve different audiences or responsibilities.
 
 Current example: the former `COLLISION_LIFECYCLE_MODELS.md` was merged into `COLLISION_LIFECYCLE_PLAN.md` because the models are part of the same design authority.
+
+`BETWEEN_CHATS.md` is deliberately separate because it is not an authority or history file; it is only a short replaceable transport layer between sessions.
 
 Future consolidation candidates should be reviewed at meaningful checkpoints rather than during every implementation cycle.
