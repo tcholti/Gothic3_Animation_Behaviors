@@ -61,6 +61,7 @@ void OpenLog()
     std::fprintf(g_pLog, "Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.\n");
     std::fprintf(g_pLog, "v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.\n");
     std::fprintf(g_pLog, "STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.\n");
+    std::fprintf(g_pLog, "STEP B2 ORIGINAL-CALLBACK BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -471,6 +472,14 @@ PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(
     return result;
 }
 
+PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(Entity &actor)
+{
+    PrimaryMotionEventSnapshot result = {};
+    result.elapsedMilliseconds = HookBridgeRuntime::GetElapsedMilliseconds();
+    TryGetPrimaryMotionLifetimeSnapshot(actor, result.primary);
+    return result;
+}
+
 static void LogPrimaryMotionEventSnapshot(
     char const *stage, PrimaryMotionEventSnapshot const &eventSnapshot)
 {
@@ -489,6 +498,36 @@ static void LogPrimaryMotionEventSnapshot(
     std::fprintf(g_pLog, "PrimaryPlayTime: %.6f\n", snapshot.playTime);
     std::fprintf(g_pLog, "PrimaryMaxTime: %.6f\n", snapshot.maxTime);
     std::fprintf(g_pLog, "PrimaryPlaySpeed: %.6f\n", snapshot.playSpeed);
+}
+
+void LogOriginalAttackCallbackBoundary(Entity &actor,
+                                       char const *callbackFamily,
+                                       char const *boundary)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    PrimaryMotionEventSnapshot snapshot =
+        CapturePrimaryMotionEventSnapshot(actor);
+    bCString currentMovementAni = actor.NPC.GetCurrentMovementAni();
+    std::fprintf(g_pLog, "===== ORIGINAL ATTACK CALLBACK %s %s =====\n",
+                 callbackFamily, boundary);
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+    std::fprintf(g_pLog, "CallbackFamily: %s\n", callbackFamily);
+    std::fprintf(g_pLog, "Boundary: %s\n", boundary);
+    std::fprintf(g_pLog, "CurrentAction: %d\n",
+                 static_cast<GEInt>(
+                     actor.Routine.GetProperty<PSRoutine::PropertyAction>()));
+    std::fprintf(g_pLog, "CurrentAniPhase: %d\n",
+                 static_cast<GEInt>(actor.GetCurrentAniPhase()));
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                 currentMovementAni.GetText());
+    LogPrimaryMotionEventSnapshot(boundary, snapshot);
+    std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "==========================================\n\n");
+    std::fflush(g_pLog);
 }
 
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,

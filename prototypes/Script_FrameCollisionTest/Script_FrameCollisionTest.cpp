@@ -44,13 +44,29 @@ static bool ShouldSuppressAttackCallback(Entity &actor)
     return willSuppress;
 }
 
+static bool ShouldLogOriginalCallbackBoundary(Entity &actor)
+{
+    Entity player = Entity::GetPlayer();
+    return player != None && actor.GetInstance() == player.GetInstance();
+}
+
 DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
     if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Normal)
         && ShouldSuppressAttackCallback(SelfEntity))
         return GETrue;
-    return Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
+
+    bool const shouldLog = ShouldLogOriginalCallbackBoundary(SelfEntity);
+    if (shouldLog)
+        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
+            SelfEntity, "Normal", "BEGIN");
+    auto const result =
+        Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
+    if (shouldLog)
+        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
+            SelfEntity, "Normal", "END");
+    return result;
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
@@ -59,7 +75,17 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
     if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Quick)
         && ShouldSuppressAttackCallback(SelfEntity))
         return GETrue;
-    return Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
+
+    bool const shouldLog = ShouldLogOriginalCallbackBoundary(SelfEntity);
+    if (shouldLog)
+        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
+            SelfEntity, "Quick", "BEGIN");
+    auto const result =
+        Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
+    if (shouldLog)
+        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
+            SelfEntity, "Quick", "END");
+    return result;
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_WhirlAttack_FrameCollisionTest)
@@ -68,7 +94,17 @@ DECLARE_SCRIPT_CALLBACK(OnAI_WhirlAttack_FrameCollisionTest)
     if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Whirl)
         && ShouldSuppressAttackCallback(SelfEntity))
         return GETrue;
-    return Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
+
+    bool const shouldLog = ShouldLogOriginalCallbackBoundary(SelfEntity);
+    if (shouldLog)
+        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
+            SelfEntity, "Whirl", "BEGIN");
+    auto const result =
+        Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
+    if (shouldLog)
+        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
+            SelfEntity, "Whirl", "END");
+    return result;
 }
 
 static GELPVoid StartEffect_FrameCollisionTest(

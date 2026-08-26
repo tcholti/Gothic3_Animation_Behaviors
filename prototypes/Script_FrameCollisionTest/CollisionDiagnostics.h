@@ -33,6 +33,10 @@ void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGro
                           GEInt retiredMarkerExecutionCount);
 PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(
     eCVisualAnimation_PS *animationPS);
+PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(Entity &actor);
+void LogOriginalAttackCallbackBoundary(Entity &actor,
+                                       char const *callbackFamily,
+                                       char const *boundary);
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,
                            char const *operation,
                            PrimaryMotionEventSnapshot const &before,
