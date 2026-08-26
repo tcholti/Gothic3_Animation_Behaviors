@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Experimental / living document  
-**Version:** 0.1  
+**Version:** 0.2  
 **Purpose:** Preserve the quality, continuity, and adaptability of our collaboration while using Work, repository review, documentation updates, and higher reasoning levels deliberately rather than automatically.
 
 ---
@@ -223,13 +223,15 @@ The assistant should proactively say when:
 
 The user should not have to manage this alone.
 
+The assistant must not claim to know an exact remaining Work allowance, chat-capacity percentage, or reset state unless that information is actually exposed by the product/session. When a real usage or maximum-length warning is exposed, treat it as a continuity event and apply Section 17 immediately.
+
 ---
 
 ## 11. No Artificial Fragmentation
 
 Do not split a naturally connected engineering task into many chats or artificial microtasks solely to reduce Work usage if doing so would damage context or efficiency.
 
-Normal chat may be useful for general planning, conceptual discussion, or unrelated questions, but active repository implementation can remain together when continuity is valuable.
+Normal Chat is a full repository-backed collaboration environment for this project when GitHub access is available. It may be used for research, broad review, consolidation, documentation, planning, log interpretation, and GitHub updates. Work should be used when its agentic execution or coding environment materially helps, especially complex implementation, repository-wide technical changes, or checks that are better performed there.
 
 The choice of Chat versus Work should serve the task rather than become a rigid rule.
 
@@ -308,7 +310,7 @@ Before turning a preference into a significant permanent rule, discuss it with t
 
 Possible questions to revisit later:
 
-- How frequently should HANDOFF be refreshed during long experimental sessions?
+- How frequently should `SESSION_ENTRYPOINT.md` and the detailed HANDOFF be refreshed during long experimental sessions?
 - Which findings deserve immediate Evidence Ledger updates versus checkpoint batching?
 - Does Medium reasoning remain sufficient for most controlled code/test loops in practice?
 - Which repository reviews consume substantial usage without improving outcomes?
@@ -332,5 +334,26 @@ Until experience suggests otherwise:
 7. **Record major durable findings promptly rather than risking their loss.**
 8. **Never sacrifice engineering quality merely to preserve usage allowance.**
 9. **Review and revise these rules if they begin to hamper the work.**
+10. **Keep `docs/SESSION_ENTRYPOINT.md` as the minimal current-state pointer for a new chat.**
 
 This default is an experiment. The objective is to learn what produces the best balance of engineering quality, continuity, speed, and sustainable tool usage through actual collaboration.
+
+---
+
+## 17. Chat-Length and Usage-Limit Continuity
+
+A chat or Work session is never the sole authoritative store of project state.
+
+`docs/SESSION_ENTRYPOINT.md` is the minimal continuation pointer. It should remain short and contain only the current subsystem/question, latest durable checkpoint, immediate next step, and the deeper files a new session should open if needed.
+
+Use these safeguards:
+
+- At meaningful technical checkpoints, make sure important evidence, decisions, and code are committed before depending on further chat context.
+- Update `SESSION_ENTRYPOINT.md` whenever the active problem, current prototype, or immediate next step materially changes. Do not turn it into another full handoff.
+- Before a large review, consolidation, or risky code change, prefer having a recoverable repository checkpoint first when practical.
+- If the product exposes a warning that the conversation is near/at maximum length or that Work usage is near a limit, do not begin another broad task. Preserve the smallest useful checkpoint first and continue in a new session.
+- If a task is interrupted, do not automatically redo the whole task. Inspect the latest durable commit and entry point first, then continue only the missing part.
+- A new session should read `SESSION_ENTRYPOINT.md` first. It should not blindly reread the full repository or trust automatic cross-chat memory to reconstruct exact technical state.
+- The assistant must distinguish **known durable state** from **reasoning that may have been interrupted before it was committed**.
+
+These safeguards are intended to survive product limits without degrading the engineering process. They do not assume that ChatGPT can see an exact hidden context percentage or remaining Work allowance when the product does not expose one.
