@@ -93,6 +93,22 @@ This structure is deliberate preparation for later extraction. After research is
 
 Detailed diagnostic/module plan: `docs/COLLISION_LOGGER_PLAN.md`.
 
+## Work Coding Discipline
+
+`docs/WORK_IMPLEMENTATION_PROTOCOL.md` is the execution contract for the next coding session.
+
+It defines:
+
+- **behavior integrity** — anything outside the explicitly targeted change must remain semantically unchanged;
+- principle-first implementation rather than symptom-by-symptom fixes;
+- one runtime hook owner with modular source responsibilities;
+- smallest-sufficient state/model;
+- deliberate resource use regardless of available compute/context/tool capacity;
+- explicit stop conditions when implementation starts growing beyond what the agreed model can explain;
+- required evidence/handoff after each meaningful step.
+
+A Work session may challenge the design when engine/API evidence contradicts it. It must not silently replace the design with accumulated compensating code.
+
 ## Test Sequence
 
 The staged tests are in `docs/COLLISION_TEST_PLAN.md`.
@@ -114,15 +130,16 @@ Do **not** implement production collision cleanup yet.
 A new Work chat should read, in this order:
 
 1. `docs/SESSION_ENTRYPOINT.md`
-2. `docs/ENGINEERING_GUIDE.md`
-3. `docs/COLLISION_LIFECYCLE_PLAN.md`
-4. `docs/COLLISION_LIFECYCLE_MODELS.md`
-5. `docs/COLLISION_LOGGER_PLAN.md`
-6. `docs/COLLISION_TEST_PLAN.md`
-7. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-8. `prototypes/Script_FrameCollisionTest/CMakeLists.txt`
-9. `tools/Script_CombatMoveLogger/Script_CombatMoveLogger.cpp` only as a reference for proven diagnostic patterns
-10. `docs/SOURCE_HOOK_GUIDE.md` only as needed for hook/source research
+2. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
+3. `docs/ENGINEERING_GUIDE.md`
+4. `docs/COLLISION_LIFECYCLE_PLAN.md`
+5. `docs/COLLISION_LIFECYCLE_MODELS.md`
+6. `docs/COLLISION_LOGGER_PLAN.md`
+7. `docs/COLLISION_TEST_PLAN.md`
+8. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
+9. `prototypes/Script_FrameCollisionTest/CMakeLists.txt`
+10. `tools/Script_CombatMoveLogger/Script_CombatMoveLogger.cpp` only as a reference for proven diagnostic patterns
+11. `docs/SOURCE_HOOK_GUIDE.md` only as needed for hook/source research
 
 Work should first check whether the modular single-DLL plan can preserve each current hook and v0.20 behavior cleanly. If engine/API evidence contradicts the plan, report the contradiction rather than silently adding a more complicated architecture.
 
