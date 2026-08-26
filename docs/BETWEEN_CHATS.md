@@ -3,74 +3,69 @@
 **Purpose:** Small transient bridge between normal Chat and Work.  
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-## Latest handoff
+## Latest result
 
-**From:** Normal Chat  
-**To:** Work  
+**From:** Work  
+**To:** Normal Chat / home-PC validation  
 **Date:** 2026-08-26  
 **Branch:** `docs/collision-source-evidence`
 
-## Step B2 Result — CALLBACK CANDIDATE REJECTED
+## Step B3 CombatMove StartRecover Boundary Probe — SOURCE COMPLETE
 
-Runtime evidence is in:
+### Changed files
 
-- `research/raw/test_Script_FrameCollisionTest.log`;
-- `research/raw/2026-08-26_stepB2_causal_extract.log`.
+- `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
+- `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp`
+- `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h`
 
-The focused extract contains 40 original-callback records, all Quick. On a clean Quick transition:
+### Hook ownership and call boundary
 
-1. successor Recover `PlayMotion` occurs;
-2. native weapon cleanup `7 -> 5` occurs;
-3. only then does the first original Quick callback BEGIN;
-4. that callback continues repeating during Recover.
+The existing main/hook bridge now owns exactly one additional diagnostic hook:
 
-Therefore original attack-family callback entry/return is not the cleanup boundary and is not a one-shot Hit-completion event. Do not build lifecycle ownership around it.
+- `gCScriptProcessingUnit::sAICombatMoveStartRecover(gCScriptProcessingUnit *)`;
+- tested `Game.dll` RVA `0x16E360`;
+- SDK-matching static `void GE_STDCALL` signature;
+- stack-only/default function-hook mode.
 
-## Step B3 — BOUNDED COMBATMOVE RECOVER BOUNDARY PROBE
+For the player entity only, the wrapper:
 
-### Source evidence
+1. logs and flushes `COMBATMOVE STARTRECOVER BEGIN`;
+2. calls the original StartRecover function exactly once with the unchanged argument;
+3. logs and flushes `COMBATMOVE STARTRECOVER END`.
 
-Official SDK declares:
+The original function is `void`, so return semantics remain unchanged.
 
-`gCScriptProcessingUnit::sAICombatMoveStartRecover(gCScriptProcessingUnit *)`
+### Boundary record fields
 
-Tested `Game.dll` exports it at RVA `0x16E360`.
+Each BEGIN/END record contains:
 
-Tested disassembly shows the function calls high-level PrimaryFirst `PlayMotion` and continues executing before return.
+- high-resolution elapsed timestamp;
+- actor address and name;
+- current Action;
+- current AniPhase;
+- current movement animation;
+- existing PrimaryFirst snapshot availability, motion name, has-motion-instance, running, play time, max time, and play speed;
+- equipped LEFT and RIGHT source resolution, identity/address, and collision group when available.
 
-### Exact runtime question
+The diagnostic module reuses the existing PrimaryFirst snapshot and collision-source resolution paths. No persistent state was added.
 
-> On a clean attack, does native offensive-collision cleanup occur between `sAICombatMoveStartRecover` BEGIN and END? On the known Recover-skip/stale case, is this function entered and, if so, does it return without cleanup?
+### Diagnostic-output reductions
 
-### Implement only this probe
+- Existing PrimaryFirst `PlayMotion`/`StopMotion` hooks and original calls remain; their output is now limited to motion type `0` owned by the player entity.
+- Temporary Step B2 original attack-callback BEGIN/END output was removed.
+- The Normal/Quick/Whirl callback wrappers were restored to their pre-B2 bodies, including the unchanged marked-Hit suppression paths.
+- `SetCollisionGroup`, marker records, and the old marker-owned `OnTick` comparator remain available.
 
-1. Add exactly one diagnostic hook for tested Game RVA `0x16E360`, matching the SDK static/stdcall signature.
-2. Main/hook bridge remains sole hook owner.
-3. For the player entity only, log compact `COMBATMOVE STARTRECOVER BEGIN` immediately before the original function and `... END` immediately after it.
-4. Each record should contain only what is needed for correlation:
-   - high-resolution elapsed time;
-   - actor address/name;
-   - current Action/AniPhase/current movement animation;
-   - existing PrimaryFirst snapshot fields;
-   - current equipped LEFT/RIGHT source identity and collision group when available.
-5. Call the original `sAICombatMoveStartRecover` exactly once and preserve behavior/return semantics exactly.
-6. Add no persistent lifecycle state, cleanup, timer, polling, family exception, or production decision.
+### Preserved behavior and scope
 
-### Diagnostic noise reduction for this probe
+- Collision-control files and behavior are unchanged and independent of diagnostics.
+- No cleanup, lifecycle ownership, timer, polling/checking mechanism, family-specific cleanup rule, or production decision was added.
+- No `sAICombatMoveItlLoop` hook or investigation was added.
 
-The B1/B2 evidence is already preserved in raw logs and Git history. To keep B3 evidence small:
+### Source/API status
 
-- make the existing PrimaryFirst `PlayMotion` / `StopMotion` diagnostic output player-only while leaving the hooks/original calls unchanged;
-- remove or disable the temporary B2 `ORIGINAL ATTACK CALLBACK ... BEGIN/END` output; do not change the callback hook behavior or suppression paths;
-- keep `SetCollisionGroup`, marker records, and the old marker-owned `OnTick` comparator available for correlation.
+No source/API contradiction was found. Source review confirms exactly one new hook/RVA, one StartRecover original call, no B2 output, player filtering on both B1 hook outputs, and no `ItlLoop` path.
 
-These are diagnostic-output changes only. Collision-control behavior must remain unchanged.
+Compilation, DLL loading, live hook execution, log ordering, and whether native offensive-collision cleanup occurs between StartRecover BEGIN and END remain unverified until home-PC testing.
 
-### Stop conditions
-
-Do not implement cleanup or lifecycle ownership.  
-Do not add another polling/checking mechanism.  
-Do not broaden to `sAICombatMoveItlLoop` yet.  
-Do not build or run Gothic 3.
-
-Commit and push the source changes, overwrite this file with a concise Work-to-Chat result and final commit SHA, then STOP.
+**Final source commit SHA:** `86fd222ace9ef27e88f4846cf0f720c32dce6f6a`
