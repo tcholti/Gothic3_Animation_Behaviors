@@ -9,6 +9,44 @@ Design the smallest observational logger that can answer the current collision-l
 
 The logger must measure the proposed architecture. It must not quietly become the architecture itself.
 
+## Research, Diagnostic, and Release Roles
+
+The current large research log is intentionally temporary instrumentation. It may be broad or verbose when a controlled experiment requires that visibility, but its cost must be justified by a concrete research question.
+
+The finished collision behavior should have three clearly separated forms/responsibilities:
+
+1. **Production/release behavior**
+   - no research log output;
+   - no diagnostic state required for behavior;
+   - no polling or scanning retained merely because it was useful during investigation;
+   - only the minimum event/state machinery required for correct collision behavior.
+
+2. **Retained diagnostic build/tool**
+   - preserve useful lifecycle/collision probes for future bug reports and controlled reproduction;
+   - may contain richer logging than the release build;
+   - should remain optional and removable without changing production behavior.
+
+3. **General combat diagnostics**
+   - after the collision system is complete, useful reusable observations may be selectively copied into `tools/Script_CombatMoveLogger` or a later diagnostic successor;
+   - do not merge research probes into the combat logger automatically merely because they exist;
+   - add only diagnostics that have continuing value outside the collision-development experiment.
+
+Large logs also have an analysis/context cost. A probe that produces megabytes of unrelated actor/motion output can make both human review and model-assisted analysis harder even when runtime performance is acceptable. Prefer narrow event correlation whenever the research question allows it.
+
+The desired final lifecycle style is **event/report driven rather than repeated polling** wherever Gothic 3 exposes a usable boundary event:
+
+```text
+Hit execution acquires a cleanup obligation
+        ↓
+relevant engine/callback event reports execution completion/replacement
+        ↓
+native cleanup observed?
+   YES -> retire obligation
+   NO  -> repair missing cleanup
+```
+
+Temporary polling is acceptable only as a comparator or fallback while proving the direct event path. It should not survive into production merely because it was useful for research.
+
 ## Runtime Ownership Decision
 
 The collision behavior and lifecycle diagnostics should remain in **one research DLL while they need overlapping Gothic 3 hooks**.
@@ -76,7 +114,9 @@ When collision behavior is fully researched and validated:
 1. keep the stable behavior module(s);
 2. omit the diagnostic module(s);
 3. create the production DLL/project, provisionally named something like `Script_FrameBasedCollision` or another final name chosen later;
-4. preserve the same hook/behavior boundaries rather than rewriting the subsystem merely to remove logging.
+4. preserve the same hook/behavior boundaries rather than rewriting the subsystem merely to remove logging;
+5. retain a diagnostic build/tool separately for future troubleshooting;
+6. review the diagnostic probes and selectively move only generally useful observations into the combat logger.
 
 The research structure should therefore be designed around the future separation boundary from the beginning.
 
@@ -114,14 +154,15 @@ Current strengths:
 
 Current limitations:
 
-- behavior-control code and diagnostics are concentrated in one large `.cpp`;
+- current research output contains accumulated historical/prototype explanations that are useful only during development, not as runtime diagnostics;
+- Step B1 global PrimaryFirst event logging is intentionally broad and can record unrelated actors/motions, producing very large logs;
 - lifetime observation is tied to marker-owned prototype state, so native/unmarked executions are not tracked as equivalent first-class lifecycles;
 - Script `OnTick` sampling is too coarse for the intended production boundary and can miss exact ordering;
 - current lifetime state carries source mask/action/phase assumptions that the new architecture is explicitly questioning;
 - it does not identify whether a higher-level native attack-cleanup routine exists; it only observes collision-group consequences;
 - it is not designed around attacker/defender block/parade correlation.
 
-Conclusion: keep the same research DLL/hook ownership, but **redesign the source into separate behavior and diagnostic modules instead of continuing to grow one monolithic `.cpp`**.
+Conclusion: keep the same research DLL/hook ownership, but continue moving toward **narrow event-driven diagnostics**. Broad global probes and the old `OnTick` comparator are temporary research machinery and should be removed once the direct lifecycle event chain is proven.
 
 ## Questions the Diagnostics Must Answer
 
