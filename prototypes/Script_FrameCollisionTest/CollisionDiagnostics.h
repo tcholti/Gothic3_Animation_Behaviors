@@ -4,8 +4,16 @@
 
 #include <cstdio>
 
+class eCVisualAnimation_PS;
+
 namespace FrameCollision::CollisionDiagnostics
 {
+struct PrimaryMotionEventSnapshot
+{
+    GEDouble elapsedMilliseconds;
+    PrimaryMotionLifetimeSnapshot primary;
+};
+
 void OpenLog();
 void CloseLog();
 bool IsLogOpen();
@@ -23,6 +31,12 @@ void LogMarkerResult(MarkerProcessResult const &result);
 void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGroup,
                           eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
                           GEInt retiredMarkerExecutionCount);
+PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(
+    eCVisualAnimation_PS *animationPS);
+void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,
+                           char const *operation,
+                           PrimaryMotionEventSnapshot const &before,
+                           PrimaryMotionEventSnapshot const &after);
 void ObserveMarkerOwnedLifetimeOnTick(Entity &actor, MarkerOwnedWindowView const &window);
 void ResetMarkerOwnedLifetime(eCEntity *actorInstance);
 void ForgetMarkerOwnedLifetime(eCEntity *actorInstance);

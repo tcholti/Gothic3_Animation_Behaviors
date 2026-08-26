@@ -2,6 +2,7 @@
 #include "CollisionDiagnostics.h"
 #include "HookBridgeRuntime.h"
 
+#include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
 #include <g3sdk/Game/ge_effectsystem.h>
 #include <g3sdk/Script.h>
 #include <g3sdk/util/Hook.h>
@@ -19,6 +20,8 @@ static mCFunctionHook Hook_OnAI_QuickAttack;
 static mCFunctionHook Hook_OnAI_WhirlAttack;
 static mCFunctionHook Hook_OnTick;
 static mCFunctionHook Hook_SetCollisionGroup;
+static mCFunctionHook Hook_PlayMotion;
+static mCFunctionHook Hook_StopMotion;
 
 static bool ShouldSuppressAttackCallback(Entity &actor)
 {
@@ -114,6 +117,49 @@ static GELPVoid StartEffect_FrameCollisionTest(
     return nullptr;
 }
 
+static void GE_STDCALL PlayMotion_FrameCollisionTest(
+    eCWrapper_emfx2Actor::eEMotionType a_MotionType,
+    eCWrapper_emfx2Motion::eSMotionDesc *a_pMotionDesc)
+{
+    if (static_cast<GEInt>(a_MotionType) != 0)
+    {
+        Hook_PlayMotion.GetOriginalFunction(&PlayMotion_FrameCollisionTest)(
+            a_MotionType, a_pMotionDesc);
+        return;
+    }
+
+    eCVisualAnimation_PS *pThis = Hook_PlayMotion.GetSelf<eCVisualAnimation_PS *>();
+    PrimaryMotionEventSnapshot before =
+        CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    Hook_PlayMotion.GetOriginalFunction(&PlayMotion_FrameCollisionTest)(
+        a_MotionType, a_pMotionDesc);
+    PrimaryMotionEventSnapshot after =
+        CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    CollisionDiagnostics::LogPrimaryMotionEvent(
+        pThis, "PlayMotion", before, after);
+}
+
+static void GE_STDCALL StopMotion_FrameCollisionTest(
+    eCWrapper_emfx2Actor::eEMotionType a_MotionType, GEFloat a_fBlendTime)
+{
+    if (static_cast<GEInt>(a_MotionType) != 0)
+    {
+        Hook_StopMotion.GetOriginalFunction(&StopMotion_FrameCollisionTest)(
+            a_MotionType, a_fBlendTime);
+        return;
+    }
+
+    eCVisualAnimation_PS *pThis = Hook_StopMotion.GetSelf<eCVisualAnimation_PS *>();
+    PrimaryMotionEventSnapshot before =
+        CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    Hook_StopMotion.GetOriginalFunction(&StopMotion_FrameCollisionTest)(
+        a_MotionType, a_fBlendTime);
+    PrimaryMotionEventSnapshot after =
+        CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    CollisionDiagnostics::LogPrimaryMotionEvent(
+        pThis, "StopMotion", before, after);
+}
+
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
 {
     eCEntity *pThis = Hook_SetCollisionGroup.GetSelf<eCEntity *>();
@@ -189,6 +235,14 @@ static void InstallHooks()
         .Hook();
     Hook_SetCollisionGroup
         .Prepare(RVA_Engine(0x225660), &SetCollisionGroup_FrameCollisionTest,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_PlayMotion
+        .Prepare(RVA_Engine(0x30860), &PlayMotion_FrameCollisionTest,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_StopMotion
+        .Prepare(RVA_Engine(0x30980), &StopMotion_FrameCollisionTest,
                  mCBaseHook::mEHookType_ThisCall)
         .Hook();
 }

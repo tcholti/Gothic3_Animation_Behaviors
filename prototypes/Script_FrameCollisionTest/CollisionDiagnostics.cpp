@@ -60,6 +60,7 @@ void OpenLog()
     std::fprintf(g_pLog, "Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.\n");
     std::fprintf(g_pLog, "Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.\n");
     std::fprintf(g_pLog, "v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.\n");
+    std::fprintf(g_pLog, "STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -428,13 +429,10 @@ void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGro
     std::fflush(g_pLog);
 }
 
-static bool TryGetPrimaryMotionLifetimeSnapshot(Entity &actor,
-                                                PrimaryMotionLifetimeSnapshot &snapshot)
+static bool TryGetPrimaryMotionLifetimeSnapshot(
+    eCVisualAnimation_PS *animationPS, PrimaryMotionLifetimeSnapshot &snapshot)
 {
     snapshot = {};
-    if (actor == None || !actor.Animation.IsValid())
-        return false;
-    auto *animationPS = static_cast<eCVisualAnimation_PS *>(actor.Animation.m_pEngineEntityPropertySet);
     if (animationPS == nullptr || !animationPS->HasActor())
         return false;
     eCWrapper_emfx2Actor *animationActor = animationPS->GetActor();
@@ -451,6 +449,75 @@ static bool TryGetPrimaryMotionLifetimeSnapshot(Entity &actor,
     snapshot.playSpeed = animationActor->GetPlaySpeed(primaryFirst);
     snapshot.motionName = animationPS->GetMotionDesc(primaryFirst).GetMotionFilename().GetText();
     return true;
+}
+
+static bool TryGetPrimaryMotionLifetimeSnapshot(
+    Entity &actor, PrimaryMotionLifetimeSnapshot &snapshot)
+{
+    snapshot = {};
+    if (actor == None || !actor.Animation.IsValid())
+        return false;
+    auto *animationPS =
+        static_cast<eCVisualAnimation_PS *>(actor.Animation.m_pEngineEntityPropertySet);
+    return TryGetPrimaryMotionLifetimeSnapshot(animationPS, snapshot);
+}
+
+PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(
+    eCVisualAnimation_PS *animationPS)
+{
+    PrimaryMotionEventSnapshot result = {};
+    result.elapsedMilliseconds = HookBridgeRuntime::GetElapsedMilliseconds();
+    TryGetPrimaryMotionLifetimeSnapshot(animationPS, result.primary);
+    return result;
+}
+
+static void LogPrimaryMotionEventSnapshot(
+    char const *stage, PrimaryMotionEventSnapshot const &eventSnapshot)
+{
+    PrimaryMotionLifetimeSnapshot const &snapshot = eventSnapshot.primary;
+    std::fprintf(g_pLog, "Stage: %s\n", stage);
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 eventSnapshot.elapsedMilliseconds);
+    std::fprintf(g_pLog, "PrimarySnapshotAvailable: %d\n",
+                 snapshot.available ? 1 : 0);
+    std::fprintf(g_pLog, "PrimaryMotionName: %s\n",
+                 snapshot.motionName.c_str());
+    std::fprintf(g_pLog, "PrimaryHasMotionInstance: %d\n",
+                 snapshot.hasMotionInstance ? 1 : 0);
+    std::fprintf(g_pLog, "PrimaryMotionRunning: %d\n",
+                 snapshot.motionRunning ? 1 : 0);
+    std::fprintf(g_pLog, "PrimaryPlayTime: %.6f\n", snapshot.playTime);
+    std::fprintf(g_pLog, "PrimaryMaxTime: %.6f\n", snapshot.maxTime);
+    std::fprintf(g_pLog, "PrimaryPlaySpeed: %.6f\n", snapshot.playSpeed);
+}
+
+void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,
+                           char const *operation,
+                           PrimaryMotionEventSnapshot const &before,
+                           PrimaryMotionEventSnapshot const &after)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    eCEntity *ownerEntity = animationPS != nullptr ? animationPS->GetEntity() : nullptr;
+    std::fprintf(g_pLog, "===== PRIMARYFIRST %s =====\n", operation);
+    std::fprintf(g_pLog, "OwnerEntityAddress: %p\n",
+                 static_cast<void *>(ownerEntity));
+    if (ownerEntity != nullptr)
+    {
+        Entity owner(ownerEntity);
+        std::fprintf(g_pLog, "OwnerEntity: %s\n", owner.GetName().GetText());
+    }
+    else
+    {
+        std::fprintf(g_pLog, "OwnerEntity: <unavailable>\n");
+    }
+    std::fprintf(g_pLog, "MotionType: 0\n");
+    LogPrimaryMotionEventSnapshot("REQUEST_BEFORE_ORIGINAL", before);
+    LogPrimaryMotionEventSnapshot("RESULT_AFTER_ORIGINAL", after);
+    std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "=====================================\n\n");
+    std::fflush(g_pLog);
 }
 
 void ResetMarkerOwnedLifetime(eCEntity *actorInstance)
