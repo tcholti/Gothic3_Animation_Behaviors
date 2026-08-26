@@ -3,68 +3,59 @@
 **Purpose:** Small transient bridge between normal Chat and Work.  
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-## Latest handoff
+## Latest result
 
-**From:** Normal Chat  
-**To:** Work  
+**From:** Work  
+**To:** Normal Chat / home-PC validation  
 **Date:** 2026-08-26  
 **Branch:** `docs/collision-source-evidence`
 
-## Task — Step B1 PrimaryFirst Event Probe
+## Step B1 PrimaryFirst Event Probe — SOURCE COMPLETE
 
-Step A modularization is validated. Do not revisit or broaden it.
+### Changed files
 
-Read only what is needed for this bounded task:
+- `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
+- `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp`
+- `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h`
 
-1. `docs/SESSION_ENTRYPOINT.md`
-2. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
-3. `docs/COLLISION_LOGGER_PLAN.md`
-4. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-5. `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp/.h`
-6. official SDK headers for `eCVisualAnimation_PS`, `eCWrapper_emfx2Actor`, and `eCEntityPropertySet` as needed.
+### Hook ownership
 
-### Implement
+The existing main/hook bridge owns each new diagnostic hook exactly once:
 
-Add **diagnostic-only** hooks, owned exactly once by the existing main/hook bridge, for:
+- `eCVisualAnimation_PS::PlayMotion` — Engine RVA `0x30860`;
+- `eCVisualAnimation_PS::StopMotion` — Engine RVA `0x30980`.
 
-- `eCVisualAnimation_PS::PlayMotion` — `RVA_Engine(0x30860)`;
-- `eCVisualAnimation_PS::StopMotion` — `RVA_Engine(0x30980)`.
+Only motion type `0` / PrimaryFirst is observed. Other motion types call the original function directly. No wrapper-level or `StopAtLoopEnd` hook was added.
 
-Requirements:
+### Logged event data
 
-- observe/log only motion type `0`, the validated PrimaryFirst slot;
-- use `eCVisualAnimation_PS::GetEntity()` to identify the owning entity/actor where available;
-- capture a compact PrimaryFirst snapshot immediately **before** the original function and immediately **after** it;
-- reuse/refactor the existing diagnostic snapshot code rather than creating a second independent definition of PrimaryFirst state;
-- useful snapshot fields are: motion name, has-motion-instance, running, play time, max time, play speed; action/phase/current movement may be logged only as context where readily available;
-- distinguish PlayMotion request/result from StopMotion request/result in the log;
-- keep the existing v0.20 `OnTick` PrimaryFirst lifetime probe unchanged as a temporary comparator;
-- preserve all collision-control behavior exactly.
+For both PlayMotion and StopMotion, diagnostics capture paired stack-local snapshots immediately before and after the original call, then log:
 
-### Do not add
+- request-before-original versus result-after-original;
+- elapsed timestamp;
+- owning entity address and name via `GetEntity()`, where available;
+- motion type;
+- snapshot availability;
+- motion name;
+- has-motion-instance;
+- running;
+- play time;
+- max time;
+- play speed.
 
-- production cleanup;
-- new collision-control decisions;
-- lifecycle ownership/correlation tables;
-- new persistent execution state merely for this probe;
-- Quick/Whirl/Staff/block-specific behavior;
-- `StopAtLoopEnd` hook in this first probe;
-- wrapper-level `eCWrapper_emfx2Actor::PlayMotion/StopMotion` hooks unless source/API evidence proves the requested high-level hooks cannot observe the needed events.
+The event probe reuses the existing `PrimaryMotionLifetimeSnapshot` definition and snapshot-reading path. It adds no persistent lifecycle state.
 
-Source evidence already established that `StopAtLoopEnd` schedules a future loop stop rather than representing an actual end event, so it is intentionally excluded from this probe.
+### Preserved behavior
 
-### Scope and stop condition
+- Collision-control code and decisions are unchanged.
+- The existing v0.20 `OnTick` PrimaryFirst lifetime probe remains as the temporary comparator.
+- No cleanup, ownership/correlation table, attack-family exception, or production decision was added.
 
-This task tests whether the high-level PrimaryFirst motion events can replace polling later. It does **not** decide that question in code.
+### Source/API status
 
-If the specified high-level hook signatures/RVAs cannot be used cleanly, STOP and report the concrete contradiction rather than adding a broader interception architecture.
+Official SDK declarations match the requested high-level signatures and RVAs cleanly. No source/API contradiction remains.
 
-Do not build or run Gothic 3 in Work. Normal Chat/home PC owns compilation and runtime validation.
+Compilation, DLL loading, hook execution, runtime logging, and whether these events cover every actual PrimaryFirst end/replacement remain unverified until home-PC build/runtime testing.
 
-### Finish
-
-When source implementation/review is complete:
-
-1. commit and push to `docs/collision-source-evidence`;
-2. overwrite this file with a concise report containing changed files, hook ownership, logged event fields, preserved behavior, unresolved source/API issues, and commit SHA;
-3. STOP. Do not proceed to broader lifecycle diagnostics or cleanup.
+**Final source commit SHA:** `81e88026a4b47086a8995ab65d2933a041f8d2fd`  
+(The probe implementation commit is `7dcd514b0bcd51c05453e3e55500a927b9063159`; the final source commit applies the required namespace qualification.)
