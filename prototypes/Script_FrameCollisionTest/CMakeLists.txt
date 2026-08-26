@@ -13,5 +13,12 @@ target_gothic_script_options(
 target_tree_sources(
     Script_FrameCollisionTest
     PRIVATE
+        CollisionControl.cpp
+        CollisionControl.h
+        CollisionDiagnostics.cpp
+        CollisionDiagnostics.h
+        FrameCollisionShared.h
+        HookBridgeRuntime.cpp
+        HookBridgeRuntime.h
         Script_FrameCollisionTest.cpp
 )
