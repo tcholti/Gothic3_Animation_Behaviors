@@ -75,25 +75,43 @@ Established findings:
 
 The old `OnTick` lifetime probe remains only as a temporary comparator. Do not promote it to production architecture.
 
-## Current Open Question — Step B2
+## Step B2 — ORIGINAL-CALLBACK BOUNDARY PROBE RUNTIME DATA CAPTURED
 
-The smallest unresolved causal question is:
+Source commit:
+
+`106209bdefa6c9c52e1f1408a3d148dd52b2664e` — add player-filtered BEGIN/END diagnostics around the existing unsuppressed original Normal/Quick/Whirl callback calls.
+
+No hook, timer, polling/checking path, lifecycle state, cleanup behavior, or special-case behavior was added. Marked-Hit suppression and collision control remain unchanged.
+
+Runtime evidence has been captured and pushed:
+
+- full log: `research/raw/test_Script_FrameCollisionTest.log`;
+- filtered Hero event extract: `research/raw/2026-08-26_stepB2_player_event_extract.log`.
+
+The filtered extract exists specifically because the full 152k-line log can exceed GitHub connector/file-response limits. Preserve the full log as raw evidence; use the filtered extract for normal analysis.
+
+Current causal question:
 
 > After successor PrimaryFirst starts, does native collision cleanup occur inside Gothic 3's original `OnAI_Attack`, `OnAI_QuickAttack`, or `OnAI_WhirlAttack` callback call?
 
-This is plausible because the research DLL already wraps those callbacks, and clean cleanup follows successor `PlayMotion` only about 0.06 ms later.
-
 If native cleanup occurs between original-callback entry and return, that return is a promising natural point at which Gothic 3 has already had its cleanup opportunity. This could avoid both immediate-PlayMotion cleanup and a polling/timer fallback.
 
-The bounded Step B2 assignment is in `docs/BETWEEN_CHATS.md`:
+Do **not** implement production cleanup until the Step B2 runtime ordering has been interpreted.
 
-- add no new hook;
-- preserve marked-Hit suppression exactly;
-- for player-only controlled diagnostics, log compact BEGIN/END snapshots around existing calls to the original Normal/Quick/Whirl callbacks;
-- keep existing `SetCollisionGroup`, Step B1, and `OnTick` diagnostics unchanged for correlation;
-- add no persistent lifecycle state or cleanup behavior.
+## Repository Access Note For New Sessions
 
-Do **not** implement production cleanup until Step B2 runtime evidence answers this question.
+For GitHub-backed project work, use the connected GitHub repository interface as the authoritative assistant-side access path.
+
+Do **not** assume the assistant's local/container runtime has outbound network access to GitHub. A local `git fetch`, `git pull`, clone, or raw HTTP request from that runtime may fail even while the connected GitHub interface can read and write the repository normally. Do not treat such a local-network failure as evidence that the repository is unavailable.
+
+Practical rule for a new Chat or Work session:
+
+1. read this file through the connected GitHub interface;
+2. use the connected GitHub interface for repository reads/writes, commits, branch inspection, and source/document access;
+3. use the user's home-PC checkout for actual local `git pull`, build, install, and Gothic 3 runtime testing;
+4. use assistant local/container filesystem/network only when a task genuinely requires it and access has been verified.
+
+If a large repository file cannot be returned through the connected interface, prefer a targeted extract/smaller derived evidence file rather than falling back to repeated assumptions about local GitHub network access.
 
 ## Chat / Work Execution Model
 
