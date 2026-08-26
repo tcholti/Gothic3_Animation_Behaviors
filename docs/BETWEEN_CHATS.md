@@ -3,62 +3,42 @@
 **Purpose:** Small transient bridge between normal Chat and Work.  
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-This file exists so the user does not need to copy long Work reports into Chat or long Chat instructions into Work.
-
-## How to use it
-
-- The session finishing a bounded task updates this file directly in GitHub.
-- The receiving session reads this file before asking the user to repeat the handoff.
-- For a Work task, normal Chat may replace the handoff below with the next bounded implementation assignment.
-- At the end of that Work task, Work replaces it with its concise implementation report.
-- Durable facts, architecture decisions, evidence, and project state still belong in their proper canonical documents. This file is only the latest bridge.
-- Do not paste full diffs, logs, or long reports here. Point to the relevant commit/file when more detail is needed.
-
 ## Latest handoff
 
-**From:** Work  
-**To:** Normal Chat / local home-PC validation  
+**From:** Normal Chat / home-PC validation  
+**To:** Normal Chat planning before next Work task  
 **Date:** 2026-08-26  
-**Branch:** `docs/collision-source-evidence`  
-**Implementation commit:** `325c98e725502229bf796083e52c0fa977803cc0`
+**Branch:** `docs/collision-source-evidence`
 
-### Completed
+### Step A status
 
-Step A source refactor is complete and pushed.
+**VALIDATED.**
 
-`Script_FrameCollisionTest` remains one research DLL with one owner for each Gothic 3 hook, but its source is now separated into:
+Implementation commit:
 
-- `Script_FrameCollisionTest.cpp` — bootstrap and hook bridge;
-- `CollisionControl.cpp/.h` — collision behavior and behavioral state;
-- `CollisionDiagnostics.cpp/.h` — observational logging and diagnostic state;
-- `FrameCollisionShared.h` — shared facts/results/enums;
-- `HookBridgeRuntime.cpp/.h` — shared high-resolution timing;
-- `CMakeLists.txt` — builds all modules into the existing DLL.
+`325c98e725502229bf796083e52c0fa977803cc0`
 
-Collision control does not depend on diagnostics. No lifecycle-cleanup redesign or new lifecycle logger behavior was added.
+Home-PC validation:
 
-### Intended behavior parity
+- Release build succeeded;
+- installed DLL matched built DLL SHA-256 `4CD111D0B92A562AD8831BA81FA00C6E8A29BE5EC3F66E5920D6B214F99553DD`;
+- Gothic 3 loaded and ran without crash;
+- marked Normal/Quick/Whirl smoke test covered 2H, Staff, and Dual/1H+1H;
+- v0.20 marker/control/diagnostic behavior remained present;
+- known stale collision/lifetime defect still reproduced, as expected for a parity-only refactor.
 
-The refactor is intended to preserve v0.20 behavior for Normal/Quick/full-Whirl eligibility, marked-motion suppression, native fallback, RIGHT/LEFT/BOTH/OFF exact-set behavior, rearm, deduplication, authored-occurrence budgets, marker-owned-window bookkeeping, Quick/Whirl `StatePosition`, and existing diagnostics.
+Smoke log:
 
-### Not yet verified
-
-No compilation or Gothic 3 runtime test was performed in Work.
-
-Still unverified:
-
-- MSVC compilation/linkage;
-- DLL loading and hook installation;
-- live marker/native behavior parity;
-- diagnostic ordering/output;
-- PrimaryFirst lifetime probe after modularization.
+`research/raw/2026-08-26_framecollision_modular_v0.20_parity_smoke.log`
 
 ### Next action
 
-On the home PC:
+Do not send another coding task to Work yet.
 
-1. synchronize the local repository to the current branch;
-2. configure/build `Script_FrameCollisionTest`;
-3. if compilation fails, diagnose the smallest source/interface correction in normal Chat before returning to Work;
-4. if it builds, install and run a small v0.20 parity test before beginning Step B;
-5. do not start the lifecycle diagnostic redesign until Step A parity is established.
+Normal Chat should first:
+
+1. archive processed raw logs;
+2. review/finalize the smallest Step B lifecycle-diagnostic change from `docs/COLLISION_LOGGER_PLAN.md`;
+3. overwrite this file with that bounded Work assignment.
+
+Do **not** implement production collision cleanup yet.
