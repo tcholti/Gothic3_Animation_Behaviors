@@ -5,6 +5,7 @@
 
 #include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
 
+#include <cstdint>
 #include <cstring>
 #include <string>
 #include <unordered_map>
@@ -62,6 +63,7 @@ void OpenLog()
     std::fprintf(g_pLog, "v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.\n");
     std::fprintf(g_pLog, "STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.\n");
+    std::fprintf(g_pLog, "STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -369,13 +371,19 @@ void LogMarkerResult(MarkerProcessResult const &r)
     std::fflush(g_pLog);
 }
 
-static void LogPlayerSlotIdentity(eCEntity *changedEntity)
+struct PlayerSlotIdentityResult
+{
+    char const *slotMatch;
+    bool matchesEquippedSource;
+};
+
+static PlayerSlotIdentityResult LogPlayerSlotIdentity(eCEntity *changedEntity)
 {
     Entity player = Entity::GetPlayer();
     if (player == None)
     {
         std::fprintf(g_pLog, "PlayerSlotMatch: NO_PLAYER\n");
-        return;
+        return { "NO_PLAYER", false };
     }
     Entity leftItem = player.Inventory.GetItemFromSlot(gESlot_LeftHand);
     Entity rightItem = player.Inventory.GetItemFromSlot(gESlot_RightHand);
@@ -402,11 +410,65 @@ static void LogPlayerSlotIdentity(eCEntity *changedEntity)
     std::fprintf(g_pLog, "PlayerRightItemAddress: %p\n", static_cast<void *>(rightInstance));
     std::fprintf(g_pLog, "PlayerRightUseType: %d\n", rightItem != None ? static_cast<GEInt>(CollisionControl::GetCollisionSourceUseType(rightItem)) : -1);
     std::fprintf(g_pLog, "PlayerRightCollisionGroup: %d\n", rightItem != None ? static_cast<GEInt>(rightItem.GetCollisionGroup()) : -1);
+    return { slotMatch, matchesLeft || matchesRight };
+}
+
+static void LogNativeCleanupCallSite(
+    eCEntity *changedEntity, char const *slotMatch, void *callerAddress)
+{
+    HMODULE callerModule = nullptr;
+    char modulePath[MAX_PATH] = {};
+    bool const moduleResolved =
+        callerAddress != nullptr
+        && ::GetModuleHandleExA(
+            GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCSTR>(callerAddress), &callerModule) != FALSE;
+    DWORD const modulePathLength = moduleResolved
+        ? ::GetModuleFileNameA(callerModule, modulePath, MAX_PATH) : 0;
+
+    std::uintptr_t const callerValue =
+        reinterpret_cast<std::uintptr_t>(callerAddress);
+    std::uintptr_t const moduleBase =
+        reinterpret_cast<std::uintptr_t>(callerModule);
+    unsigned long const callerRva = moduleResolved
+        ? static_cast<unsigned long>(callerValue - moduleBase) : 0;
+
+    Entity changed(changedEntity);
+    std::fprintf(g_pLog, "===== NATIVE CLEANUP CALL SITE =====\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 HookBridgeRuntime::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "Source: %s\n", changed.GetName().GetText());
+    std::fprintf(g_pLog, "SourceAddress: %p\n",
+                 static_cast<void *>(changedEntity));
+    std::fprintf(g_pLog, "PlayerSlotMatch: %s\n", slotMatch);
+    std::fprintf(g_pLog, "CallerAddress: %p\n", callerAddress);
+    std::fprintf(g_pLog, "CallerModuleResolved: %d\n",
+                 moduleResolved ? 1 : 0);
+    std::fprintf(g_pLog, "CallerModule: %s\n",
+                 modulePathLength > 0 ? BaseName(modulePath)
+                                      : moduleResolved ? "<path-unavailable>"
+                                                       : "<unresolved>");
+    std::fprintf(g_pLog, "CallerModuleBase: %p\n",
+                 static_cast<void *>(callerModule));
+    if (moduleResolved)
+        std::fprintf(g_pLog, "CallerRVA: 0x%08lX\n", callerRva);
+    else
+        std::fprintf(g_pLog, "CallerRVA: <unresolved>\n");
+    std::fprintf(g_pLog, "RequestedGroup: %d\n",
+                 static_cast<GEInt>(eECollisionGroup_Item_Equipped));
+    std::fprintf(g_pLog, "BeforeGroup: %d\n",
+                 static_cast<GEInt>(eECollisionGroup_Item_Attack));
+    std::fprintf(g_pLog, "AfterGroup: %d\n",
+                 static_cast<GEInt>(eECollisionGroup_Item_Equipped));
+    std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "====================================\n\n");
 }
 
 void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGroup,
                           eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
-                          GEInt retiredMarkerExecutionCount)
+                          GEInt retiredMarkerExecutionCount,
+                          void *callerAddress)
 {
     if (changedEntity == nullptr || g_pLog == nullptr)
         return;
@@ -419,7 +481,8 @@ void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGro
     std::fprintf(g_pLog, "===== ENGINE SetCollisionGroup =====\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n", HookBridgeRuntime::GetElapsedMilliseconds());
     std::fprintf(g_pLog, "Entity: %s\n", changed.GetName().GetText());
-    LogPlayerSlotIdentity(changedEntity);
+    PlayerSlotIdentityResult slotIdentity =
+        LogPlayerSlotIdentity(changedEntity);
     std::fprintf(g_pLog, "RequestedGroup: %d\n", static_cast<GEInt>(requestedGroup));
     std::fprintf(g_pLog, "BeforeGroup: %d\n", static_cast<GEInt>(beforeGroup));
     std::fprintf(g_pLog, "AfterGroup: %d\n", static_cast<GEInt>(afterGroup));
@@ -427,6 +490,14 @@ void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGro
     std::fprintf(g_pLog, "Item_AttackValue: %d\n", static_cast<GEInt>(eECollisionGroup_Item_Attack));
     std::fprintf(g_pLog, "RetiredMarkerExecutionCount: %d\n", retiredMarkerExecutionCount);
     std::fprintf(g_pLog, "====================================\n\n");
+
+    bool const isExactNativeCleanup =
+        requestedGroup == eECollisionGroup_Item_Equipped
+        && beforeGroup == eECollisionGroup_Item_Attack
+        && afterGroup == eECollisionGroup_Item_Equipped;
+    if (slotIdentity.matchesEquippedSource && isExactNativeCleanup)
+        LogNativeCleanupCallSite(
+            changedEntity, slotIdentity.slotMatch, callerAddress);
     std::fflush(g_pLog);
 }
 

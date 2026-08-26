@@ -9,7 +9,10 @@
 #include <g3sdk/util/Memory.h>
 #include <g3sdk/util/ScriptUtil.h>
 
+#include <intrin.h>
 #include <windows.h>
+
+#pragma intrinsic(_ReturnAddress)
 
 using namespace FrameCollision;
 
@@ -202,6 +205,7 @@ static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
 
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
 {
+    void *callerAddress = _ReturnAddress();
     eCEntity *pThis = Hook_SetCollisionGroup.GetSelf<eCEntity *>();
     eECollisionGroup beforeGroup = pThis != nullptr
         ? pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
@@ -214,7 +218,8 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
     eECollisionGroup afterGroup = pThis != nullptr
         ? pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
     CollisionDiagnostics::LogSetCollisionGroup(
-        pThis, a_Group, beforeGroup, afterGroup, retiredMarkerExecutionCount);
+        pThis, a_Group, beforeGroup, afterGroup,
+        retiredMarkerExecutionCount, callerAddress);
 }
 
 static GEInt GE_STDCALL OnTick_FrameCollisionTest(gCScriptProcessingUnit *a_pSPU,

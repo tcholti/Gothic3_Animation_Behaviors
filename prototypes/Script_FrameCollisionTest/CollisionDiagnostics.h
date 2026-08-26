@@ -30,7 +30,8 @@ void LogMarkerContext(char const *markerName, MarkerOpcode opcode, Entity &actor
 void LogMarkerResult(MarkerProcessResult const &result);
 void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGroup,
                           eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
-                          GEInt retiredMarkerExecutionCount);
+                          GEInt retiredMarkerExecutionCount,
+                          void *callerAddress);
 PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(
     eCVisualAnimation_PS *animationPS);
 PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(Entity &actor);
