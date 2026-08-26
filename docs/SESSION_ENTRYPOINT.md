@@ -25,26 +25,42 @@ The v0.20 Script `OnTick` probe is diagnostic only and samples too coarsely to b
 
 Finishing attacks with working Raise survived the tested block-timeout timing and reached normal cleanup. Treat this only as a lead: FinishingAttack also uses a different action/lifecycle, so Raise itself is not yet proven causal.
 
+## Working Cleanup Design
+
+The preferred direction is now a **single execution-level guard**, documented in `docs/COLLISION_LIFECYCLE_PLAN.md`:
+
+- acquire a real attack-Hit execution using native semantics;
+- marked motions suppress native activation timing, unmarked motions remain native;
+- once offensive collision is requested, the exact actual Hit execution becomes the preferred lifetime authority;
+- when that Hit actually ends/replaces, do nothing if Gothic 3 already performed native cleanup; otherwise invoke the native cleanup it should have performed;
+- how the Hit ended should not create separate cleanup branches.
+
+Preferred main plan tracks only execution-level `collision requested / cleanup observed` state. Per-source ownership is the fallback only if native cleanup proves source-specific or partially independent.
+
+Current v0.20 source masks/windows and action/phase-based lifetime-retirement checks are therefore **provisional cleanup scaffolding to revisit, not assumed production architecture**. Do not remove them yet. RIGHT/LEFT/BOTH exact-set switching, repeated-marker rearm, optional `COL_OFF`, and replay/occurrence guards solve separate authored-marker problems and are not currently targeted for removal.
+
 ## New Balance Comparison
 
 Pinned Jackydima New Balance source shows that with `UseStaticBlocks == false` it byte-patches `Script_Game` specifically to **remove the player block limiter**. This changes/avoids the block-timeout trigger; it is not a collision-lifetime cleanup implementation to copy.
 
 ## Immediate Next Step
 
-Search the SDK/binary/reference paths for a sufficiently immediate, event-driven signal or hook for actual primary Hit end/replacement. The working design hypothesis is:
+Design and run the research tests in `docs/COLLISION_LIFECYCLE_PLAN.md` before implementing cleanup:
 
-- once an exact marked execution has acquired collision ownership, harmless action/phase drift must not invalidate later markers while that same actual Hit motion survives;
-- if that owned Hit actually ends or is replaced, all sources still owned by that execution must be closed independently of optional `G3AB_COL_OFF`;
-- decide separately how to repair the broader native/unmarked stale-collision defect without changing valid native contact windows.
+1. determine whether any legitimate native sequence carries `Item_Attack` across the end of one physical Hit execution into another;
+2. inspect attacker/defender weapon and shield collision behavior during successful block/parade/stumble cases;
+3. locate Gothic 3's actual native cleanup operation and determine whether it is attack-wide or per-source;
+4. identify an immediate/event-driven signal for actual Hit end/replacement and validate it against normal completion, block-timeout drift, and genuine interruption.
 
-Do **not** implement this production rule until the lifetime hook/boundary is identified and checked against genuine interruption cases.
+Only after those questions are stable should the logger be upgraded around the exact required evidence. Do **not** add new Quick/Whirl/Staff/block/Recover-specific cleanup branches while the unified rule is under investigation.
 
 ## Read Next Only As Needed
 
-1. `research/raw/2026-08-25_framecollision_v0.20_player_staff_2h_dual_block_timeout_*.log` — immediate evidence.
-2. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp` — v0.20 probe/current prototype.
-3. `docs/HANDOFF.md` — detailed continuation state.
-4. `docs/RESEARCH_MAP.md` and `docs/EVIDENCE_LEDGER.md` — broader research/evidence state.
-5. `references/jackydima-gothic3sdk/scripts/Script_NewBalance/CodePatch.cpp` — block-limiter comparison.
+1. `docs/COLLISION_LIFECYCLE_PLAN.md` — current main/fallback cleanup plan, provisional v0.20 paths to revisit, and next tests.
+2. `research/raw/2026-08-25_framecollision_v0.20_player_staff_2h_dual_block_timeout_*.log` — immediate evidence.
+3. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp` — v0.20 probe/current prototype.
+4. `docs/HANDOFF.md` — detailed continuation state.
+5. `docs/RESEARCH_MAP.md` and `docs/EVIDENCE_LEDGER.md` — broader research/evidence state.
+6. `references/jackydima-gothic3sdk/scripts/Script_NewBalance/CodePatch.cpp` — block-limiter comparison.
 
 Keep this file short; update it only when the immediate problem, current prototype, or next step materially changes.
