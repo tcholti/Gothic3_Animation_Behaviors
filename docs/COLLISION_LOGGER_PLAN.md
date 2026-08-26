@@ -1,13 +1,84 @@
 # Collision Lifecycle Logger Plan
 
-**Status:** Proposed diagnostic redesign / not yet implemented  
+**Status:** Proposed integrated diagnostic redesign / not yet implemented  
 **Updated:** 2026-08-26
 
 ## Purpose
 
-Design the smallest observational logger that can answer the current collision-lifecycle questions without turning the diagnostic tool into another complex subsystem.
+Design the smallest observational logger that can answer the current collision-lifecycle questions without creating a second competing hook owner or turning diagnostics into another complex subsystem.
 
 The logger must measure the proposed architecture. It must not quietly become the architecture itself.
+
+## Runtime Ownership Decision
+
+The collision behavior and lifecycle diagnostics should remain in **one research DLL while they need overlapping Gothic 3 hooks**.
+
+Reason:
+
+- `Script_FrameCollisionTest` already owns hooks such as `SetCollisionGroup`, attack callbacks, `StartEffect`, and diagnostic lifetime paths;
+- a second DLL independently hooking the same engine function can create hook/load-order/chaining conflicts unless the hook framework and exact hook combination are explicitly proven safe;
+- diagnostics should not become another owner competing with the system they are observing.
+
+Therefore the earlier idea of a standalone `Script_CollisionLifecycleLogger.dll` is withdrawn as the default research architecture.
+
+Use **one DLL / one owner per engine hook**, but split the source by responsibility so diagnostics can later be removed cleanly.
+
+## Proposed Research-DLL Structure
+
+The exact filenames may change during implementation, but the intended responsibility boundary is:
+
+```text
+Script_FrameCollisionTest.dll
+│
+├─ Main / Hook Bridge
+│    - ScriptInit / shutdown
+│    - installs each Gothic 3 hook once
+│    - receives engine events
+│    - forwards only the necessary event/context to behavior and diagnostics
+│
+├─ CollisionControl.cpp
+│    - marker ownership / activation policy
+│    - desired offensive collision-set behavior
+│    - future execution-level cleanup guard after research proves it
+│    - must not depend on diagnostics to function
+│
+└─ CollisionDiagnostics.cpp
+     - observational logging only
+     - lifecycle event correlation
+     - block/parade diagnostic output
+     - must never decide collision behavior
+```
+
+A small shared header/event model may be used when needed, but it should contain only facts both modules genuinely require.
+
+### Dependency rule
+
+Prefer:
+
+```text
+Engine Hook Bridge
+      ├──> Collision Control
+      └──> Collision Diagnostics
+```
+
+Avoid:
+
+```text
+Collision Control ──> Logger ──> behavior decision
+```
+
+Removing `CollisionDiagnostics.cpp` from the future build must not change collision behavior.
+
+## Future Extraction Goal
+
+When collision behavior is fully researched and validated:
+
+1. keep the stable behavior module(s);
+2. omit the diagnostic module(s);
+3. create the production DLL/project, provisionally named something like `Script_FrameBasedCollision` or another final name chosen later;
+4. preserve the same hook/behavior boundaries rather than rewriting the subsystem merely to remove logging.
+
+The research structure should therefore be designed around the future separation boundary from the beginning.
 
 ## Current Logger Assessment
 
@@ -29,7 +100,7 @@ Current limitation for this research:
 - it is player-only;
 - it does not correlate attacker and defender equipment during block/parade cases.
 
-Conclusion: preserve v0.4 as a useful existing tool. Do not overload it automatically with the entire collision-lifecycle investigation.
+Conclusion: preserve v0.4 as a separate proven tool. Do not overload it automatically with the collision-lifecycle investigation.
 
 ### `prototypes/Script_FrameCollisionTest` v0.20 diagnostics
 
@@ -43,28 +114,18 @@ Current strengths:
 
 Current limitations:
 
+- behavior-control code and diagnostics are concentrated in one large `.cpp`;
 - lifetime observation is tied to marker-owned prototype state, so native/unmarked executions are not tracked as equivalent first-class lifecycles;
 - Script `OnTick` sampling is too coarse for the intended production boundary and can miss exact ordering;
-- behavior-control code and diagnostics are interwoven, which makes broad native tests harder to interpret;
 - current lifetime state carries source mask/action/phase assumptions that the new architecture is explicitly questioning;
 - it does not identify whether a higher-level native attack-cleanup routine exists; it only observes collision-group consequences;
 - it is not designed around attacker/defender block/parade correlation.
 
-Conclusion: v0.20 remains valuable evidence/prototype code, but should not simply be expanded indefinitely into the new general logger.
+Conclusion: keep the same research DLL/hook ownership, but **redesign the source into separate behavior and diagnostic modules instead of continuing to grow one monolithic `.cpp`**.
 
-## Preferred Direction
+## Questions the Diagnostics Must Answer
 
-Create a focused standalone diagnostic tool, provisionally named:
-
-`tools/Script_CollisionLifecycleLogger`
-
-Preserve `Script_CombatMoveLogger v0.4` and `Script_FrameCollisionTest v0.20` as historical/proven references.
-
-The new logger should be observational only.
-
-## Questions the Logger Must Answer
-
-The logger exists to answer five questions:
+The diagnostic module exists to answer five questions:
 
 1. Did a real attack-Hit execution request offensive collision?
 2. What exact actual motion execution owned the time interval in which that request happened?
@@ -76,7 +137,7 @@ If a field does not help answer one of these questions, do not add it without a 
 
 ## Preferred Event Model
 
-The logger should prefer event records over continuous full-state dumps.
+The diagnostic module should prefer event records over continuous full-state dumps.
 
 Conceptual event types:
 
@@ -89,7 +150,7 @@ PRIMARY_MOTION_RESTARTED
 BLOCK/PARADE_RELEVANT_TRANSITION
 ```
 
-Each event should include enough context to correlate it with one execution, but avoid treating diagnostic context as lifetime authority.
+The hook bridge should capture an engine event once. Behavior and diagnostics may consume the same factual event without installing competing hooks for the same purpose.
 
 ## Minimal Context Per Event
 
@@ -112,13 +173,13 @@ For collision requests additionally record:
 - whether the entity matches actor LEFT/RIGHT equipped slot where resolvable;
 - raw UseType where useful.
 
-A request to `Item_Attack` counts even if the state is already `Item_Attack` (`7 -> 7`). The logger must record the request, not only state changes.
+A request to `Item_Attack` counts even if the state is already `Item_Attack` (`7 -> 7`). Diagnostics must record the request, not only state changes.
 
 ## Execution Identity
 
 Do not use action/phase alone as the execution key.
 
-The logger should correlate events with the exact actual PrimaryFirst Hit execution where possible. Research must determine the lightest stable identity/boundary signal, potentially using:
+Diagnostics should correlate events with the exact actual PrimaryFirst Hit execution where possible. Research must determine the lightest stable identity/boundary signal, potentially using:
 
 - motion instance identity if accessible;
 - motion start/end/replacement callback/hook;
@@ -134,6 +195,8 @@ Preferred goal:
 - hook/observe the actual native attack-cleanup operation if one exists;
 - distinguish a true cleanup request from merely noticing that a collision group is no longer 7.
 
+If this cleanup operation is already needed by collision behavior, the research DLL should install/own that hook once and expose its occurrence to diagnostics rather than creating a second diagnostic hook on the same address.
+
 Fallback diagnostic:
 
 - continue observing `SetCollisionGroup` requests and resulting groups;
@@ -144,7 +207,7 @@ Do not hard-code `7 -> 5` as the definition of cleanup until research proves the
 
 ## Block / Parade Observation
 
-For block tests, the logger should be able to observe both participants when relevant rather than being permanently player-only.
+For block tests, diagnostics should be able to observe both participants when relevant rather than being permanently player-only.
 
 Needed evidence:
 
@@ -160,25 +223,32 @@ Do not assume visual weapon bounce means weapon-to-weapon physical collision.
 
 Do not add:
 
-- production cleanup behavior;
+- production cleanup behavior merely for logging;
 - block-timeout-specific logic;
 - Staff/Quick/Whirl-specific cleanup branches;
 - per-source ownership tables unless a test specifically requires them;
 - full per-frame actor/world scans;
 - broad damage/health instrumentation unless collision-state evidence proves insufficient;
+- duplicate hooks when an existing hook can forward the required event to diagnostics;
 - duplicate copies of fields already available in a single authoritative event.
 
 ## Proposed Implementation Stages
 
-### Stage L1 — Standalone observational skeleton
+### Stage L1 — Modularize the existing research DLL
 
-- separate logger DLL/tool;
-- high-resolution timestamps;
-- global offensive `SetCollisionGroup` request logging including `7 -> 7`;
-- actor/equipped-slot association where resolvable;
-- no behavior changes.
+- keep `Script_FrameCollisionTest` as one DLL;
+- split hook/bootstrap, collision behavior, and diagnostics into separate source modules;
+- install every overlapping engine hook only once;
+- preserve current v0.20 behavior while moving code so the structural change itself does not change semantics;
+- confirm build/runtime parity before adding new diagnostic behavior.
 
-### Stage L2 — Exact motion-lifecycle observation
+### Stage L2 — Lifecycle diagnostic events
+
+- add high-resolution event output around existing collision requests, including `7 -> 7`;
+- make native/unmarked and marked attack executions observable as equivalent lifecycle candidates;
+- keep diagnostics read-only.
+
+### Stage L3 — Exact motion-lifecycle observation
 
 After source/SDK research identifies the best hook:
 
@@ -187,28 +257,34 @@ After source/SDK research identifies the best hook:
 - correlate collision requests to that execution;
 - avoid Script `OnTick` as the normal production-style diagnostic path if a direct event exists.
 
-### Stage L3 — Native cleanup observation
+### Stage L4 — Native cleanup observation
 
 - hook/log the native cleanup operation if identified;
+- reuse the shared research-DLL hook if collision behavior later needs the same operation;
 - otherwise keep the narrow `SetCollisionGroup` fallback and document that cleanup identity remains inferred.
 
-### Stage L4 — Block/parade correlation
+### Stage L5 — Block/parade correlation
 
 - allow relevant attacker/defender actors to be tracked for controlled tests;
 - add only the minimal equipment/state context necessary to answer whether block uses defensive collision states.
 
-## Acceptance Criteria for the Logger
+## Acceptance Criteria for the Modular Research DLL
 
-Before broad tests, the logger should demonstrate on a small known-good sequence that it can print an unambiguous timeline equivalent to:
+Before broad tests:
+
+1. removing/disabling the diagnostic module must not alter collision behavior;
+2. collision behavior must not depend on log output or diagnostic state;
+3. each low-level engine hook needed by both responsibilities has one authoritative installation/owner;
+4. a small known-good sequence must produce an unambiguous timeline equivalent to:
 
 ```text
 Execution X acquired
 X requested offensive collision
+native cleanup observed
 X actual Hit ended/replaced
-native cleanup observed before/by end
 ```
 
-and on a known stale-collision reproduction:
+5. a known stale-collision reproduction should be expressible as:
 
 ```text
 Execution Y acquired
@@ -218,4 +294,4 @@ no corresponding cleanup observed
 collision remained attack-active
 ```
 
-If the log requires extensive manual reconstruction from unrelated dumps to answer those questions, the logger design is still too indirect.
+If the log requires extensive manual reconstruction from unrelated dumps to answer those questions, the diagnostic design is still too indirect.
