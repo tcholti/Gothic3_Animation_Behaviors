@@ -20,44 +20,62 @@ Established:
 
 - clean native Normal/Quick/Whirl paths call `sAICombatMoveStartRecover`, start Recover, return, then perform native `7 -> 5` cleanup afterward;
 - broken native 2H and Staff Whirl executions activate `5 -> 7`, skip `StartRecover`, are replaced directly by Ambient, and miss cleanup;
-- therefore `StartRecover` is not the post-cleanup boundary and the defect is not Staff-specific or Whirl-specific.
+- stale collision was also previously reproduced on Dual / 1H1H Quick, so the defect is known beyond Whirl and beyond 2H/Staff;
+- therefore `StartRecover` is not the post-cleanup boundary.
+
+## Current block-skip hypothesis — TEST, DO NOT ASSUME
+
+The stronger current hypothesis is not that missing Recover or missing Raise causes stale collision.
+
+Instead, the vulnerable event may be the block-timeout/skip occurring **during Hit playback**:
+
+1. the real Hit motion continues playing;
+2. combat action/phase or some still-unidentified CombatMove ownership/bookkeeping leaves that Hit;
+3. offensive collision is already active;
+4. when the physical Hit motion later ends/replaces, the normal lifecycle path that would perform cleanup is no longer owned/reached;
+5. collision remains stale.
+
+`Raise` is not proposed as a cleanup fix. A long Raise may merely absorb the block skip **before** offensive Hit/collision begins. The subsequent Hit can then start as a fresh execution and complete normal cleanup.
+
+Likewise, a missing Recover **animation asset** is not equivalent to skipping the engine's Recover **transition/bookkeeping**. Older tests indicated native Quick attacks with no Recover animation could still clean correctly.
+
+The exact meaning of "ownership" above is unproven. B1 established only that action/phase can drift while the exact PrimaryFirst Hit motion continues.
 
 ## B4 CALL-SITE PROBE — PAUSED BEFORE WORK
 
 Do **not** execute the previously planned native cleanup call-site probe yet.
 
-Older validated observations introduce two high-value counterexamples that should be compared first with the existing B3 diagnostic build:
-
-1. native/unmarked Quick attacks with Recover animations absent were previously observed still cleaning collision correctly;
-2. finishing attacks with a Raise transition can survive the problematic block/attack transition without leaving stale collision, even when the analogous no-Raise path reproduces the skip.
-
-Also, stale collision has previously been reproduced on Dual / 1H1H Quick, so the defect is already known to extend beyond Whirl and beyond 2H/Staff.
+Run the comparison below using the existing B3 diagnostic build first.
 
 ## Immediate no-code comparative test
 
-Use the existing B3 DLL. No source change is required.
+All current custom replacement animations are temporarily removed, so use Gothic 3's native assets and native collision timing.
 
-Keep all tested attacks unmarked / native-collision controlled.
+Capture controlled examples of:
 
-Capture a short run containing, where practical:
+1. **1H Quick P1 with no native Recover animation** — normal completion and, where practical, from/around block timing;
+2. **1H + Shield Quick P1 with no native Recover animation** — same comparison;
+3. **1H and 1H + Shield Quick paths that do have Recover** — normal completion, then attempt block interruption during Recover;
+4. **Dual / 1H1H Quick** — reproduce the known block-skip stale-collision case;
+5. **Finishing Attack with long Raise**, if practical — reproduce the comparable block skip during Raise and confirm the later Hit still starts and cleans.
 
-1. one known bad no-Raise attack performed from holding block that reproduces stale collision;
-2. one Dual / 1H1H Quick stale-collision reproduction;
-3. one Quick path with its Recover animation absent that nevertheless cleans correctly, using the same setup previously tested;
-4. one finishing attack with Raise, performed through the comparable block/attack transition, where cleanup remains correct.
+No source change is required. The B3 logger already records player PrimaryFirst transitions, `sAICombatMoveStartRecover`, collision-group changes, action/phase context, and equipped source identity.
 
-The current B3 logger already records PrimaryFirst motion transitions, `sAICombatMoveStartRecover`, collision-group changes, action/phase context, and equipped source identity.
-
-## Causal questions
+## Causal questions / predictions
 
 Determine separately:
 
-- Does a no-Recover-animation Quick still call `StartRecover`, even though no Recover motion exists?
-- Does its native `7 -> 5` cleanup still occur after that transition attempt?
-- On a bad block -> Hit/no-Raise path, is `StartRecover` skipped because the Hit entered through a different CombatMove state?
-- On the comparable finishing attack, does Raise establish a state/path that later permits normal cleanup?
-- Does Dual / 1H1H Quick show the same lifecycle shape as the 2H/Staff stale cases?
+- Does a native Quick with **no Recover asset** still execute `StartRecover` or another lifecycle transition and perform `7 -> 5` cleanup?
+- If a Quick has a real Recover and block interruption occurs **during Recover**, was collision already cleaned at the Hit -> Recover boundary, making that interruption harmless?
+- Does Dual / 1H1H Quick block-skip show the same structural shape as 2H/Staff: Hit motion continues/replaces while action/CombatMove ownership has already left it, then cleanup is missed?
+- On a finishing attack, can the block skip occur during Raise before offensive Hit/collision begins, after which the Hit starts fresh and cleans normally?
 
-Do not infer that missing Recover animation itself causes the defect. Distinguish missing Recover **asset/motion** from skipping the engine's **Recover transition path**.
+Do not infer causality from filename presence alone. Distinguish physical PrimaryFirst motion playback from action/phase/CombatMove lifecycle ownership.
 
-After this comparison, decide whether the next source probe should trace the native cleanup call site, the Hit-entry/CombatMove state path, or both.
+After this comparison, decide whether the next source probe should trace the native cleanup call site, the Hit-entry/CombatMove ownership path, or both.
+
+## Documentation rule after this comparison
+
+After the new runtime evidence is interpreted, promote durable findings out of this transient bridge into the canonical project docs, especially `EVIDENCE_LEDGER.md`, `SESSION_ENTRYPOINT.md`, and `COLLISION_LIFECYCLE_PLAN.md`.
+
+Also preserve reverse-engineered hook/call-site discoveries in `SOURCE_HOOK_GUIDE.md`. Any useful hook/call site not directly declared by the SDK should be recorded with at least module, RVA/address, tested build/context, purpose, and confidence/signature evidence when known. This project-local hook record may later help upstream SDK research or updates.
