@@ -127,6 +127,26 @@ Finishing    -> +0x4178A / +0x417C2
 GetUpAttack  -> +0x41E10
 ```
 
+## Related Step-B Runtime Hook / RVA Reference
+
+These addresses were established or exercised during the same lifecycle research and are preserved here because several are internal/runtime points not fully represented by the public SDK. They are **tested-build-specific**.
+
+| Area | Tested symbol / purpose | Module + RVA | Evidence / confidence |
+|---|---|---:|---|
+| PrimaryFirst high-level play | `eCVisualAnimation_PS::PlayMotion` | `Engine + 0x30860` | Runtime-hooked in B1; immediate type-0 acquisition/replacement signal in controlled tests. |
+| PrimaryFirst high-level stop | `eCVisualAnimation_PS::StopMotion` | `Engine + 0x30980` | Runtime-hooked in B1. |
+| Wrapper motion play | `eCWrapper_emfx2Actor::PlayMotion` | `Engine + 0x476F0` | Tested binary/export reference; high-level PlayMotion delegates into wrapper path. |
+| Wrapper motion stop | `eCWrapper_emfx2Actor::StopMotion` | `Engine + 0x47910` | Tested binary/export reference. |
+| High-level loop-end request | `eCVisualAnimation_PS::StopAtLoopEnd` | `Engine + 0x309D0` | Source/binary inspection; schedules future loop stop, not actual motion-end event. |
+| Wrapper loop-end request | `eCWrapper_emfx2Actor::StopAtLoopEnd` | `Engine + 0x479C0` | Source/binary inspection. |
+| CombatMove Recover start | `gCScriptProcessingUnit::sAICombatMoveStartRecover` | `Game + 0x16E360` | Runtime-hooked in B3; begins Recover transition but returns before native weapon cleanup. |
+| CombatMove iterative loop | `gCScriptProcessingUnit::sAICombatMoveItlLoop` | `Game + 0x16DD00` | Tested binary export/source declaration; deliberately not hooked yet because it may be a broad update loop. |
+| CombatMove instruction | `gCScriptProcessingUnit::sAICombatMoveInstr` | `Game + 0x1696E0` | Tested binary export/source declaration. |
+| CombatMove start | `gCScriptProcessingUnit::sAICombatMoveStart` | `Game + 0x16ABB0` | Tested binary export/source declaration. |
+| Entity collision group | `eCEntity::SetCollisionGroup` | `Game + 0x225660` | Existing research hook; B4 captures native caller return addresses from this wrapper entry. |
+
+Production code must not assume these addresses are stable across another Gothic 3 build. Revalidate against the binary reference and runtime before reuse.
+
 ## Binary-Reference Confirmation
 
 The tested `Script_Game.dll` disassembly confirms that these RVAs correspond to code immediately following calls that pass collision group `5` to the imported entity collision-group setter.
@@ -166,7 +186,9 @@ interruption cleanup hook
 
 The desired production rule remains execution-level:
 
-> Follow a real offensive Hit execution. When that exact Hit genuinely ends or is replaced, Gothic 3 must have had its normal cleanup opportunity. If cleanup is absent, repair the stale offensive collision.
+> Follow a real offensive Hit execution. When that exact Hit reaches an end/replacement transition, allow Gothic 3 its normal cleanup opportunity; after that opportunity, if cleanup is still absent, repair the stale offensive collision.
+
+This wording is deliberate: B1 proved that the successor PrimaryFirst `PlayMotion` can occur slightly **before** Gothic 3 performs its normal `7 -> 5` cleanup. Replacement detection alone is therefore not yet the post-opportunity repair boundary.
 
 The action-specific call sites are evidence about **what native success looks like**, not a proposed list of production hooks.
 
