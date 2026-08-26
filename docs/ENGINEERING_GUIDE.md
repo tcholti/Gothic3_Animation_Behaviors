@@ -1,7 +1,7 @@
 # Principle-First Engineering Guide
 
 **Status:** Experimental / living document  
-**Version:** 0.1  
+**Version:** 0.2  
 **Scope:** Language-independent engineering principles. Stored in this repository first so the method can be tested against real work before being generalized to other projects.
 
 ## Purpose
@@ -62,6 +62,26 @@ The stronger model is:
 Different failure paths then become test cases for one rule rather than separate production mechanisms.
 
 **Default:** universal rule first; evidence-proven exceptions second.
+
+### 2.1 Simplicity Should Generate Necessary Complexity
+
+Simplicity is not the objective by itself. A system should not become simpler by removing behavior that the domain genuinely requires.
+
+> **Do not reduce complexity by stripping away necessary behavior. Reduce unnecessary rules by finding principles that generate the required behavior themselves.**
+
+A strong architecture may produce rich, complicated, and highly adaptive behavior while remaining governed by a small set of authoritative rules.
+
+> **A simple architecture is not one that produces simple behavior. A strong simple architecture can produce rich and complex behavior through the interaction and reuse of a small number of authoritative rules.**
+
+This is one reason universal principles are valuable: their interaction can generate many correct outcomes without requiring those outcomes to be encoded one by one.
+
+When evaluating a proposed abstraction, ask:
+
+> When a new case appears, does the existing principle naturally answer it?
+
+If yes, that is evidence that the abstraction is strong. If each new case requires another branch, flag, exception, timer, or subsystem, revisit the model before assuming the additional complexity is necessary.
+
+**Rule:** seek generative simplicity, not simplicity for simplicity's sake.
 
 ---
 
@@ -397,28 +417,3 @@ Before adding another special case, ask:
 If several exceptions appear in a short period, pause implementation and perform a design review.
 
 ---
-
-## Compact Decision Checklist
-
-Before implementing a non-trivial change, ask:
-
-1. **What do we actually know?**
-2. **What is only a hypothesis?**
-3. **What invariant should be true if the system is correct?**
-4. **Can one rule solve all observed failures?**
-5. **What is the smallest state/model required for that rule?**
-6. **Is there a native/high-level operation we can reuse?**
-7. **Are we reacting to the cause or only the symptom?**
-8. **Are action, state, filename, timer, or other signals being used only for responsibilities they actually own?**
-9. **Does an exception have evidence, or are we adding it speculatively?**
-10. **If this change makes the explanation more complicated, should we revisit the model first?**
-
----
-
-## Current Experimental Principle
-
-The strongest working principle from the current collision research is:
-
-> **Look for the smallest authoritative lifecycle rule that makes all normal cases correct, then add exceptions only where evidence proves the rule is insufficient.**
-
-This document should evolve from observed engineering results. If a principle repeatedly improves correctness and simplicity, keep it. If a principle becomes dogmatic or blocks a genuinely necessary design, revise it.
