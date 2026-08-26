@@ -21,7 +21,9 @@ Prefer **System 1: execution-level native cleanup guard**.
 
 For every real attack-Hit execution that requests offensive collision, follow the exact actual Hit execution until it ends/replaces. If Gothic 3 already performed proper native cleanup, do nothing; if it did not, invoke the native cleanup Gothic 3 should have performed.
 
-Marked and native attacks should differ primarily in activation timing. Use **System 2 source-aware cleanup only if evidence proves cleanup is genuinely source-specific or partially independent**.
+Marked and native attacks should differ primarily in activation timing. Marker control changes collision **inside** the Hit; the preferred end-of-Hit cleanup rule remains shared. Use **System 2 source-aware cleanup only if evidence proves cleanup is genuinely source-specific or partially independent**.
+
+Production cleanup must be actor-general. Player-only filtering in current Step B diagnostics is only a controlled research choice; later validation must include NPCs.
 
 Detailed architecture: `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
@@ -61,17 +63,13 @@ Source commits:
 - `7dcd514b0bcd51c05453e3e55500a927b9063159` — add diagnostic `PlayMotion`/`StopMotion` probe;
 - `81e88026a4b47086a8995ab65d2933a041f8d2fd` — namespace fix.
 
-Runtime test covered 2H Normal, Quick, clean Whirl, and two reproduced Whirl skip/stale-collision cases.
-
 Established findings:
 
 - `eCVisualAnimation_PS::PlayMotion(type 0)` is an immediate PrimaryFirst Hit-acquisition and successor/replacement signal in the controlled cases.
-- In the two stale Whirl reproductions, successor `PlayMotion` exposed replacement roughly 0.51–0.66 seconds before the old Script `OnTick` probe detected the mismatch.
-- The `PlayMotion` before-snapshot is often already empty; outgoing execution identity must therefore be retained from prior Hit acquisition rather than recovered from that before-snapshot.
-- `StopMotion(type 0)` is supporting evidence only and did not provide the authoritative skipped-Whirl replacement signal.
-- In clean 2H Normal, Quick, and Whirl transitions, successor Recover `PlayMotion` occurred first and native weapon cleanup `7 -> 5` followed almost immediately in the same transition/update.
-- Therefore a production guard must **not** clean immediately inside successor `PlayMotion`; Gothic 3 must first get its normal same-transition opportunity to perform cleanup.
-- Unfiltered global PrimaryFirst logging is too noisy for later research/production; future diagnostics should be narrowly filtered or correlated.
+- In stale Whirl reproductions, successor `PlayMotion` exposes replacement much earlier than the old Script `OnTick` comparator.
+- In clean Normal/Quick/Whirl transitions, Recover `PlayMotion` occurs first and native weapon cleanup `7 -> 5` follows almost immediately in the same transition/update.
+- Therefore production must not force cleanup immediately inside successor `PlayMotion`; Gothic 3 must first get its normal cleanup opportunity.
+- Global PrimaryFirst logging is research-noisy; current diagnostics filter its output to the player.
 
 The old `OnTick` lifetime probe remains only as a temporary comparator. Do not promote it to production architecture.
 
@@ -79,49 +77,54 @@ The old `OnTick` lifetime probe remains only as a temporary comparator. Do not p
 
 Source commit:
 
-`106209bdefa6c9c52e1f1408a3d148dd52b2664e` — add player-filtered BEGIN/END diagnostics around existing unsuppressed original Normal/Quick/Whirl callback calls.
+`106209bdefa6c9c52e1f1408a3d148dd52b2664e`
+
+Runtime result:
+
+- clean Quick transitions perform native `7 -> 5` before the original Quick callback begins;
+- that callback then repeats during Recover;
+- original attack-family callback entry/return is therefore neither the native cleanup boundary nor a one-shot Hit-completion event.
+
+Do not use callback return as lifecycle authority.
+
+## Step B3 — COMBATMOVE STARTRECOVER CANDIDATE REJECTED
+
+Source commit:
+
+`86fd222ace9ef27e88f4846cf0f720c32dce6f6a` — diagnostic hook for `gCScriptProcessingUnit::sAICombatMoveStartRecover` at tested Game RVA `0x16E360`.
 
 Runtime evidence:
 
-- full log: `research/raw/test_Script_FrameCollisionTest.log`;
-- Hero event extract: `research/raw/2026-08-26_stepB2_player_event_extract.log`;
-- focused causal extract: `research/raw/2026-08-26_stepB2_causal_extract.log`.
+`research/raw/2026-08-26_stepB3_native_startrecover_probe.log`
 
-Established result:
+The B3 test deliberately used native/unmarked attacks so marker-driven OFF transitions could not be mistaken for Gothic 3 cleanup.
 
-- the focused log contains 40 original-callback records, all from Quick;
-- on a clean Quick transition, successor Recover `PlayMotion` occurred first, native `7 -> 5` cleanup occurred next, and only then did the first original Quick callback BEGIN;
-- the original Quick callback then repeated roughly every update during Recover;
-- therefore original attack-family callback entry/return is **not** the native cleanup boundary and is not a one-shot Hit-completion report;
-- do not use callback return as lifecycle authority; doing so would merely recreate polling under another name.
+Established findings:
 
-No production cleanup was added.
+- On clean 2H and Staff Normal/Quick/Whirl transitions, `sAICombatMoveStartRecover` begins while the Hit is still active, starts the Recover PrimaryFirst motion, and returns while the weapon source is still collision group 7.
+- Native `7 -> 5` cleanup occurs only **after** `sAICombatMoveStartRecover` returns. Example Staff Whirl: StartRecover BEGIN `88819.525`, Recover PlayMotion result `88819.622`, StartRecover END `88819.644`, native cleanup `88819.704`.
+- Therefore StartRecover is not the post-cleanup boundary.
+- In reproduced broken 2H and Staff Whirls, the Hit activates collision and is then replaced directly by an Ambient PrimaryFirst motion with **no StartRecover call and no cleanup**.
+- The stale source survives into the next Whirl, which can request `7 -> 7`.
+- Thus the defect is not Staff-specific and is not "StartRecover ran but forgot cleanup". The broken path skips the normal CombatMove Recover transition itself.
 
-## Current Candidate — Step B3 CombatMove Recover Boundary
+This strongly supports an execution-level rule based on actual Hit replacement, but the correct post-native-opportunity repair point is still open.
 
-Official SDK and tested Game.dll evidence identify a dedicated combat transition routine:
+## Immediate Research Question — B4 Cleanup Call-Site Ownership
 
-`gCScriptProcessingUnit::sAICombatMoveStartRecover(gCScriptProcessingUnit *)`
+Before broadening to the whole `sAICombatMoveItlLoop`, prefer the narrower diagnostic question:
 
-Tested Game.dll RVA:
+> Which exact native caller/call site performs the clean `SetCollisionGroup(Item_Equipped)` / `7 -> 5` reset after StartRecover returns, and what enclosing function provides the post-opportunity boundary?
 
-`0x16E360`
+Preferred smallest probe: extend the **existing** SetCollisionGroup diagnostic only for relevant player weapon cleanup events to record the immediate return/caller address (and module/RVA if practical), without changing behavior or adding lifecycle state.
 
-The tested disassembly shows this function calls high-level PrimaryFirst `PlayMotion` while starting the successor motion and then continues executing before it returns.
+Then inspect that call site in the tested binary reference. If it identifies a narrow enclosing combat transition function, probe that function rather than defaulting to a broad per-update loop.
 
-This makes it a strong **research candidate**, not yet a proven production boundary.
+Do not add cleanup, timers, new polling, or family-specific repair rules yet.
 
-Next causal question:
+## Current Testing Rule
 
-> On a clean attack, does native offensive-collision cleanup occur between `sAICombatMoveStartRecover` entry and return? On the known Recover-skip/stale case, is this function entered and, if so, does it return without cleanup?
-
-Interpretation:
-
-- clean cleanup inside + stale function entered without cleanup → function return may be the exact post-native-opportunity repair boundary;
-- clean cleanup inside + stale function not entered → move one level upward in the CombatMove transition chain;
-- clean cleanup outside → reject this candidate and continue tracing.
-
-Do not add timers, polling, lifecycle repair, or production cleanup during this probe.
+For immediate lifecycle/cleanup research, prefer **native/unmarked attacks** so Gothic 3's own activation and cleanup are causally isolated. Reintroduce marked fixtures later to prove that marked and native attacks converge on the same end-of-Hit cleanup rule.
 
 ## Repository Access Note For New Sessions
 
