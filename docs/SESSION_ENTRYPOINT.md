@@ -69,34 +69,59 @@ Established findings:
 - In the two stale Whirl reproductions, successor `PlayMotion` exposed replacement roughly 0.51–0.66 seconds before the old Script `OnTick` probe detected the mismatch.
 - The `PlayMotion` before-snapshot is often already empty; outgoing execution identity must therefore be retained from prior Hit acquisition rather than recovered from that before-snapshot.
 - `StopMotion(type 0)` is supporting evidence only and did not provide the authoritative skipped-Whirl replacement signal.
-- In clean 2H Normal, Quick, and Whirl transitions, successor Recover `PlayMotion` occurred first and native weapon cleanup `7 -> 5` followed about 0.059–0.062 ms later, effectively in the same transition/update.
+- In clean 2H Normal, Quick, and Whirl transitions, successor Recover `PlayMotion` occurred first and native weapon cleanup `7 -> 5` followed almost immediately in the same transition/update.
 - Therefore a production guard must **not** clean immediately inside successor `PlayMotion`; Gothic 3 must first get its normal same-transition opportunity to perform cleanup.
 - Unfiltered global PrimaryFirst logging is too noisy for later research/production; future diagnostics should be narrowly filtered or correlated.
 
 The old `OnTick` lifetime probe remains only as a temporary comparator. Do not promote it to production architecture.
 
-## Step B2 — ORIGINAL-CALLBACK BOUNDARY PROBE RUNTIME DATA CAPTURED
+## Step B2 — ORIGINAL-CALLBACK CANDIDATE REJECTED
 
 Source commit:
 
-`106209bdefa6c9c52e1f1408a3d148dd52b2664e` — add player-filtered BEGIN/END diagnostics around the existing unsuppressed original Normal/Quick/Whirl callback calls.
+`106209bdefa6c9c52e1f1408a3d148dd52b2664e` — add player-filtered BEGIN/END diagnostics around existing unsuppressed original Normal/Quick/Whirl callback calls.
 
-No hook, timer, polling/checking path, lifecycle state, cleanup behavior, or special-case behavior was added. Marked-Hit suppression and collision control remain unchanged.
-
-Runtime evidence has been captured and pushed:
+Runtime evidence:
 
 - full log: `research/raw/test_Script_FrameCollisionTest.log`;
-- filtered Hero event extract: `research/raw/2026-08-26_stepB2_player_event_extract.log`.
+- Hero event extract: `research/raw/2026-08-26_stepB2_player_event_extract.log`;
+- focused causal extract: `research/raw/2026-08-26_stepB2_causal_extract.log`.
 
-The filtered extract exists specifically because the full 152k-line log can exceed GitHub connector/file-response limits. Preserve the full log as raw evidence; use the filtered extract for normal analysis.
+Established result:
 
-Current causal question:
+- the focused log contains 40 original-callback records, all from Quick;
+- on a clean Quick transition, successor Recover `PlayMotion` occurred first, native `7 -> 5` cleanup occurred next, and only then did the first original Quick callback BEGIN;
+- the original Quick callback then repeated roughly every update during Recover;
+- therefore original attack-family callback entry/return is **not** the native cleanup boundary and is not a one-shot Hit-completion report;
+- do not use callback return as lifecycle authority; doing so would merely recreate polling under another name.
 
-> After successor PrimaryFirst starts, does native collision cleanup occur inside Gothic 3's original `OnAI_Attack`, `OnAI_QuickAttack`, or `OnAI_WhirlAttack` callback call?
+No production cleanup was added.
 
-If native cleanup occurs between original-callback entry and return, that return is a promising natural point at which Gothic 3 has already had its cleanup opportunity. This could avoid both immediate-PlayMotion cleanup and a polling/timer fallback.
+## Current Candidate — Step B3 CombatMove Recover Boundary
 
-Do **not** implement production cleanup until the Step B2 runtime ordering has been interpreted.
+Official SDK and tested Game.dll evidence identify a dedicated combat transition routine:
+
+`gCScriptProcessingUnit::sAICombatMoveStartRecover(gCScriptProcessingUnit *)`
+
+Tested Game.dll RVA:
+
+`0x16E360`
+
+The tested disassembly shows this function calls high-level PrimaryFirst `PlayMotion` while starting the successor motion and then continues executing before it returns.
+
+This makes it a strong **research candidate**, not yet a proven production boundary.
+
+Next causal question:
+
+> On a clean attack, does native offensive-collision cleanup occur between `sAICombatMoveStartRecover` entry and return? On the known Recover-skip/stale case, is this function entered and, if so, does it return without cleanup?
+
+Interpretation:
+
+- clean cleanup inside + stale function entered without cleanup → function return may be the exact post-native-opportunity repair boundary;
+- clean cleanup inside + stale function not entered → move one level upward in the CombatMove transition chain;
+- clean cleanup outside → reject this candidate and continue tracing.
+
+Do not add timers, polling, lifecycle repair, or production cleanup during this probe.
 
 ## Repository Access Note For New Sessions
 
