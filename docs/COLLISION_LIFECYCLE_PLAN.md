@@ -189,6 +189,77 @@ If Gothic 3 already cleaned it → do nothing.
 If Gothic 3 failed → invoke the proper native cleanup.
 ```
 
+## Step-B Evidence That Constrains the Model
+
+### Actual motion lifetime and cleanup opportunity are separate
+
+`eCVisualAnimation_PS::PlayMotion(type 0)` is a strong immediate PrimaryFirst acquisition/replacement signal in controlled tests. However, clean native cleanup occurs shortly **after** successor Recover `PlayMotion`, so the replacement hook itself is too early to repair immediately.
+
+The old Script `OnTick` comparator observes replacement much later and remains diagnostic only.
+
+### Original attack callbacks are not completion events
+
+On clean Quick transitions, native `7 -> 5` cleanup occurs before the first later original Quick callback invocation, and that callback then repeats during Recover. It is not a one-shot end-of-Hit report.
+
+### `sAICombatMoveStartRecover` is not the post-cleanup boundary
+
+On clean native Normal/Quick/Whirl paths, `sAICombatMoveStartRecover` starts Recover and returns while the weapon is still group 7. Native cleanup follows immediately afterward.
+
+Broken 2H/Staff Whirls can bypass `StartRecover` entirely, replace the Hit directly by Ambient, and leave collision stale.
+
+### Missing Recover asset is not the cause
+
+The native block-skip comparison proves a stronger distinction:
+
+- native 1H P1 Quick and 1H+Shield P1 Quick animations with **no Recover animation asset** can still execute `StartRecover` and clean `7 -> 5` while the Hit motion/phase remains current;
+- the same 1H+Shield no-Recover Quick can also follow the broken path: `5 -> 7`, direct Ambient replacement, no StartRecover, no cleanup, then a later `7 -> 7` activation;
+- a later execution of that same no-Recover attack that reaches StartRecover cleans correctly.
+
+Therefore the engine's Recover **lifecycle/bookkeeping transition** is distinct from successful playback of a Recover **animation asset**.
+
+### Dual Quick shares the same structural failure
+
+Native Dual / 1H+1H Quick reproduces the same pattern already seen in 2H/Staff:
+
+```text
+Hit begins
+→ offensive collision active
+→ no StartRecover
+→ direct Ambient replacement
+→ no cleanup
+→ later attack may request 7 -> 7
+```
+
+A later Dual Quick that reaches StartRecover cleans normally.
+
+This is evidence for a general lifecycle defect, not a Staff/Whirl-specific rule.
+
+## Separate Deeper Block-Skip Hypothesis
+
+Current evidence supports investigating a broader native CombatMove teardown independently from the collision safety guard.
+
+Working hypothesis:
+
+> During the vulnerable block-timeout/skip, Gothic 3 may abandon some action/CombatMove ownership or bookkeeping for a Hit while the physical PrimaryFirst Hit motion continues playing. If offensive collision is already active, later physical replacement then occurs without the normal cleanup path.
+
+The exact internal ownership/state is **not yet identified**.
+
+Animation-author visual observation additionally suggests engine-driven forward attack movement may stop immediately when the skip occurs even while the Hit animation continues. This is not yet logger-confirmed. If confirmed, stale collision would be one symptom of a broader native CombatMove interruption bug.
+
+Raise is not treated as a cleanup fix. Native Pierce/finishing-style Raise motions can absorb the bad transition before offensive Hit collision exists; subsequent Hit executions can still enter a normal lifecycle and clean. This supports the timing hypothesis but does not identify the interrupted internal state.
+
+### Research-order decision
+
+Do not make the universal collision safety system depend on repairing the deeper block-skip bug.
+
+Preferred order:
+
+1. finish the universal execution-level collision cleanup guard first;
+2. validate it across native and marked attacks plus different abnormal endings;
+3. later decide whether to repair the deeper block-skip behavior itself to preserve movement and other native combat behavior.
+
+That later repair would solve a different problem and may use different CombatMove hooks.
+
 ## Working Hypotheses
 
 These remain hypotheses until the next research phase completes:
@@ -199,6 +270,7 @@ These remain hypotheses until the next research phase completes:
 4. Native and marked attacks can share the same end-of-Hit cleanup guard; only their activation policy needs to differ.
 5. Defensive block/parade behavior may or may not use special weapon/shield collision states and must be measured before "clean all offensive collision" is implemented broadly.
 6. An event-driven motion-lifecycle hook should be lighter and more stable than Script `OnTick` polling if one can be identified.
+7. The native block-skip defect may be broader CombatMove teardown rather than collision-specific; treat this as a separate later research problem.
 
 ## v0.20 Cleanup/Lifetime Scaffolding to Revisit
 
@@ -276,10 +348,13 @@ For the current coding phase:
 1. read `docs/SESSION_ENTRYPOINT.md`;
 2. follow `docs/WORK_IMPLEMENTATION_PROTOCOL.md`;
 3. use this document as the collision architecture authority;
-4. modularize the existing research DLL without changing v0.20 behavior;
-5. keep every overlapping Gothic 3 hook owned once;
-6. prove structural parity before adding new lifecycle diagnostics;
-7. do not implement production cleanup yet.
+4. preserve the modular research DLL and one owner for every overlapping hook;
+5. continue only with bounded lifecycle diagnostics needed by the current causal question;
+6. do not implement production cleanup until the post-native-cleanup opportunity is identified.
+
+Immediate next research target:
+
+> Identify the native call site that performs clean `SetCollisionGroup(Item_Equipped)` / `7 -> 5` after `sAICombatMoveStartRecover` returns, then inspect its enclosing function for a narrow post-opportunity event boundary.
 
 After the research gates are complete:
 
