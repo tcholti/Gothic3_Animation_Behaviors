@@ -24,15 +24,11 @@ If another document's old "next step" conflicts with `SESSION_ENTRYPOINT.md`, us
 
 The short transient bridge between normal Chat and Work.
 
-Use it for only the latest bounded handoff so the user does not need to paste long Work reports into Chat or long Chat instructions into Work.
-
-It should be **overwritten, not accumulated**. Durable technical facts and decisions still belong in their proper canonical documents.
+Use it only for the latest bounded handoff. It should be **overwritten, not accumulated**. Durable technical facts and decisions belong in their canonical documents.
 
 ### `WORK_IMPLEMENTATION_PROTOCOL.md`
 
 The execution contract for a coding/Work session.
-
-It defines behavior integrity, principle-first implementation, modularity, resource discipline, stop conditions, and the required implementation sequence.
 
 Read this before changing code in Work.
 
@@ -40,15 +36,7 @@ Read this before changing code in Work.
 
 ### `DESIGN.md`
 
-Canonical overall project design for:
-
-- Raise control;
-- playback-speed control;
-- authored-frame collision control;
-- native/fallback behavior;
-- general actor scope.
-
-Use this for the broad intended architecture of `Gothic3_AnimationBehaviors`.
+Canonical overall project design for Raise control, playback-speed control, authored-frame collision control, native/fallback behavior, and general actor scope.
 
 ### `COLLISION_LIFECYCLE_PLAN.md`
 
@@ -56,68 +44,65 @@ Current authority for the collision-lifecycle redesign.
 
 Contains:
 
-- preferred System 1 execution-level cleanup model;
-- fallback System 2 source-aware model;
-- complete flow diagrams;
+- preferred execution-level cleanup model;
+- fallback source-aware model;
 - RIGHT/LEFT/BOTH/OFF desired-set semantics;
-- current hypotheses;
-- v0.20 scaffolding to revisit;
-- research-DLL modularization decision;
-- implementation and test sequence.
+- Step-B causal constraints;
+- ordinary/interruption/bad-skip three-path model;
+- marker-bookkeeping versus physical-cleanup distinction;
+- current research and implementation gates.
 
 ### `COLLISION_LOGGER_PLAN.md`
 
 Current diagnostic design for collision-lifecycle research.
 
-Use it when changing or extending collision diagnostics.
-
 ### `COLLISION_TEST_PLAN.md`
 
-Current staged test design.
-
-Use it after the modularized logger/diagnostics are ready. The tests challenge the general architecture; they are not instructions to create one production branch per test case.
+Current staged test design. Tests challenge the general architecture; they are not instructions to create one production branch per test case.
 
 ## 3. Gothic 3 Knowledge and Evidence — How the Game Works
 
-These documents describe Gothic 3 itself, our observed evidence, or practical engine research. They are distinct from collaboration/engineering-method documents.
-
 ### `EVIDENCE_LEDGER.md`
 
-Canonical fact/hypothesis/design-decision ledger.
+Canonical base evidence ledger, EV-001 through EV-157.
 
-Use it to determine whether a claim is:
+### `EVIDENCE_LEDGER_STEP_B.md`
 
-- confirmed;
-- strongly supported;
-- a working hypothesis;
-- unknown;
-- a design decision.
+Canonical continuation for Step-B lifecycle research, EV-158 onward.
 
-Do not promote a hypothesis to engine fact merely because it appears in older code or documentation.
+It is separate only to preserve the large established base ledger without rewriting it during the 2026-08-26 consolidation. Read the two ledgers together as one numbered evidence sequence.
+
+### `COLLISION_CLEANUP_CALLSITE_MAP.md`
+
+Build-specific reverse-engineering map of successful native melee collision cleanup.
+
+Use it for:
+
+- action-specific `Script_Game.dll` cleanup call sites;
+- LEFT/RIGHT branches;
+- legitimate interruption cleanup at `Script_Game + 0x24AFF`;
+- B5 stack-parent findings around `Game + 0x1604D3` and `Game + 0x1604E0..0x1605EB`;
+- the direct evidence that runtime action semantics can differ while reusing the same serialized animation asset family.
+
+This is evidence/reference, not production-hook authority.
 
 ### `ANIMATION_RULES.md`
 
 Canonical engine-facing animation semantics and naming rules.
 
-Use it for native action/phase/state/UseType/filename interpretation.
-
 ### `ANIMATION_CATALOG.md`
 
 Curated catalog of exact animation families/names and animation-author observations.
-
-Use it for concrete animation examples and family-specific asset evidence.
 
 ### `SOURCE_HOOK_GUIDE.md`
 
 Practical Gothic 3 source/hook/research guide.
 
-Use it to decide where to search, which reference source to trust for a question, and which proven hook/build patterns are available.
+Use it to decide where to search, which reference source to trust, and which proven hook/build patterns are available. Build-specific lifecycle call-site detail may be delegated to `COLLISION_CLEANUP_CALLSITE_MAP.md` rather than duplicated here.
 
 ### `RESEARCH_MAP.md`
 
-Long-form engineering/research state accumulated across the project.
-
-It remains useful for established findings and research history, but its older "current/next" sections may lag the immediate active task. For today's next step, `SESSION_ENTRYPOINT.md` is authoritative.
+Long-form engineering/research history. Useful for established findings and history, but older "current/next" sections may lag. `SESSION_ENTRYPOINT.md` is authoritative for the present continuation state.
 
 ### Searchable source data
 
@@ -130,60 +115,31 @@ Use these for exact filename searches rather than loading large catalogs into ch
 
 ## 4. Engineering and Collaboration Method — How We Work
 
-These are not Gothic 3 engine-reference documents. They define the reasoning and collaboration method used to produce the technical work.
-
 ### `ENGINEERING_GUIDE.md`
 
 Language-independent principle-first engineering guide.
 
-Core themes include:
-
-- understand before changing;
-- solve invariants rather than symptoms;
-- generative simplicity;
-- smallest sufficient models;
-- deliberate resource use;
-- clear responsibility boundaries;
-- future separation boundaries;
-- evidence-earned exceptions.
+Core themes include understand before changing, invariants rather than symptoms, generative simplicity, smallest sufficient models, resource discipline, responsibility boundaries, and evidence-earned exceptions.
 
 ### `COLLABORATION_RULES.md`
 
 Project collaboration and usage/review workflow.
 
-Use it for:
-
-- normal Chat versus Work responsibilities;
-- reasoning-level guidance;
-- targeted versus broad repository review;
-- documentation checkpointing;
-- continuity and usage-awareness practices.
-
 ### `WORK_IMPLEMENTATION_PROTOCOL.md`
 
 Also belongs here, but is listed under Start Here because it is mandatory for active coding sessions.
-
-It translates the broader engineering principles into concrete implementation rules.
 
 ## 5. Continuity and Historical Material
 
 ### `HANDOFF.md`
 
-Detailed continuation/history document from earlier stages of the collision investigation.
-
-It contains valuable version-by-version evidence and prior implementation state, but it is **not the current front door**. Do not use its older authority order or old "next step" over `SESSION_ENTRYPOINT.md` and the current active-design documents.
-
-Open it when historical implementation detail is needed.
+Detailed continuation/history document from earlier stages. Valuable for version-by-version detail, but **not the current front door**.
 
 ### `research/raw/`
 
-Raw logs and research artifacts.
-
-Use them when a specific documented conclusion must be rechecked against original evidence. Do not load them routinely.
+Raw logs and research artifacts. Use them when a documented conclusion must be rechecked against original evidence; do not load them routinely.
 
 ## 6. Authority by Question
-
-Use this rule of thumb:
 
 | Question | First document |
 |---|---|
@@ -192,31 +148,25 @@ Use this rule of thumb:
 | How must Work implement it? | `WORK_IMPLEMENTATION_PROTOCOL.md` |
 | What is the overall intended mod architecture? | `DESIGN.md` |
 | What is the current collision design? | `COLLISION_LIFECYCLE_PLAN.md` |
+| What are the tested native cleanup call sites/stacks? | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | What should the collision diagnostics capture? | `COLLISION_LOGGER_PLAN.md` |
 | What tests should we run? | `COLLISION_TEST_PLAN.md` |
-| Is this Gothic 3 behavior actually proven? | `EVIDENCE_LEDGER.md` |
+| Is this Gothic 3 behavior actually proven? | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` |
 | How do Gothic 3 animation names/states work? | `ANIMATION_RULES.md` |
 | Which exact animations/assets are relevant? | `ANIMATION_CATALOG.md` + `data/animation_names/` |
-| Where/how should we search or hook Gothic 3? | `SOURCE_HOOK_GUIDE.md` |
+| Where/how should we search or hook Gothic 3? | `SOURCE_HOOK_GUIDE.md` + `COLLISION_CLEANUP_CALLSITE_MAP.md` when lifecycle-specific |
 | What engineering principles should guide the solution? | `ENGINEERING_GUIDE.md` |
 | How should Chat/Work/reviews/documentation be managed? | `COLLABORATION_RULES.md` |
-| What happened in older prototype versions? | `HANDOFF.md`, `RESEARCH_MAP.md`, `EVIDENCE_LEDGER.md` |
+| What happened in older prototype versions? | `HANDOFF.md`, `RESEARCH_MAP.md`, evidence ledgers |
 
 ## 7. Consolidation Policy
 
 Create a new document only when it has a distinct job that would become harder to understand if mixed into an existing authority.
 
-Prefer merging when two files:
+Prefer merging when two files answer the same question, have the same authority level, are normally read together, or duplicate the same plan/model.
 
-- answer the same question;
-- have the same authority level;
-- are normally read together;
-- duplicate the same plan/model rather than separating responsibilities.
+Do not merge merely to reduce file count when documents serve different responsibilities.
 
-Do not merge merely to reduce file count when the documents serve different audiences or responsibilities.
+`BETWEEN_CHATS.md` is deliberately separate because it is only a short replaceable transport layer between sessions.
 
-Current example: the former `COLLISION_LIFECYCLE_MODELS.md` was merged into `COLLISION_LIFECYCLE_PLAN.md` because the models are part of the same design authority.
-
-`BETWEEN_CHATS.md` is deliberately separate because it is not an authority or history file; it is only a short replaceable transport layer between sessions.
-
-Future consolidation candidates should be reviewed at meaningful checkpoints rather than during every implementation cycle.
+`EVIDENCE_LEDGER_STEP_B.md` is an explicit preservation exception: it continues the numbered canonical ledger without risking an accidental rewrite of the large EV-001..EV-157 base during the 2026-08-26 consolidation. It may be merged into the base ledger later if a safe repository-local edit is convenient; until then the two files form one authority sequence.
