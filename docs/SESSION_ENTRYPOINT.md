@@ -97,13 +97,10 @@ Runtime evidence:
 
 `research/raw/2026-08-26_stepB3_native_startrecover_probe.log`
 
-The B3 test deliberately used native/unmarked attacks so marker-driven OFF transitions could not be mistaken for Gothic 3 cleanup.
-
 Established findings:
 
 - On clean 2H and Staff Normal/Quick/Whirl transitions, `sAICombatMoveStartRecover` begins while the Hit is still active, starts the Recover PrimaryFirst motion, and returns while the weapon source is still collision group 7.
-- Native `7 -> 5` cleanup occurs only **after** `sAICombatMoveStartRecover` returns. Example Staff Whirl: StartRecover BEGIN `88819.525`, Recover PlayMotion result `88819.622`, StartRecover END `88819.644`, native cleanup `88819.704`.
-- Therefore StartRecover is not the post-cleanup boundary.
+- Native `7 -> 5` cleanup occurs only **after** `sAICombatMoveStartRecover` returns.
 - In reproduced broken 2H and Staff Whirls, the Hit activates collision and is then replaced directly by an Ambient PrimaryFirst motion with **no StartRecover call and no cleanup**.
 - The stale source survives into the next Whirl, which can request `7 -> 7`.
 - Thus the defect is not Staff-specific and is not "StartRecover ran but forgot cleanup". The broken path skips the normal CombatMove Recover transition itself.
@@ -114,21 +111,59 @@ Runtime evidence:
 
 `research/raw/2026-08-26_stepB3b_native_block_skip_comparison.log`
 
-The run used Gothic 3's native animation assets and native collision timing across 1H, 1H+Shield, and Dual/1H+1H paths. Incidental Normal attacks used only to change poses are not part of the Quick conclusions.
+Established findings:
+
+- Native 1H P1 Quick and 1H+Shield P1 Quick animations that have **no Recover animation asset** can still execute `sAICombatMoveStartRecover` and perform correct `7 -> 5` cleanup while the Hit motion/phase remains current.
+- The same 1H+Shield no-Recover Quick also produced the bad direct-Ambient/no-StartRecover/no-cleanup path.
+- Therefore missing Recover **asset/motion** is separate from skipping the engine's Recover **lifecycle/bookkeeping path**.
+- Dual / 1H+1H Quick reproduces the same structural stale path as 2H/Staff.
+
+Current broader block-skip hypothesis:
+
+> A skip during an active Hit may abandon some CombatMove/gameplay ownership while the physical Hit motion continues. Depending on timing, movement/collision activation may be lost before contact, or already-active collision may later miss cleanup. The stale-collision branch is confirmed; the early-Hit activation/movement-loss branch remains visual/working-hypothesis evidence.
+
+Raise is not a cleanup fix. A skip during a pre-Hit Raise can occur before offensive Hit collision exists; a later Hit may then start a fresh lifecycle.
+
+## Step B4/B4b — NATIVE CLEANUP CALL-SITE ARCHITECTURE VALIDATED
+
+Source commit:
+
+`ddb44930401d1c22821cbde23b16e9845b06a08d` — existing `SetCollisionGroup` hook extended with immediate caller/module/RVA diagnostics only.
+
+Runtime evidence:
+
+- `research/raw/2026-08-26_stepB4_native_cleanup_callsite_probe.log`
+- `research/raw/2026-08-26_stepB4b_native_manyattacks_cleanup_callsite.log`
+- `research/raw/2026-08-26_stepB4b_native_finishing_blow_cleanup_callsite.log`
+- `research/raw/2026-08-26_stepB4b_native_interruption_cleanup_callsite.log`
+
+Durable detailed map:
+
+`docs/COLLISION_CLEANUP_CALLSITE_MAP.md`
 
 Established findings:
 
-- Native 1H P1 Quick and 1H+Shield P1 Quick animations that have **no Recover animation asset** can still execute `sAICombatMoveStartRecover` and perform correct `7 -> 5` collision cleanup while the PrimaryFirst Hit motion and phase-1 context remain in place. Cleanup does not require a Recover motion to be successfully played.
-- The same 1H+Shield P1 Quick/no-Recover animation also produced the bad path: collision activated `5 -> 7`, the Hit was replaced directly by Ambient with **no StartRecover and no cleanup**, and the next execution began from stale group 7. That next execution did call StartRecover and cleaned correctly, despite still having no Recover asset.
-- Therefore missing Recover **asset/motion** is decisively separate from skipping the engine's Recover **lifecycle/bookkeeping path**.
-- Dual / 1H+1H Quick reproduced the same structural stale path already seen in 2H/Staff: Hit collision remains active, the Hit is replaced directly by Ambient without StartRecover, later Quick activations can be `7 -> 7`, and a later execution that reaches StartRecover finally cleans the stale source.
-- Several native Pierce/finishing-style Raise motions were replaced very early by subsequent Quick Hits. Those later Hit executions could still reach StartRecover and clean normally. This supports, but does not yet prove, the working idea that a block skip occurring during a pre-Hit Raise may happen before offensive collision exists and therefore need not poison the later Hit lifecycle.
+- Every exact player-equipped `7 -> 5` cleanup observed by B4/B4b resolved to `Script_Game.dll`.
+- Gothic 3 does **not** use one Script_Game cleanup call site for all melee actions. Cleanup is action-path-specific but ultimately calls the same imported entity collision-group setter.
+- Confirmed cleanup call-site pairs include:
+  - Attack/action 1: RIGHT `+0x3851A`, LEFT `+0x3854E`;
+  - Power/action 2: RIGHT `+0x4809D`, LEFT `+0x480E4`;
+  - QuickR/L/actions 4/5: RIGHT `+0x48794`, LEFT `+0x487CC`;
+  - SimpleWhirl/action 6: RIGHT `+0x4C828`, LEFT `+0x4C858`;
+  - full Whirl/action 10: RIGHT `+0x4E03C`;
+  - Pierce/action 11: RIGHT `+0x477E3`, LEFT `+0x4781C`;
+  - Hack/action 14: RIGHT `+0x432BC`;
+  - Finishing/action 15: RIGHT `+0x4178A`, LEFT `+0x417C2`;
+  - GetUpAttack/action 30: RIGHT `+0x41E10`.
+- The exact same serialized 2H `FinishingAttack_Hit` motion was observed under action 14 (`gEAction_HackAttack`) and action 15 (`gEAction_FinishingAttack`) and cleaned through different Script_Game functions. This is direct evidence that native action semantics, not the filename alone, select lifecycle behavior.
+- A separate interruption cleanup call site `Script_Game + 0x24AFF` was repeatedly observed while the routine still reported the original attack Hit; a few milliseconds later PrimaryFirst was replaced by Stumble/knockdown. Normal action completion and damage/reaction interruption therefore already use different native cleanup paths.
+- The known block-skip failure can bypass normal action cleanup and fail to receive the interruption cleanup path, leaving offensive collision stale.
 
-Current stronger hypothesis:
+Architectural consequence:
 
-> The vulnerable block-timeout/skip can tear down or abandon some CombatMove/action ownership/bookkeeping **while the physical Hit PrimaryFirst motion continues playing**. If offensive collision is already active, the later physical motion replacement can then occur without the normal cleanup path. The exact internal meaning of "ownership" is still unproven.
+> Do not build the production guard as one hook per attack-family cleanup function. The action-specific call sites define native success, but the production goal remains one execution-level end/replacement rule.
 
-Animation-author visual observation additionally suggests engine-driven forward attack movement may stop immediately when this skip occurs. This is not yet logger-confirmed, but if reproduced it would indicate a broader CombatMove teardown bug of which stale collision is only one symptom.
+The B4/B4b map also strengthens the project rule that reverse-engineered call sites missing from the SDK should be documented with module/RVA/context rather than left only in chat.
 
 ## Research Order Decision
 
@@ -139,17 +174,20 @@ Keep two problems separate:
 
 Do not make the universal collision guard depend on fixing this one block-skip cause.
 
-## Immediate Research Question — B4 Cleanup Call-Site Ownership
+## Immediate Research Question — B5 COMMON PARENT / POST-OPPORTUNITY BOUNDARY
 
-Resume the narrow B4 question before broadening to the whole `sAICombatMoveItlLoop`:
+B4/B4b show that the immediate cleanup callers are action-specific. Before hooking those functions individually or broadening directly to Script `OnTick`, ask:
 
-> Which exact native caller/call site performs the clean `SetCollisionGroup(Item_Equipped)` / `7 -> 5` reset after StartRecover returns, and what enclosing function provides the post-opportunity boundary?
+> Do the action-specific Script_Game cleanup paths converge on a common caller/dispatcher/CombatMove boundary after their native cleanup opportunity?
 
-Preferred smallest probe: extend the **existing** SetCollisionGroup diagnostic only for relevant player weapon cleanup events to record the immediate return/caller address (and module/RVA if practical), without changing behavior or adding lifecycle state.
+Preferred narrow next probe:
 
-Then inspect that call site in the tested binary reference. If it identifies a narrow enclosing combat transition function, probe that function rather than defaulting to a broad per-update loop.
+- keep the existing `SetCollisionGroup` hook as the only collision-group hook;
+- for exact player weapon `7 -> 5` cleanup records, capture a short caller stack / higher causal parent frames if this can be done reliably in the tested Win32/MSVC build;
+- compare Normal, Quick, Power, Pierce, SimpleWhirl, full Whirl, Finishing/Hack, GetUpAttack, and interruption cleanup;
+- no cleanup behavior, timers, polling, family-specific repair or production lifecycle state yet.
 
-Do not add cleanup, timers, new polling, or family-specific repair rules yet.
+If higher caller frames converge, inspect that common parent in the binary reference before considering `sAICombatMoveItlLoop` as the fallback diagnostic boundary.
 
 ## Current Testing Rule
 
@@ -157,15 +195,19 @@ For immediate lifecycle/cleanup research, prefer **native/unmarked attacks** so 
 
 ## Documentation Rule
 
-Promote stable Step-B runtime findings into `EVIDENCE_LEDGER.md`, `COLLISION_LIFECYCLE_PLAN.md`, and this entry point after the causal result stabilizes.
+Maintain `docs/COLLISION_CLEANUP_CALLSITE_MAP.md` and `SOURCE_HOOK_GUIDE.md` as project-local reverse-engineering knowledge. Useful hooks/call sites absent from or incomplete in the SDK should record module, RVA/address, tested build/context, purpose, and confidence/signature evidence where known. This may later support upstream SDK improvements.
 
-Maintain `SOURCE_HOOK_GUIDE.md` as the project-local record of useful tested hook/call-site knowledge. Reverse-engineered hook/call-site discoveries that are missing from or incomplete in the SDK should record module, RVA/address, tested build/context, purpose, and signature/confidence evidence where known. This may later provide useful evidence for upstream SDK improvements.
+Stable Step-B findings should also be promoted into `EVIDENCE_LEDGER.md`; the call-site map is the detailed source for B4/B4b rather than duplicating every address in multiple long documents.
+
+## Compatibility Clarification
+
+The current animation-behavior DLL was deliberately removed from the game installation during the native-only cleanup research to keep the tests clean. Its absence in these runs is **not** evidence that the animation-behavior DLL failed with the newer mod/configuration.
 
 ## Repository Access Note For New Sessions
 
 For GitHub-backed project work, use the connected GitHub repository interface as the authoritative assistant-side access path.
 
-Do **not** assume the assistant's local/container runtime has outbound network access to GitHub. A local `git fetch`, `git pull`, clone, or raw HTTP request from that runtime may fail even while the connected GitHub interface can read and write the repository normally. Do not treat such a local-network failure as evidence that the repository is unavailable.
+Do **not** assume the assistant's local/container runtime has outbound network access to GitHub. A local `git fetch`, `git pull`, clone, or raw HTTP request from that runtime may fail even while the connected GitHub interface can read and write the repository normally.
 
 Practical rule for a new Chat or Work session:
 
@@ -173,8 +215,6 @@ Practical rule for a new Chat or Work session:
 2. use the connected GitHub interface for repository reads/writes, commits, branch inspection, and source/document access;
 3. use the user's home-PC checkout for actual local `git pull`, build, install, and Gothic 3 runtime testing;
 4. use assistant local/container filesystem/network only when a task genuinely requires it and access has been verified.
-
-If a large repository file cannot be returned through the connected interface, prefer a targeted extract/smaller derived evidence file rather than falling back to repeated assumptions about local GitHub network access.
 
 ## Chat / Work Execution Model
 
