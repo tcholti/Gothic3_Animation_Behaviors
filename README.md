@@ -2,15 +2,13 @@
 
 General Gothic 3 animation-behavior research and implementation for configurable Raise behavior, attack playback speed, and animation-authored frame collision.
 
-## Canonical documentation
+## Documentation
 
-- [Design](docs/DESIGN.md)
-- [Research map](docs/RESEARCH_MAP.md)
-- [Evidence ledger](docs/EVIDENCE_LEDGER.md)
-- [Animation rules](docs/ANIMATION_RULES.md)
-- [Animation catalog](docs/ANIMATION_CATALOG.md)
-- [Source and hook guide](docs/SOURCE_HOOK_GUIDE.md)
-- [Continuation handoff](docs/HANDOFF.md)
+- [Documentation map and authority guide](docs/README.md) — explains which documents describe Gothic 3, active technical design, engineering/collaboration method, and historical material.
+- [Session entry point](docs/SESSION_ENTRYPOINT.md) — read first when continuing the current work.
+- [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — required before an active coding/Work session changes the collision research DLL.
+
+Do not load every document by default. Follow the documentation map and open deeper files only when the current question requires them.
 
 ## Searchable animation-name data
 
