@@ -5,6 +5,8 @@
 **Branch:** `docs/collision-source-evidence`  
 **Updated:** 2026-08-26
 
+For the role and authority of the broader documentation set, see `docs/README.md`.
+
 ## Where We Are
 
 Frame-controlled weapon collision is the active subsystem. The validated RIGHT/LEFT/BOTH/OFF marker core is established. `G3AB_COL_OFF` is **optional authored early shutoff**, never the general end-of-Hit safety mechanism.
@@ -35,7 +37,7 @@ Actual motion execution is therefore the preferred lifetime authority after acqu
 
 **System 2 is fallback only:** track/repair individual physical sources if cleanup proves genuinely source-specific or capable of partial independent failure.
 
-Exact flow diagrams are in `docs/COLLISION_LIFECYCLE_MODELS.md`.
+The complete System 1/System 2 flow diagrams are now contained directly in `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
 ## Marker Rule While Hit Is Alive
 
@@ -133,13 +135,12 @@ A new Work chat should read, in this order:
 2. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
 3. `docs/ENGINEERING_GUIDE.md`
 4. `docs/COLLISION_LIFECYCLE_PLAN.md`
-5. `docs/COLLISION_LIFECYCLE_MODELS.md`
-6. `docs/COLLISION_LOGGER_PLAN.md`
-7. `docs/COLLISION_TEST_PLAN.md`
-8. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-9. `prototypes/Script_FrameCollisionTest/CMakeLists.txt`
-10. `tools/Script_CombatMoveLogger/Script_CombatMoveLogger.cpp` only as a reference for proven diagnostic patterns
-11. `docs/SOURCE_HOOK_GUIDE.md` only as needed for hook/source research
+5. `docs/COLLISION_LOGGER_PLAN.md`
+6. `docs/COLLISION_TEST_PLAN.md`
+7. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
+8. `prototypes/Script_FrameCollisionTest/CMakeLists.txt`
+9. `tools/Script_CombatMoveLogger/Script_CombatMoveLogger.cpp` only as a reference for proven diagnostic patterns
+10. `docs/SOURCE_HOOK_GUIDE.md` only as needed for hook/source research
 
 Work should first check whether the modular single-DLL plan can preserve each current hook and v0.20 behavior cleanly. If engine/API evidence contradicts the plan, report the contradiction rather than silently adding a more complicated architecture.
 
