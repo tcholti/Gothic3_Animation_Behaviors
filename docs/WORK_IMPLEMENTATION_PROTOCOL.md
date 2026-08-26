@@ -1,7 +1,7 @@
 # Work Implementation Protocol
 
 **Status:** Active project protocol / living document  
-**Version:** 0.1  
+**Version:** 0.2  
 **Updated:** 2026-08-26
 
 ## Purpose
@@ -295,14 +295,13 @@ Before changing the collision research DLL, read:
 2. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
 3. `docs/ENGINEERING_GUIDE.md`
 4. `docs/COLLISION_LIFECYCLE_PLAN.md`
-5. `docs/COLLISION_LIFECYCLE_MODELS.md`
-6. `docs/COLLISION_LOGGER_PLAN.md`
-7. `docs/COLLISION_TEST_PLAN.md`
-8. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-9. `prototypes/Script_FrameCollisionTest/CMakeLists.txt`
-10. `docs/SOURCE_HOOK_GUIDE.md` only as needed.
+5. `docs/COLLISION_LOGGER_PLAN.md`
+6. `docs/COLLISION_TEST_PLAN.md`
+7. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
+8. `prototypes/Script_FrameCollisionTest/CMakeLists.txt`
+9. `docs/SOURCE_HOOK_GUIDE.md` only as needed.
 
-Deeper evidence should be opened only when the current question requires it.
+Deeper evidence should be opened only when the current question requires it. `docs/README.md` explains the role and authority of the broader documentation set.
 
 ---
 
