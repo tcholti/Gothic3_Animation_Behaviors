@@ -47,58 +47,53 @@ The research DLL remains one DLL with one owner for each hook, split into hook b
 Home-PC validation on 2026-08-26:
 
 - MSVC Release build succeeded;
-- built and installed DLL SHA-256 matched: `4CD111D0B92A562AD8831BA81FA00C6E8A29BE5EC3F66E5920D6B214F99553DD`;
 - Gothic 3 loaded and ran without crash;
-- smoke test covered marked Normal/Quick/Whirl across 2H, Staff, and Dual/1H+1H;
-- marker ownership, collision-group logging, Quick/Whirl `StatePosition`, source resolution, and PrimaryFirst lifetime diagnostics remained present;
+- marked Normal/Quick/Whirl smoke test covered 2H, Staff, and Dual/1H+1H;
+- marker/control/diagnostic behavior remained present;
 - the known stale-lifecycle defect remained reproducible, as expected for a parity-only refactor.
 
-Processed logs were moved out of the active raw folder in commit:
+Processed pre-Step-B logs were archived in commit `ed01c2e4d9489d971c0635e76114d9bf85ffc9e0`.
 
-`ed01c2e4d9489d971c0635e76114d9bf85ffc9e0` — `Archive processed collision research logs`
+## Step B1 — PRIMARYFIRST EVENT PROBE VALIDATED
 
-`research/raw/` now contains only `Keep.txt`.
+Source commits:
 
-## Source Research — PrimaryFirst Lifecycle Candidate
+- `7dcd514b0bcd51c05453e3e55500a927b9063159` — add diagnostic `PlayMotion`/`StopMotion` probe;
+- `81e88026a4b47086a8995ab65d2933a041f8d2fd` — namespace fix.
 
-Official SDK and tested Engine/Game binary evidence now identify a promising event layer:
+Runtime test covered 2H Normal, Quick, clean Whirl, and two reproduced Whirl skip/stale-collision cases.
 
-- `eCVisualAnimation_PS::PlayMotion` — Engine RVA `0x30860`;
-- `eCVisualAnimation_PS::StopMotion` — Engine RVA `0x30980`;
-- `eCVisualAnimation_PS::StopAtLoopEnd` — Engine RVA `0x309D0`;
-- motion type `0` is the same PrimaryFirst slot used by the validated v0.20 probe;
-- `Game.dll` imports the higher-level `eCVisualAnimation_PS::PlayMotion`, `StopMotion`, and `StopAtLoopEnd` paths;
-- `eCVisualAnimation_PS::PlayMotion` delegates to `eCWrapper_emfx2Actor::PlayMotion`, whose implementation can stop an existing motion before starting its replacement;
-- `StopAtLoopEnd` is **not** an end event: its wrapper implementation schedules stopping at a future loop boundary.
+Established findings:
 
-Therefore `PlayMotion(type 0)` is a strong candidate immediate start/replacement event, while `StopMotion(type 0)` is a useful explicit-stop event. Neither is yet proven sufficient for every natural Hit end.
+- `eCVisualAnimation_PS::PlayMotion(type 0)` is an immediate PrimaryFirst Hit-acquisition and successor/replacement signal in the controlled cases.
+- In the two stale Whirl reproductions, successor `PlayMotion` exposed replacement roughly 0.51–0.66 seconds before the old Script `OnTick` probe detected the mismatch.
+- The `PlayMotion` before-snapshot is often already empty; outgoing execution identity must therefore be retained from prior Hit acquisition rather than recovered from that before-snapshot.
+- `StopMotion(type 0)` is supporting evidence only and did not provide the authoritative skipped-Whirl replacement signal.
+- In clean 2H Normal, Quick, and Whirl transitions, successor Recover `PlayMotion` occurred first and native weapon cleanup `7 -> 5` followed about 0.059–0.062 ms later, effectively in the same transition/update.
+- Therefore a production guard must **not** clean immediately inside successor `PlayMotion`; Gothic 3 must first get its normal same-transition opportunity to perform cleanup.
+- Unfiltered global PrimaryFirst logging is too noisy for later research/production; future diagnostics should be narrowly filtered or correlated.
 
-`eCVisualAnimation_PS` inherits `GetEntity()`, so the high-level hooks can identify their owning actor/entity directly.
+The old `OnTick` lifetime probe remains only as a temporary comparator. Do not promote it to production architecture.
 
-## Immediate Next Step — Step B1
+## Current Open Question — Step B2
 
-Do **not** implement production cleanup yet.
+The smallest unresolved causal question is:
 
-The next bounded coding task is a diagnostic-only PrimaryFirst hook probe:
+> After successor PrimaryFirst starts, does native collision cleanup occur inside Gothic 3's original `OnAI_Attack`, `OnAI_QuickAttack`, or `OnAI_WhirlAttack` callback call?
 
-1. add one authoritative hook for `eCVisualAnimation_PS::PlayMotion` at Engine RVA `0x30860`;
-2. add one authoritative hook for `eCVisualAnimation_PS::StopMotion` at Engine RVA `0x30980`;
-3. log only motion type `0` / PrimaryFirst;
-4. capture compact before/after PrimaryFirst snapshots around the original call;
-5. keep the existing read-only `OnTick` lifetime probe unchanged as a temporary comparator;
-6. do not hook `StopAtLoopEnd` in this first probe;
-7. do not add lifecycle-control state, cleanup behavior, attack-family exceptions, or production decisions.
+This is plausible because the research DLL already wraps those callbacks, and clean cleanup follows successor `PlayMotion` only about 0.06 ms later.
 
-After Work implements and pushes this bounded probe, normal Chat/home PC will build and run only:
+If native cleanup occurs between original-callback entry and return, that return is a promising natural point at which Gothic 3 has already had its cleanup opportunity. This could avoid both immediate-PlayMotion cleanup and a polling/timer fallback.
 
-- one known-good lifecycle;
-- one known stale Whirl or Dual Quick lifecycle.
+The bounded Step B2 assignment is in `docs/BETWEEN_CHATS.md`:
 
-Question to answer:
+- add no new hook;
+- preserve marked-Hit suppression exactly;
+- for player-only controlled diagnostics, log compact BEGIN/END snapshots around existing calls to the original Normal/Quick/Whirl callbacks;
+- keep existing `SetCollisionGroup`, Step B1, and `OnTick` diagnostics unchanged for correlation;
+- add no persistent lifecycle state or cleanup behavior.
 
-> Does every actual Hit end/replacement seen by the old PrimaryFirst comparator correlate immediately with `PlayMotion(type 0)` and/or `StopMotion(type 0)`?
-
-If yes across controlled cases, the direct events can replace polling in a later step. If not, investigate the missing natural-end path before adding more architecture.
+Do **not** implement production cleanup until Step B2 runtime evidence answers this question.
 
 ## Chat / Work Execution Model
 
