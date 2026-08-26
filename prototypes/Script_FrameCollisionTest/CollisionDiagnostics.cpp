@@ -61,7 +61,7 @@ void OpenLog()
     std::fprintf(g_pLog, "Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.\n");
     std::fprintf(g_pLog, "v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.\n");
     std::fprintf(g_pLog, "STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.\n");
-    std::fprintf(g_pLog, "STEP B2 ORIGINAL-CALLBACK BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.\n");
+    std::fprintf(g_pLog, "STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -500,8 +500,23 @@ static void LogPrimaryMotionEventSnapshot(
     std::fprintf(g_pLog, "PrimaryPlaySpeed: %.6f\n", snapshot.playSpeed);
 }
 
-void LogOriginalAttackCallbackBoundary(Entity &actor,
-                                       char const *callbackFamily,
+static void LogCombatMoveEquippedSource(
+    char const *label, eCEntity *sourceInstance)
+{
+    std::fprintf(g_pLog, "%sSourceResolved: %d\n",
+                 label, sourceInstance != nullptr ? 1 : 0);
+    if (sourceInstance == nullptr)
+        return;
+    Entity source(sourceInstance);
+    std::fprintf(g_pLog, "%sSource: %s\n",
+                 label, source.GetName().GetText());
+    std::fprintf(g_pLog, "%sSourceAddress: %p\n",
+                 label, static_cast<void *>(sourceInstance));
+    std::fprintf(g_pLog, "%sSourceCollisionGroup: %d\n",
+                 label, static_cast<GEInt>(source.GetCollisionGroup()));
+}
+
+void LogCombatMoveStartRecoverBoundary(Entity &actor,
                                        char const *boundary)
 {
     if (g_pLog == nullptr)
@@ -509,14 +524,14 @@ void LogOriginalAttackCallbackBoundary(Entity &actor,
 
     PrimaryMotionEventSnapshot snapshot =
         CapturePrimaryMotionEventSnapshot(actor);
+    EquippedCollisionSources sources =
+        CollisionControl::GetEquippedCollisionSources(actor);
     bCString currentMovementAni = actor.NPC.GetCurrentMovementAni();
-    std::fprintf(g_pLog, "===== ORIGINAL ATTACK CALLBACK %s %s =====\n",
-                 callbackFamily, boundary);
+    std::fprintf(g_pLog, "===== COMBATMOVE STARTRECOVER %s =====\n",
+                 boundary);
     std::fprintf(g_pLog, "ActorAddress: %p\n",
                  static_cast<void *>(actor.GetInstance()));
     std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-    std::fprintf(g_pLog, "CallbackFamily: %s\n", callbackFamily);
-    std::fprintf(g_pLog, "Boundary: %s\n", boundary);
     std::fprintf(g_pLog, "CurrentAction: %d\n",
                  static_cast<GEInt>(
                      actor.Routine.GetProperty<PSRoutine::PropertyAction>()));
@@ -525,8 +540,10 @@ void LogOriginalAttackCallbackBoundary(Entity &actor,
     std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
                  currentMovementAni.GetText());
     LogPrimaryMotionEventSnapshot(boundary, snapshot);
+    LogCombatMoveEquippedSource("LeftHand", sources.leftInstance);
+    LogCombatMoveEquippedSource("RightHand", sources.rightInstance);
     std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
-    std::fprintf(g_pLog, "==========================================\n\n");
+    std::fprintf(g_pLog, "=========================================\n\n");
     std::fflush(g_pLog);
 }
 

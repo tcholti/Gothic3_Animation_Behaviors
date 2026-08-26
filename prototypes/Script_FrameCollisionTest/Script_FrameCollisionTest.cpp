@@ -22,6 +22,7 @@ static mCFunctionHook Hook_OnTick;
 static mCFunctionHook Hook_SetCollisionGroup;
 static mCFunctionHook Hook_PlayMotion;
 static mCFunctionHook Hook_StopMotion;
+static mCFunctionHook Hook_AICombatMoveStartRecover;
 
 static bool ShouldSuppressAttackCallback(Entity &actor)
 {
@@ -44,29 +45,13 @@ static bool ShouldSuppressAttackCallback(Entity &actor)
     return willSuppress;
 }
 
-static bool ShouldLogOriginalCallbackBoundary(Entity &actor)
-{
-    Entity player = Entity::GetPlayer();
-    return player != None && actor.GetInstance() == player.GetInstance();
-}
-
 DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
     if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Normal)
         && ShouldSuppressAttackCallback(SelfEntity))
         return GETrue;
-
-    bool const shouldLog = ShouldLogOriginalCallbackBoundary(SelfEntity);
-    if (shouldLog)
-        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
-            SelfEntity, "Normal", "BEGIN");
-    auto const result =
-        Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
-    if (shouldLog)
-        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
-            SelfEntity, "Normal", "END");
-    return result;
+    return Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
@@ -75,17 +60,7 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
     if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Quick)
         && ShouldSuppressAttackCallback(SelfEntity))
         return GETrue;
-
-    bool const shouldLog = ShouldLogOriginalCallbackBoundary(SelfEntity);
-    if (shouldLog)
-        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
-            SelfEntity, "Quick", "BEGIN");
-    auto const result =
-        Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
-    if (shouldLog)
-        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
-            SelfEntity, "Quick", "END");
-    return result;
+    return Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_WhirlAttack_FrameCollisionTest)
@@ -94,17 +69,13 @@ DECLARE_SCRIPT_CALLBACK(OnAI_WhirlAttack_FrameCollisionTest)
     if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Whirl)
         && ShouldSuppressAttackCallback(SelfEntity))
         return GETrue;
+    return Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
+}
 
-    bool const shouldLog = ShouldLogOriginalCallbackBoundary(SelfEntity);
-    if (shouldLog)
-        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
-            SelfEntity, "Whirl", "BEGIN");
-    auto const result =
-        Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
-    if (shouldLog)
-        CollisionDiagnostics::LogOriginalAttackCallbackBoundary(
-            SelfEntity, "Whirl", "END");
-    return result;
+static bool IsPlayerEntity(eCEntity *instance)
+{
+    Entity player = Entity::GetPlayer();
+    return player != None && instance == player.GetInstance();
 }
 
 static GELPVoid StartEffect_FrameCollisionTest(
@@ -165,6 +136,14 @@ static void GE_STDCALL PlayMotion_FrameCollisionTest(
     }
 
     eCVisualAnimation_PS *pThis = Hook_PlayMotion.GetSelf<eCVisualAnimation_PS *>();
+    eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
+    if (!IsPlayerEntity(ownerEntity))
+    {
+        Hook_PlayMotion.GetOriginalFunction(&PlayMotion_FrameCollisionTest)(
+            a_MotionType, a_pMotionDesc);
+        return;
+    }
+
     CollisionDiagnostics::PrimaryMotionEventSnapshot before =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
     Hook_PlayMotion.GetOriginalFunction(&PlayMotion_FrameCollisionTest)(
@@ -186,6 +165,14 @@ static void GE_STDCALL StopMotion_FrameCollisionTest(
     }
 
     eCVisualAnimation_PS *pThis = Hook_StopMotion.GetSelf<eCVisualAnimation_PS *>();
+    eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
+    if (!IsPlayerEntity(ownerEntity))
+    {
+        Hook_StopMotion.GetOriginalFunction(&StopMotion_FrameCollisionTest)(
+            a_MotionType, a_fBlendTime);
+        return;
+    }
+
     CollisionDiagnostics::PrimaryMotionEventSnapshot before =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
     Hook_StopMotion.GetOriginalFunction(&StopMotion_FrameCollisionTest)(
@@ -194,6 +181,23 @@ static void GE_STDCALL StopMotion_FrameCollisionTest(
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
     CollisionDiagnostics::LogPrimaryMotionEvent(
         pThis, "StopMotion", before, after);
+}
+
+static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
+    gCScriptProcessingUnit *a_pSPU)
+{
+    Entity actor;
+    if (a_pSPU != nullptr)
+        actor.AttachTo(a_pSPU->GetSelfEntity());
+    bool const shouldLog =
+        actor != None && IsPlayerEntity(actor.GetInstance());
+
+    if (shouldLog)
+        CollisionDiagnostics::LogCombatMoveStartRecoverBoundary(actor, "BEGIN");
+    Hook_AICombatMoveStartRecover.GetOriginalFunction(
+        &AICombatMoveStartRecover_FrameCollisionTest)(a_pSPU);
+    if (shouldLog)
+        CollisionDiagnostics::LogCombatMoveStartRecoverBoundary(actor, "END");
 }
 
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
@@ -280,6 +284,10 @@ static void InstallHooks()
     Hook_StopMotion
         .Prepare(RVA_Engine(0x30980), &StopMotion_FrameCollisionTest,
                  mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_AICombatMoveStartRecover
+        .Prepare(RVA_Game(0x16E360),
+                 &AICombatMoveStartRecover_FrameCollisionTest)
         .Hook();
 }
 
