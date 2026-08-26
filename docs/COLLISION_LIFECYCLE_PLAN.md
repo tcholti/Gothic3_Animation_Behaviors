@@ -240,13 +240,18 @@ Current evidence supports investigating a broader native CombatMove teardown ind
 
 Working hypothesis:
 
-> During the vulnerable block-timeout/skip, Gothic 3 may abandon some action/CombatMove ownership or bookkeeping for a Hit while the physical PrimaryFirst Hit motion continues playing. If offensive collision is already active, later physical replacement then occurs without the normal cleanup path.
+> During the vulnerable block-timeout/skip, Gothic 3 may abandon some action/CombatMove ownership or bookkeeping for a Hit while the physical PrimaryFirst Hit motion continues playing. A skip during an active Hit is potentially harmful regardless of whether offensive collision has activated yet.
+
+Possible failure modes depend on timing inside the Hit:
+
+1. **Before native collision activation:** the skip may interrupt the remaining native attack timing/state responsible for movement and/or collision activation. The visual Hit can continue while required gameplay behavior has already been abandoned. A missed collision activation from this exact mechanism is plausible but not yet logger-confirmed.
+2. **After offensive collision activation:** the Hit can continue physically while the later cleanup path is lost. Runtime evidence confirms this path can leave the weapon at group 7 across Ambient/running state and into later attacks.
 
 The exact internal ownership/state is **not yet identified**.
 
-Animation-author visual observation additionally suggests engine-driven forward attack movement may stop immediately when the skip occurs even while the Hit animation continues. This is not yet logger-confirmed. If confirmed, stale collision would be one symptom of a broader native CombatMove interruption bug.
+Animation-author visual observation additionally suggests engine-driven forward attack movement may stop immediately when the skip occurs even while the Hit animation continues. This is not yet logger-confirmed. If confirmed, stale collision would be one symptom of a broader native CombatMove interruption bug rather than the whole defect.
 
-Raise is not treated as a cleanup fix. Native Pierce/finishing-style Raise motions can absorb the bad transition before offensive Hit collision exists; subsequent Hit executions can still enter a normal lifecycle and clean. This supports the timing hypothesis but does not identify the interrupted internal state.
+Raise is not treated as a cleanup or block-skip fix. A long pre-Hit Raise may merely absorb the vulnerable skip before an offensive Hit execution begins. If the subsequent Hit starts fresh, its native movement, collision timing, and cleanup can still proceed normally. This supports the timing hypothesis but does not identify the interrupted internal state.
 
 ### Research-order decision
 
@@ -256,9 +261,9 @@ Preferred order:
 
 1. finish the universal execution-level collision cleanup guard first;
 2. validate it across native and marked attacks plus different abnormal endings;
-3. later decide whether to repair the deeper block-skip behavior itself to preserve movement and other native combat behavior.
+3. later decide whether to repair the deeper block-skip behavior itself to preserve movement, collision activation/timing, and other native combat behavior.
 
-That later repair would solve a different problem and may use different CombatMove hooks.
+That later repair would solve a broader problem and may use different CombatMove hooks.
 
 ## Working Hypotheses
 
