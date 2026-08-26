@@ -6,7 +6,7 @@
 ## Latest handoff
 
 **From:** Normal Chat  
-**To:** Work  
+**To:** Normal Chat / home-PC runtime validation  
 **Date:** 2026-08-26  
 **Branch:** `docs/collision-source-evidence`
 
@@ -16,82 +16,48 @@ Runtime evidence:
 
 `research/raw/2026-08-26_stepB3_native_startrecover_probe.log`
 
-The B3 run used native/unmarked 2H and Staff Normal, Quick, clean Whirl, and reproduced skipped-Recover Whirls.
+Established:
 
-### Clean-path ordering
+- clean native Normal/Quick/Whirl paths call `sAICombatMoveStartRecover`, start Recover, return, then perform native `7 -> 5` cleanup afterward;
+- broken native 2H and Staff Whirl executions activate `5 -> 7`, skip `StartRecover`, are replaced directly by Ambient, and miss cleanup;
+- therefore `StartRecover` is not the post-cleanup boundary and the defect is not Staff-specific or Whirl-specific.
 
-On clean attacks, `sAICombatMoveStartRecover` starts Recover but returns **before** native weapon cleanup.
+## B4 CALL-SITE PROBE — PAUSED BEFORE WORK
 
-Representative Staff Whirl:
+Do **not** execute the previously planned native cleanup call-site probe yet.
 
-- StartRecover BEGIN `88819.525`;
-- Recover PrimaryFirst PlayMotion result `88819.622`;
-- StartRecover END `88819.644`, right source still group 7;
-- native SetCollisionGroup(Item_Equipped) / `7 -> 5` at `88819.704`.
+Older validated observations introduce two high-value counterexamples that should be compared first with the existing B3 diagnostic build:
 
-Ordinary Staff Normal and Quick show the same ordering: StartRecover END first, native `7 -> 5` afterward.
+1. native/unmarked Quick attacks with Recover animations absent were previously observed still cleaning collision correctly;
+2. finishing attacks with a Raise transition can survive the problematic block/attack transition without leaving stale collision, even when the analogous no-Raise path reproduces the skip.
 
-Therefore StartRecover is not the post-native-cleanup boundary.
+Also, stale collision has previously been reproduced on Dual / 1H1H Quick, so the defect is already known to extend beyond Whirl and beyond 2H/Staff.
 
-### Broken-path ordering
+## Immediate no-code comparative test
 
-The same native lifecycle failure was reproduced for both 2H and Staff Whirl:
+Use the existing B3 DLL. No source change is required.
 
-1. Whirl Hit PrimaryFirst begins;
-2. native collision activates `5 -> 7`;
-3. the Hit is replaced directly by an Ambient PrimaryFirst motion;
-4. no StartRecover call occurs for that execution;
-5. no `7 -> 5` cleanup occurs;
-6. the stale source survives into the next Whirl, which can request `7 -> 7`.
+Keep all tested attacks unmarked / native-collision controlled.
 
-Thus the defect is not Staff-specific and is not "StartRecover ran but forgot cleanup". The broken execution skips the normal CombatMove Recover transition itself.
+Capture a short run containing, where practical:
 
-## Step B4 — BOUNDED NATIVE CLEANUP CALL-SITE PROBE
+1. one known bad no-Raise attack performed from holding block that reproduces stale collision;
+2. one Dual / 1H1H Quick stale-collision reproduction;
+3. one Quick path with its Recover animation absent that nevertheless cleans correctly, using the same setup previously tested;
+4. one finishing attack with Raise, performed through the comparable block/attack transition, where cleanup remains correct.
 
-### Purpose
+The current B3 logger already records PrimaryFirst motion transitions, `sAICombatMoveStartRecover`, collision-group changes, action/phase context, and equipped source identity.
 
-Identify the exact native caller/call site that performs clean `SetCollisionGroup(Item_Equipped)` / `7 -> 5` after StartRecover returns. Use that address to inspect the enclosing function and find a narrower post-cleanup-opportunity boundary before considering a broad `sAICombatMoveItlLoop` hook.
+## Causal questions
 
-### Implement only this diagnostic change
+Determine separately:
 
-Use the **existing** `eCEntity::SetCollisionGroup` hook. Do not add a new hook.
+- Does a no-Recover-animation Quick still call `StartRecover`, even though no Recover motion exists?
+- Does its native `7 -> 5` cleanup still occur after that transition attempt?
+- On a bad block -> Hit/no-Raise path, is `StartRecover` skipped because the Hit entered through a different CombatMove state?
+- On the comparable finishing attack, does Raise establish a state/path that later permits normal cleanup?
+- Does Dual / 1H1H Quick show the same lifecycle shape as the 2H/Staff stale cases?
 
-For a player-equipped LEFT or RIGHT source only, when all of these are true:
+Do not infer that missing Recover animation itself causes the defect. Distinguish missing Recover **asset/motion** from skipping the engine's **Recover transition path**.
 
-- requested group is `Item_Equipped` (5);
-- before group is `Item_Attack` (7);
-- after group is `Item_Equipped` (5);
-
-log one compact `NATIVE CLEANUP CALL SITE` record containing:
-
-- high-resolution elapsed time;
-- changed entity/source identity and LEFT/RIGHT player-slot match;
-- raw immediate caller/return address captured at the SetCollisionGroup wrapper entry;
-- owning module name/base and caller RVA if practical and reliable in the current Win32/MSVC environment.
-
-Prefer robust address-to-module resolution (for example from-address module lookup) over assuming the call originates in Game.dll.
-
-Pass the captured caller address into diagnostics as a stack-local fact. Add no persistent lifecycle state.
-
-### Preserve existing behavior
-
-- call original SetCollisionGroup exactly once with unchanged argument;
-- preserve existing retirement and SetCollisionGroup diagnostics;
-- collision-control code and behavior unchanged;
-- StartRecover probe may remain for one comparison run;
-- player-only PrimaryFirst output remains as in B3;
-- no B2 callback output;
-- no new timer, polling/checking mechanism, cleanup behavior, family special case, or production decision;
-- do not add or broaden to `sAICombatMoveItlLoop` yet.
-
-### Acceptance
-
-Source should allow a short native-only runtime test to answer:
-
-> Which module + RVA calls SetCollisionGroup(5) for the clean Hit cleanup immediately after StartRecover returns?
-
-Do not implement cleanup or lifecycle ownership from that result in Work.
-
-Do not build or run Gothic 3.
-
-Commit and push the source changes, overwrite this file with a concise Work-to-Chat result and final commit SHA, then STOP.
+After this comparison, decide whether the next source probe should trace the native cleanup call site, the Hit-entry/CombatMove state path, or both.
