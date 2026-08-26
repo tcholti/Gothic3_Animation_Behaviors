@@ -1,7 +1,7 @@
 # Principle-First Engineering Guide
 
 **Status:** Experimental / living document  
-**Version:** 0.2  
+**Version:** 0.3  
 **Scope:** Language-independent engineering principles. Stored in this repository first so the method can be tested against real work before being generalized to other projects.
 
 ## Purpose
@@ -126,6 +126,47 @@ One signal may be correct for acquisition but wrong for lifetime.
 Native action/phase can be useful to establish that a real attack Hit has begun. The same action/phase values are not necessarily authoritative for the lifetime of that Hit after ownership has been established.
 
 **Rule:** do not keep using a signal for a responsibility it was never proven to own.
+
+### 4.1 Co-Locate Runtime Ownership, Separate Source Responsibilities
+
+Sometimes two temporary capabilities must live in the same executable/module because they need the same low-level hook, patch point, transaction, connection, lock, device, or other exclusive runtime resource.
+
+Do not force them into separate runtime modules if doing so creates hook conflicts, load-order dependence, duplicated ownership, or unsafe chaining.
+
+But temporary co-location must not become architectural entanglement.
+
+Prefer:
+
+- one authoritative owner of the shared low-level resource;
+- separate source modules for separate responsibilities;
+- a small shared event/context interface between them;
+- one-way dependencies where possible;
+- diagnostics/observers that never become required for production behavior;
+- build boundaries that allow temporary modules to be omitted later without rewriting the core system.
+
+For example, a research DLL may contain:
+
+```text
+Main / Hook Bridge
+    owns each engine hook once
+        ↓
+Collision Control
+    owns behavior
+
+Collision Diagnostics
+    observes the same events
+    never decides behavior
+```
+
+The collision module should not call into the logger to function correctly. The logger may observe shared events, but removing the logger must leave collision behavior unchanged.
+
+When the research phase ends, a production build can exclude the diagnostic module or move the stable behavior into a new DLL/project with minimal structural change.
+
+> **Design temporary integration around the future separation boundary.**
+
+This principle applies beyond DLLs: test harnesses, telemetry, migration adapters, compatibility layers, experimental UIs, and temporary data collectors should be co-located when runtime ownership requires it, but structurally separated according to the responsibilities that will eventually diverge.
+
+**Rule:** share runtime ownership when necessary; do not share responsibility unnecessarily.
 
 ---
 
