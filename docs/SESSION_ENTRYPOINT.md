@@ -5,43 +5,38 @@
 **Branch:** `docs/collision-source-evidence`  
 **Updated:** 2026-08-26
 
-For the role and authority of the broader documentation set, see `docs/README.md`.
+For document roles and authority, see `docs/README.md`. For the latest Chat/Work bridge, see `docs/BETWEEN_CHATS.md`.
 
-## Where We Are
+## Active Subsystem
 
-Frame-controlled weapon collision is the active subsystem. The validated RIGHT/LEFT/BOTH/OFF marker core is established. `G3AB_COL_OFF` is **optional authored early shutoff**, never the general end-of-Hit safety mechanism.
+Frame-controlled melee collision lifecycle.
 
-Full Whirl/block-timeout testing exposed a native lifecycle defect: weapon collision can remain `Item_Attack` after the relevant attack lifecycle fails to clean normally. The defect is not marker-created and is broader than Staff Whirl; native Dual Quick also produced a later `7 -> 7` attack request from an already-stale source.
+The RIGHT/LEFT/BOTH/OFF marker core is established. `G3AB_COL_OFF` is optional authored early shutoff inside a live Hit; it is not the general end-of-Hit safety mechanism.
+
+Known native lifecycle defect: offensive weapon collision can remain `Item_Attack` after a Hit is replaced/interrupted without normal cleanup. This is not marker-created and is broader than Staff Whirl; Dual Quick has also reproduced stale carryover and later `7 -> 7` activation.
 
 Recover is not the universal cleanup owner.
 
-## v0.20 Finding That Changed the Design
+## Preferred Cleanup Model
 
-`Script_FrameCollisionTest v0.20` proved action/phase is not a reliable lifetime owner after a Hit has begun: a 2H Whirl drifted from action 10 to Stand/action 0 while the exact Whirl Hit remained the live PrimaryFirst/current motion at about `0.611 / 0.800 s`.
+Prefer **System 1: execution-level native cleanup guard**.
 
-Actual motion execution is therefore the preferred lifetime authority after acquisition, pending a better event-driven motion-lifecycle hook.
+For every real attack-Hit execution that requests offensive collision:
 
-## Preferred Cleanup Architecture
+1. acquire the real Hit using native action/phase/callback semantics;
+2. capture the exact actual motion execution;
+3. marked motion: markers own activation timing;
+4. unmarked motion: Gothic 3 keeps native activation timing;
+5. remember that offensive collision was requested, including `7 -> 7`;
+6. follow the exact actual Hit execution rather than action/phase after acquisition;
+7. when that Hit actually ends or is replaced, determine whether proper native cleanup occurred;
+8. if yes, do nothing; if no, invoke the native cleanup Gothic 3 should have performed.
 
-**Prefer System 1: execution-level native cleanup guard.**
+Use **System 2 source-aware cleanup only if evidence proves cleanup is genuinely source-specific or partially independent**.
 
-- acquire a real attack-Hit execution using native semantics;
-- capture the exact actual motion execution;
-- marked motion: suppress native timed activation and let markers control activation/rearm;
-- unmarked motion: leave native activation untouched;
-- if the execution requests offensive collision, remember the execution-level fact `collision requested`, including `7 -> 7`;
-- follow the actual Hit execution until it genuinely ends/replaces;
-- if Gothic 3 already performed proper native cleanup, do nothing;
-- if it did not, invoke the native cleanup Gothic 3 should have performed;
-- do not create separate cleanup branches for block timeout, Recover, Staff, Quick, Whirl, damage, terrain, etc. unless evidence proves the universal rule insufficient.
-
-**System 2 is fallback only:** track/repair individual physical sources if cleanup proves genuinely source-specific or capable of partial independent failure.
-
-Complete System 1/System 2 diagrams and hypotheses are in `docs/COLLISION_LIFECYCLE_PLAN.md`.
+Detailed architecture: `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
 ## Marker Rule While Hit Is Alive
-
-Markers define the complete desired offensive collision set:
 
 ```text
 RIGHT = {RIGHT}
@@ -50,94 +45,76 @@ BOTH  = {RIGHT, LEFT}
 OFF   = {}
 ```
 
-Conceptually: make offensive collision equal to the authored desired set. This is separate from end-of-Hit cleanup.
+Each marker defines the complete desired offensive collision set.
 
-## Step A Modularization Status
+## Step A — VALIDATED
 
-The v0.20 source modularization is committed and pushed at:
+Commit:
 
 `325c98e725502229bf796083e52c0fa977803cc0` — `Modularize frame collision research DLL`
 
-The single research DLL now has separated source responsibilities:
+The research DLL remains one DLL with one owner for each hook, split into:
 
-- `Script_FrameCollisionTest.cpp` — main/bootstrap and authoritative hook bridge;
-- `CollisionControl.cpp/.h` — collision behavior and behavioral state;
-- `CollisionDiagnostics.cpp/.h` — logging and observational state;
-- `FrameCollisionShared.h` — shared factual structures/enums;
-- `HookBridgeRuntime.cpp/.h` — shared high-resolution timing;
-- `CMakeLists.txt` — includes all modules in the same DLL.
+- `Script_FrameCollisionTest.cpp` — bootstrap / hook bridge;
+- `CollisionControl.cpp/.h` — behavior and behavioral state;
+- `CollisionDiagnostics.cpp/.h` — observational diagnostics;
+- `FrameCollisionShared.h` — shared facts/results/enums;
+- `HookBridgeRuntime.cpp/.h` — shared high-resolution timing.
 
-All six hooks remain owned/installed exactly once by the main hook bridge:
+Home-PC validation on 2026-08-26:
 
-- `OnAI_Attack`;
-- `OnAI_QuickAttack`;
-- `OnAI_WhirlAttack`;
-- `OnTick`;
-- `StartEffect`;
-- `eCEntity::SetCollisionGroup`.
+- MSVC Release build succeeded;
+- built and installed DLL SHA-256 matched: `4CD111D0B92A562AD8831BA81FA00C6E8A29BE5EC3F66E5920D6B214F99553DD`;
+- Gothic 3 loaded and ran without crash;
+- smoke test covered marked Normal/Quick/Whirl across 2H, Staff, and Dual/1H+1H;
+- marker ownership, `SetCollisionGroup`, Quick/Whirl `StatePosition`, source resolution, and PrimaryFirst lifetime diagnostics remained present;
+- known stale-lifecycle behavior remained reproducible, as expected because Step A intentionally changed structure only.
 
-**Important:** this is source-level completion only. No compile, DLL-load, or Gothic 3 runtime parity test has yet been performed because the commit was made away from the authoritative home development PC.
+Evidence log:
 
-Do not call Step A validated until the home-PC parity gate passes.
+`research/raw/2026-08-26_framecollision_modular_v0.20_parity_smoke.log` (may be moved to `research/archive/` after processing).
+
+Conclusion: **Step A behavior-parity gate passed for the intended structural refactor.**
 
 ## Current Code Still Provisional
 
-Modularization intentionally preserved v0.20 behavior/scaffolding. Do not assume these mechanisms belong in the final cleanup design:
+The modular refactor intentionally preserved v0.20 scaffolding. Do not assume these belong in the final design:
 
 - `MarkerOwnedCollisionWindow` as lifetime owner;
 - strict source + animation + action + phase matching for ownership lifetime;
 - `MarkerWindowStillMatchesActorExecution(...)`;
 - `RetireMarkerOwnedSource(...)` as source-by-source lifetime retirement;
-- action/phase as a continuing marker-time veto after execution acquisition;
+- action/phase as continuing marker-time veto after execution acquisition;
 - interruption-specific cleanup contingencies.
 
-Preserve unrelated proven marker behavior until separate evidence says otherwise: RIGHT/LEFT/BOTH exact-set switching, repeated-marker rearm, optional OFF, replay/dedup/occurrence guards, and marked-motion native callback suppression.
+Preserve proven marker behavior until evidence says otherwise: source-explicit markers, exact-set switching, rearm, optional OFF, replay/dedup/occurrence protection, and marked-motion native callback suppression.
 
 ## Chat / Work Execution Model
 
-`docs/WORK_IMPLEMENTATION_PROTOCOL.md` is the execution contract.
-
-Default workflow:
-
 ```text
-Chat: design / evidence / freeze one code task
+Chat: design / evidence / freeze one bounded code task
         ↓
-Work: bounded source change + source review + commit/push + STOP
+Work: source implementation/refactor + targeted review + commit/push + STOP
         ↓
 Chat + home PC: sync / build / runtime test / interpret logs
         ↓
-Chat: update evidence/docs and choose the next change
+Chat: update evidence/docs and choose next code task
 ```
 
-Work is primarily a scarce coding/refactor resource. Routine build verification, runtime tests, log interpretation, documentation, and next-step planning stay in Chat/local testing by default unless a particular coding problem explicitly requires Work to do them.
+Routine build verification, runtime testing, log interpretation, documentation, evidence consolidation, and next-step planning stay in Chat/local testing by default.
 
-## Immediate Next Step — NOT a Work Coding Task Yet
+## Immediate Next Step
 
-On the home PC:
+Do **not** implement production cleanup yet.
 
-1. synchronize `docs/collision-source-evidence`;
-2. configure/build `Script_FrameCollisionTest`;
-3. resolve only concrete compile/link issues if any;
-4. verify DLL load/hook installation;
-5. run focused v0.20 behavior/diagnostic parity checks;
-6. bring build/runtime output and logs back to Chat for interpretation.
+Next phase is Step B: redesign lifecycle diagnostics around the smallest questions required to choose System 1 or System 2.
 
-Only after Step A parity passes should we freeze the bounded Step B diagnostic redesign and send that code task to Work.
+Before sending any code task to Work, normal Chat should:
 
-Do **not** implement production collision cleanup yet.
+1. archive processed raw logs so active context stays small;
+2. review `docs/COLLISION_LOGGER_PLAN.md` against the now-modular source;
+3. freeze the smallest bounded diagnostic change;
+4. write that assignment into `docs/BETWEEN_CHATS.md`;
+5. only then send Work the bounded Step B code task.
 
-## Read Order for the Next Work Coding Task
-
-When another code task is explicitly assigned, Work should read:
-
-1. `docs/SESSION_ENTRYPOINT.md`
-2. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
-3. `docs/ENGINEERING_GUIDE.md`
-4. `docs/COLLISION_LIFECYCLE_PLAN.md`
-5. the specific current implementation plan, e.g. `docs/COLLISION_LOGGER_PLAN.md`
-6. only the relevant modular source files
-7. `docs/SOURCE_HOOK_GUIDE.md` only as needed.
-
-Deeper evidence should be opened only when the current question requires it.
-
-Keep this file short. Update it when the active problem, chosen model, validated checkpoint, or immediate next step materially changes.
+Keep this file short. Update it only when the active problem, validated checkpoint, or immediate next step materially changes.
