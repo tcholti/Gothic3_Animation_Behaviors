@@ -129,11 +129,11 @@ static void GE_STDCALL PlayMotion_FrameCollisionTest(
     }
 
     eCVisualAnimation_PS *pThis = Hook_PlayMotion.GetSelf<eCVisualAnimation_PS *>();
-    PrimaryMotionEventSnapshot before =
+    CollisionDiagnostics::PrimaryMotionEventSnapshot before =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
     Hook_PlayMotion.GetOriginalFunction(&PlayMotion_FrameCollisionTest)(
         a_MotionType, a_pMotionDesc);
-    PrimaryMotionEventSnapshot after =
+    CollisionDiagnostics::PrimaryMotionEventSnapshot after =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
     CollisionDiagnostics::LogPrimaryMotionEvent(
         pThis, "PlayMotion", before, after);
@@ -150,11 +150,11 @@ static void GE_STDCALL StopMotion_FrameCollisionTest(
     }
 
     eCVisualAnimation_PS *pThis = Hook_StopMotion.GetSelf<eCVisualAnimation_PS *>();
-    PrimaryMotionEventSnapshot before =
+    CollisionDiagnostics::PrimaryMotionEventSnapshot before =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
     Hook_StopMotion.GetOriginalFunction(&StopMotion_FrameCollisionTest)(
         a_MotionType, a_fBlendTime);
-    PrimaryMotionEventSnapshot after =
+    CollisionDiagnostics::PrimaryMotionEventSnapshot after =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
     CollisionDiagnostics::LogPrimaryMotionEvent(
         pThis, "StopMotion", before, after);
