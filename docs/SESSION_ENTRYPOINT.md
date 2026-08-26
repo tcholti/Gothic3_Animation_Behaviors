@@ -63,31 +63,53 @@ Do not delete yet, but do not assume these v0.20 cleanup/lifetime mechanisms bel
 
 Preserve unrelated proven marker behavior: RIGHT/LEFT/BOTH desired-set switching, repeated-marker rearm, optional OFF, replay/dedup/occurrence guards, and marked-motion native callback suppression.
 
-## Logger Decision
+## Research DLL / Diagnostics Decision
 
-Do **not** expand `Script_CombatMoveLogger v0.4` into an all-purpose logger by default. It remains the proven combat-move/speed tool.
+Keep collision behavior and collision-lifecycle diagnostics in **one research DLL while they need overlapping Gothic 3 hooks**.
 
-Do **not** keep growing `Script_FrameCollisionTest v0.20` diagnostics indefinitely either.
+Do not create a second independent logger DLL that competes for the same hook addresses unless explicit hook-chaining safety is later proven.
 
-Preferred next diagnostic is a focused standalone `Script_CollisionLifecycleLogger`, documented in `docs/COLLISION_LOGGER_PLAN.md`. It should be observational/event-oriented and answer only the current lifecycle questions:
+Instead redesign `Script_FrameCollisionTest` as a multi-file DLL with one authoritative hook owner and separate responsibilities:
 
-- real attack-Hit acquisition/execution identity;
-- offensive collision requests including `7 -> 7`;
-- actual PrimaryFirst Hit end/replacement/restart;
-- corresponding native cleanup request/event;
-- attacker/defender equipment collision state during block/parade tests where needed.
+```text
+Main / Hook Bridge
+    installs each engine hook once
+        ├──> Collision Control
+        └──> Collision Diagnostics
+```
 
-No production cleanup should be added to the logger.
+Intended source separation is approximately:
+
+- Main/Hook Bridge — `ScriptInit`, shutdown, shared engine-hook installation/dispatch;
+- `CollisionControl.cpp` — behavior only;
+- `CollisionDiagnostics.cpp` — observational logging only;
+- small shared header/event structures only where genuinely needed.
+
+**Dependency rule:** collision behavior must not depend on diagnostics. Removing the diagnostic source from a build must leave collision behavior unchanged.
+
+This structure is deliberate preparation for later extraction. After research is complete, stable collision behavior can be built into a production DLL (final name to be chosen later) without carrying the diagnostic module or rewriting the behavior architecture.
+
+`Script_CombatMoveLogger v0.4` remains a separate proven combat-move/speed tool and should not be expanded automatically into the collision logger.
+
+Detailed diagnostic/module plan: `docs/COLLISION_LOGGER_PLAN.md`.
 
 ## Test Sequence
 
 The staged tests are in `docs/COLLISION_TEST_PLAN.md`.
 
-Do not begin with a huge combat matrix. First prove the logger can show one clean lifecycle and one stale lifecycle clearly. Then test whether legitimate native collision ever survives one physical Hit into the next, interruption convergence, block/parade behavior, marked/native convergence, and only then broaden across weapon/action families and NPCs.
+Do not begin with a huge combat matrix. First prove the redesigned diagnostic module can show one clean lifecycle and one stale lifecycle clearly. Then test whether legitimate native collision ever survives one physical Hit into the next, interruption convergence, block/parade behavior, marked/native convergence, and only then broaden across weapon/action families and NPCs.
 
 ## Immediate Next Coding Step
 
-The next Work/code task should be **diagnostic logger implementation/review**, not production collision cleanup.
+The next Work/code task should be:
+
+1. **modularize the existing `Script_FrameCollisionTest` DLL without changing v0.20 behavior**;
+2. keep each overlapping hook installed once;
+3. separate collision behavior from diagnostic output;
+4. build/test parity with the current v0.20 behavior;
+5. only after parity, add the lifecycle diagnostic events required by `docs/COLLISION_LOGGER_PLAN.md`.
+
+Do **not** implement production collision cleanup yet.
 
 A new Work chat should read, in this order:
 
@@ -97,11 +119,12 @@ A new Work chat should read, in this order:
 4. `docs/COLLISION_LIFECYCLE_MODELS.md`
 5. `docs/COLLISION_LOGGER_PLAN.md`
 6. `docs/COLLISION_TEST_PLAN.md`
-7. `tools/Script_CombatMoveLogger/Script_CombatMoveLogger.cpp`
-8. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-9. `docs/SOURCE_HOOK_GUIDE.md` only as needed for hook/source research
+7. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
+8. `prototypes/Script_FrameCollisionTest/CMakeLists.txt`
+9. `tools/Script_CombatMoveLogger/Script_CombatMoveLogger.cpp` only as a reference for proven diagnostic patterns
+10. `docs/SOURCE_HOOK_GUIDE.md` only as needed for hook/source research
 
-Work should first check whether the proposed logger can be implemented cleanly with available hooks. If engine/API evidence contradicts the plan, report the contradiction rather than silently adding a more complicated architecture.
+Work should first check whether the modular single-DLL plan can preserve each current hook and v0.20 behavior cleanly. If engine/API evidence contradicts the plan, report the contradiction rather than silently adding a more complicated architecture.
 
 ## Deeper Evidence Only As Needed
 
