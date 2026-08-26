@@ -209,6 +209,16 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
     eCEntity *pThis = Hook_SetCollisionGroup.GetSelf<eCEntity *>();
     eECollisionGroup beforeGroup = pThis != nullptr
         ? pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
+
+    CollisionDiagnostics::NativeCleanupStackSnapshot cleanupStack = {};
+    if (a_Group == eECollisionGroup_Item_Equipped
+        && beforeGroup == eECollisionGroup_Item_Attack)
+    {
+        cleanupStack.frameCount = ::CaptureStackBackTrace(
+            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            cleanupStack.frames, nullptr);
+    }
+
     Hook_SetCollisionGroup.GetOriginalFunction(&SetCollisionGroup_FrameCollisionTest)(a_Group);
 
     GEInt retiredMarkerExecutionCount = 0;
@@ -219,7 +229,7 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
         ? pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
     CollisionDiagnostics::LogSetCollisionGroup(
         pThis, a_Group, beforeGroup, afterGroup,
-        retiredMarkerExecutionCount, callerAddress);
+        retiredMarkerExecutionCount, callerAddress, cleanupStack);
 }
 
 static GEInt GE_STDCALL OnTick_FrameCollisionTest(gCScriptProcessingUnit *a_pSPU,

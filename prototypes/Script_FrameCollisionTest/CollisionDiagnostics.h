@@ -14,6 +14,14 @@ struct PrimaryMotionEventSnapshot
     PrimaryMotionLifetimeSnapshot primary;
 };
 
+enum { NativeCleanupStackCapacity = 16 };
+
+struct NativeCleanupStackSnapshot
+{
+    void *frames[NativeCleanupStackCapacity];
+    unsigned short frameCount;
+};
+
 void OpenLog();
 void CloseLog();
 bool IsLogOpen();
@@ -31,7 +39,8 @@ void LogMarkerResult(MarkerProcessResult const &result);
 void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGroup,
                           eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
                           GEInt retiredMarkerExecutionCount,
-                          void *callerAddress);
+                          void *callerAddress,
+                          NativeCleanupStackSnapshot const &cleanupStack);
 PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(
     eCVisualAnimation_PS *animationPS);
 PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(Entity &actor);

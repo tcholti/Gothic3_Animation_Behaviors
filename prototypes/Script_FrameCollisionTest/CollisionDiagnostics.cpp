@@ -64,6 +64,7 @@ void OpenLog()
     std::fprintf(g_pLog, "STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.\n");
+    std::fprintf(g_pLog, "STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -414,7 +415,8 @@ static PlayerSlotIdentityResult LogPlayerSlotIdentity(eCEntity *changedEntity)
 }
 
 static void LogNativeCleanupCallSite(
-    eCEntity *changedEntity, char const *slotMatch, void *callerAddress)
+    eCEntity *changedEntity, char const *slotMatch, void *callerAddress,
+    NativeCleanupStackSnapshot const &cleanupStack)
 {
     HMODULE callerModule = nullptr;
     char modulePath[MAX_PATH] = {};
@@ -455,6 +457,52 @@ static void LogNativeCleanupCallSite(
         std::fprintf(g_pLog, "CallerRVA: 0x%08lX\n", callerRva);
     else
         std::fprintf(g_pLog, "CallerRVA: <unresolved>\n");
+
+    std::fprintf(g_pLog, "CapturedStackFrameCount: %u\n",
+                 static_cast<unsigned int>(cleanupStack.frameCount));
+    for (unsigned short i = 0; i < cleanupStack.frameCount; ++i)
+    {
+        void *frameAddress = cleanupStack.frames[i];
+        HMODULE frameModule = nullptr;
+        char frameModulePath[MAX_PATH] = {};
+        bool const frameModuleResolved =
+            frameAddress != nullptr
+            && ::GetModuleHandleExA(
+                GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                    | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                reinterpret_cast<LPCSTR>(frameAddress),
+                &frameModule) != FALSE;
+        DWORD const frameModulePathLength = frameModuleResolved
+            ? ::GetModuleFileNameA(
+                frameModule, frameModulePath, MAX_PATH) : 0;
+        std::uintptr_t const frameValue =
+            reinterpret_cast<std::uintptr_t>(frameAddress);
+        std::uintptr_t const frameModuleBase =
+            reinterpret_cast<std::uintptr_t>(frameModule);
+        unsigned long const frameRva = frameModuleResolved
+            ? static_cast<unsigned long>(
+                frameValue - frameModuleBase) : 0;
+
+        if (frameModuleResolved)
+        {
+            std::fprintf(
+                g_pLog,
+                "StackFrame[%u]: Address=%p Module=%s Base=%p RVA=0x%08lX\n",
+                static_cast<unsigned int>(i), frameAddress,
+                frameModulePathLength > 0
+                    ? BaseName(frameModulePath) : "<path-unavailable>",
+                static_cast<void *>(frameModule), frameRva);
+        }
+        else
+        {
+            std::fprintf(
+                g_pLog,
+                "StackFrame[%u]: Address=%p Module=<unresolved> Base=%p RVA=<unresolved>\n",
+                static_cast<unsigned int>(i), frameAddress,
+                static_cast<void *>(frameModule));
+        }
+    }
+
     std::fprintf(g_pLog, "RequestedGroup: %d\n",
                  static_cast<GEInt>(eECollisionGroup_Item_Equipped));
     std::fprintf(g_pLog, "BeforeGroup: %d\n",
@@ -468,7 +516,8 @@ static void LogNativeCleanupCallSite(
 void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGroup,
                           eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
                           GEInt retiredMarkerExecutionCount,
-                          void *callerAddress)
+                          void *callerAddress,
+                          NativeCleanupStackSnapshot const &cleanupStack)
 {
     if (changedEntity == nullptr || g_pLog == nullptr)
         return;
@@ -497,7 +546,8 @@ void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGro
         && afterGroup == eECollisionGroup_Item_Equipped;
     if (slotIdentity.matchesEquippedSource && isExactNativeCleanup)
         LogNativeCleanupCallSite(
-            changedEntity, slotIdentity.slotMatch, callerAddress);
+            changedEntity, slotIdentity.slotMatch, callerAddress,
+            cleanupStack);
     std::fflush(g_pLog);
 }
 
