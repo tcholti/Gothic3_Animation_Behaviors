@@ -5,40 +5,66 @@
 
 ## Latest handoff
 
-**From:** Normal Chat / home-PC validation  
-**To:** Normal Chat planning before next Work task  
+**From:** Normal Chat  
+**To:** Work  
 **Date:** 2026-08-26  
 **Branch:** `docs/collision-source-evidence`
 
-### Step A status
+## Task — Step B1 PrimaryFirst Event Probe
 
-**VALIDATED.**
+Step A modularization is validated. Do not revisit or broaden it.
 
-Implementation commit:
+Read only what is needed for this bounded task:
 
-`325c98e725502229bf796083e52c0fa977803cc0`
+1. `docs/SESSION_ENTRYPOINT.md`
+2. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
+3. `docs/COLLISION_LOGGER_PLAN.md`
+4. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
+5. `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp/.h`
+6. official SDK headers for `eCVisualAnimation_PS`, `eCWrapper_emfx2Actor`, and `eCEntityPropertySet` as needed.
 
-Home-PC validation:
+### Implement
 
-- Release build succeeded;
-- installed DLL matched built DLL SHA-256 `4CD111D0B92A562AD8831BA81FA00C6E8A29BE5EC3F66E5920D6B214F99553DD`;
-- Gothic 3 loaded and ran without crash;
-- marked Normal/Quick/Whirl smoke test covered 2H, Staff, and Dual/1H+1H;
-- v0.20 marker/control/diagnostic behavior remained present;
-- known stale collision/lifetime defect still reproduced, as expected for a parity-only refactor.
+Add **diagnostic-only** hooks, owned exactly once by the existing main/hook bridge, for:
 
-Smoke log:
+- `eCVisualAnimation_PS::PlayMotion` — `RVA_Engine(0x30860)`;
+- `eCVisualAnimation_PS::StopMotion` — `RVA_Engine(0x30980)`.
 
-`research/raw/2026-08-26_framecollision_modular_v0.20_parity_smoke.log`
+Requirements:
 
-### Next action
+- observe/log only motion type `0`, the validated PrimaryFirst slot;
+- use `eCVisualAnimation_PS::GetEntity()` to identify the owning entity/actor where available;
+- capture a compact PrimaryFirst snapshot immediately **before** the original function and immediately **after** it;
+- reuse/refactor the existing diagnostic snapshot code rather than creating a second independent definition of PrimaryFirst state;
+- useful snapshot fields are: motion name, has-motion-instance, running, play time, max time, play speed; action/phase/current movement may be logged only as context where readily available;
+- distinguish PlayMotion request/result from StopMotion request/result in the log;
+- keep the existing v0.20 `OnTick` PrimaryFirst lifetime probe unchanged as a temporary comparator;
+- preserve all collision-control behavior exactly.
 
-Do not send another coding task to Work yet.
+### Do not add
 
-Normal Chat should first:
+- production cleanup;
+- new collision-control decisions;
+- lifecycle ownership/correlation tables;
+- new persistent execution state merely for this probe;
+- Quick/Whirl/Staff/block-specific behavior;
+- `StopAtLoopEnd` hook in this first probe;
+- wrapper-level `eCWrapper_emfx2Actor::PlayMotion/StopMotion` hooks unless source/API evidence proves the requested high-level hooks cannot observe the needed events.
 
-1. archive processed raw logs;
-2. review/finalize the smallest Step B lifecycle-diagnostic change from `docs/COLLISION_LOGGER_PLAN.md`;
-3. overwrite this file with that bounded Work assignment.
+Source evidence already established that `StopAtLoopEnd` schedules a future loop stop rather than representing an actual end event, so it is intentionally excluded from this probe.
 
-Do **not** implement production collision cleanup yet.
+### Scope and stop condition
+
+This task tests whether the high-level PrimaryFirst motion events can replace polling later. It does **not** decide that question in code.
+
+If the specified high-level hook signatures/RVAs cannot be used cleanly, STOP and report the concrete contradiction rather than adding a broader interception architecture.
+
+Do not build or run Gothic 3 in Work. Normal Chat/home PC owns compilation and runtime validation.
+
+### Finish
+
+When source implementation/review is complete:
+
+1. commit and push to `docs/collision-source-evidence`;
+2. overwrite this file with a concise report containing changed files, hook ownership, logged event fields, preserved behavior, unresolved source/API issues, and commit SHA;
+3. STOP. Do not proceed to broader lifecycle diagnostics or cleanup.
