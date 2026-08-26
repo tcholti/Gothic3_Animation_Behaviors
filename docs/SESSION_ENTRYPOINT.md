@@ -108,11 +108,40 @@ Established findings:
 - The stale source survives into the next Whirl, which can request `7 -> 7`.
 - Thus the defect is not Staff-specific and is not "StartRecover ran but forgot cleanup". The broken path skips the normal CombatMove Recover transition itself.
 
-This strongly supports an execution-level rule based on actual Hit replacement, but the correct post-native-opportunity repair point is still open.
+## Step B3b — NATIVE BLOCK-SKIP COMPARISON VALIDATED
+
+Runtime evidence:
+
+`research/raw/2026-08-26_stepB3b_native_block_skip_comparison.log`
+
+The run used Gothic 3's native animation assets and native collision timing across 1H, 1H+Shield, and Dual/1H+1H paths. Incidental Normal attacks used only to change poses are not part of the Quick conclusions.
+
+Established findings:
+
+- Native 1H P1 Quick and 1H+Shield P1 Quick animations that have **no Recover animation asset** can still execute `sAICombatMoveStartRecover` and perform correct `7 -> 5` collision cleanup while the PrimaryFirst Hit motion and phase-1 context remain in place. Cleanup does not require a Recover motion to be successfully played.
+- The same 1H+Shield P1 Quick/no-Recover animation also produced the bad path: collision activated `5 -> 7`, the Hit was replaced directly by Ambient with **no StartRecover and no cleanup**, and the next execution began from stale group 7. That next execution did call StartRecover and cleaned correctly, despite still having no Recover asset.
+- Therefore missing Recover **asset/motion** is decisively separate from skipping the engine's Recover **lifecycle/bookkeeping path**.
+- Dual / 1H+1H Quick reproduced the same structural stale path already seen in 2H/Staff: Hit collision remains active, the Hit is replaced directly by Ambient without StartRecover, later Quick activations can be `7 -> 7`, and a later execution that reaches StartRecover finally cleans the stale source.
+- Several native Pierce/finishing-style Raise motions were replaced very early by subsequent Quick Hits. Those later Hit executions could still reach StartRecover and clean normally. This supports, but does not yet prove, the working idea that a block skip occurring during a pre-Hit Raise may happen before offensive collision exists and therefore need not poison the later Hit lifecycle.
+
+Current stronger hypothesis:
+
+> The vulnerable block-timeout/skip can tear down or abandon some CombatMove/action ownership/bookkeeping **while the physical Hit PrimaryFirst motion continues playing**. If offensive collision is already active, the later physical motion replacement can then occur without the normal cleanup path. The exact internal meaning of "ownership" is still unproven.
+
+Animation-author visual observation additionally suggests engine-driven forward attack movement may stop immediately when this skip occurs. This is not yet logger-confirmed, but if reproduced it would indicate a broader CombatMove teardown bug of which stale collision is only one symptom.
+
+## Research Order Decision
+
+Keep two problems separate:
+
+1. **First:** finish the universal execution-level collision safety rule. It must protect native and marked Hits against any genuine abnormal end/replacement, including block skip, damage interruption, terrain interruption, and other causes.
+2. **Later / optional:** investigate the deeper native block-skip defect itself, potentially preserving movement and other CombatMove-owned behavior instead of only repairing collision cleanup.
+
+Do not make the universal collision guard depend on fixing this one block-skip cause.
 
 ## Immediate Research Question — B4 Cleanup Call-Site Ownership
 
-Before broadening to the whole `sAICombatMoveItlLoop`, prefer the narrower diagnostic question:
+Resume the narrow B4 question before broadening to the whole `sAICombatMoveItlLoop`:
 
 > Which exact native caller/call site performs the clean `SetCollisionGroup(Item_Equipped)` / `7 -> 5` reset after StartRecover returns, and what enclosing function provides the post-opportunity boundary?
 
@@ -125,6 +154,12 @@ Do not add cleanup, timers, new polling, or family-specific repair rules yet.
 ## Current Testing Rule
 
 For immediate lifecycle/cleanup research, prefer **native/unmarked attacks** so Gothic 3's own activation and cleanup are causally isolated. Reintroduce marked fixtures later to prove that marked and native attacks converge on the same end-of-Hit cleanup rule.
+
+## Documentation Rule
+
+Promote stable Step-B runtime findings into `EVIDENCE_LEDGER.md`, `COLLISION_LIFECYCLE_PLAN.md`, and this entry point after the causal result stabilizes.
+
+Maintain `SOURCE_HOOK_GUIDE.md` as the project-local record of useful tested hook/call-site knowledge. Reverse-engineered hook/call-site discoveries that are missing from or incomplete in the SDK should record module, RVA/address, tested build/context, purpose, and signature/confidence evidence where known. This may later provide useful evidence for upstream SDK improvements.
 
 ## Repository Access Note For New Sessions
 
