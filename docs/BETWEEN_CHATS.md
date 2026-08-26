@@ -5,49 +5,79 @@
 
 ## Latest result
 
-**From:** Work  
-**To:** Normal Chat / home-PC validation  
+**From:** Normal Chat / home-PC runtime validation  
+**To:** Next Normal Chat research session  
 **Date:** 2026-08-26  
 **Branch:** `docs/collision-source-evidence`
 
-## Step B5 Cleanup Parent-Stack Probe — SOURCE COMPLETE
+## Step B5 — VALIDATED AND CONSOLIDATED
 
-### Changed files
+Source commit:
 
-- `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-- `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp`
-- `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h`
+`807307570b85bcdd4f1c3c703204dbd34560feb6`
 
-### Implemented diagnostic boundary
+Runtime log:
 
-The existing main/hook bridge remains the sole owner of the existing `eCEntity::SetCollisionGroup` hook. No Gothic 3 hook was added or moved.
+`research/raw/2026-08-26_stepB5_cleanup_parent_stack_probe.log`
 
-At wrapper entry, the existing immediate `_ReturnAddress()` capture remains unchanged. When the request is `Item_Equipped` and the before group is `Item_Attack`, the wrapper additionally captures up to 16 raw frames with the supported Win32 `CaptureStackBackTrace` API into a fixed stack-local snapshot before calling the original function.
+### Main B5 result
 
-After the original call, the existing B4 player equipped-slot and exact `7 -> 5` gate remains authoritative. Only those exact records append:
+Ordinary successful action-specific cleanup stacks converged to:
 
-- captured frame count;
-- ordered frame index and raw address;
-- containing module name and base;
-- RVA relative to the resolved module.
+```text
+FrameCollision wrapper
+→ action-specific Script_Game cleanup site
+→ Game + 0x1605EB
+```
 
-The code does not classify or interpret any frame as a common parent.
+Binary inspection places `+0x1605EB` inside an internal Game helper beginning near `Game + 0x1604E0`.
 
-### Preserved behavior and scope
+Legitimate damage/reaction interruption remained different:
 
-- Original `SetCollisionGroup` is called exactly once with the unchanged argument.
-- Existing B4 immediate caller/module/base/RVA fields are unchanged.
-- Existing general SetCollisionGroup, StartRecover, player-only PrimaryFirst, marker, and marker-owned OnTick diagnostics remain.
-- Collision-control and marker behavior are unchanged.
-- No cleanup, lifecycle ownership/state, timer, polling expansion, family-specific repair, action-specific cleanup hook, `sAICombatMoveItlLoop` hook, or block-skip fix was added.
-- Stack capture data exists only for the current wrapper invocation.
+```text
+FrameCollision wrapper
+→ Script_Game + 0x24AFF
+→ another Script_Game reaction frame
+→ Game + 0x1604D3
+```
 
-### Source/API status
+Binary inspection shows `+0x1604D3` at the return/end of the immediately preceding sibling Game helper; the ordinary sibling begins at `+0x1604E0`.
 
-No source/API/platform contradiction was found. `CaptureStackBackTrace` is a supported Win32 stack-capture mechanism and avoids manual frame-layout walking.
+Therefore B5 did **not** identify one identical parent frame shared by all successful cleanup paths. It identified adjacent sibling Game-level paths.
 
-Source review confirmed one existing SetCollisionGroup hook, one original call, pre-original candidate gating, post-original exact cleanup gating, fixed local storage, and per-frame from-address module resolution.
+### Finishing/Hack target-state observation
 
-Compilation, DLL loading, actual stack depth/order, module/RVA resolution, and whether tested cleanup families share a stable higher frame remain unverified until home-PC build/runtime testing.
+One intended execution target stood up before Hit. Gothic still played the `FinishingAttack_Raise` and `FinishingAttack_Hit` asset family, but Hit/collision and StartRecover were already `gEAction_HackAttack` (14). No action-15 -> action-14 switch is directly proven. Preserve the stronger rule: runtime action semantics, not filename identity, choose behavior.
 
-**Final source commit SHA:** `807307570b85bcdd4f1c3c703204dbd34560feb6`
+### Marker-retirement clarification
+
+`RetireMarkerOwnedSource()` is not physical fallback cleanup. Earlier v0.15/v0.16 interruption work used an already-performed Gothic `7 -> 5` reset as evidence to retire stale marker occurrence/execution bookkeeping. Intentional OFF/source switching must remain intra-Hit and must not retire the whole execution.
+
+## Consolidated docs
+
+- `docs/SESSION_ENTRYPOINT.md`
+- `docs/COLLISION_LIFECYCLE_PLAN.md`
+- `docs/COLLISION_CLEANUP_CALLSITE_MAP.md`
+- `docs/EVIDENCE_LEDGER_STEP_B.md` — canonical continuation EV-158 onward
+- `docs/README.md`
+
+The large original `EVIDENCE_LEDGER.md` remains untouched through EV-157; the Step-B continuation is explicitly indexed as the next canonical ID range.
+
+## Next research question
+
+Do **not** send a coding task to Work yet.
+
+Next Normal Chat should first inspect the two adjacent Game sibling functions and their callers/dispatch conditions:
+
+```text
+interruption sibling: around Game + 0x1604D3 / return near +0x1604D5
+ordinary sibling:     starts near Game + 0x1604E0; common B5 return +0x1605EB
+```
+
+Question:
+
+> What calls/selects these sibling helpers, and is there a narrow event-driven boundary after either legitimate completion/interruption cleanup opportunity?
+
+Only after static inspection identifies a plausible candidate should another bounded runtime probe be frozen for Work.
+
+Do not implement production cleanup, timers, broad polling, one hook per action family, or a block-skip-specific repair yet.
