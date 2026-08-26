@@ -7,60 +7,108 @@
 
 ## Where We Are
 
-Frame-controlled weapon collision is the active subsystem. The validated RIGHT/LEFT/BOTH/OFF marker core is established. `G3AB_COL_OFF` is **optional authored early shutoff**, never the general safety mechanism.
+Frame-controlled weapon collision is the active subsystem. The validated RIGHT/LEFT/BOTH/OFF marker core is established. `G3AB_COL_OFF` is **optional authored early shutoff**, never the general end-of-Hit safety mechanism.
 
-Full Whirl testing exposed a native lifecycle defect: weapon collision can remain `Item_Attack` when an attack is disrupted around block timeout. The defect is not marker-created and is broader than Staff Whirl; the new native control also contains a Dual Quick execution whose next attack begins from collision group 7 (`7 -> 7`) before a later reset.
+Full Whirl/block-timeout testing exposed a native lifecycle defect: weapon collision can remain `Item_Attack` after the relevant attack lifecycle fails to clean normally. The defect is not marker-created and is broader than Staff Whirl; native Dual Quick also produced a later `7 -> 7` attack request from an already-stale source.
 
-Recover is not the universal cleanup owner. Earlier Quick controls reset at the same boundary with or without a Recover asset.
+Recover is not the universal cleanup owner.
 
-## v0.20 Findings
+## v0.20 Finding That Changed the Design
 
-`v0.20` is read-only. Its marked log proves that action/phase is **not** a reliable lifetime owner after a marked Hit has begun. In a 2H Whirl fault, action drifted from Whirl (`10`) to Stand (`0`) while the exact owned Whirl Hit remained both `CurrentMovementAni` and `PrimaryFirst`, was still running, and was only at about `0.611 / 0.800 s`. The current strict action gate consequently rejected later authored OFF/RIGHT markers that still belonged to that surviving Hit.
+`Script_FrameCollisionTest v0.20` is read-only. It proved action/phase is not a reliable lifetime owner after a Hit has begun: a 2H Whirl drifted from action 10 to Stand/action 0 while the exact Whirl Hit remained the live PrimaryFirst/current motion at about `0.611 / 0.800 s`. The strict action/phase marker gate then rejected later markers that still belonged to that surviving Hit.
 
-On the following lifetime sample, the owned Whirl had been replaced by an Ambient primary/current motion while the source was still marker-owned and armed. Actual motion replacement therefore provides a promising cleanup boundary.
+Actual motion execution is therefore the preferred lifetime authority after acquisition, pending a better event-driven motion-lifecycle hook.
 
-A normal marked Dual Quick sample reached `0.399928 / 0.400000 s` on the owned Hit; about 17 ms later Gothic 3 performed its normal `7 -> 5` reset in Recover phase. This supports actual Hit end as a plausible lifetime boundary, but does not yet prove a universal engine rule.
+## Preferred Cleanup Architecture
 
-The v0.20 Script `OnTick` probe is diagnostic only and samples too coarsely to be the production cleanup mechanism.
-
-Finishing attacks with working Raise survived the tested block-timeout timing and reached normal cleanup. Treat this only as a lead: FinishingAttack also uses a different action/lifecycle, so Raise itself is not yet proven causal.
-
-## Working Cleanup Design
-
-The preferred direction is now a **single execution-level guard**, documented in `docs/COLLISION_LIFECYCLE_PLAN.md`:
+**Prefer System 1: execution-level native cleanup guard.**
 
 - acquire a real attack-Hit execution using native semantics;
-- marked motions suppress native activation timing, unmarked motions remain native;
-- once offensive collision is requested, the exact actual Hit execution becomes the preferred lifetime authority;
-- when that Hit actually ends/replaces, do nothing if Gothic 3 already performed native cleanup; otherwise invoke the native cleanup it should have performed;
-- how the Hit ended should not create separate cleanup branches.
+- capture the exact actual motion execution;
+- marked motion: suppress native timed activation and let markers control activation/rearm;
+- unmarked motion: leave native activation untouched;
+- if the execution requests offensive collision, remember the execution-level fact `collision requested` (including `7 -> 7` requests);
+- follow the actual Hit execution until it genuinely ends/replaces;
+- if Gothic 3 already performed proper native cleanup, do nothing;
+- if it did not, invoke the native cleanup Gothic 3 should have performed;
+- do not create separate cleanup branches for block timeout, Recover, Staff, Quick, Whirl, damage, terrain, etc. unless evidence proves the universal rule insufficient.
 
-Preferred main plan tracks only execution-level `collision requested / cleanup observed` state. Per-source ownership is the fallback only if native cleanup proves source-specific or partially independent.
+**System 2 is fallback only:** track/repair individual physical sources if cleanup proves genuinely source-specific or capable of partial independent failure.
 
-Current v0.20 source masks/windows and action/phase-based lifetime-retirement checks are therefore **provisional cleanup scaffolding to revisit, not assumed production architecture**. Do not remove them yet. RIGHT/LEFT/BOTH exact-set switching, repeated-marker rearm, optional `COL_OFF`, and replay/occurrence guards solve separate authored-marker problems and are not currently targeted for removal.
+Exact flow diagrams are in `docs/COLLISION_LIFECYCLE_MODELS.md`.
 
-## New Balance Comparison
+## Marker Rule While Hit Is Alive
 
-Pinned Jackydima New Balance source shows that with `UseStaticBlocks == false` it byte-patches `Script_Game` specifically to **remove the player block limiter**. This changes/avoids the block-timeout trigger; it is not a collision-lifetime cleanup implementation to copy.
+Markers define the complete desired offensive collision set:
 
-## Immediate Next Step
+```text
+RIGHT = {RIGHT}
+LEFT  = {LEFT}
+BOTH  = {RIGHT, LEFT}
+OFF   = {}
+```
 
-Design and run the research tests in `docs/COLLISION_LIFECYCLE_PLAN.md` before implementing cleanup:
+Conceptually: make offensive collision equal to the authored desired set. This is separate from end-of-Hit cleanup.
 
-1. determine whether any legitimate native sequence carries `Item_Attack` across the end of one physical Hit execution into another;
-2. inspect attacker/defender weapon and shield collision behavior during successful block/parade/stumble cases;
-3. locate Gothic 3's actual native cleanup operation and determine whether it is attack-wide or per-source;
-4. identify an immediate/event-driven signal for actual Hit end/replacement and validate it against normal completion, block-timeout drift, and genuine interruption.
+## Current Code to Treat as Provisional
 
-Only after those questions are stable should the logger be upgraded around the exact required evidence. Do **not** add new Quick/Whirl/Staff/block/Recover-specific cleanup branches while the unified rule is under investigation.
+Do not delete yet, but do not assume these v0.20 cleanup/lifetime mechanisms belong in the next production design:
 
-## Read Next Only As Needed
+- `MarkerOwnedCollisionWindow` as lifetime owner;
+- strict source + animation + action + phase matching for ownership lifetime;
+- `MarkerWindowStillMatchesActorExecution(...)`;
+- `RetireMarkerOwnedSource(...)` as source-by-source lifetime retirement;
+- action/phase as a continuing marker-time veto after execution acquisition;
+- any new interruption-specific cleanup contingencies.
 
-1. `docs/COLLISION_LIFECYCLE_PLAN.md` — current main/fallback cleanup plan, provisional v0.20 paths to revisit, and next tests.
-2. `research/raw/2026-08-25_framecollision_v0.20_player_staff_2h_dual_block_timeout_*.log` — immediate evidence.
-3. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp` — v0.20 probe/current prototype.
-4. `docs/HANDOFF.md` — detailed continuation state.
-5. `docs/RESEARCH_MAP.md` and `docs/EVIDENCE_LEDGER.md` — broader research/evidence state.
-6. `references/jackydima-gothic3sdk/scripts/Script_NewBalance/CodePatch.cpp` — block-limiter comparison.
+Preserve unrelated proven marker behavior: RIGHT/LEFT/BOTH desired-set switching, repeated-marker rearm, optional OFF, replay/dedup/occurrence guards, and marked-motion native callback suppression.
 
-Keep this file short; update it only when the immediate problem, current prototype, or next step materially changes.
+## Logger Decision
+
+Do **not** expand `Script_CombatMoveLogger v0.4` into an all-purpose logger by default. It remains the proven combat-move/speed tool.
+
+Do **not** keep growing `Script_FrameCollisionTest v0.20` diagnostics indefinitely either.
+
+Preferred next diagnostic is a focused standalone `Script_CollisionLifecycleLogger`, documented in `docs/COLLISION_LOGGER_PLAN.md`. It should be observational/event-oriented and answer only the current lifecycle questions:
+
+- real attack-Hit acquisition/execution identity;
+- offensive collision requests including `7 -> 7`;
+- actual PrimaryFirst Hit end/replacement/restart;
+- corresponding native cleanup request/event;
+- attacker/defender equipment collision state during block/parade tests where needed.
+
+No production cleanup should be added to the logger.
+
+## Test Sequence
+
+The staged tests are in `docs/COLLISION_TEST_PLAN.md`.
+
+Do not begin with a huge combat matrix. First prove the logger can show one clean lifecycle and one stale lifecycle clearly. Then test whether legitimate native collision ever survives one physical Hit into the next, interruption convergence, block/parade behavior, marked/native convergence, and only then broaden across weapon/action families and NPCs.
+
+## Immediate Next Coding Step
+
+The next Work/code task should be **diagnostic logger implementation/review**, not production collision cleanup.
+
+A new Work chat should read, in this order:
+
+1. `docs/SESSION_ENTRYPOINT.md`
+2. `docs/ENGINEERING_GUIDE.md`
+3. `docs/COLLISION_LIFECYCLE_PLAN.md`
+4. `docs/COLLISION_LIFECYCLE_MODELS.md`
+5. `docs/COLLISION_LOGGER_PLAN.md`
+6. `docs/COLLISION_TEST_PLAN.md`
+7. `tools/Script_CombatMoveLogger/Script_CombatMoveLogger.cpp`
+8. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
+9. `docs/SOURCE_HOOK_GUIDE.md` only as needed for hook/source research
+
+Work should first check whether the proposed logger can be implemented cleanly with available hooks. If engine/API evidence contradicts the plan, report the contradiction rather than silently adding a more complicated architecture.
+
+## Deeper Evidence Only As Needed
+
+- `research/raw/2026-08-25_framecollision_v0.20_player_staff_2h_dual_block_timeout_*.log`
+- `docs/HANDOFF.md`
+- `docs/RESEARCH_MAP.md`
+- `docs/EVIDENCE_LEDGER.md`
+- pinned Jackydima SDK/reference source
+
+Keep this file short. Update it when the active problem, chosen model, or immediate next step materially changes.
