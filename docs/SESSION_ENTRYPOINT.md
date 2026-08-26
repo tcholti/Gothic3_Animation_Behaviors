@@ -17,7 +17,7 @@ Recover is not the universal cleanup owner.
 
 ## v0.20 Finding That Changed the Design
 
-`Script_FrameCollisionTest v0.20` is read-only. It proved action/phase is not a reliable lifetime owner after a Hit has begun: a 2H Whirl drifted from action 10 to Stand/action 0 while the exact Whirl Hit remained the live PrimaryFirst/current motion at about `0.611 / 0.800 s`. The strict action/phase marker gate then rejected later markers that still belonged to that surviving Hit.
+`Script_FrameCollisionTest v0.20` proved action/phase is not a reliable lifetime owner after a Hit has begun: a 2H Whirl drifted from action 10 to Stand/action 0 while the exact Whirl Hit remained the live PrimaryFirst/current motion at about `0.611 / 0.800 s`.
 
 Actual motion execution is therefore the preferred lifetime authority after acquisition, pending a better event-driven motion-lifecycle hook.
 
@@ -29,7 +29,7 @@ Actual motion execution is therefore the preferred lifetime authority after acqu
 - capture the exact actual motion execution;
 - marked motion: suppress native timed activation and let markers control activation/rearm;
 - unmarked motion: leave native activation untouched;
-- if the execution requests offensive collision, remember the execution-level fact `collision requested` (including `7 -> 7` requests);
+- if the execution requests offensive collision, remember the execution-level fact `collision requested`, including `7 -> 7`;
 - follow the actual Hit execution until it genuinely ends/replaces;
 - if Gothic 3 already performed proper native cleanup, do nothing;
 - if it did not, invoke the native cleanup Gothic 3 should have performed;
@@ -37,7 +37,7 @@ Actual motion execution is therefore the preferred lifetime authority after acqu
 
 **System 2 is fallback only:** track/repair individual physical sources if cleanup proves genuinely source-specific or capable of partial independent failure.
 
-The complete System 1/System 2 flow diagrams are now contained directly in `docs/COLLISION_LIFECYCLE_PLAN.md`.
+Complete System 1/System 2 diagrams and hypotheses are in `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
 ## Marker Rule While Hit Is Alive
 
@@ -52,104 +52,92 @@ OFF   = {}
 
 Conceptually: make offensive collision equal to the authored desired set. This is separate from end-of-Hit cleanup.
 
-## Current Code to Treat as Provisional
+## Step A Modularization Status
 
-Do not delete yet, but do not assume these v0.20 cleanup/lifetime mechanisms belong in the next production design:
+The v0.20 source modularization is committed and pushed at:
+
+`325c98e725502229bf796083e52c0fa977803cc0` — `Modularize frame collision research DLL`
+
+The single research DLL now has separated source responsibilities:
+
+- `Script_FrameCollisionTest.cpp` — main/bootstrap and authoritative hook bridge;
+- `CollisionControl.cpp/.h` — collision behavior and behavioral state;
+- `CollisionDiagnostics.cpp/.h` — logging and observational state;
+- `FrameCollisionShared.h` — shared factual structures/enums;
+- `HookBridgeRuntime.cpp/.h` — shared high-resolution timing;
+- `CMakeLists.txt` — includes all modules in the same DLL.
+
+All six hooks remain owned/installed exactly once by the main hook bridge:
+
+- `OnAI_Attack`;
+- `OnAI_QuickAttack`;
+- `OnAI_WhirlAttack`;
+- `OnTick`;
+- `StartEffect`;
+- `eCEntity::SetCollisionGroup`.
+
+**Important:** this is source-level completion only. No compile, DLL-load, or Gothic 3 runtime parity test has yet been performed because the commit was made away from the authoritative home development PC.
+
+Do not call Step A validated until the home-PC parity gate passes.
+
+## Current Code Still Provisional
+
+Modularization intentionally preserved v0.20 behavior/scaffolding. Do not assume these mechanisms belong in the final cleanup design:
 
 - `MarkerOwnedCollisionWindow` as lifetime owner;
 - strict source + animation + action + phase matching for ownership lifetime;
 - `MarkerWindowStillMatchesActorExecution(...)`;
 - `RetireMarkerOwnedSource(...)` as source-by-source lifetime retirement;
 - action/phase as a continuing marker-time veto after execution acquisition;
-- any new interruption-specific cleanup contingencies.
+- interruption-specific cleanup contingencies.
 
-Preserve unrelated proven marker behavior: RIGHT/LEFT/BOTH desired-set switching, repeated-marker rearm, optional OFF, replay/dedup/occurrence guards, and marked-motion native callback suppression.
+Preserve unrelated proven marker behavior until separate evidence says otherwise: RIGHT/LEFT/BOTH exact-set switching, repeated-marker rearm, optional OFF, replay/dedup/occurrence guards, and marked-motion native callback suppression.
 
-## Research DLL / Diagnostics Decision
+## Chat / Work Execution Model
 
-Keep collision behavior and collision-lifecycle diagnostics in **one research DLL while they need overlapping Gothic 3 hooks**.
+`docs/WORK_IMPLEMENTATION_PROTOCOL.md` is the execution contract.
 
-Do not create a second independent logger DLL that competes for the same hook addresses unless explicit hook-chaining safety is later proven.
-
-Instead redesign `Script_FrameCollisionTest` as a multi-file DLL with one authoritative hook owner and separate responsibilities:
+Default workflow:
 
 ```text
-Main / Hook Bridge
-    installs each engine hook once
-        ├──> Collision Control
-        └──> Collision Diagnostics
+Chat: design / evidence / freeze one code task
+        ↓
+Work: bounded source change + source review + commit/push + STOP
+        ↓
+Chat + home PC: sync / build / runtime test / interpret logs
+        ↓
+Chat: update evidence/docs and choose the next change
 ```
 
-Intended source separation is approximately:
+Work is primarily a scarce coding/refactor resource. Routine build verification, runtime tests, log interpretation, documentation, and next-step planning stay in Chat/local testing by default unless a particular coding problem explicitly requires Work to do them.
 
-- Main/Hook Bridge — `ScriptInit`, shutdown, shared engine-hook installation/dispatch;
-- `CollisionControl.cpp` — behavior only;
-- `CollisionDiagnostics.cpp` — observational logging only;
-- small shared header/event structures only where genuinely needed.
+## Immediate Next Step — NOT a Work Coding Task Yet
 
-**Dependency rule:** collision behavior must not depend on diagnostics. Removing the diagnostic source from a build must leave collision behavior unchanged.
+On the home PC:
 
-This structure is deliberate preparation for later extraction. After research is complete, stable collision behavior can be built into a production DLL (final name to be chosen later) without carrying the diagnostic module or rewriting the behavior architecture.
+1. synchronize `docs/collision-source-evidence`;
+2. configure/build `Script_FrameCollisionTest`;
+3. resolve only concrete compile/link issues if any;
+4. verify DLL load/hook installation;
+5. run focused v0.20 behavior/diagnostic parity checks;
+6. bring build/runtime output and logs back to Chat for interpretation.
 
-`Script_CombatMoveLogger v0.4` remains a separate proven combat-move/speed tool and should not be expanded automatically into the collision logger.
-
-Detailed diagnostic/module plan: `docs/COLLISION_LOGGER_PLAN.md`.
-
-## Work Coding Discipline
-
-`docs/WORK_IMPLEMENTATION_PROTOCOL.md` is the execution contract for the next coding session.
-
-It defines:
-
-- **behavior integrity** — anything outside the explicitly targeted change must remain semantically unchanged;
-- principle-first implementation rather than symptom-by-symptom fixes;
-- one runtime hook owner with modular source responsibilities;
-- smallest-sufficient state/model;
-- deliberate resource use regardless of available compute/context/tool capacity;
-- explicit stop conditions when implementation starts growing beyond what the agreed model can explain;
-- required evidence/handoff after each meaningful step.
-
-A Work session may challenge the design when engine/API evidence contradicts it. It must not silently replace the design with accumulated compensating code.
-
-## Test Sequence
-
-The staged tests are in `docs/COLLISION_TEST_PLAN.md`.
-
-Do not begin with a huge combat matrix. First prove the redesigned diagnostic module can show one clean lifecycle and one stale lifecycle clearly. Then test whether legitimate native collision ever survives one physical Hit into the next, interruption convergence, block/parade behavior, marked/native convergence, and only then broaden across weapon/action families and NPCs.
-
-## Immediate Next Coding Step
-
-The next Work/code task should be:
-
-1. **modularize the existing `Script_FrameCollisionTest` DLL without changing v0.20 behavior**;
-2. keep each overlapping hook installed once;
-3. separate collision behavior from diagnostic output;
-4. build/test parity with the current v0.20 behavior;
-5. only after parity, add the lifecycle diagnostic events required by `docs/COLLISION_LOGGER_PLAN.md`.
+Only after Step A parity passes should we freeze the bounded Step B diagnostic redesign and send that code task to Work.
 
 Do **not** implement production collision cleanup yet.
 
-A new Work chat should read, in this order:
+## Read Order for the Next Work Coding Task
+
+When another code task is explicitly assigned, Work should read:
 
 1. `docs/SESSION_ENTRYPOINT.md`
 2. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
 3. `docs/ENGINEERING_GUIDE.md`
 4. `docs/COLLISION_LIFECYCLE_PLAN.md`
-5. `docs/COLLISION_LOGGER_PLAN.md`
-6. `docs/COLLISION_TEST_PLAN.md`
-7. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-8. `prototypes/Script_FrameCollisionTest/CMakeLists.txt`
-9. `tools/Script_CombatMoveLogger/Script_CombatMoveLogger.cpp` only as a reference for proven diagnostic patterns
-10. `docs/SOURCE_HOOK_GUIDE.md` only as needed for hook/source research
+5. the specific current implementation plan, e.g. `docs/COLLISION_LOGGER_PLAN.md`
+6. only the relevant modular source files
+7. `docs/SOURCE_HOOK_GUIDE.md` only as needed.
 
-Work should first check whether the modular single-DLL plan can preserve each current hook and v0.20 behavior cleanly. If engine/API evidence contradicts the plan, report the contradiction rather than silently adding a more complicated architecture.
+Deeper evidence should be opened only when the current question requires it.
 
-## Deeper Evidence Only As Needed
-
-- `research/raw/2026-08-25_framecollision_v0.20_player_staff_2h_dual_block_timeout_*.log`
-- `docs/HANDOFF.md`
-- `docs/RESEARCH_MAP.md`
-- `docs/EVIDENCE_LEDGER.md`
-- pinned Jackydima SDK/reference source
-
-Keep this file short. Update it when the active problem, chosen model, or immediate next step materially changes.
+Keep this file short. Update it when the active problem, chosen model, validated checkpoint, or immediate next step materially changes.
