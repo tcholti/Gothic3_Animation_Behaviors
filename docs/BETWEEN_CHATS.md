@@ -3,68 +3,80 @@
 **Purpose:** Small transient bridge between normal Chat and Work.  
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-## Latest result
+## Latest handoff
 
-**From:** Work  
-**To:** Normal Chat / home-PC validation  
+**From:** Normal Chat  
+**To:** Work  
 **Date:** 2026-08-26  
 **Branch:** `docs/collision-source-evidence`
 
-## Step B4 Native Cleanup Call-Site Probe — SOURCE COMPLETE
+## Step B4/B4b Result — NATIVE CLEANUP ARCHITECTURE MAPPED
 
-### Changed files
+Read first:
 
-- `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-- `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp`
-- `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h`
+- `docs/SESSION_ENTRYPOINT.md`
+- `docs/COLLISION_CLEANUP_CALLSITE_MAP.md`
+- `docs/COLLISION_LIFECYCLE_PLAN.md`
+- `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
 
-### Existing hook and call behavior
+B4/B4b established that exact native player weapon `7 -> 5` cleanup is performed from multiple action-specific `Script_Game.dll` call sites, plus a separate tested interruption cleanup call site at `Script_Game + 0x24AFF`.
 
-No hook was added or moved. The existing main/hook bridge remains the sole owner of the `eCEntity::SetCollisionGroup` hook.
+Do **not** implement one hook per cleanup family. The production target remains one execution-level Hit lifecycle guard.
 
-At wrapper entry it now captures MSVC's raw `_ReturnAddress()` as a stack-local fact. The wrapper then:
+## Step B5 — BOUNDED CLEANUP PARENT-STACK PROBE
 
-1. reads the existing before group;
-2. calls original `SetCollisionGroup` exactly once with the unchanged argument;
-3. preserves existing marker-source retirement;
-4. reads the existing after group;
-5. forwards the caller address to diagnostics with the existing facts.
+### Purpose
 
-### New compact record
+Answer only this question:
 
-A `NATIVE CLEANUP CALL SITE` record is emitted only when:
+> Do the action-specific native cleanup paths and the tested interruption cleanup path share a useful higher caller/dispatcher/CombatMove boundary after the native cleanup opportunity?
 
-- the changed entity matches the player's equipped LEFT and/or RIGHT source;
-- requested group is `Item_Equipped` (5);
-- before group is `Item_Attack` (7);
-- after group is `Item_Equipped` (5).
+### Implement only this diagnostic change
 
-The record contains:
+Use the **existing** `eCEntity::SetCollisionGroup` hook. Do not add another Gothic 3 hook.
 
-- high-resolution elapsed time;
-- source name/address and player-slot match;
-- raw caller/return address;
-- containing module resolution via `GetModuleHandleExA(FROM_ADDRESS | UNCHANGED_REFCOUNT)`;
-- module filename and base;
-- caller return-address RVA relative to that module;
-- the exact requested/before/after groups.
+At wrapper entry, for calls that are plausible cleanup candidates (`requested Item_Equipped` and current/before group `Item_Attack`), capture a short raw call stack as stack-local diagnostic data using a robust supported Win32 mechanism if available (for example `RtlCaptureStackBackTrace` / `CaptureStackBackTrace`).
 
-No module is assumed in advance.
+Do not manually walk guessed EBP/frame layouts or depend on compiler-specific stack offsets. If robust stack capture is not viable in this Win32 build, report that contradiction and STOP rather than implementing an unsafe substitute.
 
-### Preserved behavior and scope
+After the original `SetCollisionGroup` call, preserve the existing B4 exact player-slot `7 -> 5` gate. For those exact cleanup records, extend `NATIVE CLEANUP CALL SITE` with a compact ordered stack list containing, for each captured frame where practical:
 
-- Existing general `SetCollisionGroup` output is preserved.
-- StartRecover, player-only PrimaryFirst, marker, and old marker-owned `OnTick` probes remain unchanged.
-- Collision-control code and behavior are unchanged and independent of diagnostics.
-- No cleanup, lifecycle ownership, timer, polling/checking mechanism, family-specific repair, production decision, new hook, or `sAICombatMoveItlLoop` path was added.
-- The separate block-skip/CombatMove teardown problem was not investigated or changed.
+- frame index;
+- raw address;
+- containing module name/base;
+- RVA relative to that module.
 
-### Source/API status
+Keep the existing immediate caller/module/RVA fields unchanged so B4 evidence remains directly comparable.
 
-No source/API contradiction was found. Source review confirms unchanged hook count, one original `SetCollisionGroup` call, one wrapper-entry return-address capture, exact player-slot/`7 -> 5` gating, and from-address module resolution.
+Do not interpret or classify a frame as the common parent in code. The diagnostic should only expose the raw resolved stack; Normal Chat will compare families after runtime testing.
 
-Compilation, DLL loading, intrinsic/hook runtime behavior, and the actual cleanup caller module/RVA remain unverified until home-PC testing.
+### Preserve existing behavior
 
-`docs/SOURCE_HOOK_GUIDE.md` was intentionally not updated yet: the exact runtime call site/enclosing function has not been established.
+- original `SetCollisionGroup` called exactly once with unchanged argument;
+- collision-control behavior unchanged;
+- marker behavior unchanged;
+- existing StartRecover and player-only PrimaryFirst diagnostics may remain;
+- no cleanup behavior;
+- no lifecycle ownership/state;
+- no timers;
+- no Script `OnTick` expansion;
+- no family-specific repair rules;
+- no hook on any action-specific Script_Game cleanup function;
+- no `sAICombatMoveItlLoop` hook yet;
+- do not investigate/fix the deeper block-skip teardown in this task.
 
-**Final source commit SHA:** `ddb44930401d1c22821cbde23b16e9845b06a08d`
+The stack capture data must remain local to the current SetCollisionGroup invocation; add no persistent runtime ownership state.
+
+### Documentation
+
+Do not rewrite the architectural docs from source speculation. If implementation reveals a source/API/platform contradiction, record it in this handoff.
+
+`docs/COLLISION_CLEANUP_CALLSITE_MAP.md` is the detailed B4/B4b address authority.
+
+### Acceptance
+
+Source should allow a later native-only runtime comparison to answer whether Normal, Quick, Power/Pierce, Whirl, finishing/GetUp, and damage-interruption cleanup share any stable higher caller frame.
+
+Do not build or run Gothic 3 in Work.
+
+Commit and push the source changes, overwrite this file with a concise Work-to-Chat result and final commit SHA, then STOP.
