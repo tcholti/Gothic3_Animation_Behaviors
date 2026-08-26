@@ -1,7 +1,7 @@
 # Principle-First Engineering Guide
 
 **Status:** Experimental / living document  
-**Version:** 0.3  
+**Version:** 0.4  
 **Scope:** Language-independent engineering principles. Stored in this repository first so the method can be tested against real work before being generalized to other projects.
 
 ## Purpose
@@ -82,6 +82,35 @@ When evaluating a proposed abstraction, ask:
 If yes, that is evidence that the abstraction is strong. If each new case requires another branch, flag, exception, timer, or subsystem, revisit the model before assuming the additional complexity is necessary.
 
 **Rule:** seek generative simplicity, not simplicity for simplicity's sake.
+
+### 2.2 Use Resources Deliberately at Any Scale
+
+Good engineering should use available resources effectively whether those resources are scarce or abundant.
+
+Acknowledged constraints can improve design because they force us to decide what really needs to know what, what really needs to own what, and what can be derived from a smaller number of principles. But this discipline should not disappear when capacity increases.
+
+> **Resource abundance is not an excuse to stop looking for good engineering solutions.**
+
+More compute, memory, storage, time, code, people, bandwidth, or hardware can increase what a system is capable of. They should not become substitutes for understanding, architecture, or efficient use of those resources.
+
+An engineer with effectively unlimited steel should still ask how to build a bridge that safely performs every required function with the minimum steel reasonably necessary. Extra steel does not justify a heavier, harder-to-maintain bridge if a better structure can achieve the same or greater capability with less.
+
+The same principle applies to software and collaboration:
+
+- do not store information that can be reliably derived;
+- do not add state when one authoritative fact is sufficient;
+- do not add hooks, branches, scans, or modules merely because capacity allows them;
+- do not make every component understand the whole system when clear responsibilities and interfaces are sufficient;
+- use additional resources where they materially increase correctness, capability, safety, observability, or maintainability;
+- keep searching for better structure even when brute force would be affordable.
+
+The aim is not minimum resource use at any cost. The aim is the **minimum sufficient resource use for the required capability, robustness, safety, and future adaptability**.
+
+> **Always design the collaboration and system so that no component needs to possess or manage more of the problem than its responsibility requires. Give each part clear responsibility, preserve shared principles where all parts can rely on them, and let their interaction produce capabilities greater than any individual part would reliably achieve through brute force.**
+
+Constraints make waste more visible. Abundance can hide it. The engineering principle is the same in both cases: use what you have deliberately.
+
+**Rule:** optimize resource use through architecture, not deprivation; spend resources where they buy real capability.
 
 ---
 
