@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 1.2  
+**Version:** 1.3  
 **Updated:** 2026-08-27
 
 ## Purpose
@@ -95,6 +95,38 @@ For engine-facing behavior:
 - let contradictory evidence challenge the current model.
 
 Do not re-prove stable findings without a reason, but do not protect them from new evidence.
+
+### Runtime test log handoff
+
+When Normal Chat asks the User to run a controlled runtime test whose log is expected to become evidence, use this default transfer procedure:
+
+```text
+Normal Chat defines test conditions + exact raw-log filename
+        ↓
+User runs the test locally
+        ↓
+User places the resulting log in research/raw/ under that filename
+        ↓
+User confirms that the file is in place
+        ↓
+Normal Chat gives concise Git commands to verify, stage only the intended artifact, commit, and push
+        ↓
+Normal Chat reads the committed raw log from GitHub and performs interpretation/maintenance
+```
+
+Rules:
+
+- include the intended `research/raw/...` filename in the same message that defines the test whenever practical;
+- prefer descriptive filenames containing the date and enough gate/family/condition information to distinguish the artifact later;
+- do not ask the User to paste a complete successful build output or full runtime log into Chat by default;
+- for routine successful commands, a short confirmation or the relevant final line is sufficient;
+- if a build/test fails, request only the smallest error/output excerpt needed to diagnose it, broadening to full output only when necessary;
+- after the User confirms the raw artifact is in place, provide commands that first verify the intended path/status, then stage only the intended file(s), commit descriptively, and push the active branch;
+- once pushed, retrieve and analyze the artifact from GitHub rather than duplicating it into the chat context;
+- if GitHub transfer is temporarily unavailable, use the smallest relevant pasted excerpt as a fallback;
+- do not commit every trivial exploratory run automatically: use this procedure for logs that support the active causal gate, evidence record, regression result, or another result worth preserving.
+
+This procedure keeps chat context compact while making the repository the durable evidence surface.
 
 ---
 
