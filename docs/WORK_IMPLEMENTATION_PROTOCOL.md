@@ -1,341 +1,233 @@
 # Work Implementation Protocol
 
-**Status:** Active project protocol / living document  
-**Version:** 0.3  
-**Updated:** 2026-08-26
+**Project:** Gothic3_Animation_Behaviors  
+**Status:** Active bounded-implementation protocol  
+**Version:** 1.0  
+**Updated:** 2026-08-27
 
 ## Purpose
 
-This protocol translates the project's engineering principles into concrete rules for a coding/Work session.
+This protocol defines how Work or another implementation agent should execute a bounded Gothic 3 source task after the important semantics have already been decided.
 
-A Work session is not asked to rediscover the architecture by brute force. Its normal job is to implement one already-reasoned, bounded source change faithfully, perform the source-level review needed for that change, commit/push it, report what remains unverified, and stop.
+It replaces the previous split between the general Work protocol and `FROZEN_WORK_TASK_RULES.md`.
 
-The broader engineering loop normally belongs to Chat plus the user's authoritative Gothic 3 development machine: architecture, planning, build/test instructions, runtime testing, log interpretation, evidence updates, documentation, and deciding the next code change.
+A bounded implementation task is an implementation assignment, not an invitation to complete missing architecture by brute force.
 
-This division exists because phrases such as "keep it simple" are too ambiguous by themselves and because expensive agentic coding capacity should be spent where it adds real value. It is a default, not an absolute prohibition: a Work session may build/test when explicitly requested and when that execution is genuinely needed to resolve the coding task.
-
----
-
-## 1. Default Chat / Work Division
-
-Use the following loop unless a specific task justifies a different split:
+The normal responsibility split is currently:
 
 ```text
-Chat / design
-    ↓
-reason from evidence
-freeze the smallest next code task
-    ↓
+User + Normal Chat
+reason from evidence / decide semantics / freeze bounded task
+        ↓
 Work
-    ↓
-implement only that bounded code task
-source-level review
-commit / push
-STOP
-    ↓
-Chat + authoritative local environment
-    ↓
-sync
-build
-runtime test
-interpret logs/evidence
-update documentation
-choose next change
-    ↓
-next bounded Work task only if code changes are needed
+inspect only what implementation needs / edit / source-audit / commit-push / concise handoff
+        ↓
+Normal Chat + authoritative home PC
+independent source review / build / runtime evidence / interpretation
 ```
 
-### Chat normally owns
-
-- architecture and design;
-- hypothesis formation and test design;
-- deciding what Work is allowed to change;
-- build/test commands and local synchronization instructions;
-- interpretation of compiler output and runtime logs supplied by the user;
-- evidence classification;
-- documentation and repository continuity;
-- deciding whether another code change is needed.
-
-### Work normally owns
-
-- the explicitly scoped source implementation/refactor;
-- targeted source/API inspection necessary to implement that task;
-- source-level parity/review;
-- CMake/source-list changes required by the code change;
-- committing and pushing the bounded implementation;
-- reporting uncertainties or contradictions instead of silently expanding scope.
-
-### Work does not automatically own
-
-- broad architecture redesign;
-- large repository/document review;
-- routine build verification;
-- runtime testing;
-- log interpretation;
-- documentation consolidation;
-- planning the next several implementation steps.
-
-Those activities may be assigned to Work explicitly when they materially benefit from its environment, but they are not the default use of Work capacity.
-
-**Rule:** use Work primarily to change code, not to replace the rest of the engineering process.
+This allocation is evidence-based and revisable; it is not a universal product hierarchy.
 
 ---
 
-## 2. Preserve Behavior Integrity
+## 1. Minimal Read Order
 
-**Behavior integrity** means that behavior outside the explicitly targeted change remains semantically unchanged.
+For a frozen/bounded implementation task, start with only:
 
-For every change distinguish:
+1. `docs/SESSION_ENTRYPOINT.md`;
+2. `docs/BETWEEN_CHATS.md` when it contains the current assigned task/handoff;
+3. this protocol;
+4. the exact source files assigned by the task;
+5. the specific design/evidence/reference section explicitly named by the task.
 
-- **target behavior** — what is intentionally changing;
-- **protected behavior** — what is already proven and must remain unchanged;
-- **diagnostic behavior** — observation only, never required for production correctness;
-- **provisional scaffolding** — temporary mechanisms that may later be removed after their replacement is proven.
+Do **not** automatically read `ENGINEERING_GUIDE.md`, the full evidence ledgers, `RESEARCH_MAP.md`, `SOURCE_HOOK_GUIDE.md`, the entire collision plan set, or the whole repository before coding.
 
-Structural improvement is not permission to redesign runtime behavior.
+Retrieve additional material only when the implementation exposes a concrete dependency, contradiction, API uncertainty, or source question that requires it.
 
-**Rule:** when the requested step is structural, preserve behavior first and validate parity before adding new behavior.
-
----
-
-## 3. Restate the Governing Principles Before Coding
-
-Before a non-trivial implementation, identify the smallest set of principles the code is supposed to express.
-
-For the current collision work these include:
-
-1. While a marked Hit is alive, the current marker defines the desired offensive collision set.
-2. At actual Hit end/replacement, offensive attack collision must be clean.
-3. Prefer one execution-level native cleanup guard; use source-aware cleanup only if evidence proves it necessary.
-4. Marked and native attacks should differ primarily in activation timing, not in the general cleanup invariant.
-5. Actual motion execution is the preferred lifetime authority after acquisition; action/phase remain useful context, not continuing lifetime authority.
-
-If the proposed code cannot be explained as a direct implementation of the governing principles, stop and return the problem to design rather than adding machinery.
+Within the same Work context, do not reread unchanged documents after every prompt.
 
 ---
 
-## 4. One Runtime Owner, Modular Responsibilities
+## 2. Required Execution Sequence
 
-When collision behavior and diagnostics need the same Gothic 3 hook, keep one authoritative hook owner in the research DLL.
+A normal bounded task should follow:
 
 ```text
-Main / Hook Bridge
-    owns each engine hook once
-        ├──> Collision Control
-        └──> Collision Diagnostics
+read assigned/current-state material
+→ identify the frozen question and boundaries
+→ inspect narrowly necessary source/API material
+→ edit only the bounded implementation
+→ audit against the contract and protected behavior
+→ commit / push
+→ concise handoff
+→ STOP
 ```
 
-Rules:
-
-- install each overlapping engine hook once;
-- behavior code must not require the diagnostic module;
-- diagnostics observe shared facts/events and never decide behavior;
-- shared headers/interfaces should contain only facts genuinely needed by both sides;
-- design temporary integration around the future separation boundary.
-
-Removing diagnostics from a later production build must not require redesigning collision behavior.
+Do not broaden merely because more repository context, compute, or tooling is available.
 
 ---
 
-## 5. Use the Smallest Sufficient Model
+## 3. Semantic Preflight
 
-Do not add state, masks, caches, timers, scans, helper layers, or branches merely because they are available or already exist in the prototype.
-
-Before adding persistent state ask:
-
-> What decision requires this state, and can that decision be derived from a more authoritative existing fact or event?
-
-Prefer one authoritative fact over several inferred proxies.
-
-Do not preserve old prototype bookkeeping merely because removing it would require thought. Prototype scaffolding must justify its continued existence under the new model.
-
----
-
-## 6. Find Universal Rules Before Local Fixes
-
-Do not create separate production solutions for Quick, Whirl, Staff, block timeout, missing Recover, damage interruption, terrain interruption, or other observed failure paths unless evidence proves the general rule cannot cover them.
-
-Treat those as test cases first.
-
-Before adding an exception ask:
-
-1. Does this case truly require different correct behavior?
-2. Or is it another manifestation of the same ownership/lifecycle invariant?
-3. Can a more authoritative event or abstraction eliminate multiple branches?
-
-**Rule:** exceptions are evidence-backed deviations, not the default implementation method.
-
----
-
-## 7. Use Resources Deliberately
-
-More compute, memory, context, code-generation capacity, tool access, or development time does not justify unnecessary complexity.
-
-Use resources where they buy real capability: correctness, robustness, observability, compatibility, maintainability, adaptability, or meaningful functionality/performance.
-
-Do not substitute broad scans, repeated polling, duplicate state, large rewrites, many special cases, or unnecessary agentic work for a better model or a cheaper reliable step.
-
-**Rule:** resource abundance raises what we can achieve; it does not lower the standard for efficient architecture.
-
----
-
-## 8. Implementation Problems Are Design Feedback
-
-If the agreed architecture becomes awkward to implement, do not silently compensate with a chain of workarounds.
-
-First classify the problem:
-
-- engine/API contradicts an assumption;
-- required native operation does not exist;
-- chosen hook cannot provide the required event;
-- ownership/lifetime boundary is wrong;
-- one real exception is needed;
-- current implementation approach is wrong but the design remains sound.
-
-If the issue is architectural, report it and return to Chat/design.
-
-A coding session may challenge the plan with evidence. It must not silently replace the plan with accumulated compensating code.
-
----
-
-## 9. Change One Conceptual Variable at a Time
-
-Prefer:
+Before a non-trivial edit, the task should make the following sufficiently clear when they matter:
 
 ```text
-agreed design / hypothesis
-        ↓
-one bounded code change in Work
-        ↓
-commit / push / stop
-        ↓
-build + controlled test outside Work by default
-        ↓
-evidence interpreted in Chat
-        ↓
-keep / revise / revert
+Target change:
+Question the code is supposed to answer:
+Protected behavior:
+Allowed files/modules/hooks/interfaces:
+Authoritative facts/events:
+Semantic decisions already frozen:
+Decisions implementation is not authorized to make:
+Required evidence/source audit:
+Stop conditions:
 ```
 
-Avoid mixing structural refactor, new diagnostics, new cleanup behavior, broad cleanup, build investigation, and test interpretation in one Work task unless they are genuinely inseparable.
+This is a semantic check, not mandatory paperwork. Tiny tasks do not need a long template when the boundary is already obvious.
+
+If missing information would materially decide intended behavior, classification, ownership, lifecycle, fallback, architecture, or another protected semantic rule, stop and return that issue rather than inventing it.
 
 ---
 
-## 10. Current Collision Redesign Sequence
+## 4. What Bounded Implementation May Decide
 
-### Step A — Modularize v0.20 with behavior parity
+Implementation may choose ordinary local details when they are reversible and preserve the frozen semantics, such as:
 
-Source modularization was completed and pushed at commit:
+- normal naming/local organization;
+- direct use of an already-approved SDK/API pattern;
+- the smallest helper needed to express the assigned behavior;
+- straightforward compile fixes that do not alter architecture;
+- source-level mechanical details that do not change ownership or behavior meaning.
 
-`325c98e725502229bf796083e52c0fa977803cc0`
+Implementation must not silently decide:
 
-The source now separates hook/bootstrap, collision control, diagnostics, shared structures, and runtime timing while keeping one research DLL/hook owner.
+- what event counts as the authoritative lifetime/ownership boundary;
+- what should count as an attack, execution, replacement, source, cleanup, or other semantic category;
+- a new fallback taxonomy or policy;
+- a new ownership/lifecycle model;
+- architectural responsibility;
+- protected behavior changes;
+- unrelated future generalization.
 
-**Status:** source-level Step A complete; build/runtime parity is still unverified until the authoritative home-PC environment builds and tests it.
+A source/API contradiction may challenge the frozen task. Report it narrowly as:
 
-Do not begin Step B merely because the source refactor is committed. First complete the local parity gate.
+```text
+expected by task
+vs.
+observed source/API fact
+vs.
+why faithful implementation cannot continue
+```
 
-### Step A parity gate — outside Work by default
-
-On the authoritative Gothic 3 development PC:
-
-1. synchronize the branch;
-2. configure/build the existing `Script_FrameCollisionTest` target;
-3. resolve compile/link issues if any through the smallest bounded code task;
-4. confirm the DLL loads;
-5. run focused parity tests against already-validated v0.20 behavior/diagnostics;
-6. interpret evidence in Chat;
-7. record the result before proceeding.
-
-If a compile issue requires code changes, return only that bounded fix to Work (or make a small direct change through the normal repository workflow if appropriate). Do not reopen the entire refactor automatically.
-
-### Step B — Redesign diagnostics around lifecycle questions
-
-Only after Step A parity:
-
-- add event-oriented lifecycle logging;
-- capture offensive collision requests including `7 -> 7`;
-- capture exact actual Hit execution/lifetime evidence;
-- capture native cleanup evidence/path where available;
-- add attacker/defender block/parade context only when required by planned tests.
-
-Do not add production cleanup.
-
-### Step C — Validate diagnostics on minimal known cases
-
-First prove the diagnostics can express one clean lifecycle and one stale lifecycle unambiguously. If not, improve diagnostics before broad tests.
-
-### Step D — Run the staged research tests
-
-Follow `docs/COLLISION_TEST_PLAN.md` in Chat/local testing. Use tests to challenge the universal model, not to generate one code branch per test case.
-
-### Step E — Choose cleanup architecture from evidence
-
-Prefer System 1 if an attack-wide native cleanup guard is sufficient. Use System 2 only if source-specific/partial cleanup is proven necessary.
-
-### Step F — Implement production cleanup
-
-Return to Work with one bounded implementation task after the model is chosen. Remove/replace obsolete prototype scaffolding rather than layering the final guard over historical contingencies.
-
-### Step G — Extract the production collision DLL
-
-Once behavior is stable and broadly tested, keep stable behavior/hook modules, omit research diagnostics, and create the final production DLL without rewriting the validated architecture.
+Then stop unless an allowed fallback is already defined.
 
 ---
 
-## 11. Stop Conditions
+## 5. Project Engineering Constraints
 
-Pause implementation and report back instead of adding more code when any of these occur:
+For current Gothic 3 engine-facing work:
 
-- two or more new special-case branches are being added to solve what was intended as one universal rule;
-- a structural refactor unexpectedly changes behavior;
-- diagnostics become necessary for collision behavior to work;
-- the same engine fact is tracked independently in several ways without proven need;
-- polling/scanning is introduced before a plausible authoritative event is investigated;
-- provisional state can no longer be explained;
-- hook ownership becomes duplicated or load-order dependent;
-- the code becomes harder to explain in principle-level terms;
-- the bounded task starts expanding into build/test/log-analysis/documentation work without explicit need.
+- use native action, phase, UseType and source semantics when available;
+- do not infer collision ownership solely from generic animation filename tokens;
+- keep physical damage-source selection separate from attack family/phase identity;
+- preserve exact marker/animation ownership where frame-authored collision is involved;
+- preserve native behavior for unconfigured/unmarked cases unless the task explicitly changes it;
+- diagnostics observe facts and must not quietly become a second behavior/lifecycle authority;
+- when behavior and diagnostics share a Gothic hook, keep one authoritative hook owner unless the design explicitly changes that rule.
 
-These are design-review triggers, not invitations to brute-force through the difficulty.
+Do not add persistent state, polling, caches, masks, classifiers, fallback tables, or helper layers merely because they might be useful later.
 
----
+"Simple" means the smallest direct implementation of the already-decided behavior—not the fewest lines at any cost.
 
-## 12. Required Handoff From Work
-
-After each bounded code task report:
-
-1. files changed/created;
-2. responsibility of each affected module;
-3. hook ownership if relevant;
-4. governing principle implemented;
-5. behavior intended to remain unchanged;
-6. source-level checks performed;
-7. anything that remains unverified without build/runtime testing;
-8. any engine/API finding that challenges the design;
-9. commit SHA.
-
-Then stop unless the user explicitly assigns another code task.
-
-Do not claim architectural or runtime success merely because the source looks correct or a commit exists.
+"Separate" means responsibilities/authority remain independently understandable and removable, not merely that code lives in different files.
 
 ---
 
-## 13. Read Order for Current Collision Coding
+## 6. Preserve One Conceptual Change
 
-Before changing the collision research DLL, read:
+Prefer one bounded conceptual variable per implementation task when doing so improves causal testing and review.
 
-1. `docs/SESSION_ENTRYPOINT.md`
-2. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
-3. `docs/ENGINEERING_GUIDE.md`
-4. `docs/COLLISION_LIFECYCLE_PLAN.md`
-5. the specific plan for the bounded task (`COLLISION_LOGGER_PLAN.md`, later cleanup plan, etc.)
-6. only the relevant source files
-7. `docs/SOURCE_HOOK_GUIDE.md` only as needed.
+Do not casually combine:
 
-Deeper evidence should be opened only when the task actually requires it. `docs/README.md` explains the role and authority of the broader documentation set.
+- structural refactor;
+- new diagnostic semantics;
+- production behavior;
+- broad cleanup;
+- build investigation;
+- runtime interpretation;
+- documentation consolidation.
+
+They may be combined only when the task makes clear that they are genuinely inseparable.
+
+Adjacent improvements discovered during implementation should be reported rather than silently added unless they are necessary for correctness of the assigned change.
+
+---
+
+## 7. Source Audit Before Commit
+
+Before committing, ask:
+
+1. Did I implement only the assigned conceptual change?
+2. Did I stay inside allowed files/hooks/interfaces except for clearly necessary mechanical support?
+3. Did I preserve protected behavior?
+4. Did I add a semantic classifier, ownership rule, lifecycle rule, fallback, or state that was not already decided?
+5. Did I use a weaker inferred proxy when a stronger agreed fact/event exists?
+6. Is every new branch/state/helper directly justified by the task?
+7. Did I call the original/native function exactly as required where wrapper parity matters?
+8. Did I distinguish diagnostic observation from behavior?
+9. If source evidence contradicted the task, did I surface it instead of coding around it?
+10. Are completion claims limited to what source inspection actually proves?
+
+Mechanical checks should target known risks; do not build a compliance system larger than the implementation.
+
+---
+
+## 8. Required Handoff
+
+After the bounded task report only what the receiving context needs:
+
+- files changed;
+- what behavior/responsibility changed;
+- protected behavior preserved;
+- source-level checks performed;
+- material source/API contradiction if any;
+- what still requires build/runtime verification;
+- commit SHA.
+
+Do not reproduce the whole project, design, or evidence history in the handoff.
+
+Then stop unless another task is explicitly assigned.
+
+---
+
+## 9. Independent Review and Trust
+
+For current engine-facing Gothic 3 implementation, a meaningful Work commit should normally receive an independent Normal Chat diff-against-contract review before runtime validation or before the implementation is treated as authoritative.
+
+This is task-specific calibration, not permanent distrust.
+
+Repeated clean performance in a stable task class may justify shorter task contracts and more targeted review. A new task class, changed conditions, semantic novelty, or higher consequence may justify stronger review again.
+
+A Work self-review, apology, confidence statement, or commit existence is not independent evidence.
+
+---
+
+## 10. Stop Conditions
+
+Stop and return the issue rather than accumulating compensating code when:
+
+- a necessary semantic/ownership/lifecycle/classification decision is missing;
+- two or more special-case branches are appearing where one general rule was expected and the task did not authorize exceptions;
+- a structural change unexpectedly alters protected runtime behavior;
+- diagnostics become necessary for production behavior to work;
+- hook ownership becomes duplicated or load-order dependent without explicit design authority;
+- the task is expanding into architecture, broad research, runtime interpretation, or unrelated documentation;
+- the implementation can no longer be explained as a direct expression of the frozen question.
+
+These are design-review triggers, not invitations to brute-force completion.
 
 ---
 
 ## Core Rule
 
-> **Implement principles, not accumulated symptoms. Use Work for bounded code changes, preserve behavior integrity, use resources deliberately, keep responsibilities separable, and return evidence/design/test interpretation to Chat rather than expanding the coding task by default.**
+> **Implement the decided question faithfully from the smallest necessary context. If implementation discovers a missing semantic decision, return it to design instead of silently becoming a second architect.**
