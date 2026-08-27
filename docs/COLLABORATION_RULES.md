@@ -1,359 +1,206 @@
-# Collaboration Rules
+# Gothic 3 Project Collaboration Delta
 
 **Project:** Gothic3_Animation_Behaviors  
-**Status:** Experimental / living document  
-**Version:** 0.2  
-**Purpose:** Preserve the quality, continuity, and adaptability of our collaboration while using Work, repository review, documentation updates, and higher reasoning levels deliberately rather than automatically.
+**Status:** Active project-specific collaboration authority  
+**Version:** 1.0  
+**Updated:** 2026-08-27
+
+## Purpose
+
+This file contains only the collaboration rules that are specific to the Gothic 3 Animation Behaviors project.
+
+General collaboration behavior is governed by the active CAM framework in `tcholti/Collaborative-Agency-Model`, especially:
+
+- `COLLABORATION_RULES.md` — general collaboration behavior;
+- `COLLABORATION_PROFILE.md` — current User + Chat collaboration pattern;
+- `PROJECT_COLLABORATION.md` — sustained-project mechanisms;
+- `BETWEEN_CHATS.md` — context continuity.
+
+Do **not** reload those CAM documents for every Gothic 3 prompt. This file is the project delta. Retrieve the broader CAM authority only when a collaboration/process question actually requires it.
+
+Older Gothic 3 collaboration rules remain useful history but are superseded where they conflict with this document or the active CAM framework.
 
 ---
 
-## 1. Core Principle
+## 1. Branch and Authority Model
 
-These rules exist to improve the collaboration, not to constrain it.
+The current active development branch is:
 
-**Quality, correctness, evidence, and continuity take priority over usage savings.**
+`docs/collision-source-evidence`
 
-Usage efficiency should come primarily from avoiding unnecessary repeated work: rereading unchanged material, updating many documents after every small test, or using heavier reasoning when an established step can be handled reliably with less.
+It contains the newest collision research, prototype implementation, evidence, and continuation state.
 
-If following a rule would materially reduce the quality of the work, hide relevant evidence, create uncertainty, or make the process harder, the rule should be relaxed or changed.
+`main` is the stable integration and reusable Gothic 3 knowledge baseline. It may receive stable documentation/research improvements before the current collision implementation is ready, but unfinished collision code should remain on the active branch until a deliberate stable integration point is reached.
 
-The rules are defaults, not hard limits.
+For current work:
 
----
+- current task/state → `docs/SESSION_ENTRYPOINT.md`;
+- latest transient Chat/Work handoff → `docs/BETWEEN_CHATS.md` when one exists;
+- document roles and retrieval routes → `docs/README.md`;
+- exact implementation/source truth → the current branch source files and commits;
+- exact technical evidence → the relevant evidence/reference document or raw artifact.
 
-## 2. Preserve the Working Method That Already Works
-
-The normal implementation cycle remains:
-
-**hypothesis / question -> controlled test -> evidence -> interpretation -> smallest useful code change -> rebuild -> retest**
-
-Do not weaken this cycle merely to save usage.
-
-Continue to:
-
-- investigate Gothic 3 behavior from evidence rather than assumption;
-- use relevant SDK, example, binary-reference, source, and repository material when needed;
-- preserve proven paths and change one meaningful variable at a time when practical;
-- use logger evidence for timing and collision behavior rather than visual observation alone;
-- reconsider earlier assumptions when new evidence contradicts them;
-- broaden the investigation whenever the narrow path is no longer sufficient.
-
-Efficiency should remove redundant work around the investigation, not reduce the quality of the investigation itself.
+Do not assume `main` represents the newest implementation state while the active branch is ahead.
 
 ---
 
-## 3. Reasoning-Level Guidance
+## 2. Keep the Active Retrieval Surface Small
 
-The assistant should actively recommend the reasoning level rather than leaving the user to guess what a task requires.
+Do not reread the whole repository, documentation set, research history, or evidence corpus between prompts.
 
-### Medium reasoning — normal default
+Start from the smallest useful current state:
 
-Recommend **Medium** when the work is a continuation of an established path, for example:
+1. `docs/SESSION_ENTRYPOINT.md`;
+2. `docs/BETWEEN_CHATS.md` only when a real transient handoff must be continued;
+3. the exact source/task-specific authority required by the current responsibility.
 
-- interpreting a normal test result;
-- making a small or localized code change;
-- adjusting an existing hook, logger, configuration value, or known implementation;
-- fixing a straightforward compile error;
-- repeating a controlled experiment with one changed variable;
-- reviewing a small number of already-known relevant files;
-- discussing the next test in an established investigation.
+Then broaden only when the task exposes a concrete need.
 
-Typical wording:
+Within one continuing Chat or Work context, do not reread unchanged documents merely because another prompt arrived.
 
-> **Medium is enough for this step.** We are continuing an established path and do not need a broad review.
-
-### High reasoning — escalate when it provides real value
-
-Recommend **High** when the task materially benefits from broader or deeper reasoning, for example:
-
-- tracing an unknown Gothic 3 engine mechanism;
-- designing a new subsystem or architecture;
-- rewriting or substantially restructuring code;
-- reviewing many files, systems, documents, or repositories together;
-- resolving contradictory evidence or several competing explanations;
-- investigating a failure after the established approach has stopped producing useful progress;
-- making a decision that could create significant rework if wrong;
-- performing a broad integration or stabilization review;
-- reconstructing the state of the project after substantial changes or an uncertain handoff.
-
-Typical wording:
-
-> **I recommend switching to High for this step.** I need to trace/rewrite/cross-reference several parts of the project, and the extra reasoning is likely to improve the result.
-
-### Return to Medium after the difficult step
-
-High reasoning should not become the automatic setting for the rest of the session simply because one difficult task required it.
-
-When the difficult investigation has produced a stable path, the assistant should say so and recommend returning to Medium.
-
-Typical wording:
-
-> **We can return to Medium now.** The uncertain part is resolved and the next steps are controlled implementation/tests.
-
-### Lighter reasoning
-
-A lighter setting may be suggested for genuinely simple work such as status checks, very small clerical changes, or other tasks that do not require meaningful engineering judgment.
-
-Do not recommend a lighter setting merely to save usage when the current code/test decision contains real uncertainty.
+Large reference documents are durable external memory. Their existence does not make them mandatory context.
 
 ---
 
-## 4. Targeted Repository Review First
+## 3. Evidence-First Gothic 3 Engineering
 
-Do not automatically reread or re-review the entire repository between prompts.
+The normal engineering loop remains:
 
-Start with the smallest set of files that is reasonably sufficient for the current question.
+```text
+question / hypothesis
+    ↓
+smallest useful source or runtime investigation
+    ↓
+controlled evidence
+    ↓
+interpretation
+    ↓
+smallest justified design/code change
+    ↓
+build / runtime test
+    ↓
+update durable state when the result matters
+```
 
-Examples:
+For engine-facing behavior:
 
-- if a test concerns one hook, inspect the hook implementation and the directly related logger/code first;
-- if a compile error names a file or symbol, start there;
-- if an existing design decision is already known and unchanged, do not reopen all design documents merely to confirm it again.
+- prefer native action, phase, UseType, source/API, hook, and runtime evidence over assumptions from filenames alone;
+- use controlled player/NPC tests where actor scope matters;
+- use logging for collision timing/reset and other subtle runtime behavior rather than visual inspection alone;
+- preserve proven paths while testing one meaningful conceptual variable at a time when that improves causal evidence;
+- let contradictory evidence challenge the current model.
 
-Broaden the review when evidence requires it.
-
-There is **no fixed maximum number of files**. If five, twenty, or more files are genuinely needed to understand the problem correctly, review them. The rule prevents habitual broad review, not necessary broad review.
-
----
-
-## 5. Do Not Re-Verify Stable Knowledge Without a Reason
-
-Previously established project knowledge may be reused when:
-
-- it is documented clearly;
-- the relevant code or assumptions have not changed;
-- there is no new evidence suggesting that it may be wrong.
-
-Re-verify when:
-
-- new results conflict with it;
-- the implementation that supported it has changed;
-- the current task depends critically on a subtle detail;
-- the assistant is uncertain whether the remembered/documented conclusion still applies.
-
-The objective is to avoid spending substantial work repeatedly proving the same stable fact while retaining the ability to challenge it when necessary.
+Do not re-prove stable findings without a reason, but do not protect them from new evidence.
 
 ---
 
-## 6. Batch Routine Documentation Updates
+## 4. Preserve Deep Gothic 3 Knowledge; Optimize Retrieval Instead
 
-Do not update every project document after every small experiment.
+This repository is intended to become a useful Gothic 3 modding knowledge base, not merely a record of one feature.
 
-During a rapid test/code/test cycle, minor observations can accumulate until a **meaningful checkpoint**.
+Do not archive or delete valuable technical evidence, hook research, animation semantics, catalogs, source findings, or reusable engine knowledge merely because they are large or not needed by the current prompt.
 
-Good checkpoints include:
+Instead:
 
-- a hypothesis being confirmed or rejected;
-- a hook or implementation path becoming stable;
-- a feature reaching a testable or working state;
-- a significant engine behavior being established;
-- the project changing direction;
-- a session ending after meaningful progress;
-- preparing to move to another chat or hand the work off;
-- enough related evidence accumulating that consolidation will simplify later work.
+- index large documents by topic, heading, evidence range, symbol, action family, hook, subsystem, or search term;
+- keep exact evidence and raw artifacts available for verification;
+- prefer targeted section/evidence retrieval over full-document reading;
+- separate current conclusions from chronological research history where practical;
+- keep historical evidence discoverable when it explains why a current conclusion exists.
 
-At a checkpoint, update only the documents whose purpose is affected.
+The objective is:
 
-Avoid touching unrelated documents simply because a repository update is being made.
+> **small active cognitive surface, deep recoverable Gothic 3 knowledge.**
 
 ---
 
-## 7. Important Findings Are an Exception to Batching
+## 5. Documentation at Meaningful Checkpoints
 
-Do not leave a major confirmed finding only in transient chat context just to save usage.
+Record major durable findings promptly when losing them would cause real rediscovery or risk.
 
-Record important information promptly when losing it could cause meaningful rework, especially:
+Batch routine observations and documentation changes until a meaningful checkpoint when practical.
 
-- confirmed engine behavior;
-- a newly proven callback/hook path;
-- a disproven assumption that future work might otherwise repeat;
-- a compatibility or safety constraint;
-- a change to the project's current implementation direction;
-- a result necessary for another chat to continue correctly.
+A code commit does not require a full documentation pass, and a documentation edit does not require a full source review.
 
-Minor test details may wait for consolidation. Important durable knowledge should not.
+Update only the authorities whose responsibility actually changed.
+
+Do not turn `SESSION_ENTRYPOINT.md` or `BETWEEN_CHATS.md` into another copy of the research corpus.
 
 ---
 
-## 8. Separate Code Progress From Documentation Churn
+## 6. Current Chat / Work Allocation
 
-A code commit does not automatically require a full documentation pass.
+Current evidence often favors:
 
-Likewise, a documentation update does not require reviewing every implementation file.
+```text
+User + Normal Chat
+research / evidence interpretation / disagreement / architecture / semantics / task freezing
+        ↓
+Work when useful
+bounded implementation / targeted source or API inspection / source audit / commit-push
+        ↓
+Normal Chat + authoritative home PC
+independent source review / build / runtime testing / evidence interpretation
+```
 
-During active experimentation, prioritize getting reliable evidence and a stable implementation. Consolidate documentation when the result is mature enough to describe accurately.
+This is a current project allocation, not a permanent product hierarchy.
 
-This avoids repeatedly rewriting documentation around temporary hypotheses that may change one or two tests later.
+Use Work when its execution environment materially helps. Do not move a context-heavy design problem to Work merely because Work has more compute or repository automation.
 
----
+Use `docs/WORK_IMPLEMENTATION_PROTOCOL.md` for a bounded coding task.
 
-## 9. Use Broader Reviews Deliberately
-
-A broad repository/document review is valuable when it has a clear purpose.
-
-Examples:
-
-- before a major architectural change;
-- after several related implementations have accumulated;
-- before declaring a subsystem stable;
-- when contradictions appear between code, evidence, and documentation;
-- when a new chat lacks enough context to continue safely;
-- when technical debt or accumulated temporary decisions need consolidation.
-
-When proposing a broad review, the assistant should explain briefly why it is useful.
-
-Example:
-
-> **This is a good point for a broader review.** We now have several collision findings and two implementation paths that affect the same subsystem, so consolidating them before the next change should reduce mistakes.
+No permanent Medium/High reasoning policy is part of this project. Use sufficient reasoning for the actual responsibility and avoid spending resources on repeated reconstruction that the repository can prevent.
 
 ---
 
-## 10. Assistant Usage-Awareness Responsibility
+## 7. Bounded Implementation Must Not Invent Missing Architecture
 
-The assistant should consider likely Work/reasoning cost as one engineering constraint among many, but should not optimize blindly for it.
+For an implementation task whose semantics have already been decided:
 
-The assistant should proactively say when:
+- preserve the frozen question and protected behavior;
+- inspect only source/API material necessary to implement it;
+- do not silently create new ownership, lifecycle, classification, fallback, or architecture rules;
+- return material semantic contradictions to the design responsibility;
+- distinguish source completion from build/runtime proof;
+- independently review meaningful Work diffs against the contract before treating them as implementation authority while current evidence still justifies that review depth.
 
-- Medium is sufficient;
-- High is likely to materially improve the result;
-- a broad repository review can probably wait;
-- enough evidence has accumulated that a documentation checkpoint is worthwhile;
-- several small updates can be combined into one coherent update;
-- an attempted saving would create unacceptable uncertainty or risk.
-
-The user should not have to manage this alone.
-
-The assistant must not claim to know an exact remaining Work allowance, chat-capacity percentage, or reset state unless that information is actually exposed by the product/session. When a real usage or maximum-length warning is exposed, treat it as a continuity event and apply Section 17 immediately.
+The detailed compact execution contract is in `docs/WORK_IMPLEMENTATION_PROTOCOL.md`.
 
 ---
 
-## 11. No Artificial Fragmentation
+## 8. Continuity and Interruption
 
-Do not split a naturally connected engineering task into many chats or artificial microtasks solely to reduce Work usage if doing so would damage context or efficiency.
+A Chat or Work context is not the sole project memory.
 
-Normal Chat is a full repository-backed collaboration environment for this project when GitHub access is available. It may be used for research, broad review, consolidation, documentation, planning, log interpretation, and GitHub updates. Work should be used when its agentic execution or coding environment materially helps, especially complex implementation, repository-wide technical changes, or checks that are better performed there.
+Before reconstructing or redoing interrupted work:
 
-The choice of Chat versus Work should serve the task rather than become a rigid rule.
+1. inspect `docs/SESSION_ENTRYPOINT.md`;
+2. inspect the relevant durable commit/source/document;
+3. inspect `docs/BETWEEN_CHATS.md` if it carries newer transient state;
+4. continue only the missing responsibility.
 
----
+Do not ask the User to repeat exact technical information that can be reliably retrieved from project authority.
 
-## 12. Preserve Adaptability
-
-These rules must never prevent the assistant from changing approach when the evidence warrants it.
-
-The assistant may:
-
-- inspect additional files without prior permission when they become relevant;
-- propose a different test or implementation path;
-- recommend abandoning an approach that is failing;
-- recommend High reasoning unexpectedly when a supposedly simple task reveals deeper uncertainty;
-- update documentation earlier than planned if an important finding should be preserved;
-- postpone a planned documentation update if the underlying result is still unstable.
-
-When deviating substantially from the normal default, briefly state why.
+When the product exposes a real context/usage warning and losing transient work would matter, preserve a minimal durable checkpoint. Do not invent hidden context percentages or usage state the product has not exposed.
 
 ---
 
-## 13. Quality-Degradation Check
+## 9. Evolve the Project Method From Evidence
 
-Periodically ask:
+If collaboration becomes slow, lossy, over-documented, under-documented, or unreliable, diagnose the cause before adding another rule.
 
-**Are these rules helping us avoid redundant work, or are they starting to make the engineering worse?**
+Prefer changing the lowest justified layer:
 
-Warning signs include:
+- task wording;
+- project retrieval/indexing;
+- Work implementation protocol;
+- this Gothic 3 project delta;
+- broader CAM framework only when the lesson genuinely generalizes.
 
-- missing relevant references because the review was kept too narrow;
-- repeated mistakes because documentation was postponed too long;
-- loss of continuity between chats;
-- reluctance to use High reasoning for a genuinely difficult problem;
-- accumulating undocumented assumptions;
-- spending more effort managing the rules than doing the work;
-- lower confidence or slower progress than before the rules were introduced.
-
-If these appear, change the rules rather than forcing the workflow to comply with them.
+Old collaboration documents and experiments may be archived once their durable lessons are represented in current authority. Their historical rationale remains available through archive/history.
 
 ---
 
-## 14. Collaboration-Rule Revision Process
+## Core Project Collaboration Rule
 
-This is a living document.
-
-Changes should be based primarily on observed collaboration results rather than theoretical optimization.
-
-When a rule appears useful:
-
-- keep it and refine it if necessary.
-
-When a rule is neutral:
-
-- do not add complexity without a reason.
-
-When a rule degrades work:
-
-- modify or remove it.
-
-When a recurring successful practice emerges naturally:
-
-- consider adding it here so it survives chat transitions and can later be reused in other projects.
-
-Major changes should increment the document version so the evolution of the collaboration method remains understandable.
-
----
-
-## 15. Assistant Questions and Proposed Improvements
-
-This section is intentionally reserved for future refinement.
-
-The assistant may raise questions or propose additions when repeated work reveals a pattern that may deserve a rule.
-
-Before turning a preference into a significant permanent rule, discuss it with the user when practical.
-
-Possible questions to revisit later:
-
-- How frequently should `SESSION_ENTRYPOINT.md` and the detailed HANDOFF be refreshed during long experimental sessions?
-- Which findings deserve immediate Evidence Ledger updates versus checkpoint batching?
-- Does Medium reasoning remain sufficient for most controlled code/test loops in practice?
-- Which repository reviews consume substantial usage without improving outcomes?
-- Are there recurring tasks that should have their own lightweight procedure?
-- Which parts of this protocol generalize well enough to become a project-independent collaboration framework?
-
-Add new questions here as experience accumulates rather than prematurely creating rules for situations we have not encountered.
-
----
-
-## 16. Current Experimental Default
-
-Until experience suggests otherwise:
-
-1. **Use Medium reasoning for normal implementation and controlled test loops.**
-2. **Escalate to High when broad review, substantial rewriting, unknown engine tracing, contradictory evidence, or major architectural judgment makes it worthwhile.**
-3. **The assistant should explicitly recommend the change in reasoning level when it sees the need.**
-4. **Read relevant repository material selectively first; broaden freely when necessary.**
-5. **Do not update every document after every small result.**
-6. **Batch routine documentation at meaningful checkpoints.**
-7. **Record major durable findings promptly rather than risking their loss.**
-8. **Never sacrifice engineering quality merely to preserve usage allowance.**
-9. **Review and revise these rules if they begin to hamper the work.**
-10. **Keep `docs/SESSION_ENTRYPOINT.md` as the minimal current-state pointer for a new chat.**
-
-This default is an experiment. The objective is to learn what produces the best balance of engineering quality, continuity, speed, and sustainable tool usage through actual collaboration.
-
----
-
-## 17. Chat-Length and Usage-Limit Continuity
-
-A chat or Work session is never the sole authoritative store of project state.
-
-`docs/SESSION_ENTRYPOINT.md` is the minimal continuation pointer. It should remain short and contain only the current subsystem/question, latest durable checkpoint, immediate next step, and the deeper files a new session should open if needed.
-
-Use these safeguards:
-
-- At meaningful technical checkpoints, make sure important evidence, decisions, and code are committed before depending on further chat context.
-- Update `SESSION_ENTRYPOINT.md` whenever the active problem, current prototype, or immediate next step materially changes. Do not turn it into another full handoff.
-- Before a large review, consolidation, or risky code change, prefer having a recoverable repository checkpoint first when practical.
-- If the product exposes a warning that the conversation is near/at maximum length or that Work usage is near a limit, do not begin another broad task. Preserve the smallest useful checkpoint first and continue in a new session.
-- If a task is interrupted, do not automatically redo the whole task. Inspect the latest durable commit and entry point first, then continue only the missing part.
-- A new session should read `SESSION_ENTRYPOINT.md` first. It should not blindly reread the full repository or trust automatic cross-chat memory to reconstruct exact technical state.
-- The assistant must distinguish **known durable state** from **reasoning that may have been interrupted before it was committed**.
-
-These safeguards are intended to survive product limits without degrading the engineering process. They do not assume that ChatGPT can see an exact hidden context percentage or remaining Work allowance when the product does not expose one.
+> **Start from current state, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, and let Gothic 3 runtime/source evidence—not documentation volume—drive the engineering.**
