@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 1.0  
+**Version:** 1.1  
 **Updated:** 2026-08-27
 
 ## Purpose
@@ -37,6 +37,8 @@ For current work:
 - current task/state → `docs/SESSION_ENTRYPOINT.md`;
 - latest transient Chat/Work handoff → `docs/BETWEEN_CHATS.md` when one exists;
 - document roles and retrieval routes → `docs/README.md`;
+- knowledge-maintenance event model → `docs/KNOWLEDGE_MAINTENANCE.md`;
+- knowledge authority/update triggers → `docs/KNOWLEDGE_REGISTRY.md`;
 - exact implementation/source truth → the current branch source files and commits;
 - exact technical evidence → the relevant evidence/reference document or raw artifact.
 
@@ -59,6 +61,8 @@ Then broaden only when the task exposes a concrete need.
 Within one continuing Chat or Work context, do not reread unchanged documents merely because another prompt arrived.
 
 Large reference documents are durable external memory. Their existence does not make them mandatory context.
+
+The knowledge-maintenance protocol and registry are process tools. They are not additional mandatory pre-reading for ordinary technical prompts; Normal Chat applies their trigger logic when a meaningful event completes.
 
 ---
 
@@ -114,17 +118,31 @@ The objective is:
 
 ---
 
-## 5. Documentation at Meaningful Checkpoints
+## 5. Incremental Knowledge Maintenance Is Part of Completing the Step
 
-Record major durable findings promptly when losing them would cause real rediscovery or risk.
+The User should not need to ask after every design decision, Work session, build, or runtime test whether documentation, evidence, indexes, handoffs, raw artifacts, or archives were updated.
 
-Batch routine observations and documentation changes until a meaningful checkpoint when practical.
+For meaningful engineering events, Normal Chat should automatically perform the small maintenance transaction defined in:
 
-A code commit does not require a full documentation pass, and a documentation edit does not require a full source review.
+- `docs/KNOWLEDGE_MAINTENANCE.md`;
+- `docs/KNOWLEDGE_REGISTRY.md`.
 
-Update only the authorities whose responsibility actually changed.
+The rule is:
 
-Do not turn `SESSION_ENTRYPOINT.md` or `BETWEEN_CHATS.md` into another copy of the research corpus.
+```text
+meaningful event completes
+→ determine what actually changed
+→ update only the owning authorities whose trigger fired
+→ update index/current-state routing only when needed
+→ archive processed provenance when appropriate
+→ continue
+```
+
+A normal result should usually require one evidence update plus zero to three local authority/index/current-state updates, not a repository-wide documentation review.
+
+A code commit does not automatically require documentation changes. A repeated runtime confirmation does not automatically require architecture changes. Absence of documentation churn is correct when no authority changed.
+
+Full documentation audits remain valuable but should be exceptional: schema/authority changes, contradiction resolution, major stabilization/promotion checkpoints, or occasional health reviews after substantial growth.
 
 ---
 
@@ -142,6 +160,8 @@ bounded implementation / targeted source or API inspection / source audit / comm
 Normal Chat + authoritative home PC
 independent source review / build / runtime testing / evidence interpretation
 ```
+
+Normal Chat also owns the project knowledge-maintenance transaction around those stages. Work remains an implementation responsibility and should not become a second documentation/architecture authority unless a task explicitly assigns a narrow documentation edit.
 
 This is a current project allocation, not a permanent product hierarchy.
 
@@ -193,6 +213,7 @@ Prefer changing the lowest justified layer:
 
 - task wording;
 - project retrieval/indexing;
+- knowledge authority/update triggers;
 - Work implementation protocol;
 - this Gothic 3 project delta;
 - broader CAM framework only when the lesson genuinely generalizes.
@@ -203,4 +224,4 @@ Old collaboration documents and experiments may be archived once their durable l
 
 ## Core Project Collaboration Rule
 
-> **Start from current state, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, and let Gothic 3 runtime/source evidence—not documentation volume—drive the engineering.**
+> **Start from current state, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, and let Gothic 3 runtime/source evidence—not documentation volume—drive the engineering.**
