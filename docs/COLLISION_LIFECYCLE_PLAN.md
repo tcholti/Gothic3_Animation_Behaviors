@@ -1,357 +1,353 @@
 # Collision Lifecycle Plan
 
-**Status:** Working design / research target, not yet production implementation  
-**Updated:** 2026-08-26
+**Status:** Current collision-lifecycle architecture / research authority  
+**Updated:** 2026-08-27
 
-## Goal
+## Purpose
 
-Replace accumulated cleanup/interruption contingencies with the smallest authoritative lifecycle rule supported by the engine evidence.
+Define the smallest authoritative rule that can guarantee offensive collision cleanup without creating one repair branch per attack family or interruption symptom.
 
-> For every real attack-Hit execution that requests offensive collision, Gothic 3 gets its legitimate cleanup opportunity. When that exact Hit genuinely ends or is replaced, if proper cleanup already occurred, do nothing; if not, repair the remaining offensive collision using the native cleanup semantics.
+Detailed proof history belongs in `EVIDENCE_INDEX.md` / the evidence ledgers. Build-specific native cleanup locations belong in `COLLISION_CLEANUP_CALLSITE_MAP.md`.
 
-How the Hit ends is intentionally irrelevant to the production invariant. Normal completion, block timeout, damage interruption, terrain interruption, skipped Recover bookkeeping, or another genuine replacement should become test cases for one rule rather than separate production cleanup branches.
+The pre-information-architecture plan is preserved at:
 
-## Preferred System — Execution-Level Native Cleanup Guard
+`docs/archive/technical_2026-08-27/COLLISION_LIFECYCLE_PLAN_pre_ia.md`
 
-**System 1 remains preferred.**
+---
+
+## 1. Governing Invariant
+
+> **For every real attack-Hit execution that requests offensive collision, Gothic 3 gets its legitimate cleanup opportunity. When that exact Hit genuinely ends or is replaced, if proper cleanup already occurred, do nothing; if not, repair the remaining offensive collision using native cleanup semantics.**
+
+How the Hit ended is not part of the production rule. Normal completion, damage/reaction interruption, block timeout, skipped Recover bookkeeping, terrain interruption, and direct replacement are test cases for one lifecycle invariant.
+
+---
+
+## 2. Preferred System — Execution-Level Native Cleanup Guard
 
 ```text
 REAL ATTACK-HIT EXECUTION X BEGINS
         ↓
-Acquire using native action/callback/phase semantics
-        ↓
-Capture exact actual Hit motion execution
+Acquire from native attack semantics + exact actual Hit motion
         ↓
 Marked motion?
-   ├─ YES → suppress native collision timing;
-   │        markers own collision timing inside Hit
-   └─ NO  → leave native collision activation untouched
+   ├─ YES → markers own collision timing inside Hit
+   └─ NO  → native activation remains untouched
         ↓
-Did execution X request offensive collision?
+Did X request offensive collision?
    ├─ NO  → no cleanup obligation
-   └─ YES → remember cleanup obligation
+   └─ YES → remember obligation for X
         ↓
-Follow exact actual Hit execution
+Follow exact actual Hit execution X
         ↓
-Hit genuinely ends / is replaced / interrupted
+X genuinely ends / restarts / is replaced
         ↓
-Allow Gothic 3 its legitimate cleanup opportunity
+Allow Gothic its legitimate native cleanup opportunity
         ↓
-Was proper cleanup observed for X?
-   ├─ YES → do nothing
-   └─ NO  → repair stale offensive collision
+Was X cleaned?
+   ├─ YES → no-op
+   └─ NO  → repair remaining offensive collision
         ↓
-Retire execution-level marker/lifecycle bookkeeping
+retire execution-level lifecycle/marker bookkeeping
 ```
 
-A request counts even when the source was already `Item_Attack` (`7 -> 7`). The relevant fact is that execution X requested offensive collision, not whether the numerical group changed.
+A request counts even when the physical source was already offensive (`7 -> 7`). The obligation comes from execution X requesting offensive collision, not from observing a numerical group transition.
 
-Preferred minimal execution state, if later research permits:
+Preferred minimal state remains conceptually:
 
 ```text
 Execution X
-    exact actual Hit execution
+    exact actual Hit execution identity
     collisionRequested
     nativeCleanupObserved
 ```
 
-Production should remain event-driven. The old Script `OnTick` comparison is diagnostic only.
+A short transient `pendingFinalization` state is acceptable if the final event model requires replacement to be detected before the native cleanup opportunity has completed.
 
-## Fallback System — Source-Aware Cleanup Guard
+Production should remain event-driven.
 
-Use source-aware ownership only if evidence proves an attack-wide cleanup obligation is insufficient, for example if one source can legitimately clean while another independently remains offensive.
+---
 
-The fallback keeps the same invariant but records which physical sources were requested by execution X and checks those sources individually at the authoritative Hit end.
+## 3. Fallback — Source-Aware Guard Only If Evidence Requires It
 
-Do **not** adopt per-source bookkeeping merely because the current prototype already has RIGHT/LEFT masks.
+Use per-source cleanup ownership only if runtime/source evidence proves attack-wide obligation is insufficient—for example, if one source can legitimately clean while another independently remains stale.
 
-## Marker Rule While Hit Is Alive
+Do **not** adopt source-specific lifecycle bookkeeping merely because the marker implementation already has RIGHT/LEFT masks.
 
-Marker control is separate from final lifecycle cleanup.
+The preferred abstraction is execution-level. The physical source set is subordinate data unless evidence proves otherwise.
 
-```text
-RIGHT = desired offensive set {RIGHT}
-LEFT  = desired offensive set {LEFT}
-BOTH  = desired offensive set {RIGHT, LEFT}
-OFF   = desired offensive set {}
-```
+---
 
-Each marker defines the complete desired offensive collision set at that moment.
+## 4. Marker Rule While the Hit Is Alive
 
-Examples:
+Marker timing is separate from terminal lifecycle cleanup.
 
 ```text
-RIGHT -> LEFT
-{RIGHT} -> {LEFT}
+RIGHT = {RIGHT}
+LEFT  = {LEFT}
+BOTH  = {RIGHT, LEFT}
+OFF   = {}
 ```
 
-```text
-BOTH -> RIGHT
-{RIGHT, LEFT} -> {RIGHT}
-```
+Each marker defines the complete desired offensive equipped-source set at that authored moment.
 
-```text
-OFF
-{}
-```
+Repeated source markers explicitly rearm their source through `ClearTriggeredList()`.
 
-`G3AB_COL_OFF` is optional authored early shutoff inside a still-live Hit. It is not mandatory terminal safety and must not substitute for the execution-level cleanup invariant.
+`G3AB_COL_OFF` is an optional authored inactive gap inside a still-live Hit. It is **not** terminal safety and must not replace the lifecycle guard.
 
-Repeated source markers remain responsible for explicit rearm via `ClearTriggeredList()` at later authored contacts.
-
-## Two Governing Rules
+Two governing rules:
 
 ```text
 WHILE THE HIT IS ALIVE:
-Markers define the desired offensive collision set.
+markers define the desired offensive set.
 ```
 
 ```text
 WHEN THE HIT IS OVER:
-Offensive collision must be clean.
-If Gothic 3 already cleaned it -> nothing.
-If Gothic 3 failed -> repair.
+offensive collision must be clean.
 ```
 
-## Native Cleanup Paths Are Opportunities, Not Guarantees
+---
 
-Step B4/B4b proved that successful Gothic cleanup is not one universal action function.
+## 5. Ownership Authority
 
-Ordinary successful completion uses action-specific `Script_Game.dll` cleanup sites for tested Normal, Power, Quick, SimpleWhirl, full Whirl, Pierce, Hack, Finishing, and GetUpAttack paths.
+Use the strongest available facts for each responsibility.
 
-Legitimate damage/reaction interruption uses a separate tested path beginning with:
+### Attack-family acquisition
+
+Native callback/action/phase semantics identify the relevant attack mechanism.
+
+### Physical execution lifetime
+
+After a real Hit is acquired, the exact actual PrimaryFirst Hit motion is the stronger lifetime authority. Step-B evidence showed action/phase can drift while the physical Hit continues.
+
+### Collision obligation
+
+An actual offensive-collision request by that execution creates the cleanup obligation.
+
+### Native-cleanup observation
+
+Observe the legitimate native cleanup operation/consequence for the owned source/execution. Do not infer success merely because a successor animation was requested.
+
+### Generic script boundary
+
+A generic script-processing boundary may provide **timing only**. It must never acquire attack ownership by itself.
+
+---
+
+## 6. Native Cleanup Paths Are Opportunities, Not One Universal Function
+
+Step B4/B4b/B5 established:
+
+- successful ordinary completion uses multiple action-specific `Script_Game.dll` cleanup call sites;
+- tested damage/reaction interruption uses a separate cleanup path beginning at `Script_Game + 0x24AFF`;
+- those paths converge only later in generic script-execution machinery.
+
+Therefore production should observe whether proper native cleanup occurred rather than hook a growing matrix of family-specific cleanup functions.
+
+Exact action/RVA/stack map:
+
+`COLLISION_CLEANUP_CALLSITE_MAP.md`
+
+Evidence routing:
+
+- EV-163 — action-specific cleanup matrix;
+- EV-165 — separate tested interruption cleanup;
+- EV-166 / EV-169–EV-171 — higher generic script parents.
+
+---
+
+## 7. Step-B Constraints on Any Final Design
+
+### B1 — replacement is immediate but too early for repair
+
+`eCVisualAnimation_PS::PlayMotion(type 0)` can reveal PrimaryFirst replacement immediately.
+
+In clean Hit -> Recover transitions, successor PlayMotion can occur **before** later native `7 -> 5` cleanup. Therefore replacement itself is not a post-cleanup repair boundary.
+
+### B2 — later original callbacks are not one-shot completion
+
+The original Quick callback can begin only after cleanup and then repeat during Recover. Callback return is not universal Hit completion.
+
+### B3 — StartRecover is too early and not guaranteed
+
+`sAICombatMoveStartRecover` returns before ordinary cleanup and can be bypassed entirely by broken direct-replacement paths.
+
+### B3b — missing Recover assets are not the cause
+
+A no-Recover animation asset can still receive engine Recover bookkeeping and cleanup; the same family can also take the broken path.
+
+### B4/B4b — successful cleanup is action/path-specific
+
+Do not translate native success locations into one hook per action.
+
+### B5 + static identification — shared parents are generic script infrastructure
+
+The B5 parents are now identified:
 
 ```text
-Script_Game + 0x24AFF
+Game + 0x1603D0 = gCScriptAdmin::RunScriptState(...)
+Game + 0x1604E0 = gCScriptAdmin::RunScriptFunction(...)
+Game + 0x16F120 = gCScriptProcessingUnit::ProcessScript()
 ```
 
-The production guard should therefore **observe success**, not depend on one particular cleanup function always running.
+These are not combat-specific cleanup owners.
 
-This distinction also applies to marked attacks. Earlier marked interruption tests often cleaned successfully, but later marked Staff/block-skip cases proved natural cleanup is not guaranteed across every ending. The universal guard is therefore still required even though legitimate native interruption cleanup exists.
+`sAICombatMoveInstr` is also too early: action-specific Script_Game cleanup can occur after it returns.
 
-## Step-B Evidence That Constrains the Model
+Static comparison found no common immediate Script_Game helper after cleanup across the tested ordinary action families.
 
-### B1 — actual motion replacement is earlier than cleanup
+---
 
-`eCVisualAnimation_PS::PlayMotion(type 0)` is an immediate PrimaryFirst acquisition/replacement signal in controlled tests.
+## 8. Current Candidate — Deferred One-Shot Finalization
 
-However, clean successor Recover PlayMotion occurs **before** native `7 -> 5` cleanup. Therefore replacement detection itself is too early for immediate repair.
-
-The old Script `OnTick` comparator sees replacement later and is too indirect/coarse for production.
-
-### B2 — original attack callbacks are not completion events
-
-On clean Quick paths, native cleanup occurs before the later original callback starts; that callback then repeats during Recover. Callback return is not one-shot Hit completion.
-
-### B3 — StartRecover is not post-cleanup and is not guaranteed
-
-`gCScriptProcessingUnit::sAICombatMoveStartRecover` starts/attempts the Recover transition and returns while the weapon is still group 7. Cleanup follows later.
-
-Broken 2H/Staff Whirls can bypass StartRecover entirely and replace the Hit directly without cleanup.
-
-### B3b — missing Recover asset is not the cause
-
-Native 1H/Shield+1H Quick attacks with no Recover animation asset can still run the engine's Recover lifecycle/bookkeeping and clean correctly while the Hit motion remains Primary.
-
-The same no-Recover attack can also take the broken path and remain stale.
-
-Therefore Recover **asset playback** and Recover **lifecycle bookkeeping** are distinct.
-
-Native Dual Quick reproduced the same structural stale path, proving the defect is not Staff/Whirl-specific.
-
-### B4/B4b — successful cleanup is action-specific
-
-Detailed build-specific map:
-
-`docs/COLLISION_CLEANUP_CALLSITE_MAP.md`
-
-The same serialized `FinishingAttack` asset can be processed under different runtime actions and cleanup functions. Native action semantics, not filename identity, are the behavioral authority.
-
-A separate legitimate interruption cleanup site exists at `Script_Game + 0x24AFF`.
-
-### B5 — ordinary and interruption success reach adjacent sibling Game paths
-
-For ordinary successful completion, different action-specific Script_Game cleanup calls converged in the B5 stack to:
+Current candidate:
 
 ```text
-Game + 0x1605EB
+exact owned offensive Hit replacement/restart observed
+        ↓
+mark that exact execution pending-finalization
+        ↓
+let the current native script dispatch finish
+        ↓
+at one tightly gated post-script opportunity:
+    native cleanup observed -> no-op
+    cleanup absent          -> repair exact owned offensive source(s)
 ```
 
-inside a Game helper beginning at approximately:
+Critical restriction:
 
-```text
-Game + 0x1604E0
-```
+> The post-script layer supplies only the **after-native-opportunity timing point**. Ownership was already established by the exact attack execution and its offensive collision request.
 
-The tested legitimate interruption path instead returned through:
+This remains a candidate, not production architecture, until B6 runtime validation proves whether the relevant replacement paths actually share a useful SPU / `ProcessScript()` context.
 
-```text
-Script_Game + 0x24AFF
-→ another Script_Game frame
-→ Game + 0x1604D3
-```
+---
 
-Binary inspection shows `+0x1604D3` belongs to the immediately preceding sibling Game function, whose return ends at approximately `+0x1604D5`; the ordinary sibling begins at `+0x1604E0`.
+## 9. Step B6 — Current Validation Gate
 
-Thus B5 did **not** find one identical captured parent for both successful paths. Do not hook both sibling helpers merely because they are adjacent. First inspect who calls/selects them and whether a narrower post-opportunity event exists above them.
+The B6 source probe is implemented and independently source-reviewed. It adds no production cleanup.
 
-## Marker Bookkeeping vs Physical Cleanup
+It uses the existing player/type-0 `PlayMotion` hook to capture a short supported Win32 stack for **confirmed actual attack-Hit PrimaryFirst replacement/restart** events.
 
-Physical collision cleanup and marker-execution retirement are different responsibilities.
+Current question:
 
-The earlier v0.15/v0.16 interruption defect was:
+> **Do clean Hit -> Recover replacement, legitimate damage/reaction replacement, and bad block-skip direct replacement all occur inside the same useful SPU / `ProcessScript()` invocation so that a one-shot post-script check would reliably occur after Gothic's native cleanup opportunity?**
 
-```text
-first marker accepted
-→ attack interrupted before later authored marker
-→ Gothic physically resets weapon 7 -> 5
-→ old marker occurrence/execution record can remain stale
-→ next attack inherits old marker budget
-```
+Home-PC validation must compare:
 
-`RetireMarkerOwnedSource()` was added to react to an **already-performed** source reset and retire marker bookkeeping when that reset represented execution end. It is not a physical fallback cleanup operation.
+1. clean Hit -> Recover replacement;
+2. legitimate damage/reaction replacement;
+3. bad block-skip direct replacement with missing cleanup.
 
-Intentional intra-Hit `OFF` or exact-set source switching must not retire the entire execution.
+Interpretation:
 
-A future authoritative exact-Hit lifetime boundary may simplify both:
+- **same useful script-processing context:** strengthens the deferred post-script candidate;
+- **different/non-script replacement context:** reject or revise that checkpoint rather than adding special-case cleanup branches;
+- **ambiguous stack:** improve only the diagnostic needed to answer the boundary question.
 
-1. final physical cleanup verification;
-2. marker occurrence/budget/window retirement.
+Do not add a `ProcessScript` behavior hook until B6 evidence justifies it.
 
-Do not assume this simplification until the boundary is proven.
+---
 
-## Current Three-Path Model
+## 10. Marker Bookkeeping vs Physical Cleanup
 
-### A. Normal completion
+These are separate responsibilities.
+
+Earlier interruption work showed a case where Gothic physically cleaned a marked source but the marker occurrence/execution record could remain stale. `RetireMarkerOwnedSource()` exists to retire bookkeeping after an already-performed source reset; it is not physical fallback cleanup.
+
+Intentional OFF or exact-set source switching is intra-Hit behavior and must not retire the entire execution.
+
+A final exact-Hit lifecycle boundary may simplify both bookkeeping retirement and physical cleanup verification, but only if it preserves authored intra-Hit source transitions and replay protection.
+
+---
+
+## 11. Three Observed Ending Structures
+
+### A — ordinary successful completion
 
 ```text
 Hit
-→ action-specific Script_Game completion cleanup
-→ shared ordinary Game sibling path
+→ action-specific Script_Game cleanup
+→ RunScriptFunction/generic script return
 → collision clean
 ```
 
-### B. Legitimate damage/reaction interruption
+### B — legitimate damage/reaction interruption
 
 ```text
 Hit
-→ Script_Game interruption cleanup (+0x24AFF)
-→ interruption Game sibling path
-→ Stumble/KnockDown/etc.
+→ Script_Game interruption cleanup (+0x24AFF in tested matrix)
+→ reaction Script_Game state
+→ RunScriptState/generic script return
+→ reaction motion
 → collision clean
 ```
 
-### C. Bad block skip / abnormal teardown
+### C — bad block skip / abnormal teardown
 
 ```text
 Hit
-→ some CombatMove/gameplay ownership is abandoned
-→ proper completion cleanup not guaranteed
-→ proper interruption cleanup not guaranteed
+→ part of CombatMove/gameplay ownership/bookkeeping is abandoned
+→ ordinary cleanup not guaranteed
+→ legitimate interruption cleanup not guaranteed
 → physical Hit can continue or later replace
-→ stale collision possible
+→ stale offensive collision possible
 ```
 
-This model explains why adding one special block-timeout cleanup branch would be the wrong abstraction.
+The third structure is why a Staff-, Whirl-, Quick-, block-timeout-, or Recover-specific production repair would be the wrong abstraction.
 
-## Separate Deeper Block-Skip Hypothesis
+---
 
-Current evidence supports a broader native CombatMove teardown defect distinct from the universal collision safety guard.
+## 12. Separate Deeper Block-Skip Research
 
-Working hypothesis:
+Evidence supports a broader native CombatMove teardown defect beyond collision cleanup. The user has also observed attack-driven movement stop while the visual Hit continues in bad skip cases.
 
-> During the vulnerable block-timeout/skip, Gothic 3 may abandon some action/CombatMove ownership or bookkeeping while the physical PrimaryFirst Hit motion continues playing. A skip during an active Hit is potentially harmful regardless of whether offensive collision has activated yet.
+That deeper defect may later deserve repair, but it remains **separate** from the universal collision safety rule.
 
-Possible timing-dependent consequences:
+Research order:
 
-1. **Before collision activation:** remaining native movement and/or collision timing may be abandoned while the visual Hit continues. Missed activation from this exact mechanism remains plausible but not directly logger-confirmed.
-2. **After collision activation:** later cleanup can be lost. This is runtime-confirmed and can leave the weapon offensive during Ambient/running state and into later attacks.
+1. finish the universal collision lifecycle guard;
+2. validate it against ordinary and abnormal endings;
+3. only later investigate whether preserving full CombatMove movement/activation/bookkeeping through the skip is worthwhile.
 
-The user also visually observed attack-driven forward movement apparently stopping at the bad skip while animation continued. This remains a useful later research lead rather than a current collision-guard dependency.
+Raise is not a collision cleanup fix. It may only alter when the vulnerable transition occurs.
 
-Raise is not a cleanup or block-skip fix. A pre-Hit Raise may only move the vulnerable skip before an offensive Hit begins; if a fresh Hit starts afterward, normal gameplay ownership may be reacquired.
+---
 
-## Research Order
+## 13. Production Implementation Gate
 
-1. Finish the universal execution-level collision safety rule.
-2. Validate it against native and marked normal completion plus several abnormal endings.
-3. Only later decide whether to repair the deeper block-skip/CombatMove teardown itself to preserve movement, collision activation/timing, and other gameplay behavior.
-
-A deeper block-skip fix does not make the universal guard redundant.
-
-## Current Next Research Target
-
-Do **not** implement production cleanup yet.
-
-Next question:
-
-> What calls/selects the two adjacent Game sibling paths around `Game + 0x1604D3` and `Game + 0x1604E0..0x1605EB`, and is there a narrow event-driven boundary after either legitimate completion/interruption path has had its cleanup opportunity?
-
-Preferred next activity is static binary/source inspection of those sibling functions and their callers/dispatch conditions before another runtime hook is added.
-
-Only if that inspection identifies a plausible narrow parent/event should another bounded runtime probe be created.
+Production cleanup remains blocked until the post-native-opportunity timing boundary is strong enough to avoid family-specific repair matrices or polling.
 
 Do not default to:
 
 - one cleanup hook per action family;
-- hooking both siblings just because they are adjacent;
+- unconditional cleanup on every `ProcessScript()` return;
 - broad `sAICombatMoveItlLoop` polling;
-- timers or wall-clock delays;
-- block-timeout/Staff/Quick/Whirl-specific production cleanup rules.
+- wall-clock timers;
+- block-timeout/Staff/Quick/Whirl-specific cleanup rules;
+- action/phase-only lifetime authority after exact Hit acquisition.
 
-## Working Hypotheses
+If implementation research reveals a conceptual contradiction, return to design/research.
 
-1. Offensive collision belongs to a physical attack-Hit execution and should not intentionally survive into the next independent Hit.
-2. Actual PrimaryFirst Hit execution is a better lifetime authority than continuing action/phase after acquisition.
-3. Native and marked attacks can share one end-of-Hit cleanup invariant even though their activation policy differs.
-4. A usable event-driven post-opportunity boundary probably exists above or around the adjacent Game sibling helpers, but this is not yet proven.
-5. Defensive block/parade collision semantics must be measured before any broad "clean every collision state" implementation.
-6. The block-skip defect is likely broader than collision cleanup and should remain separate research.
+---
 
-## v0.20 Scaffolding to Revisit Later
+## 14. Later Regression Requirements
 
-Useful prototype mechanisms that are **not presumed production architecture**:
+If the final design uses generic script timing, validate unrelated mechanics as negative/no-op cases—especially:
 
-1. `MarkerOwnedCollisionWindow` as lifetime owner.
-2. strict source + animation + action + phase matching after acquisition.
-3. state-time/action/phase inference for execution lifetime.
-4. `RetireMarkerOwnedSource(...)` as lifetime inference from natural source reset.
-5. action/phase as continuing marker veto after exact Hit ownership is acquired.
-6. any accumulated special cleanup contingency.
+- Fist;
+- bow;
+- crossbow;
+- magic.
 
-Keep unless separate evidence says otherwise:
+Fist is especially important because it can share ordinary melee action enums while not using the tested weapon-style physical `Item_Attack(7)` request.
 
-- final marker vocabulary RIGHT/LEFT/BOTH/OFF;
-- desired-set switching;
-- repeated source markers + `ClearTriggeredList()` rearm;
-- optional OFF;
-- same-update duplicate suppression;
-- authored occurrence budgets for Gothic frame-effect replay/interleaving;
-- exact marked-motion preflight and native fallback when required sources are unavailable.
+The generic checkpoint must remain a complete no-op unless an exact owned offensive execution is pending finalization.
 
-## Research DLL / Diagnostics Rule
+---
 
-Keep behavior and lifecycle diagnostics in one research DLL while they share Gothic hooks.
-
-```text
-Main / Hook Bridge
-    owns each Gothic hook once
-        ├── Collision Control
-        └── Collision Diagnostics
-```
-
-Diagnostics must never be required for production behavior.
-
-`Script_CombatMoveLogger v0.4` remains a separate proven combat-move/speed tool and should not automatically absorb collision-lifecycle diagnostics.
-
-## Implementation Gate
-
-Production cleanup implementation remains blocked until the post-native-cleanup opportunity is identified strongly enough to avoid family-specific repair rules or polling.
-
-If implementation research reveals a conceptual contradiction, return to design/research rather than stacking compensating branches.
-
-## Preference Order
+## 15. Preference Order
 
 1. **Preferred:** execution-level guard that observes/reuses Gothic's native cleanup semantics.
-2. **Fallback:** source-aware guard only if independent source cleanup evidence requires it.
-3. Avoid interruption-specific production branches unless a real case is proven unable to fit either general model.
+2. **Fallback:** source-aware execution guard only if independent partial-source cleanup evidence requires it.
+3. Avoid cause/family-specific production branches unless a real case is proven unable to fit either general model.
