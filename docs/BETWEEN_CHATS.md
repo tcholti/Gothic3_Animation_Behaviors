@@ -1,70 +1,123 @@
 # Between Chats
 
-**Purpose:** Small transient bridge between normal Chat and Work.  
+**Purpose:** Small transient bridge between Normal Chat and Work.  
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-## Latest result
+## Current bounded Work task
 
-**From:** Work + independent Normal Chat source review  
-**To:** Normal Chat / home-PC validation  
+**From:** Normal Chat after isolated B6-B runtime interpretation  
+**To:** Work  
 **Date:** 2026-08-27  
 **Branch:** `docs/collision-source-evidence`
 
-## Step B6 Hit Replacement Stack Probe — SOURCE REVIEWED
+## Step B6 — Add outgoing-Hit StopMotion stack diagnostic
 
-### Changed files
+### Why this task exists
 
-Work changed:
+EV-174 established three isolated clean 2H Normal transitions with this sequence:
+
+```text
+attack Hit Primary exists
+→ StartRecover BEGIN
+→ StopMotion(type 0) removes outgoing Hit Primary
+→ Recover PlayMotion(type 0)
+→ StartRecover END
+→ native weapon cleanup 7 -> 5
+```
+
+The current B6 PlayMotion-only stack probe cannot emit on this clean path because the outgoing Hit has already been removed before successor PlayMotion begins.
+
+This is a diagnostic limitation, not evidence against the lifecycle hypothesis.
+
+### Target change
+
+Add diagnostic-only Win32 stack capture to the **already-existing** player/type-0 `StopMotion` hook when its before-snapshot is an attack-Hit PrimaryFirst.
+
+### Question the code must answer
+
+> What script/SPU stack surrounds the outgoing attack-Hit StopMotion on StopMotion-first teardown paths, so runtime evidence can compare clean/reaction teardown with the existing direct PlayMotion replacement stack on bad paths?
+
+### Frozen semantics
+
+- Keep the existing direct PlayMotion B6 replacement-stack probe unchanged.
+- In `StopMotion_FrameCollisionTest`, capture the before-snapshot exactly as today.
+- If and only if that before-snapshot is an attack-Hit Primary according to the already-existing `CollisionDiagnostics::IsAttackHitPrimaryMotion` helper, capture a short `CaptureStackBackTrace` stack and factual actor/context **before** calling original StopMotion.
+- Call original StopMotion exactly once with unchanged arguments.
+- Emit a clearly named diagnostic record such as `HIT STOP STACK`; do not label the stop itself as a confirmed replacement.
+- Preserve the existing StopMotion before/after log. Runtime analysis will correlate that record with the already-existing immediately following PlayMotion record to identify the actual successor.
+- Use supported Win32 stack capture/module resolution only; no manual frame walking.
+
+### Protected behavior
+
+Do not change:
+
+- collision activation/cleanup behavior;
+- marker behavior or marker bookkeeping;
+- attack callback suppression;
+- B4/B5 SetCollisionGroup cleanup diagnostics;
+- B3 StartRecover diagnostics;
+- existing direct PlayMotion replacement-stack behavior;
+- original StopMotion/PlayMotion call count or arguments.
+
+### Allowed source scope
+
+Expected source files only:
 
 - `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
 - `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp`
 - `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h`
 
-Normal Chat then independently reviewed the exact diff before build/runtime validation.
+Use fewer files if possible. `docs/BETWEEN_CHATS.md` may be overwritten with the concise Work result at the end.
 
-### Result
+### Allowed hooks/interfaces
 
-The existing player/type-0 `eCVisualAnimation_PS::PlayMotion` hook remains the only B6 boundary; no Gothic 3 hook was added or moved.
+- existing `Hook_StopMotion`;
+- existing `Hook_PlayMotion` remains unchanged;
+- existing supported `CaptureStackBackTrace` / module-resolution pattern already used by B5/B6.
 
-For an outgoing explicit attack-Hit PrimaryFirst identity, B6 captures a fixed local 16-frame `CaptureStackBackTrace` snapshot before the unchanged original PlayMotion call. The pre-call context contains timestamp, outgoing name, action/phase/state-time/movement, incoming opaque request address, and player LEFT/RIGHT source names, addresses and groups.
+### Forbidden changes
 
-The incoming motion descriptor remains opaque and is never dereferenced.
+Do **not** add:
 
-### Independent review correction
+- any new Gothic 3 hook;
+- a `ProcessScript`, RunScript, CombatMove, ItlLoop, OnTick, timer, polling, or frame-loop hook/change;
+- production cleanup or fallback repair;
+- lifecycle ownership/pending-finalization state;
+- family/cause-specific repair logic;
+- new attack/filename classification rules;
+- guessed motion-descriptor or stack-frame layouts;
+- unrelated refactors.
 
-Work initially emitted `HIT REPLACEMENT STACK` after every type-0 PlayMotion request made while an attack-Hit PrimaryFirst was outgoing, even if the after-snapshot did not prove that PrimaryFirst actually changed. That was broader than the frozen B6 requirement.
+### Authority to read
 
-Normal Chat corrected this before runtime testing:
+Start with:
 
-- pre-call stack/context capture still occurs while the outgoing attack Hit is alive, because replacement can only be known after the original call;
-- the record is emitted only when the B1 before/after PrimaryFirst snapshots show an actual replacement/restart;
-- different motion name = replacement;
-- same-name motion with a clear play-time rollback = restart/replacement;
-- no new hook, persistent state, timer, polling, or collision behavior was added.
+1. `docs/SESSION_ENTRYPOINT.md`;
+2. this file;
+3. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`;
+4. `docs/COLLISION_LOGGER_PLAN.md` §6 and §11;
+5. EV-174 in `docs/EVIDENCE_LEDGER_STEP_B.md`;
+6. only the exact source files above.
 
-This keeps the diagnostic aligned with the B6 question while preserving same-name replacement evidence when the play time rolls back.
+Do not load the whole repository/corpus unless a concrete implementation contradiction requires it.
 
-### Preserved scope
+### Required source audit
 
-- Original PlayMotion is called exactly once with unchanged arguments.
-- B1 PlayMotion, B4/B5 SetCollisionGroup, StartRecover, marker and marker-owned OnTick diagnostics remain.
-- Collision and marker behavior remain unchanged.
-- No cleanup, lifecycle state, timer, polling, repair rule, block-skip fix, ProcessScript/RunScript/CombatMove hook, or manual stack walk was added.
-- B6 data is local to one PlayMotion invocation.
+Before commit verify:
 
-### Validation status
+- original StopMotion is still called exactly once with unchanged arguments;
+- stack/context capture happens before original only when the before-snapshot is an attack-Hit Primary;
+- the new record is diagnostic-only and clearly distinguishes stop from confirmed replacement;
+- no new hook or persistent lifecycle state was introduced;
+- existing direct PlayMotion B6 logic is unchanged except for unavoidable mechanical sharing, if any;
+- collision/marker behavior is untouched.
 
-No build or Gothic 3 runtime test has yet been performed on the reviewed B6 source.
+### Stop conditions
 
-Home-PC validation still needs to establish:
+If the existing StopMotion hook cannot expose the required before-snapshot/context using the already-supported APIs, report the contradiction and stop. Do not add another hook or unsafe stack mechanism to compensate.
 
-1. DLL builds and loads;
-2. stack capture/module resolution behaves as expected;
-3. clean Hit -> Recover replacement stack;
-4. legitimate damage/reaction replacement stack;
-5. bad block-skip direct replacement stack with missing native cleanup;
-6. whether those replacement paths share one useful SPU / `ProcessScript()` execution context.
+### Completion
 
-**Work implementation commit:** `2d9e1f08a09b0f41b1ff0e9227ca37e2537690b0`  
-**Work handoff commit:** `01fff792abae1a7e8ac55f88bf5395b0ae129fe6`  
-**Independent review correction commit:** `dbd185ff8480ff1bf2625a57a6dd65d192462e58`
+Do not build or run Gothic 3.
+
+Commit and push the source change on `docs/collision-source-evidence`, overwrite this file with the concise Work result + final commit SHA, then STOP.
