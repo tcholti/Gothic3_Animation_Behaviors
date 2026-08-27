@@ -1,14 +1,30 @@
 # Gothic 3 Animation Behaviors
 
-General Gothic 3 animation-behavior research and implementation for configurable Raise behavior, attack playback speed, and animation-authored frame collision.
+General Gothic 3 animation-behavior research and implementation for configurable Raise behavior, attack playback speed, animation-authored frame collision, and reusable Gothic 3 modding knowledge.
 
-## Documentation
+## Branches
 
-- [Documentation map and authority guide](docs/README.md) — explains which documents describe Gothic 3, active technical design, engineering/collaboration method, and historical material.
-- [Session entry point](docs/SESSION_ENTRYPOINT.md) — read first when continuing the current work.
-- [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — required before an active coding/Work session changes the collision research DLL.
+- **`docs/collision-source-evidence`** — current active development/research branch. It contains the newest collision implementation, current project state, and latest evidence.
+- **`main`** — stable integration and reusable Gothic 3 knowledge baseline. Stable documentation/research improvements may be promoted here before the active collision implementation is ready; unfinished collision code should remain on the active branch until a deliberate stable integration point.
 
-Do not load every document by default. Follow the documentation map and open deeper files only when the current question requires them.
+When continuing the current collision work, do not assume `main` contains the newest implementation state.
+
+## Start Here
+
+- [Session entry point](docs/SESSION_ENTRYPOINT.md) — minimal current-state front door.
+- [Documentation and knowledge map](docs/README.md) — Hot/Warm/Cold retrieval routes and authority by question.
+- [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — compact bounded-implementation contract for Work/coding sessions.
+- [Gothic 3 project collaboration delta](docs/COLLABORATION_RULES.md) — project-specific collaboration rules; broader CAM authority is external and should not be reloaded for normal prompts.
+
+Do **not** load every document by default. The repository is designed as deep external memory: start with current state, then spot-search the exact technical knowledge needed for the current responsibility.
+
+## Gothic 3 Knowledge Base Direction
+
+The repository intentionally preserves detailed evidence, animation semantics, hook/source research, reverse-engineering results, test methodology, and searchable asset data so they can be reused beyond the current collision feature.
+
+Large technical documents should be indexed and retrieved by topic/section/evidence ID/symbol rather than treated as mandatory reading.
+
+> **Not necessary to read now does not mean not necessary to preserve.**
 
 ## Searchable animation-name data
 
