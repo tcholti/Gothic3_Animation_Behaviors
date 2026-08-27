@@ -1,242 +1,278 @@
 # Collision Lifecycle Test Plan
 
-**Status:** Planned research sequence / not yet run  
-**Updated:** 2026-08-26
+**Status:** Current staged validation plan  
+**Updated:** 2026-08-27
 
 ## Purpose
 
-Test the preferred execution-level cleanup model before production implementation, using the smallest sequence of experiments that can disprove or strengthen it.
+Validate the preferred execution-level collision-cleanup model with the smallest tests that can falsify it, then broaden only after the lifecycle boundary is proven.
 
-The tests are designed around universal questions, not around creating separate fixes for weapon families or interruption types.
+Earlier test chronology and superseded gate wording are preserved in:
 
-## Rules for This Test Phase
+`docs/archive/technical_2026-08-27/COLLISION_TEST_PLAN_pre_ia.md`
 
-- logger remains observational;
-- do not add production cleanup during these tests;
-- do not add Quick/Whirl/Staff/block-specific cleanup branches;
+Exact established findings should be retrieved through `EVIDENCE_INDEX.md` rather than re-running old matrices without a reason.
+
+---
+
+## 1. Rules for the Current Test Phase
+
+- diagnostics remain observational;
+- do not implement production cleanup while B6 is still answering the post-native-opportunity question;
+- do not add Staff/Quick/Whirl/block-timeout-specific cleanup branches;
 - preserve native behavior for unmarked controls;
-- use marked attacks only where needed to compare marker-controlled activation with native activation;
-- record visual observations, but accept/reject technical conclusions from logs/source evidence rather than visual impression alone;
-- stop and revise the logger if the required event ordering cannot be read clearly.
+- compare one conceptual variable at a time where practical;
+- visual observation may identify a reproduction, but lifecycle conclusions come from logs/source evidence;
+- stop and revise the diagnostic if the required event ordering cannot be reconstructed clearly;
+- do not repeat already-closed marker/source tests unless a later implementation could have regressed them.
 
-## Gate 0 — Validate the New Logger Before Broad Testing
+---
 
-Purpose: prove the logger can express one complete lifecycle clearly.
+## 2. Gate B6 — Replacement Stack / Script-Context Validation
 
-Use one ordinary native attack with a weapon/path already known to clean normally.
+This is the **current gate**.
 
-Required readable sequence:
+Question:
+
+> **Do the relevant actual Hit replacement paths occur inside one useful SPU / `gCScriptProcessingUnit::ProcessScript()` execution context, allowing a later tightly gated one-shot checkpoint to run after Gothic's native cleanup opportunity?**
+
+### B6-A — Build/load sanity
+
+Confirm:
+
+1. current `Script_FrameCollisionTest` builds;
+2. DLL loads/unloads normally;
+3. B6 stack/module resolution produces readable frames;
+4. existing B4/B5 cleanup diagnostics remain intact;
+5. no marker/collision behavior changes are introduced by the new diagnostic.
+
+### B6-B — Clean completion replacement
+
+Use a known ordinary melee path that reliably cleans.
+
+Required correlation:
 
 ```text
-Attack-Hit execution X acquired
-X requests Item_Attack/offensive collision
-same exact actual Hit execution continues
-native cleanup occurs
-X actual Hit ends/replaces
+owned/current attack Hit
+→ successor Hit/Recover replacement event confirmed by before/after PrimaryFirst evidence
+→ B6 replacement stack
+→ native cleanup event in the same transition sequence
 ```
 
-Then use one known stale-collision reproduction if practical.
+Record the relevant Game/Script_Game/Engine frames and their ordering.
 
-Required readable failure sequence:
+### B6-C — Legitimate damage/reaction replacement
+
+Interrupt a real attack Hit through a controlled damage/reaction path known to receive legitimate native cleanup.
+
+Required correlation:
 
 ```text
-Attack-Hit execution Y acquired
-Y requests offensive collision
-Y actual Hit ends/replaces
-no corresponding native cleanup occurs
-source remains attack-active
+attack Hit
+→ legitimate native interruption cleanup
+→ reaction/Stumble/KnockDown replacement
+→ B6 replacement stack
 ```
 
-If either sequence cannot be reconstructed unambiguously, revise the logger before proceeding.
+Compare the surrounding script-processing frames with the clean case. The known cleanup route itself may differ; the question is whether there is a useful common post-dispatch timing context.
 
-## Gate 1 — Does Native Collision Ever Intentionally Survive One Hit Into the Next?
+### B6-D — Bad block-skip direct replacement
 
-This is the most important test of the preferred universal rule.
+Reproduce a native or marked bad block-skip case where offensive collision remains stale.
 
-### Initial small matrix
-
-Start with representative native/unmarked attacks rather than every possible animation:
-
-1. 1H — Normal and Quick.
-2. Shield+1H — Normal and Quick.
-3. Dual — Normal and Quick.
-4. 2H — Normal and full Whirl where available.
-5. Staff — Normal and full Whirl where available.
-
-Add Power/SimpleWhirl only after the basic lifecycle is readable; they are useful expansion cases, not required for the first pass.
-
-### For each representative path
-
-Perform:
-
-- one attack allowed to finish normally;
-- several attacks chained as quickly as Gothic 3 naturally permits;
-- repeated attacks without intentionally taking damage or blocking.
-
-### Critical question
-
-Look specifically for:
+Required correlation:
 
 ```text
-Hit A requests offensive collision
-Hit A actual motion ends
-Hit B begins
-NO cleanup occurred between them
+attack Hit requested offensive collision
+→ no corresponding legitimate cleanup
+→ actual PrimaryFirst Hit eventually replaces/restarts
+→ B6 replacement stack
+→ source remains offensive
+```
+
+This is the decisive negative-path comparison.
+
+### B6 interpretation
+
+**If all relevant replacements share a useful current `ProcessScript()` invocation/context:**
+
+- strengthen the deferred one-shot candidate;
+- next design step is a narrowly gated post-script diagnostic/guard prototype, not unconditional ProcessScript cleanup.
+
+**If a relevant replacement occurs outside that context:**
+
+- reject `ProcessScript()` as a universal timing checkpoint;
+- return to architecture/search for another event boundary;
+- do not compensate with family-specific repair branches.
+
+**If stacks are ambiguous:**
+
+- improve only the diagnostic fact needed to distinguish the execution context.
+
+---
+
+## 3. Gate C1 — Prove the Deferred Checkpoint Before Repairing Anything
+
+Run only if B6 supports a common post-script timing point.
+
+First add a **diagnostic-only** tightly gated one-shot checkpoint for an already-tracked/pending exact attack execution.
+
+It must demonstrate:
+
+1. the checkpoint runs after clean ordinary native cleanup;
+2. it runs after legitimate interruption cleanup;
+3. it runs after bad direct replacement even when cleanup was absent;
+4. unrelated script processing does nothing because no owned execution is pending;
+5. the same execution is checked once, not repeatedly.
+
+Do not perform fallback cleanup in this gate. Establish ordering first.
+
+---
+
+## 4. Gate C2 — Minimal Cleanup Repair Prototype
+
+Only after C1 proves the timing point.
+
+Implement the smallest execution-owned repair:
+
+```text
+pending exact execution requested offensive collision
+→ post-native-opportunity checkpoint
+→ cleanup observed?
+    yes -> retire/no-op
+    no  -> perform native-equivalent repair for the owned offensive source(s)
+```
+
+Initial cases:
+
+1. clean native completion — must no-op;
+2. clean marked completion — must no-op;
+3. legitimate damage/reaction interruption — must no-op;
+4. known stale native block-skip — must repair;
+5. known stale marked block-skip — must repair.
+
+A successful repair must not create a second collision activation, duplicate list clear, or unrelated state mutation.
+
+---
+
+## 5. Gate C3 — Does Offensive Collision Ever Legitimately Survive Across Independent Hit Executions?
+
+Once a repair exists, challenge the universal invariant with representative native/unmarked attack chaining.
+
+Initial families:
+
+- 1H Normal/Quick;
+- Shield+1H Normal/Quick;
+- Dual Normal/Quick;
+- 2H Normal/full Whirl;
+- Staff Normal/full Whirl.
+
+Critical pattern to search for:
+
+```text
+Hit A requested offensive collision
+Hit A physically ended
+Hit B is an independent execution
+NO legitimate cleanup occurred between them
+and this persistence is intentional/native-correct
 ```
 
 Interpretation:
 
-- **never observed in legitimate sequences:** strengthens the preferred execution-level end guard;
-- **observed and clearly intentional:** investigate whether ownership transfers from Hit A to Hit B before adopting the universal end rule;
-- **observed only as stale/bugged state:** it is evidence for the guard, not an exception.
+- never observed legitimately → strengthens the universal end guard;
+- clearly intentional transfer → architecture must represent that transfer before release;
+- only observed in stale/bugged paths → supports the guard, not an exception.
 
-Do not infer intent merely because a `7 -> 7` request appears. Determine whether the earlier Hit actually ended without cleanup or whether the source was already stale due to a defect.
+Do not infer intentional carry merely from a later `7 -> 7` request; determine whether the previous source was already stale.
 
-## Gate 2 — Different End/Interruption Causes, Same Lifecycle Boundary?
+---
 
-Purpose: determine whether the cleanup rule can remain ignorant of why the Hit ended.
+## 6. Gate C4 — Source-Aware Fallback Decision
 
-Use a smaller representative set first: one 1H/Dual case plus 2H or Staff, then broaden only if results differ.
+Prefer one execution-level obligation unless evidence proves independent partial-source cleanup.
 
-Test:
+Use Dual/multi-source cases to ask:
 
-1. normal completion;
-2. attack while being hit/damaged by an opponent;
-3. attack into a successful block;
-4. block, then initiate attack near block timeout;
-5. let block expire without attacking;
-6. terrain/position interruption if a reproducible case exists;
-7. rapid transition into another legal combat action.
+- can RIGHT clean while LEFT legitimately remains offensive after the same Hit ends?
+- can one source fail independently while another cleans?
+- does the native cleanup semantic operation operate per source in a way the repair must mirror?
 
-For every case record:
+Adopt source-aware lifecycle state only if these tests show it is necessary.
 
-```text
-exact Hit execution acquired
-↓
-offensive collision requested? yes/no
-↓
-actual Hit execution survives / ends / is replaced
-↓
-native cleanup occurred? yes/no
-```
+Do not choose it merely because marker desired-set state already contains a source mask.
 
-The production architecture should not care whether the cause was block timeout, damage, terrain, Recover absence, or another reason if the same actual-motion boundary and cleanup requirement applies.
+---
 
-## Gate 3 — Block / Parade / Defensive Collision Behavior
+## 7. Gate C5 — Negative / No-Op Regression for Generic Script Timing
 
-Purpose: determine whether blocking introduces defensive collision states that affect the meaning of "clean all offensive collision."
+Required if the final design uses a generic SPU/script timing checkpoint.
 
-### Test pairs
+At minimum test:
 
-At minimum:
+- Fist;
+- bow;
+- crossbow;
+- magic.
 
-- weapon attacking weapon block;
-- weapon attacking shield block;
-- 2H/Staff attack into block where bounce is visually obvious;
-- one case that produces a defender ParadeStumble/block-stumble animation.
+Expected result:
 
-### Record for attacker and defender
+> The generic checkpoint is a complete no-op because no exact owned weapon-style offensive execution is pending finalization.
 
-- attack-Hit motion/action context;
-- all relevant right/left/shield collision-group requests and transitions;
-- offensive `Item_Attack` request on attacker;
-- any defender item collision-group request around block;
-- attacker bounce/reaction transition;
-- defender Parade/ParadeStumble transition.
+Fist is especially important: it can share ordinary melee action enums but the tested logical Fist source does not request weapon-style `Item_Attack(7)`. This protects the rule that **actual collision ownership/request**, not action enum alone, creates the cleanup obligation.
+
+---
+
+## 8. Gate C6 — Block / Parade Defensive Collision Semantics
+
+Run only before release if the chosen cleanup operation might affect defensive item state.
+
+Controlled pairs:
+
+- weapon into weapon block;
+- weapon into shield block;
+- 2H/Staff block with obvious bounce;
+- ParadeStumble/block-stumble case.
+
+Observe attacker and defender source/group requests around contact.
 
 Questions:
 
-1. Does a blocking weapon/shield enter `Item_Attack` or another special collision group?
-2. Is visible weapon bounce caused by actual weapon/shield collision, or by combat-state logic after contact?
-3. Could an end-of-Hit offensive cleanup accidentally disturb a legitimate defensive state?
+1. Does a defender weapon/shield enter `Item_Attack` or another special collision state?
+2. Is visual bounce physical collision or combat-state response logic?
+3. Could the repair operation disturb a legitimate defensive state?
 
-Do not change the architecture until this evidence is understood.
+Do not add defensive special cases unless evidence requires them.
 
-## Gate 4 — Marked and Native Activation Share the Same End Rule?
+---
 
-Purpose: test the core convergence of the preferred architecture.
+## 9. Marker-Core Regression — Reuse Existing Fixtures
 
-Use one or two already validated marked fixtures plus equivalent/native controls.
+The marker source-set core is already strongly validated. Re-run compact fixtures only after lifecycle changes that could plausibly affect it.
 
-For marked execution:
-
-```text
-exact Hit acquired
-marker presence suppresses native timed activation
-marker requests offensive collision
-actual Hit ends
-native cleanup already happened? yes/no
-```
-
-For native execution:
+Representative semantics:
 
 ```text
-exact Hit acquired
-native callback requests offensive collision
-actual Hit ends
-native cleanup already happened? yes/no
+RIGHT -> LEFT
+BOTH -> RIGHT
+RIGHT -> OFF -> RIGHT
+BOTH -> LEFT -> OFF -> BOTH
 ```
 
-The only intended architectural difference should be activation timing/ownership. End-of-Hit cleanup verification should be the same principle for both.
+Verify:
 
-## Gate 5 — Marker Desired-Set Semantics
+- desired-set transition;
+- later source rearm through `ClearTriggeredList()`;
+- occurrence/replay guards;
+- natural/fallback execution retirement;
+- no unexpected native timer activation.
 
-Purpose: preserve authored multi-source behavior while simplifying implementation.
+Do not rebuild the historical v0.10–v0.18 matrix from scratch unless a regression demands it.
 
-Use existing validated marker fixtures rather than inventing new ones unless necessary.
+---
 
-Confirm that the conceptual rule remains valid:
+## 10. Broad Regression Phase — After the Lifecycle Model Is Chosen
 
-```text
-RIGHT = {RIGHT}
-LEFT  = {LEFT}
-BOTH  = {RIGHT, LEFT}
-OFF   = {}
-```
-
-Representative sequences:
-
-```text
-RIGHT → LEFT
-```
-
-```text
-BOTH → RIGHT
-```
-
-```text
-RIGHT → OFF → RIGHT
-```
-
-```text
-BOTH → LEFT → OFF → BOTH
-```
-
-The test is not whether old source-mask code still works. The question is whether every sequence can be correctly described as "make the desired offensive source set equal to the current marker."
-
-If Gothic 3 exposes a safe native collision-only deactivation operation, later implementation may use it. Do not use a whole-attack finalizer for intra-Hit set changes unless proven safe.
-
-## Gate 6 — Preferred Versus Fallback Cleanup Model
-
-After the native cleanup operation/path is identified, decide between the two systems.
-
-### Prefer System 1 if:
-
-- one native cleanup operation semantically closes the attack's offensive collision lifecycle;
-- observing that cleanup is sufficient to know the execution is clean;
-- Dual/multi-source tests do not show independent partial cleanup failures that require source-specific repair.
-
-### Use System 2 only if:
-
-- cleanup is genuinely per-source; or
-- one source can clean while another independently remains stale; or
-- no safe attack-wide cleanup operation exists.
-
-Do not choose System 2 merely because existing prototype code already tracks RIGHT/LEFT masks.
-
-## Broad Regression Phase — Only After the Model Is Chosen
-
-Once the preferred/fallback decision is evidence-backed, broaden across:
+Challenge the **one chosen rule** across:
 
 - 1H;
 - Shield+1H;
@@ -247,24 +283,27 @@ Once the preferred/fallback decision is evidence-backed, broaden across:
 - Quick;
 - Power;
 - SimpleWhirl/full Whirl where applicable;
-- player and controlled human NPC;
-- marked and unmarked cases;
-- rapid chaining;
-- block/damage/interruption scenarios.
+- player + controlled human NPC;
+- marked + unmarked attacks;
+- normal completion, chaining, damage interruption, blocking, and known skip conditions.
 
-The purpose of the broad phase is to challenge one chosen rule, not to create one rule per matrix cell.
+The matrix is evidence coverage, not a production branch matrix.
 
-## What Success Looks Like
+---
 
-The research phase succeeds when we can answer, with evidence:
+## 11. Success Criteria
 
-1. what constitutes a real attack-Hit execution;
-2. what event/signal identifies its actual end/replacement;
-3. what counts as an offensive collision request, including `7 -> 7`;
-4. what Gothic 3's proper native cleanup operation is;
-5. whether cleanup is attack-wide or source-specific;
-6. whether any legitimate native sequence carries offensive collision across physical Hit executions;
-7. whether defensive block/parade collision requires a separate state consideration;
-8. whether the preferred System 1 survives all of the above.
+The collision-lifecycle research is ready for production integration when evidence answers:
 
-Only then should Work implement the next production/prototype cleanup version.
+1. what constitutes an owned real attack-Hit execution;
+2. what event establishes its actual physical end/replacement;
+3. what creates the offensive collision obligation, including `7 -> 7` requests;
+4. what timing point occurs after Gothic's legitimate cleanup opportunity;
+5. how native cleanup success is observed;
+6. whether repair must be attack-wide or source-specific;
+7. whether any legitimate native sequence carries offensive collision across independent physical Hit executions;
+8. whether defensive collision introduces a conflicting state;
+9. whether unrelated Fist/ranged/magic script processing remains a no-op;
+10. whether marked and native activation converge on one end-of-Hit safety rule.
+
+Only then should the stable collision lifecycle be integrated into the production `Script_G3AnimationBehaviors` implementation.
