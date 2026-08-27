@@ -15,10 +15,14 @@ When continuing the current collision work, do not assume `main` contains the ne
 - [Documentation and knowledge map](docs/README.md) — Hot/Warm/Cold retrieval routes and authority by question.
 - [Evidence index](docs/EVIDENCE_INDEX.md) — route engine/research questions to exact EV ranges and raw logs.
 - [Animation knowledge index](docs/ANIMATION_INDEX.md) — route filename/UseType/action/pose/asset questions to exact sections/data.
+- [Knowledge maintenance protocol](docs/KNOWLEDGE_MAINTENANCE.md) — event-driven local documentation/evidence/archive updates; use when completing meaningful engineering events, not as routine pre-reading.
+- [Knowledge authority registry](docs/KNOWLEDGE_REGISTRY.md) — tells which document owns each knowledge responsibility and what changes trigger an update.
 - [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — compact bounded-implementation contract for Work/coding sessions.
 - [Gothic 3 project collaboration delta](docs/COLLABORATION_RULES.md) — project-specific collaboration rules; broader CAM authority is external and should not be reloaded for normal prompts.
 
 Do **not** load every document by default. The repository is designed as deep external memory: start with current state, then spot-search the exact technical knowledge needed for the current responsibility.
+
+The maintenance protocol/registry are process tools, not mandatory context for every prompt. Normal Chat should apply their trigger logic automatically when a meaningful project event completes so the User does not have to request documentation housekeeping separately.
 
 ## Gothic 3 Knowledge Base Direction
 
