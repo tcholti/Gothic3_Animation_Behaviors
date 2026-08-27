@@ -93,17 +93,32 @@ The initial B6 PlayMotion-only stack probe built and loaded correctly after the 
 
 The isolated B6-B control then exposed a diagnostic contradiction rather than a lifecycle contradiction: all three clean 2H Normal transitions stopped the outgoing Hit Primary through the already-hooked type-0 `StopMotion` before successor Recover `PlayMotion`. The current direct PlayMotion replacement probe therefore emitted no replacement stack in that clean path. See EV-174.
 
-### Next bounded implementation
+The bounded StopMotion-stack revision is now implemented in commit `c99949d9ff2eeb7a6ce6242764d26d6a6574f299`, passed independent Normal Chat source review, and built successfully.
 
-Revise B6 diagnostics only:
+The first attempted revised B6-B runtime on 2026-08-27 is **invalid as revised-probe evidence**. The committed raw log `research/raw/2026-08-27_b6b_player_2h_normal_clean_completion_stopmotion_stack.log` contains the old `STEP B6 HIT REPLACEMENT STACK PROBE` header and no `HIT STOP STACK` records. The cause was stale deployment: the actual live Gothic 3 script directory still contained an older 21:47 DLL.
 
-1. keep the existing direct PlayMotion replacement-stack probe unchanged for paths where the outgoing Hit remains visible at PlayMotion entry;
-2. in the **already-existing** player/type-0 `StopMotion` hook, if the before-snapshot is an attack-Hit Primary, capture a short supported Win32 stack/context before the unchanged original StopMotion call;
-3. emit a clearly named outgoing-Hit StopMotion stack diagnostic and preserve the existing StopMotion before/after log;
-4. use the existing immediately following PlayMotion record during runtime analysis to identify the actual successor;
-5. add no new Gothic hook, production cleanup, polling, lifecycle ownership state, family-specific repair rule, or guessed stack/frame layout.
+Authoritative local live script directory for the User's current installation:
 
-After source review/build, rerun B6-B clean control, then B6-C legitimate reaction interruption, then B6-D bad block-skip direct replacement.
+```text
+E:\SteamLibrary\steamapps\common\Gothic 3\scripts
+```
+
+The exact live diagnostic path is therefore:
+
+```text
+E:\SteamLibrary\steamapps\common\Gothic 3\scripts\Script_FrameCollisionTest.dll
+```
+
+Before the rerun, verify the built and live DLL identity directly and confirm the runtime log header contains `STEP B6 HIT STOP / REPLACEMENT STACK PROBE`.
+
+### Immediate Normal Chat responsibility
+
+1. deploy the already-built revised `Script_FrameCollisionTest.dll` to the exact live path above;
+2. verify built/live DLL identity by hash/timestamp;
+3. launch/load/unload and confirm the revised runtime header;
+4. rerun B6-B clean 2H Normal only;
+5. commit the resulting raw log and interpret it before B6-C;
+6. only after valid B6-B evidence, run B6-C legitimate reaction interruption, then B6-D bad block-skip direct replacement.
 
 Question:
 
