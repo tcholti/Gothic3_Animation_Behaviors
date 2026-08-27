@@ -28,9 +28,19 @@ Use it only for the latest bounded handoff. It should be **overwritten, not accu
 
 ### `WORK_IMPLEMENTATION_PROTOCOL.md`
 
-The execution contract for a coding/Work session.
+The general execution contract for a coding/Work session.
 
 Read this before changing code in Work.
+
+### `FROZEN_WORK_TASK_RULES.md`
+
+The stricter contract for an implementation task whose design has already been frozen in Normal Chat.
+
+Read it before editing any frozen Work task. It defines the semantic preflight, missing-decision stop rule, operational meanings of simple/separate/good engineering, completion audit, and current independent-review expectation.
+
+### `PROJECT_SCOPE_CONTEXT.md`
+
+Short factual context for engine-facing Gothic 3 prompts involving hooks, disassembly, binary inspection or similar terminology. It also points frozen Work tasks to the required frozen-task rules.
 
 ## 2. Active Technical Design — What We Intend to Build
 
@@ -129,6 +139,26 @@ Project collaboration and usage/review workflow.
 
 Also belongs here, but is listed under Start Here because it is mandatory for active coding sessions.
 
+### `FROZEN_WORK_TASK_RULES.md`
+
+Operational contract for faithful implementation after Normal Chat has already resolved the architecture/semantics.
+
+### `WORK_COLLABORATION_EVOLUTION.md`
+
+Living empirical retrospective and future roadmap for collaboration with Work.
+
+Use it to understand:
+
+- which task types Work has handled well or poorly in actual sessions;
+- the B1/B4/B5 positive patterns and B6 failure/correction lesson;
+- how CAM principles are translated into operational definitions and checks;
+- the frozen-task preflight template;
+- the independent post-Work review loop;
+- task-specific trust levels rather than global trust assumptions;
+- the long-term plan for a reusable CAM-derived implementation-agent framework for Gothic 3, UAA and future projects.
+
+This document records learning and evolution. It does not override the active implementation contracts.
+
 ## 5. Continuity and Historical Material
 
 ### `HANDOFF.md`
@@ -145,7 +175,10 @@ Raw logs and research artifacts. Use them when a documented conclusion must be r
 |---|---|
 | What are we doing right now? | `SESSION_ENTRYPOINT.md` |
 | What did the other Chat/Work session just do or ask for? | `BETWEEN_CHATS.md` |
-| How must Work implement it? | `WORK_IMPLEMENTATION_PROTOCOL.md` |
+| How must Work generally implement code? | `WORK_IMPLEMENTATION_PROTOCOL.md` |
+| How must Work implement a frozen task? | `FROZEN_WORK_TASK_RULES.md` |
+| What scope context should accompany engine-facing Gothic 3 prompts? | `PROJECT_SCOPE_CONTEXT.md` |
+| What have we learned about collaborating with Work and how should it evolve? | `WORK_COLLABORATION_EVOLUTION.md` |
 | What is the overall intended mod architecture? | `DESIGN.md` |
 | What is the current collision design? | `COLLISION_LIFECYCLE_PLAN.md` |
 | What are the tested native cleanup call sites/stacks? | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
@@ -168,5 +201,7 @@ Prefer merging when two files answer the same question, have the same authority 
 Do not merge merely to reduce file count when documents serve different responsibilities.
 
 `BETWEEN_CHATS.md` is deliberately separate because it is only a short replaceable transport layer between sessions.
+
+`WORK_COLLABORATION_EVOLUTION.md` is deliberately separate from the active Work contracts because it records empirical lessons and future experiments; `WORK_IMPLEMENTATION_PROTOCOL.md` and `FROZEN_WORK_TASK_RULES.md` remain the operational authorities.
 
 `EVIDENCE_LEDGER_STEP_B.md` is an explicit preservation exception: it continues the numbered canonical ledger without risking an accidental rewrite of the large EV-001..EV-157 base during the 2026-08-26 consolidation. It may be merged into the base ledger later if a safe repository-local edit is convenient; until then the two files form one authority sequence.
