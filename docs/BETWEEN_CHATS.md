@@ -5,79 +5,72 @@
 
 ## Latest result
 
-**From:** Normal Chat / home-PC runtime validation  
-**To:** Next Normal Chat research session  
-**Date:** 2026-08-26  
+**From:** Normal Chat static binary/source inspection  
+**To:** Next Normal Chat research/design session  
+**Date:** 2026-08-27  
 **Branch:** `docs/collision-source-evidence`
 
-## Step B5 — VALIDATED AND CONSOLIDATED
+## Step B5 Parent Search — STATIC IDENTIFICATION COMPLETE
 
-Source commit:
-
-`807307570b85bcdd4f1c3c703204dbd34560feb6`
-
-Runtime log:
-
-`research/raw/2026-08-26_stepB5_cleanup_parent_stack_probe.log`
-
-### Main B5 result
-
-Ordinary successful action-specific cleanup stacks converged to:
+B5 runtime had shown:
 
 ```text
-FrameCollision wrapper
-→ action-specific Script_Game cleanup site
-→ Game + 0x1605EB
+ordinary cleanup -> Game + 0x1605EB
+interruption cleanup -> Game + 0x1604D3
 ```
 
-Binary inspection places `+0x1605EB` inside an internal Game helper beginning near `Game + 0x1604E0`.
-
-Legitimate damage/reaction interruption remained different:
+Static export/disassembly inspection now identifies those parents exactly:
 
 ```text
-FrameCollision wrapper
-→ Script_Game + 0x24AFF
-→ another Script_Game reaction frame
-→ Game + 0x1604D3
+Game + 0x1603D0 = gCScriptAdmin::RunScriptState(...)
+    interruption post-call return = +0x1604D3
+
+Game + 0x1604E0 = gCScriptAdmin::RunScriptFunction(...)
+    ordinary post-call return = +0x1605EB
 ```
 
-Binary inspection shows `+0x1604D3` at the return/end of the immediately preceding sibling Game helper; the ordinary sibling begins at `+0x1604E0`.
+Therefore B5 did **not** reach a central combat-cleanup function. It reached Gothic 3's generic script-execution layer.
 
-Therefore B5 did **not** identify one identical parent frame shared by all successful cleanup paths. It identified adjacent sibling Game-level paths.
-
-### Finishing/Hack target-state observation
-
-One intended execution target stood up before Hit. Gothic still played the `FinishingAttack_Raise` and `FinishingAttack_Hit` asset family, but Hit/collision and StartRecover were already `gEAction_HackAttack` (14). No action-15 -> action-14 switch is directly proven. Preserve the stronger rule: runtime action semantics, not filename identity, choose behavior.
-
-### Marker-retirement clarification
-
-`RetireMarkerOwnedSource()` is not physical fallback cleanup. Earlier v0.15/v0.16 interruption work used an already-performed Gothic `7 -> 5` reset as evidence to retire stale marker occurrence/execution bookkeeping. Intentional OFF/source switching must remain intra-Hit and must not retire the whole execution.
-
-## Consolidated docs
-
-- `docs/SESSION_ENTRYPOINT.md`
-- `docs/COLLISION_LIFECYCLE_PLAN.md`
-- `docs/COLLISION_CLEANUP_CALLSITE_MAP.md`
-- `docs/EVIDENCE_LEDGER_STEP_B.md` — canonical continuation EV-158 onward
-- `docs/README.md`
-
-The large original `EVIDENCE_LEDGER.md` remains untouched through EV-157; the Step-B continuation is explicitly indexed as the next canonical ID range.
-
-## Next research question
-
-Do **not** send a coding task to Work yet.
-
-Next Normal Chat should first inspect the two adjacent Game sibling functions and their callers/dispatch conditions:
+Both paths converge one level higher in:
 
 ```text
-interruption sibling: around Game + 0x1604D3 / return near +0x1604D5
-ordinary sibling:     starts near Game + 0x1604E0; common B5 return +0x1605EB
+Game + 0x16F120 = gCScriptProcessingUnit::ProcessScript()
 ```
 
-Question:
+Inside the tested binary:
 
-> What calls/selects these sibling helpers, and is there a narrow event-driven boundary after either legitimate completion/interruption cleanup opportunity?
+```text
++0x16F2C2 -> RunScriptFunction
++0x16F338 -> RunScriptState
++0x16F3A6 -> RunScriptState
+```
 
-Only after static inspection identifies a plausible candidate should another bounded runtime probe be frozen for Work.
+The SDK confirms `ProcessScript()` is generic per-NPC ScriptFunction/ScriptState machinery, not combat-only. It also owns many non-combat delayed instructions. Do not treat `RunScriptFunction`, `RunScriptState`, or `ProcessScript` as unconditional collision-cleanup hooks.
 
-Do not implement production cleanup, timers, broad polling, one hook per action family, or a block-skip-specific repair yet.
+B2 timing is now statically explained: after the main ScriptFunction/ScriptState dispatch, `ProcessScript()` later runs local/task callbacks through `gCScriptAdmin::RunScriptCallback()`. This matches the runtime observation that the original Quick callback begins after native cleanup and can repeat during Recover.
+
+## Current Architectural Option — NOT YET FROZEN
+
+One possible event-driven design is:
+
+```text
+exact owned offensive Hit replacement observed
+-> mark that exact execution pending-finalization
+-> let current native script dispatch finish
+-> at a tightly gated post-script opportunity:
+       native cleanup observed -> no-op
+       cleanup absent          -> repair
+```
+
+This would use a broad script boundary only as a one-shot deferred checkpoint for an already-owned attack execution, never as attack ownership authority.
+
+Before implementation, compare this design with any narrower CombatMove-specific post-native-cleanup boundary. Do not add a `ProcessScript` hook yet.
+
+## Next Normal-Chat Questions
+
+1. Is there a narrower combat-specific post-opportunity boundary below `ProcessScript`?
+2. If not, is a one-shot deferred post-script checkpoint the smallest safe event-driven design?
+3. What exact ownership/source gate would guarantee that Fist, bow, crossbow, magic and unrelated script actions cannot be mutated?
+4. Which negative regression tests are still required after static/source analysis?
+
+No Work coding task is frozen.
