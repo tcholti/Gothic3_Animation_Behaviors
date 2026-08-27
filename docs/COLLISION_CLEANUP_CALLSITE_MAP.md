@@ -1,23 +1,32 @@
 # Gothic 3 Native Collision Cleanup Call-Site Map
 
-**Status:** Runtime-confirmed reverse-engineering map for the current tested build  
-**Date:** 2026-08-26  
-**Scope:** Native/unmarked player melee cleanup observations from Step B4/B4b/B5
+**Status:** Runtime/static reverse-engineering reference for the current tested build  
+**Updated:** 2026-08-27  
+**Scope:** Native/unmarked player melee cleanup observations from Step B4/B4b/B5 plus later static parent identification
 
 ## Purpose
 
-This document records the native call sites and higher stack paths that reset an equipped offensive weapon from `Item_Attack` (`7`) to `Item_Equipped` (`5`).
+Preserve the exact tested native cleanup call sites, source branches, and higher script-dispatch paths without turning build-specific addresses into production architecture.
 
-The Script_Game addresses below are **return-address RVAs immediately after the call to the imported entity collision-group setter**. B5 adds the higher captured stack frames. All addresses are build-specific and must be reverified for another binary build.
+Use this file when searching by:
 
-The map exists to:
+- native action;
+- `Script_Game` cleanup RVA;
+- `SetCollisionGroup`;
+- `RunScriptFunction` / `RunScriptState` / `ProcessScript`;
+- Step-B cleanup stack evidence.
 
-1. preserve durable reverse-engineering knowledge instead of leaving it only in raw logs/chat;
-2. identify the narrowest post-native-cleanup opportunity without hard-wiring production behavior to every attack family.
+Current lifecycle architecture is in `COLLISION_LIFECYCLE_PLAN.md`.
 
-## Runtime Evidence
+The pre-information-architecture map is preserved at:
 
-Primary logs:
+`docs/archive/technical_2026-08-27/COLLISION_CLEANUP_CALLSITE_MAP_pre_ia.md`
+
+---
+
+## 1. Evidence Basis
+
+Primary runtime logs:
 
 - `research/raw/2026-08-26_stepB4_native_cleanup_callsite_probe.log`
 - `research/raw/2026-08-26_stepB4b_native_manyattacks_cleanup_callsite.log`
@@ -25,7 +34,18 @@ Primary logs:
 - `research/raw/2026-08-26_stepB4b_native_interruption_cleanup_callsite.log`
 - `research/raw/2026-08-26_stepB5_cleanup_parent_stack_probe.log`
 
-The B4/B5 diagnostic records only exact player-equipped source transitions satisfying:
+Canonical evidence:
+
+- EV-163 — action-specific native cleanup matrix;
+- EV-164 — same serialized Finishing asset under different runtime actions;
+- EV-165 — tested legitimate interruption cleanup route;
+- EV-166 — B5 captured adjacent Game parents;
+- EV-169 — parents identified as generic ScriptAdmin runners;
+- EV-170 — common higher `ProcessScript()` dispatcher;
+- EV-171 — callback ordering relative to main script dispatch;
+- EV-172 — deferred finalization design hypothesis.
+
+The B4/B5 diagnostic special record was gated to exact player-equipped transitions:
 
 ```text
 requested = Item_Equipped (5)
@@ -33,46 +53,58 @@ before    = Item_Attack   (7)
 after     = Item_Equipped (5)
 ```
 
-All observed immediate native cleanup callers resolved to `Script_Game.dll`.
+All immediate native cleanup callers observed in that matrix resolved to `Script_Game.dll`.
 
-## Action-Specific Cleanup Call Sites
+---
 
-| Native action | Action value | Observed RIGHT cleanup RVA | Observed LEFT cleanup RVA | Runtime note |
+## 2. Action-Specific Native Cleanup Return RVAs
+
+The addresses below are **return-address RVAs immediately after the call to the imported entity collision-group setter** in the tested build.
+
+| Native action | Value | RIGHT cleanup return | LEFT cleanup return | Runtime note |
 |---|---:|---:|---:|---|
-| `gEAction_Attack` | 1 | `Script_Game + 0x3851A` | `Script_Game + 0x3854E` | Normal-family cleanup across tested 2H, Staff, 1H, Shield+1H and Dual cases. |
-| `gEAction_PowerAttack` | 2 | `Script_Game + 0x4809D` | `Script_Game + 0x480E4` | Includes tested Dual both-source Power cleanup. |
-| `gEAction_QuickAttackR/L` | 4 / 5 | `Script_Game + 0x48794` | `Script_Game + 0x487CC` | Same Quick cleanup path across tested weapon families. Generic action 3 was not established in these runs. |
-| `gEAction_SimpleWhirl` | 6 | `Script_Game + 0x4C828` | `Script_Game + 0x4C858` | Dual SimpleWhirl uses separate LEFT/RIGHT branches. |
-| `gEAction_WhirlAttack` | 10 | `Script_Game + 0x4E03C` | not observed | Tested full 2H/Staff Whirl cleanup used RIGHT. |
-| `gEAction_PierceAttack` | 11 | `Script_Game + 0x477E3` | `Script_Game + 0x4781C` | Source branch follows equipped damaging source, including Dual evidence. |
-| `gEAction_HackAttack` | 14 | `Script_Game + 0x432BC` | not observed | Tested standing/block-breaking heavy use of the serialized `FinishingAttack` motion. |
-| `gEAction_FinishingAttack` | 15 | `Script_Game + 0x4178A` | `Script_Game + 0x417C2` | Tested true finishing blows in B4b, including 1H/Dual source variants. |
-| `gEAction_GetUpAttack` | 30 | `Script_Game + 0x41E10` | not observed | Tested knockdown/get-up attack cleanup. |
+| `gEAction_Attack` | 1 | `Script_Game + 0x3851A` | `Script_Game + 0x3854E` | Normal cleanup across tested 2H, Staff, 1H, Shield+1H, Dual |
+| `gEAction_PowerAttack` | 2 | `Script_Game + 0x4809D` | `Script_Game + 0x480E4` | includes tested Dual both-source cleanup |
+| `gEAction_QuickAttackR/L` | 4 / 5 | `Script_Game + 0x48794` | `Script_Game + 0x487CC` | same tested Quick cleanup path across families; generic action 3 not established here |
+| `gEAction_SimpleWhirl` | 6 | `Script_Game + 0x4C828` | `Script_Game + 0x4C858` | Dual SimpleWhirl separate LEFT/RIGHT branches |
+| `gEAction_WhirlAttack` | 10 | `Script_Game + 0x4E03C` | not observed | tested full 2H/Staff Whirl used RIGHT |
+| `gEAction_PierceAttack` | 11 | `Script_Game + 0x477E3` | `Script_Game + 0x4781C` | branch follows tested damaging equipped source |
+| `gEAction_HackAttack` | 14 | `Script_Game + 0x432BC` | not observed | tested standing/block-breaking heavy use of serialized Finishing asset |
+| `gEAction_FinishingAttack` | 15 | `Script_Game + 0x4178A` | `Script_Game + 0x417C2` | tested true finishing blows |
+| `gEAction_GetUpAttack` | 30 | `Script_Game + 0x41E10` | not observed | tested get-up attack cleanup |
 
-## Filename vs Action — Direct Runtime Evidence
+Engineering consequence:
 
-The exact 2H serialized motion:
+> These sites describe **native successful cleanup implementations**, not a production hook matrix.
+
+---
+
+## 3. Filename vs Runtime Action — Direct Evidence
+
+The serialized 2H motion family:
 
 ```text
 Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
 ```
 
-has been observed under different native action semantics.
-
-B4b established:
+has been observed under different runtime action semantics:
 
 ```text
 gEAction_HackAttack      (14) -> Script_Game + 0x432BC
 gEAction_FinishingAttack (15) -> Script_Game + 0x4178A
 ```
 
-B5 added a useful target-state case: an intended execution target stood up before the Hit. Gothic still played the `FinishingAttack_Raise` and `FinishingAttack_Hit` asset family, but the Hit/collision and StartRecover records were already `gEAction_HackAttack` (14). The B5 log does **not** establish an action-15 -> action-14 switch; the safe interpretation is that runtime action semantics selected Hack behavior while reusing the same serialized asset family.
+B5 also observed an intended execution target stand up before Hit: Gothic still used the FinishingAttack Raise/Hit asset family, while the Hit/collision records were already action 14.
 
-Engineering consequence:
+The safe conclusion is **not** that a particular action switch necessarily occurred mid-Hit. The durable conclusion is:
 
-> Serialized animation filenames are selectors/assets, not sufficient behavioral authority. Native action semantics choose different lifecycle code even when the same motion resource is used.
+> Runtime action semantics can select different behavior/cleanup code while reusing the same serialized animation asset family.
 
-## Separate Interruption Cleanup Path
+Therefore filenames alone are insufficient lifecycle authority.
+
+---
+
+## 4. Separate Tested Interruption Cleanup Route
 
 B4b identified:
 
@@ -80,174 +112,224 @@ B4b identified:
 Script_Game + 0x24AFF
 ```
 
-as a separate native weapon-reset call site during tested combat interruptions.
+as a native weapon-reset return site during the tested damage/reaction interruption matrix.
 
-Representative chronology:
+Representative ordering:
 
 ```text
-Routine still reports original Attack / Hit
-weapon cleanup 7 -> 5 at Script_Game + 0x24AFF
-~milliseconds later PrimaryFirst is replaced by Stumble / knockdown motion
+Routine still reports original attack Hit
+→ weapon cleanup 7 -> 5 at Script_Game + 0x24AFF
+→ milliseconds later PrimaryFirst becomes Stumble/KnockDown/etc.
 ```
 
-This path was observed repeatedly across Staff, 1H and 2H interruption cases.
+This route was observed across tested Staff, 1H and 2H reactions.
 
-Engineering interpretation:
+Do not claim that **every** possible interruption uses exactly this site. It is confirmed for the tested matrix.
 
-- Gothic 3 already contains a distinct legitimate interruption cleanup path;
-- ordinary action completion and damage/reaction interruption do not rely on one single Script_Game cleanup function;
-- the known block-skip failure can bypass the ordinary completion path and also fail to receive this interruption cleanup, leaving the source stale at group 7.
+Architectural consequence:
 
-Do **not** infer from `0x24AFF` alone that every possible interruption shares this exact call site. It is confirmed for the tested interruption matrix only.
+- legitimate interruption already has a native cleanup opportunity;
+- ordinary completion and reaction interruption do not depend on one Script_Game cleanup function;
+- bad block-skip teardown can miss both reliable ordinary completion cleanup and this tested reaction route.
 
-## Step B5 — Higher Parent-Stack Result
+---
 
-B5 captured up to 16 frames with Win32 `CaptureStackBackTrace` inside the existing `SetCollisionGroup` hook. In practice the relevant successful-cleanup stacks were short and highly structured.
+## 5. B5 Higher Stack — Ordinary Completion
 
-### Ordinary action-completion cleanup
-
-Across all ordinary action-specific cleanup records checked in the B5 sample, the stack was:
+Captured ordinary cleanup stack shape:
 
 ```text
-FrameCollision wrapper
+FrameCollision SetCollisionGroup wrapper
 → action-specific Script_Game cleanup return RVA
 → Game + 0x1605EB
 ```
 
-Examples included Normal, Quick, Power, full Whirl, Pierce and Hack. The action-specific Script_Game frame changed; the Game frame remained `+0x1605EB`.
-
-Binary-reference inspection shows `Game + 0x1605EB` is the return point immediately after an indirect call inside the Game function beginning at approximately:
+Static identification now establishes:
 
 ```text
-Game + 0x1604E0
+Game + 0x1604E0 = gCScriptAdmin::RunScriptFunction(...)
+Game + 0x1605EB = return point after its indirect Script_Game call
 ```
 
-The relevant end of that function is:
+So `+0x1605EB` is **not a central combat cleanup helper**. It is the common post-indirect-call point reached by tested ordinary ScriptFunctions.
+
+---
+
+## 6. B5 Higher Stack — Legitimate Reaction Interruption
+
+Captured interruption shape:
 
 ```text
-Game + 0x1605EB  compare result after indirect call
-...
-Game + 0x1605FE / +0x160605 return paths
-```
-
-This is the strongest common parent found so far for ordinary successful melee completion cleanup.
-
-### Legitimate damage/reaction interruption cleanup
-
-The interruption stack remained different:
-
-```text
-FrameCollision wrapper
+FrameCollision SetCollisionGroup wrapper
 → Script_Game + 0x24AFF
-→ another Script_Game frame (varied in tested reactions, e.g. +0x235C7 / +0x227AD / +0x22D6D)
+→ reaction-specific Script_Game frame
 → Game + 0x1604D3
 ```
 
-Binary-reference inspection shows:
+Static identification establishes:
 
 ```text
-Game + 0x1604D1  indirect call
-Game + 0x1604D3  function epilogue/return
-Game + 0x1604D8..+0x1604DF padding
-Game + 0x1604E0  start of the ordinary sibling function
+Game + 0x1603D0 = gCScriptAdmin::RunScriptState(...)
+Game + 0x1604D3 = return point after its indirect Script_Game state call
 ```
 
-Thus B5 did **not** find one identical captured parent frame shared by successful completion and successful interruption. It found two adjacent sibling Game-level helper/dispatcher paths:
+The two B5 parent paths are adjacent in the binary but semantically generic sibling script runners:
 
 ```text
-interruption sibling: ends at Game + 0x1604D5
-ordinary sibling:     begins at Game + 0x1604E0, common cleanup return at +0x1605EB
+RunScriptState     starts Game + 0x1603D0
+RunScriptFunction  starts Game + 0x1604E0
 ```
 
-The adjacency is architecturally interesting, but it is not evidence that either function is a universal production cleanup boundary.
+Adjacency is no reason to hook both.
 
-## Relationship to Step B3
+---
 
-Step B3 established that `gCScriptProcessingUnit::sAICombatMoveStartRecover` is **not** the post-cleanup boundary:
+## 7. Common Higher Dispatcher — `ProcessScript()`
+
+Both script-runner paths converge one level higher in:
 
 ```text
-StartRecover BEGIN
-Recover transition / motion handling
-StartRecover END
-native Script_Game SetCollisionGroup(5)
+Game + 0x16F120 = gCScriptProcessingUnit::ProcessScript()
 ```
 
-B4/B4b/B5 now refine the later path:
+Tested binary structure includes calls approximately at:
 
 ```text
-ordinary completion:
-StartRecover returns
-→ action-specific Script_Game cleanup
-→ common ordinary Game sibling
+ProcessScript + ... -> RunScriptFunction
+ProcessScript + ... -> RunScriptState
 ```
 
-while legitimate reaction interruption can use the separate `+0x24AFF` route and interruption Game sibling.
+with selection influenced by `gScriptRunTimeSingleState::m_bIsScriptState`.
 
-## Related Step-B Runtime Hook / RVA Reference
+The official SDK makes clear that the SPU processes far more than combat: ScriptFunctions, ScriptStates, delayed instructions, routines/interactions, and callbacks.
 
-These addresses were established or exercised during the same lifecycle research and are **tested-build-specific**.
+Therefore:
 
-| Area | Tested symbol / purpose | Module + RVA | Evidence / confidence |
+> `ProcessScript()` is a **generic dispatcher**, not a collision-cleanup owner.
+
+If it is ever used by the final lifecycle design, it may provide only a tightly gated **timing checkpoint** for an already-owned exact attack execution.
+
+---
+
+## 8. Callback Ordering — Why B2 Looked Late
+
+Static inspection of `ProcessScript()` shows its main ScriptFunction/ScriptState dispatch occurs before later local/task callback processing through `RunScriptCallback(...)`.
+
+This aligns with B2 runtime evidence where clean Quick native cleanup occurred before the later original callback began, and that callback then repeated during Recover.
+
+Thus callback timing does not identify normal cleanup ownership.
+
+---
+
+## 9. `sAICombatMoveInstr` Is Too Early
+
+Tested symbol:
+
+```text
+Game + 0x1696E0 = gCScriptProcessingUnit::sAICombatMoveInstr(...)
+```
+
+Static inspection shows it can:
+
+- run `sAICombatMoveItlLoop` while the CombatMove instruction remains active;
+- call `sAICombatMoveStart`;
+- call `sAICombatMoveStartRecover` near completion;
+- clear/finish the active instruction callback.
+
+But the B4/B5 cleanup stack does **not** contain `sAICombatMoveInstr`: action-specific Script_Game cleanup occurs after the instruction returns.
+
+Therefore CombatMove instruction completion is also too early to be the fallback cleanup point.
+
+---
+
+## 10. No Common Immediate Script_Game Post-Cleanup Helper Found
+
+Static comparison of ordinary cleanup regions found no demonstrated common immediate Script_Game helper after cleanup across the tested Normal/Quick/full-Whirl paths.
+
+Some families share local instruction shapes, but full Whirl diverges.
+
+The first demonstrated ordinary common point is the generic `RunScriptFunction` return, which is broader than combat.
+
+This is why the project moved to the B6 question rather than adding another family/helper hook.
+
+---
+
+## 11. Related Step-B Symbol / RVA Index
+
+**Tested-build-specific.**
+
+| Area | Symbol / purpose | Module + RVA | Established meaning |
 |---|---|---:|---|
-| PrimaryFirst high-level play | `eCVisualAnimation_PS::PlayMotion` | `Engine + 0x30860` | Runtime-hooked in B1; immediate type-0 acquisition/replacement signal in controlled tests. |
-| PrimaryFirst high-level stop | `eCVisualAnimation_PS::StopMotion` | `Engine + 0x30980` | Runtime-hooked in B1. |
-| Wrapper motion play | `eCWrapper_emfx2Actor::PlayMotion` | `Engine + 0x476F0` | Tested binary/export reference; high-level PlayMotion delegates into wrapper path. |
-| Wrapper motion stop | `eCWrapper_emfx2Actor::StopMotion` | `Engine + 0x47910` | Tested binary/export reference. |
-| High-level loop-end request | `eCVisualAnimation_PS::StopAtLoopEnd` | `Engine + 0x309D0` | Source/binary inspection; schedules future loop stop, not actual motion-end event. |
-| Wrapper loop-end request | `eCWrapper_emfx2Actor::StopAtLoopEnd` | `Engine + 0x479C0` | Source/binary inspection. |
-| CombatMove Recover start | `gCScriptProcessingUnit::sAICombatMoveStartRecover` | `Game + 0x16E360` | Runtime-hooked in B3; begins Recover transition but returns before native weapon cleanup. |
-| CombatMove iterative loop | `gCScriptProcessingUnit::sAICombatMoveItlLoop` | `Game + 0x16DD00` | Tested binary export/source declaration; deliberately not hooked yet because it may be a broad update loop. |
-| CombatMove instruction | `gCScriptProcessingUnit::sAICombatMoveInstr` | `Game + 0x1696E0` | Tested binary export/source declaration. |
-| CombatMove start | `gCScriptProcessingUnit::sAICombatMoveStart` | `Game + 0x16ABB0` | Tested binary export/source declaration. |
-| Entity collision group | `eCEntity::SetCollisionGroup` | `Game + 0x225660` | Existing research hook; B4/B5 capture native caller and stack facts from this wrapper entry. |
-| Ordinary cleanup parent helper | unidentified internal Game function | `Game + 0x1604E0` | B5 runtime stack + binary inspection; ordinary action cleanup returns at `+0x1605EB`. |
-| Interruption cleanup parent helper | unidentified preceding internal Game function | ends at `Game + 0x1604D5` | B5 runtime stack + binary inspection; tested interruption stack returns at `+0x1604D3`. |
+| PrimaryFirst play | `eCVisualAnimation_PS::PlayMotion` | `Engine + 0x30860` | B1/B6 immediate type-0 replacement/acquisition signal; replacement itself precedes clean cleanup |
+| PrimaryFirst stop | `eCVisualAnimation_PS::StopMotion` | `Engine + 0x30980` | supporting B1 observation |
+| loop-end request | `eCVisualAnimation_PS::StopAtLoopEnd` | `Engine + 0x309D0` | schedules stop; not actual end event |
+| wrapper play | `eCWrapper_emfx2Actor::PlayMotion` | `Engine + 0x476F0` | lower wrapper path |
+| wrapper stop | `eCWrapper_emfx2Actor::StopMotion` | `Engine + 0x47910` | lower wrapper path |
+| wrapper loop-end | `eCWrapper_emfx2Actor::StopAtLoopEnd` | `Engine + 0x479C0` | lower wrapper path |
+| CombatMove instruction | `sAICombatMoveInstr` | `Game + 0x1696E0` | too early for post-native-cleanup repair |
+| CombatMove start | `sAICombatMoveStart` | `Game + 0x16ABB0` | start path |
+| CombatMove loop | `sAICombatMoveItlLoop` | `Game + 0x16DD00` | iterative path; broad/polling risk |
+| Recover start | `sAICombatMoveStartRecover` | `Game + 0x16E360` | B3: too early and bypassable |
+| Script state runner | `RunScriptState` | `Game + 0x1603D0` | generic B5 interruption-side parent |
+| Script function runner | `RunScriptFunction` | `Game + 0x1604E0` | generic B5 ordinary-side parent |
+| script dispatcher | `ProcessScript` | `Game + 0x16F120` | common higher generic dispatcher |
+| collision group | `eCEntity::SetCollisionGroup` | `Game + 0x225660` | B4/B5 observation point |
 
-Production code must not assume these addresses are stable across another Gothic 3 build. Revalidate against the binary reference and runtime before reuse.
+For broader hook lookup use `SOURCE_HOOK_GUIDE.md`.
 
-## Marker-Bookkeeping Retirement Is a Separate Responsibility
+---
 
-Do not mistake `RetireMarkerOwnedSource()` for physical fallback cleanup.
+## 12. Marker Bookkeeping Is Separate
 
-The earlier v0.15/v0.16 problem was:
+`RetireMarkerOwnedSource()` should not be confused with fallback physical cleanup.
+
+The earlier problem was:
 
 ```text
-marked source becomes offensive
-→ attack interrupted before later authored marker
-→ Gothic physically cleans source 7 -> 5
-→ stale marker occurrence/execution record can survive
+marked source requests offense
+→ execution interrupted
+→ Gothic physically cleans 7 -> 5
+→ old marker occurrence/execution bookkeeping can survive
 ```
 
-`RetireMarkerOwnedSource()` observes the already-performed source reset and may retire marker bookkeeping when that reset represents execution end. Intentional intra-Hit OFF or exact-set source switching removes/changes marker ownership before requesting group 5 so those authored transitions do not retire the whole execution.
+The retirement helper reacts to an **already-performed** source reset and may retire stale marker bookkeeping.
 
-A future exact Hit-lifetime authority may replace this inference, but physical cleanup and marker-record retirement must remain conceptually distinct until then.
+Intentional OFF and exact-set switching remain intra-Hit operations and must not retire the entire execution.
 
-## Architectural Consequence
+Evidence: EV-131–EV-133, EV-167.
 
-B4/B4b/B5 argue strongly **against** a production design that hooks one cleanup function per attack family.
+---
 
-That would create a growing matrix of Normal, Quick, Power, Pierce, SimpleWhirl, Whirl, Hack, Finishing, GetUp and interruption cleanup hooks.
+## 13. Current B6 Question
 
-The desired production rule remains execution-level:
+The previous open question—“what are the B5 sibling functions?”—is resolved.
 
-> Follow a real offensive Hit execution. When that exact Hit reaches a genuine end/replacement transition, allow Gothic 3 its legitimate cleanup opportunity. After that opportunity, if cleanup is still absent, repair the stale offensive collision.
+The current question is:
 
-This wording is deliberate:
+> **Do clean Hit -> Recover replacement, legitimate damage/reaction replacement, and bad block-skip direct replacement all occur inside a useful current SPU / `ProcessScript()` invocation, so a tightly gated one-shot check can wait until Gothic's native cleanup opportunity has passed?**
 
-- B1 proved successor PrimaryFirst `PlayMotion` can happen before ordinary native cleanup;
-- B4/B4b proved native success is split across multiple action/interruption paths;
-- B5 found a common ordinary Game sibling but a separate adjacent interruption sibling.
+B6 uses the existing type-0 `PlayMotion` observation to capture replacement stacks without adding production cleanup.
 
-Therefore none of the currently observed native cleanup callers should automatically become the production universal hook.
+See:
 
-## Current Open Question
+- `SESSION_ENTRYPOINT.md`
+- `COLLISION_LIFECYCLE_PLAN.md` §8–§9
+- `COLLISION_TEST_PLAN.md` Gate B6
 
-The next reverse-engineering question is:
+---
 
-> What calls/selects the adjacent Game cleanup sibling functions around `Game + 0x1604D3` and `Game + 0x1604E0..0x1605EB`, and is there a narrow event-driven boundary after either legitimate path has completed?
+## 14. Untested / Not Claimed
 
-Inspect their callers/dispatch conditions first. Do not immediately hook both siblings merely because they are adjacent.
+This map does not claim native cleanup coverage for every combat enum/source/actor type.
 
-## Untested / Not Yet Claimed
+Not established by this matrix include, among others:
 
-This map does not claim coverage for every combat enum or actor/source type. In particular, generic Quick/action 3, SprintAttack, JumpAttack, RamAttack, monster/body attacks, Fist logical collision, and other specialized paths remain evidence-bounded.
+- generic Quick/action 3;
+- SprintAttack;
+- JumpAttack;
+- RamAttack;
+- monster/body attacks;
+- logical Fist cleanup semantics;
+- ranged/magic execution cleanup.
+
+That absence is a scope boundary, not evidence that separate production branches are needed.
