@@ -26,6 +26,24 @@ Exact established findings should be retrieved through `EVIDENCE_INDEX.md` rathe
 - stop and revise the diagnostic if the required event ordering cannot be reconstructed clearly;
 - do not repeat already-closed marker/source tests unless a later implementation could have regressed them.
 
+### Authoritative local runtime path
+
+For the User's current Gothic 3 installation, the live script directory that the game actually loads is:
+
+```text
+E:\SteamLibrary\steamapps\common\Gothic 3\scripts
+```
+
+When deploying `Script_FrameCollisionTest.dll` for runtime evidence, copy the intended build to that exact directory. Backup DLLs remain outside the live directory.
+
+Before an evidence-producing run after rebuilding/replacing the diagnostic DLL, verify the deployed live DLL rather than inferring deployment from the build directory alone. Prefer a direct hash/timestamp comparison between the built DLL and:
+
+```text
+E:\SteamLibrary\steamapps\common\Gothic 3\scripts\Script_FrameCollisionTest.dll
+```
+
+Then confirm the runtime log header identifies the expected probe revision before treating the run as evidence.
+
 ---
 
 ## 2. Gate B6 — Hit Teardown / Replacement Stack and Script-Context Validation
@@ -38,15 +56,19 @@ Question:
 
 ### B6-A — Build/load sanity
 
-Passed for the current diagnostic baseline after isolating the live script directory. EV-173 records why backup Script DLLs must not remain in the live `scripts` directory.
+The revised StopMotion-stack source change passed independent source review and built successfully. Runtime sanity must be revalidated against the authoritative live script directory above because the first attempted B6-B run on 2026-08-27 was produced by a stale 21:47 live DLL and therefore is not valid evidence for the revised probe.
+
+EV-173 records why backup Script DLLs must not remain in the live `scripts` directory.
 
 Required for the revised probe:
 
 1. current `Script_FrameCollisionTest` builds;
-2. DLL loads/unloads normally with only the intended active prototype DLL present;
-3. Win32 stack/module resolution produces readable frames;
-4. existing B4/B5 cleanup diagnostics remain intact;
-5. no marker/collision behavior changes are introduced by the diagnostic.
+2. the built DLL and exact live DLL are confirmed to match before the run;
+3. DLL loads/unloads normally with only the intended active prototype DLL present;
+4. the runtime log header contains `STEP B6 HIT STOP / REPLACEMENT STACK PROBE`;
+5. Win32 stack/module resolution produces readable frames;
+6. existing B4/B5 cleanup diagnostics remain intact;
+7. no marker/collision behavior changes are introduced by the diagnostic.
 
 ### B6-B — Clean completion teardown/replacement
 
@@ -74,6 +96,8 @@ owned/current attack Hit
 Record the relevant Game/Script_Game/Engine frames and their ordering.
 
 Do **not** treat StopMotion alone as production Hit-end authority. In B6 it is a factual teardown event that must be correlated with the actual successor sequence.
+
+The raw artifact `research/raw/2026-08-27_b6b_player_2h_normal_clean_completion_stopmotion_stack.log` from the first attempted rerun is deployment-invalid: it contains the older `STEP B6 HIT REPLACEMENT STACK PROBE` header and no `HIT STOP STACK` records because the authoritative live directory still contained the old DLL. Preserve it only as provenance for the deployment failure; do not use it for lifecycle interpretation.
 
 ### B6-C — Legitimate damage/reaction teardown/replacement
 
@@ -133,9 +157,9 @@ This is the decisive negative-path comparison.
 
 - improve only the diagnostic fact needed to distinguish the execution context.
 
-Current immediate engineering task before rerunning B6-B:
+Current immediate runtime task:
 
-> Add diagnostic-only Win32 stack capture to the already-hooked player/type-0 `StopMotion` path when its before-snapshot is an attack-Hit Primary. Keep the existing direct PlayMotion replacement probe unchanged. Add no new Gothic hook, production cleanup, polling, or lifecycle ownership state.
+> Deploy the already-built revised `Script_FrameCollisionTest.dll` to `E:\SteamLibrary\steamapps\common\Gothic 3\scripts`, verify built/live identity and the revised runtime header, then rerun B6-B clean 2H Normal. Do not proceed to B6-C until B6-B produces valid revised-probe evidence.
 
 ---
 
