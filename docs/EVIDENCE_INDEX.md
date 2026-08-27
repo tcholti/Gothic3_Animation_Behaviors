@@ -32,7 +32,7 @@ Raw logs are verification/provenance, not routine reading.
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075 | source/history only if implementation chronology matters |
 | Dual native source map | EV-090–EV-094 | `ANIMATION_CATALOG.md` §6–§7 |
-| multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | raw v0.10–v0.13 fixture logs |
+| multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | archived v0.10–v0.13 fixture logs |
 | marker execution retirement after interruption | EV-131–EV-133 | EV-167 for later lifecycle interpretation |
 | final RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` §6 / `ANIMATION_RULES.md` §20 |
 | Whirl callback/action/source separation | EV-145–EV-147 | `ANIMATION_RULES.md` §8.1 / cleanup map |
@@ -40,12 +40,12 @@ Raw logs are verification/provenance, not routine reading.
 | Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156 for block-skip/native defect |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` Step-B constraints |
 | marked block-timeout failure | EV-155 | native control EV-156 |
-| native stale collision / running damage | EV-156 | raw 2026-08-25 native logs |
+| native stale collision / running damage | EV-156 | archived 2026-08-25 native logs |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
 | PlayMotion actual replacement timing | EV-158 | B6 current gate |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
 | StartRecover not post-cleanup / not guaranteed | EV-160 | source guide SPU table |
-| no-Recover and Dual Quick broad defect | EV-161–EV-162 | raw B3b log |
+| no-Recover and Dual Quick broad defect | EV-161–EV-162 | archived B3b log |
 | action-specific native cleanup matrix | EV-163 | `COLLISION_CLEANUP_CALLSITE_MAP.md` §2 |
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
 | legitimate reaction interruption cleanup | EV-165 | cleanup map §4 |
@@ -208,23 +208,25 @@ Practical source route:
 
 ---
 
-## 4. Step-B Raw Log Routing
+## 4. Processed Step-B Log Routing
 
-Current raw lifecycle logs under `research/raw/`:
+B1–B5 logs have been processed into canonical evidence and moved to `research/archive/`. Their blobs were preserved unchanged; only active/raw placement changed.
 
-| Research question | Raw file |
+| Research question | Archived file |
 |---|---|
-| B1 PrimaryFirst request/result replacement | `researchraw2026-08-26_framecollision_stepB1_primaryfirst_event_probe.log` |
-| B2 callback timing extract | `2026-08-26_stepB2_causal_extract.log` / `2026-08-26_stepB2_player_event_extract.log` |
-| B3 StartRecover | `2026-08-26_stepB3_native_startrecover_probe.log` |
-| B3b no-Recover / block-skip comparison | `2026-08-26_stepB3b_native_block_skip_comparison.log` |
-| B4 initial cleanup caller | `2026-08-26_stepB4_native_cleanup_callsite_probe.log` |
-| B4b many attacks | `2026-08-26_stepB4b_native_manyattacks_cleanup_callsite.log` |
-| B4b finishing/hack | `2026-08-26_stepB4b_native_finishing_blow_cleanup_callsite.log` |
-| B4b reaction interruption | `2026-08-26_stepB4b_native_interruption_cleanup_callsite.log` |
-| B5 higher parent stack | `2026-08-26_stepB5_cleanup_parent_stack_probe.log` |
+| B1 PrimaryFirst request/result replacement | `research/archive/researchraw2026-08-26_framecollision_stepB1_primaryfirst_event_probe.log` |
+| B2 callback timing extract | `research/archive/2026-08-26_stepB2_causal_extract.log` / `research/archive/2026-08-26_stepB2_player_event_extract.log` |
+| B3 StartRecover | `research/archive/2026-08-26_stepB3_native_startrecover_probe.log` |
+| B3b no-Recover / block-skip comparison | `research/archive/2026-08-26_stepB3b_native_block_skip_comparison.log` |
+| B4 initial cleanup caller | `research/archive/2026-08-26_stepB4_native_cleanup_callsite_probe.log` |
+| B4b many attacks | `research/archive/2026-08-26_stepB4b_native_manyattacks_cleanup_callsite.log` |
+| B4b finishing/hack | `research/archive/2026-08-26_stepB4b_native_finishing_blow_cleanup_callsite.log` |
+| B4b reaction interruption | `research/archive/2026-08-26_stepB4b_native_interruption_cleanup_callsite.log` |
+| B5 higher parent stack | `research/archive/2026-08-26_stepB5_cleanup_parent_stack_probe.log` |
 
-Open raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
+Open archived logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
+
+`research/raw/` is reserved for active/unprocessed evidence and current diagnostic output.
 
 ---
 
