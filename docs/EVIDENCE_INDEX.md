@@ -42,7 +42,7 @@ Raw logs are verification/provenance, not routine reading.
 | marked block-timeout failure | EV-155 | native control EV-156 |
 | native stale collision / running damage | EV-156 | archived 2026-08-25 native logs |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
-| PlayMotion actual replacement timing | EV-158 | B6 current gate |
+| PlayMotion actual replacement timing | EV-158 | B6 EV-174 for StopMotion-first clean path |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
 | StartRecover not post-cleanup / not guaranteed | EV-160 | source guide SPU table |
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | archived B3b log |
@@ -56,6 +56,8 @@ Raw logs are verification/provenance, not routine reading.
 | `ProcessScript()` common generic dispatcher | EV-170 | cleanup map §7 / B6 |
 | callback processing after main script dispatch | EV-171 | cleanup map §8 |
 | deferred pending-finalization/post-script candidate | EV-172 | lifecycle plan §§8–9 / B6 tests |
+| live `scripts` backup-DLL contamination | EV-173 | `SOURCE_HOOK_GUIDE.md` build/runtime reference |
+| B6 clean path StopMotion-before-PlayMotion limitation | EV-174 | `COLLISION_LOGGER_PLAN.md` §6 / `COLLISION_TEST_PLAN.md` B6 |
 
 ---
 
@@ -145,11 +147,11 @@ Architecture:
 
 Search terms:
 
-`Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion
+`Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion
 
 Evidence anchors:
 
-- EV-151–EV-172.
+- EV-151–EV-174.
 
 Exact native RVAs/stacks:
 
@@ -178,17 +180,18 @@ Main routing:
 
 Search terms:
 
-`NewBalance`, `Script_AttackCollision`, same-function hook, load order, ResetOnUntouch
+`NewBalance`, `Script_AttackCollision`, same-function hook, load order, ResetOnUntouch, backup DLL
 
 Evidence anchors:
 
 - EV-035;
 - EV-045;
-- EV-148–EV-150.
+- EV-148–EV-150;
+- EV-173.
 
 Practical source route:
 
-- `SOURCE_HOOK_GUIDE.md` §8–§10.
+- `SOURCE_HOOK_GUIDE.md` §8–§11.
 
 ---
 
@@ -204,17 +207,19 @@ Practical source route:
 | B5 | EV-166 | ordinary/reaction successful paths reached adjacent but distinct Game parents |
 | B5 static follow-up | EV-169–EV-171 | parents are generic script runners, common higher dispatcher is generic `ProcessScript()` |
 | design consequence | EV-168, EV-172 | keep one execution-level invariant; pending-finalization + tightly gated post-script timing is a hypothesis |
-| B6 | runtime pending | compare clean/reaction/bad replacement stacks; current source state in `SESSION_ENTRYPOINT.md` |
+| B6 environment | EV-173 | backup `Script_*.dll.bak` in live scripts can participate in runtime hooks; isolate test directory |
+| B6 clean control | EV-174 | clean Hit -> Recover stops the outgoing Primary before successor PlayMotion, so B6 must capture the already-hooked StopMotion stack as well as direct PlayMotion replacement |
 
 ---
 
 ## 4. Processed Step-B Log Routing
 
-B1–B5 logs have been processed into canonical evidence and moved to `research/archive/`. Their blobs were preserved unchanged; only active/raw placement changed.
+B1–B6 processed logs have been moved to `research/archive/` as their conclusions became canonical. Their blobs are preserved unchanged.
 
 | Research question | Archived file |
 |---|---|
 | B1 PrimaryFirst request/result replacement | `research/archive/researchraw2026-08-26_framecollision_stepB1_primaryfirst_event_probe.log` |
+| B2 full callback boundary probe | `research/archive/2026-08-26_stepB2_full_callback_boundary_probe.log` |
 | B2 callback timing extract | `research/archive/2026-08-26_stepB2_causal_extract.log` / `research/archive/2026-08-26_stepB2_player_event_extract.log` |
 | B3 StartRecover | `research/archive/2026-08-26_stepB3_native_startrecover_probe.log` |
 | B3b no-Recover / block-skip comparison | `research/archive/2026-08-26_stepB3b_native_block_skip_comparison.log` |
@@ -223,6 +228,8 @@ B1–B5 logs have been processed into canonical evidence and moved to `research/
 | B4b finishing/hack | `research/archive/2026-08-26_stepB4b_native_finishing_blow_cleanup_callsite.log` |
 | B4b reaction interruption | `research/archive/2026-08-26_stepB4b_native_interruption_cleanup_callsite.log` |
 | B5 higher parent stack | `research/archive/2026-08-26_stepB5_cleanup_parent_stack_probe.log` |
+| B6-B invalid backup-DLL-contaminated clean control | `research/archive/2026-08-27_stepB6B_invalid_backup_dll_contamination.log` |
+| B6-B isolated clean control / StopMotion-first finding | `research/archive/2026-08-27_stepB6B_clean_hit_recover_isolated.log` |
 
 Open archived logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
