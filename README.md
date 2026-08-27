@@ -13,6 +13,8 @@ When continuing the current collision work, do not assume `main` contains the ne
 
 - [Session entry point](docs/SESSION_ENTRYPOINT.md) — minimal current-state front door.
 - [Documentation and knowledge map](docs/README.md) — Hot/Warm/Cold retrieval routes and authority by question.
+- [Evidence index](docs/EVIDENCE_INDEX.md) — route engine/research questions to exact EV ranges and raw logs.
+- [Animation knowledge index](docs/ANIMATION_INDEX.md) — route filename/UseType/action/pose/asset questions to exact sections/data.
 - [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — compact bounded-implementation contract for Work/coding sessions.
 - [Gothic 3 project collaboration delta](docs/COLLABORATION_RULES.md) — project-specific collaboration rules; broader CAM authority is external and should not be reloaded for normal prompts.
 
@@ -26,12 +28,12 @@ Large technical documents should be indexed and retrieved by topic/section/evide
 
 > **Not necessary to read now does not mean not necessary to preserve.**
 
-## Searchable animation-name data
+## Searchable Animation-Name Data
 
 - [Author-grouped attacks and stumbles](data/animation_names/author_grouped_attacks_and_stumbles.txt)
 - [Complete native animation-name inventory](data/animation_names/all_animation_names.txt) — 5,991 sorted unique names from extracted `pak` + `p00` sources
 
-## Standalone build
+## Standalone Build
 
 Initialize the pinned official SDK dependency:
 
