@@ -65,7 +65,7 @@ void OpenLog()
     std::fprintf(g_pLog, "STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.\n");
-    std::fprintf(g_pLog, "STEP B6 HIT REPLACEMENT STACK PROBE: player PrimaryFirst outgoing attack-Hit replacement stack; diagnostic-only.\n");
+    std::fprintf(g_pLog, "STEP B6 HIT STOP / REPLACEMENT STACK PROBE: player PrimaryFirst outgoing attack-Hit StopMotion or direct replacement stack; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -766,6 +766,76 @@ void LogHitReplacementStack(
     }
     std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
     std::fprintf(g_pLog, "=================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogHitStopStack(Entity &actor,
+                     HitReplacementStackSnapshot const &stop,
+                     GEFloat blendTime)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== HIT STOP STACK =====\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n", stop.elapsedMilliseconds);
+    std::fprintf(g_pLog, "Actor: %s\n",
+                 actor != None ? actor.GetName().GetText() : "<unavailable>");
+    std::fprintf(g_pLog, "OutgoingPrimaryMotionName: %s\n",
+                 stop.outgoingMotionName.c_str());
+    std::fprintf(g_pLog, "StopMotionType: 0\n");
+    std::fprintf(g_pLog, "StopMotionBlendTime: %.6f\n", blendTime);
+    std::fprintf(g_pLog, "StopIsConfirmedReplacement: 0\n");
+    std::fprintf(g_pLog, "CurrentAction: %d\n", stop.action);
+    std::fprintf(g_pLog, "CurrentAniPhase: %d\n", stop.phase);
+    std::fprintf(g_pLog, "CurrentStateTime: %.6f\n", stop.stateTime);
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                 stop.movementName.c_str());
+    LogHitReplacementSource("LeftHand", stop.leftSource);
+    LogHitReplacementSource("RightHand", stop.rightSource);
+    std::fprintf(g_pLog, "CapturedStackFrameCount: %u\n",
+                 static_cast<unsigned int>(stop.frameCount));
+    for (unsigned short i = 0; i < stop.frameCount; ++i)
+    {
+        void *frameAddress = stop.frames[i];
+        HMODULE frameModule = nullptr;
+        char frameModulePath[MAX_PATH] = {};
+        bool const frameModuleResolved =
+            frameAddress != nullptr
+            && ::GetModuleHandleExA(
+                GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                    | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                reinterpret_cast<LPCSTR>(frameAddress),
+                &frameModule) != FALSE;
+        DWORD const frameModulePathLength = frameModuleResolved
+            ? ::GetModuleFileNameA(
+                frameModule, frameModulePath, MAX_PATH) : 0;
+        std::uintptr_t const frameValue =
+            reinterpret_cast<std::uintptr_t>(frameAddress);
+        std::uintptr_t const frameModuleBase =
+            reinterpret_cast<std::uintptr_t>(frameModule);
+        unsigned long const frameRva = frameModuleResolved
+            ? static_cast<unsigned long>(frameValue - frameModuleBase) : 0;
+        if (frameModuleResolved)
+        {
+            std::fprintf(
+                g_pLog,
+                "StackFrame[%u]: Address=%p Module=%s Base=%p RVA=0x%08lX\n",
+                static_cast<unsigned int>(i), frameAddress,
+                frameModulePathLength > 0
+                    ? BaseName(frameModulePath) : "<path-unavailable>",
+                static_cast<void *>(frameModule), frameRva);
+        }
+        else
+        {
+            std::fprintf(
+                g_pLog,
+                "StackFrame[%u]: Address=%p Module=<unresolved> Base=%p RVA=<unresolved>\n",
+                static_cast<unsigned int>(i), frameAddress,
+                static_cast<void *>(frameModule));
+        }
+    }
+    std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "==========================\n\n");
     std::fflush(g_pLog);
 }
 

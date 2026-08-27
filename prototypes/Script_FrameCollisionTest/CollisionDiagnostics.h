@@ -73,6 +73,9 @@ void CaptureHitReplacementContext(Entity &actor, void *incomingRequestAddress,
 void LogHitReplacementStack(Entity &actor,
                             HitReplacementStackSnapshot const &replacement,
                             PrimaryMotionEventSnapshot const &incoming);
+void LogHitStopStack(Entity &actor,
+                     HitReplacementStackSnapshot const &stop,
+                     GEFloat blendTime);
 void LogCombatMoveStartRecoverBoundary(Entity &actor,
                                          char const *boundary);
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,

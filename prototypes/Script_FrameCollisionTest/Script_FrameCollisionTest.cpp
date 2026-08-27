@@ -212,6 +212,18 @@ static void GE_STDCALL StopMotion_FrameCollisionTest(
 
     CollisionDiagnostics::PrimaryMotionEventSnapshot before =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    Entity actor(ownerEntity);
+    if (CollisionDiagnostics::IsAttackHitPrimaryMotion(before))
+    {
+        CollisionDiagnostics::HitReplacementStackSnapshot stop = {};
+        stop.outgoingMotionName = before.primary.motionName;
+        stop.frameCount = ::CaptureStackBackTrace(
+            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            stop.frames, nullptr);
+        CollisionDiagnostics::CaptureHitReplacementContext(
+            actor, nullptr, stop);
+        CollisionDiagnostics::LogHitStopStack(actor, stop, a_fBlendTime);
+    }
     Hook_StopMotion.GetOriginalFunction(&StopMotion_FrameCollisionTest)(
         a_MotionType, a_fBlendTime);
     CollisionDiagnostics::PrimaryMotionEventSnapshot after =
