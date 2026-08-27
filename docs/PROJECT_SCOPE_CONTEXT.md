@@ -17,7 +17,7 @@ For Work or other technical prompts that involve binary inspection, disassembly,
 
 Do not replace accurate engineering terminology with euphemisms. The scope sentence exists to state the real context clearly, not to alter the technical task or bypass any safety rule.
 
-For any **frozen Work implementation task**, Work must also read and follow `docs/FROZEN_WORK_TASK_RULES.md` before editing. A frozen task is implementation-only: missing semantic or architectural decisions must be returned to Normal Chat rather than invented in Work.
+For a bounded/frozen Work implementation task, use `docs/WORK_IMPLEMENTATION_PROTOCOL.md`. Missing semantic or architectural decisions that materially affect behavior must be returned to the design responsibility rather than invented during implementation.
 
 ## Reuse in other projects
 
