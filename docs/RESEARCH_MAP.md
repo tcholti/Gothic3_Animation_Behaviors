@@ -102,7 +102,7 @@ Evidence: EV-080–EV-094.
 - repeated frame-effect replay discovered;
 - same-update duplicate + authored-occurrence budget architecture validated.
 
-Evidence: EV-106 onward through the marker-core sequence; exact fixture history remains in the evidence ledger, catalog, raw logs, and archived pre-IA docs.
+Evidence: EV-106 onward through the marker-core sequence; exact fixture history remains in the evidence ledger, catalog, processed logs, and archived pre-IA docs.
 
 ### Multi-source exact-set and final vocabulary
 
@@ -132,6 +132,8 @@ Evidence: EV-145–EV-162.
 - static identification of generic script runners / `ProcessScript()`.
 
 Evidence: EV-158–EV-172.
+
+Processed B1–B5 runtime logs live in `research/archive/` and remain byte-preserved; `research/raw/` is reserved for current/unprocessed evidence.
 
 ### Current B6 boundary experiment
 
@@ -198,13 +200,13 @@ Use these exact terms when searching the repository rather than reading broad do
 
 ---
 
-## 5. Raw Evidence Routing
+## 5. Evidence Artifact Routing
 
-### Current causal/lifecycle raw logs
+### Processed Step-B lifecycle logs
 
-`research/raw/`
+`research/archive/`
 
-Notable Step-B names include:
+Notable B1–B5 names:
 
 - `researchraw2026-08-26_framecollision_stepB1_primaryfirst_event_probe.log`
 - `2026-08-26_stepB2_causal_extract.log`
@@ -216,11 +218,17 @@ Notable Step-B names include:
 - `2026-08-26_stepB4b_native_interruption_cleanup_callsite.log`
 - `2026-08-26_stepB5_cleanup_parent_stack_probe.log`
 
+### Current/unprocessed causal evidence
+
+`research/raw/`
+
+Keep current diagnostic output here only until its durable conclusions/provenance are promoted.
+
 ### Processed historical runtime logs
 
 `research/archive/`
 
-Names encode date, prototype version, actor/family, and experiment. Prefer evidence IDs first; open raw logs when verifying a claim or extracting a fact not represented in the ledger.
+Names encode date, prototype version, actor/family, and experiment. Prefer evidence IDs first; open logs when verifying a claim or extracting a fact not represented in the ledger.
 
 ### Long source/history intake
 
@@ -271,7 +279,7 @@ When an older decision or implementation detail matters:
 current question
 → EVIDENCE_INDEX / topic row here
 → exact evidence ID
-→ raw log / source commit if needed
+→ processed log / source commit if needed
 → archived pre-IA document only when chronology or omitted implementation rationale matters
 ```
 
