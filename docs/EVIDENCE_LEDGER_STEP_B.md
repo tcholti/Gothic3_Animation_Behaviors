@@ -27,6 +27,7 @@ The same promotion rule applies: design choices do not become engine facts by re
 | EV-170 | Both B5 script-runner paths converge one level higher in `gCScriptProcessingUnit::ProcessScript()` at tested `Game + 0x16F120`. The tested binary calls `RunScriptFunction` at `+0x16F2C2` and `RunScriptState` at `+0x16F338` / `+0x16F3A6`, selected from `gScriptRunTimeSingleState::m_bIsScriptState`. The official SDK describes each NPC's SPU as generic ScriptFunction/ScriptState execution machinery containing many non-combat instructions as well as CombatMove. | CONFIRMED FOR TESTED BINARY + SDK STRUCTURE | Game exports/disassembly + official `ge_scriptprocessingunit.h`, 2026-08-27 | `ProcessScript()` is the common higher dispatcher but is too broad to treat as a combat-only cleanup owner. If ever used as a checkpoint, it must be gated by already-established exact attack-execution ownership and must not mutate unrelated script runs. |
 | EV-171 | `gCScriptProcessingUnit::ProcessScript()` performs its main ScriptFunction/ScriptState dispatch before later local/task callback processing. In the tested binary `RunLocalCallback` and `RunTaskCallback` call `gCScriptAdmin::RunScriptCallback(...)` after the main dispatch. | CONFIRMED FOR TESTED BINARY; CONSISTENT WITH B2 RUNTIME | Game `part_0094` disassembly + B2 Quick runtime evidence, 2026-08-27 | This statically explains why the original Quick/AI callback can begin only after native cleanup and then repeat during Recover. The callback layer is downstream observation/control, not the normal cleanup owner. |
 | EV-172 | A possible event-driven architecture is to let exact PrimaryFirst replacement mark an already-owned offensive Hit as pending finalization, allow the current native script dispatch to finish, then inspect that one execution after a post-script opportunity; if native cleanup was observed, do nothing, otherwise repair. This would use a broad script boundary only as a deferred checkpoint, not as ownership authority. | WORKING DESIGN HYPOTHESIS; NOT RUNTIME VALIDATED | Combined B1-B5 evidence + EV-169-EV-171 static architecture, 2026-08-27 | Compare this one-shot deferred-check design against any narrower CombatMove-specific post-opportunity boundary before implementation. Do not freeze a Work task or add a ProcessScript hook yet. |
+| EV-173 | During the first B6-B clean-control attempt, a backup file named `Script_FrameCollisionTest.preB6.dll.bak` left inside Gothic 3's `scripts` directory participated in runtime hook execution. The log contained duplicated diagnostic blocks and B5 cleanup stacks whose hook frame resolved to that `.dll.bak` module. | CONFIRMED FOR TESTED LOCAL GOTHIC 3 SCRIPT-LOADER ENVIRONMENT | invalidated B6-B log `2026-08-27_stepB6B_clean_hit_recover.log`, 2026-08-27 | Do not keep backup/renamed Script DLLs inside the live `scripts` directory during controlled tests. This run is invalid for B6 lifecycle conclusions and must be rerun with only the intended active diagnostic DLL present. |
 
 ## Current Research Consequence
 
@@ -34,8 +35,8 @@ The B5 parent search is now resolved far enough to reject a misleading interpret
 
 > `RunScriptFunction`, `RunScriptState`, and `ProcessScript` are generic script infrastructure, not a central combat-cleanup function.
 
-The next design question is narrower:
+B6 remains the current runtime gate. The first B6-B clean-control run was invalidated by EV-173 loader contamination and must be rerun in an isolated script environment before interpreting replacement stacks.
+
+The current design question remains:
 
 > Is there a combat-specific post-native-cleanup boundary below `ProcessScript`, or is the safest minimal design to use exact motion replacement as the execution-end signal and a tightly gated one-shot post-script checkpoint only to wait until Gothic 3 has had its native cleanup opportunity?
-
-Static binary/source inspection and design discussion should precede another runtime hook.
