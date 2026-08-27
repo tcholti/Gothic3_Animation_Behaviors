@@ -456,6 +456,8 @@ Game INI directory:
 
 For isolated collision tests, remove conflicting collision DLLs unless compatibility is the explicit variable being tested.
 
+**Live-script hygiene:** do not keep backup or renamed `Script_*.dll` files inside the live Gothic 3 `scripts` directory, even with an added extension such as `.bak`. EV-173 showed `Script_FrameCollisionTest.preB6.dll.bak` participating in runtime hook execution and duplicating diagnostics. Keep backups outside the live `scripts` directory during controlled tests.
+
 ---
 
 ## 12. Retrieval Routes
