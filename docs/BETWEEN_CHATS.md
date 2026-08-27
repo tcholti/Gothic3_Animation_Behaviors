@@ -12,14 +12,7 @@
 
 ## Step B5 Parent Search — STATIC IDENTIFICATION COMPLETE
 
-B5 runtime had shown:
-
-```text
-ordinary cleanup -> Game + 0x1605EB
-interruption cleanup -> Game + 0x1604D3
-```
-
-Static export/disassembly inspection now identifies those parents exactly:
+B5 runtime parents are now identified:
 
 ```text
 Game + 0x1603D0 = gCScriptAdmin::RunScriptState(...)
@@ -29,48 +22,67 @@ Game + 0x1604E0 = gCScriptAdmin::RunScriptFunction(...)
     ordinary post-call return = +0x1605EB
 ```
 
-Therefore B5 did **not** reach a central combat-cleanup function. It reached Gothic 3's generic script-execution layer.
+Therefore B5 reached Gothic 3's generic script-execution layer, not a central combat-cleanup function.
 
-Both paths converge one level higher in:
+Both converge one level higher in:
 
 ```text
 Game + 0x16F120 = gCScriptProcessingUnit::ProcessScript()
 ```
 
-Inside the tested binary:
+The SDK confirms `ProcessScript()` is generic per-NPC ScriptFunction/ScriptState machinery with many non-combat delayed instructions.
 
-```text
-+0x16F2C2 -> RunScriptFunction
-+0x16F338 -> RunScriptState
-+0x16F3A6 -> RunScriptState
-```
+B2 timing is now statically explained: main ScriptFunction/ScriptState work runs before later local/task `RunScriptCallback` processing. This matches the runtime observation that the original Quick callback begins after native cleanup.
 
-The SDK confirms `ProcessScript()` is generic per-NPC ScriptFunction/ScriptState machinery, not combat-only. It also owns many non-combat delayed instructions. Do not treat `RunScriptFunction`, `RunScriptState`, or `ProcessScript` as unconditional collision-cleanup hooks.
+## Narrower CombatMove Boundary Check
 
-B2 timing is now statically explained: after the main ScriptFunction/ScriptState dispatch, `ProcessScript()` later runs local/task callbacks through `gCScriptAdmin::RunScriptCallback()`. This matches the runtime observation that the original Quick callback begins after native cleanup and can repeat during Recover.
+`gCScriptProcessingUnit::sAICombatMoveInstr` at tested `Game + 0x1696E0` is also too early as a post-cleanup boundary.
 
-## Current Architectural Option — NOT YET FROZEN
+The tested binary:
 
-One possible event-driven design is:
+- uses it as the active delayed-instruction callback while CombatMove is running;
+- calls `sAICombatMoveStartRecover` from inside the instruction completion path when appropriate;
+- clears the active instruction callback and returns success when the CombatMove instruction completes.
+
+B4/B5 cleanup stacks do not contain `sAICombatMoveInstr`; native weapon cleanup happens afterward in the action-specific Script_Game function. Therefore instruction completion cannot itself be the fallback-cleanup point.
+
+Static comparison also shows no common immediate Script_Game post-cleanup helper across even Normal/Quick versus full Whirl. The first demonstrated shared point after ordinary family-specific cleanup is the generic `RunScriptFunction` return.
+
+## Current Architectural Candidate — NOT YET FROZEN
 
 ```text
 exact owned offensive Hit replacement observed
 -> mark that exact execution pending-finalization
--> let current native script dispatch finish
--> at a tightly gated post-script opportunity:
+-> let the current native script dispatch finish
+-> at a tightly gated one-shot post-script opportunity:
        native cleanup observed -> no-op
        cleanup absent          -> repair
 ```
 
-This would use a broad script boundary only as a one-shot deferred checkpoint for an already-owned attack execution, never as attack ownership authority.
+The generic boundary would be timing only; ownership must already belong to an exact attack execution/source.
 
-Before implementation, compare this design with any narrower CombatMove-specific post-native-cleanup boundary. Do not add a `ProcessScript` hook yet.
+## Recommended Next Diagnostic — DISCUSS BEFORE WORK
 
-## Next Normal-Chat Questions
+Before implementing cleanup, extend only the existing player/type-0 `PlayMotion` diagnostic to capture a short Win32 stack for **actual attack-Hit replacement events**.
 
-1. Is there a narrower combat-specific post-opportunity boundary below `ProcessScript`?
-2. If not, is a one-shot deferred post-script checkpoint the smallest safe event-driven design?
-3. What exact ownership/source gate would guarantee that Fist, bow, crossbow, magic and unrelated script actions cannot be mutated?
-4. Which negative regression tests are still required after static/source analysis?
+Compare:
 
-No Work coding task is frozen.
+1. clean Hit -> Recover replacement;
+2. legitimate damage/reaction replacement;
+3. bad block-skip direct replacement with missing cleanup.
+
+Question:
+
+> Do all relevant replacement events occur inside the same SPU/`ProcessScript` invocation so that a post-`ProcessScript` one-shot check is guaranteed to run after Gothic's native cleanup opportunity?
+
+Use the existing PlayMotion hook only; do not add a new Gothic hook or behavior yet.
+
+## Negative-Scope Planning
+
+If a generic SPU/script checkpoint survives the next diagnostic, later negative regression should include Fist, bow, crossbow and magic.
+
+Fist is especially important because it can share ordinary melee actions while the tested logical Fist collision path does not request weapon-style `Item_Attack(7)`. Action enum alone must not define cleanup ownership.
+
+Jackydima New Balance source confirms ranged/magic use distinct Aim/Reload/Cock/Cast/PowerCast and `PS_Ranged_*` paths, but source inspection cannot replace runtime proof that our eventual generic checkpoint remains a no-op for them.
+
+No Work coding task is frozen yet.
