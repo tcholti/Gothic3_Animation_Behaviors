@@ -13,6 +13,20 @@ Latest transient Chat/Work bridge, only when relevant: `docs/BETWEEN_CHATS.md`
 
 ---
 
+## Fresh Normal Chat Bootstrap
+
+For a newly opened Normal Chat:
+
+1. read this file first and treat it as the current-state authority;
+2. do **not** reconstruct the project from old chat history or scan the whole repository;
+3. read `docs/BETWEEN_CHATS.md` only when the current responsibility depends on an active/recent Work task or transient handoff;
+4. retrieve only the exact deeper authority listed under **Retrieval — Only What the Question Needs** when the current question requires it;
+5. continue the current Normal Chat responsibility from the repository state. The User should not need to restate project history already preserved here or in the routed authorities.
+
+A new Normal Chat should normally need no custom handoff document beyond this front door. `BETWEEN_CHATS.md` remains the replaceable transient bridge for exact Chat ↔ Work continuity.
+
+---
+
 ## Active Subsystem
 
 **Frame-controlled melee collision lifecycle.**
