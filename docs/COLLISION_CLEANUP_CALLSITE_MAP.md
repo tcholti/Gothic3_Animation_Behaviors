@@ -26,13 +26,13 @@ The pre-information-architecture map is preserved at:
 
 ## 1. Evidence Basis
 
-Primary runtime logs:
+Primary processed runtime logs:
 
-- `research/raw/2026-08-26_stepB4_native_cleanup_callsite_probe.log`
-- `research/raw/2026-08-26_stepB4b_native_manyattacks_cleanup_callsite.log`
-- `research/raw/2026-08-26_stepB4b_native_finishing_blow_cleanup_callsite.log`
-- `research/raw/2026-08-26_stepB4b_native_interruption_cleanup_callsite.log`
-- `research/raw/2026-08-26_stepB5_cleanup_parent_stack_probe.log`
+- `research/archive/2026-08-26_stepB4_native_cleanup_callsite_probe.log`
+- `research/archive/2026-08-26_stepB4b_native_manyattacks_cleanup_callsite.log`
+- `research/archive/2026-08-26_stepB4b_native_finishing_blow_cleanup_callsite.log`
+- `research/archive/2026-08-26_stepB4b_native_interruption_cleanup_callsite.log`
+- `research/archive/2026-08-26_stepB5_cleanup_parent_stack_probe.log`
 
 Canonical evidence:
 
