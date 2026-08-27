@@ -96,6 +96,7 @@ Conceptual events:
 ATTACK_HIT_ACQUIRED
 OFFENSIVE_COLLISION_REQUESTED
 NATIVE_CLEANUP_OBSERVED
+PRIMARY_HIT_STOP_REQUESTED
 PRIMARY_HIT_REPLACED_OR_RESTARTED
 MARKER_COMMAND_ACCEPTED / REJECTED
 BLOCK_OR_REACTION_TRANSITION   (only when specifically needed)
@@ -148,26 +149,38 @@ Purpose:
 
 - observe PrimaryFirst acquisition/replacement with immediate timing;
 - compare before/after motion snapshots;
-- support exact replacement/restart detection.
+- support exact direct replacement/restart detection when the outgoing Primary remains present at PlayMotion entry.
 
 B1 proved the event is earlier and more precise than the old Script `OnTick` comparator.
 
-### B6 replacement-stack probe — current active diagnostic
+### Existing type-0 `StopMotion` observation
 
-The B6 probe reuses the existing player/type-0 `PlayMotion` hook.
+Purpose:
+
+- observe explicit PrimaryFirst stop requests and their immediate before/after snapshots;
+- preserve the outgoing motion before Gothic removes it;
+- support B6 on paths where Gothic stops the Hit before requesting the successor Primary.
+
+EV-174 showed this is required for ordinary clean Hit -> Recover observation: the outgoing Hit is gone before successor Recover `PlayMotion` begins.
+
+### B6 replacement/stop-stack probe — current active diagnostic
+
+B6 uses only hooks already owned by `Script_FrameCollisionTest`: player/type-0 `StopMotion` and `PlayMotion`. No new Gothic hook is required.
 
 Rules:
 
-1. while an outgoing attack-Hit PrimaryFirst exists, capture pre-call stack/context;
-2. call original `PlayMotion` exactly once and unchanged;
-3. use existing before/after PrimaryFirst evidence to prove an actual replacement/restart;
-4. emit `HIT REPLACEMENT STACK` only after replacement/restart is demonstrated;
-5. keep the opaque incoming motion descriptor opaque; its raw address may be logged, but no guessed layout is read;
-6. add no persistent lifecycle ownership state and no cleanup behavior.
+1. on player/type-0 `StopMotion`, if the before-snapshot is an outgoing attack-Hit PrimaryFirst, capture a short Win32 stack/context **before** the original stop call and emit a diagnostic outgoing-Hit-stop stack record;
+2. call original `StopMotion` exactly once and unchanged, then preserve the existing before/after StopMotion log;
+3. use the existing immediately following PlayMotion record to establish what successor Primary was actually installed in the controlled transition;
+4. retain the existing PlayMotion replacement-stack probe for paths where the outgoing attack-Hit remains visible at PlayMotion entry and before/after evidence proves direct replacement/restart;
+5. keep opaque motion descriptors opaque; raw addresses may be logged, but no guessed layout is read;
+6. add no new Gothic hook, production cleanup, lifecycle ownership state, polling, family-specific classifier, or fallback behavior.
 
 Current purpose:
 
-> Compare clean Hit -> Recover, legitimate damage/reaction, and bad block-skip direct replacement stacks to determine whether a useful shared SPU / `ProcessScript()` context surrounds the replacement event.
+> Compare the script/SPU stack surrounding outgoing-Hit teardown/replacement across clean Hit -> Recover, legitimate damage/reaction, and bad block-skip direct replacement, while allowing Gothic's two observed sequencing forms: StopMotion -> successor PlayMotion and direct PlayMotion replacement.
+
+The StopMotion record is diagnostic timing evidence, not yet production lifetime authority. It must be correlated with the actual successor Primary and cleanup sequence before architectural interpretation.
 
 ### B3 StartRecover probe
 
@@ -201,7 +214,7 @@ Desired identity should be based on the exact actual PrimaryFirst Hit execution,
 
 - motion instance identity if safely accessible;
 - exact motion resource/name;
-- replacement/restart event;
+- stop/replacement/restart event;
 - play-time rollback for repeated same-name executions.
 
 Filename identity is useful but not sufficient by itself to define behavioral ownership.
@@ -241,11 +254,11 @@ Do not add:
 
 Before using B6 evidence architecturally:
 
-1. DLL builds and loads;
+1. DLL builds and loads in an isolated live script environment;
 2. `CaptureStackBackTrace`/module resolution returns interpretable frames;
-3. clean Hit -> Recover replacement emits a confirmed replacement record;
-4. legitimate damage/reaction replacement emits a confirmed replacement record;
-5. bad block-skip direct replacement emits a confirmed replacement record while native cleanup is absent;
+3. clean Hit -> Recover correlates an outgoing attack-Hit StopMotion stack with the immediately following successor Recover PlayMotion and later native cleanup;
+4. legitimate damage/reaction correlates the corresponding outgoing-Hit stop/direct-replacement stack with the reaction successor and legitimate cleanup;
+5. bad block-skip direct replacement emits either the existing confirmed direct PlayMotion replacement stack or an outgoing-Hit StopMotion stack plus successor, while native cleanup is absent;
 6. B4/B5 cleanup records remain unchanged and can be correlated by time;
 7. no collision/marker behavior changes are introduced by the diagnostic.
 
