@@ -127,6 +127,24 @@ static GELPVoid StartEffect_FrameCollisionTest(
     return nullptr;
 }
 
+static bool DidPrimaryFirstReplace(
+    CollisionDiagnostics::PrimaryMotionEventSnapshot const &before,
+    CollisionDiagnostics::PrimaryMotionEventSnapshot const &after)
+{
+    if (!before.primary.hasMotionInstance
+        || !after.primary.available
+        || !after.primary.hasMotionInstance)
+        return false;
+
+    if (before.primary.motionName != after.primary.motionName)
+        return true;
+
+    // A same-name execution can still be replaced/restarted. B1 already
+    // records play time, so a clear rollback is the narrow evidence available
+    // here without guessing at opaque motion-instance internals.
+    return after.primary.playTime + 0.0001 < before.primary.playTime;
+}
+
 static void GE_STDCALL PlayMotion_FrameCollisionTest(
     eCWrapper_emfx2Actor::eEMotionType a_MotionType,
     eCWrapper_emfx2Motion::eSMotionDesc *a_pMotionDesc)
@@ -167,7 +185,7 @@ static void GE_STDCALL PlayMotion_FrameCollisionTest(
         a_MotionType, a_pMotionDesc);
     CollisionDiagnostics::PrimaryMotionEventSnapshot after =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
-    if (outgoingAttackHit)
+    if (outgoingAttackHit && DidPrimaryFirstReplace(before, after))
         CollisionDiagnostics::LogHitReplacementStack(actor, replacement, after);
     CollisionDiagnostics::LogPrimaryMotionEvent(
         pThis, "PlayMotion", before, after);
