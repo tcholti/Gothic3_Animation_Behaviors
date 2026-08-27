@@ -10,12 +10,15 @@ A frozen Work task is an implementation assignment, not an invitation to complet
 
 Normal Chat owns the design decisions, evidence interpretation, semantic authority, and exact task boundary. Work owns faithful implementation, narrowly necessary source/API inspection, source-level audit, commit/push, and handoff.
 
+For the empirical lessons and longer-term plan for improving this collaboration, see `WORK_COLLABORATION_EVOLUTION.md`.
+
 ## Required execution sequence
 
 For a frozen task, Work should normally do only:
 
 ```text
 read assigned files
+-> confirm the task contract and stop conditions
 -> inspect only source/API material necessary to implement the frozen task
 -> edit only the bounded implementation
 -> source audit against the frozen task and protected behavior
@@ -25,6 +28,25 @@ read assigned files
 ```
 
 Do not broaden the task merely because more code, tools, context, or reasoning capacity are available.
+
+## Pre-edit semantic preflight
+
+Before editing a non-trivial frozen task, Work should be able to identify from the assigned task/documentation:
+
+```text
+Target change:
+Question the code is supposed to answer:
+Protected behavior:
+Allowed hooks/interfaces/modules:
+Authoritative facts/events:
+Semantic decisions already frozen:
+Decisions Work is not authorized to make:
+Stop conditions:
+```
+
+This does not require a long written ceremony for every small task. It is a check that the important semantics are actually present before implementation begins.
+
+If a required field cannot be resolved from the frozen task or authoritative documentation and the missing information would change behavior, classification, ownership, lifecycle or architecture, that is a missing design decision and therefore a stop condition.
 
 ## Missing decisions are stop conditions
 
@@ -137,8 +159,31 @@ Before committing, audit the result against these questions:
 5. Did I preserve existing hooks and protected behavior unless explicitly assigned otherwise?
 6. Can every new branch/state/helper be justified directly by the frozen task?
 7. If I found a contradiction, did I report it instead of coding around it?
+8. Does my handoff distinguish source completion from facts that still require build/runtime proof?
 
 If any answer is problematic, fix it or stop and return the issue to Normal Chat before claiming the task complete.
+
+## Independent review expectation
+
+For the current collaboration stage, a meaningful Work code commit is not treated as implementation authority merely because Work reports success.
+
+Normal Chat should independently compare the committed diff against the frozen contract before runtime validation, with particular attention to:
+
+- unassigned semantic rules or classifiers;
+- changes outside the allowed conceptual/file/hook boundary;
+- protected behavior;
+- new state or fallback machinery;
+- claims in the handoff that are stronger than the source evidence.
+
+This is a calibration mechanism, not a permanent assumption that Work cannot improve. Review depth may become more targeted for task classes that repeatedly demonstrate clean compliance.
+
+## Retrospective rule
+
+After a Work session, record a new durable collaboration rule only when the lesson is material, recurring, or likely to prevent meaningful rework.
+
+Do not turn every minor imperfection into another rule. The aim is a small set of generative operational principles.
+
+See `WORK_COLLABORATION_EVOLUTION.md` for the empirical session examples, task-specific trust model, CAM translation method, and future roadmap.
 
 ## Core rule
 
