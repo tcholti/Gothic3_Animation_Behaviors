@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 1.1  
+**Version:** 1.2  
 **Updated:** 2026-08-27
 
 ## Purpose
@@ -202,6 +202,46 @@ Before reconstructing or redoing interrupted work:
 Do not ask the User to repeat exact technical information that can be reliably retrieved from project authority.
 
 When the product exposes a real context/usage warning and losing transient work would matter, preserve a minimal durable checkpoint. Do not invent hidden context percentages or usage state the product has not exposed.
+
+### When the User says they are moving to a new Normal Chat
+
+Treat the announced chat move as a small continuity-maintenance event, not as a request to write a large narrative handoff.
+
+Before ending the current chat:
+
+1. inspect the current `docs/SESSION_ENTRYPOINT.md` and the actual latest repository/task state;
+2. check whether any already-completed design, Work review, build, runtime result, evidence interpretation, raw/archive transition, or gate change still needs its normal local maintenance transaction;
+3. update `SESSION_ENTRYPOINT.md` only if the current subsystem, causal gate, immediate candidate, or next Normal Chat responsibility has changed;
+4. inspect `docs/BETWEEN_CHATS.md` and decide whether a transient handoff is genuinely needed;
+5. create or refresh `BETWEEN_CHATS.md` only when exact transient context would otherwise be lost — for example an active/fresh Work contract or result, a frozen implementation boundary, an unresolved local-only test/build state, or another short-lived responsibility not yet represented by durable authority;
+6. if `SESSION_ENTRYPOINT.md` already contains everything the next Normal Chat needs and no transient state exists, do **not** create another handoff file merely because the chat is changing;
+7. never create a parallel "new chat handoff" authority; use `SESSION_ENTRYPOINT.md` as the durable front door and `BETWEEN_CHATS.md` as the replaceable transient bridge;
+8. give the User one short copyable starter instruction for the new Normal Chat, normally telling it to read `docs/SESSION_ENTRYPOINT.md` on the active branch and continue from the current Normal Chat responsibility;
+9. do not require the User to summarize project history, relay technical state between chats, or decide which deeper documents the new chat should preload.
+
+The intended transition is:
+
+```text
+User announces chat move
+        ↓
+Normal Chat checks current maintenance + continuity state
+        ↓
+SESSION_ENTRYPOINT current?
+        ├─ no  → update it
+        └─ yes → leave it alone
+        ↓
+real transient context to preserve?
+        ├─ yes → replace/update BETWEEN_CHATS
+        └─ no  → no extra handoff document
+        ↓
+provide one short new-chat starter instruction
+        ↓
+new Normal Chat reads SESSION_ENTRYPOINT first
+        ↓
+retrieves BETWEEN_CHATS / deeper authority only if current responsibility requires it
+```
+
+This procedure should itself be revisited only when repeated chat transitions show that it is losing context, forcing redundant retrieval, or creating unnecessary document churn.
 
 ---
 
