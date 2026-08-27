@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active bounded-implementation protocol  
-**Version:** 1.0  
+**Version:** 1.1  
 **Updated:** 2026-08-27
 
 ## Purpose
@@ -20,7 +20,7 @@ User + Normal Chat
 reason from evidence / decide semantics / freeze bounded task
         ↓
 Work
-inspect only what implementation needs / edit / source-audit / commit-push / concise handoff
+inspect only what implementation needs / edit / source-audit / commit-publish / concise handoff
         ↓
 Normal Chat + authoritative home PC
 independent source review / build / runtime evidence / interpretation
@@ -58,7 +58,7 @@ read assigned/current-state material
 → inspect narrowly necessary source/API material
 → edit only the bounded implementation
 → audit against the contract and protected behavior
-→ commit / push
+→ commit / publish
 → concise handoff
 → STOP
 ```
@@ -182,7 +182,25 @@ Mechanical checks should target known risks; do not build a compliance system la
 
 ---
 
-## 8. Required Handoff
+## 8. Commit and Publish Path
+
+Use the local Git checkout for normal source inspection, diffing, auditing, and commit preparation.
+
+For publishing the audited result:
+
+1. prefer normal `git push` when command-line GitHub authentication is already available;
+2. if `git push` fails specifically because the Work checkout has no usable GitHub credential, do **not** spend task time troubleshooting, installing, or persisting credentials;
+3. verify the intended repository, target branch, and exact audited source state;
+4. use the connected GitHub repository API to publish that same audited state on the intended branch;
+5. record the resulting commit SHA in the handoff.
+
+A credential-only CLI push failure is therefore a publishing-path issue, not an implementation blocker. Do not change code, broaden scope, or invent a different Git workflow merely to compensate for it.
+
+If repository identity, branch identity, write permission, or source-state equivalence cannot be verified, stop and report the contradiction instead of publishing uncertain state.
+
+---
+
+## 9. Required Handoff
 
 After the bounded task report only what the receiving context needs:
 
@@ -200,7 +218,7 @@ Then stop unless another task is explicitly assigned.
 
 ---
 
-## 9. Independent Review and Trust
+## 10. Independent Review and Trust
 
 For current engine-facing Gothic 3 implementation, a meaningful Work commit should normally receive an independent Normal Chat diff-against-contract review before runtime validation or before the implementation is treated as authoritative.
 
@@ -212,7 +230,7 @@ A Work self-review, apology, confidence statement, or commit existence is not in
 
 ---
 
-## 10. Stop Conditions
+## 11. Stop Conditions
 
 Stop and return the issue rather than accumulating compensating code when:
 
