@@ -75,9 +75,11 @@ This remains a hypothesis.
 
 B6 source instrumentation is implemented and independently source-reviewed. No production cleanup and no new Gothic hook were added.
 
+The current Win32 Release source built successfully on the authoritative home PC at branch commit `d0863b15ad4ef5ff777b7f75330f18737c45e023`. The build produced `Script_FrameCollisionTest.dll`; only the previously known Windows SDK C5105 warning appeared. This is a build-gate result, not runtime evidence.
+
 B6 reuses the existing player/type-0 `PlayMotion` hook and emits a short Win32 stack only after existing before/after PrimaryFirst evidence confirms an actual outgoing attack-Hit replacement/restart.
 
-Home-PC comparisons still required:
+Next responsibility is DLL install/load smoke validation, followed by the three B6 runtime comparisons:
 
 1. clean Hit -> Recover replacement;
 2. legitimate damage/reaction replacement;
