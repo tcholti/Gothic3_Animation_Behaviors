@@ -75,15 +75,18 @@ This remains a hypothesis.
 
 B6 source instrumentation is implemented and independently source-reviewed. No production cleanup and no new Gothic hook were added.
 
-The current Win32 Release source built successfully on the authoritative home PC at branch commit `d0863b15ad4ef5ff777b7f75330f18737c45e023`. The build produced `Script_FrameCollisionTest.dll`; only the previously known Windows SDK C5105 warning appeared. This is a build-gate result, not runtime evidence.
+The current Win32 Release source built successfully on the authoritative home PC at branch commit `d0863b15ad4ef5ff777b7f75330f18737c45e023`. The installed active DLL matched the built SHA-256 and the game loaded/exited normally.
 
 B6 reuses the existing player/type-0 `PlayMotion` hook and emits a short Win32 stack only after existing before/after PrimaryFirst evidence confirms an actual outgoing attack-Hit replacement/restart.
 
-Next responsibility is DLL install/load smoke validation, followed by the three B6 runtime comparisons:
+The first B6-B clean-control runtime attempt is **invalid for lifecycle interpretation**: a backup `Script_FrameCollisionTest.preB6.dll.bak` left in the live Gothic 3 `scripts` directory participated in hook execution, duplicating diagnostics. See EV-173. The backup must be moved outside the live `scripts` directory before retesting.
 
-1. clean Hit -> Recover replacement;
-2. legitimate damage/reaction replacement;
-3. bad block-skip direct replacement with missing cleanup.
+Next responsibility:
+
+1. isolate the live script environment so only the intended `Script_FrameCollisionTest.dll` is present from this prototype;
+2. rerun B6-B clean Hit -> Recover control;
+3. if clean, continue to legitimate damage/reaction replacement;
+4. then test bad block-skip direct replacement with missing cleanup.
 
 Question:
 
