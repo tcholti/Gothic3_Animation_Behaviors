@@ -28,55 +28,76 @@ Exact established findings should be retrieved through `EVIDENCE_INDEX.md` rathe
 
 ---
 
-## 2. Gate B6 — Replacement Stack / Script-Context Validation
+## 2. Gate B6 — Hit Teardown / Replacement Stack and Script-Context Validation
 
 This is the **current gate**.
 
 Question:
 
-> **Do the relevant actual Hit replacement paths occur inside one useful SPU / `gCScriptProcessingUnit::ProcessScript()` execution context, allowing a later tightly gated one-shot checkpoint to run after Gothic's native cleanup opportunity?**
+> **Do the relevant actual Hit teardown/replacement paths occur inside one useful SPU / `gCScriptProcessingUnit::ProcessScript()` execution context, allowing a later tightly gated one-shot checkpoint to run after Gothic's native cleanup opportunity?**
 
 ### B6-A — Build/load sanity
 
-Confirm:
+Passed for the current diagnostic baseline after isolating the live script directory. EV-173 records why backup Script DLLs must not remain in the live `scripts` directory.
+
+Required for the revised probe:
 
 1. current `Script_FrameCollisionTest` builds;
-2. DLL loads/unloads normally;
-3. B6 stack/module resolution produces readable frames;
+2. DLL loads/unloads normally with only the intended active prototype DLL present;
+3. Win32 stack/module resolution produces readable frames;
 4. existing B4/B5 cleanup diagnostics remain intact;
-5. no marker/collision behavior changes are introduced by the new diagnostic.
+5. no marker/collision behavior changes are introduced by the diagnostic.
 
-### B6-B — Clean completion replacement
+### B6-B — Clean completion teardown/replacement
 
-Use a known ordinary melee path that reliably cleans.
+EV-174 established that ordinary clean 2H Normal completion uses this tested sequence:
 
-Required correlation:
+```text
+attack Hit Primary exists
+→ StartRecover BEGIN
+→ StopMotion(type 0) removes outgoing Hit Primary
+→ successor Recover PlayMotion(type 0)
+→ StartRecover END while source can still be group 7
+→ native cleanup 7 -> 5
+```
+
+Therefore the revised B6-B correlation is:
 
 ```text
 owned/current attack Hit
-→ successor Hit/Recover replacement event confirmed by before/after PrimaryFirst evidence
-→ B6 replacement stack
+→ outgoing-Hit StopMotion stack captured before the original stop
+→ existing StopMotion before/after record proves Hit removal
+→ immediately following existing PlayMotion record proves successor Recover
 → native cleanup event in the same transition sequence
 ```
 
 Record the relevant Game/Script_Game/Engine frames and their ordering.
 
-### B6-C — Legitimate damage/reaction replacement
+Do **not** treat StopMotion alone as production Hit-end authority. In B6 it is a factual teardown event that must be correlated with the actual successor sequence.
+
+### B6-C — Legitimate damage/reaction teardown/replacement
 
 Interrupt a real attack Hit through a controlled damage/reaction path known to receive legitimate native cleanup.
 
-Required correlation:
+Required correlation allows either observed sequencing form:
 
 ```text
 attack Hit
 → legitimate native interruption cleanup
-→ reaction/Stumble/KnockDown replacement
-→ B6 replacement stack
+→ outgoing-Hit StopMotion stack + reaction successor PlayMotion
+```
+
+or, if Gothic directly replaces the still-visible Hit:
+
+```text
+attack Hit
+→ legitimate native interruption cleanup
+→ confirmed direct PlayMotion replacement stack
 ```
 
 Compare the surrounding script-processing frames with the clean case. The known cleanup route itself may differ; the question is whether there is a useful common post-dispatch timing context.
 
-### B6-D — Bad block-skip direct replacement
+### B6-D — Bad block-skip direct teardown/replacement
 
 Reproduce a native or marked bad block-skip case where offensive collision remains stale.
 
@@ -85,8 +106,11 @@ Required correlation:
 ```text
 attack Hit requested offensive collision
 → no corresponding legitimate cleanup
-→ actual PrimaryFirst Hit eventually replaces/restarts
-→ B6 replacement stack
+→ actual PrimaryFirst Hit eventually ends/replaces/restarts
+→ either:
+     outgoing-Hit StopMotion stack + successor PlayMotion
+   or
+     confirmed direct PlayMotion replacement stack
 → source remains offensive
 ```
 
@@ -94,12 +118,12 @@ This is the decisive negative-path comparison.
 
 ### B6 interpretation
 
-**If all relevant replacements share a useful current `ProcessScript()` invocation/context:**
+**If all relevant teardown/replacement paths share a useful current `ProcessScript()` invocation/context:**
 
 - strengthen the deferred one-shot candidate;
 - next design step is a narrowly gated post-script diagnostic/guard prototype, not unconditional ProcessScript cleanup.
 
-**If a relevant replacement occurs outside that context:**
+**If a relevant teardown/replacement occurs outside that context:**
 
 - reject `ProcessScript()` as a universal timing checkpoint;
 - return to architecture/search for another event boundary;
@@ -108,6 +132,10 @@ This is the decisive negative-path comparison.
 **If stacks are ambiguous:**
 
 - improve only the diagnostic fact needed to distinguish the execution context.
+
+Current immediate engineering task before rerunning B6-B:
+
+> Add diagnostic-only Win32 stack capture to the already-hooked player/type-0 `StopMotion` path when its before-snapshot is an attack-Hit Primary. Keep the existing direct PlayMotion replacement probe unchanged. Add no new Gothic hook, production cleanup, polling, or lifecycle ownership state.
 
 ---
 
