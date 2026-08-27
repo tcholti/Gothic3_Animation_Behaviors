@@ -1,293 +1,324 @@
 # Gothic 3 Animation Behaviors — Documentation and Knowledge Map
 
-**Purpose:** Route a Chat, Work session, contributor, or Gothic 3 modder to the smallest useful authoritative material without losing access to deep technical evidence.
+**Purpose:** Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.
 
-> **Do not load every document by default. Find the current responsibility, open the smallest relevant source, and broaden only when the question requires it.**
+> **Do not load every document by default. Find the current responsibility, open the smallest relevant authority/index, and broaden only when the question requires it.**
 
 ---
 
 ## 1. Branch Model
 
-### Active development branch
+### Active development / research
 
 `docs/collision-source-evidence`
 
-This is the current collision research/implementation branch and contains the newest project state, evidence, prototype code, and continuation material.
+Contains the newest collision research, prototype implementation, current causal diagnostics, evidence and continuation state.
 
-### Stable branch
+### Stable integration / reusable knowledge
 
 `main`
 
 `main` is the stable integration and reusable Gothic 3 knowledge baseline.
 
-Stable documentation/research improvements may be promoted to `main` before the current collision implementation is ready. Experimental or not-yet-stable collision code should remain on the active branch until a deliberate stable integration point is reached.
+Stable documentation/research can be promoted independently of unfinished collision implementation. Do not assume `main` contains the newest prototype or current collision lifecycle candidate.
 
-When continuing current collision work, do **not** assume `main` contains the newest implementation state.
+The branches currently diverge; `main` also contains one older collaboration-rules commit not present in the current branch history. Resolve that deliberately during promotion rather than blindly merging the entire development branch.
 
 ---
 
-# 2. Retrieval Model — Hot / Warm / Cold
+## 2. Retrieval Model — Hot / Warm / Cold
 
-The documents are not a reading list. They are external project memory with different retrieval roles.
+The repository is external project memory, **not a reading list**.
 
-## HOT — normally enough to start or resume
+### HOT — start/resume here
 
-### `SESSION_ENTRYPOINT.md`
+#### `SESSION_ENTRYPOINT.md`
 
-The front door for current project work.
+Minimal front door for the current branch/subsystem/next validation responsibility.
 
-Read it to learn:
+Read first for active collision work.
 
-- active branch and subsystem;
-- current durable model/invariant;
-- latest established result;
-- exact next responsibility;
-- which deeper authority is relevant now.
+#### `BETWEEN_CHATS.md`
 
-### `BETWEEN_CHATS.md`
+Transient latest Chat/Work handoff only.
 
-Short transient bridge for the latest real Chat/Work/context transition.
+Read only when continuing that exact transition. Replace rather than accumulate.
 
-Read it only when continuing that handoff. It should remain small and be replaced rather than accumulated.
-
-### `WORK_IMPLEMENTATION_PROTOCOL.md`
-
-Read when Work or another implementation agent is assigned a bounded source task.
-
-It includes the previous frozen-task safeguards. There is no separate active frozen-task manual anymore.
-
-### `COLLABORATION_RULES.md`
+#### `COLLABORATION_RULES.md`
 
 Gothic 3 project-specific collaboration delta.
 
-General collaboration authority lives in the CAM repository; do not reload CAM documents for normal Gothic 3 prompts unless a process/collaboration question actually requires them.
+General collaboration authority lives in the CAM repository; do not reload it for ordinary Gothic 3 engineering unless the process itself is being discussed.
+
+#### `WORK_IMPLEMENTATION_PROTOCOL.md`
+
+Read only for a bounded implementation/Work task.
 
 ---
 
-## WARM — current subsystem/design knowledge
+### WARM — current architecture / current subsystem plans
 
-Open these when the current responsibility needs their model, not automatically at session start.
+Open only when the responsibility requires the model.
 
-### `DESIGN.md`
+#### `DESIGN.md`
 
-Canonical overall intended architecture for the project.
+Canonical **project architecture** for Raise, speed and frame collision. It now avoids experiment chronology.
 
-### `COLLISION_LIFECYCLE_PLAN.md`
+#### `COLLISION_LIFECYCLE_PLAN.md`
 
-Current collision-lifecycle architecture/research plan.
+Current collision-lifecycle authority: execution ownership, cleanup invariant, Step-B constraints, deferred-finalization candidate and B6 gate.
 
-Use for lifecycle ownership, cleanup model, current architecture alternatives, and research/implementation gates.
+#### `COLLISION_LOGGER_PLAN.md`
 
-### `COLLISION_LOGGER_PLAN.md`
+Current diagnostic architecture: hook ownership, factual event model, active B6 probe and diagnostic/release separation.
 
-Current diagnostic design for lifecycle research.
+#### `COLLISION_TEST_PLAN.md`
 
-### `COLLISION_TEST_PLAN.md`
+Current staged validation plan beginning with B6 and continuing only if each causal gate passes.
 
-Current staged runtime test design.
+#### `PROJECT_SCOPE_CONTEXT.md`
 
-### `PROJECT_SCOPE_CONTEXT.md`
-
-Short factual scope context for engine-facing prompts involving hooks, disassembly, binary inspection, and related reverse engineering.
+Short factual context for authorized local Gothic 3 engine-facing reverse engineering/modding prompts.
 
 ---
 
-## COLD / REFERENCE — deep Gothic 3 knowledge and evidence
+### COLD — routing indexes
 
-These documents are intentionally preserved even when large. Retrieve the relevant section, evidence range, symbol, action family, or search term rather than reading the whole file by default.
+Use these **before** opening the largest reference documents.
 
-### `EVIDENCE_LEDGER.md`
+#### `EVIDENCE_INDEX.md`
 
-Canonical base evidence ledger, EV-001 through EV-157.
+Routes topics, symbols, Step-B stages and raw-log questions to exact EV ranges.
 
-### `EVIDENCE_LEDGER_STEP_B.md`
+Use when asking “is this proven?” or “where did we establish this?”
 
-Continuation of the same canonical evidence sequence, EV-158 onward.
+#### `ANIMATION_INDEX.md`
 
-The split is a preservation/convenience boundary, not two competing authorities.
+Routes filename/UseType/action/phase/pose/R-L/asset/marker-authoring questions to exact sections or animation-name data.
 
-### `COLLISION_CLEANUP_CALLSITE_MAP.md`
+Use before loading the full animation rules/catalog.
 
-Build-specific reverse-engineering map of tested native melee collision cleanup call sites and stack-parent findings.
+#### `RESEARCH_MAP.md`
 
-Use for exact Script_Game/Game call-site questions; it is evidence/reference, not production-hook authority.
+Historical/topic router and milestone map.
 
-### `ANIMATION_RULES.md`
-
-Canonical engine-facing animation semantics and naming rules.
-
-### `ANIMATION_CATALOG.md`
-
-Curated catalog of exact animation families/names and animation-author observations.
-
-### `SOURCE_HOOK_GUIDE.md`
-
-Practical Gothic 3 source/hook/research guide.
-
-Use targeted heading/symbol searches for hook patterns, SDK/reference-source guidance, and known engine boundaries.
-
-### `RESEARCH_MAP.md`
-
-Long-form research/engineering history and accumulated findings.
-
-Useful for reconstructing how the model developed or locating older findings. Its historical "current/next" statements do not override `SESSION_ENTRYPOINT.md`.
-
-### `ENGINEERING_GUIDE.md`
-
-General engineering principles developed during the project.
-
-Useful for architecture/review questions; it is not mandatory pre-reading for every coding task.
-
-### Searchable animation-name data
-
-Outside `docs/`:
-
-- `data/animation_names/author_grouped_attacks_and_stumbles.txt`
-- `data/animation_names/all_animation_names.txt`
-
-Search these directly for exact native names rather than loading a large catalog merely to find a filename.
-
-### Raw evidence
-
-`research/raw/` and `research/archive/`
-
-Use raw logs when a documented conclusion must be rechecked against original evidence or when extracting a new fact not represented in the summaries.
-
-Do not load raw logs routinely.
+It is **not current state**. Use it to recover where an older research line happened and where its durable result now lives.
 
 ---
 
-# 3. Retrieval by Question
+### COLD — canonical deep references
+
+Preserve these even when large. Search exact section/evidence/symbol rather than reading end-to-end by default.
+
+#### `EVIDENCE_LEDGER.md`
+
+Canonical EV-001 through EV-157.
+
+#### `EVIDENCE_LEDGER_STEP_B.md`
+
+Canonical continuation EV-158 onward.
+
+The split is a preservation/convenience boundary, not competing authority.
+
+#### `COLLISION_CLEANUP_CALLSITE_MAP.md`
+
+Tested-build reverse-engineering lookup for action-specific native cleanup RVAs, interruption cleanup, B5 stacks, identified `RunScriptState` / `RunScriptFunction`, common generic `ProcessScript()`, and current B6 relationship.
+
+#### `ANIMATION_RULES.md`
+
+Canonical generalized animation filename/state/UseType/action/phase/pose/authoring semantics.
+
+#### `ANIMATION_CATALOG.md`
+
+Curated exact human-melee assets, family observations, source notes and controlled fixtures.
+
+#### `SOURCE_HOOK_GUIDE.md`
+
+Targeted source/API/symbol/RVA/hook-pattern lookup guide. Prototype chronology has been removed from the active guide and preserved elsewhere.
+
+#### `ENGINEERING_GUIDE.md`
+
+General engineering principles developed during the project. Useful for architecture/review questions, not routine pre-reading.
+
+---
+
+### COLD — searchable data / raw provenance
+
+#### Animation-name data
+
+- `data/animation_names/all_animation_names.txt` — 5,991 unique native names;
+- `data/animation_names/author_grouped_attacks_and_stumbles.txt` — author-grouped exact names/notes.
+
+For exact filename existence/variants, search these **before** opening the catalog.
+
+#### Runtime/source evidence
+
+- `research/raw/` — active/unprocessed causal artifacts;
+- `research/archive/` — processed historical logs/source material.
+
+Prefer an EV entry first. Open raw evidence when verifying wording, challenging an interpretation, or extracting a fact not represented canonically.
+
+#### Superseded documentation snapshots
+
+- `docs/archive/` — collaboration/continuity history;
+- `docs/archive/technical_2026-08-27/` — byte-preserved technical documents from before the information-architecture cleanup.
+
+Archived documents preserve history/rationale; they never override current authorities.
+
+---
+
+## 3. Retrieval by Question
 
 | Question | Start here | Broaden only if needed |
 |---|---|---|
-| What are we doing right now? | `SESSION_ENTRYPOINT.md` | named current design/evidence source |
-| What did the other Chat/Work context just do? | `BETWEEN_CHATS.md` | exact commit/diff/source |
-| What branch is current? | `SESSION_ENTRYPOINT.md` / this file | Git branch history |
-| How should a bounded Work task execute? | `WORK_IMPLEMENTATION_PROTOCOL.md` | task-named source/API reference |
-| How should this Gothic project collaborate? | `COLLABORATION_RULES.md` | CAM repository only for broader process questions |
-| What is the overall intended architecture? | `DESIGN.md` | relevant evidence/reference |
-| What is the collision lifecycle model? | `COLLISION_LIFECYCLE_PLAN.md` | call-site map / evidence IDs |
-| What diagnostics should exist? | `COLLISION_LOGGER_PLAN.md` | source + evidence |
-| What runtime tests should be run? | `COLLISION_TEST_PLAN.md` | evidence/raw logs |
-| Is an engine behavior proven? | relevant Evidence Ledger section | raw log/source/API evidence |
-| Where does native collision cleanup occur? | `COLLISION_CLEANUP_CALLSITE_MAP.md` | evidence ledger / source reference |
-| How do animation names/actions/UseTypes work? | `ANIMATION_RULES.md` | catalog/name data/evidence |
-| Which exact animation asset is relevant? | animation-name data / `ANIMATION_CATALOG.md` | `ANIMATION_RULES.md` |
-| Where/how should Gothic 3 be searched or hooked? | targeted `SOURCE_HOOK_GUIDE.md` section | SDK/reference source/call-site map |
-| Why did an older technical decision exist? | `RESEARCH_MAP.md` / evidence ledger | archived docs / Git history / raw logs |
+| What are we doing now? | `SESSION_ENTRYPOINT.md` | named current architecture/source |
+| What did the last Chat/Work handoff do? | `BETWEEN_CHATS.md` | exact commit/diff |
+| How should bounded Work execute? | `WORK_IMPLEMENTATION_PROTOCOL.md` | only task-named source/API evidence |
+| What is the overall architecture? | `DESIGN.md` | evidence index if a premise must be checked |
+| What is the current collision lifecycle model? | `COLLISION_LIFECYCLE_PLAN.md` | cleanup map / EV range |
+| What should current diagnostics capture? | `COLLISION_LOGGER_PLAN.md` | source + exact EV |
+| What tests are next? | `COLLISION_TEST_PLAN.md` | evidence/raw only if a gate needs verification |
+| Is an engine claim proven? | `EVIDENCE_INDEX.md` | exact ledger entry → raw/source |
+| Where does native cleanup occur? | `COLLISION_CLEANUP_CALLSITE_MAP.md` | EV-163+ / raw B4-B5 logs |
+| What does this animation token/UseType/action/pose mean? | `ANIMATION_INDEX.md` | exact `ANIMATION_RULES` section |
+| Does this exact animation exist? | animation-name data | catalog/rules only for interpretation |
+| Which family/fixture/source note is relevant? | `ANIMATION_INDEX.md` | `ANIMATION_CATALOG.md` |
+| Where/how should I search or hook Gothic 3? | `SOURCE_HOOK_GUIDE.md` | SDK/reference/binary/evidence |
+| Why did an older decision exist? | `RESEARCH_MAP.md` | EV entry → archive/raw/Git history |
+| What is the historical pre-cleanup wording? | `docs/archive/technical_2026-08-27/` | Git history |
 
 ---
 
-# 4. Spot Search / Context Search Pattern
+## 4. Spot-Search Pattern
 
-For large knowledge documents, prefer targeted retrieval.
-
-A useful sequence is:
+For large knowledge sources:
 
 ```text
 current question
-    ↓
-choose likely authority from this map
-    ↓
-search exact concept / symbol / action / evidence ID / heading
-    ↓
-read the local section with enough surrounding context
-    ↓
-follow cited evidence or raw source only if the answer requires verification
+→ choose authority/index from this map
+→ search exact concept / symbol / action / EV ID / heading
+→ read local section with enough context
+→ follow provenance only if verification is necessary
 ```
 
 Examples:
 
-- searching QuickAttack source behavior → search `QuickAttack`, `QuickAttackR`, `QuickAttackL`, source/slot terms in `ANIMATION_RULES`, catalog, and evidence rather than reading every animation document;
-- investigating `SetCollisionGroup` cleanup → search the call-site map/evidence IDs first;
-- checking one known hook → search the hook/function/symbol in `SOURCE_HOOK_GUIDE` rather than rereading the guide;
-- checking an old runtime conclusion → retrieve its evidence entry, then the raw log only if necessary.
+- `SetCollisionGroup` cleanup → `COLLISION_CLEANUP_CALLSITE_MAP`, not whole research history;
+- `QuickAttackL` physical source → `ANIMATION_INDEX` + relevant EV/source section;
+- `ProcessScript` lifecycle meaning → EV-170 + cleanup map §7;
+- exact native `Wade` animation → search animation-name data first;
+- old v0.13 occurrence-guard rationale → EV range / research archive / pre-IA history only if needed.
 
-Use full-document reading when the task genuinely requires broad synthesis, architecture reconstruction, contradiction resolution, or major consolidation.
+Read a full large document only for genuine broad synthesis, contradiction resolution, or another intentional information-architecture pass.
 
 ---
 
-# 5. Current Work Read Order
+## 5. Current Read Orders
 
-## Normal Chat — normal continuation
+### Normal Chat — current continuation
 
 Usually:
 
 1. `SESSION_ENTRYPOINT.md`;
-2. `BETWEEN_CHATS.md` only if a relevant transition exists;
+2. `BETWEEN_CHATS.md` only for an active handoff;
 3. exact current evidence/source supplied by the User or named by the entry point;
-4. broader design/reference only when needed.
+4. an index/authority only when the question needs deeper context.
 
-Do not reload unchanged stable documents after every prompt in the same context.
+Within the same continuing context, do not reread unchanged authorities after every prompt.
 
-## Work — bounded source implementation
+### Work — bounded implementation
 
-Read:
+Usually:
 
 1. `SESSION_ENTRYPOINT.md`;
-2. current `BETWEEN_CHATS.md` / frozen task when relevant;
+2. relevant frozen task / `BETWEEN_CHATS.md`;
 3. `WORK_IMPLEMENTATION_PROTOCOL.md`;
 4. assigned source files;
-5. only the task-specific design/evidence/reference sections named by the task.
+5. task-specific authority/evidence section only.
 
-Additional source/API/repository inspection is allowed when implementation actually requires it. Broad project-document review is not the default implementation step.
+Work may inspect necessary source/API material when implementation reveals a real need. It should not reconstruct the whole project by default.
 
 ---
 
-# 6. Knowledge Preservation Policy
+## 6. Authority Boundaries
+
+| Responsibility | Authority |
+|---|---|
+| current continuation / next validation | `SESSION_ENTRYPOINT.md` |
+| transient cross-context handoff | `BETWEEN_CHATS.md` |
+| overall intended system architecture | `DESIGN.md` |
+| current collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
+| current diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
+| current staged collision tests | `COLLISION_TEST_PLAN.md` |
+| exact evidence status/provenance | evidence ledgers |
+| evidence lookup | `EVIDENCE_INDEX.md` |
+| animation generalized semantics | `ANIMATION_RULES.md` |
+| concrete assets/fixtures | `ANIMATION_CATALOG.md` / data files |
+| animation lookup | `ANIMATION_INDEX.md` |
+| source/API/hook lookup | `SOURCE_HOOK_GUIDE.md` |
+| build-specific cleanup reverse engineering | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
+| research chronology/topic history | `RESEARCH_MAP.md` / archives |
+| actual implementation truth | current branch source + commits |
+
+A historical “current/next” statement never overrides the current authority for that responsibility.
+
+---
+
+## 7. Knowledge Preservation Policy
 
 This repository is intended to accumulate reusable Gothic 3 modding knowledge.
 
-Large technical documents are not considered waste merely because they are rarely read in full.
-
 Preserve:
 
-- confirmed/qualified evidence;
-- source/hook findings;
-- animation semantics and asset catalogs;
-- build-specific reverse-engineering results;
-- reusable test methodology;
+- confirmed and qualified evidence;
 - important negative findings;
+- raw logs needed for verification;
+- source/API/hook/binary findings;
+- animation semantics, inventories and author observations;
+- build-specific reverse-engineering results;
+- reusable diagnostic/test methods;
 - historical rationale that prevents rediscovery.
 
-Optimize them through:
+Optimize retrieval through:
 
-- clear headings;
-- topical indexes;
+- stable headings;
+- topic/index documents;
 - evidence IDs;
-- stable terminology;
+- exact symbols/action names/RVAs;
 - cross-references;
-- searchable symbols/keywords;
-- separation of current conclusions from chronology where practical.
-
-Do not solve context pressure by deleting the evidence needed to recover exact knowledge later.
+- separation of current architecture from chronology;
+- archival snapshots before destructive consolidation.
 
 > **Not necessary to read now does not mean not necessary to preserve.**
 
 ---
 
-# 7. Archived Collaboration / Continuity Material
+## 8. Archive Policy
 
-Superseded collaboration/handoff documents are stored under `docs/archive/` rather than remaining in the active reading surface.
+Archive only when active placement is genuinely superseded.
 
-They preserve the empirical path that produced the current rules and may be consulted for historical rationale, but they do not override current collaboration/continuity authority.
+Before archiving or compressing:
 
-Current active authorities are:
+1. identify the durable technical value;
+2. ensure canonical evidence/reference still carries it or preserve the original snapshot;
+3. make the archived material discoverable from an active route when its history may still matter;
+4. never archive a technical area merely because the current collision task does not use it.
 
-- `COLLABORATION_RULES.md`;
-- `WORK_IMPLEMENTATION_PROTOCOL.md`;
-- `SESSION_ENTRYPOINT.md`;
-- `BETWEEN_CHATS.md`.
+The 2026-08-27 technical IA pass followed this rule by snapshotting old design/plan/source/history files before rewriting their active responsibilities.
 
 ---
 
-# 8. Document-Creation Rule
+## 9. Document-Creation Rule
 
-Create a new document only when it has a distinct responsibility that would become harder to retrieve or understand if mixed into an existing authority.
+Create a new document only when it has a distinct retrieval/authority responsibility.
 
-Prefer adding an index/section to an existing knowledge document when the responsibility is already owned there.
+Prefer:
 
-Do not create one document per experiment, one rule per minor failure, or one handoff per prompt.
+- an index when a large knowledge document is hard to navigate;
+- a new section when an existing authority already owns the topic;
+- an evidence entry for a new proven fact;
+- an archive snapshot for superseded chronology.
 
-The objective is a repository that can be deep without making every task carry that depth in active context.
+Avoid one document per experiment, one rule per minor failure, or another current-state document that competes with `SESSION_ENTRYPOINT.md`.
+
+The objective is a repository that can be **deep without making every task carry that depth in active context**.
