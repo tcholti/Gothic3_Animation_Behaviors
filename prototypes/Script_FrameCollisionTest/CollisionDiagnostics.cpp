@@ -65,6 +65,7 @@ void OpenLog()
     std::fprintf(g_pLog, "STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.\n");
+    std::fprintf(g_pLog, "STEP B6 HIT REPLACEMENT STACK PROBE: player PrimaryFirst outgoing attack-Hit replacement stack; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -125,6 +126,36 @@ static char const *BaseName(char const *path)
 static bool SameFileName(char const *a, char const *b)
 {
     return a != nullptr && b != nullptr && _stricmp(BaseName(a), BaseName(b)) == 0;
+}
+
+static bool Contains(char const *text, char const *token)
+{
+    return text != nullptr && token != nullptr && std::strstr(text, token) != nullptr;
+}
+
+static bool IsAttackHitMotionName(char const *motionName)
+{
+    static char const *const AttackHitTokens[] =
+    {
+        "_Attack_Hit_",
+        "_PowerAttack_Hit_",
+        "_QuickAttack_Hit_",
+        "_SimpleWhirl_Hit_",
+        "_SprintAttack_Hit_",
+        "_WhirlAttack_Hit_",
+        "_PierceAttack_Hit_",
+        "_JumpAttack_Hit_",
+        "_RamAttack_Hit_",
+        "_HackAttack_Hit_",
+        "_FinishingAttack_Hit_",
+        "_GetUpAttack_Hit_"
+    };
+    for (char const *token : AttackHitTokens)
+    {
+        if (Contains(motionName, token))
+            return true;
+    }
+    return false;
 }
 
 static void LogResolvedSource(char const *label, eCEntity *sourceInstance)
@@ -599,6 +630,143 @@ PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(Entity &actor)
     result.elapsedMilliseconds = HookBridgeRuntime::GetElapsedMilliseconds();
     TryGetPrimaryMotionLifetimeSnapshot(actor, result.primary);
     return result;
+}
+
+bool IsAttackHitPrimaryMotion(PrimaryMotionEventSnapshot const &snapshot)
+{
+    return snapshot.primary.available
+        && snapshot.primary.hasMotionInstance
+        && IsAttackHitMotionName(snapshot.primary.motionName.c_str());
+}
+
+static void CaptureHitReplacementSource(
+    eCEntity *sourceInstance, HitReplacementSourceSnapshot &snapshot)
+{
+    snapshot = {};
+    snapshot.address = sourceInstance;
+    snapshot.collisionGroup = -1;
+    if (sourceInstance == nullptr)
+        return;
+
+    Entity source(sourceInstance);
+    snapshot.resolved = true;
+    snapshot.name = source.GetName().GetText();
+    snapshot.collisionGroup =
+        static_cast<GEInt>(source.GetCollisionGroup());
+}
+
+void CaptureHitReplacementContext(
+    Entity &actor, void *incomingRequestAddress,
+    HitReplacementStackSnapshot &snapshot)
+{
+    snapshot.elapsedMilliseconds = HookBridgeRuntime::GetElapsedMilliseconds();
+    snapshot.incomingRequestAddress = incomingRequestAddress;
+    if (actor == None)
+        return;
+
+    bCString movement = actor.NPC.GetCurrentMovementAni();
+    snapshot.movementName = movement.GetText() != nullptr
+        ? movement.GetText() : "";
+    snapshot.action = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    snapshot.phase = static_cast<GEInt>(actor.GetCurrentAniPhase());
+    snapshot.stateTime = actor.Routine.GetStateTime();
+
+    EquippedCollisionSources sources =
+        CollisionControl::GetEquippedCollisionSources(actor);
+    CaptureHitReplacementSource(sources.leftInstance, snapshot.leftSource);
+    CaptureHitReplacementSource(sources.rightInstance, snapshot.rightSource);
+}
+
+static void LogHitReplacementSource(
+    char const *label, HitReplacementSourceSnapshot const &source)
+{
+    std::fprintf(g_pLog, "%sSourceResolved: %d\n",
+                 label, source.resolved ? 1 : 0);
+    std::fprintf(g_pLog, "%sSource: %s\n",
+                 label, source.resolved ? source.name.c_str() : "<none>");
+    std::fprintf(g_pLog, "%sSourceAddress: %p\n",
+                 label, source.address);
+    std::fprintf(g_pLog, "%sSourceCollisionGroup: %d\n",
+                 label, source.collisionGroup);
+}
+
+void LogHitReplacementStack(
+    Entity &actor, HitReplacementStackSnapshot const &replacement,
+    PrimaryMotionEventSnapshot const &incoming)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== HIT REPLACEMENT STACK =====\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 replacement.elapsedMilliseconds);
+    std::fprintf(g_pLog, "Actor: %s\n",
+                 actor != None ? actor.GetName().GetText() : "<unavailable>");
+    std::fprintf(g_pLog, "OutgoingPrimaryMotionName: %s\n",
+                 replacement.outgoingMotionName.c_str());
+    std::fprintf(g_pLog, "IncomingMotionRequestAddress: %p\n",
+                 replacement.incomingRequestAddress);
+    std::fprintf(g_pLog, "IncomingPrimaryMotionNameAfterOriginal: %s\n",
+                 incoming.primary.motionName.c_str());
+    std::fprintf(g_pLog, "IncomingPrimarySnapshotAvailable: %d\n",
+                 incoming.primary.available ? 1 : 0);
+    std::fprintf(g_pLog, "IncomingPrimaryHasMotionInstance: %d\n",
+                 incoming.primary.hasMotionInstance ? 1 : 0);
+    std::fprintf(g_pLog, "CurrentAction: %d\n", replacement.action);
+    std::fprintf(g_pLog, "CurrentAniPhase: %d\n", replacement.phase);
+    std::fprintf(g_pLog, "CurrentStateTime: %.6f\n",
+                 replacement.stateTime);
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                 replacement.movementName.c_str());
+    LogHitReplacementSource("LeftHand", replacement.leftSource);
+    LogHitReplacementSource("RightHand", replacement.rightSource);
+    std::fprintf(g_pLog, "CapturedStackFrameCount: %u\n",
+                 static_cast<unsigned int>(replacement.frameCount));
+    for (unsigned short i = 0; i < replacement.frameCount; ++i)
+    {
+        void *frameAddress = replacement.frames[i];
+        HMODULE frameModule = nullptr;
+        char frameModulePath[MAX_PATH] = {};
+        bool const frameModuleResolved =
+            frameAddress != nullptr
+            && ::GetModuleHandleExA(
+                GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                    | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                reinterpret_cast<LPCSTR>(frameAddress),
+                &frameModule) != FALSE;
+        DWORD const frameModulePathLength = frameModuleResolved
+            ? ::GetModuleFileNameA(
+                frameModule, frameModulePath, MAX_PATH) : 0;
+        std::uintptr_t const frameValue =
+            reinterpret_cast<std::uintptr_t>(frameAddress);
+        std::uintptr_t const frameModuleBase =
+            reinterpret_cast<std::uintptr_t>(frameModule);
+        unsigned long const frameRva = frameModuleResolved
+            ? static_cast<unsigned long>(
+                frameValue - frameModuleBase) : 0;
+        if (frameModuleResolved)
+        {
+            std::fprintf(
+                g_pLog,
+                "StackFrame[%u]: Address=%p Module=%s Base=%p RVA=0x%08lX\n",
+                static_cast<unsigned int>(i), frameAddress,
+                frameModulePathLength > 0
+                    ? BaseName(frameModulePath) : "<path-unavailable>",
+                static_cast<void *>(frameModule), frameRva);
+        }
+        else
+        {
+            std::fprintf(
+                g_pLog,
+                "StackFrame[%u]: Address=%p Module=<unresolved> Base=%p RVA=<unresolved>\n",
+                static_cast<unsigned int>(i), frameAddress,
+                static_cast<void *>(frameModule));
+        }
+    }
+    std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "=================================\n\n");
+    std::fflush(g_pLog);
 }
 
 static void LogPrimaryMotionEventSnapshot(

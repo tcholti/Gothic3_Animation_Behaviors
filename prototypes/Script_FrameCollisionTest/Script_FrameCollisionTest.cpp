@@ -149,10 +149,26 @@ static void GE_STDCALL PlayMotion_FrameCollisionTest(
 
     CollisionDiagnostics::PrimaryMotionEventSnapshot before =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    Entity actor(ownerEntity);
+    bool const outgoingAttackHit =
+        CollisionDiagnostics::IsAttackHitPrimaryMotion(before);
+    CollisionDiagnostics::HitReplacementStackSnapshot replacement = {};
+    if (outgoingAttackHit)
+    {
+        replacement.outgoingMotionName = before.primary.motionName;
+        replacement.frameCount = ::CaptureStackBackTrace(
+            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            replacement.frames, nullptr);
+        CollisionDiagnostics::CaptureHitReplacementContext(
+            actor, static_cast<void *>(a_pMotionDesc), replacement);
+    }
+
     Hook_PlayMotion.GetOriginalFunction(&PlayMotion_FrameCollisionTest)(
         a_MotionType, a_pMotionDesc);
     CollisionDiagnostics::PrimaryMotionEventSnapshot after =
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    if (outgoingAttackHit)
+        CollisionDiagnostics::LogHitReplacementStack(actor, replacement, after);
     CollisionDiagnostics::LogPrimaryMotionEvent(
         pThis, "PlayMotion", before, after);
 }

@@ -22,6 +22,29 @@ struct NativeCleanupStackSnapshot
     unsigned short frameCount;
 };
 
+struct HitReplacementSourceSnapshot
+{
+    bool resolved;
+    std::string name;
+    void *address;
+    GEInt collisionGroup;
+};
+
+struct HitReplacementStackSnapshot
+{
+    GEDouble elapsedMilliseconds;
+    std::string outgoingMotionName;
+    std::string movementName;
+    GEInt action;
+    GEInt phase;
+    GEFloat stateTime;
+    void *incomingRequestAddress;
+    HitReplacementSourceSnapshot leftSource;
+    HitReplacementSourceSnapshot rightSource;
+    void *frames[NativeCleanupStackCapacity];
+    unsigned short frameCount;
+};
+
 void OpenLog();
 void CloseLog();
 bool IsLogOpen();
@@ -44,6 +67,12 @@ void LogSetCollisionGroup(eCEntity *changedEntity, eECollisionGroup requestedGro
 PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(
     eCVisualAnimation_PS *animationPS);
 PrimaryMotionEventSnapshot CapturePrimaryMotionEventSnapshot(Entity &actor);
+bool IsAttackHitPrimaryMotion(PrimaryMotionEventSnapshot const &snapshot);
+void CaptureHitReplacementContext(Entity &actor, void *incomingRequestAddress,
+                                  HitReplacementStackSnapshot &snapshot);
+void LogHitReplacementStack(Entity &actor,
+                            HitReplacementStackSnapshot const &replacement,
+                            PrimaryMotionEventSnapshot const &incoming);
 void LogCombatMoveStartRecoverBoundary(Entity &actor,
                                          char const *boundary);
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,
