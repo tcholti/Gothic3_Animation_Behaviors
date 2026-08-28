@@ -3,31 +3,27 @@
 **Purpose:** Small transient bridge between Normal Chat and Work.
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-## Reviewed Work result — Step B7 CombatMove full-stop stack diagnostic
+## Current result — B7 CombatMove full-stop causality resolved
 
 **Date:** 2026-08-28
 **Branch:** `docs/collision-source-evidence`
-**Implementation commit:** `7b1096284f7385af5822c59735191dcf47c2e097`
-**Independent Normal Chat review:** PASS
+**B7 implementation:** `7b1096284f7385af5822c59735191dcf47c2e097`
+**B7 raw runtime log:** `research/raw/2026-08-28_b7_player_combatmove_fullstop_clean_reaction_blockskip.log`
+**Raw commit:** `49e99a933ce2bb02ae6434ec077fb7f549b1f7f5`
+**Canonical evidence:** EV-185–EV-186
 
-### Verified source change
+### Resolved
 
-- One diagnostic hook was added at tested `Game + 0x1696E0` for authoritative `sAICombatMoveInstr(GELPVoid, gCScriptProcessingUnit *, GEBool)`.
-- The new diagnostic path runs only when `fullStop == GETrue`, the SPU is non-null, and SelfEntity resolves to the player.
-- Caller stack and factual action/phase/StateTime/StatePosition/movement/PrimaryFirst/equipped-source context are captured before original.
-- The record heading is `===== COMBATMOVE FULLSTOP STACK =====` and the startup banner identifies the B7 probe.
-- Original `sAICombatMoveInstr` is called exactly once with unchanged arguments on every path and its result is returned unchanged.
-- Non-full-stop calls do no new diagnostic capture before forwarding.
-- Only the three frozen diagnostic source files changed.
-- Existing B1–B6/B4/B5 diagnostics and all collision/marker/callback/bookkeeping/native-cleanup behavior remain unchanged.
-- No production cleanup/repair, lifecycle state, persistent diagnostic state, timer, polling, scan, cache, ProcessScript/AIFullStop/AIStopCombatMove hook, offensive-request stack capture, classifier, cause gate, successor-name gate, or guessed layout was introduced.
+- Bad full-Whirl block-skip explicitly invokes `sAICombatMoveInstr(..., fullStop=true)`.
+- Bad-path FullStop stack is stable: `Game +0x164441` (`gCScriptRoutine_PS::AIFullStop`) -> `Script_Game +0x61866` -> `Game +0x16093B`.
+- Armed bad cases FullStop while the weapon is already `Item_Attack(7)`; no StartRecover or native cleanup follows, and Ambient can inherit the stale group 7.
+- Legitimate Normal/Quick reactions also FullStop the active CombatMove, but through a distinct Script_Game caller chain; an armed reaction then receives the separate established `Script_Game +0x24AFF` cleanup.
+- Therefore FullStop is a native instruction-termination boundary, not collision cleanup itself.
 
 ### Next responsibility
 
-1. Fast-forward the authoritative home checkout.
-2. Build `Script_FrameCollisionTest` Release.
-3. Deploy the rebuilt DLL to the authoritative Gothic 3 `scripts` path and verify one active matching DLL plus built/live SHA256 equality.
-4. Load Gothic 3 and verify the B7 `COMBATMOVE FULLSTOP STACK PROBE` startup banner.
-5. Only after load verification, Normal Chat freezes the controlled clean / legitimate-reaction / bad block-skip B7 runtime fixture and exact raw filename.
+Do **not** add another runtime diagnostic yet.
 
-No runtime evidence exists yet for B7; do not promote the full-stop hypothesis from static evidence alone.
+Normal Chat should statically/source-audit the stable bad caller path around `Script_Game +0x61866` and compare it with the legitimate-reaction FullStop caller chain. The goal is to identify what control path owns the bad FullStop and why no replacement cleanup responsibility follows.
+
+Production collision repair, lifecycle state, timers/polling and marker-core simplification remain blocked until that comparison is understood.
