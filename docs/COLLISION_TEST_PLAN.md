@@ -18,7 +18,7 @@ Exact established findings should be retrieved through `EVIDENCE_INDEX.md` rathe
 ## 1. Rules for the Current Test Phase
 
 - diagnostics remain observational;
-- do not implement production cleanup while B6 is still answering the post-native-opportunity question;
+- do not implement production cleanup while the lifecycle/finalization boundary is unresolved;
 - do not add Staff/Quick/Whirl/block-timeout-specific cleanup branches;
 - preserve native behavior for unmarked controls;
 - compare one conceptual variable at a time where practical;
@@ -36,183 +36,232 @@ Before treating a rebuilt diagnostic run as evidence, verify that the built DLL 
 
 ---
 
-## 2. Gate B6 — Hit Teardown / Replacement Stack and Script-Context Validation
+## 2. Gate B6 — Cross-Path Script-Context Validation — RESOLVED NEGATIVE FOR THE DEFERRED-PROCESSSCRIPT CANDIDATE
 
-This is the **current gate**.
-
-Question:
+Question tested:
 
 > **Do the relevant actual Hit disappearance/replacement paths occur inside one useful SPU / `gCScriptProcessingUnit::ProcessScript()` execution context, allowing a later tightly gated one-shot checkpoint to run after Gothic's native cleanup opportunity?**
 
-### B6-A — Build/load sanity
+### B6-B — Clean completion
 
-Passed for the current empty-Primary diagnostic after verifying that only the intended live `Script_FrameCollisionTest.dll` was present, the built/live SHA256 hashes matched, and the runtime log reported:
-
-```text
-STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / EMPTY-PRIMARY SUCCESSOR STACK PROBE
-```
-
-EV-173 separately records why backup Script DLLs must not remain in the live `scripts` directory.
-
-Required for any further revised probe:
-
-1. current `Script_FrameCollisionTest` builds;
-2. DLL loads/unloads normally with only the intended active prototype DLL present;
-3. the authoritative live path above contains the intended build;
-4. Win32 stack/module resolution produces readable frames when the relevant capture branch executes;
-5. existing B4/B5 cleanup diagnostics remain intact;
-6. no marker/collision behavior changes are introduced by the diagnostic.
-
-### B6-B — Clean completion disappearance/replacement
-
-EV-174/EV-175 corrected the earlier StopMotion interpretation: clean 2H Normal still had the exact Hit at `StartRecover BEGIN`, but PrimaryFirst was already empty by StopMotion-hook entry.
-
-The StartRecover-BEGIN refinement then produced valid clean-path stack evidence in all three repeated attacks:
+EV-176 established a useful clean-path context:
 
 ```text
-attack Hit Primary exists / right weapon = Item_Attack(7)
+attack Hit Primary exists / weapon 7
 → StartRecover BEGIN
-→ HIT STARTRECOVER BEGIN STACK
-     diagnostic wrapper
-     → Game + 0x169772  (inside sAICombatMoveInstr, starts +0x1696E0)
-     → Game + 0x16F240  (inside ProcessScript, starts +0x16F120)
-→ PrimaryFirst-empty StopMotion
-→ Recover PlayMotion
-→ StartRecover END
-→ native cleanup 7 -> 5
+→ diagnostic
+   → sAICombatMoveInstr
+   → ProcessScript()
+→ empty Primary
+→ Recover
+→ later action-specific native cleanup 7 -> 5
 ```
 
-EV-176 records this result.
+Clean full Whirl in the later combined run reproduced the same `sAICombatMoveInstr -> ProcessScript()` StartRecover shape and then cleaned at its ordinary `Script_Game +0x4E03C` site.
+
+### B6-C — Legitimate reaction
+
+EV-177/EV-178 established the cleanup/replacement ordering and why earlier semantic gates missed the reaction successor.
+
+B6-C3 then captured the actual empty-Primary reaction successors factually. EV-179 records representative cases:
+
+```text
+Quick interruption:
++0x24AFF cleanup
+→ reaction Script_Game frame +0x227AD
+→ RunScriptState return +0x1604D3
+→ Stumble successor stack:
+   Game +0x16B485
+   → Game +0x169724
+   → Script_Game +0x4ACDA
+   → RunScriptFunction return +0x1605EB
+   → RunScriptState return +0x1604D3
+```
+
+and:
+
+```text
+Normal interruption:
++0x24AFF cleanup
+→ reaction Script_Game frame +0x235C7
+→ RunScriptState return +0x1604D3
+→ KnockDown successor stack:
+   Game +0x16B485
+   → Game +0x169724
+   → Script_Game +0x2378B
+   → RunScriptState return +0x1604D3
+```
 
 Interpretation:
 
-- B6-B **supports** a useful current `ProcessScript()` context for clean completion;
-- StartRecover remains only an observable clean-path entry point and is still too early/bypassable for production cleanup;
-- `ProcessScript()` remains generic timing infrastructure, not combat ownership authority;
-- no production hook/state is justified until B6-C and B6-D are compared.
+- legitimate reaction successor installation remains inside the reaction Script_Game/ScriptAdmin chain;
+- static EV-170 places `RunScriptState` under `ProcessScript()`;
+- the runtime unwind does not directly identify the exact outer ProcessScript invocation, so do not overstate that identity.
 
-### B6-C — Legitimate damage/reaction teardown/replacement
+### B6-D — Bad block-skip
 
-EV-177 confirms the legitimate player 2H Normal interruption sequence:
+EV-180/EV-181 provide the decisive comparison.
 
-```text
-attack Hit / weapon armed
-→ legitimate native interruption cleanup at Script_Game + 0x24AFF
-→ Primary already empty at StopMotion
-→ reaction PlayMotion begins from empty Primary
-→ Stumble / KnockDown successor
-```
-
-The direct replacement-stack gate could not capture the successor because the outgoing attack Primary was already gone.
-
-B6-C2 therefore added a diagnostic-only empty-Primary PlayMotion capture gated by the existing Normal attack-Hit semantic predicate. EV-178 shows that this refinement also misses the intended reaction successor: it fires on fresh Normal `Attack_Hit` installation from empty Primary, but by the time Stumble/KnockDown is requested the old Normal semantic gate has expired.
-
-Representative Normal sequence from EV-178:
+Representative armed bad Whirl:
 
 ```text
-Normal Hit activates weapon
-→ legitimate +0x24AFF cleanup 7 -> 5
-   action/phase still report Normal Hit at cleanup
-   StateTime = 0 / StatePosition = 0
-→ ~1.4 ms later StopMotion enters with empty Primary
-→ reaction PlayMotion enters with empty Primary
-→ LieKnockDown_Begin installed
-→ NO HIT EMPTY-PRIMARY SUCCESSOR STACK record
+Whirl Hit starts through normal attack-start script stack
+→ timer/callback arms weapon 5 -> 7 at StateTime ~0.256
+→ NO StartRecover
+→ NO +0x4E03C cleanup
+→ Hit disappears
+→ Ambient installed from empty Primary
+   action 0 / phase 5
+   weapon still 7
+   observed successor stack only:
+      diagnostic
+      → Game +0xD9CB3
 ```
 
-An incidental 2H QuickAttackR interruption in the same controlled run independently showed the same cleanup -> empty Primary -> Stumble ordering. This is useful cross-family validation of the separation, but B6-C remains the frozen Normal-context caller-stack question.
+A separate skip occurred before the activation threshold and returned to Ambient with the weapon still 5. That control shows a bad skip does not create a cleanup obligation unless offensive collision was actually requested.
 
-#### Next B6-C diagnostic refinement
+The strongest armed case then remained group 7 through ordinary Ambient/idle for roughly nineteen seconds and into a later Normal attack. That later Normal first requested `7 -> 7`; only its own clean completion finally reset the weapon at the ordinary Normal cleanup site.
 
-Improve only the missing observation fact.
+### B6 conclusion
 
-Use the already-existing player/type-0 `PlayMotion` hook to capture a short caller stack for **factual empty-Primary successor installation during the controlled interruption fixture without requiring the old attack-family/action context to remain true**.
+B6 **did not establish one useful observable current ProcessScript/ScriptAdmin context across all relevant replacement paths**.
 
-The capture must remain diagnostic-only:
+The bad visible Hit-to-Ambient replacement exposed only `probe -> Game +0xD9CB3`; because stack unwinding can stop early, this is not proof that ProcessScript can never exist farther above. It is, however, sufficient to reject the specific production candidate that required every relevant replacement to expose a useful current ProcessScript invocation for same-dispatch deferred finalization.
 
-- before original PlayMotion: require only the supported player/type-0 context and an available Primary snapshot with no motion instance;
-- do not use Stumble, KnockDown, Recover, action, phase, StateTime, StatePosition, collision group, successor filename or another inferred cause as the pre-original capture gate;
-- call original PlayMotion exactly once unchanged;
-- after original: emit the record only if a real successor Primary motion instance was installed;
-- log the installed successor factually so Normal Chat can identify the controlled reaction cases **post hoc**;
-- preserve existing direct replacement, StopMotion, StartRecover, PrimaryFirst and collision/marker/callback behavior unchanged;
-- add no production cleanup, lifecycle ownership, persistent diagnostic state, timer, polling, scan, cache, reaction classifier or new Gothic 3 hook.
+Therefore:
 
-This broader diagnostic will naturally capture unrelated empty-Primary player/type-0 motion installations during the short fixture. That is acceptable because the controlled test and factual successor name are used only for offline correlation; the diagnostic itself must not interpret those motions as lifecycle events.
+- do **not** proceed to C1 with a pending-finalization / post-ProcessScript prototype;
+- do **not** add a ProcessScript behavior hook to rescue the candidate;
+- preserve the execution-level cleanup invariant;
+- move the architecture search earlier into attack-lifecycle/bookkeeping/control flow.
 
-Once an actual Stumble/KnockDown successor stack is captured, compare its Game/script-processing frames with EV-176. Only then proceed to B6-D.
-
-### B6-D — Bad block-skip direct teardown/replacement
-
-Run only after B6-C produces comparable factual boundary evidence.
-
-Reproduce a native or marked bad block-skip case where offensive collision remains stale.
-
-Required correlation:
-
-```text
-attack Hit requested offensive collision
-→ no corresponding legitimate cleanup
-→ actual PrimaryFirst Hit eventually disappears/replaces/restarts
-→ supported factual disappearance/replacement stack/context
-→ source remains offensive
-```
-
-The existing direct PlayMotion replacement-stack probe remains authoritative for paths where the outgoing Hit is still visible at PlayMotion entry and before/after proves replacement/restart.
-
-This is the decisive negative-path comparison.
-
-### B6 interpretation
-
-**If all relevant disappearance/replacement paths share a useful current `ProcessScript()` invocation/context:**
-
-- strengthen the deferred one-shot candidate;
-- next design step is a narrowly gated post-script diagnostic/guard prototype, not unconditional ProcessScript cleanup.
-
-**If a relevant disappearance/replacement occurs outside that context:**
-
-- reject `ProcessScript()` as a universal timing checkpoint;
-- return to architecture/search for another event boundary;
-- do not compensate with family-specific repair branches.
-
-**If stacks are ambiguous or a capture gate misses the event:**
-
-- improve only the diagnostic fact needed to distinguish the execution context;
-- do not convert the missed observation into lifecycle evidence.
-
-Current immediate Normal Chat responsibility:
-
-> Freeze and delegate only the factual player/type-0 empty-Primary successor stack refinement described above. After independent source review, build/load it and repeat a short legitimate player 2H Normal interruption fixture. Do not implement production lifecycle state or cleanup.
+Canonical evidence: EV-176, EV-179–EV-181.
 
 ---
 
-## 3. Gate C1 — Prove the Deferred Checkpoint Before Repairing Anything
+## 3. Gate B7 — Attack-Lifecycle / Bookkeeping Reconstruction — CURRENT GATE
 
-Run only if B6 supports a common post-script timing point.
+Question:
 
-First add a **diagnostic-only** tightly gated one-shot checkpoint for an already-tracked/pending exact attack execution.
+> **What native CombatMove/routine/instruction bookkeeping established at attack-Hit start keeps the normal-completion and legitimate-reaction paths connected to cleanup, and what is abandoned, reset, or bypassed differently on the bad block-skip path?**
+
+Do not assume a literal allocated attack "package". Treat the current model as a control-flow/lifecycle bundle whose pieces may include:
+
+- animation playback;
+- movement/reach execution;
+- CombatMove instruction state;
+- Routine StateTime;
+- Routine StatePosition;
+- callback scheduling/progression;
+- ScriptFunction/ScriptState continuation.
+
+### B7-A — Static reconstruction first
+
+Inspect the smallest existing source/binary areas around:
+
+1. `sAICombatMoveStart`;
+2. `sAICombatMoveItlLoop`;
+3. `sAICombatMoveInstr` and its active instruction/callback state, including exposed `m_pfInstrCallback` structure where authoritative declarations support it;
+4. transitions that establish/reset Routine StateTime and StatePosition;
+5. the action-specific continuation after CombatMove returns;
+6. reaction state/reset flow leading to the tested `Script_Game +0x24AFF` cleanup;
+7. any directly supported caller/branch associated with the observed bad-skip return to ordinary animation handling.
+
+Do not infer ownership from nearby addresses alone. Prefer caller/callee relations, exported symbols, authoritative SDK structure, and runtime stacks.
+
+### B7-B — Offensive activation stack, only if static evidence still leaves the timer/callback path ambiguous
+
+Reuse the already-owned `SetCollisionGroup` hook. No new Gothic hook is needed merely to observe this question.
+
+Add diagnostic stack capture only for actual player equipped-source offensive requests relevant to the controlled fixture:
+
+```text
+5 -> 7
+7 -> 7
+```
+
+`7 -> 7` must be retained because EV-181 proves a new execution can inherit stale offense and make a real offensive request without a numeric transition.
+
+The diagnostic should preserve factual context already logged:
+
+- action/phase;
+- StateTime;
+- StatePosition;
+- current movement;
+- exact equipped source;
+- caller module/RVA;
+- short stack.
+
+Do not use these facts as production lifetime authority.
+
+### B7-C — Controlled comparison fixture
+
+If a runtime comparison is required, use the compact order that minimizes noisy target combat:
+
+```text
+1. clean Normal attacks — no target
+2. clean Quick attacks — no target
+3. clean full Whirl — no target
+4. bad skipped full Whirl attempts — no target
+5. spawn one durable target
+6. several legitimate Normal interruptions
+7. several legitimate Quick interruptions
+8. exit
+```
+
+The current B6-C3/B6-D raw already contains a strong version of this fixture; do not rerun it unless B7 instrumentation asks a new factual question.
+
+Compare **mechanism**, not just attack-family names:
+
+- what is established at Hit start;
+- when StateTime/StatePosition change;
+- what invokes offensive activation;
+- what clean completion retains until action-specific cleanup;
+- what reaction resets/changes before `+0x24AFF`;
+- what the bad skip loses before Ambient/idle takes over.
+
+### B7 acceptance
+
+B7 is successful when evidence identifies either:
+
+1. a general lifecycle/bookkeeping signal that survives every armed execution until one of its legitimate terminal paths, or
+2. a narrower supported event that reliably distinguishes "native cleanup still has an opportunity" from "the execution has been abandoned and no opportunity remains."
+
+If neither exists, continue architectural search rather than falling back to polling/timers/family matrices.
+
+Current immediate Normal Chat responsibility:
+
+> Interpret the current B6 result as a rejected timing candidate, then source-audit the CombatMove/routine bookkeeping path before freezing any new Work diagnostic. A likely first runtime refinement, if still needed, is offensive activation stack capture in the existing `SetCollisionGroup` hook; do not implement it until the static question has been narrowed.
+
+---
+
+## 4. Gate C1 — Prove a New Finalization Checkpoint Before Repairing Anything
+
+Run only after B7 or later evidence identifies a general finalization timing point.
+
+First add a **diagnostic-only** tightly gated one-shot checkpoint for an already-owned exact attack execution.
 
 It must demonstrate:
 
 1. the checkpoint runs after clean ordinary native cleanup;
 2. it runs after legitimate interruption cleanup;
-3. it runs after bad direct replacement even when cleanup was absent;
-4. unrelated script processing does nothing because no owned execution is pending;
+3. it runs after bad teardown even when cleanup was absent;
+4. unrelated processing does nothing because no owned execution is pending/finalizing;
 5. the same execution is checked once, not repeatedly.
 
 Do not perform fallback cleanup in this gate. Establish ordering first.
 
 ---
 
-## 4. Gate C2 — Minimal Cleanup Repair Prototype
+## 5. Gate C2 — Minimal Cleanup Repair Prototype
 
 Only after C1 proves the timing point.
 
 Implement the smallest execution-owned repair:
 
 ```text
-pending exact execution requested offensive collision
-→ post-native-opportunity checkpoint
+owned exact execution requested offensive collision
+→ proven post-native-opportunity checkpoint
 → cleanup observed?
     yes -> retire/no-op
     no  -> perform native-equivalent repair for the owned offensive source(s)
@@ -230,7 +279,7 @@ A successful repair must not create a second collision activation, duplicate lis
 
 ---
 
-## 5. Gate C3 — Does Offensive Collision Ever Legitimately Survive Across Independent Hit Executions?
+## 6. Gate C3 — Does Offensive Collision Ever Legitimately Survive Across Independent Hit Executions?
 
 Once a repair exists, challenge the universal invariant with representative native/unmarked attack chaining.
 
@@ -258,11 +307,11 @@ Interpretation:
 - clearly intentional transfer → architecture must represent that transfer before release;
 - only observed in stale/bugged paths → supports the guard, not an exception.
 
-Do not infer intentional carry merely from a later `7 -> 7` request; determine whether the previous source was already stale.
+EV-181 is already a negative example of accidental carry: a broken Whirl left group 7, then a later Normal requested `7 -> 7` and finally cleaned it. Do not mistake that pattern for intentional transfer.
 
 ---
 
-## 6. Gate C4 — Source-Aware Fallback Decision
+## 7. Gate C4 — Source-Aware Fallback Decision
 
 Prefer one execution-level obligation unless evidence proves independent partial-source cleanup.
 
@@ -278,9 +327,9 @@ Do not choose it merely because marker desired-set state already contains a sour
 
 ---
 
-## 7. Gate C5 — Negative / No-Op Regression for Generic Script Timing
+## 8. Gate C5 — Negative / No-Op Regression for Generic Timing
 
-Required if the final design uses a generic SPU/script timing checkpoint.
+Required if the final design uses a generic timing checkpoint.
 
 At minimum test:
 
@@ -291,13 +340,13 @@ At minimum test:
 
 Expected result:
 
-> The generic checkpoint is a complete no-op because no exact owned weapon-style offensive execution is pending finalization.
+> The generic checkpoint is a complete no-op because no exact owned weapon-style offensive execution is pending/finalizing.
 
 Fist is especially important: it can share ordinary melee action enums but the tested logical Fist source does not request weapon-style `Item_Attack(7)`. This protects the rule that **actual collision ownership/request**, not action enum alone, creates the cleanup obligation.
 
 ---
 
-## 8. Gate C6 — Block / Parade Defensive Collision Semantics
+## 9. Gate C6 — Block / Parade Defensive Collision Semantics
 
 Run only before release if the chosen cleanup operation might affect defensive item state.
 
@@ -320,7 +369,7 @@ Do not add defensive special cases unless evidence requires them.
 
 ---
 
-## 9. Marker-Core Regression — Reuse Existing Fixtures
+## 10. Marker-Core Regression — Reuse Existing Fixtures
 
 The marker source-set core is already strongly validated. Re-run compact fixtures only after lifecycle changes that could plausibly affect it.
 
@@ -345,7 +394,7 @@ Do not rebuild the historical v0.10–v0.18 matrix from scratch unless a regress
 
 ---
 
-## 10. Broad Regression Phase — After the Lifecycle Model Is Chosen
+## 11. Broad Regression Phase — After the Lifecycle Model Is Chosen
 
 Challenge the **one chosen rule** across:
 
@@ -366,19 +415,19 @@ The matrix is evidence coverage, not a production branch matrix.
 
 ---
 
-## 11. Success Criteria
+## 12. Success Criteria
 
 The collision-lifecycle research is ready for production integration when evidence answers:
 
 1. what constitutes an owned real attack-Hit execution;
 2. what event establishes its actual physical end/replacement;
 3. what creates the offensive collision obligation, including `7 -> 7` requests;
-4. what timing point occurs after Gothic's legitimate cleanup opportunity;
+4. what timing point occurs after Gothic's legitimate cleanup opportunity even on the bad teardown path;
 5. how native cleanup success is observed;
 6. whether repair must be attack-wide or source-specific;
 7. whether any legitimate native sequence carries offensive collision across independent physical Hit executions;
 8. whether defensive collision introduces a conflicting state;
-9. whether unrelated Fist/ranged/magic script processing remains a no-op;
+9. whether unrelated Fist/ranged/magic processing remains a no-op;
 10. whether marked and native activation converge on one end-of-Hit safety rule.
 
 Only then should the stable collision lifecycle be integrated into the production `Script_G3AnimationBehaviors` implementation.
