@@ -58,6 +58,15 @@ struct AIFullStopStackSnapshot
     void *callerAddress;
 };
 
+struct AISetStateStackSnapshot
+{
+    HitReplacementStackSnapshot context;
+    PrimaryMotionEventSnapshot primary;
+    std::string currentState;
+    std::string requestedState;
+    void *callerAddress;
+};
+
 void OpenLog();
 void CloseLog();
 bool IsLogOpen();
@@ -99,6 +108,8 @@ void LogCombatMoveFullStopStack(
     PrimaryMotionEventSnapshot const &primary);
 void LogAIFullStopCallSite(Entity &actor,
                            AIFullStopStackSnapshot const &fullStop);
+void LogAISetStateCallSite(Entity &actor,
+                           AISetStateStackSnapshot const &setState);
 void LogCombatMoveStartRecoverBoundary(Entity &actor,
                                          char const *boundary);
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,

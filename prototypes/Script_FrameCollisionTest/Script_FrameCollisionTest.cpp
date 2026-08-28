@@ -28,6 +28,7 @@ static mCFunctionHook Hook_StopMotion;
 static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AICombatMoveStartRecover;
 static mCFunctionHook Hook_AIFullStop;
+static mCFunctionHook Hook_AISetState;
 
 static bool ShouldSuppressAttackCallback(Entity &actor)
 {
@@ -351,6 +352,39 @@ static void GE_STDCALL AIFullStop_FrameCollisionTest()
     Hook_AIFullStop.GetOriginalFunction(&AIFullStop_FrameCollisionTest)();
 }
 
+static void GE_STDCALL AISetState_FrameCollisionTest(
+    bCString const &a_State)
+{
+    void *callerAddress = _ReturnAddress();
+    gCScriptRoutine_PS *pThis =
+        Hook_AISetState.GetSelf<gCScriptRoutine_PS *>();
+    eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
+    if (IsPlayerEntity(ownerEntity))
+    {
+        Entity actor(ownerEntity);
+        CollisionDiagnostics::AISetStateStackSnapshot setState = {};
+        setState.callerAddress = callerAddress;
+        setState.context.frameCount = ::CaptureStackBackTrace(
+            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            setState.context.frames, nullptr);
+        CollisionDiagnostics::CaptureHitReplacementContext(
+            actor, nullptr, setState.context);
+        setState.primary =
+            CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(actor);
+
+        bCString currentState = actor.Routine.GetCurrentState();
+        setState.currentState = currentState.GetText() != nullptr
+            ? currentState.GetText() : "";
+        setState.requestedState = a_State.GetText() != nullptr
+            ? a_State.GetText() : "";
+
+        CollisionDiagnostics::LogAISetStateCallSite(actor, setState);
+    }
+
+    Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
+        a_State);
+}
+
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
 {
     void *callerAddress = _ReturnAddress();
@@ -457,6 +491,10 @@ static void InstallHooks()
         .Hook();
     Hook_AIFullStop
         .Prepare(RVA_Game(0x164430), &AIFullStop_FrameCollisionTest,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_AISetState
+        .Prepare(RVA_Game(0x164320), &AISetState_FrameCollisionTest,
                  mCBaseHook::mEHookType_ThisCall)
         .Hook();
 }
