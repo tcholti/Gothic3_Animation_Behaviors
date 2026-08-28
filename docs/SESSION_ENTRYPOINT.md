@@ -31,7 +31,7 @@ Within one continuing subsystem context, do not repeatedly reread unchanged auth
 
 Preferred invariant:
 
-> **For every real attack-Hit execution that requests offensive collision, Gothic 3 gets its legitimate cleanup opportunity. When that exact Hit genuinely ends or is replaced, if cleanup was observed, do nothing; if not, repair the remaining offensive collision using native cleanup semantics.**
+> **For every real attack-Hit execution that requests offensive collision, Gothic 3 gets its legitimate cleanup opportunity. When that exact execution ends or is destructively abandoned, if cleanup was observed, do nothing; if not, repair only that execution's remaining offensive collision using native cleanup semantics.**
 
 Markers control collision **inside a live Hit**. End-of-Hit safety is one shared execution-level responsibility for marked and native attacks.
 
@@ -41,69 +41,136 @@ Architecture authority: `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
 ## Established Native Failure Model
 
-CombatMove is asynchronous. The owning ScriptFunction can be suspended at a break block while `sAICombatMoveInstr` persists in the SPU.
+CombatMove is asynchronous. The owning ScriptFunction can remain suspended at a break block while `sAICombatMoveInstr` persists in the SPU.
 
-On ordinary completion, CombatMove finishes and the ScriptFunction resumes into its action-specific cleanup. Tested full Whirl reaches ordinary cleanup at `Script_Game +0x4E03C` only after its CombatMove break block completes.
+Ordinary completion resumes the owning ScriptFunction into its action-specific cleanup. Tested full Whirl reaches cleanup at `Script_Game +0x4E03C` only after its CombatMove break block completes.
 
-Tested legitimate Normal/Quick reactions can FullStop the active CombatMove through `Script_Game +0x2D0F2`, then continue under reaction control and later use the established `+0x24AFF` collision cleanup when offense had armed.
-
-The tested bad held-Use2 path is different:
+The known bad player held-Use2 path instead does:
 
 ```text
 Use2 held beyond 2500 ms
 → Script_Game +0x633F1 calls PSRoutine::FullStop()
+→ active CombatMove receives fullStop=true
 → Script_Game +0x63409 calls PSRoutine::SetState(...)
-→ SetState clears the SPU state stack / resets state-position and break-block bookkeeping
-→ the suspended attack ScriptFunction continuation is discarded
-→ its ordinary action-specific cleanup can no longer run
-→ if offense had armed, Item_Attack(7) can survive into Ambient/idle/movement
+→ native AISetState destroys/replaces the old SPU state-stack continuation
+→ the suspended attack ScriptFunction can no longer resume into ordinary cleanup
+→ if offense had armed, Item_Attack(7) can survive into successor state/motion
 ```
 
-B8 generalized this same tested control path beyond full Whirl. Player Quick attacks with **Dual (1H+1H), plain 1H, and Shield+1H** all produced `PS_Melee_QuickAttack` AIFullStop records through the same `Script_Game +0x633F7` return from the `+0x633F1` FullStop call while Use2 was held. Representative armed cases in all three configurations had already requested `5 -> 7` and then entered Ambient/Parade while the weapon remained group 7.
+B8 proves this is not full-Whirl-specific: tested player Quick attacks with Dual (1H+1H), plain 1H and Shield+1H use the same held-Use2 abandonment path and can retain armed collision afterward.
 
-Therefore the held-Use2 state-stack-abandonment mechanism is **not Whirl-specific and not Dual-specific** in the tested player cases.
+Important qualification: this establishes one shared tested stale class, not every possible NPC/terrain/abnormal-ending cause.
 
-Important qualification: this does not prove that every possible abnormal attack termination, NPC path, or stale-collision cause uses the same player input branch.
+---
 
-B8 raw:
+## B9 Finalization Ordering Result
+
+B9 observes tested:
 
 ```text
-research/raw/2026-08-28_b8_player_dual_quick_state_stack_abandonment.log
+Game +0x164320 = gCScriptRoutine_PS::AISetState(bCString const&)
 ```
 
-B8 raw commit:
+before the original destructive state replacement.
+
+### Bad held-Use2 path
+
+Representative armed full-Whirl ordering:
 
 ```text
-3c8484f3e6a123e6a5c5901318bd9c444cc0107b
+AIFullStop / +0x633F1 branch
+→ CombatMove fullStop
+→ AISetState entered almost immediately
+   old attack Hit/state context still visible
+   equipped weapon still Item_Attack(7)
+→ no legitimate native cleanup intervened
+```
+
+### Ordinary successful completion
+
+Tested clean full Whirl, Normal and Quick:
+
+```text
+CombatMove terminal / Recover path
+→ ordinary action-specific native cleanup 7 -> 5
+→ later AISetState(...PS_Melee_Loop)
+```
+
+### Legitimate reaction interruption
+
+Tested armed Normal/Quick reactions:
+
+```text
+AIFullStop
+→ CombatMove fullStop
+→ separate reaction cleanup +0x24AFF resets 7 -> 5
+→ reaction successor
+```
+
+No AISetState intervenes before the legitimate cleanup in those tested samples. B9 also confirms more than one legitimate-reaction FullStop caller (`+0x2D0F8` and `+0x2B8CB` observed), so no single reaction call-site classifier is authoritative.
+
+**Engineering consequence:** destructive AISetState is now a strong tested **post-cleanup-opportunity / abandonment checkpoint** for the known held-Use2 stale class. It is still generic script-state infrastructure and must not become an unconditional cleanup hook.
+
+B9 raw:
+
+```text
+research/raw/2026-08-28_b9_player_aisetstate_cleanup_ordering.log
+```
+
+B9 raw commit:
+
+```text
+ae0a78787cb811f9de551997505ea4bd14370846
 ```
 
 ---
 
-## Current Gate — B9 Native AISetState Ordering
+## Pierce Raise Subtest — Qualification
 
-Static/source audit maps one authoritative native state-change observation point:
+B9 contains repeated plain-1H and Dual Pierce `Raise -> Hit` sequences. However, no `AIFULLSTOP CALLSITE` record was captured while `PS_Melee_PierceAttack` was active; the held-Use2 `+0x633F7` events around those attempts occurred in `PS_Melee_Loop` before/after the Pierce execution.
+
+Therefore this indexed B9 run does **not** newly prove a destructive bad skip inside Pierce Raise. Preserve the user's earlier/repeated runtime observation that Raise may still proceed to Hit after a skip as an observation until directly reproduced under indexed diagnostics.
+
+The user also repeatedly observes that a bad skip during Hit stops the attack's native forward movement. This is consistent with CombatMove termination, but displacement was not instrumented, so keep it as repeated runtime observation rather than log-proven positional evidence.
+
+---
+
+## Current Gate — C1 Execution-Level Guard Design
+
+The former gate was to find a general event-driven finalization mechanism. B8/B9 satisfy that research gate strongly enough for the tested known stale class to begin **designing** C1.
+
+Do not start Work yet. Normal Chat must first freeze the smallest production state/transition model.
+
+The design target is:
 
 ```text
-Script.dll PSRoutine::SetState       +0x12F50
-→ gCScriptRoutine_PS::AISetState     Game +0x164320
-→ SPU state-changing implementation  Game +0x16F5B0
+exact attack-Hit execution X
+→ X actually requests offensive collision
+→ remember an outstanding cleanup obligation for X
+→ Gothic native cleanup observed?
+     YES → obligation fulfilled; no-op
+     NO  → keep obligation
+→ CombatMove termination / destructive AISetState abandons X
+→ if obligation still outstanding at the proven finalization checkpoint
+     repair only X's remaining offensive source(s)
+→ retire X lifecycle state
 ```
 
-The official SDK declares `gCScriptRoutine_PS::AISetState(bCString const&)`; Script.dll's `PSRoutine::SetState` wrapper directly imports that routine. The SDK documents SetState as clearing the state stack and resetting state-position/break-block bookkeeping.
+Design requirements:
 
-The next exact question is:
+- event-driven only;
+- no family/cause-specific repair matrix;
+- no input-key classifier;
+- no polling, timer or world/per-frame scan;
+- no unconditional cleanup on AIFullStop/AISetState;
+- track an actual offensive request, including `7 -> 7` requests that may inherit stale state;
+- native `7 -> 5` cleanup must fulfill/retire the obligation before fallback;
+- exact equipped physical source ownership must be preserved;
+- intentional marker OFF/source switching remains intra-Hit behavior, not terminal retirement;
+- existing callback suppression, StatePosition advancement, occurrence/replay protection and marker execution bookkeeping must remain intact;
+- Fist/body semantics remain separate from weapon-style Item_Attack ownership.
 
-> **Relative to this native destructive state replacement, when has Gothic's legitimate collision-cleanup opportunity already happened, and when has it been lost?**
-
-B9 is diagnostic-only. Observe player `gCScriptRoutine_PS::AISetState()` ordering against the already-existing AIFullStop, native cleanup, StartRecover and motion diagnostics on:
-
-- clean ordinary completion;
-- legitimate Normal/Quick reactions;
-- the known bad held-Use2 full-Whirl path.
-
-Do not repair collision at AISetState. If legitimate reaction cleanup can still occur after AISetState, AISetState is too early to be a repair checkpoint even though it proves the old continuation was discarded.
-
-Use `docs/BETWEEN_CHATS.md` for the frozen B9 Work contract.
+Use `docs/BETWEEN_CHATS.md` for the current C1 design handoff.
 
 ---
 
@@ -122,6 +189,8 @@ Game +0x16F5B0 = SPU state-changing implementation reached by AISetState
 Relevant Script_Game points:
 
 ```text
++0x24AFF              established reaction-side collision cleanup
++0x2B8CB              additional tested legitimate-reaction AIFullStop return
 +0x2D0F2 / +0x2D0F8  tested legitimate-reaction FullStop call / return
 +0x4DF8C              full-Whirl CombatMove break-block operation
 +0x4E03C              ordinary full-Whirl cleanup continuation
@@ -136,7 +205,7 @@ All addresses are tested-build-specific.
 
 ## Future Marker-Core Review — Preserve This Route
 
-Native CombatMove/state-stack lifetime may eventually replace some custom marker lifetime inference, but do not simplify the marker core until the native termination/finalization model is shown to preserve every proven marker regression.
+Native CombatMove/state-stack lifetime may eventually replace some custom marker lifetime inference, but do not simplify the marker core until the C1 lifecycle guard is validated and every proven marker regression remains protected.
 
 Retrieve:
 
@@ -144,17 +213,17 @@ Retrieve:
 EVIDENCE_INDEX.md
 → Marker execution lifetime / bookkeeping
 → future marker-core simplification / native execution boundary
-→ COLLISION_LIFECYCLE_PLAN.md §10
+→ COLLISION_LIFECYCLE_PLAN.md
 ```
 
 ---
 
 ## Do Not Do Yet
 
-Until a reliable general finalization mechanism is established:
+Until the C1 state/transition design is frozen:
 
 - do not implement production cleanup/repair;
-- do not add lifecycle/pending-finalization state;
+- do not add an ad-hoc pending-finalization flag without exact lifecycle rules;
 - do not add ProcessScript behavior hooks, timers, polling or scans;
 - do not add family/cause-specific repair branches;
 - do not clean unconditionally at AIFullStop, SetState or AISetState;
@@ -168,12 +237,12 @@ Until a reliable general finalization mechanism is established:
 
 | Need | Open |
 |---|---|
-| lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
+| lifecycle architecture / C1 design | `COLLISION_LIFECYCLE_PLAN.md` |
 | current bounded continuation | `BETWEEN_CHATS.md` |
 | exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md` |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | CombatMove/API/symbol/caller lookup | `SOURCE_HOOK_GUIDE.md` |
-| marker execution lifetime / future simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` §10 |
+| marker execution lifetime / future simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` |
 | diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
 | staged validation | `COLLISION_TEST_PLAN.md` |
 | animation semantics/assets | `ANIMATION_INDEX.md` |
