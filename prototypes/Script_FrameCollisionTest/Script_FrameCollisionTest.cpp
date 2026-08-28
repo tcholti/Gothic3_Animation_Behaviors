@@ -27,6 +27,7 @@ static mCFunctionHook Hook_PlayMotion;
 static mCFunctionHook Hook_StopMotion;
 static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AICombatMoveStartRecover;
+static mCFunctionHook Hook_AIFullStop;
 
 static bool ShouldSuppressAttackCallback(Entity &actor)
 {
@@ -312,6 +313,44 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
         &AICombatMoveInstr_FrameCollisionTest)(a_pArgs, a_pSPU, a_bFullStop);
 }
 
+static void GE_STDCALL AIFullStop_FrameCollisionTest()
+{
+    void *callerAddress = _ReturnAddress();
+    gCScriptRoutine_PS *pThis =
+        Hook_AIFullStop.GetSelf<gCScriptRoutine_PS *>();
+    eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
+    if (IsPlayerEntity(ownerEntity))
+    {
+        Entity actor(ownerEntity);
+        CollisionDiagnostics::AIFullStopStackSnapshot fullStop = {};
+        fullStop.callerAddress = callerAddress;
+        fullStop.context.frameCount = ::CaptureStackBackTrace(
+            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            fullStop.context.frames, nullptr);
+        CollisionDiagnostics::CaptureHitReplacementContext(
+            actor, nullptr, fullStop.context);
+        fullStop.primary =
+            CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(actor);
+
+        bCString currentState = actor.Routine.GetCurrentState();
+        fullStop.currentState = currentState.GetText() != nullptr
+            ? currentState.GetText() : "";
+        fullStop.pressedKey = static_cast<GEInt>(
+            actor.CharacterControl.GetProperty<
+                PSCharacterControl::PropertyPressedKey>());
+        fullStop.isPressed = actor.CharacterControl.GetProperty<
+            PSCharacterControl::PropertyIsPressed>();
+        fullStop.isPressedBefore = actor.CharacterControl.GetProperty<
+            PSCharacterControl::PropertyIsPressedBefore>();
+        fullStop.durationPressedMSecs = actor.CharacterControl.GetProperty<
+            PSCharacterControl::PropertyDurationPressedMSecs>();
+
+        CollisionDiagnostics::LogAIFullStopCallSite(actor, fullStop);
+    }
+
+    Hook_AIFullStop.GetOriginalFunction(&AIFullStop_FrameCollisionTest)();
+}
+
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
 {
     void *callerAddress = _ReturnAddress();
@@ -415,6 +454,10 @@ static void InstallHooks()
     Hook_AICombatMoveStartRecover
         .Prepare(RVA_Game(0x16E360),
                  &AICombatMoveStartRecover_FrameCollisionTest)
+        .Hook();
+    Hook_AIFullStop
+        .Prepare(RVA_Game(0x164430), &AIFullStop_FrameCollisionTest,
+                 mCBaseHook::mEHookType_ThisCall)
         .Hook();
 }
 

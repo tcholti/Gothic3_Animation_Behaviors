@@ -46,6 +46,18 @@ struct HitReplacementStackSnapshot
     unsigned short frameCount;
 };
 
+struct AIFullStopStackSnapshot
+{
+    HitReplacementStackSnapshot context;
+    PrimaryMotionEventSnapshot primary;
+    std::string currentState;
+    GEInt pressedKey;
+    GEBool isPressed;
+    GEBool isPressedBefore;
+    GEU32 durationPressedMSecs;
+    void *callerAddress;
+};
+
 void OpenLog();
 void CloseLog();
 bool IsLogOpen();
@@ -85,6 +97,8 @@ void LogHitStartRecoverBeginStack(
 void LogCombatMoveFullStopStack(
     Entity &actor, HitReplacementStackSnapshot const &fullStop,
     PrimaryMotionEventSnapshot const &primary);
+void LogAIFullStopCallSite(Entity &actor,
+                           AIFullStopStackSnapshot const &fullStop);
 void LogCombatMoveStartRecoverBoundary(Entity &actor,
                                          char const *boundary);
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,

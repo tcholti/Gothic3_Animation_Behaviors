@@ -67,6 +67,7 @@ void OpenLog()
     std::fprintf(g_pLog, "STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / UNGATED EMPTY-PRIMARY SUCCESSOR STACK PROBE: player PrimaryFirst outgoing attack-Hit or factual empty-Primary successor stack; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B7 COMBATMOVE FULLSTOP STACK PROBE: player sAICombatMoveInstr fullStop=true caller/context stack; diagnostic-only.\n");
+    std::fprintf(g_pLog, "STEP B7b AIFULLSTOP CALLSITE PROBE: player gCScriptRoutine_PS::AIFullStop immediate caller/context stack; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -1077,6 +1078,118 @@ void LogCombatMoveFullStopStack(
     }
     std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
     std::fprintf(g_pLog, "=====================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogAIFullStopCallSite(Entity &actor,
+                           AIFullStopStackSnapshot const &fullStop)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    HMODULE callerModule = nullptr;
+    char callerModulePath[MAX_PATH] = {};
+    bool const callerModuleResolved =
+        fullStop.callerAddress != nullptr
+        && ::GetModuleHandleExA(
+            GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCSTR>(fullStop.callerAddress),
+            &callerModule) != FALSE;
+    DWORD const callerModulePathLength = callerModuleResolved
+        ? ::GetModuleFileNameA(
+            callerModule, callerModulePath, MAX_PATH) : 0;
+    std::uintptr_t const callerValue =
+        reinterpret_cast<std::uintptr_t>(fullStop.callerAddress);
+    std::uintptr_t const callerModuleBase =
+        reinterpret_cast<std::uintptr_t>(callerModule);
+    unsigned long const callerRva = callerModuleResolved
+        ? static_cast<unsigned long>(callerValue - callerModuleBase) : 0;
+
+    HitReplacementStackSnapshot const &context = fullStop.context;
+    std::fprintf(g_pLog, "===== AIFULLSTOP CALLSITE =====\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n", context.elapsedMilliseconds);
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "Actor: %s\n",
+                 actor != None ? actor.GetName().GetText() : "<unavailable>");
+    std::fprintf(g_pLog, "CallerAddress: %p\n", fullStop.callerAddress);
+    std::fprintf(g_pLog, "CallerModuleResolved: %d\n",
+                 callerModuleResolved ? 1 : 0);
+    std::fprintf(g_pLog, "CallerModule: %s\n",
+                 callerModulePathLength > 0
+                     ? BaseName(callerModulePath)
+                     : callerModuleResolved ? "<path-unavailable>"
+                                            : "<unresolved>");
+    std::fprintf(g_pLog, "CallerModuleBase: %p\n",
+                 static_cast<void *>(callerModule));
+    if (callerModuleResolved)
+        std::fprintf(g_pLog, "CallerRVA: 0x%08lX\n", callerRva);
+    else
+        std::fprintf(g_pLog, "CallerRVA: <unresolved>\n");
+    std::fprintf(g_pLog, "CurrentAction: %d\n", context.action);
+    std::fprintf(g_pLog, "CurrentAniPhase: %d\n", context.phase);
+    std::fprintf(g_pLog, "CurrentState: %s\n",
+                 fullStop.currentState.c_str());
+    std::fprintf(g_pLog, "CurrentStateTime: %.6f\n", context.stateTime);
+    std::fprintf(g_pLog, "CurrentStatePosition: %d\n",
+                 context.statePosition);
+    std::fprintf(g_pLog, "PressedKey: %d\n", fullStop.pressedKey);
+    std::fprintf(g_pLog, "IsPressed: %d\n",
+                 fullStop.isPressed == GETrue ? 1 : 0);
+    std::fprintf(g_pLog, "IsPressedBefore: %d\n",
+                 fullStop.isPressedBefore == GETrue ? 1 : 0);
+    std::fprintf(g_pLog, "DurationPressedMSecs: %u\n",
+                 static_cast<unsigned int>(fullStop.durationPressedMSecs));
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                 context.movementName.c_str());
+    LogPrimaryMotionEventSnapshot("BEFORE_ORIGINAL", fullStop.primary);
+    LogHitReplacementSource("LeftHand", context.leftSource);
+    LogHitReplacementSource("RightHand", context.rightSource);
+    std::fprintf(g_pLog, "CapturedStackFrameCount: %u\n",
+                 static_cast<unsigned int>(context.frameCount));
+    for (unsigned short i = 0; i < context.frameCount; ++i)
+    {
+        void *frameAddress = context.frames[i];
+        HMODULE frameModule = nullptr;
+        char frameModulePath[MAX_PATH] = {};
+        bool const frameModuleResolved =
+            frameAddress != nullptr
+            && ::GetModuleHandleExA(
+                GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                    | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                reinterpret_cast<LPCSTR>(frameAddress),
+                &frameModule) != FALSE;
+        DWORD const frameModulePathLength = frameModuleResolved
+            ? ::GetModuleFileNameA(
+                frameModule, frameModulePath, MAX_PATH) : 0;
+        std::uintptr_t const frameValue =
+            reinterpret_cast<std::uintptr_t>(frameAddress);
+        std::uintptr_t const frameModuleBase =
+            reinterpret_cast<std::uintptr_t>(frameModule);
+        unsigned long const frameRva = frameModuleResolved
+            ? static_cast<unsigned long>(frameValue - frameModuleBase) : 0;
+        if (frameModuleResolved)
+        {
+            std::fprintf(
+                g_pLog,
+                "StackFrame[%u]: Address=%p Module=%s Base=%p RVA=0x%08lX\n",
+                static_cast<unsigned int>(i), frameAddress,
+                frameModulePathLength > 0
+                    ? BaseName(frameModulePath) : "<path-unavailable>",
+                static_cast<void *>(frameModule), frameRva);
+        }
+        else
+        {
+            std::fprintf(
+                g_pLog,
+                "StackFrame[%u]: Address=%p Module=<unresolved> Base=%p RVA=<unresolved>\n",
+                static_cast<unsigned int>(i), frameAddress,
+                static_cast<void *>(frameModule));
+        }
+    }
+    std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "===============================\n\n");
     std::fflush(g_pLog);
 }
 
