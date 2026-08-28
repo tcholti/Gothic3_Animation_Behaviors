@@ -8,7 +8,7 @@
 
 `docs/collision-source-evidence` contains the newest collision research/prototype state. `main` is the stable integration and reusable Gothic 3 knowledge baseline.
 
-Document roles / Hot-Warm-Cold retrieval: `docs/README.md`  
+Document roles / Hot-Warm-Cold retrieval / Subsystem Orientation Pass: `docs/README.md`  
 Latest transient Chat/Work bridge, only when relevant: `docs/BETWEEN_CHATS.md`
 
 ---
@@ -18,10 +18,13 @@ Latest transient Chat/Work bridge, only when relevant: `docs/BETWEEN_CHATS.md`
 For a newly opened Normal Chat:
 
 1. read this file first and treat it as the current-state authority;
-2. do **not** reconstruct the project from old chat history or scan the whole repository;
-3. read `docs/BETWEEN_CHATS.md` only when the current responsibility depends on an active/recent Work task or transient handoff;
-4. retrieve only the exact deeper authority listed under **Retrieval — Only What the Question Needs** when the current question requires it;
-5. continue the current Normal Chat responsibility from the repository state. The User should not need to restate project history already preserved here or in the routed authorities.
+2. read `docs/BETWEEN_CHATS.md` only when the current responsibility depends on an active/recent Work task or transient handoff;
+3. if the active technical subsystem is not already sufficiently oriented in the current Chat context, perform the **one-time Subsystem Orientation Pass** from `docs/README.md`: use the relevant subject route and targeted index/authority sections to reconstruct a compact working model of the subsystem before drilling into the exact current step;
+4. do **not** reconstruct the project from old chat history, scan the whole repository, or create another persistent subsystem-summary document;
+5. retrieve only the exact deeper authority listed under **Retrieval — Only What the Question Needs** when the current question requires it;
+6. continue the current Normal Chat responsibility from the repository state. The User should not need to restate project history already preserved here or in the routed authorities.
+
+Within the same continuing subsystem context, do not rerun the orientation pass or reread unchanged authorities after every prompt.
 
 A new Normal Chat should normally need no custom handoff document beyond this front door. `BETWEEN_CHATS.md` remains the replaceable transient bridge for exact Chat ↔ Work continuity.
 
@@ -60,10 +63,12 @@ Game + 0x16F120 = gCScriptProcessingUnit::ProcessScript()
 ```
 
 - `Game + 0x1696E0 = gCScriptProcessingUnit::sAICombatMoveInstr(...)`;
-- `sAICombatMoveInstr` itself remains too early for repair, but B6-B now uses it as caller-context evidence;
+- `sAICombatMoveInstr` itself remains too early for repair, but B6-B uses it as caller-context evidence;
 - EV-174/EV-175: clean 2H Normal still has the outgoing Hit at StartRecover BEGIN but PrimaryFirst is already empty by StopMotion-hook entry;
 - EV-176: all three valid clean 2H Normal StartRecover stack captures were identical: diagnostic wrapper -> `Game + 0x169772` inside `sAICombatMoveInstr` -> `Game + 0x16F240` inside `ProcessScript()`;
-- the right-hand source remained `Item_Attack(7)` at capture time, and later native `7 -> 5` cleanup still occurred after StartRecover returned.
+- the right-hand source remained `Item_Attack(7)` at capture time, and later native `7 -> 5` cleanup still occurred after StartRecover returned;
+- EV-177: legitimate 2H Normal damage/reaction interruption repeatedly cleaned the weapon through `Script_Game + 0x24AFF`, then reached an already-empty Primary before StopMotion and installed Stumble/KnockDown successor motions without running the interrupted attack's own Recover;
+- that B6-C path proved the original direct replacement probe insufficient because the outgoing attack Primary is already gone before the successor PlayMotion request.
 
 These generic script functions are **not combat ownership authority**. Their current role is timing/context evidence only.
 
@@ -90,22 +95,33 @@ This remains a hypothesis.
 
 ## Current Gate — B6 Cross-Path Script-Context Validation
 
-The current diagnostic build contains three observational paths only:
+The current diagnostic source now contains four observational paths only:
 
 - StartRecover-BEGIN stack capture for a still-visible outgoing attack Hit;
 - StopMotion stack capture when an outgoing attack Hit is still visible there;
-- direct PlayMotion replacement stack capture when before/after proves the outgoing Hit was replaced/restarted.
+- direct PlayMotion replacement stack capture when before/after proves the outgoing Hit was replaced/restarted;
+- B6-C empty-Primary successor PlayMotion stack capture for the controlled player Normal attack context after the outgoing Primary has already disappeared.
 
-Authoritative live diagnostic path:
+The empty-Primary successor diagnostic is **diagnostic correlation only**. It does not make stale action/phase/current-movement values lifetime authority and does not classify the successor as Stumble, KnockDown, Recover or another family.
+
+Implementation commit:
+
+```text
+55ca9148b0c6f3be8e65b5d483eeabec85195a08
+```
+
+Independent Normal Chat source review: **PASS**.
+
+Authoritative live diagnostic path after the next local build/deploy:
 
 ```text
 E:\SteamLibrary\steamapps\common\Gothic 3\scripts\Script_FrameCollisionTest.dll
 ```
 
-Current verified runtime banner:
+Expected revised runtime banner:
 
 ```text
-STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT STACK PROBE
+STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / EMPTY-PRIMARY SUCCESSOR STACK PROBE
 ```
 
 ### B6-B result — clean completion
@@ -135,21 +151,40 @@ attack Hit Primary / source 7
 
 B6-B therefore **supports** the common-`ProcessScript()` timing hypothesis for clean completion. It does not prove the universal architecture and does not make StartRecover or ProcessScript ownership authority.
 
-### Immediate Normal Chat responsibility — B6-C
+### B6-C result so far — legitimate reaction interruption
 
-Run a legitimate player damage/reaction interruption while an attack Hit is active, using the current diagnostic build unchanged.
+Valid raw evidence:
 
-The existing direct PlayMotion replacement-stack probe is expected to be sufficient if the outgoing attack Hit remains visible at reaction PlayMotion entry. Compare that stack/context with EV-176.
+```text
+research/raw/2026-08-28_b6c_player_2h_normal_legitimate_reaction_replacement_stack.log
+```
 
-Do not modify source before B6-C unless the runtime evidence proves the existing capture is insufficient.
+Usable player 2H Normal interruptions repeatedly showed:
 
-Only after B6-C is interpreted should B6-D reproduce the known bad block-skip direct replacement and compare its context.
+```text
+attack Hit / weapon 7
+→ legitimate reaction cleanup at Script_Game + 0x24AFF: 7 -> 5
+→ outgoing attack Primary already empty before StopMotion
+→ successor PlayMotion begins from empty Primary
+→ Stumble / KnockDown successor installed
+```
+
+The original direct `HIT REPLACEMENT STACK` probe could not capture the successor's caller stack because its gate requires the outgoing attack Primary to still exist at PlayMotion entry.
+
+### Immediate Normal Chat responsibility
+
+1. fast-forward the authoritative home checkout;
+2. build `Script_FrameCollisionTest` with the reviewed empty-Primary diagnostic;
+3. deploy and verify the revised banner/hash;
+4. repeat the controlled B6-C legitimate player 2H Normal interruption fixture;
+5. inspect `HIT EMPTY-PRIMARY SUCCESSOR STACK` records and compare their caller/SPU context with EV-176's clean `sAICombatMoveInstr -> ProcessScript()` stack;
+6. only after B6-C is interpreted should B6-D reproduce the known bad block-skip replacement path and compare its context.
 
 Question:
 
 > **Do clean Hit disappearance, legitimate reaction teardown/replacement, and bad direct replacement occur inside one useful SPU / `ProcessScript()` context so a tightly gated one-shot checkpoint can reliably run after Gothic's native cleanup opportunity?**
 
-Exact procedure/interpretation: `COLLISION_TEST_PLAN.md` Gate B6. Diagnostic authority: `COLLISION_LOGGER_PLAN.md` §6. Canonical evidence: EV-174–EV-176.
+Exact procedure/interpretation: `COLLISION_TEST_PLAN.md` Gate B6. Diagnostic authority: `COLLISION_LOGGER_PLAN.md` §6. Canonical evidence: EV-174–EV-177.
 
 ---
 
@@ -170,6 +205,7 @@ Until B6 answers the boundary question:
 
 | Need | Open |
 |---|---|
+| documentation/retrieval model or subsystem orientation route | `README.md` |
 | lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | diagnostics | `COLLISION_LOGGER_PLAN.md` |
 | current test gates | `COLLISION_TEST_PLAN.md` |
