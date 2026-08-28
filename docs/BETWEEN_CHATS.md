@@ -3,26 +3,118 @@
 **Purpose:** Small transient bridge between Normal Chat and Work.  
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-## Current result — C1 shadow lifecycle guard independently reviewed
+## Current state — C1 shadow guard built/deployed/loaded; core runtime matrix frozen
 
 **Date:** 2026-08-28  
 **Branch:** `docs/collision-source-evidence`  
-**C1 implementation:** `3778517f421d07e940c620745bc7ccdf0da54313`
+**C1 implementation:** `3778517f421d07e940c620745bc7ccdf0da54313`  
+**Independent review:** PASS  
+**Build:** PASS  
+**Deployment hash:** PASS  
+**Load banner:** PASS
 
-### Independent Normal Chat review — PASS
+C1 remains **shadow-only**. `WOULD_REPAIR` must never change physical collision.
 
-- The implementation is exactly one commit after the frozen C1 contract and changes only the five allowed implementation files: new `CollisionLifecycleGuard.h/.cpp`, `CMakeLists.txt`, `CollisionDiagnostics.cpp`, and `Script_FrameCollisionTest.cpp`.
-- C1 lifecycle state is actor-generic; C1 log output remains player-focused to keep the controlled runtime log bounded.
-- A candidate begins only on non-FullStop `sAICombatMoveInstr` with non-null args/SPU, snapshots exact equipped RIGHT/LEFT entities before original, attributes synchronous requests while candidate, and is persisted only on original `GEFalse`; immediate `GETrue` cancels the shadow candidate.
-- Exact successful `Item_Attack` results create/refresh per-source obligations after the original SetCollisionGroup call. `7 -> 7` is intentionally counted. Actual transition out of `Item_Attack` fulfills that exact source obligation.
-- FullStop/AIFullStop do not alter C1 ownership.
-- AISetState captures only the actor/generation token before original, calls Gothic exactly once with the unchanged state argument, then evaluates after original. Generation mismatch is invariant-only; tracked clean sources no-op; outstanding group-7 sources still equipped log `WOULD_REPAIR`; outstanding group-7 sources no longer equipped log `UNRESOLVED_NOT_EQUIPPED`.
-- Finalization retires only the shadow model. C1 contains no physical `SetCollisionGroup`, marker retirement, `ClearTriggeredList`, StatePosition, callback suppression, timer/polling/scan, new hook, family/action/state/input/caller classifier, or production configuration.
-- Existing SetCollisionGroup physical call and marker-retirement ordering are preserved; the new C1 consequence observer runs afterward. Existing B1–B9 diagnostics remain intact.
-- No source/API contradiction was found in independent review. Build is still required before deployment/runtime validation.
+## Frozen C1-A core runtime matrix
 
-### Next step
+Raw filename:
 
-Build `Script_FrameCollisionTest` from the current branch. Do not deploy or run Gothic 3 until the build succeeds and Normal Chat gives the isolated deployment/load step.
+`research/raw/2026-08-28_c1_shadow_core_lifecycle_matrix.log`
 
-After build/load verification, Normal Chat will freeze the C1 shadow runtime matrix. Production repair remains disabled.
+Run all cases in one Gothic 3 session, with no target except where reaction interruption is required.
+
+### 1. Clean ordinary completion
+
+- Full Whirl: 3 clean completions.
+- Dual / 1H+1H Quick: 3 clean completions.
+
+Expected C1 model:
+
+- lifecycle generation starts/persists;
+- offensive request is attributed when it occurs;
+- ordinary native cleanup fulfills the exact obligation;
+- later AISetState finalizes with only `NO_OP_*` outcomes;
+- zero `WOULD_REPAIR` and zero invariant warnings.
+
+### 2. Full Whirl bad held-Use2 skips
+
+Reproduce enough attempts to obtain both:
+
+- at least 2 clear **pre-activation** skips where the weapon never requested offense;
+- at least 3 clear **armed stale** skips where the weapon had already requested `Item_Attack`.
+
+Expected:
+
+- pre-activation finalization -> zero `WOULD_REPAIR`;
+- armed stale finalization -> exactly one `WOULD_REPAIR` for the still-equipped stale weapon source;
+- physical weapon must remain group 7 because shadow mode performs no repair.
+
+### 3. Inherited stale `7 -> 7` control
+
+Immediately after one armed bad Whirl has produced `WOULD_REPAIR` and left the real weapon stale at group 7:
+
+- perform one clean Normal attack with the same weapon;
+- let it finish normally.
+
+Expected:
+
+- new CombatMove generation starts after the old shadow generation was retired;
+- its offensive request is attributed even if the physical transition is `7 -> 7`;
+- the later native `7 -> 5` cleanup fulfills the new generation's obligation;
+- its finalization is `NO_OP_*`, not `WOULD_REPAIR`.
+
+Any `OVERLAP_OUTSTANDING`, `UNOWNED_PLAYER_OFFENSE_REQUEST`, or generation-change warning here is architecture-significant.
+
+### 4. Quick bad held-Use2 skips
+
+Use Dual / 1H+1H Quick and reproduce enough attempts to obtain:
+
+- useful pre-activation skips if they occur;
+- at least 3 clear **armed stale** Quick skips if practical.
+
+Expected same consequence-based behavior as Whirl:
+
+- no offense request -> no `WOULD_REPAIR`;
+- armed stale exact source -> `WOULD_REPAIR`;
+- no family-specific logic required.
+
+Do not treat failure to reproduce a Quick bad skip as C1 failure; Quick timing is known to be harder to reproduce.
+
+### 5. Legitimate reaction interruption
+
+Spawn the durable target only for this section.
+
+- Normal attack: at least 3 armed legitimate Stumble/KnockDown-type interruptions.
+- Quick attack: at least 3 armed legitimate interruptions.
+
+Expected:
+
+- FullStop alone does not finalize C1;
+- reaction-side native `7 -> 5` cleanup fulfills the exact obligation;
+- later state finalization yields `NO_OP_*` only;
+- zero `WOULD_REPAIR` for legitimate reactions.
+
+## Pass/fail signals for C1-A
+
+Strong pass requires:
+
+1. clean completion -> no `WOULD_REPAIR`;
+2. pre-activation bad skip -> no `WOULD_REPAIR`;
+3. armed bad Whirl -> exact stale source `WOULD_REPAIR`;
+4. armed bad Quick, when reproduced -> exact stale source `WOULD_REPAIR`;
+5. legitimate reaction -> cleanup fulfilled before finalization, no `WOULD_REPAIR`;
+6. inherited stale `7 -> 7` -> attributed to the new generation and later fulfilled;
+7. no unexpected C1 invariant warnings.
+
+If any invariant warning or false-positive `WOULD_REPAIR` occurs, stop production progression and inspect the raw chronology. Do **not** enable physical repair.
+
+## Deferred validation after C1-A
+
+Do not mix these into the first core run unless convenient. If C1-A passes, Normal Chat will freeze a second bounded regression matrix for:
+
+- marked RIGHT / LEFT / BOTH / OFF and repeated-marker source switching;
+- Fist negative;
+- bow / crossbow / magic negatives;
+- any actor-generic/NPC coverage needed before production repair.
+
+Production repair remains disabled until both core lifecycle and marker/negative regression evidence support it.
