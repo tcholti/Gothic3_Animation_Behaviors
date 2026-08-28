@@ -44,7 +44,7 @@ Current architecture: `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
 ---
 
-## Established Step-B Facts Needed Now
+## Established Step-B / B7 Facts Needed Now
 
 - type-0 `PlayMotion` gives immediate PrimaryFirst acquisition/replacement evidence, but clean successor PlayMotion can occur before native cleanup;
 - later original attack callbacks are not one-shot completion boundaries;
@@ -65,6 +65,15 @@ Game + 0x16E360 = gCScriptProcessingUnit::sAICombatMoveStartRecover(...)
 ```
 
 These generic functions are timing/control-flow evidence, **not combat ownership authority**.
+
+B7 static reconstruction additionally establishes:
+
+```text
+Game + 0x164430 = gCScriptRoutine_PS::AIFullStop()
+Game + 0x1644D0 = gCScriptRoutine_PS::AIStopCombatMove()
+```
+
+`AIFullStop()` invokes the currently persisted SPU instruction callback with `fullStop=true`; `AIStopCombatMove()` does so only when that callback is exactly `sAICombatMoveInstr`. `sAICombatMoveInstr` can persist in `m_pfInstrCallback` while a CombatMove is active and the owning ScriptFunction is suspended at a break block.
 
 Exact evidence/RVAs: `EVIDENCE_INDEX.md`, `COLLISION_CLEANUP_CALLSITE_MAP.md`, `SOURCE_HOOK_GUIDE.md`.
 
@@ -160,57 +169,75 @@ Canonical evidence: EV-179–EV-181.
 
 ---
 
-## Current Gate — B7 Attack-Lifecycle / Bookkeeping Reconstruction
+## Current Gate — B7 CombatMove Full-Stop Causality
 
-Current question:
+B7 static reconstruction has narrowed the earlier attack-lifecycle/"package" idea into a concrete asynchronous instruction model.
 
-> **What native CombatMove/routine/instruction bookkeeping established at attack-Hit start keeps normal completion and legitimate reaction paths connected to cleanup, and what is abandoned, reset, or bypassed differently on the bad block-skip path?**
-
-Working model — structural, not literal object speculation:
+### Established static structure
 
 ```text
-attack Hit begins
-→ CombatMove / animation / movement execution established
-→ Routine StateTime advances
-→ Routine StatePosition / callback bookkeeping records one-shot progress
-→ timed callback may request offensive collision
-→ continuation remains connected to:
-     normal completion cleanup
-     OR legitimate reaction cleanup
+attack ScriptFunction reaches CombatMove break block
+→ sAICombatMoveInstr persists in SPU.m_pfInstrCallback
+→ CombatMove remains active across later ProcessScript work
+→ owning ScriptFunction remains suspended
 
-bad block skip
-→ some continuation/bookkeeping is abandoned or bypassed
-→ Hit can disappear through ordinary animation handling
-→ neither legitimate cleanup route is guaranteed
-→ stale offense survives
+clean full Whirl:
+CombatMove incomplete
+→ ScriptFunction returns false
+
+CombatMove complete
+→ ScriptFunction resumes after break block
+→ ordinary collision cleanup at Script_Game +0x4E03C
 ```
 
-This is compatible with earlier proven bookkeeping failures in marked attacks:
+The tested reaction-control region also contains explicit `PSRoutine::FullStop()` calls at `Script_Game +0x2246F` and `+0x23002`, while legitimate reaction cleanup has its separate `+0x24AFF` route. This supports deliberate instruction termination followed by replacement reaction ownership, but exact per-reaction ordering is not yet proven.
 
-- Quick/full-Whirl marker activation had to advance `Routine.StatePosition` to prevent Gothic repeating the native timed activation later;
-- interrupted marker occurrence budgets required execution-boundary retirement even after Gothic had already physically cleaned the weapon.
+Canonical static evidence: EV-182–EV-184.
 
-Those facts make bookkeeping causally important, but they do not prove which native field/function owns the current defect.
+### Exact unresolved question
 
-### Immediate Normal Chat responsibility
+> **When bad block-skip occurs, does Gothic invoke `sAICombatMoveInstr(..., fullStop=true)` and then lose/bypass the original attack ScriptFunction continuation, or does the active CombatMove instruction disappear through another mechanism?**
 
-1. source/static-audit the smallest relevant CombatMove/routine control flow around:
-   - `sAICombatMoveStart`;
-   - `sAICombatMoveItlLoop`;
-   - `sAICombatMoveInstr` / exposed instruction callback state;
-   - Routine StateTime / StatePosition reset/progression;
-   - action-specific continuation after CombatMove;
-   - reaction reset/state path leading to `+0x24AFF`;
-2. compare clean Normal/Quick/Whirl, legitimate reaction, and bad Whirl as mechanisms rather than family-specific fixes;
-3. freeze a new runtime diagnostic only if static evidence leaves one exact missing fact.
+### Immediate Work responsibility
 
-Likely bounded diagnostic if still needed:
+The frozen B7 diagnostic in `docs/BETWEEN_CHATS.md` observes only:
 
-> Reuse the existing `SetCollisionGroup` hook to capture the caller stack for actual offensive `5 -> 7` and meaningful `7 -> 7` requests. Do not add another Gothic hook merely to observe the timer/callback activation path.
+```text
+sAICombatMoveInstr(..., fullStop=true)
+```
 
-Exact procedure: `COLLISION_TEST_PLAN.md` Gate B7.  
-Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§8–12.  
-Canonical evidence: EV-179–EV-181 plus earlier StatePosition/bookkeeping evidence.
+and captures factual context/caller stack. It must not add cleanup, lifecycle state, polling, a ProcessScript hook, separate AIFullStop/AIStopCombatMove hooks, or family/reaction/block classifiers.
+
+After Work implementation and independent Normal Chat source review, run controlled clean / legitimate-reaction / bad-skip comparisons as defined by `COLLISION_TEST_PLAN.md`.
+
+If bad block-skip emits fullStop, follow the caller/control-flow path that terminated the instruction. If it does not, the full-stop hypothesis is falsified for that path and research should identify the alternative abandonment mechanism.
+
+Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§9–12.  
+Canonical evidence: EV-182–EV-184 plus earlier marker bookkeeping evidence.
+
+---
+
+## Future Marker-Core Review — Do Not Lose This Route
+
+The B7 findings are relevant not only to terminal collision repair but potentially to simplifying the marker implementation later.
+
+Current custom marker bookkeeping was tightened for real reasons:
+
+- Quick/full-Whirl marker activation had to advance `Routine.StatePosition` so Gothic would not later repeat its native timed activation;
+- repeated-contact and frame-effect replay required occurrence/duplicate protection;
+- interrupted marked executions required retirement so one execution's marker budget did not survive into the next;
+- `RetireMarkerOwnedSource()` is bookkeeping retirement, not physical cleanup.
+
+However, Gothic's persisted CombatMove instruction + break-block lifetime may eventually provide a stronger exact-execution boundary than some of our current inference. **Do not optimize on that assumption yet.** When marker consolidation/reimplementation becomes active, start with:
+
+```text
+EVIDENCE_INDEX.md
+→ Marker execution lifetime / bookkeeping
+→ future marker-core simplification / native execution boundary
+→ COLLISION_LIFECYCLE_PLAN.md §10
+```
+
+That route preserves both the older marker regressions/fixes and the new EV-182–EV-184 native bookkeeping model.
 
 ---
 
@@ -222,7 +249,8 @@ Until B7 identifies a reliable general finalization mechanism:
 - do not add a `ProcessScript` behavior hook to rescue the rejected candidate;
 - do not add family/cause-specific repair branches;
 - do not add timers/polling/per-frame scans;
-- do not treat StartRecover, StopMotion, action/phase, filename, or `Game +0xD9CB3` alone as universal lifetime authority;
+- do not treat StartRecover, StopMotion, action/phase, filename, `m_pfInstrCallback` alone, or `Game +0xD9CB3` alone as universal lifetime authority;
+- do not simplify proven marker bookkeeping until a stronger native exact-execution boundary is demonstrated;
 - do not move unfinished collision implementation to `main`.
 
 ---
@@ -236,6 +264,7 @@ Until B7 identifies a reliable general finalization mechanism:
 | current tests / B7 | `COLLISION_TEST_PLAN.md` |
 | diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
 | exact evidence | `EVIDENCE_INDEX.md` |
+| marker execution lifetime / future marker-core simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` §10 |
 | cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | CombatMove/API/symbol lookup | `SOURCE_HOOK_GUIDE.md` |
 | animation semantics/assets | `ANIMATION_INDEX.md` |
