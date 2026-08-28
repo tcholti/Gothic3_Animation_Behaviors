@@ -1,7 +1,7 @@
 # Collision Lifecycle Test Plan
 
 **Status:** Current staged validation plan  
-**Updated:** 2026-08-27
+**Updated:** 2026-08-28
 
 ## Purpose
 
@@ -26,23 +26,13 @@ Exact established findings should be retrieved through `EVIDENCE_INDEX.md` rathe
 - stop and revise the diagnostic if the required event ordering cannot be reconstructed clearly;
 - do not repeat already-closed marker/source tests unless a later implementation could have regressed them.
 
-### Authoritative local runtime path
-
-For the User's current Gothic 3 installation, the live script directory that the game actually loads is:
-
-```text
-E:\SteamLibrary\steamapps\common\Gothic 3\scripts
-```
-
-When deploying `Script_FrameCollisionTest.dll` for runtime evidence, copy the intended build to that exact directory. Backup DLLs remain outside the live directory.
-
-Before an evidence-producing run after rebuilding/replacing the diagnostic DLL, verify the deployed live DLL rather than inferring deployment from the build directory alone. Prefer a direct hash/timestamp comparison between the built DLL and:
+Authoritative local deployment for controlled runtime tests:
 
 ```text
 E:\SteamLibrary\steamapps\common\Gothic 3\scripts\Script_FrameCollisionTest.dll
 ```
 
-Then confirm the runtime log header identifies the expected probe revision before treating the run as evidence.
+Before treating a rebuilt diagnostic run as evidence, verify that the built DLL and this exact live DLL are identical or otherwise verify the intended revised startup banner. Do not infer deployment from backup/tool directories under `E:\Mods`.
 
 ---
 
@@ -52,63 +42,66 @@ This is the **current gate**.
 
 Question:
 
-> **Do the relevant actual Hit teardown/replacement paths occur inside one useful SPU / `gCScriptProcessingUnit::ProcessScript()` execution context, allowing a later tightly gated one-shot checkpoint to run after Gothic's native cleanup opportunity?**
+> **Do the relevant actual Hit disappearance/replacement paths occur inside one useful SPU / `gCScriptProcessingUnit::ProcessScript()` execution context, allowing a later tightly gated one-shot checkpoint to run after Gothic's native cleanup opportunity?**
 
 ### B6-A — Build/load sanity
 
-The revised StopMotion-stack source change passed independent source review and built successfully. Runtime sanity must be revalidated against the authoritative live script directory above because the first attempted B6-B run on 2026-08-27 was produced by a stale 21:47 live DLL and therefore is not valid evidence for the revised probe.
+Passed for the revised diagnostic after verifying the built DLL and the authoritative Steam live DLL were byte-identical and the runtime log reported:
 
-EV-173 records why backup Script DLLs must not remain in the live `scripts` directory.
+```text
+STEP B6 HIT STOP / REPLACEMENT STACK PROBE
+```
 
-Required for the revised probe:
+EV-173 separately records why backup Script DLLs must not remain in the live `scripts` directory.
+
+Required for any further revised probe:
 
 1. current `Script_FrameCollisionTest` builds;
-2. the built DLL and exact live DLL are confirmed to match before the run;
-3. DLL loads/unloads normally with only the intended active prototype DLL present;
-4. the runtime log header contains `STEP B6 HIT STOP / REPLACEMENT STACK PROBE`;
-5. Win32 stack/module resolution produces readable frames;
-6. existing B4/B5 cleanup diagnostics remain intact;
-7. no marker/collision behavior changes are introduced by the diagnostic.
+2. DLL loads/unloads normally with only the intended active prototype DLL present;
+3. the authoritative live path above contains the intended build;
+4. Win32 stack/module resolution produces readable frames when the relevant capture branch executes;
+5. existing B4/B5 cleanup diagnostics remain intact;
+6. no marker/collision behavior changes are introduced by the diagnostic.
 
-### B6-B — Clean completion teardown/replacement
+### B6-B — Clean completion disappearance/replacement
 
-EV-174 established that ordinary clean 2H Normal completion uses this tested sequence:
+EV-174/EV-175 correct the earlier StopMotion interpretation. In the valid clean 2H Normal run, all three tested transitions followed this observable sequence:
 
 ```text
 attack Hit Primary exists
-→ StartRecover BEGIN
-→ StopMotion(type 0) removes outgoing Hit Primary
+→ StartRecover BEGIN still sees attack Hit Primary
+→ by entry to player/type-0 StopMotion hook, PrimaryFirst is already empty
+→ StopMotion(type 0) request executes with empty before/after PrimaryFirst snapshots
 → successor Recover PlayMotion(type 0)
-→ StartRecover END while source can still be group 7
+→ StartRecover END
 → native cleanup 7 -> 5
 ```
 
-Therefore the revised B6-B correlation is:
+Therefore:
 
-```text
-owned/current attack Hit
-→ outgoing-Hit StopMotion stack captured before the original stop
-→ existing StopMotion before/after record proves Hit removal
-→ immediately following existing PlayMotion record proves successor Recover
-→ native cleanup event in the same transition sequence
-```
+- the outgoing Hit disappears **after StartRecover BEGIN but before the StopMotion hook's first observable snapshot**;
+- current evidence does **not** prove that StopMotion itself removes the Hit;
+- the revised StopMotion stack branch emitted zero `HIT STOP STACK` records because it is gated by `IsAttackHitPrimaryMotion(before)` and `before` is already empty on this clean path.
 
-Record the relevant Game/Script_Game/Engine frames and their ordering.
+The current B6-B question is now narrower:
 
-Do **not** treat StopMotion alone as production Hit-end authority. In B6 it is a factual teardown event that must be correlated with the actual successor sequence.
+> What supported factual context can stack-capture the clean transition at or before this StopMotion call despite the already-empty PrimaryFirst snapshot, without treating action/phase/filename or StopMotion itself as continuing physical-Hit authority?
 
-The raw artifact `research/raw/2026-08-27_b6b_player_2h_normal_clean_completion_stopmotion_stack.log` from the first attempted rerun is deployment-invalid: it contains the older `STEP B6 HIT REPLACEMENT STACK PROBE` header and no `HIT STOP STACK` records because the authoritative live directory still contained the old DLL. Preserve it only as provenance for the deployment failure; do not use it for lifecycle interpretation.
+Use the immediately following PlayMotion record to identify the actual successor. Record the relevant Game/Script_Game/Engine frames and their ordering only after the clean boundary can actually be captured.
 
 ### B6-C — Legitimate damage/reaction teardown/replacement
 
-Interrupt a real attack Hit through a controlled damage/reaction path known to receive legitimate native cleanup.
+Do not advance to B6-C until the clean B6-B boundary is observable with an interpretable stack/context.
 
-Required correlation allows either observed sequencing form:
+Then interrupt a real attack Hit through a controlled damage/reaction path known to receive legitimate native cleanup.
+
+Required correlation allows the actually observed sequencing form, for example:
 
 ```text
 attack Hit
 → legitimate native interruption cleanup
-→ outgoing-Hit StopMotion stack + reaction successor PlayMotion
+→ factual outgoing-Hit disappearance/replacement context
+→ reaction successor PlayMotion
 ```
 
 or, if Gothic directly replaces the still-visible Hit:
@@ -123,6 +116,8 @@ Compare the surrounding script-processing frames with the clean case. The known 
 
 ### B6-D — Bad block-skip direct teardown/replacement
 
+Run only after B6-B and B6-C produce comparable factual boundary evidence.
+
 Reproduce a native or marked bad block-skip case where offensive collision remains stale.
 
 Required correlation:
@@ -130,36 +125,36 @@ Required correlation:
 ```text
 attack Hit requested offensive collision
 → no corresponding legitimate cleanup
-→ actual PrimaryFirst Hit eventually ends/replaces/restarts
-→ either:
-     outgoing-Hit StopMotion stack + successor PlayMotion
-   or
-     confirmed direct PlayMotion replacement stack
+→ actual PrimaryFirst Hit eventually disappears/replaces/restarts
+→ supported factual disappearance/replacement stack/context
 → source remains offensive
 ```
+
+The existing direct PlayMotion replacement-stack probe remains authoritative for paths where the outgoing Hit is still visible at PlayMotion entry and before/after proves replacement/restart.
 
 This is the decisive negative-path comparison.
 
 ### B6 interpretation
 
-**If all relevant teardown/replacement paths share a useful current `ProcessScript()` invocation/context:**
+**If all relevant disappearance/replacement paths share a useful current `ProcessScript()` invocation/context:**
 
 - strengthen the deferred one-shot candidate;
 - next design step is a narrowly gated post-script diagnostic/guard prototype, not unconditional ProcessScript cleanup.
 
-**If a relevant teardown/replacement occurs outside that context:**
+**If a relevant disappearance/replacement occurs outside that context:**
 
 - reject `ProcessScript()` as a universal timing checkpoint;
 - return to architecture/search for another event boundary;
 - do not compensate with family-specific repair branches.
 
-**If stacks are ambiguous:**
+**If stacks are ambiguous or a capture gate misses the event:**
 
-- improve only the diagnostic fact needed to distinguish the execution context.
+- improve only the diagnostic fact needed to distinguish the execution context;
+- do not convert the missed observation into lifecycle evidence.
 
-Current immediate runtime task:
+Current immediate Normal Chat responsibility before another Work task:
 
-> Deploy the already-built revised `Script_FrameCollisionTest.dll` to `E:\SteamLibrary\steamapps\common\Gothic 3\scripts`, verify built/live identity and the revised runtime header, then rerun B6-B clean 2H Normal. Do not proceed to B6-C until B6-B produces valid revised-probe evidence.
+> Design the smallest diagnostic refinement that captures the clean transition despite an already-empty PrimaryFirst snapshot at StopMotion entry. Prefer the existing player/type-0 StopMotion hook and already-available CombatMove/action/phase/movement context as diagnostic correlation only if sufficient; otherwise identify the nearest earlier supported boundary. Add no production cleanup, polling, lifecycle ownership state, family-specific repair rule, or guessed stack/frame layout.
 
 ---
 
