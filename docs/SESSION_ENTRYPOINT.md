@@ -29,7 +29,7 @@ Within one continuing subsystem context, do not repeatedly reread unchanged auth
 
 **Frame-controlled melee collision lifecycle.**
 
-Confirmed native defect: a real offensive attack Hit can be terminated in a way that prevents Gothic 3 from reaching its normal attack cleanup and does not transfer cleanup responsibility elsewhere. The physical Hit can disappear while the weapon remains `Item_Attack(7)` through Ambient/idle and even into a later independent attack.
+Confirmed native defect: an offensive attack Hit can lose the ScriptFunction continuation that normally performs collision cleanup. The physical Hit can disappear while the weapon remains `Item_Attack(7)` through Ambient/idle/movement and even into a later independent attack.
 
 Preferred invariant remains:
 
@@ -41,125 +41,91 @@ Architecture authority: `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
 ---
 
-## Current Established Lifecycle Facts
+## Established Lifecycle Model
 
 ### Ordinary completion
 
-A CombatMove persists asynchronously through `gCScriptProcessingUnit::m_pfInstrCallback`. Its owning ScriptFunction can remain suspended at a break block. In the tested full-Whirl function:
+CombatMove persists asynchronously through `gCScriptProcessingUnit::m_pfInstrCallback`; its owning ScriptFunction can remain suspended at a break block.
+
+For tested full Whirl:
 
 ```text
-Script_Game +0x4DF8C  CombatMove operation
-Script_Game +0x4DF92  completion test
-
-incomplete
-→ ScriptFunction returns false
-
-complete
-→ ScriptFunction continues after break block
+CombatMove operation at Script_Game +0x4DF8C
+→ incomplete: ScriptFunction returns false / continuation remains suspended
+→ later CombatMove completion
+→ ScriptFunction resumes after break block
 → ordinary Whirl collision cleanup at +0x4E03C
 ```
 
-Thus collision cleanup is Script_Game continuation after successful asynchronous CombatMove completion, not automatic animation teardown.
-
 ### Legitimate reaction
 
-B7 runtime proves that legitimate Normal/Quick reactions can explicitly FullStop the active CombatMove and then continue under reaction ownership. In armed samples, the separate reaction cleanup at `Script_Game +0x24AFF` follows the FullStop and resets the weapon `7 -> 5`.
-
-Representative FullStop path:
+Tested player Normal/Quick reactions can FullStop the active CombatMove through:
 
 ```text
-sAICombatMoveInstr(fullStop=true)
-← Game +0x164441  inside gCScriptRoutine_PS::AIFullStop
-← reaction Script_Game chain
+Script_Game +0x2D0F2  PSRoutine::FullStop()
+return +0x2D0F8
 ```
 
-### Bad block-skip
+That path continues under reaction control and, when offense had armed, later performs the established reaction cleanup at `Script_Game +0x24AFF`.
 
-B7 runtime proves that bad full-Whirl block-skip also explicitly FullStops the active CombatMove. Armed cases can FullStop while the exact Whirl Hit is still current and the right weapon is already group 7, then reach Ambient without StartRecover or any native collision cleanup.
+### Tested bad full-Whirl block-skip
 
-Stable B7 bad unwind:
+B7b identifies the exact bad player-control branch:
 
 ```text
-sAICombatMoveInstr(fullStop=true)
-← Game +0x164441
-← Script_Game +0x61866
-← Game +0x16093B
+held Use2 duration > 2500 ms
+→ Script_Game +0x633F1  PSRoutine::FullStop()
+→ return +0x633F7
+→ Script_Game +0x63409  PSRoutine::SetState(...)
 ```
 
-Therefore:
+Runtime bad samples are action 10 / Hit / `PS_Melee_WhirlAttack`, `PressedKey=16`, `IsPressed=1`, `IsPressedBefore=1`; both pre-activation and armed failures use the same FullStop site.
 
-> **FullStop is an instruction-termination boundary, not collision cleanup.**
-
-The difference between legitimate reaction and bad skip is what control/cleanup ownership follows termination.
-
-Canonical evidence: EV-182–EV-186.
-
-B7 raw:
+Official SDK documentation states that `SetState` clears the SPU state stack and resets state-position/break-block bookkeeping. Therefore, for this tested failure:
 
 ```text
-research/raw/2026-08-28_b7_player_combatmove_fullstop_clean_reaction_blockskip.log
+Whirl ScriptFunction suspended at CombatMove break block
+→ held-Use2 branch FullStops CombatMove
+→ SetState clears the old state stack / break-block continuation
+→ old Whirl ScriptFunction cannot resume
+→ ordinary +0x4E03C cleanup is never reached
+→ no reaction cleanup owner replaces it
+→ armed weapon can remain Item_Attack(7)
+```
+
+This resolves the causal mechanism for the tested player full-Whirl stale-collision path.
+
+Canonical evidence: current Step-B ledger, B7/B7b raw logs.
+
+B7b raw:
+
+```text
+research/raw/2026-08-28_b7b_player_aifullstop_exact_caller_clean_reaction_blockskip.log
 ```
 
 Raw commit:
 
 ```text
-49e99a933ce2bb02ae6434ec077fb7f549b1f7f5
+9fe85819e44cc33b7d2d6846e24097861b28a8ca
 ```
 
 ---
 
-## Current Gate — B7b Exact AIFullStop Caller
+## Current Gate — Cross-Family Generality
 
-Static reconstruction of `Script_Game +0x61866` has now identified the higher-level bad control path.
+Do **not** generalize the exact full-Whirl `+0x633F1 -> SetState` path to every stale-collision case yet.
 
-### Player-control dispatcher
+Earlier evidence already proves that stale collision is broader than full Whirl, including player Dual Quick. The next smallest question is therefore:
 
-The dispatcher reads `PSCharacterControl::PressedKey`. For key values 1–16 it uses a jump table. Official SDK enum mapping establishes:
+> **Does the already-known Dual Quick bad skip also terminate its active CombatMove through the same AIFullStop/SetState state-stack abandonment mechanism, or through a different native state/task reset path?**
 
-```text
-gESessionKey_Use1 = 15
-gESessionKey_Use2 = 16
-```
+No new implementation is required for this check. The currently deployed B7b diagnostic already observes player `AIFullStop()` callers and the existing collision/motion context.
 
-The relevant routes are:
-
-```text
-Use1
-→ helper Script_Game +0x62480
-→ return at Script_Game +0x61852
-
-Use2
-→ helper Script_Game +0x62FF0
-→ return at Script_Game +0x61866
-```
-
-The bad Whirl B7 stack therefore identifies the **Use2 player-control helper**, not the Whirl attack ScriptFunction itself.
-
-### Use2 helper
-
-Tested-binary static inspection finds exactly three imported `PSRoutine::FullStop()` calls inside `Script_Game +0x62FF0`:
-
-```text
-Script_Game +0x63108
-Script_Game +0x633F1
-Script_Game +0x6345F
-```
-
-They sit behind different combinations of current routine-state checks and CharacterControl button-edge / press-duration conditions. One branch explicitly tests `IsPressed == true` and `IsPressedBefore == false` before FullStop. Other branches use different state/duration conditions.
-
-The existing B7 `CaptureStackBackTrace` collapses optimized helper frames and only exposes the common caller return `+0x61866`. Static evidence therefore cannot identify which of the three exact FullStop sites caused an individual bad Whirl event.
-
-### Exact unresolved question
-
-> **Which exact `PSRoutine::FullStop()` call inside the Use2 helper terminates the bad Whirl CombatMove, what factual routine/input state accompanies it, and how does that exact caller compare with legitimate reaction FullStop?**
-
-The smallest discriminating observation is now `gCScriptRoutine_PS::AIFullStop()` itself at tested `Game +0x164430`, using `_ReturnAddress()` plus factual player routine/input context.
-
-The bounded B7b Work task is frozen in `docs/BETWEEN_CHATS.md`.
+Use `docs/BETWEEN_CHATS.md` for the current bounded continuation state.
 
 ---
 
-## Relevant Authoritative SDK Facts
+## Relevant Tested Symbols
 
 ```text
 Game +0x164430 = gCScriptRoutine_PS::AIFullStop()
@@ -169,27 +135,28 @@ Game +0x16E360 = gCScriptProcessingUnit::sAICombatMoveStartRecover(...)
 Game +0x16F120 = gCScriptProcessingUnit::ProcessScript()
 ```
 
-Official SDK exposes:
+Tested Script_Game control points now relevant:
 
-- `void gCScriptRoutine_PS::AIFullStop();`
-- `eCEntityPropertySet::GetEntity()`;
-- `PSRoutine::GetCurrentState()` / StateTime / StatePosition;
-- `PSCharacterControl::PressedKey`;
-- `PSCharacterControl::IsPressed`;
-- `PSCharacterControl::IsPressedBefore`;
-- `PSCharacterControl::DurationPressedMSecs`.
+```text
++0x2D0F2 / +0x2D0F8  legitimate-reaction FullStop call / return
++0x4DF8C              full-Whirl CombatMove break-block operation
++0x4E03C              ordinary full-Whirl cleanup continuation
++0x62FF0              player Use2 helper
++0x633F1 / +0x633F7   tested bad full-Whirl FullStop call / return
++0x63409               immediate SetState in tested bad branch
+```
 
-Do not guess layouts when these authoritative APIs/properties exist.
+All addresses are tested-build-specific.
 
 ---
 
 ## Future Marker-Core Review — Preserve This Route
 
-Current marker bookkeeping exists because of reproduced failures: StatePosition replay, repeated-contact occurrence handling, frame-effect replay, and interrupted-execution budget survival.
+Current marker bookkeeping exists because of reproduced failures involving StatePosition replay, repeated-contact occurrence handling, frame-effect replay, and interrupted-execution budget survival.
 
-Native CombatMove termination may eventually provide a stronger execution boundary for some custom marker lifetime inference, but B7 also proves FullStop alone does **not** tell us whether physical collision should be repaired immediately.
+Native CombatMove/state-stack lifetime may eventually provide a stronger execution boundary for some custom marker lifetime inference, but do not simplify the marker core until the native termination model is shown to generalize safely and all old marker regressions remain protected.
 
-When marker consolidation becomes active, retrieve:
+Retrieve:
 
 ```text
 EVIDENCE_INDEX.md
@@ -198,20 +165,18 @@ EVIDENCE_INDEX.md
 → COLLISION_LIFECYCLE_PLAN.md §10
 ```
 
-Preserve the old regression reasons and the newer native lifecycle evidence together.
-
 ---
 
 ## Do Not Do Yet
 
-Until a reliable general post-native-opportunity finalization mechanism is established:
+Until a reliable general finalization mechanism is established:
 
 - do not implement production cleanup/repair;
 - do not add lifecycle/pending-finalization state;
 - do not add ProcessScript behavior hooks, timers, polling or scans;
 - do not add family/cause-specific repair branches;
-- do not treat FullStop alone as proof that immediate collision repair is correct;
-- do not treat action/phase/filename/StopMotion/StartRecover alone as universal lifetime authority;
+- do not clean unconditionally at AIFullStop or SetState;
+- do not treat the tested full-Whirl `+0x633F1` caller as universal;
 - do not simplify proven marker bookkeeping yet;
 - do not move unfinished collision behavior to `main`.
 
@@ -221,8 +186,8 @@ Until a reliable general post-native-opportunity finalization mechanism is estab
 
 | Need | Open |
 |---|---|
-| lifecycle architecture / B7+ model | `COLLISION_LIFECYCLE_PLAN.md` |
-| current bounded Work task | `BETWEEN_CHATS.md` |
+| lifecycle architecture / current native-termination model | `COLLISION_LIFECYCLE_PLAN.md` |
+| current bounded continuation | `BETWEEN_CHATS.md` |
 | exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md` |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | CombatMove/API/symbol/caller lookup | `SOURCE_HOOK_GUIDE.md` |
