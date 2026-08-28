@@ -30,14 +30,14 @@ Raw logs are verification/provenance, not routine reading.
 | Fist/body-contact source semantics | EV-029–EV-032, EV-080–EV-085 | `ANIMATION_CATALOG.md` Fist fixture |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | marker-core later evidence / catalog fixtures |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
-| Quick marker ownership / StatePosition | EV-066–EV-075 | EV-179–EV-181 for later lifecycle/bookkeeping interpretation |
+| Quick marker ownership / StatePosition | EV-066–EV-075 | EV-182–EV-184 for native lifecycle/bookkeeping context |
 | Dual native source map | EV-090–EV-094 | `ANIMATION_CATALOG.md` §6–§7 |
 | multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | archived v0.10–v0.13 fixture logs |
-| marker execution retirement after interruption | EV-131–EV-133 | EV-167 for later lifecycle interpretation |
+| marker execution retirement after interruption | EV-131–EV-133 | EV-167, EV-182–EV-184 for later lifecycle interpretation |
 | final RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` §6 / `ANIMATION_RULES.md` §20 |
 | Whirl callback/action/source separation | EV-145–EV-147 | `ANIMATION_RULES.md` §8.1 / cleanup map |
 | NewBalance / AttackCollision Whirl compatibility | EV-035, EV-148–EV-150 | `SOURCE_HOOK_GUIDE.md` same-function caution |
-| Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156, EV-180–EV-181 for bad-skip lifecycle |
+| Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156, EV-180–EV-184 for bad-skip lifecycle |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` Step-B constraints |
 | marked block-timeout failure | EV-155 | native control EV-156 |
 | native stale collision / running damage | EV-156, EV-181 | archived 2026-08-25 native logs / latest B6-D raw |
@@ -48,10 +48,11 @@ Raw logs are verification/provenance, not routine reading.
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | archived B3b log |
 | action-specific native cleanup matrix | EV-163 | `COLLISION_CLEANUP_CALLSITE_MAP.md` §2 |
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
-| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179 | cleanup map §4 / `COLLISION_TEST_PLAN.md` B6-C |
+| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179, EV-184 | cleanup map §4 / `COLLISION_TEST_PLAN.md` B6-C/B7 |
 | B5 parent stack | EV-166 | EV-169–EV-170 static identification |
-| marker bookkeeping vs physical cleanup | EV-167 | `COLLISION_LIFECYCLE_PLAN.md` §10 |
-| ordinary / reaction / bad-skip three-path model | EV-168, EV-179–EV-181 | lifecycle plan §11 |
+| marker bookkeeping vs physical cleanup | EV-167, EV-182–EV-184 | `COLLISION_LIFECYCLE_PLAN.md` §10 |
+| future marker-core simplification / native execution boundary | EV-066–EV-075, EV-131–EV-133, EV-167, EV-182–EV-184 | **Read `COLLISION_LIFECYCLE_PLAN.md` §10 before changing marker bookkeeping** |
+| ordinary / reaction / bad-skip three-path model | EV-168, EV-179–EV-184 | lifecycle plan §§9–12 |
 | `RunScriptState` / `RunScriptFunction` identification | EV-169 | cleanup map §§5–6 |
 | `ProcessScript()` common generic dispatcher | EV-170, EV-176 | EV-180 for failed universal replacement-time validation |
 | callback processing after main script dispatch | EV-171 | cleanup map §8 |
@@ -61,7 +62,10 @@ Raw logs are verification/provenance, not routine reading.
 | B6 reaction successor context | EV-177–EV-179 | `COLLISION_TEST_PLAN.md` B6-C |
 | B6 bad skip context / no useful ScriptAdmin replacement stack | EV-180 | `COLLISION_TEST_PLAN.md` B6-D |
 | long-lived stale group 7 through idle / later inherited 7->7 | EV-181 | `COLLISION_LIFECYCLE_PLAN.md` §§1–2 / B7 rationale |
-| current attack-lifecycle/bookkeeping reconstruction | EV-066–EV-075, EV-131–EV-133, EV-167, EV-179–EV-181 | `COLLISION_TEST_PLAN.md` B7 / `SOURCE_HOOK_GUIDE.md` CombatMove symbols |
+| persisted CombatMove instruction / FullStop semantics | EV-182 | `COLLISION_LIFECYCLE_PLAN.md` §9 / `SOURCE_HOOK_GUIDE.md` CombatMove symbols |
+| full-Whirl break-block continuation to native cleanup | EV-183 | `COLLISION_LIFECYCLE_PLAN.md` §§9–11 |
+| reaction-side FullStop before separate reaction ownership | EV-184 | `COLLISION_LIFECYCLE_PLAN.md` §§9–11 |
+| current attack-lifecycle/bookkeeping reconstruction | EV-066–EV-075, EV-131–EV-133, EV-167, EV-179–EV-184 | `COLLISION_TEST_PLAN.md` B7 / `COLLISION_LIFECYCLE_PLAN.md` §§9–10 |
 
 ---
 
@@ -136,29 +140,31 @@ Historical fixture details:
 
 Search terms:
 
-`MarkerExecutionBudget`, `RetireMarkerOwnedSource`, `StatePosition`, interruption, stale budget, exact-set switching
+`MarkerExecutionBudget`, `RetireMarkerOwnedSource`, `StatePosition`, interruption, stale budget, exact-set switching, `m_pfInstrCallback`, `sAICombatMoveInstr`, `FullStop`, break block, CombatMove completion
 
 Evidence anchors:
 
 - EV-066–EV-075;
 - EV-131–EV-133;
 - EV-167;
-- EV-181.
+- EV-181–EV-184.
 
 Architecture:
 
-- `COLLISION_LIFECYCLE_PLAN.md` §10;
+- `COLLISION_LIFECYCLE_PLAN.md` §§9–10;
 - `COLLISION_TEST_PLAN.md` B7.
+
+**Marker reimplementation/review rule:** before consolidating or optimizing the marker core, read this evidence set and `COLLISION_LIFECYCLE_PLAN.md` §10. The native persisted CombatMove/break-block lifecycle may eventually replace some custom execution/occurrence inference, but that is not yet proven safe. Preserve the existing `StatePosition` advancement, occurrence/replay protection, OFF/exact-set switching, repeated-contact rearm and interruption-retirement guarantees until a native exact-execution boundary is demonstrated.
 
 ### F. Native collision cleanup lifecycle
 
 Search terms:
 
-`Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition
+`Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition, `m_pfInstrCallback`, `FullStop`
 
 Evidence anchors:
 
-- EV-151–EV-181.
+- EV-151–EV-184.
 
 Exact native RVAs/stacks:
 
@@ -218,7 +224,8 @@ Practical source route:
 | B6 reaction comparison | EV-177–EV-179 | reaction cleanup and actual Stumble/KnockDown successor stacks are captured inside reaction Script_Game/ScriptAdmin context |
 | B6 bad replacement | EV-180–EV-181 | armed Whirl can disappear to Ambient without StartRecover/cleanup; observed successor stack exposes no useful ScriptAdmin/SPU context and stale group 7 can persist through idle into a later attack |
 | B6 design result | EV-172, EV-180 | replacement-triggered deferred-`ProcessScript()` candidate is superseded/rejected in its present form; execution-level invariant remains |
-| B7 current research | EV-066–EV-075, EV-131–EV-133, EV-167, EV-179–EV-181 | reconstruct CombatMove/routine/instruction bookkeeping and activation/terminal continuations before designing another finalization checkpoint |
+| B7 static reconstruction | EV-182–EV-184 | CombatMove persists as an SPU instruction; clean Whirl cleanup is a later Script_Game break-block continuation; reaction-control code can explicitly FullStop the current instruction |
+| B7 current runtime gate | EV-182–EV-184 | determine whether bad block-skip invokes `sAICombatMoveInstr(..., fullStop=true)` or loses the instruction by another route |
 
 ---
 
