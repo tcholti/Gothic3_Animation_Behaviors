@@ -77,10 +77,11 @@ Every retained field/probe should answer at least one of these:
 
 1. Did a real attack-Hit execution request offensive collision?
 2. What exact actual motion execution owned that request?
-3. When did that exact Hit end, restart, or get replaced?
-4. Did Gothic perform the corresponding legitimate cleanup?
-5. What native/script execution context surrounded the end/replacement and cleanup opportunity?
-6. If block/parade semantics later matter, did defender equipment enter a collision state that changes cleanup assumptions?
+3. What CombatMove/routine/instruction bookkeeping surrounded acquisition, activation and terminal handling?
+4. When did that exact Hit end, restart, or get replaced?
+5. Did Gothic perform the corresponding legitimate cleanup?
+6. What differs structurally between clean completion, legitimate reaction and bad skip?
+7. If block/parade semantics later matter, did defender equipment enter a collision state that changes cleanup assumptions?
 
 If a field does not help answer a current/reusable diagnostic question, do not add it casually.
 
@@ -99,6 +100,7 @@ NATIVE_CLEANUP_OBSERVED
 PRIMARY_HIT_DISAPPEARED
 PRIMARY_HIT_STOP_REQUESTED
 PRIMARY_HIT_REPLACED_OR_RESTARTED
+COMBATMOVE_BOUNDARY_OBSERVED
 MARKER_COMMAND_ACCEPTED / REJECTED
 BLOCK_OR_REACTION_TRANSITION   (only when specifically needed)
 ```
@@ -117,6 +119,7 @@ Useful shared fields when available:
 - motion play time / max time / running state;
 - current movement animation;
 - native action and phase **as context**;
+- Routine StateTime / StatePosition when exposed through supported APIs;
 - event type.
 
 Collision-request fields:
@@ -128,7 +131,7 @@ Collision-request fields:
 - group before/after;
 - whether the request is `Item_Attack` even if it is `7 -> 7`.
 
-Do not treat action/phase or filename alone as the continuing physical-execution key after exact Hit acquisition.
+Do not treat action/phase, StateTime/StatePosition, or filename alone as the continuing physical-execution key after exact Hit acquisition.
 
 ---
 
@@ -142,7 +145,9 @@ Purpose:
 - identify exact equipped source;
 - preserve B4/B5 native cleanup call-site/stack evidence.
 
-The B4/B5 special record is gated to exact tested player-equipped `7 -> 5` cleanup and remains diagnostic-only.
+Current source captures a short stack for exact tested player-equipped `7 -> 5` cleanup. It already logs factual context for offensive requests, including `5 -> 7` and `7 -> 7`, but does **not** yet capture their full caller stacks.
+
+B7 may extend this **same existing hook** to capture offensive-request stacks if static reconstruction leaves the timer/callback activation path ambiguous. That is preferred over adding another Gothic hook merely to observe activation.
 
 ### Existing type-0 `PlayMotion` observation
 
@@ -150,7 +155,8 @@ Purpose:
 
 - observe PrimaryFirst acquisition/replacement with immediate timing;
 - compare before/after motion snapshots;
-- support exact direct replacement/restart detection when the outgoing Primary remains present at PlayMotion entry.
+- support exact direct replacement/restart detection when the outgoing Primary remains present at PlayMotion entry;
+- retain the factual ungated empty-Primary successor stack introduced for B6-C3.
 
 B1 proved the event is earlier and more precise than the old Script `OnTick` comparator.
 
@@ -159,45 +165,40 @@ B1 proved the event is earlier and more precise than the old Script `OnTick` com
 Purpose:
 
 - observe explicit PrimaryFirst stop requests and their immediate before/after snapshots;
-- provide caller timing/context when the stop request occurs;
-- support B6 only on paths where the outgoing Hit is still observable at StopMotion entry, or where another independent factual context can correlate that StopMotion with the just-observed Hit transition.
+- retain supporting timing context.
 
-EV-174/EV-175 corrected the earlier assumption that this hook necessarily preserves the outgoing motion before Gothic removes it. In three clean 2H Normal transitions, `StartRecover BEGIN` still saw the Hit Primary, but the PrimaryFirst snapshot was already empty by entry to the StopMotion hook.
+EV-174/EV-175 proved the clean Hit can already be absent at StopMotion-hook entry. StopMotion is therefore a nearby factual request, **not a proven removal event**.
 
-Therefore the StopMotion call is currently a nearby factual request, **not a proven removal event**.
+### Existing StartRecover-BEGIN stack probe
 
-### B6 StartRecover / replacement / empty-Primary probes — current active diagnostic
+Retain as a clean-path factual reference.
 
-B6 uses only hooks already owned by `Script_FrameCollisionTest`. No new Gothic hook is justified yet.
+EV-176 established:
 
-The observation sequence has now produced two important diagnostic limits:
+```text
+diagnostic
+→ sAICombatMoveInstr
+→ ProcessScript()
+```
 
-1. EV-174/EV-175: the clean-path StopMotion before-snapshot is already empty, so a stop-stack gate requiring a visible outgoing Hit cannot capture clean disappearance;
-2. EV-177/EV-178: legitimate reaction cleanup is followed by empty-Primary StopMotion and reaction PlayMotion, but both the direct-replacement gate and the first empty-Primary refinement miss the reaction successor. The latter was gated by `CollisionControl::IsAttackHit(actor, AttackFamily_Normal)` and instead fired on fresh Normal `Attack_Hit` installations from empty Primary. By the time Stumble/KnockDown is requested, the old Normal semantic gate has expired.
+while the outgoing Hit was still Primary and the weapon still group 7.
 
-Current rules:
+StartRecover is not a production boundary: it is too early and bad skips can bypass it.
 
-1. retain the existing direct PlayMotion replacement-stack probe unchanged for paths where the outgoing attack-Hit remains visible at PlayMotion entry and before/after evidence proves direct replacement/restart;
-2. retain the existing StopMotion before/after record unchanged and do not claim that StopMotion removed an outgoing Hit when its own before-snapshot is already empty;
-3. retain the StartRecover-BEGIN stack probe as the established clean-path caller-context observation; EV-176 already proves the tested clean path enters through `sAICombatMoveInstr -> ProcessScript()`;
-4. replace/refine only the B6-C empty-Primary correlation branch so that its **pre-original capture gate** requires factual player/type-0 PlayMotion plus an available Primary snapshot with no motion instance — not old attack family/action/phase, StateTime, StatePosition, collision group, successor name or reaction classification;
-5. capture the short caller stack and factual pre-original context before calling original PlayMotion;
-6. call original PlayMotion exactly once with unchanged arguments;
-7. emit the empty-Primary diagnostic record only after original returns and an actual successor Primary motion instance is installed;
-8. log the installed successor motion name factually so the controlled test can identify Stumble/KnockDown **post hoc**; the source must not classify the successor as a reaction or use its name as a capture gate;
-9. accept that the broader diagnostic will also log unrelated empty-Primary player/type-0 successor installations during the short controlled run; offline correlation, not source logic, separates the target case;
-10. keep opaque motion descriptors opaque; raw addresses may be logged, but no guessed layout is read;
-11. add no production cleanup, lifecycle ownership/pending-finalization state, persistent diagnostic state, polling, timer, per-frame scan, cache, family-specific repair rule, reaction classifier or fallback behavior merely to make B6 observable.
+### B6 empty-Primary successor stack — retained, no longer the current gate
 
-Current purpose:
+B6-C3 successfully captured factual Stumble/KnockDown successors. EV-179 establishes legitimate reaction successor installation inside reaction Script_Game/ScriptAdmin context.
 
-> Capture the actual legitimate reaction successor caller stack without relying on semantic state that has already been reset, then compare that factual caller/SPU context with EV-176's clean `sAICombatMoveInstr -> ProcessScript()` context and later the B6-D bad direct-replacement context.
+B6-D then captured armed bad Whirl replacement to Ambient with an observed stack containing only:
 
-The broader empty-Primary capture is diagnostic instrumentation only. It is **not** a claim that every empty-Primary PlayMotion is an attack-lifecycle boundary.
+```text
+diagnostic
+→ Game +0xD9CB3
+```
 
-### B3 StartRecover probe
+while the weapon remained group 7. EV-180/EV-181 therefore reject the earlier replacement-triggered deferred-ProcessScript candidate in its present form.
 
-Retain as historical/supporting diagnostic reference, but it is not the current lifecycle boundary: Step B3 proved it returns before native cleanup and can be bypassed.
+Keep the B6 probe available for reproduction/comparison, but do not keep refining it simply to force all paths into one script-context model.
 
 ### Old Script `OnTick` lifetime comparator
 
@@ -205,7 +206,57 @@ Retain only while it has comparison value. It is too coarse for production-style
 
 ---
 
-## 7. Cleanup Observation Semantics
+## 7. Current Diagnostic Question — B7 Bookkeeping / Activation Path
+
+Before adding another runtime probe, statically reconstruct the smallest authoritative control flow around:
+
+- `sAICombatMoveStart`;
+- `sAICombatMoveItlLoop`;
+- `sAICombatMoveInstr` and exposed active instruction/callback state;
+- Routine StateTime / StatePosition progression/reset;
+- action-specific continuation after CombatMove;
+- reaction state/reset path leading to `Script_Game +0x24AFF`.
+
+If one exact fact remains missing, prefer the smallest existing-hook extension.
+
+### Likely bounded B7 runtime extension
+
+Use the current `SetCollisionGroup` hook to stack-capture actual player equipped-source offensive requests:
+
+```text
+5 -> 7
+7 -> 7
+```
+
+Why include `7 -> 7`:
+
+EV-181 proved a broken Whirl can leave the weapon stale at 7, and the next independent Normal execution can make a real offensive request while the numeric group remains 7. An activation diagnostic that watches only 5 -> 7 would miss that execution's collision obligation.
+
+Desired factual record:
+
+- source/address/slot;
+- requested/before/after group;
+- action/phase;
+- StateTime;
+- StatePosition;
+- current movement;
+- caller module/RVA;
+- short stack.
+
+No persistent diagnostic state is required merely to capture this event.
+
+Do not add:
+
+- a new attack-family classifier;
+- successor-name gating;
+- family-specific cleanup logic;
+- a ProcessScript behavior hook;
+- polling/timers/per-frame scans;
+- guessed layouts.
+
+---
+
+## 8. Cleanup Observation Semantics
 
 Do not define cleanup as “the group is currently not 7.”
 
@@ -219,7 +270,7 @@ Keep attack-wide vs source-specific cleanup an evidence question; do not create 
 
 ---
 
-## 8. Execution Identity
+## 9. Execution Identity
 
 Do not use action/phase alone as an execution key.
 
@@ -228,13 +279,16 @@ Desired identity should be based on the exact actual PrimaryFirst Hit execution,
 - motion instance identity if safely accessible;
 - exact motion resource/name;
 - stop/replacement/restart event;
-- play-time rollback for repeated same-name executions.
+- play-time rollback for repeated same-name executions;
+- offensive-request observation tied to the execution.
 
 Filename identity is useful but not sufficient by itself to define behavioral ownership.
 
+B7 may reveal native instruction/routine bookkeeping that provides a better exact-execution boundary; do not assume that result in advance.
+
 ---
 
-## 9. Block / Parade Diagnostics
+## 10. Block / Parade Diagnostics
 
 Do not instrument defender collision broadly until a concrete architecture question requires it.
 
@@ -249,7 +303,7 @@ Visible weapon bounce is not sufficient evidence of weapon-to-weapon physical co
 
 ---
 
-## 10. What Not to Add Without a New Question
+## 11. What Not to Add Without a New Question
 
 Do not add:
 
@@ -259,27 +313,26 @@ Do not add:
 - duplicate hooks when the current owner can forward the factual event;
 - full damage/health instrumentation unless source/group evidence cannot answer a specific test;
 - a second lifecycle classifier inside diagnostics;
-- guessed binary layouts when an SDK-supported or raw opaque representation is sufficient.
+- guessed binary layouts when an SDK-supported or raw opaque representation is sufficient;
+- repeated B6 probe refinements after its architecture question has already been answered negatively.
 
 ---
 
-## 11. B6 Acceptance Criteria
+## 12. B7 Acceptance Criteria for Any New Diagnostic
 
-Before using B6 evidence architecturally:
+Before adding B7 runtime instrumentation:
 
-1. DLL builds and loads in the isolated authoritative live script environment;
-2. `CaptureStackBackTrace`/module resolution returns interpretable frames for the relevant observed boundary;
-3. clean Hit -> Recover reconstructs `StartRecover BEGIN` with Hit still Primary, the subsequent PrimaryFirst disappearance/StopMotion context, successor Recover PlayMotion, and later native cleanup without falsely assigning disappearance to StopMotion;
-4. legitimate damage/reaction correlates its established `+0x24AFF` cleanup and empty-Primary transition with an **actual captured caller stack for the installed Stumble/KnockDown successor**, identified post hoc from the factual successor record rather than a reaction-specific source gate;
-5. bad block-skip direct replacement emits the existing confirmed direct PlayMotion replacement stack or another supported factual teardown/disappearance record while native cleanup is absent;
-6. B4/B5 cleanup records remain unchanged and can be correlated by time;
-7. no collision/marker behavior changes are introduced by the diagnostic.
-
-If the stack cannot answer the current boundary question, refine only the observation needed for that question.
+1. static/source inspection must identify the exact missing factual question;
+2. reuse an existing hook when it already observes the relevant event;
+3. capture only factual caller/context data needed for the comparison;
+4. preserve original behavior exactly once and unchanged;
+5. no diagnostic state may feed collision/marker behavior;
+6. compare clean Normal/Quick/Whirl, legitimate interruption, and bad Whirl as lifecycle mechanisms rather than production branch candidates;
+7. if a diagnostic cannot distinguish the bookkeeping/control-flow question, revise the observation rather than infer from absence.
 
 ---
 
-## 12. Release Extraction Rule
+## 13. Release Extraction Rule
 
 When collision behavior is stable:
 
