@@ -55,65 +55,30 @@ Pinned revision recorded by the project:
 
 `90bfd344de4510dda7ac9da7461cc7f1eac911f7`
 
-Use first for:
-
-- declarations/signatures;
-- enums;
-- property sets;
-- wrappers;
-- hook utilities;
-- exposed low-level engine structures.
-
-Do not silently replace this dependency with a reference fork.
+Use first for declarations/signatures, enums, property sets, wrappers, hook utilities and exposed low-level engine structures. Do not silently replace this dependency with a reference fork.
 
 ### Jackydima reference source
 
-Project path:
+Project path: `references/jackydima-gothic3sdk`  
+Pinned reference revision: `da61a791a97704ecebf166768c30564b6332d82d`
 
-`references/jackydima-gothic3sdk`
-
-Upstream:
-
-`Jackydima/gothic3sdk`
-
-Pinned reference revision recorded by the project:
-
-`da61a791a97704ecebf166768c30564b6332d82d`
-
-Use for:
-
-- NewBalance / AttackCollision / animation examples;
-- practical callback/source selection;
-- collision rearm patterns;
-- compatibility research;
-- examples of animation-string interception and gameplay modifications.
-
-Treat this as reference/compatibility evidence, not automatically as native engine truth.
+Use for NewBalance / AttackCollision / animation examples, practical callback/source selection, collision rearm patterns, compatibility research and animation-string interception examples. Treat it as reference/compatibility evidence, not automatically as native engine truth.
 
 ### Binary reference repository
 
 `tcholti/Gothic3_Binary_Reference`
 
-Use for:
-
-- tested-build disassembly slices;
-- export identification;
-- call-site/parent inspection;
-- static confirmation around known RVAs.
-
-Addresses remain build-specific.
+Use for tested-build disassembly slices, export/import identification, call-site/parent inspection and static confirmation around known RVAs. Addresses remain build-specific.
 
 ### Historical examples environment
 
 `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\gothic3sdk-examples`
 
-Use only when an older known-good example/build pattern is specifically needed. The current project repository is the authoritative build workspace.
+Use only when an older known-good example/build pattern is specifically needed.
 
 ---
 
 ## 2. Research Order
-
-For an unknown engine-facing question:
 
 ```text
 exact runtime question
@@ -156,23 +121,26 @@ Search official SDK `GameEnum.h` for:
 - `gEAniState`
 - `gEPose`
 - `gEUseType`
+- `gESessionKey`
 - `gEDirection`
 - `gEHitDirection`
 
 Animation-specific interpretation: `ANIMATION_INDEX.md` → `ANIMATION_RULES.md`.
 
-### Script Processing / CombatMove
+### Script Processing / CombatMove / state stack
 
 Search `ge_scriptprocessingunit.h`, `ge_scriptroutine_ps.h` and Script wrapper `gs_psroutine.h` for:
 
 - `gCScriptProcessingUnit`
 - `gCScriptRoutine_PS`
+- `gScriptRunTimeSingleState`
 - `ProcessScript`
 - `sAICombatMoveInstr_Args`
 - `sAICombatMoveInstr`
 - `sAICombatMoveStart`
 - `sAICombatMoveItlLoop`
 - `sAICombatMoveStartRecover`
+- `m_StateStack`
 - `m_pfInstrCallback`
 - `m_fInstrPlayTime`
 - `m_fInstrDuration`
@@ -181,9 +149,21 @@ Search `ge_scriptprocessingunit.h`, `ge_scriptroutine_ps.h` and Script wrapper `
 - `CurrentBreakBlock`
 - `AIFullStop` / `FullStop`
 - `AIStopCombatMove` / `StopAICombatMove`
-- local/task callback helpers
+- `SetState`
+- `SetTask`
 
-B7 evidence EV-182–EV-184 shows that these symbols are part of a persisted asynchronous CombatMove/break-block lifetime. Do not assume `m_pfInstrCallback` alone is exact marked-Hit identity; use `EVIDENCE_INDEX.md` → Marker execution lifetime / bookkeeping before changing marker-core lifetime code.
+EV-182–EV-189 establish a persisted asynchronous CombatMove/break-block lifetime and, for the tested bad full-Whirl path, an explicit `FullStop -> SetState` sequence that discards the suspended attack continuation. Do not assume this exact caller sequence is universal, and do not assume `m_pfInstrCallback` alone is exact marked-Hit identity.
+
+### Character control
+
+Search Script wrappers / imports for:
+
+- `PSCharacterControl::PressedKey`
+- `PSCharacterControl::IsPressed`
+- `PSCharacterControl::IsPressedBefore`
+- `PSCharacterControl::DurationPressedMSecs`
+
+B7b used these as factual context. They are not proposed as production collision classifiers.
 
 ### Script administration
 
@@ -198,77 +178,29 @@ These are generic script infrastructure; do not treat them as combat ownership s
 
 ### Script control flow macros
 
-Search `gs_scriptmacros.h` for:
+Search `gs_scriptmacros.h` for `BREAK_BLOCK`, `PREPEND_BREAK_BLOCK_BEGIN`, `PREPEND_BREAK_BLOCK_END`.
 
-- `BREAK_BLOCK`
-- `PREPEND_BREAK_BLOCK_BEGIN`
-- `PREPEND_BREAK_BLOCK_END`
-
-The prepend pattern is proven for asynchronous custom Raise insertion before the original melee state. B7 also shows that native CombatMove attack logic can suspend a ScriptFunction at an asynchronous break block and resume later into action-specific continuation/cleanup.
+The prepend pattern is proven for custom asynchronous Raise. Native CombatMove attack logic also suspends a ScriptFunction at an asynchronous break block and can later resume into action-specific cleanup—unless a state-stack replacement discards that continuation.
 
 ### Animation selection / queries
 
-Search SDK wrappers and Jackydima `Script_Animation` for:
-
-- `GetAni`
-- `GetAniEx`
-- `GetAniName`
-- `GetCurrentMovementAni`
-- `GetCurrentAniPhase`
-- `GetCurrentAniDirection`
-- `GetPrimaryPoseExt`
-- `FixAniDirection`
-- `PlayMotion`
-- `StopMotion`
-- `StopAtLoopEnd`
+Search SDK wrappers and Jackydima `Script_Animation` for `GetAni`, `GetAniEx`, `GetAniName`, `GetCurrentMovementAni`, `GetCurrentAniPhase`, `GetCurrentAniDirection`, `GetPrimaryPoseExt`, `FixAniDirection`, `PlayMotion`, `StopMotion`, `StopAtLoopEnd`.
 
 ### Collision / damage-source handling
 
-Search reference source for:
-
-- `OnAI_Attack`
-- `OnAI_QuickAttack`
-- `OnAI_PowerAttack`
-- `OnAI_PierceAttack`
-- `OnAI_SimpleWhirl`
-- `OnAI_WhirlAttack`
-- `OnAI_GetUpAttack`
-- `SetCollisionGroup`
-- `ClearTriggeredList`
-- `PropertyResetOnUntouch`
-- `gESlot_LeftHand`
-- `gESlot_RightHand`
-- `TouchDamage`
+Search reference source for `OnAI_Attack`, `OnAI_QuickAttack`, `OnAI_PowerAttack`, `OnAI_PierceAttack`, `OnAI_SimpleWhirl`, `OnAI_WhirlAttack`, `OnAI_GetUpAttack`, `SetCollisionGroup`, `ClearTriggeredList`, `PropertyResetOnUntouch`, `gESlot_LeftHand`, `gESlot_RightHand`, `TouchDamage`.
 
 ### Frame effects
 
-Search for:
-
-- `eCVisualAnimation_PS::UpdateFrameEffects`
-- `GetFrameEffectList`
-- `eSFrameEffect`
-- `gCEffectSystem::StartEffect`
-- motion resource/descriptor accessors
+Search for `eCVisualAnimation_PS::UpdateFrameEffects`, `GetFrameEffectList`, `eSFrameEffect`, `gCEffectSystem::StartEffect` and motion resource/descriptor accessors.
 
 ### Speed
 
-Search for:
-
-- `GetAnimationSpeedModifier`
-- `AniSpeedScale`
-- `m_fAniSpeedScale`
-- `sAICombatMoveInstr`
-- `PlayMotion`
-- `GetMaxTime`
+Search for `GetAnimationSpeedModifier`, `AniSpeedScale`, `m_fAniSpeedScale`, `sAICombatMoveInstr`, `PlayMotion`, `GetMaxTime`.
 
 ### Trigger visit/rearm state
 
-Search SDK `eCTrigger_PS` for:
-
-- `EntitiesVisited`
-- `EntitiesVisitedCount`
-- `ClearTriggeredList()`
-- `ClearTriggeredList(eCEntity *)`
+Search SDK `eCTrigger_PS` for `EntitiesVisited`, `EntitiesVisitedCount`, `ClearTriggeredList()` and `ClearTriggeredList(eCEntity *)`.
 
 ---
 
@@ -285,8 +217,8 @@ Search SDK `eCTrigger_PS` for:
 | CombatMove animation-string call point | `Game + 0x16B065` | practical interception/substitution point used by NewBalance |
 | CombatMove reach/vector call point | `Game + 0x16B8A3` | reference hook point |
 | CombatMove movement call point | `Game + 0x16B8A9` | reference hook point |
-| full-Whirl CombatMove break-block call/test | `Script_Game + 0x4DF8C / +0x4DF92` | B7 static proof: incomplete result returns ScriptFunction false; completed result falls through into later Whirl continuation/cleanup |
-| full-Whirl ordinary collision cleanup continuation | `Script_Game + 0x4E03C` | reached after the CombatMove break block completes; not automatic animation teardown |
+| full-Whirl CombatMove break-block call/test | `Script_Game + 0x4DF8C / +0x4DF92` | incomplete result returns ScriptFunction false; completed result falls through into later Whirl continuation/cleanup |
+| full-Whirl ordinary collision cleanup continuation | `Script_Game + 0x4E03C` | reached only when the suspended Whirl ScriptFunction resumes after CombatMove completion |
 | `GetAniName` | `Game + 0x16F840` | animation name lookup |
 | `GetAniEx` | `Script + 0x15C10` | animation query |
 | `GetMotionDataEntityAniString` | `Game + 0xD97D5` | motion resource string |
@@ -296,33 +228,50 @@ Search SDK `eCTrigger_PS` for:
 
 | Symbol / purpose | Module + RVA | Current meaning |
 |---|---:|---|
-| high `eCVisualAnimation_PS::PlayMotion` | `Engine + 0x30860` | B1/B6 type-0 immediate PrimaryFirst acquisition/replacement observation |
-| high `eCVisualAnimation_PS::StopMotion` | `Engine + 0x30980` | supporting B1 motion stop observation |
+| high `eCVisualAnimation_PS::PlayMotion` | `Engine + 0x30860` | type-0 immediate PrimaryFirst acquisition/replacement observation |
+| high `eCVisualAnimation_PS::StopMotion` | `Engine + 0x30980` | supporting motion-stop observation; not proven universal end authority |
 | high `StopAtLoopEnd` | `Engine + 0x309D0` | schedules loop-end stop; not actual completion event |
 | wrapper `eCWrapper_emfx2Actor::PlayMotion` | `Engine + 0x476F0` | lower wrapper path |
 | wrapper `StopMotion` | `Engine + 0x47910` | lower wrapper path |
 | wrapper `StopAtLoopEnd` | `Engine + 0x479C0` | lower wrapper path |
 
-### CombatMove/SPU
+### CombatMove / SPU
 
 | Symbol | Module + RVA | Established constraint |
 |---|---:|---|
-| `gCScriptRoutine_PS::AIFullStop` | `Game + 0x164430` | invokes the SPU's current persisted instruction callback with `fullStop=true` if one exists; generic instruction stop |
-| `gCScriptRoutine_PS::AIStopCombatMove` | `Game + 0x1644D0` | invokes the callback with `fullStop=true` only when current callback is exactly `sAICombatMoveInstr` |
-| `sAICombatMoveInstr` | `Game + 0x1696E0` | persisted asynchronous CombatMove instruction; while active can store itself in `m_pfInstrCallback`; terminal/full-stop handling clears callback; still too early to treat return as post-cleanup fallback |
+| `gCScriptRoutine_PS::AIFullStop` | `Game + 0x164430` | invokes the current persisted instruction callback with `fullStop=true`; generic instruction stop |
+| `gCScriptRoutine_PS::AIStopCombatMove` | `Game + 0x1644D0` | invokes `fullStop=true` only when current callback is exactly `sAICombatMoveInstr` |
+| `sAICombatMoveInstr` | `Game + 0x1696E0` | persisted asynchronous CombatMove instruction; terminal/full-stop handling clears callback |
 | `sAICombatMoveStart` | `Game + 0x16ABB0` | CombatMove start |
-| `sAICombatMoveItlLoop` | `Game + 0x16DD00` | iterative loop; broad, deliberately not production polling authority |
-| `sAICombatMoveStartRecover` | `Game + 0x16E360` | B3: starts/attempts Recover but returns before native weapon cleanup and may be bypassed |
-| `gCScriptProcessingUnit::ProcessScript` | `Game + 0x16F120` | common generic higher dispatcher; B6 rejected the earlier universal replacement-time checkpoint candidate |
+| `sAICombatMoveItlLoop` | `Game + 0x16DD00` | iterative loop; deliberately not production polling authority |
+| `sAICombatMoveStartRecover` | `Game + 0x16E360` | starts/attempts Recover but returns before native weapon cleanup and may be bypassed |
+| `gCScriptProcessingUnit::ProcessScript` | `Game + 0x16F120` | generic higher dispatcher; not combat ownership or a proven universal replacement-time checkpoint |
 
 ### Script dispatch / lifecycle control
 
-| Symbol | Module + RVA | Established constraint |
+| Symbol / path | Module + RVA | Established constraint |
 |---|---:|---|
-| `gCScriptAdmin::RunScriptState` | `Game + 0x1603D0` | B5 interruption-side generic script runner |
-| `gCScriptAdmin::RunScriptFunction` | `Game + 0x1604E0` | B5 ordinary-side generic script runner; action-specific cleanup returns around `+0x1605EB` |
-| reaction-control `PSRoutine::FullStop()` call site | `Script_Game + 0x2246F` | B7 static reaction-region FullStop site; do not assume it maps one-to-one to every recorded reaction until runtime confirms |
-| reaction-control `PSRoutine::FullStop()` call site | `Script_Game + 0x23002` | second B7 static reaction-region FullStop site; same qualification |
+| `gCScriptAdmin::RunScriptState` | `Game + 0x1603D0` | interruption-side generic script runner |
+| `gCScriptAdmin::RunScriptFunction` | `Game + 0x1604E0` | ordinary-side generic script runner |
+| tested legitimate-reaction `PSRoutine::FullStop()` | `Script_Game + 0x2D0F2` | B7b exact Normal/Quick reaction FullStop call; return `+0x2D0F8`; control remains in reaction path and later cleanup can run |
+| player Use2 helper | `Script_Game + 0x62FF0` | higher player-control helper reached by the B7 bad full-Whirl path; common caller returns at `+0x61866` |
+| tested bad full-Whirl `PSRoutine::FullStop()` | `Script_Game + 0x633F1` | B7b exact held-Use2 bad caller; immediate return `+0x633F7`; branch is reached after press duration exceeds 2500 ms in tested path |
+| tested bad full-Whirl immediate `PSRoutine::SetState(...)` | `Script_Game + 0x63409` | follows the bad FullStop; SDK documents SetState as clearing SPU state stack and resetting state-position/break-block bookkeeping |
+| older static reaction-region FullStop site | `Script_Game + 0x2246F` | broad reaction-control static site; not the exact B7b Normal/Quick caller |
+| older static reaction-region FullStop site | `Script_Game + 0x23002` | broad reaction-control static site; not the exact B7b Normal/Quick caller |
+
+B7b causal route for tested full Whirl:
+
+```text
+held Use2 > 2500 ms
+→ +0x633F1 FullStop
+→ active CombatMove terminated
+→ +0x63409 SetState
+→ old SPU state-stack/break-block continuation discarded
+→ suspended Whirl ScriptFunction cannot reach +0x4E03C cleanup
+```
+
+Do not hook this Whirl-specific route as production repair. The current research gate is whether other known stale families use the same state-stack-abandonment class.
 
 ### Frame effects / collision
 
@@ -348,11 +297,8 @@ For exact native cleanup return RVAs by action and the tested interruption route
 
 ## 6. Tested Frame-Effect Layout
 
-For the exact tested engine build, the prototype used:
+For the exact tested engine build, the prototype used `eSFrameEffect` stride 8 bytes:
 
-`eSFrameEffect`
-
-- stride: 8 bytes;
 - `+0x00`: authored frame (`uint16`);
 - `+0x04`: effect name (`bCString`).
 
@@ -368,8 +314,6 @@ Use when a known call site exposes the needed fact and original behavior should 
 
 ### Function hook with original fallback
 
-Typical pattern:
-
 ```text
 inspect authoritative context
 → if custom rule applies, perform bounded intervention
@@ -378,13 +322,17 @@ inspect authoritative context
 
 If used as pre/post observation, call the original exactly once unless the contract explicitly requires otherwise.
 
+### ThisCall function observation
+
+B7b successfully used an `mCFunctionHook` with `mEHookType_ThisCall` on `gCScriptRoutine_PS::AIFullStop()`, retrieving native `this` through `GetSelf()` and forwarding the original exactly once. Use this only when the official/member signature and hook convention are established.
+
 ### `PREPEND_BREAK_BLOCK` state insertion
 
 Proven for custom asynchronous Raise before the untouched original melee state.
 
 ### Named AI callback adapter
 
-Prefer a named native callback when it already provides the correct attack-family semantics. The global marker dispatcher may then correlate the later effect with exact native action/phase and exact marked motion.
+Prefer a named native callback when it already provides correct attack-family semantics. The global marker dispatcher may then correlate the later effect with exact native action/phase and exact marked motion.
 
 ### Shared hook owner + factual dispatch
 
@@ -394,15 +342,9 @@ When diagnostics and behavior need the same low-level hook, install it once and 
 
 ## 8. Same-Function Hook Caution
 
-Do not assume two independently loaded `mCFunctionHook` instances on the same target chain safely.
+Do not assume two independently loaded `mCFunctionHook` instances on the same target chain safely. Tested coexistence in one configuration does not prove arbitrary load order or hook timing.
 
-Tested coexistence in one configuration does not prove arbitrary load order or hook timing.
-
-Before release compatibility with NewBalance / `Script_AttackCollision`:
-
-- inspect hook implementation/chaining semantics where relevant;
-- retest if DLL naming/load order/marker timing changes;
-- prefer one authoritative owner or a proven downstream/integration strategy.
+Before release compatibility with NewBalance / `Script_AttackCollision`, inspect hook implementation/chaining semantics where relevant, retest if DLL naming/load order/marker timing changes, and prefer one authoritative owner or a proven downstream/integration strategy.
 
 Evidence routing: EV-035, EV-148–EV-150.
 
@@ -433,15 +375,11 @@ Pinned NewBalance contains `FixDualOneHanded`, which clears both Dual weapon `To
 
 ### Full Whirl reset-on-untouch
 
-Jackydima's Whirl path uses `PropertyResetOnUntouch = GETrue` in its timer-owned model.
-
-The project's authored marker model deliberately does not assume that property is desirable: repeated source markers explicitly rearm, and OFF explicitly authors inactive gaps. Automatic geometry-dependent rearm would be a different semantic model.
+Jackydima's Whirl path uses `PropertyResetOnUntouch = GETrue` in its timer-owned model. The project's authored marker model deliberately does not assume that property is desirable: repeated source markers explicitly rearm, and OFF explicitly authors inactive gaps.
 
 ### CombatMove animation-string substitution
 
-NewBalance uses the call point around `Game + 0x16B065` to substitute animation strings for custom combat behavior while retaining surrounding CombatMove machinery.
-
-This is reusable engine knowledge for later animation-selection research (for example disabled/unused variants, jump/wade/climbing feasibility), but it is not part of the current collision implementation.
+NewBalance uses the call point around `Game + 0x16B065` to substitute animation strings while retaining surrounding CombatMove machinery. This is reusable engine knowledge for later animation-selection research, not part of current collision implementation.
 
 ---
 
@@ -455,12 +393,7 @@ cmake -S . -B build -G "Visual Studio 17 2022" -A Win32
 cmake --build build --config Release --target <TargetName>
 ```
 
-Current known targets include:
-
-- `Script_G3AnimationBehaviors`
-- `Script_FrameCollisionTest`
-- `Script_FrameEffectLogger`
-- `Script_CombatMoveLogger`
+Current known targets include `Script_G3AnimationBehaviors`, `Script_FrameCollisionTest`, `Script_FrameEffectLogger`, `Script_CombatMoveLogger`.
 
 Game scripts directory:
 
@@ -472,7 +405,7 @@ Game INI directory:
 
 For isolated collision tests, remove conflicting collision DLLs unless compatibility is the explicit variable being tested.
 
-**Live-script hygiene:** do not keep backup or renamed `Script_*.dll` files inside the live Gothic 3 `scripts` directory, even with an added extension such as `.bak`. EV-173 showed `Script_FrameCollisionTest.preB6.dll.bak` participating in runtime hook execution and duplicating diagnostics. Keep backups outside the live `scripts` directory during controlled tests.
+**Live-script hygiene:** do not keep backup or renamed `Script_*.dll` files inside the live Gothic 3 `scripts` directory, even with an added extension such as `.bak`. EV-173 showed such a backup participating in runtime hook execution. Keep backups outside the live directory during controlled tests.
 
 ---
 
@@ -482,11 +415,13 @@ For isolated collision tests, remove conflicting collision DLLs unless compatibi
 |---|---|
 | Exact native cleanup action/RVA/parent stack | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | Why a hook/path is accepted/rejected architecturally | `COLLISION_LIFECYCLE_PLAN.md` + evidence IDs |
-| Marker execution lifetime / future bookkeeping simplification | `EVIDENCE_INDEX.md` → Marker execution lifetime / bookkeeping, then `COLLISION_LIFECYCLE_PLAN.md` §10 |
-| CombatMove persisted instruction / FullStop / break-block continuation | EV-182–EV-184 + this guide §4–§5 |
+| Marker execution lifetime / future bookkeeping simplification | `EVIDENCE_INDEX.md` → Marker execution lifetime / bookkeeping, then `COLLISION_LIFECYCLE_PLAN.md` §9 |
+| CombatMove persisted instruction / FullStop / SetState / state-stack abandonment | EV-182–EV-189 + this guide §4–§5 |
+| Exact tested bad full-Whirl caller | EV-187/EV-189 + this guide §5 |
+| Exact tested legitimate-reaction FullStop caller | EV-188 + this guide §5 |
 | Exact evidence status/provenance | `EVIDENCE_INDEX.md` → evidence ledger |
 | Animation action/UseType/pose/name meaning | `ANIMATION_INDEX.md` |
 | Exact animation asset | animation-name data / `ANIMATION_CATALOG.md` |
 | Old v0.x hook/prototype chronology | archived pre-IA guide / `RESEARCH_MAP.md` / evidence ledger |
 
-When adding a new durable hook finding, prefer updating the relevant symbol/RVA/index row here and the exact evidence entry, rather than appending another long chronological narrative.
+When adding a new durable hook finding, update the relevant symbol/RVA/index row here and the exact evidence entry rather than appending another long chronological narrative.
