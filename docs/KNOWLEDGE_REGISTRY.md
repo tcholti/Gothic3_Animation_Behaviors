@@ -142,7 +142,7 @@ Evidence Ledger only if the behavioral claim is controlled/source-backed
 Likely updates after independent review:
 
 ```text
-SESSION_ENTRYPOINT or BETWEEN_CHATS if current continuation needs the commit/state
+SESSION_ENTRYPOINT or BETWEEN_CHATS if current continuation needs it
 ```
 
 No architecture/evidence update until build/runtime/source contradiction provides new meaning.
@@ -151,14 +151,34 @@ No architecture/evidence update until build/runtime/source contradiction provide
 
 ## Registry Maintenance
 
+### Existing-structure-first rule
+
+A newly noticed gap, refinement, future dependency, or missing route is **not** by itself a reason to create another document.
+
+Default order:
+
+```text
+noticed gap/refinement
+→ can an existing authority absorb it cleanly?
+→ can an existing section be strengthened?
+→ can an existing index/route make it discoverable?
+→ can an existing procedure be refined?
+→ only then consider whether a genuinely new responsibility exists
+```
+
+Prefer strengthening the current knowledge structure over expanding the document set. Small refinements should normally improve an existing authority, section, index, or procedure rather than create a new file.
+
+Create a new authority/document only when the responsibility is genuinely distinct enough that placing it in an existing authority would blur ownership, distort that authority's purpose, or make retrieval materially worse.
+
 Add a new authority only when a genuinely distinct knowledge responsibility appears.
 
 Before creating another document ask:
 
 1. Does an existing authority already own this responsibility?
-2. Is the problem really missing indexing rather than missing authority?
-3. Would a new document create another independently stale copy?
-4. Can a future-relevance dependency be represented as one small route to an existing authority instead?
+2. Can the apparent gap be solved by strengthening an existing section, procedure, or index route?
+3. Is the problem really missing indexing rather than missing authority?
+4. Would a new document create another independently stale copy or another file future chats must load?
+5. Would adding the material to an existing authority actually distort that authority's responsibility? If not, prefer the existing authority.
 
 Prefer a new index route or section over a new authority when possible.
 
