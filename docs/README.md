@@ -24,6 +24,30 @@ Stable documentation/research can be promoted independently of unfinished collis
 
 The branches currently diverge; `main` also contains one older collaboration-rules commit not present in the current branch history. Resolve that deliberately during promotion rather than blindly merging the entire development branch.
 
+### Relationship to the reusable CAM baseline
+
+The central `tcholti/Collaborative-Agency-Model` repository now separates its stable framework from a candidate reusable operational baseline on branch `current`.
+
+Gothic 3 is an empirical project-specific instantiation of that broader model, not a file-for-file copy of its templates. The reusable baseline should be used as a comparison and starting structure; this project's mature authorities remain authoritative for their own responsibilities.
+
+The project predates CAM's newer `PROJECT_MANIFEST.md` template. Its manifest responsibilities are already distributed across established authorities:
+
+| Reusable project-manifest responsibility | Gothic 3 authority |
+|---|---|
+| repository / branch model | this `README.md` |
+| current-state entry point | `SESSION_ENTRYPOINT.md` |
+| project-specific collaboration delta / participant allocation | `COLLABORATION_RULES.md` |
+| authority ownership / update triggers | `KNOWLEDGE_REGISTRY.md` |
+| retrieval model / subsystem orientation routes | this `README.md` |
+| evidence and maintenance lifecycle | `KNOWLEDGE_MAINTENANCE.md` + evidence authorities |
+| bounded implementation procedure | `WORK_IMPLEMENTATION_PROTOCOL.md` |
+| transient continuation bridge | `BETWEEN_CHATS.md` when needed |
+| technical architecture / intended behavior | `DESIGN.md` and subsystem authorities |
+
+Do **not** create a parallel `PROJECT_MANIFEST.md` merely to conform to the newer template. Add one only if future project restructuring creates a genuinely distinct configuration responsibility that is no longer served clearly by the established authorities.
+
+When this project reveals a collaboration mechanism that may generalize, validate it locally first, compare it with CAM `current`, and promote the lesson upward only when transfer beyond Gothic 3 is supported. Conversely, when CAM `current` gains a new reusable mechanism, compare it against this project's actual needs and import only what fills a real gap rather than reshaping the project for template conformity.
+
 ---
 
 ## 2. Retrieval Model — Hot / Warm / Cold
@@ -106,7 +130,7 @@ Read only when continuing that exact transition. Replace rather than accumulate.
 
 Gothic 3 project-specific collaboration delta.
 
-General collaboration authority lives in the CAM repository; do not reload it for ordinary Gothic 3 engineering unless the process itself is being discussed.
+General collaboration authority and the reusable candidate baseline live in the CAM repository; do not reload them for ordinary Gothic 3 engineering unless the collaboration/process itself is being discussed or compared.
 
 #### `WORK_IMPLEMENTATION_PROTOCOL.md`
 
@@ -319,6 +343,7 @@ Work may inspect necessary source/API material when implementation reveals a rea
 |---|---|
 | current continuation / next validation | `SESSION_ENTRYPOINT.md` |
 | transient cross-context handoff | `BETWEEN_CHATS.md` |
+| project collaboration configuration / relationship to CAM baseline | `COLLABORATION_RULES.md` + this `README.md` |
 | documentation map / retrieval depth / subsystem orientation routing | `README.md` |
 | overall intended system architecture | `DESIGN.md` |
 | current collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
@@ -395,6 +420,6 @@ Prefer:
 - an evidence entry for a new proven fact;
 - an archive snapshot for superseded chronology.
 
-Avoid one document per experiment, one rule per minor failure, another current-state document that competes with `SESSION_ENTRYPOINT.md`, or persistent “book summaries” that duplicate canonical authorities.
+Avoid one document per experiment, one rule per minor failure, another current-state document that competes with `SESSION_ENTRYPOINT.md`, a project manifest that merely duplicates the existing distributed configuration, or persistent “book summaries” that duplicate canonical authorities.
 
 The objective is a repository that can be **deep without making every task carry that depth in active context**.
