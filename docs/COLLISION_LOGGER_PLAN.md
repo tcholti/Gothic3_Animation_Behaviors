@@ -166,27 +166,34 @@ EV-174/EV-175 corrected the earlier assumption that this hook necessarily preser
 
 Therefore the StopMotion call is currently a nearby factual request, **not a proven removal event**.
 
-### B6 replacement/stop-stack probe — current active diagnostic
+### B6 StartRecover / replacement / empty-Primary probes — current active diagnostic
 
-B6 uses only hooks already owned by `Script_FrameCollisionTest`: player/type-0 `StopMotion` and `PlayMotion`. No new Gothic hook is justified yet.
+B6 uses only hooks already owned by `Script_FrameCollisionTest`. No new Gothic hook is justified yet.
 
-The first StopMotion-stack refinement is now known to be insufficient for clean completion because it captures a stack only when the StopMotion before-snapshot is itself an attack-Hit Primary. That condition is false in the valid clean run.
+The observation sequence has now produced two important diagnostic limits:
+
+1. EV-174/EV-175: the clean-path StopMotion before-snapshot is already empty, so a stop-stack gate requiring a visible outgoing Hit cannot capture clean disappearance;
+2. EV-177/EV-178: legitimate reaction cleanup is followed by empty-Primary StopMotion and reaction PlayMotion, but both the direct-replacement gate and the first empty-Primary refinement miss the reaction successor. The latter was gated by `CollisionControl::IsAttackHit(actor, AttackFamily_Normal)` and instead fired on fresh Normal `Attack_Hit` installations from empty Primary. By the time Stumble/KnockDown is requested, the old Normal semantic gate has expired.
 
 Current rules:
 
 1. retain the existing direct PlayMotion replacement-stack probe unchanged for paths where the outgoing attack-Hit remains visible at PlayMotion entry and before/after evidence proves direct replacement/restart;
-2. retain the existing StopMotion before/after record unchanged;
-3. do not claim that StopMotion removed an outgoing Hit when its own before-snapshot is already empty;
-4. for the next clean-path refinement, capture only the supported factual caller/context needed to identify the relevant player/type-0 StopMotion despite the empty PrimaryFirst snapshot, using current CombatMove action/phase/movement only as **diagnostic correlation context**, not as continuing physical-Hit ownership authority; alternatively, identify an earlier supported disappearance boundary if source/runtime evidence provides one;
-5. use the immediately following PlayMotion record to establish what successor Primary was actually installed;
-6. keep opaque motion descriptors opaque; raw addresses may be logged, but no guessed layout is read;
-7. add no production cleanup, lifecycle ownership state, polling, family-specific repair rule, or fallback behavior merely to make B6 observable.
+2. retain the existing StopMotion before/after record unchanged and do not claim that StopMotion removed an outgoing Hit when its own before-snapshot is already empty;
+3. retain the StartRecover-BEGIN stack probe as the established clean-path caller-context observation; EV-176 already proves the tested clean path enters through `sAICombatMoveInstr -> ProcessScript()`;
+4. replace/refine only the B6-C empty-Primary correlation branch so that its **pre-original capture gate** requires factual player/type-0 PlayMotion plus an available Primary snapshot with no motion instance — not old attack family/action/phase, StateTime, StatePosition, collision group, successor name or reaction classification;
+5. capture the short caller stack and factual pre-original context before calling original PlayMotion;
+6. call original PlayMotion exactly once with unchanged arguments;
+7. emit the empty-Primary diagnostic record only after original returns and an actual successor Primary motion instance is installed;
+8. log the installed successor motion name factually so the controlled test can identify Stumble/KnockDown **post hoc**; the source must not classify the successor as a reaction or use its name as a capture gate;
+9. accept that the broader diagnostic will also log unrelated empty-Primary player/type-0 successor installations during the short controlled run; offline correlation, not source logic, separates the target case;
+10. keep opaque motion descriptors opaque; raw addresses may be logged, but no guessed layout is read;
+11. add no production cleanup, lifecycle ownership/pending-finalization state, persistent diagnostic state, polling, timer, per-frame scan, cache, family-specific repair rule, reaction classifier or fallback behavior merely to make B6 observable.
 
 Current purpose:
 
-> Determine what script/SPU execution context surrounds the last supported clean-transition boundary we can actually observe, then compare that context with legitimate damage/reaction and bad block-skip direct replacement.
+> Capture the actual legitimate reaction successor caller stack without relying on semantic state that has already been reset, then compare that factual caller/SPU context with EV-176's clean `sAICombatMoveInstr -> ProcessScript()` context and later the B6-D bad direct-replacement context.
 
-StopMotion remains diagnostic timing evidence only. It must be correlated with the actual successor Primary and cleanup sequence before architectural interpretation.
+The broader empty-Primary capture is diagnostic instrumentation only. It is **not** a claim that every empty-Primary PlayMotion is an attack-lifecycle boundary.
 
 ### B3 StartRecover probe
 
@@ -263,7 +270,7 @@ Before using B6 evidence architecturally:
 1. DLL builds and loads in the isolated authoritative live script environment;
 2. `CaptureStackBackTrace`/module resolution returns interpretable frames for the relevant observed boundary;
 3. clean Hit -> Recover reconstructs `StartRecover BEGIN` with Hit still Primary, the subsequent PrimaryFirst disappearance/StopMotion context, successor Recover PlayMotion, and later native cleanup without falsely assigning disappearance to StopMotion;
-4. legitimate damage/reaction correlates its actual outgoing-Hit disappearance/replacement context with the reaction successor and legitimate cleanup;
+4. legitimate damage/reaction correlates its established `+0x24AFF` cleanup and empty-Primary transition with an **actual captured caller stack for the installed Stumble/KnockDown successor**, identified post hoc from the factual successor record rather than a reaction-specific source gate;
 5. bad block-skip direct replacement emits the existing confirmed direct PlayMotion replacement stack or another supported factual teardown/disappearance record while native cleanup is absent;
 6. B4/B5 cleanup records remain unchanged and can be correlated by time;
 7. no collision/marker behavior changes are introduced by the diagnostic.
