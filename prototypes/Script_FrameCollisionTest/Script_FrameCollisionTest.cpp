@@ -1,5 +1,6 @@
 #include "CollisionControl.h"
 #include "CollisionDiagnostics.h"
+#include "CollisionLifecycleGuard.h"
 #include "HookBridgeRuntime.h"
 
 #include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
@@ -291,6 +292,20 @@ static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
 static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop)
 {
+    CollisionLifecycleGuard::GenerationToken generation = {};
+    if (a_bFullStop != GETrue && a_pArgs != nullptr && a_pSPU != nullptr)
+    {
+        Entity actor;
+        actor.AttachTo(a_pSPU->GetSelfEntity());
+        if (actor != None)
+        {
+            EquippedCollisionSources sources =
+                CollisionControl::GetEquippedCollisionSources(actor);
+            generation = CollisionLifecycleGuard::BeginCombatMove(
+                actor, sources);
+        }
+    }
+
     if (a_bFullStop == GETrue && a_pSPU != nullptr)
     {
         Entity actor;
@@ -310,8 +325,10 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
         }
     }
 
-    return Hook_AICombatMoveInstr.GetOriginalFunction(
+    GEBool result = Hook_AICombatMoveInstr.GetOriginalFunction(
         &AICombatMoveInstr_FrameCollisionTest)(a_pArgs, a_pSPU, a_bFullStop);
+    CollisionLifecycleGuard::CompleteCombatMoveCandidate(generation, result);
+    return result;
 }
 
 static void GE_STDCALL AIFullStop_FrameCollisionTest()
@@ -359,6 +376,8 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     gCScriptRoutine_PS *pThis =
         Hook_AISetState.GetSelf<gCScriptRoutine_PS *>();
     eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
+    CollisionLifecycleGuard::GenerationToken finalization =
+        CollisionLifecycleGuard::CaptureFinalizationToken(ownerEntity);
     if (IsPlayerEntity(ownerEntity))
     {
         Entity actor(ownerEntity);
@@ -383,6 +402,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
 
     Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
         a_State);
+    CollisionLifecycleGuard::FinalizeAfterAISetState(finalization);
 }
 
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
@@ -409,6 +429,8 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
 
     eECollisionGroup afterGroup = pThis != nullptr
         ? pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
+    CollisionLifecycleGuard::ObserveCollisionGroupResult(
+        pThis, a_Group, afterGroup);
     CollisionDiagnostics::LogSetCollisionGroup(
         pThis, a_Group, beforeGroup, afterGroup,
         retiredMarkerExecutionCount, callerAddress, cleanupStack);
