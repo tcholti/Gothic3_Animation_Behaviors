@@ -42,13 +42,13 @@ Raw logs are verification/provenance, not routine reading.
 | marked block-timeout failure | EV-155 | native control EV-156 |
 | native stale collision / running damage | EV-156 | archived 2026-08-25 native logs |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
-| PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-176 |
+| PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-178 |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
 | StartRecover not post-cleanup / not guaranteed | EV-160 | EV-176 for clean-path caller context |
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | archived B3b log |
 | action-specific native cleanup matrix | EV-163 | `COLLISION_CLEANUP_CALLSITE_MAP.md` §2 |
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
-| legitimate reaction interruption cleanup | EV-165 | cleanup map §4 / B6-C next |
+| legitimate reaction interruption cleanup | EV-165, EV-177–EV-178 | cleanup map §4 / `COLLISION_TEST_PLAN.md` B6-C |
 | B5 parent stack | EV-166 | EV-169–EV-170 static identification |
 | marker bookkeeping vs physical cleanup | EV-167 | `COLLISION_LIFECYCLE_PLAN.md` §10 |
 | ordinary / reaction / bad-skip three-path model | EV-168 | lifecycle plan §11 |
@@ -58,6 +58,7 @@ Raw logs are verification/provenance, not routine reading.
 | deferred pending-finalization/post-script candidate | EV-172 | lifecycle plan §§8–9 / B6 tests |
 | live `scripts` backup-DLL contamination | EV-173 | `SOURCE_HOOK_GUIDE.md` build/runtime reference |
 | B6 clean path disappearance + ProcessScript stack | EV-174–EV-176 | `COLLISION_TEST_PLAN.md` B6-B |
+| B6 reaction successor / empty-Primary diagnostic limits | EV-177–EV-178 | `COLLISION_TEST_PLAN.md` B6-C |
 
 ---
 
@@ -151,7 +152,7 @@ Search terms:
 
 Evidence anchors:
 
-- EV-151–EV-176.
+- EV-151–EV-178.
 
 Exact native RVAs/stacks:
 
@@ -209,7 +210,7 @@ Practical source route:
 | design consequence | EV-168, EV-172 | keep one execution-level invariant; pending-finalization + tightly gated post-script timing is a hypothesis |
 | B6 environment | EV-173 | backup `Script_*.dll.bak` in live scripts can participate in runtime hooks; isolate test directory |
 | B6 clean control | EV-174–EV-176 | clean Hit is still visible at StartRecover BEGIN; caller stack is `sAICombatMoveInstr -> ProcessScript`; B6-B supports the common-ProcessScript hypothesis for the clean path |
-| B6 reaction comparison | next | use existing direct replacement probe; compare with EV-176 before B6-D |
+| B6 reaction comparison | EV-177–EV-178 | legitimate reaction cleanup and empty-Primary successor ordering are confirmed, but both the direct-replacement gate and the Normal-context empty-Primary gate miss the reaction successor stack; refine only the factual empty-Primary observation before B6-D |
 
 ---
 
@@ -221,6 +222,8 @@ Key active B6 artifacts:
 
 - `research/raw/2026-08-28_b6b_player_2h_normal_clean_completion_stopmotion_stack_valid.log`
 - `research/raw/2026-08-28_b6b_player_2h_normal_clean_completion_startrecover_stack.log`
+- `research/raw/2026-08-28_b6c_player_2h_normal_legitimate_reaction_replacement_stack.log`
+- `research/raw/2026-08-28_b6c2_player_2h_normal_legitimate_reaction_empty_primary_playmotion_stack.log`
 
 Open archived/raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
