@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 1.4  
+**Version:** 1.5  
 **Updated:** 2026-08-28
 
 ## Purpose
@@ -16,7 +16,15 @@ General collaboration behavior is governed by the active CAM framework in `tchol
 - `PROJECT_COLLABORATION.md` — sustained-project mechanisms;
 - `BETWEEN_CHATS.md` — context continuity.
 
-Do **not** reload those CAM documents for every Gothic 3 prompt. This file is the project delta. Retrieve the broader CAM authority only when a collaboration/process question actually requires it.
+This project also deliberately tracks the candidate reusable operational layer on CAM branch `current` where it reflects mechanisms already proven useful here or elsewhere:
+
+- `REUSABLE_COLLABORATION_BASELINE.md` — candidate cross-project operating baseline;
+- `KNOWLEDGE_SYSTEM.md` — reusable knowledge, retrieval, authority and maintenance model;
+- `COLLABORATION_PROCEDURES.md` — recurring event-driven collaboration procedures.
+
+The CAM `current` baseline does not replace this project delta or the Gothic-specific authorities below. It is the reusable layer against which project experience can be compared. Project-specific variation is expected; a mechanism should move upward only when evidence shows that it generalizes beyond the local conditions that produced it.
+
+Do **not** reload those CAM documents for every Gothic 3 prompt. This file is the project delta. Retrieve the broader CAM authority or candidate baseline only when a collaboration/process question, cross-project comparison, or method-evolution question actually requires it.
 
 Older Gothic 3 collaboration rules remain useful history but are superseded where they conflict with this document or the active CAM framework.
 
@@ -339,7 +347,22 @@ Prefer changing the lowest justified layer:
 - knowledge authority/update triggers;
 - Work implementation protocol;
 - this Gothic 3 project delta;
-- broader CAM framework only when the lesson genuinely generalizes.
+- CAM `current` reusable operational baseline when a lesson genuinely generalizes beyond Gothic 3 but remains a project-derived candidate mechanism;
+- stable CAM project/general framework only when broader evidence justifies changing the higher layer.
+
+The intended learning loop is:
+
+```text
+real project success / friction / failure
+→ diagnose the actual mechanism
+→ improve the lowest owning project layer
+→ observe subsequent use
+→ compare the lesson with CAM current
+→ generalize upward only when transfer is supported
+→ compare later project evidence back against the reusable template/baseline
+```
+
+A CAM template is a starting structure, not a demand for identical project form. When another project legitimately varies from the template, first ask whether that is a useful project-specific adaptation or evidence that the reusable baseline itself should improve.
 
 Old collaboration documents and experiments may be archived once their durable lessons are represented in current authority. Their historical rationale remains available through archive/history.
 
@@ -347,4 +370,4 @@ Old collaboration documents and experiments may be archived once their durable l
 
 ## Core Project Collaboration Rule
 
-> **Start from current state, orient once to the relevant subsystem when context is fresh or has changed, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, and let Gothic 3 runtime/source evidence—not documentation volume—drive the engineering.**
+> **Start from current state, orient once to the relevant subsystem when context is fresh or has changed, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, and let Gothic 3 runtime/source evidence—not documentation volume—drive both the engineering and any collaboration-method lessons proposed for wider reuse.**
