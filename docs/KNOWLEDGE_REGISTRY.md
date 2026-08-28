@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-08-27
+**Updated:** 2026-08-28
 
 ## Purpose
 
@@ -23,17 +23,17 @@ The registry exists to prevent the same fact becoming a separately maintained co
 | transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact transient implementation/test state | ordinary project facts already live in durable authorities |
 | project-specific collaboration behavior | `COLLABORATION_RULES.md` | a recurring Gothic-3-specific collaboration lesson materially changes workflow | one isolated annoyance/error that existing rules already cover |
 | bounded Work execution contract | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work authority, stop conditions, review responsibility, or frozen-task execution model changes | a technical Gothic 3 finding unrelated to Work behavior |
-| knowledge maintenance process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model changes | ordinary technical evidence/result |
+| knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing rule, workaround-reevaluation rule, audit-health criteria, or bloat early-warning responsibility changes | ordinary technical evidence/result already handled by the existing procedure |
 | authority/update routing | `KNOWLEDGE_REGISTRY.md` | a responsibility gains/moves/loses authority or update-trigger logic changes | underlying knowledge grows inside an existing authority |
 | overall intended Raise/speed/frame-collision system architecture | `DESIGN.md` | system responsibility, public behavior, major invariant, subsystem boundary, configuration model changes | experiment chronology, routine confirmations, build status |
 | current collision execution/cleanup lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` | ownership/lifetime/cleanup invariant or causal architecture changes | a test confirms the existing lifecycle model without changing it |
 | current collision diagnostic architecture | `COLLISION_LOGGER_PLAN.md` | hook ownership, diagnostic event model, active probe responsibility changes | a log adds evidence without changing diagnostic design |
 | current staged collision validation gates | `COLLISION_TEST_PLAN.md` | current gate, acceptance criteria, control matrix, or interpretation rule changes | historical completed-test detail already preserved by evidence |
 | exact evidence status/provenance | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` | a controlled/source fact is established, qualified, contradicted, or materially reinterpreted | pure design preference without factual claim |
-| evidence topic routing | `EVIDENCE_INDEX.md` | a new evidence domain/range/search route is useful or an existing route materially changes | every new EV already covered by an existing route |
+| evidence topic / future-responsibility routing | `EVIDENCE_INDEX.md` | a new evidence domain/range/search route is useful, an existing route materially changes, or proven knowledge becomes materially relevant to a different future engineering responsibility | every new EV already covered by an existing route or speculative “might be useful someday” relationships |
 | generalized animation semantics / authoring rules | `ANIMATION_RULES.md` | a generalized filename/UseType/action/phase/pose/authoring semantic changes | one concrete asset/test that does not generalize the rule |
 | concrete animation families/assets/fixtures | `ANIMATION_CATALOG.md` | a concrete family/asset/source annotation/fixture materially changes reusable asset knowledge | runtime architecture result with no asset-level consequence |
-| animation question routing | `ANIMATION_INDEX.md` | a new useful animation question/family/search route appears | ordinary new catalog detail already reachable by current route |
+| animation question routing | `ANIMATION_INDEX.md` | a new animation knowledge category appears, an existing route changes, or another concrete animation responsibility needs a materially useful route | ordinary new catalog detail already reachable by current route |
 | complete native animation filename existence | `data/animation_names/all_animation_names.txt` | source inventory is regenerated/replaced from authoritative extracted data | interpretation of existing filenames |
 | author-grouped exact animation names/notes | `data/animation_names/author_grouped_attacks_and_stumbles.txt` | authoritative grouped source changes | generalized interpretation derived from the source |
 | source/API/symbol/hook practical lookup | `SOURCE_HOOK_GUIDE.md` | reusable symbol/API/hook pattern/address/search route is established/revised | experiment chronology or one-off implementation detail |
@@ -62,6 +62,8 @@ index route (only if retrieval changes)
         ↓
 current-state pointer (only if active responsibility changes)
 ```
+
+When proven knowledge becomes relevant to a different future responsibility, add a **small cross-route from that future responsibility to the existing authority/evidence**. Do not create another copy of the underlying fact.
 
 Do not create sideways dependency chains where every authority repeats every other authority.
 
@@ -101,6 +103,24 @@ EVIDENCE_INDEX only if routing materially changes
 research raw → archive when processed
 ```
 
+### New engine knowledge may simplify an existing workaround later
+
+Likely updates:
+
+```text
+owning Evidence Ledger / topic authority for the new fact
+→ future-responsibility index route if the normal topic route would miss it
+→ route future refactor to BOTH the newer mechanism and the older regression/invariant that caused the workaround
+```
+
+Usually do **not**:
+
+```text
+rewrite the workaround immediately
+copy the new fact into several subsystem documents
+create a new authority merely for the cross-relationship
+```
+
 ### New exact animation file discovered
 
 If it is merely existence:
@@ -138,7 +158,8 @@ Before creating another document ask:
 1. Does an existing authority already own this responsibility?
 2. Is the problem really missing indexing rather than missing authority?
 3. Would a new document create another independently stale copy?
+4. Can a future-relevance dependency be represented as one small route to an existing authority instead?
 
 Prefer a new index route or section over a new authority when possible.
 
-A full registry review is appropriate only when the knowledge schema itself changes or repeated maintenance transactions reveal unclear ownership.
+A full registry review is appropriate only when the knowledge schema itself changes, repeated maintenance transactions reveal unclear ownership, or a knowledge-system health check shows that retrieval breadth/document growth is materially degrading work.
