@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-08-27
+**Updated:** 2026-08-28
 
 ## Purpose
 
@@ -42,7 +42,7 @@ Raw logs are verification/provenance, not routine reading.
 | marked block-timeout failure | EV-155 | native control EV-156 |
 | native stale collision / running damage | EV-156 | archived 2026-08-25 native logs |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
-| PlayMotion actual replacement timing | EV-158 | B6 EV-174 for StopMotion-first clean path |
+| PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-175 for clean-path disappearance limitation |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
 | StartRecover not post-cleanup / not guaranteed | EV-160 | source guide SPU table |
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | archived B3b log |
@@ -57,7 +57,7 @@ Raw logs are verification/provenance, not routine reading.
 | callback processing after main script dispatch | EV-171 | cleanup map §8 |
 | deferred pending-finalization/post-script candidate | EV-172 | lifecycle plan §§8–9 / B6 tests |
 | live `scripts` backup-DLL contamination | EV-173 | `SOURCE_HOOK_GUIDE.md` build/runtime reference |
-| B6 clean path StopMotion-before-PlayMotion limitation | EV-174 | `COLLISION_LOGGER_PLAN.md` §6 / `COLLISION_TEST_PLAN.md` B6 |
+| B6 clean path Primary disappears before StopMotion hook snapshot | EV-174–EV-175 | `COLLISION_LOGGER_PLAN.md` §6 / `COLLISION_TEST_PLAN.md` B6 |
 
 ---
 
@@ -151,7 +151,7 @@ Search terms:
 
 Evidence anchors:
 
-- EV-151–EV-174.
+- EV-151–EV-175.
 
 Exact native RVAs/stacks:
 
@@ -208,7 +208,7 @@ Practical source route:
 | B5 static follow-up | EV-169–EV-171 | parents are generic script runners, common higher dispatcher is generic `ProcessScript()` |
 | design consequence | EV-168, EV-172 | keep one execution-level invariant; pending-finalization + tightly gated post-script timing is a hypothesis |
 | B6 environment | EV-173 | backup `Script_*.dll.bak` in live scripts can participate in runtime hooks; isolate test directory |
-| B6 clean control | EV-174 | clean Hit -> Recover stops the outgoing Primary before successor PlayMotion, so B6 must capture the already-hooked StopMotion stack as well as direct PlayMotion replacement |
+| B6 clean control | EV-174–EV-175 | clean Hit is still Primary at StartRecover BEGIN but already absent at StopMotion hook entry; current StopMotion stack gate therefore cannot observe clean teardown |
 
 ---
 
@@ -229,9 +229,13 @@ B1–B6 processed logs have been moved to `research/archive/` as their conclusio
 | B4b reaction interruption | `research/archive/2026-08-26_stepB4b_native_interruption_cleanup_callsite.log` |
 | B5 higher parent stack | `research/archive/2026-08-26_stepB5_cleanup_parent_stack_probe.log` |
 | B6-B invalid backup-DLL-contaminated clean control | `research/archive/2026-08-27_stepB6B_invalid_backup_dll_contamination.log` |
-| B6-B isolated clean control / StopMotion-first finding | `research/archive/2026-08-27_stepB6B_clean_hit_recover_isolated.log` |
+| B6-B isolated clean control / pre-StopMotion disappearance finding | `research/archive/2026-08-27_stepB6B_clean_hit_recover_isolated.log` |
 
-Open archived logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
+The valid revised B6-B diagnostic artifact remains active/unprocessed at:
+
+`research/raw/2026-08-28_b6b_player_2h_normal_clean_completion_stopmotion_stack_valid.log`
+
+Open archived/raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
 `research/raw/` is reserved for active/unprocessed evidence and current diagnostic output.
 
