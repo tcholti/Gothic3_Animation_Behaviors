@@ -242,7 +242,23 @@ static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
         actor != None && IsPlayerEntity(actor.GetInstance());
 
     if (shouldLog)
+    {
         CollisionDiagnostics::LogCombatMoveStartRecoverBoundary(actor, "BEGIN");
+        CollisionDiagnostics::PrimaryMotionEventSnapshot begin =
+            CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(actor);
+        if (CollisionDiagnostics::IsAttackHitPrimaryMotion(begin))
+        {
+            CollisionDiagnostics::HitReplacementStackSnapshot startRecover = {};
+            startRecover.outgoingMotionName = begin.primary.motionName;
+            startRecover.frameCount = ::CaptureStackBackTrace(
+                0, CollisionDiagnostics::NativeCleanupStackCapacity,
+                startRecover.frames, nullptr);
+            CollisionDiagnostics::CaptureHitReplacementContext(
+                actor, nullptr, startRecover);
+            CollisionDiagnostics::LogHitStartRecoverBeginStack(
+                actor, startRecover);
+        }
+    }
     Hook_AICombatMoveStartRecover.GetOriginalFunction(
         &AICombatMoveStartRecover_FrameCollisionTest)(a_pSPU);
     if (shouldLog)
