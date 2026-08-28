@@ -3,29 +3,24 @@
 **Purpose:** Small transient bridge between Normal Chat and Work.  
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-## Work result — Step B9 native AISetState ordering diagnostic
+## Current result — B9 implementation independently reviewed
 
 **Date:** 2026-08-28  
 **Branch:** `docs/collision-source-evidence`  
-**Implementation commit:** `55e268901aaf06758cb5d88085c865457684992c`
+**B9 implementation:** `55e268901aaf06758cb5d88085c865457684992c`
 
-### Changed
+### Independent Normal Chat review — PASS
 
-- Added one diagnostic ThisCall interception at tested `Game + 0x164320` using the authoritative `void gCScriptRoutine_PS::AISetState(bCString const&)` signature.
-- Added player-only pre-original `AISETSTATE CALLSITE` records resolved from the original routine property-set `this` and `this->GetEntity()`.
-- Records the unchanged requested state argument, immediate caller module/RVA, unchanged 16-frame stack, current routine state, action/phase/StateTime/StatePosition, movement, PrimaryFirst and equipped-source context.
-- Added the Step B9 startup banner.
+- The implementation commit is exactly one commit after the frozen B9 contract and changes only the three expected diagnostic source files.
+- One new player-only diagnostic hook is installed at tested `Game +0x164320 = gCScriptRoutine_PS::AISetState(bCString const&)` using the already-proven ThisCall hook pattern.
+- The wrapper captures the requested state, immediate caller, 16-frame stack, current state/action/phase/StateTime/StatePosition/movement, PrimaryFirst, and equipped-source context before the original state replacement.
+- The new diagnostic gate is player identity only; it does not classify or gate by attack family, input, action, phase, collision group, requested state, FullStop caller, or cleanup state.
+- The original AISetState is called exactly once with the unchanged real argument and there is no post-call mutation.
+- Existing B1–B7b diagnostics and collision/marker/callback/bookkeeping behavior were preserved; the implementation commit contains additions only.
+- No forbidden production cleanup, lifecycle/pending state, timer/polling/scan/cache, ProcessScript/internal-SPU/call-site hook, classifier, or guessed layout was introduced.
 
-### Protected behavior and source audit
+### Next step
 
-- Original AISetState is called exactly once with the unchanged real argument; void return behavior is preserved and there is no post-call mutation.
-- The new record is gated only to the player, not by input, attack/family, action, phase, collision group, state name, successor, FullStop caller or cleanup state.
-- Existing B7, B7b and B1–B6 diagnostics, direct motion probes, native cleanup observation, PrimaryFirst logging, and all collision/marker/callback/bookkeeping behavior remain unchanged.
-- No production cleanup/repair, lifecycle or persistent state, timer, polling, scan, cache, classifier, forbidden hook, call-site interception, offensive-request stack capture or guessed layout was added.
-- Only the three expected diagnostic source files changed; `git diff --check` passed and the published comparison matches the audited source scope.
+Build `Script_FrameCollisionTest` from the current branch. Do not deploy or run Gothic 3 until the build succeeds and Normal Chat gives the isolated deployment/load step.
 
-### Still required outside Work
-
-- Independent diff-against-contract review.
-- Build/load verification and the separately frozen B9 runtime fixture.
-- No build or Gothic 3 run was performed in Work, as required.
+After build/load verification, Normal Chat will freeze the exact B9 runtime fixture and raw filename.
