@@ -30,35 +30,38 @@ Raw logs are verification/provenance, not routine reading.
 | Fist/body-contact source semantics | EV-029–EV-032, EV-080–EV-085 | `ANIMATION_CATALOG.md` Fist fixture |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | marker-core later evidence / catalog fixtures |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
-| Quick marker ownership / StatePosition | EV-066–EV-075 | source/history only if implementation chronology matters |
+| Quick marker ownership / StatePosition | EV-066–EV-075 | EV-179–EV-181 for later lifecycle/bookkeeping interpretation |
 | Dual native source map | EV-090–EV-094 | `ANIMATION_CATALOG.md` §6–§7 |
 | multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | archived v0.10–v0.13 fixture logs |
 | marker execution retirement after interruption | EV-131–EV-133 | EV-167 for later lifecycle interpretation |
 | final RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` §6 / `ANIMATION_RULES.md` §20 |
 | Whirl callback/action/source separation | EV-145–EV-147 | `ANIMATION_RULES.md` §8.1 / cleanup map |
 | NewBalance / AttackCollision Whirl compatibility | EV-035, EV-148–EV-150 | `SOURCE_HOOK_GUIDE.md` same-function caution |
-| Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156 for block-skip/native defect |
+| Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156, EV-180–EV-181 for bad-skip lifecycle |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` Step-B constraints |
 | marked block-timeout failure | EV-155 | native control EV-156 |
-| native stale collision / running damage | EV-156 | archived 2026-08-25 native logs |
+| native stale collision / running damage | EV-156, EV-181 | archived 2026-08-25 native logs / latest B6-D raw |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
-| PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-178 |
+| PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-180 |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
-| StartRecover not post-cleanup / not guaranteed | EV-160 | EV-176 for clean-path caller context |
+| StartRecover not post-cleanup / not guaranteed | EV-160 | EV-176 / EV-180 clean-vs-bad comparison |
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | archived B3b log |
 | action-specific native cleanup matrix | EV-163 | `COLLISION_CLEANUP_CALLSITE_MAP.md` §2 |
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
-| legitimate reaction interruption cleanup | EV-165, EV-177–EV-178 | cleanup map §4 / `COLLISION_TEST_PLAN.md` B6-C |
+| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179 | cleanup map §4 / `COLLISION_TEST_PLAN.md` B6-C |
 | B5 parent stack | EV-166 | EV-169–EV-170 static identification |
 | marker bookkeeping vs physical cleanup | EV-167 | `COLLISION_LIFECYCLE_PLAN.md` §10 |
-| ordinary / reaction / bad-skip three-path model | EV-168 | lifecycle plan §11 |
+| ordinary / reaction / bad-skip three-path model | EV-168, EV-179–EV-181 | lifecycle plan §11 |
 | `RunScriptState` / `RunScriptFunction` identification | EV-169 | cleanup map §§5–6 |
-| `ProcessScript()` common generic dispatcher | EV-170, EV-176 | cleanup map §7 / B6 |
+| `ProcessScript()` common generic dispatcher | EV-170, EV-176 | EV-180 for failed universal replacement-time validation |
 | callback processing after main script dispatch | EV-171 | cleanup map §8 |
-| deferred pending-finalization/post-script candidate | EV-172 | lifecycle plan §§8–9 / B6 tests |
+| deferred pending-finalization/post-script candidate | EV-172 | **superseded by EV-180**; lifecycle plan §8 |
 | live `scripts` backup-DLL contamination | EV-173 | `SOURCE_HOOK_GUIDE.md` build/runtime reference |
 | B6 clean path disappearance + ProcessScript stack | EV-174–EV-176 | `COLLISION_TEST_PLAN.md` B6-B |
-| B6 reaction successor / empty-Primary diagnostic limits | EV-177–EV-178 | `COLLISION_TEST_PLAN.md` B6-C |
+| B6 reaction successor context | EV-177–EV-179 | `COLLISION_TEST_PLAN.md` B6-C |
+| B6 bad skip context / no useful ScriptAdmin replacement stack | EV-180 | `COLLISION_TEST_PLAN.md` B6-D |
+| long-lived stale group 7 through idle / later inherited 7->7 | EV-181 | `COLLISION_LIFECYCLE_PLAN.md` §§1–2 / B7 rationale |
+| current attack-lifecycle/bookkeeping reconstruction | EV-066–EV-075, EV-131–EV-133, EV-167, EV-179–EV-181 | `COLLISION_TEST_PLAN.md` B7 / `SOURCE_HOOK_GUIDE.md` CombatMove symbols |
 
 ---
 
@@ -129,30 +132,33 @@ Historical fixture details:
 - `research/archive/2026-08-22_framecollision_v0.10_*`;
 - `research/archive/2026-08-23_framecollision_v0.11_*` through v0.18 fixture logs.
 
-### E. Marker execution lifetime
+### E. Marker execution lifetime / bookkeeping
 
 Search terms:
 
-`MarkerExecutionBudget`, `RetireMarkerOwnedSource`, interruption, stale budget, exact-set switching
+`MarkerExecutionBudget`, `RetireMarkerOwnedSource`, `StatePosition`, interruption, stale budget, exact-set switching
 
 Evidence anchors:
 
+- EV-066–EV-075;
 - EV-131–EV-133;
-- EV-167.
+- EV-167;
+- EV-181.
 
 Architecture:
 
-- `COLLISION_LIFECYCLE_PLAN.md` §10.
+- `COLLISION_LIFECYCLE_PLAN.md` §10;
+- `COLLISION_TEST_PLAN.md` B7.
 
 ### F. Native collision cleanup lifecycle
 
 Search terms:
 
-`Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript
+`Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition
 
 Evidence anchors:
 
-- EV-151–EV-178.
+- EV-151–EV-181.
 
 Exact native RVAs/stacks:
 
@@ -207,23 +213,25 @@ Practical source route:
 | B4/B4b | EV-163–EV-165 | ordinary cleanup is action-specific; tested reaction interruption has separate route |
 | B5 | EV-166 | ordinary/reaction successful paths reached adjacent but distinct Game parents |
 | B5 static follow-up | EV-169–EV-171 | parents are generic script runners, common higher dispatcher is generic `ProcessScript()` |
-| design consequence | EV-168, EV-172 | keep one execution-level invariant; pending-finalization + tightly gated post-script timing is a hypothesis |
 | B6 environment | EV-173 | backup `Script_*.dll.bak` in live scripts can participate in runtime hooks; isolate test directory |
-| B6 clean control | EV-174–EV-176 | clean Hit is still visible at StartRecover BEGIN; caller stack is `sAICombatMoveInstr -> ProcessScript`; B6-B supports the common-ProcessScript hypothesis for the clean path |
-| B6 reaction comparison | EV-177–EV-178 | legitimate reaction cleanup and empty-Primary successor ordering are confirmed, but both the direct-replacement gate and the Normal-context empty-Primary gate miss the reaction successor stack; refine only the factual empty-Primary observation before B6-D |
+| B6 clean control | EV-174–EV-176 | clean completion exposes `sAICombatMoveInstr -> ProcessScript()` at StartRecover |
+| B6 reaction comparison | EV-177–EV-179 | reaction cleanup and actual Stumble/KnockDown successor stacks are captured inside reaction Script_Game/ScriptAdmin context |
+| B6 bad replacement | EV-180–EV-181 | armed Whirl can disappear to Ambient without StartRecover/cleanup; observed successor stack exposes no useful ScriptAdmin/SPU context and stale group 7 can persist through idle into a later attack |
+| B6 design result | EV-172, EV-180 | replacement-triggered deferred-`ProcessScript()` candidate is superseded/rejected in its present form; execution-level invariant remains |
+| B7 current research | EV-066–EV-075, EV-131–EV-133, EV-167, EV-179–EV-181 | reconstruct CombatMove/routine/instruction bookkeeping and activation/terminal continuations before designing another finalization checkpoint |
 
 ---
 
 ## 4. Processed Step-B Log Routing
 
-Processed logs are moved to `research/archive/` as their conclusions become canonical. Raw logs may remain temporarily in `research/raw/` while the current B6 comparison set is still active.
+Processed logs are moved to `research/archive/` as their conclusions become canonical. Raw logs may remain temporarily in `research/raw/` while the current lifecycle comparison set is still active.
 
-Key active B6 artifacts:
+Key active comparative artifacts:
 
-- `research/raw/2026-08-28_b6b_player_2h_normal_clean_completion_stopmotion_stack_valid.log`
 - `research/raw/2026-08-28_b6b_player_2h_normal_clean_completion_startrecover_stack.log`
 - `research/raw/2026-08-28_b6c_player_2h_normal_legitimate_reaction_replacement_stack.log`
 - `research/raw/2026-08-28_b6c2_player_2h_normal_legitimate_reaction_empty_primary_playmotion_stack.log`
+- `research/raw/2026-08-28_b6c3_b6d_player_2h_clean_skip_and_reaction_successor_stacks.log`
 
 Open archived/raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
