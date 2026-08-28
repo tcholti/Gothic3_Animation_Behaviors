@@ -7,7 +7,7 @@
 
 Define the smallest authoritative rule that can guarantee offensive collision cleanup without creating one repair branch per attack family or interruption symptom.
 
-Detailed proof history belongs in `EVIDENCE_INDEX.md` / the evidence ledgers. Build-specific native cleanup locations belong in `COLLISION_CLEANUP_CALLSITE_MAP.md`.
+Detailed proof history belongs in `EVIDENCE_INDEX.md` / the evidence ledgers. Build-specific cleanup and control-flow locations belong in `COLLISION_CLEANUP_CALLSITE_MAP.md` and `SOURCE_HOOK_GUIDE.md`.
 
 The pre-information-architecture plan is preserved at:
 
@@ -19,9 +19,9 @@ The pre-information-architecture plan is preserved at:
 
 > **For every real attack-Hit execution that requests offensive collision, Gothic 3 gets its legitimate cleanup opportunity. When that exact Hit genuinely ends or is replaced, if proper cleanup already occurred, do nothing; if not, repair the remaining offensive collision using native cleanup semantics.**
 
-How the Hit ended is not part of the production rule. Normal completion, damage/reaction interruption, block timeout, skipped Recover bookkeeping, terrain interruption, and direct replacement are test cases for one lifecycle invariant.
+How the Hit ended is not part of the production rule. Normal completion, damage/reaction interruption, state replacement, skipped Recover bookkeeping, terrain interruption and direct replacement are test cases for one lifecycle invariant.
 
-B6-D strengthened this invariant: an armed bad Whirl can lose its physical Hit, sit in ordinary idle for many seconds with the weapon still offensive, and carry that stale state into a later independent attack until a later valid cleanup finally occurs.
+The defect is native and broader than one animation family. An armed bad execution can lose its physical Hit and remain offensively active through Ambient/idle/movement and into a later independent attack until some later valid native cleanup occurs.
 
 ---
 
@@ -42,7 +42,7 @@ Did X request offensive collision?
         ↓
 Follow exact actual Hit execution X
         ↓
-X genuinely ends / restarts / is replaced
+X genuinely terminates / restarts / is replaced
         ↓
 Allow Gothic its legitimate native cleanup opportunity
         ↓
@@ -53,9 +53,9 @@ Was X cleaned?
 retire execution-level lifecycle/marker bookkeeping
 ```
 
-A request counts even when the physical source was already offensive (`7 -> 7`). The obligation comes from execution X requesting offensive collision, not from observing a numerical group transition. EV-181 now directly shows why: a later Normal attack can inherit a stale group-7 weapon from a previous broken Whirl and therefore issue `7 -> 7` before eventually cleaning it.
+A request counts even when the physical source is already offensive (`7 -> 7`). EV-181 proves why: a later attack can inherit stale group 7 from an earlier broken execution.
 
-Preferred minimal state remains conceptually:
+Preferred conceptual state remains:
 
 ```text
 Execution X
@@ -64,188 +64,73 @@ Execution X
     nativeCleanupObserved
 ```
 
-Production should remain event-driven. The exact finalization trigger/timing mechanism is **not yet chosen** after B6 rejected the earlier replacement-triggered deferred-`ProcessScript()` candidate.
+Production should remain event-driven. The final general finalization trigger is not yet chosen.
 
 ---
 
-## 3. Fallback — Source-Aware Guard Only If Evidence Requires It
+## 3. Three Established Ending Structures
 
-Use per-source cleanup ownership only if runtime/source evidence proves attack-wide obligation is insufficient—for example, if one source can legitimately clean while another independently remains stale.
+### A — ordinary successful completion
 
-Do **not** adopt source-specific lifecycle bookkeeping merely because the marker implementation already has RIGHT/LEFT masks.
-
-The preferred abstraction is execution-level. The physical source set is subordinate data unless evidence proves otherwise.
-
----
-
-## 4. Marker Rule While the Hit Is Alive
-
-Marker timing is separate from terminal lifecycle cleanup.
+For tested full Whirl:
 
 ```text
-RIGHT = {RIGHT}
-LEFT  = {LEFT}
-BOTH  = {RIGHT, LEFT}
-OFF   = {}
+attack ScriptFunction reaches CombatMove break block
+→ sAICombatMoveInstr persists while CombatMove is active
+→ CombatMove eventually returns complete
+→ suspended ScriptFunction resumes after break block
+→ action-specific cleanup (+0x4E03C for tested full Whirl)
+→ collision clean
 ```
 
-Each marker defines the complete desired offensive equipped-source set at that authored moment.
+Ordinary cleanup is Script_Game continuation after asynchronous CombatMove completion, not automatic animation teardown.
 
-Repeated source markers explicitly rearm their source through `ClearTriggeredList()`.
+### B — legitimate damage/reaction interruption
 
-`G3AB_COL_OFF` is an optional authored inactive gap inside a still-live Hit. It is **not** terminal safety and must not replace the lifecycle guard.
-
-Two governing rules:
+Tested player Normal/Quick reactions:
 
 ```text
-WHILE THE HIT IS ALIVE:
-markers define the desired offensive set.
+attack Hit active
+→ Script_Game +0x2D0F2 calls PSRoutine::FullStop()
+→ active CombatMove terminates
+→ control returns through +0x2D0F8 into reaction handling
+→ separate reaction cleanup +0x24AFF runs when offense had armed
+→ reaction continuation owns successor
+→ collision clean
 ```
+
+FullStop is instruction termination, not cleanup itself.
+
+### C — tested bad full-Whirl held-Use2 teardown
+
+B7b resolves the tested player full-Whirl failure:
 
 ```text
-WHEN THE HIT IS OVER:
-offensive collision must be clean.
+Whirl ScriptFunction suspended at CombatMove break block
+→ Use2 remains held beyond 2500 ms
+→ Script_Game +0x633F1 calls PSRoutine::FullStop()
+→ active CombatMove terminates
+→ Script_Game +0x63409 calls PSRoutine::SetState(...)
+→ SPU state stack / state-position / break-block bookkeeping reset
+→ old Whirl ScriptFunction continuation is discarded
+→ ordinary Whirl cleanup +0x4E03C cannot run
+→ no reaction cleanup owner replaces it
+→ armed weapon can remain Item_Attack(7)
 ```
 
----
+Official SDK documentation states that `SetState` clears the state stack and resets state-position/break-block bookkeeping. Combined with the proven suspended Whirl continuation, this is the causal explanation for the tested stale-collision failure.
 
-## 5. Ownership Authority
-
-Use the strongest available facts for each responsibility.
-
-### Attack-family acquisition
-
-Native callback/action/phase semantics identify the relevant attack mechanism.
-
-### Physical execution lifetime
-
-After a real Hit is acquired, the exact actual PrimaryFirst Hit motion is the stronger physical-lifetime observation. Step-B evidence showed action/phase can drift and bad skip can return to ordinary action/idle while stale offensive collision survives.
-
-### Collision obligation
-
-An actual offensive-collision request by that execution creates the cleanup obligation.
-
-### Native-cleanup observation
-
-Observe the legitimate native cleanup operation/consequence for the owned source/execution. Do not infer success merely because a successor animation was requested.
-
-### Generic script boundary
-
-Generic script-processing can explain timing/control flow on successful paths, but B6 did not establish it as a universal observable replacement-time checkpoint. It must never acquire attack ownership by itself.
+Evidence: EV-183, EV-185–EV-189.
 
 ---
 
-## 6. Native Cleanup Paths Are Opportunities, Not One Universal Function
+## 4. Native Execution/State-Stack Authority
 
-Step B4/B4b/B5 established:
-
-- successful ordinary completion uses multiple action-specific `Script_Game.dll` cleanup call sites;
-- tested damage/reaction interruption uses a separate cleanup path beginning at `Script_Game + 0x24AFF`;
-- those paths converge only later in generic script-execution machinery.
-
-Therefore production should observe whether proper native cleanup occurred rather than hook a growing matrix of family-specific cleanup functions.
-
-Exact action/RVA/stack map:
-
-`COLLISION_CLEANUP_CALLSITE_MAP.md`
-
-Evidence routing:
-
-- EV-163 — action-specific cleanup matrix;
-- EV-165 — separate tested interruption cleanup;
-- EV-166 / EV-169–EV-171 — higher generic script parents;
-- EV-179–EV-181 — reaction successor context, bad-skip context, and long-lived stale offense;
-- EV-182–EV-184 — persisted CombatMove instruction state, clean Script_Game break-block continuation, and reaction-side FullStop structure.
-
----
-
-## 7. Step-B Constraints on Any Final Design
-
-### B1 — replacement is immediate but too early for repair
-
-`eCVisualAnimation_PS::PlayMotion(type 0)` can reveal PrimaryFirst replacement immediately.
-
-In clean Hit -> Recover transitions, successor PlayMotion can occur **before** later native `7 -> 5` cleanup. Therefore replacement itself is not a post-cleanup repair boundary.
-
-### B2 — later original callbacks are not one-shot completion
-
-The original Quick callback can begin only after cleanup and then repeat during Recover. Callback return is not universal Hit completion.
-
-### B3 — StartRecover is too early and not guaranteed
-
-`sAICombatMoveStartRecover` returns before ordinary cleanup and can be bypassed entirely by broken direct-replacement paths.
-
-### B3b — missing Recover assets are not the cause
-
-A no-Recover animation asset can still receive engine Recover bookkeeping and cleanup; the same family can also take the broken path.
-
-### B4/B4b — successful cleanup is action/path-specific
-
-Do not translate native success locations into one hook per action.
-
-### B5 + static identification — shared parents are generic script infrastructure
-
-The B5 parents are identified:
-
-```text
-Game + 0x1603D0 = gCScriptAdmin::RunScriptState(...)
-Game + 0x1604E0 = gCScriptAdmin::RunScriptFunction(...)
-Game + 0x16F120 = gCScriptProcessingUnit::ProcessScript()
-```
-
-These are not combat-specific cleanup owners.
-
-`sAICombatMoveInstr` is also too early: action-specific Script_Game cleanup can occur after it returns.
-
-### B6 — one common replacement-time ProcessScript checkpoint was not demonstrated
-
-Clean completion exposes `sAICombatMoveInstr -> ProcessScript()` at StartRecover. Legitimate reaction successor installation remains inside the reaction Script_Game/ScriptAdmin chain. But an armed bad Whirl can disappear to Ambient with a short observed successor stack containing only the diagnostic frame and `Game +0xD9CB3`, while the weapon remains offensive.
-
-Therefore B6 does **not** justify a production design that depends on every relevant Hit replacement occurring inside one useful currently observable `ProcessScript()` invocation.
-
----
-
-## 8. Rejected Candidate — Replacement-Triggered Deferred ProcessScript Finalization
-
-The previous candidate was:
-
-```text
-exact owned offensive Hit replacement/restart observed
-        ↓
-mark that exact execution pending-finalization
-        ↓
-let the current native script dispatch finish
-        ↓
-at one tightly gated post-script opportunity:
-    native cleanup observed -> no-op
-    cleanup absent          -> repair
-```
-
-B6-D rejects this **specific timing strategy in its present form**. The decisive bad replacement did not expose the useful ScriptAdmin/SPU context needed to guarantee that a replacement-triggered pending execution could be checked at the end of the same current ProcessScript invocation.
-
-This does **not** reject:
-
-- the execution-level cleanup invariant;
-- event-driven lifecycle ownership;
-- using native cleanup semantics;
-- a later generic timing point if another reliably shared boundary is proven.
-
-Do not add a ProcessScript behavior hook merely to rescue the rejected candidate.
-
----
-
-## 9. Current Gate — B7 Attack-Lifecycle / Bookkeeping Reconstruction
-
-The question has now narrowed from the earlier structural "package" hypothesis to a concrete native mechanism:
-
-> **Does bad block-skip forcibly terminate the persisted CombatMove instruction and then lose the owning attack continuation, or does the active CombatMove instruction disappear through another path?**
-
-### B7 static reconstruction already established
-
-The official SDK and tested binary expose two persistent bookkeeping layers:
+The native bookkeeping model now has two relevant layers:
 
 ```text
 gCScriptProcessingUnit
+    state stack of ScriptFunction/ScriptState break blocks
     m_pfInstrCallback
     m_fInstrPlayTime
     m_fInstrDuration
@@ -258,228 +143,167 @@ gCScriptRoutine_PS
     Action
 ```
 
-A CombatMove does not require one attack-specific function to remain continuously on the native stack. While active, `sAICombatMoveInstr` can persist as the SPU instruction callback and the owning ScriptFunction can remain suspended at a break block.
+While CombatMove is active, `sAICombatMoveInstr` can persist in `m_pfInstrCallback` and the owning ScriptFunction can remain suspended in the SPU state stack.
 
-The tested stop APIs are correspondingly direct:
+`gCScriptRoutine_PS::AIFullStop()` invokes the current persisted instruction callback with `fullStop=true`. `AIStopCombatMove()` is narrower and does so only when that callback is exactly `sAICombatMoveInstr`.
 
-```text
-gCScriptRoutine_PS::AIFullStop()
-→ if an instruction callback exists:
-     invoke current callback with fullStop=true
-
-AIStopCombatMove()
-→ only if m_pfInstrCallback == sAICombatMoveInstr:
-     invoke sAICombatMoveInstr(..., fullStop=true)
-```
-
-The tested `sAICombatMoveInstr` control flow supports the same model:
+The important B7b distinction is:
 
 ```text
-CombatMove still active
-→ advance/start/loop instruction
-→ store sAICombatMoveInstr as current callback
-→ return false
+FullStop alone
+≠ proof cleanup should occur immediately
 
-CombatMove terminal
-→ terminal handling / Recover path as applicable
-→ clear callback
-→ return true
-
-fullStop=true
-→ bypass the normal ongoing/Recover decision path
-→ stop internal CombatMove execution
-→ clear callback
-→ return true
+FullStop + state-stack replacement/destruction
+= proven way an old suspended attack continuation can be lost
 ```
 
-### Clean full-Whirl continuation
-
-The full-Whirl Script_Game function provides a concrete normal-path example:
-
-```text
-Script_Game +0x4DF8C
-→ call CombatMove operation
-
-+0x4DF92
-→ test completion result
-
-incomplete
-→ ScriptFunction returns false
-→ later cleanup is not reached yet
-
-complete
-→ ScriptFunction continues after the break block
-→ ordinary full-Whirl weapon cleanup at +0x4E03C
-```
-
-This means ordinary collision cleanup is a **Script_Game continuation after the asynchronous CombatMove completes**, not an automatic consequence of the Hit animation disappearing.
-
-### Legitimate reaction structure
-
-Static reaction-control code contains explicit `PSRoutine::FullStop()` calls at `Script_Game +0x2246F` and `+0x23002`, in the same broad reaction functions represented by the legitimate reaction stacks. The tested reaction route separately supplies weapon cleanup through `Script_Game +0x24AFF`.
-
-Do not overstate the ordering: the exact FullStop call used by every individual recorded Stumble/KnockDown has not yet been paired one-to-one at runtime.
-
-### B7 runtime gate
-
-The next smallest discriminating observation is therefore:
-
-```text
-sAICombatMoveInstr(..., fullStop=true)
-```
-
-If bad block-skip emits it, its caller stack can identify the path that forcibly terminates the active CombatMove. If bad block-skip does not emit it, this specific full-stop explanation is falsified and the instruction is being abandoned through another route.
-
-Prefer that bounded diagnostic over broad attack-start, timer, or per-frame instrumentation.
-
-Evidence: EV-182–EV-184.
+The tested Whirl `SetState` transition is therefore a strong execution-ending signal for that path, but it is not yet proven universal across other stale families.
 
 ---
 
-## 10. Marker Bookkeeping vs Physical Cleanup — Future Marker Review Gate
+## 5. Ownership Authority by Responsibility
 
-These are separate responsibilities, but the B7 bookkeeping evidence is now directly relevant to how the marker core may eventually be simplified.
+### Attack acquisition
 
-Earlier interruption work showed a case where Gothic physically cleaned a marked source but the marker occurrence/execution record could remain stale. `RetireMarkerOwnedSource()` exists to retire bookkeeping after an already-performed source reset; it is not physical fallback cleanup.
+Use native callback/action/phase semantics to identify the relevant attack mechanism.
 
-Likewise, marked Quick/full-Whirl activation had to advance `Routine.StatePosition` so Gothic would not later repeat its one-shot native timed activation. These proven failures demonstrate that attack behavior can depend materially on persistent bookkeeping even when the animation itself is already playing.
+### Physical Hit identity
 
-The new B7 static evidence adds an important possibility: Gothic itself has a persistent CombatMove instruction lifetime and ScriptFunction break-block continuation. If later evidence proves that one exact marked Hit execution can be safely correlated with that native instruction lifetime, some of the custom marker execution/occurrence inference may be reducible.
+After acquisition, the exact actual PrimaryFirst Hit motion is the stronger physical execution observation. Filename/action alone must not own terminal behavior.
 
-A future marker consolidation should therefore explicitly test whether the native lifecycle can replace or simplify parts of:
+### Collision obligation
 
-```text
-MarkerExecutionBudget / occurrence identity
-StateTime-rollback new-execution inference
-RetireMarkerOwnedSource execution retirement
-other custom lifetime guards whose only job is to infer that one CombatMove ended and another began
-```
+An actual offensive-collision request by execution X creates the cleanup obligation.
 
-But **do not simplify these now**. Before any marker bookkeeping refactor/reimplementation, read:
+### Native cleanup observation
 
-- EV-066–EV-075 — Quick ownership and required `StatePosition` advancement;
-- EV-106–EV-116 — repeated contact / occurrence / replay protection;
-- EV-131–EV-133 — interrupted marked-execution retirement regression and fix;
-- EV-167 — marker retirement is not physical cleanup;
-- EV-182–EV-184 — persisted CombatMove/break-block/FullStop architecture;
-- the then-current B7+ lifecycle evidence.
+Observe the legitimate cleanup operation/consequence. Do not infer success because a successor animation was requested or because CombatMove was FullStopped.
 
-Any optimization must preserve all proven marker guarantees:
+### Terminal execution transition
 
-- marker ownership remains exact-motion opt-in;
-- `StatePosition` must not allow Gothic's old timed activation to replay after custom ownership;
-- repeated markers later in one Hit remain distinct authored contacts and rearm correctly;
-- OFF and RIGHT/LEFT/BOTH exact-set source switching remain intra-Hit operations and must not retire the whole execution;
-- duplicate/replayed frame-effect dispatch must not consume a new authored occurrence incorrectly;
-- legitimate interruption must not let one execution's marker budget survive into the next;
-- physical collision cleanup and marker bookkeeping retirement remain separate unless one proven native execution boundary can safely own both.
-
-The preferred future result is not "more native-looking" code for its own sake. It is **less custom state only where Gothic's own execution lifetime provides stronger authority than our current inference**.
-
-Primary retrieval route for future marker work: `EVIDENCE_INDEX.md` → **Marker execution lifetime / bookkeeping**.
+Prefer native instruction/state-stack evidence when it proves that the suspended attack continuation can no longer resume. Do not use generic ProcessScript, action/phase, StartRecover, StopMotion or filename alone as universal finalization authority.
 
 ---
 
-## 11. Three Observed Ending Structures
+## 6. Marker Timing Remains Separate from Terminal Cleanup
 
-### A — ordinary successful completion
-
-```text
-attack ScriptFunction reaches CombatMove break block
-→ sAICombatMoveInstr persists while CombatMove is active
-→ CombatMove eventually returns complete
-→ ScriptFunction resumes after break block
-→ action-specific Script_Game cleanup
-→ RunScriptFunction/generic script return
-→ collision clean
-```
-
-### B — legitimate damage/reaction interruption
+Inside a live marked Hit:
 
 ```text
-Hit active
-→ reaction-control code can FullStop the current AI instruction
-→ old routine timing/bookkeeping resets/changes
-→ separate Script_Game interruption cleanup (+0x24AFF in tested matrix)
-→ reaction ScriptState / Script_Game continuation
-→ reaction motion
-→ collision clean
+RIGHT = {RIGHT}
+LEFT  = {LEFT}
+BOTH  = {RIGHT, LEFT}
+OFF   = {}
 ```
 
-The runtime/static evidence supports this structure, but the exact per-event FullStop call ordering still needs B7 confirmation.
+Each marker defines the complete desired offensive equipped-source set at that authored moment. Repeated source markers rearm through `ClearTriggeredList()`.
 
-### C — bad block skip / abnormal teardown
+`G3AB_COL_OFF` is an authored inactive gap inside a still-live Hit. It is not terminal safety.
 
 ```text
-Hit requests offense
-→ no StartRecover
-→ no tested reaction cleanup
-→ Hit disappears to ordinary Ambient/idle through a different observed motion-request context
-→ weapon may remain Item_Attack(7) for many seconds
-→ a later independent attack can inherit stale 7 and request 7 -> 7
-→ later valid native cleanup can finally reset it
+WHILE HIT IS LIVE:
+markers define desired offensive set.
+
+WHEN HIT IS OVER:
+offensive collision must be clean.
 ```
 
-The unresolved B7 question is whether this bad path also full-stops `sAICombatMoveInstr` and then loses the original ScriptFunction continuation, or abandons the instruction by another mechanism.
-
-The third structure is why a Staff-, Whirl-, Quick-, block-timeout-, or Recover-specific production repair would be the wrong abstraction.
+Physical collision cleanup and marker bookkeeping retirement remain separate responsibilities unless a stronger native execution boundary is later proven to own both safely.
 
 ---
 
-## 12. Deeper Block-Skip Research Is Now the Immediate Architecture Search
+## 7. Constraints Already Established by Step B
 
-Earlier the project intentionally separated deeper block-skip research from universal collision safety. B6 showed that understanding the bookkeeping/control-flow loss is likely necessary to locate a reliable general finalization boundary; B7 static reconstruction has now identified the persisted CombatMove instruction and break-block continuation as concrete parts of that ownership chain.
+Any final design must preserve these facts:
 
-That does not mean the final repair should restore the whole CombatMove system. The immediate purpose remains narrower:
+- PrimaryFirst replacement is immediate evidence but can occur before native cleanup.
+- Later original attack callbacks are not one-shot completion boundaries.
+- StartRecover is too early and can be bypassed.
+- Missing Recover assets are not the cause.
+- Successful ordinary cleanup is action/path-specific.
+- Tested legitimate reaction cleanup is a separate path.
+- `RunScriptFunction`, `RunScriptState` and `ProcessScript` are generic infrastructure, not combat ownership.
+- The rejected replacement-triggered deferred-ProcessScript strategy is not to be revived without new evidence.
+- FullStop is not cleanup.
+- The exact tested Whirl `+0x633F1 -> SetState` path is not automatically a universal stale-family rule.
 
-1. determine how the bad path terminates or abandons the current CombatMove instruction;
-2. determine whether the original ScriptFunction/break-block continuation is discarded at the same transition;
-3. identify the smallest general lifecycle signal that can establish terminal cleanup obligation/finalization;
-4. only then decide whether collision-only repair is enough or a broader CombatMove repair is worthwhile.
-
-The user has also observed attack-driven movement stop while the visual Hit continues in bad skip cases, which remains consistent with a wider CombatMove teardown defect but is not yet mapped to one native field/function.
-
-Raise is not a collision cleanup fix. It may only alter when the vulnerable transition occurs.
+Exact evidence routing: EV-158–EV-189.
 
 ---
 
-## 13. Production Implementation Gate
+## 8. Current Gate — Cross-Family Generality
 
-Production cleanup remains blocked until a post-native-opportunity finalization mechanism is strong enough to avoid family-specific repair matrices or polling.
+The full-Whirl causal mechanism is resolved. The next architecture question is whether the same native **state-stack abandonment class** explains other already-proven stale families.
+
+First target: player Dual Quick, because EV-162 already established a native stale-collision failure there.
+
+> **Does Dual Quick bad skip also terminate its active CombatMove through the same AIFullStop/SetState route, or through another native state/task replacement that discards the suspended attack continuation?**
+
+No new diagnostic is required for the first check. The current B7b AIFullStop observation can be reused.
+
+Do not infer that another family uses the same `+0x633F1` call merely because the physical symptom is the same.
+
+---
+
+## 9. Future Marker-Core Simplification Gate
+
+Current marker bookkeeping exists because of reproduced failures involving:
+
+- required `StatePosition` advancement after custom ownership;
+- repeated-contact occurrence handling;
+- duplicate/replayed frame-effect dispatch;
+- interrupted execution budgets surviving into later attacks;
+- bookkeeping retirement after Gothic already performed physical cleanup.
+
+Native CombatMove/state-stack lifetime may eventually provide stronger exact-execution identity than some current inference. Before simplifying anything, retrieve:
+
+- EV-066–EV-075;
+- EV-106–EV-116;
+- EV-131–EV-133;
+- EV-167;
+- EV-182–EV-189;
+- `EVIDENCE_INDEX.md` → Marker execution lifetime / bookkeeping.
+
+Any simplification must preserve every established marker guarantee. The goal is less custom state only where Gothic's native lifetime is demonstrably stronger.
+
+---
+
+## 10. Production Implementation Gate
+
+Production cleanup remains blocked until a general finalization mechanism is strong enough to avoid family-specific repair matrices or polling.
 
 Do not default to:
 
 - one cleanup hook per action family;
+- cleanup at the Whirl-specific `+0x633F1` caller;
+- unconditional cleanup on AIFullStop or SetState;
 - unconditional cleanup on every `ProcessScript()` return;
-- broad `sAICombatMoveItlLoop` polling;
+- broad CombatMove-loop polling;
 - wall-clock timers;
-- block-timeout/Staff/Quick/Whirl-specific cleanup rules;
-- action/phase-only lifetime authority after exact Hit acquisition;
-- treating `Game +0xD9CB3` as a known lifecycle owner before it is identified;
-- treating `m_pfInstrCallback == sAICombatMoveInstr` alone as exact marker-execution identity before B7 proves that mapping.
+- block-timeout/Staff/Quick/Whirl-specific repair rules;
+- action/phase-only lifetime authority;
+- treating one tested state-reset path as universal before cross-family evidence.
 
-If implementation research reveals a conceptual contradiction, return to design/research.
+If the native state-stack abandonment mechanism generalizes, use that evidence to design one execution-level finalization model rather than copying cause-specific branches.
 
 ---
 
-## 14. Later Regression Requirements
+## 11. Later Regression Requirements
 
-If a final design eventually uses generic script timing, validate unrelated mechanics as negative/no-op cases—especially:
+Any final generic design must include negative/no-op validation for unrelated mechanics, especially:
 
 - Fist;
 - bow;
 - crossbow;
 - magic.
 
-Fist is especially important because it can share ordinary melee action enums while not using the tested weapon-style physical `Item_Attack(7)` request.
-
-Any generic checkpoint must remain a complete no-op unless an exact owned offensive execution is pending finalization.
+Fist is especially important because it can share melee action enums while not using the tested weapon-style `Item_Attack(7)` physical source model.
 
 ---
 
-## 15. Preference Order
+## 12. Preference Order
 
-1. **Preferred:** execution-level guard that observes/reuses Gothic's native cleanup semantics, with a finalization boundary established from B7 evidence.
-2. **Preferred marker consolidation direction if B7 later supports it:** replace custom lifetime inference with stronger native CombatMove execution boundaries only where all current marker guarantees remain intact.
+1. **Preferred:** one execution-level guard that observes/reuses Gothic's native cleanup semantics and uses a proven native terminal-execution boundary.
+2. **Preferred marker direction if later proven:** replace custom lifetime inference with stronger native CombatMove/state-stack execution boundaries only where all marker guarantees survive.
 3. **Fallback:** source-aware execution guard only if independent partial-source cleanup evidence requires it.
 4. Avoid cause/family-specific production branches unless a real case is proven unable to fit either general model.
