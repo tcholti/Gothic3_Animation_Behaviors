@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-08-27  
+**Updated:** 2026-08-28  
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -246,9 +246,9 @@ If Gothic failed -> repair using native cleanup semantics.
 
 The current preferred lifecycle architecture is an **execution-level native cleanup guard**. It follows one exact real attack-Hit execution that actually requested offensive collision and observes whether Gothic performed legitimate cleanup for that execution.
 
-The exact post-native-cleanup checkpoint is still under research. The current B6 validation asks whether relevant PrimaryFirst Hit replacement paths share one useful SPU / `gCScriptProcessingUnit::ProcessScript()` execution context that can provide **timing only** for a tightly gated one-shot finalization check.
+B6 rejected the earlier replacement-triggered deferred-`ProcessScript()` checkpoint in its present form. B7 now reconstructs Gothic's native CombatMove execution lifetime one layer earlier: `sAICombatMoveInstr` can persist as an SPU instruction callback while the owning ScriptFunction is suspended at a break block; clean attack cleanup is reached only when that continuation resumes, while reaction-control code can explicitly FullStop the current instruction and continue under separate reaction ownership.
 
-A generic script boundary must never become attack ownership authority.
+The exact finalization boundary is still under research. A generic script boundary, action/phase value, visible successor animation, or persisted instruction callback must never become attack ownership authority by itself.
 
 Current lifecycle authority and constraints:
 
@@ -266,7 +266,28 @@ The marker occurrence/duplicate/window state used to survive Gothic frame-effect
 
 A natural/native source reset may retire marker bookkeeping when it proves the old execution ended. Intentional intra-Hit OFF/source switching must not retire the entire execution.
 
-If the final exact-Hit lifetime boundary can safely own both responsibilities, simplify them there; do not conflate them before that boundary is proven.
+Existing marker bookkeeping fixes are proven behavior and must remain until a stronger authority replaces them. In particular, current code must continue to preserve:
+
+- `Routine.StatePosition` advancement after custom ownership where required to suppress Gothic's competing timed activation;
+- repeated-marker / repeated-contact rearm semantics;
+- occurrence/replay protection;
+- exact-set RIGHT/LEFT/BOTH/OFF switching;
+- interruption retirement so one execution's marker budget does not survive into the next.
+
+B7 introduces a **future simplification possibility**, not a current refactor instruction: if one exact marked Hit can later be correlated safely with Gothic's persisted CombatMove instruction + ScriptFunction break-block lifetime, some custom execution/occurrence inference may become redundant. If that is proven, simplify custom state at the stronger native boundary.
+
+Before any future marker-core consolidation or reimplementation, use this retrieval route:
+
+```text
+EVIDENCE_INDEX.md
+→ Marker execution lifetime / bookkeeping
+→ future marker-core simplification / native execution boundary
+→ COLLISION_LIFECYCLE_PLAN.md §10
+```
+
+That route deliberately joins the older marker regressions/fixes with EV-182–EV-184 and later B7 results.
+
+Do not equate `m_pfInstrCallback == sAICombatMoveInstr` alone with exact marked-Hit identity, and do not conflate marker retirement with physical cleanup before one proven native execution boundary can safely own both.
 
 ---
 
@@ -287,12 +308,14 @@ Unmarked/unconfigured attacks must remain compatible with native behavior and sh
 
 ## 10. Current Implementation Order
 
-1. Finish the universal execution-level collision lifecycle rule and validate B6/current post-opportunity assumptions.
-2. Integrate the stable collision core into the production `Script_G3AnimationBehaviors` boundary only after lifecycle safety is evidence-backed.
-3. Generalize Raise for intended Normal/Quick families and selected full-Whirl cases without coupling it to collision repair.
-4. Implement profile-aware speed control and calibrate family/action values from logged timing evidence.
-5. Broaden actor/source support only where the native source semantics are understood.
-6. Preserve useful animation-selection/CombatMove discoveries for later features rather than mixing them into the collision implementation.
+1. Finish B7 attack-lifecycle/bookkeeping reconstruction and establish a reliable general collision-finalization boundary.
+2. Implement and validate the universal execution-level collision cleanup rule without family/cause-specific repair matrices.
+3. Before consolidating the marker core into production, review the marker-lifetime route in `EVIDENCE_INDEX.md` / `COLLISION_LIFECYCLE_PLAN.md` §10 and simplify custom bookkeeping only where a stronger native exact-execution boundary is proven.
+4. Integrate the stable collision core into the production `Script_G3AnimationBehaviors` boundary only after lifecycle safety and marker bookkeeping are evidence-backed.
+5. Generalize Raise for intended Normal/Quick families and selected full-Whirl cases without coupling it to collision repair.
+6. Implement profile-aware speed control and calibrate family/action values from logged timing evidence.
+7. Broaden actor/source support only where the native source semantics are understood.
+8. Preserve useful animation-selection/CombatMove discoveries for later features rather than mixing them into unrelated behavior.
 
 ---
 
@@ -316,6 +339,7 @@ Not immediate implementation targets:
 |---|---|
 | Current task / current branch state | `SESSION_ENTRYPOINT.md` |
 | Collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
+| Marker execution lifetime / future marker-core simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` §10 |
 | Tested native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → ledgers/raw logs |
 | Animation semantics / UseType / action / pose | `ANIMATION_INDEX.md` → `ANIMATION_RULES.md` |
