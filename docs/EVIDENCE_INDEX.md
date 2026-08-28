@@ -42,22 +42,22 @@ Raw logs are verification/provenance, not routine reading.
 | marked block-timeout failure | EV-155 | native control EV-156 |
 | native stale collision / running damage | EV-156 | archived 2026-08-25 native logs |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
-| PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-175 for clean-path disappearance limitation |
+| PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-176 |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
-| StartRecover not post-cleanup / not guaranteed | EV-160 | source guide SPU table |
+| StartRecover not post-cleanup / not guaranteed | EV-160 | EV-176 for clean-path caller context |
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | archived B3b log |
 | action-specific native cleanup matrix | EV-163 | `COLLISION_CLEANUP_CALLSITE_MAP.md` §2 |
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
-| legitimate reaction interruption cleanup | EV-165 | cleanup map §4 |
+| legitimate reaction interruption cleanup | EV-165 | cleanup map §4 / B6-C next |
 | B5 parent stack | EV-166 | EV-169–EV-170 static identification |
 | marker bookkeeping vs physical cleanup | EV-167 | `COLLISION_LIFECYCLE_PLAN.md` §10 |
 | ordinary / reaction / bad-skip three-path model | EV-168 | lifecycle plan §11 |
 | `RunScriptState` / `RunScriptFunction` identification | EV-169 | cleanup map §§5–6 |
-| `ProcessScript()` common generic dispatcher | EV-170 | cleanup map §7 / B6 |
+| `ProcessScript()` common generic dispatcher | EV-170, EV-176 | cleanup map §7 / B6 |
 | callback processing after main script dispatch | EV-171 | cleanup map §8 |
 | deferred pending-finalization/post-script candidate | EV-172 | lifecycle plan §§8–9 / B6 tests |
 | live `scripts` backup-DLL contamination | EV-173 | `SOURCE_HOOK_GUIDE.md` build/runtime reference |
-| B6 clean path Primary disappears before StopMotion hook snapshot | EV-174–EV-175 | `COLLISION_LOGGER_PLAN.md` §6 / `COLLISION_TEST_PLAN.md` B6 |
+| B6 clean path disappearance + ProcessScript stack | EV-174–EV-176 | `COLLISION_TEST_PLAN.md` B6-B |
 
 ---
 
@@ -147,11 +147,11 @@ Architecture:
 
 Search terms:
 
-`Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion
+`Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript
 
 Evidence anchors:
 
-- EV-151–EV-175.
+- EV-151–EV-176.
 
 Exact native RVAs/stacks:
 
@@ -208,36 +208,23 @@ Practical source route:
 | B5 static follow-up | EV-169–EV-171 | parents are generic script runners, common higher dispatcher is generic `ProcessScript()` |
 | design consequence | EV-168, EV-172 | keep one execution-level invariant; pending-finalization + tightly gated post-script timing is a hypothesis |
 | B6 environment | EV-173 | backup `Script_*.dll.bak` in live scripts can participate in runtime hooks; isolate test directory |
-| B6 clean control | EV-174–EV-175 | clean Hit is still Primary at StartRecover BEGIN but already absent at StopMotion hook entry; current StopMotion stack gate therefore cannot observe clean teardown |
+| B6 clean control | EV-174–EV-176 | clean Hit is still visible at StartRecover BEGIN; caller stack is `sAICombatMoveInstr -> ProcessScript`; B6-B supports the common-ProcessScript hypothesis for the clean path |
+| B6 reaction comparison | next | use existing direct replacement probe; compare with EV-176 before B6-D |
 
 ---
 
 ## 4. Processed Step-B Log Routing
 
-B1–B6 processed logs have been moved to `research/archive/` as their conclusions became canonical. Their blobs are preserved unchanged.
+Processed logs are moved to `research/archive/` as their conclusions become canonical. Raw logs may remain temporarily in `research/raw/` while the current B6 comparison set is still active.
 
-| Research question | Archived file |
-|---|---|
-| B1 PrimaryFirst request/result replacement | `research/archive/researchraw2026-08-26_framecollision_stepB1_primaryfirst_event_probe.log` |
-| B2 full callback boundary probe | `research/archive/2026-08-26_stepB2_full_callback_boundary_probe.log` |
-| B2 callback timing extract | `research/archive/2026-08-26_stepB2_causal_extract.log` / `research/archive/2026-08-26_stepB2_player_event_extract.log` |
-| B3 StartRecover | `research/archive/2026-08-26_stepB3_native_startrecover_probe.log` |
-| B3b no-Recover / block-skip comparison | `research/archive/2026-08-26_stepB3b_native_block_skip_comparison.log` |
-| B4 initial cleanup caller | `research/archive/2026-08-26_stepB4_native_cleanup_callsite_probe.log` |
-| B4b many attacks | `research/archive/2026-08-26_stepB4b_native_manyattacks_cleanup_callsite.log` |
-| B4b finishing/hack | `research/archive/2026-08-26_stepB4b_native_finishing_blow_cleanup_callsite.log` |
-| B4b reaction interruption | `research/archive/2026-08-26_stepB4b_native_interruption_cleanup_callsite.log` |
-| B5 higher parent stack | `research/archive/2026-08-26_stepB5_cleanup_parent_stack_probe.log` |
-| B6-B invalid backup-DLL-contaminated clean control | `research/archive/2026-08-27_stepB6B_invalid_backup_dll_contamination.log` |
-| B6-B isolated clean control / pre-StopMotion disappearance finding | `research/archive/2026-08-27_stepB6B_clean_hit_recover_isolated.log` |
+Key active B6 artifacts:
 
-The valid revised B6-B diagnostic artifact remains active/unprocessed at:
-
-`research/raw/2026-08-28_b6b_player_2h_normal_clean_completion_stopmotion_stack_valid.log`
+- `research/raw/2026-08-28_b6b_player_2h_normal_clean_completion_stopmotion_stack_valid.log`
+- `research/raw/2026-08-28_b6b_player_2h_normal_clean_completion_startrecover_stack.log`
 
 Open archived/raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
-`research/raw/` is reserved for active/unprocessed evidence and current diagnostic output.
+`research/raw/` is reserved for active/unprocessed or still-comparative evidence and current diagnostic output.
 
 ---
 
