@@ -2,7 +2,7 @@
 
 **Purpose:** Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.
 
-> **Do not load every document by default. Find the current responsibility, open the smallest relevant authority/index, and broaden only when the question requires it.**
+> **Do not load every document by default. Find the current responsibility, recover a compact model of the relevant subsystem when needed, open the smallest relevant authority/index, and broaden only when the question requires it.**
 
 ---
 
@@ -29,6 +29,64 @@ The branches currently diverge; `main` also contains one older collaboration-rul
 ## 2. Retrieval Model — Hot / Warm / Cold
 
 The repository is external project memory, **not a reading list**.
+
+The Hot/Warm/Cold model describes **where knowledge lives**. Normal Chat should also choose the right **retrieval depth** for the current situation.
+
+### Retrieval depth A — current-state retrieval
+
+Use when the immediate question is “where are we now?”
+
+Normally read:
+
+- `SESSION_ENTRYPOINT.md`;
+- `BETWEEN_CHATS.md` only when an active transient handoff matters.
+
+This recovers the active subsystem, causal gate, implementation/test state and immediate responsibility.
+
+### Retrieval depth B — Subsystem Orientation Pass
+
+Use once when entering a technical subsystem without a sufficiently fresh model of that subsystem in the current Chat context.
+
+Typical triggers:
+
+- a new Normal Chat enters ongoing work on collision, Raise, playback speed, animation selection or another substantial subsystem;
+- the collaboration deliberately switches to a different subsystem inside the same Chat;
+- work returns to a subsystem after substantial work elsewhere;
+- the User identifies that previously established subsystem context is missing.
+
+The orientation pass is **not** a full review. It should:
+
+```text
+identify subsystem
+→ use the subject route / indexes below
+→ spot-read the small set of canonical sections and evidence/topic routes needed for broad orientation
+→ synthesize a temporary compact mental model
+→ continue with question-specific retrieval
+```
+
+The temporary model should cover the subsystem's major mechanisms, established facts, important negative findings, known traps, relevant third-party/reference work and unresolved boundaries closely enough to avoid rediscovering established context.
+
+Do **not** create another persistent summary document merely to hold this temporary model. Durable facts remain in their existing authorities.
+
+Do not repeat the orientation pass for every prompt, every test, every Work handoff or every substep while the same subsystem model remains active.
+
+### Retrieval depth C — question-specific retrieval
+
+Use for ordinary ongoing work after current state and any necessary subsystem orientation are already known.
+
+Retrieve only the exact EV entry, source section, symbol, hook, animation data, raw artifact or authority section needed for the current question.
+
+The intended pattern is therefore:
+
+```text
+current state
+→ subsystem orientation once when needed
+→ exact retrieval for each concrete question
+```
+
+This keeps a **small active cognitive surface without reducing understanding to the current substep alone**.
+
+---
 
 ### HOT — start/resume here
 
@@ -187,6 +245,20 @@ Archived documents preserve history/rationale; they never override current autho
 | Why did an older decision exist? | `RESEARCH_MAP.md` | EV entry → archive/raw/Git history |
 | What is the historical pre-cleanup wording? | `docs/archive/technical_2026-08-27/` | Git history |
 
+### Subsystem Orientation Routes
+
+These routes are **subject guides**, not summaries. They point to the smallest set of existing authorities/indexes from which Normal Chat can reconstruct a broad working model before drilling into the current step.
+
+| Subsystem | Orientation route |
+|---|---|
+| frame collision / collision lifecycle | `DESIGN.md` §§6–7 → collision rows in `EVIDENCE_INDEX.md` and `RESEARCH_MAP.md` → current `COLLISION_LIFECYCLE_PLAN.md`; use `SOURCE_HOOK_GUIDE.md` / `COLLISION_CLEANUP_CALLSITE_MAP.md` only for source/hook/cleanup context and `ANIMATION_INDEX.md` only when source/asset semantics matter |
+| Raise | `DESIGN.md` §4 → Raise route in `EVIDENCE_INDEX.md` / `RESEARCH_MAP.md` → `ANIMATION_INDEX.md` for relevant Raise assets/selection; source guide only when implementation/hook details matter |
+| playback speed | `DESIGN.md` §5 → CombatMove phase/speed route in `EVIDENCE_INDEX.md` / `RESEARCH_MAP.md` → speed section in `SOURCE_HOOK_GUIDE.md` when source/reference implementation context matters |
+| animation semantics / selection | `ANIMATION_INDEX.md` → exact `ANIMATION_RULES.md` / `ANIMATION_CATALOG.md` / animation-name data routes → relevant evidence/research route only when behavior or historical interpretation must be recovered |
+| source/API/hook investigation | `SOURCE_HOOK_GUIDE.md` → exact evidence/callsite authority named there → SDK/reference source only for the concrete symbol/API question |
+
+When a new substantial subsystem becomes active, prefer adding a route here or to an existing index rather than creating another independently maintained subsystem-summary document.
+
 ---
 
 ## 4. Spot-Search Pattern
@@ -221,10 +293,11 @@ Usually:
 
 1. `SESSION_ENTRYPOINT.md`;
 2. `BETWEEN_CHATS.md` only for an active handoff;
-3. exact current evidence/source supplied by the User or named by the entry point;
-4. an index/authority only when the question needs deeper context.
+3. if this Chat has not yet reconstructed a sufficiently fresh model of the active subsystem, perform the **Subsystem Orientation Pass once** using the relevant route above;
+4. exact current evidence/source supplied by the User or named by the entry point;
+5. question-specific authority/evidence only when the concrete step requires it.
 
-Within the same continuing context, do not reread unchanged authorities after every prompt.
+Within the same continuing subsystem context, do not rerun the orientation pass or reread unchanged authorities after every prompt.
 
 ### Work — bounded implementation
 
@@ -236,7 +309,7 @@ Usually:
 4. assigned source files;
 5. task-specific authority/evidence section only.
 
-Work may inspect necessary source/API material when implementation reveals a real need. It should not reconstruct the whole project by default.
+Work may inspect necessary source/API material when implementation reveals a real need. It should not reconstruct the whole project by default. Subsystem orientation is primarily a Normal Chat research/design responsibility unless a Work task explicitly requires broader subsystem reasoning.
 
 ---
 
@@ -246,6 +319,7 @@ Work may inspect necessary source/API material when implementation reveals a rea
 |---|---|
 | current continuation / next validation | `SESSION_ENTRYPOINT.md` |
 | transient cross-context handoff | `BETWEEN_CHATS.md` |
+| documentation map / retrieval depth / subsystem orientation routing | `README.md` |
 | overall intended system architecture | `DESIGN.md` |
 | current collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | current diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
@@ -287,7 +361,8 @@ Optimize retrieval through:
 - exact symbols/action names/RVAs;
 - cross-references;
 - separation of current architecture from chronology;
-- archival snapshots before destructive consolidation.
+- archival snapshots before destructive consolidation;
+- one-time subsystem orientation when broad context must be reconstructed.
 
 > **Not necessary to read now does not mean not necessary to preserve.**
 
@@ -315,10 +390,11 @@ Create a new document only when it has a distinct retrieval/authority responsibi
 Prefer:
 
 - an index when a large knowledge document is hard to navigate;
+- a new subject/orientation route when the problem is broad retrieval rather than missing knowledge;
 - a new section when an existing authority already owns the topic;
 - an evidence entry for a new proven fact;
 - an archive snapshot for superseded chronology.
 
-Avoid one document per experiment, one rule per minor failure, or another current-state document that competes with `SESSION_ENTRYPOINT.md`.
+Avoid one document per experiment, one rule per minor failure, another current-state document that competes with `SESSION_ENTRYPOINT.md`, or persistent “book summaries” that duplicate canonical authorities.
 
 The objective is a repository that can be **deep without making every task carry that depth in active context**.
