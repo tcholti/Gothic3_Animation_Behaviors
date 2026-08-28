@@ -181,12 +181,11 @@ static void GE_STDCALL PlayMotion_FrameCollisionTest(
             actor, static_cast<void *>(a_pMotionDesc), replacement);
     }
 
-    bool const emptyPrimaryAttackContext =
+    bool const emptyPrimaryContext =
         before.primary.available
-        && !before.primary.hasMotionInstance
-        && CollisionControl::IsAttackHit(actor, AttackFamily_Normal);
+        && !before.primary.hasMotionInstance;
     CollisionDiagnostics::HitReplacementStackSnapshot emptyPrimarySuccessor = {};
-    if (emptyPrimaryAttackContext)
+    if (emptyPrimaryContext)
     {
         emptyPrimarySuccessor.frameCount = ::CaptureStackBackTrace(
             0, CollisionDiagnostics::NativeCleanupStackCapacity,
@@ -201,11 +200,11 @@ static void GE_STDCALL PlayMotion_FrameCollisionTest(
         CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
     if (outgoingAttackHit && DidPrimaryFirstReplace(before, after))
         CollisionDiagnostics::LogHitReplacementStack(actor, replacement, after);
-    if (emptyPrimaryAttackContext
+    if (emptyPrimaryContext
         && after.primary.available
         && after.primary.hasMotionInstance)
     {
-        CollisionDiagnostics::LogHitEmptyPrimarySuccessorStack(
+        CollisionDiagnostics::LogEmptyPrimarySuccessorStack(
             actor, emptyPrimarySuccessor, after);
     }
     CollisionDiagnostics::LogPrimaryMotionEvent(

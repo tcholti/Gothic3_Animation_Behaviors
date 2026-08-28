@@ -74,7 +74,7 @@ void CaptureHitReplacementContext(Entity &actor, void *incomingRequestAddress,
 void LogHitReplacementStack(Entity &actor,
                             HitReplacementStackSnapshot const &replacement,
                             PrimaryMotionEventSnapshot const &incoming);
-void LogHitEmptyPrimarySuccessorStack(
+void LogEmptyPrimarySuccessorStack(
     Entity &actor, HitReplacementStackSnapshot const &request,
     PrimaryMotionEventSnapshot const &successor);
 void LogHitStopStack(Entity &actor,

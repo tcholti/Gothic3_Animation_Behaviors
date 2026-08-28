@@ -65,7 +65,7 @@ void OpenLog()
     std::fprintf(g_pLog, "STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.\n");
-    std::fprintf(g_pLog, "STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / EMPTY-PRIMARY SUCCESSOR STACK PROBE: player PrimaryFirst outgoing attack-Hit or empty-Primary Normal-context successor stack; diagnostic-only.\n");
+    std::fprintf(g_pLog, "STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / UNGATED EMPTY-PRIMARY SUCCESSOR STACK PROBE: player PrimaryFirst outgoing attack-Hit or factual empty-Primary successor stack; diagnostic-only.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -771,14 +771,14 @@ void LogHitReplacementStack(
     std::fflush(g_pLog);
 }
 
-void LogHitEmptyPrimarySuccessorStack(
+void LogEmptyPrimarySuccessorStack(
     Entity &actor, HitReplacementStackSnapshot const &request,
     PrimaryMotionEventSnapshot const &successor)
 {
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(g_pLog, "===== HIT EMPTY-PRIMARY SUCCESSOR STACK =====\n");
+    std::fprintf(g_pLog, "===== EMPTY-PRIMARY SUCCESSOR STACK =====\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n", request.elapsedMilliseconds);
     std::fprintf(g_pLog, "Actor: %s\n",
                  actor != None ? actor.GetName().GetText() : "<unavailable>");
