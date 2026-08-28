@@ -46,10 +46,10 @@ Question:
 
 ### B6-A — Build/load sanity
 
-Passed for the current revised diagnostic after verifying the built DLL and the authoritative Steam live DLL were byte-identical and the runtime log reported:
+Passed for the current empty-Primary diagnostic after verifying that only the intended live `Script_FrameCollisionTest.dll` was present, the built/live SHA256 hashes matched, and the runtime log reported:
 
 ```text
-STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT STACK PROBE
+STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / EMPTY-PRIMARY SUCCESSOR STACK PROBE
 ```
 
 EV-173 separately records why backup Script DLLs must not remain in the live `scripts` directory.
@@ -93,24 +93,54 @@ Interpretation:
 
 ### B6-C — Legitimate damage/reaction teardown/replacement
 
-This is the **next runtime test**.
-
-Interrupt a real player attack Hit through a controlled damage/reaction path known to receive legitimate native cleanup.
-
-Required correlation allows the actually observed sequencing form, for example:
+EV-177 confirms the legitimate player 2H Normal interruption sequence:
 
 ```text
-attack Hit
-→ legitimate native interruption cleanup
-→ confirmed direct PlayMotion replacement stack
-→ reaction successor Primary
+attack Hit / weapon armed
+→ legitimate native interruption cleanup at Script_Game + 0x24AFF
+→ Primary already empty at StopMotion
+→ reaction PlayMotion begins from empty Primary
+→ Stumble / KnockDown successor
 ```
 
-or, if another supported factual disappearance sequence occurs, record that sequence without forcing it into the clean StartRecover model.
+The direct replacement-stack gate could not capture the successor because the outgoing attack Primary was already gone.
 
-The existing direct PlayMotion replacement-stack probe should be sufficient when the outgoing attack Hit remains visible at reaction PlayMotion entry. Do not add source changes before B6-C unless the runtime evidence proves this capture is insufficient.
+B6-C2 therefore added a diagnostic-only empty-Primary PlayMotion capture gated by the existing Normal attack-Hit semantic predicate. EV-178 shows that this refinement also misses the intended reaction successor: it fires on fresh Normal `Attack_Hit` installation from empty Primary, but by the time Stumble/KnockDown is requested the old Normal semantic gate has expired.
 
-Compare the captured Game/script-processing frames with EV-176. The known cleanup route itself may differ; the question is whether there is a useful common post-dispatch timing context.
+Representative Normal sequence from EV-178:
+
+```text
+Normal Hit activates weapon
+→ legitimate +0x24AFF cleanup 7 -> 5
+   action/phase still report Normal Hit at cleanup
+   StateTime = 0 / StatePosition = 0
+→ ~1.4 ms later StopMotion enters with empty Primary
+→ reaction PlayMotion enters with empty Primary
+→ LieKnockDown_Begin installed
+→ NO HIT EMPTY-PRIMARY SUCCESSOR STACK record
+```
+
+An incidental 2H QuickAttackR interruption in the same controlled run independently showed the same cleanup -> empty Primary -> Stumble ordering. This is useful cross-family validation of the separation, but B6-C remains the frozen Normal-context caller-stack question.
+
+#### Next B6-C diagnostic refinement
+
+Improve only the missing observation fact.
+
+Use the already-existing player/type-0 `PlayMotion` hook to capture a short caller stack for **factual empty-Primary successor installation during the controlled interruption fixture without requiring the old attack-family/action context to remain true**.
+
+The capture must remain diagnostic-only:
+
+- before original PlayMotion: require only the supported player/type-0 context and an available Primary snapshot with no motion instance;
+- do not use Stumble, KnockDown, Recover, action, phase, StateTime, StatePosition, collision group, successor filename or another inferred cause as the pre-original capture gate;
+- call original PlayMotion exactly once unchanged;
+- after original: emit the record only if a real successor Primary motion instance was installed;
+- log the installed successor factually so Normal Chat can identify the controlled reaction cases **post hoc**;
+- preserve existing direct replacement, StopMotion, StartRecover, PrimaryFirst and collision/marker/callback behavior unchanged;
+- add no production cleanup, lifecycle ownership, persistent diagnostic state, timer, polling, scan, cache, reaction classifier or new Gothic 3 hook.
+
+This broader diagnostic will naturally capture unrelated empty-Primary player/type-0 motion installations during the short fixture. That is acceptable because the controlled test and factual successor name are used only for offline correlation; the diagnostic itself must not interpret those motions as lifecycle events.
+
+Once an actual Stumble/KnockDown successor stack is captured, compare its Game/script-processing frames with EV-176. Only then proceed to B6-D.
 
 ### B6-D — Bad block-skip direct teardown/replacement
 
@@ -152,7 +182,7 @@ This is the decisive negative-path comparison.
 
 Current immediate Normal Chat responsibility:
 
-> Run and interpret B6-C legitimate reaction interruption with the existing diagnostic build. Do not modify source first. If B6-C yields a comparable boundary stack, proceed to B6-D; if it does not, refine only the missing diagnostic fact.
+> Freeze and delegate only the factual player/type-0 empty-Primary successor stack refinement described above. After independent source review, build/load it and repeat a short legitimate player 2H Normal interruption fixture. Do not implement production lifecycle state or cleanup.
 
 ---
 
