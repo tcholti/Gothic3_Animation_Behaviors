@@ -38,6 +38,7 @@ struct HitReplacementStackSnapshot
     GEInt action;
     GEInt phase;
     GEFloat stateTime;
+    GEInt statePosition;
     void *incomingRequestAddress;
     HitReplacementSourceSnapshot leftSource;
     HitReplacementSourceSnapshot rightSource;
@@ -73,6 +74,9 @@ void CaptureHitReplacementContext(Entity &actor, void *incomingRequestAddress,
 void LogHitReplacementStack(Entity &actor,
                             HitReplacementStackSnapshot const &replacement,
                             PrimaryMotionEventSnapshot const &incoming);
+void LogHitEmptyPrimarySuccessorStack(
+    Entity &actor, HitReplacementStackSnapshot const &request,
+    PrimaryMotionEventSnapshot const &successor);
 void LogHitStopStack(Entity &actor,
                      HitReplacementStackSnapshot const &stop,
                      GEFloat blendTime);
