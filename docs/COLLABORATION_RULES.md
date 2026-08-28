@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 1.3  
-**Updated:** 2026-08-27
+**Version:** 1.4  
+**Updated:** 2026-08-28
 
 ## Purpose
 
@@ -63,6 +63,52 @@ Within one continuing Chat or Work context, do not reread unchanged documents me
 Large reference documents are durable external memory. Their existence does not make them mandatory context.
 
 The knowledge-maintenance protocol and registry are process tools. They are not additional mandatory pre-reading for ordinary technical prompts; Normal Chat applies their trigger logic when a meaningful event completes.
+
+### 2.1 Subsystem Orientation Pass
+
+A small active retrieval surface must not become **context starvation**.
+
+There are three useful retrieval depths:
+
+```text
+current-state retrieval
+→ subsystem orientation when needed
+→ question-specific retrieval
+```
+
+Normal Chat should automatically perform a **Subsystem Orientation Pass once** when it enters a substantial technical subsystem without a sufficiently fresh working model of that subsystem in the current Chat context.
+
+Automatic triggers include:
+
+- a new Normal Chat enters ongoing collision, Raise, playback-speed, animation-selection or another substantial subsystem;
+- the collaboration deliberately switches to a different substantial subsystem inside the same Chat;
+- the collaboration returns to a subsystem after substantial work elsewhere;
+- the User points out that previously established subsystem context is missing or being treated as new.
+
+Do **not** trigger the pass merely because:
+
+- another prompt arrived;
+- another B6/B7/etc. substep starts inside the same active subsystem;
+- another runtime log is interpreted;
+- Work returns a bounded implementation;
+- a short tangent mentions another subsystem without actually switching work to it.
+
+The orientation procedure is:
+
+```text
+recover current state / transient handoff
+→ identify the active subsystem
+→ use the Subsystem Orientation Route in docs/README.md
+→ spot-read the small set of relevant indexes/canonical sections
+→ synthesize a temporary compact mental model of the subsystem
+→ continue with exact question-specific retrieval
+```
+
+The temporary model should be broad enough to retain major mechanisms, established findings, important negative results, known historical traps, relevant reference/third-party work and unresolved boundaries. It should not attempt to memorize every EV number, address, filename or raw-log detail; those remain external and are retrieved when needed.
+
+Do not create a new persistent summary document merely to hold the temporary orientation model. If the orientation pass repeatedly cannot recover an important topic efficiently, strengthen an existing index/subject route rather than duplicating canonical facts into another summary.
+
+The detailed retrieval-depth model and subject routes live in `docs/README.md`.
 
 ---
 
@@ -142,11 +188,12 @@ Instead:
 - keep exact evidence and raw artifacts available for verification;
 - prefer targeted section/evidence retrieval over full-document reading;
 - separate current conclusions from chronological research history where practical;
-- keep historical evidence discoverable when it explains why a current conclusion exists.
+- keep historical evidence discoverable when it explains why a current conclusion exists;
+- reconstruct a compact subsystem model once when entering that subject, then retrieve exact details only as needed.
 
 The objective is:
 
-> **small active cognitive surface, deep recoverable Gothic 3 knowledge.**
+> **small active cognitive surface, deep recoverable Gothic 3 knowledge, and enough subsystem orientation to avoid rediscovering established work.**
 
 ---
 
@@ -229,7 +276,8 @@ Before reconstructing or redoing interrupted work:
 1. inspect `docs/SESSION_ENTRYPOINT.md`;
 2. inspect the relevant durable commit/source/document;
 3. inspect `docs/BETWEEN_CHATS.md` if it carries newer transient state;
-4. continue only the missing responsibility.
+4. if the active subsystem is not already sufficiently oriented in the current Chat, perform the one-time Subsystem Orientation Pass from `docs/README.md`;
+5. continue only the missing responsibility.
 
 Do not ask the User to repeat exact technical information that can be reliably retrieved from project authority.
 
@@ -249,7 +297,8 @@ Before ending the current chat:
 6. if `SESSION_ENTRYPOINT.md` already contains everything the next Normal Chat needs and no transient state exists, do **not** create another handoff file merely because the chat is changing;
 7. never create a parallel "new chat handoff" authority; use `SESSION_ENTRYPOINT.md` as the durable front door and `BETWEEN_CHATS.md` as the replaceable transient bridge;
 8. give the User one short copyable starter instruction for the new Normal Chat, normally telling it to read `docs/SESSION_ENTRYPOINT.md` on the active branch and continue from the current Normal Chat responsibility;
-9. do not require the User to summarize project history, relay technical state between chats, or decide which deeper documents the new chat should preload.
+9. the new Normal Chat should then perform the one-time Subsystem Orientation Pass for the active subsystem before deep question-specific work unless that orientation is already present in its context;
+10. do not require the User to summarize project history, relay technical state between chats, or decide which deeper documents the new chat should preload.
 
 The intended transition is:
 
@@ -270,7 +319,9 @@ provide one short new-chat starter instruction
         ↓
 new Normal Chat reads SESSION_ENTRYPOINT first
         ↓
-retrieves BETWEEN_CHATS / deeper authority only if current responsibility requires it
+performs subsystem orientation once
+        ↓
+retrieves BETWEEN_CHATS / deeper exact authority only as needed
 ```
 
 This procedure should itself be revisited only when repeated chat transitions show that it is losing context, forcing redundant retrieval, or creating unnecessary document churn.
@@ -296,4 +347,4 @@ Old collaboration documents and experiments may be archived once their durable l
 
 ## Core Project Collaboration Rule
 
-> **Start from current state, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, and let Gothic 3 runtime/source evidence—not documentation volume—drive the engineering.**
+> **Start from current state, orient once to the relevant subsystem when context is fresh or has changed, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, and let Gothic 3 runtime/source evidence—not documentation volume—drive the engineering.**
