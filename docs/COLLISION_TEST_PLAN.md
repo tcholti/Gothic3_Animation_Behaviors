@@ -46,10 +46,10 @@ Question:
 
 ### B6-A — Build/load sanity
 
-Passed for the revised diagnostic after verifying the built DLL and the authoritative Steam live DLL were byte-identical and the runtime log reported:
+Passed for the current revised diagnostic after verifying the built DLL and the authoritative Steam live DLL were byte-identical and the runtime log reported:
 
 ```text
-STEP B6 HIT STOP / REPLACEMENT STACK PROBE
+STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT STACK PROBE
 ```
 
 EV-173 separately records why backup Script DLLs must not remain in the live `scripts` directory.
@@ -65,58 +65,56 @@ Required for any further revised probe:
 
 ### B6-B — Clean completion disappearance/replacement
 
-EV-174/EV-175 correct the earlier StopMotion interpretation. In the valid clean 2H Normal run, all three tested transitions followed this observable sequence:
+EV-174/EV-175 corrected the earlier StopMotion interpretation: clean 2H Normal still had the exact Hit at `StartRecover BEGIN`, but PrimaryFirst was already empty by StopMotion-hook entry.
+
+The StartRecover-BEGIN refinement then produced valid clean-path stack evidence in all three repeated attacks:
 
 ```text
-attack Hit Primary exists
-→ StartRecover BEGIN still sees attack Hit Primary
-→ by entry to player/type-0 StopMotion hook, PrimaryFirst is already empty
-→ StopMotion(type 0) request executes with empty before/after PrimaryFirst snapshots
-→ successor Recover PlayMotion(type 0)
+attack Hit Primary exists / right weapon = Item_Attack(7)
+→ StartRecover BEGIN
+→ HIT STARTRECOVER BEGIN STACK
+     diagnostic wrapper
+     → Game + 0x169772  (inside sAICombatMoveInstr, starts +0x1696E0)
+     → Game + 0x16F240  (inside ProcessScript, starts +0x16F120)
+→ PrimaryFirst-empty StopMotion
+→ Recover PlayMotion
 → StartRecover END
 → native cleanup 7 -> 5
 ```
 
-Therefore:
+EV-176 records this result.
 
-- the outgoing Hit disappears **after StartRecover BEGIN but before the StopMotion hook's first observable snapshot**;
-- current evidence does **not** prove that StopMotion itself removes the Hit;
-- the revised StopMotion stack branch emitted zero `HIT STOP STACK` records because it is gated by `IsAttackHitPrimaryMotion(before)` and `before` is already empty on this clean path.
+Interpretation:
 
-The current B6-B question is now narrower:
-
-> What supported factual context can stack-capture the clean transition at or before this StopMotion call despite the already-empty PrimaryFirst snapshot, without treating action/phase/filename or StopMotion itself as continuing physical-Hit authority?
-
-Use the immediately following PlayMotion record to identify the actual successor. Record the relevant Game/Script_Game/Engine frames and their ordering only after the clean boundary can actually be captured.
+- B6-B **supports** a useful current `ProcessScript()` context for clean completion;
+- StartRecover remains only an observable clean-path entry point and is still too early/bypassable for production cleanup;
+- `ProcessScript()` remains generic timing infrastructure, not combat ownership authority;
+- no production hook/state is justified until B6-C and B6-D are compared.
 
 ### B6-C — Legitimate damage/reaction teardown/replacement
 
-Do not advance to B6-C until the clean B6-B boundary is observable with an interpretable stack/context.
+This is the **next runtime test**.
 
-Then interrupt a real attack Hit through a controlled damage/reaction path known to receive legitimate native cleanup.
+Interrupt a real player attack Hit through a controlled damage/reaction path known to receive legitimate native cleanup.
 
 Required correlation allows the actually observed sequencing form, for example:
 
 ```text
 attack Hit
 → legitimate native interruption cleanup
-→ factual outgoing-Hit disappearance/replacement context
-→ reaction successor PlayMotion
-```
-
-or, if Gothic directly replaces the still-visible Hit:
-
-```text
-attack Hit
-→ legitimate native interruption cleanup
 → confirmed direct PlayMotion replacement stack
+→ reaction successor Primary
 ```
 
-Compare the surrounding script-processing frames with the clean case. The known cleanup route itself may differ; the question is whether there is a useful common post-dispatch timing context.
+or, if another supported factual disappearance sequence occurs, record that sequence without forcing it into the clean StartRecover model.
+
+The existing direct PlayMotion replacement-stack probe should be sufficient when the outgoing attack Hit remains visible at reaction PlayMotion entry. Do not add source changes before B6-C unless the runtime evidence proves this capture is insufficient.
+
+Compare the captured Game/script-processing frames with EV-176. The known cleanup route itself may differ; the question is whether there is a useful common post-dispatch timing context.
 
 ### B6-D — Bad block-skip direct teardown/replacement
 
-Run only after B6-B and B6-C produce comparable factual boundary evidence.
+Run only after B6-C produces comparable factual boundary evidence.
 
 Reproduce a native or marked bad block-skip case where offensive collision remains stale.
 
@@ -152,9 +150,9 @@ This is the decisive negative-path comparison.
 - improve only the diagnostic fact needed to distinguish the execution context;
 - do not convert the missed observation into lifecycle evidence.
 
-Current immediate Normal Chat responsibility before another Work task:
+Current immediate Normal Chat responsibility:
 
-> Design the smallest diagnostic refinement that captures the clean transition despite an already-empty PrimaryFirst snapshot at StopMotion entry. Prefer the existing player/type-0 StopMotion hook and already-available CombatMove/action/phase/movement context as diagnostic correlation only if sufficient; otherwise identify the nearest earlier supported boundary. Add no production cleanup, polling, lifecycle ownership state, family-specific repair rule, or guessed stack/frame layout.
+> Run and interpret B6-C legitimate reaction interruption with the existing diagnostic build. Do not modify source first. If B6-C yields a comparable boundary stack, proceed to B6-D; if it does not, refine only the missing diagnostic fact.
 
 ---
 
