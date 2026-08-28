@@ -25,6 +25,7 @@ static mCFunctionHook Hook_OnTick;
 static mCFunctionHook Hook_SetCollisionGroup;
 static mCFunctionHook Hook_PlayMotion;
 static mCFunctionHook Hook_StopMotion;
+static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AICombatMoveStartRecover;
 
 static bool ShouldSuppressAttackCallback(Entity &actor)
@@ -285,6 +286,32 @@ static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
         CollisionDiagnostics::LogCombatMoveStartRecoverBoundary(actor, "END");
 }
 
+static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
+    GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop)
+{
+    if (a_bFullStop == GETrue && a_pSPU != nullptr)
+    {
+        Entity actor;
+        actor.AttachTo(a_pSPU->GetSelfEntity());
+        if (actor != None && IsPlayerEntity(actor.GetInstance()))
+        {
+            CollisionDiagnostics::HitReplacementStackSnapshot fullStop = {};
+            fullStop.frameCount = ::CaptureStackBackTrace(
+                0, CollisionDiagnostics::NativeCleanupStackCapacity,
+                fullStop.frames, nullptr);
+            CollisionDiagnostics::CaptureHitReplacementContext(
+                actor, a_pArgs, fullStop);
+            CollisionDiagnostics::PrimaryMotionEventSnapshot primary =
+                CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(actor);
+            CollisionDiagnostics::LogCombatMoveFullStopStack(
+                actor, fullStop, primary);
+        }
+    }
+
+    return Hook_AICombatMoveInstr.GetOriginalFunction(
+        &AICombatMoveInstr_FrameCollisionTest)(a_pArgs, a_pSPU, a_bFullStop);
+}
+
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
 {
     void *callerAddress = _ReturnAddress();
@@ -381,6 +408,9 @@ static void InstallHooks()
     Hook_StopMotion
         .Prepare(RVA_Engine(0x30980), &StopMotion_FrameCollisionTest,
                  mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_AICombatMoveInstr
+        .Prepare(RVA_Game(0x1696E0), &AICombatMoveInstr_FrameCollisionTest)
         .Hook();
     Hook_AICombatMoveStartRecover
         .Prepare(RVA_Game(0x16E360),

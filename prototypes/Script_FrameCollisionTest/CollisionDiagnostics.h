@@ -82,6 +82,9 @@ void LogHitStopStack(Entity &actor,
                      GEFloat blendTime);
 void LogHitStartRecoverBeginStack(
     Entity &actor, HitReplacementStackSnapshot const &startRecover);
+void LogCombatMoveFullStopStack(
+    Entity &actor, HitReplacementStackSnapshot const &fullStop,
+    PrimaryMotionEventSnapshot const &primary);
 void LogCombatMoveStartRecoverBoundary(Entity &actor,
                                          char const *boundary);
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,
