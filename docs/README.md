@@ -164,7 +164,7 @@ Canonical **project architecture** for Raise, speed and frame collision. It now 
 
 #### `COLLISION_LIFECYCLE_PLAN.md`
 
-Current collision-lifecycle authority: execution ownership, cleanup invariant, Step-B constraints, deferred-finalization candidate and current gate.
+Current collision-lifecycle authority: execution ownership, cleanup invariant, native outer ScriptFunction lifetime and current C1-O2 binding gate.
 
 #### `COLLISION_LOGGER_PLAN.md`
 
@@ -186,7 +186,7 @@ Use these **before** opening the largest reference documents.
 
 #### `EVIDENCE_INDEX.md`
 
-Routes topics, symbols, Step-B stages and raw-log questions to exact EV ranges.
+Routes topics, symbols, lifecycle stages and raw-log questions to exact EV ranges.
 
 Use when asking “is this proven?” or “where did we establish this?”
 
@@ -214,9 +214,13 @@ Canonical EV-001 through EV-157.
 
 #### `EVIDENCE_LEDGER_STEP_B.md`
 
-Canonical continuation EV-158 onward.
+Canonical continuation EV-158 through EV-189.
 
-The split is a preservation/convenience boundary, not competing authority.
+#### `EVIDENCE_LEDGER_C1.md`
+
+Canonical C1-era continuation EV-190 onward.
+
+These splits are preservation/retrieval boundaries inside one global EV namespace, not competing authorities.
 
 #### `COLLISION_CLEANUP_CALLSITE_MAP.md`
 
@@ -449,6 +453,8 @@ Prefer:
 - an archive snapshot for superseded chronology.
 
 `PROJECT_PIPELINE.md` is a justified distinct authority because project operating conventions are neither technical evidence nor recurring procedure sequences; scattering them across those layers had already caused cross-Chat drift.
+
+Evidence-ledger continuation files may split by research phase for retrieval/size without creating a new evidence authority or EV namespace.
 
 Avoid one document per experiment, one rule per minor failure, another current-state document that competes with `SESSION_ENTRYPOINT.md`, a project manifest that merely duplicates the existing distributed configuration, or persistent “book summaries” that duplicate canonical authorities.
 
