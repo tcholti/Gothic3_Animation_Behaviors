@@ -192,7 +192,7 @@ Current durable sequence:
 2. `RunScriptFunction` was reduced to recursion-safe pure pass-through: explicit real `this`, unchanged arguments, exactly one original call, no dispatch capture or C1-O2 lifecycle work.
 3. That pure pass-through baseline passed the bounded load/idle isolation.
 4. Extended gameplay then produced a **different** crash through the existing AISetState path (`Script.dll +0x12F61`, `Game +0x1604D3`), not the earlier `RunScriptFunction +0x1605EB` path.
-5. Source analysis found AISetState still used the SDK's legacy shared `GetSelf` ThisCall transport, which is not recursion/thread safe.
+5. Source analysis found AISetState still used the SDK's legacy shared `GetSelf` ThisCall transport, which is not recursion-safe.
 6. AISetState alone was converted to explicit per-invocation `gCScriptRoutine_PS *this` with the recursion-safe `.ThisCall()` builder; its original ordering and C1 semantics were preserved.
 7. Independent source review passed.
 8. The extended stability run passed for about **329.9 seconds** and unloaded normally: 172 AISetState records, 43 AIFullStop records and 62 C1 finalizations; zero `OUTER_RETURN_OUTSTANDING`, `LIVE_FRAME_MISMATCH`, `PRECOMBAT_GENERATION_FRAME_OVERLAP`, `OVERLAP_OUTSTANDING`, `CANDIDATE_GENERATION_CHANGED`, `FINALIZATION_GENERATION_CHANGED` or `NULL_ARGUMENTS` records. One deliberately reproduced bad full Whirl produced the expected log-only `WOULD_REPAIR`; physical repair remained disabled.
@@ -205,7 +205,7 @@ Canonical stability artifacts:
 research/raw/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability.log
 raw commit: 6b4cda21466ccca6c42a9c51b98fbbfe6da48ed3
 research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_extract.txt
-extract/current head: 86308b1c91176501c294ee50af99ce9bb418900d
+extract commit: 86308b1c91176501c294ee50af99ce9bb418900d
 ```
 
 Only **one** bad full-Whirl reproduction was confirmed despite at least two attempts. Do not generalize the stability run as more than one confirmed bad case.

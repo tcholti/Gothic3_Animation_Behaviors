@@ -82,7 +82,7 @@ Likely updates:
 ```text
 Evidence Ledger
 research raw → archive
-SESSION_ENTRYPOINT only if the gate advances
+SESSION_ENTRYPOINT only if the active gate, direction, or immediate responsibility materially changes
 ```
 
 Usually unchanged:
