@@ -1,298 +1,232 @@
 # Collision Lifecycle Test Plan
 
 **Status:** Current staged validation plan  
-**Updated:** 2026-08-28
+**Updated:** 2026-08-29
 
 ## Purpose
 
-Validate one general execution-level collision-cleanup model with the smallest tests that can falsify it. Broaden only when the current lifecycle question is resolved.
+Validate one general execution-level collision-cleanup model with the smallest tests that can falsify it. Historical gate detail is preserved through `EVIDENCE_INDEX.md`, the canonical evidence ledgers and raw/archive artifacts; this file owns the **current and forward validation sequence**.
 
-Earlier test chronology and superseded gate wording are preserved in:
-
-`docs/archive/technical_2026-08-27/COLLISION_TEST_PLAN_pre_ia.md`
-
-Exact established findings should be retrieved through `EVIDENCE_INDEX.md` rather than rerunning closed matrices.
+Current state and exact next responsibility: `SESSION_ENTRYPOINT.md`.  
+Current lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 
 ---
 
 ## 1. Rules for the Current Test Phase
 
-- diagnostics remain observational;
-- do not implement production cleanup while the general finalization boundary is unresolved;
-- do not add Staff/Quick/Whirl/block-timeout-specific cleanup branches;
-- preserve native behavior for unmarked controls;
-- compare one conceptual variable at a time where practical;
-- visual observation may identify a reproduction, but lifecycle conclusions come from logs/source evidence;
-- do not repeat already-closed marker/source tests unless a later implementation could have regressed them;
-- prefer reusing the current diagnostic before adding another hook;
-- preserve raw runtime logs exactly as produced; do not treat `git diff --check` warnings in raw logs as a reason to edit them.
+- C1 remains **shadow-only**; production physical repair is disabled.
+- Compare one conceptual variable at a time where practical.
+- Do not add Staff/Quick/Whirl/GetUp/input/state-name-specific ownership or repair branches.
+- Do not treat `RunScriptFunction`, FullStop or AISetState as unconditional cleanup authority.
+- Preserve native behavior for unmarked controls and preserve all proven marker bookkeeping.
+- Visual observation may identify a reproduction, but lifecycle conclusions come from logs/source evidence.
+- Reuse the current diagnostic/hook owner when it already exposes the needed fact; add another hook only for a specific unresolved question.
+- Preserve raw runtime logs exactly as produced.
+- Follow `PROJECT_PIPELINE.md` for gate identity, build identity and raw/derived artifact naming, and `PROJECT_OPERATING_PROCEDURES.md` for local build/deploy/test/log operations.
 
-Authoritative live diagnostic DLL:
+Authoritative research DLL remains:
 
 ```text
-E:\SteamLibrary\steamapps\common\Gothic 3\scripts\Script_FrameCollisionTest.dll
+Script_FrameCollisionTest
 ```
 
-Before treating a rebuilt diagnostic run as evidence, verify the built and live DLLs are identical or confirm the intended startup banner. Do not keep backup/renamed matching DLLs in the live `scripts` directory.
+Before any controlled runtime result becomes evidence, verify the exact intended build/deployment identity and startup banner using the project procedures.
 
 ---
 
-## 2. Closed Gate Summary — B6 / B7 / B7b
+## 2. Closed Lifecycle Gates — Retrieve, Do Not Rerun by Default
 
-### B6 — deferred ProcessScript candidate rejected
+### B6 — replacement-triggered deferred `ProcessScript()` candidate rejected
 
-B6 established that clean completion exposes useful `sAICombatMoveInstr -> ProcessScript()` context, while an armed bad Whirl can disappear to Ambient without exposing the same useful replacement-time ScriptAdmin/SPU context. Therefore the replacement-triggered deferred-`ProcessScript()` strategy was rejected in its present form.
+Clean completion exposed useful `sAICombatMoveInstr -> ProcessScript()` context, but bad armed replacement did not expose a comparable universal replacement-time ScriptAdmin/SPU context.
 
 Evidence: EV-174–EV-181.
 
-### B7 — explicit CombatMove FullStop proven
+### B7 / B7b — CombatMove termination and Whirl continuation loss resolved
 
-B7 proved:
+Bad full Whirl and legitimate reaction can both FullStop CombatMove, but only the legitimate reaction receives separate cleanup ownership. The tested bad held-Use2 Whirl path proceeds through `FullStop -> SetState`, discarding the suspended attack ScriptFunction continuation that would otherwise reach native cleanup.
 
-```text
-bad full Whirl
-→ active sAICombatMoveInstr receives fullStop=true
-→ no normal Whirl cleanup follows
+Evidence: EV-182–EV-189.
 
-legitimate Normal/Quick reaction
-→ active sAICombatMoveInstr also receives fullStop=true
-→ separate reaction cleanup later runs when offense had armed
-```
+### B8 — cross-family abandonment generality resolved
 
-Therefore FullStop is instruction termination, not collision cleanup.
+The same tested held-Use2 stale class appears in player Quick configurations beyond full Whirl.
 
-Evidence: EV-182–EV-186.
+Evidence: EV-190.
 
-### B7b — exact callers and tested Whirl abandonment mechanism resolved
+### B9 — cleanup/finalization ordering resolved
 
-B7b distinguishes the exact paths.
+Tested bad armed abandonment reaches AISetState before cleanup; tested clean ordinary and legitimate reaction paths fulfill cleanup before the relevant destructive replacement. AISetState is therefore useful only when gated by exact owned execution/source obligation state.
 
-Tested bad player full Whirl:
+Evidence: EV-191.
 
-```text
-Use2 held beyond 2500 ms
-→ Script_Game +0x633F1  PSRoutine::FullStop()
-→ return +0x633F7
-→ Script_Game +0x63409  PSRoutine::SetState(...)
-→ SPU state stack / state-position / break-block bookkeeping reset
-→ suspended Whirl ScriptFunction continuation discarded
-→ ordinary +0x4E03C cleanup cannot be reached
-→ armed source may remain Item_Attack(7)
-```
+### C1 — shadow execution/source obligation model core passed
 
-Tested legitimate Normal/Quick reaction:
+The tested C1 matrix preserved clean/reaction/pre-activation no-op behavior, classified known armed bad abandonments as `WOULD_REPAIR`, and correctly attributed an inherited-stale `7 -> 7` request to the new generation.
 
-```text
-Script_Game +0x2D0F2  PSRoutine::FullStop()
-→ return +0x2D0F8 into reaction control
-→ established +0x24AFF reaction cleanup when offense had armed
-→ reaction continuation owns successor
-```
+Evidence: EV-192–EV-193.
 
-This resolves the causal mechanism for the tested player full-Whirl held-Use2 stale-collision failure.
+### C1 acquisition boundary gap
 
-Evidence: EV-187–EV-189.
+GetUpAttack can legitimately request `Item_Attack(7)` before CombatMove starts, so CombatMove is not a universal outer execution-acquisition boundary.
+
+Evidence: EV-194.
+
+### C1-O1 — outer ScriptFunction lifetime/identity probe resolved
+
+The same live GetUp ScriptFunction frame spans pre-CombatMove offense → later CombatMove → cleanup. Raw frame/arguments addresses can be reused after retirement, so they are lifetime-bound correlators only; C1's monotonic generation remains durable identity.
+
+Evidence: EV-195–EV-196.
 
 ---
 
-## 3. Gate B8 — CURRENT — Cross-Family State-Stack Abandonment
+## 3. Current Gate — C1-O2 Shadow Outer ScriptFunction Binding Integration
 
-### Question
+The current question is:
 
-Earlier native evidence already proves stale collision in player Dual Quick (EV-162). The exact Whirl `+0x633F1 -> SetState` path must not be assumed universal.
+> **Can C1 bind its existing monotonic generation to the live outer ScriptFunction frame, acquire legitimate equipped-weapon offense before CombatMove, reuse that same generation when the later CombatMove belongs to the same still-live frame, and retire the native binding before address reuse without changing the already-passed cleanup/finalization classification?**
 
-> **When the known player Dual Quick bad skip occurs, does Gothic discard the suspended attack continuation through the same AIFullStop/SetState mechanism, through a different AIFullStop caller followed by another state/task replacement, or without AIFullStop at all?**
+The exact frozen implementation contract lives in `BETWEEN_CHATS.md` while C1-O2 Work is active.
 
-### Diagnostic
+### Current implementation/source-review acceptance
 
-Use the currently deployed B7b diagnostic unchanged.
+Before any runtime test, C1-O2 must preserve:
 
-Relevant records already available:
+1. one minimal nesting-safe `RunScriptFunction` dispatch context;
+2. original `RunScriptFunction` call exactly once with unchanged real arguments;
+3. live-frame correlation only by the frozen rule:
+   - exact SPU;
+   - top frame is ScriptFunction;
+   - non-null bound `m_pArguments`;
+   - same ScriptFunction name;
+4. pre-CombatMove acquisition only for a successful `Item_Attack` request on the supplied SPU actor's exact equipped RIGHT/LEFT weapon entity;
+5. later matching CombatMove reuses, rather than replaces, the pre-acquired generation;
+6. ordinary CombatMove-created generation behavior remains available when no matching pre-acquired binding exists;
+7. successful cleanup remains source/consequence based and does not require the old frame to remain current;
+8. true `RunScriptFunction` return retires the native binding before pointer reuse;
+9. outstanding obligation at true return is diagnostic-only (`OUTER_RETURN_OUTSTANDING`-style failure signal), not physical repair or a newly invented finalization rule;
+10. existing AISetState shadow finalization and `WOULD_REPAIR` classification remain unchanged;
+11. no null-arguments fallback, family/action/input classifier, arbitrary group-7 adoption, polling/timer/world scan or marker-core refactor.
 
-```text
-===== AIFULLSTOP CALLSITE =====
-===== COMBATMOVE FULLSTOP STACK =====
-```
-
-Existing motion, StartRecover and collision-group records provide the supporting timeline.
-
-Do **not** add another hook before this test.
-
-### Controlled fixture
-
-Use the same player Dual / 1H+1H Quick bad-skip reproduction previously established by B3b / EV-162.
-
-Run one session:
-
-```text
-1. clean Dual Quick controls — 3 complete attacks
-2. bad Dual Quick skip attempts — enough attempts to obtain several clear failures
-3. prefer at least 3 armed stale failures where offensive collision had already been requested
-4. pre-activation failures are useful negative controls but do not replace armed cases
-5. after one armed stale case, brief idle/movement is optional supporting evidence
-6. exit normally
-```
-
-Do not introduce a target/reaction comparison unless the known Dual Quick reproduction itself requires the established block/target condition. The variable under test is the bad Dual Quick teardown mechanism, not another reaction matrix.
-
-Frozen raw filename:
-
-```text
-research/raw/2026-08-28_b8_player_dual_quick_state_stack_abandonment.log
-```
-
-### Interpretation
-
-#### Outcome A — same exact Whirl caller
-
-```text
-armed bad Dual Quick
-→ AIFullStop caller +0x633F7
-```
-
-Then the same held-Use2 branch is shared by at least full Whirl and Dual Quick. Correlate the subsequent state transition before claiming the complete `FullStop -> SetState` sequence generalizes.
-
-#### Outcome B — different AIFullStop caller
-
-```text
-armed bad Dual Quick
-→ AIFullStop occurs
-→ caller differs from +0x633F7
-```
-
-Static-audit that exact caller next. Ask whether it also leads to `SetState`, `SetTask`, or another supported state-stack replacement that discards the suspended attack continuation.
-
-Do not add runtime instrumentation until the static branch is understood.
-
-#### Outcome C — no AIFullStop on armed bad Dual Quick
-
-The Whirl-specific FullStop path does not generalize to Dual Quick. Return to the existing motion/state evidence and identify the alternative native state/task reset or instruction-abandonment route before adding a new diagnostic.
-
-### Acceptance
-
-B8 is successful when the known Dual Quick stale failure is classified into a concrete native continuation-loss mechanism strongly enough to answer whether **state-stack abandonment** is a general defect class rather than only a full-Whirl implementation detail.
+No runtime acceptance can compensate for a source-level violation of these rules.
 
 ---
 
-## 4. Gate C1 — Prove a General Post-Native-Opportunity Finalization Checkpoint
+## 4. C1-O2 Runtime Validation — After Independent Source Review + Build/Load Verification
 
-Run only after B8 or later evidence identifies a sufficiently general terminal-execution mechanism.
+Normal Chat will freeze the exact controlled fixture and raw filename only after the C1-O2 implementation passes independent diff review and the exact built/live DLL identity is verified.
 
-First add a **diagnostic-only**, tightly gated one-shot checkpoint for an already-owned exact attack execution.
+The first runtime matrix should answer these factual questions with the smallest sufficient set of controls:
 
-It must demonstrate:
+### A. Pre-CombatMove GetUp acquisition
 
-1. it runs after clean ordinary native cleanup;
-2. it runs after legitimate interruption cleanup;
-3. it runs after bad teardown even when cleanup was absent;
-4. unrelated processing is a no-op because no owned execution is finalizing;
-5. the same execution is checked once, not repeatedly.
-
-Do not perform fallback cleanup in C1. Establish ordering first.
-
----
-
-## 5. Gate C2 — Minimal Cleanup Repair Prototype
-
-Only after C1 proves the timing point.
+Expected:
 
 ```text
-owned exact execution requested offensive collision
-→ proven post-native-opportunity checkpoint
-→ cleanup observed?
-    yes -> retire/no-op
-    no  -> perform native-equivalent repair for owned offensive source(s)
+legitimate equipped-weapon Item_Attack before CombatMove
+→ C1-O2 acquires one generation from the live outer ScriptFunction context
+→ later CombatMove for the same live frame reuses that same generation
+→ ordinary native cleanup fulfills the exact source obligation
+→ no repair candidate / no binding invariant
 ```
 
-Initial cases:
+This is the primary positive test for the new route.
 
-1. clean native completion — no-op;
-2. clean marked completion — no-op;
-3. legitimate damage/reaction interruption — no-op;
-4. known stale native bad teardown — repair;
-5. known stale marked bad teardown — repair.
+### B. Ordinary CombatMove-created control
 
-Repair must not create a second activation, duplicate list clear or unrelated state mutation.
+Representative clean Normal/full-Whirl executions that do not need pre-CombatMove acquisition should still use the existing CombatMove-start path and bind/reuse the live outer frame without changing cleanup classification.
+
+Expected: native cleanup observed; finalization no-op.
+
+### C. Known armed bad abandonment
+
+Representative held-Use2 stale Whirl/Quick cases should still produce the same C1 shadow consequence classification as before.
+
+Expected: outstanding exact source at destructive AISetState → `WOULD_REPAIR` shadow outcome only; no physical repair.
+
+### D. Pre-activation bad abandonment
+
+Expected: no offensive request → no cleanup obligation → no repair candidate.
+
+### E. Legitimate reaction interruption
+
+Expected: reaction-side native cleanup fulfills the exact source obligation even though cleanup can execute outside the old attack ScriptFunction context; no repair candidate.
+
+### F. Inherited-stale `7 -> 7` control
+
+Expected: a later legitimate request while the source is already group 7 is attributed to the later execution's generation when that execution owns the request; later native cleanup fulfills that generation.
+
+### G. Frame-lifetime failure signals
+
+The controlled run must specifically check for:
+
+- frame mismatch / overlap invariants;
+- null-arguments failure;
+- `OUTER_RETURN_OUTSTANDING`;
+- generation replacement where reuse was expected;
+- a retired binding matching a later reused raw address.
+
+Any such occurrence is a design/test-gate result to interpret in Normal Chat, not something to hide with fallback behavior.
 
 ---
 
-## 6. Gate C3 — Can Offensive Collision Legitimately Survive Across Independent Hits?
+## 5. C1-O2 Runtime Acceptance
 
-Once a repair exists, challenge the invariant with representative native/unmarked chains:
-
-- 1H Normal/Quick;
-- Shield+1H Normal/Quick;
-- Dual Normal/Quick;
-- 2H Normal/full Whirl;
-- Staff Normal/full Whirl.
-
-Search for:
+C1-O2 passes its shadow binding gate only if all tested controls support the same model:
 
 ```text
-Hit A requested offense
-Hit A physically ended
-Hit B is an independent execution
-NO legitimate cleanup occurred between them
-and persistence is intentionally native-correct
+outer live ScriptFunction frame
+= temporary native lifetime correlator
+
+C1 monotonic generation
+= durable plugin execution identity
+
+actual successful Item_Attack request
+= exact source obligation
+
+native transition away from Item_Attack
+= obligation fulfilled
+
+destructive AISetState with obligation still outstanding
+= existing shadow WOULD_REPAIR classification
 ```
 
-Interpretation:
+And specifically:
 
-- never observed legitimately → strengthens universal end guard;
-- clearly intentional transfer → represent it before release;
-- only seen in stale paths → supports guard, not an exception.
+- GetUp pre-CombatMove offense is no longer unowned;
+- its later CombatMove reuses the same generation;
+- clean ordinary paths remain clean/no-op;
+- legitimate reactions remain native-clean/no-op;
+- pre-activation failures remain no-op;
+- known armed stale paths retain the existing `WOULD_REPAIR` shadow classification;
+- inherited `7 -> 7` attribution remains correct;
+- no lifetime-correlator reuse/leak invariant occurs;
+- physical collision behavior remains unchanged by C1-O2.
 
-EV-181 is already a negative example of accidental carry.
-
----
-
-## 7. Gate C4 — Source-Aware Fallback Decision
-
-Prefer one execution-level obligation unless evidence proves independent partial-source cleanup.
-
-Use Dual/multi-source cases to ask:
-
-- can RIGHT clean while LEFT legitimately remains offensive after the same Hit ends?
-- can one source fail independently while another cleans?
-- must native-equivalent repair operate per source?
-
-Adopt source-aware lifecycle state only if evidence requires it.
+If the new route requires family/action/input classification or a guessed null-arguments fallback to pass, C1-O2 fails.
 
 ---
 
-## 8. Gate C5 — Negative / No-Op Regression
+## 6. After C1-O2 — Do Not Skip Ahead
 
-Required if the final design uses a generic terminal checkpoint.
+Only after the outer binding model passes should Normal Chat decide the next exact collision gate.
 
-At minimum test:
+Likely later responsibilities remain evidence-dependent and must not be pre-authorized here:
 
-- Fist;
-- bow;
-- crossbow;
-- magic.
+- decide when/if shadow `WOULD_REPAIR` can become native-equivalent physical repair;
+- test broad marked/unmarked/player/NPC regression for the one chosen lifecycle rule;
+- challenge whether any legitimate independent Hit sequence intentionally carries offensive collision across executions;
+- verify negative/no-op behavior for Fist, bow, crossbow and magic;
+- verify defensive block/parade semantics if the eventual physical repair operation could disturb them;
+- reconsider marker-core simplification only after the stronger native lifetime is proven to preserve the historical marker guarantees.
 
-Expected result: complete no-op because no exact owned weapon-style offensive execution is finalizing.
-
-Fist is especially important because it can share melee action enums without using the tested weapon-style `Item_Attack(7)` source model.
-
----
-
-## 9. Gate C6 — Defensive Collision Semantics
-
-Before release, if the chosen cleanup operation could affect defensive item state, test:
-
-- weapon into weapon block;
-- weapon into shield block;
-- 2H/Staff block with obvious bounce;
-- ParadeStumble/block-stumble.
-
-Observe attacker/defender source/group requests around contact. Do not add defensive special cases unless evidence requires them.
+No new production repair or marker refactor is authorized merely because C1-O2 is implemented.
 
 ---
 
-## 10. Marker-Core Regression — Reuse Existing Fixtures
+## 7. Marker-Core Regression — Reuse Existing Fixtures When Relevant
 
-Re-run compact marker fixtures only after lifecycle changes that could plausibly affect them:
+If a lifecycle change can plausibly affect marker behavior, reuse compact proven fixtures such as:
 
 ```text
 RIGHT -> LEFT
@@ -303,44 +237,21 @@ BOTH -> LEFT -> OFF -> BOTH
 
 Verify desired-set transition, source rearm, occurrence/replay guards, execution retirement and absence of unexpected native timer activation.
 
-Do not rebuild the historical v0.10–v0.18 matrix unless a regression demands it.
+Do not rebuild the full historical v0.10–v0.18 matrix unless a regression demands it.
 
 ---
 
-## 11. Broad Regression — After the Lifecycle Model Is Chosen
+## 8. Success Criteria for Stable Collision Integration
 
-Challenge the **one chosen rule** across:
+Before stable lifecycle behavior can move into `Script_G3AnimationBehaviors`, evidence must support:
 
-- 1H;
-- Shield+1H;
-- Dual;
-- 2H;
-- Staff;
-- Normal;
-- Quick;
-- Power;
-- SimpleWhirl/full Whirl where applicable;
-- player + controlled human NPC;
-- marked + unmarked attacks;
-- normal completion, chaining, damage interruption, blocking and known bad-skip conditions.
+1. exact ownership of a real attack execution before and during CombatMove where needed;
+2. exact creation of offensive source obligations, including `7 -> 7` requests;
+3. reliable observation of native cleanup fulfillment;
+4. safe lifetime retirement without raw-pointer reuse confusion;
+5. a terminal/finalization rule that preserves Gothic's legitimate cleanup opportunity;
+6. correct handling of clean, reaction, pre-activation, bad-abandonment and inherited-stale cases;
+7. no-op behavior for unrelated mechanics/source models;
+8. preservation of marked and native collision semantics behind one end-of-execution safety invariant.
 
-The matrix is evidence coverage, not a production branch matrix.
-
----
-
-## 12. Success Criteria
-
-Collision-lifecycle research is ready for production integration when evidence answers:
-
-1. what constitutes an owned real attack-Hit execution;
-2. what native transition proves that execution can no longer resume;
-3. what creates the offensive collision obligation, including `7 -> 7` requests;
-4. what timing point occurs after Gothic's legitimate cleanup opportunity even on bad teardown;
-5. how native cleanup success is observed;
-6. whether repair must be attack-wide or source-specific;
-7. whether any legitimate native sequence carries offense across independent physical Hits;
-8. whether defensive collision introduces a conflicting state;
-9. whether unrelated Fist/ranged/magic processing remains a no-op;
-10. whether marked and native activation converge on one end-of-Hit safety rule.
-
-Only then should the stable lifecycle be integrated into `Script_G3AnimationBehaviors`.
+Only then should physical repair and stable production integration be considered.
