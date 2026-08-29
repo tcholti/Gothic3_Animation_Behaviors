@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-08-28
+**Updated:** 2026-08-29
 
 ## Purpose
 
@@ -22,6 +22,7 @@ The registry exists to prevent the same fact becoming a separately maintained co
 | current active subsystem / causal gate / immediate next responsibility | `SESSION_ENTRYPOINT.md` | active gate, subsystem, immediate candidate, or next responsibility changes | another test merely confirms the existing gate/model |
 | transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact transient implementation/test state | ordinary project facts already live in durable authorities |
 | project-specific collaboration behavior | `COLLABORATION_RULES.md` | a recurring Gothic-3-specific collaboration lesson materially changes workflow | one isolated annoyance/error that existing rules already cover |
+| recurring project-local operations: Git handoff/sync, build/deploy/load verification, runtime-artifact intake/publish, large-log reduction, static-reference retrieval | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistakes, one serious operational failure, a clearly better recurring method, or a genuinely new recurring operation changes the best default procedure | every routine use, one-off command variation, or technical Gothic 3 result that does not change the procedure |
 | bounded Work execution contract | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work authority, stop conditions, review responsibility, or frozen-task execution model changes | a technical Gothic 3 finding unrelated to Work behavior |
 | knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing rule, workaround-reevaluation rule, audit-health criteria, or bloat early-warning responsibility changes | ordinary technical evidence/result already handled by the existing procedure |
 | authority/update routing | `KNOWLEDGE_REGISTRY.md` | a responsibility gains/moves/loses authority or update-trigger logic changes | underlying knowledge grows inside an existing authority |
