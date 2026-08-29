@@ -4,24 +4,26 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-08-28
+**Updated:** 2026-08-29
 
 `docs/collision-source-evidence` contains the newest collision research/prototype state. `main` is the stable integration baseline.
 
 Document roles / Hot-Warm-Cold retrieval: `docs/README.md`  
-Transient Chat ↔ Work handoff when relevant: `docs/BETWEEN_CHATS.md`
+Transient Chat ↔ Work handoff when relevant: `docs/BETWEEN_CHATS.md`  
+Recurring Git/build/deploy/test/log procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`
 
 ---
 
 ## Fresh Normal Chat Bootstrap
 
 1. Read this file first.
-2. Read `docs/BETWEEN_CHATS.md` only when the current responsibility depends on an active/recent Work handoff.
+2. Read `docs/BETWEEN_CHATS.md` only when the current responsibility depends on an active/recent transient handoff.
 3. If the active subsystem is not already oriented in the current Chat, perform the one-time Subsystem Orientation Pass from `docs/README.md`.
-4. Do not scan the whole repository or reconstruct the project from old chat history.
-5. Retrieve only the deeper authority listed under **Retrieval — Only What the Question Needs**.
+4. Read `docs/PROJECT_OPERATING_PROCEDURES.md` once when entering an active local Git/build/deploy/runtime-artifact sequence; do not reread it after every prompt.
+5. Do not scan the whole repository or reconstruct the project from old chat history.
+6. Retrieve only the deeper authority listed under **Retrieval — Only What the Question Needs**.
 
-Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
+Within one continuing subsystem context, do not repeatedly reread unchanged authorities or procedures.
 
 ---
 
@@ -33,203 +35,160 @@ Preferred invariant:
 
 > **For every real attack-Hit execution that requests offensive collision, Gothic 3 gets its legitimate cleanup opportunity. When that exact execution ends or is destructively abandoned, if cleanup was observed, do nothing; if not, repair only that execution's remaining offensive collision using native cleanup semantics.**
 
-Markers control collision **inside a live Hit**. End-of-Hit safety is one shared execution-level responsibility for marked and native attacks.
+Markers control collision **inside a live Hit**. End-of-execution safety is one shared execution-level responsibility for marked and native attacks.
 
 Architecture authority: `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
----
-
-## Established Native Failure Model
-
-CombatMove is asynchronous. The owning ScriptFunction can remain suspended at a break block while `sAICombatMoveInstr` persists in the SPU.
-
-Ordinary completion resumes the owning ScriptFunction into its action-specific cleanup. Tested full Whirl reaches cleanup at `Script_Game +0x4E03C` only after its CombatMove break block completes.
-
-The known bad player held-Use2 path instead does:
-
-```text
-Use2 held beyond 2500 ms
-→ Script_Game +0x633F1 calls PSRoutine::FullStop()
-→ active CombatMove receives fullStop=true
-→ Script_Game +0x63409 calls PSRoutine::SetState(...)
-→ native AISetState destroys/replaces the old SPU state-stack continuation
-→ the suspended attack ScriptFunction can no longer resume into ordinary cleanup
-→ if offense had armed, Item_Attack(7) can survive into successor state/motion
-```
-
-B8 proves this is not full-Whirl-specific: tested player Quick attacks with Dual (1H+1H), plain 1H and Shield+1H use the same held-Use2 abandonment path and can retain armed collision afterward.
-
-Important qualification: this establishes one shared tested stale class, not every possible NPC/terrain/abnormal-ending cause.
+Production repair is still **disabled**.
 
 ---
 
-## B9 Finalization Ordering Result
+## C1 Shadow Guard — Implemented and Core Runtime-Tested
 
-B9 observes tested:
+C1 is an event-driven **shadow-only** execution/source obligation model. It tracks real offensive `Item_Attack` requests, including inherited `7 -> 7`, observes native cleanup, and reports `WOULD_REPAIR` at destructive AISetState finalization without physically changing collision.
 
-```text
-Game +0x164320 = gCScriptRoutine_PS::AISetState(bCString const&)
-```
-
-before the original destructive state replacement.
-
-### Bad held-Use2 path
-
-Representative armed full-Whirl ordering:
+Key implementation/review commits:
 
 ```text
-AIFullStop / +0x633F1 branch
-→ CombatMove fullStop
-→ AISetState entered almost immediately
-   old attack Hit/state context still visible
-   equipped weapon still Item_Attack(7)
-→ no legitimate native cleanup intervened
+3778517f421d07e940c620745bc7ccdf0da54313  C1 implementation
+f04c3e18f4129e0ee7727a3f266d6fc55fb13a8c  independent source review PASS
 ```
 
-### Ordinary successful completion
-
-Tested clean full Whirl, Normal and Quick:
+Local validation completed:
 
 ```text
-CombatMove terminal / Recover path
-→ ordinary action-specific native cleanup 7 -> 5
-→ later AISetState(...PS_Melee_Loop)
+build PASS
+single live DLL PASS
+built/live SHA256 match PASS
+startup/load banner PASS
 ```
 
-### Legitimate reaction interruption
-
-Tested armed Normal/Quick reactions:
+Core runtime raw evidence:
 
 ```text
-AIFullStop
-→ CombatMove fullStop
-→ separate reaction cleanup +0x24AFF resets 7 -> 5
-→ reaction successor
+research/raw/2026-08-28_c1_shadow_core_lifecycle_matrix.log
+raw commit: a3c41c829a0e7d083ccfc657eafc285f68b60d4b
 ```
 
-No AISetState intervenes before the legitimate cleanup in those tested samples. B9 also confirms more than one legitimate-reaction FullStop caller (`+0x2D0F8` and `+0x2B8CB` observed), so no single reaction call-site classifier is authoritative.
-
-**Engineering consequence:** destructive AISetState is now a strong tested **post-cleanup-opportunity / abandonment checkpoint** for the known held-Use2 stale class. It is still generic script-state infrastructure and must not become an unconditional cleanup hook.
-
-B9 raw:
+Derived retrieval extract:
 
 ```text
-research/raw/2026-08-28_b9_player_aisetstate_cleanup_ordering.log
+research/archive/2026-08-28_c1_shadow_core_lifecycle_matrix_connector_extract.txt
+extract commit: e5d8da1323b3c43c52ce0f58ea010081e00a364f
 ```
 
-B9 raw commit:
+### Core result
 
-```text
-ae0a78787cb811f9de551997505ea4bd14370846
-```
+The shadow classification itself behaved strongly in the tested matrix:
+
+- **8 actual `WOULD_REPAIR` outcomes** were accounted for by known armed bad held-Use2 abandonments:
+  - 1 full Whirl;
+  - 7 Dual Quick;
+- clean ordinary completions did not become repair candidates;
+- tested pre-activation bad skips did not become repair candidates;
+- tested legitimate reaction interruptions cleaned natively and did not become repair candidates;
+- the inherited-stale control passed:
+  - one bad Whirl left the real weapon physically at group 7;
+  - the next Normal attack requested `7 -> 7` on the same weapon;
+  - C1 attributed that request to the **new** generation;
+  - native cleanup later reset `7 -> 5`;
+  - the new generation finalized as no-op.
+
+This validates the consequence-based obligation model for those paths without requiring family/cause-specific repair logic.
 
 ---
 
-## Pierce Raise Subtest — Qualification
+## New C1 Boundary Finding — CombatMove Start Is Too Late Universally
 
-B9 contains repeated plain-1H and Dual Pierce `Raise -> Hit` sequences. However, no `AIFULLSTOP CALLSITE` record was captured while `PS_Melee_PierceAttack` was active; the held-Use2 `+0x633F7` events around those attempts occurred in `PS_Melee_Loop` before/after the Pierce execution.
+The same runtime matrix produced **11 `UNOWNED_PLAYER_OFFENSE_REQUEST` warnings** during knockdown/GetUp-related handling.
 
-Therefore this indexed B9 run does **not** newly prove a destructive bad skip inside Pierce Raise. Preserve the user's earlier/repeated runtime observation that Raise may still proceed to Hit after a skip as an observation until directly reproduced under indexed diagnostics.
-
-The user also repeatedly observes that a bad skip during Hit stops the attack's native forward movement. This is consistent with CombatMove termination, but displacement was not instrumented, so keep it as repeated runtime observation rather than log-proven positional evidence.
-
----
-
-## Current Gate — C1 Execution-Level Guard Design
-
-The former gate was to find a general event-driven finalization mechanism. B8/B9 satisfy that research gate strongly enough for the tested known stale class to begin **designing** C1.
-
-Do not start Work yet. Normal Chat must first freeze the smallest production state/transition model.
-
-The design target is:
+Narrow static inspection confirmed this is not random logger noise:
 
 ```text
-exact attack-Hit execution X
-→ X actually requests offensive collision
-→ remember an outstanding cleanup obligation for X
-→ Gothic native cleanup observed?
-     YES → obligation fulfilled; no-op
-     NO  → keep obligation
-→ CombatMove termination / destructive AISetState abandons X
-→ if obligation still outstanding at the proven finalization checkpoint
-     repair only X's remaining offensive source(s)
-→ retire X lifecycle state
+GetUpAttack Script_Game region
++0x41CA6  weapon can be set to Item_Attack(7)
++0x41D5A  later call to the same CombatMove import used by full Whirl
++0x41E10  known later GetUpAttack cleanup to Item_Equipped(5)
 ```
 
-Design requirements:
+Therefore some legitimate collision-owning attack ScriptFunction work begins **before** the current C1 `new CombatMove initial invocation` boundary.
 
-- event-driven only;
-- no family/cause-specific repair matrix;
-- no input-key classifier;
-- no polling, timer or world/per-frame scan;
-- no unconditional cleanup on AIFullStop/AISetState;
-- track an actual offensive request, including `7 -> 7` requests that may inherit stale state;
-- native `7 -> 5` cleanup must fulfill/retire the obligation before fallback;
-- exact equipped physical source ownership must be preserved;
-- intentional marker OFF/source switching remains intra-Hit behavior, not terminal retirement;
-- existing callback suppression, StatePosition advancement, occurrence/replay protection and marker execution bookkeeping must remain intact;
-- Fist/body semantics remain separate from weapon-style Item_Attack ownership.
+Important consequence:
 
-Use `docs/BETWEEN_CHATS.md` for the current C1 design handoff.
+```text
+CombatMove start
+= strong inner asynchronous-instruction boundary
+≠ universal outer collision-owning attack-execution start
+```
+
+Do **not** fix this with a GetUpAttack/action-30 special case.
+
+Do **not** simply adopt an already-equipped group-7 weapon when CombatMove begins; that would blur legitimate pre-CombatMove arming with inherited stale collision from a previous broken execution.
 
 ---
 
-## Relevant Tested Symbols
+## Current Gate — Find the General Outer Execution Identity
+
+Normal Chat's current question is:
+
+> **Does Gothic 3 expose a stable ScriptFunction/SPU execution identity or native boundary above CombatMove that already exists when a pre-CombatMove offensive request occurs and remains identifiable when the later CombatMove instruction begins?**
+
+Preferred route:
+
+```text
+pre-CombatMove real offense request
+→ bind to exact native ScriptFunction/SPU execution identity
+→ later CombatMove belongs to that same execution
+→ native cleanup fulfills obligation if observed
+→ destructive abandonment finalizes only that execution
+```
+
+If source/static evidence cannot identify such a stable identity directly, freeze the smallest factual diagnostic needed to compare the relevant SPU/ScriptFunction identity at:
+
+1. the unowned offensive request;
+2. the later CombatMove entry;
+3. cleanup/finalization.
+
+### Current constraints
+
+- no production physical repair yet;
+- no GetUpAttack/action/family ownership table;
+- no input-key/cause classifier;
+- no unconditional cleanup on FullStop/AISetState;
+- no adoption of arbitrary pre-existing group 7 as ownership proof;
+- no timers, polling, world scans or per-frame repair;
+- preserve all existing marker occurrence/execution/source bookkeeping;
+- Fist/body semantics remain separate from weapon-style `Item_Attack` ownership.
+
+Do not start another bounded implementation until Normal Chat freezes the next exact boundary/diagnostic question.
+
+---
+
+## Relevant Tested Native Points
 
 ```text
 Game +0x164320 = gCScriptRoutine_PS::AISetState(bCString const&)
 Game +0x164430 = gCScriptRoutine_PS::AIFullStop()
-Game +0x1644D0 = gCScriptRoutine_PS::AIStopCombatMove()
 Game +0x1696E0 = gCScriptProcessingUnit::sAICombatMoveInstr(...)
-Game +0x16E360 = gCScriptProcessingUnit::sAICombatMoveStartRecover(...)
 Game +0x16F120 = gCScriptProcessingUnit::ProcessScript()
-Game +0x16F5B0 = SPU state-changing implementation reached by AISetState
 ```
 
-Relevant Script_Game points:
+Known bad held-Use2 abandonment:
 
 ```text
-+0x24AFF              established reaction-side collision cleanup
-+0x2B8CB              additional tested legitimate-reaction AIFullStop return
-+0x2D0F2 / +0x2D0F8  tested legitimate-reaction FullStop call / return
-+0x4DF8C              full-Whirl CombatMove break-block operation
-+0x4E03C              ordinary full-Whirl cleanup continuation
-+0x62FF0              player Use2 helper
-+0x633F1 / +0x633F7   held-Use2 FullStop call / return
-+0x63409               immediate SetState in held-Use2 abandonment branch
+Script_Game +0x633F1 / +0x633F7  FullStop call / observed return
+Script_Game +0x63409            immediate SetState in bad branch
+```
+
+GetUpAttack boundary evidence:
+
+```text
+Script_Game +0x41CA6  pre-CombatMove Item_Attack request region
+Script_Game +0x41D5A  CombatMove call
+Script_Game +0x41E10  ordinary cleanup
 ```
 
 All addresses are tested-build-specific.
-
----
-
-## Future Marker-Core Review — Preserve This Route
-
-Native CombatMove/state-stack lifetime may eventually replace some custom marker lifetime inference, but do not simplify the marker core until the C1 lifecycle guard is validated and every proven marker regression remains protected.
-
-Retrieve:
-
-```text
-EVIDENCE_INDEX.md
-→ Marker execution lifetime / bookkeeping
-→ future marker-core simplification / native execution boundary
-→ COLLISION_LIFECYCLE_PLAN.md
-```
-
----
-
-## Do Not Do Yet
-
-Until the C1 state/transition design is frozen:
-
-- do not implement production cleanup/repair;
-- do not add an ad-hoc pending-finalization flag without exact lifecycle rules;
-- do not add ProcessScript behavior hooks, timers, polling or scans;
-- do not add family/cause-specific repair branches;
-- do not clean unconditionally at AIFullStop, SetState or AISetState;
-- do not treat the held-Use2 player branch as universal for all abnormal endings;
-- do not simplify proven marker bookkeeping yet;
-- do not move unfinished collision behavior to `main`.
 
 ---
 
@@ -237,14 +196,15 @@ Until the C1 state/transition design is frozen:
 
 | Need | Open |
 |---|---|
-| lifecycle architecture / C1 design | `COLLISION_LIFECYCLE_PLAN.md` |
-| current bounded continuation | `BETWEEN_CHATS.md` |
+| current outer-lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
+| transient exact continuation | `BETWEEN_CHATS.md` when needed |
+| recurring Git/build/deploy/test/log procedure | `PROJECT_OPERATING_PROCEDURES.md` |
 | exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md` |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
-| CombatMove/API/symbol/caller lookup | `SOURCE_HOOK_GUIDE.md` |
-| marker execution lifetime / future simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` |
+| SPU / CombatMove / source/API/symbol lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/static reference as needed |
 | diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
 | staged validation | `COLLISION_TEST_PLAN.md` |
+| marker execution lifetime / future simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` |
 | animation semantics/assets | `ANIMATION_INDEX.md` |
 | overall Raise/speed/collision architecture | `DESIGN.md` |
 | older chronology | `RESEARCH_MAP.md` / archive only when specifically needed |
