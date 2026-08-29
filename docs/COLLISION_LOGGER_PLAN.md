@@ -1,7 +1,7 @@
 # Collision Lifecycle Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
-**Updated:** 2026-08-28
+**Updated:** 2026-08-29
 
 ## Purpose
 
@@ -9,9 +9,9 @@ Define the smallest observational instrumentation needed to answer collision-lif
 
 The logger measures the architecture. It does not define it.
 
-Detailed probe history is preserved through the evidence ledgers, raw logs, and the pre-information-architecture snapshot:
-
-`docs/archive/technical_2026-08-27/COLLISION_LOGGER_PLAN_pre_ia.md`
+Current gate: `SESSION_ENTRYPOINT.md`.  
+Exact evidence: `EVIDENCE_INDEX.md` → canonical evidence ledger.  
+Historical probe detail: evidence/raw/archive + `docs/archive/technical_2026-08-27/COLLISION_LOGGER_PLAN_pre_ia.md`.
 
 ---
 
@@ -19,7 +19,7 @@ Detailed probe history is preserved through the evidence ledgers, raw logs, and 
 
 ### Production/release behavior
 
-- no research log dependency;
+- no research-log dependency;
 - no diagnostic state required for correctness;
 - no polling retained merely because it helped investigation;
 - only the minimum event/state machinery required by the proven design.
@@ -28,7 +28,7 @@ Detailed probe history is preserved through the evidence ledgers, raw logs, and 
 
 - preserves useful lifecycle/collision probes for controlled reproduction and future bug reports;
 - may be more verbose than release behavior;
-- must remain removable without changing behavior.
+- must remain removable without changing collision behavior.
 
 ### General combat diagnostics
 
@@ -49,210 +49,183 @@ Script_FrameCollisionTest.dll
 │
 ├─ Main / Hook Bridge
 │    installs/owns Gothic hooks once
-│    captures factual engine events
+│    captures factual engine events / transient native context
+│
+├─ CollisionLifecycleGuard
+│    C1 shadow execution/source obligations
+│    no physical repair
 │
 ├─ CollisionControl
-│    marker/source behavior
-│    future lifecycle behavior after proof
+│    proven marker/source behavior
 │
 └─ CollisionDiagnostics
      observation/logging only
 ```
 
-Dependency rule:
+The current C1-O2 frozen task may add one `RunScriptFunction` hook/context owner at the tested native boundary. That context is infrastructure for exact actor/SPU/live-frame correlation; it must not become a second attack classifier or generic cleanup system.
 
-```text
-Hook Bridge
-   ├──> Collision Control
-   └──> Collision Diagnostics
-```
-
-Avoid diagnostic state feeding behavior decisions.
+Avoid diagnostic state feeding marker behavior decisions.
 
 ---
 
-## 3. Diagnostic Questions
+## 3. Current Evidence Model
 
-Every retained field/probe should answer at least one of these:
+The collision diagnostic should answer factual questions around one exact execution/source obligation:
 
-1. Did a real attack-Hit execution request offensive collision?
-2. What exact actual motion execution owned that request?
-3. What CombatMove/routine/instruction bookkeeping surrounded acquisition, activation and terminal handling?
-4. When did that exact Hit end, restart, or get replaced?
-5. Did Gothic perform the corresponding legitimate cleanup?
-6. What differs structurally between clean completion, legitimate reaction and bad skip?
-7. If block/parade semantics later matter, did defender equipment enter a collision state that changes cleanup assumptions?
+1. Did a real equipped source successfully request `Item_Attack`, including `7 -> 7`?
+2. Which C1 generation owns that request?
+3. Was the request acquired before or at CombatMove?
+4. What live outer ScriptFunction correlator was bound to that generation while the frame existed?
+5. Did a later CombatMove reuse that same generation or create the ordinary candidate path?
+6. Did Gothic perform legitimate cleanup for the exact source?
+7. Did the native frame retire normally, or did destructive state replacement remove it?
+8. Did the generation finalize cleanly or remain a shadow `WOULD_REPAIR` candidate?
+9. Did any binding/frame invariant fail?
 
-If a field does not help answer a current/reusable diagnostic question, do not add it casually.
-
----
-
-## 4. Preferred Event Model
-
-Prefer narrow event records over continuous state dumps.
-
-Conceptual events:
-
-```text
-ATTACK_HIT_ACQUIRED
-OFFENSIVE_COLLISION_REQUESTED
-NATIVE_CLEANUP_OBSERVED
-PRIMARY_HIT_DISAPPEARED
-PRIMARY_HIT_STOP_REQUESTED
-PRIMARY_HIT_REPLACED_OR_RESTARTED
-COMBATMOVE_BOUNDARY_OBSERVED
-MARKER_COMMAND_ACCEPTED / REJECTED
-BLOCK_OR_REACTION_TRANSITION   (only when specifically needed)
-```
-
-One engine hook may feed both behavior and diagnostics, but the factual event should be captured once.
+Do not add fields merely because they are available.
 
 ---
 
-## 5. Common Event Context
+## 4. Established Diagnostic Events to Preserve
 
-Useful shared fields when available:
+The current research prototype has accumulated useful factual observations. Preserve them while C1-O2 is being validated unless a bounded task explicitly removes superseded diagnostics after evidence is safely canonical.
 
-- high-resolution elapsed time;
-- actor identity/address;
-- exact PrimaryFirst motion name;
-- motion play time / max time / running state;
-- current movement animation;
-- native action and phase **as context**;
-- Routine StateTime / StatePosition when exposed through supported APIs;
-- event type.
+### Collision request / cleanup observation
 
-Collision-request fields:
+Existing `eCEntity::SetCollisionGroup` observation remains authoritative for:
 
-- changed source entity/address;
-- left/right equipped-slot match;
-- raw UseType when useful;
-- requested group;
-- group before/after;
-- whether the request is `Item_Attack` even if it is `7 -> 7`.
-
-Do not treat action/phase, StateTime/StatePosition, or filename alone as the continuing physical-execution key after exact Hit acquisition.
-
----
-
-## 6. Current Probe Inventory
-
-### Existing `SetCollisionGroup` observation
-
-Purpose:
-
-- record offensive requests and cleanup requests/consequences;
-- identify exact equipped source;
-- preserve B4/B5 native cleanup call-site/stack evidence.
-
-Current source captures a short stack for exact tested player-equipped `7 -> 5` cleanup. It already logs factual context for offensive requests, including `5 -> 7` and `7 -> 7`, but does **not** yet capture their full caller stacks.
-
-B7 may extend this **same existing hook** to capture offensive-request stacks if static reconstruction leaves the timer/callback activation path ambiguous. That is preferred over adding another Gothic hook merely to observe activation.
-
-### Existing type-0 `PlayMotion` observation
-
-Purpose:
-
-- observe PrimaryFirst acquisition/replacement with immediate timing;
-- compare before/after motion snapshots;
-- support exact direct replacement/restart detection when the outgoing Primary remains present at PlayMotion entry;
-- retain the factual ungated empty-Primary successor stack introduced for B6-C3.
-
-B1 proved the event is earlier and more precise than the old Script `OnTick` comparator.
-
-### Existing type-0 `StopMotion` observation
-
-Purpose:
-
-- observe explicit PrimaryFirst stop requests and their immediate before/after snapshots;
-- retain supporting timing context.
-
-EV-174/EV-175 proved the clean Hit can already be absent at StopMotion-hook entry. StopMotion is therefore a nearby factual request, **not a proven removal event**.
-
-### Existing StartRecover-BEGIN stack probe
-
-Retain as a clean-path factual reference.
-
-EV-176 established:
-
-```text
-diagnostic
-→ sAICombatMoveInstr
-→ ProcessScript()
-```
-
-while the outgoing Hit was still Primary and the weapon still group 7.
-
-StartRecover is not a production boundary: it is too early and bad skips can bypass it.
-
-### B6 empty-Primary successor stack — retained, no longer the current gate
-
-B6-C3 successfully captured factual Stumble/KnockDown successors. EV-179 establishes legitimate reaction successor installation inside reaction Script_Game/ScriptAdmin context.
-
-B6-D then captured armed bad Whirl replacement to Ambient with an observed stack containing only:
-
-```text
-diagnostic
-→ Game +0xD9CB3
-```
-
-while the weapon remained group 7. EV-180/EV-181 therefore reject the earlier replacement-triggered deferred-ProcessScript candidate in its present form.
-
-Keep the B6 probe available for reproduction/comparison, but do not keep refining it simply to force all paths into one script-context model.
-
-### Old Script `OnTick` lifetime comparator
-
-Retain only while it has comparison value. It is too coarse for production-style lifetime authority and should not survive merely because it already exists.
-
----
-
-## 7. Current Diagnostic Question — B7 Bookkeeping / Activation Path
-
-Before adding another runtime probe, statically reconstruct the smallest authoritative control flow around:
-
-- `sAICombatMoveStart`;
-- `sAICombatMoveItlLoop`;
-- `sAICombatMoveInstr` and exposed active instruction/callback state;
-- Routine StateTime / StatePosition progression/reset;
-- action-specific continuation after CombatMove;
-- reaction state/reset path leading to `Script_Game +0x24AFF`.
-
-If one exact fact remains missing, prefer the smallest existing-hook extension.
-
-### Likely bounded B7 runtime extension
-
-Use the current `SetCollisionGroup` hook to stack-capture actual player equipped-source offensive requests:
-
-```text
-5 -> 7
-7 -> 7
-```
-
-Why include `7 -> 7`:
-
-EV-181 proved a broken Whirl can leave the weapon stale at 7, and the next independent Normal execution can make a real offensive request while the numeric group remains 7. An activation diagnostic that watches only 5 -> 7 would miss that execution's collision obligation.
-
-Desired factual record:
-
-- source/address/slot;
+- exact changed source entity;
+- equipped RIGHT/LEFT slot association;
 - requested/before/after group;
-- action/phase;
-- StateTime;
-- StatePosition;
-- current movement;
-- caller module/RVA;
-- short stack.
+- successful offensive `Item_Attack` request, including `7 -> 7`;
+- successful transition away from `Item_Attack` used as native cleanup fulfillment;
+- tested native cleanup call-site/stack evidence.
 
-No persistent diagnostic state is required merely to capture this event.
+A numeric group already being 7 does **not** mean no new request occurred.
 
-Do not add:
+### CombatMove observation
 
-- a new attack-family classifier;
-- successor-name gating;
-- family-specific cleanup logic;
-- a ProcessScript behavior hook;
-- polling/timers/per-frame scans;
-- guessed layouts.
+Existing `sAICombatMoveInstr` observation remains useful for:
+
+- new initial invocation;
+- ordinary C1 candidate creation path;
+- persisted asynchronous instruction behavior;
+- fullStop termination evidence;
+- later C1-O2 generation reuse when the outer frame already owns the execution.
+
+CombatMove remains an inner milestone, not universal outer acquisition.
+
+### AISetState observation
+
+Existing `gCScriptRoutine_PS::AISetState` observation remains the tested destructive-finalization checkpoint for C1 shadow classification when an exact generation/source obligation is already owned.
+
+It is generic infrastructure and must stay a no-op for unrelated processing.
+
+### Primary motion / StartRecover / FullStop historical probes
+
+Retain B1–B9 motion/StartRecover/AIFullStop probes as historical/reproduction diagnostics while useful. They no longer define the current gate and should not be extended simply because they already exist.
+
+Their durable conclusions route through EV-158–EV-191.
+
+### C1 shadow events
+
+Preserve the high-signal C1 records needed to verify:
+
+```text
+lifecycle/generation start
+source offense request
+source cleanup fulfilled
+shadow finalization outcome
+invariant warning
+```
+
+The C1 core result is EV-192–EV-193.
+
+### C1-O1 outer-frame snapshots
+
+The broad C1-O1 stack/frame snapshot probe established the outer lifetime and pointer-reuse qualification. It remains useful evidence/reproduction support, but C1-O2 should **not** turn generic ScriptFunction dispatch into broad per-call logging.
+
+Evidence: EV-195–EV-196.
+
+---
+
+## 5. Current Diagnostic Question — C1-O2 Outer Binding
+
+C1-O2 needs only enough new signal to prove the native binding lifecycle:
+
+```text
+pre-CombatMove offense
+→ outer binding acquisition + generation
+
+later CombatMove
+→ same live binding reuses same generation
+
+ordinary CombatMove-first path
+→ candidate generation obtains live outer binding when available
+
+native true ScriptFunction return
+→ binding retirement before raw address reuse
+
+failure
+→ concise invariant, no guessed fallback
+```
+
+### Required high-signal C1-O2 events
+
+The frozen implementation contract should expose, at minimum:
+
+- **pre-CombatMove outer acquisition** with actor, generation, exact source and live-frame correlator summary;
+- **CombatMove reuse** showing the same generation was reused from a still-live outer binding;
+- **ordinary CombatMove binding** for the existing candidate-created path;
+- **outer binding retirement** on true `RunScriptFunction` return;
+- **frame mismatch / overlap invariant** if a request or later CombatMove cannot safely match the live binding;
+- **null-arguments invariant** if a relevant ScriptFunction cannot satisfy the frozen correlator;
+- **`OUTER_RETURN_OUTSTANDING`-style invariant** if a true return retires the live frame while the bound generation still has an outstanding source obligation.
+
+The exact event spelling may follow the frozen C1-O2 implementation contract. Do not create a parallel diagnostic vocabulary merely for documentation.
+
+---
+
+## 6. C1-O2 Transient `RunScriptFunction` Context
+
+The new context is allowed only for the exact synchronous `gCScriptAdmin::RunScriptFunction(..., stateStack, spu)` dispatch.
+
+Diagnostic/context rules:
+
+1. capture the relevant live frame correlator before the original registered ScriptFunction execution can remove it;
+2. supplied `gCScriptProcessingUnit *` is the actor-context authority;
+3. actor comes from `spu->GetSelfEntity()`;
+4. matching live frame requires:
+   - exact SPU;
+   - top frame is ScriptFunction, not ScriptState;
+   - non-null `m_pArguments` equal to the bound value;
+   - same ScriptFunction name;
+5. break block is context only and may advance during one execution;
+6. top-entry address is diagnostic only;
+7. action/phase/state/input/family are context only, not ownership identity;
+8. wrapper calls original exactly once with unchanged arguments;
+9. transient dispatch context must be nesting-safe and leave no context after wrapper exit;
+10. true return retires the native binding before any raw-address reuse can match it later.
+
+Do not dereference/classify arguments merely to invent a stronger identity.
+
+Evidence basis: EV-195–EV-196.
+
+---
+
+## 7. Logging Restraint
+
+The generic `RunScriptFunction` path executes far more than attacks. Therefore:
+
+- no broad per-call ScriptFunction dump;
+- no continuous state-stack logging;
+- no full stack dump for every dispatch;
+- no action/family table to decide which ScriptFunctions matter;
+- no logging merely because a frame exists.
+
+Emit C1-O2 records only when a fact is relevant to binding/acquisition/reuse/retirement or when a frozen invariant fails.
+
+The diagnostic should remain bounded enough that the controlled runtime matrix can be inspected causally.
 
 ---
 
@@ -260,46 +233,53 @@ Do not add:
 
 Do not define cleanup as “the group is currently not 7.”
 
-Prefer observing the legitimate cleanup request/operation for the exact owned offensive source/execution.
+The current C1 model observes the actual successful consequence of a source request:
 
-Current research uses `SetCollisionGroup` request + before/after state because that path is directly observable and has mapped native call sites.
+```text
+successful Item_Attack request
+→ exact source obligation becomes outstanding
 
-A future production guard may reuse native cleanup semantics more directly if a suitable operation is proven.
+successful later transition away from Item_Attack
+→ that exact source obligation is fulfilled
+```
 
-Keep attack-wide vs source-specific cleanup an evidence question; do not create per-source lifecycle tables without a demonstrated need.
+Cleanup can execute under a different ScriptState/reaction context from the old attack ScriptFunction. Therefore C1-O2 frame matching must **not** be required for cleanup fulfillment.
+
+Do not add cleanup because `RunScriptFunction` returned, CombatMove fullStopped, Recover appeared, or AISetState was requested.
 
 ---
 
 ## 9. Execution Identity
 
-Do not use action/phase alone as an execution key.
+Current authority after C1-O1:
 
-Desired identity should be based on the exact actual PrimaryFirst Hit execution, using the lightest stable facts the engine exposes. Supporting facts can include:
+```text
+C1 monotonic generation
+= durable plugin execution identity
 
-- motion instance identity if safely accessible;
-- exact motion resource/name;
-- stop/replacement/restart event;
-- play-time rollback for repeated same-name executions;
-- offensive-request observation tied to the execution.
+exact SPU + live ScriptFunction + non-null m_pArguments + same ScriptFunction name
+= temporary native lifetime correlator only
+```
 
-Filename identity is useful but not sufficient by itself to define behavioral ownership.
+Raw stack-entry or arguments addresses are not globally unique; they may be reused after retirement.
 
-B7 may reveal native instruction/routine bookkeeping that provides a better exact-execution boundary; do not assume that result in advance.
+If a future relevant ScriptFunction has null `m_pArguments`, log the failure and leave the new route unacquired. Do not guess another identity rule inside diagnostics.
 
 ---
 
-## 10. Block / Parade Diagnostics
+## 10. Marker Diagnostics Remain Separate
 
-Do not instrument defender collision broadly until a concrete architecture question requires it.
+Marker occurrence/replay/source-set bookkeeping is proven behavior with its own regression history. C1/C1-O2 must not silently reinterpret marker diagnostics as execution cleanup state.
 
-If the final cleanup design risks disturbing defensive collision state, the minimum controlled block test should observe:
+Preserve the distinction:
 
-- attacker offensive source request/cleanup;
-- defender weapon/shield group requests;
-- attacker reaction transition;
-- defender Parade/ParadeStumble transition.
+```text
+marker occurrence/exact-set bookkeeping
+≠
+physical source cleanup obligation
+```
 
-Visible weapon bounce is not sufficient evidence of weapon-to-weapon physical collision.
+Before any future marker-core simplification, retrieve the marker-lifetime route in `EVIDENCE_INDEX.md` and `COLLISION_LIFECYCLE_PLAN.md`.
 
 ---
 
@@ -307,28 +287,33 @@ Visible weapon bounce is not sufficient evidence of weapon-to-weapon physical co
 
 Do not add:
 
-- production cleanup merely to make logs cleaner;
-- block-timeout/Staff/Quick/Whirl-specific repair logging branches;
+- production physical repair;
+- GetUp/Quick/Whirl/action/input/state-name ownership classifiers;
+- unconditional cleanup/finalization on `RunScriptFunction` return, FullStop or AISetState;
+- adoption of arbitrary already-group-7 equipment;
+- null-arguments identity fallback;
 - broad per-frame actor/world scans;
-- duplicate hooks when the current owner can forward the factual event;
-- full damage/health instrumentation unless source/group evidence cannot answer a specific test;
-- a second lifecycle classifier inside diagnostics;
-- guessed binary layouts when an SDK-supported or raw opaque representation is sufficient;
-- repeated B6 probe refinements after its architecture question has already been answered negatively.
+- wall-clock cleanup timers;
+- duplicate hook owners for the same target;
+- another lifecycle model inside diagnostics;
+- marker-core simplification during C1-O2;
+- guessed binary layouts when SDK-supported fields or opaque factual logging are sufficient.
 
 ---
 
-## 12. B7 Acceptance Criteria for Any New Diagnostic
+## 12. C1-O2 Diagnostic Acceptance
 
-Before adding B7 runtime instrumentation:
+The diagnostic architecture is sufficient for C1-O2 when a controlled run can establish, without broad dumps:
 
-1. static/source inspection must identify the exact missing factual question;
-2. reuse an existing hook when it already observes the relevant event;
-3. capture only factual caller/context data needed for the comparison;
-4. preserve original behavior exactly once and unchanged;
-5. no diagnostic state may feed collision/marker behavior;
-6. compare clean Normal/Quick/Whirl, legitimate interruption, and bad Whirl as lifecycle mechanisms rather than production branch candidates;
-7. if a diagnostic cannot distinguish the bookkeeping/control-flow question, revise the observation rather than infer from absence.
+1. the pre-CombatMove GetUp offense acquired generation N from a live outer frame;
+2. its later CombatMove reused generation N;
+3. ordinary CombatMove-first controls still create/bind the expected candidate generation;
+4. legitimate native cleanup fulfills exact source obligations independently of old frame context;
+5. true-return binding retirement occurs before a later reused address could match;
+6. known bad armed abandonment keeps the existing shadow `WOULD_REPAIR` classification;
+7. clean/reaction/pre-activation controls remain no-op;
+8. any mismatch/null/outstanding-return condition appears as an explicit invariant rather than hidden fallback behavior;
+9. all records state/guarantee that physical collision behavior was not changed by the shadow diagnostic.
 
 ---
 
@@ -336,7 +321,7 @@ Before adding B7 runtime instrumentation:
 
 When collision behavior is stable:
 
-1. keep the production behavior modules and required hook ownership;
+1. keep production behavior modules and required hook ownership;
 2. omit verbose research diagnostics from the release build;
 3. retain a diagnostic build/tool for future controlled reproduction;
 4. selectively migrate only generally useful observations to the combat logger;
