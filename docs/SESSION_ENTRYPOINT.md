@@ -73,7 +73,7 @@ Use the ordered route in `EVIDENCE_INDEX.md` once when this causal model is not 
 - **Physical consequence and scope:** stale collision can persist through idle/movement, damage an NPC while the player runs, and be inherited by later attacks as legitimate `7 -> 7`; a later valid execution may clean it, but not every later action is proven to do so. The class is reproduced beyond full Whirl in tested Dual, plain 1H and Shield+1H Quick configurations. See EV-156, EV-162, EV-181, EV-190, EV-193.
 - **Raise boundary:** the User has repeatedly reproduced this timeout failure on the vulnerable set lacking a working Raise and has not successfully reproduced it on attacks with a working Raise. The protective mechanism is unproven; Raise can still be interrupted by terrain, damage and other legitimate mechanisms. Adding Raise is not a collision-cleanup fix. See EV-153, EV-191, EV-198.
 - **Rejected simplifications:** missing Recover, Recover as universal authority, StartRecover as universal boundary, PlayMotion replacement fallback, callback return, unconditional AIFullStop cleanup, Whirl-only repair, a held-Use2/2500-ms/patch-callsite production classifier and “add Raise.” See EV-154, EV-159–EV-162, EV-168–EV-191.
-- **Governing invariant:** every real attack-Hit offensive request must receive Gothic's legitimate native cleanup opportunity; if that exact execution is destructively abandoned with an exact source obligation outstanding, repair only the remaining source using native cleanup semantics. See `COLLISION_LIFECYCLE_PLAN.md` and EV-192–EV-196.
+- **Governing invariant:** every real attack-Hit offensive request must receive Gothic's legitimate native cleanup opportunity; if that exact execution is destructively abandoned with an exact source obligation outstanding, repair only the remaining source using native cleanup semantics. See `COLLISION_LIFECYCLE_PLAN.md` and EV-192–EV-200.
 
 This is a routing reconstruction, not a duplicate ledger. Retrieve raw/source proof only for a fact being verified or reinterpreted.
 
@@ -118,7 +118,7 @@ f04c3e18f4129e0ee7727a3f266d6fc55fb13a8c  independent source review PASS
 Core runtime evidence:
 
 ```text
-research/raw/2026-08-28_c1_shadow_core_lifecycle_matrix.log
+research/archive/2026-08-28_c1_shadow_core_lifecycle_matrix.log
 raw commit: a3c41c829a0e7d083ccfc657eafc285f68b60d4b
 research/archive/2026-08-28_c1_shadow_core_lifecycle_matrix_connector_extract.txt
 extract commit: e5d8da1323b3c43c52ce0f58ea010081e00a364f
@@ -142,7 +142,7 @@ Implementation and evidence:
 
 ```text
 54a64552514f4d6795b4a51cbad7848b5df3795b  C1-O1 diagnostic implementation
-research/raw/2026-08-29_c1o1_outer_scriptfunction_identity_probe.log
+research/archive/2026-08-29_c1o1_outer_scriptfunction_identity_probe.log
 raw commit: adf6a6102007c56f7502b01072acbe00bcbc35a4
 research/archive/2026-08-29_c1o1_outer_scriptfunction_identity_probe_connector_extract.txt
 extract commit: 5da094a0c2d6fc58fe260933799a76e43ef7d1d3
@@ -207,46 +207,48 @@ When the ScriptFunction returns false because asynchronous work remains active, 
 
 ---
 
-## Current Immediate Responsibility — Hook-Hardening Before C1-O2 Can Resume
+## Current Immediate Responsibility — Directly Relevant Hook Transport Before C1-O2 Reassessment
 
-The higher-level C1-O2 outer-frame binding gate remains conceptually relevant, but direct `RunScriptFunction` dispatch capture is **suspended**. It is not the next ready implementation/runtime gate.
+The higher-level C1-O2 outer-frame binding gate remains conceptually relevant, but direct `RunScriptFunction` dispatch capture is still **suspended**. Passing the later transport-isolation tests does not by itself prove that the original registered-ScriptFunction crash is solved.
 
 Current durable sequence:
 
 1. The original C1-O2 capture and its recursion-safe `.ThisCall()` correction crashed in equivalent registered-ScriptFunction paths (`Script.dll +0x1494C`, `Script_Game.dll +0x3776D`, return at `Game +0x1605EB`, observed `ECX=0`).
-2. `RunScriptFunction` was reduced to recursion-safe pure pass-through: explicit real `this`, unchanged arguments, exactly one original call, no dispatch capture or C1-O2 lifecycle work.
-3. That pure pass-through baseline passed the bounded load/idle isolation.
-4. Extended gameplay then produced a **different** crash through the existing AISetState path (`Script.dll +0x12F61`, `Game +0x1604D3`), not the earlier `RunScriptFunction +0x1605EB` path.
-5. Source analysis found AISetState still used the SDK's legacy shared `GetSelf` ThisCall transport, which is not recursion-safe.
-6. AISetState alone was converted to explicit per-invocation `gCScriptRoutine_PS *this` with the recursion-safe `.ThisCall()` builder; its original ordering and C1 semantics were preserved.
-7. Independent source review passed.
-8. The extended stability run passed for about **329.9 seconds** and unloaded normally: 172 AISetState records, 43 AIFullStop records and 62 C1 finalizations; zero `OUTER_RETURN_OUTSTANDING`, `LIVE_FRAME_MISMATCH`, `PRECOMBAT_GENERATION_FRAME_OVERLAP`, `OVERLAP_OUTSTANDING`, `CANDIDATE_GENERATION_CHANGED`, `FINALIZATION_GENERATION_CHANGED` or `NULL_ARGUMENTS` records. One deliberately reproduced bad full Whirl produced the expected log-only `WOULD_REPAIR`; physical repair remained disabled.
+2. `RunScriptFunction` was reduced to recursion-safe pure pass-through: explicit real `this`, unchanged arguments, exactly one original call, no dispatch capture or C1-O2 lifecycle work. That pure pass-through baseline passed bounded load/idle isolation.
+3. Extended gameplay then produced a **different** crash through the existing AISetState path (`Script.dll +0x12F61`, `Game +0x1604D3`), not the earlier `RunScriptFunction +0x1605EB` path.
+4. AISetState was converted from legacy shared `GetSelf` transport to explicit per-invocation `gCScriptRoutine_PS *this` plus recursion-safe `.ThisCall()`. Its extended stability run passed for about **329.9 seconds** and unloaded normally with 172 AISetState records, 43 AIFullStop records, 62 C1 finalizations, zero tracked binding/generation/null-argument failure signals, and one confirmed expected bad-Whirl `WOULD_REPAIR`.
+5. AIFullStop was then converted by the same transport-only pattern. Work implementation `18ff183e05b599de9e035722b15e3bfb6cbbc034` passed independent Normal Chat source review, isolated build/load/unload validation, and an extensive extended-gameplay stability run.
+6. The AIFullStop run recorded 127 AIFullStop calls, 71 CombatMove FullStops, 513 AISetState calls and 179 C1 finalizations, ended with normal unload, and did not crash despite repeated bad-skip reproductions across multiple weapon configurations plus broad town/camp/combat traversal.
+7. The run contained 16 `WOULD_REPAIR` source outcomes. Its 11 generic C1 warnings were all the already-known `UNOWNED_PLAYER_OFFENSE_REQUEST` acquisition gap from EV-194. `C1-O2 BINDING INVARIANT`, `OUTER_RETURN_OUTSTANDING`, `LIVE_FRAME_MISMATCH`, `PRECOMBAT_GENERATION_FRAME_OVERLAP`, `OVERLAP_OUTSTANDING`, `CANDIDATE_GENERATION_CHANGED`, `FINALIZATION_GENERATION_CHANGED`, `NULL_ARGUMENTS` and `UNRESOLVED_NOT_EQUIPPED` were all zero in the extracted counts.
 
-Canonical stability artifacts:
+Canonical transport-stability artifacts:
 
 ```text
 8024d846eed626725ca46fa744a79af44fcb2815  AISetState recursion-safe implementation
-2c666c7bf2374c3875e2706c6ee54563f31c593f  Work handoff/result record
-research/raw/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability.log
-raw commit: 6b4cda21466ccca6c42a9c51b98fbbfe6da48ed3
+research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability.log
 research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_extract.txt
-extract commit: 86308b1c91176501c294ee50af99ce9bb418900d
+
+18ff183e05b599de9e035722b15e3bfb6cbbc034  AIFullStop recursion-safe implementation
+DLL SHA256: 89329667BF83479E419C2775965E0CC41769F2BFD247F84C95939B673292B13B
+research/archive/2026-08-29_c1_aifullstop_recursion_safe_extended_gameplay_stability.log
+research/archive/2026-08-29_c1_aifullstop_recursion_safe_extended_gameplay_stability_connector_extract.txt
+evidence commit: 72273ead0ae7821a0d70b2e3b168ad00a1271f1a
 ```
 
-Only **one** bad full-Whirl reproduction was confirmed despite at least two attempts. Do not generalize the stability run as more than one confirmed bad case.
+The AIFullStop gate is **PASS for tested transport stability**. It is not evidence that direct C1-O2 dispatch capture is now safe, and it does not authorize physical repair or a held-Use2-specific fix.
 
-Legacy ThisCall transports still present at this point are AIFullStop, SetCollisionGroup, PlayMotion, StopMotion and StartEffect.
+Current source still contains legacy ThisCall transports for StartEffect, SetCollisionGroup, PlayMotion and StopMotion. Do **not** automatically harden every remaining hook merely because it is legacy. The next prerequisite must be selected by direct relevance to the universal guard.
 
-AIFullStop remains the leading next isolated hardening candidate because it is another `gCScriptRoutine_PS` member on both proven bad and legitimate interruption paths and still uses legacy ThisCall transport. The purpose of this hardening is to establish a stable hook substrate for the **universal guard path**, not to fix or classify the held-Use2 bad skip.
+`SetCollisionGroup` is the leading next isolated candidate because it still uses shared `GetSelf<eCEntity *>()` transport and is the exact observation path on which C1 learns both successful offensive requests (including `7 -> 7`) and native cleanup fulfillment. It can also execute while Script_Game / RunScriptFunction activity is live. This makes it materially more relevant to C1-O2 substrate safety than broad visual-animation or marker-effect hardening.
 
 ### Next Normal Chat responsibility
 
-1. inspect the exact existing AIFullStop hook/wrapper and its preserved diagnostics against the proven recursion-safe AISetState pattern;
-2. confirm that an isolated transport-only correction can be frozen without changing FullStop semantics, collision classification or lifecycle behavior;
-3. if no contradiction exists, explicitly freeze one bounded AIFullStop recursion-safe ThisCall implementation task for Work;
-4. after Work returns, Normal Chat independently reviews the actual diff before any build/runtime step.
+1. inspect the exact current `SetCollisionGroup` wrapper, hook signature and SDK/hook-builder contract against the already-proven explicit-this transport pattern;
+2. determine whether the member hook can be changed in isolation to explicit per-invocation `eCEntity *this` plus `.ThisCall()` while preserving the exact before/original/after/C1 observation ordering and all marker-retirement/logging semantics;
+3. if no API/source contradiction exists, expose that bounded transport-only prerequisite to the User and obtain contextual agreement before freezing Work;
+4. after any resulting implementation/stability gate, **reassess C1-O2 directly** rather than assuming PlayMotion/StopMotion/StartEffect must also be hardened.
 
-Do not restore C1-O2 dispatch capture in the AIFullStop task. Do not add physical repair. Do not modify the held-Use2/2500-ms behavior.
+No Work task is currently frozen. Do not restore C1-O2 dispatch capture, add physical repair, modify marker behavior, or alter held-Use2/2500-ms behavior as part of this prerequisite analysis.
 
 ---
 
@@ -260,6 +262,7 @@ Game +0x164320 = gCScriptRoutine_PS::AISetState(bCString const&)
 Game +0x164430 = gCScriptRoutine_PS::AIFullStop()
 Game +0x1696E0 = gCScriptProcessingUnit::sAICombatMoveInstr(...)
 Game +0x16F120 = gCScriptProcessingUnit::ProcessScript()
+Engine +0x225660 = tested SetCollisionGroup hook target used by the prototype
 ```
 
 GetUpAttack boundary evidence:
