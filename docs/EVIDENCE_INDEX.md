@@ -10,8 +10,7 @@ Route a technical question to the smallest relevant evidence range without loadi
 Canonical evidence remains:
 
 - `EVIDENCE_LEDGER.md` — EV-001 through EV-157;
-- `EVIDENCE_LEDGER_STEP_B.md` — EV-158 through EV-189;
-- `EVIDENCE_LEDGER_C1.md` — EV-190 onward.
+- `EVIDENCE_LEDGER_STEP_B.md` — EV-158 onward.
 
 This index **does not restate or change evidence status**. Search/open the exact EV entry when wording, qualification, provenance, build scope, or engineering consequence matters.
 
