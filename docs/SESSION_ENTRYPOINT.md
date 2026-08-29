@@ -250,7 +250,7 @@ All addresses are tested-build-specific.
 | transient exact C1-O2 Work handoff | `BETWEEN_CHATS.md` |
 | naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` relevant section only |
 | recurring Git/build/deploy/test/log procedure | `PROJECT_OPERATING_PROCEDURES.md` |
-| exact evidence | `EVIDENCE_INDEX.md` → exact canonical ledger (`EVIDENCE_LEDGER_STEP_B.md` or `EVIDENCE_LEDGER_C1.md`) |
+| exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md` |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | SPU / ScriptFunction / CombatMove / hook lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/static reference as needed |
 | diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
