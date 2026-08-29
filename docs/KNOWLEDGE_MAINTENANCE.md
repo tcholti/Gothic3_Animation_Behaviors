@@ -1,8 +1,8 @@
 # Gothic 3 Knowledge Maintenance Protocol
 
 **Status:** Active project knowledge-maintenance protocol  
-**Version:** 1.1  
-**Updated:** 2026-08-28
+**Version:** 1.2
+**Updated:** 2026-08-29
 
 ## Purpose
 
@@ -311,6 +311,25 @@ Once its relevant result is represented canonically and it is no longer active i
 
 ## 6. Current-State Maintenance
 
+### Current-state drift check
+
+When a meaningful event creates an unexpected runtime/build/source contradiction, suspends the planned gate, makes an isolation experiment prerequisite, requires crash/safety hardening, makes contradiction-resolution the immediate responsibility, or otherwise materially changes what comes next while the higher-level gate/test ID remains unchanged, Normal Chat must ask:
+
+> **If a fresh Normal Chat followed `SESSION_ENTRYPOINT.md` literally right now, would it begin with the correct immediate responsibility?**
+
+If the answer is **no**, update `SESSION_ENTRYPOINT.md` in the same maintenance transaction.
+
+The enclosing gate remaining conceptually active does not justify pointing a fresh Chat at work that is currently unsafe, blocked, suspended or premature. Temporary prerequisite, isolation, contradiction-resolution or hardening work is durable current state for as long as it is the actual next responsibility. Keep the entry point compact: describe the current route back toward the larger gate, not the detailed chronology.
+
+Apply this check only to a **material** change in what a fresh Normal Chat should actually do next. Routine debugging substeps, expected build/test continuation and other minor detours do not require entrypoint churn.
+
+The responsibilities are distinct:
+
+- `SESSION_ENTRYPOINT.md` = what a fresh Normal Chat should understand and do now;
+- `BETWEEN_CHATS.md` = exact short-lived details needed to continue that already-current responsibility across contexts.
+
+`BETWEEN_CHATS.md` is not a substitute for correcting a stale `SESSION_ENTRYPOINT.md`.
+
 ### `SESSION_ENTRYPOINT.md`
 
 Update when:
@@ -319,6 +338,7 @@ Update when:
 - current causal gate changes;
 - the immediate architecture candidate materially changes;
 - a test gate is completed and the next responsibility becomes different.
+- temporary prerequisite, isolation, contradiction-resolution or safety/hardening work materially replaces the immediate responsibility, even if the enclosing gate ID or long-term objective does not change.
 
 Do **not** add the full history of how the current state was reached.
 

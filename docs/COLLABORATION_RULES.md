@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 1.6  
+**Version:** 1.7
 **Updated:** 2026-08-29
 
 ## Purpose
@@ -76,11 +76,12 @@ The knowledge-maintenance protocol and registry are process tools. They are not 
 
 A small active retrieval surface must not become **context starvation**.
 
-There are three useful retrieval depths:
+There are four useful retrieval depths:
 
 ```text
 current-state retrieval
 → subsystem orientation when needed
+→ active-problem reconstruction when needed
 → question-specific retrieval
 ```
 
@@ -117,6 +118,12 @@ The temporary model should be broad enough to retain major mechanisms, establish
 Do not create a new persistent summary document merely to hold the temporary orientation model. If the orientation pass repeatedly cannot recover an important topic efficiently, strengthen an existing index/subject route rather than duplicating canonical facts into another summary.
 
 The detailed retrieval-depth model and subject routes live in `docs/README.md`.
+
+### 2.2 Active-Problem Reconstruction Pass
+
+Before proposing a new fix or architecture for a substantial active problem, Normal Chat should reconstruct that problem once when its current causal model is stale. Use the route in `SESSION_ENTRYPOINT.md` / `EVIDENCE_INDEX.md` to recover phenotype, reproduction, normal mechanism, established failure, legitimate alternate paths, consequences, proven scope, rejected explanations/fixes, unresolved observations and why the current gate follows.
+
+The reconstruction is targeted and temporary. Keep it fresh through the same active problem; do not repeat it for routine continuation, every test, every Work result or every prompt.
 
 ---
 
@@ -258,6 +265,14 @@ Use `docs/WORK_IMPLEMENTATION_PROTOCOL.md` for a bounded coding task.
 
 No permanent Medium/High reasoning policy is part of this project. Use sufficient reasoning for the actual responsibility and avoid spending resources on repeated reconstruction that the repository can prevent.
 
+### Interpretive transition rule
+
+**Routine continuation:** when an exact responsibility is already frozen—build, deploy, verify, run the controlled test or preserve its log—a short result such as “done”, “passed” or the requested artifact advances that responsibility. Do not require the User to reconfirm the already-clear next operation.
+
+**Interpretive/discovery work:** when unexpected evidence changes an interpretation, exposes a contradiction or creates an architecture choice, present the interpretation and let the User add observations or challenge it. Do not silently append an unannounced implementation task. Once the discussion converges, explicitly expose the next responsibility and why it follows. A natural `agree`, `continue`, `yes` or `let's do it` authorizes that clearly exposed responsibility; do not require a second ceremonial confirmation. Agreement given before the next responsibility was exposed is agreement with the interpretation, not authorization for an unannounced task.
+
+> **Advance routine work from the established referent; expose a new interpretive responsibility before treating agreement as authority to execute it.**
+
 ---
 
 ## 7. Bounded Implementation Must Not Invent Missing Architecture
@@ -285,7 +300,8 @@ Before reconstructing or redoing interrupted work:
 2. inspect the relevant durable commit/source/document;
 3. inspect `docs/BETWEEN_CHATS.md` if it carries newer transient state;
 4. if the active subsystem is not already sufficiently oriented in the current Chat, perform the one-time Subsystem Orientation Pass from `docs/README.md`;
-5. continue only the missing responsibility.
+5. if substantial interpretation or architecture work will resume and the active problem model is stale, perform the targeted Active-Problem Reconstruction Pass from `docs/README.md`;
+6. continue only the missing responsibility.
 
 Do not ask the User to repeat exact technical information that can be reliably retrieved from project authority.
 
@@ -305,7 +321,7 @@ Before ending the current chat:
 6. if `SESSION_ENTRYPOINT.md` already contains everything the next Normal Chat needs and no transient state exists, do **not** create another handoff file merely because the chat is changing;
 7. never create a parallel "new chat handoff" authority; use `SESSION_ENTRYPOINT.md` as the durable front door and `BETWEEN_CHATS.md` as the replaceable transient bridge;
 8. give the User one short copyable starter instruction for the new Normal Chat, normally telling it to read `docs/SESSION_ENTRYPOINT.md` on the active branch and continue from the current Normal Chat responsibility;
-9. the new Normal Chat should then perform the one-time Subsystem Orientation Pass for the active subsystem before deep question-specific work unless that orientation is already present in its context;
+9. the new Normal Chat should then perform the one-time Subsystem Orientation Pass for the active subsystem, and the targeted Active-Problem Reconstruction Pass when the causal model is stale, before deep question-specific work unless those models are already present in its context;
 10. do not require the User to summarize project history, relay technical state between chats, or decide which deeper documents the new chat should preload.
 
 The intended transition is:
@@ -391,4 +407,4 @@ Old collaboration documents and experiments may be archived once their durable l
 
 ## Core Project Collaboration Rule
 
-> **Start from current state, orient once to the relevant subsystem when context is fresh or has changed, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, and let Gothic 3 runtime/source evidence—not documentation volume—drive both the engineering and any collaboration-method lessons proposed for wider reuse.**
+> **Start from current state, orient once to the relevant subsystem, reconstruct a stale active-problem model before new interpretation or architecture, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, and let Gothic 3 runtime/source evidence—not documentation volume—drive both the engineering and any collaboration-method lessons proposed for wider reuse.**

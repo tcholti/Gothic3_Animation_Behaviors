@@ -40,7 +40,7 @@ Raw logs are verification/provenance, not routine reading.
 | Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156, EV-180–EV-191 for resolved tested stale lifecycle |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` constraints |
 | marked block-timeout failure | EV-155 | native control EV-156 |
-| native stale collision / running damage | EV-156, EV-181, EV-187, EV-190 | B6-D/B7b/B8 raw for persistence and cross-family generality |
+| native stale collision / running damage | EV-156, EV-181, EV-187, EV-190, EV-197–EV-198 | active-problem reconstruction route below for trigger, consequence, scope and qualification |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
 | PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-180 |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
@@ -70,11 +70,29 @@ Raw logs are verification/provenance, not routine reading.
 | `FullStop -> SetState` state-stack abandonment causal chain | EV-189–EV-191 | B8 generality + B9 ordering close the tested known stale class |
 | B8 cross-family held-Use2 state-stack abandonment | EV-190 | C1 design follows from the general execution-level failure class |
 | B9 AISetState cleanup/finalization ordering | EV-191 | AISetState is a gated post-opportunity checkpoint, not unconditional cleanup |
+| Alternative AI 2.5-second parade/held-Use2 trigger | EV-187, EV-197 | historical trigger plus tested-binary threshold; not production cleanup authority |
+| Raise reproduction boundary | EV-153, EV-191, EV-198 | observed boundary only; mechanism and general immunity unproven |
 | C1 shadow execution/source obligation model | EV-192–EV-193 | `SESSION_ENTRYPOINT.md` C1 core result |
 | GetUp pre-CombatMove acquisition gap | EV-194 | outer ScriptFunction lifetime EV-195–EV-196 |
 | outer ScriptFunction stack / `RunScriptFunction` persistence | EV-195 | pinned SDK + tested Game binary; runner is generic context only |
 | C1-O1 live-frame correlation / pointer reuse | EV-196 | native frame is lifetime-bound correlator; C1 generation remains durable identity |
-| current C1-O2 outer-frame binding gate | EV-192–EV-196 | `SESSION_ENTRYPOINT.md` + active `BETWEEN_CHATS.md` |
+| C1-O2 outer-frame binding architecture / current suspended route | EV-192–EV-196 | `SESSION_ENTRYPOINT.md` for the exact immediate hardening responsibility |
+
+---
+
+## Active-Problem Reconstruction — Native Stale Melee Collision
+
+When this stale-collision problem is the active engineering responsibility, a fresh Normal Chat should reconstruct this ordered causal route once before proposing a new fix or architecture. Do not load every raw log; retrieve exact raw evidence only when verifying or reinterpreting a specific fact.
+
+1. **Historical trigger / manual reproduction context:** EV-187, EV-197, EV-198.
+2. **Native stale physical consequence / running damage:** EV-156, EV-162, EV-181, EV-193.
+3. **Normal attack/CombatMove continuation and ordinary cleanup:** EV-163, EV-182–EV-183.
+4. **Legitimate reaction interruption and separate cleanup ownership:** EV-165, EV-184, EV-186, EV-188, EV-191.
+5. **Bad held-Use2 abandonment causal chain:** EV-185, EV-187, EV-189–EV-191.
+6. **Cross-family generality:** EV-162, EV-190.
+7. **Rejected Recover/StartRecover/replacement/callback explanations:** EV-154, EV-159–EV-162, EV-168, EV-174–EV-181.
+8. **Raise reproduction boundary:** EV-153, EV-191, EV-198.
+9. **C1 execution/source-obligation invariant and lifetime work:** EV-192–EV-196 → `COLLISION_LIFECYCLE_PLAN.md` → `SESSION_ENTRYPOINT.md` for the exact current responsibility.
 
 ---
 
@@ -183,7 +201,7 @@ Practical source route: `SOURCE_HOOK_GUIDE.md` §8–§11.
 | C1 acquisition gap | EV-194 | GetUp can arm before CombatMove, so CombatMove is too late as universal execution acquisition |
 | C1 outer static lifetime | EV-195 | ScriptFunction frame persists across false return/asynchronous work and has explicit SPU/actor context |
 | C1-O1 outer identity probe | EV-196 | same live frame bridges GetUp offense→CombatMove→cleanup; raw pointers can be reused only after retirement |
-| Current gate | EV-192–EV-196 | C1-O2: bind C1 generation to live outer frame, acquire pre-CombatMove offense, reuse at later CombatMove, retire binding before pointer reuse |
+| Higher-level gate | EV-192–EV-196 | C1-O2 outer-frame binding remains the architectural destination; `SESSION_ENTRYPOINT.md` owns the current suspended/hardening route |
 
 ---
 

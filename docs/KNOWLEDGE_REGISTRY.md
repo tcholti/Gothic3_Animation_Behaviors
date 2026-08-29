@@ -19,7 +19,7 @@ The registry exists to prevent the same fact becoming a separately maintained co
 
 | Knowledge responsibility | Primary authority | Update when | Usually do NOT update when |
 |---|---|---|---|
-| current active subsystem / causal gate / immediate next responsibility | `SESSION_ENTRYPOINT.md` | active gate, subsystem, immediate candidate, or next responsibility changes | another test merely confirms the existing gate/model |
+| current active subsystem / causal gate / immediate next responsibility | `SESSION_ENTRYPOINT.md` | active gate, subsystem, immediate candidate, or next responsibility changes; also when temporary prerequisite, isolation, contradiction-resolution or safety/hardening work materially replaces what a fresh Normal Chat should do next, even if the enclosing gate ID or long-term objective is unchanged | another test merely confirms the existing gate/model, or a trivial/routine substep does not materially change what a fresh Chat should do next |
 | transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact transient implementation/test state | ordinary project facts already live in durable authorities |
 | project-specific collaboration behavior | `COLLABORATION_RULES.md` | a recurring Gothic-3-specific collaboration lesson materially changes workflow | one isolated annoyance/error that existing rules already cover |
 | stable project operating conventions: branch/state meanings, gate/test IDs, evidence/procedure IDs, raw/derived naming, prototype/build identity, document versioning, validation/artifact flow | `PROJECT_PIPELINE.md` | an accepted convention changes, a genuinely new convention responsibility appears, or a transition/migration boundary must be defined | routine use of an established convention, every new test/log/evidence item, or a new Chat merely preferring another style |
@@ -107,6 +107,17 @@ SESSION_ENTRYPOINT
 EVIDENCE_INDEX only if routing materially changes
 research raw → archive when processed
 ```
+
+### Temporary prerequisite changes the immediate route
+
+```text
+planned gate remains conceptually active
+→ unexpected contradiction makes isolation or safety hardening prerequisite
+→ SESSION_ENTRYPOINT changes to that immediate responsibility
+→ after validation, SESSION_ENTRYPOINT may route back to the larger gate
+```
+
+`BETWEEN_CHATS.md` may carry exact short-lived continuation details, but it does not replace the current-state update.
 
 ### New engine knowledge may simplify an existing workaround later
 

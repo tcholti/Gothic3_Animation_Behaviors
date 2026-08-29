@@ -20,10 +20,11 @@ Recurring Git/build/deploy/test/log procedures: `docs/PROJECT_OPERATING_PROCEDUR
 1. Read this file first.
 2. Read `docs/BETWEEN_CHATS.md` only when the current responsibility depends on an active/recent transient handoff.
 3. If the active subsystem is not already oriented in the current Chat, perform the one-time Subsystem Orientation Pass from `docs/README.md`.
-4. Read `docs/PROJECT_OPERATING_PROCEDURES.md` once when entering an active local Git/build/deploy/runtime-artifact sequence; do not reread it after every prompt.
-5. Before assigning or changing a gate/test ID, evidence/procedure ID, raw/derived filename, prototype/build/version label, branch/state meaning, or validation/artifact-flow convention, retrieve the relevant section of `docs/PROJECT_PIPELINE.md`. Preserve the established convention unless there is a deliberate reason to change it.
-6. Do not scan the whole repository or reconstruct the project from old chat history.
-7. Retrieve only the deeper authority listed under **Retrieval — Only What the Question Needs**.
+4. When substantial work on the active problem will interpret evidence or propose a new fix/architecture and the current Chat does not retain a fresh causal model, perform the targeted Active-Problem Reconstruction Pass routed below and in `docs/EVIDENCE_INDEX.md`.
+5. Read `docs/PROJECT_OPERATING_PROCEDURES.md` once when entering an active local Git/build/deploy/runtime-artifact sequence; do not reread it after every prompt.
+6. Before assigning or changing a gate/test ID, evidence/procedure ID, raw/derived filename, prototype/build/version label, branch/state meaning, or validation/artifact-flow convention, retrieve the relevant section of `docs/PROJECT_PIPELINE.md`. Preserve the established convention unless there is a deliberate reason to change it.
+7. Do not scan the whole repository or reconstruct the project from old chat history.
+8. Retrieve only the deeper authority listed under **Retrieval — Only What the Question Needs**.
 
 Within one continuing subsystem context, do not repeatedly reread unchanged authorities, procedures, or pipeline conventions.
 
@@ -58,6 +59,23 @@ Markers control collision **inside a live Hit**. End-of-execution safety is one 
 Architecture authority: `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
 Production repair is still **disabled**.
+
+---
+
+## Active Problem — Native Stale Melee Collision / Held-Use2 State-Stack Abandonment
+
+Use the ordered route in `EVIDENCE_INDEX.md` once when this causal model is not fresh. The compact model is:
+
+- **Historical trigger and reproduction:** Community Patch / Alternative AI documents a 2.5-second maximum continuous Hero parade; the tested binary independently compares held Use2 against 2500 ms before the bad FullStop path. Manual reproduction is timing-sensitive: hold RMB near the timeout, keep it held, begin an attack and let the timeout occur during a vulnerable Hit. Visual behavior helps reproduce; logs/evidence decide the result. See EV-187, EV-197–EV-198.
+- **Normal full-Whirl mechanism:** the attack ScriptFunction starts CombatMove, returns false/suspends while the instruction remains active, resumes after completion and reaches its later native collision-cleanup continuation. See EV-182–EV-183.
+- **Established bad path:** the timeout reaches AIFullStop / persisted CombatMove `fullStop`, immediately reaches SetState, discards the suspended state-stack continuation and leaves no ordinary cleanup or replacement reaction owner; an armed source can remain group 7. See EV-185, EV-187, EV-189–EV-191.
+- **Legitimate reaction contrast:** reactions may also FullStop CombatMove, then use a separate reaction cleanup path including `7 -> 5`. FullStop means instruction termination, not collision cleanup. See EV-165, EV-184, EV-186, EV-188, EV-191.
+- **Physical consequence and scope:** stale collision can persist through idle/movement, damage an NPC while the player runs, and be inherited by later attacks as legitimate `7 -> 7`; a later valid execution may clean it, but not every later action is proven to do so. The class is reproduced beyond full Whirl in tested Dual, plain 1H and Shield+1H Quick configurations. See EV-156, EV-162, EV-181, EV-190, EV-193.
+- **Raise boundary:** the User has repeatedly reproduced this timeout failure on the vulnerable set lacking a working Raise and has not successfully reproduced it on attacks with a working Raise. The protective mechanism is unproven; Raise can still be interrupted by terrain, damage and other legitimate mechanisms. Adding Raise is not a collision-cleanup fix. See EV-153, EV-191, EV-198.
+- **Rejected simplifications:** missing Recover, Recover as universal authority, StartRecover as universal boundary, PlayMotion replacement fallback, callback return, unconditional AIFullStop cleanup, Whirl-only repair, a held-Use2/2500-ms/patch-callsite production classifier and “add Raise.” See EV-154, EV-159–EV-162, EV-168–EV-191.
+- **Governing invariant:** every real attack-Hit offensive request must receive Gothic's legitimate native cleanup opportunity; if that exact execution is destructively abandoned with an exact source obligation outstanding, repair only the remaining source using native cleanup semantics. See `COLLISION_LIFECYCLE_PLAN.md` and EV-192–EV-196.
+
+This is a routing reconstruction, not a duplicate ledger. Retrieve raw/source proof only for a fact being verified or reinterpreted.
 
 ---
 
@@ -164,57 +182,43 @@ When the ScriptFunction returns false because asynchronous work remains active, 
 
 ---
 
-## Current Gate — C1-O2 Shadow Outer-Frame Binding Integration
+## Current Immediate Responsibility — Hook-Hardening Before C1-O2 Can Resume
 
-The next bounded question is:
+The higher-level C1-O2 outer-frame binding gate remains conceptually relevant, but direct `RunScriptFunction` dispatch capture is **suspended**. It is not the next ready implementation/runtime gate.
 
-> **Can C1 bind its existing monotonic generation to the live outer ScriptFunction frame, acquire a generation when a legitimate equipped-weapon offense occurs before CombatMove, reuse that same generation when the later CombatMove begins, and retire the native frame binding before address reuse without changing the already-passed cleanup/finalization classification?**
+Current durable sequence:
 
-Frozen semantic direction:
+1. The original C1-O2 capture and its recursion-safe `.ThisCall()` correction crashed in equivalent registered-ScriptFunction paths (`Script.dll +0x1494C`, `Script_Game.dll +0x3776D`, return at `Game +0x1605EB`, observed `ECX=0`).
+2. `RunScriptFunction` was reduced to recursion-safe pure pass-through: explicit real `this`, unchanged arguments, exactly one original call, no dispatch capture or C1-O2 lifecycle work.
+3. That pure pass-through baseline passed the bounded load/idle isolation.
+4. Extended gameplay then produced a **different** crash through the existing AISetState path (`Script.dll +0x12F61`, `Game +0x1604D3`), not the earlier `RunScriptFunction +0x1605EB` path.
+5. Source analysis found AISetState still used the SDK's legacy shared `GetSelf` ThisCall transport, which is not recursion/thread safe.
+6. AISetState alone was converted to explicit per-invocation `gCScriptRoutine_PS *this` with the recursion-safe `.ThisCall()` builder; its original ordering and C1 semantics were preserved.
+7. Independent source review passed.
+8. The extended stability run passed for about **329.9 seconds** and unloaded normally: 172 AISetState records, 43 AIFullStop records and 62 C1 finalizations; zero `OUTER_RETURN_OUTSTANDING`, `LIVE_FRAME_MISMATCH`, `PRECOMBAT_GENERATION_FRAME_OVERLAP`, `OVERLAP_OUTSTANDING`, `CANDIDATE_GENERATION_CHANGED`, `FINALIZATION_GENERATION_CHANGED` or `NULL_ARGUMENTS` records. One deliberately reproduced bad full Whirl produced the expected log-only `WOULD_REPAIR`; physical repair remained disabled.
+
+Canonical stability artifacts:
 
 ```text
-ordinary path
-→ existing new-CombatMove candidate behavior remains available
-→ attach current live outer ScriptFunction correlator
-
-pre-CombatMove weapon offense
-→ only while inside the exact RunScriptFunction dispatch context
-→ actor comes from supplied SPU
-→ source must be that actor's exact currently equipped LEFT/RIGHT weapon entity
-→ successful Item_Attack request creates/binds the C1 generation if none already owns that live frame
-
-later CombatMove
-→ same actor + same still-live outer frame = reuse existing generation
-→ different/no binding = preserve existing new-candidate behavior
-
-cleanup
-→ remains source/consequence based; current frame need not match
-
-RunScriptFunction true return
-→ retire that native frame binding before pointer reuse
-→ if its bound generation still has an outstanding obligation, log a shadow invariant/candidate for investigation
-→ do NOT physically repair and do NOT yet promote true return to production finalization authority
-
-AISetState
-→ preserve existing C1 shadow destructive-finalization behavior
+8024d846eed626725ca46fa744a79af44fcb2815  AISetState recursion-safe implementation
+2c666c7bf2374c3875e2706c6ee54563f31c593f  Work handoff/result record
+research/raw/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability.log
+raw commit: 6b4cda21466ccca6c42a9c51b98fbbfe6da48ed3
+research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_extract.txt
+extract/current head: 86308b1c91176501c294ee50af99ce9bb418900d
 ```
 
-`m_pArguments` may participate only as part of a **live-frame correlator** together with exact SPU and ScriptFunction context. Script name/action/family/input must not become attack classifiers.
+Only **one** bad full-Whirl reproduction was confirmed despite at least two attempts. Do not generalize the stability run as more than one confirmed bad case.
 
-### Current constraints
+Legacy ThisCall transports still present at this point are AIFullStop, SetCollisionGroup, PlayMotion, StopMotion and StartEffect. AIFullStop is the leading next hardening candidate because it is on the proven destructive path, but **no coding task is frozen**.
 
-- no production physical repair;
-- no GetUpAttack/action/family ownership table;
-- no input-key/cause classifier;
-- no unconditional cleanup on RunScriptFunction return, FullStop or AISetState;
-- no adoption of arbitrary pre-existing group 7;
-- no timers, polling, world scans or per-frame repair;
-- preserve all existing marker occurrence/execution/source bookkeeping;
-- preserve the C1 core source-obligation semantics, including `7 -> 7` attribution;
-- Fist/body semantics remain separate from weapon-style `Item_Attack` ownership;
-- generic `RunScriptFunction` context must stay minimal/nesting-safe and call its original exactly once.
+### Next Normal Chat responsibility
 
-The exact frozen implementation handoff lives in `BETWEEN_CHATS.md` while C1-O2 Work is active.
+1. review the current documentation/current-state model;
+2. confirm the hook-hardening interpretation and constraints with the User;
+3. explicitly expose and freeze the next bounded hook-hardening responsibility before implementation.
+
+Do not restore C1-O2 dispatch capture. Do not begin or freeze AIFullStop implementation merely from this entry point.
 
 ---
 
@@ -246,8 +250,9 @@ All addresses are tested-build-specific.
 
 | Need | Open |
 |---|---|
+| active stale-collision causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction → exact EV entries only as needed |
 | current outer-lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
-| transient exact C1-O2 Work handoff | `BETWEEN_CHATS.md` |
+| transient current Work/Normal handoff | `BETWEEN_CHATS.md` when it contains a relevant active handoff |
 | naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` relevant section only |
 | recurring Git/build/deploy/test/log procedure | `PROJECT_OPERATING_PROCEDURES.md` |
 | exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md` |

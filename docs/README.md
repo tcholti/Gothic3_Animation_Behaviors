@@ -100,7 +100,35 @@ Do **not** create another persistent summary document merely to hold this tempor
 
 Do not repeat the orientation pass for every prompt, every test, every Work handoff or every substep while the same subsystem model remains active.
 
-### Retrieval depth C — question-specific retrieval
+### Retrieval depth C — Active-Problem Reconstruction Pass
+
+Use once before proposing a new fix or architecture for a substantial active problem when the current Chat does not retain a sufficiently fresh causal model, even after current-state retrieval and subsystem orientation.
+
+Typical triggers:
+
+- a new Normal Chat resumes a long-running causal problem;
+- work returns after enough implementation, isolation, contradiction resolution or runtime evidence that the causal route may have shifted;
+- a proposed fix depends on distinguishing normal, legitimate interruption and failure paths;
+- established negative results or scope boundaries are no longer fresh enough to constrain the next design safely.
+
+Do **not** trigger this pass for every prompt, routine substep, already-frozen Work task, build/deploy continuation or another log inside the same still-fresh active problem.
+
+Reconstruct only the targeted active problem by answering:
+
+1. What is the observed phenotype?
+2. How is it reproduced?
+3. What is the normal mechanism?
+4. What causal failure is established?
+5. Which legitimate alternate or interruption paths exist?
+6. What are the physical/gameplay consequences?
+7. What scope has been proven?
+8. Which explanations or fixes have been rejected?
+9. Which observations or hypotheses remain unresolved?
+10. Why does the current architecture or gate follow from that evidence?
+
+Use the active-problem route in `SESSION_ENTRYPOINT.md` and `EVIDENCE_INDEX.md`; retrieve exact EV entries and raw/source provenance only as needed. Synthesize a temporary working model rather than creating another generic summary document. Keep that model for the same active problem and refresh it only when meaningful new evidence or a context change makes it stale.
+
+### Retrieval depth D — question-specific retrieval
 
 Use for ordinary ongoing work after current state and any necessary subsystem orientation are already known.
 
@@ -111,6 +139,7 @@ The intended pattern is therefore:
 ```text
 current state
 → subsystem orientation once when needed
+→ active-problem reconstruction once when needed
 → exact retrieval for each concrete question
 ```
 
@@ -270,6 +299,7 @@ Archived documents preserve history/rationale; they never override current autho
 | Question | Start here | Broaden only if needed |
 |---|---|---|
 | What are we doing now? | `SESSION_ENTRYPOINT.md` | named current architecture/source |
+| What causal model constrains the current collision problem? | `SESSION_ENTRYPOINT.md` active-problem route | `EVIDENCE_INDEX.md` reconstruction route → exact EV entries |
 | What did the last Chat/Work handoff do? | `BETWEEN_CHATS.md` | exact commit/diff |
 | What naming/numbering/version/test/artifact convention should I use? | `PROJECT_PIPELINE.md` relevant section | owning procedure/current plan only for task semantics |
 | How do I execute the recurring Git/build/deploy/test/evidence operation? | `PROJECT_OPERATING_PROCEDURES.md` | `PROJECT_PIPELINE.md` only if a convention itself is relevant |
@@ -337,11 +367,12 @@ Usually:
 1. `SESSION_ENTRYPOINT.md`;
 2. `BETWEEN_CHATS.md` only for an active handoff;
 3. if this Chat has not yet reconstructed a sufficiently fresh model of the active subsystem, perform the **Subsystem Orientation Pass once** using the relevant route above;
-4. retrieve the relevant `PROJECT_PIPELINE.md` section only when the immediate responsibility creates/changes a project convention;
-5. exact current evidence/source supplied by the User or named by the entry point;
-6. question-specific authority/evidence only when the concrete step requires it.
+4. if substantial work on the active problem will interpret evidence or propose architecture and its causal model is stale, perform the targeted **Active-Problem Reconstruction Pass once**;
+5. retrieve the relevant `PROJECT_PIPELINE.md` section only when the immediate responsibility creates/changes a project convention;
+6. exact current evidence/source supplied by the User or named by the entry point;
+7. question-specific authority/evidence only when the concrete step requires it.
 
-Within the same continuing subsystem context, do not rerun the orientation pass or reread unchanged authorities/procedures/pipeline sections after every prompt.
+Within the same continuing subsystem/problem context, do not rerun orientation or reconstruction, or reread unchanged authorities/procedures/pipeline sections, after every prompt.
 
 ### Work — bounded implementation
 
