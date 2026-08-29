@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active bounded-implementation protocol  
-**Version:** 1.1  
-**Updated:** 2026-08-27
+**Version:** 1.2  
+**Updated:** 2026-08-29
 
 ## Purpose
 
@@ -184,6 +184,22 @@ Mechanical checks should target known risks; do not build a compliance system la
 
 ## 8. Commit and Publish Path
 
+When a bounded Work task is expected to publish its audited result, the launcher or frozen task should state the **exact destination repository and branch** and explicitly authorize publication of the commits created for that bounded task.
+
+Example authorization shape:
+
+```text
+Publishing authorization:
+The User explicitly authorizes Work to publish the audited commits created for this bounded task to:
+Repository: https://github.com/tcholti/Gothic3_Animation_Behaviors.git
+Branch: docs/collision-source-evidence
+This authorization is limited to this bounded task and this exact destination.
+```
+
+This authorization does not grant permission to publish unrelated changes, another branch, or another repository.
+
+If the execution environment still requires a separate interactive destination approval despite that explicit task authorization, request that approval. Treat it as a publishing permission checkpoint, not an implementation contradiction and not a reason to modify the source.
+
 Use the local Git checkout for normal source inspection, diffing, auditing, and commit preparation.
 
 For publishing the audited result:
@@ -192,11 +208,18 @@ For publishing the audited result:
 2. if `git push` fails specifically because the Work checkout has no usable GitHub credential, do **not** spend task time troubleshooting, installing, or persisting credentials;
 3. verify the intended repository, target branch, and exact audited source state;
 4. use the connected GitHub repository API to publish that same audited state on the intended branch;
-5. record the resulting commit SHA in the handoff.
+5. verify the **resulting remote branch commit identity** after publication and record the final remote implementation SHA in the handoff.
 
 A credential-only CLI push failure is therefore a publishing-path issue, not an implementation blocker. Do not change code, broaden scope, or invent a different Git workflow merely to compensate for it.
 
-If repository identity, branch identity, write permission, or source-state equivalence cannot be verified, stop and report the contradiction instead of publishing uncertain state.
+Connected-API publication may reconstruct the audited commit on the remote branch and therefore produce a different SHA from the local pre-publication commit. When that happens:
+
+- the remote SHA is the authoritative published implementation identity;
+- the handoff must report the final remote implementation SHA and, when applicable, the final remote handoff SHA;
+- any earlier local SHA may be noted only as superseded pre-publication provenance;
+- do not tell the receiving context that publication is complete using only a local SHA that the remote repository cannot resolve.
+
+If repository identity, branch identity, write permission, source-state equivalence, or resulting remote commit identity cannot be verified, stop and report the contradiction instead of publishing or handing off uncertain state.
 
 ---
 
@@ -210,7 +233,7 @@ After the bounded task report only what the receiving context needs:
 - source-level checks performed;
 - material source/API contradiction if any;
 - what still requires build/runtime verification;
-- commit SHA.
+- final published commit SHA.
 
 Do not reproduce the whole project, design, or evidence history in the handoff.
 
