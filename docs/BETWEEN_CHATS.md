@@ -2,7 +2,7 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work. Replace rather than accumulate chronology.
 
-## Current bridge — SetCollisionGroup transport prerequisite agreed / Work not yet frozen
+## Current bridge — SetCollisionGroup transport-only Work task frozen
 
 - Universal-guard-first architecture remains authoritative. The known held-Use2 bad abandonment remains a destructive stress case, not a production classifier, balance fix, or reason to alter Community Patch / Alternative AI / New Balance behavior.
 - C1 physical repair remains disabled. Direct C1-O2 `RunScriptFunction` dispatch capture remains suspended. `RunScriptFunction` remains recursion-safe pure pass-through.
@@ -35,23 +35,32 @@ capture caller / exact pre-call entity collision state and any existing cleanup 
 → existing SetCollisionGroup diagnostics / remaining existing observations
 ```
 
-### Agreed bounded correction
+### Frozen bounded Work task — SetCollisionGroup transport only
 
-The User explicitly agreed in Normal Chat on 2026-08-29 to the following next prerequisite:
+The User explicitly agreed in Normal Chat on 2026-08-29 to the following prerequisite, and the fresh Normal Chat froze it on 2026-08-29 after completing the repository bootstrap:
 
 > Isolate `SetCollisionGroup` transport only. Convert that one hook from shared `GetSelf<eCEntity *>()` transport to explicit per-invocation `eCEntity *this` plus the already-proven recursion-safe `.ThisCall()` pattern, while preserving the exact before → native original → after → marker retirement → C1 observation → diagnostics semantics and ordering. Do not automatically harden unrelated remaining legacy hooks. After this isolated implementation/stability result, reassess C1-O2 directly.
 
-No Work task has been frozen yet. This is intentional: the Chat is being migrated at this clean responsibility boundary.
+This is an implementation assignment, not an architecture task. The prior SetCollisionGroup API/source inspection and User decision are complete and must not be reopened unless implementation exposes a new concrete source/API contradiction.
 
-### Immediate responsibility for the fresh Normal Chat
+Work execution boundary:
 
-After completing the full `docs/SESSION_ENTRYPOINT.md` Fresh Normal Chat Bootstrap:
+1. read `docs/SESSION_ENTRYPOINT.md`, this current `docs/BETWEEN_CHATS.md`, and `docs/WORK_IMPLEMENTATION_PROTOCOL.md`;
+2. inspect only the source/API details necessary to perform this transport-only correction;
+3. edit only the permitted source files below;
+4. run the source audit below and `git diff --check`;
+5. commit and publish the audited bounded result to the exact repository/branch below;
+6. report the concise Work handoff required by the protocol and **STOP**;
+7. do **not** build, deploy, run Gothic 3, interpret runtime evidence, or begin C1-O2 in Work. Normal Chat independently reviews the actual source diff first.
 
-1. recognize that the API/source inspection and User agreement above are already complete; **do not ask the User to reconfirm them and do not repeat the investigation**;
-2. freeze the bounded `SetCollisionGroup` transport-only Work task from the facts below;
-3. give the User the short Work launcher used by the current collaboration protocol;
-4. Work may inspect only the implementation/API details required by that frozen task, edit only the permitted source files, run the source audit, commit/push, report the short handoff, and STOP — no build or runtime test in Work;
-5. Normal Chat then independently reviews the actual source diff before any local build/deploy/test.
+Publishing authorization:
+
+```text
+The User explicitly authorizes Work to publish the audited commits created for this bounded task to:
+Repository: https://github.com/tcholti/Gothic3_Animation_Behaviors.git
+Branch: docs/collision-source-evidence
+This authorization is limited to this bounded task and this exact destination.
+```
 
 Expected implementation shape to freeze unless a new concrete source contradiction is discovered:
 
@@ -86,12 +95,12 @@ no C1-O2 dispatch capture restoration
 no mechanical conversion of every remaining legacy ThisCall hook
 ```
 
-Likely allowed edit surface for the frozen Work task:
+Permitted edit surface for the frozen Work task:
 
 1. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
 2. `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp` only if the narrow startup identity banner is added
 
-The Work source audit should explicitly verify:
+The Work source audit must explicitly verify:
 
 1. explicit `eCEntity *this` is received per invocation;
 2. no `Hook_SetCollisionGroup.GetSelf<eCEntity *>()` remains in this wrapper;
