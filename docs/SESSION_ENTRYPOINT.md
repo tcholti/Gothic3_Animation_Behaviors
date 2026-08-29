@@ -54,137 +54,169 @@ Key implementation/review commits:
 f04c3e18f4129e0ee7727a3f266d6fc55fb13a8c  independent source review PASS
 ```
 
-Local validation completed:
-
-```text
-build PASS
-single live DLL PASS
-built/live SHA256 match PASS
-startup/load banner PASS
-```
-
-Core runtime raw evidence:
+Core runtime evidence:
 
 ```text
 research/raw/2026-08-28_c1_shadow_core_lifecycle_matrix.log
 raw commit: a3c41c829a0e7d083ccfc657eafc285f68b60d4b
-```
-
-Derived retrieval extract:
-
-```text
 research/archive/2026-08-28_c1_shadow_core_lifecycle_matrix_connector_extract.txt
 extract commit: e5d8da1323b3c43c52ce0f58ea010081e00a364f
 ```
 
 ### Core result
 
-The shadow classification itself behaved strongly in the tested matrix:
-
-- **8 actual `WOULD_REPAIR` outcomes** were accounted for by known armed bad held-Use2 abandonments:
-  - 1 full Whirl;
-  - 7 Dual Quick;
+- **8 actual `WOULD_REPAIR` outcomes** were accounted for by known armed bad held-Use2 abandonments: 1 full Whirl and 7 Dual Quick;
 - clean ordinary completions did not become repair candidates;
 - tested pre-activation bad skips did not become repair candidates;
 - tested legitimate reaction interruptions cleaned natively and did not become repair candidates;
-- the inherited-stale control passed:
-  - one bad Whirl left the real weapon physically at group 7;
-  - the next Normal attack requested `7 -> 7` on the same weapon;
-  - C1 attributed that request to the **new** generation;
-  - native cleanup later reset `7 -> 5`;
-  - the new generation finalized as no-op.
+- inherited-stale control passed: bad Whirl left group 7, the next Normal execution legitimately requested `7 -> 7`, C1 attributed that request to the **new** generation, and later native `7 -> 5` cleanup fulfilled the new generation.
 
-This validates the consequence-based obligation model for those paths without requiring family/cause-specific repair logic.
+The remaining defect exposed by this matrix was acquisition: GetUpAttack can legitimately request `Item_Attack(7)` before CombatMove begins, so CombatMove cannot be the universal outer execution start.
 
 ---
 
-## New C1 Boundary Finding — CombatMove Start Is Too Late Universally
+## C1-O1 — Outer ScriptFunction Lifetime Probe Resolved the Identity Gate
 
-The same runtime matrix produced **11 `UNOWNED_PLAYER_OFFENSE_REQUEST` warnings** during knockdown/GetUp-related handling.
-
-Narrow static inspection confirmed this is not random logger noise:
+Implementation and evidence:
 
 ```text
-GetUpAttack Script_Game region
-+0x41CA6  weapon can be set to Item_Attack(7)
-+0x41D5A  later call to the same CombatMove import used by full Whirl
-+0x41E10  known later GetUpAttack cleanup to Item_Equipped(5)
+54a64552514f4d6795b4a51cbad7848b5df3795b  C1-O1 diagnostic implementation
+research/raw/2026-08-29_c1o1_outer_scriptfunction_identity_probe.log
+raw commit: adf6a6102007c56f7502b01072acbe00bcbc35a4
+research/archive/2026-08-29_c1o1_outer_scriptfunction_identity_probe_connector_extract.txt
+extract commit: 5da094a0c2d6fc58fe260933799a76e43ef7d1d3
 ```
 
-Therefore some legitimate collision-owning attack ScriptFunction work begins **before** the current C1 `new CombatMove initial invocation` boundary.
+### Runtime result
 
-Important consequence:
+C1-O1 positively identified a usable native outer **lifetime**, with an important qualification about identity tokens.
+
+Representative GetUpAttack:
 
 ```text
-CombatMove start
-= strong inner asynchronous-instruction boundary
-≠ universal outer collision-owning attack-execution start
+pre-CombatMove Item_Attack request
+→ top frame = _AI_GetUpAttack
+→ later CombatMove initial invocation
+→ same SPU / same live ScriptFunction / same non-null m_pArguments
+→ later cleanup
+→ same live _AI_GetUpAttack frame; break block advanced
 ```
 
-Do **not** fix this with a GetUpAttack/action-30 special case.
+Repeated GetUp executions used different argument pointers, confirming distinct live executions.
 
-Do **not** simply adopt an already-equipped group-7 weapon when CombatMove begins; that would blur legitimate pre-CombatMove arming with inherited stale collision from a previous broken execution.
+Clean Normal/Whirl likewise retained the same attack ScriptFunction frame through CombatMove/offense/cleanup and removed it before the later enclosing state transition.
+
+Bad full Whirl retained `_AI_WhirlAttack` at `AI_SET_STATE_BEFORE`; `AI_SET_STATE_AFTER` no longer contained that frame, and no cleanup occurred between those observations.
+
+### Critical qualification — pointer reuse
+
+`m_pArguments` and the stack-entry address are **not globally unique execution IDs**. C1-O1 observed an address reused by a later different ScriptFunction shortly after the previous frame was retired.
+
+Therefore:
+
+```text
+raw frame/arguments address
+= lifetime-bound correlator only
+≠ permanent execution identity
+```
+
+C1's own monotonic generation remains the durable plugin-side execution identity. Any native frame correlator must be explicitly retired before address reuse.
+
+The tested attack ScriptFunction snapshots used non-null argument pointers. Null argument records were observed for ScriptStates; future relevant null-argument ScriptFunctions must fail diagnostically rather than be guessed into ownership.
 
 ---
 
-## Current Gate — Find the General Outer Execution Identity
+## Static Follow-Up — General Pre-CombatMove Actor/SPU Context
 
-Normal Chat's current question is:
-
-> **Does Gothic 3 expose a stable ScriptFunction/SPU execution identity or native boundary above CombatMove that already exists when a pre-CombatMove offensive request occurs and remains identifiable when the later CombatMove instruction begins?**
-
-Preferred route:
+Pinned SDK and tested Game.dll establish:
 
 ```text
-pre-CombatMove real offense request
-→ bind to exact native ScriptFunction/SPU execution identity
-→ later CombatMove belongs to that same execution
-→ native cleanup fulfills obligation if observed
-→ destructive abandonment finalizes only that execution
+gCScriptAdmin::RunScriptFunction(..., stateStack, spu)
+    receives the exact SPU
+    → spu->GetSelfEntity() exposes the actor
+    → calls the registered ScriptFunction at Game +0x1605E9
+    → Game +0x1605EB is the first instruction after that ScriptFunction call
 ```
 
-If source/static evidence cannot identify such a stable identity directly, freeze the smallest factual diagnostic needed to compare the relevant SPU/ScriptFunction identity at:
+When the ScriptFunction returns false because asynchronous work remains active, the state-stack frame is retained. When it returns true, the tested runner removes the completed top frame before returning.
 
-1. the unowned offensive request;
-2. the later CombatMove entry;
-3. cleanup/finalization.
+`gCScriptAdmin` does not expose a documented public accessor that can safely be treated as “the currently executing NPC SPU”; its protected admin `m_SPU` must not be substituted for the explicit per-dispatch SPU without evidence.
+
+`RunScriptFunction` is **generic infrastructure**. It must not become combat ownership or unconditional cleanup authority. Its only proposed C1-O2 role is a narrow transient execution context so a synchronous pre-CombatMove `Item_Attack` request can be tied to the exact actor/SPU that is executing it.
+
+---
+
+## Current Gate — C1-O2 Shadow Outer-Frame Binding Integration
+
+The next bounded question is:
+
+> **Can C1 bind its existing monotonic generation to the live outer ScriptFunction frame, acquire a generation when a legitimate equipped-weapon offense occurs before CombatMove, reuse that same generation when the later CombatMove begins, and retire the native frame binding before address reuse without changing the already-passed cleanup/finalization classification?**
+
+Frozen semantic direction:
+
+```text
+ordinary path
+→ existing new-CombatMove candidate behavior remains available
+→ attach current live outer ScriptFunction correlator
+
+pre-CombatMove weapon offense
+→ only while inside the exact RunScriptFunction dispatch context
+→ actor comes from supplied SPU
+→ source must be that actor's exact currently equipped LEFT/RIGHT weapon entity
+→ successful Item_Attack request creates/binds the C1 generation if none already owns that live frame
+
+later CombatMove
+→ same actor + same still-live outer frame = reuse existing generation
+→ different/no binding = preserve existing new-candidate behavior
+
+cleanup
+→ remains source/consequence based; current frame need not match
+
+RunScriptFunction true return
+→ retire that native frame binding before pointer reuse
+→ if its bound generation still has an outstanding obligation, log a shadow invariant/candidate for investigation
+→ do NOT physically repair and do NOT yet promote true return to production finalization authority
+
+AISetState
+→ preserve existing C1 shadow destructive-finalization behavior
+```
+
+`m_pArguments` may participate only as part of a **live-frame correlator** together with exact SPU and ScriptFunction context. Script name/action/family/input must not become attack classifiers.
 
 ### Current constraints
 
-- no production physical repair yet;
+- no production physical repair;
 - no GetUpAttack/action/family ownership table;
 - no input-key/cause classifier;
-- no unconditional cleanup on FullStop/AISetState;
-- no adoption of arbitrary pre-existing group 7 as ownership proof;
+- no unconditional cleanup on RunScriptFunction return, FullStop or AISetState;
+- no adoption of arbitrary pre-existing group 7;
 - no timers, polling, world scans or per-frame repair;
 - preserve all existing marker occurrence/execution/source bookkeeping;
-- Fist/body semantics remain separate from weapon-style `Item_Attack` ownership.
+- preserve the C1 core source-obligation semantics, including `7 -> 7` attribution;
+- Fist/body semantics remain separate from weapon-style `Item_Attack` ownership;
+- generic `RunScriptFunction` context must stay minimal/nesting-safe and call its original exactly once.
 
-Do not start another bounded implementation until Normal Chat freezes the next exact boundary/diagnostic question.
+The exact frozen implementation handoff lives in `BETWEEN_CHATS.md` while C1-O2 Work is active.
 
 ---
 
 ## Relevant Tested Native Points
 
 ```text
+Game +0x1604E0 = gCScriptAdmin::RunScriptFunction(...)
+Game +0x1605E9 = indirect registered ScriptFunction call
+Game +0x1605EB = first instruction after that call
 Game +0x164320 = gCScriptRoutine_PS::AISetState(bCString const&)
 Game +0x164430 = gCScriptRoutine_PS::AIFullStop()
 Game +0x1696E0 = gCScriptProcessingUnit::sAICombatMoveInstr(...)
 Game +0x16F120 = gCScriptProcessingUnit::ProcessScript()
 ```
 
-Known bad held-Use2 abandonment:
-
-```text
-Script_Game +0x633F1 / +0x633F7  FullStop call / observed return
-Script_Game +0x63409            immediate SetState in bad branch
-```
-
 GetUpAttack boundary evidence:
 
 ```text
 Script_Game +0x41CA6  pre-CombatMove Item_Attack request region
-Script_Game +0x41D5A  CombatMove call
+Script_Game +0x41D5A  later CombatMove call
 Script_Game +0x41E10  ordinary cleanup
 ```
 
@@ -197,11 +229,11 @@ All addresses are tested-build-specific.
 | Need | Open |
 |---|---|
 | current outer-lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
-| transient exact continuation | `BETWEEN_CHATS.md` when needed |
+| transient exact C1-O2 Work handoff | `BETWEEN_CHATS.md` |
 | recurring Git/build/deploy/test/log procedure | `PROJECT_OPERATING_PROCEDURES.md` |
-| exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md` |
+| exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md`; note that post-EV-189 evidence maintenance is pending |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
-| SPU / CombatMove / source/API/symbol lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/static reference as needed |
+| SPU / ScriptFunction / CombatMove / hook lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/static reference as needed |
 | diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
 | staged validation | `COLLISION_TEST_PLAN.md` |
 | marker execution lifetime / future simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` |
