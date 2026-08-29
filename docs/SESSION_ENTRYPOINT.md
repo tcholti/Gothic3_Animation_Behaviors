@@ -79,6 +79,31 @@ This is a routing reconstruction, not a duplicate ledger. Retrieve raw/source pr
 
 ---
 
+## Agreed Strategic Direction — Universal Guard First
+
+The current architecture/development decision is:
+
+```text
+preserve the proven marker system
+→ finish the universal execution/source shadow guard
+→ prove controlled native-equivalent physical repair
+→ keep the known bad held-Use2 abandonment intact as the strongest destructive stress case
+→ preserve ordinary / legitimate reaction / pre-activation / inherited-stale controls
+→ broad marked/unmarked/player/NPC/negative regression
+→ stable production integration
+→ only later consider marker-bookkeeping simplification
+```
+
+The held-Use2 / Alternative-AI bad skip is a **test case**, not production classification authority and not a bug this mod is currently planning to rewrite.
+
+If the universal guard safely prevents stale offensive collision, leave the remaining external movement/state/gameplay behavior alone. Root-cause repair of that skip should be reopened only if evidence shows that collision integrity cannot be guaranteed generally without changing the destructive lifecycle path.
+
+`Script_G3AnimationBehaviors` is not a combat-balance replacement. Alternative AI, New Balance and other compatible setups may choose different blocking/interruption behavior. Preserve those external/native combat choices where possible; compatibility with New Balance remains a project requirement. Do not recreate or remove another mod's block-balance mechanic merely to make collision safety work.
+
+The universal guard owns **collision safety only**. It does not promise to restore every unrelated movement/state/gameplay consequence of a destructive interruption.
+
+---
+
 ## C1 Shadow Guard — Implemented and Core Runtime-Tested
 
 C1 is an event-driven **shadow-only** execution/source obligation model. It tracks real offensive `Item_Attack` requests, including inherited `7 -> 7`, observes native cleanup, and reports `WOULD_REPAIR` at destructive AISetState finalization without physically changing collision.
@@ -171,7 +196,7 @@ gCScriptAdmin::RunScriptFunction(..., stateStack, spu)
     receives the exact SPU
     → spu->GetSelfEntity() exposes the actor
     → calls the registered ScriptFunction at Game +0x1605E9
-    → Game +0x1605EB is the first instruction after that ScriptFunction call
+    → Game +0x1605EB is the first instruction after that call
 ```
 
 When the ScriptFunction returns false because asynchronous work remains active, the state-stack frame is retained. When it returns true, the tested runner removes the completed top frame before returning.
@@ -210,15 +235,18 @@ extract commit: 86308b1c91176501c294ee50af99ce9bb418900d
 
 Only **one** bad full-Whirl reproduction was confirmed despite at least two attempts. Do not generalize the stability run as more than one confirmed bad case.
 
-Legacy ThisCall transports still present at this point are AIFullStop, SetCollisionGroup, PlayMotion, StopMotion and StartEffect. AIFullStop is the leading next hardening candidate because it is on the proven destructive path, but **no coding task is frozen**.
+Legacy ThisCall transports still present at this point are AIFullStop, SetCollisionGroup, PlayMotion, StopMotion and StartEffect.
+
+AIFullStop remains the leading next isolated hardening candidate because it is another `gCScriptRoutine_PS` member on both proven bad and legitimate interruption paths and still uses legacy ThisCall transport. The purpose of this hardening is to establish a stable hook substrate for the **universal guard path**, not to fix or classify the held-Use2 bad skip.
 
 ### Next Normal Chat responsibility
 
-1. review the current documentation/current-state model;
-2. confirm the hook-hardening interpretation and constraints with the User;
-3. explicitly expose and freeze the next bounded hook-hardening responsibility before implementation.
+1. inspect the exact existing AIFullStop hook/wrapper and its preserved diagnostics against the proven recursion-safe AISetState pattern;
+2. confirm that an isolated transport-only correction can be frozen without changing FullStop semantics, collision classification or lifecycle behavior;
+3. if no contradiction exists, explicitly freeze one bounded AIFullStop recursion-safe ThisCall implementation task for Work;
+4. after Work returns, Normal Chat independently reviews the actual diff before any build/runtime step.
 
-Do not restore C1-O2 dispatch capture. Do not begin or freeze AIFullStop implementation merely from this entry point.
+Do not restore C1-O2 dispatch capture in the AIFullStop task. Do not add physical repair. Do not modify the held-Use2/2500-ms behavior.
 
 ---
 

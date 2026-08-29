@@ -23,6 +23,7 @@ Current lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 - Reuse the current diagnostic/hook owner when it already exposes the needed fact; add another hook only for a specific unresolved question.
 - Preserve raw runtime logs exactly as produced.
 - Follow `PROJECT_PIPELINE.md` for gate identity, build identity and raw/derived artifact naming, and `PROJECT_OPERATING_PROCEDURES.md` for local build/deploy/test/log operations.
+- Preserve external/native combat-rule choices. The collision project must remain compatible with New Balance and other compatible setups without recreating or removing their blocking/balance behavior unless collision safety proves that intervention is necessary.
 
 Authoritative research DLL remains:
 
@@ -80,17 +81,19 @@ Evidence: EV-195–EV-196.
 
 ---
 
-## 3. Current Gate — C1-O2 Shadow Outer ScriptFunction Binding Integration
+## 3. Higher-Level Gate — C1-O2 Shadow Outer ScriptFunction Binding Integration
 
-The current question is:
+C1-O2 remains the higher-level outer-binding target, but direct `RunScriptFunction` dispatch-capture integration is currently **suspended** while the required hook transport is hardened and stabilized. `SESSION_ENTRYPOINT.md` owns the exact immediate hardening responsibility.
+
+The C1-O2 question remains:
 
 > **Can C1 bind its existing monotonic generation to the live outer ScriptFunction frame, acquire legitimate equipped-weapon offense before CombatMove, reuse that same generation when the later CombatMove belongs to the same still-live frame, and retire the native binding before address reuse without changing the already-passed cleanup/finalization classification?**
 
-The exact frozen implementation contract lives in `BETWEEN_CHATS.md` while C1-O2 Work is active.
+No C1-O2 implementation task is currently frozen. Resume direct dispatch capture only after the prerequisite hook-transport work passes its own isolated source/build/runtime checks.
 
-### Current implementation/source-review acceptance
+### C1-O2 implementation/source-review acceptance
 
-Before any runtime test, C1-O2 must preserve:
+When C1-O2 resumes, it must preserve:
 
 1. one minimal nesting-safe `RunScriptFunction` dispatch context;
 2. original `RunScriptFunction` call exactly once with unchanged real arguments;
@@ -112,9 +115,9 @@ No runtime acceptance can compensate for a source-level violation of these rules
 
 ---
 
-## 4. C1-O2 Runtime Validation — After Independent Source Review + Build/Load Verification
+## 4. C1-O2 Runtime Validation — After Hook Hardening + Independent Source Review + Build/Load Verification
 
-Normal Chat will freeze the exact controlled fixture and raw filename only after the C1-O2 implementation passes independent diff review and the exact built/live DLL identity is verified.
+Normal Chat will freeze the exact controlled fixture and raw filename only after the prerequisite hook transport is stable, the C1-O2 implementation passes independent diff review, and the exact built/live DLL identity is verified.
 
 The first runtime matrix should answer these factual questions with the smallest sufficient set of controls:
 
@@ -138,19 +141,23 @@ Representative clean Normal/full-Whirl executions that do not need pre-CombatMov
 
 Expected: native cleanup observed; finalization no-op.
 
-### C. Known armed bad abandonment
+### C. Known armed bad abandonment — retained destructive stress case
 
 Representative held-Use2 stale Whirl/Quick cases should still produce the same C1 shadow consequence classification as before.
 
-Expected: outstanding exact source at destructive AISetState → `WOULD_REPAIR` shadow outcome only; no physical repair.
+Expected: outstanding exact source at destructive AISetState → `WOULD_REPAIR` shadow outcome only; no physical repair during C1-O2.
+
+Keep this known bad path intact through universal-guard validation. It is the strongest currently reproducible destructive positive case and must not become a production classifier by Use2, 2500 ms, family or Community Patch caller.
 
 ### D. Pre-activation bad abandonment
 
 Expected: no offensive request → no cleanup obligation → no repair candidate.
 
-### E. Legitimate reaction interruption
+### E. Legitimate reaction interruption — critical negative control
 
 Expected: reaction-side native cleanup fulfills the exact source obligation even though cleanup can execute outside the old attack ScriptFunction context; no repair candidate.
+
+This remains a critical negative/no-repair control because legitimate reactions can also FullStop CombatMove.
 
 ### F. Inherited-stale `7 -> 7` control
 
@@ -207,20 +214,38 @@ If the new route requires family/action/input classification or a guessed null-a
 
 ---
 
-## 6. After C1-O2 — Do Not Skip Ahead
+## 6. After C1-O2 — Universal Guard First
 
-Only after the outer binding model passes should Normal Chat decide the next exact collision gate.
+Only after the outer binding model passes should Normal Chat freeze the exact physical-repair gate.
+
+The agreed development order is:
+
+```text
+stable shadow execution/source ownership
+→ controlled native-equivalent physical repair
+→ retain the known bad held-Use2 abandonment as the strongest destructive positive stress case
+→ preserve ordinary completion / legitimate reaction / pre-activation no-op controls
+→ preserve inherited 7 -> 7 attribution
+→ broad marked/unmarked/player/NPC/negative regression
+→ only then consider stable production integration
+```
+
+Root-cause repair of the held-Use2 / Alternative-AI bad skip is **not** a planned prerequisite. If the universal guard safely prevents stale offensive collision, leave the remaining external gameplay/state behavior alone.
+
+Reopen root-cause bad-skip repair only if evidence shows that general collision integrity cannot be guaranteed without changing that destructive lifecycle path—for example because exact execution/source identity is lost too early, post-abandonment native-equivalent cleanup is unsafe, inherited ownership cannot be distinguished reliably, or the supposed universal guard starts requiring cause-specific Use2/2500-ms/family/patch-callsite rules.
+
+The guard owns collision safety only; it is not responsible for repairing every movement/state/gameplay consequence of an external interruption.
 
 Likely later responsibilities remain evidence-dependent and must not be pre-authorized here:
 
-- decide when/if shadow `WOULD_REPAIR` can become native-equivalent physical repair;
+- decide the exact gate for promoting shadow `WOULD_REPAIR` to native-equivalent physical repair;
 - test broad marked/unmarked/player/NPC regression for the one chosen lifecycle rule;
 - challenge whether any legitimate independent Hit sequence intentionally carries offensive collision across executions;
 - verify negative/no-op behavior for Fist, bow, crossbow and magic;
 - verify defensive block/parade semantics if the eventual physical repair operation could disturb them;
-- reconsider marker-core simplification only after the stronger native lifetime is proven to preserve the historical marker guarantees.
+- reconsider marker-core simplification only after the stronger native lifetime and physical guard are proven to preserve the historical marker guarantees.
 
-No new production repair or marker refactor is authorized merely because C1-O2 is implemented.
+No root-cause bad-skip rewrite or marker refactor is authorized merely because C1-O2 is implemented.
 
 ---
 
@@ -239,6 +264,8 @@ Verify desired-set transition, source rearm, occurrence/replay guards, execution
 
 Do not rebuild the full historical v0.10–v0.18 matrix unless a regression demands it.
 
+Marker simplification is a later optimization question, not a prerequisite for the universal guard. Preserve duplicate/replay handling, occurrence protection, exact source-set semantics, repeated-contact rearm, Quick bookkeeping and any other mechanism whose original regression still requires it.
+
 ---
 
 ## 8. Success Criteria for Stable Collision Integration
@@ -251,7 +278,8 @@ Before stable lifecycle behavior can move into `Script_G3AnimationBehaviors`, ev
 4. safe lifetime retirement without raw-pointer reuse confusion;
 5. a terminal/finalization rule that preserves Gothic's legitimate cleanup opportunity;
 6. correct handling of clean, reaction, pre-activation, bad-abandonment and inherited-stale cases;
-7. no-op behavior for unrelated mechanics/source models;
-8. preservation of marked and native collision semantics behind one end-of-execution safety invariant.
+7. safe native-equivalent physical repair only for exact abandoned outstanding sources;
+8. no-op behavior for unrelated mechanics/source models and compatible external combat-rule choices;
+9. preservation of marked and native collision semantics behind one end-of-execution safety invariant.
 
-Only then should physical repair and stable production integration be considered.
+Only after those conditions pass should stable production integration be considered. Root-cause repair of an external bad interruption remains conditional rather than part of the universal guard's definition.

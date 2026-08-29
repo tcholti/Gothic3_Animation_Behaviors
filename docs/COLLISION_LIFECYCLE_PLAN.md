@@ -23,6 +23,8 @@ How the Hit ended is not part of the production rule. Normal completion, damage/
 
 The defect is native and broader than one animation family. An armed bad execution can lose its normal ScriptFunction continuation and remain offensively active through successor Ambient/idle/movement and into a later independent attack.
 
+The guard owns **collision safety**, not general combat-balance or state-machine policy. Compatible native/modded setups remain free to decide how blocking and interruptions behave; the guard should intervene only when an exact offensive obligation is genuinely abandoned without cleanup.
+
 ---
 
 ## 2. Preferred System — Execution-Level Native Cleanup Guard
@@ -123,6 +125,8 @@ B8 proves this tested abandonment class applies to full Whirl and Quick across D
 B9 proves that, in representative armed bad cases, AISetState is entered while the old attack context is still visible pre-original and the weapon is still group 7, with no native cleanup between FullStop and AISetState.
 
 C1-O1 confirms the outer `_AI_WhirlAttack` ScriptFunction is still present at `AI_SET_STATE_BEFORE` and absent at `AI_SET_STATE_AFTER` in the tested bad path.
+
+This bad held-Use2 path is an important **stress case**, not production classification authority. Preserve it while the universal guard is being validated; do not encode Use2, 2500 ms, Whirl/Quick or the Community Patch call site into the guard.
 
 ---
 
@@ -288,13 +292,15 @@ C1-O1 resolved the next outer-lifetime question by proving that the same live Sc
 
 ---
 
-## 9. C1-O2 Gate — CURRENT
+## 9. C1-O2 Higher-Level Gate — CURRENTLY SUSPENDED FOR HOOK-TRANSPORT HARDENING
 
-The current bounded question is:
+The higher-level bounded question remains:
 
 > **Can C1 bind its existing monotonic generation to the live outer ScriptFunction frame, acquire a generation when a legitimate equipped-weapon offense occurs before CombatMove, reuse that same generation when the later CombatMove begins, and retire the native frame binding before address reuse without changing the already-passed cleanup/finalization classification?**
 
-Frozen lifecycle direction:
+Direct `RunScriptFunction` dispatch-capture integration is not currently active. The recursion-safe pure pass-through baseline remains in place while the remaining legacy hook transports are hardened one at a time. `SESSION_ENTRYPOINT.md` owns the exact immediate prerequisite responsibility.
+
+Frozen lifecycle direction for C1-O2 when it resumes:
 
 ```text
 ordinary CombatMove path
@@ -337,11 +343,37 @@ Explicit non-authorities:
 - no polling/timers/world scans/per-frame repair;
 - no marker-core simplification in C1-O2.
 
-The exact bounded implementation contract is transiently frozen in `BETWEEN_CHATS.md`. Production physical repair remains disabled.
+No C1-O2 implementation task is currently frozen. Production physical repair remains disabled.
 
 ---
 
-## 10. Future Marker-Core Simplification Gate
+## 10. Universal-Guard-First Development Order
+
+The agreed development order is:
+
+```text
+preserve the proven marker system
+→ finish stable universal shadow execution/source identity and acquisition
+→ prove controlled native-equivalent physical repair
+→ retain the known bad held-Use2 abandonment as the strongest destructive stress case
+→ preserve ordinary completion / legitimate reaction / pre-activation no-op controls
+→ preserve inherited stale 7 -> 7 attribution
+→ broad marked/unmarked/player/NPC/negative regression
+→ stable production integration
+→ only later reconsider marker bookkeeping simplification
+```
+
+The known held-Use2 / Alternative-AI bad skip is **not** a bug this mod is obligated to rewrite. If the universal guard safely prevents stale offensive collision, leave the remaining external movement/state/gameplay behavior alone.
+
+Root-cause repair of that skip becomes a fallback investigation only if evidence shows that the universal guard cannot safely guarantee collision integrity without changing the destructive path. Examples include loss of exact execution/source identity before safe repair, unsafe post-abandonment cleanup, inability to distinguish inherited ownership, or a supposed universal guard that starts requiring Use2/2500-ms/family/Community-Patch-specific production rules.
+
+Compatibility with New Balance and other compatible combat setups means preserving their chosen combat-rule behavior where possible; `Script_G3AnimationBehaviors` should not recreate or remove another mod's block-balance mechanic merely to make the collision system work.
+
+The universal guard's responsibility ends at collision safety. It does not promise to restore unrelated movement, state or gameplay effects caused by an external destructive interruption.
+
+---
+
+## 11. Future Marker-Core Simplification Gate
 
 Current marker bookkeeping exists because of reproduced failures involving:
 
@@ -351,13 +383,15 @@ Current marker bookkeeping exists because of reproduced failures involving:
 - interrupted execution budgets surviving into later attacks;
 - bookkeeping retirement after Gothic already performed physical cleanup.
 
-C1 must preserve those guarantees unchanged first. Only after C1 regression validation may native CombatMove/state-stack/outer-ScriptFunction lifetime be considered as a simplification of existing marker-lifetime inference.
+C1 must preserve those guarantees unchanged first. Only after universal guard identity, physical repair and regression validation may native CombatMove/state-stack/outer-ScriptFunction lifetime be considered as a simplification of existing marker-lifetime inference.
 
 Retrieve EV-066–EV-075, EV-106–EV-116, EV-131–EV-133, EV-167 and EV-182–EV-196 before simplifying marker bookkeeping.
 
+Do not simplify merely for elegance. Keep duplicate/replay protection, occurrence protection, exact source-set control, repeated-contact rearm, Quick bookkeeping and every other mechanism whose original regression still requires it.
+
 ---
 
-## 11. Production Restrictions / Regression Requirements
+## 12. Production Restrictions / Regression Requirements
 
 Do not default to:
 
@@ -368,7 +402,8 @@ Do not default to:
 - polling, per-frame/world scans or wall-clock timers;
 - input/block-timeout/family/state-name repair rules;
 - action/phase-only terminal authority;
-- persistent raw-pointer identity after native-frame retirement.
+- persistent raw-pointer identity after native-frame retirement;
+- rewriting external block/balance mechanics as a prerequisite for collision safety.
 
 C1 validation must include ordinary completion, legitimate reaction interruption, armed/pre-activation bad abandonment, `7 -> 7` inherited-stale scenarios, marked RIGHT/LEFT/BOTH/OFF behavior, repeated markers, and negative/no-op coverage for unrelated mechanics.
 
@@ -383,11 +418,13 @@ Fist can share melee action enums while not using weapon-style Item_Attack(7) so
 
 ---
 
-## 12. Preference Order
+## 13. Preference Order
 
 1. **Preferred:** one event-driven execution-level guard using actual offensive requests, observed native cleanup, a durable C1 generation, and a lifetime-bound native outer-frame correlator.
 2. **Preferred source model:** exact actor + equipped physical source ownership, including per-source obligations for dual/source-switch cases.
 3. **Preferred outer context:** minimal/nesting-safe `RunScriptFunction` dispatch context only where needed for pre-CombatMove acquisition; generic script infrastructure must not become attack classification.
-4. **Preferred marker direction:** leave current marker lifetime/bookkeeping unchanged until C1 passes regression; simplify only afterward if native lifetime is demonstrably stronger.
-5. **Fallback:** add another native terminal class only when a real reproduced case proves it cannot fit the current general model.
-6. Avoid cause/family-specific production branches.
+4. **Preferred validation:** keep the known bad held-Use2 abandonment intact as a destructive stress case until universal physical repair is proven, while legitimate reactions remain critical negative controls.
+5. **Preferred compatibility:** preserve native/modded combat-rule choices; do not turn the collision system into a block-balance replacement.
+6. **Preferred marker direction:** leave current marker lifetime/bookkeeping unchanged until universal guard + physical repair + regression pass; simplify only afterward if native lifetime is demonstrably stronger.
+7. **Fallback:** investigate another native terminal class or root-cause external lifecycle repair only when a real reproduced case proves the general guard cannot safely cover it.
+8. Avoid cause/family-specific production branches.

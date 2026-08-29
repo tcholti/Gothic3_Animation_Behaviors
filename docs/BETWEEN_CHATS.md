@@ -2,10 +2,12 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work. Replace rather than accumulate chronology.
 
-## Documentation-maintenance result
+## Current bridge — universal guard first
 
-- Active-problem retrieval, interpretive transition and current-state-drift maintenance are complete.
-- Documentation-maintenance commit: `a636afef89d55006a0e1b3c848499a325fac6b75`.
-- The AISetState recursion-safe extended-gameplay stability pass is durable in `SESSION_ENTRYPOINT.md` and its canonical evidence artifacts.
-- No new code task is frozen. AIFullStop is the leading next hook-hardening candidate; Normal Chat must review, converge and explicitly freeze any implementation responsibility.
-- C1-O2 `RunScriptFunction` dispatch capture remains suspended and was not restored.
+- Normal Chat and the User converged on the universal execution/source guard as the primary collision-safety direction.
+- Keep the known held-Use2 / Alternative-AI bad abandonment intact as the strongest destructive stress case while the universal guard is developed and later physically validated.
+- Root-cause repair of that bad skip is conditional only if the universal guard proves unable to guarantee collision integrity safely; it is not a planned prerequisite.
+- Preserve external/native combat-rule choices and New Balance compatibility; `Script_G3AnimationBehaviors` should not recreate another mod's block-balance behavior merely to make collision safe.
+- C1-O2 direct `RunScriptFunction` dispatch capture remains suspended pending hook-transport hardening.
+- AIFullStop is the leading next isolated hook-hardening candidate. Its purpose is stable transport for the universal guard path, not a held-Use2-specific fix.
+- No code task is frozen by this handoff. Normal Chat must inspect the exact AIFullStop wrapper and then explicitly freeze the bounded implementation if no contradiction exists.
