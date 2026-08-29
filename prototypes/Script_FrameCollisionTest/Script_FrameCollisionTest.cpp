@@ -397,12 +397,11 @@ static void GE_STDCALL AIFullStop_FrameCollisionTest()
 }
 
 static void GE_STDCALL AISetState_FrameCollisionTest(
-    bCString const &a_State)
+    gCScriptRoutine_PS *a_pThis, bCString const &a_State)
 {
     void *callerAddress = _ReturnAddress();
-    gCScriptRoutine_PS *pThis =
-        Hook_AISetState.GetSelf<gCScriptRoutine_PS *>();
-    eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
+    eCEntity *ownerEntity =
+        a_pThis != nullptr ? a_pThis->GetEntity() : nullptr;
     CollisionLifecycleGuard::GenerationToken finalization =
         CollisionLifecycleGuard::CaptureFinalizationToken(ownerEntity);
     if (IsPlayerEntity(ownerEntity))
@@ -427,7 +426,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
         CollisionDiagnostics::LogAISetStateCallSite(actor, setState);
 
         gCScriptProcessingUnit *spu =
-            pThis != nullptr ? &pThis->GetSPU() : nullptr;
+            a_pThis != nullptr ? &a_pThis->GetSPU() : nullptr;
         CollisionDiagnostics::OuterFrameSnapshot outerFrame =
             CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, spu);
         CollisionDiagnostics::LogOuterFrameSnapshot(
@@ -438,7 +437,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     }
 
     Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
-        a_State);
+        a_pThis, a_State);
     CollisionLifecycleGuard::InvalidateScriptFunctionDispatchAfterAISetState(
         ownerEntity);
     CollisionLifecycleGuard::FinalizeAfterAISetState(finalization);
@@ -446,7 +445,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     {
         Entity actor(ownerEntity);
         gCScriptProcessingUnit *spu =
-            pThis != nullptr ? &pThis->GetSPU() : nullptr;
+            a_pThis != nullptr ? &a_pThis->GetSPU() : nullptr;
         CollisionDiagnostics::OuterFrameSnapshot outerFrame =
             CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, spu);
         CollisionDiagnostics::LogOuterFrameSnapshot(
@@ -601,8 +600,8 @@ static void InstallHooks()
                  mCBaseHook::mEHookType_ThisCall)
         .Hook();
     Hook_AISetState
-        .Prepare(RVA_Game(0x164320), &AISetState_FrameCollisionTest,
-                 mCBaseHook::mEHookType_ThisCall)
+        .Prepare(RVA_Game(0x164320), &AISetState_FrameCollisionTest)
+        .ThisCall()
         .Hook();
     Hook_RunScriptFunction
         .Prepare(RVA_Game(0x1604E0), &RunScriptFunction_FrameCollisionTest)
