@@ -2,12 +2,15 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work. Replace rather than accumulate chronology.
 
-## Current bridge — universal guard first
+## Frozen Work task — AIFullStop recursion-safe ThisCall transport
 
-- Normal Chat and the User converged on the universal execution/source guard as the primary collision-safety direction.
-- Keep the known held-Use2 / Alternative-AI bad abandonment intact as the strongest destructive stress case while the universal guard is developed and later physically validated.
-- Root-cause repair of that bad skip is conditional only if the universal guard proves unable to guarantee collision integrity safely; it is not a planned prerequisite.
-- Preserve external/native combat-rule choices and New Balance compatibility; `Script_G3AnimationBehaviors` should not recreate another mod's block-balance behavior merely to make collision safe.
-- C1-O2 direct `RunScriptFunction` dispatch capture remains suspended pending hook-transport hardening.
-- AIFullStop is the leading next isolated hook-hardening candidate. Its purpose is stable transport for the universal guard path, not a held-Use2-specific fix.
-- No code task is frozen by this handoff. Normal Chat must inspect the exact AIFullStop wrapper and then explicitly freeze the bounded implementation if no contradiction exists.
+- Universal-guard-first architecture/current-state maintenance is published in commit `32fd1b353417c8baf4b3d5acfe2d07e61071052c`.
+- C1-O2 direct `RunScriptFunction` dispatch capture remains suspended; `RunScriptFunction` stays recursion-safe pure pass-through.
+- AISetState stays on its validated recursion-safe explicit-this `.ThisCall()` baseline.
+- The next bounded Work task is an isolated transport-only correction for `gCScriptRoutine_PS::AIFullStop` in `Script_FrameCollisionTest`.
+- Convert only AIFullStop from legacy shared `GetSelf` ThisCall transport to explicit per-invocation `gCScriptRoutine_PS *this`, forward that exact pointer to the original exactly once, and install the hook through the recursion-safe `.ThisCall()` builder.
+- Preserve `_ReturnAddress`, caller/context stack capture, primary-motion snapshot, current-state/input/duration diagnostics and their pre-original ordering unchanged.
+- Add only the identifying startup banner for this baseline.
+- Do not change FullStop semantics, collision/lifecycle classification, C1 generation/obligation/finalization, marker behavior, physical repair, held-Use2/2500-ms behavior, AISetState, RunScriptFunction or any other legacy ThisCall hook.
+- Work should edit only `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp` and `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp`, source-audit, commit/push, report the source commit, and stop. No build or runtime test in Work.
+- After Work returns, Normal Chat independently reviews the actual diff before any build/deploy/runtime step.
