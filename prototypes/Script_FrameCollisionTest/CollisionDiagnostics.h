@@ -67,6 +67,26 @@ struct AISetStateStackSnapshot
     void *callerAddress;
 };
 
+struct OuterFrameSnapshot
+{
+    GEDouble elapsedMilliseconds;
+    gCScriptProcessingUnit *spuAddress;
+    GEInt stateStackCount;
+    bool hasTopFrame;
+    GEInt topIndex;
+    void *topEntryAddress;
+    std::string topScriptName;
+    GEBool topIsScriptState;
+    GEU32 topBreakBlock;
+    void *topArgumentsAddress;
+    std::string topLocalCallback;
+    GEFloat topExtraFloat;
+    std::string currentState;
+    GEInt action;
+    GEInt statePosition;
+    GEFloat stateTime;
+};
+
 void OpenLog();
 void CloseLog();
 bool IsLogOpen();
@@ -110,6 +130,12 @@ void LogAIFullStopCallSite(Entity &actor,
                            AIFullStopStackSnapshot const &fullStop);
 void LogAISetStateCallSite(Entity &actor,
                            AISetStateStackSnapshot const &setState);
+OuterFrameSnapshot CaptureOuterFrameSnapshot(
+    Entity &actor, gCScriptProcessingUnit *spu);
+void LogOuterFrameSnapshot(
+    char const *eventName, Entity &actor, eCEntity *sourceInstance,
+    eECollisionGroup requestedGroup, eECollisionGroup beforeGroup,
+    eECollisionGroup afterGroup, OuterFrameSnapshot const &snapshot);
 void LogCombatMoveStartRecoverBoundary(Entity &actor,
                                          char const *boundary);
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,

@@ -85,6 +85,15 @@ static bool IsPlayerEntity(eCEntity *instance)
     return player != None && instance == player.GetInstance();
 }
 
+static gCScriptProcessingUnit *GetActorSPU(Entity &actor)
+{
+    if (actor == None)
+        return nullptr;
+    gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
+        actor.Routine.m_pEngineEntityPropertySet);
+    return routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
+}
+
 static GELPVoid StartEffect_FrameCollisionTest(
     bCString const &a_EffectName, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
     bCMatrix const *a_pMatrix, GEBool a_bUnknown)
@@ -304,6 +313,13 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
             generation = CollisionLifecycleGuard::BeginCombatMove(
                 actor, sources);
         }
+        CollisionDiagnostics::OuterFrameSnapshot outerFrame =
+            CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, a_pSPU);
+        CollisionDiagnostics::LogOuterFrameSnapshot(
+            "OUTER_FRAME COMBAT_MOVE_INITIAL", actor, nullptr,
+            static_cast<eECollisionGroup>(-1),
+            static_cast<eECollisionGroup>(-1),
+            static_cast<eECollisionGroup>(-1), outerFrame);
     }
 
     if (a_bFullStop == GETrue && a_pSPU != nullptr)
@@ -398,11 +414,34 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
             ? a_State.GetText() : "";
 
         CollisionDiagnostics::LogAISetStateCallSite(actor, setState);
+
+        gCScriptProcessingUnit *spu =
+            pThis != nullptr ? &pThis->GetSPU() : nullptr;
+        CollisionDiagnostics::OuterFrameSnapshot outerFrame =
+            CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, spu);
+        CollisionDiagnostics::LogOuterFrameSnapshot(
+            "OUTER_FRAME AI_SET_STATE_BEFORE", actor, nullptr,
+            static_cast<eECollisionGroup>(-1),
+            static_cast<eECollisionGroup>(-1),
+            static_cast<eECollisionGroup>(-1), outerFrame);
     }
 
     Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
         a_State);
     CollisionLifecycleGuard::FinalizeAfterAISetState(finalization);
+    if (IsPlayerEntity(ownerEntity))
+    {
+        Entity actor(ownerEntity);
+        gCScriptProcessingUnit *spu =
+            pThis != nullptr ? &pThis->GetSPU() : nullptr;
+        CollisionDiagnostics::OuterFrameSnapshot outerFrame =
+            CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, spu);
+        CollisionDiagnostics::LogOuterFrameSnapshot(
+            "OUTER_FRAME AI_SET_STATE_AFTER", actor, nullptr,
+            static_cast<eECollisionGroup>(-1),
+            static_cast<eECollisionGroup>(-1),
+            static_cast<eECollisionGroup>(-1), outerFrame);
+    }
 }
 
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
@@ -434,6 +473,39 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
     CollisionDiagnostics::LogSetCollisionGroup(
         pThis, a_Group, beforeGroup, afterGroup,
         retiredMarkerExecutionCount, callerAddress, cleanupStack);
+    if (pThis != nullptr)
+    {
+        Entity player = Entity::GetPlayer();
+        if (player != None)
+        {
+            EquippedCollisionSources sources =
+                CollisionControl::GetEquippedCollisionSources(player);
+            bool const isEquippedPlayerSource =
+                pThis == sources.rightInstance
+                || pThis == sources.leftInstance;
+            bool const successfulOffense =
+                isEquippedPlayerSource
+                && a_Group == eECollisionGroup_Item_Attack
+                && afterGroup == eECollisionGroup_Item_Attack;
+            bool const observedCleanup =
+                isEquippedPlayerSource
+                && beforeGroup == eECollisionGroup_Item_Attack
+                && afterGroup != eECollisionGroup_Item_Attack;
+            if (successfulOffense || observedCleanup)
+            {
+                gCScriptProcessingUnit *spu = GetActorSPU(player);
+                CollisionDiagnostics::OuterFrameSnapshot outerFrame =
+                    CollisionDiagnostics::CaptureOuterFrameSnapshot(
+                        player, spu);
+                CollisionDiagnostics::LogOuterFrameSnapshot(
+                    successfulOffense
+                        ? "OUTER_FRAME OFFENSE"
+                        : "OUTER_FRAME CLEANUP",
+                    player, pThis, a_Group, beforeGroup, afterGroup,
+                    outerFrame);
+            }
+        }
+    }
 }
 
 static GEInt GE_STDCALL OnTick_FrameCollisionTest(gCScriptProcessingUnit *a_pSPU,

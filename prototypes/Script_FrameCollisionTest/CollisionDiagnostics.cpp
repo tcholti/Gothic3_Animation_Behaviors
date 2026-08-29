@@ -70,6 +70,7 @@ void OpenLog()
     std::fprintf(g_pLog, "STEP B7b AIFULLSTOP CALLSITE PROBE: player gCScriptRoutine_PS::AIFullStop immediate caller/context stack; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP B9 AISETSTATE ORDERING PROBE: player gCScriptRoutine_PS::AISetState requested-state/caller/context stack before original; diagnostic-only.\n");
     std::fprintf(g_pLog, "STEP C1 SHADOW LIFECYCLE GUARD: event-driven execution/source obligations; WOULD_REPAIR only; no physical repair.\n");
+    std::fprintf(g_pLog, "STEP C1-O1 OUTER SCRIPTFRAME IDENTITY PROBE: top SPU frame snapshots only; no lifecycle or collision behavior change.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
@@ -1299,6 +1300,123 @@ void LogAISetStateCallSite(Entity &actor,
     }
     std::fprintf(g_pLog, "CleanupBehaviorChanged: 0\n");
     std::fprintf(g_pLog, "==============================\n\n");
+    std::fflush(g_pLog);
+}
+
+OuterFrameSnapshot CaptureOuterFrameSnapshot(
+    Entity &actor, gCScriptProcessingUnit *spu)
+{
+    OuterFrameSnapshot snapshot = {};
+    snapshot.elapsedMilliseconds =
+        HookBridgeRuntime::GetElapsedMilliseconds();
+    snapshot.spuAddress = spu;
+    snapshot.topIndex = -1;
+    snapshot.action = -1;
+    snapshot.statePosition = -1;
+    snapshot.stateTime = -1.0f;
+
+    if (actor != None)
+    {
+        bCString currentState = actor.Routine.GetCurrentState();
+        snapshot.currentState = currentState.GetText() != nullptr
+            ? currentState.GetText() : "";
+        snapshot.action = static_cast<GEInt>(
+            actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+        snapshot.statePosition = static_cast<GEInt>(
+            actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+        snapshot.stateTime = actor.Routine.GetStateTime();
+    }
+
+    if (spu == nullptr)
+        return snapshot;
+    snapshot.stateStackCount =
+        static_cast<GEInt>(spu->m_StateStack.GetCount());
+    if (snapshot.stateStackCount <= 0)
+        return snapshot;
+
+    snapshot.hasTopFrame = true;
+    snapshot.topIndex = snapshot.stateStackCount - 1;
+    gScriptRunTimeSingleState &top =
+        spu->m_StateStack.AccessAt(snapshot.topIndex);
+    snapshot.topEntryAddress = static_cast<void *>(&top);
+    snapshot.topScriptName = top.m_strScriptName.GetText() != nullptr
+        ? top.m_strScriptName.GetText() : "";
+    snapshot.topIsScriptState = top.m_bIsScriptState;
+    snapshot.topBreakBlock = top.m_iBreakBlock;
+    snapshot.topArgumentsAddress = static_cast<void *>(top.m_pArguments);
+    snapshot.topLocalCallback = top.m_strLocalCallback.GetText() != nullptr
+        ? top.m_strLocalCallback.GetText() : "";
+    snapshot.topExtraFloat = top.__FIXME_0014;
+    return snapshot;
+}
+
+void LogOuterFrameSnapshot(
+    char const *eventName, Entity &actor, eCEntity *sourceInstance,
+    eECollisionGroup requestedGroup, eECollisionGroup beforeGroup,
+    eECollisionGroup afterGroup, OuterFrameSnapshot const &snapshot)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== %s =====\n", eventName);
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 snapshot.elapsedMilliseconds);
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 actor != None
+                     ? static_cast<void *>(actor.GetInstance()) : nullptr);
+    std::fprintf(g_pLog, "Actor: %s\n",
+                 actor != None ? actor.GetName().GetText() : "<unavailable>");
+    if (sourceInstance != nullptr)
+    {
+        Entity source(sourceInstance);
+        std::fprintf(g_pLog, "SourceAddress: %p\n",
+                     static_cast<void *>(sourceInstance));
+        std::fprintf(g_pLog, "Source: %s\n",
+                     source != None
+                         ? source.GetName().GetText() : "<unavailable>");
+        std::fprintf(g_pLog, "RequestedGroup: %d\n",
+                     static_cast<GEInt>(requestedGroup));
+        std::fprintf(g_pLog, "BeforeGroup: %d\n",
+                     static_cast<GEInt>(beforeGroup));
+        std::fprintf(g_pLog, "AfterGroup: %d\n",
+                     static_cast<GEInt>(afterGroup));
+    }
+    std::fprintf(g_pLog, "SPUAddress: %p\n",
+                 static_cast<void *>(snapshot.spuAddress));
+    std::fprintf(g_pLog, "StateStackCount: %d\n",
+                 snapshot.stateStackCount);
+    std::fprintf(g_pLog, "HasTopFrame: %d\n",
+                 snapshot.hasTopFrame ? 1 : 0);
+    if (snapshot.hasTopFrame)
+    {
+        std::fprintf(g_pLog, "TopIndex: %d\n", snapshot.topIndex);
+        std::fprintf(g_pLog, "TopEntryAddressDiagnosticOnly: %p\n",
+                     snapshot.topEntryAddress);
+        std::fprintf(g_pLog, "TopScriptName: %s\n",
+                     snapshot.topScriptName.c_str());
+        std::fprintf(g_pLog, "TopIsScriptState: %d\n",
+                     snapshot.topIsScriptState == GETrue ? 1 : 0);
+        std::fprintf(g_pLog, "TopBreakBlock: %u\n",
+                     static_cast<unsigned int>(snapshot.topBreakBlock));
+        std::fprintf(g_pLog, "TopArgumentsAddress: %p\n",
+                     snapshot.topArgumentsAddress);
+        std::fprintf(g_pLog, "TopLocalCallback: %s\n",
+                     snapshot.topLocalCallback.c_str());
+        std::fprintf(g_pLog, "TopExtraFloat: %.6f\n",
+                     snapshot.topExtraFloat);
+    }
+    std::fprintf(g_pLog, "CurrentState: %s\n",
+                 snapshot.currentState.c_str());
+    std::fprintf(g_pLog, "CurrentAction: %d\n", snapshot.action);
+    std::fprintf(g_pLog, "CurrentStatePosition: %d\n",
+                 snapshot.statePosition);
+    std::fprintf(g_pLog, "CurrentStateTime: %.6f\n",
+                 snapshot.stateTime);
+    std::fprintf(g_pLog, "TopEntryAddressIsExecutionIdentity: 0\n");
+    std::fprintf(g_pLog, "ArgumentsDereferencedOrClassified: 0\n");
+    std::fprintf(g_pLog, "LifecycleBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "CollisionBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "===============================\n\n");
     std::fflush(g_pLog);
 }
 
