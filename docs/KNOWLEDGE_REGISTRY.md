@@ -22,6 +22,7 @@ The registry exists to prevent the same fact becoming a separately maintained co
 | current active subsystem / causal gate / immediate next responsibility | `SESSION_ENTRYPOINT.md` | active gate, subsystem, immediate candidate, or next responsibility changes | another test merely confirms the existing gate/model |
 | transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact transient implementation/test state | ordinary project facts already live in durable authorities |
 | project-specific collaboration behavior | `COLLABORATION_RULES.md` | a recurring Gothic-3-specific collaboration lesson materially changes workflow | one isolated annoyance/error that existing rules already cover |
+| stable project operating conventions: branch/state meanings, gate/test IDs, evidence/procedure IDs, raw/derived naming, prototype/build identity, document versioning, validation/artifact flow | `PROJECT_PIPELINE.md` | an accepted convention changes, a genuinely new convention responsibility appears, or a transition/migration boundary must be defined | routine use of an established convention, every new test/log/evidence item, or a new Chat merely preferring another style |
 | recurring project-local operations: Git handoff/sync, build/deploy/load verification, runtime-artifact intake/publish, large-log reduction, static-reference retrieval | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistakes, one serious operational failure, a clearly better recurring method, or a genuinely new recurring operation changes the best default procedure | every routine use, one-off command variation, or technical Gothic 3 result that does not change the procedure |
 | bounded Work execution contract | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work authority, stop conditions, review responsibility, or frozen-task execution model changes | a technical Gothic 3 finding unrelated to Work behavior |
 | knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing rule, workaround-reevaluation rule, audit-health criteria, or bloat early-warning responsibility changes | ordinary technical evidence/result already handled by the existing procedure |
@@ -66,6 +67,8 @@ current-state pointer (only if active responsibility changes)
 
 When proven knowledge becomes relevant to a different future responsibility, add a **small cross-route from that future responsibility to the existing authority/evidence**. Do not create another copy of the underlying fact.
 
+Pipeline conventions are orthogonal durable operating state. Procedures and current-state documents should route to `PROJECT_PIPELINE.md` rather than maintaining independent naming/numbering/version schemes.
+
 Do not create sideways dependency chains where every authority repeats every other authority.
 
 ---
@@ -89,6 +92,7 @@ DESIGN
 ANIMATION_RULES
 SOURCE_HOOK_GUIDE
 ENGINEERING_GUIDE
+PROJECT_PIPELINE
 ```
 
 ### New runtime result disproves the collision lifecycle candidate
@@ -148,6 +152,17 @@ SESSION_ENTRYPOINT or BETWEEN_CHATS if current continuation needs it
 
 No architecture/evidence update until build/runtime/source contradiction provides new meaning.
 
+### A new Chat proposes a different log/test/version naming style
+
+Default:
+
+```text
+PROJECT_PIPELINE current convention
+→ keep it
+```
+
+Only update if there is a real reason to change the convention, then define the transition deliberately. Context migration alone is not a change trigger.
+
 ---
 
 ## Registry Maintenance
@@ -168,6 +183,8 @@ noticed gap/refinement
 ```
 
 Prefer strengthening the current knowledge structure over expanding the document set. Small refinements should normally improve an existing authority, section, index, or procedure rather than create a new file.
+
+`PROJECT_PIPELINE.md` is justified as a distinct authority because stable operating conventions are neither technical evidence nor recurring procedure sequences, and scattering them across those documents produced the exact cross-Chat drift this responsibility is meant to prevent.
 
 Create a new authority/document only when the responsibility is genuinely distinct enough that placing it in an existing authority would blur ownership, distort that authority's purpose, or make retrieval materially worse.
 
