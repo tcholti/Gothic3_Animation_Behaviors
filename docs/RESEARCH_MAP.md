@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Research Topic & History Map
 
 **Status:** Cold/reference research router  
-**Updated:** 2026-08-27
+**Updated:** 2026-08-29
 
 ## Purpose
 
@@ -15,7 +15,7 @@ Current state and next responsibility live in:
 
 Exact evidence status/provenance lives in:
 
-`docs/EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER.md` / `EVIDENCE_LEDGER_STEP_B.md`
+`docs/EVIDENCE_INDEX.md` → exact canonical evidence ledger (`EVIDENCE_LEDGER.md`, `EVIDENCE_LEDGER_STEP_B.md`, or `EVIDENCE_LEDGER_C1.md`)
 
 The full pre-information-architecture research map—including old “current prototype” and “next” sections—is preserved at:
 
@@ -47,24 +47,28 @@ This map summarizes topics; it does not promote or downgrade evidence. When stat
 | Raise insertion | `PREPEND_BREAK_BLOCK` can prepend custom Raise while preserving original melee state/Hit continuation | EV-006–EV-007; `DESIGN.md` §4 |
 | Frame-effect channel | authored `.xmot` frame effects reach `UpdateFrameEffects`/`StartEffect`; exact motion can be scanned before dispatch | EV-012–EV-018; source guide Frame effects |
 | Marker timing / playback speed | marker timing follows authored animation time and scales with playback; tested latency negligible | EV-020–EV-023; `ANIMATION_RULES.md` §20 |
-| Native weapon collision reset | ordinary tested weapon path cleans `Item_Attack(7) -> Item_Equipped(5)`; later work proved this is not guaranteed across every ending | EV-019, EV-151–EV-156, EV-163–EV-168 |
+| Native weapon collision reset | ordinary tested weapon path cleans `Item_Attack(7) -> Item_Equipped(5)`; later work proved this is not guaranteed across every ending | EV-019, EV-151–EV-156, EV-163–EV-191 |
 | Quick callback/bookkeeping | `OnAI_QuickAttack` + StatePosition handling enabled marker-controlled Quick without post-reset native reactivation | EV-026–EV-028, EV-066–EV-075 |
 | Fist/body contact | tested logical Fist contacts can damage via several limbs/head without weapon-style collision-group activation; body-source generalization remains bounded | EV-029–EV-032, EV-080–EV-085; `ANIMATION_CATALOG.md` Fist fixture |
 | Dual physical source mapping | runtime mapped Normal/Quick/Pierce/Power source behavior and proved R/L attack-direction metadata is not collision-hand authority | EV-047–EV-059, EV-090–EV-094; `ANIMATION_CATALOG.md` source sections |
 | Multi-target / repeated-contact rearm | one weapon window can hit multiple distinct targets; repeated same-target contact needs source rearm; Gothic frame-effect replay requires duplicate/occurrence guards | EV-106–EV-116 and later marker-core evidence |
 | Exact-set markers | RIGHT/LEFT/BOTH/OFF desired-set semantics validated and final equipped-slot spellings frozen | EV-112–EV-116, EV-143–EV-144; `DESIGN.md` §6 |
-| Marker execution lifetime | interruptions exposed stale occurrence-budget ownership even when physical collision had already cleaned; marker bookkeeping is distinct from physical cleanup | EV-131–EV-133, EV-167 |
+| Marker execution lifetime | interruptions exposed stale occurrence-budget ownership even when physical collision had already cleaned; marker bookkeeping is distinct from physical cleanup; newer native outer-lifetime evidence may support later simplification only after regression | EV-131–EV-133, EV-167, EV-182–EV-196 |
 | Whirl family separation | Dual SimpleWhirl/action 6 and full 2H/Staff Whirl/action 10 are separate runtime families despite shared serialized filename wording | EV-145–EV-153; `ANIMATION_RULES.md` §8.1 |
 | NewBalance / AttackCollision compatibility | tested configurations can coexist for marked 2H Whirl, but arbitrary same-function hook chaining/load order is not proven | EV-035, EV-148–EV-150; source guide Same-Function Hook Caution |
-| Staff/block-skip stale collision | native and marked tests proved real stale offensive collision can survive bad teardown and cause later running/contact damage | EV-151–EV-156 |
-| Actual PrimaryFirst lifetime | PlayMotion type0 gives immediate replacement evidence; action/phase can drift while physical Hit remains; replacement itself precedes cleanup | EV-157–EV-160 |
+| Staff/block-skip stale collision | native and marked tests proved real stale offensive collision can survive bad teardown and cause later running/contact damage | EV-151–EV-156, EV-180–EV-181 |
+| Actual PrimaryFirst lifetime | PlayMotion type0 gives immediate replacement evidence; action/phase can drift while physical Hit remains; replacement itself precedes cleanup | EV-157–EV-160, EV-174–EV-180 |
 | Recover lifecycle | Recover asset playback is not required for native cleanup/bookkeeping; StartRecover is not universal or post-cleanup | EV-154, EV-160–EV-162 |
 | Native cleanup call sites | ordinary cleanup is action-specific; legitimate damage/reaction interruption has a separate tested route | EV-163–EV-166; `COLLISION_CLEANUP_CALLSITE_MAP.md` |
-| Generic script parents | B5 parents identified as `RunScriptFunction` / `RunScriptState`; both converge higher in generic `ProcessScript()`; CombatMove instruction completion is too early | EV-169–EV-171; cleanup map / source guide |
-| Deferred finalization candidate | exact replacement may mark pending finalization, then a tightly gated post-script timing opportunity may verify/repair after Gothic's native chance | EV-172; `COLLISION_LIFECYCLE_PLAN.md` §8–§9; B6 pending runtime |
+| Generic script parents | B5 parents identified as `RunScriptFunction` / `RunScriptState`; both converge higher in generic `ProcessScript()`; none is unconditional combat cleanup authority | EV-169–EV-171, EV-195; cleanup map / source guide |
+| Deferred replacement/post-script candidate | replacement-triggered deferred `ProcessScript()` finalization was considered, then rejected in its tested form because the bad replacement path exposed no useful comparable ScriptAdmin/SPU stack | EV-172, EV-180 |
+| State-stack abandonment | bad held-Use2 Whirl/Quick terminates CombatMove and destroys the suspended attack continuation through SetState/AISetState, while legitimate reactions have separate cleanup ownership | EV-182–EV-191; `COLLISION_LIFECYCLE_PLAN.md` §§3–4 |
+| C1 execution/source obligation guard | shadow C1 tracks exact source requests/cleanup by monotonic generation; tested core matrix passed consequence-based classification including inherited `7 -> 7` | EV-192–EV-193; `COLLISION_LIFECYCLE_PLAN.md` §§2,8 |
+| GetUp pre-CombatMove acquisition | GetUpAttack can legitimately arm before CombatMove, proving CombatMove is too late as universal outer execution acquisition | EV-194 |
+| Outer ScriptFunction lifetime | pinned SDK/static/runtime evidence shows a ScriptFunction frame can predate CombatMove, persist across asynchronous false returns, and bridge offense→CombatMove→cleanup; raw frame/argument pointers can be reused after retirement | EV-195–EV-196; `COLLISION_LIFECYCLE_PLAN.md` §§4–5 |
 | Animation-name semantics | actor family, UseType normalization, poses, action/phase serialization, overlay/non-overlay, distance, direction metadata | `ANIMATION_INDEX.md` → `ANIMATION_RULES.md` |
 | Animation family/asset inventory | exact human melee assets, Raise availability, possible unused files, stumbles, test fixtures | `ANIMATION_INDEX.md` → `ANIMATION_CATALOG.md` / data lists |
-| Future animation selection / disabled variants | practical CombatMove animation-string interception at `Game + 0x16B065` is reusable engine knowledge; jump/wade/climb questions remain later research | `SOURCE_HOOK_GUIDE.md` Third-Party Reference Patterns |
+| Future animation selection / disabled variants | practical CombatMove animation-string interception at `Game +0x16B065` is reusable engine knowledge; jump/wade/climb questions remain later research | `SOURCE_HOOK_GUIDE.md` Third-Party Reference Patterns |
 
 ---
 
@@ -123,25 +127,31 @@ Evidence: EV-145–EV-162.
 
 ### Step B lifecycle causal search
 
-- B1 PlayMotion: immediate replacement, too early for repair;
+- B1 PlayMotion immediate replacement proved too early for repair;
 - B2 callback boundary rejected;
 - B3 StartRecover boundary rejected;
 - B3b missing Recover asset rejected as root cause;
 - B4/B4b action-specific + interruption cleanup map;
-- B5 parent stacks;
-- static identification of generic script runners / `ProcessScript()`.
+- B5 generic script parents;
+- B6 replacement-time post-script candidate rejected on bad teardown;
+- B7/B7b FullStop/SetState causal chain established;
+- B8 generalized the held-Use2 abandonment class across tested Quick configurations;
+- B9 established cleanup-before-finalization ordering for clean/reaction controls and no-cleanup-before-AISetState ordering for bad armed cases.
 
-Evidence: EV-158–EV-172.
+Evidence: EV-158–EV-191.
 
-Processed B1–B5 runtime logs live in `research/archive/` and remain byte-preserved; `research/raw/` is reserved for current/unprocessed evidence.
+### C1 shadow lifecycle and outer execution identity
 
-### Current B6 boundary experiment
+- C1 implemented an actor-generic, source-aware monotonic generation/obligation model in shadow-only form;
+- the core runtime matrix passed known bad/clean/reaction/pre-activation/inherited-stale controls;
+- GetUp exposed legitimate pre-CombatMove offense that the CombatMove-start acquisition boundary missed;
+- SDK/Game static analysis identified the persistent outer ScriptFunction state-stack lifetime;
+- C1-O1 runtime proved the same live GetUp ScriptFunction spans pre-CombatMove offense → later CombatMove → cleanup;
+- C1-O1 also proved raw arguments/frame addresses can be reused after retirement, so C1's own generation remains durable identity.
 
-Source-only diagnostic is implemented and independently reviewed; runtime validation remains pending.
+Evidence: EV-192–EV-196.
 
-Current authority: `SESSION_ENTRYPOINT.md`, `COLLISION_LIFECYCLE_PLAN.md`, `COLLISION_TEST_PLAN.md`.
-
-Do not treat the older chronological map as a newer next-step instruction.
+Current technical gate is owned by `SESSION_ENTRYPOINT.md`: C1-O2 shadow outer ScriptFunction binding integration. This historical map does not authorize or begin that implementation.
 
 ---
 
@@ -173,7 +183,11 @@ Use these exact terms when searching the repository rather than reading broad do
 `sAICombatMoveStartRecover`  
 `RunScriptFunction`  
 `RunScriptState`  
-`ProcessScript`
+`ProcessScript`  
+`m_StateStack`  
+`m_pArguments`  
+`AISetState`  
+`AIFullStop`
 
 ### Actions
 
@@ -206,7 +220,7 @@ Use these exact terms when searching the repository rather than reading broad do
 
 `research/archive/`
 
-Notable B1–B5 names:
+Notable B1–B5 names include:
 
 - `researchraw2026-08-26_framecollision_stepB1_primaryfirst_event_probe.log`
 - `2026-08-26_stepB2_causal_extract.log`
@@ -218,17 +232,17 @@ Notable B1–B5 names:
 - `2026-08-26_stepB4b_native_interruption_cleanup_callsite.log`
 - `2026-08-26_stepB5_cleanup_parent_stack_probe.log`
 
-### Current/unprocessed causal evidence
+### Current/recent causal evidence
 
-`research/raw/`
+Key later artifacts are routed by `EVIDENCE_INDEX.md`, especially:
 
-Keep current diagnostic output here only until its durable conclusions/provenance are promoted.
+- B6/B7/B7b/B8/B9 raw logs in `research/raw/`;
+- `research/raw/2026-08-28_c1_shadow_core_lifecycle_matrix.log`;
+- `research/archive/2026-08-28_c1_shadow_core_lifecycle_matrix_connector_extract.txt`;
+- `research/raw/2026-08-29_c1o1_outer_scriptfunction_identity_probe.log`;
+- `research/archive/2026-08-29_c1o1_outer_scriptfunction_identity_probe_connector_extract.txt`.
 
-### Processed historical runtime logs
-
-`research/archive/`
-
-Names encode date, prototype version, actor/family, and experiment. Prefer evidence IDs first; open logs when verifying a claim or extracting a fact not represented in the ledger.
+Keep raw diagnostic output in `research/raw/` while it remains active/comparative. Move processed durable provenance to `research/archive/` when the normal evidence-maintenance flow calls for it; do not rename historical artifacts merely to normalize an older convention.
 
 ### Long source/history intake
 
@@ -244,11 +258,11 @@ These are **not automatically next**. Retrieve them only when the project reache
 
 ### Collision lifecycle
 
-- B6 runtime comparison of clean/reaction/bad replacement stacks;
-- post-native-opportunity checkpoint if B6 supports it;
-- final attack-wide vs source-aware repair decision;
-- negative Fist/ranged/magic regression if generic script timing is used;
-- defensive block/parade collision semantics before release if cleanup operation could disturb them.
+- C1-O2 implementation/runtime validation when the current frozen task is resumed;
+- production physical repair remains disabled until the shadow binding/finalization model passes its required controls;
+- negative Fist/ranged/magic regression if generic script timing/context is used;
+- defensive block/parade collision semantics before release if cleanup operation could disturb them;
+- future marker-core simplification only after C1 regression establishes that the stronger native lifetime preserves old marker guarantees.
 
 ### Raise / speed
 
