@@ -26,7 +26,7 @@ The branches currently diverge; `main` also contains one older collaboration-rul
 
 ### Relationship to the reusable CAM baseline
 
-The central `tcholti/Collaborative-Agency-Model` repository now separates its stable framework from a candidate reusable operational baseline on branch `current`.
+The central `tcholti/Collaborative-Agency-Model` repository separates its stable framework from a candidate reusable operational baseline on branch `current`.
 
 Gothic 3 is an empirical project-specific instantiation of that broader model, not a file-for-file copy of its templates. The reusable baseline should be used as a comparison and starting structure; this project's mature authorities remain authoritative for their own responsibilities.
 
@@ -34,17 +34,21 @@ The project predates CAM's newer `PROJECT_MANIFEST.md` template. Its manifest re
 
 | Reusable project-manifest responsibility | Gothic 3 authority |
 |---|---|
-| repository / branch model | this `README.md` |
+| repository / branch model | this `README.md` + `PROJECT_PIPELINE.md` |
 | current-state entry point | `SESSION_ENTRYPOINT.md` |
 | project-specific collaboration delta / participant allocation | `COLLABORATION_RULES.md` |
+| stable naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` |
 | authority ownership / update triggers | `KNOWLEDGE_REGISTRY.md` |
 | retrieval model / subsystem orientation routes | this `README.md` |
 | evidence and maintenance lifecycle | `KNOWLEDGE_MAINTENANCE.md` + evidence authorities |
+| recurring local operational sequences | `PROJECT_OPERATING_PROCEDURES.md` |
 | bounded implementation procedure | `WORK_IMPLEMENTATION_PROTOCOL.md` |
 | transient continuation bridge | `BETWEEN_CHATS.md` when needed |
 | technical architecture / intended behavior | `DESIGN.md` and subsystem authorities |
 
 Do **not** create a parallel `PROJECT_MANIFEST.md` merely to conform to the newer template. Add one only if future project restructuring creates a genuinely distinct configuration responsibility that is no longer served clearly by the established authorities.
+
+`PROJECT_PIPELINE.md` was added because a genuinely distinct responsibility was missing: project identity conventions such as test/gate numbering, EV/POP numbering, log/artifact naming, prototype/build identity and validation-stage meanings were scattered across procedures and history, allowing small arbitrary changes across Chat migrations.
 
 When this project reveals a collaboration mechanism that may generalize, validate it locally first, compare it with CAM `current`, and promote the lesson upward only when transfer beyond Gothic 3 is supported. Conversely, when CAM `current` gains a new reusable mechanism, compare it against this project's actual needs and import only what fills a real gap rather than reshaping the project for template conformity.
 
@@ -66,6 +70,8 @@ Normally read:
 - `BETWEEN_CHATS.md` only when an active transient handoff matters.
 
 This recovers the active subsystem, causal gate, implementation/test state and immediate responsibility.
+
+The entry point may additionally route to one relevant `PROJECT_PIPELINE.md` section when the next task will create/change a project identifier, filename, version/build identity, branch/state meaning or validation/artifact-flow convention.
 
 ### Retrieval depth B — Subsystem Orientation Pass
 
@@ -98,7 +104,7 @@ Do not repeat the orientation pass for every prompt, every test, every Work hand
 
 Use for ordinary ongoing work after current state and any necessary subsystem orientation are already known.
 
-Retrieve only the exact EV entry, source section, symbol, hook, animation data, raw artifact or authority section needed for the current question.
+Retrieve only the exact EV entry, source section, symbol, hook, animation data, raw artifact, pipeline convention, or authority section needed for the current question.
 
 The intended pattern is therefore:
 
@@ -132,6 +138,16 @@ Gothic 3 project-specific collaboration delta.
 
 General collaboration authority and the reusable candidate baseline live in the CAM repository; do not reload them for ordinary Gothic 3 engineering unless the collaboration/process itself is being discussed or compared.
 
+#### `PROJECT_PIPELINE.md`
+
+Stable project operating grammar: branch/state meanings, gate/test identifiers, EV/POP numbering, raw/derived artifact naming, prototype/build identity, document-versioning convention, validation stages and evidence-artifact flow.
+
+Do **not** read end-to-end after every prompt. Retrieve the relevant section before creating or changing one of these conventions. A new Chat must preserve existing conventions rather than inventing new ones from preference.
+
+#### `PROJECT_OPERATING_PROCEDURES.md`
+
+Recurring concrete Git/build/deploy/load/test/evidence procedures. Read/spot-read only when entering those local operation sequences.
+
 #### `WORK_IMPLEMENTATION_PROTOCOL.md`
 
 Read only for a bounded implementation/Work task.
@@ -148,15 +164,15 @@ Canonical **project architecture** for Raise, speed and frame collision. It now 
 
 #### `COLLISION_LIFECYCLE_PLAN.md`
 
-Current collision-lifecycle authority: execution ownership, cleanup invariant, Step-B constraints, deferred-finalization candidate and B6 gate.
+Current collision-lifecycle authority: execution ownership, cleanup invariant, Step-B constraints, deferred-finalization candidate and current gate.
 
 #### `COLLISION_LOGGER_PLAN.md`
 
-Current diagnostic architecture: hook ownership, factual event model, active B6 probe and diagnostic/release separation.
+Current diagnostic architecture: hook ownership, factual event model and diagnostic/release separation.
 
 #### `COLLISION_TEST_PLAN.md`
 
-Current staged validation plan beginning with B6 and continuing only if each causal gate passes.
+Current staged validation plan and acceptance/control matrices.
 
 #### `PROJECT_SCOPE_CONTEXT.md`
 
@@ -204,7 +220,7 @@ The split is a preservation/convenience boundary, not competing authority.
 
 #### `COLLISION_CLEANUP_CALLSITE_MAP.md`
 
-Tested-build reverse-engineering lookup for action-specific native cleanup RVAs, interruption cleanup, B5 stacks, identified `RunScriptState` / `RunScriptFunction`, common generic `ProcessScript()`, and current B6 relationship.
+Tested-build reverse-engineering lookup for action-specific native cleanup RVAs, interruption cleanup, script-runner stacks and generic script-processing context.
 
 #### `ANIMATION_RULES.md`
 
@@ -255,13 +271,15 @@ Archived documents preserve history/rationale; they never override current autho
 |---|---|---|
 | What are we doing now? | `SESSION_ENTRYPOINT.md` | named current architecture/source |
 | What did the last Chat/Work handoff do? | `BETWEEN_CHATS.md` | exact commit/diff |
+| What naming/numbering/version/test/artifact convention should I use? | `PROJECT_PIPELINE.md` relevant section | owning procedure/current plan only for task semantics |
+| How do I execute the recurring Git/build/deploy/test/evidence operation? | `PROJECT_OPERATING_PROCEDURES.md` | `PROJECT_PIPELINE.md` only if a convention itself is relevant |
 | How should bounded Work execute? | `WORK_IMPLEMENTATION_PROTOCOL.md` | only task-named source/API evidence |
 | What is the overall architecture? | `DESIGN.md` | evidence index if a premise must be checked |
 | What is the current collision lifecycle model? | `COLLISION_LIFECYCLE_PLAN.md` | cleanup map / EV range |
 | What should current diagnostics capture? | `COLLISION_LOGGER_PLAN.md` | source + exact EV |
 | What tests are next? | `COLLISION_TEST_PLAN.md` | evidence/raw only if a gate needs verification |
 | Is an engine claim proven? | `EVIDENCE_INDEX.md` | exact ledger entry → raw/source |
-| Where does native cleanup occur? | `COLLISION_CLEANUP_CALLSITE_MAP.md` | EV-163+ / raw B4-B5 logs |
+| Where does native cleanup occur? | `COLLISION_CLEANUP_CALLSITE_MAP.md` | relevant EV/raw logs |
 | What does this animation token/UseType/action/pose mean? | `ANIMATION_INDEX.md` | exact `ANIMATION_RULES` section |
 | Does this exact animation exist? | animation-name data | catalog/rules only for interpretation |
 | Which family/fixture/source note is relevant? | `ANIMATION_INDEX.md` | `ANIMATION_CATALOG.md` |
@@ -301,9 +319,10 @@ Examples:
 
 - `SetCollisionGroup` cleanup → `COLLISION_CLEANUP_CALLSITE_MAP`, not whole research history;
 - `QuickAttackL` physical source → `ANIMATION_INDEX` + relevant EV/source section;
-- `ProcessScript` lifecycle meaning → EV-170 + cleanup map §7;
+- `ProcessScript` lifecycle meaning → exact EV + cleanup map section;
 - exact native `Wade` animation → search animation-name data first;
-- old v0.13 occurrence-guard rationale → EV range / research archive / pre-IA history only if needed.
+- old v0.13 occurrence-guard rationale → EV range / research archive / pre-IA history only if needed;
+- next runtime raw filename → `PROJECT_PIPELINE.md` §6, not old chat history.
 
 Read a full large document only for genuine broad synthesis, contradiction resolution, or another intentional information-architecture pass.
 
@@ -318,10 +337,11 @@ Usually:
 1. `SESSION_ENTRYPOINT.md`;
 2. `BETWEEN_CHATS.md` only for an active handoff;
 3. if this Chat has not yet reconstructed a sufficiently fresh model of the active subsystem, perform the **Subsystem Orientation Pass once** using the relevant route above;
-4. exact current evidence/source supplied by the User or named by the entry point;
-5. question-specific authority/evidence only when the concrete step requires it.
+4. retrieve the relevant `PROJECT_PIPELINE.md` section only when the immediate responsibility creates/changes a project convention;
+5. exact current evidence/source supplied by the User or named by the entry point;
+6. question-specific authority/evidence only when the concrete step requires it.
 
-Within the same continuing subsystem context, do not rerun the orientation pass or reread unchanged authorities after every prompt.
+Within the same continuing subsystem context, do not rerun the orientation pass or reread unchanged authorities/procedures/pipeline sections after every prompt.
 
 ### Work — bounded implementation
 
@@ -333,6 +353,8 @@ Usually:
 4. assigned source files;
 5. task-specific authority/evidence section only.
 
+Work should preserve already-frozen identifiers/filenames/build labels from the task contract and pipeline. It should not invent a new convention during bounded implementation.
+
 Work may inspect necessary source/API material when implementation reveals a real need. It should not reconstruct the whole project by default. Subsystem orientation is primarily a Normal Chat research/design responsibility unless a Work task explicitly requires broader subsystem reasoning.
 
 ---
@@ -343,6 +365,8 @@ Work may inspect necessary source/API material when implementation reveals a rea
 |---|---|
 | current continuation / next validation | `SESSION_ENTRYPOINT.md` |
 | transient cross-context handoff | `BETWEEN_CHATS.md` |
+| stable project naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` |
+| recurring local operational sequences | `PROJECT_OPERATING_PROCEDURES.md` |
 | project collaboration configuration / relationship to CAM baseline | `COLLABORATION_RULES.md` + this `README.md` |
 | documentation map / retrieval depth / subsystem orientation routing | `README.md` |
 | overall intended system architecture | `DESIGN.md` |
@@ -376,13 +400,15 @@ Preserve:
 - animation semantics, inventories and author observations;
 - build-specific reverse-engineering results;
 - reusable diagnostic/test methods;
-- historical rationale that prevents rediscovery.
+- historical rationale that prevents rediscovery;
+- historical identifiers/names necessary to preserve provenance even when later conventions evolve.
 
 Optimize retrieval through:
 
 - stable headings;
 - topic/index documents;
 - evidence IDs;
+- stable gate/procedure/filename conventions;
 - exact symbols/action names/RVAs;
 - cross-references;
 - separation of current architecture from chronology;
@@ -406,6 +432,8 @@ Before archiving or compressing:
 
 The 2026-08-27 technical IA pass followed this rule by snapshotting old design/plan/source/history files before rewriting their active responsibilities.
 
+Do not rename historical archived/raw evidence merely to conform to a newer pipeline convention unless a deliberate migration explicitly justifies doing so.
+
 ---
 
 ## 9. Document-Creation Rule
@@ -419,6 +447,8 @@ Prefer:
 - a new section when an existing authority already owns the topic;
 - an evidence entry for a new proven fact;
 - an archive snapshot for superseded chronology.
+
+`PROJECT_PIPELINE.md` is a justified distinct authority because project operating conventions are neither technical evidence nor recurring procedure sequences; scattering them across those layers had already caused cross-Chat drift.
 
 Avoid one document per experiment, one rule per minor failure, another current-state document that competes with `SESSION_ENTRYPOINT.md`, a project manifest that merely duplicates the existing distributed configuration, or persistent “book summaries” that duplicate canonical authorities.
 
