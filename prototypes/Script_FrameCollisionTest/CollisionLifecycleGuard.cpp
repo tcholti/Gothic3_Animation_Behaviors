@@ -7,13 +7,23 @@
 #include <cstdio>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 namespace FrameCollision::CollisionLifecycleGuard
 {
 enum GenerationStatus
 {
     GenerationStatus_Candidate,
-    GenerationStatus_Persisted
+    GenerationStatus_Persisted,
+    GenerationStatus_OuterBound
+};
+
+struct OuterFrameBinding
+{
+    gCScriptProcessingUnit *spu;
+    gScrArgument *arguments;
+    std::string scriptName;
+    bool active;
 };
 
 struct SourceLifecycleRecord
@@ -32,6 +42,7 @@ struct ActorLifecycleRecord
     GenerationStatus status;
     SourceLifecycleRecord sources[2];
     unsigned int sourceCount;
+    OuterFrameBinding outerFrame;
 };
 
 struct SourceOwner
@@ -41,13 +52,28 @@ struct SourceOwner
     unsigned int sourceIndex;
 };
 
+struct ScriptFunctionDispatchContext
+{
+    gCScriptProcessingUnit *spu;
+    eCEntity *actorInstance;
+    gScrArgument *arguments;
+    std::string scriptName;
+    bool topIsScriptFunction;
+};
+
 static std::uint64_t g_NextGeneration = 0;
 static std::unordered_map<eCEntity *, ActorLifecycleRecord> g_ActorRecords;
 static std::unordered_map<eCEntity *, SourceOwner> g_SourceOwners;
+static thread_local std::vector<ScriptFunctionDispatchContext>
+    g_ScriptFunctionDispatchStack;
 
 static char const *GetStatusName(GenerationStatus status)
 {
-    return status == GenerationStatus_Persisted ? "PERSISTED" : "CANDIDATE";
+    if (status == GenerationStatus_Persisted)
+        return "PERSISTED";
+    if (status == GenerationStatus_OuterBound)
+        return "OUTER_BOUND";
+    return "CANDIDATE";
 }
 
 static char const *GetSideName(unsigned int sideMask)
@@ -289,19 +315,281 @@ static void LogSourceEvent(
     std::fflush(log);
 }
 
+static ScriptFunctionDispatchContext CaptureTopScriptFunction(
+    gCScriptProcessingUnit *spu,
+    bTObjStack<gScriptRunTimeSingleState> &stateStack)
+{
+    ScriptFunctionDispatchContext result = {};
+    result.spu = spu;
+    result.actorInstance = spu != nullptr ? spu->GetSelfEntity() : nullptr;
+    GEInt const count = stateStack.GetCount();
+    if (spu == nullptr || count <= 0)
+        return result;
+
+    gScriptRunTimeSingleState const &top = stateStack.GetAt(count - 1);
+    result.arguments = top.m_pArguments;
+    GELPCChar name = top.m_strScriptName.GetText();
+    result.scriptName = name != nullptr ? name : "";
+    result.topIsScriptFunction = top.m_bIsScriptState == GEFalse;
+    return result;
+}
+
+static ScriptFunctionDispatchContext CaptureCurrentTopScriptFunction(
+    gCScriptProcessingUnit *spu)
+{
+    if (spu == nullptr)
+        return ScriptFunctionDispatchContext();
+    return CaptureTopScriptFunction(spu, spu->m_StateStack);
+}
+
+static bool HasLiveCorrelator(
+    ScriptFunctionDispatchContext const &frame)
+{
+    return frame.spu != nullptr
+        && frame.actorInstance != nullptr
+        && frame.topIsScriptFunction
+        && frame.arguments != nullptr;
+}
+
+static bool MatchesBinding(
+    OuterFrameBinding const &binding,
+    ScriptFunctionDispatchContext const &frame)
+{
+    return binding.active
+        && HasLiveCorrelator(frame)
+        && binding.spu == frame.spu
+        && binding.arguments == frame.arguments
+        && binding.scriptName == frame.scriptName;
+}
+
+static bool MatchesRecordBinding(
+    ActorLifecycleRecord const &record,
+    ScriptFunctionDispatchContext const &frame)
+{
+    return record.actorInstance == frame.actorInstance
+        && MatchesBinding(record.outerFrame, frame);
+}
+
+static void BindOuterFrame(
+    ActorLifecycleRecord &record,
+    ScriptFunctionDispatchContext const &frame)
+{
+    record.outerFrame.spu = frame.spu;
+    record.outerFrame.arguments = frame.arguments;
+    record.outerFrame.scriptName = frame.scriptName;
+    record.outerFrame.active = true;
+}
+
+static void RetireOuterFrameBinding(ActorLifecycleRecord &record)
+{
+    record.outerFrame.spu = nullptr;
+    record.outerFrame.arguments = nullptr;
+    record.outerFrame.scriptName.clear();
+    record.outerFrame.active = false;
+}
+
+static void LogOuterBindingEvent(
+    char const *event, ActorLifecycleRecord const &record,
+    ScriptFunctionDispatchContext const &frame,
+    eCEntity *sourceInstance = nullptr)
+{
+    if (!IsPlayerActor(record.actorInstance))
+        return;
+    FILE *log = CollisionDiagnostics::GetLog();
+    if (log == nullptr)
+        return;
+
+    std::fprintf(log, "===== C1-O2 OUTER BINDING =====\n");
+    std::fprintf(log, "ElapsedMs: %.3f\n",
+                 HookBridgeRuntime::GetElapsedMilliseconds());
+    std::fprintf(log, "Event: %s\n", event);
+    std::fprintf(log, "ActorAddress: %p\n",
+                 static_cast<void *>(record.actorInstance));
+    std::fprintf(log, "Actor: %s\n",
+                 GetEntityName(record.actorInstance).c_str());
+    std::fprintf(log, "Generation: %llu\n",
+                 static_cast<unsigned long long>(record.generation));
+    std::fprintf(log, "Status: %s\n", GetStatusName(record.status));
+    std::fprintf(log, "SPUAddress: %p\n", static_cast<void *>(frame.spu));
+    std::fprintf(log, "ArgumentsAddress: %p\n",
+                 static_cast<void *>(frame.arguments));
+    std::fprintf(log, "ScriptFunction: %s\n", frame.scriptName.c_str());
+    std::fprintf(log, "Outstanding: %d\n",
+                 HasOutstandingObligation(record) ? 1 : 0);
+    if (sourceInstance != nullptr)
+    {
+        std::fprintf(log, "SourceAddress: %p\n",
+                     static_cast<void *>(sourceInstance));
+        std::fprintf(log, "Source: %s\n",
+                     GetEntityName(sourceInstance).c_str());
+    }
+    for (unsigned int i = 0; i < record.sourceCount; ++i)
+    {
+        SourceLifecycleRecord const &source = record.sources[i];
+        if (!source.outstandingCleanup)
+            continue;
+        std::fprintf(log, "OutstandingSource[%u].Address: %p\n", i,
+                     static_cast<void *>(source.sourceInstance));
+        std::fprintf(log, "OutstandingSource[%u].Name: %s\n", i,
+                     GetEntityName(source.sourceInstance).c_str());
+        std::fprintf(log, "OutstandingSource[%u].ActualGroup: %d\n", i,
+                     static_cast<GEInt>(
+                         source.sourceInstance->GetCollisionGroup()));
+    }
+    std::fprintf(log, "PhysicalCollisionChanged: 0\n");
+    std::fprintf(log, "================================\n\n");
+    std::fflush(log);
+}
+
+static void LogOuterBindingFailure(
+    char const *code, eCEntity *actorInstance, std::uint64_t generation,
+    ScriptFunctionDispatchContext const &frame,
+    eCEntity *sourceInstance = nullptr)
+{
+    if (!IsPlayerActor(actorInstance))
+        return;
+    FILE *log = CollisionDiagnostics::GetLog();
+    if (log == nullptr)
+        return;
+
+    std::fprintf(log, "===== C1-O2 BINDING INVARIANT =====\n");
+    std::fprintf(log, "ElapsedMs: %.3f\n",
+                 HookBridgeRuntime::GetElapsedMilliseconds());
+    std::fprintf(log, "Code: %s\n", code);
+    std::fprintf(log, "ActorAddress: %p\n",
+                 static_cast<void *>(actorInstance));
+    std::fprintf(log, "Actor: %s\n",
+                 GetEntityName(actorInstance).c_str());
+    std::fprintf(log, "Generation: %llu\n",
+                 static_cast<unsigned long long>(generation));
+    std::fprintf(log, "SPUAddress: %p\n", static_cast<void *>(frame.spu));
+    std::fprintf(log, "TopIsScriptFunction: %d\n",
+                 frame.topIsScriptFunction ? 1 : 0);
+    std::fprintf(log, "ArgumentsAddress: %p\n",
+                 static_cast<void *>(frame.arguments));
+    std::fprintf(log, "ScriptFunction: %s\n", frame.scriptName.c_str());
+    if (sourceInstance != nullptr)
+    {
+        std::fprintf(log, "SourceAddress: %p\n",
+                     static_cast<void *>(sourceInstance));
+        std::fprintf(log, "Source: %s\n",
+                     GetEntityName(sourceInstance).c_str());
+    }
+    std::fprintf(log, "PhysicalCollisionChanged: 0\n");
+    std::fprintf(log, "===================================\n\n");
+    std::fflush(log);
+}
+
+ScriptFunctionDispatchToken BeginScriptFunctionDispatch(
+    bCString const &scriptName,
+    bTObjStack<gScriptRunTimeSingleState> &stateStack,
+    gCScriptProcessingUnit *spu)
+{
+    (void) scriptName;
+    ScriptFunctionDispatchContext context =
+        CaptureTopScriptFunction(spu, stateStack);
+    ScriptFunctionDispatchToken token = {};
+    token.spu = context.spu;
+    token.actorInstance = context.actorInstance;
+    token.arguments = context.arguments;
+    token.scriptName = context.scriptName;
+    token.dispatchDepth = g_ScriptFunctionDispatchStack.size();
+    token.hasLiveCorrelator = HasLiveCorrelator(context);
+    g_ScriptFunctionDispatchStack.push_back(context);
+    return token;
+}
+
+void EndScriptFunctionDispatch(
+    ScriptFunctionDispatchToken const &token, GEBool originalResult)
+{
+    bool const dispatchStillLive =
+        token.dispatchDepth < g_ScriptFunctionDispatchStack.size()
+        && token.hasLiveCorrelator
+        && g_ScriptFunctionDispatchStack[token.dispatchDepth].spu
+               == token.spu
+        && g_ScriptFunctionDispatchStack[token.dispatchDepth].actorInstance
+               == token.actorInstance
+        && g_ScriptFunctionDispatchStack[token.dispatchDepth].arguments
+               == token.arguments
+        && g_ScriptFunctionDispatchStack[token.dispatchDepth].scriptName
+               == token.scriptName
+        && g_ScriptFunctionDispatchStack[token.dispatchDepth]
+               .topIsScriptFunction;
+    if (originalResult == GETrue && dispatchStillLive)
+    {
+        auto recordIt = g_ActorRecords.find(token.actorInstance);
+        if (recordIt != g_ActorRecords.end())
+        {
+            ScriptFunctionDispatchContext completed = {};
+            completed.spu = token.spu;
+            completed.actorInstance = token.actorInstance;
+            completed.arguments = token.arguments;
+            completed.scriptName = token.scriptName;
+            completed.topIsScriptFunction = true;
+            if (MatchesRecordBinding(recordIt->second, completed))
+            {
+                bool const outstanding =
+                    HasOutstandingObligation(recordIt->second);
+                LogOuterBindingEvent(
+                    outstanding ? "OUTER_RETURN_OUTSTANDING"
+                                : "OUTER_RETURN_RETIRED",
+                    recordIt->second, completed);
+                RetireOuterFrameBinding(recordIt->second);
+                if (!outstanding)
+                    RemoveRecord(recordIt);
+            }
+        }
+    }
+
+    if (token.dispatchDepth <= g_ScriptFunctionDispatchStack.size())
+        g_ScriptFunctionDispatchStack.resize(token.dispatchDepth);
+    else
+        g_ScriptFunctionDispatchStack.clear();
+}
+
+void InvalidateScriptFunctionDispatchAfterAISetState(
+    eCEntity *actorInstance)
+{
+    for (ScriptFunctionDispatchContext &context
+         : g_ScriptFunctionDispatchStack)
+    {
+        if (context.actorInstance != actorInstance)
+            continue;
+        context.spu = nullptr;
+        context.actorInstance = nullptr;
+        context.arguments = nullptr;
+        context.scriptName.clear();
+        context.topIsScriptFunction = false;
+    }
+}
+
 GenerationToken BeginCombatMove(
-    Entity &actor, EquippedCollisionSources const &sources)
+    Entity &actor, EquippedCollisionSources const &sources,
+    gCScriptProcessingUnit *spu)
 {
     GenerationToken token = {};
     if (actor == None || actor.GetInstance() == nullptr)
         return token;
 
     eCEntity *actorInstance = actor.GetInstance();
+    ScriptFunctionDispatchContext const currentFrame =
+        CaptureCurrentTopScriptFunction(spu);
     std::uint64_t replacedGeneration = 0;
     bool replacedOutstanding = false;
     auto oldIt = g_ActorRecords.find(actorInstance);
     if (oldIt != g_ActorRecords.end())
     {
+        if (MatchesRecordBinding(oldIt->second, currentFrame))
+        {
+            LogOuterBindingEvent(
+                "COMBAT_MOVE_REUSED", oldIt->second, currentFrame);
+            token.actorInstance = actorInstance;
+            token.generation = oldIt->second.generation;
+            token.valid = true;
+            token.combatMoveCandidate = false;
+            return token;
+        }
+
         replacedGeneration = oldIt->second.generation;
         replacedOutstanding = HasOutstandingObligation(oldIt->second);
         if (replacedOutstanding)
@@ -319,22 +607,41 @@ GenerationToken BeginCombatMove(
     record.status = GenerationStatus_Candidate;
     AddSource(record, sources.rightInstance, SourceMask_Right);
     AddSource(record, sources.leftInstance, SourceMask_Left);
+    if (HasLiveCorrelator(currentFrame)
+        && currentFrame.actorInstance == actorInstance)
+        BindOuterFrame(record, currentFrame);
     g_ActorRecords[actorInstance] = record;
     RegisterSourceOwners(g_ActorRecords[actorInstance]);
     LogLifecycleStart(
         g_ActorRecords[actorInstance], replacedGeneration,
         replacedOutstanding);
+    if (MatchesRecordBinding(
+            g_ActorRecords[actorInstance], currentFrame))
+    {
+        LogOuterBindingEvent(
+            "COMBAT_MOVE_CANDIDATE_BOUND",
+            g_ActorRecords[actorInstance], currentFrame);
+    }
+    else if (currentFrame.actorInstance == actorInstance
+             && currentFrame.topIsScriptFunction
+             && currentFrame.arguments == nullptr)
+    {
+        LogOuterBindingFailure(
+            "NULL_ARGUMENTS_COMBAT_MOVE", actorInstance,
+            record.generation, currentFrame);
+    }
 
     token.actorInstance = actorInstance;
     token.generation = record.generation;
     token.valid = true;
+    token.combatMoveCandidate = true;
     return token;
 }
 
 void CompleteCombatMoveCandidate(
     GenerationToken const &token, GEBool originalResult)
 {
-    if (!token.valid)
+    if (!token.valid || !token.combatMoveCandidate)
         return;
     auto recordIt = g_ActorRecords.find(token.actorInstance);
     if (recordIt == g_ActorRecords.end()
@@ -379,6 +686,149 @@ static bool TryGetOwnedSource(
     return true;
 }
 
+static bool SameLiveFrame(
+    ScriptFunctionDispatchContext const &left,
+    ScriptFunctionDispatchContext const &right)
+{
+    return HasLiveCorrelator(left)
+        && HasLiveCorrelator(right)
+        && left.spu == right.spu
+        && left.arguments == right.arguments
+        && left.scriptName == right.scriptName;
+}
+
+static unsigned int GetEquippedSideMask(
+    EquippedCollisionSources const &sources, eCEntity *sourceInstance)
+{
+    unsigned int sideMask = SourceMask_None;
+    if (sourceInstance != nullptr && sourceInstance == sources.rightInstance)
+        sideMask |= SourceMask_Right;
+    if (sourceInstance != nullptr && sourceInstance == sources.leftInstance)
+        sideMask |= SourceMask_Left;
+    return sideMask;
+}
+
+enum PreCombatAcquisitionResult
+{
+    PreCombatAcquisition_NotApplicable,
+    PreCombatAcquisition_Ready,
+    PreCombatAcquisition_Rejected
+};
+
+static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
+    eCEntity *sourceInstance, ActorLifecycleRecord *&actorRecord,
+    SourceLifecycleRecord *&sourceRecord)
+{
+    if (g_ScriptFunctionDispatchStack.empty())
+        return PreCombatAcquisition_NotApplicable;
+
+    ScriptFunctionDispatchContext const &dispatch =
+        g_ScriptFunctionDispatchStack.back();
+    if (dispatch.spu == nullptr || dispatch.actorInstance == nullptr)
+        return PreCombatAcquisition_NotApplicable;
+
+    Entity actor(dispatch.actorInstance);
+    if (actor == None)
+        return PreCombatAcquisition_NotApplicable;
+    EquippedCollisionSources const equipped =
+        CollisionControl::GetEquippedCollisionSources(actor);
+    unsigned int const sourceSideMask =
+        GetEquippedSideMask(equipped, sourceInstance);
+    if (sourceSideMask == SourceMask_None)
+        return PreCombatAcquisition_NotApplicable;
+
+    ScriptFunctionDispatchContext const liveFrame =
+        CaptureCurrentTopScriptFunction(dispatch.spu);
+    if (liveFrame.topIsScriptFunction && liveFrame.arguments == nullptr)
+    {
+        LogOuterBindingFailure(
+            "NULL_ARGUMENTS_PRECOMBAT_OFFENSE", dispatch.actorInstance,
+            0, liveFrame, sourceInstance);
+        return PreCombatAcquisition_Rejected;
+    }
+    if (!SameLiveFrame(dispatch, liveFrame))
+    {
+        LogOuterBindingFailure(
+            "LIVE_FRAME_MISMATCH_PRECOMBAT_OFFENSE",
+            dispatch.actorInstance, 0, liveFrame, sourceInstance);
+        return PreCombatAcquisition_Rejected;
+    }
+
+    auto recordIt = g_ActorRecords.find(dispatch.actorInstance);
+    if (recordIt == g_ActorRecords.end())
+    {
+        if (actorRecord != nullptr || sourceRecord != nullptr)
+        {
+            LogOuterBindingFailure(
+                "SOURCE_ALREADY_OWNED_BY_OTHER_GENERATION",
+                dispatch.actorInstance, 0, liveFrame, sourceInstance);
+            return PreCombatAcquisition_Rejected;
+        }
+
+        ActorLifecycleRecord record = {};
+        record.actorInstance = dispatch.actorInstance;
+        record.generation = ++g_NextGeneration;
+        record.status = GenerationStatus_OuterBound;
+        AddSource(record, equipped.rightInstance, SourceMask_Right);
+        AddSource(record, equipped.leftInstance, SourceMask_Left);
+        BindOuterFrame(record, liveFrame);
+        g_ActorRecords[record.actorInstance] = record;
+        RegisterSourceOwners(g_ActorRecords[record.actorInstance]);
+        recordIt = g_ActorRecords.find(record.actorInstance);
+        LogLifecycleStart(recordIt->second, 0, false);
+        LogOuterBindingEvent(
+            "PRECOMBAT_ACQUIRED", recordIt->second, liveFrame,
+            sourceInstance);
+    }
+    else if (!MatchesRecordBinding(recordIt->second, liveFrame))
+    {
+        LogOuterBindingFailure(
+            "PRECOMBAT_GENERATION_FRAME_OVERLAP",
+            dispatch.actorInstance, recordIt->second.generation,
+            liveFrame, sourceInstance);
+        return PreCombatAcquisition_Rejected;
+    }
+    else
+    {
+        LogOuterBindingEvent(
+            "PRECOMBAT_REUSED", recordIt->second, liveFrame,
+            sourceInstance);
+    }
+
+    if (actorRecord != nullptr && actorRecord != &recordIt->second)
+    {
+        LogOuterBindingFailure(
+            "SOURCE_ALREADY_OWNED_BY_OTHER_GENERATION",
+            dispatch.actorInstance, recordIt->second.generation,
+            liveFrame, sourceInstance);
+        return PreCombatAcquisition_Rejected;
+    }
+
+    ActorLifecycleRecord *ownedActor = nullptr;
+    SourceLifecycleRecord *ownedSource = nullptr;
+    if (!TryGetOwnedSource(sourceInstance, ownedActor, ownedSource)
+        || ownedActor != &recordIt->second)
+    {
+        AddSource(recordIt->second, sourceInstance, sourceSideMask);
+        RegisterSourceOwners(recordIt->second);
+        ownedActor = nullptr;
+        ownedSource = nullptr;
+        if (!TryGetOwnedSource(sourceInstance, ownedActor, ownedSource)
+            || ownedActor != &recordIt->second)
+        {
+            LogOuterBindingFailure(
+                "EQUIPPED_SOURCE_REGISTRATION_FAILED",
+                dispatch.actorInstance, recordIt->second.generation,
+                liveFrame, sourceInstance);
+            return PreCombatAcquisition_Rejected;
+        }
+    }
+
+    actorRecord = ownedActor;
+    sourceRecord = ownedSource;
+    return PreCombatAcquisition_Ready;
+}
+
 static bool IsCurrentlyEquippedByPlayer(eCEntity *sourceInstance)
 {
     Entity player = Entity::GetPlayer();
@@ -407,7 +857,14 @@ void ObserveCollisionGroupResult(
         && resultingGroup == eECollisionGroup_Item_Attack;
     if (successfulOffenseRequest)
     {
-        if (!owned)
+        PreCombatAcquisitionResult const preCombat =
+            ResolvePreCombatOffenseOwner(
+                sourceInstance, actorRecord, sourceRecord);
+        if (preCombat == PreCombatAcquisition_Rejected)
+            return;
+        bool const resolvedOwned =
+            preCombat == PreCombatAcquisition_Ready || owned;
+        if (!resolvedOwned)
         {
             if (IsCurrentlyEquippedByPlayer(sourceInstance))
             {

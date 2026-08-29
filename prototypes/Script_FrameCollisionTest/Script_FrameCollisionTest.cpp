@@ -30,6 +30,7 @@ static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AICombatMoveStartRecover;
 static mCFunctionHook Hook_AIFullStop;
 static mCFunctionHook Hook_AISetState;
+static mCFunctionHook Hook_RunScriptFunction;
 
 static bool ShouldSuppressAttackCallback(Entity &actor)
 {
@@ -298,6 +299,21 @@ static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
         CollisionDiagnostics::LogCombatMoveStartRecoverBoundary(actor, "END");
 }
 
+static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
+    bCString const &a_ScriptName,
+    bTObjStack<gScriptRunTimeSingleState> &a_rRunTimeStack,
+    gCScriptProcessingUnit *a_pSPU)
+{
+    CollisionLifecycleGuard::ScriptFunctionDispatchToken dispatch =
+        CollisionLifecycleGuard::BeginScriptFunctionDispatch(
+            a_ScriptName, a_rRunTimeStack, a_pSPU);
+    GEBool const result = Hook_RunScriptFunction.GetOriginalFunction(
+        &RunScriptFunction_FrameCollisionTest)(
+            a_ScriptName, a_rRunTimeStack, a_pSPU);
+    CollisionLifecycleGuard::EndScriptFunctionDispatch(dispatch, result);
+    return result;
+}
+
 static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop)
 {
@@ -311,7 +327,7 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
             EquippedCollisionSources sources =
                 CollisionControl::GetEquippedCollisionSources(actor);
             generation = CollisionLifecycleGuard::BeginCombatMove(
-                actor, sources);
+                actor, sources, a_pSPU);
         }
         CollisionDiagnostics::OuterFrameSnapshot outerFrame =
             CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, a_pSPU);
@@ -428,6 +444,8 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
 
     Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
         a_State);
+    CollisionLifecycleGuard::InvalidateScriptFunctionDispatchAfterAISetState(
+        ownerEntity);
     CollisionLifecycleGuard::FinalizeAfterAISetState(finalization);
     if (IsPlayerEntity(ownerEntity))
     {
@@ -589,6 +607,10 @@ static void InstallHooks()
         .Hook();
     Hook_AISetState
         .Prepare(RVA_Game(0x164320), &AISetState_FrameCollisionTest,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_RunScriptFunction
+        .Prepare(RVA_Game(0x1604E0), &RunScriptFunction_FrameCollisionTest,
                  mCBaseHook::mEHookType_ThisCall)
         .Hook();
 }
