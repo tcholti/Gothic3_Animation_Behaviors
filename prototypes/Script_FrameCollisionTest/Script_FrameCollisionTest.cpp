@@ -304,14 +304,9 @@ static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
     bTObjStack<gScriptRunTimeSingleState> &a_rRunTimeStack,
     gCScriptProcessingUnit *a_pSPU)
 {
-    CollisionLifecycleGuard::ScriptFunctionDispatchToken dispatch =
-        CollisionLifecycleGuard::BeginScriptFunctionDispatch(
-            a_ScriptName, a_rRunTimeStack, a_pSPU);
-    GEBool const result = Hook_RunScriptFunction.GetOriginalFunction(
+    return Hook_RunScriptFunction.GetOriginalFunction(
         &RunScriptFunction_FrameCollisionTest)(
             a_pThis, a_ScriptName, a_rRunTimeStack, a_pSPU);
-    CollisionLifecycleGuard::EndScriptFunctionDispatch(dispatch, result);
-    return result;
 }
 
 static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
