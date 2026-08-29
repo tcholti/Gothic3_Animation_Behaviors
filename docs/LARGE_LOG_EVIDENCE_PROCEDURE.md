@@ -3,6 +3,7 @@
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project procedure  
 **Introduced:** 2026-08-29
+**Updated:** 2026-08-29
 
 ## Purpose
 
@@ -41,14 +42,27 @@ Derived packages live under `research/derived/`. They are navigation/analysis pr
 
 ## Tool
 
-Use:
+The standard Windows entry point is:
+
+`tools/log_evidence/Build-LargeLogEvidencePackage.cmd`
+
+The launcher deliberately:
+
+- invokes PowerShell with `-NoProfile` and a **process-only** `-ExecutionPolicy Bypass` for this one run;
+- derives the repository root from the tool's own location;
+- passes an absolute `research/derived` output path to the PowerShell implementation;
+- forwards the remaining package arguments unchanged.
+
+This avoids relying on the machine's persistent PowerShell execution policy or on the host process working directory.
+
+The implementation engine remains:
 
 `tools/log_evidence/Build-LargeLogEvidencePackage.ps1`
 
 Default invocation from the repository root:
 
 ```powershell
-.\tools\log_evidence\Build-LargeLogEvidencePackage.ps1 `
+.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd `
     -InputPath '.\research\raw\<runtime-log-name>.log'
 ```
 
@@ -59,7 +73,7 @@ The default package is written to:
 If the package already exists and must be deterministically rebuilt from the same raw source:
 
 ```powershell
-.\tools\log_evidence\Build-LargeLogEvidencePackage.ps1 `
+.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd `
     -InputPath '.\research\raw\<runtime-log-name>.log' `
     -Force
 ```
@@ -67,7 +81,7 @@ If the package already exists and must be deterministically rebuilt from the sam
 When interpretation identifies exact source ranges that require more context:
 
 ```powershell
-.\tools\log_evidence\Build-LargeLogEvidencePackage.ps1 `
+.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd `
     -InputPath '.\research\raw\<runtime-log-name>.log' `
     -RequestedRange '121700-122050','134200-134500' `
     -Force
@@ -76,11 +90,13 @@ When interpretation identifies exact source ranges that require more context:
 Additional investigation-specific regexes can be added without changing the raw log:
 
 ```powershell
-.\tools\log_evidence\Build-LargeLogEvidencePackage.ps1 `
+.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd `
     -InputPath '.\research\raw\<runtime-log-name>.log' `
     -ExtraSignalPattern 'YOUR_PATTERN_HERE' `
     -Force
 ```
+
+Direct `.ps1` invocation remains available for debugging or development, but the `.cmd` launcher is the project-default user-facing path.
 
 ## Standard large-log handoff
 
