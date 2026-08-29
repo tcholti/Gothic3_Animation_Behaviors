@@ -214,13 +214,9 @@ Canonical EV-001 through EV-157.
 
 #### `EVIDENCE_LEDGER_STEP_B.md`
 
-Canonical continuation EV-158 through EV-189.
+Canonical continuation EV-158 onward.
 
-#### `EVIDENCE_LEDGER_C1.md`
-
-Canonical C1-era continuation EV-190 onward.
-
-These splits are preservation/retrieval boundaries inside one global EV namespace, not competing authorities.
+The split is a preservation/convenience boundary, not competing authority.
 
 #### `COLLISION_CLEANUP_CALLSITE_MAP.md`
 
@@ -453,8 +449,6 @@ Prefer:
 - an archive snapshot for superseded chronology.
 
 `PROJECT_PIPELINE.md` is a justified distinct authority because project operating conventions are neither technical evidence nor recurring procedure sequences; scattering them across those layers had already caused cross-Chat drift.
-
-Evidence-ledger continuation files may split by research phase for retrieval/size without creating a new evidence authority or EV namespace.
 
 Avoid one document per experiment, one rule per minor failure, another current-state document that competes with `SESSION_ENTRYPOINT.md`, a project manifest that merely duplicates the existing distributed configuration, or persistent “book summaries” that duplicate canonical authorities.
 
