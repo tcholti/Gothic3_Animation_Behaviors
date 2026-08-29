@@ -2,120 +2,116 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work. Replace rather than accumulate chronology.
 
-## Current bridge — SetCollisionGroup transport-only Work task frozen
+## Current bridge — SetCollisionGroup explicit-this transport failed extended runtime stability
 
-- Universal-guard-first architecture remains authoritative. The known held-Use2 bad abandonment remains a destructive stress case, not a production classifier, balance fix, or reason to alter Community Patch / Alternative AI / New Balance behavior.
-- C1 physical repair remains disabled. Direct C1-O2 `RunScriptFunction` dispatch capture remains suspended. `RunScriptFunction` remains recursion-safe pure pass-through.
-- AISetState and AIFullStop have both passed their isolated explicit-this `.ThisCall()` transport stability gates. AIFullStop implementation: `18ff183e05b599de9e035722b15e3bfb6cbbc034`; validated DLL SHA256 `89329667BF83479E419C2775965E0CC41769F2BFD247F84C95939B673292B13B`; extended evidence commit `72273ead0ae7821a0d70b2e3b168ad00a1271f1a`; hook-transport evidence continuation `docs/EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-200.
-- The AIFullStop run is **PASS for tested transport stability**, but does not prove that the original direct C1-O2 registered-ScriptFunction crash is solved.
-- Closed/processed B6–B9, C1 core, C1-O1, AISetState stability and AIFullStop stability raw logs have been moved to `research/archive/`. The unresolved C1-O2 crash artifacts intentionally remain in `research/raw/` as active diagnostic context.
-- Repository housekeeping also added a narrow `.gitattributes` rule so future runtime `.log` evidence is stored byte-faithfully rather than newline-normalized. The already-committed AIFullStop run remains valid; its recorded local pre-normalization SHA256 is the canonical original-local hash.
+- Universal-guard-first architecture remains authoritative. The held-Use2 bad abandonment remains a destructive stress case, not a production classifier, balance fix, or reason to alter Community Patch / Alternative AI / New Balance behavior.
+- C1 physical repair remains **disabled**. Direct C1-O2 `RunScriptFunction` dispatch capture remains **suspended**. `RunScriptFunction` remains recursion-safe pure pass-through.
+- AISetState and AIFullStop remain passed explicit-this `.ThisCall()` transport baselines.
+- SetCollisionGroup implementation `fbb300065af2f9119531e06949eac59c2586a519` converted only that hook to explicit per-invocation `eCEntity *this` plus `.ThisCall()` while preserving the reviewed observation/retirement/C1/diagnostic ordering.
+- That implementation passed source review, build, exact deploy/hash identity and isolated load/unload. Validated DLL SHA256: `C5D85C44A751C68BB956C2F1D6C9ABE6E889BDBB3363FDC328158F2933DA0397`.
+- The extended gameplay stability gate then **crashed** after broad combat/interruption coverage. Therefore SetCollisionGroup explicit-this transport is **FAIL/CRASH**, not a validated transport baseline.
 
-### SetCollisionGroup prerequisite — Normal Chat inspection complete
-
-The exact current wrapper was inspected on branch `docs/collision-source-evidence` after the AIFullStop result.
-
-Current source facts:
-
-- `SetCollisionGroup_FrameCollisionTest` is currently a member-hook wrapper with signature `static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)`.
-- It obtains the entity through legacy shared hook transport: `Hook_SetCollisionGroup.GetSelf<eCEntity *>()`.
-- The hook target is the tested `Engine +0x225660` path.
-- The install still uses legacy explicit hook-type transport: `.Prepare(..., mCBaseHook::mEHookType_ThisCall).Hook()`.
-- The pinned Gothic 3 SDK declares `eCEntity::SetCollisionGroup(eECollisionGroup)` as an `eCEntity` member. Therefore there is **no SDK/API contradiction** to an explicit per-invocation `eCEntity *this` member-hook transport correction.
-- This hook is directly relevant to C1 rather than merely another old hook: it is the exact observation path by which C1 sees successful offensive `Item_Attack` requests, including inherited `7 -> 7`, and later native cleanup fulfillment.
-
-The current semantic ordering must remain unchanged:
+### Canonical runtime evidence
 
 ```text
-capture caller / exact pre-call entity collision state and any existing cleanup diagnostics
-→ call the native original exactly once
-→ perform existing marker-owned-source retirement logic from the native result
-→ read exact post-call collision group
-→ CollisionLifecycleGuard::ObserveCollisionGroupResult(...)
-→ existing SetCollisionGroup diagnostics / remaining existing observations
+research/raw/2026-08-29_c1_setcollisiongroup_recursion_safe_extended_gameplay_stability.log
+SHA256: 91D15FD54A51B0DC4AC4067E776757F813B934FD236C295D0CD1F793E540DAD5
+raw/crash evidence commit: c4de7f37d1b8f0844be05afc7fb2a42f09b29ce3
+
+research/raw/ge3log9.log
+research/raw/Lastlog_GE3.log
+
+whole-run derived package:
+research/derived/2026-08-29_c1_setcollisiongroup_recursion_safe_extended_gameplay_stability_large_log/
+commit: 9dae0a03426101f572357f74700ed441a75b2fbb
 ```
 
-### Frozen bounded Work task — SetCollisionGroup transport only
+Large-log retrieval is now a standard procedure. Use `docs/LARGE_LOG_EVIDENCE_PROCEDURE.md`; its project-default launcher is `tools/log_evidence/Build-LargeLogEvidencePackage.cmd`. The launcher handles process-only PowerShell execution-policy bypass and an absolute repository-derived output path.
 
-The User explicitly agreed in Normal Chat on 2026-08-29 to the following prerequisite, and the fresh Normal Chat froze it on 2026-08-29 after completing the repository bootstrap:
+### Whole-run result
 
-> Isolate `SetCollisionGroup` transport only. Convert that one hook from shared `GetSelf<eCEntity *>()` transport to explicit per-invocation `eCEntity *this` plus the already-proven recursion-safe `.ThisCall()` pattern, while preserving the exact before → native original → after → marker retirement → C1 observation → diagnostics semantics and ordering. Do not automatically harden unrelated remaining legacy hooks. After this isolated implementation/stability result, reassess C1-O2 directly.
-
-This is an implementation assignment, not an architecture task. The prior SetCollisionGroup API/source inspection and User decision are complete and must not be reopened unless implementation exposes a new concrete source/API contradiction.
-
-Work execution boundary:
-
-1. read `docs/SESSION_ENTRYPOINT.md`, this current `docs/BETWEEN_CHATS.md`, and `docs/WORK_IMPLEMENTATION_PROTOCOL.md`;
-2. inspect only the source/API details necessary to perform this transport-only correction;
-3. edit only the permitted source files below;
-4. run the source audit below and `git diff --check`;
-5. commit and publish the audited bounded result to the exact repository/branch below;
-6. report the concise Work handoff required by the protocol and **STOP**;
-7. do **not** build, deploy, run Gothic 3, interpret runtime evidence, or begin C1-O2 in Work. Normal Chat independently reviews the actual source diff first.
-
-Publishing authorization:
+Structured package counts include:
 
 ```text
-The User explicitly authorizes Work to publish the audited commits created for this bounded task to:
-Repository: https://github.com/tcholti/Gothic3_Animation_Behaviors.git
-Branch: docs/collision-source-evidence
-This authorization is limited to this bounded task and this exact destination.
+ENGINE SetCollisionGroup: 307
+C1 OFFENSE REQUEST: 130
+C1 CLEANUP FULFILLED: 107
+C1 FINALIZATION: 175
+C1 INVARIANT WARNING: 7
+AIFULLSTOP CALLSITE: 104
+AISETSTATE CALLSITE: 510
+COMBATMOVE FULLSTOP STACK: 60
 ```
 
-Expected implementation shape to freeze unless a new concrete source contradiction is discovered:
+There were **23 actual `WOULD_REPAIR` finalization source outcomes**. The earlier ad-hoc count of 24 included the startup banner text.
+
+All seven C1 invariant warnings were the already-known `UNOWNED_PLAYER_OFFENSE_REQUEST` pre-CombatMove/GetUpAttack acquisition gap. No new binding/generation/null-argument invariant family was exposed by this run.
+
+The large run preserved the established C1 classification matrix:
+
+- clean/native cleanup paths fulfilled and did not become false repairs;
+- pre-activation destructive interruptions did not become repair candidates;
+- armed destructive abandonments became `WOULD_REPAIR`;
+- inherited stale `7 -> 7` could be attributed to the new execution and later fulfilled by native cleanup;
+- Dual Quick source ownership remained hand/source-specific — one reproduced QuickAttackL left LEFT stale/`WOULD_REPAIR` while RIGHT remained group 5/no outstanding obligation.
+
+### Final crash sequence
+
+The final destructive Staff Whirl used C1 generation 275 and physical source `Wrestling Staff_BBM` RIGHT.
+
+Observed sequence:
 
 ```text
-SetCollisionGroup_FrameCollisionTest receives explicit eCEntity *a_pThis plus eECollisionGroup a_Group
-remove Hook_SetCollisionGroup.GetSelf<eCEntity *>()
-use that exact per-invocation this for every existing before/after/retirement/C1/diagnostic operation
-call the original exactly once with that same exact this and a_Group
-install only SetCollisionGroup through the recursion-safe .ThisCall() builder pattern at Engine +0x225660
-preserve _ReturnAddress() at the same logical entry point
-preserve all existing collision, marker-retirement, C1 lifecycle and diagnostic ordering/semantics
-optionally add only the narrow startup identity banner required to identify this transport baseline
+source 5 -> 7 offensive request
+→ held-Use2 AIFullStop during live Whirl Hit (~2508 ms held)
+→ AISetState to PS_Melee_Loop
+→ C1 finalization:
+   Outcome = WOULD_REPAIR
+   ActualGroup = 7
+   CleanupObserved = 0
+   StillEquipped = 1
+   PhysicalCollisionChanged = 0
+→ ambient/movement resumes with the same Staff still group 7
+→ no later native 7 -> 5 cleanup before log termination/crash
 ```
 
-Protected during this Work task:
+The User also directly observed that this stale armed state could damage actors by contact and collide with world objects while the weapon was simply carried during movement. Treat that world-object effect as direct runtime observation unless/until stronger engine/log evidence encodes it.
+
+### Crash localization
+
+Crash log:
 
 ```text
-AICombatMoveInstr unchanged
-AISetState unchanged
-AIFullStop unchanged
-RunScriptFunction unchanged pure pass-through
-StartEffect unchanged
-PlayMotion unchanged
-StopMotion unchanged
-all attack callbacks unchanged
-CollisionLifecycleGuard generation / obligation / fulfillment / finalization semantics unchanged
-marker behavior and marker execution bookkeeping unchanged
-no physical repair
-no Raise or playback-speed work
-no held-Use2 / 2500-ms / Community Patch / Alternative AI / New Balance behavior changes
-no C1-O2 dispatch capture restoration
-no mechanical conversion of every remaining legacy ThisCall hook
+EXCEPTION_ACCESS_VIOLATION
+Engine +0x225650
+Script_FrameCollisionTest +0x10802
+Script.dll +0x12F61
+Game.dll +0x1604D3
+EAX = FFFFFFFF at the fault
 ```
 
-Permitted edit surface for the frozen Work task:
+Tested Engine disassembly shows:
 
-1. `prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp`
-2. `prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp` only if the narrow startup identity banner is added
+```text
+Engine +0x225640  preceding getter-like routine begins
+Engine +0x225650  mov eax,[eax+18h]   <-- crash
+Engine +0x225660  SetCollisionGroup begins
+```
 
-The Work source audit must explicitly verify:
+The new SetCollisionGroup wrapper calls `a_pThis->GetCollisionGroup()` **before** invoking the native SetCollisionGroup original. Therefore current evidence strongly localizes the failure to an invocation where the explicit wrapper `this` / entity context is unsafe for that getter. This does **not yet prove** the exact calling-convention/member-hook object-context mechanism.
 
-1. explicit `eCEntity *this` is received per invocation;
-2. no `Hook_SetCollisionGroup.GetSelf<eCEntity *>()` remains in this wrapper;
-3. `_ReturnAddress()` remains at the same logical entry point;
-4. native original is called exactly once;
-5. the exact explicit `this` and requested group are forwarded to the original;
-6. pre-call state/cleanup-stack capture still occurs before native original;
-7. marker-owned-source retirement still occurs only after native original using the resulting collision state;
-8. `CollisionLifecycleGuard::ObserveCollisionGroupResult(...)` still sees the exact same requested/result semantics and remains after the native result is known;
-9. existing SetCollisionGroup diagnostics and any remaining observations preserve their ordering and fields;
-10. only SetCollisionGroup changes transport style; AISetState, AIFullStop and RunScriptFunction are unchanged;
-11. no collision/lifecycle/marker/gameplay semantics are added or removed;
-12. only the permitted files changed;
-13. `git diff --check` passes.
+Canonical evidence statement: `docs/EVIDENCE_LEDGER_STEP_C.md` EV-201.
 
-If implementation inspection exposes a real API/calling-convention contradiction, Work must STOP and report it rather than improvising.
+## Next Normal Chat responsibility — interpretive, not yet a frozen Work task
 
-After the isolated transport implementation passes independent source review and later runtime stability validation, reassess C1-O2 directly. Do **not** assume StartEffect, PlayMotion or StopMotion must be converted first merely because they still use legacy transport.
+Resolve the SetCollisionGroup transport contradiction narrowly before any new runtime build:
+
+1. inspect only the exact SDK/hook-builder/member-hook contract needed to explain why the reviewed explicit `eCEntity *this` transport can survive hundreds of calls yet reach an unsafe getter invocation;
+2. compare against the previously runtime-stable legacy SetCollisionGroup transport and the already-passed AISetState/AIFullStop explicit-this cases;
+3. decide the smallest justified transport response — likely restoration of the previously stable SetCollisionGroup transport unless a different correct explicit signature/context is concretely proven;
+4. preserve every C1/marker/collision semantic and ordering invariant;
+5. expose the proposed bounded correction to the User before freezing Work.
+
+Do **not** restore C1-O2 dispatch capture, enable physical repair, alter markers, change held-Use2/2500-ms behavior, or mechanically convert StartEffect/PlayMotion/StopMotion as part of this reassessment.
+
+No Work task is currently frozen.
