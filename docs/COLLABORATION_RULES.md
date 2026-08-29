@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 1.5  
-**Updated:** 2026-08-28
+**Version:** 1.6  
+**Updated:** 2026-08-29
 
 ## Purpose
 
@@ -340,12 +340,33 @@ This procedure should itself be revisited only when repeated chat transitions sh
 
 If collaboration becomes slow, lossy, over-documented, under-documented, or unreliable, diagnose the cause before adding another rule.
 
+Established procedures are **working defaults, not frozen law**. Use them normally without reviewing every procedure on every task or chat. Procedure review should be event-driven:
+
+- repeated friction, repeated mistakes, or repeated unnecessary work;
+- one serious failure or high-cost problem;
+- a newly discovered method that is clearly simpler, safer, more reliable, or materially less wasteful.
+
+Whoever notices such a trigger first — User or Chat — should raise the possible improvement. Diagnose the actual cause, change only the lowest owning procedure/rule that needs changing, and then use the revised procedure in subsequent work. Do not preserve obsolete active versions merely for history; Git already preserves procedure history.
+
+The intended procedure-evolution pattern is:
+
+```text
+use established procedure normally
+→ do not audit it merely because it exists
+→ friction / failure / clearly better method appears
+→ whoever notices first proposes improvement
+→ diagnose the actual mechanism
+→ revise the smallest owning procedure or rule
+→ use the revision and observe whether it resolves the problem
+```
+
 Prefer changing the lowest justified layer:
 
 - task wording;
 - project retrieval/indexing;
 - knowledge authority/update triggers;
 - Work implementation protocol;
+- project operating procedure;
 - this Gothic 3 project delta;
 - CAM `current` reusable operational baseline when a lesson genuinely generalizes beyond Gothic 3 but remains a project-derived candidate mechanism;
 - stable CAM project/general framework only when broader evidence justifies changing the higher layer.
