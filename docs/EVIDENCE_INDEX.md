@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-08-29
+**Updated:** 2026-08-30
 
 ## Purpose
 
@@ -10,7 +10,8 @@ Route a technical question to the smallest relevant evidence range without loadi
 Canonical evidence remains:
 
 - `EVIDENCE_LEDGER.md` — EV-001 through EV-157;
-- `EVIDENCE_LEDGER_STEP_B.md` — EV-158 onward.
+- `EVIDENCE_LEDGER_STEP_B.md` — EV-158 through EV-198;
+- `EVIDENCE_LEDGER_STEP_C.md` — EV-199 onward.
 
 This index **does not restate or change evidence status**. Search/open the exact EV entry when wording, qualification, provenance, build scope, or engineering consequence matters.
 
@@ -40,7 +41,7 @@ Raw logs are verification/provenance, not routine reading.
 | Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156, EV-180–EV-191 for resolved tested stale lifecycle |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` constraints |
 | marked block-timeout failure | EV-155 | native control EV-156 |
-| native stale collision / running damage | EV-156, EV-181, EV-187, EV-190, EV-197–EV-198 | active-problem reconstruction route below for trigger, consequence, scope and qualification |
+| native stale collision / running consequence | EV-156, EV-181, EV-187, EV-190, EV-197–EV-198, EV-202–EV-203 | active-problem reconstruction route below |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
 | PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-180 |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
@@ -48,12 +49,12 @@ Raw logs are verification/provenance, not routine reading.
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | EV-190 for held-Use2 state-stack-abandonment generality |
 | action-specific native cleanup matrix | EV-163 | `COLLISION_CLEANUP_CALLSITE_MAP.md` §2 |
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
-| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179, EV-184, EV-186, EV-188, EV-191 | cleanup map / lifecycle plan §3 |
+| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179, EV-184, EV-186, EV-188, EV-191, EV-203 | cleanup map / lifecycle plan §3 |
 | B5 parent stack | EV-166 | EV-169–EV-170 static identification |
 | marker bookkeeping vs physical cleanup | EV-167, EV-182–EV-196 | `COLLISION_LIFECYCLE_PLAN.md` §9 |
 | future marker-core simplification / native execution boundary | EV-066–EV-075, EV-131–EV-133, EV-167, EV-182–EV-196 | **Read `COLLISION_LIFECYCLE_PLAN.md` §9 before changing marker bookkeeping** |
 | ordinary / reaction / bad-skip ending model | EV-168, EV-179–EV-191 | lifecycle plan §§3–8 |
-| `RunScriptState` / `RunScriptFunction` identification | EV-169, EV-195 | cleanup map §§5–6 / source guide Script administration |
+| `RunScriptState` / `RunScriptFunction` identification | EV-169, EV-195, EV-199 | cleanup map §§5–6 / source guide Script administration |
 | `ProcessScript()` common generic dispatcher | EV-170, EV-176 | EV-180 for failed universal replacement-time validation |
 | callback processing after main script dispatch | EV-171 | cleanup map §8 |
 | deferred pending-finalization/post-script candidate | EV-172 | **superseded by EV-180**; lifecycle plan §7 |
@@ -61,10 +62,10 @@ Raw logs are verification/provenance, not routine reading.
 | B6 clean path disappearance + ProcessScript stack | EV-174–EV-176 | `COLLISION_TEST_PLAN.md` B6-B |
 | B6 reaction successor context | EV-177–EV-179 | `COLLISION_TEST_PLAN.md` B6-C |
 | B6 bad skip context / no useful ScriptAdmin replacement stack | EV-180 | B6-D raw |
-| long-lived stale group 7 / later inherited 7->7 | EV-181, EV-193 | C1 core confirms new-generation attribution for inherited stale state |
+| long-lived stale group 7 / later inherited 7->7 | EV-181, EV-193, EV-203 | C1 core confirms new-generation attribution for inherited stale state |
 | persisted CombatMove instruction / FullStop semantics | EV-182, EV-185–EV-191 | lifecycle plan §§3–4 / source guide CombatMove symbols |
 | full-Whirl break-block continuation to native cleanup | EV-183, EV-189 | lifecycle plan §§3–4 |
-| reaction-side FullStop before separate cleanup ownership | EV-184, EV-186, EV-188, EV-191 | lifecycle plan §3 |
+| reaction-side FullStop before separate cleanup ownership | EV-184, EV-186, EV-188, EV-191, EV-203 | lifecycle plan §3 |
 | bad full-Whirl exact held-Use2 FullStop caller | EV-187 | `SOURCE_HOOK_GUIDE.md` §5 |
 | exact tested Normal/Quick reaction FullStop caller | EV-188 | EV-191 adds another legitimate reaction caller; do not universalize one RVA |
 | `FullStop -> SetState` state-stack abandonment causal chain | EV-189–EV-191 | B8 generality + B9 ordering close the tested known stale class |
@@ -76,7 +77,11 @@ Raw logs are verification/provenance, not routine reading.
 | GetUp pre-CombatMove acquisition gap | EV-194 | outer ScriptFunction lifetime EV-195–EV-196 |
 | outer ScriptFunction stack / `RunScriptFunction` persistence | EV-195 | pinned SDK + tested Game binary; runner is generic context only |
 | C1-O1 live-frame correlation / pointer reuse | EV-196 | native frame is lifetime-bound correlator; C1 generation remains durable identity |
-| C1-O2 outer-frame binding architecture / current suspended route | EV-192–EV-196 | `SESSION_ENTRYPOINT.md` for the exact immediate hardening responsibility |
+| C1-O2 original direct dispatch-capture crash / pure-pass-through baseline | EV-199 | do not infer later substrate stability solved the original capture crash |
+| AISetState / AIFullStop explicit-this transport stability | EV-199–EV-200 | current substrate state in `SESSION_ENTRYPOINT.md` |
+| SetCollisionGroup explicit-this transport / interrupted crash / corrected rerun | EV-201–EV-203 | EV-202 supersedes EV-201 root-cause interpretation; EV-203 is tested PASS |
+| C1 finalizer remembered-source liveness crash and correction | EV-202–EV-203 | correction is stable; exact liveness-negative outstanding branch lacks positive runtime coverage |
+| C1-O2 outer-frame binding architecture / current reassessment route | EV-192–EV-196, EV-199–EV-203 | `SESSION_ENTRYPOINT.md` for exact next responsibility |
 
 ---
 
@@ -85,14 +90,15 @@ Raw logs are verification/provenance, not routine reading.
 When this stale-collision problem is the active engineering responsibility, a fresh Normal Chat should reconstruct this ordered causal route once before proposing a new fix or architecture. Do not load every raw log; retrieve exact raw evidence only when verifying or reinterpreting a specific fact.
 
 1. **Historical trigger / manual reproduction context:** EV-187, EV-197, EV-198.
-2. **Native stale physical consequence / running damage:** EV-156, EV-162, EV-181, EV-193.
+2. **Native stale physical consequence / persistence:** EV-156, EV-162, EV-181, EV-193, EV-202–EV-203.
 3. **Normal attack/CombatMove continuation and ordinary cleanup:** EV-163, EV-182–EV-183.
-4. **Legitimate reaction interruption and separate cleanup ownership:** EV-165, EV-184, EV-186, EV-188, EV-191.
+4. **Legitimate reaction interruption and separate cleanup ownership:** EV-165, EV-184, EV-186, EV-188, EV-191, EV-203.
 5. **Bad held-Use2 abandonment causal chain:** EV-185, EV-187, EV-189–EV-191.
 6. **Cross-family generality:** EV-162, EV-190.
 7. **Rejected Recover/StartRecover/replacement/callback explanations:** EV-154, EV-159–EV-162, EV-168, EV-174–EV-181.
 8. **Raise reproduction boundary:** EV-153, EV-191, EV-198.
-9. **C1 execution/source-obligation invariant and lifetime work:** EV-192–EV-196 → `COLLISION_LIFECYCLE_PLAN.md` → `SESSION_ENTRYPOINT.md` for the exact current responsibility.
+9. **C1 execution/source-obligation invariant and lifetime work:** EV-192–EV-196 → `COLLISION_LIFECYCLE_PLAN.md`.
+10. **C1 hook/finalizer substrate and current reassessment boundary:** EV-199–EV-203 → `SESSION_ENTRYPOINT.md`.
 
 ---
 
@@ -152,9 +158,9 @@ Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§3–9.
 
 ### F. Native collision cleanup lifecycle
 
-Search terms: `Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition, `m_pfInstrCallback`, `FullStop`, `SetState`, `RunScriptFunction`, `m_StateStack`, `m_pArguments`
+Search terms: `Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition, `m_pfInstrCallback`, `FullStop`, `SetState`, `RunScriptFunction`, `m_StateStack`, `m_pArguments`, `FinalizeAfterAISetState`, `LivenessEstablished`
 
-Evidence anchors: EV-151–EV-196.
+Evidence anchors: EV-151–EV-203.
 
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Current architecture/test: `COLLISION_LIFECYCLE_PLAN.md`; `COLLISION_TEST_PLAN.md`; current gate in `SESSION_ENTRYPOINT.md`.
@@ -201,7 +207,11 @@ Practical source route: `SOURCE_HOOK_GUIDE.md` §8–§11.
 | C1 acquisition gap | EV-194 | GetUp can arm before CombatMove, so CombatMove is too late as universal execution acquisition |
 | C1 outer static lifetime | EV-195 | ScriptFunction frame persists across false return/asynchronous work and has explicit SPU/actor context |
 | C1-O1 outer identity probe | EV-196 | same live frame bridges GetUp offense→CombatMove→cleanup; raw pointers can be reused only after retirement |
-| Higher-level gate | EV-192–EV-196 | C1-O2 outer-frame binding remains the architectural destination; `SESSION_ENTRYPOINT.md` owns the current suspended/hardening route |
+| C1-O2 first integration / isolation | EV-199 | direct dispatch capture crashed in registered-ScriptFunction paths; pure-pass-through baseline isolated it |
+| directly relevant hook hardening | EV-199–EV-201 | AISetState, AIFullStop and SetCollisionGroup were converted in bounded transport-only steps |
+| SetCollisionGroup crash reassessment | EV-201–EV-202 | exact crashed-DLL disassembly localized failure to post-AISetState finalizer observation, not SetCollisionGroup transport |
+| finalizer liveness correction + rerun | EV-203 | corrected finalizer and SetCollisionGroup transport pass tested extended stability; liveness-negative outstanding branch remains unexercised |
+| Higher-level gate | EV-192–EV-196, EV-199–EV-203 | C1-O2 outer-frame binding remains the architectural destination; `SESSION_ENTRYPOINT.md` owns the current reassessment route |
 
 ---
 
@@ -218,12 +228,15 @@ Key Step-B comparative artifacts include:
 - `research/raw/2026-08-28_b8_player_dual_quick_state_stack_abandonment.log`
 - `research/raw/2026-08-28_b9_player_aisetstate_cleanup_ordering.log`
 
-Current C1 evidence:
+Current C1 evidence includes:
 
 - `research/raw/2026-08-28_c1_shadow_core_lifecycle_matrix.log`
 - `research/archive/2026-08-28_c1_shadow_core_lifecycle_matrix_connector_extract.txt`
 - `research/raw/2026-08-29_c1o1_outer_scriptfunction_identity_probe.log`
 - `research/archive/2026-08-29_c1o1_outer_scriptfunction_identity_probe_connector_extract.txt`
+- `research/raw/2026-08-30_c1_finalization_source_liveness_safe_isolated_load.log`
+- `research/raw/2026-08-30_c1_finalization_source_liveness_safe_setcollisiongroup_extended_gameplay_stability.log`
+- `research/derived/2026-08-30_c1_finalization_source_liveness_safe_setcollisiongroup_extended_gameplay_stability_large_log/`
 
 Open archived/raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
