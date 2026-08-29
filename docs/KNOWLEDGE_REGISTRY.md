@@ -31,7 +31,7 @@ The registry exists to prevent the same fact becoming a separately maintained co
 | current collision execution/cleanup lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` | ownership/lifetime/cleanup invariant or causal architecture changes | a test confirms the existing lifecycle model without changing it |
 | current collision diagnostic architecture | `COLLISION_LOGGER_PLAN.md` | hook ownership, diagnostic event model, active probe responsibility changes | a log adds evidence without changing diagnostic design |
 | current staged collision validation gates | `COLLISION_TEST_PLAN.md` | current gate, acceptance criteria, control matrix, or interpretation rule changes | historical completed-test detail already preserved by evidence |
-| exact evidence status/provenance | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` + `EVIDENCE_LEDGER_C1.md` | a controlled/source fact is established, qualified, contradicted, or materially reinterpreted | pure design preference without factual claim |
+| exact evidence status/provenance | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` | a controlled/source fact is established, qualified, contradicted, or materially reinterpreted | pure design preference without factual claim |
 | evidence topic / future-responsibility routing | `EVIDENCE_INDEX.md` | a new evidence domain/range/search route is useful, an existing route materially changes, or proven knowledge becomes materially relevant to a different future engineering responsibility | every new EV already covered by an existing route or speculative “might be useful someday” relationships |
 | generalized animation semantics / authoring rules | `ANIMATION_RULES.md` | a generalized filename/UseType/action/phase/pose/authoring semantic changes | one concrete asset/test that does not generalize the rule |
 | concrete animation families/assets/fixtures | `ANIMATION_CATALOG.md` | a concrete family/asset/source annotation/fixture materially changes reusable asset knowledge | runtime architecture result with no asset-level consequence |
@@ -115,7 +115,7 @@ Likely updates:
 ```text
 owning Evidence Ledger / topic authority for the new fact
 → future-responsibility index route if the normal topic route would miss it
-→ route future refactor to BOTH the newer evidence and the older regression/invariant that caused the workaround
+→ route future refactor to BOTH the newer mechanism and the older regression/invariant that caused the workaround
 ```
 
 Usually do **not**:
@@ -187,8 +187,6 @@ Prefer strengthening the current knowledge structure over expanding the document
 `PROJECT_PIPELINE.md` is justified as a distinct authority because stable operating conventions are neither technical evidence nor recurring procedure sequences, and scattering them across those documents produced the exact cross-Chat drift this responsibility is meant to prevent.
 
 Create a new authority/document only when the responsibility is genuinely distinct enough that placing it in an existing authority would blur ownership, distort that authority's purpose, or make retrieval materially worse.
-
-Evidence-ledger continuation files are an allowed storage/retrieval split within the single evidence authority and global EV namespace; they do not create a competing evidence responsibility.
 
 Add a new authority only when a genuinely distinct knowledge responsibility appears.
 
