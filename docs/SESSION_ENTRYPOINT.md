@@ -10,6 +10,7 @@
 
 Document roles / Hot-Warm-Cold retrieval: `docs/README.md`  
 Transient Chat ↔ Work handoff when relevant: `docs/BETWEEN_CHATS.md`  
+Stable naming/numbering/version/test/artifact conventions: `docs/PROJECT_PIPELINE.md`  
 Recurring Git/build/deploy/test/log procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`
 
 ---
@@ -20,10 +21,13 @@ Recurring Git/build/deploy/test/log procedures: `docs/PROJECT_OPERATING_PROCEDUR
 2. Read `docs/BETWEEN_CHATS.md` only when the current responsibility depends on an active/recent transient handoff.
 3. If the active subsystem is not already oriented in the current Chat, perform the one-time Subsystem Orientation Pass from `docs/README.md`.
 4. Read `docs/PROJECT_OPERATING_PROCEDURES.md` once when entering an active local Git/build/deploy/runtime-artifact sequence; do not reread it after every prompt.
-5. Do not scan the whole repository or reconstruct the project from old chat history.
-6. Retrieve only the deeper authority listed under **Retrieval — Only What the Question Needs**.
+5. Before assigning or changing a gate/test ID, evidence/procedure ID, raw/derived filename, prototype/build/version label, branch/state meaning, or validation/artifact-flow convention, retrieve the relevant section of `docs/PROJECT_PIPELINE.md`. Preserve the established convention unless there is a deliberate reason to change it.
+6. Do not scan the whole repository or reconstruct the project from old chat history.
+7. Retrieve only the deeper authority listed under **Retrieval — Only What the Question Needs**.
 
-Within one continuing subsystem context, do not repeatedly reread unchanged authorities or procedures.
+Within one continuing subsystem context, do not repeatedly reread unchanged authorities, procedures, or pipeline conventions.
+
+A Chat migration is not a reason to rename, renumber, restart, or reinterpret project conventions.
 
 ---
 
@@ -230,8 +234,9 @@ All addresses are tested-build-specific.
 |---|---|
 | current outer-lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | transient exact C1-O2 Work handoff | `BETWEEN_CHATS.md` |
+| naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` relevant section only |
 | recurring Git/build/deploy/test/log procedure | `PROJECT_OPERATING_PROCEDURES.md` |
-| exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md`; note that post-EV-189 evidence maintenance is pending |
+| exact evidence | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER_STEP_B.md` |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | SPU / ScriptFunction / CombatMove / hook lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/static reference as needed |
 | diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
