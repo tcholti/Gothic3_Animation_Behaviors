@@ -447,14 +447,7 @@ foreach ($eventRecord in $events)
         (Escape-Tsv $eventRecord.Header),
         (Escape-Tsv $eventRecord.Summary)))
 }
-$eventPartFiles = Write-TextParts \
-    $eventRows \
-    "StartLine`tEndLine`tEvent`tSelectedFields" \
-    $outputDirectory \
-    "event_timeline" \
-    "tsv" \
-    $MaxOutputPartBytes \
-    $utf8NoBom
+$eventPartFiles = @(Write-TextParts $eventRows "StartLine`tEndLine`tEvent`tSelectedFields" $outputDirectory "event_timeline" "tsv" $MaxOutputPartBytes $utf8NoBom)
 
 $signalRows = New-Object System.Collections.Generic.List[string]
 foreach ($signal in $signals)
@@ -465,14 +458,7 @@ foreach ($signal in $signals)
         (Escape-Tsv $signal.Signal),
         (Escape-Tsv $signal.Text)))
 }
-$signalPartFiles = Write-TextParts \
-    $signalRows \
-    "Line`tEvent`tSignal`tText" \
-    $outputDirectory \
-    "signals" \
-    "tsv" \
-    $MaxOutputPartBytes \
-    $utf8NoBom
+$signalPartFiles = @(Write-TextParts $signalRows "Line`tEvent`tSignal`tText" $outputDirectory "signals" "tsv" $MaxOutputPartBytes $utf8NoBom)
 
 $signalLineNumbers = @($signals | Select-Object -ExpandProperty Line -Unique | Sort-Object)
 $signalRanges = New-Object System.Collections.Generic.List[object]
@@ -482,14 +468,8 @@ foreach ($signalLine in $signalLineNumbers)
     $end = [Math]::Min($lineCount, ([int]$signalLine + $ContextAfter))
     $signalRanges.Add([PSCustomObject]@{ Start = $start; End = $end })
 }
-$mergedSignalRanges = Merge-LineRanges $signalRanges
-$signalContextFiles = Write-SourceRangesToParts \
-    $inputItem.FullName \
-    $mergedSignalRanges \
-    $outputDirectory \
-    "signal_context" \
-    $MaxOutputPartBytes \
-    $utf8NoBom
+$mergedSignalRanges = @(Merge-LineRanges $signalRanges)
+$signalContextFiles = @(Write-SourceRangesToParts $inputItem.FullName $mergedSignalRanges $outputDirectory "signal_context" $MaxOutputPartBytes $utf8NoBom)
 
 $requestedRanges = New-Object System.Collections.Generic.List[object]
 foreach ($rangeText in $RequestedRange)
@@ -525,14 +505,8 @@ foreach ($rangeText in $RequestedRange)
     $requestedRanges.Add([PSCustomObject]@{ Start = $start; End = $end })
 }
 
-$mergedRequestedRanges = Merge-LineRanges $requestedRanges
-$requestedRangeFiles = Write-SourceRangesToParts \
-    $inputItem.FullName \
-    $mergedRequestedRanges \
-    $outputDirectory \
-    "requested_ranges" \
-    $MaxOutputPartBytes \
-    $utf8NoBom
+$mergedRequestedRanges = @(Merge-LineRanges $requestedRanges)
+$requestedRangeFiles = @(Write-SourceRangesToParts $inputItem.FullName $mergedRequestedRanges $outputDirectory "requested_ranges" $MaxOutputPartBytes $utf8NoBom)
 
 $manifestPath = Join-Path $outputDirectory "manifest.txt"
 $manifestWriter = New-Object System.IO.StreamWriter -ArgumentList @($manifestPath, $false, $utf8NoBom)
