@@ -29,6 +29,20 @@ Within one continuing subsystem context, do not repeatedly reread unchanged auth
 
 A Chat migration is not a reason to rename, renumber, restart, or reinterpret project conventions.
 
+### If the previous Chat ended unexpectedly — copy/paste this into the new Chat
+
+```text
+Open `tcholti/Gothic3_Animation_Behaviors` on branch `docs/collision-source-evidence`.
+
+Read `docs/SESSION_ENTRYPOINT.md` and follow its complete Fresh Normal Chat Bootstrap before claiming readiness.
+
+Use the repository documentation as authority. Do not reconstruct the project from old Chat history and do not scan the whole repository. Follow the entry point's routes for any relevant transient handoff, subsystem orientation, operating procedure, pipeline convention, and exact current technical authority needed for the current responsibility.
+
+When bootstrap is complete, tell me briefly what the current technical gate is and what responsibility comes next. Do not begin a new implementation step until then.
+```
+
+This fallback is intentionally generic. The durable current gate, handoff, procedures, pipeline conventions, and technical state remain in the repository and should evolve there rather than requiring the User to maintain a new restart prompt manually.
+
 ---
 
 ## Active Subsystem
