@@ -457,12 +457,12 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     }
 }
 
-static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_Group)
+static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
+    eCEntity *a_pThis, eECollisionGroup a_Group)
 {
     void *callerAddress = _ReturnAddress();
-    eCEntity *pThis = Hook_SetCollisionGroup.GetSelf<eCEntity *>();
-    eECollisionGroup beforeGroup = pThis != nullptr
-        ? pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
+    eECollisionGroup beforeGroup = a_pThis != nullptr
+        ? a_pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
 
     CollisionDiagnostics::NativeCleanupStackSnapshot cleanupStack = {};
     if (a_Group == eECollisionGroup_Item_Equipped
@@ -473,20 +473,22 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
             cleanupStack.frames, nullptr);
     }
 
-    Hook_SetCollisionGroup.GetOriginalFunction(&SetCollisionGroup_FrameCollisionTest)(a_Group);
+    Hook_SetCollisionGroup.GetOriginalFunction(&SetCollisionGroup_FrameCollisionTest)(
+        a_pThis, a_Group);
 
     GEInt retiredMarkerExecutionCount = 0;
-    if (pThis != nullptr && pThis->GetCollisionGroup() != eECollisionGroup_Item_Attack)
-        retiredMarkerExecutionCount = CollisionControl::RetireMarkerOwnedSource(pThis);
+    if (a_pThis != nullptr
+        && a_pThis->GetCollisionGroup() != eECollisionGroup_Item_Attack)
+        retiredMarkerExecutionCount = CollisionControl::RetireMarkerOwnedSource(a_pThis);
 
-    eECollisionGroup afterGroup = pThis != nullptr
-        ? pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
+    eECollisionGroup afterGroup = a_pThis != nullptr
+        ? a_pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
     CollisionLifecycleGuard::ObserveCollisionGroupResult(
-        pThis, a_Group, afterGroup);
+        a_pThis, a_Group, afterGroup);
     CollisionDiagnostics::LogSetCollisionGroup(
-        pThis, a_Group, beforeGroup, afterGroup,
+        a_pThis, a_Group, beforeGroup, afterGroup,
         retiredMarkerExecutionCount, callerAddress, cleanupStack);
-    if (pThis != nullptr)
+    if (a_pThis != nullptr)
     {
         Entity player = Entity::GetPlayer();
         if (player != None)
@@ -494,8 +496,8 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
             EquippedCollisionSources sources =
                 CollisionControl::GetEquippedCollisionSources(player);
             bool const isEquippedPlayerSource =
-                pThis == sources.rightInstance
-                || pThis == sources.leftInstance;
+                a_pThis == sources.rightInstance
+                || a_pThis == sources.leftInstance;
             bool const successfulOffense =
                 isEquippedPlayerSource
                 && a_Group == eECollisionGroup_Item_Attack
@@ -514,7 +516,7 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(eECollisionGroup a_G
                     successfulOffense
                         ? "OUTER_FRAME OFFENSE"
                         : "OUTER_FRAME CLEANUP",
-                    player, pThis, a_Group, beforeGroup, afterGroup,
+                    player, a_pThis, a_Group, beforeGroup, afterGroup,
                     outerFrame);
             }
         }
@@ -578,8 +580,8 @@ static void InstallHooks()
                  mCBaseHook::mEHookType_ThisCall)
         .Hook();
     Hook_SetCollisionGroup
-        .Prepare(RVA_Engine(0x225660), &SetCollisionGroup_FrameCollisionTest,
-                 mCBaseHook::mEHookType_ThisCall)
+        .Prepare(RVA_Engine(0x225660), &SetCollisionGroup_FrameCollisionTest)
+        .ThisCall()
         .Hook();
     Hook_PlayMotion
         .Prepare(RVA_Engine(0x30860), &PlayMotion_FrameCollisionTest,
