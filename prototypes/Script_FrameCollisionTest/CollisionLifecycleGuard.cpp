@@ -962,29 +962,31 @@ void FinalizeAfterAISetState(GenerationToken const &token)
     for (unsigned int i = 0; i < record.sourceCount; ++i)
     {
         SourceLifecycleRecord &source = record.sources[i];
-        eECollisionGroup const actualGroup =
-            source.sourceInstance->GetCollisionGroup();
         bool const outstandingBeforeFinalization =
             source.outstandingCleanup;
         unsigned int const currentSideMask =
             GetCurrentSideMask(currentSources, source.sourceInstance);
         bool const stillEquipped = currentSideMask != SourceMask_None;
+        eECollisionGroup actualGroup = static_cast<eECollisionGroup>(-1);
+        if (stillEquipped)
+            actualGroup = source.sourceInstance->GetCollisionGroup();
+
         char const *outcome = nullptr;
         if (!source.outstandingCleanup)
         {
             outcome = "NO_OP_NO_OUTSTANDING";
         }
+        else if (!stillEquipped)
+        {
+            outcome = "UNRESOLVED_NOT_EQUIPPED";
+        }
         else if (actualGroup != eECollisionGroup_Item_Attack)
         {
             outcome = "NO_OP_PHYSICALLY_CLEAN_RECONCILED";
         }
-        else if (stillEquipped)
-        {
-            outcome = "WOULD_REPAIR";
-        }
         else
         {
-            outcome = "UNRESOLVED_NOT_EQUIPPED";
+            outcome = "WOULD_REPAIR";
         }
 
         if (log != nullptr)
@@ -992,8 +994,18 @@ void FinalizeAfterAISetState(GenerationToken const &token)
             std::fprintf(log, "Source[%u].Outcome: %s\n", i, outcome);
             std::fprintf(log, "Source[%u].Address: %p\n", i,
                          static_cast<void *>(source.sourceInstance));
-            std::fprintf(log, "Source[%u].Name: %s\n", i,
-                         GetEntityName(source.sourceInstance).c_str());
+            if (stillEquipped)
+            {
+                std::fprintf(log, "Source[%u].Name: %s\n", i,
+                             GetEntityName(source.sourceInstance).c_str());
+            }
+            else
+            {
+                std::fprintf(log,
+                             "Source[%u].Name: <not-dereferenced>\n", i);
+            }
+            std::fprintf(log, "Source[%u].LivenessEstablished: %d\n", i,
+                         stillEquipped ? 1 : 0);
             std::fprintf(log, "Source[%u].OriginalSideMask: %u\n", i,
                          source.sideMask);
             std::fprintf(log, "Source[%u].OriginalSide: %s\n", i,
