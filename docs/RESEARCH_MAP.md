@@ -15,7 +15,7 @@ Current state and next responsibility live in:
 
 Exact evidence status/provenance lives in:
 
-`docs/EVIDENCE_INDEX.md` → exact canonical evidence ledger (`EVIDENCE_LEDGER.md`, `EVIDENCE_LEDGER_STEP_B.md`, or `EVIDENCE_LEDGER_C1.md`)
+`docs/EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER.md` / `EVIDENCE_LEDGER_STEP_B.md`
 
 The full pre-information-architecture research map—including old “current prototype” and “next” sections—is preserved at:
 
