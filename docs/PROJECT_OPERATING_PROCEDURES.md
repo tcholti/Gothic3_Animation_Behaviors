@@ -1,0 +1,532 @@
+# Gothic 3 Project Operating Procedures
+
+**Project:** Gothic3_Animation_Behaviors  
+**Status:** Active project-specific procedure library  
+**Version:** 1.0  
+**Updated:** 2026-08-29
+
+## Purpose
+
+This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, or bounded Work authority.
+
+It exists so a new Chat does not have to rediscover how we normally:
+
+- synchronize and hand off the active Git branch;
+- build the current prototype;
+- deploy and verify a DLL before testing;
+- verify that a diagnostic build actually loaded;
+- freeze and name runtime tests/logs;
+- preserve and publish raw evidence;
+- reduce oversized logs for efficient analysis without altering the evidence;
+- work with large static binary/reference material.
+
+These are **reconstructable procedure patterns**, not mandatory reading before every prompt and not frozen law.
+
+The procedure-evolution rule is owned by `COLLABORATION_RULES.md` §9: use the established procedure without repeatedly auditing it, but if either participant notices repeated friction/mistakes, one serious failure, or a clearly better method, raise the improvement and revise the lowest owning procedure.
+
+---
+
+## 1. When to Read This Document
+
+Read or spot-read this document when entering an active local-operation sequence such as:
+
+- source review → build → deploy → runtime test;
+- runtime evidence capture/publish;
+- Git handoff between connected GitHub writes and the User's local checkout;
+- large-log or large-reference retrieval.
+
+Do **not** reread it after every prompt or every attack/test repetition.
+
+A procedure name should usually be enough to reconstruct the sequence from memory/context. Open the exact section only when the detailed sequence or failure branch matters.
+
+This document does not replace:
+
+- `WORK_IMPLEMENTATION_PROTOCOL.md` — bounded implementation/Work execution;
+- `KNOWLEDGE_MAINTENANCE.md` — what durable authorities change after a meaningful result;
+- `SESSION_ENTRYPOINT.md` — current technical responsibility;
+- `BETWEEN_CHATS.md` — transient exact handoff when needed.
+
+---
+
+## 2. End-to-End Validation Cue
+
+For a normal engine-facing prototype change, the broad sequence is:
+
+```text
+design/evidence question frozen
+→ bounded implementation when needed
+→ implementation commit/publish
+→ independent Normal Chat source review
+→ User/local branch synchronization
+→ build only
+→ deploy exact built DLL
+→ verify single live DLL + SHA match
+→ launch/load verification + expected startup banner
+→ freeze exact runtime matrix + raw filename
+→ User runs test
+→ raw log copied unchanged into research/raw
+→ raw artifact commit/push
+→ Normal Chat analyzes committed evidence
+→ derived extract only if retrieval requires it
+→ normal knowledge-maintenance transaction
+```
+
+Do not collapse separate validation stages merely to save a message when the separation protects causal certainty. A successful build does not prove deployment; a matching deployment does not prove load; a startup banner does not prove runtime behavior.
+
+---
+
+## 3. POP-01 — Git Branch Handoff and Synchronization
+
+### Trigger
+
+Use whenever connected GitHub/assistant writes and the User's local checkout both need to write to the same active branch.
+
+### Core rule — one branch writer window at a time
+
+```text
+Assistant finishes any required remote GitHub writes
+→ Assistant identifies the resulting remote state
+→ User synchronizes local checkout if needed
+→ Assistant hands branch to User
+→ Assistant does not push/write that branch during the User window
+→ User performs local artifact/build-related commit and pushes
+→ User reports successful push/SHA
+→ branch returns to Assistant-side writes when needed
+```
+
+Once Normal Chat gives the User a local commit/push sequence, Normal Chat should **not create another commit on that branch** until the User reports that their push has completed or the handoff is explicitly cancelled.
+
+This avoids the repeated pattern:
+
+```text
+Assistant pushes
+→ User commits locally from older head
+→ User push rejected: fetch first
+→ avoidable pull/rebase/push cycle
+```
+
+### Preferred synchronization point
+
+If the assistant has changed the remote branch since the User last synchronized, perform the pull/rebase **before** the User begins a new local artifact/commit window whenever practical.
+
+Current active branch:
+
+```text
+docs/collision-source-evidence
+```
+
+Typical synchronization:
+
+```powershell
+Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+
+git pull --rebase origin docs/collision-source-evidence
+```
+
+Do not run a blind pull/rebase across important uncommitted local work. The normal handoff rule should make that unnecessary; if local work already exists, inspect the concrete state first.
+
+### If a push is rejected with `fetch first`
+
+If the intended local commit already exists and the only problem is that the remote branch advanced:
+
+```powershell
+git pull --rebase origin docs/collision-source-evidence
+git push origin docs/collision-source-evidence
+git rev-parse HEAD
+```
+
+If rebase reports a conflict, stop the routine procedure and inspect that conflict. Do not automatically choose one side.
+
+---
+
+## 4. POP-02 — Build Only
+
+### Trigger
+
+Use after the relevant source implementation has passed its required source-level review and a local runtime binary is needed.
+
+### Pattern
+
+```text
+correct branch/source state
+→ build requested target
+→ User reports success or smallest useful error excerpt
+→ STOP build stage
+```
+
+Current prototype command:
+
+```powershell
+Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+
+cmake --build build --config Release --target Script_FrameCollisionTest
+```
+
+A successful build does **not** automatically deploy the DLL.
+
+For a normal success, the User only needs to report that it succeeded. Do not ask for the complete successful build output.
+
+If the build fails, request or use only the smallest relevant error excerpt first. Broaden only when needed.
+
+---
+
+## 5. POP-03 — Deploy and Binary-Identity Verification
+
+### Trigger
+
+Use after a successful build and before launching Gothic 3 for that build.
+
+### Current paths
+
+Built DLL:
+
+```text
+E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\build\prototypes\Script_FrameCollisionTest\Release\Script_FrameCollisionTest.dll
+```
+
+Live DLL:
+
+```text
+E:\SteamLibrary\steamapps\common\Gothic 3\scripts\Script_FrameCollisionTest.dll
+```
+
+### Pattern
+
+```text
+copy exact built DLL to live scripts
+→ enumerate matching live DLL names
+→ require exactly one intended matching DLL
+→ SHA256 built == live
+→ only then launch
+```
+
+Typical command:
+
+```powershell
+$built = 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\build\prototypes\Script_FrameCollisionTest\Release\Script_FrameCollisionTest.dll'
+$liveDir = 'E:\SteamLibrary\steamapps\common\Gothic 3\scripts'
+$live = Join-Path $liveDir 'Script_FrameCollisionTest.dll'
+
+Copy-Item -LiteralPath $built -Destination $live -Force
+
+Get-ChildItem -LiteralPath $liveDir -Filter 'Script_FrameCollisionTest*.dll' |
+    Select-Object Name, Length, LastWriteTime
+
+(Get-FileHash $built -Algorithm SHA256).Hash -eq (Get-FileHash $live -Algorithm SHA256).Hash
+```
+
+Expected:
+
+- one intended `Script_FrameCollisionTest.dll`;
+- final comparison `True`.
+
+Never leave backup/alternate DLLs matching the same loader pattern in the live `scripts` directory. If duplicates appear or the hash is false, stop before launching and resolve deployment first.
+
+---
+
+## 6. POP-04 — Startup / Load Verification
+
+### Trigger
+
+Use after deploy/hash verification and before spending time on a runtime matrix.
+
+### Pattern
+
+```text
+launch Gothic 3 only far enough to load the script
+→ reach main menu or other agreed minimal load point
+→ exit normally
+→ search current log for the exact startup/banner text of this build
+→ only then freeze/run the behavioral matrix
+```
+
+For `Script_FrameCollisionTest`, the current log is normally:
+
+```text
+E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log
+```
+
+Normal Chat should provide the exact banner substring for the build being tested rather than expecting the User to remember it.
+
+Typical check:
+
+```powershell
+$log = 'E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log'
+
+Select-String -Path $log -Pattern '<exact frozen startup banner substring>'
+```
+
+Missing banner, wrong binary, load failure, or crash is a stop condition for the runtime matrix.
+
+---
+
+## 7. POP-05 — Freeze a Runtime Test and Raw Filename
+
+### Trigger
+
+Use when a controlled runtime run is intended to answer an active causal/validation question and the log is worth preserving.
+
+### Normal Chat responsibility before the run
+
+Freeze in the same message whenever practical:
+
+1. the exact test purpose;
+2. the minimum fixture/configuration cases;
+3. important ordering/reset requirements;
+4. the outcomes or invariants to watch for;
+5. one exact raw filename.
+
+Do not change the meaning of the test after the run merely to fit the observed result.
+
+### Raw naming pattern
+
+Prefer:
+
+```text
+research/raw/YYYY-MM-DD_<gate-or-step>_<actor-or-config>_<question>.log
+```
+
+The name should contain enough information to distinguish the artifact later without becoming a narrative sentence.
+
+If a test crosses midnight or is delayed after the filename is frozen, keep the frozen filename unless there is a concrete reason to rename it; consistency with the recorded test contract matters more than cosmetic date perfection.
+
+### User responsibility
+
+Run the test, then copy the complete produced log to the exact frozen path.
+
+Extra repetitions are acceptable and often useful. If the configuration/order materially differs from the frozen matrix, tell Normal Chat so interpretation can distinguish those sections.
+
+After copying, a short confirmation such as:
+
+```text
+file is in raw
+```
+
+is enough. Do not paste the full log into Chat by default.
+
+---
+
+## 8. POP-06 — Raw Runtime Evidence Integrity and Publish
+
+### Raw evidence rule
+
+A file in `research/raw/` is canonical raw evidence.
+
+Preserve it byte/content-faithfully:
+
+- do not clean trailing whitespace;
+- do not reformat/rewrite it for readability;
+- do not remove noisy lines from the canonical raw artifact;
+- do not use `git diff --cached --check` as a pass/fail validator for raw logs, because logger-produced whitespace may be legitimate raw content.
+
+Editable source/docs may still use normal whitespace/diff checks.
+
+### Publish pattern
+
+The normal sequence is:
+
+```text
+User confirms exact raw file exists
+→ branch handoff/sync already settled
+→ verify exact path/status
+→ stage only intended artifact(s)
+→ descriptive commit
+→ push active branch
+→ report resulting SHA
+→ Assistant reads committed artifact from GitHub
+```
+
+Typical command pattern:
+
+```powershell
+Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+
+$log = '.\research\raw\<frozen-log-name>.log'
+
+Get-Item -LiteralPath $log |
+    Select-Object Name, Length, LastWriteTime
+
+git status --short -- $log
+git add -- $log
+git commit -m '<descriptive evidence commit message>'
+git push origin docs/collision-source-evidence
+git rev-parse HEAD
+```
+
+Normal Chat should normally ask only for the final SHA or a short success confirmation.
+
+---
+
+## 9. POP-07 — Large Runtime Log Analysis Without Losing Evidence
+
+### Trigger
+
+Use when the canonical raw log is too large for efficient GitHub/connector retrieval or would create unnecessary Chat/tool context pressure.
+
+### Core rule
+
+Do **not** reduce the raw logger output merely to make retrieval easier while the diagnostic system is still discovering unexpected paths.
+
+Instead:
+
+```text
+full canonical raw log
+→ local deterministic post-processing
+→ compact analysis extract
+→ optional summary
+→ Assistant reads summary/extract first
+→ raw remains available for exact verification
+```
+
+The raw log remains the evidence. Derived files are retrieval aids.
+
+### Derived analysis extract
+
+A useful analysis extract should mechanically retain the important event blocks and enough nearby context to reconstruct chronology, such as:
+
+- lifecycle start/status/finalization;
+- offensive collision requests, including `7 → 7`;
+- cleanup observations;
+- `WOULD_REPAIR` or equivalent candidate outcomes;
+- invariant warnings/unowned/overlap/generation-change outcomes;
+- CombatMove/AIFullStop/AISetState context when relevant;
+- timestamps;
+- action/phase/state;
+- source identity/side/collision group;
+- caller module/RVA;
+- enough surrounding context to distinguish fixtures/configurations.
+
+The derived file should record at minimum:
+
+```text
+source raw relative path
+source SHA256
+source line count
+mechanical extraction purpose/criteria
+```
+
+Current derived location is normally:
+
+```text
+research/archive/
+```
+
+Example suffixes:
+
+```text
+_analysis_extract.txt
+_connector_extract.txt
+_summary.txt
+```
+
+A compact summary may additionally reduce each lifecycle to one line, for example:
+
+```text
+Gen 34 | Whirl | offense 5→7 | held-Use2 abandonment | WOULD_REPAIR
+Gen 35 | Normal | offense 7→7 | cleanup 7→5 | NO_OP
+```
+
+### Reusable extractor preference
+
+If this reduction is needed repeatedly, prefer a reusable local script such as:
+
+```text
+tools/extract_collision_log.ps1
+```
+
+rather than recreating a long inline extraction command in every Chat. The script should be revised when the diagnostic event vocabulary changes, while the canonical raw evidence remains unchanged.
+
+Do not move extraction logic into production/runtime behavior merely for connector convenience.
+
+---
+
+## 10. POP-08 — Large Static Binary / Reference Retrieval
+
+Runtime logs and static binary references should not use the same reduction strategy.
+
+For large extracted/disassembled `Game`, `Engine`, `Script_Game`, or similar static reference material:
+
+```text
+complete local/extracted provenance
+→ split/index into manageable stable chunks in Gothic3_Binary_Reference
+→ retrieve by module + RVA/symbol/import/search term
+→ open only the relevant chunk/region
+```
+
+The purpose of splitting static material is direct random access, not evidence summarization. Preserve enough indexing that an address such as `Script_Game +0x41D5A` can route directly to its surrounding static code without loading a monolithic dump.
+
+Do not repeatedly regenerate/reupload the whole reference merely because another static question arises. Extend or revise the reference structure only when retrieval actually fails or the source set changes.
+
+Exact static-engine findings that become project evidence still belong in the appropriate Gothic 3 evidence/source authority; the binary-reference repository is a retrieval/provenance surface, not the only interpretation authority.
+
+---
+
+## 11. POP-09 — Routine Failure / Stop Behavior
+
+Routine procedures should fail narrowly and visibly rather than accumulating compensating steps.
+
+Examples:
+
+```text
+build error
+→ inspect smallest useful error excerpt
+
+multiple matching live DLLs
+→ stop before game launch
+
+built/live SHA mismatch
+→ stop before game launch
+
+startup banner missing / load crash
+→ stop before runtime matrix
+
+Git rebase conflict
+→ stop automatic Git procedure and inspect conflict
+
+unexpected invariant warning in a shadow diagnostic
+→ treat as evidence/design question, not something to filter out
+```
+
+Do not ask the User for full successful outputs or entire logs merely because a command was run. Expand output only when the current failure cannot be diagnosed from the compact result.
+
+---
+
+## 12. Procedure Maintenance
+
+The active procedure is the current best default. Git history preserves old versions; the active document should not accumulate obsolete variants.
+
+Use this maintenance trigger:
+
+```text
+use procedure normally
+→ no routine audit
+→ repeated friction/mistake OR one serious failure OR clearly better method appears
+→ whichever participant notices first raises it
+→ diagnose actual cause
+→ revise the smallest owning procedure/rule
+→ continue using revised procedure
+```
+
+When a procedure becomes too long, ask whether stable detail can be moved into a reusable script/tool while this document keeps only the trigger, invariant, and sequence cue.
+
+When a new recurring operation appears, first ask whether an existing POP section can absorb it. Create another procedure only when the responsibility is genuinely distinct and expected to recur.
+
+---
+
+## Quick Procedure Index
+
+| Cue | Procedure |
+|---|---|
+| assistant/user both writing same branch | POP-01 Git branch handoff and synchronization |
+| source reviewed, need DLL | POP-02 Build only |
+| build succeeded, need live DLL | POP-03 Deploy and binary-identity verification |
+| DLL copied, before full test | POP-04 Startup/load verification |
+| ready for controlled runtime evidence | POP-05 Freeze runtime test and raw filename |
+| runtime log copied locally | POP-06 Raw evidence integrity and publish |
+| raw log too large to retrieve efficiently | POP-07 Large runtime log analysis |
+| large static Engine/Game/Script_Game material | POP-08 Static binary/reference retrieval |
+| routine command/procedure fails | POP-09 Routine failure/stop behavior |
+
+## Core Procedure Rule
+
+> **Preserve causal certainty and canonical evidence, hand the active Git branch between writers deliberately, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
