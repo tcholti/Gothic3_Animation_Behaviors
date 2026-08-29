@@ -2,12 +2,12 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.0  
+**Version:** 1.1  
 **Updated:** 2026-08-29
 
 ## Purpose
 
-This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, or bounded Work authority.
+This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, bounded Work authority, or stable project convention authority.
 
 It exists so a new Chat does not have to rediscover how we normally:
 
@@ -15,12 +15,14 @@ It exists so a new Chat does not have to rediscover how we normally:
 - build the current prototype;
 - deploy and verify a DLL before testing;
 - verify that a diagnostic build actually loaded;
-- freeze and name runtime tests/logs;
+- freeze runtime tests/logs;
 - preserve and publish raw evidence;
 - reduce oversized logs for efficient analysis without altering the evidence;
 - work with large static binary/reference material.
 
-These are **reconstructable procedure patterns**, not mandatory reading before every prompt and not frozen law.
+`PROJECT_PIPELINE.md` owns the stable naming, numbering, version/test ID, branch/state, artifact-flow and validation-gate conventions used by these procedures. This file owns the **sequences**, not independent alternative convention schemes.
+
+These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law.
 
 The procedure-evolution rule is owned by `COLLABORATION_RULES.md` §9: use the established procedure without repeatedly auditing it, but if either participant notices repeated friction/mistakes, one serious failure, or a clearly better method, raise the improvement and revise the lowest owning procedure.
 
@@ -35,12 +37,13 @@ Read or spot-read this document when entering an active local-operation sequence
 - Git handoff between connected GitHub writes and the User's local checkout;
 - large-log or large-reference retrieval.
 
-Do **not** reread it after every prompt or every attack/test repetition.
+Do not reread it after every prompt or every attack/test repetition.
 
 A procedure name should usually be enough to reconstruct the sequence from memory/context. Open the exact section only when the detailed sequence or failure branch matters.
 
 This document does not replace:
 
+- `PROJECT_PIPELINE.md` — stable project naming/numbering/version/test/artifact conventions;
 - `WORK_IMPLEMENTATION_PROTOCOL.md` — bounded implementation/Work execution;
 - `KNOWLEDGE_MAINTENANCE.md` — what durable authorities change after a meaningful result;
 - `SESSION_ENTRYPOINT.md` — current technical responsibility;
@@ -71,7 +74,7 @@ design/evidence question frozen
 → normal knowledge-maintenance transaction
 ```
 
-Do not collapse separate validation stages merely to save a message when the separation protects causal certainty. A successful build does not prove deployment; a matching deployment does not prove load; a startup banner does not prove runtime behavior.
+This sequence conforms to the validation pipeline in `PROJECT_PIPELINE.md`. Do not collapse separate validation stages merely to save a message when the separation protects causal certainty. A successful build does not prove deployment; a matching deployment does not prove load; a startup banner does not prove runtime behavior.
 
 ---
 
@@ -94,7 +97,7 @@ Assistant finishes any required remote GitHub writes
 → branch returns to Assistant-side writes when needed
 ```
 
-Once Normal Chat gives the User a local commit/push sequence, Normal Chat should **not create another commit on that branch** until the User reports that their push has completed or the handoff is explicitly cancelled.
+Once Normal Chat gives the User a local commit/push sequence, Normal Chat should not create another commit on that branch until the User reports that their push has completed or the handoff is explicitly cancelled.
 
 This avoids the repeated pattern:
 
@@ -107,9 +110,9 @@ Assistant pushes
 
 ### Preferred synchronization point
 
-If the assistant has changed the remote branch since the User last synchronized, perform the pull/rebase **before** the User begins a new local artifact/commit window whenever practical.
+If the assistant has changed the remote branch since the User last synchronized, perform the pull/rebase before the User begins a new local artifact/commit window whenever practical.
 
-Current active branch:
+Current active branch/state meaning is owned by `SESSION_ENTRYPOINT.md` + `PROJECT_PIPELINE.md`. At this revision the active branch is:
 
 ```text
 docs/collision-source-evidence
@@ -162,7 +165,7 @@ Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic
 cmake --build build --config Release --target Script_FrameCollisionTest
 ```
 
-A successful build does **not** automatically deploy the DLL.
+A successful build does not automatically deploy the DLL.
 
 For a normal success, the User only needs to report that it succeeded. Do not ask for the complete successful build output.
 
@@ -248,6 +251,8 @@ E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log
 
 Normal Chat should provide the exact banner substring for the build being tested rather than expecting the User to remember it.
 
+The build-identity convention is owned by `PROJECT_PIPELINE.md`: active gate/probe label + exact Git commit + deployed DLL identity/hash + startup banner.
+
 Typical check:
 
 ```powershell
@@ -278,15 +283,13 @@ Freeze in the same message whenever practical:
 
 Do not change the meaning of the test after the run merely to fit the observed result.
 
-### Raw naming pattern
+### Naming authority
 
-Prefer:
+The canonical gate/test-ID and raw/derived filename conventions live in `PROJECT_PIPELINE.md` §§3, 6–7.
 
-```text
-research/raw/YYYY-MM-DD_<gate-or-step>_<actor-or-config>_<question>.log
-```
+POP-05 owns the act of freezing the test and one exact filename; it does not define a separate naming scheme.
 
-The name should contain enough information to distinguish the artifact later without becoming a narrative sentence.
+Before inventing a new gate/test identifier or filename pattern, retrieve the relevant pipeline section and preserve the established convention.
 
 If a test crosses midnight or is delayed after the filename is frozen, keep the frozen filename unless there is a concrete reason to rename it; consistency with the recorded test contract matters more than cosmetic date perfection.
 
@@ -365,7 +368,7 @@ Use when the canonical raw log is too large for efficient GitHub/connector retri
 
 ### Core rule
 
-Do **not** reduce the raw logger output merely to make retrieval easier while the diagnostic system is still discovering unexpected paths.
+Do not reduce the raw logger output merely to make retrieval easier while the diagnostic system is still discovering unexpected paths.
 
 Instead:
 
@@ -411,13 +414,7 @@ Current derived location is normally:
 research/archive/
 ```
 
-Example suffixes:
-
-```text
-_analysis_extract.txt
-_connector_extract.txt
-_summary.txt
-```
+Derived filename suffix conventions are owned by `PROJECT_PIPELINE.md`.
 
 A compact summary may additionally reduce each lifecycle to one line, for example:
 
@@ -507,6 +504,8 @@ use procedure normally
 → continue using revised procedure
 ```
 
+If the issue is actually a naming/numbering/version/state convention rather than a recurring sequence, update `PROJECT_PIPELINE.md` instead of silently embedding a new convention here.
+
 When a procedure becomes too long, ask whether stable detail can be moved into a reusable script/tool while this document keeps only the trigger, invariant, and sequence cue.
 
 When a new recurring operation appears, first ask whether an existing POP section can absorb it. Create another procedure only when the responsibility is genuinely distinct and expected to recur.
@@ -529,4 +528,4 @@ When a new recurring operation appears, first ask whether an existing POP sectio
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence, hand the active Git branch between writers deliberately, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
+> **Preserve causal certainty and canonical evidence, hand the active Git branch between writers deliberately, use the stable project conventions rather than reinventing them, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
