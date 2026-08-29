@@ -3,19 +3,19 @@
 **Purpose:** Small transient bridge between Normal Chat and Work.
 **Rule:** Keep this file short and overwrite the current handoff; do not accumulate history here.
 
-## Work result — C1-O2 RunScriptFunction ABI / recursion-safety correction
+## Work result — C1-O2 RunScriptFunction pure pass-through isolation
 
 **Date:** 2026-08-29
 **Branch:** `docs/collision-source-evidence`
-**Implementation commit:** `52196a5fecf36187658c4f69d58b1ebe5b58b899`
-**Crash-evidence base:** `7be5962f9073b2d889db5b040a5694014805555f`
+**Implementation commit:** `089817a4e7a5a0baab2c7cba0540aa31d6f17726`
+**Crash-evidence base:** `2319bc09661520e7237eb956921632854e37cbaf`
 
-Implemented only the frozen hook-transport correction:
+Implemented only the frozen isolation:
 
-- changed `RunScriptFunction_FrameCollisionTest` to receive the real `gCScriptAdmin *this` supplied by the pinned SDK's recursion-safe hook builder;
-- forwards that exact `this` plus the unchanged script name, runtime stack and SPU to Gothic's original exactly once, preserving its result;
-- replaced only this hook's legacy `mEHookType_ThisCall` installation with `.Prepare(...).ThisCall().Hook()`;
-- changed the C1-O2 startup banner so the corrected build is distinguishable from the crashing build.
+- retained the explicit `gCScriptAdmin *this` wrapper signature and recursion-safe `.Prepare(...).ThisCall().Hook()` installation;
+- reduced `RunScriptFunction_FrameCollisionTest` to one return statement that invokes Gothic's original exactly once with `this`, script name, runtime stack and SPU unchanged;
+- removed all C1-O2 dispatch capture and completion/retirement calls from this wrapper only;
+- changed only the C1-O2 startup banner to identify the pure pass-through isolation build.
 
 Changed files:
 
@@ -24,15 +24,15 @@ Changed files:
 
 Source audit passed:
 
-- no RunScriptFunction `GetSelf`, `GetLastSelf`, `SetSelf` or legacy shared-this transport remains;
-- the SDK builder stores each invocation's real ECX/this on that invocation's stack and restores it before the original call, so nested calls do not overwrite shared this state;
-- the existing pre-original dispatch capture and post-original completion/retirement calls are unchanged;
-- `CollisionLifecycleGuard`, HookBridge, collision control, C1 generation/acquisition/reuse/obligation/finalization semantics, markers, callbacks and physical collision behavior are unchanged;
-- no classifier, fallback, timer, polling, scan, repair, unrelated diagnostic or refactor was added;
+- the wrapper contains no operation before or after the original call except returning its exact result;
+- it calls neither `BeginScriptFunctionDispatch` nor `EndScriptFunctionDispatch`, and performs no logging, entity/SPU/stack access or collision work;
+- `CollisionLifecycleGuard` remains compiled but is unreachable from RunScriptFunction in this isolation build;
+- CombatMove, AISetState, SetCollisionGroup, marker/callback, C1 generation/source-obligation, collision and physical-repair semantics are unchanged;
+- no unrelated diagnostic, classifier, fallback, timer, polling, scan or refactor was added;
 - `git diff --check` passed.
 
-Contradictions / stop conditions: none. The pinned SDK `ThisCall()` builder safely represents the actual member signature.
+Contradictions / stop conditions: none.
 
-Gothic 3 was not built or run. Normal Chat still needs to review the diff before build/load/runtime testing.
+Gothic 3 was not built or run. The isolated runtime result must determine whether direct RunScriptFunction detouring remains viable.
 
 No further Work task is frozen here. STOP.
