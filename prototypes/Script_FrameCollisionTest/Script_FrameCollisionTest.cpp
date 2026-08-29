@@ -300,7 +300,7 @@ static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
 }
 
 static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
-    bCString const &a_ScriptName,
+    gCScriptAdmin *a_pThis, bCString const &a_ScriptName,
     bTObjStack<gScriptRunTimeSingleState> &a_rRunTimeStack,
     gCScriptProcessingUnit *a_pSPU)
 {
@@ -309,7 +309,7 @@ static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
             a_ScriptName, a_rRunTimeStack, a_pSPU);
     GEBool const result = Hook_RunScriptFunction.GetOriginalFunction(
         &RunScriptFunction_FrameCollisionTest)(
-            a_ScriptName, a_rRunTimeStack, a_pSPU);
+            a_pThis, a_ScriptName, a_rRunTimeStack, a_pSPU);
     CollisionLifecycleGuard::EndScriptFunctionDispatch(dispatch, result);
     return result;
 }
@@ -610,8 +610,8 @@ static void InstallHooks()
                  mCBaseHook::mEHookType_ThisCall)
         .Hook();
     Hook_RunScriptFunction
-        .Prepare(RVA_Game(0x1604E0), &RunScriptFunction_FrameCollisionTest,
-                 mCBaseHook::mEHookType_ThisCall)
+        .Prepare(RVA_Game(0x1604E0), &RunScriptFunction_FrameCollisionTest)
+        .ThisCall()
         .Hook();
 }
 
