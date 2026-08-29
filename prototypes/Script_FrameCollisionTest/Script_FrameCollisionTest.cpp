@@ -358,12 +358,12 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     return result;
 }
 
-static void GE_STDCALL AIFullStop_FrameCollisionTest()
+static void GE_STDCALL AIFullStop_FrameCollisionTest(
+    gCScriptRoutine_PS *a_pThis)
 {
     void *callerAddress = _ReturnAddress();
-    gCScriptRoutine_PS *pThis =
-        Hook_AIFullStop.GetSelf<gCScriptRoutine_PS *>();
-    eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
+    eCEntity *ownerEntity =
+        a_pThis != nullptr ? a_pThis->GetEntity() : nullptr;
     if (IsPlayerEntity(ownerEntity))
     {
         Entity actor(ownerEntity);
@@ -393,7 +393,8 @@ static void GE_STDCALL AIFullStop_FrameCollisionTest()
         CollisionDiagnostics::LogAIFullStopCallSite(actor, fullStop);
     }
 
-    Hook_AIFullStop.GetOriginalFunction(&AIFullStop_FrameCollisionTest)();
+    Hook_AIFullStop.GetOriginalFunction(&AIFullStop_FrameCollisionTest)(
+        a_pThis);
 }
 
 static void GE_STDCALL AISetState_FrameCollisionTest(
@@ -596,8 +597,8 @@ static void InstallHooks()
                  &AICombatMoveStartRecover_FrameCollisionTest)
         .Hook();
     Hook_AIFullStop
-        .Prepare(RVA_Game(0x164430), &AIFullStop_FrameCollisionTest,
-                 mCBaseHook::mEHookType_ThisCall)
+        .Prepare(RVA_Game(0x164430), &AIFullStop_FrameCollisionTest)
+        .ThisCall()
         .Hook();
     Hook_AISetState
         .Prepare(RVA_Game(0x164320), &AISetState_FrameCollisionTest)
