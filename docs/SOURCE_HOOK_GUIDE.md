@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Source & Hook Guide
 
 **Status:** Canonical practical source/hook lookup guide  
-**Updated:** 2026-08-29
+**Updated:** 2026-08-30
 
 ## Purpose
 
@@ -200,9 +200,9 @@ gCScriptAdmin::RunScriptFunction(
 - true result removes the completed top frame before the runner returns;
 - `gCScriptAdmin` exposes no documented public accessor that should be treated as “the currently executing NPC SPU”; do not substitute its protected admin `m_SPU` for the explicit supplied SPU without evidence.
 
-These are generic script infrastructure facts. `RunScriptFunction` may provide a narrow transient dispatch context for C1-O2, but it is not attack ownership or unconditional cleanup authority by itself.
+These are generic script infrastructure facts. The proven P1/P2 `RunScriptFunction` hook provides a narrow transient dispatch context for pre-Combat offense acquisition; it is not attack ownership or unconditional cleanup authority by itself. Durable identity remains the monotonic C1 generation.
 
-Evidence: EV-169–EV-171, EV-195–EV-196.
+Evidence: EV-169–EV-171, EV-195–EV-196, EV-204–EV-205.
 
 ### Script control flow macros
 
@@ -247,54 +247,54 @@ Search SDK `eCTrigger_PS` for `EntitiesVisited`, `EntitiesVisitedCount`, `ClearT
 | CombatMove movement call point | `Game + 0x16B8A9` | reference hook point |
 | full-Whirl CombatMove break-block call/test | `Script_Game + 0x4DF8C / +0x4DF92` | incomplete result returns ScriptFunction false; completed result falls through into later Whirl continuation/cleanup |
 | full-Whirl ordinary collision cleanup continuation | `Script_Game + 0x4E03C` | reached only when the suspended Whirl ScriptFunction resumes after CombatMove completion |
-| GetUp pre-CombatMove offense region | `Script_Game + 0x41CA6` | legitimate weapon offense can occur before later CombatMove; establishes acquisition gap |
-| GetUp later CombatMove call | `Script_Game + 0x41D5A` | same GetUp outer ScriptFunction later reaches CombatMove in tested path |
-| GetUp ordinary cleanup | `Script_Game + 0x41E10` | tested ordinary GetUp weapon cleanup region |
-| `GetAniName` | `Game + 0x16F840` | animation name lookup |
-| `GetAniEx` | `Script + 0x15C10` | animation query |
-| `GetMotionDataEntityAniString` | `Game + 0xD97D5` | motion resource string |
-| `GetCachedMotionDataActor` | `Game + 0xDA344` | cached animation actor |
+| GetUp pre-CombatMove offense region | `Script_Game +0x41CA6` | legitimate weapon offense can occur before later CombatMove; establishes acquisition gap |
+| GetUp later CombatMove call | `Script_Game +0x41D5A` | same GetUp outer ScriptFunction later reaches CombatMove in tested path |
+| GetUp ordinary cleanup | `Script_Game +0x41E10` | tested ordinary GetUp weapon cleanup region |
+| `GetAniName` | `Game +0x16F840` | animation name lookup |
+| `GetAniEx` | `Script +0x15C10` | animation query |
+| `GetMotionDataEntityAniString` | `Game +0xD97D5` | motion resource string |
+| `GetCachedMotionDataActor` | `Game +0xDA344` | cached animation actor |
 
 ### PrimaryFirst motion lifecycle
 
 | Symbol / purpose | Module + RVA | Current meaning |
 |---|---:|---|
-| high `eCVisualAnimation_PS::PlayMotion` | `Engine + 0x30860` | type-0 immediate PrimaryFirst acquisition/replacement observation |
-| high `eCVisualAnimation_PS::StopMotion` | `Engine + 0x30980` | supporting motion-stop observation; not proven universal end authority |
-| high `StopAtLoopEnd` | `Engine + 0x309D0` | schedules loop-end stop; not actual completion event |
-| wrapper `eCWrapper_emfx2Actor::PlayMotion` | `Engine + 0x476F0` | lower wrapper path |
-| wrapper `StopMotion` | `Engine + 0x47910` | lower wrapper path |
-| wrapper `StopAtLoopEnd` | `Engine + 0x479C0` | lower wrapper path |
+| high `eCVisualAnimation_PS::PlayMotion` | `Engine +0x30860` | type-0 immediate PrimaryFirst acquisition/replacement observation |
+| high `eCVisualAnimation_PS::StopMotion` | `Engine +0x30980` | supporting motion-stop observation; not proven universal end authority |
+| high `StopAtLoopEnd` | `Engine +0x309D0` | schedules loop-end stop; not actual completion event |
+| wrapper `eCWrapper_emfx2Actor::PlayMotion` | `Engine +0x476F0` | lower wrapper path |
+| wrapper `StopMotion` | `Engine +0x47910` | lower wrapper path |
+| wrapper `StopAtLoopEnd` | `Engine +0x479C0` | lower wrapper path |
 
 ### CombatMove / SPU
 
 | Symbol | Module + RVA | Established constraint |
 |---|---:|---|
-| `gCScriptRoutine_PS::AIFullStop` | `Game + 0x164430` | invokes the current persisted instruction callback with `fullStop=true`; generic instruction stop |
-| `gCScriptRoutine_PS::AIStopCombatMove` | `Game + 0x1644D0` | invokes `fullStop=true` only when current callback is exactly `sAICombatMoveInstr` |
-| `sAICombatMoveInstr` | `Game + 0x1696E0` | persisted asynchronous CombatMove instruction; terminal/full-stop handling clears callback |
-| `sAICombatMoveStart` | `Game + 0x16ABB0` | CombatMove start |
-| `sAICombatMoveItlLoop` | `Game + 0x16DD00` | iterative loop; deliberately not production polling authority |
-| `sAICombatMoveStartRecover` | `Game + 0x16E360` | starts/attempts Recover but returns before native weapon cleanup and may be bypassed |
-| `gCScriptProcessingUnit::ProcessScript` | `Game + 0x16F120` | generic higher dispatcher; not combat ownership or a proven universal replacement-time checkpoint |
+| `gCScriptRoutine_PS::AIFullStop` | `Game +0x164430` | invokes the current persisted instruction callback with `fullStop=true`; generic instruction stop |
+| `gCScriptRoutine_PS::AIStopCombatMove` | `Game +0x1644D0` | invokes `fullStop=true` only when current callback is exactly `sAICombatMoveInstr` |
+| `sAICombatMoveInstr` | `Game +0x1696E0` | persisted asynchronous CombatMove instruction; terminal/full-stop handling clears callback |
+| `sAICombatMoveStart` | `Game +0x16ABB0` | CombatMove start |
+| `sAICombatMoveItlLoop` | `Game +0x16DD00` | iterative loop; deliberately not production polling authority |
+| `sAICombatMoveStartRecover` | `Game +0x16E360` | starts/attempts Recover but returns before native weapon cleanup and may be bypassed |
+| `gCScriptProcessingUnit::ProcessScript` | `Game +0x16F120` | generic higher dispatcher; not combat ownership or a proven universal replacement-time checkpoint |
 
 ### Script dispatch / lifecycle control
 
 | Symbol / path | Module + RVA | Established constraint |
 |---|---:|---|
-| `gCScriptAdmin::RunScriptState` | `Game + 0x1603D0` | interruption-side generic script runner |
-| `gCScriptAdmin::RunScriptFunction` | `Game + 0x1604E0` | generic ScriptFunction runner; receives explicit SPU; candidate transient C1-O2 context only |
-| registered ScriptFunction indirect call | `Game + 0x1605E9` | exact tested call inside `RunScriptFunction` |
-| post-registered-call point | `Game + 0x1605EB` | first tested instruction after registered ScriptFunction returns |
-| completed-frame removal helper | `Game + 0x1627B0` | used by tested true-result path to remove completed top runtime frame |
-| tested legitimate-reaction `PSRoutine::FullStop()` | `Script_Game + 0x2D0F2` | B7b exact Normal/Quick reaction FullStop call; return `+0x2D0F8`; control remains in reaction path and later cleanup can run |
-| additional tested legitimate-reaction AIFullStop caller | `Script_Game + 0x2B8CB` | observed by B9; confirms one reaction caller RVA is not universal |
-| player Use2 helper | `Script_Game + 0x62FF0` | higher player-control helper reached by the B7 bad full-Whirl path; common caller returns at `+0x61866` |
-| tested bad full-Whirl `PSRoutine::FullStop()` | `Script_Game + 0x633F1` | B7b exact held-Use2 bad caller; immediate return `+0x633F7`; branch is reached after press duration exceeds 2500 ms in tested path |
-| tested bad full-Whirl immediate `PSRoutine::SetState(...)` | `Script_Game + 0x63409` | follows the bad FullStop; SDK documents SetState as clearing SPU state stack and resetting state-position/break-block bookkeeping |
-| `gCScriptRoutine_PS::AISetState` | `Game + 0x164320` | generic destructive state replacement used by C1 shadow finalization only when exact owned obligation is already known |
-| older static reaction-region FullStop site | `Script_Game + 0x2246F` | broad reaction-control static site; not the exact B7b Normal/Quick caller |
-| older static reaction-region FullStop site | `Script_Game + 0x23002` | broad reaction-control static site; not the exact B7b Normal/Quick caller |
+| `gCScriptAdmin::RunScriptState` | `Game +0x1603D0` | interruption-side generic script runner |
+| `gCScriptAdmin::RunScriptFunction` | `Game +0x1604E0` | generic ScriptFunction runner; explicit-SPU member hook is tested as the P1/P2 transient pre-Combat bridge context |
+| registered ScriptFunction indirect call | `Game +0x1605E9` | exact tested call inside `RunScriptFunction` |
+| post-registered-call point | `Game +0x1605EB` | first tested instruction after registered ScriptFunction returns |
+| completed-frame removal helper | `Game +0x1627B0` | used by tested true-result path to remove completed top runtime frame |
+| tested legitimate-reaction `PSRoutine::FullStop()` | `Script_Game +0x2D0F2` | B7b exact Normal/Quick reaction FullStop call; return `+0x2D0F8`; control remains in reaction path and later cleanup can run |
+| additional tested legitimate-reaction AIFullStop caller | `Script_Game +0x2B8CB` | observed by B9; confirms one reaction caller RVA is not universal |
+| player Use2 helper | `Script_Game +0x62FF0` | higher player-control helper reached by the B7 bad full-Whirl path; common caller returns at `+0x61866` |
+| tested bad full-Whirl `PSRoutine::FullStop()` | `Script_Game +0x633F1` | B7b exact held-Use2 bad caller; immediate return `+0x633F7`; branch is reached after press duration exceeds 2500 ms in tested path |
+| tested bad full-Whirl immediate `PSRoutine::SetState(...)` | `Script_Game +0x63409` | follows the bad FullStop; SDK documents SetState as clearing SPU state stack and resetting state-position/break-block bookkeeping |
+| `gCScriptRoutine_PS::AISetState` | `Game +0x164320` | generic destructive state replacement; C1 captures exact generation before original and finalizes only after native AISetState returns |
+| older static reaction-region FullStop site | `Script_Game +0x2246F` | broad reaction-control static site; not the exact B7b Normal/Quick caller |
+| older static reaction-region FullStop site | `Script_Game +0x23002` | broad reaction-control static site; not the exact B7b Normal/Quick caller |
 
 Tested bad held-Use2 causal class:
 
@@ -308,27 +308,27 @@ attack ScriptFunction suspended at CombatMove break block
 → ordinary attack cleanup continuation cannot resume
 ```
 
-B8 generalized this tested failure class to Quick configurations beyond full Whirl; B9 established that clean/reaction controls perform cleanup before the relevant destructive finalization. Do **not** hook the held-Use2 path as production repair.
+B8 generalized this tested failure class to Quick configurations beyond full Whirl; B9 established that clean/reaction controls perform cleanup before the relevant destructive finalization. Do **not** hook the held-Use2 path as collision repair.
 
-Current C1-O2 route instead follows the outer ScriptFunction lifetime generically: exact SPU + live ScriptFunction + non-null arguments + same script name as a temporary correlator, while C1's monotonic generation remains durable identity.
+Current C1-O2/P2 route follows the outer ScriptFunction lifetime generically: exact SPU + live ScriptFunction + non-null arguments + same script name as a temporary correlator, while C1's monotonic generation remains durable identity.
 
 ### Frame effects / collision
 
 | Symbol / purpose | Module + RVA | Current meaning |
 |---|---:|---|
-| `eCVisualAnimation_PS::UpdateFrameEffects` | `Game + 0x2EFF0` | frame-effect update path |
-| `GetFrameEffectList` | `Game + 0x12E460` | exact motion frame-effect list |
-| `eSMotionDesc::GetMotion` | `Game + 0x2A0C0 / 0x2A0B0` | tested motion access reference |
-| `gCEffectSystem::StartEffect` | `Game + 0x60850` | global authored effect dispatch used by marker prototype |
-| `eCEntity::SetCollisionGroup` | `Game + 0x225660` | current research observation point for offensive activation/cleanup requests |
+| `eCVisualAnimation_PS::UpdateFrameEffects` | `Game +0x2EFF0` | frame-effect update path |
+| `GetFrameEffectList` | `Game +0x12E460` | exact motion frame-effect list |
+| `eSMotionDesc::GetMotion` | `Game +0x2A0C0 / +0x2A0B0` | tested motion access reference |
+| `gCEffectSystem::StartEffect` | `Game +0x60850` | global authored effect dispatch used by marker prototype |
+| `eCEntity::SetCollisionGroup` | `Engine +0x225660` | tested shared observation/intervention path for offensive activation, native cleanup, marker retirement and C1-R1 repair re-entry |
 
 ### Script action helpers
 
 | Symbol | Module + RVA |
 |---|---:|
-| `AddAction` | `Script_Game + 0x7940` |
-| `PopCurrentActionIfPlayer` | `Script_Game + 0x79A0` |
-| `ClearNextActionsIfPlayer` | `Script_Game + 0x7A00` |
+| `AddAction` | `Script_Game +0x7940` |
+| `PopCurrentActionIfPlayer` | `Script_Game +0x79A0` |
+| `ClearNextActionsIfPlayer` | `Script_Game +0x7A00` |
 
 For exact native cleanup return RVAs by action and the tested interruption route, use `COLLISION_CLEANUP_CALLSITE_MAP.md` rather than duplicating that table here.
 
@@ -361,11 +361,28 @@ inspect authoritative context
 
 If used as pre/post observation, call the original exactly once unless the contract explicitly requires otherwise.
 
-### ThisCall function observation
+### Recursion-safe explicit-this member hook
 
-B7b successfully used an `mCFunctionHook` with `mEHookType_ThisCall` on `gCScriptRoutine_PS::AIFullStop()`, retrieving native `this` through `GetSelf()` and forwarding the original exactly once. Use this only when the official/member signature and hook convention are established.
+The current proven member-hook transport for the lifecycle substrate is the explicit per-invocation `this` pattern:
 
-For C1-O2, the tested `RunScriptFunction` member signature and target RVA are established, but the new wrapper is still part of the frozen bounded implementation task. Do not record it as a proven installed hook until source implementation and independent review pass.
+```text
+wrapper receives native this as its first explicit argument
+→ hook is prepared with .ThisCall()
+→ original is called with that same explicit this exactly once
+```
+
+This transport has runtime validation for the current responsibilities on:
+
+```text
+gCScriptAdmin::RunScriptFunction  Game +0x1604E0
+gCScriptRoutine_PS::AISetState    Game +0x164320
+gCScriptRoutine_PS::AIFullStop    Game +0x164430
+eCEntity::SetCollisionGroup       Engine +0x225660
+```
+
+The older shared `GetSelf()` ThisCall mechanism was useful during earlier probes but was replaced on these paths because nested/recursive entry can overwrite shared hook-self state. Do not regress these tested paths back to shared `GetSelf()` transport merely during structural refactoring.
+
+Evidence route: EV-199–EV-205 plus EV-206/R1 validation.
 
 ### `PREPEND_BREAK_BLOCK` state insertion
 
@@ -377,7 +394,9 @@ Prefer a named native callback when it already provides correct attack-family se
 
 ### Shared hook owner + factual dispatch
 
-When diagnostics and behavior need the same low-level hook, install it once and dispatch factual context to the two responsibilities. Do not create competing DLL/module owners for convenience.
+When diagnostics and behavior need the same low-level hook, install it once and dispatch factual context to the independent responsibilities. Do not create competing DLL/module owners for convenience.
+
+For the planned modular DLL, preserve one physical hook owner and keep feature decisions outside the transport wrapper where practical. Refactoring must preserve tested pre/original/post ordering and re-entrant SetCollisionGroup behavior, not merely the target address.
 
 ---
 
@@ -389,7 +408,7 @@ Before release compatibility with NewBalance / `Script_AttackCollision`, inspect
 
 Evidence routing: EV-035, EV-148–EV-150.
 
-C1-O2 has an explicit stop condition: if the current prototype already owns `Game +0x1604E0` through another hook and straightforward single-owner integration is not possible, stop rather than chaining blindly.
+The same rule applies inside G3AnimationBehaviors itself: if several feature modules need the same Gothic function, one engine-bridge owner should hook it once and dispatch the factual event/context. Do not create internal same-function hook competition.
 
 ---
 
@@ -422,7 +441,7 @@ Jackydima's Whirl path uses `PropertyResetOnUntouch = GETrue` in its timer-owned
 
 ### CombatMove animation-string substitution
 
-NewBalance uses the call point around `Game + 0x16B065` to substitute animation strings while retaining surrounding CombatMove machinery. This is reusable engine knowledge for later animation-selection research, not part of current collision implementation.
+NewBalance uses the call point around `Game +0x16B065` to substitute animation strings while retaining surrounding CombatMove machinery. This is reusable engine knowledge for later animation-selection research, not part of current collision implementation.
 
 ---
 
@@ -461,7 +480,8 @@ For isolated collision tests, remove conflicting collision DLLs unless compatibi
 | Marker execution lifetime / future bookkeeping simplification | `EVIDENCE_INDEX.md` → Marker execution lifetime / bookkeeping, then `COLLISION_LIFECYCLE_PLAN.md` |
 | CombatMove persisted instruction / FullStop / SetState / state-stack abandonment | EV-182–EV-191 + this guide §4–§5 |
 | Outer ScriptFunction lifetime / `RunScriptFunction` persistence | EV-195–EV-196 + this guide §4–§5 |
-| C1-O2 `RunScriptFunction` target/context constraints | `SESSION_ENTRYPOINT.md` + active `BETWEEN_CHATS.md` + this guide §4–§8 |
+| Proven P1/P2 `RunScriptFunction` bridge / explicit-this transport | EV-199–EV-205 + this guide §§4–8 |
+| C1-R1 repair / SetCollisionGroup transport | EV-203, EV-206–EV-207 + this guide §§5–8 |
 | GetUp pre-CombatMove boundary | EV-194–EV-196 + this guide §5 |
 | Exact tested bad full-Whirl caller | EV-187/EV-189 + this guide §5 |
 | Tested legitimate-reaction FullStop callers | EV-188/EV-191 + this guide §5 |
