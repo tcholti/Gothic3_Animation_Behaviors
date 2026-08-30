@@ -1,390 +1,445 @@
 # Between Chats
 
-**Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
+**Purpose:** Exact short-lived continuation bridge. Replace rather than accumulate chronology.
 
-## Current bridge — post-EngineBridge runtime baseline CLOSED/PASS; frozen rewrite NEXT
+**Updated:** 2026-08-31
 
-C1-R1 controlled validation remains closed through **EV-206–EV-207**.
+## Current bridge — Gate 2 CORE diagnostic sufficiency OPEN
 
-The following structural preparation is closed:
-
-```text
-CollisionSources extraction
-EngineBridge extraction
-first per-CPP review
-second-pass architecture synthesis
-unchanged post-EngineBridge runtime baseline
-```
-
-Frozen bounded rewrite contract:
+Repository:
 
 ```text
-docs/SECOND_PASS_REWRITE_CONTRACT.md
+tcholti/Gothic3_Animation_Behaviors
 ```
 
-Contract creation commit:
+Branch:
 
 ```text
-50f0874fb51853eee910ef63c45914bc935fca88
+docs/collision-source-evidence
 ```
 
-**The pre-rewrite runtime gate has passed. The next technical responsibility is implementation of that frozen contract only.**
+Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its Fresh Normal Chat Bootstrap, then read this file.
+
+Do not reconstruct the project from old chat history and do not scan the whole repository.
 
 ---
 
-## Mandatory project-wide release rule
+## Closed foundations — do not reopen
 
-Canonical authority:
+### C1-R1 lifecycle safety
 
-```text
-docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
-```
+Closed through EV-206–EV-207.
 
-> **The public Gothic 3 behavior DLL contains behavior only. Research diagnostics are a separate build product and are not compiled into the release binary.**
-
-This applies to collision, lifecycle repair, Raise, speed, AttackContinuationProtection, target acquisition, climbing and all future Gothic 3 behavior modules.
-
-Long-term model:
+Invariant:
 
 ```text
-shared behavior architecture
-→ diagnostics-free RELEASE build
-→ separate instrumented DIAGNOSTIC twin used in place of release during controlled testing
-```
+successful exact-source Item_Attack request
+→ exact source obligation
 
-Never plan to deploy release and diagnostic twins together unless a future architecture explicitly proves safe coexistence.
+successful transition away from Item_Attack
+→ obligation fulfilled
 
----
-
-## Closed structural work
-
-### CollisionSources extraction
-
-```text
-43fa1e719b5af716c54e17430c101251bbc36ff8
-```
-
-### EngineBridge extraction
-
-Frozen base:
-
-```text
-d0132b69df3add63641bc5d5fd5779f1037eaa99
-```
-
-Implementation head before later documentation/evidence commits:
-
-```text
-32ff447c9a678ba18c8234310564ff2475ba7dfb
-```
-
-Local source/build validation:
-
-```text
-git diff --check = PASS
-CMake Release build Script_FrameCollisionTest = PASS
-```
-
-### Unchanged post-EngineBridge runtime baseline — PASS/CLOSED
-
-Primary raw evidence:
-
-```text
-research/raw/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline.log
-commit 5a33e5c134b027c440e40e6155cdf233aea049eb
-SHA256 F42DCC7EFE7E178659861BD9E07E5631EB66E7C0DB1858D847C11656272E9783
-```
-
-Deterministic retrieval package:
-
-```text
-research/derived/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline_large_log/
-commit fb2644d2952923f5a9a3d41ba881a342ef0d8ff2
-```
-
-The compact run preserved the already-proven behavior across ordinary native cleanup, an exact positive C1-R1 physical repair sentinel, marked Staff RIGHT/OFF/RIGHT behavior including occurrence/duplicate protection, Dual source specificity, and clean negative behavior. The run omitted the intended focused Fist exercise, so Fist was closed separately rather than rerunning/replacing the primary artifact.
-
-Supplemental Fist negative closure:
-
-```text
-research/raw/2026-08-30_post_enginebridge_fist_negative_closure.log
-commit 269faad334ef918ca16f6401751d47693e48520f
-```
-
-Focused Fist result:
-
-```text
-current motion = Hero_Stand_None_Fist_*_Attack_Hit_*
-resolved source = Fist
-source collision group before = 0
-Gothic requested Item_Attack(7)
-actual resulting group after request = 0
-C1 successful-offense predicate = false
-OffensiveRequestCount = 0
-OutstandingBeforeFinalization = 0
-RepairAttempted = 0
-PhysicalCollisionChanged = 0
-finalization = NO_OP_NO_OUTSTANDING
-```
-
-Meaning:
-
-> **Moving physical hook ownership into EngineBridge did not regress the proven collision lifecycle, marker behavior, exact source ownership, native cleanup, C1-R1 fail-safe repair, or current Fist negative behavior.**
-
-The unchanged post-EngineBridge baseline is therefore **CLOSED/PASS**. Do not rerun it by default.
-
----
-
-## Proven behavior that the rewrite must preserve exactly
-
-### C1 lifecycle / repair
-
-```text
-real attack execution
-→ monotonic C1 generation
-→ successful exact-source Item_Attack request creates/refreshes obligation
-→ successful later transition away from Item_Attack fulfills obligation
-→ destructive post-native-AISetState finalization checks only remaining obligations
-```
-
-Terminal repair remains exactly:
-
-```text
-exact outstanding source
+post-native-AISetState finalization
++ exact obligation still outstanding
 + exact current equipped RIGHT/LEFT identity establishes liveness
 + actual group == Item_Attack(7)
 → exactly one SetCollisionGroup(Item_Equipped)
-→ no ClearTriggeredList()
-→ verify exact resulting group Item_Equipped(5)
+→ no ClearTriggeredList
+→ verify exact group 5
 ```
 
-Native cleanup retains first opportunity. C1's monotonic generation remains durable identity. The proven P2 live ScriptFunction frame is temporary pre-Combat correlation only.
+Native cleanup always gets first opportunity.
 
-Two qualifications remain explicit but do not reopen R1:
+Do not add action/input/state-specific cleanup branches or redesign C1.
 
-```text
-1. No positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED branch.
-2. No positive NPC destructive-abandonment / C1 physical-repair case is claimed.
-```
-
-### Marker behavior
+### Marker invariants
 
 Preserve:
 
 ```text
-exact current-motion marker ownership
-current Normal / Quick / full-Whirl support
+exact current-motion ownership
+Normal / Quick / full-Whirl predicates
 RIGHT / LEFT / BOTH / OFF exact-set semantics
 authored occurrence budgets
-same-update duplicate/replay protection
+same-update duplicate/replay suppression
 repeated-contact ClearTriggeredList rearm
 Quick/full-Whirl StatePosition suppression
 marker-owned source/window retirement
-OFF as intra-Hit gap, not terminal cleanup
-late/dead execution rejection
-current Fist research behavior
+OFF as intra-Hit gap
+late/dead-execution rejection
+current research Fist semantics
 unmarked/unsupported native fallback
 ```
 
-Do not simplify marker bookkeeping during the frozen rewrite. EV-131–EV-133 and EV-167 remain the key evidence that occurrence/execution retirement has independent proven meaning.
+Do not simplify marker bookkeeping during the current responsibility.
 
 ---
 
-## Frozen second-pass conclusions
+## Second-pass rewrite — IMPLEMENTED / GATE 1 PASS
 
-### 1. `HookBridgeRuntime` is behavior infrastructure
-
-The marker duplicate predicate uses its elapsed-millisecond clock as part of acceptance.
-
-Frozen rewrite rename:
-
-```text
-HookBridgeRuntime.h/.cpp
-→ RuntimeClock.h/.cpp
-```
-
-Do not redesign the proven 5 ms duplicate rule in the structural rewrite.
-
-### 2. Marker module boundary
-
-Frozen rewrite rename after operation extraction:
-
-```text
-CollisionControl.h/.cpp
-→ FrameCollisionMarkers.h/.cpp
-```
-
-Marker-specific callback ownership/suppression policy moves out of EngineBridge into the marker module.
-
-### 3. New physical operation seam
-
-Create:
-
-```text
-CollisionSourceOperations.h/.cpp
-```
-
-It performs already-decided source-specific physical operations while `CollisionSources` remains factual query/resolution only.
-
-Preserve current weapon and current research Fist operations exactly; do not generalize Fist.
-
-### 4. Marker-cache correction
-
-Do not permanently cache a negative marker decision when the exact current motion or valid frame-effect scan was not resolved.
-
-Cache only factual resolved marker/no-marker decisions.
-
-### 5. Lifecycle cleanup
-
-Remove the rejected dormant eager ScriptFunction dispatch machinery:
-
-```text
-ScriptFunctionDispatchToken
-BeginScriptFunctionDispatch / EndScriptFunctionDispatch
-g_ScriptFunctionDispatchStack
-InvalidateScriptFunctionDispatchAfterAISetState
-its now-no-op EngineBridge call
-unused <vector> afterward
-```
-
-Do **not** remove the live P2 correlator structures/functions with similar names.
-
-`CollisionLifecycleGuard` becomes diagnostics-independent and returns compact factual results. Keep the fixed max-two-source finalizer classify/repair phase before any diagnostic formatting.
-
-### 6. Diagnostics split
-
-Diagnostic product:
-
-```text
-CollisionDiagnostics
-= compact default proof evidence
-
-CollisionDiagnosticsDeep
-= opt-in historical/deep probes
-```
-
-Normal diagnostic output removes stale B1–B9/O1/P1 chronology and repetitive proof-era constants.
-
-### 7. Hook surface
-
-Behavior-required current collision hooks:
-
-```text
-OnAI_Attack
-OnAI_QuickAttack
-OnAI_WhirlAttack
-StartEffect
-SetCollisionGroup
-AICombatMoveInstr
-AISetState
-RunScriptFunction
-```
-
-Current diagnostic-only candidates:
-
-```text
-PlayMotion
-StopMotion
-AICombatMoveStartRecover
-OnTick
-AIFullStop
-```
-
-`AIFullStop` remains a proven explicit-this transport point and may become behavior-required later for `AttackContinuationProtection`, but current collision behavior does not require it.
-
-### 8. Mechanical diagnostics-free prototype build
-
-Frozen rewrite adds a behavior-only prototype target, provisionally:
-
-```text
-Script_FrameCollisionBehaviorTest
-```
-
-Existing `Script_FrameCollisionTest` remains the diagnostic research target unless a concrete build-system contradiction requires otherwise.
-
-The behavior-only target must not compile/link diagnostic source/state/hooks.
-
-Never deploy both targets together into Gothic 3's live `scripts` directory.
-
----
-
-## Current exact gate — implement frozen second-pass rewrite
-
-Implementation authority:
+Frozen contract:
 
 ```text
 docs/SECOND_PASS_REWRITE_CONTRACT.md
 ```
 
-If Work/High is used:
+Implementation commit:
 
 ```text
-Normal Chat owns the architecture and frozen contract.
-Work executes only that contract.
-Work must not redesign marker/lifecycle/source semantics or expand features.
+4eeb701725e8b77d8850116d408155653ff4ad36
 ```
 
-Required post-rewrite source/build gate:
+Implemented modules:
 
 ```text
-git diff --check
-bounded contract audit
-build Script_FrameCollisionTest
-build Script_FrameCollisionBehaviorTest
-verify behavior-only target excludes diagnostic sources/hooks
+EngineBridge
+FrameCollisionMarkers
+CollisionSources
+CollisionSourceOperations
+CollisionLifecycleGuard
+RuntimeClock
+CollisionDiagnostics          diagnostic target only
+CollisionDiagnosticsDeep      diagnostic/deep capability only
 ```
 
-If a concrete source/API/calling-convention contradiction appears during implementation, STOP and report it rather than improvising.
+Build products:
+
+```text
+Script_FrameCollisionTest
+= CORE diagnostic research target
+
+Script_FrameCollisionBehaviorTest
+= behavior-only prototype target
+= no diagnostic sources/defines/hooks
+```
+
+Gate 1:
+
+```text
+source audit PASS
+git diff --check PASS
+diagnostic build PASS
+behavior-only build PASS
+behavior-only mechanical diagnostic exclusion PASS
+```
+
+Validated deployed diagnostic DLL before Gate 2:
+
+```text
+SHA256 25980C09DC0AB3ECAF69397F0AE3CA8D5566FF816B1210F44182D4508B292109
+Length 417792
+```
+
+Startup/load-unload sentinel:
+
+```text
+research/raw/2026-08-30_second_pass_core_diagnostic_startup_load_unload.log
+commit 6bf59e6c08aebf6097566192b239092f0f734ea5
+```
+
+Contains:
+
+```text
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+Hooks installed.
+Script_FrameCollisionTest unloading cleanly.
+```
+
+Gate 1 / startup = CLOSED/PASS. Evidence EV-208.
 
 ---
 
-## Explicit rewrite non-goals
+## Gate 2 progress — already closed in CORE diagnostics
 
-Do not combine the frozen rewrite with:
+Mixed runtime artifact:
 
 ```text
-C1-driven marker simplification
-new attack-family marker support
-new marker vocabulary
-new Fist semantics / generalized Fist support
-monster/body adapters
-AttackContinuationProtection
-Raise
-speed
-config redesign
-New Balance / Jackydima compatibility fixes
-production DLL migration
-target acquisition
-climbing
-unrelated hook transport rewrites
+research/raw/2026-08-30_second_pass_core_mixed_melee_bad_skip_attempts.log
+commit a7995225310789c78a85cbce9940c86d41de74b0
 ```
+
+The User performed 2H Normal, repeated 2H Whirl bad-skip attempts, repeated 1H Quick bad-skip attempts and a couple of 1H Normal attacks. Manual timing was intentionally not treated as authoritative; the log classified what actually happened.
+
+The run contains eight exact positive repairs:
+
+```text
+2H Whirl generations: 5, 9, 10, 13
+1H Quick generations: 14, 15, 17, 22
+```
+
+Each positive case established:
+
+```text
+OutstandingBeforeFinalization: 1
+CleanupObservedBeforeFinalization: 0
+ActualGroupBeforeRepair: 7
+RepairAttempted: 1
+RepairRequestedGroup: 5
+ActualGroupAfterRepair: 5
+PhysicalCollisionChanged: 1
+Outcome: REPAIRED_TO_ITEM_EQUIPPED
+```
+
+The same run also contains ordinary native `7 -> 5` cleanup with `NO_OP_NO_OUTSTANDING`, marked Normal/Quick/Whirl ownership, Whirl OFF/occurrence/dead-marker handling, no searched invariant/divergence/unresolved/failure signal, and clean unload.
+
+Therefore Gate 2 currently has:
+
+```text
+PASS  known positive stale-source repair
+PASS  ordinary native cleanup no-op
+PASS  marked-source regression
+PASS  clean shutdown
+
+OPEN  legitimate reaction cleanup no-op
+OPEN  Dual source independence
+OPEN  Fist/unarmed negative
+OPEN  crossbow negative
+```
+
+Evidence EV-209.
+
+Do not rerun the already-PASS sentinels unless a later source change actually touches their behavior/evidence.
+
+---
+
+## Current blocker — CORE reaction evidence is ambiguous
+
+Focused reaction artifact:
+
+```text
+research/raw/2026-08-30_second_pass_core_legitimate_reaction_cleanup_noop.log
+commit 86d41d4772ebfc320d67ca063e51b28523fcfb9e
+```
+
+User observation:
+
+```text
+visually things looked correct
+```
+
+CORE log:
+
+```text
+healthy exact source 7 -> 5 cleanup exists
+finalization NO_OP_NO_OUTSTANDING
+no repair indicated
+```
+
+But current compact `ENGINE SetCollisionGroup` records only:
+
+```text
+Source
+SourceAddress
+SlotAssociation
+RequestedGroup
+BeforeGroup
+AfterGroup
+RetiredMarkerExecutionCount
+```
+
+It no longer records player action/phase/state/motion around the transition. Therefore Normal Chat cannot prove whether a specific cleanup was:
+
+```text
+ordinary Hit -> Recover
+or
+legitimate damage-reaction cleanup
+```
+
+Gate-2 rule:
+
+> If compact diagnostics make a required fact ambiguous, the diagnostic reduction is too aggressive.
+
+Classification:
+
+```text
+CORE DIAGNOSTIC SUFFICIENCY GAP
+NOT a demonstrated collision-behavior failure
+```
+
+Stop the remaining Gate-2 runtime matrix until this is corrected.
+
+---
+
+## FROZEN NEXT RESPONSIBILITY — diagnostics-only one-file correction
+
+Immediate target:
+
+```text
+prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
+```
+
+Function:
+
+```text
+CollisionDiagnostics::LogSetCollisionGroup
+```
+
+Restore these current-player context fields on relevant compact `ENGINE SetCollisionGroup` records:
+
+```text
+PlayerAction
+PlayerAniPhase
+PlayerStateTime
+PlayerCurrentMovementAni
+```
+
+Use the already-established `Entity::GetPlayer`, routine/action, ani-phase, state-time and current-movement-animation APIs already used in the diagnostic source.
+
+This is a compact logger correction only.
+
+Do NOT:
+
+```text
+restore deep stack/callsite probes
+add hooks
+change EngineBridge hook targets/calling conventions/order
+change CollisionLifecycleGuard
+change C1 generation/obligation/finalization/repair semantics
+change FrameCollisionMarkers or marker bookkeeping
+change CollisionSources or CollisionSourceOperations
+change RuntimeClock or duplicate timing
+change CMake product separation
+change Script_FrameCollisionBehaviorTest
+turn deep diagnostics on by default
+expand attack families
+change/generalize Fist semantics
+implement AttackContinuationProtection
+change Raise/speed/config
+start New Balance/Jackydima compatibility work
+start production migration
+touch target acquisition/climbing
+```
+
+If source inspection exposes a concrete API/calling-convention contradiction to this exact responsibility, STOP and report it rather than improvising.
+
+---
+
+## Validation after the one-file correction
+
+Do one stage at a time.
+
+Source stage:
+
+```text
+bounded diff audit
+git diff --check for editable source
+confirm only intended compact diagnostics changed
+confirm behavior-only target remains mechanically unaffected
+```
+
+Build stage:
+
+```text
+build Script_FrameCollisionTest Release
+```
+
+Because the intended file is diagnostic-only and is excluded from `Script_FrameCollisionBehaviorTest`, the behavior-only build is not automatically required again unless the actual diff crosses that boundary.
+
+Deployment stage:
+
+```text
+deploy Script_FrameCollisionTest.dll only
+verify exactly one intended live collision DLL
+verify built/live SHA equality
+```
+
+Startup stage:
+
+```text
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+expected hook-install banner
+```
+
+Runtime stage:
+
+```text
+rerun only focused legitimate-reaction cleanup/no-op sentinel
+```
+
+Freeze a new exact raw filename in the same message that requests the rerun. The prior reaction raw remains canonical and unchanged.
+
+Expected proof after correction:
+
+```text
+attack collision armed
+→ exact source Item_Attack(7)
+→ cleanup 7 -> 5 occurs while compact action/phase/state/motion establishes reaction context
+→ C1 cleanup fulfilled
+→ finalization NO_OP_NO_OUTSTANDING
+→ RepairAttempted: 0
+→ PhysicalCollisionChanged: 0
+```
+
+If proved, mark reaction sentinel PASS and continue:
+
+```text
+Dual source independence
+Fist/unarmed negative
+crossbow negative
+```
+
+If still ambiguous, stop and reassess the smallest compact evidence addition before enabling deep diagnostics.
+
+---
+
+## Local / branch handoff state
+
+The User's last local evidence push before this documentation close was:
+
+```text
+86d41d4772ebfc320d67ca063e51b28523fcfb9e
+```
+
+After that push, Normal Chat performed documentation-only remote maintenance. Therefore at the start of the next local writer window the User must synchronize from the latest remote `docs/collision-source-evidence` before editing/building.
+
+Preserve the existing unrelated untracked local file exactly in place:
+
+```text
+research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
+```
+
+It is legitimate derived research context from the earlier AISetState stability work. Do not delete, move, stage or commit it as part of the Gate-2 logger correction.
+
+One branch writer window at a time per POP-01.
+
+---
+
+## Authorities for the next Chat
+
+```text
+SESSION_ENTRYPOINT.md                current gate/front door
+BETWEEN_CHATS.md                     this exact continuation
+COLLISION_TEST_PLAN.md               Gate 2 validation state
+EVIDENCE_LEDGER_STEP_D.md            EV-206–EV-209
+SECOND_PASS_REWRITE_CONTRACT.md      frozen rewrite/invariants
+GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md release-purity rule
+PROJECT_OPERATING_PROCEDURES.md      local build/deploy/test/raw workflow
+WORK_IMPLEMENTATION_PROTOCOL.md      bounded source implementation if Work is used
+```
+
+Do not load other documents unless a concrete question requires them.
 
 ---
 
 ## Forward order
 
 ```text
-implement SECOND_PASS_REWRITE_CONTRACT — NEXT
-→ diagnostic + behavior-only build/source audit
-→ compact diagnostic sufficiency regression
+CORE SetCollisionGroup context restoration — NEXT
+→ focused reaction CORE rerun
+→ finish Gate 2 Dual/Fist/crossbow
+→ Gate 2 CLOSED/PASS
 → behavior-only smoke/equivalence
-→ dedicated C1-vs-marker bookkeeping simplification audit
-→ equipped-melee marker expansion one mechanism at a time
+→ dedicated marker-bookkeeping simplification audit
+→ equipped-melee marker expansion
 → separate Fist source-adapter investigation
-→ full marker + lifecycle regression
+→ full marker/lifecycle regression
 → AttackContinuationProtection
-→ guard + markers + continuation regression
-→ mature research New Balance/Jackydima compatibility gate
-→ retain mature modular foundation and migrate/redesign Raise + speed + config
-→ later independent systems such as target acquisition/climbing
+→ mature research compatibility gate
+→ migrate/redesign Raise + speed + config into mature modular foundation
+→ later target acquisition/climbing
 → final diagnostics-free Script_G3AnimationBehaviors
-→ final New Balance/Jackydima regression
-→ retain separate diagnostic twin for future controlled reproduction
+→ final compatibility regression
+→ retain diagnostic twin
 ```
-
-Architecture/rewrite authority: `SECOND_PASS_REWRITE_CONTRACT.md`.  
-Release/build separation authority: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
-Lifecycle authority: `COLLISION_LIFECYCLE_PLAN.md`.  
-Diagnostic authority: `COLLISION_LOGGER_PLAN.md`.  
-Validation authority: `COLLISION_TEST_PLAN.md`.  
-Future held-Use2 prevention: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
