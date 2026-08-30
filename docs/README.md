@@ -50,7 +50,7 @@ Do **not** create a parallel `PROJECT_MANIFEST.md` merely to conform to the newe
 
 `PROJECT_PIPELINE.md` was added because a genuinely distinct responsibility was missing: project identity conventions such as test/gate numbering, EV/POP numbering, log/artifact naming, prototype/build identity and validation-stage meanings were scattered across procedures and history, allowing small arbitrary changes across Chat migrations.
 
-When this project reveals a collaboration mechanism that may generalize, validate it locally first, compare it with CAM `current`, and promote the lesson upward only when transfer beyond Gothic 3 is supported. Conversely, when CAM `current` gains a new reusable mechanism, compare it against this project's actual needs and import only what fills a real gap rather than reshaping the project for template conformity.
+When this project reveals a collaboration mechanism that may generalize, validate and apply it locally first, compare it with CAM `current` when useful, and preserve it as a candidate reusable lesson when warranted. Actual edits or promotion into the CAM repository are a separate dedicated CAM-evolution responsibility, not part of ordinary Gothic 3 maintenance. Conversely, when CAM `current` gains a new reusable mechanism, compare it against this project's actual needs and import only what fills a real gap rather than reshaping the project for template conformity.
 
 ---
 
@@ -163,7 +163,7 @@ Read only when continuing that exact transition. Replace rather than accumulate.
 
 #### `COLLABORATION_RULES.md`
 
-Gothic 3 project-specific collaboration delta.
+Gothic 3 project-specific collaboration delta, including the current User/Normal Chat/Work division of labor and its intent.
 
 General collaboration authority and the reusable candidate baseline live in the CAM repository; do not reload them for ordinary Gothic 3 engineering unless the collaboration/process itself is being discussed or compared.
 
@@ -301,6 +301,7 @@ Archived documents preserve history/rationale; they never override current autho
 | What are we doing now? | `SESSION_ENTRYPOINT.md` | named current architecture/source |
 | What causal model constrains the current collision problem? | `SESSION_ENTRYPOINT.md` active-problem route | `EVIDENCE_INDEX.md` reconstruction route → exact EV entries |
 | What did the last Chat/Work handoff do? | `BETWEEN_CHATS.md` | exact commit/diff |
+| Who should own this responsibility / should this go to Work? | `COLLABORATION_RULES.md` §6 | `WORK_IMPLEMENTATION_PROTOCOL.md` only if bounded implementation is selected |
 | What naming/numbering/version/test/artifact convention should I use? | `PROJECT_PIPELINE.md` relevant section | owning procedure/current plan only for task semantics |
 | How do I execute the recurring Git/build/deploy/test/evidence operation? | `PROJECT_OPERATING_PROCEDURES.md` | `PROJECT_PIPELINE.md` only if a convention itself is relevant |
 | How should bounded Work execute? | `WORK_IMPLEMENTATION_PROTOCOL.md` | only task-named source/API evidence |
