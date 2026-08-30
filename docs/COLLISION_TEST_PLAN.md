@@ -71,7 +71,7 @@ Evidence: EV-195–EV-196.
 
 ### C1 directly relevant hook/finalizer substrate — passed for tested stability
 
-The prerequisite isolation sequence is now closed enough to reassess C1-O2:
+The prerequisite isolation sequence is closed enough to resume C1-O2 through a narrower probe:
 
 - EV-199 — direct `RunScriptFunction` capture crash isolated; pure-pass-through baseline retained; AISetState transport then stabilized;
 - EV-200 — AIFullStop explicit-this transport passed extended stability;
@@ -81,7 +81,7 @@ The prerequisite isolation sequence is now closed enough to reassess C1-O2:
 Current tested substrate:
 
 ```text
-RunScriptFunction = recursion-safe pure pass-through; capture still suspended
+RunScriptFunction = recursion-safe explicit-this pure pass-through; stable transport baseline
 AISetState        = explicit-this PASS for tested extended stability
 AIFullStop        = explicit-this PASS for tested extended stability
 SetCollisionGroup = explicit-this PASS for tested extended stability
@@ -93,43 +93,139 @@ Do not rerun these transport gates by default unless a new contradiction appears
 
 ---
 
-## 3. Current Gate — C1-O2 Reassessment Before Any New Integration
+## 3. Current Gate — C1-O2-P1 Lightweight Dispatch Bridge
 
-C1-O2 remains the higher-level target, but the original direct `RunScriptFunction` dispatch-capture implementation is **not automatically re-authorized**.
+The C1-O2 reassessment selected one bounded diagnostic candidate. The old eager dispatch-capture implementation remains rejected as a template.
 
-The current Normal Chat question is:
+P1 asks:
 
-> **Given the now-stable surrounding hook/finalizer substrate, what is the smallest source-supported and falsifiable way to bind C1's existing monotonic generation to the proven live outer ScriptFunction lifetime early enough to own legitimate pre-CombatMove offense, without making generic `RunScriptFunction` combat authority or repeating the original capture crash?**
+> **Can the already-stable explicit-this RunScriptFunction hook carry a zero-allocation, nesting-safe, stack-local current-dispatch scope across the native call, with no engine/API work before native execution, and expose that scope only when an already-relevant player offensive SetCollisionGroup event occurs?**
 
-The reassessment must first distinguish:
+Exact frozen implementation contract: `BETWEEN_CHATS.md`.
 
-1. what was proven about the outer ScriptFunction lifetime by EV-195–EV-196;
-2. what remains unexplained about the direct capture crash in EV-199;
-3. what later substrate stabilization in EV-200–EV-203 actually removes from consideration;
-4. what it does **not** prove about the old failed capture path.
+### P1 source requirements
 
-No Work task is frozen until Normal Chat selects one bounded candidate with explicit stop conditions.
+The generic unrelated RunScriptFunction path must contain only:
 
-### Reassessment acceptance
+```text
+construct tiny stack-local scope from existing hook arguments
+→ link previous thread-local scope pointer
+→ publish current thread-local scope pointer
+→ call original RunScriptFunction exactly once with unchanged arguments
+→ restore previous thread-local pointer
+→ if this scope observed a relevant offense, emit return diagnostic
+→ return native result unchanged
+```
 
-A candidate may proceed to a frozen diagnostic/implementation task only if source review can state:
+Before the original/native call P1 must perform no state-stack inspection, actor/entity lookup, C1 record lookup, string copy/ownership, vector/container mutation, heap allocation, logging or collision work.
 
-- exact hook/call boundary used;
-- exact transient data captured and its nesting/thread assumptions;
-- why the candidate does not create unconditional combat ownership;
-- how pre-CombatMove offense is tied to the supplied/current actor context;
-- how binding lifetime is retired before raw address reuse;
-- how the candidate preserves current C1 generation/source/cleanup semantics;
-- how a failure will be diagnosed rather than guessed around;
-- that physical repair remains disabled.
+At an already-established successful player equipped-source offensive SetCollisionGroup event only, P1 may:
 
-If these cannot be stated without family/action/input classification, guessed null-argument fallback, polling/world scan, or broader hook conversion, do not freeze implementation.
+- inspect the current scope pointer;
+- compare its SPU and runtime-stack identities with the already-resolved player SPU/state stack;
+- log the live ScriptFunction name/reference identity;
+- log whether a parent scope exists without assigning parent/outer ownership semantics;
+- mark the current matching scope as having observed relevant offense.
+
+When that wrapper later returns, the native boolean result is sufficient to observe suspended/unfinished (`false`) versus completed (`true`) dispatch for this probe. P1 must not recapture the state-stack merely to rediscover that fact.
+
+### P1 explicitly does not implement
+
+- C1 generation acquisition/binding;
+- persistent native-frame ownership across suspension;
+- matching-parent/outer selection;
+- later continuation retirement;
+- altered CombatMove generation semantics;
+- cleanup/finalization changes;
+- physical repair.
+
+`CollisionLifecycleGuard.*` remains unchanged and its older dormant Begin/End dispatch machinery remains disconnected.
 
 ---
 
-## 4. C1-O2 Source Contract — If Integration Resumes
+## 4. C1-O2-P1 Validation Sequence
 
-Any resumed C1-O2 implementation must preserve:
+Do not combine P1 implementation with higher-level C1-O2 ownership validation.
+
+### P1-A — independent source audit
+
+Before build, confirm:
+
+1. no engine/API call occurs before the original RunScriptFunction;
+2. no dynamic allocation/container/string ownership exists on the generic wrapper path;
+3. nesting uses only a stack-local scope and previous TLS pointer;
+4. the native function is called exactly once with unchanged arguments;
+5. TLS is restored before relevant-return diagnostics;
+6. scope/name references do not survive wrapper return;
+7. offense observation is behind the existing exact player-equipped successful-offense gate;
+8. C1 lifecycle behavior and physical collision behavior are unchanged.
+
+Any violation is a source-level P1 failure regardless of runtime behavior.
+
+### P1-B — isolated load/unload
+
+This is the first runtime gate because both old capture builds crashed during ordinary registered-ScriptFunction activity before useful C1-O2 acquisition evidence appeared.
+
+Expected:
+
+```text
+normal DLL load
+→ main-menu script activity
+→ no P1 offense event required
+→ normal unload
+→ no old registered-ScriptFunction crash signature
+```
+
+Normal Chat freezes the exact raw filename only after source review and exact build/live identity verification.
+
+### P1-C — targeted relevant-offense correlation
+
+After isolated stability passes, use a small controlled combat run containing representative ordinary offense and the pre-CombatMove GetUp case when practical.
+
+For relevant offense, compare P1 against the already-existing `OUTER_FRAME OFFENSE` observation.
+
+Expected:
+
+- current scope exists for the relevant synchronous offense;
+- scope SPU matches the player SPU where C1-O2 correlation is expected;
+- runtime-stack identity is consistent with the supplied actor SPU state stack;
+- ScriptFunction name is available while synchronously live;
+- native return is observed without post-call state-stack recapture;
+- parent presence, if any, is reported as evidence rather than silently classified.
+
+If the pre-CombatMove GetUp offense does not occur inside a usable P1 scope, P1 answers the gate negatively; do not invent fallback ownership in the same task.
+
+### P1-D — extended stability only after targeted meaning is confirmed
+
+If P1-B and P1-C are clean, perform broader combat/interruption coverage to determine whether the lightweight bridge remains stable under repeated/nested script activity.
+
+This extended run is still diagnostic-only. It does not authorize C1 generation binding or physical repair.
+
+---
+
+## 5. P1 Acceptance / Failure Meaning
+
+P1 passes only if both source and runtime evidence support:
+
+```text
+RunScriptFunction transport
++ stack-local/TLS current-dispatch scope
+= stable low-cost synchronous bridge
+```
+
+without changing collision behavior.
+
+A P1 pass would authorize Normal Chat to design the next smallest step: lazy acquisition of C1's existing monotonic generation at a proven relevant offense event, using the already-proven live-frame correlator rules.
+
+A P1 pass does **not** prove continuation retirement, parent/outer ownership selection, full C1-O2 correctness or physical repair.
+
+A P1 failure must be interpreted at the narrow bridge boundary. Do not restore the old vector/string capture or broaden to another hook in the same implementation task.
+
+---
+
+## 6. C1-O2 Source Contract — For Later Integration Only
+
+Any later resumed C1-O2 integration must preserve:
 
 1. one minimal nesting-safe transient dispatch/context mechanism;
 2. original hooked/native call exactly once with unchanged real arguments;
@@ -147,13 +243,11 @@ Any resumed C1-O2 implementation must preserve:
 10. existing AISetState shadow finalization semantics remain unchanged;
 11. no null-arguments fallback, family/action/input classifier, arbitrary group-7 adoption, polling/timer/world scan or marker-core refactor.
 
-No runtime acceptance can compensate for a source-level violation of these rules.
+Do not implement this section during P1.
 
 ---
 
-## 5. C1-O2 Runtime Matrix — Only After Reassessment + Independent Source Review + Build/Load Verification
-
-Normal Chat will freeze the exact controlled fixture and raw filename only after a resumed C1-O2 candidate passes source review and exact built/live identity verification.
+## 7. Full C1-O2 Runtime Matrix — Only After P1 and Later Binding Integration Pass Source Review
 
 ### A. Pre-CombatMove GetUp acquisition
 
@@ -167,7 +261,7 @@ legitimate equipped-source Item_Attack before CombatMove
 → no repair candidate / no binding invariant
 ```
 
-This remains the primary positive test.
+This remains the primary positive integration test.
 
 ### B. Ordinary CombatMove-created control
 
@@ -207,9 +301,9 @@ Any occurrence is a gate result to interpret, not something to hide with fallbac
 
 ---
 
-## 6. C1-O2 Runtime Acceptance
+## 8. Full C1-O2 Runtime Acceptance
 
-C1-O2 passes only if the tested controls support one model:
+Full C1-O2 passes only if the tested controls support one model:
 
 ```text
 outer live ScriptFunction frame
@@ -244,7 +338,7 @@ If the route requires family/action/input classification or guessed null-argumen
 
 ---
 
-## 7. After C1-O2 — Universal Guard First
+## 9. After C1-O2 — Universal Guard First
 
 Only after the outer binding model passes should Normal Chat freeze a physical-repair gate.
 
@@ -257,51 +351,3 @@ stable shadow execution/source ownership
 → broad marked/unmarked/player/NPC/negative regression
 → stable production integration
 ```
-
-Root-cause repair of the held-Use2 / Alternative-AI interruption is not a planned prerequisite. Reopen it only if evidence shows the general collision guard cannot preserve integrity without changing that external lifecycle path.
-
-Likely later responsibilities remain evidence-dependent and are not pre-authorized:
-
-- choose the exact gate for promoting shadow `WOULD_REPAIR` to native-equivalent physical repair;
-- test broad marked/unmarked/player/NPC regression;
-- challenge whether any legitimate independent Hit sequence intentionally carries offensive collision across executions;
-- verify negative/no-op behavior for Fist, bow, crossbow and magic;
-- verify defensive block/parade semantics if later physical repair could disturb them;
-- reconsider marker-core simplification only after native lifetime and physical guard preserve historical marker guarantees.
-
----
-
-## 8. Marker-Core Regression — Reuse Existing Fixtures When Relevant
-
-If a lifecycle change can plausibly affect marker behavior, reuse compact proven fixtures such as:
-
-```text
-RIGHT -> LEFT
-BOTH -> RIGHT
-RIGHT -> OFF -> RIGHT
-BOTH -> LEFT -> OFF -> BOTH
-```
-
-Verify desired-set transition, source rearm, occurrence/replay guards, execution retirement and absence of unexpected native timer activation.
-
-Do not rebuild the full historical v0.10–v0.18 matrix unless a regression demands it.
-
-Marker simplification is a later optimization question, not a prerequisite for the universal guard. Preserve duplicate/replay handling, occurrence protection, exact source-set semantics, repeated-contact rearm, Quick bookkeeping and any other mechanism whose original regression still requires it.
-
----
-
-## 9. Success Criteria for Stable Collision Integration
-
-Before stable lifecycle behavior can move into `Script_G3AnimationBehaviors`, evidence must support:
-
-1. exact ownership of a real attack execution before and during CombatMove where needed;
-2. exact creation of offensive source obligations, including `7 -> 7` requests;
-3. reliable observation of native cleanup fulfillment;
-4. safe lifetime retirement without raw-pointer reuse confusion;
-5. a terminal/finalization rule that preserves Gothic's legitimate cleanup opportunity;
-6. correct handling of clean, reaction, pre-activation, bad-abandonment and inherited-stale cases;
-7. safe native-equivalent physical repair only for exact abandoned outstanding sources;
-8. no-op behavior for unrelated mechanics/source models and compatible external combat-rule choices;
-9. preservation of marked and native collision semantics behind one end-of-execution safety invariant.
-
-Only after those conditions pass should stable production integration be considered.
