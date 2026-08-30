@@ -1,7 +1,7 @@
 # Principle-First Engineering Guide
 
 **Status:** Experimental / living document  
-**Version:** 0.4  
+**Version:** 0.5  
 **Scope:** Language-independent engineering principles. Stored in this repository first so the method can be tested against real work before being generalized to other projects.
 
 ## Purpose
@@ -111,6 +111,35 @@ The aim is not minimum resource use at any cost. The aim is the **minimum suffic
 Constraints make waste more visible. Abundance can hide it. The engineering principle is the same in both cases: use what you have deliberately.
 
 **Rule:** optimize resource use through architecture, not deprivation; spend resources where they buy real capability.
+
+### 2.3 Elegance Means Minimum Sufficient Structure
+
+In this guide, **simple** should usually be understood as **elegant**, not merely small, short, or easy.
+
+An elegant solution often looks obvious only after the problem has been understood deeply enough. The reasoning required to discover it may be difficult even when the final structure is compact.
+
+> **Prefer the minimum sufficient structure: every component should exist because the problem requires it, every responsibility should have a clear owner, and information already provided reliably by the surrounding system should not be reconstructed by additional machinery.**
+
+This is not a rule to minimize line count or remove useful safeguards. Necessary complexity should remain when it buys real correctness, safety, capability, observability, maintainability, or adaptability.
+
+The target is therefore not the **minimum possible code**. It is the smallest structure that fully carries the real requirements.
+
+For every component, state field, cache, hook, lookup, layer, abstraction, or safety mechanism, ask:
+
+1. What specific responsibility does this element own?
+2. Is that responsibility genuinely required?
+3. Does the surrounding system already provide the same fact or guarantee reliably?
+4. What becomes less correct, less safe, less capable, less observable, less maintainable, or less adaptable if this element is removed?
+
+If the answer to the fourth question is **nothing material**, question why the element exists.
+
+This does not mean that every removable-looking component should immediately be deleted. First establish that another mechanism truly owns the required responsibility and that removal preserves the relevant invariants. Elegance comes from understanding ownership well enough to remove redundancy safely, not from aggressive subtraction.
+
+A useful sign of an elegant design is that its explanation becomes shorter as understanding becomes deeper: not because important behavior disappeared, but because fewer independent rules are needed to generate it correctly.
+
+> **The difficult thinking belongs in discovering the right structure, not in forcing the runtime system to carry the history of our uncertainty.**
+
+**Rule:** do not confuse under-engineering with simplicity. Seek the minimum sufficient structure that makes the required behavior correct, safe, clear, and durable.
 
 ---
 
