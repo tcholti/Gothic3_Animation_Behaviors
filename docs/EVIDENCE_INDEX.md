@@ -11,7 +11,8 @@ Canonical evidence remains:
 
 - `EVIDENCE_LEDGER.md` — EV-001 through EV-157;
 - `EVIDENCE_LEDGER_STEP_B.md` — EV-158 through EV-198;
-- `EVIDENCE_LEDGER_STEP_C.md` — EV-199 onward.
+- `EVIDENCE_LEDGER_STEP_C.md` — EV-199 through EV-205;
+- `EVIDENCE_LEDGER_STEP_D.md` — EV-206 onward.
 
 This index **does not restate or change evidence status**. Search/open the exact EV entry when wording, qualification, provenance, build scope, or engineering consequence matters.
 
@@ -41,7 +42,7 @@ Raw logs are verification/provenance, not routine reading.
 | Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156, EV-180–EV-191 for resolved tested stale lifecycle |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` constraints |
 | marked block-timeout failure | EV-155 | native control EV-156 |
-| native stale collision / running consequence | EV-156, EV-181, EV-187, EV-190, EV-197–EV-198, EV-202–EV-203 | active-problem reconstruction route below |
+| native stale collision / running consequence | EV-156, EV-181, EV-187, EV-190, EV-197–EV-198, EV-202–EV-203, EV-206 | active-problem reconstruction route below |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
 | PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-180 |
 | later original callback is not completion | EV-159 | EV-171 static callback ordering |
@@ -49,9 +50,9 @@ Raw logs are verification/provenance, not routine reading.
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | EV-190 for held-Use2 state-stack-abandonment generality |
 | action-specific native cleanup matrix | EV-163 | `COLLISION_CLEANUP_CALLSITE_MAP.md` §2 |
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
-| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179, EV-184, EV-186, EV-188, EV-191, EV-203 | cleanup map / lifecycle plan §3 |
+| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179, EV-184, EV-186, EV-188, EV-191, EV-203, EV-206 | cleanup map / lifecycle plan §3 |
 | B5 parent stack | EV-166 | EV-169–EV-170 static identification |
-| marker bookkeeping vs physical cleanup | EV-167, EV-182–EV-196 | `COLLISION_LIFECYCLE_PLAN.md` §9 |
+| marker bookkeeping vs physical cleanup | EV-167, EV-182–EV-196, EV-206 | `COLLISION_LIFECYCLE_PLAN.md` §9 |
 | future marker-core simplification / native execution boundary | EV-066–EV-075, EV-131–EV-133, EV-167, EV-182–EV-196 | **Read `COLLISION_LIFECYCLE_PLAN.md` §9 before changing marker bookkeeping** |
 | ordinary / reaction / bad-skip ending model | EV-168, EV-179–EV-191 | lifecycle plan §§3–8 |
 | `RunScriptState` / `RunScriptFunction` identification | EV-169, EV-195, EV-199 | cleanup map §§5–6 / source guide Script administration |
@@ -65,7 +66,7 @@ Raw logs are verification/provenance, not routine reading.
 | long-lived stale group 7 / later inherited 7->7 | EV-181, EV-193, EV-203 | C1 core confirms new-generation attribution for inherited stale state |
 | persisted CombatMove instruction / FullStop semantics | EV-182, EV-185–EV-191 | lifecycle plan §§3–4 / source guide CombatMove symbols |
 | full-Whirl break-block continuation to native cleanup | EV-183, EV-189 | lifecycle plan §§3–4 |
-| reaction-side FullStop before separate cleanup ownership | EV-184, EV-186, EV-188, EV-191, EV-203 | lifecycle plan §3 |
+| reaction-side FullStop before separate cleanup ownership | EV-184, EV-186, EV-188, EV-191, EV-203, EV-206 | lifecycle plan §3 |
 | bad full-Whirl exact held-Use2 FullStop caller | EV-187 | `SOURCE_HOOK_GUIDE.md` §5 |
 | exact tested Normal/Quick reaction FullStop caller | EV-188 | EV-191 adds another legitimate reaction caller; do not universalize one RVA |
 | `FullStop -> SetState` state-stack abandonment causal chain | EV-189–EV-191 | B8 generality + B9 ordering close the tested known stale class |
@@ -78,10 +79,11 @@ Raw logs are verification/provenance, not routine reading.
 | outer ScriptFunction stack / `RunScriptFunction` persistence | EV-195 | pinned SDK + tested Game binary; runner is generic context only |
 | C1-O1 live-frame correlation / pointer reuse | EV-196 | native frame is lifetime-bound correlator; C1 generation remains durable identity |
 | C1-O2 original direct dispatch-capture crash / pure-pass-through baseline | EV-199 | do not infer later substrate stability solved the original capture crash |
-| AISetState / AIFullStop explicit-this transport stability | EV-199–EV-200 | current substrate state in `SESSION_ENTRYPOINT.md` |
+| AISetState / AIFullStop explicit-this transport stability | EV-199–EV-200 | tested substrate prerequisite |
 | SetCollisionGroup explicit-this transport / interrupted crash / corrected rerun | EV-201–EV-203 | EV-202 supersedes EV-201 root-cause interpretation; EV-203 is tested PASS |
 | C1 finalizer remembered-source liveness crash and correction | EV-202–EV-203 | correction is stable; exact liveness-negative outstanding branch lacks positive runtime coverage |
-| C1-O2 outer-frame binding architecture / current reassessment route | EV-192–EV-196, EV-199–EV-203 | `SESSION_ENTRYPOINT.md` for exact next responsibility |
+| C1-O2 lightweight dispatch bridge / outer acquisition closure | EV-204–EV-205 | P1 establishes synchronous scope; P2 closes tested pre-Combat offense→CombatMove bridge model |
+| C1-R1 controlled native-equivalent physical repair | EV-206 | exact live/equipped outstanding weapon source `7 -> 5`; A–D controls canonical; R1-E extension routed by current handoff/raw evidence |
 
 ---
 
@@ -90,15 +92,17 @@ Raw logs are verification/provenance, not routine reading.
 When this stale-collision problem is the active engineering responsibility, a fresh Normal Chat should reconstruct this ordered causal route once before proposing a new fix or architecture. Do not load every raw log; retrieve exact raw evidence only when verifying or reinterpreting a specific fact.
 
 1. **Historical trigger / manual reproduction context:** EV-187, EV-197, EV-198.
-2. **Native stale physical consequence / persistence:** EV-156, EV-162, EV-181, EV-193, EV-202–EV-203.
+2. **Native stale physical consequence / persistence:** EV-156, EV-162, EV-181, EV-193, EV-202–EV-203, EV-206.
 3. **Normal attack/CombatMove continuation and ordinary cleanup:** EV-163, EV-182–EV-183.
-4. **Legitimate reaction interruption and separate cleanup ownership:** EV-165, EV-184, EV-186, EV-188, EV-191, EV-203.
+4. **Legitimate reaction interruption and separate cleanup ownership:** EV-165, EV-184, EV-186, EV-188, EV-191, EV-203, EV-206.
 5. **Bad held-Use2 abandonment causal chain:** EV-185, EV-187, EV-189–EV-191.
 6. **Cross-family generality:** EV-162, EV-190.
 7. **Rejected Recover/StartRecover/replacement/callback explanations:** EV-154, EV-159–EV-162, EV-168, EV-174–EV-181.
 8. **Raise reproduction boundary:** EV-153, EV-191, EV-198.
 9. **C1 execution/source-obligation invariant and lifetime work:** EV-192–EV-196 → `COLLISION_LIFECYCLE_PLAN.md`.
-10. **C1 hook/finalizer substrate and current reassessment boundary:** EV-199–EV-203 → `SESSION_ENTRYPOINT.md`.
+10. **C1 hook/finalizer substrate stabilization:** EV-199–EV-203.
+11. **C1-O2 outer acquisition/binding closure:** EV-204–EV-205.
+12. **Controlled native-equivalent physical repair:** EV-206 → `COLLISION_LIFECYCLE_PLAN.md` / `COLLISION_TEST_PLAN.md`; `SESSION_ENTRYPOINT.md` owns the exact current closure responsibility.
 
 ---
 
@@ -129,7 +133,8 @@ Evidence anchors:
 - EV-080–EV-085;
 - EV-090–EV-094;
 - EV-145–EV-147;
-- EV-192–EV-194 for C1 exact equipped-source obligation/acquisition behavior.
+- EV-192–EV-194 for C1 exact equipped-source obligation/acquisition behavior;
+- EV-206 for exact-source physical-repair semantics and controlled no-op coverage.
 
 Asset-level routing: `ANIMATION_INDEX.md`.
 
@@ -150,7 +155,8 @@ Evidence anchors:
 - EV-066–EV-075;
 - EV-131–EV-133;
 - EV-167;
-- EV-181–EV-196.
+- EV-181–EV-196;
+- EV-206 plus the current R1-E marked regression routed by `BETWEEN_CHATS.md` when terminal-repair interaction matters.
 
 Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§3–9.
 
@@ -158,9 +164,9 @@ Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§3–9.
 
 ### F. Native collision cleanup lifecycle
 
-Search terms: `Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition, `m_pfInstrCallback`, `FullStop`, `SetState`, `RunScriptFunction`, `m_StateStack`, `m_pArguments`, `FinalizeAfterAISetState`, `LivenessEstablished`
+Search terms: `Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition, `m_pfInstrCallback`, `FullStop`, `SetState`, `RunScriptFunction`, `m_StateStack`, `m_pArguments`, `FinalizeAfterAISetState`, `LivenessEstablished`, `REPAIRED_TO_ITEM_EQUIPPED`
 
-Evidence anchors: EV-151–EV-203.
+Evidence anchors: EV-151–EV-206.
 
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Current architecture/test: `COLLISION_LIFECYCLE_PLAN.md`; `COLLISION_TEST_PLAN.md`; current gate in `SESSION_ENTRYPOINT.md`.
@@ -211,7 +217,10 @@ Practical source route: `SOURCE_HOOK_GUIDE.md` §8–§11.
 | directly relevant hook hardening | EV-199–EV-201 | AISetState, AIFullStop and SetCollisionGroup were converted in bounded transport-only steps |
 | SetCollisionGroup crash reassessment | EV-201–EV-202 | exact crashed-DLL disassembly localized failure to post-AISetState finalizer observation, not SetCollisionGroup transport |
 | finalizer liveness correction + rerun | EV-203 | corrected finalizer and SetCollisionGroup transport pass tested extended stability; liveness-negative outstanding branch remains unexercised |
-| Higher-level gate | EV-192–EV-196, EV-199–EV-203 | C1-O2 outer-frame binding remains the architectural destination; `SESSION_ENTRYPOINT.md` owns the current reassessment route |
+| C1-O2-P1 lightweight bridge | EV-204 | tiny synchronous RunScriptFunction scope exposes the missing pre-Combat acquisition context without eager generic dispatch work |
+| C1-O2-P2 ownership integration | EV-205 | early exact offense acquires the monotonic generation and matching CombatMove consumes the native bridge before wrapper return; tested model closes |
+| C1-R1 controlled physical repair | EV-206 | exact live/equipped outstanding weapon source is repaired `7 -> 5`; clean/reaction/pre-activation/GetUp/GetUpParade controls remain non-mutating |
+| Current closure | EV-206 + R1-E artifacts | Dual/marker/broad exercised coverage passed; `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` own the focused unsupported-source negative closure |
 
 ---
 
@@ -234,9 +243,14 @@ Current C1 evidence includes:
 - `research/archive/2026-08-28_c1_shadow_core_lifecycle_matrix_connector_extract.txt`
 - `research/raw/2026-08-29_c1o1_outer_scriptfunction_identity_probe.log`
 - `research/archive/2026-08-29_c1o1_outer_scriptfunction_identity_probe_connector_extract.txt`
-- `research/raw/2026-08-30_c1_finalization_source_liveness_safe_isolated_load.log`
-- `research/raw/2026-08-30_c1_finalization_source_liveness_safe_setcollisiongroup_extended_gameplay_stability.log`
-- `research/derived/2026-08-30_c1_finalization_source_liveness_safe_setcollisiongroup_extended_gameplay_stability_large_log/`
+- `research/archive/2026-08-30_c1o2p2_broader_combat_interruption_stability.log`
+- `research/archive/2026-08-30_c1r1_isolated_load.log`
+- `research/archive/2026-08-30_c1r1c_player_2h_targeted_physical_repair.log`
+- `research/archive/2026-08-30_c1r1d_player_2h_reaction_getup_noop_controls.log`
+- `research/raw/2026-08-30_c1r1e_dual_source_specific_physical_repair.log`
+- `research/raw/2026-08-30_c1r1e_marked_staff_terminal_repair_regression.log`
+- `research/raw/2026-08-30_c1r1e_broad_player_npc_negative_stability.log`
+- `research/derived/2026-08-30_c1r1e_broad_player_npc_negative_stability_large_log/`
 
 Open archived/raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
@@ -257,14 +271,3 @@ Current gate-based naming is owned by `PROJECT_PIPELINE.md`; do not rename histo
 Prefer the EV entry first because it records the qualification and engineering consequence already extracted from the raw session.
 
 ---
-
-## 6. Evidence Maintenance Rule
-
-When a new durable result is established:
-
-1. add/modify the canonical EV entry with explicit status/provenance;
-2. preserve the raw/source artifact when needed for verification;
-3. update this index only if the result creates a new retrieval route or materially changes an existing topic range;
-4. update current design/state documents only when their responsibility actually changes.
-
-Do not copy the full experiment narrative into every design/reference document.
