@@ -224,7 +224,9 @@ polling/timers/world scans
 
 ---
 
-## 8. C1-R1 — Current Controlled Physical-Repair Gate
+## 8. C1-R1 Controlled Physical Repair — CLOSED
+
+Canonical result: EV-206–EV-207.
 
 C1-R1 changes **only** the already-proven shadow `WOULD_REPAIR` branch.
 
@@ -252,17 +254,44 @@ outstandingCleanup == true
 → verify result exactly Item_Equipped(5)
 ```
 
-Recommended successful diagnostic outcome:
+Successful outcome:
 
 ```text
 REPAIRED_TO_ITEM_EQUIPPED
 ```
 
-Any setter result other than exact group 5 is a gate failure/divergence. C1-R1 does not retry or invent fallback mutation.
+Any setter result other than exact group 5 remains a divergence/failure. C1-R1 does not retry or invent fallback mutation.
+
+### Validated meaning
+
+R1-A through R1-E established:
+
+```text
+exact positive stale-source 7 -> 5 repair
+ordinary / reaction / pre-activation no-op behavior
+P2 GetUp cleanup precedence
+GetUpParade defensive no-offense
+Dual RIGHT/LEFT source independence
+marked-source terminal repair and dead-execution callback rejection
+broad mixed player/NPC hook stability
+unsupported marker-bearing fallback
+Fist/body separation
+crossbow unsupported-source negative behavior
+supplemental bow/magic negative regression
+```
+
+The focused final R1-E run contains zero repair, divergence, unresolved-not-equipped or C1 invariant-warning records while exercising the remaining unsupported-source negatives. Therefore the controlled C1-R1 validation gate is closed; do not invent another broad R1 matrix.
+
+Two limits remain explicit and do not reopen the gate:
+
+```text
+- no positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED branch;
+- no positive NPC destructive-abandonment / physical-repair case is claimed.
+```
 
 ### Repair passes through existing SetCollisionGroup observation
 
-Do not bypass the already-tested SetCollisionGroup hook. The normal setter path should continue to own:
+Do not bypass the already-tested SetCollisionGroup hook. The normal setter path continues to own:
 
 - engine collision transition observation;
 - source-obligation transition observation;
@@ -318,7 +347,7 @@ Do not default to:
 - `ClearTriggeredList()` as terminal cleanup;
 - rewriting external block/balance mechanics as a collision prerequisite.
 
-Protect through C1-R1 and later integration:
+Protect through production integration:
 
 ```text
 ordinary native completion
@@ -330,7 +359,7 @@ inherited 7 -> 7 attribution
 Dual exact RIGHT/LEFT obligations
 marked RIGHT/LEFT/BOTH/OFF behavior
 Fist/body separation
-later bow/crossbow/magic negative regression
+bow/crossbow/magic negative regression
 ```
 
 ---
@@ -339,14 +368,14 @@ later bow/crossbow/magic negative regression
 
 ```text
 stable shadow execution/source ownership        CLOSED through P2
-→ controlled native-equivalent physical repair C1-R1 CURRENT
-→ targeted positive + no-op proof
-→ Dual/marker/broader player/NPC/negative stability
-→ stable production integration
+→ controlled native-equivalent physical repair CLOSED through C1-R1 / EV-207
+→ stable production integration                NEXT
 → only later reconsider marker-bookkeeping simplification
 ```
 
-The known held-Use2 / Alternative-AI skip remains a stress case rather than a bug this mod must rewrite. If the universal guard restores collision integrity safely, unrelated external movement/state/gameplay behavior remains outside the guard's responsibility.
+The next responsibility is to plan/freeze the smallest production integration of the validated guard/core. Integration must preserve the accepted execution/source model and existing marker behavior; it is not authorization to redesign lifecycle ownership.
+
+The known held-Use2 / Alternative-AI skip remains a stress case rather than production classification authority. A future root-behavior investigation is separately preserved in `BAD_SKIP_FUTURE_INVESTIGATION.md`. Even if pursued later, it does not replace the C1-R1 collision-safety fail-safe and must not be folded automatically into production integration.
 
 ---
 
@@ -355,9 +384,9 @@ The known held-Use2 / Alternative-AI skip remains a stress case rather than a bu
 1. One event-driven execution/source guard.
 2. Exact physical source ownership and per-source obligations.
 3. Native cleanup always gets first opportunity.
-4. Mutation only on the already-proven terminal outstanding-source predicate.
+4. Mutation only on the proven terminal outstanding-source predicate.
 5. Exact native-equivalent `7 -> 5` reset for proven weapon sources.
 6. No family/cause/input classification.
 7. Preserve native/modded combat-rule choices.
-8. Preserve proven marker core until guard + physical repair + regression are stable.
+8. Preserve proven marker core through production integration; simplify only later if a stronger native boundary is separately proven.
 9. Investigate another terminal class/root-cause external repair only if a reproduced case proves the general guard insufficient.
