@@ -189,19 +189,19 @@ Open only when the responsibility requires the model.
 
 #### `DESIGN.md`
 
-Canonical **project architecture** for Raise, speed and frame collision. It now avoids experiment chronology.
+Canonical **project architecture** for Raise, speed and frame collision. It avoids experiment chronology and routes current collision details to the subsystem authorities.
 
 #### `COLLISION_LIFECYCLE_PLAN.md`
 
-Current collision-lifecycle authority: execution ownership, cleanup invariant, native outer ScriptFunction lifetime and current C1-O2 binding gate.
+Current collision-lifecycle authority: exact execution/source obligations, temporary pre-Combat ScriptFunction bridge, native-cleanup precedence and controlled C1-R1 terminal repair.
 
 #### `COLLISION_LOGGER_PLAN.md`
 
-Current diagnostic architecture: hook ownership, factual event model and diagnostic/release separation.
+Current diagnostic architecture: hook ownership, factual event model, C1/P2/R1 signal responsibilities and diagnostic/release separation.
 
 #### `COLLISION_TEST_PLAN.md`
 
-Current staged validation plan and acceptance/control matrices.
+Current staged validation plan and acceptance/control matrices. `SESSION_ENTRYPOINT.md` owns the exact immediate closure responsibility when the broad plan has already advanced within a gate.
 
 #### `PROJECT_SCOPE_CONTEXT.md`
 
@@ -243,9 +243,17 @@ Canonical EV-001 through EV-157.
 
 #### `EVIDENCE_LEDGER_STEP_B.md`
 
-Canonical continuation EV-158 onward.
+Canonical EV-158 through EV-198.
 
-The split is a preservation/convenience boundary, not competing authority.
+#### `EVIDENCE_LEDGER_STEP_C.md`
+
+Canonical EV-199 through EV-205.
+
+#### `EVIDENCE_LEDGER_STEP_D.md`
+
+Canonical EV-206 onward for controlled C1-R1 physical-repair evidence and later continuation.
+
+Ledger splits are preservation/retrieval boundaries, not competing authorities or new evidence namespaces.
 
 #### `COLLISION_CLEANUP_CALLSITE_MAP.md`
 
@@ -280,10 +288,11 @@ For exact filename existence/variants, search these **before** opening the catal
 
 #### Runtime/source evidence
 
-- `research/raw/` — active/unprocessed causal artifacts;
-- `research/archive/` — processed historical logs/source material.
+- `research/raw/` — active/unprocessed or still-comparative canonical raw artifacts;
+- `research/archive/` — processed historical logs/source material;
+- `research/derived/` — deterministic retrieval/analysis packages whose source raw artifacts remain canonical.
 
-Prefer an EV entry first. Open raw evidence when verifying wording, challenging an interpretation, or extracting a fact not represented canonically.
+Prefer an EV entry first. Open raw evidence when verifying wording, challenging an interpretation, or extracting a fact not represented canonically. For oversized logs, use POP-07 and read the deterministic derived package before loading broad raw content.
 
 #### Superseded documentation snapshots
 
@@ -308,7 +317,7 @@ Archived documents preserve history/rationale; they never override current autho
 | What is the overall architecture? | `DESIGN.md` | evidence index if a premise must be checked |
 | What is the current collision lifecycle model? | `COLLISION_LIFECYCLE_PLAN.md` | cleanup map / EV range |
 | What should current diagnostics capture? | `COLLISION_LOGGER_PLAN.md` | source + exact EV |
-| What tests are next? | `COLLISION_TEST_PLAN.md` | evidence/raw only if a gate needs verification |
+| What tests are next? | `SESSION_ENTRYPOINT.md` → `COLLISION_TEST_PLAN.md` | `BETWEEN_CHATS.md` for exact active runtime contract |
 | Is an engine claim proven? | `EVIDENCE_INDEX.md` | exact ledger entry → raw/source |
 | Where does native cleanup occur? | `COLLISION_CLEANUP_CALLSITE_MAP.md` | relevant EV/raw logs |
 | What does this animation token/UseType/action/pose mean? | `ANIMATION_INDEX.md` | exact `ANIMATION_RULES` section |
@@ -324,7 +333,7 @@ These routes are **subject guides**, not summaries. They point to the smallest s
 
 | Subsystem | Orientation route |
 |---|---|
-| frame collision / collision lifecycle | `DESIGN.md` §§6–7 → collision rows in `EVIDENCE_INDEX.md` and `RESEARCH_MAP.md` → current `COLLISION_LIFECYCLE_PLAN.md`; use `SOURCE_HOOK_GUIDE.md` / `COLLISION_CLEANUP_CALLSITE_MAP.md` only for source/hook/cleanup context and `ANIMATION_INDEX.md` only when source/asset semantics matter |
+| frame collision / collision lifecycle | `DESIGN.md` §§6–8 → collision rows in `EVIDENCE_INDEX.md` and `RESEARCH_MAP.md` → current `COLLISION_LIFECYCLE_PLAN.md`; use `SOURCE_HOOK_GUIDE.md` / `COLLISION_CLEANUP_CALLSITE_MAP.md` only for source/hook/cleanup context and `ANIMATION_INDEX.md` only when source/asset semantics matter |
 | Raise | `DESIGN.md` §4 → Raise route in `EVIDENCE_INDEX.md` / `RESEARCH_MAP.md` → `ANIMATION_INDEX.md` for relevant Raise assets/selection; source guide only when implementation/hook details matter |
 | playback speed | `DESIGN.md` §5 → CombatMove phase/speed route in `EVIDENCE_INDEX.md` / `RESEARCH_MAP.md` → speed section in `SOURCE_HOOK_GUIDE.md` when source/reference implementation context matters |
 | animation semantics / selection | `ANIMATION_INDEX.md` → exact `ANIMATION_RULES.md` / `ANIMATION_CATALOG.md` / animation-name data routes → relevant evidence/research route only when behavior or historical interpretation must be recovered |
@@ -405,7 +414,7 @@ Work may inspect necessary source/API material when implementation reveals a rea
 | current collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | current diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
 | current staged collision tests | `COLLISION_TEST_PLAN.md` |
-| exact evidence status/provenance | evidence ledgers |
+| exact evidence status/provenance | evidence ledgers, currently through `EVIDENCE_LEDGER_STEP_D.md` |
 | evidence lookup | `EVIDENCE_INDEX.md` |
 | animation generalized semantics | `ANIMATION_RULES.md` |
 | concrete assets/fixtures | `ANIMATION_CATALOG.md` / data files |
