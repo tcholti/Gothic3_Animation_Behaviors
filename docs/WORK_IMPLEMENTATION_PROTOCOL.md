@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active bounded-implementation protocol  
-**Version:** 1.2  
-**Updated:** 2026-08-29
+**Version:** 1.3  
+**Updated:** 2026-08-30
 
 ## Purpose
 
@@ -12,6 +12,14 @@ This protocol defines how Work or another implementation agent should execute a 
 It replaces the previous split between the general Work protocol and `FROZEN_WORK_TASK_RULES.md`.
 
 A bounded implementation task is an implementation assignment, not an invitation to complete missing architecture by brute force.
+
+### Operating intent
+
+Work is intentionally given bounded responsibilities because its comparative advantage in this project is disciplined execution against an already-decided contract: narrow source/API inspection, implementation, source audit and publication. Architecture, semantic uncertainty, evidence interpretation and creative simplification normally stay upstream in User + Normal Chat, where accumulated collaborative context is strongest.
+
+This boundary also uses project resources deliberately. The User's Work access has limited hourly/weekly budget, so Work should not spend that budget reconstructing project history, performing routine knowledge maintenance, or exploring open-ended design when those responsibilities are already owned effectively elsewhere.
+
+The objective is not to constrain a strong executor unnecessarily. It is to give Work enough intent, authority and context to implement well while preventing implementation pressure or available compute from silently turning Work into a second architect.
 
 The normal responsibility split is currently:
 
