@@ -2,9 +2,9 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
 
-## Current bridge — architecture review complete; first modular refactor frozen
+## Current bridge — CollisionSources extraction CLOSED; EngineBridge extraction design/freeze next
 
-C1-R1 controlled validation is closed. Canonical result: **EV-206–EV-207**.
+C1-R1 controlled validation remains closed. Canonical result: **EV-206–EV-207**.
 
 C1-R1 implementation:
 
@@ -43,95 +43,22 @@ Two qualifications remain explicit but do not reopen C1-R1:
 
 ---
 
-## Read-only architecture review — COMPLETE
+## First modular refactor — generic CollisionSources extraction CLOSED
 
-Reviewed bounded source trees:
-
-```text
-prototypes/Script_FrameCollisionTest/
-src/Script_G3AnimationBehaviors/
-```
-
-### Main findings
-
-1. **The validated research DLL is not a rewrite candidate.** It already contains real separations for `CollisionControl`, `CollisionLifecycleGuard`, `CollisionDiagnostics`, and a main file that is the sole physical hook owner.
-
-2. **The main file is still the real engine bridge.** `HookBridgeRuntime` currently provides only the research elapsed-time clock. Hook objects, calling-convention transport, TLS RunScriptFunction scope and pre/original/post dispatch ordering still live in `Script_FrameCollisionTest.cpp`.
-
-3. **Hook ordering/reentrancy is proven behavior and must survive refactoring.** In particular:
+Implementation commit:
 
 ```text
-RunScriptFunction
-→ stack-local/TLS scope remains live across the original call
-
-AICombatMoveInstr
-→ BeginCombatMove before original
-→ CompleteCombatMoveCandidate after original
-
-AISetState
-→ capture exact finalization token before original
-→ native AISetState gets first opportunity
-→ invalidate/finalize after original
-
-SetCollisionGroup
-→ original setter first
-→ marker-owned-source retirement / C1 observation afterward
-→ C1-R1 repair deliberately re-enters this same shared setter path
+43fa1e719b5af716c54e17430c101251bbc36ff8
 ```
 
-4. **`CollisionControl` currently owns too many responsibilities.** It combines marker scanning/cache, attack-family qualification, equipped-source lookup, Fist identification, duplicate suppression, authored occurrence budgets, marker-execution inference, marker-owned windows, source-set switching, physical activation/deactivation, repeated-contact rearm and StatePosition handling.
-
-5. **The lifecycle guard is semantically strong but structurally coupled to marker code.** `CollisionLifecycleGuard.cpp` currently includes `CollisionControl.h` primarily to obtain generic equipped-source information. That dependency should be removed before larger hook/module extraction.
-
-6. **Marker bookkeeping divides into two categories.** C1/native execution identity may later replace some old execution-lifetime inference, but it does not replace independent marker invariants.
-
-Potential later simplification candidates:
-
-```text
-animation/action/phase/source-snapshot/state-time rollback used only to infer a new marker execution
-controlled-callback retirement based on key change/state-time rollback
-MarkerWindowStillMatchesActorExecution lifetime inference
-```
-
-Must remain until independently replaced/proven:
-
-```text
-exact current-motion marker ownership
-authored per-opcode occurrence budgets
-same-update duplicate/replay protection
-RIGHT/LEFT/BOTH/OFF exact-set ownership
-repeated-contact ClearTriggeredList rearm
-StatePosition behavior required to suppress competing native activation
-marker-owned source/window state so OFF closes only marker-owned offense
-dead/late execution rejection
-```
-
-7. **Fist already behaves like a different source adapter.** Current marker code detects Fist/PhysicalFist, skips weapon-style `SetCollisionGroup(Item_Attack)`, and still rearms `TouchDamage` through `ClearTriggeredList()`. EV-207 confirms Fist remains outside weapon-style C1 obligations. Do not collapse this distinction during modularization.
-
-8. **Research-only diagnostic hooks are separable from production behavior.** Current `OnTick`, `PlayMotion`, `StopMotion`, `AICombatMoveStartRecover`, and current `AIFullStop` usage are diagnostic probes. `AICombatMoveInstr`, `AISetState`, `SetCollisionGroup`, `RunScriptFunction`, attack callbacks and `StartEffect` contain current behavior-required responsibilities (some also emit diagnostics).
-
-9. **The existing production DLL is only superficially modular.** `AttackRaise` and `AttackSpeed` are separate files but each directly owns its own hook, both duplicate player/2H matching, configuration is two globals, and no common engine bridge/profile matcher exists. `AttackSpeed` directly hooks `GetAnimationSpeedModifier`, a documented New Balance compatibility concern. It remains proof-of-concept only.
-
-10. **One suspected dead historical path was found but is NOT part of the first refactor.** `CollisionLifecycleGuard::BeginScriptFunctionDispatch` / `EndScriptFunctionDispatch` and their internal dispatch stack appear unused by the current research main path. Verify/remove separately rather than mixing cleanup into the first modular extraction.
-
-11. **One cache risk was noted but is NOT part of the first refactor.** `GetCurrentMarkerDecision` currently caches by animation name even when exact matching-motion resolution fails. Tests pass, so do not change this opportunistically; revisit during the later marker audit.
-
----
-
-## Frozen next implementation responsibility — extract generic collision-source queries only
-
-This is the **smallest behavior-preserving modular refactor** and must be implemented in `prototypes/Script_FrameCollisionTest` only.
-
-### Exact responsibility
-
-Create:
+Created:
 
 ```text
 prototypes/Script_FrameCollisionTest/CollisionSources.h
 prototypes/Script_FrameCollisionTest/CollisionSources.cpp
 ```
 
-Move exactly these existing generic source-query functions out of `CollisionControl` into namespace `FrameCollision::CollisionSources` without changing their logic:
+Moved unchanged into `FrameCollision::CollisionSources`:
 
 ```text
 GetEquippedCollisionSources(Entity &actor)
@@ -139,70 +66,163 @@ GetCollisionSourceUseType(Entity &source)
 HasRequiredCollisionSources(EquippedCollisionSources const &sources, unsigned int requiredMask)
 ```
 
-Then update only the necessary includes/call sites so:
+Result:
 
 ```text
-CollisionLifecycleGuard
-CollisionControl
-CollisionDiagnostics
-Script_FrameCollisionTest main/bridge
+CollisionLifecycleGuard no longer depends on CollisionControl for generic equipped-source lookup.
+CollisionControl uses CollisionSources for source queries.
+Script_FrameCollisionTest main/bridge uses CollisionSources directly.
+CollisionDiagnostics remains textually unchanged for now through temporary using aliases in CollisionControl.h.
+The helper implementations exist only in CollisionSources.
 ```
 
-consume those generic queries through `CollisionSources` rather than through `CollisionControl`.
-
-Add the two new files to the research target CMake source list.
-
-### Explicitly preserved in this step
+Validation:
 
 ```text
-FrameCollisionShared.h types and SourceMask values remain where they are
-CollisionControl marker semantics remain byte-for-byte equivalent in meaning
-all marker maps/budgets/windows remain
-Fist detection/activation behavior remains
-all hook objects/wrappers/targets/calling conventions remain in the main file
-RunScriptFunction TLS scope remains unchanged
-AICombatMoveInstr ordering remains unchanged
-AISetState capture/original/finalize ordering remains unchanged
-SetCollisionGroup original/retirement/C1-observation ordering remains unchanged
-C1-R1 repair re-entry through SetCollisionGroup remains unchanged
-CollisionDiagnostics behavior/log vocabulary remains unchanged
-no dead-code removal
-no cache change
-no marker-family expansion
-no marker simplification
-no bad-skip prevention
-no production-DLL migration
-no Raise/speed/config behavior change
+detached exact diff/source audit = PASS
+no hook wrapper/target/install change = PASS
+no marker state/semantics change = PASS
+no lifecycle decision change = PASS
+no Fist behavior change = PASS
+git diff --check = PASS (no output before successful build)
+local CMake Release build of Script_FrameCollisionTest = PASS
+Gothic 3 runtime matrix = not required for this low-risk query extraction
 ```
 
-### Why this is first
+The temporary diagnostic aliases are intentionally deferred to the later dedicated `CollisionDiagnostics.cpp` review; do not treat them as a second implementation or permanent architecture.
 
-It removes the lifecycle guard's dependency on the marker-control module while avoiding the higher-risk calling-convention/reentrancy work of moving hook wrappers. It creates the physical-source module seam we will later need for equipped weapons vs Fist without prematurely designing the Fist adapter.
+---
 
-### Required implementation audit
+## Current Normal-Chat responsibility — design/freeze real central EngineBridge extraction
 
-Before commit/publish:
+Do not edit source until this responsibility is frozen.
+
+### Intended structural goal
+
+`Script_FrameCollisionTest.cpp` is currently the real physical hook owner even though the hook-transport responsibility is not named as its own module. Extract that transport into a dedicated central module without changing tested semantics.
+
+Preferred narrow target:
 
 ```text
-- inspect only source needed for this extraction;
-- verify the three moved function bodies are semantically unchanged;
-- verify no old CollisionControl declarations/call sites remain for those three functions;
-- verify no hook wrapper or hook installation line changed;
-- verify no marker behavior/state structure changed;
-- build Script_FrameCollisionTest successfully;
-- run git diff --check on editable source;
-- commit/publish only this bounded refactor.
+prototypes/Script_FrameCollisionTest/EngineBridge.h
+prototypes/Script_FrameCollisionTest/EngineBridge.cpp
 ```
 
-No Gothic 3 runtime matrix is required for this first source-query extraction alone. If build/source audit exposes a concrete contradiction, stop rather than broadening the refactor.
+`EngineBridge` should become the sole owner of:
+
+```text
+all mCFunctionHook objects
+all Gothic hook/callback wrapper functions
+RunScriptFunctionScope TLS transport state
+hook-local helper functions required only by those wrappers
+InstallHooks()
+```
+
+`Script_FrameCollisionTest.cpp` should remain the DLL entry/composition root only:
+
+```text
+HookBridgeRuntime::InitializeClock()
+CollisionDiagnostics::OpenLog()
+EngineBridge::InstallHooks()
+GetScriptInit()
+DllMain / log close
+```
+
+`HookBridgeRuntime` remains the existing research clock in this step. Do not rename or merge it into EngineBridge yet.
+
+### Proven ordering/reentrancy that must be preserved exactly
+
+```text
+RunScriptFunction
+→ stack-local/TLS scope installed before original
+→ original called exactly once with unchanged arguments
+→ TLS restored after original
+→ temporary pre-Combat bridge retired after original if still active
+→ offense-scope return logging remains after TLS restore
+
+AICombatMoveInstr
+→ BeginCombatMove before original for initial non-fullStop candidate
+→ original called exactly once
+→ CompleteCombatMoveCandidate after original
+
+AISetState
+→ capture finalization token before original
+→ diagnostic pre-state capture remains before original
+→ original AISetState called exactly once
+→ InvalidateScriptFunctionDispatchAfterAISetState after original
+→ FinalizeAfterAISetState after original
+→ diagnostic post-state capture remains after finalization
+
+SetCollisionGroup
+→ capture before/caller/cleanup diagnostic context before original
+→ real setter executes first
+→ marker-owned-source retirement after original when resulting group leaves Item_Attack
+→ C1 ObserveCollisionGroupResult after original using resulting group
+→ diagnostic SetCollisionGroup / outer-frame observation remains after lifecycle observation
+→ C1-R1 repair continues to re-enter this same shared SetCollisionGroup hook path
+
+AIFullStop / PlayMotion / StopMotion / StartRecover / OnTick
+→ diagnostic-only behavior and original-call ordering remain exactly unchanged
+
+StartEffect / attack callbacks
+→ current marker ownership/suppression semantics remain exactly unchanged
+```
+
+### Explicit non-goals for EngineBridge extraction
+
+Do not combine this move with:
+
+```text
+hook target/RVA changes
+calling-convention changes
+new hook chaining/compatibility work
+marker simplification
+marker-family expansion
+Fist changes
+lifecycle simplification/dead dispatch cleanup
+logger reduction
+renaming HookBridgeRuntime
+AttackContinuationProtection
+production DLL migration
+Raise/speed/config work
+New Balance integration
+```
+
+The extraction is structural only: move existing hook transport as one unit and expose only the minimum module entrypoint needed by DLL composition.
+
+### Expected minimum EngineBridge public API
+
+```cpp
+namespace FrameCollision::EngineBridge
+{
+void InstallHooks();
+}
+```
+
+Do not publish feature-specific hook internals through the header unless implementation proves a concrete need.
+
+### Required implementation validation after freeze
+
+```text
+- inspect only the current Script_FrameCollisionTest hook owner and direct dependencies;
+- move hook objects/wrappers/TLS/helper transport without semantic edits;
+- verify every original-function call remains exactly once and in the same relative order;
+- verify .ThisCall() remains on RunScriptFunction, AISetState, AIFullStop and SetCollisionGroup;
+- verify hook RVAs/script callbacks are unchanged;
+- verify ScriptInit order remains clock → log → hook install;
+- verify CollisionLifecycleGuard / CollisionControl / CollisionSources behavior files are otherwise untouched;
+- git diff --check;
+- successful local CMake Release build;
+- commit/publish only the structural extraction.
+```
+
+After this higher-risk hook extraction, do **not** begin marker simplification. Proceed to the mandatory per-CPP review gate below.
 
 ---
 
 ## Mandatory post-EngineBridge source-review gate
 
-After the source-query extraction, the next structural implementation may extract/define the real central `EngineBridge` while preserving the proven hook targets, calling conventions, recursion safety and pre/original/post ordering.
-
-**After that EngineBridge extraction, do not proceed directly to marker simplification.** First perform a complete read-only source-review gate over every `.cpp` in `prototypes/Script_FrameCollisionTest`, one file at a time.
+After EngineBridge extraction/build passes, perform a complete read-only source-review gate over every `.cpp` in `prototypes/Script_FrameCollisionTest`, one file at a time.
 
 For each `.cpp`, explicitly review:
 
@@ -247,9 +267,9 @@ OBSOLETE HISTORICAL NOISE
 
 Likely core signals include exact marker ownership/result, source SetCollisionGroup transitions, C1 generation/offense/cleanup/finalization outcomes, P2 bridge events when they occur, explicit invariant/failure records, build identity and clean unload.
 
-Likely deep-probe candidates include broad PrimaryFirst PlayMotion/StopMotion snapshots, OnTick lifetime observation, StartRecover stacks, AIFullStop callsite/input stacks, broad AISetState/outer-frame stack snapshots and full native-cleanup stack dumps. These are **candidates only** until the file review verifies that no active collision responsibility still depends on them.
+Likely deep-probe candidates include broad PrimaryFirst PlayMotion/StopMotion snapshots, OnTick lifetime observation, StartRecover stacks, AIFullStop callsite/input stacks, broad AISetState/outer-frame stack snapshots and full native-cleanup stack dumps. These are candidates only until the file review verifies that no active collision responsibility still depends on them.
 
-The preferred result is not a less precise logger. It is a **tiered logger**: compact exact evidence by default, with deep diagnostics enabled only when a concrete investigation needs them.
+The preferred result is not a less precise logger. It is a tiered logger: compact exact evidence by default, with deep diagnostics enabled only when a concrete investigation needs them.
 
 ### Validation sequencing
 
@@ -271,11 +291,11 @@ This preserves causal attribution: a structural behavior regression cannot be hi
 
 ---
 
-## Agreed forward roadmap after this step
+## Agreed forward roadmap
 
 ```text
-source-query extraction
-→ extract/define real central EngineBridge while preserving proven hook order/reentrancy
+CollisionSources extraction — CLOSED
+→ EngineBridge structural extraction — current design/freeze responsibility
 → mandatory one-by-one .cpp source-review gate
 → compact structural collision-baseline runtime revalidation with existing logger
 → approved diagnostics/logger reduction into core default + opt-in deep probes
