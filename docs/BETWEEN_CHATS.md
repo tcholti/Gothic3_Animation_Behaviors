@@ -4,15 +4,21 @@
 
 ## Current bridge — C1-O2-P2-B build / isolated load
 
-C1-O2-P2 implementation is published at:
+C1-O2-P2 behavior implementation:
 
 ```text
 cc51c67c19425be4e4d6a4838803ed3e66b2a071
 ```
 
-Independent Normal Chat P2-A source audit: **PASS**.
+P2 build-identity banner correction:
 
-The implementation:
+```text
+8b6a5873b8caa27b469ae831d25bf155a6c7f189
+```
+
+Independent Normal Chat P2-A source audit: **PASS**. The banner correction is mechanical and does not change P2 behavior.
+
+The implemented model is:
 
 ```text
 real successful equipped-source pre-Combat offense inside the proven P1 live scope
@@ -26,23 +32,17 @@ real successful equipped-source pre-Combat offense inside the proven P1 live sco
 
 If a temporary bridge reaches `RunScriptFunction` return unconsumed, P2 logs the invariant and retires the native binding without dropping the real source obligation. The old dispatch-vector / Begin-End machinery remains disconnected. Physical repair remains OFF.
 
-### Source-review qualification
-
-The P2 behavior source passed review, but the implementation commit retained only the P1 startup banner. Normal Chat identified this as a mechanical build-identity omission, not an architectural contradiction.
-
-Before local P2-B validation, the source must contain an explicit P2 startup line:
+Corrected P2 startup identity:
 
 ```text
 STEP C1-O2-P2 LAZY PRE-COMBAT BRIDGE: event-driven pre-Combat generation acquisition; matching CombatMove consumes temporary binding; shadow-only; no physical repair.
 ```
 
-The final banner-correction commit, rather than `cc51...` alone, is the source identity to build for P2-B.
-
 ---
 
 ## P2-B responsibility
 
-After the banner correction is committed:
+Use the current active branch after synchronization; its source includes both the P2 behavior and the banner correction.
 
 ```text
 sync active branch
