@@ -72,9 +72,10 @@ Compact established model:
 - GetUpAttack can request offense before CombatMove, so CombatMove alone is too late as a universal acquisition boundary;
 - C1-O1/P1 established a live ScriptFunction frame as a temporary correlator for that pre-Combat gap;
 - C1-O2-P2 proved the early offense can acquire the monotonic C1 generation, matching CombatMove can reuse it and consume the native-frame bridge before wrapper return, and later timer offense/native cleanup continue on the durable generation;
-- C1's monotonic generation remains the durable plugin execution identity.
+- C1's monotonic generation remains the durable plugin execution identity;
+- C1-R1 now performs the proven native-equivalent `Item_Attack(7) -> Item_Equipped(5)` repair only for the exact outstanding source that remains live/equipped and physically offensive after native AISetState has had its cleanup opportunity.
 
-Canonical evidence route: EV-151–EV-205 plus dedicated P2 shutdown-closure evidence commit `4946d382041e9ec86400291395e5acbad77b1de6`.
+Canonical evidence route: EV-151–EV-206 plus dedicated P2 shutdown-closure evidence commit `4946d382041e9ec86400291395e5acbad77b1de6` and the R1-E raw/derived artifacts routed by `BETWEEN_CHATS.md`.
 
 ---
 
@@ -152,31 +153,45 @@ SetCollisionGroup
 FinalizeAfterAISetState
 = post-native-AISetState exact-generation finalizer
 = remembered source dereference gated by exact current equipped identity
-= shadow classification passed extended stability
+= C1-R1 controlled repair uses this same finalizer
 ```
 
-EV-203 did not positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch. Do not claim runtime proof of that exact branch.
+EV-203/EV-206 did not positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch. Preserve the fail-closed behavior and do not claim runtime proof of that exact branch.
 
 ---
 
-## Current Immediate Responsibility — C1-R1 Controlled Native-Equivalent Physical Repair
+## C1-R1 Controlled Native-Equivalent Physical Repair — IMPLEMENTED / VALIDATION NEAR CLOSURE
 
-Normal Chat source/API inspection is complete and the first physical-repair gate is now frozen as **C1-R1**.
+Implementation:
 
-Detailed implementation authority: `docs/BETWEEN_CHATS.md`.
+```text
+93e5a2f2d4839ec908a8940927294217dd961c7a
+```
 
-C1-R1 asks:
+Validated C1-R1 DLL:
 
-> **Can the existing proven `WOULD_REPAIR` branch perform exactly the same narrow weapon-source reset Gothic 3 uses for legitimate cleanup — `Item_Attack(7) -> Item_Equipped(5)` on the exact live/equipped outstanding source — without changing any execution that already cleaned itself, never requested offense, is no longer safely live, or belongs to the other Dual source?**
+```text
+Script_FrameCollisionTest.dll
+Length: 466432
+SHA256: 449AC6BECB38B8627CAFAEA6311F4CC0697B91328A15D63B3446DA4766D3EAB5
+```
 
-Source/API conclusion supporting the gate:
+Canonical physical-repair evidence begins at **EV-206** in `docs/EVIDENCE_LEDGER_STEP_D.md`.
 
-- tested ordinary weapon cleanup paths across the established melee action matrix reset the physical source `7 -> 5`;
-- the tested legitimate reaction cleanup route uses the same physical weapon reset semantics;
-- current marker OFF/source-deactivation uses `SetCollisionGroup(Item_Equipped)` without `ClearTriggeredList()`;
-- `ClearTriggeredList()` is activation/rearm behavior and is not part of the proven cleanup mutation.
+Validated meaning so far:
 
-Therefore the C1-R1 physical mutation is exactly:
+```text
+R1-A independent source audit = PASS
+R1-B build / exact DLL identity / isolated load-unload = PASS
+R1-C targeted positive repair = PASS
+R1-D no-op / reaction / GetUp controls = PASS
+R1-E Dual source-specific repair = PASS
+R1-E compact marker regression = PASS
+R1-E broad mixed exercised player/NPC/negative coverage = PASS
+R1-E focused unarmed/crossbow negative closure = CURRENT
+```
+
+Accepted repair rule:
 
 ```text
 existing finalizer has exact outstanding source
@@ -187,67 +202,45 @@ existing finalizer has exact outstanding source
 → verify exact resulting group 5
 ```
 
-All existing no-op branches remain no-op.
+Everything outside that predicate remains no-op/unresolved and non-mutating. Native cleanup retains precedence. Repair passes through the existing SetCollisionGroup hook and keeps marker retirement/source observation on the established path.
 
-### Important diagnostic-order requirement
+The marked Staff regression also established the fail-closed timing boundary: if a destructive bad skip kills native attack ownership after collision has armed, C1-R1 repairs the orphaned source; if the skip happens before offense exists, C1-R1 correctly does nothing and late callbacks from the abandoned execution do not resurrect damage.
 
-The repair call will pass through the already-hooked SetCollisionGroup path and emit nested diagnostics. Therefore `FinalizeAfterAISetState()` must not begin printing its finalization block and then call the setter mid-block.
-
-C1-R1 uses a minimal two-phase finalizer:
-
-```text
-classify / repair into fixed stack-local per-source results (max 2)
-→ then emit one complete C1 FINALIZATION block
-```
-
-No heap allocation, new global state, new hook or new ownership mechanism is authorized.
-
-### Frozen non-responsibilities
-
-Do not change:
-
-```text
-execution acquisition / generation ownership
-P1/P2 bridge behavior
-CombatMove behavior
-AISetState/AIFullStop/SetCollisionGroup hook transport
-finalization trigger
-marker activation or RIGHT/LEFT/BOTH/OFF semantics
-family/action/input/state-name classification
-held-Use2 / 2500-ms external behavior
-Fist/body-source semantics
-rejected eager dispatch machinery
-```
-
-The guard remains actor/source-general; do not add Hero-only production semantics.
+Future root investigation of the held-Use2 destructive skip is separate: `docs/BAD_SKIP_FUTURE_INVESTIGATION.md`. Even if a later root fix succeeds, C1-R1 remains the general lost-cleanup fail-safe.
 
 ---
 
-## C1-R1 Validation Order
+## Current Immediate Responsibility — C1-R1-E Focused Unarmed + Crossbow Negative Closure
+
+Use the **same validated C1-R1 DLL**. No source change, rebuild or redeploy is required.
+
+Detailed frozen runtime responsibility: `docs/BETWEEN_CHATS.md`.
+
+Purpose:
+
+> Close only the remaining unsupported-source negative gap without repeating successful melee, Dual, marker or broad stability coverage.
+
+Required focused runtime coverage:
 
 ```text
-R1-A independent Normal Chat source audit
-→ R1-B build / exact DLL identity / isolated load
-→ R1-C targeted destructive positive repair + later ordinary 5 -> 7 control
-→ R1-D clean/reaction/pre-activation/GetUp/GetUpParade no-op controls
-→ R1-E Dual source-specific + compact marker interaction + broader player/NPC/negative stability as evidence requires
+UNARMED / FIST
+→ genuinely unarmed Hero
+→ several ordinary unarmed attacks
+→ ordinary reaction/interruption churn where natural
+
+CROSSBOW
+→ several normal aim/fire/reload cycles
+→ brief ordinary combat/reaction/state churn
+
+SHUTDOWN
+→ normal Gothic 3 exit
 ```
 
-A targeted positive repair should prove:
+This is a scope-safety gate, not a feature expansion. It asks whether genuine Fist/unarmed and crossbow gameplay remain outside inappropriate weapon-style C1 repair ownership/mutation.
 
-```text
-real offense obligation
-→ no native cleanup
-→ destructive finalization
-→ exact live/equipped source still Item_Attack(7)
-→ one repair request to Item_Equipped(5)
-→ result exactly 5
-→ REPAIRED_TO_ITEM_EQUIPPED
-```
+Do not add held-Use2 reproduction, new classifiers, source changes or a new broad matrix to this closure.
 
-A later legitimate attack should normally begin from `5 -> 7`, demonstrating that stale `7` was physically removed rather than inherited.
-
-Physical repair is not production-integrated merely because the first positive case passes.
+If this focused negative run is clean, Normal Chat should decide whether **C1-R1 validation is closed**. Do not automatically begin stable production integration or the future bad-skip root investigation in the same step.
 
 ---
 
@@ -278,11 +271,13 @@ All addresses are tested-build-specific.
 
 | Need | Open |
 |---|---|
-| current exact implementation handoff | `BETWEEN_CHATS.md` |
+| current exact runtime handoff | `BETWEEN_CHATS.md` |
 | current staged validation | `COLLISION_TEST_PLAN.md` |
 | active causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
 | canonical C1/P2 continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-205 |
+| canonical C1-R1 physical-repair evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206 onward |
 | lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
+| future held-Use2 root investigation | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
 | native cleanup semantics/RVAs | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | source/API lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/static reference as needed |
 | recurring local operations | `PROJECT_OPERATING_PROCEDURES.md` |
