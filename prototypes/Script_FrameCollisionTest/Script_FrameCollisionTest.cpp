@@ -32,6 +32,31 @@ static mCFunctionHook Hook_AIFullStop;
 static mCFunctionHook Hook_AISetState;
 static mCFunctionHook Hook_RunScriptFunction;
 
+struct RunScriptFunctionScope
+{
+    RunScriptFunctionScope *previous;
+    gCScriptProcessingUnit *spu;
+    bTObjStack<gScriptRunTimeSingleState> *runtimeStack;
+    bCString const *scriptName;
+    bool offenseObserved;
+};
+
+static thread_local RunScriptFunctionScope *g_pCurrentRunScriptFunctionScope = nullptr;
+
+static CollisionDiagnostics::RunScriptFunctionScopeIdentity
+GetRunScriptFunctionScopeIdentity(RunScriptFunctionScope *scope)
+{
+    CollisionDiagnostics::RunScriptFunctionScopeIdentity identity = {};
+    if (scope == nullptr)
+        return identity;
+    identity.scopeAddress = static_cast<void *>(scope);
+    identity.spu = scope->spu;
+    identity.runtimeStackAddress = static_cast<void *>(scope->runtimeStack);
+    identity.scriptName = scope->scriptName;
+    identity.parentScopeExists = scope->previous != nullptr;
+    return identity;
+}
+
 static bool ShouldSuppressAttackCallback(Entity &actor)
 {
     CurrentMotionMarkerResult decision = CollisionControl::GetCurrentMarkerDecision(actor);
@@ -304,9 +329,24 @@ static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
     bTObjStack<gScriptRunTimeSingleState> &a_rRunTimeStack,
     gCScriptProcessingUnit *a_pSPU)
 {
-    return Hook_RunScriptFunction.GetOriginalFunction(
+    RunScriptFunctionScope scope = {};
+    scope.previous = g_pCurrentRunScriptFunctionScope;
+    scope.spu = a_pSPU;
+    scope.runtimeStack = &a_rRunTimeStack;
+    scope.scriptName = &a_ScriptName;
+    g_pCurrentRunScriptFunctionScope = &scope;
+
+    GEBool const result = Hook_RunScriptFunction.GetOriginalFunction(
         &RunScriptFunction_FrameCollisionTest)(
             a_pThis, a_ScriptName, a_rRunTimeStack, a_pSPU);
+    g_pCurrentRunScriptFunctionScope = scope.previous;
+
+    if (scope.offenseObserved)
+    {
+        CollisionDiagnostics::LogRunScriptFunctionScopeReturn(
+            GetRunScriptFunctionScopeIdentity(&scope), result);
+    }
+    return result;
 }
 
 static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
@@ -509,6 +549,26 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
             if (successfulOffense || observedCleanup)
             {
                 gCScriptProcessingUnit *spu = GetActorSPU(player);
+                if (successfulOffense)
+                {
+                    RunScriptFunctionScope *scope =
+                        g_pCurrentRunScriptFunctionScope;
+                    void *playerStateStackAddress = spu != nullptr
+                        ? static_cast<void *>(&spu->m_StateStack) : nullptr;
+                    bool const spuMatchesPlayer =
+                        scope != nullptr && spu != nullptr
+                        && scope->spu == spu;
+                    bool const runtimeStackMatchesPlayer =
+                        scope != nullptr && playerStateStackAddress != nullptr
+                        && scope->runtimeStack == &spu->m_StateStack;
+                    if (spuMatchesPlayer)
+                        scope->offenseObserved = true;
+                    CollisionDiagnostics::LogRunScriptFunctionOffenseScope(
+                        player, a_pThis,
+                        GetRunScriptFunctionScopeIdentity(scope),
+                        spu, playerStateStackAddress, spuMatchesPlayer,
+                        runtimeStackMatchesPlayer, spuMatchesPlayer);
+                }
                 CollisionDiagnostics::OuterFrameSnapshot outerFrame =
                     CollisionDiagnostics::CaptureOuterFrameSnapshot(
                         player, spu);

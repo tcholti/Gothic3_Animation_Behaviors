@@ -1423,6 +1423,90 @@ void LogOuterFrameSnapshot(
     std::fflush(g_pLog);
 }
 
+void LogRunScriptFunctionOffenseScope(
+    Entity &actor, eCEntity *sourceInstance,
+    RunScriptFunctionScopeIdentity const &scope,
+    gCScriptProcessingUnit *playerSPU, void *playerStateStackAddress,
+    bool spuMatchesPlayer, bool runtimeStackMatchesPlayer,
+    bool offenseObservedSet)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    GELPCChar scriptName = scope.scriptName != nullptr
+        ? scope.scriptName->GetText() : nullptr;
+    std::fprintf(g_pLog, "===== C1-O2-P1 OFFENSE SCOPE =====\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 HookBridgeRuntime::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 actor != None
+                     ? static_cast<void *>(actor.GetInstance()) : nullptr);
+    std::fprintf(g_pLog, "SourceAddress: %p\n",
+                 static_cast<void *>(sourceInstance));
+    std::fprintf(g_pLog, "CurrentScopeExists: %d\n",
+                 scope.scopeAddress != nullptr ? 1 : 0);
+    std::fprintf(g_pLog, "ScopeAddress: %p\n", scope.scopeAddress);
+    std::fprintf(g_pLog, "ScopeSPUAddress: %p\n",
+                 static_cast<void *>(scope.spu));
+    std::fprintf(g_pLog, "PlayerSPUAddress: %p\n",
+                 static_cast<void *>(playerSPU));
+    std::fprintf(g_pLog, "SPUMatchesPlayer: %d\n",
+                 spuMatchesPlayer ? 1 : 0);
+    std::fprintf(g_pLog, "ScopeRuntimeStackAddress: %p\n",
+                 scope.runtimeStackAddress);
+    std::fprintf(g_pLog, "PlayerStateStackAddress: %p\n",
+                 playerStateStackAddress);
+    std::fprintf(g_pLog, "RuntimeStackMatchesPlayerStateStack: %d\n",
+                 runtimeStackMatchesPlayer ? 1 : 0);
+    std::fprintf(g_pLog, "ScriptNameReferenceAddress: %p\n",
+                 static_cast<void *>(
+                     const_cast<bCString *>(scope.scriptName)));
+    std::fprintf(g_pLog, "ScriptFunctionName: %s\n",
+                 scriptName != nullptr ? scriptName : "<no-current-scope>");
+    std::fprintf(g_pLog, "ParentScopeExists: %d\n",
+                 scope.parentScopeExists ? 1 : 0);
+    std::fprintf(g_pLog, "OffenseObservedSet: %d\n",
+                 offenseObservedSet ? 1 : 0);
+    std::fprintf(g_pLog, "LifecycleBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "CollisionBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "==================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogRunScriptFunctionScopeReturn(
+    RunScriptFunctionScopeIdentity const &scope, GEBool nativeResult)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== C1-O2-P1 DISPATCH RETURN =====\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 HookBridgeRuntime::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "ScopeAddress: %p\n", scope.scopeAddress);
+    std::fprintf(g_pLog, "ScopeSPUAddress: %p\n",
+                 static_cast<void *>(scope.spu));
+    std::fprintf(g_pLog, "ScopeRuntimeStackAddress: %p\n",
+                 scope.runtimeStackAddress);
+    std::fprintf(g_pLog, "ScriptNameReferenceAddress: %p\n",
+                 static_cast<void *>(
+                     const_cast<bCString *>(scope.scriptName)));
+    std::fprintf(g_pLog, "ScriptFunctionNameDereferencedAtReturn: 0\n");
+    std::fprintf(g_pLog, "ParentScopeExists: %d\n",
+                 scope.parentScopeExists ? 1 : 0);
+    std::fprintf(g_pLog, "NativeResult: %d\n",
+                 nativeResult == GETrue ? 1 : 0);
+    std::fprintf(g_pLog, "NativeCompleted: %d\n",
+                 nativeResult == GETrue ? 1 : 0);
+    std::fprintf(g_pLog, "NativeSuspendedOrUnfinished: %d\n",
+                 nativeResult == GETrue ? 0 : 1);
+    std::fprintf(g_pLog, "TLSRestoredBeforeLog: 1\n");
+    std::fprintf(g_pLog, "ScopePersistedAfterReturn: 0\n");
+    std::fprintf(g_pLog, "LifecycleBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "CollisionBehaviorChanged: 0\n");
+    std::fprintf(g_pLog, "=====================================\n\n");
+    std::fflush(g_pLog);
+}
+
 static void LogCombatMoveEquippedSource(
     char const *label, eCEntity *sourceInstance)
 {

@@ -87,6 +87,15 @@ struct OuterFrameSnapshot
     GEFloat stateTime;
 };
 
+struct RunScriptFunctionScopeIdentity
+{
+    void *scopeAddress;
+    gCScriptProcessingUnit *spu;
+    void *runtimeStackAddress;
+    bCString const *scriptName;
+    bool parentScopeExists;
+};
+
 void OpenLog();
 void CloseLog();
 bool IsLogOpen();
@@ -136,6 +145,14 @@ void LogOuterFrameSnapshot(
     char const *eventName, Entity &actor, eCEntity *sourceInstance,
     eECollisionGroup requestedGroup, eECollisionGroup beforeGroup,
     eECollisionGroup afterGroup, OuterFrameSnapshot const &snapshot);
+void LogRunScriptFunctionOffenseScope(
+    Entity &actor, eCEntity *sourceInstance,
+    RunScriptFunctionScopeIdentity const &scope,
+    gCScriptProcessingUnit *playerSPU, void *playerStateStackAddress,
+    bool spuMatchesPlayer, bool runtimeStackMatchesPlayer,
+    bool offenseObservedSet);
+void LogRunScriptFunctionScopeReturn(
+    RunScriptFunctionScopeIdentity const &scope, GEBool nativeResult);
 void LogCombatMoveStartRecoverBoundary(Entity &actor,
                                          char const *boundary);
 void LogPrimaryMotionEvent(eCVisualAnimation_PS *animationPS,
