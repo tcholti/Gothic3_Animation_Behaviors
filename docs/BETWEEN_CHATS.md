@@ -2,9 +2,9 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
 
-## Current bridge — C1-R1 closed; read-only architecture review next
+## Current bridge — architecture review complete; first modular refactor frozen
 
-C1-O2-P2 is closed for the tested outer-acquisition/binding model. Canonical result: **EV-205**.
+C1-R1 controlled validation is closed. Canonical result: **EV-206–EV-207**.
 
 C1-R1 implementation:
 
@@ -19,22 +19,6 @@ Script_FrameCollisionTest.dll
 Length: 466432
 SHA256: 449AC6BECB38B8627CAFAEA6311F4CC0697B91328A15D63B3446DA4766D3EAB5
 Built/live match: True
-```
-
-Canonical C1-R1 evidence: **EV-206–EV-207** in `docs/EVIDENCE_LEDGER_STEP_D.md`.
-
-Validation state:
-
-```text
-R1-A independent source audit = PASS
-R1-B build / identity / isolated load-unload = PASS
-R1-C targeted positive repair = PASS
-R1-D no-op / reaction / GetUp controls = PASS
-R1-E Dual source-specific repair = PASS
-R1-E compact marker regression = PASS
-R1-E broad mixed exercised coverage = PASS
-R1-E focused unarmed/crossbow negative closure = PASS
-C1-R1 CONTROLLED VALIDATION = CLOSED
 ```
 
 Accepted repair rule remains:
@@ -57,66 +41,181 @@ Two qualifications remain explicit but do not reopen C1-R1:
 2. Natural NPC combat and marked Staff traffic support actor-general stability, but no positive NPC destructive-abandonment / C1 physical-repair case is claimed.
 ```
 
-Do not invent another broad R1 matrix solely to force either case.
-
 ---
 
-## Current immediate responsibility — read-only architecture/code review
+## Read-only architecture review — COMPLETE
 
-Do **not** migrate C1-R1 directly into `src/Script_G3AnimationBehaviors`.
-
-Normal Chat should first review the current source structure of:
+Reviewed bounded source trees:
 
 ```text
 prototypes/Script_FrameCollisionTest/
 src/Script_G3AnimationBehaviors/
 ```
 
-The review is read-only. Its purpose is to classify the existing code by responsibility and define a semantic-preserving modular boundary before any refactor is frozen.
+### Main findings
 
-Review questions:
+1. **The validated research DLL is not a rewrite candidate.** It already contains real separations for `CollisionControl`, `CollisionLifecycleGuard`, `CollisionDiagnostics`, and a main file that is the sole physical hook owner.
+
+2. **The main file is still the real engine bridge.** `HookBridgeRuntime` currently provides only the research elapsed-time clock. Hook objects, calling-convention transport, TLS RunScriptFunction scope and pre/original/post dispatch ordering still live in `Script_FrameCollisionTest.cpp`.
+
+3. **Hook ordering/reentrancy is proven behavior and must survive refactoring.** In particular:
 
 ```text
-- which code is required production behavior?
-- which code is research diagnostics only?
-- which code owns physical Gothic hooks / transport?
-- which code belongs to CollisionLifecycleGuard?
-- which code belongs to frame-marker ownership/control?
-- which code belongs to physical source adapters?
-- which marker bookkeeping is still independently required?
-- which marker-lifetime inference may now be redundant because C1 provides a proven execution identity?
-- which shared hook paths create compatibility constraints with New Balance / Jackydima DLLs?
-- what should the eventual one-DLL module/event boundaries be?
+RunScriptFunction
+→ stack-local/TLS scope remains live across the original call
+
+AICombatMoveInstr
+→ BeginCombatMove before original
+→ CompleteCombatMoveCandidate after original
+
+AISetState
+→ capture exact finalization token before original
+→ native AISetState gets first opportunity
+→ invalidate/finalize after original
+
+SetCollisionGroup
+→ original setter first
+→ marker-owned-source retirement / C1 observation afterward
+→ C1-R1 repair deliberately re-enters this same shared setter path
 ```
 
-No source edit is authorized by this review. After the review, Normal Chat should freeze the smallest **behavior-preserving modular refactor** of the research DLL and only then hand a bounded implementation to Work/local execution if appropriate.
+4. **`CollisionControl` currently owns too many responsibilities.** It combines marker scanning/cache, attack-family qualification, equipped-source lookup, Fist identification, duplicate suppression, authored occurrence budgets, marker-execution inference, marker-owned windows, source-set switching, physical activation/deactivation, repeated-contact rearm and StatePosition handling.
+
+5. **The lifecycle guard is semantically strong but structurally coupled to marker code.** `CollisionLifecycleGuard.cpp` currently includes `CollisionControl.h` primarily to obtain generic equipped-source information. That dependency should be removed before larger hook/module extraction.
+
+6. **Marker bookkeeping divides into two categories.** C1/native execution identity may later replace some old execution-lifetime inference, but it does not replace independent marker invariants.
+
+Potential later simplification candidates:
+
+```text
+animation/action/phase/source-snapshot/state-time rollback used only to infer a new marker execution
+controlled-callback retirement based on key change/state-time rollback
+MarkerWindowStillMatchesActorExecution lifetime inference
+```
+
+Must remain until independently replaced/proven:
+
+```text
+exact current-motion marker ownership
+authored per-opcode occurrence budgets
+same-update duplicate/replay protection
+RIGHT/LEFT/BOTH/OFF exact-set ownership
+repeated-contact ClearTriggeredList rearm
+StatePosition behavior required to suppress competing native activation
+marker-owned source/window state so OFF closes only marker-owned offense
+dead/late execution rejection
+```
+
+7. **Fist already behaves like a different source adapter.** Current marker code detects Fist/PhysicalFist, skips weapon-style `SetCollisionGroup(Item_Attack)`, and still rearms `TouchDamage` through `ClearTriggeredList()`. EV-207 confirms Fist remains outside weapon-style C1 obligations. Do not collapse this distinction during modularization.
+
+8. **Research-only diagnostic hooks are separable from production behavior.** Current `OnTick`, `PlayMotion`, `StopMotion`, `AICombatMoveStartRecover`, and current `AIFullStop` usage are diagnostic probes. `AICombatMoveInstr`, `AISetState`, `SetCollisionGroup`, `RunScriptFunction`, attack callbacks and `StartEffect` contain current behavior-required responsibilities (some also emit diagnostics).
+
+9. **The existing production DLL is only superficially modular.** `AttackRaise` and `AttackSpeed` are separate files but each directly owns its own hook, both duplicate player/2H matching, configuration is two globals, and no common engine bridge/profile matcher exists. `AttackSpeed` directly hooks `GetAnimationSpeedModifier`, a documented New Balance compatibility concern. It remains proof-of-concept only.
+
+10. **One suspected dead historical path was found but is NOT part of the first refactor.** `CollisionLifecycleGuard::BeginScriptFunctionDispatch` / `EndScriptFunctionDispatch` and their internal dispatch stack appear unused by the current research main path. Verify/remove separately rather than mixing cleanup into the first modular extraction.
+
+11. **One cache risk was noted but is NOT part of the first refactor.** `GetCurrentMarkerDecision` currently caches by animation name even when exact matching-motion resolution fails. Tests pass, so do not change this opportunistically; revisit during the later marker audit.
 
 ---
 
-## Agreed forward roadmap
+## Frozen next implementation responsibility — extract generic collision-source queries only
 
-This order is provisional architecture guidance and may be course-corrected by source/runtime evidence. Do not skip phases merely because a later destination is already known.
+This is the **smallest behavior-preserving modular refactor** and must be implemented in `prototypes/Script_FrameCollisionTest` only.
+
+### Exact responsibility
+
+Create:
 
 ```text
-1. Full read-only Script_FrameCollisionTest + existing production-DLL architecture/code review.
-2. Semantic-preserving modular refactor of Script_FrameCollisionTest; central engine bridge remains sole hook owner.
-3. Revalidate the existing collision baseline after structural refactor.
-4. Audit marker bookkeeping against the proven C1 execution authority; remove only checks proven redundant while preserving independent marker invariants.
-5. Expand the existing RIGHT/LEFT/BOTH/OFF marker system one supported equipped-melee attack mechanism at a time, with compact regressions.
-6. Investigate/prove a separate Fist source adapter only after equipped-melee marker coverage is stable; do not force Fist into weapon-style Item_Attack semantics.
-7. Run a full marker + lifecycle-guard regression after marker/source expansion.
-8. Add a separate modular AttackContinuationProtection responsibility for the held-Use2 bad skip only after the marker system is mature; keep CollisionLifecycleGuard unchanged underneath as fail-safe.
-9. Validate guard + markers + continuation protection together, including native reaction/non-attack controls.
-10. Test the mature research DLL against New Balance and the relevant Jackydima DLL stack; compatibility is mandatory.
-11. Only then redesign `Script_G3AnimationBehaviors` around the same modular engine-bridge/event architecture and migrate the proven collision modules.
-12. Keep Raise and playback-speed control as independent modules. Re-evaluate the current AttackSpeed hook strategy because the existing direct `GetAnimationSpeedModifier` hook has a New Balance compatibility concern.
-13. Perform a final full `Script_G3AnimationBehaviors` + New Balance/Jackydima compatibility regression before stable promotion.
+prototypes/Script_FrameCollisionTest/CollisionSources.h
+prototypes/Script_FrameCollisionTest/CollisionSources.cpp
 ```
 
-Target architectural rule:
+Move exactly these existing generic source-query functions out of `CollisionControl` into namespace `FrameCollision::CollisionSources` without changing their logic:
 
-> **One DLL may contain multiple independent behavior modules, but one central engine-bridge layer owns each shared Gothic hook. Feature modules consume authoritative engine events; they do not compete with one another for the same physical hook.**
+```text
+GetEquippedCollisionSources(Entity &actor)
+GetCollisionSourceUseType(Entity &source)
+HasRequiredCollisionSources(EquippedCollisionSources const &sources, unsigned int requiredMask)
+```
 
-Diagnostics remain observers and must be removable/reducible without changing production behavior.
+Then update only the necessary includes/call sites so:
 
-Future held-Use2 investigation remains separately documented in `docs/BAD_SKIP_FUTURE_INVESTIGATION.md`.
+```text
+CollisionLifecycleGuard
+CollisionControl
+CollisionDiagnostics
+Script_FrameCollisionTest main/bridge
+```
+
+consume those generic queries through `CollisionSources` rather than through `CollisionControl`.
+
+Add the two new files to the research target CMake source list.
+
+### Explicitly preserved in this step
+
+```text
+FrameCollisionShared.h types and SourceMask values remain where they are
+CollisionControl marker semantics remain byte-for-byte equivalent in meaning
+all marker maps/budgets/windows remain
+Fist detection/activation behavior remains
+all hook objects/wrappers/targets/calling conventions remain in the main file
+RunScriptFunction TLS scope remains unchanged
+AICombatMoveInstr ordering remains unchanged
+AISetState capture/original/finalize ordering remains unchanged
+SetCollisionGroup original/retirement/C1-observation ordering remains unchanged
+C1-R1 repair re-entry through SetCollisionGroup remains unchanged
+CollisionDiagnostics behavior/log vocabulary remains unchanged
+no dead-code removal
+no cache change
+no marker-family expansion
+no marker simplification
+no bad-skip prevention
+no production-DLL migration
+no Raise/speed/config behavior change
+```
+
+### Why this is first
+
+It removes the lifecycle guard's dependency on the marker-control module while avoiding the higher-risk calling-convention/reentrancy work of moving hook wrappers. It creates the physical-source module seam we will later need for equipped weapons vs Fist without prematurely designing the Fist adapter.
+
+### Required implementation audit
+
+Before commit/publish:
+
+```text
+- inspect only source needed for this extraction;
+- verify the three moved function bodies are semantically unchanged;
+- verify no old CollisionControl declarations/call sites remain for those three functions;
+- verify no hook wrapper or hook installation line changed;
+- verify no marker behavior/state structure changed;
+- build Script_FrameCollisionTest successfully;
+- run git diff --check on editable source;
+- commit/publish only this bounded refactor.
+```
+
+No Gothic 3 runtime matrix is required for this first source-query extraction alone. The larger structural phase will receive compact runtime revalidation after the higher-risk engine-hook extraction boundary is completed. If build/source audit exposes a concrete contradiction, stop rather than broadening the refactor.
+
+---
+
+## Agreed forward roadmap after this step
+
+```text
+source-query extraction
+→ extract/define real central EngineBridge while preserving proven hook order/reentrancy
+→ compact collision-baseline runtime revalidation
+→ marker-bookkeeping simplification audit against C1 authority
+→ equipped-melee marker expansion one mechanism at a time
+→ separate Fist source-adapter investigation/decision
+→ full marker + lifecycle regression
+→ modular AttackContinuationProtection investigation/implementation
+→ guard + markers + continuation regression
+→ mandatory New Balance/Jackydima compatibility on mature research DLL
+→ redesign/migrate collision modules into modular Script_G3AnimationBehaviors
+→ independent Raise + redesigned speed work
+→ final full Script_G3AnimationBehaviors + New Balance/Jackydima compatibility regression
+```
+
+Overall architecture authority: `docs/DESIGN.md` §§10–11.  
+Staged validation authority: `docs/COLLISION_TEST_PLAN.md`.  
+Future held-Use2 prevention: `docs/BAD_SKIP_FUTURE_INVESTIGATION.md`.
