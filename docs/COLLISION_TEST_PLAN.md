@@ -9,7 +9,7 @@ Validate the collision system through small falsifiable stages while preserving 
 
 Current state: `SESSION_ENTRYPOINT.md`.  
 Exact transient continuation: `BETWEEN_CHATS.md`.  
-Frozen post-baseline rewrite: `SECOND_PASS_REWRITE_CONTRACT.md`.  
+Frozen rewrite: `SECOND_PASS_REWRITE_CONTRACT.md`.  
 Lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.  
 Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
@@ -55,6 +55,7 @@ hook/finalizer substrate stabilization               EV-199–EV-203
 C1-O2-P1 lightweight dispatch bridge                 EV-204
 C1-O2-P2 lazy pre-Combat acquisition/consumption     EV-205
 C1-R1 controlled native-equivalent physical repair   EV-206–EV-207
+post-EngineBridge unchanged runtime baseline         CLOSED/PASS 2026-08-30
 ```
 
 C1-R1 validation is closed.
@@ -145,52 +146,69 @@ Therefore the frozen rewrite renames it to `RuntimeClock`; it is not removed wit
 
 ---
 
-## 5. Current Gate — Unchanged Post-EngineBridge Runtime Baseline
+## 5. Post-EngineBridge Unchanged Runtime Baseline — CLOSED/PASS
 
-**Run this before any source implementation of the frozen rewrite.**
+Purpose was to prove the completed EngineBridge structural extraction at runtime using unchanged source/logger before changing architecture or diagnostics.
 
-Purpose:
-
-```text
-prove the already-completed EngineBridge structural extraction at runtime
-using the current unchanged source and current unchanged logger
-before architecture/logger/source rewrites change another variable
-```
-
-Compact sentinel set:
-
-```text
-A. ordinary melee completion with native cleanup/no repair
-B. one known destructive stale-source case producing exact C1-R1 repair
-C. legitimate reaction interruption with native cleanup/no repair
-D. marked Staff RIGHT/OFF/RIGHT regression
-E. Dual source-specific case
-F. Fist/unarmed negative
-G. crossbow negative
-H. clean shutdown
-```
-
-Exact raw filename:
+Primary compact raw artifact:
 
 ```text
 research/raw/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline.log
+commit 5a33e5c134b027c440e40e6155cdf233aea049eb
+SHA256 F42DCC7EFE7E178659861BD9E07E5631EB66E7C0DB1858D847C11656272E9783
 ```
 
-This is **not** a reopened R1 matrix. It is a compact structural baseline.
-
-If the baseline fails:
+Deterministic retrieval package:
 
 ```text
-STOP
-→ diagnose current EngineBridge/current unchanged source
-→ do not start SECOND_PASS_REWRITE_CONTRACT implementation
+research/derived/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline_large_log/
+commit fb2644d2952923f5a9a3d41ba881a342ef0d8ff2
 ```
 
-If it passes, publish/interpret the raw evidence and then authorize the frozen rewrite.
+The compact run preserved:
+
+```text
+ordinary melee native cleanup with no R1 repair
+known destructive stale-source exact C1-R1 physical repair
+marked Staff RIGHT → OFF → RIGHT semantics
+marker duplicate / authored occurrence protections
+Dual source specificity
+clean negative behavior / shutdown
+```
+
+The user omitted the intended focused Fist exercise from that primary session. The primary artifact was preserved unchanged and Fist was closed separately rather than rerunning or replacing it.
+
+Supplemental Fist artifact:
+
+```text
+research/raw/2026-08-30_post_enginebridge_fist_negative_closure.log
+commit 269faad334ef918ca16f6401751d47693e48520f
+```
+
+Focused Fist result:
+
+```text
+resolved current source = Fist
+source collision group before = 0
+Gothic requested Item_Attack(7)
+actual resulting group after request = 0
+therefore successfulOffenseRequest = false
+C1 OffensiveRequestCount = 0
+OutstandingBeforeFinalization = 0
+RepairAttempted = 0
+PhysicalCollisionChanged = 0
+finalization = NO_OP_NO_OUTSTANDING
+```
+
+Conclusion:
+
+> **EngineBridge extraction preserved the proven collision lifecycle, marker behavior, exact source ownership, native cleanup, C1-R1 repair and current Fist negative semantics.**
+
+Do not rerun this unchanged baseline by default.
 
 ---
 
-## 6. Frozen Rewrite Validation
+## 6. Current Gate — Frozen Rewrite Implementation
 
 Architecture contract:
 
@@ -213,6 +231,14 @@ verify behavior-only target excludes diagnostic source/state/hooks
 The behavior-only target is a mechanical architecture test: collision behavior must compile without `CollisionDiagnostics` or deep research instrumentation.
 
 Do not deploy the diagnostic and behavior-only prototypes together.
+
+If a concrete source/API/calling-convention contradiction appears during implementation:
+
+```text
+STOP
+→ report the contradiction
+→ do not redesign around it ad hoc
+```
 
 ---
 
