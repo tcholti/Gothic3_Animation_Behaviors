@@ -28,20 +28,20 @@ Raw logs are verification/provenance, not routine reading.
 | Raise prepend proof / engine animation resolution | EV-006–EV-007 | `DESIGN.md` §4 |
 | frame effects / marker channel / frame-effect layout | EV-012–EV-018 | source guide Frame effects |
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | later lifecycle evidence if asking about abnormal endings |
-| Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick implementation evidence EV-066+ |
-| Fist/body-contact source semantics | EV-029–EV-032, EV-080–EV-085 | `ANIMATION_CATALOG.md` Fist fixture |
+| Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick implementation evidence EV-066+; R1-E NPC Staff stability EV-207 |
+| Fist/body-contact source semantics | EV-029–EV-032, EV-080–EV-085, EV-207 | `ANIMATION_CATALOG.md` Fist fixture |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | marker-core later evidence / catalog fixtures |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075 | EV-182–EV-196 for native lifecycle/bookkeeping context |
-| Dual native source map | EV-090–EV-094 | `ANIMATION_CATALOG.md` §6–§7 |
+| Dual native source map | EV-090–EV-094 | EV-207 for C1-R1 exact-source repair validation |
 | multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | archived v0.10–v0.13 fixture logs |
-| marker execution retirement after interruption | EV-131–EV-133 | EV-167, EV-182–EV-196 for later lifecycle interpretation |
+| marker execution retirement after interruption | EV-131–EV-133 | EV-167, EV-182–EV-196, EV-207 for later lifecycle/terminal-repair interpretation |
 | final RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` §6 / `ANIMATION_RULES.md` §20 |
 | Whirl callback/action/source separation | EV-145–EV-147 | `ANIMATION_RULES.md` §8.1 / cleanup map |
 | NewBalance / AttackCollision Whirl compatibility | EV-035, EV-148–EV-150 | `SOURCE_HOOK_GUIDE.md` same-function caution |
-| Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156, EV-180–EV-191 for resolved tested stale lifecycle |
+| Staff full-Whirl cleanup anomaly | EV-151–EV-153 | EV-155–EV-156, EV-180–EV-191, EV-206–EV-207 for validated guard outcome |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` constraints |
-| marked block-timeout failure | EV-155 | native control EV-156 |
+| marked block-timeout failure | EV-155 | native control EV-156; validated terminal repair EV-206–EV-207 |
 | native stale collision / running consequence | EV-156, EV-181, EV-187, EV-190, EV-197–EV-198, EV-202–EV-203, EV-206 | active-problem reconstruction route below |
 | v0.20 PrimaryFirst lifetime sampling | EV-157 | B1 EV-158 |
 | PlayMotion actual replacement timing | EV-158 | B6 EV-174–EV-180 |
@@ -52,16 +52,16 @@ Raw logs are verification/provenance, not routine reading.
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
 | legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179, EV-184, EV-186, EV-188, EV-191, EV-203, EV-206 | cleanup map / lifecycle plan §3 |
 | B5 parent stack | EV-166 | EV-169–EV-170 static identification |
-| marker bookkeeping vs physical cleanup | EV-167, EV-182–EV-196, EV-206 | `COLLISION_LIFECYCLE_PLAN.md` §9 |
-| future marker-core simplification / native execution boundary | EV-066–EV-075, EV-131–EV-133, EV-167, EV-182–EV-196 | **Read `COLLISION_LIFECYCLE_PLAN.md` §9 before changing marker bookkeeping** |
+| marker bookkeeping vs physical cleanup | EV-167, EV-182–EV-196, EV-206–EV-207 | `COLLISION_LIFECYCLE_PLAN.md` §9 |
+| future marker-core simplification / native execution boundary | EV-066–EV-075, EV-131–EV-133, EV-167, EV-182–EV-196, EV-207 | **Read `COLLISION_LIFECYCLE_PLAN.md` §9 before changing marker bookkeeping** |
 | ordinary / reaction / bad-skip ending model | EV-168, EV-179–EV-191 | lifecycle plan §§3–8 |
 | `RunScriptState` / `RunScriptFunction` identification | EV-169, EV-195, EV-199 | cleanup map §§5–6 / source guide Script administration |
 | `ProcessScript()` common generic dispatcher | EV-170, EV-176 | EV-180 for failed universal replacement-time validation |
 | callback processing after main script dispatch | EV-171 | cleanup map §8 |
 | deferred pending-finalization/post-script candidate | EV-172 | **superseded by EV-180**; lifecycle plan §7 |
 | live `scripts` backup-DLL contamination | EV-173 | `SOURCE_HOOK_GUIDE.md` build/runtime reference |
-| B6 clean path disappearance + ProcessScript stack | EV-174–EV-176 | `COLLISION_TEST_PLAN.md` B6-B |
-| B6 reaction successor context | EV-177–EV-179 | `COLLISION_TEST_PLAN.md` B6-C |
+| B6 clean path disappearance + ProcessScript stack | EV-174–EV-176 | historical lifecycle evidence |
+| B6 reaction successor context | EV-177–EV-179 | historical lifecycle evidence |
 | B6 bad skip context / no useful ScriptAdmin replacement stack | EV-180 | B6-D raw |
 | long-lived stale group 7 / later inherited 7->7 | EV-181, EV-193, EV-203 | C1 core confirms new-generation attribution for inherited stale state |
 | persisted CombatMove instruction / FullStop semantics | EV-182, EV-185–EV-191 | lifecycle plan §§3–4 / source guide CombatMove symbols |
@@ -83,7 +83,9 @@ Raw logs are verification/provenance, not routine reading.
 | SetCollisionGroup explicit-this transport / interrupted crash / corrected rerun | EV-201–EV-203 | EV-202 supersedes EV-201 root-cause interpretation; EV-203 is tested PASS |
 | C1 finalizer remembered-source liveness crash and correction | EV-202–EV-203 | correction is stable; exact liveness-negative outstanding branch lacks positive runtime coverage |
 | C1-O2 lightweight dispatch bridge / outer acquisition closure | EV-204–EV-205 | P1 establishes synchronous scope; P2 closes tested pre-Combat offense→CombatMove bridge model |
-| C1-R1 controlled native-equivalent physical repair | EV-206 | exact live/equipped outstanding weapon source `7 -> 5`; A–D controls canonical; R1-E extension routed by current handoff/raw evidence |
+| C1-R1 controlled native-equivalent physical repair | EV-206–EV-207 | exact live/equipped outstanding weapon-source `7 -> 5` repair plus Dual/marker/broad/Fist/crossbow closure; controlled validation CLOSED |
+| crossbow / bow / magic C1 negative regression | EV-207 | crossbow independently remains outside exact tracked C1 weapon-source ownership; bow/magic provide supplemental negative coverage |
+| C1-R1 closure / next integration boundary | EV-207 | do not invent another R1 matrix; `SESSION_ENTRYPOINT.md` owns production-integration planning state |
 
 ---
 
@@ -102,7 +104,7 @@ When this stale-collision problem is the active engineering responsibility, a fr
 9. **C1 execution/source-obligation invariant and lifetime work:** EV-192–EV-196 → `COLLISION_LIFECYCLE_PLAN.md`.
 10. **C1 hook/finalizer substrate stabilization:** EV-199–EV-203.
 11. **C1-O2 outer acquisition/binding closure:** EV-204–EV-205.
-12. **Controlled native-equivalent physical repair:** EV-206 → `COLLISION_LIFECYCLE_PLAN.md` / `COLLISION_TEST_PLAN.md`; `SESSION_ENTRYPOINT.md` owns the exact current closure responsibility.
+12. **Controlled native-equivalent physical repair and closure:** EV-206–EV-207 → `COLLISION_LIFECYCLE_PLAN.md` / `COLLISION_TEST_PLAN.md`; `SESSION_ENTRYPOINT.md` owns the next production-integration responsibility.
 
 ---
 
@@ -124,7 +126,7 @@ Reference: `SOURCE_HOOK_GUIDE.md` Frame effects; `ANIMATION_RULES.md` §19–§2
 
 ### C. Physical source selection
 
-Search terms: `RIGHT`, `LEFT`, `BOTH`, `Fist`, `Torch`, `Dual`, `Pierce`, `Power`, `QuickAttackR`, `QuickAttackL`
+Search terms: `RIGHT`, `LEFT`, `BOTH`, `Fist`, `Torch`, `Dual`, `Pierce`, `Power`, `QuickAttackR`, `QuickAttackL`, `Crossbow`
 
 Evidence anchors:
 
@@ -134,7 +136,8 @@ Evidence anchors:
 - EV-090–EV-094;
 - EV-145–EV-147;
 - EV-192–EV-194 for C1 exact equipped-source obligation/acquisition behavior;
-- EV-206 for exact-source physical-repair semantics and controlled no-op coverage.
+- EV-206 for exact-source physical-repair semantics and controlled no-op coverage;
+- EV-207 for Dual repair independence plus Fist/crossbow source-scope closure.
 
 Asset-level routing: `ANIMATION_INDEX.md`.
 
@@ -156,7 +159,7 @@ Evidence anchors:
 - EV-131–EV-133;
 - EV-167;
 - EV-181–EV-196;
-- EV-206 plus the current R1-E marked regression routed by `BETWEEN_CHATS.md` when terminal-repair interaction matters.
+- EV-206–EV-207 for controlled terminal repair and marked-source regression.
 
 Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§3–9.
 
@@ -166,10 +169,10 @@ Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§3–9.
 
 Search terms: `Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition, `m_pfInstrCallback`, `FullStop`, `SetState`, `RunScriptFunction`, `m_StateStack`, `m_pArguments`, `FinalizeAfterAISetState`, `LivenessEstablished`, `REPAIRED_TO_ITEM_EQUIPPED`
 
-Evidence anchors: EV-151–EV-206.
+Evidence anchors: EV-151–EV-207.
 
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
-Current architecture/test: `COLLISION_LIFECYCLE_PLAN.md`; `COLLISION_TEST_PLAN.md`; current gate in `SESSION_ENTRYPOINT.md`.
+Current architecture/test: `COLLISION_LIFECYCLE_PLAN.md`; `COLLISION_TEST_PLAN.md`; current integration responsibility in `SESSION_ENTRYPOINT.md`.
 
 ### G. Animation semantics and naming
 
@@ -220,7 +223,7 @@ Practical source route: `SOURCE_HOOK_GUIDE.md` §8–§11.
 | C1-O2-P1 lightweight bridge | EV-204 | tiny synchronous RunScriptFunction scope exposes the missing pre-Combat acquisition context without eager generic dispatch work |
 | C1-O2-P2 ownership integration | EV-205 | early exact offense acquires the monotonic generation and matching CombatMove consumes the native bridge before wrapper return; tested model closes |
 | C1-R1 controlled physical repair | EV-206 | exact live/equipped outstanding weapon source is repaired `7 -> 5`; clean/reaction/pre-activation/GetUp/GetUpParade controls remain non-mutating |
-| Current closure | EV-206 + R1-E artifacts | Dual/marker/broad exercised coverage passed; `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` own the focused unsupported-source negative closure |
+| C1-R1-E source/marker/broad closure | EV-207 | Dual exact-source independence, marked terminal repair, broad player/NPC stability, Fist/body separation and crossbow negative behavior close the controlled R1 gate |
 
 ---
 
@@ -251,6 +254,7 @@ Current C1 evidence includes:
 - `research/raw/2026-08-30_c1r1e_marked_staff_terminal_repair_regression.log`
 - `research/raw/2026-08-30_c1r1e_broad_player_npc_negative_stability.log`
 - `research/derived/2026-08-30_c1r1e_broad_player_npc_negative_stability_large_log/`
+- `research/raw/2026-08-30_c1r1e_unarmed_crossbow_negative_closure.log`
 
 Open archived/raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
