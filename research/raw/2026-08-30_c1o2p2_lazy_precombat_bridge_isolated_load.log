@@ -1,0 +1,62 @@
+Script_FrameCollisionTest v0.20 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT/BOTH source marker.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl eligibility: OnAI_WhirlAttack + exact WhirlAttack action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.
+v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.
+STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.
+STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.
+STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.
+STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.
+STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / UNGATED EMPTY-PRIMARY SUCCESSOR STACK PROBE: player PrimaryFirst outgoing attack-Hit or factual empty-Primary successor stack; diagnostic-only.
+STEP B7 COMBATMOVE FULLSTOP STACK PROBE: player sAICombatMoveInstr fullStop=true caller/context stack; diagnostic-only.
+STEP B7b AIFULLSTOP CALLSITE PROBE: player gCScriptRoutine_PS::AIFullStop immediate caller/context stack; diagnostic-only.
+STEP B9 AISETSTATE ORDERING PROBE: player gCScriptRoutine_PS::AISetState requested-state/caller/context stack before original; diagnostic-only.
+STEP C1 SHADOW LIFECYCLE GUARD: event-driven execution/source obligations; WOULD_REPAIR only; no physical repair.
+STEP C1 AISETSTATE RECURSION-SAFE THISCALL BASELINE: explicit per-invocation this; RunScriptFunction remains pure pass-through.
+STEP C1 AIFULLSTOP RECURSION-SAFE THISCALL BASELINE: explicit per-invocation this; AISetState and RunScriptFunction unchanged.
+STEP C1-O1 OUTER SCRIPTFRAME IDENTITY PROBE: top SPU frame snapshots only; no lifecycle or collision behavior change.
+STEP C1-O2-P1 LIGHTWEIGHT DISPATCH BRIDGE: stack-local/TLS current scope; relevant-offense diagnostics only; no lifecycle or collision behavior change.
+v0.20 probe runs only while a marker-owned collision window exists.
+Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+G3AB_COL_RIGHT is the final RIGHT equipped-slot marker.
+G3AB_COL_LEFT is the final LEFT equipped-slot marker.
+G3AB_COL_BOTH is the final BOTH equipped-slot marker.
+RIGHT, LEFT, and BOTH use exact-set semantics: the selected source set replaces the previous marker-owned set.
+BOTH activates/rearms the right and left equipped slot entities independently at one authored marker.
+If any source required by the exact motion is missing, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+G3AB_COL_OFF closes only a weapon window opened by this prototype.
+OFF requests Item_Equipped and never clears the triggered list.
+OFF before ON or after natural reset is consumed as a logged no-op.
+Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.
+
+v0.19 adds only the full 2H/Staff OnAI_WhirlAttack adapter.
+v0.19 preserves the validated v0.18 Normal/Quick RIGHT/LEFT/BOTH/OFF core unchanged.
+No Dual SimpleWhirl, Power, collision-source, timing, or cleanup behavior is added in v0.19.
+Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.
+
+Authored-occurrence budgets are cached separately for RIGHT, LEFT, BOTH, and OFF.
+Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase.
+Marker-time or controlled-callback state-time rollback starts a new execution.
+Natural collision reset outside the owning Hit execution retires the actor budget.
+No per-frame actor scan; budget work occurs only when a reserved marker is received.
+
+STEP C1-O2-P2 LAZY PRE-COMBAT BRIDGE: event-driven pre-Combat generation acquisition; matching CombatMove consumes temporary binding; shadow-only; no physical repair.
+Installing hooks...
+Hooks installed.
+
+Script_FrameCollisionTest unloading.
