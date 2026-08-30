@@ -73,7 +73,7 @@ void OpenLog()
     std::fprintf(g_pLog, "STEP C1 AISETSTATE RECURSION-SAFE THISCALL BASELINE: explicit per-invocation this; RunScriptFunction remains pure pass-through.\n");
     std::fprintf(g_pLog, "STEP C1 AIFULLSTOP RECURSION-SAFE THISCALL BASELINE: explicit per-invocation this; AISetState and RunScriptFunction unchanged.\n");
     std::fprintf(g_pLog, "STEP C1-O1 OUTER SCRIPTFRAME IDENTITY PROBE: top SPU frame snapshots only; no lifecycle or collision behavior change.\n");
-    std::fprintf(g_pLog, "STEP C1-O2 RUNSCRIPTFUNCTION PURE PASS-THROUGH ISOLATION: recursion-safe ThisCall hook; no dispatch capture; no lifecycle behavior change.\n");
+    std::fprintf(g_pLog, "STEP C1-O2-P1 LIGHTWEIGHT DISPATCH BRIDGE: stack-local/TLS current scope; relevant-offense diagnostics only; no lifecycle or collision behavior change.\n");
     std::fprintf(g_pLog, "v0.20 probe runs only while a marker-owned collision window exists.\n");
     std::fprintf(g_pLog, "Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.\n");
     std::fprintf(g_pLog, "FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).\n");
