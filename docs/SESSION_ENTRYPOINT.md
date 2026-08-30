@@ -71,13 +71,13 @@ Use `EVIDENCE_INDEX.md` Active-Problem Reconstruction when the causal model is n
 - the known held-Use2 destructive path can terminate CombatMove and discard the suspended attack continuation before cleanup, leaving offensive collision stale;
 - stale collision can persist through later idle/movement and can be inherited by a later legitimate execution as `7 -> 7`;
 - C1 tracks successful offensive requests as exact per-source obligations, observes native cleanup, and classifies outstanding obligations at destructive AISetState finalization;
-- GetUpAttack can request offense before CombatMove, so CombatMove alone is too late as a universal acquisition boundary;
+- GetUpAttack can request offense before CombatMove, so CombatMove alone is too late as a universal execution-acquisition boundary;
 - C1-O1 proved the live outer ScriptFunction frame can correlate pre-CombatMove offense → CombatMove → cleanup, while raw frame/argument addresses are lifetime-bound correlators only and may be reused after retirement;
 - C1-O2-P1 proved that the missing GetUp pre-Combat offense occurs inside a safe lightweight live `RunScriptFunction` scope and that matching CombatMove begins before that wrapper returns/suspends;
-- C1-O2-P2 now implements the smaller bridge model: a real pre-Combat offense may acquire the monotonic C1 generation, matching CombatMove may reuse that generation and consume the temporary native-frame binding before wrapper return;
+- C1-O2-P2 now proves the smaller bridge model on targeted GetUpAttack runtime evidence: a real pre-Combat offense acquires the monotonic C1 generation, matching CombatMove reuses that same generation and consumes the temporary native-frame binding before wrapper return, and later timer offense/native cleanup continue on the durable generation;
 - C1's monotonic generation remains the durable plugin execution identity.
 
-Evidence route: EV-151–EV-204. P2 source implementation is not runtime evidence yet.
+Canonical evidence through P1: EV-151–EV-204. P2-C raw/runtime result is preserved on the active branch and awaits final P2 evidence-ledger promotion together with the broader P2-D stability result.
 
 ---
 
@@ -109,7 +109,8 @@ Core model and acquisition evidence:
 - EV-192–EV-193 — shadow execution/source obligation model;
 - EV-194 — GetUp pre-CombatMove acquisition gap;
 - EV-195–EV-196 — outer ScriptFunction lifetime and C1-O1 correlation/pointer-reuse qualification;
-- EV-204 — P1 lightweight dispatch bridge source/isolated/targeted validation.
+- EV-204 — P1 lightweight dispatch bridge source/isolated/targeted validation;
+- P2-C active raw — targeted generation acquisition/bridge-consumption meaning PASS; broader stability still pending.
 
 ### Directly relevant tested substrate
 
@@ -118,7 +119,8 @@ RunScriptFunction
 = recursion-safe explicit-this .ThisCall()
 = stack-local/TLS lightweight current scope
 = P1 PASS source audit + isolated load + targeted meaning validation
-= no separate P1 extended-stability claim
+= P2 targeted acquisition/bridge-consumption meaning PASS
+= P2 broader stability still pending
 
 AISetState
 = explicit-this recursion-safe .ThisCall()
@@ -161,7 +163,7 @@ P1-D was not run as a separate long-duration gate.
 
 ---
 
-## C1-O2-P2 — Implemented, Source-Audited, Runtime Unverified
+## C1-O2-P2 — Targeted Meaning PASS; Broader Stability Pending
 
 Behavior implementation commit:
 
@@ -175,61 +177,113 @@ Build-identity banner correction:
 8b6a5873b8caa27b469ae831d25bf155a6c7f189
 ```
 
-Independent Normal Chat P2-A source review: **PASS**. The banner correction is mechanical and does not change P2 behavior.
-
-Source review confirms:
-
-- the generic `RunScriptFunction` pre-native path remains stack-local/TLS bookkeeping only;
-- the rejected `g_ScriptFunctionDispatchStack` / old Begin-End machinery was not reconnected;
-- live-frame/actor/source/C1 acquisition work is lazy at a real successful offense event;
-- the exact live SPU/runtime-stack/ScriptFunction/non-null-arguments/equipped-source checks remain the acquisition boundary;
-- matching CombatMove reuses the same pre-acquired generation and consumes/retires the temporary native-frame binding immediately;
-- an unconsumed bridge is diagnostic and is retired before wrapper return without dropping the real source obligation;
-- ordinary CombatMove-created generation behavior, cleanup/finalization semantics, marker behavior, hook transport and physical collision behavior were not deliberately changed.
-
-The corrected startup identity line is:
+Validated P2 DLL:
 
 ```text
-STEP C1-O2-P2 LAZY PRE-COMBAT BRIDGE: event-driven pre-Combat generation acquisition; matching CombatMove consumes temporary binding; shadow-only; no physical repair.
+Script_FrameCollisionTest.dll
+Length: 465408
+SHA256: 1081B287912DB9A368164DDE13542A7EC2D6E5DBB0AA29B04C19BD7932D92C7C
 ```
+
+P2-A independent Normal Chat source review: **PASS**.
+
+P2-B isolated main-menu load/unload: **PASS**.
+
+P2-C targeted player 2H Normal + GetUpAttack runtime meaning test: **PASS**.
+
+P2-C evidence commit:
+
+```text
+0697437cf9b3036367e9bdba2ec85576f86ddbe3
+```
+
+P2-C raw:
+
+```text
+research/raw/2026-08-30_c1o2p2_player_2h_normal_getup_bridge_consumption.log
+```
+
+The run contained three initial ordinary clean 2H Normal controls and five deliberate GetUpAttack executions. The five GetUp pre-Combat generations were `20`, `33`, `45`, `54`, and `64`.
+
+For **all five**:
+
+```text
+PRECOMBAT_ACQUIRED
+→ C1 OFFENSE REQUEST while OUTER_BOUND
+→ matching PRECOMBAT_BRIDGE_CONSUMED on same generation
+→ later timer C1 OFFENSE REQUEST while PERSISTED
+→ C1 CLEANUP FULFILLED on same generation/source
+→ finalization NO_OP_NO_OUTSTANDING
+```
+
+Whole-run counts relevant to the P2 gate:
+
+```text
+PRECOMBAT_ACQUIRED = 5
+PRECOMBAT_BRIDGE_CONSUMED = 5
+UNOWNED_PLAYER_OFFENSE_REQUEST = 0
+PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN = 0
+C1 INVARIANT WARNING = 0
+```
+
+All five acquisition events used `_AI_GetUpAttack` / `OnAI_GetUpAttack` and native action `gEAction_GetUpAttack` (`30`) at the positive acquisition boundary. The User varied input timing—some attempts were made promptly after knockdown/sit-up and some after remaining seated longer—but the runtime log does not directly label those user-input timing categories. Do not invent a production classifier from that variation; by the acquisition point all five converged on the same proven path.
+
+The three initial Normal controls remained on ordinary CombatMove-created `_AI_Attack` generations and cleaned/finalized normally.
+
+Physical repair remained disabled.
 
 ---
 
-## Current Immediate Responsibility — C1-O2-P2-B Build / Isolated Load
+## Current Immediate Responsibility — C1-O2-P2-D Broader Stability
 
-P2-A is complete. The next responsibility is **not another architecture/Work task**.
+P2-C has proved the intended positive bridge meaning. The next responsibility is **broader runtime stability/integration coverage**, not another implementation task.
 
-Normal Chat now hands the branch to the User for the normal local sequence:
+Use the currently validated P2 DLL unless implementation identity changes.
 
-```text
-sync exact branch
-→ build Script_FrameCollisionTest
-→ deploy exact DLL
-→ verify one live DLL + built/live SHA256 match
-→ isolated main-menu load/unload
-→ require exact P2 startup banner
-→ preserve raw isolated-load evidence
-```
-
-P2-C targeted 2H GetUp correlation is authorized only after P2-B passes.
-
-P2-C is expected to test the intended meaning:
+P2-D should exercise the existing C1 runtime matrix with varied normal gameplay and deliberate controls:
 
 ```text
-initial legitimate GetUp offense
-→ pre-Combat generation acquired
-→ C1 source obligation belongs to that generation
-→ matching CombatMove reuses same generation
-→ PRECOMBAT_BRIDGE_CONSUMED
-→ no unconsumed-bridge invariant
-→ later timer offense remains attributed to durable generation
-→ native cleanup fulfills same generation
-→ physical repair remains OFF
+ordinary clean attacks across relevant melee families
+legitimate reaction interruptions
+pre-activation interruption/no-offense cases
+known armed destructive abandonment as a positive shadow WOULD_REPAIR stress case
+inherited stale 7 -> 7 when naturally produced
+repeated GetUpAttack opportunities when available
+normal traversal / draw-holster / state churn around combat
 ```
 
-Representative ordinary Normal attacks remain a control; they do not require a live `RunScriptFunction` scope at timer offense.
+Specifically watch for:
 
-Exact runtime filenames and commands are frozen by Normal Chat at the relevant local stage, following `PROJECT_PIPELINE.md` and `PROJECT_OPERATING_PROCEDURES.md`.
+```text
+UNOWNED_PLAYER_OFFENSE_REQUEST
+PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN
+live-frame/binding mismatch or overlap invariants
+generation replacement where reuse was expected
+NULL_ARGUMENTS / unresolved binding failures
+unexpected physical collision change
+crash / abnormal unload
+```
+
+Expected architecture remains:
+
+```text
+live ScriptFunction frame
+= temporary native correlator only where early acquisition needs it
+
+C1 monotonic generation
+= durable plugin execution identity
+
+successful Item_Attack request
+= exact source obligation
+
+native transition away from Item_Attack
+= obligation fulfilled
+
+destructive AISetState with obligation outstanding
+= existing shadow WOULD_REPAIR classification
+```
+
+Do not freeze physical-repair implementation until P2-D is interpreted and C1-O2 is closed.
 
 ---
 
@@ -276,7 +330,7 @@ All addresses are tested-build-specific.
 | current exact continuation / transient handoff | `BETWEEN_CHATS.md` |
 | participant/tool responsibility allocation | `COLLABORATION_RULES.md` §6 |
 | active stale-collision causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
-| C1-O2 / hook/finalizer continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-204 |
+| C1-O2 / hook/finalizer continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-204 + active P2 raw until final P2 promotion |
 | outer lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | current staged validation | `COLLISION_TEST_PLAN.md` |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
