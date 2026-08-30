@@ -2,178 +2,191 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work. Replace rather than accumulate chronology.
 
-## Current bridge — FROZEN WORK TASK: C1-O2-P1 lightweight dispatch bridge
+## Current bridge — FROZEN WORK TASK: C1-O2-P2 lazy pre-Combat acquisition
 
-### Why this task exists
+### Established result
 
-The C1-O2 reassessment is complete enough to select one bounded diagnostic candidate.
+C1-O2-P1 passed source audit, isolated load/unload and targeted meaning validation. The lightweight `RunScriptFunction` bridge is stack-local/TLS only and did not reproduce the old eager-capture crash.
 
-Established comparison:
+Four reproduced GetUpAttack executions showed the same ordering:
 
 ```text
-old C1-O2 capture
-= RunScriptFunction hook + eager Begin/End dispatch capture
-= per-dispatch state-stack/top-frame work + actor/entity work + thread_local vector/string bookkeeping
-= crashed
-
-ABI-corrected C1-O2 capture
-= explicit-this recursion-safe .ThisCall()
-= same eager Begin/End capture lifecycle
-= still crashed in equivalent registered-ScriptFunction path
-
-current baseline
-= same explicit-this recursion-safe RunScriptFunction transport
-= pure pass-through only
-= stable
+live _AI_GetUpAttack RunScriptFunction
+→ legitimate equipped-source Item_Attack 5 -> 7
+→ matching player CombatMove begins in the same live ScriptFunction frame
+→ RunScriptFunction later returns false / suspends
+→ later timer 7 -> 7 occurs with no live RunScriptFunction scope
 ```
 
-The old crash therefore cannot be attributed to RunScriptFunction transport alone. The strongest remaining suspect class is the eager capture/lifetime machinery performed around every dispatch.
+At each initial GetUp offense the P1 scope existed, its SPU and runtime-stack identity matched the player SPU/state stack, the ScriptFunction was `_AI_GetUpAttack`, and the later dispatch return was `GEFalse`. Ordinary Normal/Quick timer offense usually had no live P1 scope even though its ScriptFunction remained suspended on the SPU.
 
-Later source/runtime evidence also established:
-
-- native `RunScriptFunction` already receives the SPU, runtime-stack reference and ScriptFunction name;
-- its native return value already distinguishes suspended/unfinished (`false`) from completed (`true`) ScriptFunction execution;
-- the current stable build already performs lazy outer-frame/state-stack inspection only at relevant player offense/cleanup events, including 230 `OUTER_FRAME OFFENSE` observations in the corrected extended run;
-- therefore P1 should test only whether a zero-allocation synchronous current-dispatch bridge can coexist safely with native execution.
+Therefore P2 must test the smaller model first: **native ScriptFunction identity is a temporary bridge from pre-Combat offense to matching CombatMove, not persistent execution identity across suspension.** C1's monotonic generation remains the durable plugin identity.
 
 ---
 
-# FROZEN RESPONSIBILITY — C1-O2-P1
+# FROZEN RESPONSIBILITY — C1-O2-P2
 
-Implement only a **diagnostic lightweight current-RunScriptFunction scope bridge** around the already-stable explicit-this `RunScriptFunction` hook.
+Implement only **lazy pre-Combat C1 generation acquisition plus temporary bridge consumption**.
 
 The question is:
 
-> **Can the stable RunScriptFunction hook carry one nesting-safe, zero-allocation, stack-local current-dispatch scope across the native call, with no engine/API work before the native callback, and expose that scope only when an already-relevant player offensive SetCollisionGroup event occurs?**
+> **Can C1 use the proven P1 live `RunScriptFunction` scope only at a successful exact equipped-source pre-CombatMove offense to acquire its existing monotonic generation, let matching CombatMove in that same live ScriptFunction invocation reuse that generation, then consume/retire the native-frame bridge before `RunScriptFunction` returns — without reconnecting the rejected eager dispatch machinery or changing cleanup/finalization/physical collision behavior?**
 
-This is a diagnostic substrate probe only. It must not yet become C1 execution ownership.
+## Required architecture
 
-## Frozen implementation shape
+Keep the existing P1 stack-local/TLS scope. Do not add another per-dispatch container or persistent dispatch object.
 
-Use a tiny stack-local scope in the RunScriptFunction hook translation unit with only the information already supplied by the hook call:
+At a successful `Item_Attack` result, the current P1 scope may be exposed to `CollisionLifecycleGuard` as a **transient non-owning view** containing only hook-supplied identities needed for validation, such as:
 
 ```text
-previous/current-scope link
 SPU pointer
-runtime-stack pointer/reference identity
-ScriptFunction-name reference/pointer identity
-offense-observed flag
+runtime-stack pointer
+ScriptFunction-name reference
 ```
 
-Use one `thread_local` pointer to the current scope so nested RunScriptFunction calls naturally form a parent chain through the native C++ call stack.
+Only at that real offense event may C1 perform actor/equipped-source/state-stack work.
 
-Normal unrelated RunScriptFunction entry/exit must do only local/TLS pointer bookkeeping plus the original native call. In particular, before calling the original RunScriptFunction, P1 must perform **no**:
+Pre-Combat acquisition is allowed only when all of these are true:
 
-- state-stack inspection;
-- `GetSelfEntity()` or actor/entity lookup;
-- C1 map/record lookup;
-- string copy/ownership;
-- vector/container push/pop;
-- heap allocation;
-- logging;
-- collision work.
+1. a current P1 scope exists;
+2. its SPU is valid;
+3. its runtime-stack identity is the same SPU state stack;
+4. that SPU's current top frame is a real ScriptFunction;
+5. the top frame has non-null `m_pArguments`;
+6. top ScriptFunction name matches the live wrapper ScriptFunction name;
+7. the offensive source is the exact currently equipped RIGHT and/or LEFT source of that SPU actor;
+8. no incompatible C1 generation/binding already owns the actor/source.
 
-The original/native RunScriptFunction must be called exactly once with the real unchanged arguments through the existing explicit-this recursion-safe hook transport.
+No family/action/input/GetUp/state-name classifier is allowed.
 
-## Relevant-event observation
-
-Only after the existing SetCollisionGroup diagnostics have already established a successful offensive request on the player's exact equipped source may P1 inspect the current TLS scope.
-
-At that event only:
-
-- observe whether a current RunScriptFunction scope exists;
-- compare its SPU pointer with the already-resolved player SPU by pointer identity;
-- compare its runtime-stack address with the actor SPU state-stack address by pointer identity when available through the already-existing diagnostic path;
-- log the current ScriptFunction name while its wrapper/reference is synchronously live;
-- log whether a parent scope exists, but do not invent parent/outer ownership semantics in P1;
-- if the current scope matches the relevant player SPU, set its local `offense-observed` flag.
-
-When that same wrapper returns from native RunScriptFunction:
-
-- restore the previous TLS pointer before any diagnostic logging;
-- only if that local scope observed a relevant offense, log its native return result (`false` suspended/unfinished vs `true` completed) and the same transient identities;
-- do not persist the scope object or its ScriptFunction-name reference after wrapper return.
-
-Diagnostic support may live in `CollisionDiagnostics.*`, but diagnostics must remain observation-only and must not own the runtime bridge or C1 behavior.
-
-## Allowed source scope
-
-Primary allowed files:
+When those conditions pass:
 
 ```text
-prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp
-prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h
-prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
+real pre-Combat offense
+→ create/reuse one C1 monotonic generation
+→ bind that generation temporarily by SPU + arguments + ScriptFunction name
+→ attribute the real source obligation to that generation
+→ return a tiny generation/bridge token to the same stack-local P1 scope
 ```
 
-Do not modify `CollisionLifecycleGuard.*` for P1. Its older dormant C1-O2 Begin/End machinery must remain disconnected.
+The temporary binding may copy only the minimum lifetime-bound identity needed between the relevant offense and matching CombatMove. Any allocation/string ownership here is event-driven, not per generic `RunScriptFunction` dispatch.
 
-Use no new hook and no new source module unless a concrete compile/API contradiction proves the frozen implementation cannot be expressed in the allowed files; if that occurs, STOP and report the contradiction.
+## Matching CombatMove
+
+`BeginCombatMove()` must preserve the existing ordinary path when no matching pre-acquired binding exists.
+
+When the current CombatMove frame exactly matches a pre-acquired binding by:
+
+```text
+same actor
+same SPU
+same non-null arguments pointer
+same ScriptFunction name
+```
+
+it must:
+
+```text
+reuse the SAME C1 generation
+→ mark that already-real generation as persisted/owned by the CombatMove path
+→ consume/retire the temporary native-frame binding immediately
+→ keep the durable generation and source obligation alive
+```
+
+Do not wait for later ScriptFunction continuation/return to make the generation durable. The pre-Combat generation is already real because an actual offensive request occurred.
+
+The existing ordinary CombatMove-created candidate/result semantics must remain unchanged when there was no matching pre-acquired generation.
+
+## Wrapper return safety
+
+The P1 stack-local scope may retain only a tiny C1 generation/bridge token needed to detect whether its pre-Combat bridge was consumed.
+
+After native `RunScriptFunction` returns and TLS has been restored:
+
+- if the bridge was already consumed by matching CombatMove, no native binding remains;
+- if a pre-Combat bridge is still active, emit a dedicated diagnostic invariant and retire that native binding before the wrapper returns;
+- do **not** keep the raw native-frame binding alive across suspension;
+- do **not** discard an already-real outstanding C1 source obligation merely because the bridge was not consumed;
+- do **not** invent fallback continuation ownership or physical repair.
+
+This makes an unconsumed bridge a falsifiable P2 result without exposing later raw-pointer reuse.
+
+## Rejected machinery remains rejected
+
+Do not reconnect or depend on:
+
+```text
+g_ScriptFunctionDispatchStack
+BeginScriptFunctionDispatch()
+EndScriptFunctionDispatch()
+```
+
+Do not restore per-dispatch vector mutation, copied strings, eager state-stack capture, actor lookup or logging around every `RunScriptFunction` call.
+
+Dormant legacy declarations/functions may remain disconnected unless a small bounded cleanup is strictly necessary for the P2 implementation. Do not refactor them merely for tidiness.
 
 ## Protected behavior
 
 Do not:
 
-- reconnect `BeginScriptFunctionDispatch()` / `EndScriptFunctionDispatch()`;
-- acquire or bind a C1 generation from P1;
-- change existing CombatMove generation logic;
-- change source-obligation or cleanup classification;
+- add parent/outer fallback selection;
+- persist the P1 scope or ScriptFunction-name reference beyond wrapper return;
+- add null-arguments fallback;
+- adopt arbitrary group-7 state without a real successful offense request;
+- change exact source-obligation or native-cleanup semantics;
+- change AISetState finalization semantics;
+- change AISetState/AIFullStop/SetCollisionGroup/RunScriptFunction hook transport;
 - enable physical repair;
-- change AISetState/AIFullStop/SetCollisionGroup transport;
-- change finalizer semantics;
-- alter marker names, marker ownership, marker retirement, source selection or callback suppression;
-- add timers, polling, world scans, family/action/input/state-name classifiers or null-argument fallbacks;
-- refactor dormant C1-O2 code merely because P1 may later replace it.
+- change marker names, marker ownership, marker retirement, source selection or callback suppression;
+- add timers, polling or world scans.
 
-The tested collision behavior must remain physically identical to the current baseline.
+Physical collision behavior must remain unchanged.
 
-## Required source audit before commit
+## Primary source scope
 
-Confirm explicitly:
+Expected files are limited to the existing owners of this responsibility:
 
-1. generic RunScriptFunction path performs no engine/API calls before the original;
-2. no dynamic container/string ownership is introduced on that path;
-3. nesting is represented only by stack-local scope + previous TLS pointer;
-4. original RunScriptFunction is called exactly once with unchanged arguments;
-5. TLS is restored before relevant-return diagnostics;
-6. scope/name references never survive wrapper return;
-7. offense observation occurs only after the existing exact player-equipped successful-offense gate;
-8. no `CollisionLifecycleGuard` behavior changed;
-9. physical repair remains disabled;
-10. only allowed files changed unless a reported contradiction required stopping.
+```text
+prototypes/Script_FrameCollisionTest/Script_FrameCollisionTest.cpp
+prototypes/Script_FrameCollisionTest/CollisionLifecycleGuard.h
+prototypes/Script_FrameCollisionTest/CollisionLifecycleGuard.cpp
+prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h        only if needed
+prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp      only if needed
+```
+
+Use no new hook or source module. If a concrete source/API contradiction requires a broader design, STOP and report it.
+
+## Required source audit
+
+Confirm before publish:
+
+1. generic `RunScriptFunction` still performs only stack-local/TLS bookkeeping plus the original call before native execution;
+2. no old dispatch vector/Begin/End path was reconnected;
+3. pre-Combat state-stack/actor/C1 work occurs only after a real successful offense with a live current scope;
+4. exact equipped-source and live-frame rules are enforced without family/state classifiers;
+5. one pre-acquired generation is reused, not replaced, by matching CombatMove;
+6. the temporary native binding is retired at matching CombatMove;
+7. an unconsumed bridge cannot survive wrapper return;
+8. ordinary CombatMove-created generation behavior is unchanged;
+9. source cleanup and AISetState finalization semantics are unchanged;
+10. physical repair remains disabled.
 
 ## Stop conditions
 
-STOP rather than improvise if source/API inspection shows that:
+STOP rather than improvise if:
 
-- the hook arguments cannot safely remain referenced for the synchronous wrapper lifetime;
-- the current thread/nesting model cannot be represented by a stack-local chained scope;
-- logging the relevant scope would require persistent ownership or pre-native engine calls;
-- another hook or semantic ownership rule would be required;
-- implementation would have to modify C1 lifecycle behavior to make the probe meaningful.
-
-Do not solve continuation retirement, generation reuse, outer-parent selection or physical repair in this Work task.
+- matching CombatMove cannot safely reuse the pre-acquired generation without changing ordinary C1 semantics;
+- the native binding would have to survive `RunScriptFunction` return to make the tested GetUp path work;
+- source/API reality requires parent-scope selection, null-argument fallback, another hook or production classification;
+- safe wrapper-return retirement would require dropping a real outstanding source obligation.
 
 ## Publishing authorization
 
-The User explicitly authorizes Work to publish the audited commits created for this bounded task to:
+The User authorizes bounded P2 implementation commits to:
 
 ```text
 Repository: https://github.com/tcholti/Gothic3_Animation_Behaviors.git
 Branch: docs/collision-source-evidence
 ```
 
-This authorization is limited to C1-O2-P1 and this exact destination.
-
-## Handoff requirement
-
-After source audit, commit/publish and report only:
-
-- files changed;
-- exact P1 bridge/logging behavior implemented;
-- confirmation that protected collision/C1 behavior was untouched;
-- source/API contradiction if any;
-- what still requires independent build/load/runtime verification;
-- final remote commit SHA.
-
-Then STOP.
+After source audit, publish and report only: files changed, exact P2 behavior, confirmation protected behavior stayed unchanged, any contradiction, what still needs build/runtime verification, and final remote SHA. Then STOP.
