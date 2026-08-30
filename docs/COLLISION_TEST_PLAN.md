@@ -1,11 +1,11 @@
 # Collision Lifecycle Test Plan
 
-**Status:** Current staged validation plan  
-**Updated:** 2026-08-30
+**Status:** Current staged validation plan — post-rewrite Gate 2 open  
+**Updated:** 2026-08-31
 
 ## Purpose
 
-Validate the collision system through small falsifiable stages while preserving the already-closed lifecycle-safety contract.
+Validate the collision system through small falsifiable stages while preserving the already-closed C1-R1 lifecycle-safety contract and the diagnostics-free release architecture.
 
 Current state: `SESSION_ENTRYPOINT.md`.  
 Exact transient continuation: `BETWEEN_CHATS.md`.  
@@ -15,33 +15,35 @@ Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
 ---
 
-## 1. Current Rules
+## 1. Standing Rules
 
-- Compare one conceptual variable at a time where practical.
-- Do not reopen closed C1-R1 semantics because code structure changes.
-- Do not add family/action/input/state-name-specific cleanup branches.
-- Do not treat `RunScriptFunction`, FullStop or AISetState as unconditional cleanup authority.
-- Preserve native behavior for executions that already clean themselves.
-- Successful offensive request creates an exact physical-source obligation; successful transition away from `Item_Attack` fulfills it.
-- Repair may act only on an already-owned exact outstanding source after native cleanup opportunity.
-- Current equipped identity must establish source liveness before dereference/mutation.
-- Keep structural rewrites behavior-preserving and validate before feature expansion.
+- Do not reopen closed C1-R1 semantics because code structure or diagnostics change.
+- Native cleanup gets first opportunity.
+- Successful exact-source `Item_Attack` creates the obligation; successful transition away fulfills it.
+- Terminal repair may mutate only an already-owned exact outstanding source after native cleanup opportunity and established current-equipped liveness.
+- Preserve marker ownership, occurrence/replay protection, source switching, OFF semantics, repeated-contact rearm and StatePosition suppression until their dedicated later simplification gate.
+- Keep diagnostics independent from behavior correctness.
+- Public/released behavior must not compile research diagnostics.
 - Preserve raw runtime logs exactly as produced.
-- Do not ask the User to paste large successful logs into Chat; use repository raw artifacts.
-- Follow `PROJECT_PIPELINE.md` for gate/artifact identity and `PROJECT_OPERATING_PROCEDURES.md` for build/deploy/test/log operations.
-- Public release behavior must not depend on diagnostics; see `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
+- If compact diagnostics make a required validation fact ambiguous, treat that as diagnostic insufficiency; do not reinterpret ambiguity as proof.
+- Do not deploy diagnostic and behavior-only prototype DLLs together.
+- Follow `PROJECT_OPERATING_PROCEDURES.md` for build/deploy/test/raw-artifact operations.
 
-Authoritative research DLL remains:
+Authoritative diagnostic research target:
 
 ```text
 Script_FrameCollisionTest
 ```
 
-until explicit later production migration.
+Behavior-only architecture target:
+
+```text
+Script_FrameCollisionBehaviorTest
+```
 
 ---
 
-## 2. Closed Gates — Retrieve, Do Not Rerun by Default
+## 2. Closed Safety / Pre-Rewrite Gates
 
 ```text
 B6 replacement/deferred ProcessScript candidate      EV-174–EV-181
@@ -55,196 +57,88 @@ hook/finalizer substrate stabilization               EV-199–EV-203
 C1-O2-P1 lightweight dispatch bridge                 EV-204
 C1-O2-P2 lazy pre-Combat acquisition/consumption     EV-205
 C1-R1 controlled native-equivalent physical repair   EV-206–EV-207
-post-EngineBridge unchanged runtime baseline         CLOSED/PASS 2026-08-30
+post-EngineBridge unchanged runtime baseline         CLOSED/PASS
 ```
 
-C1-R1 validation is closed.
+C1-R1 validation is closed. Do not recreate the broad R1 program for structural changes.
 
-Validated R1 sequence:
-
-```text
-R1-A independent source audit = PASS
-R1-B build / identity / isolated load-unload = PASS
-R1-C targeted positive repair = PASS
-R1-D no-op / reaction / GetUp controls = PASS
-R1-E Dual source-specific repair = PASS
-R1-E compact marked-Staff regression = PASS
-R1-E broad mixed exercised coverage = PASS
-R1-E focused unarmed/crossbow negative closure = PASS
-```
-
-Do not recreate the broad R1 program for structural changes. Use compact structural sentinels instead.
-
----
-
-## 3. Accepted Collision-Safety Contract
+Accepted terminal repair remains exactly:
 
 ```text
-live ScriptFunction frame
-= temporary correlator only where early acquisition needs it
-
-C1 monotonic generation
-= durable plugin execution identity
-
-successful Item_Attack request
-= exact source obligation
-
-successful transition away from Item_Attack
-= obligation fulfilled
-
-destructive AISetState + obligation still outstanding
-= terminal repair checkpoint
-```
-
-Accepted terminal repair:
-
-```text
-source obligation outstanding
-+ exact current equipped RIGHT/LEFT pointer establishes liveness
-+ actual current source group == Item_Attack(7)
+exact outstanding source
++ exact current equipped RIGHT/LEFT identity establishes liveness
++ actual source group == Item_Attack(7)
 → exactly one SetCollisionGroup(Item_Equipped)
 → no ClearTriggeredList()
-→ verify exact Item_Equipped(5)
+→ verify Item_Equipped(5)
 ```
 
-Everything outside that predicate remains no-op/unresolved and non-mutating.
-
-Two qualifications remain explicit and do not reopen the gate:
+Two explicit R1 qualifications remain and do not reopen the gate:
 
 ```text
-- no positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED branch;
-- no positive NPC destructive-abandonment / C1 physical-repair case is claimed.
+- no positive outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED runtime case;
+- no positive NPC destructive-abandonment / C1 physical-repair case claimed.
 ```
 
 ---
 
-## 4. Architecture Review / Synthesis — CLOSED
+## 3. Second-Pass Rewrite — IMPLEMENTED
+
+Frozen architecture authority:
+
+```text
+docs/SECOND_PASS_REWRITE_CONTRACT.md
+```
+
+Implementation:
+
+```text
+4eeb701725e8b77d8850116d408155653ff4ad36
+```
+
+### Gate 1 — source/build separation: CLOSED/PASS
 
 Completed:
 
 ```text
-CollisionSources extraction
-EngineBridge extraction + local build
-one-by-one first per-CPP review
-second-pass cross-file architecture synthesis
+bounded source audit = PASS
+git diff --check = PASS
+Script_FrameCollisionTest Release build = PASS
+Script_FrameCollisionBehaviorTest Release build = PASS
+behavior-only target excludes CollisionDiagnostics/deep sources/defines/hooks = PASS
 ```
 
-Frozen result:
+Startup/deployment sentinel also passed:
 
 ```text
-docs/SECOND_PASS_REWRITE_CONTRACT.md
+built/live diagnostic SHA256:
+25980C09DC0AB3ECAF69397F0AE3CA8D5566FF816B1210F44182D4508B292109
+
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+Hooks installed.
+Script_FrameCollisionTest unloading cleanly.
 ```
 
-Important second-pass correction:
+Raw:
 
 ```text
-HookBridgeRuntime clock is behavior-required infrastructure
-because marker same-update duplicate acceptance uses elapsed milliseconds.
+research/raw/2026-08-30_second_pass_core_diagnostic_startup_load_unload.log
+commit 6bf59e6c08aebf6097566192b239092f0f734ea5
 ```
 
-Therefore the frozen rewrite renames it to `RuntimeClock`; it is not removed with diagnostics.
+Evidence: EV-208.
 
 ---
 
-## 5. Post-EngineBridge Unchanged Runtime Baseline — CLOSED/PASS
+## 4. Gate 2 — Post-Rewrite CORE Diagnostic Sufficiency: OPEN
 
-Purpose was to prove the completed EngineBridge structural extraction at runtime using unchanged source/logger before changing architecture or diagnostics.
-
-Primary compact raw artifact:
+Purpose:
 
 ```text
-research/raw/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline.log
-commit 5a33e5c134b027c440e40e6155cdf233aea049eb
-SHA256 F42DCC7EFE7E178659861BD9E07E5631EB66E7C0DB1858D847C11656272E9783
+prove the reduced default CORE diagnostic build still supplies enough evidence
+for the small structural-regression matrix without enabling deep diagnostics
 ```
-
-Deterministic retrieval package:
-
-```text
-research/derived/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline_large_log/
-commit fb2644d2952923f5a9a3d41ba881a342ef0d8ff2
-```
-
-The compact run preserved:
-
-```text
-ordinary melee native cleanup with no R1 repair
-known destructive stale-source exact C1-R1 physical repair
-marked Staff RIGHT → OFF → RIGHT semantics
-marker duplicate / authored occurrence protections
-Dual source specificity
-clean negative behavior / shutdown
-```
-
-The user omitted the intended focused Fist exercise from that primary session. The primary artifact was preserved unchanged and Fist was closed separately rather than rerunning or replacing it.
-
-Supplemental Fist artifact:
-
-```text
-research/raw/2026-08-30_post_enginebridge_fist_negative_closure.log
-commit 269faad334ef918ca16f6401751d47693e48520f
-```
-
-Focused Fist result:
-
-```text
-resolved current source = Fist
-source collision group before = 0
-Gothic requested Item_Attack(7)
-actual resulting group after request = 0
-therefore successfulOffenseRequest = false
-C1 OffensiveRequestCount = 0
-OutstandingBeforeFinalization = 0
-RepairAttempted = 0
-PhysicalCollisionChanged = 0
-finalization = NO_OP_NO_OUTSTANDING
-```
-
-Conclusion:
-
-> **EngineBridge extraction preserved the proven collision lifecycle, marker behavior, exact source ownership, native cleanup, C1-R1 repair and current Fist negative semantics.**
-
-Do not rerun this unchanged baseline by default.
-
----
-
-## 6. Current Gate — Frozen Rewrite Implementation
-
-Architecture contract:
-
-```text
-docs/SECOND_PASS_REWRITE_CONTRACT.md
-```
-
-The rewrite is structural/semantic-preserving only.
-
-Required source/build gate after implementation:
-
-```text
-git diff --check
-bounded contract audit
-build Script_FrameCollisionTest diagnostic target
-build Script_FrameCollisionBehaviorTest behavior-only target
-verify behavior-only target excludes diagnostic source/state/hooks
-```
-
-The behavior-only target is a mechanical architecture test: collision behavior must compile without `CollisionDiagnostics` or deep research instrumentation.
-
-Do not deploy the diagnostic and behavior-only prototypes together.
-
-If a concrete source/API/calling-convention contradiction appears during implementation:
-
-```text
-STOP
-→ report the contradiction
-→ do not redesign around it ad hoc
-```
-
----
-
-## 7. Post-Rewrite Diagnostic Sufficiency Regression
-
-Run the diagnostic target with compact default diagnostics; deep probes stay off.
 
 Minimum sentinels:
 
@@ -259,39 +153,164 @@ crossbow negative
 clean shutdown
 ```
 
-Default compact diagnostics must still establish:
+CORE diagnostics must establish, where relevant:
 
 ```text
 marker ownership/suppression/result
 exact source requested/before/after transition
-C1 generation + exact source obligation
+C1 generation + exact-source obligation
 cleanup fulfillment
-pre-Combat acquisition/consumption when present
+pre-Combat acquisition/consumption
 finalization/repair outcome
 explicit invariant/failure signals
+enough gameplay context to classify the sentinel being tested
 ```
 
-If the compact logger makes any required fact ambiguous, the diagnostic reduction is too aggressive.
+### Gate 2 progress already closed/PASS
+
+Mixed raw:
+
+```text
+research/raw/2026-08-30_second_pass_core_mixed_melee_bad_skip_attempts.log
+commit a7995225310789c78a85cbce9940c86d41de74b0
+```
+
+This run establishes:
+
+```text
+PASS  known positive stale-source repair
+PASS  ordinary native cleanup no-op
+PASS  marked-source regression
+PASS  clean shutdown
+```
+
+Positive repair coverage is stronger than one sentinel: eight exact `REPAIRED_TO_ITEM_EQUIPPED` finalizations were observed across 2H Whirl and 1H Quick, each with outstanding exact source at group 7 and exact repair to group 5. Ordinary 2H/1H Normal and clean Quick cases show native cleanup fulfillment followed by `NO_OP_NO_OUTSTANDING`. Normal/Quick/Whirl marker ownership and Whirl OFF/occurrence/dead-callback handling are also represented.
+
+Evidence: EV-209.
+
+### Current Gate 2 blocker — reaction classification ambiguity
+
+Focused reaction raw:
+
+```text
+research/raw/2026-08-30_second_pass_core_legitimate_reaction_cleanup_noop.log
+commit 86d41d4772ebfc320d67ca063e51b28523fcfb9e
+```
+
+Observed:
+
+```text
+visual behavior looked correct
+healthy exact source 7 -> 5 cleanup exists
+C1 finalization is NO_OP_NO_OUTSTANDING
+no repair is indicated
+```
+
+But current compact `ENGINE SetCollisionGroup` evidence does not include enough player gameplay context to distinguish:
+
+```text
+ordinary Hit -> Recover cleanup
+vs
+legitimate reaction-owned cleanup
+```
+
+Therefore the reaction sentinel is **NOT CLOSED**. This is a compact diagnostic-sufficiency failure, not a demonstrated collision behavior failure.
+
+Per the Gate-2 rule, do not continue remaining sentinels while this required fact is ambiguous.
 
 ---
 
-## 8. Behavior-Only Smoke / Equivalence
+## 5. Immediate Bounded Correction Before More Gate 2 Runtime Testing
 
-After diagnostic sufficiency passes, deploy the behavior-only prototype **instead of** the diagnostic target.
+Change only compact diagnostics:
+
+```text
+CollisionDiagnostics::LogSetCollisionGroup
+```
+
+Restore these fields on relevant `ENGINE SetCollisionGroup` records:
+
+```text
+PlayerAction
+PlayerAniPhase
+PlayerStateTime
+PlayerCurrentMovementAni
+```
+
+These use already-established actor APIs; no new source/API/calling-convention question is open.
+
+Do not:
+
+```text
+add or restore deep hooks
+add stack/callsite probes
+change EngineBridge hook transport/order
+change CollisionLifecycleGuard
+change C1 predicates or repair
+change marker semantics/bookkeeping
+change source operations
+change RuntimeClock
+change behavior-only target
+turn deep diagnostics on by default
+expand attack families/Fist semantics
+```
+
+Required validation after the diagnostics-only source correction:
+
+```text
+bounded source diff audit
+git diff --check
+build Script_FrameCollisionTest Release
+verify only intended diagnostic source changed and behavior-only separation remains intact
+deploy exact diagnostic DLL alone
+verify built/live SHA
+verify CORE / DeepDiagnostics: DISABLED startup
+rerun focused legitimate-reaction cleanup sentinel
+```
+
+If CORE then unambiguously proves reaction-owned 7->5 cleanup + `NO_OP_NO_OUTSTANDING`, mark reaction sentinel PASS and continue Gate 2.
+
+If the required fact remains ambiguous, stop and reassess the smallest compact evidence addition before enabling deep diagnostics.
+
+---
+
+## 6. Remaining Gate 2 Sentinels After Reaction Closure
+
+```text
+OPEN  Dual source independence
+OPEN  Fist/unarmed negative
+OPEN  crossbow negative
+```
+
+Do not rerun already-closed positive repair, ordinary cleanup, marked-source or shutdown sentinels unless a later source change actually touches their behavior/diagnostic evidence.
+
+When all Gate-2 sentinels are unambiguous and clean:
+
+```text
+Gate 2 = CLOSED/PASS
+```
+
+Only then proceed to behavior-only runtime testing.
+
+---
+
+## 7. Gate 3 — Behavior-Only Smoke / Equivalence
+
+After Gate 2 passes, deploy `Script_FrameCollisionBehaviorTest` **instead of** the diagnostic target.
 
 Purpose:
 
 ```text
-prove intended behavior does not depend on diagnostic source/state/hooks
+prove intended collision behavior does not depend on diagnostic source/state/hooks
 ```
 
-Freeze the exact small runtime matrix only after the diagnostic regression passes. Do not infer behavior-only correctness from successful compilation alone.
+Freeze the exact small matrix only after Gate 2 closes. Do not infer behavior-only runtime correctness from compilation alone.
 
 ---
 
-## 9. Later Phase — C1 vs Marker-Bookkeeping Simplification
+## 8. Gate 4 — Later Marker Bookkeeping Simplification
 
-Only after rewrite + diagnostic sufficiency + behavior-only smoke pass.
+Only after rewrite + Gate 2 + behavior-only smoke pass.
 
 Classify every existing marker guard/check into:
 
@@ -316,69 +335,39 @@ EV-131–EV-133 and EV-167 are mandatory evidence before removing execution-reti
 
 ---
 
-## 10. Later Feature Sequence
-
-### Equipped-melee marker expansion
-
-Expand one native attack mechanism at a time. Do not invent action-specific marker names.
-
-### Fist source-adapter decision
-
-Investigate separately after equipped-melee marker coverage stabilizes. Do not force Fist through weapon `Item_Attack` semantics.
-
-### Complete marker + lifecycle regression
-
-Run purposeful broad regression after marker/source expansion.
-
-### AttackContinuationProtection
-
-Investigate/implement separately from `CollisionLifecycleGuard`. It prevents the known destructive consequence; C1-R1 remains the fail-safe underneath.
-
-### Mature research compatibility gate
-
-Test New Balance / relevant Jackydima stack before production migration. Do not rely on arbitrary load order or assumed hook chaining.
-
-### Production foundation
-
-Retain the mature modular research architecture and migrate/redesign Raise, speed and config into it. Do not pour the collision system back into the old v0.1 production layout.
-
-Later systems such as target acquisition and climbing use the same central-bridge / independent-module / diagnostics-free-release architecture.
-
-### Final public release
-
-Final `Script_G3AnimationBehaviors` is diagnostics-free and receives its own New Balance/Jackydima compatibility regression. Retain a separate instrumented diagnostic twin for controlled reproduction.
-
----
-
-## 11. Non-Combination Rules
-
-Unless an explicitly frozen contract says otherwise, do not combine:
+## 9. Later Order
 
 ```text
-structural rewrite + feature expansion
-marker simplification + new attack-family support
-Fist support + unrelated equipped-weapon changes
-AttackContinuationProtection + CollisionLifecycleGuard redesign
-production migration + bad-skip investigation
-production migration + Raise/speed redesign
-New Balance compatibility fixes + unrelated behavior changes
+finish Gate 2
+→ behavior-only smoke/equivalence
+→ marker bookkeeping simplification audit
+→ equipped-melee marker expansion one mechanism at a time
+→ separate Fist source-adapter investigation
+→ full marker + lifecycle regression
+→ AttackContinuationProtection
+→ mature research New Balance/Jackydima compatibility gate
+→ migrate/redesign Raise + speed + config into mature modular foundation
+→ later independent systems such as target acquisition/climbing
+→ final diagnostics-free Script_G3AnimationBehaviors
+→ final compatibility regression
+→ retain separate diagnostic twin
 ```
 
-If a concrete source/API/calling-convention contradiction requires crossing one of these boundaries, stop and reassess in Normal Chat.
+Do not combine unrelated later responsibilities unless a separately frozen contract explicitly authorizes it.
 
 ---
 
-## 12. Evidence Handling
+## 10. Evidence Handling
 
-For implementation/runtime stages:
+For runtime stages:
 
 ```text
 freeze exact question/matrix/raw filename
 → preserve raw unchanged
 → publish raw
-→ use deterministic large-log reduction only when retrieval requires it
+→ use deterministic large-log reduction only if retrieval requires it
 → interpret in Normal Chat
-→ update canonical evidence/current authorities only when meaning changes
+→ update exact evidence/current authorities when meaning changes
 ```
 
-Do not paste large successful logs into Chat.
+Do not ask the User to paste large successful logs into Chat.
