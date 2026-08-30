@@ -2,11 +2,19 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
 
-## Current bridge — second-pass architecture CLOSED; rewrite contract FROZEN; unchanged runtime baseline NEXT
+## Current bridge — post-EngineBridge runtime baseline CLOSED/PASS; frozen rewrite NEXT
 
 C1-R1 controlled validation remains closed through **EV-206–EV-207**.
 
-The complete first per-CPP review and second-pass architecture synthesis are now closed.
+The following structural preparation is closed:
+
+```text
+CollisionSources extraction
+EngineBridge extraction
+first per-CPP review
+second-pass architecture synthesis
+unchanged post-EngineBridge runtime baseline
+```
 
 Frozen bounded rewrite contract:
 
@@ -20,7 +28,7 @@ Contract creation commit:
 50f0874fb51853eee910ef63c45914bc935fca88
 ```
 
-**Do not implement that rewrite yet.** First run the compact runtime baseline on the current unchanged post-EngineBridge source/logger so the EngineBridge extraction is causally isolated from every later architectural/logging change.
+**The pre-rewrite runtime gate has passed. The next technical responsibility is implementation of that frozen contract only.**
 
 ---
 
@@ -48,7 +56,7 @@ Never plan to deploy release and diagnostic twins together unless a future archi
 
 ---
 
-## Closed structural work already compiler-validated
+## Closed structural work
 
 ### CollisionSources extraction
 
@@ -64,24 +72,70 @@ Frozen base:
 d0132b69df3add63641bc5d5fd5779f1037eaa99
 ```
 
-Implementation head before later documentation-only commits:
+Implementation head before later documentation/evidence commits:
 
 ```text
 32ff447c9a678ba18c8234310564ff2475ba7dfb
 ```
 
-Local validation already confirmed:
+Local source/build validation:
 
 ```text
 git diff --check = PASS
 CMake Release build Script_FrameCollisionTest = PASS
 ```
 
-No runtime baseline has yet been run after EngineBridge extraction.
+### Unchanged post-EngineBridge runtime baseline — PASS/CLOSED
+
+Primary raw evidence:
+
+```text
+research/raw/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline.log
+commit 5a33e5c134b027c440e40e6155cdf233aea049eb
+SHA256 F42DCC7EFE7E178659861BD9E07E5631EB66E7C0DB1858D847C11656272E9783
+```
+
+Deterministic retrieval package:
+
+```text
+research/derived/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline_large_log/
+commit fb2644d2952923f5a9a3d41ba881a342ef0d8ff2
+```
+
+The compact run preserved the already-proven behavior across ordinary native cleanup, an exact positive C1-R1 physical repair sentinel, marked Staff RIGHT/OFF/RIGHT behavior including occurrence/duplicate protection, Dual source specificity, and clean negative behavior. The run omitted the intended focused Fist exercise, so Fist was closed separately rather than rerunning/replacing the primary artifact.
+
+Supplemental Fist negative closure:
+
+```text
+research/raw/2026-08-30_post_enginebridge_fist_negative_closure.log
+commit 269faad334ef918ca16f6401751d47693e48520f
+```
+
+Focused Fist result:
+
+```text
+current motion = Hero_Stand_None_Fist_*_Attack_Hit_*
+resolved source = Fist
+source collision group before = 0
+Gothic requested Item_Attack(7)
+actual resulting group after request = 0
+C1 successful-offense predicate = false
+OffensiveRequestCount = 0
+OutstandingBeforeFinalization = 0
+RepairAttempted = 0
+PhysicalCollisionChanged = 0
+finalization = NO_OP_NO_OUTSTANDING
+```
+
+Meaning:
+
+> **Moving physical hook ownership into EngineBridge did not regress the proven collision lifecycle, marker behavior, exact source ownership, native cleanup, C1-R1 fail-safe repair, or current Fist negative behavior.**
+
+The unchanged post-EngineBridge baseline is therefore **CLOSED/PASS**. Do not rerun it by default.
 
 ---
 
-## Proven behavior that must remain unchanged
+## Proven behavior that the rewrite must preserve exactly
 
 ### C1 lifecycle / repair
 
@@ -136,11 +190,11 @@ Do not simplify marker bookkeeping during the frozen rewrite. EV-131–EV-133 an
 
 ---
 
-## Second-pass conclusions now frozen
+## Frozen second-pass conclusions
 
-### 1. `HookBridgeRuntime` classification corrected
+### 1. `HookBridgeRuntime` is behavior infrastructure
 
-It is **behavior infrastructure**, not diagnostics, because the marker duplicate predicate uses the elapsed-millisecond clock as part of acceptance.
+The marker duplicate predicate uses its elapsed-millisecond clock as part of acceptance.
 
 Frozen rewrite rename:
 
@@ -209,8 +263,6 @@ CollisionDiagnosticsDeep
 = opt-in historical/deep probes
 ```
 
-Deep candidates include PlayMotion/StopMotion motion snapshots, StartRecover, AIFullStop, broad AISetState/outer-frame stacks, native-cleanup stacks/RVAs and OnTick marker lifetime tracking.
-
 Normal diagnostic output removes stale B1–B9/O1/P1 chronology and repetitive proof-era constants.
 
 ### 7. Hook surface
@@ -256,51 +308,13 @@ Never deploy both targets together into Gothic 3's live `scripts` directory.
 
 ---
 
-## Current exact gate — unchanged post-EngineBridge runtime baseline
+## Current exact gate — implement frozen second-pass rewrite
 
-Before any rewrite source edit:
-
-```text
-1. pull current branch
-2. git diff --check
-3. build current Script_FrameCollisionTest Release target
-4. deploy only the intended current DLL
-5. run the compact baseline below with the current unchanged logger
-6. exit Gothic 3 cleanly
-7. place the raw log unchanged in research/raw/
-8. report completion; do not paste the large log into Chat
-```
-
-Baseline meaning must cover, in one compact session where practical:
+Implementation authority:
 
 ```text
-A. ordinary melee completion with native cleanup/no repair
-B. one known destructive stale-source case that produces exact C1-R1 repair
-C. one legitimate reaction interruption with native cleanup/no repair
-D. one marked Staff RIGHT/OFF/RIGHT regression
-E. one Dual source-specific case
-F. one Fist/unarmed negative
-G. one crossbow negative
-H. clean shutdown
+docs/SECOND_PASS_REWRITE_CONTRACT.md
 ```
-
-Exact raw filename for this baseline:
-
-```text
-research/raw/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline.log
-```
-
-This is **not** a reopened R1 validation matrix. It is a compact structural sentinel proving the already-completed EngineBridge extraction before the frozen rewrite changes architecture/observation.
-
-If a concrete runtime contradiction appears, STOP and diagnose it before rewrite implementation.
-
----
-
-## After baseline PASS
-
-Normal Chat records baseline meaning/evidence first.
-
-Then the frozen rewrite in `docs/SECOND_PASS_REWRITE_CONTRACT.md` may be implemented as one bounded semantic-preserving transaction.
 
 If Work/High is used:
 
@@ -320,7 +334,7 @@ build Script_FrameCollisionBehaviorTest
 verify behavior-only target excludes diagnostic sources/hooks
 ```
 
-Then run compact diagnostic sufficiency regression. Only after that passes, run a small behavior-only smoke/equivalence test. Only after both pass may the separate C1-vs-marker simplification audit begin.
+If a concrete source/API/calling-convention contradiction appears during implementation, STOP and report it rather than improvising.
 
 ---
 
@@ -350,9 +364,7 @@ unrelated hook transport rewrites
 ## Forward order
 
 ```text
-unchanged post-EngineBridge runtime baseline — NEXT
-→ freeze/publish baseline evidence meaning
-→ implement SECOND_PASS_REWRITE_CONTRACT
+implement SECOND_PASS_REWRITE_CONTRACT — NEXT
 → diagnostic + behavior-only build/source audit
 → compact diagnostic sufficiency regression
 → behavior-only smoke/equivalence
