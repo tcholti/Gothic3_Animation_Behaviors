@@ -1,0 +1,42 @@
+LARGE LOG EVIDENCE PACKAGE
+ToolVersion: 1
+SourceInput: .\research\raw\2026-08-30_c1o2p1_player_2h_normal_getup_offense_correlation.log
+SourceFileName: 2026-08-30_c1o2p1_player_2h_normal_getup_offense_correlation.log
+SourceSHA256: 025013C3AE3C612D8311A58E2E4CE35F8F76D020BB4CBEA7F3CB4F8BBCBAA7AD
+SourceBytes: 1056558
+SourceLineCount: 34718
+EventBlockCount: 1360
+DistinctEventTypes: 26
+SignalMatchCount: 222
+DistinctSignalLines: 218
+SignalContextBefore: 80
+SignalContextAfter: 120
+MergedSignalContextRanges: 24
+MaxOutputPartBytes: 120000
+EventTimelineParts: 2
+SignalIndexParts: 1
+SignalContextParts: 3
+RequestedRangeCount: 0
+RequestedRangeParts: 0
+
+SignalPatterns:
+- C1_INVARIANT_WARNING = C1 INVARIANT WARNING
+- WOULD_REPAIR = WOULD_REPAIR
+- WARNING = (?i)\bWARNING\b
+- ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
+- FAILED_OR_FAILURE = (?i)\b(FAILED|FAILURE)\b
+- MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
+- STALE = (?i)\bSTALE\b
+- UNRESOLVED_OR_ORPHAN = (?i)\b(UNRESOLVED|ORPHAN)\b
+- BAD_OR_UNSAFE_SKIP = (?i)(BAD|UNSAFE|FAILED|STALE|MISMATCH).*(SKIP|SKIPPED)|(SKIP|SKIPPED).*(BAD|UNSAFE|FAILED|STALE|MISMATCH)
+- OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
+- EXTRA_01 = C1-O2-P1 (OFFENSE SCOPE|DISPATCH RETURN)|OUTER_FRAME OFFENSE|GetUpAttack
+
+Files:
+- event_counts.tsv
+- event_timeline_part_001.tsv
+- event_timeline_part_002.tsv
+- signals_part_001.tsv
+- signal_context_part_001.txt
+- signal_context_part_002.txt
+- signal_context_part_003.txt

@@ -1,0 +1,2941 @@
+===== SOURCE RANGE 1-141 =====
+00000001: Script_FrameCollisionTest v0.20 loaded.
+00000002: GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+00000003: NO IsPlayer restriction.
+00000004: NO 2H / Staff / 1H use-type restriction.
+00000005: NO P0/P1/P2 restriction.
+00000006: Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT/BOTH source marker.
+00000007: Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+00000008: Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+00000009: Full Whirl eligibility: OnAI_WhirlAttack + exact WhirlAttack action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+00000010: Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.
+00000011: Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.
+00000012: v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.
+00000013: STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.
+00000014: STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.
+00000015: STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.
+00000016: STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.
+00000017: STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / UNGATED EMPTY-PRIMARY SUCCESSOR STACK PROBE: player PrimaryFirst outgoing attack-Hit or factual empty-Primary successor stack; diagnostic-only.
+00000018: STEP B7 COMBATMOVE FULLSTOP STACK PROBE: player sAICombatMoveInstr fullStop=true caller/context stack; diagnostic-only.
+00000019: STEP B7b AIFULLSTOP CALLSITE PROBE: player gCScriptRoutine_PS::AIFullStop immediate caller/context stack; diagnostic-only.
+00000020: STEP B9 AISETSTATE ORDERING PROBE: player gCScriptRoutine_PS::AISetState requested-state/caller/context stack before original; diagnostic-only.
+00000021: STEP C1 SHADOW LIFECYCLE GUARD: event-driven execution/source obligations; WOULD_REPAIR only; no physical repair.
+00000022: STEP C1 AISETSTATE RECURSION-SAFE THISCALL BASELINE: explicit per-invocation this; RunScriptFunction remains pure pass-through.
+00000023: STEP C1 AIFULLSTOP RECURSION-SAFE THISCALL BASELINE: explicit per-invocation this; AISetState and RunScriptFunction unchanged.
+00000024: STEP C1-O1 OUTER SCRIPTFRAME IDENTITY PROBE: top SPU frame snapshots only; no lifecycle or collision behavior change.
+00000025: STEP C1-O2-P1 LIGHTWEIGHT DISPATCH BRIDGE: stack-local/TLS current scope; relevant-offense diagnostics only; no lifecycle or collision behavior change.
+00000026: v0.20 probe runs only while a marker-owned collision window exists.
+00000027: Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.
+00000028: FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+00000029: FIST CAUSAL TEST: ClearTriggeredList remains active.
+00000030: G3AB_COL_RIGHT is the final RIGHT equipped-slot marker.
+00000031: G3AB_COL_LEFT is the final LEFT equipped-slot marker.
+00000032: G3AB_COL_BOTH is the final BOTH equipped-slot marker.
+00000033: RIGHT, LEFT, and BOTH use exact-set semantics: the selected source set replaces the previous marker-owned set.
+00000034: BOTH activates/rearms the right and left equipped slot entities independently at one authored marker.
+00000035: If any source required by the exact motion is missing, its original attack callback is NOT suppressed.
+00000036: This protects unarmed/monster attacks until body-source resolution is implemented.
+00000037: Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+00000038: G3AB_COL_OFF closes only a weapon window opened by this prototype.
+00000039: OFF requests Item_Equipped and never clears the triggered list.
+00000040: OFF before ON or after natural reset is consumed as a logged no-op.
+00000041: Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+00000042: Known collision groups: Item_Equipped=5, Item_Attack=7.
+00000043: PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+00000044: A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+00000045: Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.
+00000046: 
+00000047: v0.19 adds only the full 2H/Staff OnAI_WhirlAttack adapter.
+00000048: v0.19 preserves the validated v0.18 Normal/Quick RIGHT/LEFT/BOTH/OFF core unchanged.
+00000049: No Dual SimpleWhirl, Power, collision-source, timing, or cleanup behavior is added in v0.19.
+00000050: Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.
+00000051: 
+00000052: Authored-occurrence budgets are cached separately for RIGHT, LEFT, BOTH, and OFF.
+00000053: Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase.
+00000054: Marker-time or controlled-callback state-time rollback starts a new execution.
+00000055: Natural collision reset outside the owning Hit execution retires the actor budget.
+00000056: No per-frame actor scan; budget work occurs only when a reserved marker is received.
+00000057: 
+00000058: Installing hooks...
+00000059: Hooks installed.
+00000060: 
+00000061: ===== AIFULLSTOP CALLSITE =====
+00000062: ElapsedMs: 30398.009
+00000063: ActorAddress: EBB66E10
+00000064: Actor: PC_Hero
+00000065: CallerAddress: 1B23B74A
+00000066: CallerModuleResolved: 1
+00000067: CallerModule: Script_Game.dll
+00000068: CallerModuleBase: 1B190000
+00000069: CallerRVA: 0x000AB74A
+00000070: CurrentAction: 0
+00000071: CurrentAniPhase: 5
+00000072: CurrentState: PS_Normal_Loop
+00000073: CurrentStateTime: 0.000000
+00000074: CurrentStatePosition: 0
+00000075: PressedKey: 15
+00000076: IsPressed: 0
+00000077: IsPressedBefore: 1
+00000078: DurationPressedMSecs: 0
+00000079: CurrentMovementAni: 
+00000080: Stage: BEFORE_ORIGINAL
+00000081: ElapsedMs: 30398.013
+00000082: PrimarySnapshotAvailable: 1
+00000083: PrimaryMotionName: 
+00000084: PrimaryHasMotionInstance: 0
+00000085: PrimaryMotionRunning: 0
+00000086: PrimaryPlayTime: 0.000000
+00000087: PrimaryMaxTime: 0.000000
+00000088: PrimaryPlaySpeed: 0.000000
+00000089: LeftHandSourceResolved: 0
+00000090: LeftHandSource: <none>
+00000091: LeftHandSourceAddress: 00000000
+00000092: LeftHandSourceCollisionGroup: -1
+00000093: RightHandSourceResolved: 0
+00000094: RightHandSource: <none>
+00000095: RightHandSourceAddress: 00000000
+00000096: RightHandSourceCollisionGroup: -1
+00000097: CapturedStackFrameCount: 3
+00000098: StackFrame[0]: Address=790602C8 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x000102C8
+00000099: StackFrame[1]: Address=1B23B74A Module=Script_Game.dll Base=1B190000 RVA=0x000AB74A
+00000100: StackFrame[2]: Address=00E0093B Module=Game.dll Base=00CA0000 RVA=0x0016093B
+00000101: CleanupBehaviorChanged: 0
+00000102: ===============================
+00000103: 
+00000104: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00000105: ElapsedMs: 30424.580
+00000106: Actor: PC_Hero
+00000107: PrimaryWasEmptyBefore: 1
+00000108: IncomingMotionRequestAddress: 0019E288
+00000109: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+00000110: SuccessorPrimarySnapshotAvailable: 1
+00000111: SuccessorPrimaryHasMotionInstance: 1
+00000112: CurrentActionBeforeOriginal: 0
+00000113: CurrentAniPhaseBeforeOriginal: 5
+00000114: CurrentStateTimeBeforeOriginal: 0.000000
+00000115: CurrentStatePositionBeforeOriginal: 0
+00000116: CurrentMovementAniBeforeOriginal: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+00000117: LeftHandSourceResolved: 0
+00000118: LeftHandSource: <none>
+00000119: LeftHandSourceAddress: 00000000
+00000120: LeftHandSourceCollisionGroup: -1
+00000121: RightHandSourceResolved: 0
+00000122: RightHandSource: <none>
+00000123: RightHandSourceAddress: 00000000
+00000124: RightHandSourceCollisionGroup: -1
+00000125: CapturedStackFrameCount: 2
+00000126: StackFrame[0]: Address=7905F443 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000F443
+00000127: StackFrame[1]: Address=00D79CB3 Module=Game.dll Base=00CA0000 RVA=0x000D9CB3
+00000128: CleanupBehaviorChanged: 0
+00000129: =============================================
+00000130: 
+00000131: ===== PRIMARYFIRST PlayMotion =====
+00000132: OwnerEntityAddress: EBB66E10
+00000133: OwnerEntity: PC_Hero
+00000134: MotionType: 0
+00000135: Stage: REQUEST_BEFORE_ORIGINAL
+00000136: ElapsedMs: 30424.577
+00000137: PrimarySnapshotAvailable: 1
+00000138: PrimaryMotionName: 
+00000139: PrimaryHasMotionInstance: 0
+00000140: PrimaryMotionRunning: 0
+00000141: PrimaryPlayTime: 0.000000
+===== SOURCE RANGE 1737-1990 =====
+00001737: StackFrame[3]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00001738: StackFrame[4]: Address=1B1C8463 Module=Script_Game.dll Base=1B190000 RVA=0x00038463
+00001739: StackFrame[5]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00001740: StackFrame[6]: Address=1B20F0DB Module=Script_Game.dll Base=1B190000 RVA=0x0007F0DB
+00001741: StackFrame[7]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00001742: CleanupBehaviorChanged: 0
+00001743: =============================================
+00001744: 
+00001745: ===== PRIMARYFIRST PlayMotion =====
+00001746: OwnerEntityAddress: EBB66E10
+00001747: OwnerEntity: PC_Hero
+00001748: MotionType: 0
+00001749: Stage: REQUEST_BEFORE_ORIGINAL
+00001750: ElapsedMs: 38722.411
+00001751: PrimarySnapshotAvailable: 1
+00001752: PrimaryMotionName: 
+00001753: PrimaryHasMotionInstance: 0
+00001754: PrimaryMotionRunning: 0
+00001755: PrimaryPlayTime: 0.000000
+00001756: PrimaryMaxTime: 0.000000
+00001757: PrimaryPlaySpeed: 0.000000
+00001758: Stage: RESULT_AFTER_ORIGINAL
+00001759: ElapsedMs: 38722.430
+00001760: PrimarySnapshotAvailable: 1
+00001761: PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00001762: PrimaryHasMotionInstance: 1
+00001763: PrimaryMotionRunning: 1
+00001764: PrimaryPlayTime: 0.000000
+00001765: PrimaryMaxTime: 0.520000
+00001766: PrimaryPlaySpeed: 0.700000
+00001767: CleanupBehaviorChanged: 0
+00001768: =====================================
+00001769: 
+00001770: ===== C1 LIFECYCLE STATUS =====
+00001771: ElapsedMs: 38722.511
+00001772: Event: PERSISTED
+00001773: ActorAddress: EBB66E10
+00001774: Actor: PC_Hero
+00001775: Generation: 1
+00001776: Status: PERSISTED
+00001777: Outstanding: 0
+00001778: PhysicalCollisionChanged: 0
+00001779: ===============================
+00001780: 
+00001781: ===== MARKER OWNERSHIP DECISION =====
+00001782: ElapsedMs: 38722.537
+00001783: Actor: PC_Hero
+00001784: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00001785: MatchingMotionFound: 1
+00001786: FrameEffectCount: 1
+00001787: ContainsReservedSourceMarker: 0
+00001788: RequiredSourceMask: 0
+00001789: AuthoredRIGHTMarkerCount: 0
+00001790: FirstRIGHTMarkerFrame: -1
+00001791: AuthoredLEFTMarkerCount: 0
+00001792: FirstLEFTMarkerFrame: -1
+00001793: AuthoredBOTHMarkerCount: 0
+00001794: FirstBOTHMarkerFrame: -1
+00001795: AuthoredOFFMarkerCount: 0
+00001796: FirstOFFMarkerFrame: -1
+00001797: RightHandSourceResolved: 1
+00001798: RightHandSource: It_2H_Sword_Flamberge
+00001799: RightHandSourceAddress: E700FE10
+00001800: RightHandSourceUseType: 3
+00001801: RightHandSourceCollisionGroup: 5
+00001802: LeftHandSourceResolved: 0
+00001803: Decision: LEGACY/NATIVE - call original timer callback
+00001804: =====================================
+00001805: 
+00001806: ===== C1 OFFENSE REQUEST =====
+00001807: ElapsedMs: 38975.548
+00001808: ActorAddress: EBB66E10
+00001809: Actor: PC_Hero
+00001810: Generation: 1
+00001811: Status: PERSISTED
+00001812: SourceAddress: E700FE10
+00001813: Source: It_2H_Sword_Flamberge
+00001814: OriginalSideMask: 1
+00001815: OriginalSide: RIGHT
+00001816: OffensiveRequestCount: 1
+00001817: Outstanding: 1
+00001818: CleanupObserved: 0
+00001819: ActualGroup: 7
+00001820: PhysicalCollisionChanged: 0
+00001821: ==============================
+00001822: 
+00001823: ===== ENGINE SetCollisionGroup =====
+00001824: ElapsedMs: 38975.580
+00001825: Entity: It_2H_Sword_Flamberge
+00001826: ChangedEntityAddress: E700FE10
+00001827: PlayerSlotMatch: RIGHT
+00001828: PlayerAction: 1
+00001829: PlayerAniPhase: 1
+00001830: PlayerPrimaryPose: 1
+00001831: PlayerStateTime: 0.255946
+00001832: PlayerStatePosition: 0
+00001833: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00001834: PlayerLeftItem: <none>
+00001835: PlayerLeftItemAddress: 00000000
+00001836: PlayerLeftUseType: -1
+00001837: PlayerLeftCollisionGroup: -1
+00001838: PlayerRightItem: It_2H_Sword_Flamberge
+00001839: PlayerRightItemAddress: E700FE10
+00001840: PlayerRightUseType: 3
+00001841: PlayerRightCollisionGroup: 7
+00001842: RequestedGroup: 7
+00001843: BeforeGroup: 5
+00001844: AfterGroup: 7
+00001845: Item_EquippedValue: 5
+00001846: Item_AttackValue: 7
+00001847: RetiredMarkerExecutionCount: 0
+00001848: ====================================
+00001849: 
+00001850: ===== C1-O2-P1 OFFENSE SCOPE =====
+00001851: ElapsedMs: 38975.605
+00001852: ActorAddress: EBB66E10
+00001853: SourceAddress: E700FE10
+00001854: CurrentScopeExists: 0
+00001855: ScopeAddress: 00000000
+00001856: ScopeSPUAddress: 00000000
+00001857: PlayerSPUAddress: EBB67074
+00001858: SPUMatchesPlayer: 0
+00001859: ScopeRuntimeStackAddress: 00000000
+00001860: PlayerStateStackAddress: EBB67078
+00001861: RuntimeStackMatchesPlayerStateStack: 0
+00001862: ScriptNameReferenceAddress: 00000000
+00001863: ScriptFunctionName: <no-current-scope>
+00001864: ParentScopeExists: 0
+00001865: OffenseObservedSet: 0
+00001866: LifecycleBehaviorChanged: 0
+00001867: CollisionBehaviorChanged: 0
+00001868: ==================================
+00001869: 
+00001870: ===== OUTER_FRAME OFFENSE =====
+00001871: ElapsedMs: 38975.619
+00001872: ActorAddress: EBB66E10
+00001873: Actor: PC_Hero
+00001874: SourceAddress: E700FE10
+00001875: Source: It_2H_Sword_Flamberge
+00001876: RequestedGroup: 7
+00001877: BeforeGroup: 5
+00001878: AfterGroup: 7
+00001879: SPUAddress: EBB67074
+00001880: StateStackCount: 2
+00001881: HasTopFrame: 1
+00001882: TopIndex: 1
+00001883: TopEntryAddressDiagnosticOnly: DC490C28
+00001884: TopScriptName: _AI_Attack
+00001885: TopIsScriptState: 0
+00001886: TopBreakBlock: 1
+00001887: TopArgumentsAddress: DE8E2B10
+00001888: TopLocalCallback: OnAI_Attack
+00001889: TopExtraFloat: 1000.000000
+00001890: CurrentState: PS_Melee_Attack
+00001891: CurrentAction: 1
+00001892: CurrentStatePosition: 0
+00001893: CurrentStateTime: 0.255946
+00001894: TopEntryAddressIsExecutionIdentity: 0
+00001895: ArgumentsDereferencedOrClassified: 0
+00001896: LifecycleBehaviorChanged: 0
+00001897: CollisionBehaviorChanged: 0
+00001898: ===============================
+00001899: 
+00001900: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00001901: ActorAddress: EBB66E10
+00001902: Actor: PC_Hero
+00001903: CurrentAction: 1
+00001904: CurrentAniPhase: 1
+00001905: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00001906: Stage: BEGIN
+00001907: ElapsedMs: 39470.143
+00001908: PrimarySnapshotAvailable: 1
+00001909: PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00001910: PrimaryHasMotionInstance: 1
+00001911: PrimaryMotionRunning: 1
+00001912: PrimaryPlayTime: 0.519990
+00001913: PrimaryMaxTime: 0.520000
+00001914: PrimaryPlaySpeed: 0.000000
+00001915: LeftHandSourceResolved: 0
+00001916: RightHandSourceResolved: 1
+00001917: RightHandSource: It_2H_Sword_Flamberge
+00001918: RightHandSourceAddress: E700FE10
+00001919: RightHandSourceCollisionGroup: 7
+00001920: CleanupBehaviorChanged: 0
+00001921: =========================================
+00001922: 
+00001923: ===== HIT STARTRECOVER BEGIN STACK =====
+00001924: ElapsedMs: 39470.196
+00001925: Actor: PC_Hero
+00001926: OutgoingPrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00001927: CurrentAction: 1
+00001928: CurrentAniPhase: 1
+00001929: CurrentStateTime: 0.751184
+00001930: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00001931: LeftHandSourceResolved: 0
+00001932: LeftHandSource: <none>
+00001933: LeftHandSourceAddress: 00000000
+00001934: LeftHandSourceCollisionGroup: -1
+00001935: RightHandSourceResolved: 1
+00001936: RightHandSource: It_2H_Sword_Flamberge
+00001937: RightHandSourceAddress: E700FE10
+00001938: RightHandSourceCollisionGroup: 7
+00001939: CapturedStackFrameCount: 4
+00001940: StackFrame[0]: Address=7905FAAD Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000FAAD
+00001941: StackFrame[1]: Address=00E09772 Module=Game.dll Base=00CA0000 RVA=0x00169772
+00001942: StackFrame[2]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00001943: StackFrame[3]: Address=00E0F240 Module=Game.dll Base=00CA0000 RVA=0x0016F240
+00001944: CleanupBehaviorChanged: 0
+00001945: ========================================
+00001946: 
+00001947: ===== PRIMARYFIRST StopMotion =====
+00001948: OwnerEntityAddress: EBB66E10
+00001949: OwnerEntity: PC_Hero
+00001950: MotionType: 0
+00001951: Stage: REQUEST_BEFORE_ORIGINAL
+00001952: ElapsedMs: 39470.926
+00001953: PrimarySnapshotAvailable: 1
+00001954: PrimaryMotionName: 
+00001955: PrimaryHasMotionInstance: 0
+00001956: PrimaryMotionRunning: 0
+00001957: PrimaryPlayTime: 0.000000
+00001958: PrimaryMaxTime: 0.000000
+00001959: PrimaryPlaySpeed: 0.000000
+00001960: Stage: RESULT_AFTER_ORIGINAL
+00001961: ElapsedMs: 39470.928
+00001962: PrimarySnapshotAvailable: 1
+00001963: PrimaryMotionName: 
+00001964: PrimaryHasMotionInstance: 0
+00001965: PrimaryMotionRunning: 0
+00001966: PrimaryPlayTime: 0.000000
+00001967: PrimaryMaxTime: 0.000000
+00001968: PrimaryPlaySpeed: 0.000000
+00001969: CleanupBehaviorChanged: 0
+00001970: =====================================
+00001971: 
+00001972: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00001973: ElapsedMs: 39470.957
+00001974: Actor: PC_Hero
+00001975: PrimaryWasEmptyBefore: 1
+00001976: IncomingMotionRequestAddress: EBB671A8
+00001977: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00001978: SuccessorPrimarySnapshotAvailable: 1
+00001979: SuccessorPrimaryHasMotionInstance: 1
+00001980: CurrentActionBeforeOriginal: 1
+00001981: CurrentAniPhaseBeforeOriginal: 3
+00001982: CurrentStateTimeBeforeOriginal: 0.751184
+00001983: CurrentStatePositionBeforeOriginal: 1
+00001984: CurrentMovementAniBeforeOriginal: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00001985: LeftHandSourceResolved: 0
+00001986: LeftHandSource: <none>
+00001987: LeftHandSourceAddress: 00000000
+00001988: LeftHandSourceCollisionGroup: -1
+00001989: RightHandSourceResolved: 1
+00001990: RightHandSource: It_2H_Sword_Flamberge
+===== SOURCE RANGE 2848-3101 =====
+00002848: StackFrame[3]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00002849: StackFrame[4]: Address=1B1C8463 Module=Script_Game.dll Base=1B190000 RVA=0x00038463
+00002850: StackFrame[5]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00002851: StackFrame[6]: Address=1B20F0DB Module=Script_Game.dll Base=1B190000 RVA=0x0007F0DB
+00002852: StackFrame[7]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00002853: CleanupBehaviorChanged: 0
+00002854: =============================================
+00002855: 
+00002856: ===== PRIMARYFIRST PlayMotion =====
+00002857: OwnerEntityAddress: EBB66E10
+00002858: OwnerEntity: PC_Hero
+00002859: MotionType: 0
+00002860: Stage: REQUEST_BEFORE_ORIGINAL
+00002861: ElapsedMs: 41053.557
+00002862: PrimarySnapshotAvailable: 1
+00002863: PrimaryMotionName: 
+00002864: PrimaryHasMotionInstance: 0
+00002865: PrimaryMotionRunning: 0
+00002866: PrimaryPlayTime: 0.000000
+00002867: PrimaryMaxTime: 0.000000
+00002868: PrimaryPlaySpeed: 0.000000
+00002869: Stage: RESULT_AFTER_ORIGINAL
+00002870: ElapsedMs: 41053.576
+00002871: PrimarySnapshotAvailable: 1
+00002872: PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00002873: PrimaryHasMotionInstance: 1
+00002874: PrimaryMotionRunning: 1
+00002875: PrimaryPlayTime: 0.000000
+00002876: PrimaryMaxTime: 0.400000
+00002877: PrimaryPlaySpeed: 0.700000
+00002878: CleanupBehaviorChanged: 0
+00002879: =====================================
+00002880: 
+00002881: ===== C1 LIFECYCLE STATUS =====
+00002882: ElapsedMs: 41053.685
+00002883: Event: PERSISTED
+00002884: ActorAddress: EBB66E10
+00002885: Actor: PC_Hero
+00002886: Generation: 3
+00002887: Status: PERSISTED
+00002888: Outstanding: 0
+00002889: PhysicalCollisionChanged: 0
+00002890: ===============================
+00002891: 
+00002892: ===== MARKER OWNERSHIP DECISION =====
+00002893: ElapsedMs: 41053.715
+00002894: Actor: PC_Hero
+00002895: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00002896: MatchingMotionFound: 1
+00002897: FrameEffectCount: 1
+00002898: ContainsReservedSourceMarker: 0
+00002899: RequiredSourceMask: 0
+00002900: AuthoredRIGHTMarkerCount: 0
+00002901: FirstRIGHTMarkerFrame: -1
+00002902: AuthoredLEFTMarkerCount: 0
+00002903: FirstLEFTMarkerFrame: -1
+00002904: AuthoredBOTHMarkerCount: 0
+00002905: FirstBOTHMarkerFrame: -1
+00002906: AuthoredOFFMarkerCount: 0
+00002907: FirstOFFMarkerFrame: -1
+00002908: RightHandSourceResolved: 1
+00002909: RightHandSource: It_2H_Sword_Flamberge
+00002910: RightHandSourceAddress: E700FE10
+00002911: RightHandSourceUseType: 3
+00002912: RightHandSourceCollisionGroup: 5
+00002913: LeftHandSourceResolved: 0
+00002914: Decision: LEGACY/NATIVE - call original timer callback
+00002915: =====================================
+00002916: 
+00002917: ===== C1 OFFENSE REQUEST =====
+00002918: ElapsedMs: 41302.288
+00002919: ActorAddress: EBB66E10
+00002920: Actor: PC_Hero
+00002921: Generation: 3
+00002922: Status: PERSISTED
+00002923: SourceAddress: E700FE10
+00002924: Source: It_2H_Sword_Flamberge
+00002925: OriginalSideMask: 1
+00002926: OriginalSide: RIGHT
+00002927: OffensiveRequestCount: 1
+00002928: Outstanding: 1
+00002929: CleanupObserved: 0
+00002930: ActualGroup: 7
+00002931: PhysicalCollisionChanged: 0
+00002932: ==============================
+00002933: 
+00002934: ===== ENGINE SetCollisionGroup =====
+00002935: ElapsedMs: 41302.323
+00002936: Entity: It_2H_Sword_Flamberge
+00002937: ChangedEntityAddress: E700FE10
+00002938: PlayerSlotMatch: RIGHT
+00002939: PlayerAction: 1
+00002940: PlayerAniPhase: 1
+00002941: PlayerPrimaryPose: 2
+00002942: PlayerStateTime: 0.251261
+00002943: PlayerStatePosition: 0
+00002944: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00002945: PlayerLeftItem: <none>
+00002946: PlayerLeftItemAddress: 00000000
+00002947: PlayerLeftUseType: -1
+00002948: PlayerLeftCollisionGroup: -1
+00002949: PlayerRightItem: It_2H_Sword_Flamberge
+00002950: PlayerRightItemAddress: E700FE10
+00002951: PlayerRightUseType: 3
+00002952: PlayerRightCollisionGroup: 7
+00002953: RequestedGroup: 7
+00002954: BeforeGroup: 5
+00002955: AfterGroup: 7
+00002956: Item_EquippedValue: 5
+00002957: Item_AttackValue: 7
+00002958: RetiredMarkerExecutionCount: 0
+00002959: ====================================
+00002960: 
+00002961: ===== C1-O2-P1 OFFENSE SCOPE =====
+00002962: ElapsedMs: 41302.348
+00002963: ActorAddress: EBB66E10
+00002964: SourceAddress: E700FE10
+00002965: CurrentScopeExists: 0
+00002966: ScopeAddress: 00000000
+00002967: ScopeSPUAddress: 00000000
+00002968: PlayerSPUAddress: EBB67074
+00002969: SPUMatchesPlayer: 0
+00002970: ScopeRuntimeStackAddress: 00000000
+00002971: PlayerStateStackAddress: EBB67078
+00002972: RuntimeStackMatchesPlayerStateStack: 0
+00002973: ScriptNameReferenceAddress: 00000000
+00002974: ScriptFunctionName: <no-current-scope>
+00002975: ParentScopeExists: 0
+00002976: OffenseObservedSet: 0
+00002977: LifecycleBehaviorChanged: 0
+00002978: CollisionBehaviorChanged: 0
+00002979: ==================================
+00002980: 
+00002981: ===== OUTER_FRAME OFFENSE =====
+00002982: ElapsedMs: 41302.366
+00002983: ActorAddress: EBB66E10
+00002984: Actor: PC_Hero
+00002985: SourceAddress: E700FE10
+00002986: Source: It_2H_Sword_Flamberge
+00002987: RequestedGroup: 7
+00002988: BeforeGroup: 5
+00002989: AfterGroup: 7
+00002990: SPUAddress: EBB67074
+00002991: StateStackCount: 2
+00002992: HasTopFrame: 1
+00002993: TopIndex: 1
+00002994: TopEntryAddressDiagnosticOnly: DC4902A8
+00002995: TopScriptName: _AI_Attack
+00002996: TopIsScriptState: 0
+00002997: TopBreakBlock: 1
+00002998: TopArgumentsAddress: DE8E6110
+00002999: TopLocalCallback: OnAI_Attack
+00003000: TopExtraFloat: 1000.000000
+00003001: CurrentState: PS_Melee_Attack
+00003002: CurrentAction: 1
+00003003: CurrentStatePosition: 0
+00003004: CurrentStateTime: 0.251261
+00003005: TopEntryAddressIsExecutionIdentity: 0
+00003006: ArgumentsDereferencedOrClassified: 0
+00003007: LifecycleBehaviorChanged: 0
+00003008: CollisionBehaviorChanged: 0
+00003009: ===============================
+00003010: 
+00003011: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00003012: ActorAddress: EBB66E10
+00003013: Actor: PC_Hero
+00003014: CurrentAction: 1
+00003015: CurrentAniPhase: 1
+00003016: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00003017: Stage: BEGIN
+00003018: ElapsedMs: 41626.145
+00003019: PrimarySnapshotAvailable: 1
+00003020: PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00003021: PrimaryHasMotionInstance: 1
+00003022: PrimaryMotionRunning: 1
+00003023: PrimaryPlayTime: 0.399990
+00003024: PrimaryMaxTime: 0.400000
+00003025: PrimaryPlaySpeed: 0.000000
+00003026: LeftHandSourceResolved: 0
+00003027: RightHandSourceResolved: 1
+00003028: RightHandSource: It_2H_Sword_Flamberge
+00003029: RightHandSourceAddress: E700FE10
+00003030: RightHandSourceCollisionGroup: 7
+00003031: CleanupBehaviorChanged: 0
+00003032: =========================================
+00003033: 
+00003034: ===== HIT STARTRECOVER BEGIN STACK =====
+00003035: ElapsedMs: 41626.218
+00003036: Actor: PC_Hero
+00003037: OutgoingPrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00003038: CurrentAction: 1
+00003039: CurrentAniPhase: 1
+00003040: CurrentStateTime: 0.573568
+00003041: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00003042: LeftHandSourceResolved: 0
+00003043: LeftHandSource: <none>
+00003044: LeftHandSourceAddress: 00000000
+00003045: LeftHandSourceCollisionGroup: -1
+00003046: RightHandSourceResolved: 1
+00003047: RightHandSource: It_2H_Sword_Flamberge
+00003048: RightHandSourceAddress: E700FE10
+00003049: RightHandSourceCollisionGroup: 7
+00003050: CapturedStackFrameCount: 4
+00003051: StackFrame[0]: Address=7905FAAD Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000FAAD
+00003052: StackFrame[1]: Address=00E09772 Module=Game.dll Base=00CA0000 RVA=0x00169772
+00003053: StackFrame[2]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00003054: StackFrame[3]: Address=00E0F240 Module=Game.dll Base=00CA0000 RVA=0x0016F240
+00003055: CleanupBehaviorChanged: 0
+00003056: ========================================
+00003057: 
+00003058: ===== PRIMARYFIRST StopMotion =====
+00003059: OwnerEntityAddress: EBB66E10
+00003060: OwnerEntity: PC_Hero
+00003061: MotionType: 0
+00003062: Stage: REQUEST_BEFORE_ORIGINAL
+00003063: ElapsedMs: 41630.016
+00003064: PrimarySnapshotAvailable: 1
+00003065: PrimaryMotionName: 
+00003066: PrimaryHasMotionInstance: 0
+00003067: PrimaryMotionRunning: 0
+00003068: PrimaryPlayTime: 0.000000
+00003069: PrimaryMaxTime: 0.000000
+00003070: PrimaryPlaySpeed: 0.000000
+00003071: Stage: RESULT_AFTER_ORIGINAL
+00003072: ElapsedMs: 41630.018
+00003073: PrimarySnapshotAvailable: 1
+00003074: PrimaryMotionName: 
+00003075: PrimaryHasMotionInstance: 0
+00003076: PrimaryMotionRunning: 0
+00003077: PrimaryPlayTime: 0.000000
+00003078: PrimaryMaxTime: 0.000000
+00003079: PrimaryPlaySpeed: 0.000000
+00003080: CleanupBehaviorChanged: 0
+00003081: =====================================
+00003082: 
+00003083: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00003084: ElapsedMs: 41630.049
+00003085: Actor: PC_Hero
+00003086: PrimaryWasEmptyBefore: 1
+00003087: IncomingMotionRequestAddress: EBB671A8
+00003088: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_2H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+00003089: SuccessorPrimarySnapshotAvailable: 1
+00003090: SuccessorPrimaryHasMotionInstance: 1
+00003091: CurrentActionBeforeOriginal: 1
+00003092: CurrentAniPhaseBeforeOriginal: 3
+00003093: CurrentStateTimeBeforeOriginal: 0.573568
+00003094: CurrentStatePositionBeforeOriginal: 1
+00003095: CurrentMovementAniBeforeOriginal: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00003096: LeftHandSourceResolved: 0
+00003097: LeftHandSource: <none>
+00003098: LeftHandSourceAddress: 00000000
+00003099: LeftHandSourceCollisionGroup: -1
+00003100: RightHandSourceResolved: 1
+00003101: RightHandSource: It_2H_Sword_Flamberge
+===== SOURCE RANGE 3614-3867 =====
+00003614: StackFrame[3]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00003615: StackFrame[4]: Address=1B1C8463 Module=Script_Game.dll Base=1B190000 RVA=0x00038463
+00003616: StackFrame[5]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00003617: StackFrame[6]: Address=1B20F0DB Module=Script_Game.dll Base=1B190000 RVA=0x0007F0DB
+00003618: StackFrame[7]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00003619: CleanupBehaviorChanged: 0
+00003620: =============================================
+00003621: 
+00003622: ===== PRIMARYFIRST PlayMotion =====
+00003623: OwnerEntityAddress: EBB66E10
+00003624: OwnerEntity: PC_Hero
+00003625: MotionType: 0
+00003626: Stage: REQUEST_BEFORE_ORIGINAL
+00003627: ElapsedMs: 42934.457
+00003628: PrimarySnapshotAvailable: 1
+00003629: PrimaryMotionName: 
+00003630: PrimaryHasMotionInstance: 0
+00003631: PrimaryMotionRunning: 0
+00003632: PrimaryPlayTime: 0.000000
+00003633: PrimaryMaxTime: 0.000000
+00003634: PrimaryPlaySpeed: 0.000000
+00003635: Stage: RESULT_AFTER_ORIGINAL
+00003636: ElapsedMs: 42934.475
+00003637: PrimarySnapshotAvailable: 1
+00003638: PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00003639: PrimaryHasMotionInstance: 1
+00003640: PrimaryMotionRunning: 1
+00003641: PrimaryPlayTime: 0.000000
+00003642: PrimaryMaxTime: 0.520000
+00003643: PrimaryPlaySpeed: 0.700000
+00003644: CleanupBehaviorChanged: 0
+00003645: =====================================
+00003646: 
+00003647: ===== C1 LIFECYCLE STATUS =====
+00003648: ElapsedMs: 42934.554
+00003649: Event: PERSISTED
+00003650: ActorAddress: EBB66E10
+00003651: Actor: PC_Hero
+00003652: Generation: 4
+00003653: Status: PERSISTED
+00003654: Outstanding: 0
+00003655: PhysicalCollisionChanged: 0
+00003656: ===============================
+00003657: 
+00003658: ===== MARKER OWNERSHIP DECISION =====
+00003659: ElapsedMs: 42934.569
+00003660: Actor: PC_Hero
+00003661: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00003662: MatchingMotionFound: 1
+00003663: FrameEffectCount: 1
+00003664: ContainsReservedSourceMarker: 0
+00003665: RequiredSourceMask: 0
+00003666: AuthoredRIGHTMarkerCount: 0
+00003667: FirstRIGHTMarkerFrame: -1
+00003668: AuthoredLEFTMarkerCount: 0
+00003669: FirstLEFTMarkerFrame: -1
+00003670: AuthoredBOTHMarkerCount: 0
+00003671: FirstBOTHMarkerFrame: -1
+00003672: AuthoredOFFMarkerCount: 0
+00003673: FirstOFFMarkerFrame: -1
+00003674: RightHandSourceResolved: 1
+00003675: RightHandSource: It_2H_Sword_Flamberge
+00003676: RightHandSourceAddress: E700FE10
+00003677: RightHandSourceUseType: 3
+00003678: RightHandSourceCollisionGroup: 5
+00003679: LeftHandSourceResolved: 0
+00003680: Decision: LEGACY/NATIVE - call original timer callback
+00003681: =====================================
+00003682: 
+00003683: ===== C1 OFFENSE REQUEST =====
+00003684: ElapsedMs: 43165.740
+00003685: ActorAddress: EBB66E10
+00003686: Actor: PC_Hero
+00003687: Generation: 4
+00003688: Status: PERSISTED
+00003689: SourceAddress: E700FE10
+00003690: Source: It_2H_Sword_Flamberge
+00003691: OriginalSideMask: 1
+00003692: OriginalSide: RIGHT
+00003693: OffensiveRequestCount: 1
+00003694: Outstanding: 1
+00003695: CleanupObserved: 0
+00003696: ActualGroup: 7
+00003697: PhysicalCollisionChanged: 0
+00003698: ==============================
+00003699: 
+00003700: ===== ENGINE SetCollisionGroup =====
+00003701: ElapsedMs: 43165.773
+00003702: Entity: It_2H_Sword_Flamberge
+00003703: ChangedEntityAddress: E700FE10
+00003704: PlayerSlotMatch: RIGHT
+00003705: PlayerAction: 1
+00003706: PlayerAniPhase: 1
+00003707: PlayerPrimaryPose: 1
+00003708: PlayerStateTime: 0.251366
+00003709: PlayerStatePosition: 0
+00003710: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00003711: PlayerLeftItem: <none>
+00003712: PlayerLeftItemAddress: 00000000
+00003713: PlayerLeftUseType: -1
+00003714: PlayerLeftCollisionGroup: -1
+00003715: PlayerRightItem: It_2H_Sword_Flamberge
+00003716: PlayerRightItemAddress: E700FE10
+00003717: PlayerRightUseType: 3
+00003718: PlayerRightCollisionGroup: 7
+00003719: RequestedGroup: 7
+00003720: BeforeGroup: 5
+00003721: AfterGroup: 7
+00003722: Item_EquippedValue: 5
+00003723: Item_AttackValue: 7
+00003724: RetiredMarkerExecutionCount: 0
+00003725: ====================================
+00003726: 
+00003727: ===== C1-O2-P1 OFFENSE SCOPE =====
+00003728: ElapsedMs: 43165.797
+00003729: ActorAddress: EBB66E10
+00003730: SourceAddress: E700FE10
+00003731: CurrentScopeExists: 0
+00003732: ScopeAddress: 00000000
+00003733: ScopeSPUAddress: 00000000
+00003734: PlayerSPUAddress: EBB67074
+00003735: SPUMatchesPlayer: 0
+00003736: ScopeRuntimeStackAddress: 00000000
+00003737: PlayerStateStackAddress: EBB67078
+00003738: RuntimeStackMatchesPlayerStateStack: 0
+00003739: ScriptNameReferenceAddress: 00000000
+00003740: ScriptFunctionName: <no-current-scope>
+00003741: ParentScopeExists: 0
+00003742: OffenseObservedSet: 0
+00003743: LifecycleBehaviorChanged: 0
+00003744: CollisionBehaviorChanged: 0
+00003745: ==================================
+00003746: 
+00003747: ===== OUTER_FRAME OFFENSE =====
+00003748: ElapsedMs: 43165.812
+00003749: ActorAddress: EBB66E10
+00003750: Actor: PC_Hero
+00003751: SourceAddress: E700FE10
+00003752: Source: It_2H_Sword_Flamberge
+00003753: RequestedGroup: 7
+00003754: BeforeGroup: 5
+00003755: AfterGroup: 7
+00003756: SPUAddress: EBB67074
+00003757: StateStackCount: 2
+00003758: HasTopFrame: 1
+00003759: TopIndex: 1
+00003760: TopEntryAddressDiagnosticOnly: DC4902A8
+00003761: TopScriptName: _AI_Attack
+00003762: TopIsScriptState: 0
+00003763: TopBreakBlock: 1
+00003764: TopArgumentsAddress: DE8E7610
+00003765: TopLocalCallback: OnAI_Attack
+00003766: TopExtraFloat: 1000.000000
+00003767: CurrentState: PS_Melee_Attack
+00003768: CurrentAction: 1
+00003769: CurrentStatePosition: 0
+00003770: CurrentStateTime: 0.251366
+00003771: TopEntryAddressIsExecutionIdentity: 0
+00003772: ArgumentsDereferencedOrClassified: 0
+00003773: LifecycleBehaviorChanged: 0
+00003774: CollisionBehaviorChanged: 0
+00003775: ===============================
+00003776: 
+00003777: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00003778: ActorAddress: EBB66E10
+00003779: Actor: PC_Hero
+00003780: CurrentAction: 1
+00003781: CurrentAniPhase: 1
+00003782: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00003783: Stage: BEGIN
+00003784: ElapsedMs: 43661.360
+00003785: PrimarySnapshotAvailable: 1
+00003786: PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00003787: PrimaryHasMotionInstance: 1
+00003788: PrimaryMotionRunning: 1
+00003789: PrimaryPlayTime: 0.519990
+00003790: PrimaryMaxTime: 0.520000
+00003791: PrimaryPlaySpeed: 0.000000
+00003792: LeftHandSourceResolved: 0
+00003793: RightHandSourceResolved: 1
+00003794: RightHandSource: It_2H_Sword_Flamberge
+00003795: RightHandSourceAddress: E700FE10
+00003796: RightHandSourceCollisionGroup: 7
+00003797: CleanupBehaviorChanged: 0
+00003798: =========================================
+00003799: 
+00003800: ===== HIT STARTRECOVER BEGIN STACK =====
+00003801: ElapsedMs: 43661.414
+00003802: Actor: PC_Hero
+00003803: OutgoingPrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00003804: CurrentAction: 1
+00003805: CurrentAniPhase: 1
+00003806: CurrentStateTime: 0.745299
+00003807: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00003808: LeftHandSourceResolved: 0
+00003809: LeftHandSource: <none>
+00003810: LeftHandSourceAddress: 00000000
+00003811: LeftHandSourceCollisionGroup: -1
+00003812: RightHandSourceResolved: 1
+00003813: RightHandSource: It_2H_Sword_Flamberge
+00003814: RightHandSourceAddress: E700FE10
+00003815: RightHandSourceCollisionGroup: 7
+00003816: CapturedStackFrameCount: 4
+00003817: StackFrame[0]: Address=7905FAAD Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000FAAD
+00003818: StackFrame[1]: Address=00E09772 Module=Game.dll Base=00CA0000 RVA=0x00169772
+00003819: StackFrame[2]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00003820: StackFrame[3]: Address=00E0F240 Module=Game.dll Base=00CA0000 RVA=0x0016F240
+00003821: CleanupBehaviorChanged: 0
+00003822: ========================================
+00003823: 
+00003824: ===== PRIMARYFIRST StopMotion =====
+00003825: OwnerEntityAddress: EBB66E10
+00003826: OwnerEntity: PC_Hero
+00003827: MotionType: 0
+00003828: Stage: REQUEST_BEFORE_ORIGINAL
+00003829: ElapsedMs: 43661.470
+00003830: PrimarySnapshotAvailable: 1
+00003831: PrimaryMotionName: 
+00003832: PrimaryHasMotionInstance: 0
+00003833: PrimaryMotionRunning: 0
+00003834: PrimaryPlayTime: 0.000000
+00003835: PrimaryMaxTime: 0.000000
+00003836: PrimaryPlaySpeed: 0.000000
+00003837: Stage: RESULT_AFTER_ORIGINAL
+00003838: ElapsedMs: 43661.471
+00003839: PrimarySnapshotAvailable: 1
+00003840: PrimaryMotionName: 
+00003841: PrimaryHasMotionInstance: 0
+00003842: PrimaryMotionRunning: 0
+00003843: PrimaryPlayTime: 0.000000
+00003844: PrimaryMaxTime: 0.000000
+00003845: PrimaryPlaySpeed: 0.000000
+00003846: CleanupBehaviorChanged: 0
+00003847: =====================================
+00003848: 
+00003849: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00003850: ElapsedMs: 43661.495
+00003851: Actor: PC_Hero
+00003852: PrimaryWasEmptyBefore: 1
+00003853: IncomingMotionRequestAddress: EBB671A8
+00003854: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00003855: SuccessorPrimarySnapshotAvailable: 1
+00003856: SuccessorPrimaryHasMotionInstance: 1
+00003857: CurrentActionBeforeOriginal: 1
+00003858: CurrentAniPhaseBeforeOriginal: 3
+00003859: CurrentStateTimeBeforeOriginal: 0.745299
+00003860: CurrentStatePositionBeforeOriginal: 1
+00003861: CurrentMovementAniBeforeOriginal: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00003862: LeftHandSourceResolved: 0
+00003863: LeftHandSource: <none>
+00003864: LeftHandSourceAddress: 00000000
+00003865: LeftHandSourceCollisionGroup: -1
+00003866: RightHandSourceResolved: 1
+00003867: RightHandSource: It_2H_Sword_Flamberge
+===== SOURCE RANGE 4484-4737 =====
+00004484: StackFrame[3]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00004485: StackFrame[4]: Address=1B1C8463 Module=Script_Game.dll Base=1B190000 RVA=0x00038463
+00004486: StackFrame[5]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00004487: StackFrame[6]: Address=1B20F0DB Module=Script_Game.dll Base=1B190000 RVA=0x0007F0DB
+00004488: StackFrame[7]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00004489: CleanupBehaviorChanged: 0
+00004490: =============================================
+00004491: 
+00004492: ===== PRIMARYFIRST PlayMotion =====
+00004493: OwnerEntityAddress: EBB66E10
+00004494: OwnerEntity: PC_Hero
+00004495: MotionType: 0
+00004496: Stage: REQUEST_BEFORE_ORIGINAL
+00004497: ElapsedMs: 52762.921
+00004498: PrimarySnapshotAvailable: 1
+00004499: PrimaryMotionName: 
+00004500: PrimaryHasMotionInstance: 0
+00004501: PrimaryMotionRunning: 0
+00004502: PrimaryPlayTime: 0.000000
+00004503: PrimaryMaxTime: 0.000000
+00004504: PrimaryPlaySpeed: 0.000000
+00004505: Stage: RESULT_AFTER_ORIGINAL
+00004506: ElapsedMs: 52762.942
+00004507: PrimarySnapshotAvailable: 1
+00004508: PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00004509: PrimaryHasMotionInstance: 1
+00004510: PrimaryMotionRunning: 1
+00004511: PrimaryPlayTime: 0.000000
+00004512: PrimaryMaxTime: 0.400000
+00004513: PrimaryPlaySpeed: 0.700000
+00004514: CleanupBehaviorChanged: 0
+00004515: =====================================
+00004516: 
+00004517: ===== C1 LIFECYCLE STATUS =====
+00004518: ElapsedMs: 52763.022
+00004519: Event: PERSISTED
+00004520: ActorAddress: EBB66E10
+00004521: Actor: PC_Hero
+00004522: Generation: 5
+00004523: Status: PERSISTED
+00004524: Outstanding: 0
+00004525: PhysicalCollisionChanged: 0
+00004526: ===============================
+00004527: 
+00004528: ===== MARKER OWNERSHIP DECISION =====
+00004529: ElapsedMs: 52763.038
+00004530: Actor: PC_Hero
+00004531: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00004532: MatchingMotionFound: 1
+00004533: FrameEffectCount: 1
+00004534: ContainsReservedSourceMarker: 0
+00004535: RequiredSourceMask: 0
+00004536: AuthoredRIGHTMarkerCount: 0
+00004537: FirstRIGHTMarkerFrame: -1
+00004538: AuthoredLEFTMarkerCount: 0
+00004539: FirstLEFTMarkerFrame: -1
+00004540: AuthoredBOTHMarkerCount: 0
+00004541: FirstBOTHMarkerFrame: -1
+00004542: AuthoredOFFMarkerCount: 0
+00004543: FirstOFFMarkerFrame: -1
+00004544: RightHandSourceResolved: 1
+00004545: RightHandSource: It_2H_Sword_Flamberge
+00004546: RightHandSourceAddress: E700FE10
+00004547: RightHandSourceUseType: 3
+00004548: RightHandSourceCollisionGroup: 5
+00004549: LeftHandSourceResolved: 0
+00004550: Decision: LEGACY/NATIVE - call original timer callback
+00004551: =====================================
+00004552: 
+00004553: ===== C1 OFFENSE REQUEST =====
+00004554: ElapsedMs: 53028.260
+00004555: ActorAddress: EBB66E10
+00004556: Actor: PC_Hero
+00004557: Generation: 5
+00004558: Status: PERSISTED
+00004559: SourceAddress: E700FE10
+00004560: Source: It_2H_Sword_Flamberge
+00004561: OriginalSideMask: 1
+00004562: OriginalSide: RIGHT
+00004563: OffensiveRequestCount: 1
+00004564: Outstanding: 1
+00004565: CleanupObserved: 0
+00004566: ActualGroup: 7
+00004567: PhysicalCollisionChanged: 0
+00004568: ==============================
+00004569: 
+00004570: ===== ENGINE SetCollisionGroup =====
+00004571: ElapsedMs: 53028.293
+00004572: Entity: It_2H_Sword_Flamberge
+00004573: ChangedEntityAddress: E700FE10
+00004574: PlayerSlotMatch: RIGHT
+00004575: PlayerAction: 1
+00004576: PlayerAniPhase: 1
+00004577: PlayerPrimaryPose: 2
+00004578: PlayerStateTime: 0.266881
+00004579: PlayerStatePosition: 0
+00004580: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00004581: PlayerLeftItem: <none>
+00004582: PlayerLeftItemAddress: 00000000
+00004583: PlayerLeftUseType: -1
+00004584: PlayerLeftCollisionGroup: -1
+00004585: PlayerRightItem: It_2H_Sword_Flamberge
+00004586: PlayerRightItemAddress: E700FE10
+00004587: PlayerRightUseType: 3
+00004588: PlayerRightCollisionGroup: 7
+00004589: RequestedGroup: 7
+00004590: BeforeGroup: 5
+00004591: AfterGroup: 7
+00004592: Item_EquippedValue: 5
+00004593: Item_AttackValue: 7
+00004594: RetiredMarkerExecutionCount: 0
+00004595: ====================================
+00004596: 
+00004597: ===== C1-O2-P1 OFFENSE SCOPE =====
+00004598: ElapsedMs: 53028.323
+00004599: ActorAddress: EBB66E10
+00004600: SourceAddress: E700FE10
+00004601: CurrentScopeExists: 0
+00004602: ScopeAddress: 00000000
+00004603: ScopeSPUAddress: 00000000
+00004604: PlayerSPUAddress: EBB67074
+00004605: SPUMatchesPlayer: 0
+00004606: ScopeRuntimeStackAddress: 00000000
+00004607: PlayerStateStackAddress: EBB67078
+00004608: RuntimeStackMatchesPlayerStateStack: 0
+00004609: ScriptNameReferenceAddress: 00000000
+00004610: ScriptFunctionName: <no-current-scope>
+00004611: ParentScopeExists: 0
+00004612: OffenseObservedSet: 0
+00004613: LifecycleBehaviorChanged: 0
+00004614: CollisionBehaviorChanged: 0
+00004615: ==================================
+00004616: 
+00004617: ===== OUTER_FRAME OFFENSE =====
+00004618: ElapsedMs: 53028.340
+00004619: ActorAddress: EBB66E10
+00004620: Actor: PC_Hero
+00004621: SourceAddress: E700FE10
+00004622: Source: It_2H_Sword_Flamberge
+00004623: RequestedGroup: 7
+00004624: BeforeGroup: 5
+00004625: AfterGroup: 7
+00004626: SPUAddress: EBB67074
+00004627: StateStackCount: 2
+00004628: HasTopFrame: 1
+00004629: TopIndex: 1
+00004630: TopEntryAddressDiagnosticOnly: DC4901A8
+00004631: TopScriptName: _AI_Attack
+00004632: TopIsScriptState: 0
+00004633: TopBreakBlock: 1
+00004634: TopArgumentsAddress: DE8EE510
+00004635: TopLocalCallback: OnAI_Attack
+00004636: TopExtraFloat: 1000.000000
+00004637: CurrentState: PS_Melee_Attack
+00004638: CurrentAction: 1
+00004639: CurrentStatePosition: 0
+00004640: CurrentStateTime: 0.266881
+00004641: TopEntryAddressIsExecutionIdentity: 0
+00004642: ArgumentsDereferencedOrClassified: 0
+00004643: LifecycleBehaviorChanged: 0
+00004644: CollisionBehaviorChanged: 0
+00004645: ===============================
+00004646: 
+00004647: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00004648: ActorAddress: EBB66E10
+00004649: Actor: PC_Hero
+00004650: CurrentAction: 1
+00004651: CurrentAniPhase: 1
+00004652: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00004653: Stage: BEGIN
+00004654: ElapsedMs: 53334.904
+00004655: PrimarySnapshotAvailable: 1
+00004656: PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00004657: PrimaryHasMotionInstance: 1
+00004658: PrimaryMotionRunning: 1
+00004659: PrimaryPlayTime: 0.399990
+00004660: PrimaryMaxTime: 0.400000
+00004661: PrimaryPlaySpeed: 0.000000
+00004662: LeftHandSourceResolved: 0
+00004663: RightHandSourceResolved: 1
+00004664: RightHandSource: It_2H_Sword_Flamberge
+00004665: RightHandSourceAddress: E700FE10
+00004666: RightHandSourceCollisionGroup: 7
+00004667: CleanupBehaviorChanged: 0
+00004668: =========================================
+00004669: 
+00004670: ===== HIT STARTRECOVER BEGIN STACK =====
+00004671: ElapsedMs: 53334.956
+00004672: Actor: PC_Hero
+00004673: OutgoingPrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00004674: CurrentAction: 1
+00004675: CurrentAniPhase: 1
+00004676: CurrentStateTime: 0.576915
+00004677: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00004678: LeftHandSourceResolved: 0
+00004679: LeftHandSource: <none>
+00004680: LeftHandSourceAddress: 00000000
+00004681: LeftHandSourceCollisionGroup: -1
+00004682: RightHandSourceResolved: 1
+00004683: RightHandSource: It_2H_Sword_Flamberge
+00004684: RightHandSourceAddress: E700FE10
+00004685: RightHandSourceCollisionGroup: 7
+00004686: CapturedStackFrameCount: 4
+00004687: StackFrame[0]: Address=7905FAAD Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000FAAD
+00004688: StackFrame[1]: Address=00E09772 Module=Game.dll Base=00CA0000 RVA=0x00169772
+00004689: StackFrame[2]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00004690: StackFrame[3]: Address=00E0F240 Module=Game.dll Base=00CA0000 RVA=0x0016F240
+00004691: CleanupBehaviorChanged: 0
+00004692: ========================================
+00004693: 
+00004694: ===== PRIMARYFIRST StopMotion =====
+00004695: OwnerEntityAddress: EBB66E10
+00004696: OwnerEntity: PC_Hero
+00004697: MotionType: 0
+00004698: Stage: REQUEST_BEFORE_ORIGINAL
+00004699: ElapsedMs: 53335.021
+00004700: PrimarySnapshotAvailable: 1
+00004701: PrimaryMotionName: 
+00004702: PrimaryHasMotionInstance: 0
+00004703: PrimaryMotionRunning: 0
+00004704: PrimaryPlayTime: 0.000000
+00004705: PrimaryMaxTime: 0.000000
+00004706: PrimaryPlaySpeed: 0.000000
+00004707: Stage: RESULT_AFTER_ORIGINAL
+00004708: ElapsedMs: 53335.022
+00004709: PrimarySnapshotAvailable: 1
+00004710: PrimaryMotionName: 
+00004711: PrimaryHasMotionInstance: 0
+00004712: PrimaryMotionRunning: 0
+00004713: PrimaryPlayTime: 0.000000
+00004714: PrimaryMaxTime: 0.000000
+00004715: PrimaryPlaySpeed: 0.000000
+00004716: CleanupBehaviorChanged: 0
+00004717: =====================================
+00004718: 
+00004719: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00004720: ElapsedMs: 53335.064
+00004721: Actor: PC_Hero
+00004722: PrimaryWasEmptyBefore: 1
+00004723: IncomingMotionRequestAddress: EBB671A8
+00004724: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_2H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+00004725: SuccessorPrimarySnapshotAvailable: 1
+00004726: SuccessorPrimaryHasMotionInstance: 1
+00004727: CurrentActionBeforeOriginal: 1
+00004728: CurrentAniPhaseBeforeOriginal: 3
+00004729: CurrentStateTimeBeforeOriginal: 0.576915
+00004730: CurrentStatePositionBeforeOriginal: 1
+00004731: CurrentMovementAniBeforeOriginal: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00004732: LeftHandSourceResolved: 0
+00004733: LeftHandSource: <none>
+00004734: LeftHandSourceAddress: 00000000
+00004735: LeftHandSourceCollisionGroup: -1
+00004736: RightHandSourceResolved: 1
+00004737: RightHandSource: It_2H_Sword_Flamberge
+===== SOURCE RANGE 5377-5630 =====
+00005377: StackFrame[3]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00005378: StackFrame[4]: Address=1B1C8463 Module=Script_Game.dll Base=1B190000 RVA=0x00038463
+00005379: StackFrame[5]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00005380: StackFrame[6]: Address=1B20F0DB Module=Script_Game.dll Base=1B190000 RVA=0x0007F0DB
+00005381: StackFrame[7]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00005382: CleanupBehaviorChanged: 0
+00005383: =============================================
+00005384: 
+00005385: ===== PRIMARYFIRST PlayMotion =====
+00005386: OwnerEntityAddress: EBB66E10
+00005387: OwnerEntity: PC_Hero
+00005388: MotionType: 0
+00005389: Stage: REQUEST_BEFORE_ORIGINAL
+00005390: ElapsedMs: 54025.921
+00005391: PrimarySnapshotAvailable: 1
+00005392: PrimaryMotionName: 
+00005393: PrimaryHasMotionInstance: 0
+00005394: PrimaryMotionRunning: 0
+00005395: PrimaryPlayTime: 0.000000
+00005396: PrimaryMaxTime: 0.000000
+00005397: PrimaryPlaySpeed: 0.000000
+00005398: Stage: RESULT_AFTER_ORIGINAL
+00005399: ElapsedMs: 54025.942
+00005400: PrimarySnapshotAvailable: 1
+00005401: PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00005402: PrimaryHasMotionInstance: 1
+00005403: PrimaryMotionRunning: 1
+00005404: PrimaryPlayTime: 0.000000
+00005405: PrimaryMaxTime: 0.520000
+00005406: PrimaryPlaySpeed: 0.700000
+00005407: CleanupBehaviorChanged: 0
+00005408: =====================================
+00005409: 
+00005410: ===== C1 LIFECYCLE STATUS =====
+00005411: ElapsedMs: 54026.023
+00005412: Event: PERSISTED
+00005413: ActorAddress: EBB66E10
+00005414: Actor: PC_Hero
+00005415: Generation: 6
+00005416: Status: PERSISTED
+00005417: Outstanding: 0
+00005418: PhysicalCollisionChanged: 0
+00005419: ===============================
+00005420: 
+00005421: ===== MARKER OWNERSHIP DECISION =====
+00005422: ElapsedMs: 54026.040
+00005423: Actor: PC_Hero
+00005424: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00005425: MatchingMotionFound: 1
+00005426: FrameEffectCount: 1
+00005427: ContainsReservedSourceMarker: 0
+00005428: RequiredSourceMask: 0
+00005429: AuthoredRIGHTMarkerCount: 0
+00005430: FirstRIGHTMarkerFrame: -1
+00005431: AuthoredLEFTMarkerCount: 0
+00005432: FirstLEFTMarkerFrame: -1
+00005433: AuthoredBOTHMarkerCount: 0
+00005434: FirstBOTHMarkerFrame: -1
+00005435: AuthoredOFFMarkerCount: 0
+00005436: FirstOFFMarkerFrame: -1
+00005437: RightHandSourceResolved: 1
+00005438: RightHandSource: It_2H_Sword_Flamberge
+00005439: RightHandSourceAddress: E700FE10
+00005440: RightHandSourceUseType: 3
+00005441: RightHandSourceCollisionGroup: 5
+00005442: LeftHandSourceResolved: 0
+00005443: Decision: LEGACY/NATIVE - call original timer callback
+00005444: =====================================
+00005445: 
+00005446: ===== C1 OFFENSE REQUEST =====
+00005447: ElapsedMs: 54280.978
+00005448: ActorAddress: EBB66E10
+00005449: Actor: PC_Hero
+00005450: Generation: 6
+00005451: Status: PERSISTED
+00005452: SourceAddress: E700FE10
+00005453: Source: It_2H_Sword_Flamberge
+00005454: OriginalSideMask: 1
+00005455: OriginalSide: RIGHT
+00005456: OffensiveRequestCount: 1
+00005457: Outstanding: 1
+00005458: CleanupObserved: 0
+00005459: ActualGroup: 7
+00005460: PhysicalCollisionChanged: 0
+00005461: ==============================
+00005462: 
+00005463: ===== ENGINE SetCollisionGroup =====
+00005464: ElapsedMs: 54281.010
+00005465: Entity: It_2H_Sword_Flamberge
+00005466: ChangedEntityAddress: E700FE10
+00005467: PlayerSlotMatch: RIGHT
+00005468: PlayerAction: 1
+00005469: PlayerAniPhase: 1
+00005470: PlayerPrimaryPose: 1
+00005471: PlayerStateTime: 0.251021
+00005472: PlayerStatePosition: 0
+00005473: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00005474: PlayerLeftItem: <none>
+00005475: PlayerLeftItemAddress: 00000000
+00005476: PlayerLeftUseType: -1
+00005477: PlayerLeftCollisionGroup: -1
+00005478: PlayerRightItem: It_2H_Sword_Flamberge
+00005479: PlayerRightItemAddress: E700FE10
+00005480: PlayerRightUseType: 3
+00005481: PlayerRightCollisionGroup: 7
+00005482: RequestedGroup: 7
+00005483: BeforeGroup: 5
+00005484: AfterGroup: 7
+00005485: Item_EquippedValue: 5
+00005486: Item_AttackValue: 7
+00005487: RetiredMarkerExecutionCount: 0
+00005488: ====================================
+00005489: 
+00005490: ===== C1-O2-P1 OFFENSE SCOPE =====
+00005491: ElapsedMs: 54281.034
+00005492: ActorAddress: EBB66E10
+00005493: SourceAddress: E700FE10
+00005494: CurrentScopeExists: 0
+00005495: ScopeAddress: 00000000
+00005496: ScopeSPUAddress: 00000000
+00005497: PlayerSPUAddress: EBB67074
+00005498: SPUMatchesPlayer: 0
+00005499: ScopeRuntimeStackAddress: 00000000
+00005500: PlayerStateStackAddress: EBB67078
+00005501: RuntimeStackMatchesPlayerStateStack: 0
+00005502: ScriptNameReferenceAddress: 00000000
+00005503: ScriptFunctionName: <no-current-scope>
+00005504: ParentScopeExists: 0
+00005505: OffenseObservedSet: 0
+00005506: LifecycleBehaviorChanged: 0
+00005507: CollisionBehaviorChanged: 0
+00005508: ==================================
+00005509: 
+00005510: ===== OUTER_FRAME OFFENSE =====
+00005511: ElapsedMs: 54281.049
+00005512: ActorAddress: EBB66E10
+00005513: Actor: PC_Hero
+00005514: SourceAddress: E700FE10
+00005515: Source: It_2H_Sword_Flamberge
+00005516: RequestedGroup: 7
+00005517: BeforeGroup: 5
+00005518: AfterGroup: 7
+00005519: SPUAddress: EBB67074
+00005520: StateStackCount: 2
+00005521: HasTopFrame: 1
+00005522: TopIndex: 1
+00005523: TopEntryAddressDiagnosticOnly: DC4901A8
+00005524: TopScriptName: _AI_Attack
+00005525: TopIsScriptState: 0
+00005526: TopBreakBlock: 1
+00005527: TopArgumentsAddress: DE8F0F10
+00005528: TopLocalCallback: OnAI_Attack
+00005529: TopExtraFloat: 1000.000000
+00005530: CurrentState: PS_Melee_Attack
+00005531: CurrentAction: 1
+00005532: CurrentStatePosition: 0
+00005533: CurrentStateTime: 0.251021
+00005534: TopEntryAddressIsExecutionIdentity: 0
+00005535: ArgumentsDereferencedOrClassified: 0
+00005536: LifecycleBehaviorChanged: 0
+00005537: CollisionBehaviorChanged: 0
+00005538: ===============================
+00005539: 
+00005540: ===== OUTER_FRAME COMBAT_MOVE_INITIAL =====
+00005541: ElapsedMs: 54373.369
+00005542: ActorAddress: E6E86610
+00005543: Actor: Golem
+00005544: SPUAddress: E6EA7074
+00005545: StateStackCount: 2
+00005546: HasTopFrame: 1
+00005547: TopIndex: 1
+00005548: TopEntryAddressDiagnosticOnly: DC491928
+00005549: TopScriptName: _AI_Stumble
+00005550: TopIsScriptState: 0
+00005551: TopBreakBlock: 1
+00005552: TopArgumentsAddress: DE8F2A10
+00005553: TopLocalCallback: 
+00005554: TopExtraFloat: 1000.000000
+00005555: CurrentState: ZS_Stumble
+00005556: CurrentAction: 26
+00005557: CurrentStatePosition: 0
+00005558: CurrentStateTime: 0.000000
+00005559: TopEntryAddressIsExecutionIdentity: 0
+00005560: ArgumentsDereferencedOrClassified: 0
+00005561: LifecycleBehaviorChanged: 0
+00005562: CollisionBehaviorChanged: 0
+00005563: ===============================
+00005564: 
+00005565: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00005566: ActorAddress: EBB66E10
+00005567: Actor: PC_Hero
+00005568: CurrentAction: 1
+00005569: CurrentAniPhase: 1
+00005570: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00005571: Stage: BEGIN
+00005572: ElapsedMs: 54784.725
+00005573: PrimarySnapshotAvailable: 1
+00005574: PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00005575: PrimaryHasMotionInstance: 1
+00005576: PrimaryMotionRunning: 1
+00005577: PrimaryPlayTime: 0.519990
+00005578: PrimaryMaxTime: 0.520000
+00005579: PrimaryPlaySpeed: 0.000000
+00005580: LeftHandSourceResolved: 0
+00005581: RightHandSourceResolved: 1
+00005582: RightHandSource: It_2H_Sword_Flamberge
+00005583: RightHandSourceAddress: E700FE10
+00005584: RightHandSourceCollisionGroup: 7
+00005585: CleanupBehaviorChanged: 0
+00005586: =========================================
+00005587: 
+00005588: ===== HIT STARTRECOVER BEGIN STACK =====
+00005589: ElapsedMs: 54784.839
+00005590: Actor: PC_Hero
+00005591: OutgoingPrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00005592: CurrentAction: 1
+00005593: CurrentAniPhase: 1
+00005594: CurrentStateTime: 0.750900
+00005595: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00005596: LeftHandSourceResolved: 0
+00005597: LeftHandSource: <none>
+00005598: LeftHandSourceAddress: 00000000
+00005599: LeftHandSourceCollisionGroup: -1
+00005600: RightHandSourceResolved: 1
+00005601: RightHandSource: It_2H_Sword_Flamberge
+00005602: RightHandSourceAddress: E700FE10
+00005603: RightHandSourceCollisionGroup: 7
+00005604: CapturedStackFrameCount: 4
+00005605: StackFrame[0]: Address=7905FAAD Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000FAAD
+00005606: StackFrame[1]: Address=00E09772 Module=Game.dll Base=00CA0000 RVA=0x00169772
+00005607: StackFrame[2]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00005608: StackFrame[3]: Address=00E0F240 Module=Game.dll Base=00CA0000 RVA=0x0016F240
+00005609: CleanupBehaviorChanged: 0
+00005610: ========================================
+00005611: 
+00005612: ===== PRIMARYFIRST StopMotion =====
+00005613: OwnerEntityAddress: EBB66E10
+00005614: OwnerEntity: PC_Hero
+00005615: MotionType: 0
+00005616: Stage: REQUEST_BEFORE_ORIGINAL
+00005617: ElapsedMs: 54784.897
+00005618: PrimarySnapshotAvailable: 1
+00005619: PrimaryMotionName: 
+00005620: PrimaryHasMotionInstance: 0
+00005621: PrimaryMotionRunning: 0
+00005622: PrimaryPlayTime: 0.000000
+00005623: PrimaryMaxTime: 0.000000
+00005624: PrimaryPlaySpeed: 0.000000
+00005625: Stage: RESULT_AFTER_ORIGINAL
+00005626: ElapsedMs: 54784.898
+00005627: PrimarySnapshotAvailable: 1
+00005628: PrimaryMotionName: 
+00005629: PrimaryHasMotionInstance: 0
+00005630: PrimaryMotionRunning: 0
+===== SOURCE RANGE 7285-7538 =====
+00007285: PrimaryHasMotionInstance: 1
+00007286: PrimaryMotionRunning: 1
+00007287: PrimaryPlayTime: 0.000000
+00007288: PrimaryMaxTime: 0.520000
+00007289: PrimaryPlaySpeed: 0.700000
+00007290: CleanupBehaviorChanged: 0
+00007291: =====================================
+00007292: 
+00007293: ===== C1 LIFECYCLE STATUS =====
+00007294: ElapsedMs: 56941.514
+00007295: Event: PERSISTED
+00007296: ActorAddress: EBB66E10
+00007297: Actor: PC_Hero
+00007298: Generation: 11
+00007299: Status: PERSISTED
+00007300: Outstanding: 0
+00007301: PhysicalCollisionChanged: 0
+00007302: ===============================
+00007303: 
+00007304: ===== MARKER OWNERSHIP DECISION =====
+00007305: ElapsedMs: 56941.529
+00007306: Actor: PC_Hero
+00007307: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00007308: MatchingMotionFound: 1
+00007309: FrameEffectCount: 1
+00007310: ContainsReservedSourceMarker: 0
+00007311: RequiredSourceMask: 0
+00007312: AuthoredRIGHTMarkerCount: 0
+00007313: FirstRIGHTMarkerFrame: -1
+00007314: AuthoredLEFTMarkerCount: 0
+00007315: FirstLEFTMarkerFrame: -1
+00007316: AuthoredBOTHMarkerCount: 0
+00007317: FirstBOTHMarkerFrame: -1
+00007318: AuthoredOFFMarkerCount: 0
+00007319: FirstOFFMarkerFrame: -1
+00007320: RightHandSourceResolved: 1
+00007321: RightHandSource: It_2H_Sword_Flamberge
+00007322: RightHandSourceAddress: E700FE10
+00007323: RightHandSourceUseType: 3
+00007324: RightHandSourceCollisionGroup: 5
+00007325: LeftHandSourceResolved: 0
+00007326: Decision: LEGACY/NATIVE - call original timer callback
+00007327: =====================================
+00007328: 
+00007329: ===== OUTER_FRAME COMBAT_MOVE_INITIAL =====
+00007330: ElapsedMs: 56949.410
+00007331: ActorAddress: E6E86610
+00007332: Actor: Golem
+00007333: SPUAddress: E6EA7074
+00007334: StateStackCount: 2
+00007335: HasTopFrame: 1
+00007336: TopIndex: 1
+00007337: TopEntryAddressDiagnosticOnly: DC4915A8
+00007338: TopScriptName: _AI_PowerAttack
+00007339: TopIsScriptState: 0
+00007340: TopBreakBlock: 1
+00007341: TopArgumentsAddress: DE8FE590
+00007342: TopLocalCallback: 
+00007343: TopExtraFloat: 1000.000000
+00007344: CurrentState: ZS_Attack_PowerAttack
+00007345: CurrentAction: 9
+00007346: CurrentStatePosition: 0
+00007347: CurrentStateTime: 0.000000
+00007348: TopEntryAddressIsExecutionIdentity: 0
+00007349: ArgumentsDereferencedOrClassified: 0
+00007350: LifecycleBehaviorChanged: 0
+00007351: CollisionBehaviorChanged: 0
+00007352: ===============================
+00007353: 
+00007354: ===== C1 OFFENSE REQUEST =====
+00007355: ElapsedMs: 57200.751
+00007356: ActorAddress: EBB66E10
+00007357: Actor: PC_Hero
+00007358: Generation: 11
+00007359: Status: PERSISTED
+00007360: SourceAddress: E700FE10
+00007361: Source: It_2H_Sword_Flamberge
+00007362: OriginalSideMask: 1
+00007363: OriginalSide: RIGHT
+00007364: OffensiveRequestCount: 1
+00007365: Outstanding: 1
+00007366: CleanupObserved: 0
+00007367: ActualGroup: 7
+00007368: PhysicalCollisionChanged: 0
+00007369: ==============================
+00007370: 
+00007371: ===== ENGINE SetCollisionGroup =====
+00007372: ElapsedMs: 57200.786
+00007373: Entity: It_2H_Sword_Flamberge
+00007374: ChangedEntityAddress: E700FE10
+00007375: PlayerSlotMatch: RIGHT
+00007376: PlayerAction: 1
+00007377: PlayerAniPhase: 1
+00007378: PlayerPrimaryPose: 1
+00007379: PlayerStateTime: 0.259955
+00007380: PlayerStatePosition: 0
+00007381: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00007382: PlayerLeftItem: <none>
+00007383: PlayerLeftItemAddress: 00000000
+00007384: PlayerLeftUseType: -1
+00007385: PlayerLeftCollisionGroup: -1
+00007386: PlayerRightItem: It_2H_Sword_Flamberge
+00007387: PlayerRightItemAddress: E700FE10
+00007388: PlayerRightUseType: 3
+00007389: PlayerRightCollisionGroup: 7
+00007390: RequestedGroup: 7
+00007391: BeforeGroup: 5
+00007392: AfterGroup: 7
+00007393: Item_EquippedValue: 5
+00007394: Item_AttackValue: 7
+00007395: RetiredMarkerExecutionCount: 0
+00007396: ====================================
+00007397: 
+00007398: ===== C1-O2-P1 OFFENSE SCOPE =====
+00007399: ElapsedMs: 57200.810
+00007400: ActorAddress: EBB66E10
+00007401: SourceAddress: E700FE10
+00007402: CurrentScopeExists: 0
+00007403: ScopeAddress: 00000000
+00007404: ScopeSPUAddress: 00000000
+00007405: PlayerSPUAddress: EBB67074
+00007406: SPUMatchesPlayer: 0
+00007407: ScopeRuntimeStackAddress: 00000000
+00007408: PlayerStateStackAddress: EBB67078
+00007409: RuntimeStackMatchesPlayerStateStack: 0
+00007410: ScriptNameReferenceAddress: 00000000
+00007411: ScriptFunctionName: <no-current-scope>
+00007412: ParentScopeExists: 0
+00007413: OffenseObservedSet: 0
+00007414: LifecycleBehaviorChanged: 0
+00007415: CollisionBehaviorChanged: 0
+00007416: ==================================
+00007417: 
+00007418: ===== OUTER_FRAME OFFENSE =====
+00007419: ElapsedMs: 57200.825
+00007420: ActorAddress: EBB66E10
+00007421: Actor: PC_Hero
+00007422: SourceAddress: E700FE10
+00007423: Source: It_2H_Sword_Flamberge
+00007424: RequestedGroup: 7
+00007425: BeforeGroup: 5
+00007426: AfterGroup: 7
+00007427: SPUAddress: EBB67074
+00007428: StateStackCount: 2
+00007429: HasTopFrame: 1
+00007430: TopIndex: 1
+00007431: TopEntryAddressDiagnosticOnly: DC4901A8
+00007432: TopScriptName: _AI_Attack
+00007433: TopIsScriptState: 0
+00007434: TopBreakBlock: 1
+00007435: TopArgumentsAddress: DE8FE410
+00007436: TopLocalCallback: OnAI_Attack
+00007437: TopExtraFloat: 1000.000000
+00007438: CurrentState: PS_Melee_Attack
+00007439: CurrentAction: 1
+00007440: CurrentStatePosition: 0
+00007441: CurrentStateTime: 0.259955
+00007442: TopEntryAddressIsExecutionIdentity: 0
+00007443: ArgumentsDereferencedOrClassified: 0
+00007444: LifecycleBehaviorChanged: 0
+00007445: CollisionBehaviorChanged: 0
+00007446: ===============================
+00007447: 
+00007448: ===== OUTER_FRAME COMBAT_MOVE_INITIAL =====
+00007449: ElapsedMs: 57300.493
+00007450: ActorAddress: E6E86610
+00007451: Actor: Golem
+00007452: SPUAddress: E6EA7074
+00007453: StateStackCount: 2
+00007454: HasTopFrame: 1
+00007455: TopIndex: 1
+00007456: TopEntryAddressDiagnosticOnly: DC4915A8
+00007457: TopScriptName: _AI_PowerAttack
+00007458: TopIsScriptState: 0
+00007459: TopBreakBlock: 2
+00007460: TopArgumentsAddress: DE8FE590
+00007461: TopLocalCallback: OnAI_PowerAttack
+00007462: TopExtraFloat: 1000.000000
+00007463: CurrentState: ZS_Attack_PowerAttack
+00007464: CurrentAction: 9
+00007465: CurrentStatePosition: 0
+00007466: CurrentStateTime: 0.351947
+00007467: TopEntryAddressIsExecutionIdentity: 0
+00007468: ArgumentsDereferencedOrClassified: 0
+00007469: LifecycleBehaviorChanged: 0
+00007470: CollisionBehaviorChanged: 0
+00007471: ===============================
+00007472: 
+00007473: ===== ENGINE SetCollisionGroup =====
+00007474: ElapsedMs: 57300.764
+00007475: Entity: Fist
+00007476: ChangedEntityAddress: E6F51A10
+00007477: PlayerSlotMatch: NONE
+00007478: PlayerAction: 1
+00007479: PlayerAniPhase: 1
+00007480: PlayerPrimaryPose: 1
+00007481: PlayerStateTime: 0.363947
+00007482: PlayerStatePosition: 1
+00007483: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00007484: PlayerLeftItem: <none>
+00007485: PlayerLeftItemAddress: 00000000
+00007486: PlayerLeftUseType: -1
+00007487: PlayerLeftCollisionGroup: -1
+00007488: PlayerRightItem: It_2H_Sword_Flamberge
+00007489: PlayerRightItemAddress: E700FE10
+00007490: PlayerRightUseType: 3
+00007491: PlayerRightCollisionGroup: 7
+00007492: RequestedGroup: 7
+00007493: BeforeGroup: 0
+00007494: AfterGroup: 0
+00007495: Item_EquippedValue: 5
+00007496: Item_AttackValue: 7
+00007497: RetiredMarkerExecutionCount: 0
+00007498: ====================================
+00007499: 
+00007500: ===== AIFULLSTOP CALLSITE =====
+00007501: ElapsedMs: 57466.536
+00007502: ActorAddress: EBB66E10
+00007503: Actor: PC_Hero
+00007504: CallerAddress: 1B1BB8CB
+00007505: CallerModuleResolved: 1
+00007506: CallerModule: Script_Game.dll
+00007507: CallerModuleBase: 1B190000
+00007508: CallerRVA: 0x0002B8CB
+00007509: CurrentAction: 1
+00007510: CurrentAniPhase: 1
+00007511: CurrentState: PS_Melee_Attack
+00007512: CurrentStateTime: 0.530896
+00007513: CurrentStatePosition: 1
+00007514: PressedKey: 15
+00007515: IsPressed: 0
+00007516: IsPressedBefore: 1
+00007517: DurationPressedMSecs: 84
+00007518: CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00007519: Stage: BEFORE_ORIGINAL
+00007520: ElapsedMs: 57466.542
+00007521: PrimarySnapshotAvailable: 1
+00007522: PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00007523: PrimaryHasMotionInstance: 1
+00007524: PrimaryMotionRunning: 1
+00007525: PrimaryPlayTime: 0.371627
+00007526: PrimaryMaxTime: 0.520000
+00007527: PrimaryPlaySpeed: 0.700000
+00007528: LeftHandSourceResolved: 0
+00007529: LeftHandSource: <none>
+00007530: LeftHandSourceAddress: 00000000
+00007531: LeftHandSourceCollisionGroup: -1
+00007532: RightHandSourceResolved: 1
+00007533: RightHandSource: It_2H_Sword_Flamberge
+00007534: RightHandSourceAddress: E700FE10
+00007535: RightHandSourceCollisionGroup: 7
+00007536: CapturedStackFrameCount: 5
+00007537: StackFrame[0]: Address=790602C8 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x000102C8
+00007538: StackFrame[1]: Address=1B1BB8CB Module=Script_Game.dll Base=1B190000 RVA=0x0002B8CB
+===== SOURCE RANGE 7951-8873 =====
+00007951: CleanupBehaviorChanged: 0
+00007952: ==============================
+00007953: 
+00007954: ===== OUTER_FRAME AI_SET_STATE_BEFORE =====
+00007955: ElapsedMs: 59478.861
+00007956: ActorAddress: EBB66E10
+00007957: Actor: PC_Hero
+00007958: SPUAddress: EBB67074
+00007959: StateStackCount: 1
+00007960: HasTopFrame: 1
+00007961: TopIndex: 0
+00007962: TopEntryAddressDiagnosticOnly: DC490190
+00007963: TopScriptName: ZS_SitKnockDown
+00007964: TopIsScriptState: 1
+00007965: TopBreakBlock: 3
+00007966: TopArgumentsAddress: 00000000
+00007967: TopLocalCallback: 
+00007968: TopExtraFloat: 1000.000000
+00007969: CurrentState: ZS_SitKnockDown
+00007970: CurrentAction: 29
+00007971: CurrentStatePosition: 0
+00007972: CurrentStateTime: 2.009794
+00007973: TopEntryAddressIsExecutionIdentity: 0
+00007974: ArgumentsDereferencedOrClassified: 0
+00007975: LifecycleBehaviorChanged: 0
+00007976: CollisionBehaviorChanged: 0
+00007977: ===============================
+00007978: 
+00007979: ===== C1 FINALIZATION =====
+00007980: ElapsedMs: 59478.892
+00007981: Reason: AISETSTATE_AFTER_ORIGINAL
+00007982: ActorAddress: EBB66E10
+00007983: Actor: PC_Hero
+00007984: Generation: 13
+00007985: Status: PERSISTED
+00007986: TrackedSourceCount: 1
+00007987: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00007988: Source[0].Address: E700FE10
+00007989: Source[0].Name: It_2H_Sword_Flamberge
+00007990: Source[0].LivenessEstablished: 1
+00007991: Source[0].OriginalSideMask: 1
+00007992: Source[0].OriginalSide: RIGHT
+00007993: Source[0].OffensiveRequestCount: 0
+00007994: Source[0].OutstandingBeforeFinalization: 0
+00007995: Source[0].ActualGroup: 5
+00007996: Source[0].CleanupObserved: 0
+00007997: Source[0].StillEquipped: 1
+00007998: Source[0].CurrentSideMask: 1
+00007999: PhysicalCollisionChanged: 0
+00008000: ===========================
+00008001: 
+00008002: ===== OUTER_FRAME AI_SET_STATE_AFTER =====
+00008003: ElapsedMs: 59478.916
+00008004: ActorAddress: EBB66E10
+00008005: Actor: PC_Hero
+00008006: SPUAddress: EBB67074
+00008007: StateStackCount: 1
+00008008: HasTopFrame: 1
+00008009: TopIndex: 0
+00008010: TopEntryAddressDiagnosticOnly: DC490190
+00008011: TopScriptName: ZS_SitKnockDown_Loop
+00008012: TopIsScriptState: 1
+00008013: TopBreakBlock: 0
+00008014: TopArgumentsAddress: 00000000
+00008015: TopLocalCallback: 
+00008016: TopExtraFloat: 1000.000000
+00008017: CurrentState: ZS_SitKnockDown_Loop
+00008018: CurrentAction: 29
+00008019: CurrentStatePosition: 0
+00008020: CurrentStateTime: 0.000000
+00008021: TopEntryAddressIsExecutionIdentity: 0
+00008022: ArgumentsDereferencedOrClassified: 0
+00008023: LifecycleBehaviorChanged: 0
+00008024: CollisionBehaviorChanged: 0
+00008025: ===============================
+00008026: 
+00008027: ===== AISETSTATE CALLSITE =====
+00008028: ElapsedMs: 59478.939
+00008029: ActorAddress: EBB66E10
+00008030: Actor: PC_Hero
+00008031: RequestedState: ZS_SitKnockDown_GetUpAttack
+00008032: CallerAddress: 1AA72F61
+00008033: CallerModuleResolved: 1
+00008034: CallerModule: Script.dll
+00008035: CallerModuleBase: 1AA60000
+00008036: CallerRVA: 0x00012F61
+00008037: CurrentStateBeforeOriginal: ZS_SitKnockDown_Loop
+00008038: CurrentAction: 29
+00008039: CurrentAniPhase: 4
+00008040: CurrentStateTime: 0.000000
+00008041: CurrentStatePosition: 0
+00008042: CurrentMovementAni: Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+00008043: Stage: BEFORE_ORIGINAL
+00008044: ElapsedMs: 59478.942
+00008045: PrimarySnapshotAvailable: 1
+00008046: PrimaryMotionName: Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+00008047: PrimaryHasMotionInstance: 1
+00008048: PrimaryMotionRunning: 1
+00008049: PrimaryPlayTime: 0.799990
+00008050: PrimaryMaxTime: 0.800000
+00008051: PrimaryPlaySpeed: 0.000000
+00008052: LeftHandSourceResolved: 0
+00008053: LeftHandSource: <none>
+00008054: LeftHandSourceAddress: 00000000
+00008055: LeftHandSourceCollisionGroup: -1
+00008056: RightHandSourceResolved: 1
+00008057: RightHandSource: It_2H_Sword_Flamberge
+00008058: RightHandSourceAddress: E700FE10
+00008059: RightHandSourceCollisionGroup: 5
+00008060: CapturedStackFrameCount: 3
+00008061: StackFrame[0]: Address=79060888 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x00010888
+00008062: StackFrame[1]: Address=1AA72F61 Module=Script.dll Base=1AA60000 RVA=0x00012F61
+00008063: StackFrame[2]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00008064: CleanupBehaviorChanged: 0
+00008065: ==============================
+00008066: 
+00008067: ===== OUTER_FRAME AI_SET_STATE_BEFORE =====
+00008068: ElapsedMs: 59478.977
+00008069: ActorAddress: EBB66E10
+00008070: Actor: PC_Hero
+00008071: SPUAddress: EBB67074
+00008072: StateStackCount: 1
+00008073: HasTopFrame: 1
+00008074: TopIndex: 0
+00008075: TopEntryAddressDiagnosticOnly: DC490190
+00008076: TopScriptName: ZS_SitKnockDown_Loop
+00008077: TopIsScriptState: 1
+00008078: TopBreakBlock: 1
+00008079: TopArgumentsAddress: 00000000
+00008080: TopLocalCallback: 
+00008081: TopExtraFloat: 1000.000000
+00008082: CurrentState: ZS_SitKnockDown_Loop
+00008083: CurrentAction: 29
+00008084: CurrentStatePosition: 0
+00008085: CurrentStateTime: 0.000000
+00008086: TopEntryAddressIsExecutionIdentity: 0
+00008087: ArgumentsDereferencedOrClassified: 0
+00008088: LifecycleBehaviorChanged: 0
+00008089: CollisionBehaviorChanged: 0
+00008090: ===============================
+00008091: 
+00008092: ===== OUTER_FRAME AI_SET_STATE_AFTER =====
+00008093: ElapsedMs: 59478.997
+00008094: ActorAddress: EBB66E10
+00008095: Actor: PC_Hero
+00008096: SPUAddress: EBB67074
+00008097: StateStackCount: 1
+00008098: HasTopFrame: 1
+00008099: TopIndex: 0
+00008100: TopEntryAddressDiagnosticOnly: DC490190
+00008101: TopScriptName: ZS_SitKnockDown_GetUpAttack
+00008102: TopIsScriptState: 1
+00008103: TopBreakBlock: 0
+00008104: TopArgumentsAddress: 00000000
+00008105: TopLocalCallback: 
+00008106: TopExtraFloat: 1000.000000
+00008107: CurrentState: ZS_SitKnockDown_GetUpAttack
+00008108: CurrentAction: 29
+00008109: CurrentStatePosition: 0
+00008110: CurrentStateTime: 0.000000
+00008111: TopEntryAddressIsExecutionIdentity: 0
+00008112: ArgumentsDereferencedOrClassified: 0
+00008113: LifecycleBehaviorChanged: 0
+00008114: CollisionBehaviorChanged: 0
+00008115: ===============================
+00008116: 
+00008117: ===== C1 INVARIANT WARNING =====
+00008118: ElapsedMs: 59488.527
+00008119: Code: UNOWNED_PLAYER_OFFENSE_REQUEST
+00008120: ActorAddress: EBB66E10
+00008121: Actor: PC_Hero
+00008122: Generation: 0
+00008123: SourceAddress: E700FE10
+00008124: Source: It_2H_Sword_Flamberge
+00008125: ActualGroup: 7
+00008126: PhysicalCollisionChanged: 0
+00008127: ================================
+00008128: 
+00008129: ===== ENGINE SetCollisionGroup =====
+00008130: ElapsedMs: 59488.582
+00008131: Entity: It_2H_Sword_Flamberge
+00008132: ChangedEntityAddress: E700FE10
+00008133: PlayerSlotMatch: RIGHT
+00008134: PlayerAction: 30
+00008135: PlayerAniPhase: 4
+00008136: PlayerPrimaryPose: 1
+00008137: PlayerStateTime: 0.000000
+00008138: PlayerStatePosition: 0
+00008139: PlayerCurrentMovementAni: Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+00008140: PlayerLeftItem: <none>
+00008141: PlayerLeftItemAddress: 00000000
+00008142: PlayerLeftUseType: -1
+00008143: PlayerLeftCollisionGroup: -1
+00008144: PlayerRightItem: It_2H_Sword_Flamberge
+00008145: PlayerRightItemAddress: E700FE10
+00008146: PlayerRightUseType: 3
+00008147: PlayerRightCollisionGroup: 7
+00008148: RequestedGroup: 7
+00008149: BeforeGroup: 5
+00008150: AfterGroup: 7
+00008151: Item_EquippedValue: 5
+00008152: Item_AttackValue: 7
+00008153: RetiredMarkerExecutionCount: 0
+00008154: ====================================
+00008155: 
+00008156: ===== C1-O2-P1 OFFENSE SCOPE =====
+00008157: ElapsedMs: 59488.634
+00008158: ActorAddress: EBB66E10
+00008159: SourceAddress: E700FE10
+00008160: CurrentScopeExists: 1
+00008161: ScopeAddress: 0019E86C
+00008162: ScopeSPUAddress: EBB67074
+00008163: PlayerSPUAddress: EBB67074
+00008164: SPUMatchesPlayer: 1
+00008165: ScopeRuntimeStackAddress: EBB67078
+00008166: PlayerStateStackAddress: EBB67078
+00008167: RuntimeStackMatchesPlayerStateStack: 1
+00008168: ScriptNameReferenceAddress: DC4901AC
+00008169: ScriptFunctionName: _AI_GetUpAttack
+00008170: ParentScopeExists: 0
+00008171: OffenseObservedSet: 1
+00008172: LifecycleBehaviorChanged: 0
+00008173: CollisionBehaviorChanged: 0
+00008174: ==================================
+00008175: 
+00008176: ===== OUTER_FRAME OFFENSE =====
+00008177: ElapsedMs: 59488.649
+00008178: ActorAddress: EBB66E10
+00008179: Actor: PC_Hero
+00008180: SourceAddress: E700FE10
+00008181: Source: It_2H_Sword_Flamberge
+00008182: RequestedGroup: 7
+00008183: BeforeGroup: 5
+00008184: AfterGroup: 7
+00008185: SPUAddress: EBB67074
+00008186: StateStackCount: 2
+00008187: HasTopFrame: 1
+00008188: TopIndex: 1
+00008189: TopEntryAddressDiagnosticOnly: DC4901A8
+00008190: TopScriptName: _AI_GetUpAttack
+00008191: TopIsScriptState: 0
+00008192: TopBreakBlock: 1
+00008193: TopArgumentsAddress: DE8E7310
+00008194: TopLocalCallback: OnAI_GetUpAttack
+00008195: TopExtraFloat: 1000.000000
+00008196: CurrentState: ZS_SitKnockDown_GetUpAttack
+00008197: CurrentAction: 30
+00008198: CurrentStatePosition: 0
+00008199: CurrentStateTime: 0.000000
+00008200: TopEntryAddressIsExecutionIdentity: 0
+00008201: ArgumentsDereferencedOrClassified: 0
+00008202: LifecycleBehaviorChanged: 0
+00008203: CollisionBehaviorChanged: 0
+00008204: ===============================
+00008205: 
+00008206: ===== C1 LIFECYCLE START =====
+00008207: ElapsedMs: 59488.701
+00008208: ActorAddress: EBB66E10
+00008209: Actor: PC_Hero
+00008210: Generation: 15
+00008211: Status: CANDIDATE
+00008212: ReplacedGeneration: 0
+00008213: ReplacedOutstanding: 0
+00008214: TrackedSourceCount: 1
+00008215: Source[0].Address: E700FE10
+00008216: Source[0].Name: It_2H_Sword_Flamberge
+00008217: Source[0].SideMask: 1
+00008218: Source[0].Side: RIGHT
+00008219: Source[0].ActualGroup: 7
+00008220: PhysicalCollisionChanged: 0
+00008221: ==============================
+00008222: 
+00008223: ===== C1-O2 OUTER BINDING =====
+00008224: ElapsedMs: 59488.716
+00008225: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00008226: ActorAddress: EBB66E10
+00008227: Actor: PC_Hero
+00008228: Generation: 15
+00008229: Status: CANDIDATE
+00008230: SPUAddress: EBB67074
+00008231: ArgumentsAddress: DE8E7310
+00008232: ScriptFunction: _AI_GetUpAttack
+00008233: Outstanding: 0
+00008234: PhysicalCollisionChanged: 0
+00008235: ================================
+00008236: 
+00008237: ===== OUTER_FRAME COMBAT_MOVE_INITIAL =====
+00008238: ElapsedMs: 59488.726
+00008239: ActorAddress: EBB66E10
+00008240: Actor: PC_Hero
+00008241: SPUAddress: EBB67074
+00008242: StateStackCount: 2
+00008243: HasTopFrame: 1
+00008244: TopIndex: 1
+00008245: TopEntryAddressDiagnosticOnly: DC4901A8
+00008246: TopScriptName: _AI_GetUpAttack
+00008247: TopIsScriptState: 0
+00008248: TopBreakBlock: 1
+00008249: TopArgumentsAddress: DE8E7310
+00008250: TopLocalCallback: OnAI_GetUpAttack
+00008251: TopExtraFloat: 1000.000000
+00008252: CurrentState: ZS_SitKnockDown_GetUpAttack
+00008253: CurrentAction: 30
+00008254: CurrentStatePosition: 0
+00008255: CurrentStateTime: 0.000000
+00008256: TopEntryAddressIsExecutionIdentity: 0
+00008257: ArgumentsDereferencedOrClassified: 0
+00008258: LifecycleBehaviorChanged: 0
+00008259: CollisionBehaviorChanged: 0
+00008260: ===============================
+00008261: 
+00008262: ===== PRIMARYFIRST StopMotion =====
+00008263: OwnerEntityAddress: EBB66E10
+00008264: OwnerEntity: PC_Hero
+00008265: MotionType: 0
+00008266: Stage: REQUEST_BEFORE_ORIGINAL
+00008267: ElapsedMs: 59492.198
+00008268: PrimarySnapshotAvailable: 1
+00008269: PrimaryMotionName: 
+00008270: PrimaryHasMotionInstance: 0
+00008271: PrimaryMotionRunning: 0
+00008272: PrimaryPlayTime: 0.000000
+00008273: PrimaryMaxTime: 0.000000
+00008274: PrimaryPlaySpeed: 0.000000
+00008275: Stage: RESULT_AFTER_ORIGINAL
+00008276: ElapsedMs: 59492.200
+00008277: PrimarySnapshotAvailable: 1
+00008278: PrimaryMotionName: 
+00008279: PrimaryHasMotionInstance: 0
+00008280: PrimaryMotionRunning: 0
+00008281: PrimaryPlayTime: 0.000000
+00008282: PrimaryMaxTime: 0.000000
+00008283: PrimaryPlaySpeed: 0.000000
+00008284: CleanupBehaviorChanged: 0
+00008285: =====================================
+00008286: 
+00008287: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00008288: ElapsedMs: 59492.234
+00008289: Actor: PC_Hero
+00008290: PrimaryWasEmptyBefore: 1
+00008291: IncomingMotionRequestAddress: EBB671A8
+00008292: SuccessorPrimaryMotionNameAfterOriginal: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008293: SuccessorPrimarySnapshotAvailable: 1
+00008294: SuccessorPrimaryHasMotionInstance: 1
+00008295: CurrentActionBeforeOriginal: 30
+00008296: CurrentAniPhaseBeforeOriginal: 1
+00008297: CurrentStateTimeBeforeOriginal: 0.000000
+00008298: CurrentStatePositionBeforeOriginal: 0
+00008299: CurrentMovementAniBeforeOriginal: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008300: LeftHandSourceResolved: 0
+00008301: LeftHandSource: <none>
+00008302: LeftHandSourceAddress: 00000000
+00008303: LeftHandSourceCollisionGroup: -1
+00008304: RightHandSourceResolved: 1
+00008305: RightHandSource: It_2H_Sword_Flamberge
+00008306: RightHandSourceAddress: E700FE10
+00008307: RightHandSourceCollisionGroup: 7
+00008308: CapturedStackFrameCount: 8
+00008309: StackFrame[0]: Address=7905F443 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000F443
+00008310: StackFrame[1]: Address=00E0B485 Module=Game.dll Base=00CA0000 RVA=0x0016B485
+00008311: StackFrame[2]: Address=00E09724 Module=Game.dll Base=00CA0000 RVA=0x00169724
+00008312: StackFrame[3]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00008313: StackFrame[4]: Address=1B1D1D60 Module=Script_Game.dll Base=1B190000 RVA=0x00041D60
+00008314: StackFrame[5]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00008315: StackFrame[6]: Address=1B1B3C7D Module=Script_Game.dll Base=1B190000 RVA=0x00023C7D
+00008316: StackFrame[7]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00008317: CleanupBehaviorChanged: 0
+00008318: =============================================
+00008319: 
+00008320: ===== PRIMARYFIRST PlayMotion =====
+00008321: OwnerEntityAddress: EBB66E10
+00008322: OwnerEntity: PC_Hero
+00008323: MotionType: 0
+00008324: Stage: REQUEST_BEFORE_ORIGINAL
+00008325: ElapsedMs: 59492.233
+00008326: PrimarySnapshotAvailable: 1
+00008327: PrimaryMotionName: 
+00008328: PrimaryHasMotionInstance: 0
+00008329: PrimaryMotionRunning: 0
+00008330: PrimaryPlayTime: 0.000000
+00008331: PrimaryMaxTime: 0.000000
+00008332: PrimaryPlaySpeed: 0.000000
+00008333: Stage: RESULT_AFTER_ORIGINAL
+00008334: ElapsedMs: 59492.257
+00008335: PrimarySnapshotAvailable: 1
+00008336: PrimaryMotionName: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008337: PrimaryHasMotionInstance: 1
+00008338: PrimaryMotionRunning: 1
+00008339: PrimaryPlayTime: 0.000000
+00008340: PrimaryMaxTime: 0.400000
+00008341: PrimaryPlaySpeed: 1.000000
+00008342: CleanupBehaviorChanged: 0
+00008343: =====================================
+00008344: 
+00008345: ===== C1 LIFECYCLE STATUS =====
+00008346: ElapsedMs: 59492.337
+00008347: Event: PERSISTED
+00008348: ActorAddress: EBB66E10
+00008349: Actor: PC_Hero
+00008350: Generation: 15
+00008351: Status: PERSISTED
+00008352: Outstanding: 0
+00008353: PhysicalCollisionChanged: 0
+00008354: ===============================
+00008355: 
+00008356: ===== C1-O2-P1 DISPATCH RETURN =====
+00008357: ElapsedMs: 59492.347
+00008358: ScopeAddress: 0019E86C
+00008359: ScopeSPUAddress: EBB67074
+00008360: ScopeRuntimeStackAddress: EBB67078
+00008361: ScriptNameReferenceAddress: DC4901AC
+00008362: ScriptFunctionNameDereferencedAtReturn: 0
+00008363: ParentScopeExists: 0
+00008364: NativeResult: 0
+00008365: NativeCompleted: 0
+00008366: NativeSuspendedOrUnfinished: 1
+00008367: TLSRestoredBeforeLog: 1
+00008368: ScopePersistedAfterReturn: 0
+00008369: LifecycleBehaviorChanged: 0
+00008370: CollisionBehaviorChanged: 0
+00008371: =====================================
+00008372: 
+00008373: ===== C1 OFFENSE REQUEST =====
+00008374: ElapsedMs: 59590.198
+00008375: ActorAddress: EBB66E10
+00008376: Actor: PC_Hero
+00008377: Generation: 15
+00008378: Status: PERSISTED
+00008379: SourceAddress: E700FE10
+00008380: Source: It_2H_Sword_Flamberge
+00008381: OriginalSideMask: 1
+00008382: OriginalSide: RIGHT
+00008383: OffensiveRequestCount: 1
+00008384: Outstanding: 1
+00008385: CleanupObserved: 0
+00008386: ActualGroup: 7
+00008387: PhysicalCollisionChanged: 0
+00008388: ==============================
+00008389: 
+00008390: ===== ENGINE SetCollisionGroup =====
+00008391: ElapsedMs: 59590.230
+00008392: Entity: It_2H_Sword_Flamberge
+00008393: ChangedEntityAddress: E700FE10
+00008394: PlayerSlotMatch: RIGHT
+00008395: PlayerAction: 30
+00008396: PlayerAniPhase: 1
+00008397: PlayerPrimaryPose: 1
+00008398: PlayerStateTime: 0.100972
+00008399: PlayerStatePosition: 0
+00008400: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008401: PlayerLeftItem: <none>
+00008402: PlayerLeftItemAddress: 00000000
+00008403: PlayerLeftUseType: -1
+00008404: PlayerLeftCollisionGroup: -1
+00008405: PlayerRightItem: It_2H_Sword_Flamberge
+00008406: PlayerRightItemAddress: E700FE10
+00008407: PlayerRightUseType: 3
+00008408: PlayerRightCollisionGroup: 7
+00008409: RequestedGroup: 7
+00008410: BeforeGroup: 7
+00008411: AfterGroup: 7
+00008412: Item_EquippedValue: 5
+00008413: Item_AttackValue: 7
+00008414: RetiredMarkerExecutionCount: 0
+00008415: ====================================
+00008416: 
+00008417: ===== C1-O2-P1 OFFENSE SCOPE =====
+00008418: ElapsedMs: 59590.260
+00008419: ActorAddress: EBB66E10
+00008420: SourceAddress: E700FE10
+00008421: CurrentScopeExists: 0
+00008422: ScopeAddress: 00000000
+00008423: ScopeSPUAddress: 00000000
+00008424: PlayerSPUAddress: EBB67074
+00008425: SPUMatchesPlayer: 0
+00008426: ScopeRuntimeStackAddress: 00000000
+00008427: PlayerStateStackAddress: EBB67078
+00008428: RuntimeStackMatchesPlayerStateStack: 0
+00008429: ScriptNameReferenceAddress: 00000000
+00008430: ScriptFunctionName: <no-current-scope>
+00008431: ParentScopeExists: 0
+00008432: OffenseObservedSet: 0
+00008433: LifecycleBehaviorChanged: 0
+00008434: CollisionBehaviorChanged: 0
+00008435: ==================================
+00008436: 
+00008437: ===== OUTER_FRAME OFFENSE =====
+00008438: ElapsedMs: 59590.278
+00008439: ActorAddress: EBB66E10
+00008440: Actor: PC_Hero
+00008441: SourceAddress: E700FE10
+00008442: Source: It_2H_Sword_Flamberge
+00008443: RequestedGroup: 7
+00008444: BeforeGroup: 7
+00008445: AfterGroup: 7
+00008446: SPUAddress: EBB67074
+00008447: StateStackCount: 2
+00008448: HasTopFrame: 1
+00008449: TopIndex: 1
+00008450: TopEntryAddressDiagnosticOnly: DC4901A8
+00008451: TopScriptName: _AI_GetUpAttack
+00008452: TopIsScriptState: 0
+00008453: TopBreakBlock: 1
+00008454: TopArgumentsAddress: DE8E7310
+00008455: TopLocalCallback: OnAI_GetUpAttack
+00008456: TopExtraFloat: 1000.000000
+00008457: CurrentState: ZS_SitKnockDown_GetUpAttack
+00008458: CurrentAction: 30
+00008459: CurrentStatePosition: 0
+00008460: CurrentStateTime: 0.100972
+00008461: TopEntryAddressIsExecutionIdentity: 0
+00008462: ArgumentsDereferencedOrClassified: 0
+00008463: LifecycleBehaviorChanged: 0
+00008464: CollisionBehaviorChanged: 0
+00008465: ===============================
+00008466: 
+00008467: ===== OUTER_FRAME COMBAT_MOVE_INITIAL =====
+00008468: ElapsedMs: 59770.748
+00008469: ActorAddress: E6E86610
+00008470: Actor: Golem
+00008471: SPUAddress: E6EA7074
+00008472: StateStackCount: 2
+00008473: HasTopFrame: 1
+00008474: TopIndex: 1
+00008475: TopEntryAddressDiagnosticOnly: DC4915A8
+00008476: TopScriptName: _AI_Stumble
+00008477: TopIsScriptState: 0
+00008478: TopBreakBlock: 1
+00008479: TopArgumentsAddress: DE8E6590
+00008480: TopLocalCallback: 
+00008481: TopExtraFloat: 1000.000000
+00008482: CurrentState: ZS_Stumble
+00008483: CurrentAction: 26
+00008484: CurrentStatePosition: 0
+00008485: CurrentStateTime: 0.000000
+00008486: TopEntryAddressIsExecutionIdentity: 0
+00008487: ArgumentsDereferencedOrClassified: 0
+00008488: LifecycleBehaviorChanged: 0
+00008489: CollisionBehaviorChanged: 0
+00008490: ===============================
+00008491: 
+00008492: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00008493: ActorAddress: EBB66E10
+00008494: Actor: PC_Hero
+00008495: CurrentAction: 30
+00008496: CurrentAniPhase: 1
+00008497: CurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008498: Stage: BEGIN
+00008499: ElapsedMs: 59894.132
+00008500: PrimarySnapshotAvailable: 1
+00008501: PrimaryMotionName: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008502: PrimaryHasMotionInstance: 1
+00008503: PrimaryMotionRunning: 1
+00008504: PrimaryPlayTime: 0.399990
+00008505: PrimaryMaxTime: 0.400000
+00008506: PrimaryPlaySpeed: 0.000000
+00008507: LeftHandSourceResolved: 0
+00008508: RightHandSourceResolved: 1
+00008509: RightHandSource: It_2H_Sword_Flamberge
+00008510: RightHandSourceAddress: E700FE10
+00008511: RightHandSourceCollisionGroup: 7
+00008512: CleanupBehaviorChanged: 0
+00008513: =========================================
+00008514: 
+00008515: ===== HIT STARTRECOVER BEGIN STACK =====
+00008516: ElapsedMs: 59894.182
+00008517: Actor: PC_Hero
+00008518: OutgoingPrimaryMotionName: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008519: CurrentAction: 30
+00008520: CurrentAniPhase: 1
+00008521: CurrentStateTime: 0.403959
+00008522: CurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008523: LeftHandSourceResolved: 0
+00008524: LeftHandSource: <none>
+00008525: LeftHandSourceAddress: 00000000
+00008526: LeftHandSourceCollisionGroup: -1
+00008527: RightHandSourceResolved: 1
+00008528: RightHandSource: It_2H_Sword_Flamberge
+00008529: RightHandSourceAddress: E700FE10
+00008530: RightHandSourceCollisionGroup: 7
+00008531: CapturedStackFrameCount: 4
+00008532: StackFrame[0]: Address=7905FAAD Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000FAAD
+00008533: StackFrame[1]: Address=00E09772 Module=Game.dll Base=00CA0000 RVA=0x00169772
+00008534: StackFrame[2]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00008535: StackFrame[3]: Address=00E0F240 Module=Game.dll Base=00CA0000 RVA=0x0016F240
+00008536: CleanupBehaviorChanged: 0
+00008537: ========================================
+00008538: 
+00008539: ===== PRIMARYFIRST StopMotion =====
+00008540: OwnerEntityAddress: EBB66E10
+00008541: OwnerEntity: PC_Hero
+00008542: MotionType: 0
+00008543: Stage: REQUEST_BEFORE_ORIGINAL
+00008544: ElapsedMs: 59896.001
+00008545: PrimarySnapshotAvailable: 1
+00008546: PrimaryMotionName: 
+00008547: PrimaryHasMotionInstance: 0
+00008548: PrimaryMotionRunning: 0
+00008549: PrimaryPlayTime: 0.000000
+00008550: PrimaryMaxTime: 0.000000
+00008551: PrimaryPlaySpeed: 0.000000
+00008552: Stage: RESULT_AFTER_ORIGINAL
+00008553: ElapsedMs: 59896.004
+00008554: PrimarySnapshotAvailable: 1
+00008555: PrimaryMotionName: 
+00008556: PrimaryHasMotionInstance: 0
+00008557: PrimaryMotionRunning: 0
+00008558: PrimaryPlayTime: 0.000000
+00008559: PrimaryMaxTime: 0.000000
+00008560: PrimaryPlaySpeed: 0.000000
+00008561: CleanupBehaviorChanged: 0
+00008562: =====================================
+00008563: 
+00008564: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00008565: ElapsedMs: 59896.035
+00008566: Actor: PC_Hero
+00008567: PrimaryWasEmptyBefore: 1
+00008568: IncomingMotionRequestAddress: EBB671A8
+00008569: SuccessorPrimaryMotionNameAfterOriginal: Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00008570: SuccessorPrimarySnapshotAvailable: 1
+00008571: SuccessorPrimaryHasMotionInstance: 1
+00008572: CurrentActionBeforeOriginal: 30
+00008573: CurrentAniPhaseBeforeOriginal: 3
+00008574: CurrentStateTimeBeforeOriginal: 0.403959
+00008575: CurrentStatePositionBeforeOriginal: 1
+00008576: CurrentMovementAniBeforeOriginal: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008577: LeftHandSourceResolved: 0
+00008578: LeftHandSource: <none>
+00008579: LeftHandSourceAddress: 00000000
+00008580: LeftHandSourceCollisionGroup: -1
+00008581: RightHandSourceResolved: 1
+00008582: RightHandSource: It_2H_Sword_Flamberge
+00008583: RightHandSourceAddress: E700FE10
+00008584: RightHandSourceCollisionGroup: 7
+00008585: CapturedStackFrameCount: 2
+00008586: StackFrame[0]: Address=7905F443 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000F443
+00008587: StackFrame[1]: Address=00E0E709 Module=Game.dll Base=00CA0000 RVA=0x0016E709
+00008588: CleanupBehaviorChanged: 0
+00008589: =============================================
+00008590: 
+00008591: ===== PRIMARYFIRST PlayMotion =====
+00008592: OwnerEntityAddress: EBB66E10
+00008593: OwnerEntity: PC_Hero
+00008594: MotionType: 0
+00008595: Stage: REQUEST_BEFORE_ORIGINAL
+00008596: ElapsedMs: 59896.033
+00008597: PrimarySnapshotAvailable: 1
+00008598: PrimaryMotionName: 
+00008599: PrimaryHasMotionInstance: 0
+00008600: PrimaryMotionRunning: 0
+00008601: PrimaryPlayTime: 0.000000
+00008602: PrimaryMaxTime: 0.000000
+00008603: PrimaryPlaySpeed: 0.000000
+00008604: Stage: RESULT_AFTER_ORIGINAL
+00008605: ElapsedMs: 59896.055
+00008606: PrimarySnapshotAvailable: 1
+00008607: PrimaryMotionName: Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00008608: PrimaryHasMotionInstance: 1
+00008609: PrimaryMotionRunning: 1
+00008610: PrimaryPlayTime: 0.000000
+00008611: PrimaryMaxTime: 0.240000
+00008612: PrimaryPlaySpeed: 1.000000
+00008613: CleanupBehaviorChanged: 0
+00008614: =====================================
+00008615: 
+00008616: ===== COMBATMOVE STARTRECOVER END =====
+00008617: ActorAddress: EBB66E10
+00008618: Actor: PC_Hero
+00008619: CurrentAction: 30
+00008620: CurrentAniPhase: 3
+00008621: CurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008622: Stage: END
+00008623: ElapsedMs: 59896.107
+00008624: PrimarySnapshotAvailable: 1
+00008625: PrimaryMotionName: Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00008626: PrimaryHasMotionInstance: 1
+00008627: PrimaryMotionRunning: 1
+00008628: PrimaryPlayTime: 0.000000
+00008629: PrimaryMaxTime: 0.240000
+00008630: PrimaryPlaySpeed: 1.000000
+00008631: LeftHandSourceResolved: 0
+00008632: RightHandSourceResolved: 1
+00008633: RightHandSource: It_2H_Sword_Flamberge
+00008634: RightHandSourceAddress: E700FE10
+00008635: RightHandSourceCollisionGroup: 7
+00008636: CleanupBehaviorChanged: 0
+00008637: =========================================
+00008638: 
+00008639: ===== C1 CLEANUP FULFILLED =====
+00008640: ElapsedMs: 59896.164
+00008641: ActorAddress: EBB66E10
+00008642: Actor: PC_Hero
+00008643: Generation: 15
+00008644: Status: PERSISTED
+00008645: SourceAddress: E700FE10
+00008646: Source: It_2H_Sword_Flamberge
+00008647: OriginalSideMask: 1
+00008648: OriginalSide: RIGHT
+00008649: OffensiveRequestCount: 1
+00008650: Outstanding: 0
+00008651: CleanupObserved: 1
+00008652: ActualGroup: 5
+00008653: PhysicalCollisionChanged: 0
+00008654: ==============================
+00008655: 
+00008656: ===== ENGINE SetCollisionGroup =====
+00008657: ElapsedMs: 59896.180
+00008658: Entity: It_2H_Sword_Flamberge
+00008659: ChangedEntityAddress: E700FE10
+00008660: PlayerSlotMatch: RIGHT
+00008661: PlayerAction: 30
+00008662: PlayerAniPhase: 3
+00008663: PlayerPrimaryPose: 2
+00008664: PlayerStateTime: 0.403959
+00008665: PlayerStatePosition: 1
+00008666: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008667: PlayerLeftItem: <none>
+00008668: PlayerLeftItemAddress: 00000000
+00008669: PlayerLeftUseType: -1
+00008670: PlayerLeftCollisionGroup: -1
+00008671: PlayerRightItem: It_2H_Sword_Flamberge
+00008672: PlayerRightItemAddress: E700FE10
+00008673: PlayerRightUseType: 3
+00008674: PlayerRightCollisionGroup: 5
+00008675: RequestedGroup: 5
+00008676: BeforeGroup: 7
+00008677: AfterGroup: 5
+00008678: Item_EquippedValue: 5
+00008679: Item_AttackValue: 7
+00008680: RetiredMarkerExecutionCount: 0
+00008681: ====================================
+00008682: 
+00008683: ===== NATIVE CLEANUP CALL SITE =====
+00008684: ElapsedMs: 59896.200
+00008685: Source: It_2H_Sword_Flamberge
+00008686: SourceAddress: E700FE10
+00008687: PlayerSlotMatch: RIGHT
+00008688: CallerAddress: 1B1D1E10
+00008689: CallerModuleResolved: 1
+00008690: CallerModule: Script_Game.dll
+00008691: CallerModuleBase: 1B190000
+00008692: CallerRVA: 0x00041E10
+00008693: CapturedStackFrameCount: 4
+00008694: StackFrame[0]: Address=79060DB8 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x00010DB8
+00008695: StackFrame[1]: Address=1B1D1E10 Module=Script_Game.dll Base=1B190000 RVA=0x00041E10
+00008696: StackFrame[2]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00008697: StackFrame[3]: Address=00E0F2C7 Module=Game.dll Base=00CA0000 RVA=0x0016F2C7
+00008698: RequestedGroup: 5
+00008699: BeforeGroup: 7
+00008700: AfterGroup: 5
+00008701: CleanupBehaviorChanged: 0
+00008702: ====================================
+00008703: 
+00008704: ===== OUTER_FRAME CLEANUP =====
+00008705: ElapsedMs: 59896.225
+00008706: ActorAddress: EBB66E10
+00008707: Actor: PC_Hero
+00008708: SourceAddress: E700FE10
+00008709: Source: It_2H_Sword_Flamberge
+00008710: RequestedGroup: 5
+00008711: BeforeGroup: 7
+00008712: AfterGroup: 5
+00008713: SPUAddress: EBB67074
+00008714: StateStackCount: 2
+00008715: HasTopFrame: 1
+00008716: TopIndex: 1
+00008717: TopEntryAddressDiagnosticOnly: DC4901A8
+00008718: TopScriptName: _AI_GetUpAttack
+00008719: TopIsScriptState: 0
+00008720: TopBreakBlock: 2
+00008721: TopArgumentsAddress: DE8E7310
+00008722: TopLocalCallback: OnAI_GetUpAttack
+00008723: TopExtraFloat: 1000.000000
+00008724: CurrentState: ZS_SitKnockDown_GetUpAttack
+00008725: CurrentAction: 30
+00008726: CurrentStatePosition: 1
+00008727: CurrentStateTime: 0.403959
+00008728: TopEntryAddressIsExecutionIdentity: 0
+00008729: ArgumentsDereferencedOrClassified: 0
+00008730: LifecycleBehaviorChanged: 0
+00008731: CollisionBehaviorChanged: 0
+00008732: ===============================
+00008733: 
+00008734: ===== AISETSTATE CALLSITE =====
+00008735: ElapsedMs: 59896.267
+00008736: ActorAddress: EBB66E10
+00008737: Actor: PC_Hero
+00008738: RequestedState: PS_Melee_Loop
+00008739: CallerAddress: 1AA72F61
+00008740: CallerModuleResolved: 1
+00008741: CallerModule: Script.dll
+00008742: CallerModuleBase: 1AA60000
+00008743: CallerRVA: 0x00012F61
+00008744: CurrentStateBeforeOriginal: PS_Melee
+00008745: CurrentAction: 30
+00008746: CurrentAniPhase: 3
+00008747: CurrentStateTime: 0.000000
+00008748: CurrentStatePosition: 0
+00008749: CurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00008750: Stage: BEFORE_ORIGINAL
+00008751: ElapsedMs: 59896.269
+00008752: PrimarySnapshotAvailable: 1
+00008753: PrimaryMotionName: Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00008754: PrimaryHasMotionInstance: 1
+00008755: PrimaryMotionRunning: 1
+00008756: PrimaryPlayTime: 0.000000
+00008757: PrimaryMaxTime: 0.240000
+00008758: PrimaryPlaySpeed: 1.000000
+00008759: LeftHandSourceResolved: 0
+00008760: LeftHandSource: <none>
+00008761: LeftHandSourceAddress: 00000000
+00008762: LeftHandSourceCollisionGroup: -1
+00008763: RightHandSourceResolved: 1
+00008764: RightHandSource: It_2H_Sword_Flamberge
+00008765: RightHandSourceAddress: E700FE10
+00008766: RightHandSourceCollisionGroup: 5
+00008767: CapturedStackFrameCount: 3
+00008768: StackFrame[0]: Address=79060888 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x00010888
+00008769: StackFrame[1]: Address=1AA72F61 Module=Script.dll Base=1AA60000 RVA=0x00012F61
+00008770: StackFrame[2]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00008771: CleanupBehaviorChanged: 0
+00008772: ==============================
+00008773: 
+00008774: ===== OUTER_FRAME AI_SET_STATE_BEFORE =====
+00008775: ElapsedMs: 59896.306
+00008776: ActorAddress: EBB66E10
+00008777: Actor: PC_Hero
+00008778: SPUAddress: EBB67074
+00008779: StateStackCount: 1
+00008780: HasTopFrame: 1
+00008781: TopIndex: 0
+00008782: TopEntryAddressDiagnosticOnly: DC490190
+00008783: TopScriptName: PS_Melee
+00008784: TopIsScriptState: 1
+00008785: TopBreakBlock: 3
+00008786: TopArgumentsAddress: 00000000
+00008787: TopLocalCallback: 
+00008788: TopExtraFloat: 1000.000000
+00008789: CurrentState: PS_Melee
+00008790: CurrentAction: 30
+00008791: CurrentStatePosition: 0
+00008792: CurrentStateTime: 0.000000
+00008793: TopEntryAddressIsExecutionIdentity: 0
+00008794: ArgumentsDereferencedOrClassified: 0
+00008795: LifecycleBehaviorChanged: 0
+00008796: CollisionBehaviorChanged: 0
+00008797: ===============================
+00008798: 
+00008799: ===== C1 FINALIZATION =====
+00008800: ElapsedMs: 59896.327
+00008801: Reason: AISETSTATE_AFTER_ORIGINAL
+00008802: ActorAddress: EBB66E10
+00008803: Actor: PC_Hero
+00008804: Generation: 15
+00008805: Status: PERSISTED
+00008806: TrackedSourceCount: 1
+00008807: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00008808: Source[0].Address: E700FE10
+00008809: Source[0].Name: It_2H_Sword_Flamberge
+00008810: Source[0].LivenessEstablished: 1
+00008811: Source[0].OriginalSideMask: 1
+00008812: Source[0].OriginalSide: RIGHT
+00008813: Source[0].OffensiveRequestCount: 1
+00008814: Source[0].OutstandingBeforeFinalization: 0
+00008815: Source[0].ActualGroup: 5
+00008816: Source[0].CleanupObserved: 1
+00008817: Source[0].StillEquipped: 1
+00008818: Source[0].CurrentSideMask: 1
+00008819: PhysicalCollisionChanged: 0
+00008820: ===========================
+00008821: 
+00008822: ===== OUTER_FRAME AI_SET_STATE_AFTER =====
+00008823: ElapsedMs: 59896.347
+00008824: ActorAddress: EBB66E10
+00008825: Actor: PC_Hero
+00008826: SPUAddress: EBB67074
+00008827: StateStackCount: 1
+00008828: HasTopFrame: 1
+00008829: TopIndex: 0
+00008830: TopEntryAddressDiagnosticOnly: DC490190
+00008831: TopScriptName: PS_Melee_Loop
+00008832: TopIsScriptState: 1
+00008833: TopBreakBlock: 0
+00008834: TopArgumentsAddress: 00000000
+00008835: TopLocalCallback: 
+00008836: TopExtraFloat: 1000.000000
+00008837: CurrentState: PS_Melee_Loop
+00008838: CurrentAction: 30
+00008839: CurrentStatePosition: 0
+00008840: CurrentStateTime: 0.000000
+00008841: TopEntryAddressIsExecutionIdentity: 0
+00008842: ArgumentsDereferencedOrClassified: 0
+00008843: LifecycleBehaviorChanged: 0
+00008844: CollisionBehaviorChanged: 0
+00008845: ===============================
+00008846: 
+00008847: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00008848: ElapsedMs: 60156.414
+00008849: Actor: PC_Hero
+00008850: PrimaryWasEmptyBefore: 1
+00008851: IncomingMotionRequestAddress: 0019EB18
+00008852: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+00008853: SuccessorPrimarySnapshotAvailable: 1
+00008854: SuccessorPrimaryHasMotionInstance: 1
+00008855: CurrentActionBeforeOriginal: 0
+00008856: CurrentAniPhaseBeforeOriginal: 5
+00008857: CurrentStateTimeBeforeOriginal: 0.246994
+00008858: CurrentStatePositionBeforeOriginal: 0
+00008859: CurrentMovementAniBeforeOriginal: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+00008860: LeftHandSourceResolved: 0
+00008861: LeftHandSource: <none>
+00008862: LeftHandSourceAddress: 00000000
+00008863: LeftHandSourceCollisionGroup: -1
+00008864: RightHandSourceResolved: 1
+00008865: RightHandSource: It_2H_Sword_Flamberge
+00008866: RightHandSourceAddress: E700FE10
+00008867: RightHandSourceCollisionGroup: 5
+00008868: CapturedStackFrameCount: 2
+00008869: StackFrame[0]: Address=7905F443 Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000F443
+00008870: StackFrame[1]: Address=00D79CB3 Module=Game.dll Base=00CA0000 RVA=0x000D9CB3
+00008871: CleanupBehaviorChanged: 0
+00008872: =============================================
+00008873: 
+===== SOURCE RANGE 9095-9348 =====
+00009095: StackFrame[3]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00009096: StackFrame[4]: Address=1B1C8463 Module=Script_Game.dll Base=1B190000 RVA=0x00038463
+00009097: StackFrame[5]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00009098: StackFrame[6]: Address=1B20F0DB Module=Script_Game.dll Base=1B190000 RVA=0x0007F0DB
+00009099: StackFrame[7]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00009100: CleanupBehaviorChanged: 0
+00009101: =============================================
+00009102: 
+00009103: ===== PRIMARYFIRST PlayMotion =====
+00009104: OwnerEntityAddress: EBB66E10
+00009105: OwnerEntity: PC_Hero
+00009106: MotionType: 0
+00009107: Stage: REQUEST_BEFORE_ORIGINAL
+00009108: ElapsedMs: 60258.549
+00009109: PrimarySnapshotAvailable: 1
+00009110: PrimaryMotionName: 
+00009111: PrimaryHasMotionInstance: 0
+00009112: PrimaryMotionRunning: 0
+00009113: PrimaryPlayTime: 0.000000
+00009114: PrimaryMaxTime: 0.000000
+00009115: PrimaryPlaySpeed: 0.000000
+00009116: Stage: RESULT_AFTER_ORIGINAL
+00009117: ElapsedMs: 60258.571
+00009118: PrimarySnapshotAvailable: 1
+00009119: PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00009120: PrimaryHasMotionInstance: 1
+00009121: PrimaryMotionRunning: 1
+00009122: PrimaryPlayTime: 0.000000
+00009123: PrimaryMaxTime: 0.400000
+00009124: PrimaryPlaySpeed: 0.700000
+00009125: CleanupBehaviorChanged: 0
+00009126: =====================================
+00009127: 
+00009128: ===== C1 LIFECYCLE STATUS =====
+00009129: ElapsedMs: 60258.649
+00009130: Event: PERSISTED
+00009131: ActorAddress: EBB66E10
+00009132: Actor: PC_Hero
+00009133: Generation: 17
+00009134: Status: PERSISTED
+00009135: Outstanding: 0
+00009136: PhysicalCollisionChanged: 0
+00009137: ===============================
+00009138: 
+00009139: ===== MARKER OWNERSHIP DECISION =====
+00009140: ElapsedMs: 60258.664
+00009141: Actor: PC_Hero
+00009142: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00009143: MatchingMotionFound: 1
+00009144: FrameEffectCount: 1
+00009145: ContainsReservedSourceMarker: 0
+00009146: RequiredSourceMask: 0
+00009147: AuthoredRIGHTMarkerCount: 0
+00009148: FirstRIGHTMarkerFrame: -1
+00009149: AuthoredLEFTMarkerCount: 0
+00009150: FirstLEFTMarkerFrame: -1
+00009151: AuthoredBOTHMarkerCount: 0
+00009152: FirstBOTHMarkerFrame: -1
+00009153: AuthoredOFFMarkerCount: 0
+00009154: FirstOFFMarkerFrame: -1
+00009155: RightHandSourceResolved: 1
+00009156: RightHandSource: It_2H_Sword_Flamberge
+00009157: RightHandSourceAddress: E700FE10
+00009158: RightHandSourceUseType: 3
+00009159: RightHandSourceCollisionGroup: 5
+00009160: LeftHandSourceResolved: 0
+00009161: Decision: LEGACY/NATIVE - call original timer callback
+00009162: =====================================
+00009163: 
+00009164: ===== C1 OFFENSE REQUEST =====
+00009165: ElapsedMs: 60509.825
+00009166: ActorAddress: EBB66E10
+00009167: Actor: PC_Hero
+00009168: Generation: 17
+00009169: Status: PERSISTED
+00009170: SourceAddress: E700FE10
+00009171: Source: It_2H_Sword_Flamberge
+00009172: OriginalSideMask: 1
+00009173: OriginalSide: RIGHT
+00009174: OffensiveRequestCount: 1
+00009175: Outstanding: 1
+00009176: CleanupObserved: 0
+00009177: ActualGroup: 7
+00009178: PhysicalCollisionChanged: 0
+00009179: ==============================
+00009180: 
+00009181: ===== ENGINE SetCollisionGroup =====
+00009182: ElapsedMs: 60509.861
+00009183: Entity: It_2H_Sword_Flamberge
+00009184: ChangedEntityAddress: E700FE10
+00009185: PlayerSlotMatch: RIGHT
+00009186: PlayerAction: 1
+00009187: PlayerAniPhase: 1
+00009188: PlayerPrimaryPose: 2
+00009189: PlayerStateTime: 0.250981
+00009190: PlayerStatePosition: 0
+00009191: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00009192: PlayerLeftItem: <none>
+00009193: PlayerLeftItemAddress: 00000000
+00009194: PlayerLeftUseType: -1
+00009195: PlayerLeftCollisionGroup: -1
+00009196: PlayerRightItem: It_2H_Sword_Flamberge
+00009197: PlayerRightItemAddress: E700FE10
+00009198: PlayerRightUseType: 3
+00009199: PlayerRightCollisionGroup: 7
+00009200: RequestedGroup: 7
+00009201: BeforeGroup: 5
+00009202: AfterGroup: 7
+00009203: Item_EquippedValue: 5
+00009204: Item_AttackValue: 7
+00009205: RetiredMarkerExecutionCount: 0
+00009206: ====================================
+00009207: 
+00009208: ===== C1-O2-P1 OFFENSE SCOPE =====
+00009209: ElapsedMs: 60509.885
+00009210: ActorAddress: EBB66E10
+00009211: SourceAddress: E700FE10
+00009212: CurrentScopeExists: 0
+00009213: ScopeAddress: 00000000
+00009214: ScopeSPUAddress: 00000000
+00009215: PlayerSPUAddress: EBB67074
+00009216: SPUMatchesPlayer: 0
+00009217: ScopeRuntimeStackAddress: 00000000
+00009218: PlayerStateStackAddress: EBB67078
+00009219: RuntimeStackMatchesPlayerStateStack: 0
+00009220: ScriptNameReferenceAddress: 00000000
+00009221: ScriptFunctionName: <no-current-scope>
+00009222: ParentScopeExists: 0
+00009223: OffenseObservedSet: 0
+00009224: LifecycleBehaviorChanged: 0
+00009225: CollisionBehaviorChanged: 0
+00009226: ==================================
+00009227: 
+00009228: ===== OUTER_FRAME OFFENSE =====
+00009229: ElapsedMs: 60509.906
+00009230: ActorAddress: EBB66E10
+00009231: Actor: PC_Hero
+00009232: SourceAddress: E700FE10
+00009233: Source: It_2H_Sword_Flamberge
+00009234: RequestedGroup: 7
+00009235: BeforeGroup: 5
+00009236: AfterGroup: 7
+00009237: SPUAddress: EBB67074
+00009238: StateStackCount: 2
+00009239: HasTopFrame: 1
+00009240: TopIndex: 1
+00009241: TopEntryAddressDiagnosticOnly: DC4901A8
+00009242: TopScriptName: _AI_Attack
+00009243: TopIsScriptState: 0
+00009244: TopBreakBlock: 1
+00009245: TopArgumentsAddress: DE903E10
+00009246: TopLocalCallback: OnAI_Attack
+00009247: TopExtraFloat: 1000.000000
+00009248: CurrentState: PS_Melee_Attack
+00009249: CurrentAction: 1
+00009250: CurrentStatePosition: 0
+00009251: CurrentStateTime: 0.250981
+00009252: TopEntryAddressIsExecutionIdentity: 0
+00009253: ArgumentsDereferencedOrClassified: 0
+00009254: LifecycleBehaviorChanged: 0
+00009255: CollisionBehaviorChanged: 0
+00009256: ===============================
+00009257: 
+00009258: ===== OUTER_FRAME COMBAT_MOVE_INITIAL =====
+00009259: ElapsedMs: 60648.293
+00009260: ActorAddress: E6E86610
+00009261: Actor: Golem
+00009262: SPUAddress: E6EA7074
+00009263: StateStackCount: 2
+00009264: HasTopFrame: 1
+00009265: TopIndex: 1
+00009266: TopEntryAddressDiagnosticOnly: DC4915A8
+00009267: TopScriptName: _AI_Stumble
+00009268: TopIsScriptState: 0
+00009269: TopBreakBlock: 1
+00009270: TopArgumentsAddress: DE904D10
+00009271: TopLocalCallback: 
+00009272: TopExtraFloat: 1000.000000
+00009273: CurrentState: ZS_Stumble
+00009274: CurrentAction: 26
+00009275: CurrentStatePosition: 0
+00009276: CurrentStateTime: 0.000000
+00009277: TopEntryAddressIsExecutionIdentity: 0
+00009278: ArgumentsDereferencedOrClassified: 0
+00009279: LifecycleBehaviorChanged: 0
+00009280: CollisionBehaviorChanged: 0
+00009281: ===============================
+00009282: 
+00009283: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00009284: ActorAddress: EBB66E10
+00009285: Actor: PC_Hero
+00009286: CurrentAction: 1
+00009287: CurrentAniPhase: 1
+00009288: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00009289: Stage: BEGIN
+00009290: ElapsedMs: 60835.247
+00009291: PrimarySnapshotAvailable: 1
+00009292: PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00009293: PrimaryHasMotionInstance: 1
+00009294: PrimaryMotionRunning: 1
+00009295: PrimaryPlayTime: 0.399990
+00009296: PrimaryMaxTime: 0.400000
+00009297: PrimaryPlaySpeed: 0.000000
+00009298: LeftHandSourceResolved: 0
+00009299: RightHandSourceResolved: 1
+00009300: RightHandSource: It_2H_Sword_Flamberge
+00009301: RightHandSourceAddress: E700FE10
+00009302: RightHandSourceCollisionGroup: 7
+00009303: CleanupBehaviorChanged: 0
+00009304: =========================================
+00009305: 
+00009306: ===== HIT STARTRECOVER BEGIN STACK =====
+00009307: ElapsedMs: 60835.296
+00009308: Actor: PC_Hero
+00009309: OutgoingPrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00009310: CurrentAction: 1
+00009311: CurrentAniPhase: 1
+00009312: CurrentStateTime: 0.575942
+00009313: CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00009314: LeftHandSourceResolved: 0
+00009315: LeftHandSource: <none>
+00009316: LeftHandSourceAddress: 00000000
+00009317: LeftHandSourceCollisionGroup: -1
+00009318: RightHandSourceResolved: 1
+00009319: RightHandSource: It_2H_Sword_Flamberge
+00009320: RightHandSourceAddress: E700FE10
+00009321: RightHandSourceCollisionGroup: 7
+00009322: CapturedStackFrameCount: 4
+00009323: StackFrame[0]: Address=7905FAAD Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0000FAAD
+00009324: StackFrame[1]: Address=00E09772 Module=Game.dll Base=00CA0000 RVA=0x00169772
+00009325: StackFrame[2]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00009326: StackFrame[3]: Address=00E0F240 Module=Game.dll Base=00CA0000 RVA=0x0016F240
+00009327: CleanupBehaviorChanged: 0
+00009328: ========================================
+00009329: 
+00009330: ===== PRIMARYFIRST StopMotion =====
+00009331: OwnerEntityAddress: EBB66E10
+00009332: OwnerEntity: PC_Hero
+00009333: MotionType: 0
+00009334: Stage: REQUEST_BEFORE_ORIGINAL
+00009335: ElapsedMs: 60835.342
+00009336: PrimarySnapshotAvailable: 1
+00009337: PrimaryMotionName: 
+00009338: PrimaryHasMotionInstance: 0
+00009339: PrimaryMotionRunning: 0
+00009340: PrimaryPlayTime: 0.000000
+00009341: PrimaryMaxTime: 0.000000
+00009342: PrimaryPlaySpeed: 0.000000
+00009343: Stage: RESULT_AFTER_ORIGINAL
+00009344: ElapsedMs: 60835.343
+00009345: PrimarySnapshotAvailable: 1
+00009346: PrimaryMotionName: 
+00009347: PrimaryHasMotionInstance: 0
+00009348: PrimaryMotionRunning: 0
+===== SOURCE RANGE 10620-10873 =====
+00010620: StackFrame[3]: Address=7906001F Module=Script_FrameCollisionTest.dll Base=79050000 RVA=0x0001001F
+00010621: StackFrame[4]: Address=1B1C8463 Module=Script_Game.dll Base=1B190000 RVA=0x00038463
+00010622: StackFrame[5]: Address=00E005EB Module=Game.dll Base=00CA0000 RVA=0x001605EB
+00010623: StackFrame[6]: Address=1B20F0DB Module=Script_Game.dll Base=1B190000 RVA=0x0007F0DB
+00010624: StackFrame[7]: Address=00E004D3 Module=Game.dll Base=00CA0000 RVA=0x001604D3
+00010625: CleanupBehaviorChanged: 0
+00010626: =============================================
+00010627: 
+00010628: ===== PRIMARYFIRST PlayMotion =====
+00010629: OwnerEntityAddress: EBB66E10
+00010630: OwnerEntity: PC_Hero
+00010631: MotionType: 0
+00010632: Stage: REQUEST_BEFORE_ORIGINAL
+00010633: ElapsedMs: 62500.313
+00010634: PrimarySnapshotAvailable: 1
+00010635: PrimaryMotionName: 
+00010636: PrimaryHasMotionInstance: 0
+00010637: PrimaryMotionRunning: 0
+00010638: PrimaryPlayTime: 0.000000
+00010639: PrimaryMaxTime: 0.000000
+00010640: PrimaryPlaySpeed: 0.000000
+00010641: Stage: RESULT_AFTER_ORIGINAL
+00010642: ElapsedMs: 62500.335
+00010643: PrimarySnapshotAvailable: 1
+00010644: PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00010645: PrimaryHasMotionInstance: 1
+00010646: PrimaryMotionRunning: 1
+00010647: PrimaryPlayTime: 0.000000
+00010648: PrimaryMaxTime: 0.520000
+00010649: PrimaryPlaySpeed: 0.700000
+00010650: CleanupBehaviorChanged: 0
+00010651: =====================================
+00010652: 
+00010653: ===== C1 LIFECYCLE STATUS =====
+00010654: ElapsedMs: 62500.417
+00010655: Event: PERSISTED
+00010656: ActorAddress: EBB66E10
+00010657: Actor: PC_Hero
+00010658: Generation: 22
+00010659: Status: PERSISTED
+00010660: Outstanding: 0
+00010661: PhysicalCollisionChanged: 0
+00010662: ===============================
+00010663: 
+00010664: ===== OUTER_FRAME COMBAT_MOVE_INITIAL =====
+00010665: ElapsedMs: 62507.454
+00010666: ActorAddress: E6E86610
+00010667: Actor: Golem
+00010668: SPUAddress: E6EA7074
+00010669: StateStackCount: 2
+00010670: HasTopFrame: 1
+00010671: TopIndex: 1
+00010672: TopEntryAddressDiagnosticOnly: DC4915A8
+00010673: TopScriptName: _AI_PowerAttack
+00010674: TopIsScriptState: 0
+00010675: TopBreakBlock: 1
+00010676: TopArgumentsAddress: DE8F5710
+00010677: TopLocalCallback: 
+00010678: TopExtraFloat: 1000.000000
+00010679: CurrentState: ZS_Attack_PowerAttack
+00010680: CurrentAction: 9
+00010681: CurrentStatePosition: 0
+00010682: CurrentStateTime: 0.000000
+00010683: TopEntryAddressIsExecutionIdentity: 0
+00010684: ArgumentsDereferencedOrClassified: 0
+00010685: LifecycleBehaviorChanged: 0
+00010686: CollisionBehaviorChanged: 0
+00010687: ===============================
+00010688: 
+00010689: ===== C1 OFFENSE REQUEST =====
+00010690: ElapsedMs: 62753.325
+00010691: ActorAddress: EBB66E10
+00010692: Actor: PC_Hero
+00010693: Generation: 22
+00010694: Status: PERSISTED
+00010695: SourceAddress: E700FE10
+00010696: Source: It_2H_Sword_Flamberge
+00010697: OriginalSideMask: 1
+00010698: OriginalSide: RIGHT
+00010699: OffensiveRequestCount: 1
+00010700: Outstanding: 1
+00010701: CleanupObserved: 0
+00010702: ActualGroup: 7
+00010703: PhysicalCollisionChanged: 0
+00010704: ==============================
+00010705: 
+00010706: ===== ENGINE SetCollisionGroup =====
+00010707: ElapsedMs: 62753.359
+00010708: Entity: It_2H_Sword_Flamberge
