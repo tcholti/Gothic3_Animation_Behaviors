@@ -13,6 +13,12 @@ Transient Chat ↔ Work handoff when relevant: `docs/BETWEEN_CHATS.md`
 Stable conventions: `docs/PROJECT_PIPELINE.md`  
 Recurring Git/build/deploy/test/log procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`
 
+### Collaboration operating intent
+
+Normal Chat is the primary evidence-interpretation / architecture / semantic-design / task-freezing environment. Work is used for bounded implementation when its execution environment materially helps. Keep detailed frozen implementation contracts in `BETWEEN_CHATS.md` and Work launchers short. This preserves accumulated User + Normal Chat understanding and uses the User's limited Work budget where it buys real execution capability. Full project rule: `COLLABORATION_RULES.md` §6.
+
+Project-local collaboration improvements stay at the lowest owning project layer during ordinary Gothic 3 work. Comparing a lesson with CAM does not authorize editing CAM; upward promotion is a separate dedicated CAM-evolution responsibility.
+
 ---
 
 ## Fresh Normal Chat Bootstrap
@@ -68,9 +74,10 @@ Use `EVIDENCE_INDEX.md` Active-Problem Reconstruction when the causal model is n
 - GetUpAttack can request offense before CombatMove, so CombatMove alone is too late as a universal acquisition boundary;
 - C1-O1 proved the live outer ScriptFunction frame can correlate pre-CombatMove offense → CombatMove → cleanup, while raw frame/argument addresses are lifetime-bound correlators only and may be reused after retirement;
 - C1-O2-P1 proved that the missing GetUp pre-Combat offense occurs inside a safe lightweight live `RunScriptFunction` scope and that matching CombatMove begins before that wrapper returns/suspends;
+- C1-O2-P2 now implements the smaller bridge model: a real pre-Combat offense may acquire the monotonic C1 generation, matching CombatMove may reuse that generation and consume the temporary native-frame binding before wrapper return;
 - C1's monotonic generation remains the durable plugin execution identity.
 
-Evidence route: EV-151–EV-204.
+Evidence route: EV-151–EV-204. P2 source implementation is not runtime evidence yet.
 
 ---
 
@@ -93,9 +100,9 @@ The universal guard owns collision safety only. It should not rewrite unrelated 
 
 ---
 
-## C1 Shadow Guard — Current Stable State
+## C1 Shadow Guard — Current Stable / Validation State
 
-C1 remains event-driven and shadow-only. It tracks real offensive requests, including inherited `7 -> 7`, observes native cleanup, and reports `WOULD_REPAIR` without physically changing collision.
+C1 remains shadow-only; production physical repair is disabled.
 
 Core model and acquisition evidence:
 
@@ -110,8 +117,8 @@ Core model and acquisition evidence:
 RunScriptFunction
 = recursion-safe explicit-this .ThisCall()
 = stack-local/TLS lightweight current scope
-= PASS source audit + isolated load + targeted P1 meaning validation
-= no separate P1 extended-stability claim yet
+= P1 PASS source audit + isolated load + targeted meaning validation
+= no separate P1 extended-stability claim
 
 AISetState
 = explicit-this recursion-safe .ThisCall()
@@ -130,15 +137,13 @@ FinalizeAfterAISetState
 = PASS for tested isolated + extended stability
 ```
 
-Canonical continuation evidence: `docs/EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-204.
-
 Important qualification: the corrected EV-203 run did **not** positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` finalization branch. Do not claim runtime proof of that exact branch.
 
 ---
 
 ## C1-O2-P1 — Closed Meaning Gate
 
-P1 implemented only a zero-allocation, nesting-safe, stack-local current `RunScriptFunction` scope around the already-correct explicit-this hook transport. The generic wrapper still performs no state-stack, actor, C1, allocation or logging work before native execution.
+P1 implemented only a zero-allocation, nesting-safe, stack-local current `RunScriptFunction` scope around the already-correct explicit-this hook transport. The generic wrapper performs no state-stack, actor, C1, allocation or logging work before native execution.
 
 Validated corrected P1 DLL SHA256:
 
@@ -148,64 +153,73 @@ Validated corrected P1 DLL SHA256:
 
 P1-B isolated main-menu load/unload passed.
 
-P1-C targeted gameplay produced 27 relevant offense-scope records and four deliberate GetUpAttack acquisition-gap reproductions. In all four initial GetUp `5 -> 7` events:
+P1-C targeted gameplay produced four deliberate GetUpAttack acquisition-gap reproductions. In all four initial GetUp `5 -> 7` events the live scope matched the player SPU/state stack and `_AI_GetUpAttack`; matching CombatMove began in that same live invocation before `RunScriptFunction` returned `GEFalse` / suspended. Later timer `7 -> 7` offense occurred with no live wrapper scope while `_AI_GetUpAttack` remained suspended on the SPU.
 
-```text
-CurrentScopeExists = 1
-scope SPU = player SPU
-scope runtime stack = player SPU state stack
-ScriptFunctionName = _AI_GetUpAttack
-OffenseObservedSet = 1
-ParentScopeExists = 0
-```
+Ordinary Normal/Quick timer offense likewise often occurs with no live P1 scope; a live P1 scope is **not** a universal requirement for offense ownership and is used only as the proven pre-Combat bridge.
 
-The independent outer-frame probe at the same event agreed on `_AI_GetUpAttack`, `OnAI_GetUpAttack`, the same SPU and a non-null arguments pointer. In all four cases matching CombatMove began in that same live ScriptFunction invocation, then the wrapper returned `GEFalse` / suspended. Later timer `7 -> 7` offense occurred with no live wrapper scope while `_AI_GetUpAttack` remained suspended on the SPU.
-
-Ordinary Normal/Quick timer offense likewise often occurs with `CurrentScopeExists = 0`; a live P1 scope is therefore **not** a universal requirement for offense ownership and must only bridge the proven pre-Combat case.
-
-P1-D was not run as a separate long-duration gate. P1 is accepted for its source, isolated and targeted meaning responsibility; do not describe it as independently extended-stability proven.
+P1-D was not run as a separate long-duration gate.
 
 ---
 
-## Current Immediate Responsibility — C1-O2-P2
+## C1-O2-P2 — Implemented, Source-Audited, Runtime Unverified
 
-**C1-O2-P2 is now frozen for bounded Work implementation.**
-
-Exact contract: `docs/BETWEEN_CHATS.md`.
-
-P2 asks:
-
-> **Can C1 use the proven P1 live `RunScriptFunction` scope only at a successful exact equipped-source pre-CombatMove offense to acquire its existing monotonic generation, let matching CombatMove in that same live ScriptFunction invocation reuse that generation, then consume/retire the native-frame bridge before `RunScriptFunction` returns — without reconnecting the rejected eager dispatch machinery or changing cleanup/finalization/physical collision behavior?**
-
-The key simplification is deliberate:
+Implementation commit:
 
 ```text
-native ScriptFunction identity
-= temporary offense -> CombatMove correlator only
-
-C1 monotonic generation
-= durable execution identity
+cc51c67c19425be4e4d6a4838803ed3e66b2a071
 ```
 
-P2 must first test whether the temporary native binding can be consumed at matching CombatMove. Do **not** assume it must persist across ScriptFunction suspension. If it reaches wrapper return unconsumed, retire the native binding and report a diagnostic gate failure without dropping the already-real C1 source obligation or inventing continuation ownership.
+Independent Normal Chat P2-A source review: **PASS**.
 
-### Protected state
+Source review confirms:
 
-Do **not**:
+- the generic `RunScriptFunction` pre-native path remains stack-local/TLS bookkeeping only;
+- the rejected `g_ScriptFunctionDispatchStack` / old Begin-End machinery was not reconnected;
+- live-frame/actor/source/C1 acquisition work is lazy at a real successful offense event;
+- the exact live SPU/runtime-stack/ScriptFunction/non-null-arguments/equipped-source checks remain the acquisition boundary;
+- matching CombatMove reuses the same pre-acquired generation and consumes/retires the temporary native-frame binding immediately;
+- an unconsumed bridge is diagnostic and is retired before wrapper return without dropping the real source obligation;
+- ordinary CombatMove-created generation behavior, cleanup/finalization semantics, marker behavior, hook transport and physical collision behavior were not deliberately changed.
 
-- reconnect `g_ScriptFunctionDispatchStack`, `BeginScriptFunctionDispatch()` or `EndScriptFunctionDispatch()`;
-- add eager per-dispatch state-stack/actor/string/container work;
-- add parent/outer fallback selection;
-- add family/action/input/GetUp/state-name production classifiers;
-- add guessed null-argument fallback;
-- enable physical repair;
-- change source-obligation/native-cleanup semantics;
-- change AISetState finalization semantics;
-- change hook transport;
-- alter marker names, ownership, retirement or source selection;
-- add polling, timers or world scans.
+One source-review omission remains mechanical rather than architectural: the startup log still identifies only the P1 bridge. Before P2-B load validation, add an explicit P2 startup banner so the tested binary can be identified unambiguously.
 
-The known destructive abandonment remains the strongest positive later stress case. Clean completion, legitimate reaction cleanup, pre-activation interruption, inherited-state attribution, exact source-side behavior and no-repair outcomes remain protected controls.
+---
+
+## Current Immediate Responsibility — C1-O2-P2-B Build / Isolated Load
+
+The next responsibility is **not another architecture/Work task**.
+
+After the P2 startup-banner identity correction is committed, Normal Chat hands the branch to the User for the normal local sequence:
+
+```text
+sync exact branch
+→ build Script_FrameCollisionTest
+→ deploy exact DLL
+→ verify one live DLL + built/live SHA256 match
+→ isolated main-menu load/unload
+→ require exact P2 startup banner
+→ preserve raw isolated-load evidence
+```
+
+P2-C targeted 2H GetUp correlation is authorized only after P2-B passes.
+
+P2-C is expected to test the intended meaning:
+
+```text
+initial legitimate GetUp offense
+→ pre-Combat generation acquired
+→ C1 source obligation belongs to that generation
+→ matching CombatMove reuses same generation
+→ PRECOMBAT_BRIDGE_CONSUMED
+→ no unconsumed-bridge invariant
+→ later timer offense remains attributed to durable generation
+→ native cleanup fulfills same generation
+→ physical repair remains OFF
+```
+
+Representative ordinary Normal attacks remain a control; they do not require a live `RunScriptFunction` scope at timer offense.
+
+Exact runtime filenames and commands are frozen by Normal Chat at the relevant local stage, following `PROJECT_PIPELINE.md` and `PROJECT_OPERATING_PROCEDURES.md`.
 
 ---
 
@@ -249,7 +263,8 @@ All addresses are tested-build-specific.
 
 | Need | Open |
 |---|---|
-| current exact continuation / frozen Work task | `BETWEEN_CHATS.md` |
+| current exact continuation / transient handoff | `BETWEEN_CHATS.md` |
+| participant/tool responsibility allocation | `COLLABORATION_RULES.md` §6 |
 | active stale-collision causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
 | C1-O2 / hook/finalizer continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-204 |
 | outer lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
