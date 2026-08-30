@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 1.7
-**Updated:** 2026-08-29
+**Version:** 1.8
+**Updated:** 2026-08-30
 
 ## Purpose
 
@@ -240,28 +240,47 @@ Full documentation audits remain valuable but should be exceptional: schema/auth
 
 ---
 
-## 6. Current Chat / Work Allocation
+## 6. Division of Labor — Intent and Allocation
 
-Current evidence often favors:
+### Intent / why
+
+The User, Normal Chat, Work, the home PC and the repository are not interchangeable participants. They have different strengths, constraints, context and costs. The purpose of the allocation below is to place each responsibility where it has produced the best results, while preserving enough shared intent that the lower-level plan can adapt without changing project meaning.
+
+Normal Chat is the primary environment for evidence interpretation, disagreement, architecture, semantic design, creative simplification and task freezing because those responsibilities benefit from accumulated User + Chat context and from the collaborative reasoning style developed through sustained work. Work is strongest when the semantics are already decided and its execution environment can materially help with bounded source inspection, implementation, source audit and publication.
+
+The User's Work access also has limited hourly/weekly budget. That budget is a real project resource. Do not spend it on documentation maintenance, project reconstruction, open-ended architecture or reasoning that Normal Chat can perform as well or better. Use Work where its execution environment buys real implementation capability.
+
+The intent is not to create a permanent product hierarchy or to deny initiative. It is to combine complementary strengths and avoid using more expensive or less context-calibrated machinery for responsibilities that do not benefit from it.
+
+### Current allocation
 
 ```text
 User + Normal Chat
-research / evidence interpretation / disagreement / architecture / semantics / task freezing
+research / evidence interpretation / disagreement / architecture / semantics /
+creative simplification / planning / task freezing / knowledge maintenance
         ↓
-Work when useful
-bounded implementation / targeted source or API inspection / source audit / commit-push
+Work when materially useful
+bounded implementation / narrowly necessary source or API inspection /
+source audit / commit-publish / concise handoff
         ↓
 Normal Chat + authoritative home PC
-independent source review / build / runtime testing / evidence interpretation
+independent source review / build / deploy / runtime testing /
+evidence interpretation / next design decision
 ```
 
-Normal Chat also owns the project knowledge-maintenance transaction around those stages. Work remains an implementation responsibility and should not become a second documentation/architecture authority unless a task explicitly assigns a narrow documentation edit.
+Normal Chat owns the project knowledge-maintenance transaction around those stages. Work remains an implementation responsibility and should not become a second documentation/architecture authority unless a task explicitly assigns a narrow documentation edit for a concrete reason.
 
-This is a current project allocation, not a permanent product hierarchy.
+Detailed frozen implementation contracts should normally live once in `docs/BETWEEN_CHATS.md`. The launcher sent to Work should stay small: repository, branch/base identity, the exact frozen responsibility to read, the implementation protocol, publication/stop instruction, and only other information that is genuinely unavailable from the repository. Do not duplicate a long contract into both Normal Chat and Work merely for self-containment.
 
-Use Work when its execution environment materially helps. Do not move a context-heavy design problem to Work merely because Work has more compute or repository automation.
+### Allocation decision rule
 
-Use `docs/WORK_IMPLEMENTATION_PROTOCOL.md` for a bounded coding task.
+When uncertain where a responsibility belongs, ask:
+
+> **Which environment materially improves this responsibility, given the context it needs, the authority it carries, the execution tools it can use, and the resources it consumes?**
+
+More compute, a larger context window or stronger repository automation does not automatically make Work the better owner of a context-heavy design problem. Conversely, do not keep mechanically large bounded implementation in Normal Chat merely to preserve a habit when Work materially improves execution.
+
+This allocation is evidence-based and revisable. If capabilities, resource constraints or demonstrated performance change, revise the lowest owning allocation rule deliberately.
 
 No permanent Medium/High reasoning policy is part of this project. Use sufficient reasoning for the actual responsibility and avoid spending resources on repeated reconstruction that the repository can prevent.
 
@@ -376,30 +395,36 @@ use established procedure normally
 → use the revision and observe whether it resolves the problem
 ```
 
-Prefer changing the lowest justified layer:
+### Upward-promotion boundary
+
+Ordinary Gothic 3 project work stops at the lowest project-local authority that owns the problem. A Gothic 3 Chat may compare a lesson with CAM `current`, identify that it may generalize, and preserve enough rationale for later review, but it should **not** modify the CAM repository, reusable baseline, General Collaboration Rules, Project Collaboration Framework, collaboration profile, or CAM theory as part of the same project-maintenance transaction.
+
+Cross-project comparison and upward promotion are a separate responsibility performed in a dedicated CAM-evolution context. Only when the User explicitly opens that responsibility should higher-layer changes be considered. Stable CAM/theoretical authority has the highest change threshold and should be revised only through deliberate constitutional review, not as automatic fallout from one project's local improvement.
+
+Therefore “compare with CAM current” normally means **check consistency and identify candidate reusable value**, not “edit CAM now.”
+
+Prefer changing the lowest justified project layer:
 
 - task wording;
 - project retrieval/indexing;
 - knowledge authority/update triggers;
 - Work implementation protocol;
 - project operating procedure;
-- this Gothic 3 project delta;
-- CAM `current` reusable operational baseline when a lesson genuinely generalizes beyond Gothic 3 but remains a project-derived candidate mechanism;
-- stable CAM project/general framework only when broader evidence justifies changing the higher layer.
+- this Gothic 3 project delta.
 
-The intended learning loop is:
+The intended learning loop inside this project is:
 
 ```text
 real project success / friction / failure
 → diagnose the actual mechanism
 → improve the lowest owning project layer
 → observe subsequent use
-→ compare the lesson with CAM current
-→ generalize upward only when transfer is supported
-→ compare later project evidence back against the reusable template/baseline
+→ compare the lesson with CAM current when useful
+→ preserve candidate reusable rationale if warranted
+→ dedicated CAM-evolution responsibility decides any upward promotion later
 ```
 
-A CAM template is a starting structure, not a demand for identical project form. When another project legitimately varies from the template, first ask whether that is a useful project-specific adaptation or evidence that the reusable baseline itself should improve.
+A CAM template is a starting structure, not a demand for identical project form. When another project legitimately varies from the template, first ask whether that is a useful project-specific adaptation or evidence to preserve for later cross-project review.
 
 Old collaboration documents and experiments may be archived once their durable lessons are represented in current authority. Their historical rationale remains available through archive/history.
 
@@ -407,4 +432,4 @@ Old collaboration documents and experiments may be archived once their durable l
 
 ## Core Project Collaboration Rule
 
-> **Start from current state, orient once to the relevant subsystem, reconstruct a stale active-problem model before new interpretation or architecture, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, and let Gothic 3 runtime/source evidence—not documentation volume—drive both the engineering and any collaboration-method lessons proposed for wider reuse.**
+> **Start from current state, orient once to the relevant subsystem, reconstruct a stale active-problem model before new interpretation or architecture, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, allocate responsibilities where context/capability/resources make them strongest, and let Gothic 3 runtime/source evidence—not documentation volume—drive both the engineering and any collaboration-method lessons preserved for later wider review.**
