@@ -60,7 +60,7 @@ Architecture authority: `docs/COLLISION_LIFECYCLE_PLAN.md`.
 
 ---
 
-## Active Problem — Native Stale Melee Collision
+## Established Problem and Validated Collision-Safety Model
 
 Compact established model:
 
@@ -71,11 +71,12 @@ Compact established model:
 - C1 tracks successful offensive requests as exact per-source obligations and observes successful transition away from `Item_Attack` as fulfillment;
 - GetUpAttack can request offense before CombatMove, so CombatMove alone is too late as a universal acquisition boundary;
 - C1-O1/P1 established a live ScriptFunction frame as a temporary correlator for that pre-Combat gap;
-- C1-O2-P2 proved the early offense can acquire the monotonic C1 generation, matching CombatMove can reuse it and consume the native-frame bridge before wrapper return, and later timer offense/native cleanup continue on the durable generation;
+- C1-O2-P2 proved the early offense can acquire the monotonic C1 generation, matching CombatMove can reuse it and consume the native-frame bridge before wrapper return, and later offense/native cleanup continue on the durable generation;
 - C1's monotonic generation remains the durable plugin execution identity;
-- C1-R1 now performs the proven native-equivalent `Item_Attack(7) -> Item_Equipped(5)` repair only for the exact outstanding source that remains live/equipped and physically offensive after native AISetState has had its cleanup opportunity.
+- C1-R1 performs the proven native-equivalent `Item_Attack(7) -> Item_Equipped(5)` repair only for the exact outstanding source that remains live/equipped and physically offensive after native AISetState has had its cleanup opportunity;
+- R1-E closed source-specific Dual, marked-source, broad player/NPC stability and unsupported-source negative coverage without requiring family/action/input/cause-specific cleanup rules.
 
-Canonical evidence route: EV-151–EV-206 plus dedicated P2 shutdown-closure evidence commit `4946d382041e9ec86400291395e5acbad77b1de6` and the R1-E raw/derived artifacts routed by `BETWEEN_CHATS.md`.
+Canonical evidence route: EV-151–EV-207 plus dedicated P2 shutdown-closure evidence commit `4946d382041e9ec86400291395e5acbad77b1de6`.
 
 ---
 
@@ -156,11 +157,11 @@ FinalizeAfterAISetState
 = C1-R1 controlled repair uses this same finalizer
 ```
 
-EV-203/EV-206 did not positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch. Preserve the fail-closed behavior and do not claim runtime proof of that exact branch.
+EV-203/EV-206/EV-207 do not positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch. Preserve the fail-closed behavior and do not claim runtime proof of that exact branch.
 
 ---
 
-## C1-R1 Controlled Native-Equivalent Physical Repair — IMPLEMENTED / VALIDATION NEAR CLOSURE
+## C1-R1 Controlled Native-Equivalent Physical Repair — CLOSED
 
 Implementation:
 
@@ -176,9 +177,9 @@ Length: 466432
 SHA256: 449AC6BECB38B8627CAFAEA6311F4CC0697B91328A15D63B3446DA4766D3EAB5
 ```
 
-Canonical physical-repair evidence begins at **EV-206** in `docs/EVIDENCE_LEDGER_STEP_D.md`.
+Canonical physical-repair evidence: **EV-206–EV-207** in `docs/EVIDENCE_LEDGER_STEP_D.md`.
 
-Validated meaning so far:
+Validation:
 
 ```text
 R1-A independent source audit = PASS
@@ -186,9 +187,10 @@ R1-B build / exact DLL identity / isolated load-unload = PASS
 R1-C targeted positive repair = PASS
 R1-D no-op / reaction / GetUp controls = PASS
 R1-E Dual source-specific repair = PASS
-R1-E compact marker regression = PASS
+R1-E compact marked-Staff regression = PASS
 R1-E broad mixed exercised player/NPC/negative coverage = PASS
-R1-E focused unarmed/crossbow negative closure = CURRENT
+R1-E focused unarmed/crossbow negative closure = PASS
+C1-R1 controlled validation = CLOSED
 ```
 
 Accepted repair rule:
@@ -204,43 +206,59 @@ existing finalizer has exact outstanding source
 
 Everything outside that predicate remains no-op/unresolved and non-mutating. Native cleanup retains precedence. Repair passes through the existing SetCollisionGroup hook and keeps marker retirement/source observation on the established path.
 
-The marked Staff regression also established the fail-closed timing boundary: if a destructive bad skip kills native attack ownership after collision has armed, C1-R1 repairs the orphaned source; if the skip happens before offense exists, C1-R1 correctly does nothing and late callbacks from the abandoned execution do not resurrect damage.
+R1-E proved exact Dual source independence, marked-source terminal repair and late-callback rejection, broad mixed player/NPC stability, Fist/body separation and crossbow unsupported-source fallback. Supplemental bow and magic regression traffic also remained outside inappropriate weapon-style C1 repair ownership.
+
+Two qualifications remain explicit:
+
+```text
+- no positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED case;
+- no positive NPC destructive-abandonment / C1 physical-repair case is claimed.
+```
+
+Neither qualification reopens R1. Do not invent another broad matrix solely to force them.
 
 Future root investigation of the held-Use2 destructive skip is separate: `docs/BAD_SKIP_FUTURE_INVESTIGATION.md`. Even if a later root fix succeeds, C1-R1 remains the general lost-cleanup fail-safe.
 
 ---
 
-## Current Immediate Responsibility — C1-R1-E Focused Unarmed + Crossbow Negative Closure
+## Current Immediate Responsibility — Plan / Freeze Stable Production Integration
 
-Use the **same validated C1-R1 DLL**. No source change, rebuild or redeploy is required.
+C1-R1 is validated in the research prototype but is **not production-integrated** into the stable collision behavior yet.
 
-Detailed frozen runtime responsibility: `docs/BETWEEN_CHATS.md`.
+Detailed continuation authority: `docs/BETWEEN_CHATS.md`.
 
-Purpose:
+Normal Chat should now determine the smallest production-integration boundary that preserves the validated collision architecture and existing marker behavior, then freeze a bounded implementation responsibility before any source change.
 
-> Close only the remaining unsupported-source negative gap without repeating successful melee, Dual, marker or broad stability coverage.
-
-Required focused runtime coverage:
+Production integration must preserve:
 
 ```text
-UNARMED / FIST
-→ genuinely unarmed Hero
-→ several ordinary unarmed attacks
-→ ordinary reaction/interruption churn where natural
-
-CROSSBOW
-→ several normal aim/fire/reload cycles
-→ brief ordinary combat/reaction/state churn
-
-SHUTDOWN
-→ normal Gothic 3 exit
+C1 monotonic generation as durable execution identity
+P1/P2 lightweight pre-Combat acquisition/bridge behavior
+exact per-source offensive obligations
+native cleanup always gets first opportunity
+post-native-AISetState finalization
+exact current-equipped liveness gate before source dereference/mutation
+exact source-specific Item_Attack(7) -> Item_Equipped(5) repair
+no ClearTriggeredList() in terminal repair
+Dual source independence
+marker RIGHT/LEFT/BOTH/OFF semantics and existing marker bookkeeping
+Fist/body separation
+unsupported-source fallback
+no family/action/input/cause cleanup matrix
+no polling/timer/world scan
 ```
 
-This is a scope-safety gate, not a feature expansion. It asks whether genuine Fist/unarmed and crossbow gameplay remain outside inappropriate weapon-style C1 repair ownership/mutation.
+Do **not** automatically combine this responsibility with:
 
-Do not add held-Use2 reproduction, new classifiers, source changes or a new broad matrix to this closure.
+```text
+held-Use2 / Alternative-AI root behavior changes
+marker-core simplification
+Raise work
+playback-speed work
+new source-family expansion
+```
 
-If this focused negative run is clean, Normal Chat should decide whether **C1-R1 validation is closed**. Do not automatically begin stable production integration or the future bad-skip root investigation in the same step.
+Do not implement merely because R1 closed. First inspect only the exact production/research source boundary needed to define the integration responsibility; if integration design is not yet frozen, remain in Normal Chat reasoning/planning.
 
 ---
 
@@ -271,11 +289,11 @@ All addresses are tested-build-specific.
 
 | Need | Open |
 |---|---|
-| current exact runtime handoff | `BETWEEN_CHATS.md` |
-| current staged validation | `COLLISION_TEST_PLAN.md` |
+| current exact continuation / integration boundary | `BETWEEN_CHATS.md` |
+| staged validation / closed R1 acceptance | `COLLISION_TEST_PLAN.md` |
 | active causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
 | canonical C1/P2 continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-205 |
-| canonical C1-R1 physical-repair evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206 onward |
+| canonical C1-R1 physical-repair evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206–EV-207 |
 | lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | future held-Use2 root investigation | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
 | native cleanup semantics/RVAs | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
@@ -292,7 +310,7 @@ Do not load the whole documentation corpus by default.
 
 Broad priority order remains:
 
-1. finish collision lifecycle safety and integrate stable collision behavior;
+1. integrate the validated collision lifecycle/core into stable production behavior;
 2. generalize Raise for intended Normal/Quick and selected full-Whirl families;
 3. implement/calibrate profile-aware playback speed;
 4. later investigate broader animation-selection/gameplay systems such as jumping, wading and climbing.
