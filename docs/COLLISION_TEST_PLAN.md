@@ -5,29 +5,31 @@
 
 ## Purpose
 
-Validate the collision system through small falsifiable stages while preserving the already-closed lifecycle-safety contract. Historical gate detail is preserved through `EVIDENCE_INDEX.md`, the canonical evidence ledgers and raw/archive artifacts; this file owns the **current and forward validation sequence**.
+Validate the collision system through small falsifiable stages while preserving the already-closed lifecycle-safety contract.
 
 Current state: `SESSION_ENTRYPOINT.md`.  
 Exact transient continuation: `BETWEEN_CHATS.md`.  
+Frozen post-baseline rewrite: `SECOND_PASS_REWRITE_CONTRACT.md`.  
 Lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.  
-Overall modular architecture / implementation order: `DESIGN.md`.
+Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
 ---
 
 ## 1. Current Rules
 
 - Compare one conceptual variable at a time where practical.
-- Do not reopen closed C1-R1 semantics merely because code structure or marker coverage changes.
+- Do not reopen closed C1-R1 semantics because code structure changes.
 - Do not add family/action/input/state-name-specific cleanup branches.
 - Do not treat `RunScriptFunction`, FullStop or AISetState as unconditional cleanup authority.
 - Preserve native behavior for executions that already clean themselves.
 - Successful offensive request creates an exact physical-source obligation; successful transition away from `Item_Attack` fulfills it.
-- Repair may act only on an already-owned exact outstanding source after its legitimate cleanup opportunity has passed.
+- Repair may act only on an already-owned exact outstanding source after native cleanup opportunity.
 - Current equipped identity must establish source liveness before dereference/mutation.
-- Keep structural refactors behavior-preserving and test them before adding new marker/source semantics.
-- Expand one attack mechanism/source responsibility at a time.
+- Keep structural rewrites behavior-preserving and validate before feature expansion.
 - Preserve raw runtime logs exactly as produced.
+- Do not ask the User to paste large successful logs into Chat; use repository raw artifacts.
 - Follow `PROJECT_PIPELINE.md` for gate/artifact identity and `PROJECT_OPERATING_PROCEDURES.md` for build/deploy/test/log operations.
+- Public release behavior must not depend on diagnostics; see `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
 Authoritative research DLL remains:
 
@@ -35,7 +37,7 @@ Authoritative research DLL remains:
 Script_FrameCollisionTest
 ```
 
-until the explicit later production-migration phase is reached.
+until explicit later production migration.
 
 ---
 
@@ -70,13 +72,11 @@ R1-E broad mixed exercised coverage = PASS
 R1-E focused unarmed/crossbow negative closure = PASS
 ```
 
-Do not rerun or expand this matrix merely because the research DLL is being reviewed/refactored. Retrieve EV-206–EV-207 when exact proof meaning is needed.
+Do not recreate the broad R1 program for structural changes. Use compact structural sentinels instead.
 
 ---
 
 ## 3. Accepted Collision-Safety Contract
-
-Accepted identity/obligation model:
 
 ```text
 live ScriptFunction frame
@@ -95,10 +95,10 @@ destructive AISetState + obligation still outstanding
 = terminal repair checkpoint
 ```
 
-Accepted repair predicate:
+Accepted terminal repair:
 
 ```text
-source obligation is outstanding
+source obligation outstanding
 + exact current equipped RIGHT/LEFT pointer establishes liveness
 + actual current source group == Item_Attack(7)
 → exactly one SetCollisionGroup(Item_Equipped)
@@ -108,80 +108,119 @@ source obligation is outstanding
 
 Everything outside that predicate remains no-op/unresolved and non-mutating.
 
-The validated regression envelope includes:
-
-```text
-ordinary clean completion
-legitimate reaction cleanup
-pre-activation/no-offense
-P2 GetUpAttack acquisition + native cleanup
-GetUpParade/defensive no-offense
-inherited 7 -> 7 attribution
-Dual exact RIGHT/LEFT independence
-marked RIGHT/LEFT/BOTH/OFF interaction
-Fist/body separation
-crossbow unsupported-source fallback
-supplemental bow/magic negative regression
-mixed player/NPC hook stability
-```
-
-Two explicit limits remain:
+Two qualifications remain explicit and do not reopen the gate:
 
 ```text
 - no positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED branch;
 - no positive NPC destructive-abandonment / C1 physical-repair case is claimed.
 ```
 
-These are qualifications, not reasons to invent another R1 test matrix.
+---
+
+## 4. Architecture Review / Synthesis — CLOSED
+
+Completed:
+
+```text
+CollisionSources extraction
+EngineBridge extraction + local build
+one-by-one first per-CPP review
+second-pass cross-file architecture synthesis
+```
+
+Frozen result:
+
+```text
+docs/SECOND_PASS_REWRITE_CONTRACT.md
+```
+
+Important second-pass correction:
+
+```text
+HookBridgeRuntime clock is behavior-required infrastructure
+because marker same-update duplicate acceptance uses elapsed milliseconds.
+```
+
+Therefore the frozen rewrite renames it to `RuntimeClock`; it is not removed with diagnostics.
 
 ---
 
-## 4. Current Phase — Read-Only Architecture Review
+## 5. Current Gate — Unchanged Post-EngineBridge Runtime Baseline
 
-Before another source change, Normal Chat reviews:
+**Run this before any source implementation of the frozen rewrite.**
 
-```text
-prototypes/Script_FrameCollisionTest/
-src/Script_G3AnimationBehaviors/
-```
-
-The review should classify code into:
+Purpose:
 
 ```text
-shared engine hook/transport ownership
-CollisionLifecycleGuard production semantics
-frame-marker ownership/control semantics
-physical source adapters
-research-only diagnostics/probes
-potentially redundant historical marker-lifetime inference
-production-DLL Raise/speed modules and shared-hook compatibility risks
+prove the already-completed EngineBridge structural extraction at runtime
+using the current unchanged source and current unchanged logger
+before architecture/logger/source rewrites change another variable
 ```
 
-This phase has no runtime test because it authorizes no source change. Its output is a frozen, behavior-preserving modular-refactor responsibility.
+Compact sentinel set:
 
-Do not assign a new test/gate identifier until that exact implementation responsibility is frozen under `PROJECT_PIPELINE.md` conventions.
+```text
+A. ordinary melee completion with native cleanup/no repair
+B. one known destructive stale-source case producing exact C1-R1 repair
+C. legitimate reaction interruption with native cleanup/no repair
+D. marked Staff RIGHT/OFF/RIGHT regression
+E. Dual source-specific case
+F. Fist/unarmed negative
+G. crossbow negative
+H. clean shutdown
+```
+
+Exact raw filename:
+
+```text
+research/raw/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline.log
+```
+
+This is **not** a reopened R1 matrix. It is a compact structural baseline.
+
+If the baseline fails:
+
+```text
+STOP
+→ diagnose current EngineBridge/current unchanged source
+→ do not start SECOND_PASS_REWRITE_CONTRACT implementation
+```
+
+If it passes, publish/interpret the raw evidence and then authorize the frozen rewrite.
 
 ---
 
-## 5. Forward Validation Sequence
+## 6. Frozen Rewrite Validation
 
-The roadmap is provisional and may be course-corrected by source/runtime contradiction. Each implementation stage must be frozen before execution and gets the smallest regression that can falsify its claimed meaning.
-
-### Phase A — semantic-preserving research-DLL modularization
-
-Goal:
+Architecture contract:
 
 ```text
-central EngineHooks/bridge owns shared Gothic hooks
-→ feature modules consume authoritative bridge events
-→ CollisionLifecycleGuard remains collision-safety owner only
-→ marker/source behavior remains unchanged
-→ diagnostics remain observer-only/removable
+docs/SECOND_PASS_REWRITE_CONTRACT.md
 ```
 
-No feature expansion in the same step.
+The rewrite is structural/semantic-preserving only.
 
-Minimum post-refactor validation should include startup/load identity plus compact sentinels for:
+Required source/build gate after implementation:
+
+```text
+git diff --check
+bounded contract audit
+build Script_FrameCollisionTest diagnostic target
+build Script_FrameCollisionBehaviorTest behavior-only target
+verify behavior-only target excludes diagnostic source/state/hooks
+```
+
+The behavior-only target is a mechanical architecture test: collision behavior must compile without `CollisionDiagnostics` or deep research instrumentation.
+
+Do not deploy the diagnostic and behavior-only prototypes together.
+
+---
+
+## 7. Post-Rewrite Diagnostic Sufficiency Regression
+
+Run the diagnostic target with compact default diagnostics; deep probes stay off.
+
+Minimum sentinels:
 
 ```text
 known positive stale-source repair
@@ -191,14 +230,51 @@ Dual source independence
 one marked-source regression
 Fist/unarmed negative
 crossbow negative
-normal shutdown
+clean shutdown
 ```
 
-### Phase B — marker-bookkeeping simplification audit
+Default compact diagnostics must still establish:
 
-First compare each existing marker guard/check against the proven C1 execution authority.
+```text
+marker ownership/suppression/result
+exact source requested/before/after transition
+C1 generation + exact source obligation
+cleanup fulfillment
+pre-Combat acquisition/consumption when present
+finalization/repair outcome
+explicit invariant/failure signals
+```
 
-Remove only machinery proven to duplicate execution-lifetime inference. Preserve independent marker invariants, including:
+If the compact logger makes any required fact ambiguous, the diagnostic reduction is too aggressive.
+
+---
+
+## 8. Behavior-Only Smoke / Equivalence
+
+After diagnostic sufficiency passes, deploy the behavior-only prototype **instead of** the diagnostic target.
+
+Purpose:
+
+```text
+prove intended behavior does not depend on diagnostic source/state/hooks
+```
+
+Freeze the exact small runtime matrix only after the diagnostic regression passes. Do not infer behavior-only correctness from successful compilation alone.
+
+---
+
+## 9. Later Phase — C1 vs Marker-Bookkeeping Simplification
+
+Only after rewrite + diagnostic sufficiency + behavior-only smoke pass.
+
+Classify every existing marker guard/check into:
+
+```text
+A. execution-lifetime inference genuinely superseded by stronger C1/native authority
+B. independent marker invariant still required
+```
+
+Preserve group B:
 
 ```text
 exact current-motion marker ownership
@@ -206,97 +282,69 @@ authored occurrence budgets
 same-update duplicate/replay protection
 repeated-contact ClearTriggeredList rearm
 RIGHT/LEFT/BOTH/OFF exact-set behavior
-StatePosition behavior required to suppress competing native activation
+StatePosition native-activation suppression
 interruption/dead-execution rejection
 ```
 
-Any simplification gets targeted historical marker regressions before expansion continues.
-
-### Phase C — equipped-melee marker expansion
-
-Expand the unchanged marker vocabulary one native attack mechanism at a time. Do not invent action-specific marker names.
-
-For each expansion, minimum validation should protect:
-
-```text
-new family/mechanism positive marker behavior
-one previously supported marker family
-one unmarked/native fallback case
-one lifecycle-guard positive or no-op sentinel as appropriate
-```
-
-### Phase D — Fist source-adapter decision
-
-Only after equipped-melee marker coverage is stable, investigate whether Fist can safely support authored timing.
-
-Do not route Fist through weapon-style `Item_Attack` group mutation. Prove the Fist-specific activation/rearm semantics independently before declaring support.
-
-### Phase E — complete marker + lifecycle regression
-
-After marker/source expansion, run a broader but purposeful regression confirming that marker changes did not weaken the closed C1-R1 safety contract.
-
-### Phase F — modular attack-continuation protection
-
-Investigate and, only if source evidence supports it, implement `AttackContinuationProtection` as a module separate from `CollisionLifecycleGuard`.
-
-Its responsibility is to suppress/defer the known held-Use2 destructive consequence while a real attack is active, not to repair collision.
-
-Validate:
-
-```text
-known bad skip prevented inside active attack
-normal marker/native continuation completes
-normal cleanup occurs
-held-Use2 behavior outside attack remains native
-legitimate reaction FullStop/AISetState remains native
-C1-R1 remains available underneath as fail-safe
-```
-
-Authority: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
-
-### Phase G — New Balance / Jackydima compatibility on mature research DLL
-
-Compatibility is mandatory before production migration.
-
-Test the mature research DLL with New Balance and the relevant Jackydima DLL stack, focusing especially on shared hook ownership, attack callbacks, collision behavior and state/CombatMove paths. Do not rely on arbitrary DLL load order or assumed hook chaining.
-
-### Phase H — production-DLL redesign and collision migration
-
-Only after the mature research collision system passes compatibility should `src/Script_G3AnimationBehaviors` be redesigned around the same central engine-bridge + independent-module architecture and receive the proven collision modules.
-
-Migration itself gets a compact equivalence regression before Raise/speed work is added.
-
-### Phase I — Raise / speed modules and final compatibility
-
-Raise and speed remain independent modules.
-
-The existing direct `GetAnimationSpeedModifier` AttackSpeed hook is proof-of-concept, not frozen production architecture; re-evaluate the hook/intervention point against New Balance compatibility before implementing final speed control.
-
-After all production modules are assembled, perform a second full `Script_G3AnimationBehaviors` + New Balance/Jackydima compatibility regression before stable promotion.
+EV-131–EV-133 and EV-167 are mandatory evidence before removing execution-retirement machinery.
 
 ---
 
-## 6. Non-Combination Rules
+## 10. Later Feature Sequence
 
-Unless an explicitly frozen phase says otherwise, do not combine:
+### Equipped-melee marker expansion
+
+Expand one native attack mechanism at a time. Do not invent action-specific marker names.
+
+### Fist source-adapter decision
+
+Investigate separately after equipped-melee marker coverage stabilizes. Do not force Fist through weapon `Item_Attack` semantics.
+
+### Complete marker + lifecycle regression
+
+Run purposeful broad regression after marker/source expansion.
+
+### AttackContinuationProtection
+
+Investigate/implement separately from `CollisionLifecycleGuard`. It prevents the known destructive consequence; C1-R1 remains the fail-safe underneath.
+
+### Mature research compatibility gate
+
+Test New Balance / relevant Jackydima stack before production migration. Do not rely on arbitrary load order or assumed hook chaining.
+
+### Production foundation
+
+Retain the mature modular research architecture and migrate/redesign Raise, speed and config into it. Do not pour the collision system back into the old v0.1 production layout.
+
+Later systems such as target acquisition and climbing use the same central-bridge / independent-module / diagnostics-free-release architecture.
+
+### Final public release
+
+Final `Script_G3AnimationBehaviors` is diagnostics-free and receives its own New Balance/Jackydima compatibility regression. Retain a separate instrumented diagnostic twin for controlled reproduction.
+
+---
+
+## 11. Non-Combination Rules
+
+Unless an explicitly frozen contract says otherwise, do not combine:
 
 ```text
-structural modular refactor + feature expansion
+structural rewrite + feature expansion
 marker simplification + new attack-family support
-Fist support + equipped-weapon source changes
+Fist support + unrelated equipped-weapon changes
 AttackContinuationProtection + CollisionLifecycleGuard redesign
 production migration + bad-skip investigation
 production migration + Raise/speed redesign
 New Balance compatibility fixes + unrelated behavior changes
 ```
 
-If a source/API/calling-convention contradiction requires crossing one of these boundaries, stop and reassess in Normal Chat rather than broadening implementation opportunistically.
+If a concrete source/API/calling-convention contradiction requires crossing one of these boundaries, stop and reassess in Normal Chat.
 
 ---
 
-## 7. Evidence Handling
+## 12. Evidence Handling
 
-For future implementation/runtime stages:
+For implementation/runtime stages:
 
 ```text
 freeze exact question/matrix/raw filename
@@ -307,4 +355,4 @@ freeze exact question/matrix/raw filename
 → update canonical evidence/current authorities only when meaning changes
 ```
 
-Do not ask the User to paste large successful logs into Chat. Use `PROJECT_OPERATING_PROCEDURES.md` POP-05 through POP-07.
+Do not paste large successful logs into Chat.
