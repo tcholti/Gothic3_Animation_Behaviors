@@ -21,6 +21,8 @@ target_tree_sources(
         CollisionLifecycleGuard.h
         CollisionSources.cpp
         CollisionSources.h
+        EngineBridge.cpp
+        EngineBridge.h
         FrameCollisionShared.h
         HookBridgeRuntime.cpp
         HookBridgeRuntime.h
