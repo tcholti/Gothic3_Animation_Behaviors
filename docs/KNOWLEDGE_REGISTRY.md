@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-08-29
+**Updated:** 2026-08-30
 
 ## Purpose
 
@@ -21,11 +21,11 @@ The registry exists to prevent the same fact becoming a separately maintained co
 |---|---|---|---|
 | current active subsystem / causal gate / immediate next responsibility | `SESSION_ENTRYPOINT.md` | active gate, subsystem, immediate candidate, or next responsibility changes; also when temporary prerequisite, isolation, contradiction-resolution or safety/hardening work materially replaces what a fresh Normal Chat should do next, even if the enclosing gate ID or long-term objective is unchanged | another test merely confirms the existing gate/model, or a trivial/routine substep does not materially change what a fresh Chat should do next |
 | transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact transient implementation/test state | ordinary project facts already live in durable authorities |
-| project-specific collaboration behavior | `COLLABORATION_RULES.md` | a recurring Gothic-3-specific collaboration lesson materially changes workflow | one isolated annoyance/error that existing rules already cover |
+| project-specific collaboration behavior / participant-tool division of labor | `COLLABORATION_RULES.md` | a recurring Gothic-3-specific collaboration lesson materially changes workflow, participant/tool allocation, delegated authority, or a material resource constraint such as Work budget changes the best responsibility split | one isolated annoyance/error that existing rules already cover, or a technical result that does not change collaboration responsibility |
 | stable project operating conventions: branch/state meanings, gate/test IDs, evidence/procedure IDs, raw/derived naming, prototype/build identity, document versioning, validation/artifact flow | `PROJECT_PIPELINE.md` | an accepted convention changes, a genuinely new convention responsibility appears, or a transition/migration boundary must be defined | routine use of an established convention, every new test/log/evidence item, or a new Chat merely preferring another style |
 | recurring project-local operations: Git handoff/sync, build/deploy/load verification, runtime-artifact intake/publish, large-log reduction, static-reference retrieval | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistakes, one serious operational failure, a clearly better recurring method, or a genuinely new recurring operation changes the best default procedure | every routine use, one-off command variation, or technical Gothic 3 result that does not change the procedure |
 | bounded Work execution contract | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work authority, stop conditions, review responsibility, or frozen-task execution model changes | a technical Gothic 3 finding unrelated to Work behavior |
-| knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing rule, workaround-reevaluation rule, audit-health criteria, or bloat early-warning responsibility changes | ordinary technical evidence/result already handled by the existing procedure |
+| knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing rule, workaround-reevaluation rule, project-to-CAM promotion boundary, audit-health criteria, or bloat early-warning responsibility changes | ordinary technical evidence/result already handled by the existing procedure |
 | authority/update routing | `KNOWLEDGE_REGISTRY.md` | a responsibility gains/moves/loses authority or update-trigger logic changes | underlying knowledge grows inside an existing authority |
 | overall intended Raise/speed/frame-collision system architecture | `DESIGN.md` | system responsibility, public behavior, major invariant, subsystem boundary, configuration model changes | experiment chronology, routine confirmations, build status |
 | current collision execution/cleanup lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` | ownership/lifetime/cleanup invariant or causal architecture changes | a test confirms the existing lifecycle model without changing it |
@@ -162,6 +162,17 @@ SESSION_ENTRYPOINT or BETWEEN_CHATS if current continuation needs it
 ```
 
 No architecture/evidence update until build/runtime/source contradiction provides new meaning.
+
+### Project collaboration lesson appears reusable beyond Gothic 3
+
+Default:
+
+```text
+fix the lowest owning Gothic 3 rule/procedure
+→ preserve rationale / candidate wider relevance if useful
+→ do not edit CAM as part of this transaction
+→ dedicated CAM-evolution responsibility later decides cross-project promotion
+```
 
 ### A new Chat proposes a different log/test/version naming style
 
