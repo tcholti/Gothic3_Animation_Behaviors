@@ -1,6 +1,6 @@
 # Bad-Skip Future Investigation Direction
 
-**Status:** Future investigation only. Do not change current C1-R1 work to pursue this while C1-R1 validation is still open.
+**Status:** Future modular investigation only. C1-R1 validation is closed; do not begin this responsibility until the marker/source system has been reviewed, modularized, expanded and regressed as planned in `DESIGN.md` / `BETWEEN_CHATS.md`.
 
 ## Why this exists
 
@@ -15,11 +15,33 @@ bad skip before collision activation
 bad skip after collision activation
 → native attack ownership is destroyed while the exact source is offensive
 → ordinary cleanup can be lost
-→ C1-R1 now fails closed by repairing the exact outstanding source 7 -> 5
+→ C1-R1 fails closed by repairing the exact outstanding source 7 -> 5
 → any remaining visual portion of the abandoned attack may no longer deal weapon damage
 ```
 
-C1-R1 intentionally addresses only the lost-cleanup consequence. It must remain a separate validated safety guard.
+C1-R1 intentionally addresses only the lost-cleanup consequence. It is a separately validated safety guard and must remain intact beneath any future prevention layer.
+
+## Module boundary
+
+The future prevention behavior must **not** be implemented inside `CollisionLifecycleGuard`.
+
+Working module name:
+
+```text
+AttackContinuationProtection
+```
+
+Its responsibility is different:
+
+```text
+CollisionLifecycleGuard
+= after ownership/cleanup fails, make an exact stale offensive source safe
+
+AttackContinuationProtection
+= prevent the known held-Use2 destructive consequence from killing a legitimate active attack in the first place
+```
+
+Both modules may consume facts from the shared engine bridge, but they must remain independently understandable and testable. The continuation module must not become a second collision-repair owner.
 
 ## Preferred future root-fix hypothesis
 
@@ -52,6 +74,23 @@ Prefer a native execution fact if available:
 
 If yes, that execution should be the first candidate boundary for suppressing/defering the timeout consequence.
 
+The module may reuse authoritative execution facts exposed by the shared engine bridge/lifecycle architecture, but it must not mutate or redefine the C1 cleanup obligation model merely to obtain that signal.
+
+## Prerequisites before implementation
+
+Do not begin this investigation until:
+
+```text
+- Script_FrameCollisionTest has received the agreed read-only architecture review;
+- the research DLL has been modularized without semantic change and revalidated;
+- marker bookkeeping has been audited against C1 execution authority;
+- equipped-melee marker coverage has been expanded to the intended supported domain;
+- the Fist adapter question has been separately decided from evidence;
+- the resulting marker + lifecycle-guard system has passed regression.
+```
+
+This order matters because the bad-skip prevention layer should be tested against the marker/source architecture we actually intend to keep, not against an intermediate marker prototype that will immediately change underneath it.
+
 ## Required investigation before implementation
 
 Do not assume the timeout is universally invalid during attacks. First prove:
@@ -60,7 +99,8 @@ Do not assume the timeout is universally invalid during attacks. First prove:
 2. whether that timeout has any legitimate responsibility while an attack CombatMove is active;
 3. whether suppressing/defering only that destructive decision lets the attack complete through its ordinary lifecycle;
 4. whether the same timeout still behaves natively outside attacks;
-5. whether legitimate reaction/interruption FullStop and AISetState behavior remains untouched.
+5. whether legitimate reaction/interruption FullStop and AISetState behavior remains untouched;
+6. whether the prevention layer can consume shared bridge/execution facts without coupling itself to collision repair internals.
 
 If source/API/calling-convention evidence contradicts this model, stop and redesign from evidence rather than forcing this hypothesis.
 
@@ -75,6 +115,7 @@ marked full Whirl or another attack with observable collision windows
 → attack must continue through its normal marker/native lifecycle
 → collision ON/OFF/ON sequence must remain normal
 → normal native cleanup must occur
+→ C1-R1 should remain available underneath but should not need to repair this prevented case
 
 control outside attack:
 → same held-Use2 timeout still performs its native behavior
@@ -85,16 +126,22 @@ reaction control:
 
 Do not broaden implementation until those controls pass.
 
+## Compatibility boundary
+
+After this module and the mature marker/guard system pass their own regression, test the research DLL against New Balance and the relevant Jackydima DLL stack before migrating the collision system into `Script_G3AnimationBehaviors`.
+
+Compatibility is a required gate, not an optional release polish step.
+
 ## Relationship to C1-R1
 
-Even if this future root fix succeeds, **keep C1-R1**.
+Even if this future prevention layer succeeds, **keep C1-R1**.
 
 ```text
-future root fix
+AttackContinuationProtection
 = prevent this known bad-skip route from destroying a legitimate attack
 
 C1-R1
 = general fail-safe if an exact offensive source nevertheless loses its cleanup opportunity
 ```
 
-A root fix should reduce how often C1-R1 needs to act; it should not replace or weaken the validated guard.
+A prevention layer should reduce how often C1-R1 needs to act; it must not replace or weaken the validated guard.
