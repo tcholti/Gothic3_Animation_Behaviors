@@ -2,7 +2,7 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
 
-## Current bridge — C1-O2-P2-C targeted meaning test
+## Current bridge — C1-O2-P2-D broader stability
 
 C1-O2-P2 behavior implementation:
 
@@ -29,66 +29,104 @@ Built/live match: True
 
 P2-B isolated main-menu load/unload: **PASS**.
 
-Canonical active raw:
+P2-C targeted player 2H Normal + GetUpAttack meaning test: **PASS**.
 
-```text
-research/raw/2026-08-30_c1o2p2_lazy_precombat_bridge_isolated_load.log
-```
-
-The committed log contains the exact P2 startup identity, `Installing hooks...`, `Hooks installed.`, and normal `Script_FrameCollisionTest unloading.`
-
-Older processed collision logs were moved byte-for-byte from `research/raw/` to `research/archive/` at:
-
-```text
-20302dbf97cb59d52824a8496bc548122d040f1b
-```
-
-`research/raw/` now contains only `Keep.txt` and the active P2 evidence.
-
----
-
-## Current responsibility — P2-C
-
-Run only the targeted player 2H Normal + GetUpAttack meaning test.
-
-Purpose:
-
-> Prove or falsify that the legitimate early GetUp offense now acquires one C1 generation, the matching CombatMove reuses that same generation and consumes the temporary native-frame bridge before wrapper return, while later offense/cleanup remain owned by the durable generation and physical repair stays disabled.
-
-Test sequence:
-
-1. synchronize the current active branch before adding the new raw artifact;
-2. keep the currently validated P2 DLL deployed unless source/DLL identity changes;
-3. enter gameplay with the player using 2H;
-4. perform several ordinary clean 2H Normal attacks as controls;
-5. deliberately reproduce the player 2H GetUpAttack path several times, using the same controlled GetUpAttack method used for P1-C;
-6. do not deliberately add the held-Use2 stale-collision stress, marker-window tests, or broad mixed-gameplay coverage in this gate;
-7. exit Gothic 3 normally;
-8. preserve the complete runtime log byte-faithfully as:
+P2-C raw:
 
 ```text
 research/raw/2026-08-30_c1o2p2_player_2h_normal_getup_bridge_consumption.log
 ```
 
-### P2-C expected positive meaning
+P2-C evidence commit:
 
-For each legitimate initial GetUp offense:
+```text
+0697437cf9b3036367e9bdba2ec85576f86ddbe3
+```
+
+The User performed three ordinary clean 2H Normal controls followed by five GetUpAttack executions. Some GetUpAttack inputs were attempted promptly after knockdown/sit-up and some after remaining seated longer. The runtime log does not directly label the User's input-timing category, so do not invent a classifier from that variation; all five positive acquisition events converged on the same `_AI_GetUpAttack` / `OnAI_GetUpAttack` path with native `gEAction_GetUpAttack` (`30`) at the acquisition point.
+
+The five pre-Combat generations were:
+
+```text
+20
+33
+45
+54
+64
+```
+
+For each one, the log shows:
 
 ```text
 PRECOMBAT_ACQUIRED
-→ C1 OFFENSE REQUEST on that generation
-→ matching CombatMove uses SAME generation
-→ PRECOMBAT_BRIDGE_CONSUMED
-→ no PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN for that positive path
-→ no UNOWNED_PLAYER_OFFENSE_REQUEST for that initial GetUp offense
-→ later timer offense remains attributed to the durable generation
-→ native cleanup fulfills the same generation/source obligation
+→ first C1 OFFENSE REQUEST while OUTER_BOUND
+→ PRECOMBAT_BRIDGE_CONSUMED on the SAME generation
+→ later timer C1 OFFENSE REQUEST while PERSISTED
+→ C1 CLEANUP FULFILLED on the SAME generation/source
+→ AISetState finalization = NO_OP_NO_OUTSTANDING
 ```
 
-Representative ordinary 2H Normal controls must remain on the ordinary CombatMove-created generation path; they do not require a live RunScriptFunction scope at timer offense.
+Whole-run failure signals:
 
-Physical repair remains disabled throughout.
+```text
+UNOWNED_PLAYER_OFFENSE_REQUEST = 0
+PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN = 0
+C1 INVARIANT WARNING = 0
+```
 
-STOP interpretation and return to Normal Chat if the run crashes, a positive GetUp bridge reaches wrapper return unconsumed, matching CombatMove creates/replaces a different generation, or another new invariant appears.
+The three initial ordinary Normal controls remained on the ordinary CombatMove-created `_AI_Attack` generation path and cleaned normally.
 
-Do not authorize extended P2 stability testing until P2-C establishes the intended meaning.
+Physical repair remained disabled.
+
+---
+
+## Current responsibility — P2-D
+
+P2-C has proved the bounded positive meaning. The next gate is broader stability/integration coverage before C1-O2 can be called complete.
+
+Do **not** change implementation before P2-D unless the broader run exposes a contradiction.
+
+P2-D should cover the existing C1 runtime matrix rather than inventing new classification rules:
+
+```text
+ordinary clean attacks / multiple relevant weapon families
+legitimate reaction interruptions
+pre-activation interruption/no-offense cases
+known armed destructive abandonment as a positive shadow WOULD_REPAIR stress case
+later legitimate attack after stale 7 -> 7 when naturally produced
+repeated GetUpAttack opportunities when they occur
+normal traversal / draw-holster / state churn around combat
+```
+
+Expected model:
+
+```text
+pre-Combat GetUp offense
+→ temporary live-frame bridge only until matching CombatMove
+→ durable monotonic generation thereafter
+
+ordinary attacks
+→ unchanged CombatMove-created generation path
+
+successful native cleanup
+→ exact source obligation fulfilled
+
+destructive AISetState with outstanding exact live/equipped source
+→ existing shadow WOULD_REPAIR only
+```
+
+Specifically inspect for:
+
+```text
+UNOWNED_PLAYER_OFFENSE_REQUEST
+PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN
+live-frame/binding mismatch or overlap invariants
+generation replacement where reuse was expected
+NULL_ARGUMENTS / unresolved binding failures
+unexpected physical collision change
+crash / abnormal unload
+```
+
+Physical repair remains **OFF**.
+
+Do not freeze physical-repair implementation until P2-D broader stability is interpreted by Normal Chat.
