@@ -2,79 +2,58 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
 
-## Current bridge — first per-CPP architecture review CLOSED; second-pass synthesis NEXT
+## Current bridge — second-pass architecture CLOSED; rewrite contract FROZEN; unchanged runtime baseline NEXT
 
-C1-R1 controlled validation remains closed. Canonical result: **EV-206–EV-207**.
+C1-R1 controlled validation remains closed through **EV-206–EV-207**.
 
-Validated C1-R1 behavior remains unchanged:
+The complete first per-CPP review and second-pass architecture synthesis are now closed.
 
-```text
-exact outstanding source
-+ exact current equipped RIGHT/LEFT identity establishes liveness
-+ actual group == Item_Attack(7)
-→ exactly one SetCollisionGroup(Item_Equipped)
-→ no ClearTriggeredList()
-→ verify exact resulting group Item_Equipped(5)
-```
-
-Two qualifications remain explicit but do not reopen C1-R1:
+Frozen bounded rewrite contract:
 
 ```text
-1. No positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED branch.
-2. No positive NPC destructive-abandonment / C1 physical-repair case is claimed.
+docs/SECOND_PASS_REWRITE_CONTRACT.md
 ```
+
+Contract creation commit:
+
+```text
+50f0874fb51853eee910ef63c45914bc935fca88
+```
+
+**Do not implement that rewrite yet.** First run the compact runtime baseline on the current unchanged post-EngineBridge source/logger so the EngineBridge extraction is causally isolated from every later architectural/logging change.
 
 ---
 
-## Mandatory release-product separation
+## Mandatory project-wide release rule
 
-Canonical authority: `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
+Canonical authority:
 
-Project-wide rule for **all present and future Gothic 3 behavior systems**:
+```text
+docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
+```
 
-> **The public release DLL contains behavior only. Research diagnostics are a separate build product and are not compiled into the release binary.**
+> **The public Gothic 3 behavior DLL contains behavior only. Research diagnostics are a separate build product and are not compiled into the release binary.**
 
-This applies to collision, lifecycle repair, Raise, speed, AttackContinuationProtection, target acquisition, climbing and future behavior modules.
+This applies to collision, lifecycle repair, Raise, speed, AttackContinuationProtection, target acquisition, climbing and all future Gothic 3 behavior modules.
 
-Long-term product model:
+Long-term model:
 
 ```text
 shared behavior architecture
 → diagnostics-free RELEASE build
-→ separately built instrumented DIAGNOSTIC twin used in place of the release DLL during controlled testing
+→ separate instrumented DIAGNOSTIC twin used in place of release during controlled testing
 ```
 
-The eventual released `Script_G3AnimationBehaviors.dll` must contain no `CollisionDiagnostics` implementation, research logger/log strings, stack-capture/RVA research machinery, diagnostic-only state, diagnostic-only hooks, or hidden runtime diagnostic mode. Production correctness must not depend on diagnostics.
-
-Do not plan to load release and diagnostic twins together unless future architecture explicitly proves safe coexistence; preserve one physical hook owner per built DLL.
-
-This rule must be respected by every second-pass architecture decision below.
+Never plan to deploy release and diagnostic twins together unless a future architecture explicitly proves safe coexistence.
 
 ---
 
-## Structural modularization already closed
+## Closed structural work already compiler-validated
 
 ### CollisionSources extraction
 
-Implementation:
-
 ```text
 43fa1e719b5af716c54e17430c101251bbc36ff8
-```
-
-Created `CollisionSources.h/.cpp`; moved unchanged:
-
-```text
-GetEquippedCollisionSources(...)
-GetCollisionSourceUseType(...)
-HasRequiredCollisionSources(...)
-```
-
-Validation:
-
-```text
-source/diff audit = PASS
-local CMake Release build Script_FrameCollisionTest = PASS
 ```
 
 ### EngineBridge extraction
@@ -85,321 +64,315 @@ Frozen base:
 d0132b69df3add63641bc5d5fd5779f1037eaa99
 ```
 
-Implementation head before documentation-only review commits:
+Implementation head before later documentation-only commits:
 
 ```text
 32ff447c9a678ba18c8234310564ff2475ba7dfb
 ```
 
-Created `EngineBridge.h/.cpp`. `EngineBridge.cpp` owns all Gothic hooks/callback wrappers, RunScriptFunction TLS transport state and hook installation. `Script_FrameCollisionTest.cpp` is now DLL composition/init only.
-
-Preserved proven transport/order:
+Local validation already confirmed:
 
 ```text
-RunScriptFunction: scope live across original → restore → bridge retirement/logging
-AICombatMoveInstr: BeginCombatMove → original → CompleteCombatMoveCandidate
-AISetState: capture → native original → finalize after native cleanup opportunity
-SetCollisionGroup: original setter → marker retirement → C1 observation → diagnostics
+git diff --check = PASS
+CMake Release build Script_FrameCollisionTest = PASS
 ```
 
-Explicit `.ThisCall()` remains on:
+No runtime baseline has yet been run after EngineBridge extraction.
+
+---
+
+## Proven behavior that must remain unchanged
+
+### C1 lifecycle / repair
 
 ```text
-RunScriptFunction
-AISetState
-AIFullStop
+real attack execution
+→ monotonic C1 generation
+→ successful exact-source Item_Attack request creates/refreshes obligation
+→ successful later transition away from Item_Attack fulfills obligation
+→ destructive post-native-AISetState finalization checks only remaining obligations
+```
+
+Terminal repair remains exactly:
+
+```text
+exact outstanding source
++ exact current equipped RIGHT/LEFT identity establishes liveness
++ actual group == Item_Attack(7)
+→ exactly one SetCollisionGroup(Item_Equipped)
+→ no ClearTriggeredList()
+→ verify exact resulting group Item_Equipped(5)
+```
+
+Native cleanup retains first opportunity. C1's monotonic generation remains durable identity. The proven P2 live ScriptFunction frame is temporary pre-Combat correlation only.
+
+Two qualifications remain explicit but do not reopen R1:
+
+```text
+1. No positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED branch.
+2. No positive NPC destructive-abandonment / C1 physical-repair case is claimed.
+```
+
+### Marker behavior
+
+Preserve:
+
+```text
+exact current-motion marker ownership
+current Normal / Quick / full-Whirl support
+RIGHT / LEFT / BOTH / OFF exact-set semantics
+authored occurrence budgets
+same-update duplicate/replay protection
+repeated-contact ClearTriggeredList rearm
+Quick/full-Whirl StatePosition suppression
+marker-owned source/window retirement
+OFF as intra-Hit gap, not terminal cleanup
+late/dead execution rejection
+current Fist research behavior
+unmarked/unsupported native fallback
+```
+
+Do not simplify marker bookkeeping during the frozen rewrite. EV-131–EV-133 and EV-167 remain the key evidence that occurrence/execution retirement has independent proven meaning.
+
+---
+
+## Second-pass conclusions now frozen
+
+### 1. `HookBridgeRuntime` classification corrected
+
+It is **behavior infrastructure**, not diagnostics, because the marker duplicate predicate uses the elapsed-millisecond clock as part of acceptance.
+
+Frozen rewrite rename:
+
+```text
+HookBridgeRuntime.h/.cpp
+→ RuntimeClock.h/.cpp
+```
+
+Do not redesign the proven 5 ms duplicate rule in the structural rewrite.
+
+### 2. Marker module boundary
+
+Frozen rewrite rename after operation extraction:
+
+```text
+CollisionControl.h/.cpp
+→ FrameCollisionMarkers.h/.cpp
+```
+
+Marker-specific callback ownership/suppression policy moves out of EngineBridge into the marker module.
+
+### 3. New physical operation seam
+
+Create:
+
+```text
+CollisionSourceOperations.h/.cpp
+```
+
+It performs already-decided source-specific physical operations while `CollisionSources` remains factual query/resolution only.
+
+Preserve current weapon and current research Fist operations exactly; do not generalize Fist.
+
+### 4. Marker-cache correction
+
+Do not permanently cache a negative marker decision when the exact current motion or valid frame-effect scan was not resolved.
+
+Cache only factual resolved marker/no-marker decisions.
+
+### 5. Lifecycle cleanup
+
+Remove the rejected dormant eager ScriptFunction dispatch machinery:
+
+```text
+ScriptFunctionDispatchToken
+BeginScriptFunctionDispatch / EndScriptFunctionDispatch
+g_ScriptFunctionDispatchStack
+InvalidateScriptFunctionDispatchAfterAISetState
+its now-no-op EngineBridge call
+unused <vector> afterward
+```
+
+Do **not** remove the live P2 correlator structures/functions with similar names.
+
+`CollisionLifecycleGuard` becomes diagnostics-independent and returns compact factual results. Keep the fixed max-two-source finalizer classify/repair phase before any diagnostic formatting.
+
+### 6. Diagnostics split
+
+Diagnostic product:
+
+```text
+CollisionDiagnostics
+= compact default proof evidence
+
+CollisionDiagnosticsDeep
+= opt-in historical/deep probes
+```
+
+Deep candidates include PlayMotion/StopMotion motion snapshots, StartRecover, AIFullStop, broad AISetState/outer-frame stacks, native-cleanup stacks/RVAs and OnTick marker lifetime tracking.
+
+Normal diagnostic output removes stale B1–B9/O1/P1 chronology and repetitive proof-era constants.
+
+### 7. Hook surface
+
+Behavior-required current collision hooks:
+
+```text
+OnAI_Attack
+OnAI_QuickAttack
+OnAI_WhirlAttack
+StartEffect
 SetCollisionGroup
+AICombatMoveInstr
+AISetState
+RunScriptFunction
 ```
 
-Validation:
-
-```text
-bounded source/diff audit = PASS
-local CMake Release build Script_FrameCollisionTest = PASS
-```
-
-No post-EngineBridge runtime collision baseline has been run yet.
-
----
-
-## Production migration direction
-
-The mature modular research DLL is the likely architectural foundation of the eventual production `Script_G3AnimationBehaviors` DLL.
-
-Do **not** plan to pour the mature collision system back into the old v0.1 source/hook structure. After the mature research collision system passes its compatibility gate, retain the modular foundation/central hook ownership and migrate or redesign Raise, speed, config and final DLL identity into it.
-
-The final binary may still be named `Script_G3AnimationBehaviors`; implementation lineage does not require preserving the old v0.1 layout.
-
-Infrastructure names such as `HookBridgeRuntime` remain provisional until final production responsibilities are known.
-
-The same modular foundation may later host independent systems such as target acquisition and climbing, but each new system must preserve behavior/diagnostic separation from the beginning.
-
----
-
-## First per-CPP review — CLOSED
-
-All implementation files in `prototypes/Script_FrameCollisionTest/` now have a first-pass disposition.
-
-```text
-1. Script_FrameCollisionTest.cpp
-   ACCEPTED AS-IS.
-   Composition/init root only.
-
-2. EngineBridge.cpp
-   ACCEPTED for current research architecture.
-   Second-pass items:
-   - move marker-specific ownership/suppression policy into marker module;
-   - reduce diagnostic-only permanent hook surface;
-   - keep behavior-critical hook ordering/calling conventions unchanged.
-
-3. CollisionSources.cpp
-   ACCEPTED AS-IS.
-   Generic source facts only; no feature policy/state/hook ownership.
-
-4. HookBridgeRuntime.cpp
-   ACCEPTED AS-IS.
-   Currently high-resolution process-relative clock only; do not rename until final responsibility is known.
-
-5. CollisionLifecycleGuard.cpp
-   CORE C1/P2/R1 BEHAVIOR ACCEPTED.
-   Second-pass correction:
-   - remove dormant rejected eager ScriptFunction dispatch stack/API:
-     ScriptFunctionDispatchToken,
-     BeginScriptFunctionDispatch / EndScriptFunctionDispatch,
-     g_ScriptFunctionDispatchStack,
-     InvalidateScriptFunctionDispatchAfterAISetState + now-no-op EngineBridge call,
-     unused <vector> afterward.
-   Preserve the live P2 correlator machinery despite similar naming:
-   ScriptFunctionDispatchContext,
-   CaptureTopScriptFunction,
-   CaptureCurrentTopScriptFunction,
-   HasLiveCorrelator,
-   OuterFrameBinding,
-   exact pre-Combat bridge.
-   Second-pass architecture item:
-   - move lifecycle log formatting/emission out of behavior ownership while preserving two-phase reentrancy-safe finalization.
-
-6. CollisionControl.cpp
-   CORE MARKER BEHAVIOR ACCEPTED; current final boundary NOT accepted as production architecture.
-   Preserve:
-   - exact current-motion ownership;
-   - RIGHT/LEFT/BOTH/OFF exact-set semantics;
-   - authored occurrence/replay protection;
-   - repeated-contact ClearTriggeredList rearm;
-   - Quick/full-Whirl StatePosition suppression;
-   - marker-owned source/window retirement through normal SetCollisionGroup path;
-   - current Fist research behavior without generalizing it.
-   Second-pass items:
-   - fix/investigate permanent negative marker-cache hazard: current animation-name cache stores unresolved `foundMatchingMotion=false` results;
-   - classify old execution-lifetime inference against C1 authority check-by-check;
-   - move marker callback-ownership policy out of EngineBridge;
-   - decide equipped-weapon physical-source operation adapter boundary;
-   - remove temporary CollisionControl→CollisionSources diagnostic aliases;
-   - reassess final `FrameCollisionMarkers` responsibility/name only after boundaries are resolved.
-
-7. CollisionDiagnostics.cpp
-   CORE OBSERVABILITY ACCEPTED; CURRENT DEFAULT LOGGER/HOOK SURFACE REQUIRES SECOND-PASS REDESIGN.
-```
-
----
-
-## CollisionDiagnostics first-pass classification
-
-Authority: `docs/COLLISION_LOGGER_PLAN.md` plus the higher-level release rule in `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
-
-### CORE COLLISION EVIDENCE — keep in default RESEARCH/DIAGNOSTIC profile
-
-Keep compact evidence sufficient to prove:
-
-```text
-startup/build/profile identity + clean unload
-exact marker actor/current motion/action/phase/opcode
-required/resolved RIGHT/LEFT/BOTH source set
-native callback suppression ownership
-marker accepted/rejected/duplicate/budget/OFF outcome
-exact source-set switch / activation / deactivation / rearm
-StatePosition mutation where used for native suppression
-exact SetCollisionGroup source + relevant slot identity + requested/before/after
-successful offense including 7 -> 7
-successful cleanup transition away from Item_Attack
-marker-owned source retirement through SetCollisionGroup
-C1 lifecycle/generation start
-C1 exact source offense request
-C1 cleanup fulfilled
-C1 finalization outcome
-C1 repair attempted/result
-PRECOMBAT_ACQUIRED
-PRECOMBAT_BRIDGE_CONSUMED
-relevant dispatch return after early offense
-explicit marker/binding/generation/liveness/repair invariant failures
-R1 outcomes:
-  NO_OP_NO_OUTSTANDING
-  UNRESOLVED_NOT_EQUIPPED
-  NO_OP_PHYSICALLY_CLEAN_RECONCILED
-  REPAIRED_TO_ITEM_EQUIPPED
-  REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
-```
-
-Current `LogOwnershipDecision`, marker context/result and compact `LogSetCollisionGroup` contain useful core facts, but should be compressed rather than removed from the diagnostic product.
-
-`CollisionLifecycleGuard` currently formats/writes C1 logs directly. Second pass should move logging responsibility behind `CollisionDiagnostics` without moving lifecycle decisions out of the guard and without creating a generic event-bus abstraction.
-
-**None of this core diagnostic evidence belongs in the final public release binary.** It belongs only to research/diagnostic builds.
-
-### OPT-IN DEEP PROBES — retain in diagnostic product but disable by default
-
-```text
-PrimaryFirst PlayMotion / StopMotion before/after snapshots
-hit replacement stacks
-empty-primary successor stacks
-StopMotion hit stacks
-AICombatMoveStartRecover begin/end + stacks
-CombatMove FullStop stack/context
-AIFullStop caller/input-duration/primary-motion/stack context
-AISetState caller/state/primary-motion/stack context
-outer ScriptFunction/state-stack snapshots
-P1 detailed offense-scope pointer/SPU/runtime-stack snapshots
-full native cleanup caller module/RVA + stack for every exact 7 -> 5
-OnTick marker-owned PrimaryFirst lifetime tracking
-```
-
-These remain useful for a concrete future contradiction, `AttackContinuationProtection`, new cleanup/source-lifetime questions or hook-order investigation, but should not burden ordinary diagnostic runs.
-
-Where a hook exists solely for one of these probes, second pass must decide whether the hook itself is installed only in deep diagnostic mode.
-
-Current diagnostic-only hook candidates:
+Current diagnostic-only candidates:
 
 ```text
 PlayMotion
 StopMotion
 AICombatMoveStartRecover
 OnTick
-AIFullStop  [diagnostic-only today; may become behavior-relevant later for AttackContinuationProtection]
+AIFullStop
 ```
 
-Behavior-critical hooks such as SetCollisionGroup, AISetState, RunScriptFunction, CombatMove, StartEffect and attack-family callbacks remain installed regardless of diagnostic profile because they belong to behavior architecture. Release builds include only hooks actually required by behavior.
+`AIFullStop` remains a proven explicit-this transport point and may become behavior-required later for `AttackContinuationProtection`, but current collision behavior does not require it.
 
-### OBSOLETE HISTORICAL NOISE — remove from normal diagnostic implementation/output
+### 8. Mechanical diagnostics-free prototype build
 
-The current startup banner contains large experiment chronology and stale statements, including historical B1–B9/O1/P1 banners and the now-false `C1 SHADOW ... WOULD_REPAIR only; no physical repair` statement. Replace with compact current build/profile/feature identity.
-
-Also remove or collapse repetitive proof-era fields whose durable conclusion is already canonical evidence and that do not answer a current runtime question, e.g. repeated:
+Frozen rewrite adds a behavior-only prototype target, provisionally:
 
 ```text
-CleanupBehaviorChanged: 0
-LifecycleBehaviorChanged: 0
-CollisionBehaviorChanged: 0
-TopEntryAddressIsExecutionIdentity: 0
-ArgumentsDereferencedOrClassified: 0
-TLSRestoredBeforeLog: 1
-ScopePersistedAfterReturn: 0
-constant Item_Attack/Item_Equipped value labels on every event
-large repeated player action/pose/state/source blocks when a compact exact-source transition already answers the question
+Script_FrameCollisionBehaviorTest
 ```
 
-Do not delete a useful deep probe merely because it is verbose; gate it instead.
+Existing `Script_FrameCollisionTest` remains the diagnostic research target unless a concrete build-system contradiction requires otherwise.
 
-### Diagnostic dependency cleanup
+The behavior-only target must not compile/link diagnostic source/state/hooks.
 
-Second pass should remove the temporary source-query aliases in `CollisionControl.h`. Diagnostics should consume direct `CollisionSources` facts or, preferably, factual result structures already produced by behavior modules rather than re-querying behavior ownership through aliases.
-
-Diagnostic state (`g_LastLoggedAni`, `g_LifetimeStateByActor`) must remain observation-only. `g_LifetimeStateByActor` belongs to deep mode; disabling/removing deep diagnostics must not change marker/lifecycle behavior.
-
-The final RELEASE target must not compile either state or the diagnostics implementation at all.
+Never deploy both targets together into Gothic 3's live `scripts` directory.
 
 ---
 
-## Mandatory second-pass architecture/correction synthesis — NEXT
+## Current exact gate — unchanged post-EngineBridge runtime baseline
 
-The User explicitly requested a second review so unnecessary baggage is resolved while the complete architecture is still fresh rather than being carried across more chat boundaries.
-
-This second pass remains **read-only for source** until one coherent rewrite contract is frozen.
-
-Required synthesis questions:
+Before any rewrite source edit:
 
 ```text
-A. EngineBridge
-- exact factual bridge API vs marker-policy leakage
-- production-required hook set vs diagnostic-only hook set
-- build separation must allow release target to omit diagnostic-only hooks entirely
-
-B. CollisionLifecycleGuard
-- remove rejected dormant dispatch machinery
-- define clean diagnostics emission boundary without changing C1 ownership/finalization
-- guard must remain correct when diagnostics are not compiled
-
-C. CollisionControl / future FrameCollisionMarkers
-- resolve marker-cache negative-caching hazard
-- C1-vs-marker execution lifetime responsibilities
-- callback suppression ownership API
-- physical-source adapter boundary
-- temporary alias removal
-- marker module must remain correct without diagnostic consumers
-
-D. CollisionDiagnostics
-- compact Core vs opt-in Deep profile for the DIAGNOSTIC product
-- move expensive capture behind profile checks
-- reduce default diagnostic log volume while preserving diagnostic sufficiency contract
-- centralize C1 formatting without changing behavior
-- diagnostic source/state/hooks must be absent from RELEASE target
-
-E. Production foundation
-- decide whether any file/module names should change now or remain provisional
-- preserve this mature modular foundation as the eventual Script_G3AnimationBehaviors base
-- define build-target separation: shared behavior core + mutually exclusive diagnostics-free RELEASE and instrumented DIAGNOSTIC products
-- apply the same rule to future target-acquisition, climbing and other systems
+1. pull current branch
+2. git diff --check
+3. build current Script_FrameCollisionTest Release target
+4. deploy only the intended current DLL
+5. run the compact baseline below with the current unchanged logger
+6. exit Gothic 3 cleanly
+7. place the raw log unchanged in research/raw/
+8. report completion; do not paste the large log into Chat
 ```
 
-If the frozen rewrite is broad, Normal Chat owns the architecture and should write the exact implementation contract into this file; Work/High may then perform the bounded rewrite but must not redesign it independently.
+Baseline meaning must cover, in one compact session where practical:
+
+```text
+A. ordinary melee completion with native cleanup/no repair
+B. one known destructive stale-source case that produces exact C1-R1 repair
+C. one legitimate reaction interruption with native cleanup/no repair
+D. one marked Staff RIGHT/OFF/RIGHT regression
+E. one Dual source-specific case
+F. one Fist/unarmed negative
+G. one crossbow negative
+H. clean shutdown
+```
+
+Exact raw filename for this baseline:
+
+```text
+research/raw/2026-08-30_post_enginebridge_unchanged_compact_collision_baseline.log
+```
+
+This is **not** a reopened R1 validation matrix. It is a compact structural sentinel proving the already-completed EngineBridge extraction before the frozen rewrite changes architecture/observation.
+
+If a concrete runtime contradiction appears, STOP and diagnose it before rewrite implementation.
 
 ---
 
-## Sequencing rule — preserve causal attribution
+## After baseline PASS
 
-Do **not** implement the second-pass rewrite before proving the already-built EngineBridge structural extraction at runtime.
+Normal Chat records baseline meaning/evidence first.
 
-Preferred sequence now:
+Then the frozen rewrite in `docs/SECOND_PASS_REWRITE_CONTRACT.md` may be implemented as one bounded semantic-preserving transaction.
+
+If Work/High is used:
 
 ```text
-first per-CPP review — CLOSED
-→ second-pass architecture/correction synthesis — READ-ONLY / NEXT
-→ freeze exact rewrite contract
-→ compact post-EngineBridge runtime baseline on CURRENT UNCHANGED SOURCE/LOGGER
-→ if baseline passes: bounded architecture/logger rewrite
-→ build + source audit
-→ compact/core diagnostic sufficiency regression on DIAGNOSTIC build
-→ only then marker-bookkeeping simplification/feature expansion
+Normal Chat owns the architecture and frozen contract.
+Work executes only that contract.
+Work must not redesign marker/lifecycle/source semantics or expand features.
 ```
 
-Reason: the second-pass thinking should happen now while context is fresh, but the unchanged runtime baseline must still isolate the already-completed EngineBridge structural move from later observation/architecture changes.
+Required post-rewrite source/build gate:
+
+```text
+git diff --check
+bounded contract audit
+build Script_FrameCollisionTest
+build Script_FrameCollisionBehaviorTest
+verify behavior-only target excludes diagnostic sources/hooks
+```
+
+Then run compact diagnostic sufficiency regression. Only after that passes, run a small behavior-only smoke/equivalence test. Only after both pass may the separate C1-vs-marker simplification audit begin.
 
 ---
 
-## Forward roadmap after second-pass cleanup
+## Explicit rewrite non-goals
+
+Do not combine the frozen rewrite with:
 
 ```text
-second-pass synthesis
-→ unchanged post-EngineBridge baseline
-→ bounded architecture/logger/build-separation rewrite
-→ build/source audit
-→ core diagnostic sufficiency regression
-→ marker-bookkeeping simplification audit against C1 authority
+C1-driven marker simplification
+new attack-family marker support
+new marker vocabulary
+new Fist semantics / generalized Fist support
+monster/body adapters
+AttackContinuationProtection
+Raise
+speed
+config redesign
+New Balance / Jackydima compatibility fixes
+production DLL migration
+target acquisition
+climbing
+unrelated hook transport rewrites
+```
+
+---
+
+## Forward order
+
+```text
+unchanged post-EngineBridge runtime baseline — NEXT
+→ freeze/publish baseline evidence meaning
+→ implement SECOND_PASS_REWRITE_CONTRACT
+→ diagnostic + behavior-only build/source audit
+→ compact diagnostic sufficiency regression
+→ behavior-only smoke/equivalence
+→ dedicated C1-vs-marker bookkeeping simplification audit
 → equipped-melee marker expansion one mechanism at a time
-→ separate Fist source-adapter investigation/decision
+→ separate Fist source-adapter investigation
 → full marker + lifecycle regression
-→ modular AttackContinuationProtection investigation/implementation
+→ AttackContinuationProtection
 → guard + markers + continuation regression
-→ mandatory New Balance/Jackydima compatibility on mature diagnostic/research DLL
+→ mature research New Balance/Jackydima compatibility gate
 → retain mature modular foundation and migrate/redesign Raise + speed + config
-→ add future modules such as target acquisition/climbing under the same architecture
-→ final diagnostics-free Script_G3AnimationBehaviors release target
-→ final release + New Balance/Jackydima compatibility regression
-→ retain separate instrumented diagnostic twin for future controlled reproduction
+→ later independent systems such as target acquisition/climbing
+→ final diagnostics-free Script_G3AnimationBehaviors
+→ final New Balance/Jackydima regression
+→ retain separate diagnostic twin for future controlled reproduction
 ```
 
-Overall architecture authority: `docs/DESIGN.md` §§10–11.  
-Release/build separation authority: `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
-Lifecycle authority: `docs/COLLISION_LIFECYCLE_PLAN.md`.  
-Diagnostic authority: `docs/COLLISION_LOGGER_PLAN.md`.  
-Staged validation authority: `docs/COLLISION_TEST_PLAN.md`.  
-Future held-Use2 prevention: `docs/BAD_SKIP_FUTURE_INVESTIGATION.md`.
+Architecture/rewrite authority: `SECOND_PASS_REWRITE_CONTRACT.md`.  
+Release/build separation authority: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
+Lifecycle authority: `COLLISION_LIFECYCLE_PLAN.md`.  
+Diagnostic authority: `COLLISION_LOGGER_PLAN.md`.  
+Validation authority: `COLLISION_TEST_PLAN.md`.  
+Future held-Use2 prevention: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
