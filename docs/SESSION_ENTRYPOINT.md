@@ -225,52 +225,105 @@ Neither qualification reopens R1. Do not invent another broad matrix solely to f
 
 ---
 
-## Current Immediate Responsibility — Read-Only Architecture / Code Review
+## Architecture Review — COMPLETE
 
-Do **not** migrate C1-R1 directly into `src/Script_G3AnimationBehaviors` and do not begin a refactor yet.
-
-Normal Chat should now perform a bounded but complete read-only architecture review of:
+The bounded read-only review of:
 
 ```text
 prototypes/Script_FrameCollisionTest/
 src/Script_G3AnimationBehaviors/
 ```
 
-The current source already shows useful separation (`CollisionControl`, `CollisionLifecycleGuard`, `CollisionDiagnostics`, `HookBridgeRuntime`) and a main research file that owns the physical hooks. The review must determine whether those boundaries are clean enough for future modular growth and where research instrumentation is still entangled with behavior.
+is complete. Exact findings and the frozen first refactor are recorded in `docs/BETWEEN_CHATS.md`.
 
-Required review classification:
+Durable conclusions:
 
 ```text
-1. shared engine hooks / calling-convention-safe transport
-2. validated CollisionLifecycleGuard production semantics
-3. frame-marker ownership/control semantics
-4. physical source adapters / equipped weapon vs Fist separation
-5. research-only diagnostics/probes and hooks that production does not need
-6. historical marker execution/window checks that may be redundant under C1 execution identity
-7. marker invariants that remain independently necessary
-8. existing Script_G3AnimationBehaviors module/config/hook structure
-9. New Balance / Jackydima shared-hook compatibility risks, especially current AttackSpeed
+- the research DLL already has a viable modular core and should be refactored, not rewritten;
+- Script_FrameCollisionTest.cpp is currently the real shared engine-hook owner;
+- HookBridgeRuntime is only the research clock, not yet an engine bridge;
+- proven hook pre/original/post ordering and explicit-this transport are semantic constraints;
+- CollisionControl mixes marker logic with generic source queries and is the first safe decoupling target;
+- CollisionLifecycleGuard should not depend on marker-control code for generic equipped-source lookup;
+- some marker lifetime inference may later be replaceable by C1, but independent marker invariants remain necessary;
+- current Fist behavior is already source-specific and must not be forced into weapon Item_Attack semantics;
+- production AttackRaise/AttackSpeed files are separate but directly own hooks and duplicate matching logic;
+- current AttackSpeed direct GetAnimationSpeedModifier hook remains a New Balance compatibility concern.
 ```
 
-No source edit is authorized by this phase. The output should be a specific proposed module boundary and the **smallest behavior-preserving research-DLL refactor** to freeze next.
-
-Target architecture rule:
+Target architecture rule remains:
 
 > **One DLL may contain multiple independent behavior modules, but one central engine-bridge layer owns each shared Gothic hook. Feature modules consume authoritative engine events/facts; they do not compete with one another for the same physical hook.**
 
-Detailed roadmap: `docs/DESIGN.md` §§10–11.  
-Exact transient handoff: `docs/BETWEEN_CHATS.md`.
+---
+
+## Current Immediate Responsibility — Frozen Generic Collision-Source Extraction
+
+Implement **only** the first low-risk structural seam in:
+
+```text
+prototypes/Script_FrameCollisionTest/
+```
+
+Create:
+
+```text
+CollisionSources.h
+CollisionSources.cpp
+```
+
+Move exactly these existing generic query functions out of `CollisionControl` into `FrameCollision::CollisionSources`, with unchanged logic:
+
+```text
+GetEquippedCollisionSources(Entity &actor)
+GetCollisionSourceUseType(Entity &source)
+HasRequiredCollisionSources(EquippedCollisionSources const &sources, unsigned int requiredMask)
+```
+
+Update only necessary includes/call sites in:
+
+```text
+CollisionControl
+CollisionLifecycleGuard
+CollisionDiagnostics
+Script_FrameCollisionTest main/bridge
+CMake source list
+```
+
+Do **not** change:
+
+```text
+hook objects/wrappers/targets/calling conventions
+RunScriptFunction TLS scope
+AICombatMoveInstr ordering
+AISetState capture/original/finalize ordering
+SetCollisionGroup original/marker-retirement/C1-observation ordering
+C1-R1 repair re-entry
+marker maps/budgets/windows/StatePosition/rearm semantics
+Fist behavior
+FrameCollisionShared types/source masks
+diagnostics behavior/log vocabulary
+suspected dead dispatch code
+marker cache behavior
+marker-family support
+bad-skip behavior
+production DLL / Raise / speed behavior
+```
+
+This first step exists only to remove the lifecycle guard's dependency on marker-control code and establish a generic source-module seam before higher-risk hook extraction.
+
+Required implementation handling is in `BETWEEN_CHATS.md`. No Gothic 3 runtime matrix is required for this source-query extraction alone; build/source audit is required. The larger structural phase gets compact runtime revalidation after the subsequent real engine-hook extraction boundary.
 
 ---
 
-## Agreed Forward Direction After Review
+## Agreed Forward Direction
 
-Do not treat this as authorization to skip directly to a later step. Each phase is frozen separately and may be course-corrected by source/runtime evidence.
+Each phase is frozen separately and may be course-corrected by source/runtime evidence.
 
 ```text
-read-only full architecture/code review
-→ semantic-preserving modular refactor of Script_FrameCollisionTest
-→ compact collision-baseline revalidation
+generic CollisionSources query extraction
+→ extract/define real central EngineBridge while preserving proven hook order/reentrancy
+→ compact collision-baseline runtime revalidation
 → marker-bookkeeping simplification audit against C1 authority
 → equipped-melee marker expansion one mechanism at a time
 → separate Fist source-adapter investigation/decision
@@ -316,7 +369,7 @@ All addresses are tested-build-specific.
 
 | Need | Open |
 |---|---|
-| current exact architecture-review handoff | `BETWEEN_CHATS.md` |
+| current exact frozen source-extraction task | `BETWEEN_CHATS.md` |
 | modular target / agreed implementation order | `DESIGN.md` §§10–11 |
 | staged validation / closed R1 acceptance | `COLLISION_TEST_PLAN.md` |
 | active causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
@@ -325,7 +378,7 @@ All addresses are tested-build-specific.
 | lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | future held-Use2 prevention | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
 | native cleanup semantics/RVAs | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
-| source/API/New Balance lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/reference material as needed |
+| source/API/New Balance/hook transport lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/reference material as needed |
 | recurring local operations | `PROJECT_OPERATING_PROCEDURES.md` |
 | bounded Work implementation rules | `WORK_IMPLEMENTATION_PROTOCOL.md` |
 | naming/gate conventions | `PROJECT_PIPELINE.md` |
