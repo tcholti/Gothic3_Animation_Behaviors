@@ -14,7 +14,9 @@ The active behavior domains are:
 2. attack playback-speed control;
 3. authored-frame collision control.
 
-This file defines the **intended architecture and current implementation order**. It does not preserve experiment chronology. For proof history and exact tested claims use `EVIDENCE_INDEX.md` → the evidence ledgers/raw logs. For the current collision-lifecycle model use `COLLISION_LIFECYCLE_PLAN.md`; for staged collision validation use `COLLISION_TEST_PLAN.md`.
+Future independent behavior domains may include target acquisition, climbing and other animation/gameplay systems.
+
+This file defines the **intended architecture and current implementation order**. It does not preserve experiment chronology. For the exact current bounded rewrite use `SECOND_PASS_REWRITE_CONTRACT.md`; for proof history use `EVIDENCE_INDEX.md` → the evidence ledgers/raw logs; for lifecycle use `COLLISION_LIFECYCLE_PLAN.md`; for staged validation use `COLLISION_TEST_PLAN.md`.
 
 The pre-information-architecture design, including detailed prototype chronology, is preserved at:
 
@@ -77,14 +79,22 @@ Engine bridge / hook transport
 Behavior modules
     own Raise / speed / marker / lifecycle / continuation decisions
 
-Physical source adapters
-    translate a behavior decision into the correct source-specific engine operation
+Source facts
+    identify current physical sources and source metadata
+
+Physical source operations
+    translate an already-decided behavior request into source-specific engine operations
+
+Runtime infrastructure
+    provides behavior-required neutral services such as monotonic timing
 
 Diagnostics
-    observe and record facts
+    observe and record facts in diagnostic builds only
 ```
 
-Diagnostics must remain removable/reducible without changing production behavior.
+Production behavior must remain correct when diagnostics are **not compiled**.
+
+Canonical release/build rule: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
 ### DP-06 — Preserve proven paths while expanding
 
@@ -111,6 +121,18 @@ Feature modules consume authoritative bridge events/facts; they do **not** indep
 This rule is especially important for shared lifecycle/control paths such as `RunScriptFunction`, CombatMove, `AISetState`, `AIFullStop`, `SetCollisionGroup`, animation callbacks and future speed/compatibility interception points.
 
 A module may be enabled/disabled or replaced without redefining another module's semantic responsibility.
+
+### DP-11 — Diagnostics-free release product
+
+Every released Gothic 3 behavior DLL contains behavior only.
+
+```text
+shared behavior architecture
+→ diagnostics-free RELEASE build
+→ separate instrumented DIAGNOSTIC twin used in place of release during controlled testing
+```
+
+The public release must not compile diagnostic source/state/hooks merely because research builds historically used them.
 
 ---
 
@@ -199,6 +221,8 @@ If no reserved G3AB collision marker is present, custom frame collision does not
 
 If a reserved marker is present and the relevant native callback/action/phase/source preflight succeeds, that exact execution opts into authored collision timing and its competing native timed activation must be suppressed.
 
+Marker-specific callback ownership policy belongs to `FrameCollisionMarkers`, not to the transport-only EngineBridge.
+
 ### 6.2 Frozen equipped-slot marker vocabulary
 
 ```text
@@ -226,17 +250,13 @@ Authoring rules:
 - keep OFF and a later activation on different frames;
 - a repeated source marker later in the same Hit is a new authored contact and rearms that source with `ClearTriggeredList()`;
 - marker timing is animation-specific, not a universal fixed offset;
-- do not create action-specific marker names such as Power/Quick/Whirl RIGHT variants; action-family support belongs in the adapter/ownership layer, not the marker vocabulary.
+- do not create action-specific marker names such as Power/Quick/Whirl RIGHT variants; action-family support belongs in the ownership layer, not the marker vocabulary.
 
 Body/Fist/monster marker vocabulary remains separate and must not be invented before its source model is understood.
 
 ### 6.3 Physical source model
 
-Equipped weapon sources use the corresponding equipped entity and weapon-style offensive collision operation.
-
-Fist/body contact is **not** assumed to use the same physical collision-group mechanism. Controlled Fist evidence shows logical rearm/contact can work while the logical Fist entity remains outside weapon-style `Item_Attack` group handling.
-
-Treat weapon activation and body/Fist rearm as separate source adapters behind one higher collision-control responsibility.
+Source identity/facts and source mutation are separate layers.
 
 Conceptually:
 
@@ -244,19 +264,35 @@ Conceptually:
 FrameCollisionMarkers
     ↓ desired source set / authored contact
 CollisionSources
-    ├─ EquippedWeaponSourceAdapter
-    │    weapon Item_Attack / Item_Equipped semantics
+    ↓ factual RIGHT/LEFT entity + UseType/source availability
+CollisionSourceOperations
+    ├─ equipped weapon operations
+    │    Item_Attack / Item_Equipped
     │    repeated-contact ClearTriggeredList rearm
-    └─ FistSourceAdapter [only if separately proven]
-         no forced weapon collision-group mutation
-         Fist-specific rearm/contact semantics
+    └─ current research Fist operation
+         no forced weapon Item_Attack mutation
+         preserve existing ClearTriggeredList behavior
 ```
+
+`CollisionSources` does **not** own marker policy or mutation.
+
+`CollisionSourceOperations` does **not** decide attack family, marker ownership or desired source set.
+
+Fist/body contact is not assumed to use the same physical collision-group mechanism. Controlled Fist evidence shows logical rearm/contact can work while the logical Fist entity remains outside weapon-style `Item_Attack` group handling.
+
+A generalized `FistSourceAdapter` remains a later separately proven responsibility.
 
 ### 6.4 Repeated contacts
 
 A weapon/entity visit list can suppress repeated damage to the same target. Repeated authored contacts therefore rearm the selected logical source through `ClearTriggeredList()`.
 
 `BOTH` rearms both selected sources at that authored moment; it is not a substitute for later repeated source markers.
+
+### 6.5 Marker decision caching
+
+Only cache a marker/no-marker decision after the exact current motion is resolved and the frame-effect scan is valid enough to establish a factual result.
+
+Do not permanently cache a transient unresolved-motion failure as a negative marker decision.
 
 ---
 
@@ -312,7 +348,7 @@ outstanding exact source
 
 No `ClearTriggeredList()` is part of terminal cleanup. Trigger-list clearing remains activation/rearm behavior.
 
-C1-R1 controlled validation is **closed** through EV-207. Direct evidence covers targeted positive repair, reaction precedence, pre-activation no-offense, GetUp bridge/cleanup, GetUpParade, Dual source specificity, marked-source terminal repair, broad mixed player/NPC stability, Fist/body separation and crossbow negative behavior. Bow and magic also received supplemental negative regression coverage.
+C1-R1 controlled validation is **closed** through EV-207.
 
 The outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch remains fail-closed and is not claimed positively runtime-exercised. Natural NPC combat/Staff marker traffic supports actor-general stability, but no positive NPC destructive-abandonment physical-repair case is claimed.
 
@@ -327,17 +363,7 @@ Do not implement family-specific cleanup matrices, timers, polling, held-Use2 cl
 
 ### Known bad-skip root relationship
 
-The known held-Use2 destructive route is a separate future prevention responsibility. C1-R1 deliberately fails closed after ownership has already been destroyed; it does not attempt to resurrect that attack.
-
-The future module is provisionally named:
-
-```text
-AttackContinuationProtection
-```
-
-It should ask whether the destructive FullStop/state-replacement consequence can be suppressed/deferred while a real attack CombatMove is active without changing legitimate reactions or non-attack held-Use2 behavior.
-
-It must **not** be implemented inside `CollisionLifecycleGuard`. Both modules may consume facts from the shared engine bridge, but their responsibilities remain independent:
+The known held-Use2 destructive route is a separate future prevention responsibility.
 
 ```text
 AttackContinuationProtection
@@ -347,9 +373,9 @@ CollisionLifecycleGuard
 = make an exact stale offensive source safe if cleanup is nevertheless lost
 ```
 
-Authority: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
+`AttackContinuationProtection` must not be implemented inside `CollisionLifecycleGuard`. Even if prevention later succeeds, keep C1-R1 as the general lost-cleanup fail-safe.
 
-Even if such prevention later succeeds, keep C1-R1 as the general lost-cleanup fail-safe.
+Authority: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
 
 ---
 
@@ -357,9 +383,9 @@ Even if such prevention later succeeds, keep C1-R1 as the general lost-cleanup f
 
 The marker occurrence/duplicate/window state used to survive Gothic frame-effect replay is a different responsibility from physically returning a stale offensive source to a safe state.
 
-A natural/native source reset may retire marker bookkeeping when it proves the old execution ended. Intentional intra-Hit OFF/source switching must not retire the entire execution.
+A natural/native source reset may retire marker bookkeeping when it proves the old execution ended. Intentional OFF or exact-set source switching must not retire the entire execution.
 
-Existing marker bookkeeping fixes are proven behavior and must remain until a stronger authority replaces them. In particular, current code must continue to preserve:
+Existing marker bookkeeping fixes are proven behavior and must remain until a stronger authority replaces them. Preserve:
 
 - `Routine.StatePosition` advancement after custom ownership where required to suppress Gothic's competing timed activation;
 - repeated-marker / repeated-contact rearm semantics;
@@ -367,29 +393,27 @@ Existing marker bookkeeping fixes are proven behavior and must remain until a st
 - exact-set RIGHT/LEFT/BOTH/OFF switching;
 - interruption/dead-execution rejection so one execution's marker state does not survive into another.
 
-The C1-R1 marked Staff regression proves terminal physical repair can pass through the existing SetCollisionGroup observation path, retire the existing marker-owned source bookkeeping, reject late callbacks from the abandoned execution, and allow the next legitimate marked attack to begin fresh.
+EV-131–EV-133 prove a real interrupted-execution occurrence-budget defect and its natural marker-owned source-retirement correction. EV-167 explicitly separates this marker-bookkeeping retirement from physical cleanup.
 
-The proven C1 generation now creates a legitimate **simplification question**: some old marker state may have existed only to infer execution lifetime before a stronger native-backed execution identity was available.
+The C1 generation creates a legitimate **later simplification question**, but not authority to delete marker execution protections during the frozen structural rewrite.
 
-The simplification audit must classify each check into one of two groups:
+The later simplification audit must classify each check into:
 
 ```text
-A. execution-lifetime inference now genuinely superseded by C1/native execution authority
-B. independent marker invariant still required for authored behavior/replay/rearm/native suppression
+A. execution-lifetime inference genuinely superseded by C1/native authority
+B. independent marker invariant still required
 ```
 
-Only group A may be removed. Group B must remain even if the code can technically be shortened.
+Only group A may be removed.
 
-Before any marker-core consolidation or reimplementation, use this retrieval route:
+Before any marker-core consolidation/reimplementation:
 
 ```text
 EVIDENCE_INDEX.md
 → Marker execution lifetime / bookkeeping
-→ future marker-core simplification / native execution boundary
+→ EV-131–EV-133 / EV-167
 → COLLISION_LIFECYCLE_PLAN.md §9
 ```
-
-Do not equate `m_pfInstrCallback == sAICombatMoveInstr` alone with exact marked-Hit identity, and do not remove proven marker protections unless the replacement preserves their historical regressions/invariants.
 
 ---
 
@@ -404,7 +428,7 @@ When another mod owns the same engine function/path, choose deliberately among:
 - a proven chain-safe mechanism;
 - a documented replacement/integration path.
 
-Unmarked/unconfigured attacks must remain compatible with native behavior and should not be made dependent on the research logger.
+Unmarked/unconfigured attacks must remain compatible with native behavior.
 
 Compatibility with New Balance and the relevant Jackydima DLL stack is a **required project constraint**.
 
@@ -426,91 +450,121 @@ Passing Gate 1 does not prove the final speed/Raise assembly compatible. Passing
 
 ## 10. Target Modular DLL Architecture
 
-The research DLL should first be refactored toward the architecture eventually required by `Script_G3AnimationBehaviors`, without changing behavior.
+The mature research behavior core is the architectural ancestor of the eventual production `Script_G3AnimationBehaviors` DLL.
 
-Conceptual target:
+Conceptual behavior core:
 
 ```text
 Script_FrameCollisionTest / later Script_G3AnimationBehaviors
 │
-├─ EngineBridge / EngineHooks
-│    sole owner of shared Gothic hooks
-│    performs calling-convention-safe transport
-│    publishes authoritative engine events/facts
-│
-├─ CollisionLifecycleGuard
-│    C1 generation / execution identity
-│    exact per-source offense obligations
-│    native-cleanup observation
-│    terminal exact 7 -> 5 fail-safe
+├─ EngineBridge
+│    sole owner of behavior-required shared Gothic hooks
+│    calling-convention-safe transport
+│    publishes factual native context/events
+│    no marker/lifecycle/source policy
 │
 ├─ FrameCollisionMarkers
 │    exact current-motion marker ownership
+│    current attack-family eligibility / callback ownership
 │    RIGHT / LEFT / BOTH / OFF semantics
-│    authored occurrence/replay/rearm behavior
+│    authored occurrence/replay/duplicate bookkeeping
 │    competing native activation suppression
+│    marker-owned source/window bookkeeping
 │
 ├─ CollisionSources
-│    EquippedWeaponSourceAdapter
-│    later FistSourceAdapter only if proven
+│    factual current RIGHT/LEFT source identity / UseType / availability
+│
+├─ CollisionSourceOperations
+│    source-specific physical operations already requested by marker behavior
+│
+├─ CollisionLifecycleGuard
+│    C1 generation / durable execution identity
+│    P2 temporary pre-Combat correlator
+│    exact per-source offense obligations
+│    native-cleanup observation
+│    terminal exact 7 -> 5 fail-safe
+│    no diagnostic dependency
+│
+├─ RuntimeClock
+│    behavior-required monotonic elapsed-time service
+│    current same-update duplicate-marker timing support
 │
 ├─ AttackContinuationProtection [later]
-│    held-Use2 destructive-consequence prevention
-│    no collision-repair ownership
 │
 ├─ AttackRaise [later production module]
-│
 ├─ AttackSpeed [later production module]
-│
-├─ Config
-│
-└─ Diagnostics
-     observer only
-     research verbosity separable from production behavior
+├─ Config [later production]
+├─ TargetAcquisition [future]
+└─ Climbing [future]
 ```
 
-Module boundaries do not require one file per box, but responsibilities should be explicit enough that a future change to one feature does not silently redefine another feature's behavior.
+Research/validation product adds diagnostics around the same behavior core:
 
-The first modular refactor is **structural only**. It must not combine source movement with marker expansion, marker simplification, bad-skip prevention, Raise changes, speed changes, or production migration.
+```text
+CollisionDiagnostics
+= compact default proof evidence
+
+CollisionDiagnosticsDeep
+= opt-in deep probes / diagnostic-only hooks
+```
+
+Public release product:
+
+```text
+same mature behavior architecture
++ production config/features
+- all diagnostic source/state/hooks/strings
+```
+
+The release and instrumented diagnostic twin are mutually exclusive runtime products unless a future architecture explicitly proves coexistence safe.
+
+Canonical release rule: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
+
+Exact current rewrite contract: `SECOND_PASS_REWRITE_CONTRACT.md`.
 
 ---
 
 ## 11. Current Implementation Order
 
-This order is the currently agreed roadmap. It is deliberately course-correctable: source/API/runtime evidence may change a later step, but a later destination does not authorize skipping earlier validation boundaries.
+This is the current agreed roadmap. A later destination does not authorize skipping an earlier validation boundary.
 
-1. **Read-only architecture/code review.** Review all current `prototypes/Script_FrameCollisionTest` source plus the existing `src/Script_G3AnimationBehaviors` structure. Classify production semantics, research diagnostics, hook transport, lifecycle ownership, marker ownership, physical-source handling, potentially redundant marker-lifetime inference, and third-party hook conflicts. No source edit in this phase.
-2. **Freeze and perform a semantic-preserving modular refactor of `Script_FrameCollisionTest`.** Central engine bridge remains the sole hook owner; feature modules consume bridge events/facts; diagnostics stay observer-only. Do not add behavior.
-3. **Revalidate the collision baseline after structural refactor.** Use compact positive/no-op/marker/source sentinels from `COLLISION_TEST_PLAN.md`; do not rerun the entire R1 research program by default.
-4. **Audit marker bookkeeping against C1 execution authority.** Remove only checks proven to duplicate execution-lifetime inference; preserve independent marker ownership, occurrence/replay, StatePosition, exact-set switching, repeated-contact rearm and dead-execution protections.
-5. **Expand markers across intended equipped-melee attack mechanisms one at a time.** Keep the existing RIGHT/LEFT/BOTH/OFF vocabulary. For each new family/mechanism, preserve previous marker behavior, native no-marker fallback and lifecycle-guard safety.
-6. **Investigate Fist as a separate source adapter.** Only after equipped-melee coverage is stable, prove whether authored Fist timing/rearm is safe. Do not force Fist through weapon-style `Item_Attack` semantics.
-7. **Run a complete marker + lifecycle-guard regression.** Establish that the matured marker/source system still preserves the closed C1-R1 contract.
-8. **Investigate/implement modular `AttackContinuationProtection`.** Only now pursue the held-Use2 prevention hypothesis as a module separate from `CollisionLifecycleGuard`; preserve timer/native behavior where possible and keep C1-R1 underneath.
-9. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, native reactions, non-attack held-Use2 control and collision cleanup.
-10. **Mandatory New Balance/Jackydima compatibility gate on the mature research DLL.** Resolve shared-hook/callback conflicts deliberately; do not rely on load order.
-11. **Redesign `src/Script_G3AnimationBehaviors` around the same modular engine-bridge/event architecture and migrate the proven collision modules.** Production migration happens only after the mature research collision system passes compatibility.
-12. **Keep Raise and speed as independent production modules.** Generalize Raise only after collision migration is stable. Re-evaluate AttackSpeed's current direct `GetAnimationSpeedModifier` hook against New Balance before final speed implementation; do not carry the v0.1 hook forward merely because it once proved speed control feasible.
-13. **Final full production compatibility/regression.** Test the assembled `Script_G3AnimationBehaviors`—collision, continuation protection, Raise, speed and configuration—with New Balance/relevant Jackydima DLLs before stable promotion.
+1. **Unchanged post-EngineBridge runtime baseline — NEXT.** Current source and current logger only. Prove the already-completed EngineBridge extraction using the compact sentinel matrix in `COLLISION_TEST_PLAN.md` / `BETWEEN_CHATS.md`.
+2. **If baseline passes, implement the frozen semantic-preserving second-pass rewrite.** Exact authority: `SECOND_PASS_REWRITE_CONTRACT.md`. This includes RuntimeClock rename, FrameCollisionMarkers boundary, CollisionSourceOperations, cache correction, dead lifecycle dispatch removal, diagnostics-independent lifecycle, compact/deep diagnostic separation and a diagnostics-free behavior-only prototype build.
+3. **Build/source audit both prototype products.** Diagnostic target + behavior-only target; release-purity architecture must be mechanically enforceable.
+4. **Compact diagnostic sufficiency regression.** Default diagnostic output must still prove core marker/source/C1 invariants without deep probes.
+5. **Behavior-only smoke/equivalence.** Prove behavior does not depend on diagnostics.
+6. **Dedicated marker-bookkeeping audit against C1 authority.** Remove only checks proven to duplicate execution-lifetime inference; preserve independent marker invariants.
+7. **Expand markers across intended equipped-melee attack mechanisms one at a time.** Keep RIGHT/LEFT/BOTH/OFF vocabulary and native no-marker fallback.
+8. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics.
+9. **Run complete marker + lifecycle regression.** Protect closed C1-R1 behavior after marker/source maturity.
+10. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
+11. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
+12. **Mandatory New Balance/Jackydima compatibility gate on mature research behavior.** Resolve hook/callback conflicts deliberately.
+13. **Retain the mature modular foundation and migrate/redesign Raise + speed + config into final `Script_G3AnimationBehaviors`.** Do not pour collision back into the old v0.1 hook/file structure.
+14. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
+15. **Final diagnostics-free production compatibility/regression.** Test assembled public `Script_G3AnimationBehaviors` with New Balance/relevant Jackydima DLLs before stable promotion; retain separate instrumented diagnostic twin for future reproduction.
 
 ---
 
 ## 12. Non-Goals for the Current Iteration
 
-Not immediate implementation targets:
+Not part of the frozen second-pass structural rewrite:
 
-- production migration before the research collision subsystem is mature and compatibility-tested;
-- global creature reanimation;
-- intended-target/crosshair correction;
+- C1-driven marker bookkeeping simplification;
+- new attack-family marker support;
+- new marker vocabulary;
+- generalized Fist support;
+- universal monster/body adapters;
+- AttackContinuationProtection;
+- Raise/speed changes;
+- configuration redesign;
+- production migration;
+- target acquisition;
 - climbing;
-- rewriting Gothic 3 input arbitration;
-- manually constructing all combat animation filenames;
-- inventing universal body/monster collision markers before source semantics are known;
-- forcing Fist/body into equipped-weapon collision-group semantics;
-- replacing every third-party collision behavior before equivalent ownership/source behavior exists;
-- simplifying marker code solely to reduce line count;
-- merging bad-skip prevention into the lifecycle guard;
-- keeping the current AttackSpeed hook solely because it is already implemented.
+- New Balance/Jackydima compatibility fixes;
+- rewriting input arbitration;
+- simplifying proven marker code solely to reduce line count;
+- keeping historical diagnostic hooks in behavior builds merely because they already exist.
 
 ---
 
@@ -518,12 +572,14 @@ Not immediate implementation targets:
 
 | Need | Authority |
 |---|---|
-| Current task / current branch state | `SESSION_ENTRYPOINT.md` |
-| Current roadmap / overall module architecture | this `DESIGN.md` §§10–11 |
+| Current exact task / branch state | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
+| Frozen post-baseline rewrite | `SECOND_PASS_REWRITE_CONTRACT.md` |
+| Current roadmap / overall architecture | this `DESIGN.md` §§10–11 |
+| Release vs diagnostic products | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
 | Collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | Current collision validation | `COLLISION_TEST_PLAN.md` |
-| Exact transient architecture-review handoff | `BETWEEN_CHATS.md` |
-| Marker execution lifetime / future marker-core simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` §9 |
+| Diagnostic core/deep architecture | `COLLISION_LOGGER_PLAN.md` |
+| Marker execution lifetime / later simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → EV-131–EV-133 / EV-167 → `COLLISION_LIFECYCLE_PLAN.md` §9 |
 | Future held-Use2 prevention | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
 | Tested native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → ledgers/raw logs |
