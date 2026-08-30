@@ -7,7 +7,7 @@
 
 Define the smallest authoritative rule that guarantees offensive collision cleanup without creating one repair branch per attack family or interruption symptom.
 
-Detailed proof history belongs in `EVIDENCE_INDEX.md` and the evidence ledgers. Build-specific cleanup/control-flow locations belong in `COLLISION_CLEANUP_CALLSITE_MAP.md` and `SOURCE_HOOK_GUIDE.md`. Current staged validation belongs in `COLLISION_TEST_PLAN.md`.
+Detailed proof history belongs in `EVIDENCE_INDEX.md` and the evidence ledgers. Build-specific cleanup/control-flow locations belong in `COLLISION_CLEANUP_CALLSITE_MAP.md` and `SOURCE_HOOK_GUIDE.md`. Current staged validation belongs in `COLLISION_TEST_PLAN.md`. Overall module boundaries and implementation order belong in `DESIGN.md`.
 
 ---
 
@@ -291,7 +291,7 @@ Two limits remain explicit and do not reopen the gate:
 
 ### Repair passes through existing SetCollisionGroup observation
 
-Do not bypass the already-tested SetCollisionGroup hook. The normal setter path continues to own:
+Do not bypass the already-tested SetCollisionGroup path. The shared hook/engine bridge must continue to expose:
 
 - engine collision transition observation;
 - source-obligation transition observation;
@@ -301,7 +301,7 @@ No second repair dispatcher or parallel cleanup API is needed.
 
 ### Finalizer logging order
 
-A repair setter can synchronously enter the existing SetCollisionGroup hook and emit diagnostics. Therefore the finalizer must not have an open half-written log block while mutation occurs.
+A repair setter can synchronously enter the existing SetCollisionGroup bridge and emit diagnostics. Therefore the finalizer must not have an open half-written log block while mutation occurs.
 
 Use two phases only:
 
@@ -329,7 +329,9 @@ Each marker defines the complete desired offensive equipped-source set at that a
 
 `G3AB_COL_OFF` is an authored inactive gap inside a still-live Hit. It is not terminal safety and must not retire the execution by itself.
 
-C1-R1 does not refactor marker occurrence budgets, duplicate protection, StatePosition handling or source-set semantics.
+C1-R1 does not automatically replace marker occurrence budgets, duplicate/replay protection, StatePosition handling, exact-set switching, repeated-contact rearm, or dead-execution rejection.
+
+The proven C1 generation may allow some older **execution-lifetime inference** inside the marker module to be simplified later. That must be established check-by-check against the historical marker regressions. A shorter implementation is not evidence that a guard is redundant.
 
 ---
 
@@ -338,6 +340,7 @@ C1-R1 does not refactor marker occurrence budgets, duplicate protection, StatePo
 Do not default to:
 
 - one cleanup hook per attack family;
+- feature modules independently installing competing hooks on the same Gothic function;
 - held-Use2 / timeout cleanup classification;
 - unconditional cleanup on FullStop, AISetState or RunScriptFunction return;
 - polling, per-frame/world scans or wall-clock timers;
@@ -347,7 +350,7 @@ Do not default to:
 - `ClearTriggeredList()` as terminal cleanup;
 - rewriting external block/balance mechanics as a collision prerequisite.
 
-Protect through production integration:
+Protect through every refactor/expansion/migration:
 
 ```text
 ordinary native completion
@@ -362,6 +365,8 @@ Fist/body separation
 bow/crossbow/magic negative regression
 ```
 
+A central engine-bridge layer should own shared Gothic hooks and report authoritative events/facts to independent feature modules. `CollisionLifecycleGuard` should consume those events without becoming the owner of marker timing, bad-skip prevention, Raise, speed, or diagnostics.
+
 ---
 
 ## 11. Universal-Guard-First Development Order
@@ -369,13 +374,24 @@ bow/crossbow/magic negative regression
 ```text
 stable shadow execution/source ownership        CLOSED through P2
 → controlled native-equivalent physical repair CLOSED through C1-R1 / EV-207
-→ stable production integration                NEXT
-→ only later reconsider marker-bookkeeping simplification
+→ read-only architecture/code review            NEXT
+→ semantic-preserving research-DLL modularization
+→ compact baseline revalidation
+→ marker-lifetime simplification audit
+→ equipped-melee marker expansion
+→ separate Fist source-adapter decision
+→ full marker + lifecycle regression
+→ separate AttackContinuationProtection investigation/implementation
+→ guard + marker + continuation regression
+→ mandatory New Balance/Jackydima compatibility on mature research DLL
+→ redesign/migrate into modular Script_G3AnimationBehaviors
+→ Raise/speed integration with speed-hook compatibility re-evaluated
+→ final production DLL + New Balance/Jackydima regression
 ```
 
-The next responsibility is to plan/freeze the smallest production integration of the validated guard/core. Integration must preserve the accepted execution/source model and existing marker behavior; it is not authorization to redesign lifecycle ownership.
+This sequence deliberately keeps the validated collision guard in the research DLL while the marker/source behavior around it is matured. Production migration comes **after** the collision subsystem has reached the intended feature scope and passed the first third-party compatibility gate.
 
-The known held-Use2 / Alternative-AI skip remains a stress case rather than production classification authority. A future root-behavior investigation is separately preserved in `BAD_SKIP_FUTURE_INVESTIGATION.md`. Even if pursued later, it does not replace the C1-R1 collision-safety fail-safe and must not be folded automatically into production integration.
+The known held-Use2 / Alternative-AI skip remains a separate prevention responsibility, not production collision classification authority. Its future module is documented in `BAD_SKIP_FUTURE_INVESTIGATION.md`. Even if prevention succeeds, it does not replace the C1-R1 collision-safety fail-safe.
 
 ---
 
@@ -386,7 +402,10 @@ The known held-Use2 / Alternative-AI skip remains a stress case rather than prod
 3. Native cleanup always gets first opportunity.
 4. Mutation only on the proven terminal outstanding-source predicate.
 5. Exact native-equivalent `7 -> 5` reset for proven weapon sources.
-6. No family/cause/input classification.
-7. Preserve native/modded combat-rule choices.
-8. Preserve proven marker core through production integration; simplify only later if a stronger native boundary is separately proven.
-9. Investigate another terminal class/root-cause external repair only if a reproduced case proves the general guard insufficient.
+6. Central ownership of shared Gothic hooks; feature modules consume bridge events rather than competing for the same hook.
+7. No family/cause/input cleanup classification.
+8. Preserve native/modded combat-rule choices.
+9. Preserve independent marker invariants; simplify only execution-lifetime checks actually superseded by stronger proven authority.
+10. Keep Fist/body semantics behind a separate source adapter rather than forcing weapon collision-group behavior.
+11. Keep bad-skip prevention separate from collision cleanup.
+12. Require compatibility evidence before production migration and again after the full production DLL is assembled.
