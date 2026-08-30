@@ -30,20 +30,13 @@ Two qualifications remain explicit but do not reopen C1-R1:
 
 ### CollisionSources extraction — CLOSED
 
-Implementation:
+Implementation commit:
 
 ```text
 43fa1e719b5af716c54e17430c101251bbc36ff8
 ```
 
-Created:
-
-```text
-CollisionSources.h
-CollisionSources.cpp
-```
-
-Moved unchanged:
+Created `CollisionSources.h/.cpp` and moved unchanged:
 
 ```text
 GetEquippedCollisionSources(...)
@@ -61,26 +54,19 @@ runtime matrix = not required for this low-risk query extraction
 
 ### EngineBridge extraction — CLOSED
 
-Documentation freeze commit before implementation:
+Frozen base before implementation:
 
 ```text
 d0132b69df3add63641bc5d5fd5779f1037eaa99
 ```
 
-Current implementation head:
+Implementation head before later documentation-only commits:
 
 ```text
 32ff447c9a678ba18c8234310564ff2475ba7dfb
 ```
 
-Created:
-
-```text
-EngineBridge.h
-EngineBridge.cpp
-```
-
-`EngineBridge.cpp` now owns as one unit:
+Created `EngineBridge.h/.cpp`. `EngineBridge.cpp` now owns as one unit:
 
 ```text
 all mCFunctionHook objects
@@ -90,7 +76,7 @@ hook-local helpers
 InstallHooks()
 ```
 
-`Script_FrameCollisionTest.cpp` is reduced to the DLL composition/init root.
+`Script_FrameCollisionTest.cpp` is reduced to DLL composition/init only.
 
 Preserved proven ordering/reentrancy:
 
@@ -116,12 +102,22 @@ Validation:
 
 ```text
 bounded source/diff audit = PASS
-only CMakeLists.txt + EngineBridge.{h,cpp} + Script_FrameCollisionTest.cpp changed
-hook targets/RVAs/callback names unchanged
 local CMake Release build Script_FrameCollisionTest = PASS
 ```
 
-No runtime collision baseline has been run after EngineBridge extraction yet. By plan, first complete the mandatory read-only per-CPP review, then run the compact structural baseline with the unchanged existing logger.
+No runtime collision baseline has been run after EngineBridge extraction yet. First complete the mandatory read-only per-CPP review, then run the compact structural baseline with the unchanged existing logger.
+
+---
+
+## Production migration direction — clarified
+
+The mature modular research DLL is increasingly the architectural foundation of the eventual production `Script_G3AnimationBehaviors` DLL.
+
+Do **not** interpret production migration as pouring the mature collision system back into the old v0.1 file/hook structure. Instead, after the mature research collision system passes its compatibility gate, retain the proven modular foundation/central hook ownership and migrate or redesign the existing production responsibilities (Raise, speed, config, final DLL identity) into that architecture.
+
+The final binary/module may still be named `Script_G3AnimationBehaviors`; implementation lineage does not require preserving the old v0.1 source layout.
+
+This also means infrastructure names such as `HookBridgeRuntime` should not be renamed merely because their current research responsibility is small. Reassess naming only when the final production responsibility is known.
 
 ---
 
@@ -133,7 +129,7 @@ Review every `.cpp` in:
 prototypes/Script_FrameCollisionTest/
 ```
 
-**one file at a time**. Do not proceed to marker simplification or feature expansion until every file has an explicit accepted disposition.
+one file at a time. Do not proceed to marker simplification or feature expansion until every file has an explicit disposition.
 
 For each `.cpp`, record:
 
@@ -151,18 +147,18 @@ For each `.cpp`, record:
 
 No source edits during review unless a file is explicitly found to require a separately frozen correction and that correction is agreed before implementation.
 
-### Review order
-
-Use the following order unless evidence gives a reason to change it:
+### Per-CPP review status
 
 ```text
-1. Script_FrameCollisionTest.cpp      composition root
-2. EngineBridge.cpp                   central hook transport / ordering
-3. HookBridgeRuntime.cpp              research clock/runtime support
-4. CollisionSources.cpp               generic source queries
-5. CollisionLifecycleGuard.cpp        C1 execution/source safety
-6. CollisionControl.cpp               marker ownership/control semantics
-7. CollisionDiagnostics.cpp           diagnostics/logger + evidence-volume audit
+1. Script_FrameCollisionTest.cpp  — ACCEPTED AS-IS
+2. EngineBridge.cpp               — ACCEPTED for current research architecture
+   deferred: marker-policy leakage boundary after CollisionControl review
+   deferred: diagnostic-only hook install surface during logger consolidation
+3. CollisionSources.cpp           — ACCEPTED AS-IS
+4. HookBridgeRuntime.cpp          — ACCEPTED AS-IS
+5. CollisionLifecycleGuard.cpp    — CURRENT REVIEW
+6. CollisionControl.cpp           — pending
+7. CollisionDiagnostics.cpp       — pending
 ```
 
 Headers are inspected alongside their owning `.cpp` as needed, but the acceptance gate is recorded per `.cpp`.
@@ -178,20 +174,6 @@ OBSOLETE HISTORICAL NOISE
 ```
 
 Do not slim the logger before the post-EngineBridge compact runtime baseline. The existing logger must first prove the structural extraction did not alter behavior. After that baseline passes, freeze and implement any approved logger reduction separately, then prove diagnostic sufficiency.
-
----
-
-## Per-CPP review status
-
-```text
-Script_FrameCollisionTest.cpp  — current file under review
-EngineBridge.cpp               — pending
-HookBridgeRuntime.cpp          — pending
-CollisionSources.cpp           — pending
-CollisionLifecycleGuard.cpp    — pending
-CollisionControl.cpp           — pending
-CollisionDiagnostics.cpp       — pending
-```
 
 ---
 
@@ -211,8 +193,7 @@ CollisionSources extraction — CLOSED
 → modular AttackContinuationProtection investigation/implementation
 → guard + markers + continuation regression
 → mandatory New Balance/Jackydima compatibility on mature research DLL
-→ redesign/migrate collision modules into modular Script_G3AnimationBehaviors
-→ independent Raise + redesigned speed work
+→ retain mature modular foundation and migrate/redesign Raise + speed + config into final Script_G3AnimationBehaviors
 → final production DLL + New Balance/Jackydima compatibility regression
 ```
 
