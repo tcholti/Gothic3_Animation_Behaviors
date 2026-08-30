@@ -38,13 +38,14 @@ P2-A independent source audit = PASS
 P2-B isolated load/unload = PASS
 P2-C targeted GetUp meaning = PASS
 P2-D broader gameplay ownership/stability = PASS
-P2-D shutdown/unload = NOT CAPTURED IN THAT RAW FILE
+P2-D broad-run raw itself did not capture shutdown
+P2-D dedicated clean shutdown closure = PASS
 ```
 
-P2-D canonical raw identity:
+P2-D canonical broad-run raw identity:
 
 ```text
-research/raw/2026-08-30_c1o2p2_broader_combat_interruption_stability.log
+research/archive/2026-08-30_c1o2p2_broader_combat_interruption_stability.log
 SHA256: 50AE4944C23DB30C78CE0373E241DDAAC32C252C2D8563584871F098C96BB041
 Bytes: 12123937
 Lines: 398143
@@ -118,7 +119,12 @@ A whole-run consistency check gives:
 
 Two observed Staff `GetUpParade` action-31 sequences traversed their `Hit`/Recover resources without a C1 offense request. This supports consequence-based collision ownership; the filename's `Hit` token alone does not imply an offensive source obligation.
 
-P2-D does not contain `Script_FrameCollisionTest unloading.`. Do not claim P2-D shutdown evidence. The User reported that the game worked through the extensive run; P2-B separately proves clean unload for the exact same DLL.
+The original P2-D broad-run raw file ended during continued gameplay and therefore did not itself contain `Script_FrameCollisionTest unloading.`. A dedicated clean shutdown-closure run was then performed with the same validated P2 DLL: launch Gothic 3 → load a save → brief idle → return to menu → normal Exit. That raw log ends with `Script_FrameCollisionTest unloading.` and therefore closes the shutdown qualification for the exact tested P2 binary. Evidence commit:
+
+```text
+4946d382041e9ec86400291395e5acbad77b1de6
+research/archive/2026-08-30_c1o2p2d_clean_shutdown_closure.log
+```
 
 The User also reported that P2 subjectively felt smoother than several previous research builds. Preserve only as an uncontrolled observation; no causal performance improvement is established.
 
