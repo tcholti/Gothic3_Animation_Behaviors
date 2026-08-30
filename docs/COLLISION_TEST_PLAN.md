@@ -351,3 +351,51 @@ stable shadow execution/source ownership
 → broad marked/unmarked/player/NPC/negative regression
 → stable production integration
 ```
+
+Root-cause repair of the held-Use2 / Alternative-AI interruption is not a planned prerequisite. Reopen it only if evidence shows the general collision guard cannot preserve integrity without changing that external lifecycle path.
+
+Likely later responsibilities remain evidence-dependent and are not pre-authorized:
+
+- choose the exact gate for promoting shadow `WOULD_REPAIR` to native-equivalent physical repair;
+- test broad marked/unmarked/player/NPC regression;
+- challenge whether any legitimate independent Hit sequence intentionally carries offensive collision across executions;
+- verify negative/no-op behavior for Fist, bow, crossbow and magic;
+- verify defensive block/parade semantics if later physical repair could disturb them;
+- reconsider marker-core simplification only after native lifetime and physical guard preserve historical marker guarantees.
+
+---
+
+## 10. Marker-Core Regression — Reuse Existing Fixtures When Relevant
+
+If a lifecycle change can plausibly affect marker behavior, reuse compact proven fixtures such as:
+
+```text
+RIGHT -> LEFT
+BOTH -> RIGHT
+RIGHT -> OFF -> RIGHT
+BOTH -> LEFT -> OFF -> BOTH
+```
+
+Verify desired-set transition, source rearm, occurrence/replay guards, execution retirement and absence of unexpected native timer activation.
+
+Do not rebuild the full historical v0.10–v0.18 matrix unless a regression demands it.
+
+Marker simplification is a later optimization question, not a prerequisite for the universal guard. Preserve duplicate/replay handling, occurrence protection, exact source-set semantics, repeated-contact rearm, Quick bookkeeping and any other mechanism whose original regression still requires it.
+
+---
+
+## 11. Success Criteria for Stable Collision Integration
+
+Before stable lifecycle behavior can move into `Script_G3AnimationBehaviors`, evidence must support:
+
+1. exact ownership of a real attack execution before and during CombatMove where needed;
+2. exact creation of offensive source obligations, including `7 -> 7` requests;
+3. reliable observation of native cleanup fulfillment;
+4. safe lifetime retirement without raw-pointer reuse confusion;
+5. a terminal/finalization rule that preserves Gothic's legitimate cleanup opportunity;
+6. correct handling of clean, reaction, pre-activation, bad-abandonment and inherited-stale cases;
+7. safe native-equivalent physical repair only for exact abandoned outstanding sources;
+8. no-op behavior for unrelated mechanics/source models and compatible external combat-rule choices;
+9. preservation of marked and native collision semantics behind one end-of-execution safety invariant.
+
+Only after those conditions pass should stable production integration be considered.
