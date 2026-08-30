@@ -278,16 +278,16 @@ outstanding exact source
 
 No `ClearTriggeredList()` is part of terminal cleanup. Trigger-list clearing remains activation/rearm behavior.
 
-C1-R1 has direct positive/no-op evidence for targeted repair, reaction precedence, pre-activation no-offense, GetUp bridge/cleanup, GetUpParade, Dual source specificity, marked-source terminal repair, and broad exercised stability. The current closure is the focused unsupported-source negative check owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
+C1-R1 controlled validation is **closed** through EV-207. Direct evidence covers targeted positive repair, reaction precedence, pre-activation no-offense, GetUp bridge/cleanup, GetUpParade, Dual source specificity, marked-source terminal repair, broad mixed player/NPC stability, Fist/body separation and crossbow negative behavior. Bow and magic also received supplemental negative regression coverage.
 
-The outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch remains fail-closed and is not claimed positively runtime-exercised.
+The outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch remains fail-closed and is not claimed positively runtime-exercised. Natural NPC combat/Staff marker traffic supports actor-general stability, but no positive NPC destructive-abandonment physical-repair case is claimed.
 
 Current lifecycle authority and constraints:
 
 - `COLLISION_LIFECYCLE_PLAN.md`
 - `COLLISION_TEST_PLAN.md`
 - `COLLISION_CLEANUP_CALLSITE_MAP.md`
-- `EVIDENCE_INDEX.md` → EV-151–EV-206
+- `EVIDENCE_INDEX.md` → EV-151–EV-207
 
 Do not implement family-specific cleanup matrices, timers, polling, held-Use2 classifiers, arbitrary group-7 adoption, or broad scans merely because native cleanup has several internal paths.
 
@@ -351,14 +351,15 @@ Unmarked/unconfigured attacks must remain compatible with native behavior and sh
 
 ## 10. Current Implementation Order
 
-1. Close the remaining focused C1-R1 unsupported-source negative validation.
-2. If C1-R1 closes, consolidate the validated collision lifecycle/marker behavior into a stable production-integration boundary without weakening the tested guard or marker regressions.
-3. Before simplifying marker bookkeeping, review the marker-lifetime route in `EVIDENCE_INDEX.md` / `COLLISION_LIFECYCLE_PLAN.md` and remove custom inference only where a stronger proven native boundary replaces it safely.
-4. Keep the held-Use2 destructive-skip root investigation separate; pursue it only as a deliberate later responsibility and keep C1-R1 underneath as fail-safe.
-5. Generalize Raise for intended Normal/Quick families and selected full-Whirl cases without coupling it to collision repair.
-6. Implement profile-aware speed control and calibrate family/action values from logged timing evidence.
-7. Broaden actor/source support only where the native source semantics are understood.
-8. Preserve useful animation-selection/CombatMove discoveries for later features rather than mixing them into unrelated behavior.
+1. Plan and freeze the smallest stable production-integration boundary for the validated C1/P2/R1 collision guard/core and existing marker behavior.
+2. Implement/integrate only that frozen collision responsibility, keeping research-only diagnostics separable and preserving every accepted source/lifecycle invariant.
+3. Validate the production-integrated collision core against the compact regression matrix frozen after the integration boundary is understood.
+4. Before simplifying marker bookkeeping, review the marker-lifetime route in `EVIDENCE_INDEX.md` / `COLLISION_LIFECYCLE_PLAN.md` and remove custom inference only where a stronger proven native boundary replaces it safely.
+5. Keep the held-Use2 destructive-skip root investigation separate; pursue it only as a deliberate later responsibility and keep C1-R1 underneath as fail-safe.
+6. Generalize Raise for intended Normal/Quick families and selected full-Whirl cases without coupling it to collision repair.
+7. Implement profile-aware speed control and calibrate family/action values from logged timing evidence.
+8. Broaden actor/source support only where the native source semantics are understood.
+9. Preserve useful animation-selection/CombatMove discoveries for later features rather than mixing them into unrelated behavior.
 
 ---
 
@@ -387,7 +388,7 @@ Not immediate implementation targets:
 | Future held-Use2 root investigation | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
 | Tested native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → ledgers/raw logs |
-| C1-R1 canonical evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206 onward |
+| C1-R1 canonical evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206–EV-207 |
 | Animation semantics / UseType / action / pose | `ANIMATION_INDEX.md` → `ANIMATION_RULES.md` |
 | Exact asset/family/fixture | `ANIMATION_INDEX.md` → `ANIMATION_CATALOG.md` / animation-name data |
 | Hook/source/API lookup | `SOURCE_HOOK_GUIDE.md` |
