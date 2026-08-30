@@ -24,6 +24,7 @@ struct OuterFrameBinding
     gScrArgument *arguments;
     std::string scriptName;
     bool active;
+    bool preCombatTemporary;
 };
 
 struct SourceLifecycleRecord
@@ -372,12 +373,14 @@ static bool MatchesRecordBinding(
 
 static void BindOuterFrame(
     ActorLifecycleRecord &record,
-    ScriptFunctionDispatchContext const &frame)
+    ScriptFunctionDispatchContext const &frame,
+    bool preCombatTemporary = false)
 {
     record.outerFrame.spu = frame.spu;
     record.outerFrame.arguments = frame.arguments;
     record.outerFrame.scriptName = frame.scriptName;
     record.outerFrame.active = true;
+    record.outerFrame.preCombatTemporary = preCombatTemporary;
 }
 
 static void RetireOuterFrameBinding(ActorLifecycleRecord &record)
@@ -386,6 +389,7 @@ static void RetireOuterFrameBinding(ActorLifecycleRecord &record)
     record.outerFrame.arguments = nullptr;
     record.outerFrame.scriptName.clear();
     record.outerFrame.active = false;
+    record.outerFrame.preCombatTemporary = false;
 }
 
 static void LogOuterBindingEvent(
@@ -565,7 +569,8 @@ void InvalidateScriptFunctionDispatchAfterAISetState(
 
 GenerationToken BeginCombatMove(
     Entity &actor, EquippedCollisionSources const &sources,
-    gCScriptProcessingUnit *spu)
+    gCScriptProcessingUnit *spu,
+    PreCombatBridgeToken *preCombatBridge)
 {
     GenerationToken token = {};
     if (actor == None || actor.GetInstance() == nullptr)
@@ -579,6 +584,40 @@ GenerationToken BeginCombatMove(
     auto oldIt = g_ActorRecords.find(actorInstance);
     if (oldIt != g_ActorRecords.end())
     {
+        if (oldIt->second.status == GenerationStatus_OuterBound
+            || oldIt->second.outerFrame.preCombatTemporary)
+        {
+            bool const matchingBridge =
+                preCombatBridge != nullptr
+                && preCombatBridge->active
+                && !preCombatBridge->consumed
+                && preCombatBridge->actorInstance == actorInstance
+                && preCombatBridge->generation == oldIt->second.generation;
+            if (matchingBridge
+                && oldIt->second.outerFrame.preCombatTemporary
+                && MatchesRecordBinding(oldIt->second, currentFrame))
+            {
+                oldIt->second.status = GenerationStatus_Persisted;
+                RetireOuterFrameBinding(oldIt->second);
+                preCombatBridge->active = false;
+                preCombatBridge->consumed = true;
+                LogOuterBindingEvent(
+                    "PRECOMBAT_BRIDGE_CONSUMED",
+                    oldIt->second, currentFrame);
+                token.actorInstance = actorInstance;
+                token.generation = oldIt->second.generation;
+                token.valid = true;
+                token.combatMoveCandidate = false;
+                return token;
+            }
+
+            LogOuterBindingFailure(
+                "PRECOMBAT_BRIDGE_COMBAT_MOVE_MISMATCH",
+                actorInstance, oldIt->second.generation,
+                currentFrame);
+            return token;
+        }
+
         if (MatchesRecordBinding(oldIt->second, currentFrame))
         {
             LogOuterBindingEvent(
@@ -686,17 +725,6 @@ static bool TryGetOwnedSource(
     return true;
 }
 
-static bool SameLiveFrame(
-    ScriptFunctionDispatchContext const &left,
-    ScriptFunctionDispatchContext const &right)
-{
-    return HasLiveCorrelator(left)
-        && HasLiveCorrelator(right)
-        && left.spu == right.spu
-        && left.arguments == right.arguments
-        && left.scriptName == right.scriptName;
-}
-
 static unsigned int GetEquippedSideMask(
     EquippedCollisionSources const &sources, eCEntity *sourceInstance)
 {
@@ -717,19 +745,48 @@ enum PreCombatAcquisitionResult
 
 static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
     eCEntity *sourceInstance, ActorLifecycleRecord *&actorRecord,
-    SourceLifecycleRecord *&sourceRecord)
+    SourceLifecycleRecord *&sourceRecord,
+    PreCombatDispatchView const *preCombatDispatch,
+    PreCombatBridgeToken *preCombatBridge)
 {
-    if (g_ScriptFunctionDispatchStack.empty())
+    if (preCombatDispatch == nullptr || preCombatBridge == nullptr)
         return PreCombatAcquisition_NotApplicable;
 
-    ScriptFunctionDispatchContext const &dispatch =
-        g_ScriptFunctionDispatchStack.back();
-    if (dispatch.spu == nullptr || dispatch.actorInstance == nullptr)
-        return PreCombatAcquisition_NotApplicable;
+    if (preCombatDispatch->spu == nullptr
+        || preCombatDispatch->runtimeStack == nullptr
+        || preCombatDispatch->scriptName == nullptr
+        || preCombatDispatch->runtimeStack
+            != &preCombatDispatch->spu->m_StateStack)
+    {
+        return PreCombatAcquisition_Rejected;
+    }
 
-    Entity actor(dispatch.actorInstance);
+    ScriptFunctionDispatchContext const liveFrame =
+        CaptureTopScriptFunction(
+            preCombatDispatch->spu,
+            *preCombatDispatch->runtimeStack);
+    if (!liveFrame.topIsScriptFunction || liveFrame.arguments == nullptr)
+    {
+        LogOuterBindingFailure(
+            liveFrame.topIsScriptFunction
+                ? "NULL_ARGUMENTS_PRECOMBAT_OFFENSE"
+                : "NON_FUNCTION_PRECOMBAT_OFFENSE",
+            liveFrame.actorInstance, 0, liveFrame, sourceInstance);
+        return PreCombatAcquisition_Rejected;
+    }
+
+    GELPCChar const wrapperName = preCombatDispatch->scriptName->GetText();
+    if (wrapperName == nullptr || liveFrame.scriptName != wrapperName)
+    {
+        LogOuterBindingFailure(
+            "LIVE_FRAME_MISMATCH_PRECOMBAT_OFFENSE",
+            liveFrame.actorInstance, 0, liveFrame, sourceInstance);
+        return PreCombatAcquisition_Rejected;
+    }
+
+    Entity actor(liveFrame.actorInstance);
     if (actor == None)
-        return PreCombatAcquisition_NotApplicable;
+        return PreCombatAcquisition_Rejected;
     EquippedCollisionSources const equipped =
         CollisionControl::GetEquippedCollisionSources(actor);
     unsigned int const sourceSideMask =
@@ -737,41 +794,36 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
     if (sourceSideMask == SourceMask_None)
         return PreCombatAcquisition_NotApplicable;
 
-    ScriptFunctionDispatchContext const liveFrame =
-        CaptureCurrentTopScriptFunction(dispatch.spu);
-    if (liveFrame.topIsScriptFunction && liveFrame.arguments == nullptr)
-    {
-        LogOuterBindingFailure(
-            "NULL_ARGUMENTS_PRECOMBAT_OFFENSE", dispatch.actorInstance,
-            0, liveFrame, sourceInstance);
-        return PreCombatAcquisition_Rejected;
-    }
-    if (!SameLiveFrame(dispatch, liveFrame))
-    {
-        LogOuterBindingFailure(
-            "LIVE_FRAME_MISMATCH_PRECOMBAT_OFFENSE",
-            dispatch.actorInstance, 0, liveFrame, sourceInstance);
-        return PreCombatAcquisition_Rejected;
-    }
-
-    auto recordIt = g_ActorRecords.find(dispatch.actorInstance);
+    auto recordIt = g_ActorRecords.find(liveFrame.actorInstance);
     if (recordIt == g_ActorRecords.end())
     {
-        if (actorRecord != nullptr || sourceRecord != nullptr)
+        ActorLifecycleRecord *rightOwner = nullptr;
+        SourceLifecycleRecord *rightSource = nullptr;
+        ActorLifecycleRecord *leftOwner = nullptr;
+        SourceLifecycleRecord *leftSource = nullptr;
+        bool const equippedSourceAlreadyOwned =
+            TryGetOwnedSource(
+                equipped.rightInstance, rightOwner, rightSource)
+            || TryGetOwnedSource(
+                equipped.leftInstance, leftOwner, leftSource);
+        if (actorRecord != nullptr || sourceRecord != nullptr
+            || equippedSourceAlreadyOwned
+            || preCombatBridge->active
+            || preCombatBridge->consumed)
         {
             LogOuterBindingFailure(
-                "SOURCE_ALREADY_OWNED_BY_OTHER_GENERATION",
-                dispatch.actorInstance, 0, liveFrame, sourceInstance);
+                "PRECOMBAT_ACTOR_SOURCE_OR_BRIDGE_OVERLAP",
+                liveFrame.actorInstance, 0, liveFrame, sourceInstance);
             return PreCombatAcquisition_Rejected;
         }
 
         ActorLifecycleRecord record = {};
-        record.actorInstance = dispatch.actorInstance;
+        record.actorInstance = liveFrame.actorInstance;
         record.generation = ++g_NextGeneration;
         record.status = GenerationStatus_OuterBound;
         AddSource(record, equipped.rightInstance, SourceMask_Right);
         AddSource(record, equipped.leftInstance, SourceMask_Left);
-        BindOuterFrame(record, liveFrame);
+        BindOuterFrame(record, liveFrame, true);
         g_ActorRecords[record.actorInstance] = record;
         RegisterSourceOwners(g_ActorRecords[record.actorInstance]);
         recordIt = g_ActorRecords.find(record.actorInstance);
@@ -780,11 +832,26 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
             "PRECOMBAT_ACQUIRED", recordIt->second, liveFrame,
             sourceInstance);
     }
-    else if (!MatchesRecordBinding(recordIt->second, liveFrame))
+    else if (!recordIt->second.outerFrame.preCombatTemporary)
+    {
+        if (!preCombatBridge->active
+            && actorRecord == &recordIt->second)
+            return PreCombatAcquisition_NotApplicable;
+        LogOuterBindingFailure(
+            "PRECOMBAT_GENERATION_OVERLAP",
+            liveFrame.actorInstance, recordIt->second.generation,
+            liveFrame, sourceInstance);
+        return PreCombatAcquisition_Rejected;
+    }
+    else if (!MatchesRecordBinding(recordIt->second, liveFrame)
+             || !preCombatBridge->active
+             || preCombatBridge->consumed
+             || preCombatBridge->actorInstance != liveFrame.actorInstance
+             || preCombatBridge->generation != recordIt->second.generation)
     {
         LogOuterBindingFailure(
             "PRECOMBAT_GENERATION_FRAME_OVERLAP",
-            dispatch.actorInstance, recordIt->second.generation,
+            liveFrame.actorInstance, recordIt->second.generation,
             liveFrame, sourceInstance);
         return PreCombatAcquisition_Rejected;
     }
@@ -799,7 +866,7 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
     {
         LogOuterBindingFailure(
             "SOURCE_ALREADY_OWNED_BY_OTHER_GENERATION",
-            dispatch.actorInstance, recordIt->second.generation,
+            liveFrame.actorInstance, recordIt->second.generation,
             liveFrame, sourceInstance);
         return PreCombatAcquisition_Rejected;
     }
@@ -818,7 +885,7 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
         {
             LogOuterBindingFailure(
                 "EQUIPPED_SOURCE_REGISTRATION_FAILED",
-                dispatch.actorInstance, recordIt->second.generation,
+                liveFrame.actorInstance, recordIt->second.generation,
                 liveFrame, sourceInstance);
             return PreCombatAcquisition_Rejected;
         }
@@ -826,6 +893,10 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
 
     actorRecord = ownedActor;
     sourceRecord = ownedSource;
+    preCombatBridge->actorInstance = recordIt->second.actorInstance;
+    preCombatBridge->generation = recordIt->second.generation;
+    preCombatBridge->active = true;
+    preCombatBridge->consumed = false;
     return PreCombatAcquisition_Ready;
 }
 
@@ -842,7 +913,9 @@ static bool IsCurrentlyEquippedByPlayer(eCEntity *sourceInstance)
 
 void ObserveCollisionGroupResult(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
-    eECollisionGroup resultingGroup)
+    eECollisionGroup resultingGroup,
+    PreCombatDispatchView const *preCombatDispatch,
+    PreCombatBridgeToken *preCombatBridge)
 {
     if (sourceInstance == nullptr)
         return;
@@ -859,7 +932,8 @@ void ObserveCollisionGroupResult(
     {
         PreCombatAcquisitionResult const preCombat =
             ResolvePreCombatOffenseOwner(
-                sourceInstance, actorRecord, sourceRecord);
+                sourceInstance, actorRecord, sourceRecord,
+                preCombatDispatch, preCombatBridge);
         if (preCombat == PreCombatAcquisition_Rejected)
             return;
         bool const resolvedOwned =
@@ -896,6 +970,35 @@ void ObserveCollisionGroupResult(
             "C1 CLEANUP FULFILLED", *actorRecord, *sourceRecord,
             resultingGroup);
     }
+}
+
+void RetirePreCombatBridgeAfterDispatch(
+    PreCombatBridgeToken &preCombatBridge)
+{
+    if (!preCombatBridge.active)
+        return;
+
+    auto recordIt = g_ActorRecords.find(preCombatBridge.actorInstance);
+    if (recordIt != g_ActorRecords.end()
+        && recordIt->second.generation == preCombatBridge.generation
+        && recordIt->second.status == GenerationStatus_OuterBound
+        && recordIt->second.outerFrame.preCombatTemporary)
+    {
+        LogInvariantWarning(
+            "PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN",
+            preCombatBridge.actorInstance,
+            preCombatBridge.generation);
+        RetireOuterFrameBinding(recordIt->second);
+    }
+    else
+    {
+        LogInvariantWarning(
+            "PRECOMBAT_BRIDGE_RETIREMENT_MISMATCH",
+            preCombatBridge.actorInstance,
+            preCombatBridge.generation);
+    }
+
+    preCombatBridge.active = false;
 }
 
 GenerationToken CaptureFinalizationToken(eCEntity *actorInstance)

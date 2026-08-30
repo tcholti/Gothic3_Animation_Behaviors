@@ -38,6 +38,7 @@ struct RunScriptFunctionScope
     gCScriptProcessingUnit *spu;
     bTObjStack<gScriptRunTimeSingleState> *runtimeStack;
     bCString const *scriptName;
+    CollisionLifecycleGuard::PreCombatBridgeToken preCombatBridge;
     bool offenseObserved;
 };
 
@@ -341,6 +342,12 @@ static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
             a_pThis, a_ScriptName, a_rRunTimeStack, a_pSPU);
     g_pCurrentRunScriptFunctionScope = scope.previous;
 
+    if (scope.preCombatBridge.active)
+    {
+        CollisionLifecycleGuard::RetirePreCombatBridgeAfterDispatch(
+            scope.preCombatBridge);
+    }
+
     if (scope.offenseObserved)
     {
         CollisionDiagnostics::LogRunScriptFunctionScopeReturn(
@@ -362,7 +369,10 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
             EquippedCollisionSources sources =
                 CollisionControl::GetEquippedCollisionSources(actor);
             generation = CollisionLifecycleGuard::BeginCombatMove(
-                actor, sources, a_pSPU);
+                actor, sources, a_pSPU,
+                g_pCurrentRunScriptFunctionScope != nullptr
+                    ? &g_pCurrentRunScriptFunctionScope->preCombatBridge
+                    : nullptr);
         }
         CollisionDiagnostics::OuterFrameSnapshot outerFrame =
             CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, a_pSPU);
@@ -523,8 +533,25 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
 
     eECollisionGroup afterGroup = a_pThis != nullptr
         ? a_pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
+
+    CollisionLifecycleGuard::PreCombatDispatchView preCombatDispatch = {};
+    CollisionLifecycleGuard::PreCombatDispatchView const *preCombatDispatchPtr =
+        nullptr;
+    CollisionLifecycleGuard::PreCombatBridgeToken *preCombatBridge = nullptr;
+    if (a_Group == eECollisionGroup_Item_Attack
+        && afterGroup == eECollisionGroup_Item_Attack
+        && g_pCurrentRunScriptFunctionScope != nullptr)
+    {
+        RunScriptFunctionScope *scope = g_pCurrentRunScriptFunctionScope;
+        preCombatDispatch.spu = scope->spu;
+        preCombatDispatch.runtimeStack = scope->runtimeStack;
+        preCombatDispatch.scriptName = scope->scriptName;
+        preCombatDispatchPtr = &preCombatDispatch;
+        preCombatBridge = &scope->preCombatBridge;
+    }
     CollisionLifecycleGuard::ObserveCollisionGroupResult(
-        a_pThis, a_Group, afterGroup);
+        a_pThis, a_Group, afterGroup, preCombatDispatchPtr,
+        preCombatBridge);
     CollisionDiagnostics::LogSetCollisionGroup(
         a_pThis, a_Group, beforeGroup, afterGroup,
         retiredMarkerExecutionCount, callerAddress, cleanupStack);

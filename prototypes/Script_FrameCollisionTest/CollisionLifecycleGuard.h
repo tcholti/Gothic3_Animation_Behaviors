@@ -16,6 +16,21 @@ struct GenerationToken
     bool combatMoveCandidate;
 };
 
+struct PreCombatDispatchView
+{
+    gCScriptProcessingUnit *spu;
+    bTObjStack<gScriptRunTimeSingleState> *runtimeStack;
+    bCString const *scriptName;
+};
+
+struct PreCombatBridgeToken
+{
+    eCEntity *actorInstance;
+    std::uint64_t generation;
+    bool active;
+    bool consumed;
+};
+
 struct ScriptFunctionDispatchToken
 {
     gCScriptProcessingUnit *spu;
@@ -36,12 +51,17 @@ void InvalidateScriptFunctionDispatchAfterAISetState(
     eCEntity *actorInstance);
 GenerationToken BeginCombatMove(
     Entity &actor, EquippedCollisionSources const &sources,
-    gCScriptProcessingUnit *spu);
+    gCScriptProcessingUnit *spu,
+    PreCombatBridgeToken *preCombatBridge);
 void CompleteCombatMoveCandidate(
     GenerationToken const &token, GEBool originalResult);
 void ObserveCollisionGroupResult(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
-    eECollisionGroup resultingGroup);
+    eECollisionGroup resultingGroup,
+    PreCombatDispatchView const *preCombatDispatch,
+    PreCombatBridgeToken *preCombatBridge);
+void RetirePreCombatBridgeAfterDispatch(
+    PreCombatBridgeToken &preCombatBridge);
 GenerationToken CaptureFinalizationToken(eCEntity *actorInstance);
 void FinalizeAfterAISetState(GenerationToken const &token);
 }
