@@ -711,6 +711,9 @@ extern "C" __declspec(dllexport) gSScriptInit const *GE_STDCALL ScriptInit(void)
     CollisionDiagnostics::OpenLog();
     if (CollisionDiagnostics::IsLogOpen())
     {
+        std::fprintf(
+            CollisionDiagnostics::GetLog(),
+            "STEP C1-O2-P2 LAZY PRE-COMBAT BRIDGE: event-driven pre-Combat generation acquisition; matching CombatMove consumes temporary binding; shadow-only; no physical repair.\n");
         std::fprintf(CollisionDiagnostics::GetLog(), "Installing hooks...\n");
         std::fflush(CollisionDiagnostics::GetLog());
     }
