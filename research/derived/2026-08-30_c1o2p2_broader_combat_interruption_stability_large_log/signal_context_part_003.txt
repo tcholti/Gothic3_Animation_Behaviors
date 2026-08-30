@@ -1,0 +1,2962 @@
+00023715: StackFrame[4]: Address=1B1C321F Module=Script_Game.dll Base=1B180000 RVA=0x0004321F
+00023716: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00023717: StackFrame[6]: Address=00C2F2C7 Module=Game.dll Base=00AC0000 RVA=0x0016F2C7
+00023718: CleanupBehaviorChanged: 0
+00023719: =============================================
+00023720: 
+00023721: ===== PRIMARYFIRST PlayMotion =====
+00023722: OwnerEntityAddress: EBB66E10
+00023723: OwnerEntity: PC_Hero
+00023724: MotionType: 0
+00023725: Stage: REQUEST_BEFORE_ORIGINAL
+00023726: ElapsedMs: 97788.713
+00023727: PrimarySnapshotAvailable: 1
+00023728: PrimaryMotionName: 
+00023729: PrimaryHasMotionInstance: 0
+00023730: PrimaryMotionRunning: 0
+00023731: PrimaryPlayTime: 0.000000
+00023732: PrimaryMaxTime: 0.000000
+00023733: PrimaryPlaySpeed: 0.000000
+00023734: Stage: RESULT_AFTER_ORIGINAL
+00023735: ElapsedMs: 97788.731
+00023736: PrimarySnapshotAvailable: 1
+00023737: PrimaryMotionName: Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+00023738: PrimaryHasMotionInstance: 1
+00023739: PrimaryMotionRunning: 1
+00023740: PrimaryPlayTime: 0.000000
+00023741: PrimaryMaxTime: 0.480000
+00023742: PrimaryPlaySpeed: 1.000000
+00023743: CleanupBehaviorChanged: 0
+00023744: =====================================
+00023745: 
+00023746: ===== C1 OFFENSE REQUEST =====
+00023747: ElapsedMs: 97788.820
+00023748: ActorAddress: EBB66E10
+00023749: Actor: PC_Hero
+00023750: Generation: 31
+00023751: Status: PERSISTED
+00023752: SourceAddress: E70E8610
+00023753: Source: It_2H_Sword_Flamberge
+00023754: OriginalSideMask: 1
+00023755: OriginalSide: RIGHT
+00023756: OffensiveRequestCount: 1
+00023757: Outstanding: 1
+00023758: CleanupObserved: 0
+00023759: ActualGroup: 7
+00023760: PhysicalCollisionChanged: 0
+00023761: ==============================
+00023762: 
+00023763: ===== ENGINE SetCollisionGroup =====
+00023764: ElapsedMs: 97788.835
+00023765: Entity: It_2H_Sword_Flamberge
+00023766: ChangedEntityAddress: E70E8610
+00023767: PlayerSlotMatch: RIGHT
+00023768: PlayerAction: 14
+00023769: PlayerAniPhase: 1
+00023770: PlayerPrimaryPose: 1
+00023771: PlayerStateTime: 0.961236
+00023772: PlayerStatePosition: 0
+00023773: PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+00023774: PlayerLeftItem: <none>
+00023775: PlayerLeftItemAddress: 00000000
+00023776: PlayerLeftUseType: -1
+00023777: PlayerLeftCollisionGroup: -1
+00023778: PlayerRightItem: It_2H_Sword_Flamberge
+00023779: PlayerRightItemAddress: E70E8610
+00023780: PlayerRightUseType: 3
+00023781: PlayerRightCollisionGroup: 7
+00023782: RequestedGroup: 7
+00023783: BeforeGroup: 5
+00023784: AfterGroup: 7
+00023785: Item_EquippedValue: 5
+00023786: Item_AttackValue: 7
+00023787: RetiredMarkerExecutionCount: 0
+00023788: ====================================
+00023789: 
+00023790: ===== C1-O2-P1 OFFENSE SCOPE =====
+00023791: ElapsedMs: 97788.859
+00023792: ActorAddress: EBB66E10
+00023793: SourceAddress: E70E8610
+00023794: CurrentScopeExists: 0
+00023795: ScopeAddress: 00000000
+00023796: ScopeSPUAddress: 00000000
+00023797: PlayerSPUAddress: EBB67074
+00023798: SPUMatchesPlayer: 0
+00023799: ScopeRuntimeStackAddress: 00000000
+00023800: PlayerStateStackAddress: EBB67078
+00023801: RuntimeStackMatchesPlayerStateStack: 0
+00023802: ScriptNameReferenceAddress: 00000000
+00023803: ScriptFunctionName: <no-current-scope>
+00023804: ParentScopeExists: 0
+00023805: OffenseObservedSet: 0
+00023806: LifecycleBehaviorChanged: 0
+00023807: CollisionBehaviorChanged: 0
+00023808: ==================================
+00023809: 
+00023810: ===== OUTER_FRAME OFFENSE =====
+00023811: ElapsedMs: 97788.874
+00023812: ActorAddress: EBB66E10
+00023813: Actor: PC_Hero
+00023814: SourceAddress: E70E8610
+00023815: Source: It_2H_Sword_Flamberge
+00023816: RequestedGroup: 7
+00023817: BeforeGroup: 5
+00023818: AfterGroup: 7
+00023819: SPUAddress: EBB67074
+00023820: StateStackCount: 2
+00023821: HasTopFrame: 1
+00023822: TopIndex: 1
+00023823: TopEntryAddressDiagnosticOnly: DC490228
+00023824: TopScriptName: _AI_HackAttack
+00023825: TopIsScriptState: 0
+00023826: TopBreakBlock: 2
+00023827: TopArgumentsAddress: DE8FDC90
+00023828: TopLocalCallback: OnAI_HackAttack
+00023829: TopExtraFloat: 1000.000000
+00023830: CurrentState: PS_Melee_HackAttack
+00023831: CurrentAction: 14
+00023832: CurrentStatePosition: 0
+00023833: CurrentStateTime: 0.961236
+00023834: TopEntryAddressIsExecutionIdentity: 0
+00023835: ArgumentsDereferencedOrClassified: 0
+00023836: LifecycleBehaviorChanged: 0
+00023837: CollisionBehaviorChanged: 0
+00023838: ===============================
+00023839: 
+00023840: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00023841: ActorAddress: EBB66E10
+00023842: Actor: PC_Hero
+00023843: CurrentAction: 14
+00023844: CurrentAniPhase: 1
+00023845: CurrentMovementAni: Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+00023846: Stage: BEGIN
+00023847: ElapsedMs: 98275.501
+00023848: PrimarySnapshotAvailable: 1
+00023849: PrimaryMotionName: Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+00023850: PrimaryHasMotionInstance: 1
+00023851: PrimaryMotionRunning: 1
+00023852: PrimaryPlayTime: 0.479990
+00023853: PrimaryMaxTime: 0.480000
+00023854: PrimaryPlaySpeed: 0.000000
+00023855: LeftHandSourceResolved: 0
+00023856: RightHandSourceResolved: 1
+00023857: RightHandSource: It_2H_Sword_Flamberge
+00023858: RightHandSourceAddress: E70E8610
+00023859: RightHandSourceCollisionGroup: 7
+00023860: CleanupBehaviorChanged: 0
+00023861: =========================================
+00023862: 
+00023863: ===== HIT STARTRECOVER BEGIN STACK =====
+00023864: ElapsedMs: 98275.550
+00023865: Actor: PC_Hero
+00023866: OutgoingPrimaryMotionName: Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+00023867: CurrentAction: 14
+00023868: CurrentAniPhase: 1
+00023869: CurrentStateTime: 1.449182
+00023870: CurrentMovementAni: Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+00023871: LeftHandSourceResolved: 0
+00023872: LeftHandSource: <none>
+00023873: LeftHandSourceAddress: 00000000
+00023874: LeftHandSourceCollisionGroup: -1
+00023875: RightHandSourceResolved: 1
+00023876: RightHandSource: It_2H_Sword_Flamberge
+00023877: RightHandSourceAddress: E70E8610
+===== SOURCE RANGE 25193-25393 =====
+00025193: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00025194: StackFrame[4]: Address=1B1B8463 Module=Script_Game.dll Base=1B180000 RVA=0x00038463
+00025195: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00025196: StackFrame[6]: Address=1B1FF0DB Module=Script_Game.dll Base=1B180000 RVA=0x0007F0DB
+00025197: StackFrame[7]: Address=00C204D3 Module=Game.dll Base=00AC0000 RVA=0x001604D3
+00025198: CleanupBehaviorChanged: 0
+00025199: =============================================
+00025200: 
+00025201: ===== PRIMARYFIRST PlayMotion =====
+00025202: OwnerEntityAddress: EBB66E10
+00025203: OwnerEntity: PC_Hero
+00025204: MotionType: 0
+00025205: Stage: REQUEST_BEFORE_ORIGINAL
+00025206: ElapsedMs: 102812.405
+00025207: PrimarySnapshotAvailable: 1
+00025208: PrimaryMotionName: 
+00025209: PrimaryHasMotionInstance: 0
+00025210: PrimaryMotionRunning: 0
+00025211: PrimaryPlayTime: 0.000000
+00025212: PrimaryMaxTime: 0.000000
+00025213: PrimaryPlaySpeed: 0.000000
+00025214: Stage: RESULT_AFTER_ORIGINAL
+00025215: ElapsedMs: 102812.423
+00025216: PrimarySnapshotAvailable: 1
+00025217: PrimaryMotionName: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00025218: PrimaryHasMotionInstance: 1
+00025219: PrimaryMotionRunning: 1
+00025220: PrimaryPlayTime: 0.000000
+00025221: PrimaryMaxTime: 0.520000
+00025222: PrimaryPlaySpeed: 0.700000
+00025223: CleanupBehaviorChanged: 0
+00025224: =====================================
+00025225: 
+00025226: ===== C1 LIFECYCLE STATUS =====
+00025227: ElapsedMs: 102812.507
+00025228: Event: PERSISTED
+00025229: ActorAddress: EBB66E10
+00025230: Actor: PC_Hero
+00025231: Generation: 32
+00025232: Status: PERSISTED
+00025233: Outstanding: 0
+00025234: PhysicalCollisionChanged: 0
+00025235: ===============================
+00025236: 
+00025237: ===== MARKER OWNERSHIP DECISION =====
+00025238: ElapsedMs: 102812.526
+00025239: Actor: PC_Hero
+00025240: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00025241: MatchingMotionFound: 1
+00025242: FrameEffectCount: 1
+00025243: ContainsReservedSourceMarker: 0
+00025244: RequiredSourceMask: 0
+00025245: AuthoredRIGHTMarkerCount: 0
+00025246: FirstRIGHTMarkerFrame: -1
+00025247: AuthoredLEFTMarkerCount: 0
+00025248: FirstLEFTMarkerFrame: -1
+00025249: AuthoredBOTHMarkerCount: 0
+00025250: FirstBOTHMarkerFrame: -1
+00025251: AuthoredOFFMarkerCount: 0
+00025252: FirstOFFMarkerFrame: -1
+00025253: RightHandSourceResolved: 1
+00025254: RightHandSource: Wrestling Staff_BBM
+00025255: RightHandSourceAddress: E70E8610
+00025256: RightHandSourceUseType: 12
+00025257: RightHandSourceCollisionGroup: 5
+00025258: LeftHandSourceResolved: 0
+00025259: Decision: LEGACY/NATIVE - call original timer callback
+00025260: =====================================
+00025261: 
+00025262: ===== C1 OFFENSE REQUEST =====
+00025263: ElapsedMs: 103061.674
+00025264: ActorAddress: EBB66E10
+00025265: Actor: PC_Hero
+00025266: Generation: 32
+00025267: Status: PERSISTED
+00025268: SourceAddress: E70E8610
+00025269: Source: Wrestling Staff_BBM
+00025270: OriginalSideMask: 1
+00025271: OriginalSide: RIGHT
+00025272: OffensiveRequestCount: 1
+00025273: Outstanding: 1
+00025274: CleanupObserved: 0
+00025275: ActualGroup: 7
+00025276: PhysicalCollisionChanged: 0
+00025277: ==============================
+00025278: 
+00025279: ===== ENGINE SetCollisionGroup =====
+00025280: ElapsedMs: 103061.708
+00025281: Entity: Wrestling Staff_BBM
+00025282: ChangedEntityAddress: E70E8610
+00025283: PlayerSlotMatch: RIGHT
+00025284: PlayerAction: 1
+00025285: PlayerAniPhase: 1
+00025286: PlayerPrimaryPose: 1
+00025287: PlayerStateTime: 0.253975
+00025288: PlayerStatePosition: 0
+00025289: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00025290: PlayerLeftItem: <none>
+00025291: PlayerLeftItemAddress: 00000000
+00025292: PlayerLeftUseType: -1
+00025293: PlayerLeftCollisionGroup: -1
+00025294: PlayerRightItem: Wrestling Staff_BBM
+00025295: PlayerRightItemAddress: E70E8610
+00025296: PlayerRightUseType: 12
+00025297: PlayerRightCollisionGroup: 7
+00025298: RequestedGroup: 7
+00025299: BeforeGroup: 5
+00025300: AfterGroup: 7
+00025301: Item_EquippedValue: 5
+00025302: Item_AttackValue: 7
+00025303: RetiredMarkerExecutionCount: 0
+00025304: ====================================
+00025305: 
+00025306: ===== C1-O2-P1 OFFENSE SCOPE =====
+00025307: ElapsedMs: 103061.731
+00025308: ActorAddress: EBB66E10
+00025309: SourceAddress: E70E8610
+00025310: CurrentScopeExists: 0
+00025311: ScopeAddress: 00000000
+00025312: ScopeSPUAddress: 00000000
+00025313: PlayerSPUAddress: EBB67074
+00025314: SPUMatchesPlayer: 0
+00025315: ScopeRuntimeStackAddress: 00000000
+00025316: PlayerStateStackAddress: EBB67078
+00025317: RuntimeStackMatchesPlayerStateStack: 0
+00025318: ScriptNameReferenceAddress: 00000000
+00025319: ScriptFunctionName: <no-current-scope>
+00025320: ParentScopeExists: 0
+00025321: OffenseObservedSet: 0
+00025322: LifecycleBehaviorChanged: 0
+00025323: CollisionBehaviorChanged: 0
+00025324: ==================================
+00025325: 
+00025326: ===== OUTER_FRAME OFFENSE =====
+00025327: ElapsedMs: 103061.745
+00025328: ActorAddress: EBB66E10
+00025329: Actor: PC_Hero
+00025330: SourceAddress: E70E8610
+00025331: Source: Wrestling Staff_BBM
+00025332: RequestedGroup: 7
+00025333: BeforeGroup: 5
+00025334: AfterGroup: 7
+00025335: SPUAddress: EBB67074
+00025336: StateStackCount: 2
+00025337: HasTopFrame: 1
+00025338: TopIndex: 1
+00025339: TopEntryAddressDiagnosticOnly: DC490228
+00025340: TopScriptName: _AI_Attack
+00025341: TopIsScriptState: 0
+00025342: TopBreakBlock: 1
+00025343: TopArgumentsAddress: DE901A10
+00025344: TopLocalCallback: OnAI_Attack
+00025345: TopExtraFloat: 1000.000000
+00025346: CurrentState: PS_Melee_Attack
+00025347: CurrentAction: 1
+00025348: CurrentStatePosition: 0
+00025349: CurrentStateTime: 0.253975
+00025350: TopEntryAddressIsExecutionIdentity: 0
+00025351: ArgumentsDereferencedOrClassified: 0
+00025352: LifecycleBehaviorChanged: 0
+00025353: CollisionBehaviorChanged: 0
+00025354: ===============================
+00025355: 
+00025356: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00025357: ActorAddress: EBB66E10
+00025358: Actor: PC_Hero
+00025359: CurrentAction: 1
+00025360: CurrentAniPhase: 1
+00025361: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00025362: Stage: BEGIN
+00025363: ElapsedMs: 103551.348
+00025364: PrimarySnapshotAvailable: 1
+00025365: PrimaryMotionName: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00025366: PrimaryHasMotionInstance: 1
+00025367: PrimaryMotionRunning: 1
+00025368: PrimaryPlayTime: 0.519990
+00025369: PrimaryMaxTime: 0.520000
+00025370: PrimaryPlaySpeed: 0.000000
+00025371: LeftHandSourceResolved: 0
+00025372: RightHandSourceResolved: 1
+00025373: RightHandSource: Wrestling Staff_BBM
+00025374: RightHandSourceAddress: E70E8610
+00025375: RightHandSourceCollisionGroup: 7
+00025376: CleanupBehaviorChanged: 0
+00025377: =========================================
+00025378: 
+00025379: ===== HIT STARTRECOVER BEGIN STACK =====
+00025380: ElapsedMs: 103551.400
+00025381: Actor: PC_Hero
+00025382: OutgoingPrimaryMotionName: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00025383: CurrentAction: 1
+00025384: CurrentAniPhase: 1
+00025385: CurrentStateTime: 0.744949
+00025386: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00025387: LeftHandSourceResolved: 0
+00025388: LeftHandSource: <none>
+00025389: LeftHandSourceAddress: 00000000
+00025390: LeftHandSourceCollisionGroup: -1
+00025391: RightHandSourceResolved: 1
+00025392: RightHandSource: Wrestling Staff_BBM
+00025393: RightHandSourceAddress: E70E8610
+===== SOURCE RANGE 25907-26107 =====
+00025907: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00025908: StackFrame[4]: Address=1B1B8463 Module=Script_Game.dll Base=1B180000 RVA=0x00038463
+00025909: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00025910: StackFrame[6]: Address=1B1FF0DB Module=Script_Game.dll Base=1B180000 RVA=0x0007F0DB
+00025911: StackFrame[7]: Address=00C204D3 Module=Game.dll Base=00AC0000 RVA=0x001604D3
+00025912: CleanupBehaviorChanged: 0
+00025913: =============================================
+00025914: 
+00025915: ===== PRIMARYFIRST PlayMotion =====
+00025916: OwnerEntityAddress: EBB66E10
+00025917: OwnerEntity: PC_Hero
+00025918: MotionType: 0
+00025919: Stage: REQUEST_BEFORE_ORIGINAL
+00025920: ElapsedMs: 104392.466
+00025921: PrimarySnapshotAvailable: 1
+00025922: PrimaryMotionName: 
+00025923: PrimaryHasMotionInstance: 0
+00025924: PrimaryMotionRunning: 0
+00025925: PrimaryPlayTime: 0.000000
+00025926: PrimaryMaxTime: 0.000000
+00025927: PrimaryPlaySpeed: 0.000000
+00025928: Stage: RESULT_AFTER_ORIGINAL
+00025929: ElapsedMs: 104392.485
+00025930: PrimarySnapshotAvailable: 1
+00025931: PrimaryMotionName: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00025932: PrimaryHasMotionInstance: 1
+00025933: PrimaryMotionRunning: 1
+00025934: PrimaryPlayTime: 0.000000
+00025935: PrimaryMaxTime: 0.400000
+00025936: PrimaryPlaySpeed: 0.700000
+00025937: CleanupBehaviorChanged: 0
+00025938: =====================================
+00025939: 
+00025940: ===== C1 LIFECYCLE STATUS =====
+00025941: ElapsedMs: 104392.568
+00025942: Event: PERSISTED
+00025943: ActorAddress: EBB66E10
+00025944: Actor: PC_Hero
+00025945: Generation: 33
+00025946: Status: PERSISTED
+00025947: Outstanding: 0
+00025948: PhysicalCollisionChanged: 0
+00025949: ===============================
+00025950: 
+00025951: ===== MARKER OWNERSHIP DECISION =====
+00025952: ElapsedMs: 104392.586
+00025953: Actor: PC_Hero
+00025954: CurrentMovementAni: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00025955: MatchingMotionFound: 1
+00025956: FrameEffectCount: 1
+00025957: ContainsReservedSourceMarker: 0
+00025958: RequiredSourceMask: 0
+00025959: AuthoredRIGHTMarkerCount: 0
+00025960: FirstRIGHTMarkerFrame: -1
+00025961: AuthoredLEFTMarkerCount: 0
+00025962: FirstLEFTMarkerFrame: -1
+00025963: AuthoredBOTHMarkerCount: 0
+00025964: FirstBOTHMarkerFrame: -1
+00025965: AuthoredOFFMarkerCount: 0
+00025966: FirstOFFMarkerFrame: -1
+00025967: RightHandSourceResolved: 1
+00025968: RightHandSource: Wrestling Staff_BBM
+00025969: RightHandSourceAddress: E70E8610
+00025970: RightHandSourceUseType: 12
+00025971: RightHandSourceCollisionGroup: 5
+00025972: LeftHandSourceResolved: 0
+00025973: Decision: LEGACY/NATIVE - call original timer callback
+00025974: =====================================
+00025975: 
+00025976: ===== C1 OFFENSE REQUEST =====
+00025977: ElapsedMs: 104650.298
+00025978: ActorAddress: EBB66E10
+00025979: Actor: PC_Hero
+00025980: Generation: 33
+00025981: Status: PERSISTED
+00025982: SourceAddress: E70E8610
+00025983: Source: Wrestling Staff_BBM
+00025984: OriginalSideMask: 1
+00025985: OriginalSide: RIGHT
+00025986: OffensiveRequestCount: 1
+00025987: Outstanding: 1
+00025988: CleanupObserved: 0
+00025989: ActualGroup: 7
+00025990: PhysicalCollisionChanged: 0
+00025991: ==============================
+00025992: 
+00025993: ===== ENGINE SetCollisionGroup =====
+00025994: ElapsedMs: 104650.345
+00025995: Entity: Wrestling Staff_BBM
+00025996: ChangedEntityAddress: E70E8610
+00025997: PlayerSlotMatch: RIGHT
+00025998: PlayerAction: 1
+00025999: PlayerAniPhase: 1
+00026000: PlayerPrimaryPose: 2
+00026001: PlayerStateTime: 0.259984
+00026002: PlayerStatePosition: 0
+00026003: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00026004: PlayerLeftItem: <none>
+00026005: PlayerLeftItemAddress: 00000000
+00026006: PlayerLeftUseType: -1
+00026007: PlayerLeftCollisionGroup: -1
+00026008: PlayerRightItem: Wrestling Staff_BBM
+00026009: PlayerRightItemAddress: E70E8610
+00026010: PlayerRightUseType: 12
+00026011: PlayerRightCollisionGroup: 7
+00026012: RequestedGroup: 7
+00026013: BeforeGroup: 5
+00026014: AfterGroup: 7
+00026015: Item_EquippedValue: 5
+00026016: Item_AttackValue: 7
+00026017: RetiredMarkerExecutionCount: 0
+00026018: ====================================
+00026019: 
+00026020: ===== C1-O2-P1 OFFENSE SCOPE =====
+00026021: ElapsedMs: 104650.383
+00026022: ActorAddress: EBB66E10
+00026023: SourceAddress: E70E8610
+00026024: CurrentScopeExists: 0
+00026025: ScopeAddress: 00000000
+00026026: ScopeSPUAddress: 00000000
+00026027: PlayerSPUAddress: EBB67074
+00026028: SPUMatchesPlayer: 0
+00026029: ScopeRuntimeStackAddress: 00000000
+00026030: PlayerStateStackAddress: EBB67078
+00026031: RuntimeStackMatchesPlayerStateStack: 0
+00026032: ScriptNameReferenceAddress: 00000000
+00026033: ScriptFunctionName: <no-current-scope>
+00026034: ParentScopeExists: 0
+00026035: OffenseObservedSet: 0
+00026036: LifecycleBehaviorChanged: 0
+00026037: CollisionBehaviorChanged: 0
+00026038: ==================================
+00026039: 
+00026040: ===== OUTER_FRAME OFFENSE =====
+00026041: ElapsedMs: 104650.410
+00026042: ActorAddress: EBB66E10
+00026043: Actor: PC_Hero
+00026044: SourceAddress: E70E8610
+00026045: Source: Wrestling Staff_BBM
+00026046: RequestedGroup: 7
+00026047: BeforeGroup: 5
+00026048: AfterGroup: 7
+00026049: SPUAddress: EBB67074
+00026050: StateStackCount: 2
+00026051: HasTopFrame: 1
+00026052: TopIndex: 1
+00026053: TopEntryAddressDiagnosticOnly: DC490228
+00026054: TopScriptName: _AI_Attack
+00026055: TopIsScriptState: 0
+00026056: TopBreakBlock: 1
+00026057: TopArgumentsAddress: DE901A10
+00026058: TopLocalCallback: OnAI_Attack
+00026059: TopExtraFloat: 1000.000000
+00026060: CurrentState: PS_Melee_Attack
+00026061: CurrentAction: 1
+00026062: CurrentStatePosition: 0
+00026063: CurrentStateTime: 0.259984
+00026064: TopEntryAddressIsExecutionIdentity: 0
+00026065: ArgumentsDereferencedOrClassified: 0
+00026066: LifecycleBehaviorChanged: 0
+00026067: CollisionBehaviorChanged: 0
+00026068: ===============================
+00026069: 
+00026070: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00026071: ActorAddress: EBB66E10
+00026072: Actor: PC_Hero
+00026073: CurrentAction: 1
+00026074: CurrentAniPhase: 1
+00026075: CurrentMovementAni: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00026076: Stage: BEGIN
+00026077: ElapsedMs: 104964.065
+00026078: PrimarySnapshotAvailable: 1
+00026079: PrimaryMotionName: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00026080: PrimaryHasMotionInstance: 1
+00026081: PrimaryMotionRunning: 1
+00026082: PrimaryPlayTime: 0.399990
+00026083: PrimaryMaxTime: 0.400000
+00026084: PrimaryPlaySpeed: 0.000000
+00026085: LeftHandSourceResolved: 0
+00026086: RightHandSourceResolved: 1
+00026087: RightHandSource: Wrestling Staff_BBM
+00026088: RightHandSourceAddress: E70E8610
+00026089: RightHandSourceCollisionGroup: 7
+00026090: CleanupBehaviorChanged: 0
+00026091: =========================================
+00026092: 
+00026093: ===== HIT STARTRECOVER BEGIN STACK =====
+00026094: ElapsedMs: 104964.115
+00026095: Actor: PC_Hero
+00026096: OutgoingPrimaryMotionName: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00026097: CurrentAction: 1
+00026098: CurrentAniPhase: 1
+00026099: CurrentStateTime: 0.573568
+00026100: CurrentMovementAni: Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00026101: LeftHandSourceResolved: 0
+00026102: LeftHandSource: <none>
+00026103: LeftHandSourceAddress: 00000000
+00026104: LeftHandSourceCollisionGroup: -1
+00026105: RightHandSourceResolved: 1
+00026106: RightHandSource: Wrestling Staff_BBM
+00026107: RightHandSourceAddress: E70E8610
+===== SOURCE RANGE 26905-27105 =====
+00026905: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00026906: StackFrame[4]: Address=1B1C86F5 Module=Script_Game.dll Base=1B180000 RVA=0x000486F5
+00026907: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00026908: StackFrame[6]: Address=1B1FF8BB Module=Script_Game.dll Base=1B180000 RVA=0x0007F8BB
+00026909: StackFrame[7]: Address=00C204D3 Module=Game.dll Base=00AC0000 RVA=0x001604D3
+00026910: CleanupBehaviorChanged: 0
+00026911: =============================================
+00026912: 
+00026913: ===== PRIMARYFIRST PlayMotion =====
+00026914: OwnerEntityAddress: EBB66E10
+00026915: OwnerEntity: PC_Hero
+00026916: MotionType: 0
+00026917: Stage: REQUEST_BEFORE_ORIGINAL
+00026918: ElapsedMs: 106121.138
+00026919: PrimarySnapshotAvailable: 1
+00026920: PrimaryMotionName: 
+00026921: PrimaryHasMotionInstance: 0
+00026922: PrimaryMotionRunning: 0
+00026923: PrimaryPlayTime: 0.000000
+00026924: PrimaryMaxTime: 0.000000
+00026925: PrimaryPlaySpeed: 0.000000
+00026926: Stage: RESULT_AFTER_ORIGINAL
+00026927: ElapsedMs: 106121.155
+00026928: PrimarySnapshotAvailable: 1
+00026929: PrimaryMotionName: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00026930: PrimaryHasMotionInstance: 1
+00026931: PrimaryMotionRunning: 1
+00026932: PrimaryPlayTime: 0.000000
+00026933: PrimaryMaxTime: 0.520000
+00026934: PrimaryPlaySpeed: 1.000000
+00026935: CleanupBehaviorChanged: 0
+00026936: =====================================
+00026937: 
+00026938: ===== C1 LIFECYCLE STATUS =====
+00026939: ElapsedMs: 106121.233
+00026940: Event: PERSISTED
+00026941: ActorAddress: EBB66E10
+00026942: Actor: PC_Hero
+00026943: Generation: 34
+00026944: Status: PERSISTED
+00026945: Outstanding: 0
+00026946: PhysicalCollisionChanged: 0
+00026947: ===============================
+00026948: 
+00026949: ===== MARKER OWNERSHIP DECISION =====
+00026950: ElapsedMs: 106121.253
+00026951: Actor: PC_Hero
+00026952: CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00026953: MatchingMotionFound: 1
+00026954: FrameEffectCount: 1
+00026955: ContainsReservedSourceMarker: 0
+00026956: RequiredSourceMask: 0
+00026957: AuthoredRIGHTMarkerCount: 0
+00026958: FirstRIGHTMarkerFrame: -1
+00026959: AuthoredLEFTMarkerCount: 0
+00026960: FirstLEFTMarkerFrame: -1
+00026961: AuthoredBOTHMarkerCount: 0
+00026962: FirstBOTHMarkerFrame: -1
+00026963: AuthoredOFFMarkerCount: 0
+00026964: FirstOFFMarkerFrame: -1
+00026965: RightHandSourceResolved: 1
+00026966: RightHandSource: Wrestling Staff_BBM
+00026967: RightHandSourceAddress: E70E8610
+00026968: RightHandSourceUseType: 12
+00026969: RightHandSourceCollisionGroup: 5
+00026970: LeftHandSourceResolved: 0
+00026971: Decision: LEGACY/NATIVE - call original timer callback
+00026972: =====================================
+00026973: 
+00026974: ===== C1 OFFENSE REQUEST =====
+00026975: ElapsedMs: 106222.915
+00026976: ActorAddress: EBB66E10
+00026977: Actor: PC_Hero
+00026978: Generation: 34
+00026979: Status: PERSISTED
+00026980: SourceAddress: E70E8610
+00026981: Source: Wrestling Staff_BBM
+00026982: OriginalSideMask: 1
+00026983: OriginalSide: RIGHT
+00026984: OffensiveRequestCount: 1
+00026985: Outstanding: 1
+00026986: CleanupObserved: 0
+00026987: ActualGroup: 7
+00026988: PhysicalCollisionChanged: 0
+00026989: ==============================
+00026990: 
+00026991: ===== ENGINE SetCollisionGroup =====
+00026992: ElapsedMs: 106222.952
+00026993: Entity: Wrestling Staff_BBM
+00026994: ChangedEntityAddress: E70E8610
+00026995: PlayerSlotMatch: RIGHT
+00026996: PlayerAction: 4
+00026997: PlayerAniPhase: 1
+00026998: PlayerPrimaryPose: 1
+00026999: PlayerStateTime: 0.103973
+00027000: PlayerStatePosition: 0
+00027001: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00027002: PlayerLeftItem: <none>
+00027003: PlayerLeftItemAddress: 00000000
+00027004: PlayerLeftUseType: -1
+00027005: PlayerLeftCollisionGroup: -1
+00027006: PlayerRightItem: Wrestling Staff_BBM
+00027007: PlayerRightItemAddress: E70E8610
+00027008: PlayerRightUseType: 12
+00027009: PlayerRightCollisionGroup: 7
+00027010: RequestedGroup: 7
+00027011: BeforeGroup: 5
+00027012: AfterGroup: 7
+00027013: Item_EquippedValue: 5
+00027014: Item_AttackValue: 7
+00027015: RetiredMarkerExecutionCount: 0
+00027016: ====================================
+00027017: 
+00027018: ===== C1-O2-P1 OFFENSE SCOPE =====
+00027019: ElapsedMs: 106222.979
+00027020: ActorAddress: EBB66E10
+00027021: SourceAddress: E70E8610
+00027022: CurrentScopeExists: 0
+00027023: ScopeAddress: 00000000
+00027024: ScopeSPUAddress: 00000000
+00027025: PlayerSPUAddress: EBB67074
+00027026: SPUMatchesPlayer: 0
+00027027: ScopeRuntimeStackAddress: 00000000
+00027028: PlayerStateStackAddress: EBB67078
+00027029: RuntimeStackMatchesPlayerStateStack: 0
+00027030: ScriptNameReferenceAddress: 00000000
+00027031: ScriptFunctionName: <no-current-scope>
+00027032: ParentScopeExists: 0
+00027033: OffenseObservedSet: 0
+00027034: LifecycleBehaviorChanged: 0
+00027035: CollisionBehaviorChanged: 0
+00027036: ==================================
+00027037: 
+00027038: ===== OUTER_FRAME OFFENSE =====
+00027039: ElapsedMs: 106222.993
+00027040: ActorAddress: EBB66E10
+00027041: Actor: PC_Hero
+00027042: SourceAddress: E70E8610
+00027043: Source: Wrestling Staff_BBM
+00027044: RequestedGroup: 7
+00027045: BeforeGroup: 5
+00027046: AfterGroup: 7
+00027047: SPUAddress: EBB67074
+00027048: StateStackCount: 2
+00027049: HasTopFrame: 1
+00027050: TopIndex: 1
+00027051: TopEntryAddressDiagnosticOnly: DC490228
+00027052: TopScriptName: _AI_QuickAttack
+00027053: TopIsScriptState: 0
+00027054: TopBreakBlock: 1
+00027055: TopArgumentsAddress: DE8FE410
+00027056: TopLocalCallback: OnAI_QuickAttack
+00027057: TopExtraFloat: 1000.000000
+00027058: CurrentState: PS_Melee_QuickAttack
+00027059: CurrentAction: 4
+00027060: CurrentStatePosition: 0
+00027061: CurrentStateTime: 0.103973
+00027062: TopEntryAddressIsExecutionIdentity: 0
+00027063: ArgumentsDereferencedOrClassified: 0
+00027064: LifecycleBehaviorChanged: 0
+00027065: CollisionBehaviorChanged: 0
+00027066: ===============================
+00027067: 
+00027068: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00027069: ActorAddress: EBB66E10
+00027070: Actor: PC_Hero
+00027071: CurrentAction: 4
+00027072: CurrentAniPhase: 1
+00027073: CurrentMovementAni: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00027074: Stage: BEGIN
+00027075: ElapsedMs: 106647.410
+00027076: PrimarySnapshotAvailable: 1
+00027077: PrimaryMotionName: Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00027078: PrimaryHasMotionInstance: 1
+00027079: PrimaryMotionRunning: 1
+00027080: PrimaryPlayTime: 0.519990
+00027081: PrimaryMaxTime: 0.520000
+00027082: PrimaryPlaySpeed: 0.000000
+00027083: LeftHandSourceResolved: 0
+00027084: RightHandSourceResolved: 1
+00027085: RightHandSource: Wrestling Staff_BBM
+00027086: RightHandSourceAddress: E70E8610
+00027087: RightHandSourceCollisionGroup: 7
+00027088: CleanupBehaviorChanged: 0
+00027089: =========================================
+00027090: 
+00027091: ===== PRIMARYFIRST StopMotion =====
+00027092: OwnerEntityAddress: EBB66E10
+00027093: OwnerEntity: PC_Hero
+00027094: MotionType: 0
+00027095: Stage: REQUEST_BEFORE_ORIGINAL
+00027096: ElapsedMs: 106650.903
+00027097: PrimarySnapshotAvailable: 1
+00027098: PrimaryMotionName: 
+00027099: PrimaryHasMotionInstance: 0
+00027100: PrimaryMotionRunning: 0
+00027101: PrimaryPlayTime: 0.000000
+00027102: PrimaryMaxTime: 0.000000
+00027103: PrimaryPlaySpeed: 0.000000
+00027104: Stage: RESULT_AFTER_ORIGINAL
+00027105: ElapsedMs: 106650.906
+===== SOURCE RANGE 27940-28140 =====
+00027940: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00027941: StackFrame[4]: Address=1B1C86F5 Module=Script_Game.dll Base=1B180000 RVA=0x000486F5
+00027942: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00027943: StackFrame[6]: Address=1B1FF8BB Module=Script_Game.dll Base=1B180000 RVA=0x0007F8BB
+00027944: StackFrame[7]: Address=00C204D3 Module=Game.dll Base=00AC0000 RVA=0x001604D3
+00027945: CleanupBehaviorChanged: 0
+00027946: =============================================
+00027947: 
+00027948: ===== PRIMARYFIRST PlayMotion =====
+00027949: OwnerEntityAddress: EBB66E10
+00027950: OwnerEntity: PC_Hero
+00027951: MotionType: 0
+00027952: Stage: REQUEST_BEFORE_ORIGINAL
+00027953: ElapsedMs: 107234.385
+00027954: PrimarySnapshotAvailable: 1
+00027955: PrimaryMotionName: 
+00027956: PrimaryHasMotionInstance: 0
+00027957: PrimaryMotionRunning: 0
+00027958: PrimaryPlayTime: 0.000000
+00027959: PrimaryMaxTime: 0.000000
+00027960: PrimaryPlaySpeed: 0.000000
+00027961: Stage: RESULT_AFTER_ORIGINAL
+00027962: ElapsedMs: 107234.402
+00027963: PrimarySnapshotAvailable: 1
+00027964: PrimaryMotionName: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00027965: PrimaryHasMotionInstance: 1
+00027966: PrimaryMotionRunning: 1
+00027967: PrimaryPlayTime: 0.000000
+00027968: PrimaryMaxTime: 0.400000
+00027969: PrimaryPlaySpeed: 1.000000
+00027970: CleanupBehaviorChanged: 0
+00027971: =====================================
+00027972: 
+00027973: ===== C1 LIFECYCLE STATUS =====
+00027974: ElapsedMs: 107234.482
+00027975: Event: PERSISTED
+00027976: ActorAddress: EBB66E10
+00027977: Actor: PC_Hero
+00027978: Generation: 36
+00027979: Status: PERSISTED
+00027980: Outstanding: 0
+00027981: PhysicalCollisionChanged: 0
+00027982: ===============================
+00027983: 
+00027984: ===== MARKER OWNERSHIP DECISION =====
+00027985: ElapsedMs: 107234.499
+00027986: Actor: PC_Hero
+00027987: CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00027988: MatchingMotionFound: 1
+00027989: FrameEffectCount: 1
+00027990: ContainsReservedSourceMarker: 0
+00027991: RequiredSourceMask: 0
+00027992: AuthoredRIGHTMarkerCount: 0
+00027993: FirstRIGHTMarkerFrame: -1
+00027994: AuthoredLEFTMarkerCount: 0
+00027995: FirstLEFTMarkerFrame: -1
+00027996: AuthoredBOTHMarkerCount: 0
+00027997: FirstBOTHMarkerFrame: -1
+00027998: AuthoredOFFMarkerCount: 0
+00027999: FirstOFFMarkerFrame: -1
+00028000: RightHandSourceResolved: 1
+00028001: RightHandSource: Wrestling Staff_BBM
+00028002: RightHandSourceAddress: E70E8610
+00028003: RightHandSourceUseType: 12
+00028004: RightHandSourceCollisionGroup: 5
+00028005: LeftHandSourceResolved: 0
+00028006: Decision: LEGACY/NATIVE - call original timer callback
+00028007: =====================================
+00028008: 
+00028009: ===== C1 OFFENSE REQUEST =====
+00028010: ElapsedMs: 107341.107
+00028011: ActorAddress: EBB66E10
+00028012: Actor: PC_Hero
+00028013: Generation: 36
+00028014: Status: PERSISTED
+00028015: SourceAddress: E70E8610
+00028016: Source: Wrestling Staff_BBM
+00028017: OriginalSideMask: 1
+00028018: OriginalSide: RIGHT
+00028019: OffensiveRequestCount: 1
+00028020: Outstanding: 1
+00028021: CleanupObserved: 0
+00028022: ActualGroup: 7
+00028023: PhysicalCollisionChanged: 0
+00028024: ==============================
+00028025: 
+00028026: ===== ENGINE SetCollisionGroup =====
+00028027: ElapsedMs: 107341.140
+00028028: Entity: Wrestling Staff_BBM
+00028029: ChangedEntityAddress: E70E8610
+00028030: PlayerSlotMatch: RIGHT
+00028031: PlayerAction: 5
+00028032: PlayerAniPhase: 1
+00028033: PlayerPrimaryPose: 2
+00028034: PlayerStateTime: 0.107998
+00028035: PlayerStatePosition: 0
+00028036: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00028037: PlayerLeftItem: <none>
+00028038: PlayerLeftItemAddress: 00000000
+00028039: PlayerLeftUseType: -1
+00028040: PlayerLeftCollisionGroup: -1
+00028041: PlayerRightItem: Wrestling Staff_BBM
+00028042: PlayerRightItemAddress: E70E8610
+00028043: PlayerRightUseType: 12
+00028044: PlayerRightCollisionGroup: 7
+00028045: RequestedGroup: 7
+00028046: BeforeGroup: 5
+00028047: AfterGroup: 7
+00028048: Item_EquippedValue: 5
+00028049: Item_AttackValue: 7
+00028050: RetiredMarkerExecutionCount: 0
+00028051: ====================================
+00028052: 
+00028053: ===== C1-O2-P1 OFFENSE SCOPE =====
+00028054: ElapsedMs: 107341.164
+00028055: ActorAddress: EBB66E10
+00028056: SourceAddress: E70E8610
+00028057: CurrentScopeExists: 0
+00028058: ScopeAddress: 00000000
+00028059: ScopeSPUAddress: 00000000
+00028060: PlayerSPUAddress: EBB67074
+00028061: SPUMatchesPlayer: 0
+00028062: ScopeRuntimeStackAddress: 00000000
+00028063: PlayerStateStackAddress: EBB67078
+00028064: RuntimeStackMatchesPlayerStateStack: 0
+00028065: ScriptNameReferenceAddress: 00000000
+00028066: ScriptFunctionName: <no-current-scope>
+00028067: ParentScopeExists: 0
+00028068: OffenseObservedSet: 0
+00028069: LifecycleBehaviorChanged: 0
+00028070: CollisionBehaviorChanged: 0
+00028071: ==================================
+00028072: 
+00028073: ===== OUTER_FRAME OFFENSE =====
+00028074: ElapsedMs: 107341.178
+00028075: ActorAddress: EBB66E10
+00028076: Actor: PC_Hero
+00028077: SourceAddress: E70E8610
+00028078: Source: Wrestling Staff_BBM
+00028079: RequestedGroup: 7
+00028080: BeforeGroup: 5
+00028081: AfterGroup: 7
+00028082: SPUAddress: EBB67074
+00028083: StateStackCount: 2
+00028084: HasTopFrame: 1
+00028085: TopIndex: 1
+00028086: TopEntryAddressDiagnosticOnly: DC490228
+00028087: TopScriptName: _AI_QuickAttack
+00028088: TopIsScriptState: 0
+00028089: TopBreakBlock: 1
+00028090: TopArgumentsAddress: DE8FE410
+00028091: TopLocalCallback: OnAI_QuickAttack
+00028092: TopExtraFloat: 1000.000000
+00028093: CurrentState: PS_Melee_QuickAttack
+00028094: CurrentAction: 5
+00028095: CurrentStatePosition: 0
+00028096: CurrentStateTime: 0.107998
+00028097: TopEntryAddressIsExecutionIdentity: 0
+00028098: ArgumentsDereferencedOrClassified: 0
+00028099: LifecycleBehaviorChanged: 0
+00028100: CollisionBehaviorChanged: 0
+00028101: ===============================
+00028102: 
+00028103: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00028104: ActorAddress: EBB66E10
+00028105: Actor: PC_Hero
+00028106: CurrentAction: 5
+00028107: CurrentAniPhase: 1
+00028108: CurrentMovementAni: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00028109: Stage: BEGIN
+00028110: ElapsedMs: 107640.547
+00028111: PrimarySnapshotAvailable: 1
+00028112: PrimaryMotionName: Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+00028113: PrimaryHasMotionInstance: 1
+00028114: PrimaryMotionRunning: 1
+00028115: PrimaryPlayTime: 0.399990
+00028116: PrimaryMaxTime: 0.400000
+00028117: PrimaryPlaySpeed: 0.000000
+00028118: LeftHandSourceResolved: 0
+00028119: RightHandSourceResolved: 1
+00028120: RightHandSource: Wrestling Staff_BBM
+00028121: RightHandSourceAddress: E70E8610
+00028122: RightHandSourceCollisionGroup: 7
+00028123: CleanupBehaviorChanged: 0
+00028124: =========================================
+00028125: 
+00028126: ===== PRIMARYFIRST StopMotion =====
+00028127: OwnerEntityAddress: EBB66E10
+00028128: OwnerEntity: PC_Hero
+00028129: MotionType: 0
+00028130: Stage: REQUEST_BEFORE_ORIGINAL
+00028131: ElapsedMs: 107644.086
+00028132: PrimarySnapshotAvailable: 1
+00028133: PrimaryMotionName: 
+00028134: PrimaryHasMotionInstance: 0
+00028135: PrimaryMotionRunning: 0
+00028136: PrimaryPlayTime: 0.000000
+00028137: PrimaryMaxTime: 0.000000
+00028138: PrimaryPlaySpeed: 0.000000
+00028139: Stage: RESULT_AFTER_ORIGINAL
+00028140: ElapsedMs: 107644.088
+===== SOURCE RANGE 29111-29311 =====
+00029111: Stage: RESULT_AFTER_ORIGINAL
+00029112: ElapsedMs: 110973.474
+00029113: PrimarySnapshotAvailable: 1
+00029114: PrimaryMotionName: 
+00029115: PrimaryHasMotionInstance: 0
+00029116: PrimaryMotionRunning: 0
+00029117: PrimaryPlayTime: 0.000000
+00029118: PrimaryMaxTime: 0.000000
+00029119: PrimaryPlaySpeed: 0.000000
+00029120: CleanupBehaviorChanged: 0
+00029121: =====================================
+00029122: 
+00029123: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00029124: ElapsedMs: 110973.505
+00029125: Actor: PC_Hero
+00029126: PrimaryWasEmptyBefore: 1
+00029127: IncomingMotionRequestAddress: EBB671A8
+00029128: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00029129: SuccessorPrimarySnapshotAvailable: 1
+00029130: SuccessorPrimaryHasMotionInstance: 1
+00029131: CurrentActionBeforeOriginal: 2
+00029132: CurrentAniPhaseBeforeOriginal: 1
+00029133: CurrentStateTimeBeforeOriginal: 0.595248
+00029134: CurrentStatePositionBeforeOriginal: 0
+00029135: CurrentMovementAniBeforeOriginal: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00029136: LeftHandSourceResolved: 0
+00029137: LeftHandSource: <none>
+00029138: LeftHandSourceAddress: 00000000
+00029139: LeftHandSourceCollisionGroup: -1
+00029140: RightHandSourceResolved: 1
+00029141: RightHandSource: Wrestling Staff_BBM
+00029142: RightHandSourceAddress: E70E8610
+00029143: RightHandSourceCollisionGroup: 5
+00029144: CapturedStackFrameCount: 7
+00029145: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00029146: StackFrame[1]: Address=00C2B485 Module=Game.dll Base=00AC0000 RVA=0x0016B485
+00029147: StackFrame[2]: Address=00C29724 Module=Game.dll Base=00AC0000 RVA=0x00169724
+00029148: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00029149: StackFrame[4]: Address=1B1C7FD9 Module=Script_Game.dll Base=1B180000 RVA=0x00047FD9
+00029150: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00029151: StackFrame[6]: Address=00C2F2C7 Module=Game.dll Base=00AC0000 RVA=0x0016F2C7
+00029152: CleanupBehaviorChanged: 0
+00029153: =============================================
+00029154: 
+00029155: ===== PRIMARYFIRST PlayMotion =====
+00029156: OwnerEntityAddress: EBB66E10
+00029157: OwnerEntity: PC_Hero
+00029158: MotionType: 0
+00029159: Stage: REQUEST_BEFORE_ORIGINAL
+00029160: ElapsedMs: 110973.504
+00029161: PrimarySnapshotAvailable: 1
+00029162: PrimaryMotionName: 
+00029163: PrimaryHasMotionInstance: 0
+00029164: PrimaryMotionRunning: 0
+00029165: PrimaryPlayTime: 0.000000
+00029166: PrimaryMaxTime: 0.000000
+00029167: PrimaryPlaySpeed: 0.000000
+00029168: Stage: RESULT_AFTER_ORIGINAL
+00029169: ElapsedMs: 110973.522
+00029170: PrimarySnapshotAvailable: 1
+00029171: PrimaryMotionName: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00029172: PrimaryHasMotionInstance: 1
+00029173: PrimaryMotionRunning: 1
+00029174: PrimaryPlayTime: 0.000000
+00029175: PrimaryMaxTime: 0.400000
+00029176: PrimaryPlaySpeed: 1.000000
+00029177: CleanupBehaviorChanged: 0
+00029178: =====================================
+00029179: 
+00029180: ===== C1 OFFENSE REQUEST =====
+00029181: ElapsedMs: 110973.643
+00029182: ActorAddress: EBB66E10
+00029183: Actor: PC_Hero
+00029184: Generation: 37
+00029185: Status: PERSISTED
+00029186: SourceAddress: E70E8610
+00029187: Source: Wrestling Staff_BBM
+00029188: OriginalSideMask: 1
+00029189: OriginalSide: RIGHT
+00029190: OffensiveRequestCount: 1
+00029191: Outstanding: 1
+00029192: CleanupObserved: 0
+00029193: ActualGroup: 7
+00029194: PhysicalCollisionChanged: 0
+00029195: ==============================
+00029196: 
+00029197: ===== ENGINE SetCollisionGroup =====
+00029198: ElapsedMs: 110973.659
+00029199: Entity: Wrestling Staff_BBM
+00029200: ChangedEntityAddress: E70E8610
+00029201: PlayerSlotMatch: RIGHT
+00029202: PlayerAction: 2
+00029203: PlayerAniPhase: 1
+00029204: PlayerPrimaryPose: 1
+00029205: PlayerStateTime: 0.595248
+00029206: PlayerStatePosition: 0
+00029207: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00029208: PlayerLeftItem: <none>
+00029209: PlayerLeftItemAddress: 00000000
+00029210: PlayerLeftUseType: -1
+00029211: PlayerLeftCollisionGroup: -1
+00029212: PlayerRightItem: Wrestling Staff_BBM
+00029213: PlayerRightItemAddress: E70E8610
+00029214: PlayerRightUseType: 12
+00029215: PlayerRightCollisionGroup: 7
+00029216: RequestedGroup: 7
+00029217: BeforeGroup: 5
+00029218: AfterGroup: 7
+00029219: Item_EquippedValue: 5
+00029220: Item_AttackValue: 7
+00029221: RetiredMarkerExecutionCount: 0
+00029222: ====================================
+00029223: 
+00029224: ===== C1-O2-P1 OFFENSE SCOPE =====
+00029225: ElapsedMs: 110973.683
+00029226: ActorAddress: EBB66E10
+00029227: SourceAddress: E70E8610
+00029228: CurrentScopeExists: 0
+00029229: ScopeAddress: 00000000
+00029230: ScopeSPUAddress: 00000000
+00029231: PlayerSPUAddress: EBB67074
+00029232: SPUMatchesPlayer: 0
+00029233: ScopeRuntimeStackAddress: 00000000
+00029234: PlayerStateStackAddress: EBB67078
+00029235: RuntimeStackMatchesPlayerStateStack: 0
+00029236: ScriptNameReferenceAddress: 00000000
+00029237: ScriptFunctionName: <no-current-scope>
+00029238: ParentScopeExists: 0
+00029239: OffenseObservedSet: 0
+00029240: LifecycleBehaviorChanged: 0
+00029241: CollisionBehaviorChanged: 0
+00029242: ==================================
+00029243: 
+00029244: ===== OUTER_FRAME OFFENSE =====
+00029245: ElapsedMs: 110973.697
+00029246: ActorAddress: EBB66E10
+00029247: Actor: PC_Hero
+00029248: SourceAddress: E70E8610
+00029249: Source: Wrestling Staff_BBM
+00029250: RequestedGroup: 7
+00029251: BeforeGroup: 5
+00029252: AfterGroup: 7
+00029253: SPUAddress: EBB67074
+00029254: StateStackCount: 2
+00029255: HasTopFrame: 1
+00029256: TopIndex: 1
+00029257: TopEntryAddressDiagnosticOnly: DC490228
+00029258: TopScriptName: _AI_PowerAttack
+00029259: TopIsScriptState: 0
+00029260: TopBreakBlock: 2
+00029261: TopArgumentsAddress: DE900510
+00029262: TopLocalCallback: OnAI_PowerAttack
+00029263: TopExtraFloat: 1000.000000
+00029264: CurrentState: PS_Melee_PowerAttack
+00029265: CurrentAction: 2
+00029266: CurrentStatePosition: 0
+00029267: CurrentStateTime: 0.595248
+00029268: TopEntryAddressIsExecutionIdentity: 0
+00029269: ArgumentsDereferencedOrClassified: 0
+00029270: LifecycleBehaviorChanged: 0
+00029271: CollisionBehaviorChanged: 0
+00029272: ===============================
+00029273: 
+00029274: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00029275: ActorAddress: EBB66E10
+00029276: Actor: PC_Hero
+00029277: CurrentAction: 2
+00029278: CurrentAniPhase: 1
+00029279: CurrentMovementAni: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00029280: Stage: BEGIN
+00029281: ElapsedMs: 111372.920
+00029282: PrimarySnapshotAvailable: 1
+00029283: PrimaryMotionName: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00029284: PrimaryHasMotionInstance: 1
+00029285: PrimaryMotionRunning: 1
+00029286: PrimaryPlayTime: 0.399990
+00029287: PrimaryMaxTime: 0.400000
+00029288: PrimaryPlaySpeed: 0.000000
+00029289: LeftHandSourceResolved: 0
+00029290: RightHandSourceResolved: 1
+00029291: RightHandSource: Wrestling Staff_BBM
+00029292: RightHandSourceAddress: E70E8610
+00029293: RightHandSourceCollisionGroup: 7
+00029294: CleanupBehaviorChanged: 0
+00029295: =========================================
+00029296: 
+00029297: ===== HIT STARTRECOVER BEGIN STACK =====
+00029298: ElapsedMs: 111372.975
+00029299: Actor: PC_Hero
+00029300: OutgoingPrimaryMotionName: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00029301: CurrentAction: 2
+00029302: CurrentAniPhase: 1
+00029303: CurrentStateTime: 0.998212
+00029304: CurrentMovementAni: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00029305: LeftHandSourceResolved: 0
+00029306: LeftHandSource: <none>
+00029307: LeftHandSourceAddress: 00000000
+00029308: LeftHandSourceCollisionGroup: -1
+00029309: RightHandSourceResolved: 1
+00029310: RightHandSource: Wrestling Staff_BBM
+00029311: RightHandSourceAddress: E70E8610
+===== SOURCE RANGE 29973-30173 =====
+00029973: Stage: RESULT_AFTER_ORIGINAL
+00029974: ElapsedMs: 113166.150
+00029975: PrimarySnapshotAvailable: 1
+00029976: PrimaryMotionName: 
+00029977: PrimaryHasMotionInstance: 0
+00029978: PrimaryMotionRunning: 0
+00029979: PrimaryPlayTime: 0.000000
+00029980: PrimaryMaxTime: 0.000000
+00029981: PrimaryPlaySpeed: 0.000000
+00029982: CleanupBehaviorChanged: 0
+00029983: =====================================
+00029984: 
+00029985: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00029986: ElapsedMs: 113166.209
+00029987: Actor: PC_Hero
+00029988: PrimaryWasEmptyBefore: 1
+00029989: IncomingMotionRequestAddress: EBB671A8
+00029990: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00029991: SuccessorPrimarySnapshotAvailable: 1
+00029992: SuccessorPrimaryHasMotionInstance: 1
+00029993: CurrentActionBeforeOriginal: 2
+00029994: CurrentAniPhaseBeforeOriginal: 1
+00029995: CurrentStateTimeBeforeOriginal: 0.593964
+00029996: CurrentStatePositionBeforeOriginal: 0
+00029997: CurrentMovementAniBeforeOriginal: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00029998: LeftHandSourceResolved: 0
+00029999: LeftHandSource: <none>
+00030000: LeftHandSourceAddress: 00000000
+00030001: LeftHandSourceCollisionGroup: -1
+00030002: RightHandSourceResolved: 1
+00030003: RightHandSource: Wrestling Staff_BBM
+00030004: RightHandSourceAddress: E70E8610
+00030005: RightHandSourceCollisionGroup: 5
+00030006: CapturedStackFrameCount: 7
+00030007: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00030008: StackFrame[1]: Address=00C2B485 Module=Game.dll Base=00AC0000 RVA=0x0016B485
+00030009: StackFrame[2]: Address=00C29724 Module=Game.dll Base=00AC0000 RVA=0x00169724
+00030010: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00030011: StackFrame[4]: Address=1B1C7FD9 Module=Script_Game.dll Base=1B180000 RVA=0x00047FD9
+00030012: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00030013: StackFrame[6]: Address=00C2F2C7 Module=Game.dll Base=00AC0000 RVA=0x0016F2C7
+00030014: CleanupBehaviorChanged: 0
+00030015: =============================================
+00030016: 
+00030017: ===== PRIMARYFIRST PlayMotion =====
+00030018: OwnerEntityAddress: EBB66E10
+00030019: OwnerEntity: PC_Hero
+00030020: MotionType: 0
+00030021: Stage: REQUEST_BEFORE_ORIGINAL
+00030022: ElapsedMs: 113166.208
+00030023: PrimarySnapshotAvailable: 1
+00030024: PrimaryMotionName: 
+00030025: PrimaryHasMotionInstance: 0
+00030026: PrimaryMotionRunning: 0
+00030027: PrimaryPlayTime: 0.000000
+00030028: PrimaryMaxTime: 0.000000
+00030029: PrimaryPlaySpeed: 0.000000
+00030030: Stage: RESULT_AFTER_ORIGINAL
+00030031: ElapsedMs: 113166.226
+00030032: PrimarySnapshotAvailable: 1
+00030033: PrimaryMotionName: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00030034: PrimaryHasMotionInstance: 1
+00030035: PrimaryMotionRunning: 1
+00030036: PrimaryPlayTime: 0.000000
+00030037: PrimaryMaxTime: 0.480000
+00030038: PrimaryPlaySpeed: 1.000000
+00030039: CleanupBehaviorChanged: 0
+00030040: =====================================
+00030041: 
+00030042: ===== C1 OFFENSE REQUEST =====
+00030043: ElapsedMs: 113166.347
+00030044: ActorAddress: EBB66E10
+00030045: Actor: PC_Hero
+00030046: Generation: 38
+00030047: Status: PERSISTED
+00030048: SourceAddress: E70E8610
+00030049: Source: Wrestling Staff_BBM
+00030050: OriginalSideMask: 1
+00030051: OriginalSide: RIGHT
+00030052: OffensiveRequestCount: 1
+00030053: Outstanding: 1
+00030054: CleanupObserved: 0
+00030055: ActualGroup: 7
+00030056: PhysicalCollisionChanged: 0
+00030057: ==============================
+00030058: 
+00030059: ===== ENGINE SetCollisionGroup =====
+00030060: ElapsedMs: 113166.362
+00030061: Entity: Wrestling Staff_BBM
+00030062: ChangedEntityAddress: E70E8610
+00030063: PlayerSlotMatch: RIGHT
+00030064: PlayerAction: 2
+00030065: PlayerAniPhase: 1
+00030066: PlayerPrimaryPose: 2
+00030067: PlayerStateTime: 0.593964
+00030068: PlayerStatePosition: 0
+00030069: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00030070: PlayerLeftItem: <none>
+00030071: PlayerLeftItemAddress: 00000000
+00030072: PlayerLeftUseType: -1
+00030073: PlayerLeftCollisionGroup: -1
+00030074: PlayerRightItem: Wrestling Staff_BBM
+00030075: PlayerRightItemAddress: E70E8610
+00030076: PlayerRightUseType: 12
+00030077: PlayerRightCollisionGroup: 7
+00030078: RequestedGroup: 7
+00030079: BeforeGroup: 5
+00030080: AfterGroup: 7
+00030081: Item_EquippedValue: 5
+00030082: Item_AttackValue: 7
+00030083: RetiredMarkerExecutionCount: 0
+00030084: ====================================
+00030085: 
+00030086: ===== C1-O2-P1 OFFENSE SCOPE =====
+00030087: ElapsedMs: 113166.386
+00030088: ActorAddress: EBB66E10
+00030089: SourceAddress: E70E8610
+00030090: CurrentScopeExists: 0
+00030091: ScopeAddress: 00000000
+00030092: ScopeSPUAddress: 00000000
+00030093: PlayerSPUAddress: EBB67074
+00030094: SPUMatchesPlayer: 0
+00030095: ScopeRuntimeStackAddress: 00000000
+00030096: PlayerStateStackAddress: EBB67078
+00030097: RuntimeStackMatchesPlayerStateStack: 0
+00030098: ScriptNameReferenceAddress: 00000000
+00030099: ScriptFunctionName: <no-current-scope>
+00030100: ParentScopeExists: 0
+00030101: OffenseObservedSet: 0
+00030102: LifecycleBehaviorChanged: 0
+00030103: CollisionBehaviorChanged: 0
+00030104: ==================================
+00030105: 
+00030106: ===== OUTER_FRAME OFFENSE =====
+00030107: ElapsedMs: 113166.401
+00030108: ActorAddress: EBB66E10
+00030109: Actor: PC_Hero
+00030110: SourceAddress: E70E8610
+00030111: Source: Wrestling Staff_BBM
+00030112: RequestedGroup: 7
+00030113: BeforeGroup: 5
+00030114: AfterGroup: 7
+00030115: SPUAddress: EBB67074
+00030116: StateStackCount: 2
+00030117: HasTopFrame: 1
+00030118: TopIndex: 1
+00030119: TopEntryAddressDiagnosticOnly: DC490228
+00030120: TopScriptName: _AI_PowerAttack
+00030121: TopIsScriptState: 0
+00030122: TopBreakBlock: 2
+00030123: TopArgumentsAddress: DE906210
+00030124: TopLocalCallback: OnAI_PowerAttack
+00030125: TopExtraFloat: 1000.000000
+00030126: CurrentState: PS_Melee_PowerAttack
+00030127: CurrentAction: 2
+00030128: CurrentStatePosition: 0
+00030129: CurrentStateTime: 0.593964
+00030130: TopEntryAddressIsExecutionIdentity: 0
+00030131: ArgumentsDereferencedOrClassified: 0
+00030132: LifecycleBehaviorChanged: 0
+00030133: CollisionBehaviorChanged: 0
+00030134: ===============================
+00030135: 
+00030136: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00030137: ActorAddress: EBB66E10
+00030138: Actor: PC_Hero
+00030139: CurrentAction: 2
+00030140: CurrentAniPhase: 1
+00030141: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00030142: Stage: BEGIN
+00030143: ElapsedMs: 113650.943
+00030144: PrimarySnapshotAvailable: 1
+00030145: PrimaryMotionName: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00030146: PrimaryHasMotionInstance: 1
+00030147: PrimaryMotionRunning: 1
+00030148: PrimaryPlayTime: 0.479990
+00030149: PrimaryMaxTime: 0.480000
+00030150: PrimaryPlaySpeed: 0.000000
+00030151: LeftHandSourceResolved: 0
+00030152: RightHandSourceResolved: 1
+00030153: RightHandSource: Wrestling Staff_BBM
+00030154: RightHandSourceAddress: E70E8610
+00030155: RightHandSourceCollisionGroup: 7
+00030156: CleanupBehaviorChanged: 0
+00030157: =========================================
+00030158: 
+00030159: ===== HIT STARTRECOVER BEGIN STACK =====
+00030160: ElapsedMs: 113650.992
+00030161: Actor: PC_Hero
+00030162: OutgoingPrimaryMotionName: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00030163: CurrentAction: 2
+00030164: CurrentAniPhase: 1
+00030165: CurrentStateTime: 1.082927
+00030166: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00030167: LeftHandSourceResolved: 0
+00030168: LeftHandSource: <none>
+00030169: LeftHandSourceAddress: 00000000
+00030170: LeftHandSourceCollisionGroup: -1
+00030171: RightHandSourceResolved: 1
+00030172: RightHandSource: Wrestling Staff_BBM
+00030173: RightHandSourceAddress: E70E8610
+===== SOURCE RANGE 31067-31267 =====
+00031067: Stage: RESULT_AFTER_ORIGINAL
+00031068: ElapsedMs: 116854.817
+00031069: PrimarySnapshotAvailable: 1
+00031070: PrimaryMotionName: 
+00031071: PrimaryHasMotionInstance: 0
+00031072: PrimaryMotionRunning: 0
+00031073: PrimaryPlayTime: 0.000000
+00031074: PrimaryMaxTime: 0.000000
+00031075: PrimaryPlaySpeed: 0.000000
+00031076: CleanupBehaviorChanged: 0
+00031077: =====================================
+00031078: 
+00031079: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00031080: ElapsedMs: 116854.848
+00031081: Actor: PC_Hero
+00031082: PrimaryWasEmptyBefore: 1
+00031083: IncomingMotionRequestAddress: EBB671A8
+00031084: SuccessorPrimaryMotionNameAfterOriginal: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+00031085: SuccessorPrimarySnapshotAvailable: 1
+00031086: SuccessorPrimaryHasMotionInstance: 1
+00031087: CurrentActionBeforeOriginal: 14
+00031088: CurrentAniPhaseBeforeOriginal: 1
+00031089: CurrentStateTimeBeforeOriginal: 0.760914
+00031090: CurrentStatePositionBeforeOriginal: 0
+00031091: CurrentMovementAniBeforeOriginal: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+00031092: LeftHandSourceResolved: 0
+00031093: LeftHandSource: <none>
+00031094: LeftHandSourceAddress: 00000000
+00031095: LeftHandSourceCollisionGroup: -1
+00031096: RightHandSourceResolved: 1
+00031097: RightHandSource: Wrestling Staff_BBM
+00031098: RightHandSourceAddress: E70E8610
+00031099: RightHandSourceCollisionGroup: 5
+00031100: CapturedStackFrameCount: 7
+00031101: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00031102: StackFrame[1]: Address=00C2B485 Module=Game.dll Base=00AC0000 RVA=0x0016B485
+00031103: StackFrame[2]: Address=00C29724 Module=Game.dll Base=00AC0000 RVA=0x00169724
+00031104: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00031105: StackFrame[4]: Address=1B1C321F Module=Script_Game.dll Base=1B180000 RVA=0x0004321F
+00031106: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00031107: StackFrame[6]: Address=00C2F2C7 Module=Game.dll Base=00AC0000 RVA=0x0016F2C7
+00031108: CleanupBehaviorChanged: 0
+00031109: =============================================
+00031110: 
+00031111: ===== PRIMARYFIRST PlayMotion =====
+00031112: OwnerEntityAddress: EBB66E10
+00031113: OwnerEntity: PC_Hero
+00031114: MotionType: 0
+00031115: Stage: REQUEST_BEFORE_ORIGINAL
+00031116: ElapsedMs: 116854.846
+00031117: PrimarySnapshotAvailable: 1
+00031118: PrimaryMotionName: 
+00031119: PrimaryHasMotionInstance: 0
+00031120: PrimaryMotionRunning: 0
+00031121: PrimaryPlayTime: 0.000000
+00031122: PrimaryMaxTime: 0.000000
+00031123: PrimaryPlaySpeed: 0.000000
+00031124: Stage: RESULT_AFTER_ORIGINAL
+00031125: ElapsedMs: 116854.866
+00031126: PrimarySnapshotAvailable: 1
+00031127: PrimaryMotionName: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+00031128: PrimaryHasMotionInstance: 1
+00031129: PrimaryMotionRunning: 1
+00031130: PrimaryPlayTime: 0.000000
+00031131: PrimaryMaxTime: 0.600000
+00031132: PrimaryPlaySpeed: 1.000000
+00031133: CleanupBehaviorChanged: 0
+00031134: =====================================
+00031135: 
+00031136: ===== C1 OFFENSE REQUEST =====
+00031137: ElapsedMs: 116854.956
+00031138: ActorAddress: EBB66E10
+00031139: Actor: PC_Hero
+00031140: Generation: 39
+00031141: Status: PERSISTED
+00031142: SourceAddress: E70E8610
+00031143: Source: Wrestling Staff_BBM
+00031144: OriginalSideMask: 1
+00031145: OriginalSide: RIGHT
+00031146: OffensiveRequestCount: 1
+00031147: Outstanding: 1
+00031148: CleanupObserved: 0
+00031149: ActualGroup: 7
+00031150: PhysicalCollisionChanged: 0
+00031151: ==============================
+00031152: 
+00031153: ===== ENGINE SetCollisionGroup =====
+00031154: ElapsedMs: 116854.973
+00031155: Entity: Wrestling Staff_BBM
+00031156: ChangedEntityAddress: E70E8610
+00031157: PlayerSlotMatch: RIGHT
+00031158: PlayerAction: 14
+00031159: PlayerAniPhase: 1
+00031160: PlayerPrimaryPose: 1
+00031161: PlayerStateTime: 0.760914
+00031162: PlayerStatePosition: 0
+00031163: PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+00031164: PlayerLeftItem: <none>
+00031165: PlayerLeftItemAddress: 00000000
+00031166: PlayerLeftUseType: -1
+00031167: PlayerLeftCollisionGroup: -1
+00031168: PlayerRightItem: Wrestling Staff_BBM
+00031169: PlayerRightItemAddress: E70E8610
+00031170: PlayerRightUseType: 12
+00031171: PlayerRightCollisionGroup: 7
+00031172: RequestedGroup: 7
+00031173: BeforeGroup: 5
+00031174: AfterGroup: 7
+00031175: Item_EquippedValue: 5
+00031176: Item_AttackValue: 7
+00031177: RetiredMarkerExecutionCount: 0
+00031178: ====================================
+00031179: 
+00031180: ===== C1-O2-P1 OFFENSE SCOPE =====
+00031181: ElapsedMs: 116854.997
+00031182: ActorAddress: EBB66E10
+00031183: SourceAddress: E70E8610
+00031184: CurrentScopeExists: 0
+00031185: ScopeAddress: 00000000
+00031186: ScopeSPUAddress: 00000000
+00031187: PlayerSPUAddress: EBB67074
+00031188: SPUMatchesPlayer: 0
+00031189: ScopeRuntimeStackAddress: 00000000
+00031190: PlayerStateStackAddress: EBB67078
+00031191: RuntimeStackMatchesPlayerStateStack: 0
+00031192: ScriptNameReferenceAddress: 00000000
+00031193: ScriptFunctionName: <no-current-scope>
+00031194: ParentScopeExists: 0
+00031195: OffenseObservedSet: 0
+00031196: LifecycleBehaviorChanged: 0
+00031197: CollisionBehaviorChanged: 0
+00031198: ==================================
+00031199: 
+00031200: ===== OUTER_FRAME OFFENSE =====
+00031201: ElapsedMs: 116855.011
+00031202: ActorAddress: EBB66E10
+00031203: Actor: PC_Hero
+00031204: SourceAddress: E70E8610
+00031205: Source: Wrestling Staff_BBM
+00031206: RequestedGroup: 7
+00031207: BeforeGroup: 5
+00031208: AfterGroup: 7
+00031209: SPUAddress: EBB67074
+00031210: StateStackCount: 2
+00031211: HasTopFrame: 1
+00031212: TopIndex: 1
+00031213: TopEntryAddressDiagnosticOnly: DC490228
+00031214: TopScriptName: _AI_HackAttack
+00031215: TopIsScriptState: 0
+00031216: TopBreakBlock: 2
+00031217: TopArgumentsAddress: DE906C90
+00031218: TopLocalCallback: OnAI_HackAttack
+00031219: TopExtraFloat: 1000.000000
+00031220: CurrentState: PS_Melee_HackAttack
+00031221: CurrentAction: 14
+00031222: CurrentStatePosition: 0
+00031223: CurrentStateTime: 0.760914
+00031224: TopEntryAddressIsExecutionIdentity: 0
+00031225: ArgumentsDereferencedOrClassified: 0
+00031226: LifecycleBehaviorChanged: 0
+00031227: CollisionBehaviorChanged: 0
+00031228: ===============================
+00031229: 
+00031230: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00031231: ActorAddress: EBB66E10
+00031232: Actor: PC_Hero
+00031233: CurrentAction: 14
+00031234: CurrentAniPhase: 1
+00031235: CurrentMovementAni: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+00031236: Stage: BEGIN
+00031237: ElapsedMs: 117461.210
+00031238: PrimarySnapshotAvailable: 1
+00031239: PrimaryMotionName: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+00031240: PrimaryHasMotionInstance: 1
+00031241: PrimaryMotionRunning: 1
+00031242: PrimaryPlayTime: 0.599990
+00031243: PrimaryMaxTime: 0.600000
+00031244: PrimaryPlaySpeed: 0.000000
+00031245: LeftHandSourceResolved: 0
+00031246: RightHandSourceResolved: 1
+00031247: RightHandSource: Wrestling Staff_BBM
+00031248: RightHandSourceAddress: E70E8610
+00031249: RightHandSourceCollisionGroup: 7
+00031250: CleanupBehaviorChanged: 0
+00031251: =========================================
+00031252: 
+00031253: ===== HIT STARTRECOVER BEGIN STACK =====
+00031254: ElapsedMs: 117461.259
+00031255: Actor: PC_Hero
+00031256: OutgoingPrimaryMotionName: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+00031257: CurrentAction: 14
+00031258: CurrentAniPhase: 1
+00031259: CurrentStateTime: 1.368884
+00031260: CurrentMovementAni: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+00031261: LeftHandSourceResolved: 0
+00031262: LeftHandSource: <none>
+00031263: LeftHandSourceAddress: 00000000
+00031264: LeftHandSourceCollisionGroup: -1
+00031265: RightHandSourceResolved: 1
+00031266: RightHandSource: Wrestling Staff_BBM
+00031267: RightHandSourceAddress: E70E8610
+===== SOURCE RANGE 32268-32468 =====
+00032268: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00032269: StackFrame[4]: Address=1B1CDF92 Module=Script_Game.dll Base=1B180000 RVA=0x0004DF92
+00032270: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00032271: StackFrame[6]: Address=1B200010 Module=Script_Game.dll Base=1B180000 RVA=0x00080010
+00032272: StackFrame[7]: Address=00C204D3 Module=Game.dll Base=00AC0000 RVA=0x001604D3
+00032273: CleanupBehaviorChanged: 0
+00032274: =============================================
+00032275: 
+00032276: ===== PRIMARYFIRST PlayMotion =====
+00032277: OwnerEntityAddress: EBB66E10
+00032278: OwnerEntity: PC_Hero
+00032279: MotionType: 0
+00032280: Stage: REQUEST_BEFORE_ORIGINAL
+00032281: ElapsedMs: 121686.961
+00032282: PrimarySnapshotAvailable: 1
+00032283: PrimaryMotionName: 
+00032284: PrimaryHasMotionInstance: 0
+00032285: PrimaryMotionRunning: 0
+00032286: PrimaryPlayTime: 0.000000
+00032287: PrimaryMaxTime: 0.000000
+00032288: PrimaryPlaySpeed: 0.000000
+00032289: Stage: RESULT_AFTER_ORIGINAL
+00032290: ElapsedMs: 121686.979
+00032291: PrimarySnapshotAvailable: 1
+00032292: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00032293: PrimaryHasMotionInstance: 1
+00032294: PrimaryMotionRunning: 1
+00032295: PrimaryPlayTime: 0.000000
+00032296: PrimaryMaxTime: 0.800000
+00032297: PrimaryPlaySpeed: 1.000000
+00032298: CleanupBehaviorChanged: 0
+00032299: =====================================
+00032300: 
+00032301: ===== C1 LIFECYCLE STATUS =====
+00032302: ElapsedMs: 121687.056
+00032303: Event: PERSISTED
+00032304: ActorAddress: EBB66E10
+00032305: Actor: PC_Hero
+00032306: Generation: 40
+00032307: Status: PERSISTED
+00032308: Outstanding: 0
+00032309: PhysicalCollisionChanged: 0
+00032310: ===============================
+00032311: 
+00032312: ===== MARKER OWNERSHIP DECISION =====
+00032313: ElapsedMs: 121687.073
+00032314: Actor: PC_Hero
+00032315: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00032316: MatchingMotionFound: 1
+00032317: FrameEffectCount: 1
+00032318: ContainsReservedSourceMarker: 0
+00032319: RequiredSourceMask: 0
+00032320: AuthoredRIGHTMarkerCount: 0
+00032321: FirstRIGHTMarkerFrame: -1
+00032322: AuthoredLEFTMarkerCount: 0
+00032323: FirstLEFTMarkerFrame: -1
+00032324: AuthoredBOTHMarkerCount: 0
+00032325: FirstBOTHMarkerFrame: -1
+00032326: AuthoredOFFMarkerCount: 0
+00032327: FirstOFFMarkerFrame: -1
+00032328: RightHandSourceResolved: 1
+00032329: RightHandSource: Wrestling Staff_BBM
+00032330: RightHandSourceAddress: E70E8610
+00032331: RightHandSourceUseType: 12
+00032332: RightHandSourceCollisionGroup: 5
+00032333: LeftHandSourceResolved: 0
+00032334: Decision: LEGACY/NATIVE - call original timer callback
+00032335: =====================================
+00032336: 
+00032337: ===== C1 OFFENSE REQUEST =====
+00032338: ElapsedMs: 121935.985
+00032339: ActorAddress: EBB66E10
+00032340: Actor: PC_Hero
+00032341: Generation: 40
+00032342: Status: PERSISTED
+00032343: SourceAddress: E70E8610
+00032344: Source: Wrestling Staff_BBM
+00032345: OriginalSideMask: 1
+00032346: OriginalSide: RIGHT
+00032347: OffensiveRequestCount: 1
+00032348: Outstanding: 1
+00032349: CleanupObserved: 0
+00032350: ActualGroup: 7
+00032351: PhysicalCollisionChanged: 0
+00032352: ==============================
+00032353: 
+00032354: ===== ENGINE SetCollisionGroup =====
+00032355: ElapsedMs: 121936.022
+00032356: Entity: Wrestling Staff_BBM
+00032357: ChangedEntityAddress: E70E8610
+00032358: PlayerSlotMatch: RIGHT
+00032359: PlayerAction: 10
+00032360: PlayerAniPhase: 1
+00032361: PlayerPrimaryPose: 1
+00032362: PlayerStateTime: 0.253273
+00032363: PlayerStatePosition: 0
+00032364: PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00032365: PlayerLeftItem: <none>
+00032366: PlayerLeftItemAddress: 00000000
+00032367: PlayerLeftUseType: -1
+00032368: PlayerLeftCollisionGroup: -1
+00032369: PlayerRightItem: Wrestling Staff_BBM
+00032370: PlayerRightItemAddress: E70E8610
+00032371: PlayerRightUseType: 12
+00032372: PlayerRightCollisionGroup: 7
+00032373: RequestedGroup: 7
+00032374: BeforeGroup: 5
+00032375: AfterGroup: 7
+00032376: Item_EquippedValue: 5
+00032377: Item_AttackValue: 7
+00032378: RetiredMarkerExecutionCount: 0
+00032379: ====================================
+00032380: 
+00032381: ===== C1-O2-P1 OFFENSE SCOPE =====
+00032382: ElapsedMs: 121936.047
+00032383: ActorAddress: EBB66E10
+00032384: SourceAddress: E70E8610
+00032385: CurrentScopeExists: 0
+00032386: ScopeAddress: 00000000
+00032387: ScopeSPUAddress: 00000000
+00032388: PlayerSPUAddress: EBB67074
+00032389: SPUMatchesPlayer: 0
+00032390: ScopeRuntimeStackAddress: 00000000
+00032391: PlayerStateStackAddress: EBB67078
+00032392: RuntimeStackMatchesPlayerStateStack: 0
+00032393: ScriptNameReferenceAddress: 00000000
+00032394: ScriptFunctionName: <no-current-scope>
+00032395: ParentScopeExists: 0
+00032396: OffenseObservedSet: 0
+00032397: LifecycleBehaviorChanged: 0
+00032398: CollisionBehaviorChanged: 0
+00032399: ==================================
+00032400: 
+00032401: ===== OUTER_FRAME OFFENSE =====
+00032402: ElapsedMs: 121936.062
+00032403: ActorAddress: EBB66E10
+00032404: Actor: PC_Hero
+00032405: SourceAddress: E70E8610
+00032406: Source: Wrestling Staff_BBM
+00032407: RequestedGroup: 7
+00032408: BeforeGroup: 5
+00032409: AfterGroup: 7
+00032410: SPUAddress: EBB67074
+00032411: StateStackCount: 2
+00032412: HasTopFrame: 1
+00032413: TopIndex: 1
+00032414: TopEntryAddressDiagnosticOnly: DC490228
+00032415: TopScriptName: _AI_WhirlAttack
+00032416: TopIsScriptState: 0
+00032417: TopBreakBlock: 2
+00032418: TopArgumentsAddress: DE907D10
+00032419: TopLocalCallback: OnAI_WhirlAttack
+00032420: TopExtraFloat: 1000.000000
+00032421: CurrentState: PS_Melee_WhirlAttack
+00032422: CurrentAction: 10
+00032423: CurrentStatePosition: 0
+00032424: CurrentStateTime: 0.253273
+00032425: TopEntryAddressIsExecutionIdentity: 0
+00032426: ArgumentsDereferencedOrClassified: 0
+00032427: LifecycleBehaviorChanged: 0
+00032428: CollisionBehaviorChanged: 0
+00032429: ===============================
+00032430: 
+00032431: ===== COMBATMOVE STARTRECOVER BEGIN =====
+00032432: ActorAddress: EBB66E10
+00032433: Actor: PC_Hero
+00032434: CurrentAction: 10
+00032435: CurrentAniPhase: 1
+00032436: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00032437: Stage: BEGIN
+00032438: ElapsedMs: 122485.571
+00032439: PrimarySnapshotAvailable: 1
+00032440: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00032441: PrimaryHasMotionInstance: 1
+00032442: PrimaryMotionRunning: 1
+00032443: PrimaryPlayTime: 0.799990
+00032444: PrimaryMaxTime: 0.800000
+00032445: PrimaryPlaySpeed: 0.000000
+00032446: LeftHandSourceResolved: 0
+00032447: RightHandSourceResolved: 1
+00032448: RightHandSource: Wrestling Staff_BBM
+00032449: RightHandSourceAddress: E70E8610
+00032450: RightHandSourceCollisionGroup: 7
+00032451: CleanupBehaviorChanged: 0
+00032452: =========================================
+00032453: 
+00032454: ===== HIT STARTRECOVER BEGIN STACK =====
+00032455: ElapsedMs: 122485.626
+00032456: Actor: PC_Hero
+00032457: OutgoingPrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00032458: CurrentAction: 10
+00032459: CurrentAniPhase: 1
+00032460: CurrentStateTime: 0.802243
+00032461: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00032462: LeftHandSourceResolved: 0
+00032463: LeftHandSource: <none>
+00032464: LeftHandSourceAddress: 00000000
+00032465: LeftHandSourceCollisionGroup: -1
+00032466: RightHandSourceResolved: 1
+00032467: RightHandSource: Wrestling Staff_BBM
+00032468: RightHandSourceAddress: E70E8610
+===== SOURCE RANGE 33376-33576 =====
+00033376: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00033377: ElapsedMs: 125968.128
+00033378: Actor: PC_Hero
+00033379: PrimaryWasEmptyBefore: 1
+00033380: IncomingMotionRequestAddress: EBB671A8
+00033381: SuccessorPrimaryMotionNameAfterOriginal: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00033382: SuccessorPrimarySnapshotAvailable: 1
+00033383: SuccessorPrimaryHasMotionInstance: 1
+00033384: CurrentActionBeforeOriginal: 10
+00033385: CurrentAniPhaseBeforeOriginal: 1
+00033386: CurrentStateTimeBeforeOriginal: 0.000000
+00033387: CurrentStatePositionBeforeOriginal: 0
+00033388: CurrentMovementAniBeforeOriginal: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00033389: LeftHandSourceResolved: 0
+00033390: LeftHandSource: <none>
+00033391: LeftHandSourceAddress: 00000000
+00033392: LeftHandSourceCollisionGroup: -1
+00033393: RightHandSourceResolved: 1
+00033394: RightHandSource: Wrestling Staff_BBM
+00033395: RightHandSourceAddress: E70E8610
+00033396: RightHandSourceCollisionGroup: 5
+00033397: CapturedStackFrameCount: 8
+00033398: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00033399: StackFrame[1]: Address=00C2B485 Module=Game.dll Base=00AC0000 RVA=0x0016B485
+00033400: StackFrame[2]: Address=00C29724 Module=Game.dll Base=00AC0000 RVA=0x00169724
+00033401: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00033402: StackFrame[4]: Address=1B1CDF92 Module=Script_Game.dll Base=1B180000 RVA=0x0004DF92
+00033403: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00033404: StackFrame[6]: Address=1B200010 Module=Script_Game.dll Base=1B180000 RVA=0x00080010
+00033405: StackFrame[7]: Address=00C204D3 Module=Game.dll Base=00AC0000 RVA=0x001604D3
+00033406: CleanupBehaviorChanged: 0
+00033407: =============================================
+00033408: 
+00033409: ===== PRIMARYFIRST PlayMotion =====
+00033410: OwnerEntityAddress: EBB66E10
+00033411: OwnerEntity: PC_Hero
+00033412: MotionType: 0
+00033413: Stage: REQUEST_BEFORE_ORIGINAL
+00033414: ElapsedMs: 125968.126
+00033415: PrimarySnapshotAvailable: 1
+00033416: PrimaryMotionName: 
+00033417: PrimaryHasMotionInstance: 0
+00033418: PrimaryMotionRunning: 0
+00033419: PrimaryPlayTime: 0.000000
+00033420: PrimaryMaxTime: 0.000000
+00033421: PrimaryPlaySpeed: 0.000000
+00033422: Stage: RESULT_AFTER_ORIGINAL
+00033423: ElapsedMs: 125968.143
+00033424: PrimarySnapshotAvailable: 1
+00033425: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00033426: PrimaryHasMotionInstance: 1
+00033427: PrimaryMotionRunning: 1
+00033428: PrimaryPlayTime: 0.000000
+00033429: PrimaryMaxTime: 0.800000
+00033430: PrimaryPlaySpeed: 1.000000
+00033431: CleanupBehaviorChanged: 0
+00033432: =====================================
+00033433: 
+00033434: ===== C1 LIFECYCLE STATUS =====
+00033435: ElapsedMs: 125968.223
+00033436: Event: PERSISTED
+00033437: ActorAddress: EBB66E10
+00033438: Actor: PC_Hero
+00033439: Generation: 41
+00033440: Status: PERSISTED
+00033441: Outstanding: 0
+00033442: PhysicalCollisionChanged: 0
+00033443: ===============================
+00033444: 
+00033445: ===== C1 OFFENSE REQUEST =====
+00033446: ElapsedMs: 126226.787
+00033447: ActorAddress: EBB66E10
+00033448: Actor: PC_Hero
+00033449: Generation: 41
+00033450: Status: PERSISTED
+00033451: SourceAddress: E70E8610
+00033452: Source: Wrestling Staff_BBM
+00033453: OriginalSideMask: 1
+00033454: OriginalSide: RIGHT
+00033455: OffensiveRequestCount: 1
+00033456: Outstanding: 1
+00033457: CleanupObserved: 0
+00033458: ActualGroup: 7
+00033459: PhysicalCollisionChanged: 0
+00033460: ==============================
+00033461: 
+00033462: ===== ENGINE SetCollisionGroup =====
+00033463: ElapsedMs: 126226.823
+00033464: Entity: Wrestling Staff_BBM
+00033465: ChangedEntityAddress: E70E8610
+00033466: PlayerSlotMatch: RIGHT
+00033467: PlayerAction: 10
+00033468: PlayerAniPhase: 1
+00033469: PlayerPrimaryPose: 1
+00033470: PlayerStateTime: 0.255995
+00033471: PlayerStatePosition: 0
+00033472: PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00033473: PlayerLeftItem: <none>
+00033474: PlayerLeftItemAddress: 00000000
+00033475: PlayerLeftUseType: -1
+00033476: PlayerLeftCollisionGroup: -1
+00033477: PlayerRightItem: Wrestling Staff_BBM
+00033478: PlayerRightItemAddress: E70E8610
+00033479: PlayerRightUseType: 12
+00033480: PlayerRightCollisionGroup: 7
+00033481: RequestedGroup: 7
+00033482: BeforeGroup: 5
+00033483: AfterGroup: 7
+00033484: Item_EquippedValue: 5
+00033485: Item_AttackValue: 7
+00033486: RetiredMarkerExecutionCount: 0
+00033487: ====================================
+00033488: 
+00033489: ===== C1-O2-P1 OFFENSE SCOPE =====
+00033490: ElapsedMs: 126226.847
+00033491: ActorAddress: EBB66E10
+00033492: SourceAddress: E70E8610
+00033493: CurrentScopeExists: 0
+00033494: ScopeAddress: 00000000
+00033495: ScopeSPUAddress: 00000000
+00033496: PlayerSPUAddress: EBB67074
+00033497: SPUMatchesPlayer: 0
+00033498: ScopeRuntimeStackAddress: 00000000
+00033499: PlayerStateStackAddress: EBB67078
+00033500: RuntimeStackMatchesPlayerStateStack: 0
+00033501: ScriptNameReferenceAddress: 00000000
+00033502: ScriptFunctionName: <no-current-scope>
+00033503: ParentScopeExists: 0
+00033504: OffenseObservedSet: 0
+00033505: LifecycleBehaviorChanged: 0
+00033506: CollisionBehaviorChanged: 0
+00033507: ==================================
+00033508: 
+00033509: ===== OUTER_FRAME OFFENSE =====
+00033510: ElapsedMs: 126226.861
+00033511: ActorAddress: EBB66E10
+00033512: Actor: PC_Hero
+00033513: SourceAddress: E70E8610
+00033514: Source: Wrestling Staff_BBM
+00033515: RequestedGroup: 7
+00033516: BeforeGroup: 5
+00033517: AfterGroup: 7
+00033518: SPUAddress: EBB67074
+00033519: StateStackCount: 2
+00033520: HasTopFrame: 1
+00033521: TopIndex: 1
+00033522: TopEntryAddressDiagnosticOnly: DC490228
+00033523: TopScriptName: _AI_WhirlAttack
+00033524: TopIsScriptState: 0
+00033525: TopBreakBlock: 2
+00033526: TopArgumentsAddress: DE90E010
+00033527: TopLocalCallback: OnAI_WhirlAttack
+00033528: TopExtraFloat: 1000.000000
+00033529: CurrentState: PS_Melee_WhirlAttack
+00033530: CurrentAction: 10
+00033531: CurrentStatePosition: 0
+00033532: CurrentStateTime: 0.255995
+00033533: TopEntryAddressIsExecutionIdentity: 0
+00033534: ArgumentsDereferencedOrClassified: 0
+00033535: LifecycleBehaviorChanged: 0
+00033536: CollisionBehaviorChanged: 0
+00033537: ===============================
+00033538: 
+00033539: ===== AIFULLSTOP CALLSITE =====
+00033540: ElapsedMs: 126638.388
+00033541: ActorAddress: EBB66E10
+00033542: Actor: PC_Hero
+00033543: CallerAddress: 1B1E33F7
+00033544: CallerModuleResolved: 1
+00033545: CallerModule: Script_Game.dll
+00033546: CallerModuleBase: 1B180000
+00033547: CallerRVA: 0x000633F7
+00033548: CurrentAction: 10
+00033549: CurrentAniPhase: 1
+00033550: CurrentState: PS_Melee_WhirlAttack
+00033551: CurrentStateTime: 0.671966
+00033552: CurrentStatePosition: 1
+00033553: PressedKey: 16
+00033554: IsPressed: 1
+00033555: IsPressedBefore: 1
+00033556: DurationPressedMSecs: 2502
+00033557: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00033558: Stage: BEFORE_ORIGINAL
+00033559: ElapsedMs: 126638.395
+00033560: PrimarySnapshotAvailable: 1
+00033561: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00033562: PrimaryHasMotionInstance: 1
+00033563: PrimaryMotionRunning: 1
+00033564: PrimaryPlayTime: 0.671966
+00033565: PrimaryMaxTime: 0.800000
+00033566: PrimaryPlaySpeed: 1.000000
+00033567: LeftHandSourceResolved: 0
+00033568: LeftHandSource: <none>
+00033569: LeftHandSourceAddress: 00000000
+00033570: LeftHandSourceCollisionGroup: -1
+00033571: RightHandSourceResolved: 1
+00033572: RightHandSource: Wrestling Staff_BBM
+00033573: RightHandSourceAddress: E70E8610
+00033574: RightHandSourceCollisionGroup: 7
+00033575: CapturedStackFrameCount: 4
+00033576: StackFrame[0]: Address=7C0A0518 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x00010518
+===== SOURCE RANGE 33614-33814 =====
+00033614: StackFrame[2]: Address=1B1E33F7 Module=Script_Game.dll Base=1B180000 RVA=0x000633F7
+00033615: StackFrame[3]: Address=1B1E1866 Module=Script_Game.dll Base=1B180000 RVA=0x00061866
+00033616: StackFrame[4]: Address=00C2093B Module=Game.dll Base=00AC0000 RVA=0x0016093B
+00033617: CleanupBehaviorChanged: 0
+00033618: =====================================
+00033619: 
+00033620: ===== AISETSTATE CALLSITE =====
+00033621: ElapsedMs: 126638.575
+00033622: ActorAddress: EBB66E10
+00033623: Actor: PC_Hero
+00033624: RequestedState: PS_Melee_Loop
+00033625: CallerAddress: 1ACB2F61
+00033626: CallerModuleResolved: 1
+00033627: CallerModule: Script.dll
+00033628: CallerModuleBase: 1ACA0000
+00033629: CallerRVA: 0x00012F61
+00033630: CurrentStateBeforeOriginal: PS_Melee_WhirlAttack
+00033631: CurrentAction: 10
+00033632: CurrentAniPhase: 1
+00033633: CurrentStateTime: 0.671966
+00033634: CurrentStatePosition: 1
+00033635: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00033636: Stage: BEFORE_ORIGINAL
+00033637: ElapsedMs: 126638.577
+00033638: PrimarySnapshotAvailable: 1
+00033639: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00033640: PrimaryHasMotionInstance: 1
+00033641: PrimaryMotionRunning: 1
+00033642: PrimaryPlayTime: 0.671966
+00033643: PrimaryMaxTime: 0.800000
+00033644: PrimaryPlaySpeed: 1.000000
+00033645: LeftHandSourceResolved: 0
+00033646: LeftHandSource: <none>
+00033647: LeftHandSourceAddress: 00000000
+00033648: LeftHandSourceCollisionGroup: -1
+00033649: RightHandSourceResolved: 1
+00033650: RightHandSource: Wrestling Staff_BBM
+00033651: RightHandSourceAddress: E70E8610
+00033652: RightHandSourceCollisionGroup: 7
+00033653: CapturedStackFrameCount: 4
+00033654: StackFrame[0]: Address=7C0A0AD8 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x00010AD8
+00033655: StackFrame[1]: Address=1ACB2F61 Module=Script.dll Base=1ACA0000 RVA=0x00012F61
+00033656: StackFrame[2]: Address=1B1E1866 Module=Script_Game.dll Base=1B180000 RVA=0x00061866
+00033657: StackFrame[3]: Address=00C2093B Module=Game.dll Base=00AC0000 RVA=0x0016093B
+00033658: CleanupBehaviorChanged: 0
+00033659: ==============================
+00033660: 
+00033661: ===== OUTER_FRAME AI_SET_STATE_BEFORE =====
+00033662: ElapsedMs: 126638.627
+00033663: ActorAddress: EBB66E10
+00033664: Actor: PC_Hero
+00033665: SPUAddress: EBB67074
+00033666: StateStackCount: 2
+00033667: HasTopFrame: 1
+00033668: TopIndex: 1
+00033669: TopEntryAddressDiagnosticOnly: DC490228
+00033670: TopScriptName: _AI_WhirlAttack
+00033671: TopIsScriptState: 0
+00033672: TopBreakBlock: 2
+00033673: TopArgumentsAddress: DE90E010
+00033674: TopLocalCallback: OnAI_WhirlAttack
+00033675: TopExtraFloat: 1000.000000
+00033676: CurrentState: PS_Melee_WhirlAttack
+00033677: CurrentAction: 10
+00033678: CurrentStatePosition: 1
+00033679: CurrentStateTime: 0.671966
+00033680: TopEntryAddressIsExecutionIdentity: 0
+00033681: ArgumentsDereferencedOrClassified: 0
+00033682: LifecycleBehaviorChanged: 0
+00033683: CollisionBehaviorChanged: 0
+00033684: ===============================
+00033685: 
+00033686: ===== C1 FINALIZATION =====
+00033687: ElapsedMs: 126638.652
+00033688: Reason: AISETSTATE_AFTER_ORIGINAL
+00033689: ActorAddress: EBB66E10
+00033690: Actor: PC_Hero
+00033691: Generation: 41
+00033692: Status: PERSISTED
+00033693: TrackedSourceCount: 1
+00033694: Source[0].Outcome: WOULD_REPAIR
+00033695: Source[0].Address: E70E8610
+00033696: Source[0].Name: Wrestling Staff_BBM
+00033697: Source[0].LivenessEstablished: 1
+00033698: Source[0].OriginalSideMask: 1
+00033699: Source[0].OriginalSide: RIGHT
+00033700: Source[0].OffensiveRequestCount: 1
+00033701: Source[0].OutstandingBeforeFinalization: 1
+00033702: Source[0].ActualGroup: 7
+00033703: Source[0].CleanupObserved: 0
+00033704: Source[0].StillEquipped: 1
+00033705: Source[0].CurrentSideMask: 1
+00033706: PhysicalCollisionChanged: 0
+00033707: ===========================
+00033708: 
+00033709: ===== OUTER_FRAME AI_SET_STATE_AFTER =====
+00033710: ElapsedMs: 126638.671
+00033711: ActorAddress: EBB66E10
+00033712: Actor: PC_Hero
+00033713: SPUAddress: EBB67074
+00033714: StateStackCount: 1
+00033715: HasTopFrame: 1
+00033716: TopIndex: 0
+00033717: TopEntryAddressDiagnosticOnly: DC490210
+00033718: TopScriptName: PS_Melee_Loop
+00033719: TopIsScriptState: 1
+00033720: TopBreakBlock: 0
+00033721: TopArgumentsAddress: 00000000
+00033722: TopLocalCallback: 
+00033723: TopExtraFloat: 1000.000000
+00033724: CurrentState: PS_Melee_Loop
+00033725: CurrentAction: 10
+00033726: CurrentStatePosition: 0
+00033727: CurrentStateTime: 0.000000
+00033728: TopEntryAddressIsExecutionIdentity: 0
+00033729: ArgumentsDereferencedOrClassified: 0
+00033730: LifecycleBehaviorChanged: 0
+00033731: CollisionBehaviorChanged: 0
+00033732: ===============================
+00033733: 
+00033734: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00033735: ElapsedMs: 126770.075
+00033736: Actor: PC_Hero
+00033737: PrimaryWasEmptyBefore: 1
+00033738: IncomingMotionRequestAddress: 0019EB18
+00033739: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00033740: SuccessorPrimarySnapshotAvailable: 1
+00033741: SuccessorPrimaryHasMotionInstance: 1
+00033742: CurrentActionBeforeOriginal: 0
+00033743: CurrentAniPhaseBeforeOriginal: 5
+00033744: CurrentStateTimeBeforeOriginal: 0.128316
+00033745: CurrentStatePositionBeforeOriginal: 0
+00033746: CurrentMovementAniBeforeOriginal: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00033747: LeftHandSourceResolved: 0
+00033748: LeftHandSource: <none>
+00033749: LeftHandSourceAddress: 00000000
+00033750: LeftHandSourceCollisionGroup: -1
+00033751: RightHandSourceResolved: 1
+00033752: RightHandSource: Wrestling Staff_BBM
+00033753: RightHandSourceAddress: E70E8610
+00033754: RightHandSourceCollisionGroup: 7
+00033755: CapturedStackFrameCount: 2
+00033756: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00033757: StackFrame[1]: Address=00B99CB3 Module=Game.dll Base=00AC0000 RVA=0x000D9CB3
+00033758: CleanupBehaviorChanged: 0
+00033759: =============================================
+00033760: 
+00033761: ===== PRIMARYFIRST PlayMotion =====
+00033762: OwnerEntityAddress: EBB66E10
+00033763: OwnerEntity: PC_Hero
+00033764: MotionType: 0
+00033765: Stage: REQUEST_BEFORE_ORIGINAL
+00033766: ElapsedMs: 126770.073
+00033767: PrimarySnapshotAvailable: 1
+00033768: PrimaryMotionName: 
+00033769: PrimaryHasMotionInstance: 0
+00033770: PrimaryMotionRunning: 0
+00033771: PrimaryPlayTime: 0.000000
+00033772: PrimaryMaxTime: 0.000000
+00033773: PrimaryPlaySpeed: 0.000000
+00033774: Stage: RESULT_AFTER_ORIGINAL
+00033775: ElapsedMs: 126770.092
+00033776: PrimarySnapshotAvailable: 1
+00033777: PrimaryMotionName: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00033778: PrimaryHasMotionInstance: 1
+00033779: PrimaryMotionRunning: 1
+00033780: PrimaryPlayTime: 0.000000
+00033781: PrimaryMaxTime: 0.000000
+00033782: PrimaryPlaySpeed: 1.000000
+00033783: CleanupBehaviorChanged: 0
+00033784: =====================================
+00033785: 
+00033786: ===== AISETSTATE CALLSITE =====
+00033787: ElapsedMs: 128003.120
+00033788: ActorAddress: EBB66E10
+00033789: Actor: PC_Hero
+00033790: RequestedState: PS_Melee_Parade
+00033791: CallerAddress: 1ACB2F61
+00033792: CallerModuleResolved: 1
+00033793: CallerModule: Script.dll
+00033794: CallerModuleBase: 1ACA0000
+00033795: CallerRVA: 0x00012F61
+00033796: CurrentStateBeforeOriginal: PS_Melee_Loop
+00033797: CurrentAction: 0
+00033798: CurrentAniPhase: 5
+00033799: CurrentStateTime: 1.363729
+00033800: CurrentStatePosition: 0
+00033801: CurrentMovementAni: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00033802: Stage: BEFORE_ORIGINAL
+00033803: ElapsedMs: 128003.126
+00033804: PrimarySnapshotAvailable: 1
+00033805: PrimaryMotionName: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00033806: PrimaryHasMotionInstance: 1
+00033807: PrimaryMotionRunning: 1
+00033808: PrimaryPlayTime: 0.000003
+00033809: PrimaryMaxTime: 0.000000
+00033810: PrimaryPlaySpeed: 1.000000
+00033811: LeftHandSourceResolved: 0
+00033812: LeftHandSource: <none>
+00033813: LeftHandSourceAddress: 00000000
+00033814: LeftHandSourceCollisionGroup: -1
+===== SOURCE RANGE 34534-34734 =====
+00034534: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00034535: ElapsedMs: 130034.774
+00034536: Actor: PC_Hero
+00034537: PrimaryWasEmptyBefore: 1
+00034538: IncomingMotionRequestAddress: EBB671A8
+00034539: SuccessorPrimaryMotionNameAfterOriginal: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00034540: SuccessorPrimarySnapshotAvailable: 1
+00034541: SuccessorPrimaryHasMotionInstance: 1
+00034542: CurrentActionBeforeOriginal: 10
+00034543: CurrentAniPhaseBeforeOriginal: 1
+00034544: CurrentStateTimeBeforeOriginal: 0.000000
+00034545: CurrentStatePositionBeforeOriginal: 0
+00034546: CurrentMovementAniBeforeOriginal: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00034547: LeftHandSourceResolved: 0
+00034548: LeftHandSource: <none>
+00034549: LeftHandSourceAddress: 00000000
+00034550: LeftHandSourceCollisionGroup: -1
+00034551: RightHandSourceResolved: 1
+00034552: RightHandSource: Wrestling Staff_BBM
+00034553: RightHandSourceAddress: E70E8610
+00034554: RightHandSourceCollisionGroup: 7
+00034555: CapturedStackFrameCount: 8
+00034556: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00034557: StackFrame[1]: Address=00C2B485 Module=Game.dll Base=00AC0000 RVA=0x0016B485
+00034558: StackFrame[2]: Address=00C29724 Module=Game.dll Base=00AC0000 RVA=0x00169724
+00034559: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00034560: StackFrame[4]: Address=1B1CDF92 Module=Script_Game.dll Base=1B180000 RVA=0x0004DF92
+00034561: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00034562: StackFrame[6]: Address=1B200010 Module=Script_Game.dll Base=1B180000 RVA=0x00080010
+00034563: StackFrame[7]: Address=00C204D3 Module=Game.dll Base=00AC0000 RVA=0x001604D3
+00034564: CleanupBehaviorChanged: 0
+00034565: =============================================
+00034566: 
+00034567: ===== PRIMARYFIRST PlayMotion =====
+00034568: OwnerEntityAddress: EBB66E10
+00034569: OwnerEntity: PC_Hero
+00034570: MotionType: 0
+00034571: Stage: REQUEST_BEFORE_ORIGINAL
+00034572: ElapsedMs: 130034.773
+00034573: PrimarySnapshotAvailable: 1
+00034574: PrimaryMotionName: 
+00034575: PrimaryHasMotionInstance: 0
+00034576: PrimaryMotionRunning: 0
+00034577: PrimaryPlayTime: 0.000000
+00034578: PrimaryMaxTime: 0.000000
+00034579: PrimaryPlaySpeed: 0.000000
+00034580: Stage: RESULT_AFTER_ORIGINAL
+00034581: ElapsedMs: 130034.791
+00034582: PrimarySnapshotAvailable: 1
+00034583: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00034584: PrimaryHasMotionInstance: 1
+00034585: PrimaryMotionRunning: 1
+00034586: PrimaryPlayTime: 0.000000
+00034587: PrimaryMaxTime: 0.800000
+00034588: PrimaryPlaySpeed: 1.000000
+00034589: CleanupBehaviorChanged: 0
+00034590: =====================================
+00034591: 
+00034592: ===== C1 LIFECYCLE STATUS =====
+00034593: ElapsedMs: 130034.868
+00034594: Event: PERSISTED
+00034595: ActorAddress: EBB66E10
+00034596: Actor: PC_Hero
+00034597: Generation: 43
+00034598: Status: PERSISTED
+00034599: Outstanding: 0
+00034600: PhysicalCollisionChanged: 0
+00034601: ===============================
+00034602: 
+00034603: ===== C1 OFFENSE REQUEST =====
+00034604: ElapsedMs: 130285.526
+00034605: ActorAddress: EBB66E10
+00034606: Actor: PC_Hero
+00034607: Generation: 43
+00034608: Status: PERSISTED
+00034609: SourceAddress: E70E8610
+00034610: Source: Wrestling Staff_BBM
+00034611: OriginalSideMask: 1
+00034612: OriginalSide: RIGHT
+00034613: OffensiveRequestCount: 1
+00034614: Outstanding: 1
+00034615: CleanupObserved: 0
+00034616: ActualGroup: 7
+00034617: PhysicalCollisionChanged: 0
+00034618: ==============================
+00034619: 
+00034620: ===== ENGINE SetCollisionGroup =====
+00034621: ElapsedMs: 130285.559
+00034622: Entity: Wrestling Staff_BBM
+00034623: ChangedEntityAddress: E70E8610
+00034624: PlayerSlotMatch: RIGHT
+00034625: PlayerAction: 10
+00034626: PlayerAniPhase: 1
+00034627: PlayerPrimaryPose: 1
+00034628: PlayerStateTime: 0.251960
+00034629: PlayerStatePosition: 0
+00034630: PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00034631: PlayerLeftItem: <none>
+00034632: PlayerLeftItemAddress: 00000000
+00034633: PlayerLeftUseType: -1
+00034634: PlayerLeftCollisionGroup: -1
+00034635: PlayerRightItem: Wrestling Staff_BBM
+00034636: PlayerRightItemAddress: E70E8610
+00034637: PlayerRightUseType: 12
+00034638: PlayerRightCollisionGroup: 7
+00034639: RequestedGroup: 7
+00034640: BeforeGroup: 7
+00034641: AfterGroup: 7
+00034642: Item_EquippedValue: 5
+00034643: Item_AttackValue: 7
+00034644: RetiredMarkerExecutionCount: 0
+00034645: ====================================
+00034646: 
+00034647: ===== C1-O2-P1 OFFENSE SCOPE =====
+00034648: ElapsedMs: 130285.584
+00034649: ActorAddress: EBB66E10
+00034650: SourceAddress: E70E8610
+00034651: CurrentScopeExists: 0
+00034652: ScopeAddress: 00000000
+00034653: ScopeSPUAddress: 00000000
+00034654: PlayerSPUAddress: EBB67074
+00034655: SPUMatchesPlayer: 0
+00034656: ScopeRuntimeStackAddress: 00000000
+00034657: PlayerStateStackAddress: EBB67078
+00034658: RuntimeStackMatchesPlayerStateStack: 0
+00034659: ScriptNameReferenceAddress: 00000000
+00034660: ScriptFunctionName: <no-current-scope>
+00034661: ParentScopeExists: 0
+00034662: OffenseObservedSet: 0
+00034663: LifecycleBehaviorChanged: 0
+00034664: CollisionBehaviorChanged: 0
+00034665: ==================================
+00034666: 
+00034667: ===== OUTER_FRAME OFFENSE =====
+00034668: ElapsedMs: 130285.598
+00034669: ActorAddress: EBB66E10
+00034670: Actor: PC_Hero
+00034671: SourceAddress: E70E8610
+00034672: Source: Wrestling Staff_BBM
+00034673: RequestedGroup: 7
+00034674: BeforeGroup: 7
+00034675: AfterGroup: 7
+00034676: SPUAddress: EBB67074
+00034677: StateStackCount: 2
+00034678: HasTopFrame: 1
+00034679: TopIndex: 1
+00034680: TopEntryAddressDiagnosticOnly: DC490228
+00034681: TopScriptName: _AI_WhirlAttack
+00034682: TopIsScriptState: 0
+00034683: TopBreakBlock: 2
+00034684: TopArgumentsAddress: DE90E310
+00034685: TopLocalCallback: OnAI_WhirlAttack
+00034686: TopExtraFloat: 1000.000000
+00034687: CurrentState: PS_Melee_WhirlAttack
+00034688: CurrentAction: 10
+00034689: CurrentStatePosition: 0
+00034690: CurrentStateTime: 0.251960
+00034691: TopEntryAddressIsExecutionIdentity: 0
+00034692: ArgumentsDereferencedOrClassified: 0
+00034693: LifecycleBehaviorChanged: 0
+00034694: CollisionBehaviorChanged: 0
+00034695: ===============================
+00034696: 
+00034697: ===== AIFULLSTOP CALLSITE =====
+00034698: ElapsedMs: 130443.813
+00034699: ActorAddress: EBB66E10
+00034700: Actor: PC_Hero
+00034701: CallerAddress: 1B1E33F7
+00034702: CallerModuleResolved: 1
+00034703: CallerModule: Script_Game.dll
+00034704: CallerModuleBase: 1B180000
+00034705: CallerRVA: 0x000633F7
+00034706: CurrentAction: 10
+00034707: CurrentAniPhase: 1
+00034708: CurrentState: PS_Melee_WhirlAttack
+00034709: CurrentStateTime: 0.413973
+00034710: CurrentStatePosition: 1
+00034711: PressedKey: 16
+00034712: IsPressed: 1
+00034713: IsPressedBefore: 1
+00034714: DurationPressedMSecs: 2502
+00034715: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00034716: Stage: BEFORE_ORIGINAL
+00034717: ElapsedMs: 130443.822
+00034718: PrimarySnapshotAvailable: 1
+00034719: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00034720: PrimaryHasMotionInstance: 1
+00034721: PrimaryMotionRunning: 1
+00034722: PrimaryPlayTime: 0.413973
+00034723: PrimaryMaxTime: 0.800000
+00034724: PrimaryPlaySpeed: 1.000000
+00034725: LeftHandSourceResolved: 0
+00034726: LeftHandSource: <none>
+00034727: LeftHandSourceAddress: 00000000
+00034728: LeftHandSourceCollisionGroup: -1
+00034729: RightHandSourceResolved: 1
+00034730: RightHandSource: Wrestling Staff_BBM
+00034731: RightHandSourceAddress: E70E8610
+00034732: RightHandSourceCollisionGroup: 7
+00034733: CapturedStackFrameCount: 4
+00034734: StackFrame[0]: Address=7C0A0518 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x00010518
+===== SOURCE RANGE 34772-34972 =====
+00034772: StackFrame[2]: Address=1B1E33F7 Module=Script_Game.dll Base=1B180000 RVA=0x000633F7
+00034773: StackFrame[3]: Address=1B1E1866 Module=Script_Game.dll Base=1B180000 RVA=0x00061866
+00034774: StackFrame[4]: Address=00C2093B Module=Game.dll Base=00AC0000 RVA=0x0016093B
+00034775: CleanupBehaviorChanged: 0
+00034776: =====================================
+00034777: 
+00034778: ===== AISETSTATE CALLSITE =====
+00034779: ElapsedMs: 130443.988
+00034780: ActorAddress: EBB66E10
+00034781: Actor: PC_Hero
+00034782: RequestedState: PS_Melee_Loop
+00034783: CallerAddress: 1ACB2F61
+00034784: CallerModuleResolved: 1
+00034785: CallerModule: Script.dll
+00034786: CallerModuleBase: 1ACA0000
+00034787: CallerRVA: 0x00012F61
+00034788: CurrentStateBeforeOriginal: PS_Melee_WhirlAttack
+00034789: CurrentAction: 10
+00034790: CurrentAniPhase: 1
+00034791: CurrentStateTime: 0.413973
+00034792: CurrentStatePosition: 1
+00034793: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00034794: Stage: BEFORE_ORIGINAL
+00034795: ElapsedMs: 130443.992
+00034796: PrimarySnapshotAvailable: 1
+00034797: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00034798: PrimaryHasMotionInstance: 1
+00034799: PrimaryMotionRunning: 1
+00034800: PrimaryPlayTime: 0.413973
+00034801: PrimaryMaxTime: 0.800000
+00034802: PrimaryPlaySpeed: 1.000000
+00034803: LeftHandSourceResolved: 0
+00034804: LeftHandSource: <none>
+00034805: LeftHandSourceAddress: 00000000
+00034806: LeftHandSourceCollisionGroup: -1
+00034807: RightHandSourceResolved: 1
+00034808: RightHandSource: Wrestling Staff_BBM
+00034809: RightHandSourceAddress: E70E8610
+00034810: RightHandSourceCollisionGroup: 7
+00034811: CapturedStackFrameCount: 4
+00034812: StackFrame[0]: Address=7C0A0AD8 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x00010AD8
+00034813: StackFrame[1]: Address=1ACB2F61 Module=Script.dll Base=1ACA0000 RVA=0x00012F61
+00034814: StackFrame[2]: Address=1B1E1866 Module=Script_Game.dll Base=1B180000 RVA=0x00061866
+00034815: StackFrame[3]: Address=00C2093B Module=Game.dll Base=00AC0000 RVA=0x0016093B
+00034816: CleanupBehaviorChanged: 0
+00034817: ==============================
+00034818: 
+00034819: ===== OUTER_FRAME AI_SET_STATE_BEFORE =====
+00034820: ElapsedMs: 130444.031
+00034821: ActorAddress: EBB66E10
+00034822: Actor: PC_Hero
+00034823: SPUAddress: EBB67074
+00034824: StateStackCount: 2
+00034825: HasTopFrame: 1
+00034826: TopIndex: 1
+00034827: TopEntryAddressDiagnosticOnly: DC490228
+00034828: TopScriptName: _AI_WhirlAttack
+00034829: TopIsScriptState: 0
+00034830: TopBreakBlock: 2
+00034831: TopArgumentsAddress: DE90E310
+00034832: TopLocalCallback: OnAI_WhirlAttack
+00034833: TopExtraFloat: 1000.000000
+00034834: CurrentState: PS_Melee_WhirlAttack
+00034835: CurrentAction: 10
+00034836: CurrentStatePosition: 1
+00034837: CurrentStateTime: 0.413973
+00034838: TopEntryAddressIsExecutionIdentity: 0
+00034839: ArgumentsDereferencedOrClassified: 0
+00034840: LifecycleBehaviorChanged: 0
+00034841: CollisionBehaviorChanged: 0
+00034842: ===============================
+00034843: 
+00034844: ===== C1 FINALIZATION =====
+00034845: ElapsedMs: 130444.068
+00034846: Reason: AISETSTATE_AFTER_ORIGINAL
+00034847: ActorAddress: EBB66E10
+00034848: Actor: PC_Hero
+00034849: Generation: 43
+00034850: Status: PERSISTED
+00034851: TrackedSourceCount: 1
+00034852: Source[0].Outcome: WOULD_REPAIR
+00034853: Source[0].Address: E70E8610
+00034854: Source[0].Name: Wrestling Staff_BBM
+00034855: Source[0].LivenessEstablished: 1
+00034856: Source[0].OriginalSideMask: 1
+00034857: Source[0].OriginalSide: RIGHT
+00034858: Source[0].OffensiveRequestCount: 1
+00034859: Source[0].OutstandingBeforeFinalization: 1
+00034860: Source[0].ActualGroup: 7
+00034861: Source[0].CleanupObserved: 0
+00034862: Source[0].StillEquipped: 1
+00034863: Source[0].CurrentSideMask: 1
+00034864: PhysicalCollisionChanged: 0
+00034865: ===========================
+00034866: 
+00034867: ===== OUTER_FRAME AI_SET_STATE_AFTER =====
+00034868: ElapsedMs: 130444.090
+00034869: ActorAddress: EBB66E10
+00034870: Actor: PC_Hero
+00034871: SPUAddress: EBB67074
+00034872: StateStackCount: 1
+00034873: HasTopFrame: 1
+00034874: TopIndex: 0
+00034875: TopEntryAddressDiagnosticOnly: DC490210
+00034876: TopScriptName: PS_Melee_Loop
+00034877: TopIsScriptState: 1
+00034878: TopBreakBlock: 0
+00034879: TopArgumentsAddress: 00000000
+00034880: TopLocalCallback: 
+00034881: TopExtraFloat: 1000.000000
+00034882: CurrentState: PS_Melee_Loop
+00034883: CurrentAction: 10
+00034884: CurrentStatePosition: 0
+00034885: CurrentStateTime: 0.000000
+00034886: TopEntryAddressIsExecutionIdentity: 0
+00034887: ArgumentsDereferencedOrClassified: 0
+00034888: LifecycleBehaviorChanged: 0
+00034889: CollisionBehaviorChanged: 0
+00034890: ===============================
+00034891: 
+00034892: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00034893: ElapsedMs: 130841.505
+00034894: Actor: PC_Hero
+00034895: PrimaryWasEmptyBefore: 1
+00034896: IncomingMotionRequestAddress: 0019EB18
+00034897: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00034898: SuccessorPrimarySnapshotAvailable: 1
+00034899: SuccessorPrimaryHasMotionInstance: 1
+00034900: CurrentActionBeforeOriginal: 0
+00034901: CurrentAniPhaseBeforeOriginal: 5
+00034902: CurrentStateTimeBeforeOriginal: 0.393971
+00034903: CurrentStatePositionBeforeOriginal: 0
+00034904: CurrentMovementAniBeforeOriginal: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00034905: LeftHandSourceResolved: 0
+00034906: LeftHandSource: <none>
+00034907: LeftHandSourceAddress: 00000000
+00034908: LeftHandSourceCollisionGroup: -1
+00034909: RightHandSourceResolved: 1
+00034910: RightHandSource: Wrestling Staff_BBM
+00034911: RightHandSourceAddress: E70E8610
+00034912: RightHandSourceCollisionGroup: 7
+00034913: CapturedStackFrameCount: 2
+00034914: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00034915: StackFrame[1]: Address=00B99CB3 Module=Game.dll Base=00AC0000 RVA=0x000D9CB3
+00034916: CleanupBehaviorChanged: 0
+00034917: =============================================
+00034918: 
+00034919: ===== PRIMARYFIRST PlayMotion =====
+00034920: OwnerEntityAddress: EBB66E10
+00034921: OwnerEntity: PC_Hero
+00034922: MotionType: 0
+00034923: Stage: REQUEST_BEFORE_ORIGINAL
+00034924: ElapsedMs: 130841.503
+00034925: PrimarySnapshotAvailable: 1
+00034926: PrimaryMotionName: 
+00034927: PrimaryHasMotionInstance: 0
+00034928: PrimaryMotionRunning: 0
+00034929: PrimaryPlayTime: 0.000000
+00034930: PrimaryMaxTime: 0.000000
+00034931: PrimaryPlaySpeed: 0.000000
+00034932: Stage: RESULT_AFTER_ORIGINAL
+00034933: ElapsedMs: 130841.525
+00034934: PrimarySnapshotAvailable: 1
+00034935: PrimaryMotionName: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00034936: PrimaryHasMotionInstance: 1
+00034937: PrimaryMotionRunning: 1
+00034938: PrimaryPlayTime: 0.000000
+00034939: PrimaryMaxTime: 0.000000
+00034940: PrimaryPlaySpeed: 1.000000
+00034941: CleanupBehaviorChanged: 0
+00034942: =====================================
+00034943: 
+00034944: ===== AISETSTATE CALLSITE =====
+00034945: ElapsedMs: 131852.513
+00034946: ActorAddress: EBB66E10
+00034947: Actor: PC_Hero
+00034948: RequestedState: PS_Melee_Parade
+00034949: CallerAddress: 1ACB2F61
+00034950: CallerModuleResolved: 1
+00034951: CallerModule: Script.dll
+00034952: CallerModuleBase: 1ACA0000
+00034953: CallerRVA: 0x00012F61
+00034954: CurrentStateBeforeOriginal: PS_Melee_Loop
+00034955: CurrentAction: 0
+00034956: CurrentAniPhase: 5
+00034957: CurrentStateTime: 1.405515
+00034958: CurrentStatePosition: 0
+00034959: CurrentMovementAni: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00034960: Stage: BEFORE_ORIGINAL
+00034961: ElapsedMs: 131852.532
+00034962: PrimarySnapshotAvailable: 1
+00034963: PrimaryMotionName: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00034964: PrimaryHasMotionInstance: 1
+00034965: PrimaryMotionRunning: 1
+00034966: PrimaryPlayTime: 0.000004
+00034967: PrimaryMaxTime: 0.000000
+00034968: PrimaryPlaySpeed: 1.000000
+00034969: LeftHandSourceResolved: 0
+00034970: LeftHandSource: <none>
+00034971: LeftHandSourceAddress: 00000000
+00034972: LeftHandSourceCollisionGroup: -1
+===== SOURCE RANGE 35692-35892 =====
+00035692: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00035693: ElapsedMs: 133735.541
+00035694: Actor: PC_Hero
+00035695: PrimaryWasEmptyBefore: 1
+00035696: IncomingMotionRequestAddress: EBB671A8
+00035697: SuccessorPrimaryMotionNameAfterOriginal: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00035698: SuccessorPrimarySnapshotAvailable: 1
+00035699: SuccessorPrimaryHasMotionInstance: 1
+00035700: CurrentActionBeforeOriginal: 10
+00035701: CurrentAniPhaseBeforeOriginal: 1
+00035702: CurrentStateTimeBeforeOriginal: 0.000000
+00035703: CurrentStatePositionBeforeOriginal: 0
+00035704: CurrentMovementAniBeforeOriginal: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00035705: LeftHandSourceResolved: 0
+00035706: LeftHandSource: <none>
+00035707: LeftHandSourceAddress: 00000000
+00035708: LeftHandSourceCollisionGroup: -1
+00035709: RightHandSourceResolved: 1
+00035710: RightHandSource: Wrestling Staff_BBM
+00035711: RightHandSourceAddress: E70E8610
+00035712: RightHandSourceCollisionGroup: 7
+00035713: CapturedStackFrameCount: 8
+00035714: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00035715: StackFrame[1]: Address=00C2B485 Module=Game.dll Base=00AC0000 RVA=0x0016B485
+00035716: StackFrame[2]: Address=00C29724 Module=Game.dll Base=00AC0000 RVA=0x00169724
+00035717: StackFrame[3]: Address=7C0A026E Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0001026E
+00035718: StackFrame[4]: Address=1B1CDF92 Module=Script_Game.dll Base=1B180000 RVA=0x0004DF92
+00035719: StackFrame[5]: Address=00C205EB Module=Game.dll Base=00AC0000 RVA=0x001605EB
+00035720: StackFrame[6]: Address=1B200010 Module=Script_Game.dll Base=1B180000 RVA=0x00080010
+00035721: StackFrame[7]: Address=00C204D3 Module=Game.dll Base=00AC0000 RVA=0x001604D3
+00035722: CleanupBehaviorChanged: 0
+00035723: =============================================
+00035724: 
+00035725: ===== PRIMARYFIRST PlayMotion =====
+00035726: OwnerEntityAddress: EBB66E10
+00035727: OwnerEntity: PC_Hero
+00035728: MotionType: 0
+00035729: Stage: REQUEST_BEFORE_ORIGINAL
+00035730: ElapsedMs: 133735.540
+00035731: PrimarySnapshotAvailable: 1
+00035732: PrimaryMotionName: 
+00035733: PrimaryHasMotionInstance: 0
+00035734: PrimaryMotionRunning: 0
+00035735: PrimaryPlayTime: 0.000000
+00035736: PrimaryMaxTime: 0.000000
+00035737: PrimaryPlaySpeed: 0.000000
+00035738: Stage: RESULT_AFTER_ORIGINAL
+00035739: ElapsedMs: 133735.557
+00035740: PrimarySnapshotAvailable: 1
+00035741: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00035742: PrimaryHasMotionInstance: 1
+00035743: PrimaryMotionRunning: 1
+00035744: PrimaryPlayTime: 0.000000
+00035745: PrimaryMaxTime: 0.800000
+00035746: PrimaryPlaySpeed: 1.000000
+00035747: CleanupBehaviorChanged: 0
+00035748: =====================================
+00035749: 
+00035750: ===== C1 LIFECYCLE STATUS =====
+00035751: ElapsedMs: 133735.634
+00035752: Event: PERSISTED
+00035753: ActorAddress: EBB66E10
+00035754: Actor: PC_Hero
+00035755: Generation: 45
+00035756: Status: PERSISTED
+00035757: Outstanding: 0
+00035758: PhysicalCollisionChanged: 0
+00035759: ===============================
+00035760: 
+00035761: ===== C1 OFFENSE REQUEST =====
+00035762: ElapsedMs: 133986.600
+00035763: ActorAddress: EBB66E10
+00035764: Actor: PC_Hero
+00035765: Generation: 45
+00035766: Status: PERSISTED
+00035767: SourceAddress: E70E8610
+00035768: Source: Wrestling Staff_BBM
+00035769: OriginalSideMask: 1
+00035770: OriginalSide: RIGHT
+00035771: OffensiveRequestCount: 1
+00035772: Outstanding: 1
+00035773: CleanupObserved: 0
+00035774: ActualGroup: 7
+00035775: PhysicalCollisionChanged: 0
+00035776: ==============================
+00035777: 
+00035778: ===== ENGINE SetCollisionGroup =====
+00035779: ElapsedMs: 133986.632
+00035780: Entity: Wrestling Staff_BBM
+00035781: ChangedEntityAddress: E70E8610
+00035782: PlayerSlotMatch: RIGHT
+00035783: PlayerAction: 10
+00035784: PlayerAniPhase: 1
+00035785: PlayerPrimaryPose: 1
+00035786: PlayerStateTime: 0.251003
+00035787: PlayerStatePosition: 0
+00035788: PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00035789: PlayerLeftItem: <none>
+00035790: PlayerLeftItemAddress: 00000000
+00035791: PlayerLeftUseType: -1
+00035792: PlayerLeftCollisionGroup: -1
+00035793: PlayerRightItem: Wrestling Staff_BBM
+00035794: PlayerRightItemAddress: E70E8610
+00035795: PlayerRightUseType: 12
+00035796: PlayerRightCollisionGroup: 7
+00035797: RequestedGroup: 7
+00035798: BeforeGroup: 7
+00035799: AfterGroup: 7
+00035800: Item_EquippedValue: 5
+00035801: Item_AttackValue: 7
+00035802: RetiredMarkerExecutionCount: 0
+00035803: ====================================
+00035804: 
+00035805: ===== C1-O2-P1 OFFENSE SCOPE =====
+00035806: ElapsedMs: 133986.660
+00035807: ActorAddress: EBB66E10
+00035808: SourceAddress: E70E8610
+00035809: CurrentScopeExists: 0
+00035810: ScopeAddress: 00000000
+00035811: ScopeSPUAddress: 00000000
+00035812: PlayerSPUAddress: EBB67074
+00035813: SPUMatchesPlayer: 0
+00035814: ScopeRuntimeStackAddress: 00000000
+00035815: PlayerStateStackAddress: EBB67078
+00035816: RuntimeStackMatchesPlayerStateStack: 0
+00035817: ScriptNameReferenceAddress: 00000000
+00035818: ScriptFunctionName: <no-current-scope>
+00035819: ParentScopeExists: 0
+00035820: OffenseObservedSet: 0
+00035821: LifecycleBehaviorChanged: 0
+00035822: CollisionBehaviorChanged: 0
+00035823: ==================================
+00035824: 
+00035825: ===== OUTER_FRAME OFFENSE =====
+00035826: ElapsedMs: 133986.677
+00035827: ActorAddress: EBB66E10
+00035828: Actor: PC_Hero
+00035829: SourceAddress: E70E8610
+00035830: Source: Wrestling Staff_BBM
+00035831: RequestedGroup: 7
+00035832: BeforeGroup: 7
+00035833: AfterGroup: 7
+00035834: SPUAddress: EBB67074
+00035835: StateStackCount: 2
+00035836: HasTopFrame: 1
+00035837: TopIndex: 1
+00035838: TopEntryAddressDiagnosticOnly: DC490228
+00035839: TopScriptName: _AI_WhirlAttack
+00035840: TopIsScriptState: 0
+00035841: TopBreakBlock: 2
+00035842: TopArgumentsAddress: DE90FE10
+00035843: TopLocalCallback: OnAI_WhirlAttack
+00035844: TopExtraFloat: 1000.000000
+00035845: CurrentState: PS_Melee_WhirlAttack
+00035846: CurrentAction: 10
+00035847: CurrentStatePosition: 0
+00035848: CurrentStateTime: 0.251003
+00035849: TopEntryAddressIsExecutionIdentity: 0
+00035850: ArgumentsDereferencedOrClassified: 0
+00035851: LifecycleBehaviorChanged: 0
+00035852: CollisionBehaviorChanged: 0
+00035853: ===============================
+00035854: 
+00035855: ===== AIFULLSTOP CALLSITE =====
+00035856: ElapsedMs: 134295.779
+00035857: ActorAddress: EBB66E10
+00035858: Actor: PC_Hero
+00035859: CallerAddress: 1B1E33F7
+00035860: CallerModuleResolved: 1
+00035861: CallerModule: Script_Game.dll
+00035862: CallerModuleBase: 1B180000
+00035863: CallerRVA: 0x000633F7
+00035864: CurrentAction: 10
+00035865: CurrentAniPhase: 1
+00035866: CurrentState: PS_Melee_WhirlAttack
+00035867: CurrentStateTime: 0.565970
+00035868: CurrentStatePosition: 1
+00035869: PressedKey: 16
+00035870: IsPressed: 1
+00035871: IsPressedBefore: 1
+00035872: DurationPressedMSecs: 2505
+00035873: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00035874: Stage: BEFORE_ORIGINAL
+00035875: ElapsedMs: 134295.786
+00035876: PrimarySnapshotAvailable: 1
+00035877: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00035878: PrimaryHasMotionInstance: 1
+00035879: PrimaryMotionRunning: 1
+00035880: PrimaryPlayTime: 0.565970
+00035881: PrimaryMaxTime: 0.800000
+00035882: PrimaryPlaySpeed: 1.000000
+00035883: LeftHandSourceResolved: 0
+00035884: LeftHandSource: <none>
+00035885: LeftHandSourceAddress: 00000000
+00035886: LeftHandSourceCollisionGroup: -1
+00035887: RightHandSourceResolved: 1
+00035888: RightHandSource: Wrestling Staff_BBM
+00035889: RightHandSourceAddress: E70E8610
+00035890: RightHandSourceCollisionGroup: 7
+00035891: CapturedStackFrameCount: 4
+00035892: StackFrame[0]: Address=7C0A0518 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x00010518
+===== SOURCE RANGE 35930-36130 =====
+00035930: StackFrame[2]: Address=1B1E33F7 Module=Script_Game.dll Base=1B180000 RVA=0x000633F7
+00035931: StackFrame[3]: Address=1B1E1866 Module=Script_Game.dll Base=1B180000 RVA=0x00061866
+00035932: StackFrame[4]: Address=00C2093B Module=Game.dll Base=00AC0000 RVA=0x0016093B
+00035933: CleanupBehaviorChanged: 0
+00035934: =====================================
+00035935: 
+00035936: ===== AISETSTATE CALLSITE =====
+00035937: ElapsedMs: 134295.983
+00035938: ActorAddress: EBB66E10
+00035939: Actor: PC_Hero
+00035940: RequestedState: PS_Melee_Loop
+00035941: CallerAddress: 1ACB2F61
+00035942: CallerModuleResolved: 1
+00035943: CallerModule: Script.dll
+00035944: CallerModuleBase: 1ACA0000
+00035945: CallerRVA: 0x00012F61
+00035946: CurrentStateBeforeOriginal: PS_Melee_WhirlAttack
+00035947: CurrentAction: 10
+00035948: CurrentAniPhase: 1
+00035949: CurrentStateTime: 0.565970
+00035950: CurrentStatePosition: 1
+00035951: CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00035952: Stage: BEFORE_ORIGINAL
+00035953: ElapsedMs: 134295.985
+00035954: PrimarySnapshotAvailable: 1
+00035955: PrimaryMotionName: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+00035956: PrimaryHasMotionInstance: 1
+00035957: PrimaryMotionRunning: 1
+00035958: PrimaryPlayTime: 0.565970
+00035959: PrimaryMaxTime: 0.800000
+00035960: PrimaryPlaySpeed: 1.000000
+00035961: LeftHandSourceResolved: 0
+00035962: LeftHandSource: <none>
+00035963: LeftHandSourceAddress: 00000000
+00035964: LeftHandSourceCollisionGroup: -1
+00035965: RightHandSourceResolved: 1
+00035966: RightHandSource: Wrestling Staff_BBM
+00035967: RightHandSourceAddress: E70E8610
+00035968: RightHandSourceCollisionGroup: 7
+00035969: CapturedStackFrameCount: 4
+00035970: StackFrame[0]: Address=7C0A0AD8 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x00010AD8
+00035971: StackFrame[1]: Address=1ACB2F61 Module=Script.dll Base=1ACA0000 RVA=0x00012F61
+00035972: StackFrame[2]: Address=1B1E1866 Module=Script_Game.dll Base=1B180000 RVA=0x00061866
+00035973: StackFrame[3]: Address=00C2093B Module=Game.dll Base=00AC0000 RVA=0x0016093B
+00035974: CleanupBehaviorChanged: 0
+00035975: ==============================
+00035976: 
+00035977: ===== OUTER_FRAME AI_SET_STATE_BEFORE =====
+00035978: ElapsedMs: 134296.025
+00035979: ActorAddress: EBB66E10
+00035980: Actor: PC_Hero
+00035981: SPUAddress: EBB67074
+00035982: StateStackCount: 2
+00035983: HasTopFrame: 1
+00035984: TopIndex: 1
+00035985: TopEntryAddressDiagnosticOnly: DC490228
+00035986: TopScriptName: _AI_WhirlAttack
+00035987: TopIsScriptState: 0
+00035988: TopBreakBlock: 2
+00035989: TopArgumentsAddress: DE90FE10
+00035990: TopLocalCallback: OnAI_WhirlAttack
+00035991: TopExtraFloat: 1000.000000
+00035992: CurrentState: PS_Melee_WhirlAttack
+00035993: CurrentAction: 10
+00035994: CurrentStatePosition: 1
+00035995: CurrentStateTime: 0.565970
+00035996: TopEntryAddressIsExecutionIdentity: 0
+00035997: ArgumentsDereferencedOrClassified: 0
+00035998: LifecycleBehaviorChanged: 0
+00035999: CollisionBehaviorChanged: 0
+00036000: ===============================
+00036001: 
+00036002: ===== C1 FINALIZATION =====
+00036003: ElapsedMs: 134296.049
+00036004: Reason: AISETSTATE_AFTER_ORIGINAL
+00036005: ActorAddress: EBB66E10
+00036006: Actor: PC_Hero
+00036007: Generation: 45
+00036008: Status: PERSISTED
+00036009: TrackedSourceCount: 1
+00036010: Source[0].Outcome: WOULD_REPAIR
+00036011: Source[0].Address: E70E8610
+00036012: Source[0].Name: Wrestling Staff_BBM
+00036013: Source[0].LivenessEstablished: 1
+00036014: Source[0].OriginalSideMask: 1
+00036015: Source[0].OriginalSide: RIGHT
+00036016: Source[0].OffensiveRequestCount: 1
+00036017: Source[0].OutstandingBeforeFinalization: 1
+00036018: Source[0].ActualGroup: 7
+00036019: Source[0].CleanupObserved: 0
+00036020: Source[0].StillEquipped: 1
+00036021: Source[0].CurrentSideMask: 1
+00036022: PhysicalCollisionChanged: 0
+00036023: ===========================
+00036024: 
+00036025: ===== OUTER_FRAME AI_SET_STATE_AFTER =====
+00036026: ElapsedMs: 134296.067
+00036027: ActorAddress: EBB66E10
+00036028: Actor: PC_Hero
+00036029: SPUAddress: EBB67074
+00036030: StateStackCount: 1
+00036031: HasTopFrame: 1
+00036032: TopIndex: 0
+00036033: TopEntryAddressDiagnosticOnly: DC490210
+00036034: TopScriptName: PS_Melee_Loop
+00036035: TopIsScriptState: 1
+00036036: TopBreakBlock: 0
+00036037: TopArgumentsAddress: 00000000
+00036038: TopLocalCallback: 
+00036039: TopExtraFloat: 1000.000000
+00036040: CurrentState: PS_Melee_Loop
+00036041: CurrentAction: 10
+00036042: CurrentStatePosition: 0
+00036043: CurrentStateTime: 0.000000
+00036044: TopEntryAddressIsExecutionIdentity: 0
+00036045: ArgumentsDereferencedOrClassified: 0
+00036046: LifecycleBehaviorChanged: 0
+00036047: CollisionBehaviorChanged: 0
+00036048: ===============================
+00036049: 
+00036050: ===== EMPTY-PRIMARY SUCCESSOR STACK =====
+00036051: ElapsedMs: 134541.249
+00036052: Actor: PC_Hero
+00036053: PrimaryWasEmptyBefore: 1
+00036054: IncomingMotionRequestAddress: 0019EB18
+00036055: SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00036056: SuccessorPrimarySnapshotAvailable: 1
+00036057: SuccessorPrimaryHasMotionInstance: 1
+00036058: CurrentActionBeforeOriginal: 0
+00036059: CurrentAniPhaseBeforeOriginal: 5
+00036060: CurrentStateTimeBeforeOriginal: 0.240315
+00036061: CurrentStatePositionBeforeOriginal: 0
+00036062: CurrentMovementAniBeforeOriginal: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00036063: LeftHandSourceResolved: 0
+00036064: LeftHandSource: <none>
+00036065: LeftHandSourceAddress: 00000000
+00036066: LeftHandSourceCollisionGroup: -1
+00036067: RightHandSourceResolved: 1
+00036068: RightHandSource: Wrestling Staff_BBM
+00036069: RightHandSourceAddress: E70E8610
+00036070: RightHandSourceCollisionGroup: 7
+00036071: CapturedStackFrameCount: 2
+00036072: StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+00036073: StackFrame[1]: Address=00B99CB3 Module=Game.dll Base=00AC0000 RVA=0x000D9CB3
+00036074: CleanupBehaviorChanged: 0
+00036075: =============================================
+00036076: 
+00036077: ===== PRIMARYFIRST PlayMotion =====
+00036078: OwnerEntityAddress: EBB66E10
+00036079: OwnerEntity: PC_Hero
+00036080: MotionType: 0
+00036081: Stage: REQUEST_BEFORE_ORIGINAL
+00036082: ElapsedMs: 134541.247
+00036083: PrimarySnapshotAvailable: 1
+00036084: PrimaryMotionName: 
+00036085: PrimaryHasMotionInstance: 0
+00036086: PrimaryMotionRunning: 0
+00036087: PrimaryPlayTime: 0.000000
+00036088: PrimaryMaxTime: 0.000000
+00036089: PrimaryPlaySpeed: 0.000000
+00036090: Stage: RESULT_AFTER_ORIGINAL
+00036091: ElapsedMs: 134541.269
+00036092: PrimarySnapshotAvailable: 1
+00036093: PrimaryMotionName: Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00036094: PrimaryHasMotionInstance: 1
+00036095: PrimaryMotionRunning: 1
+00036096: PrimaryPlayTime: 0.000000
+00036097: PrimaryMaxTime: 0.000000
+00036098: PrimaryPlaySpeed: 1.000000
+00036099: CleanupBehaviorChanged: 0
+00036100: =====================================
+00036101: 
