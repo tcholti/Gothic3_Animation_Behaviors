@@ -84,10 +84,10 @@ Use repository documentation as authority. Do not reconstruct the project from o
 
 When bootstrap is complete, tell me briefly:
 - the current technical gate;
-- the exact frozen responsibility after that gate;
+- the exact frozen responsibility;
 - the key behavior invariants that must not change.
 
-Do not begin implementation until the handoff says the required pre-implementation gate has passed.
+Do not redesign outside the frozen responsibility.
 ```
 
 ---
@@ -105,11 +105,11 @@ Markers control collision **inside a live Hit**. Terminal source safety is a sep
 Architecture authorities:
 
 ```text
-docs/SECOND_PASS_REWRITE_CONTRACT.md     current frozen rewrite
-docs/DESIGN.md §§10–11                   general modular direction
-docs/COLLISION_LIFECYCLE_PLAN.md         lifecycle safety contract
-docs/COLLISION_LOGGER_PLAN.md            diagnostic architecture
-docs/COLLISION_TEST_PLAN.md              staged validation
+docs/SECOND_PASS_REWRITE_CONTRACT.md      current frozen rewrite
+docs/DESIGN.md §§10–11                    general modular direction
+docs/COLLISION_LIFECYCLE_PLAN.md          lifecycle safety contract
+docs/COLLISION_LOGGER_PLAN.md             diagnostic architecture
+docs/COLLISION_TEST_PLAN.md               staged validation
 docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md release/diagnostic separation
 ```
 
@@ -184,22 +184,25 @@ EV-131–EV-133 and EV-167 are especially important before changing marker execu
 
 ## Structural Architecture State
 
-Closed compiler-validated extractions:
+Closed extractions/reviews:
 
 ```text
 CollisionSources extraction
 43fa1e719b5af716c54e17430c101251bbc36ff8
 
 EngineBridge extraction
-implementation head before later docs commits:
 32ff447c9a678ba18c8234310564ff2475ba7dfb
+
+first per-CPP review = CLOSED
+second-pass architecture synthesis = CLOSED
+unchanged post-EngineBridge runtime baseline = CLOSED/PASS
 ```
 
-Current EngineBridge is the sole physical hook owner for the research DLL. Proven explicit-this transport remains on the behavior-critical `RunScriptFunction`, `AISetState` and `SetCollisionGroup` paths; AIFullStop explicit-this remains a tested diagnostic/future transport point.
+The post-EngineBridge runtime closure is recorded in `BETWEEN_CHATS.md`. Primary compact evidence is commit `5a33e5c134b027c440e40e6155cdf233aea049eb`, its deterministic retrieval package is commit `fb2644d2952923f5a9a3d41ba881a342ef0d8ff2`, and the supplemental focused Fist negative closure is commit `269faad334ef918ca16f6401751d47693e48520f`.
 
-The complete first per-CPP review and second-pass synthesis are closed.
+Current EngineBridge is the sole physical hook owner for the research DLL. Proven explicit-this transport remains on behavior-critical `RunScriptFunction`, `AISetState` and `SetCollisionGroup`; AIFullStop explicit-this remains a tested diagnostic/future transport point.
 
-Second-pass correction discovered:
+Second-pass correction:
 
 ```text
 HookBridgeRuntime is behavior infrastructure,
@@ -207,7 +210,7 @@ not diagnostics,
 because marker duplicate acceptance uses its elapsed-ms clock.
 ```
 
-Frozen rename during the later rewrite:
+Frozen rewrite rename:
 
 ```text
 HookBridgeRuntime → RuntimeClock
@@ -215,31 +218,9 @@ HookBridgeRuntime → RuntimeClock
 
 ---
 
-## Current Technical Gate — UNCHANGED POST-ENGINEBRIDGE RUNTIME BASELINE
+## Current Technical Gate — IMPLEMENT FROZEN SECOND-PASS REWRITE
 
-**This is the only next step. Do not implement the frozen rewrite before it passes.**
-
-Reason:
-
-```text
-EngineBridge extraction is compiler/source validated
-but has not yet received its own runtime revalidation.
-
-Therefore:
-current unchanged source/logger baseline
-must isolate EngineBridge behavior
-before architecture/logger/source rewrites begin.
-```
-
-Exact baseline matrix, raw filename and local sequence are in `docs/BETWEEN_CHATS.md`.
-
-If the unchanged baseline fails, stop and diagnose the existing EngineBridge/current source. Do not begin the rewrite.
-
----
-
-## Frozen Responsibility After Baseline PASS
-
-Canonical contract:
+The unchanged post-EngineBridge runtime baseline has passed. The exact next responsibility is now the semantic-preserving implementation contract in:
 
 ```text
 docs/SECOND_PASS_REWRITE_CONTRACT.md
@@ -277,7 +258,17 @@ target acquisition
 climbing
 ```
 
-If a concrete source/API/calling-convention contradiction appears during implementation, STOP and return to Normal Chat rather than improvising.
+If a concrete source/API/calling-convention contradiction appears during implementation, **STOP and report it rather than improvising**.
+
+Required post-rewrite source/build gate:
+
+```text
+git diff --check
+bounded contract audit
+build Script_FrameCollisionTest
+build Script_FrameCollisionBehaviorTest
+verify behavior-only target excludes diagnostic sources/hooks
+```
 
 ---
 
@@ -287,7 +278,7 @@ The mature modular research DLL is the architectural ancestor of the eventual pr
 
 Do **not** pour the mature collision system back into the old v0.1 source/hook layout.
 
-Later, after marker/source/continuation maturity and compatibility:
+Later:
 
 ```text
 retain mature central EngineBridge + behavior modules
@@ -303,8 +294,8 @@ retain mature central EngineBridge + behavior modules
 
 | Need | Open |
 |---|---|
-| exact current gate / runtime filename / handoff | `BETWEEN_CHATS.md` |
-| frozen post-baseline rewrite | `SECOND_PASS_REWRITE_CONTRACT.md` |
+| exact current gate / handoff | `BETWEEN_CHATS.md` |
+| frozen rewrite | `SECOND_PASS_REWRITE_CONTRACT.md` |
 | release/diagnostic separation | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
 | lifecycle C1/P2/R1 contract | `COLLISION_LIFECYCLE_PLAN.md` |
 | diagnostic core/deep principles | `COLLISION_LOGGER_PLAN.md` |
@@ -324,9 +315,7 @@ Do not load the whole documentation corpus by default.
 ## Forward Order
 
 ```text
-unchanged post-EngineBridge runtime baseline — NEXT
-→ publish/interpret baseline evidence
-→ implement frozen SECOND_PASS_REWRITE_CONTRACT
+implement frozen SECOND_PASS_REWRITE_CONTRACT — NEXT
 → diagnostic + behavior-only build/source audit
 → compact diagnostic sufficiency regression
 → behavior-only smoke/equivalence
