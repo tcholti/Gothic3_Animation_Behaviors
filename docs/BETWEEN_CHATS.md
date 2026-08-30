@@ -26,6 +26,32 @@ Two qualifications remain explicit but do not reopen C1-R1:
 
 ---
 
+## Mandatory release-product separation
+
+Canonical authority: `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
+
+Project-wide rule for **all present and future Gothic 3 behavior systems**:
+
+> **The public release DLL contains behavior only. Research diagnostics are a separate build product and are not compiled into the release binary.**
+
+This applies to collision, lifecycle repair, Raise, speed, AttackContinuationProtection, target acquisition, climbing and future behavior modules.
+
+Long-term product model:
+
+```text
+shared behavior architecture
+→ diagnostics-free RELEASE build
+→ separately built instrumented DIAGNOSTIC twin used in place of the release DLL during controlled testing
+```
+
+The eventual released `Script_G3AnimationBehaviors.dll` must contain no `CollisionDiagnostics` implementation, research logger/log strings, stack-capture/RVA research machinery, diagnostic-only state, diagnostic-only hooks, or hidden runtime diagnostic mode. Production correctness must not depend on diagnostics.
+
+Do not plan to load release and diagnostic twins together unless future architecture explicitly proves safe coexistence; preserve one physical hook owner per built DLL.
+
+This rule must be respected by every second-pass architecture decision below.
+
+---
+
 ## Structural modularization already closed
 
 ### CollisionSources extraction
@@ -106,6 +132,8 @@ The final binary may still be named `Script_G3AnimationBehaviors`; implementatio
 
 Infrastructure names such as `HookBridgeRuntime` remain provisional until final production responsibilities are known.
 
+The same modular foundation may later host independent systems such as target acquisition and climbing, but each new system must preserve behavior/diagnostic separation from the beginning.
+
 ---
 
 ## First per-CPP review — CLOSED
@@ -177,9 +205,9 @@ All implementation files in `prototypes/Script_FrameCollisionTest/` now have a f
 
 ## CollisionDiagnostics first-pass classification
 
-Authority: `docs/COLLISION_LOGGER_PLAN.md`.
+Authority: `docs/COLLISION_LOGGER_PLAN.md` plus the higher-level release rule in `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
-### CORE COLLISION EVIDENCE — keep in default profile
+### CORE COLLISION EVIDENCE — keep in default RESEARCH/DIAGNOSTIC profile
 
 Keep compact evidence sufficient to prove:
 
@@ -212,11 +240,13 @@ R1 outcomes:
   REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
 ```
 
-Current `LogOwnershipDecision`, marker context/result and compact `LogSetCollisionGroup` contain useful core facts, but should be compressed rather than removed.
+Current `LogOwnershipDecision`, marker context/result and compact `LogSetCollisionGroup` contain useful core facts, but should be compressed rather than removed from the diagnostic product.
 
 `CollisionLifecycleGuard` currently formats/writes C1 logs directly. Second pass should move logging responsibility behind `CollisionDiagnostics` without moving lifecycle decisions out of the guard and without creating a generic event-bus abstraction.
 
-### OPT-IN DEEP PROBES — retain but disable by default
+**None of this core diagnostic evidence belongs in the final public release binary.** It belongs only to research/diagnostic builds.
+
+### OPT-IN DEEP PROBES — retain in diagnostic product but disable by default
 
 ```text
 PrimaryFirst PlayMotion / StopMotion before/after snapshots
@@ -233,9 +263,9 @@ full native cleanup caller module/RVA + stack for every exact 7 -> 5
 OnTick marker-owned PrimaryFirst lifetime tracking
 ```
 
-These remain useful for a concrete future contradiction, `AttackContinuationProtection`, new cleanup/source-lifetime questions or hook-order investigation, but should not burden ordinary collision runs.
+These remain useful for a concrete future contradiction, `AttackContinuationProtection`, new cleanup/source-lifetime questions or hook-order investigation, but should not burden ordinary diagnostic runs.
 
-Where a hook exists solely for one of these probes, second pass must decide whether the hook itself is installed only in deep mode.
+Where a hook exists solely for one of these probes, second pass must decide whether the hook itself is installed only in deep diagnostic mode.
 
 Current diagnostic-only hook candidates:
 
@@ -247,9 +277,9 @@ OnTick
 AIFullStop  [diagnostic-only today; may become behavior-relevant later for AttackContinuationProtection]
 ```
 
-Behavior-critical hooks such as SetCollisionGroup, AISetState, RunScriptFunction, CombatMove, StartEffect and attack-family callbacks remain installed regardless of logger profile.
+Behavior-critical hooks such as SetCollisionGroup, AISetState, RunScriptFunction, CombatMove, StartEffect and attack-family callbacks remain installed regardless of diagnostic profile because they belong to behavior architecture. Release builds include only hooks actually required by behavior.
 
-### OBSOLETE HISTORICAL NOISE — remove from normal implementation/output
+### OBSOLETE HISTORICAL NOISE — remove from normal diagnostic implementation/output
 
 The current startup banner contains large experiment chronology and stale statements, including historical B1–B9/O1/P1 banners and the now-false `C1 SHADOW ... WOULD_REPAIR only; no physical repair` statement. Replace with compact current build/profile/feature identity.
 
@@ -275,6 +305,8 @@ Second pass should remove the temporary source-query aliases in `CollisionContro
 
 Diagnostic state (`g_LastLoggedAni`, `g_LifetimeStateByActor`) must remain observation-only. `g_LifetimeStateByActor` belongs to deep mode; disabling/removing deep diagnostics must not change marker/lifecycle behavior.
 
+The final RELEASE target must not compile either state or the diagnostics implementation at all.
+
 ---
 
 ## Mandatory second-pass architecture/correction synthesis — NEXT
@@ -288,11 +320,13 @@ Required synthesis questions:
 ```text
 A. EngineBridge
 - exact factual bridge API vs marker-policy leakage
-- default vs deep diagnostic hook installation
+- production-required hook set vs diagnostic-only hook set
+- build separation must allow release target to omit diagnostic-only hooks entirely
 
 B. CollisionLifecycleGuard
 - remove rejected dormant dispatch machinery
 - define clean diagnostics emission boundary without changing C1 ownership/finalization
+- guard must remain correct when diagnostics are not compiled
 
 C. CollisionControl / future FrameCollisionMarkers
 - resolve marker-cache negative-caching hazard
@@ -300,16 +334,20 @@ C. CollisionControl / future FrameCollisionMarkers
 - callback suppression ownership API
 - physical-source adapter boundary
 - temporary alias removal
+- marker module must remain correct without diagnostic consumers
 
 D. CollisionDiagnostics
-- compact Core vs opt-in Deep profile
+- compact Core vs opt-in Deep profile for the DIAGNOSTIC product
 - move expensive capture behind profile checks
-- reduce default log volume while preserving diagnostic sufficiency contract
+- reduce default diagnostic log volume while preserving diagnostic sufficiency contract
 - centralize C1 formatting without changing behavior
+- diagnostic source/state/hooks must be absent from RELEASE target
 
 E. Production foundation
 - decide whether any file/module names should change now or remain provisional
 - preserve this mature modular foundation as the eventual Script_G3AnimationBehaviors base
+- define build-target separation: shared behavior core + mutually exclusive diagnostics-free RELEASE and instrumented DIAGNOSTIC products
+- apply the same rule to future target-acquisition, climbing and other systems
 ```
 
 If the frozen rewrite is broad, Normal Chat owns the architecture and should write the exact implementation contract into this file; Work/High may then perform the bounded rewrite but must not redesign it independently.
@@ -329,7 +367,7 @@ first per-CPP review — CLOSED
 → compact post-EngineBridge runtime baseline on CURRENT UNCHANGED SOURCE/LOGGER
 → if baseline passes: bounded architecture/logger rewrite
 → build + source audit
-→ compact/core diagnostic sufficiency regression
+→ compact/core diagnostic sufficiency regression on DIAGNOSTIC build
 → only then marker-bookkeeping simplification/feature expansion
 ```
 
@@ -342,7 +380,7 @@ Reason: the second-pass thinking should happen now while context is fresh, but t
 ```text
 second-pass synthesis
 → unchanged post-EngineBridge baseline
-→ bounded architecture/logger rewrite
+→ bounded architecture/logger/build-separation rewrite
 → build/source audit
 → core diagnostic sufficiency regression
 → marker-bookkeeping simplification audit against C1 authority
@@ -351,12 +389,16 @@ second-pass synthesis
 → full marker + lifecycle regression
 → modular AttackContinuationProtection investigation/implementation
 → guard + markers + continuation regression
-→ mandatory New Balance/Jackydima compatibility on mature research DLL
-→ retain mature modular foundation and migrate/redesign Raise + speed + config into final Script_G3AnimationBehaviors
-→ final production DLL + New Balance/Jackydima compatibility regression
+→ mandatory New Balance/Jackydima compatibility on mature diagnostic/research DLL
+→ retain mature modular foundation and migrate/redesign Raise + speed + config
+→ add future modules such as target acquisition/climbing under the same architecture
+→ final diagnostics-free Script_G3AnimationBehaviors release target
+→ final release + New Balance/Jackydima compatibility regression
+→ retain separate instrumented diagnostic twin for future controlled reproduction
 ```
 
 Overall architecture authority: `docs/DESIGN.md` §§10–11.  
+Release/build separation authority: `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
 Lifecycle authority: `docs/COLLISION_LIFECYCLE_PLAN.md`.  
 Diagnostic authority: `docs/COLLISION_LOGGER_PLAN.md`.  
 Staged validation authority: `docs/COLLISION_TEST_PLAN.md`.  
