@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-08-28  
+**Updated:** 2026-08-30  
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -238,25 +238,68 @@ markers define the desired offensive collision set.
 ```
 
 ```text
-WHEN THE HIT IS OVER:
-offensive collision must be clean.
-If Gothic already cleaned it -> no-op.
-If Gothic failed -> repair using native cleanup semantics.
+WHEN THE EXECUTION ENDS OR IS DESTRUCTIVELY ABANDONED:
+Gothic 3 gets its legitimate cleanup opportunity first.
+If the exact source obligation is already fulfilled -> no-op.
+If it remains outstanding -> repair only that exact live/equipped offensive source using native cleanup semantics.
 ```
 
-The current preferred lifecycle architecture is an **execution-level native cleanup guard**. It follows one exact real attack-Hit execution that actually requested offensive collision and observes whether Gothic performed legitimate cleanup for that execution.
+The accepted lifecycle architecture is an **execution-level exact-source cleanup guard**:
 
-B6 rejected the earlier replacement-triggered deferred-`ProcessScript()` checkpoint in its present form. B7 now reconstructs Gothic's native CombatMove execution lifetime one layer earlier: `sAICombatMoveInstr` can persist as an SPU instruction callback while the owning ScriptFunction is suspended at a break block; clean attack cleanup is reached only when that continuation resumes, while reaction-control code can explicitly FullStop the current instruction and continue under separate reaction ownership.
+```text
+real attack execution
+→ monotonic C1 generation
+→ successful exact-source Item_Attack request creates/refreshes obligation
+→ successful later transition away from Item_Attack fulfills obligation
+→ destructive post-native-AISetState finalization checks only remaining obligations
+```
 
-The exact finalization boundary is still under research. A generic script boundary, action/phase value, visible successor animation, or persisted instruction callback must never become attack ownership authority by itself.
+Execution identity is intentionally split:
+
+```text
+live ScriptFunction frame
+= temporary native correlator only where pre-Combat acquisition needs it
+
+C1 monotonic generation
+= durable plugin execution identity
+```
+
+C1-O2-P2 proved the early-offense bridge can be consumed by matching CombatMove before `RunScriptFunction` returns/suspends. Cross-suspension raw-frame persistence is not part of the durable ownership model.
+
+For currently proven equipped weapon sources, the native-equivalent terminal repair is exactly:
+
+```text
+outstanding exact source
++ exact current equipped RIGHT/LEFT identity establishes liveness
++ actual group == Item_Attack(7)
+→ SetCollisionGroup(Item_Equipped)
+→ verify exact Item_Equipped(5)
+```
+
+No `ClearTriggeredList()` is part of terminal cleanup. Trigger-list clearing remains activation/rearm behavior.
+
+C1-R1 has direct positive/no-op evidence for targeted repair, reaction precedence, pre-activation no-offense, GetUp bridge/cleanup, GetUpParade, Dual source specificity, marked-source terminal repair, and broad exercised stability. The current closure is the focused unsupported-source negative check owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
+
+The outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch remains fail-closed and is not claimed positively runtime-exercised.
 
 Current lifecycle authority and constraints:
 
 - `COLLISION_LIFECYCLE_PLAN.md`
+- `COLLISION_TEST_PLAN.md`
 - `COLLISION_CLEANUP_CALLSITE_MAP.md`
-- `EVIDENCE_LEDGER_STEP_B.md` / `EVIDENCE_INDEX.md`
+- `EVIDENCE_INDEX.md` → EV-151–EV-206
 
-Do not implement family-specific cleanup matrices, timers, polling, or block-timeout special cases merely because native cleanup has several internal paths.
+Do not implement family-specific cleanup matrices, timers, polling, held-Use2 classifiers, arbitrary group-7 adoption, or broad scans merely because native cleanup has several internal paths.
+
+### Known bad-skip root relationship
+
+The known held-Use2 destructive route is a separate future root-cause responsibility. C1-R1 deliberately fails closed after ownership has already been destroyed; it does not attempt to resurrect that attack.
+
+Future root investigation should ask whether the destructive FullStop/state-replacement consequence can be suppressed/deferred while a real attack CombatMove is active without changing legitimate reactions or non-attack held-Use2 behavior.
+
+Authority: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
+
+Even if such a root fix later succeeds, keep C1-R1 as the general lost-cleanup fail-safe.
 
 ---
 
@@ -274,7 +317,9 @@ Existing marker bookkeeping fixes are proven behavior and must remain until a st
 - exact-set RIGHT/LEFT/BOTH/OFF switching;
 - interruption retirement so one execution's marker budget does not survive into the next.
 
-B7 introduces a **future simplification possibility**, not a current refactor instruction: if one exact marked Hit can later be correlated safely with Gothic's persisted CombatMove instruction + ScriptFunction break-block lifetime, some custom execution/occurrence inference may become redundant. If that is proven, simplify custom state at the stronger native boundary.
+The C1-R1 marked Staff regression proves terminal physical repair can pass through the existing SetCollisionGroup observation path, retire the existing marker-owned source bookkeeping, reject late callbacks from the abandoned execution, and allow the next legitimate marked attack to begin fresh.
+
+A **future simplification possibility** remains: the proven native execution/ScriptFunction/CombatMove lifetime may eventually replace some custom execution inference. That is not a current refactor instruction.
 
 Before any future marker-core consolidation or reimplementation, use this retrieval route:
 
@@ -282,12 +327,10 @@ Before any future marker-core consolidation or reimplementation, use this retrie
 EVIDENCE_INDEX.md
 → Marker execution lifetime / bookkeeping
 → future marker-core simplification / native execution boundary
-→ COLLISION_LIFECYCLE_PLAN.md §10
+→ COLLISION_LIFECYCLE_PLAN.md §9
 ```
 
-That route deliberately joins the older marker regressions/fixes with EV-182–EV-184 and later B7 results.
-
-Do not equate `m_pfInstrCallback == sAICombatMoveInstr` alone with exact marked-Hit identity, and do not conflate marker retirement with physical cleanup before one proven native execution boundary can safely own both.
+Do not equate `m_pfInstrCallback == sAICombatMoveInstr` alone with exact marked-Hit identity, and do not remove proven marker protections unless the replacement preserves their historical regressions/invariants.
 
 ---
 
@@ -308,10 +351,10 @@ Unmarked/unconfigured attacks must remain compatible with native behavior and sh
 
 ## 10. Current Implementation Order
 
-1. Finish B7 attack-lifecycle/bookkeeping reconstruction and establish a reliable general collision-finalization boundary.
-2. Implement and validate the universal execution-level collision cleanup rule without family/cause-specific repair matrices.
-3. Before consolidating the marker core into production, review the marker-lifetime route in `EVIDENCE_INDEX.md` / `COLLISION_LIFECYCLE_PLAN.md` §10 and simplify custom bookkeeping only where a stronger native exact-execution boundary is proven.
-4. Integrate the stable collision core into the production `Script_G3AnimationBehaviors` boundary only after lifecycle safety and marker bookkeeping are evidence-backed.
+1. Close the remaining focused C1-R1 unsupported-source negative validation.
+2. If C1-R1 closes, consolidate the validated collision lifecycle/marker behavior into a stable production-integration boundary without weakening the tested guard or marker regressions.
+3. Before simplifying marker bookkeeping, review the marker-lifetime route in `EVIDENCE_INDEX.md` / `COLLISION_LIFECYCLE_PLAN.md` and remove custom inference only where a stronger proven native boundary replaces it safely.
+4. Keep the held-Use2 destructive-skip root investigation separate; pursue it only as a deliberate later responsibility and keep C1-R1 underneath as fail-safe.
 5. Generalize Raise for intended Normal/Quick families and selected full-Whirl cases without coupling it to collision repair.
 6. Implement profile-aware speed control and calibrate family/action values from logged timing evidence.
 7. Broaden actor/source support only where the native source semantics are understood.
@@ -339,9 +382,12 @@ Not immediate implementation targets:
 |---|---|
 | Current task / current branch state | `SESSION_ENTRYPOINT.md` |
 | Collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
-| Marker execution lifetime / future marker-core simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` §10 |
+| Current collision validation | `COLLISION_TEST_PLAN.md` |
+| Marker execution lifetime / future marker-core simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` §9 |
+| Future held-Use2 root investigation | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
 | Tested native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → ledgers/raw logs |
+| C1-R1 canonical evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206 onward |
 | Animation semantics / UseType / action / pose | `ANIMATION_INDEX.md` → `ANIMATION_RULES.md` |
 | Exact asset/family/fixture | `ANIMATION_INDEX.md` → `ANIMATION_CATALOG.md` / animation-name data |
 | Hook/source/API lookup | `SOURCE_HOOK_GUIDE.md` |
