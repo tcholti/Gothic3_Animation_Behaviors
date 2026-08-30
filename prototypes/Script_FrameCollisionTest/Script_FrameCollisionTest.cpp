@@ -713,7 +713,7 @@ extern "C" __declspec(dllexport) gSScriptInit const *GE_STDCALL ScriptInit(void)
     {
         std::fprintf(
             CollisionDiagnostics::GetLog(),
-            "STEP C1-O2-P2 LAZY PRE-COMBAT BRIDGE: event-driven pre-Combat generation acquisition; matching CombatMove consumes temporary binding; shadow-only; no physical repair.\n");
+            "STEP C1-R1 PHYSICAL REPAIR: exact live/equipped outstanding Item_Attack source resets to Item_Equipped at destructive AISetState finalization; native cleanup/no-op paths unchanged; no ClearTriggeredList.\n");
         std::fprintf(CollisionDiagnostics::GetLog(), "Installing hooks...\n");
         std::fflush(CollisionDiagnostics::GetLog());
     }

@@ -1044,6 +1044,81 @@ void FinalizeAfterAISetState(GenerationToken const &token)
     if (actor != None)
         currentSources = CollisionControl::GetEquippedCollisionSources(actor);
 
+    struct FinalizationSourceResult
+    {
+        char const *outcome;
+        unsigned int currentSideMask;
+        eECollisionGroup actualGroupBeforeRepair;
+        eECollisionGroup repairRequestedGroup;
+        eECollisionGroup actualGroupAfterRepair;
+        bool outstandingBeforeFinalization;
+        bool cleanupObservedBeforeFinalization;
+        bool stillEquipped;
+        bool repairAttempted;
+        bool physicalCollisionChanged;
+    };
+
+    FinalizationSourceResult results[2] = {};
+    bool physicalCollisionChanged = false;
+    for (unsigned int i = 0; i < record.sourceCount; ++i)
+    {
+        SourceLifecycleRecord &source = record.sources[i];
+        FinalizationSourceResult &result = results[i];
+        result.outstandingBeforeFinalization = source.outstandingCleanup;
+        result.cleanupObservedBeforeFinalization = source.cleanupObserved;
+        result.currentSideMask =
+            GetCurrentSideMask(currentSources, source.sourceInstance);
+        result.stillEquipped =
+            result.currentSideMask != SourceMask_None;
+        result.actualGroupBeforeRepair =
+            static_cast<eECollisionGroup>(-1);
+        result.repairRequestedGroup =
+            static_cast<eECollisionGroup>(-1);
+        result.actualGroupAfterRepair =
+            static_cast<eECollisionGroup>(-1);
+        if (result.stillEquipped)
+        {
+            result.actualGroupBeforeRepair =
+                source.sourceInstance->GetCollisionGroup();
+        }
+
+        if (!result.outstandingBeforeFinalization)
+        {
+            result.outcome = "NO_OP_NO_OUTSTANDING";
+        }
+        else if (!result.stillEquipped)
+        {
+            result.outcome = "UNRESOLVED_NOT_EQUIPPED";
+        }
+        else if (result.actualGroupBeforeRepair
+                 != eECollisionGroup_Item_Attack)
+        {
+            result.outcome = "NO_OP_PHYSICALLY_CLEAN_RECONCILED";
+        }
+        else
+        {
+            result.repairAttempted = true;
+            result.repairRequestedGroup =
+                eECollisionGroup_Item_Equipped;
+            Entity repairSource(source.sourceInstance);
+            repairSource.SetCollisionGroup(
+                eECollisionGroup_Item_Equipped);
+            result.actualGroupAfterRepair =
+                source.sourceInstance->GetCollisionGroup();
+            result.physicalCollisionChanged =
+                result.actualGroupAfterRepair
+                != result.actualGroupBeforeRepair;
+            physicalCollisionChanged =
+                physicalCollisionChanged
+                || result.physicalCollisionChanged;
+            result.outcome =
+                result.actualGroupAfterRepair
+                    == eECollisionGroup_Item_Equipped
+                ? "REPAIRED_TO_ITEM_EQUIPPED"
+                : "REPAIR_DIVERGED_FROM_ITEM_EQUIPPED";
+        }
+    }
+
     FILE *log = IsPlayerActor(record.actorInstance)
         ? CollisionDiagnostics::GetLog() : nullptr;
     if (log != nullptr)
@@ -1064,40 +1139,16 @@ void FinalizeAfterAISetState(GenerationToken const &token)
 
     for (unsigned int i = 0; i < record.sourceCount; ++i)
     {
-        SourceLifecycleRecord &source = record.sources[i];
-        bool const outstandingBeforeFinalization =
-            source.outstandingCleanup;
-        unsigned int const currentSideMask =
-            GetCurrentSideMask(currentSources, source.sourceInstance);
-        bool const stillEquipped = currentSideMask != SourceMask_None;
-        eECollisionGroup actualGroup = static_cast<eECollisionGroup>(-1);
-        if (stillEquipped)
-            actualGroup = source.sourceInstance->GetCollisionGroup();
-
-        char const *outcome = nullptr;
-        if (!source.outstandingCleanup)
-        {
-            outcome = "NO_OP_NO_OUTSTANDING";
-        }
-        else if (!stillEquipped)
-        {
-            outcome = "UNRESOLVED_NOT_EQUIPPED";
-        }
-        else if (actualGroup != eECollisionGroup_Item_Attack)
-        {
-            outcome = "NO_OP_PHYSICALLY_CLEAN_RECONCILED";
-        }
-        else
-        {
-            outcome = "WOULD_REPAIR";
-        }
+        SourceLifecycleRecord const &source = record.sources[i];
+        FinalizationSourceResult const &result = results[i];
 
         if (log != nullptr)
         {
-            std::fprintf(log, "Source[%u].Outcome: %s\n", i, outcome);
+            std::fprintf(log, "Source[%u].Outcome: %s\n", i,
+                         result.outcome);
             std::fprintf(log, "Source[%u].Address: %p\n", i,
                          static_cast<void *>(source.sourceInstance));
-            if (stillEquipped)
+            if (result.stillEquipped)
             {
                 std::fprintf(log, "Source[%u].Name: %s\n", i,
                              GetEntityName(source.sourceInstance).c_str());
@@ -1108,7 +1159,7 @@ void FinalizeAfterAISetState(GenerationToken const &token)
                              "Source[%u].Name: <not-dereferenced>\n", i);
             }
             std::fprintf(log, "Source[%u].LivenessEstablished: %d\n", i,
-                         stillEquipped ? 1 : 0);
+                         result.stillEquipped ? 1 : 0);
             std::fprintf(log, "Source[%u].OriginalSideMask: %u\n", i,
                          source.sideMask);
             std::fprintf(log, "Source[%u].OriginalSide: %s\n", i,
@@ -1117,15 +1168,37 @@ void FinalizeAfterAISetState(GenerationToken const &token)
                          source.offensiveRequestCount);
             std::fprintf(
                 log, "Source[%u].OutstandingBeforeFinalization: %d\n", i,
-                outstandingBeforeFinalization ? 1 : 0);
+                result.outstandingBeforeFinalization ? 1 : 0);
             std::fprintf(log, "Source[%u].ActualGroup: %d\n", i,
-                         static_cast<GEInt>(actualGroup));
+                         static_cast<GEInt>(
+                             result.actualGroupBeforeRepair));
+            std::fprintf(
+                log, "Source[%u].ActualGroupBeforeRepair: %d\n", i,
+                static_cast<GEInt>(result.actualGroupBeforeRepair));
             std::fprintf(log, "Source[%u].CleanupObserved: %d\n", i,
-                         source.cleanupObserved ? 1 : 0);
+                         result.cleanupObservedBeforeFinalization ? 1 : 0);
+            std::fprintf(
+                log,
+                "Source[%u].CleanupObservedBeforeFinalization: %d\n", i,
+                result.cleanupObservedBeforeFinalization ? 1 : 0);
             std::fprintf(log, "Source[%u].StillEquipped: %d\n", i,
-                         stillEquipped ? 1 : 0);
+                         result.stillEquipped ? 1 : 0);
             std::fprintf(log, "Source[%u].CurrentSideMask: %u\n", i,
-                         currentSideMask);
+                         result.currentSideMask);
+            std::fprintf(log, "Source[%u].RepairAttempted: %d\n", i,
+                         result.repairAttempted ? 1 : 0);
+            if (result.repairAttempted)
+            {
+                std::fprintf(
+                    log, "Source[%u].RepairRequestedGroup: %d\n", i,
+                    static_cast<GEInt>(result.repairRequestedGroup));
+                std::fprintf(
+                    log, "Source[%u].ActualGroupAfterRepair: %d\n", i,
+                    static_cast<GEInt>(result.actualGroupAfterRepair));
+            }
+            std::fprintf(
+                log, "Source[%u].PhysicalCollisionChanged: %d\n", i,
+                result.physicalCollisionChanged ? 1 : 0);
         }
     }
 
@@ -1133,7 +1206,8 @@ void FinalizeAfterAISetState(GenerationToken const &token)
     {
         if (record.sourceCount == 0)
             std::fprintf(log, "GenerationOutcome: NO_OP_NO_TRACKED_SOURCE\n");
-        std::fprintf(log, "PhysicalCollisionChanged: 0\n");
+        std::fprintf(log, "PhysicalCollisionChanged: %d\n",
+                     physicalCollisionChanged ? 1 : 0);
         std::fprintf(log, "===========================\n\n");
         std::fflush(log);
     }
