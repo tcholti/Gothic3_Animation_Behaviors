@@ -163,13 +163,19 @@ P1-D was not run as a separate long-duration gate.
 
 ## C1-O2-P2 — Implemented, Source-Audited, Runtime Unverified
 
-Implementation commit:
+Behavior implementation commit:
 
 ```text
 cc51c67c19425be4e4d6a4838803ed3e66b2a071
 ```
 
-Independent Normal Chat P2-A source review: **PASS**.
+Build-identity banner correction:
+
+```text
+8b6a5873b8caa27b469ae831d25bf155a6c7f189
+```
+
+Independent Normal Chat P2-A source review: **PASS**. The banner correction is mechanical and does not change P2 behavior.
 
 Source review confirms:
 
@@ -181,15 +187,19 @@ Source review confirms:
 - an unconsumed bridge is diagnostic and is retired before wrapper return without dropping the real source obligation;
 - ordinary CombatMove-created generation behavior, cleanup/finalization semantics, marker behavior, hook transport and physical collision behavior were not deliberately changed.
 
-One source-review omission remains mechanical rather than architectural: the startup log still identifies only the P1 bridge. Before P2-B load validation, add an explicit P2 startup banner so the tested binary can be identified unambiguously.
+The corrected startup identity line is:
+
+```text
+STEP C1-O2-P2 LAZY PRE-COMBAT BRIDGE: event-driven pre-Combat generation acquisition; matching CombatMove consumes temporary binding; shadow-only; no physical repair.
+```
 
 ---
 
 ## Current Immediate Responsibility — C1-O2-P2-B Build / Isolated Load
 
-The next responsibility is **not another architecture/Work task**.
+P2-A is complete. The next responsibility is **not another architecture/Work task**.
 
-After the P2 startup-banner identity correction is committed, Normal Chat hands the branch to the User for the normal local sequence:
+Normal Chat now hands the branch to the User for the normal local sequence:
 
 ```text
 sync exact branch
