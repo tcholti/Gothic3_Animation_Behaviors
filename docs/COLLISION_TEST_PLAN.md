@@ -8,7 +8,7 @@
 Validate one general execution-level collision-cleanup model with the smallest tests that can falsify it. Historical gate detail is preserved through `EVIDENCE_INDEX.md`, the canonical evidence ledgers and raw/archive artifacts; this file owns the **current and forward validation sequence**.
 
 Current state: `SESSION_ENTRYPOINT.md`.  
-Exact transient implementation contract: `BETWEEN_CHATS.md`.  
+Exact transient continuation: `BETWEEN_CHATS.md`.  
 Lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 
 ---
@@ -46,11 +46,31 @@ C1-O1 outer ScriptFunction lifetime/correlation      EV-195–EV-196
 hook/finalizer substrate stabilization               EV-199–EV-203
 C1-O2-P1 lightweight dispatch bridge                 EV-204
 C1-O2-P2 lazy pre-Combat acquisition/consumption     EV-205
+C1-R1 controlled native-equivalent physical repair   EV-206–EV-207
 ```
 
-C1-O2-P2 is closed for the tested outer-acquisition/binding model, including a dedicated clean shutdown closure for the same validated binary.
+C1-R1 validation is closed.
 
-Accepted identity model:
+Validated R1 sequence:
+
+```text
+R1-A independent source audit = PASS
+R1-B build / identity / isolated load-unload = PASS
+R1-C targeted positive repair = PASS
+R1-D no-op / reaction / GetUp controls = PASS
+R1-E Dual source-specific repair = PASS
+R1-E compact marked-Staff regression = PASS
+R1-E broad mixed exercised coverage = PASS
+R1-E focused unarmed/crossbow negative closure = PASS
+```
+
+Do not rerun or expand this matrix merely because production integration is next. Retrieve EV-206–EV-207 when exact proof meaning is needed.
+
+---
+
+## 3. Accepted Collision-Safety Contract
+
+Accepted identity/obligation model:
 
 ```text
 live ScriptFunction frame
@@ -69,207 +89,101 @@ destructive AISetState + obligation still outstanding
 = terminal repair checkpoint
 ```
 
----
-
-## 3. Current Gate — C1-R1 Controlled Native-Equivalent Physical Repair
-
-C1-R1 asks:
-
-> **Can the existing proven `WOULD_REPAIR` branch perform exactly the same narrow weapon-source reset Gothic 3 uses for legitimate cleanup — `Item_Attack(7) -> Item_Equipped(5)` on the exact live/equipped outstanding source — without changing any execution that already cleaned itself, never requested offense, is no longer safely live, or belongs to the other Dual source?**
-
-### Source/API basis
-
-Tested ordinary weapon cleanup across the established action matrix uses `7 -> 5` collision-group reset semantics. The tested legitimate reaction route also resets the exact weapon source away from `Item_Attack` to `Item_Equipped`.
-
-Existing marker OFF/source-deactivation code already uses:
-
-```text
-SetCollisionGroup(Item_Equipped)
-```
-
-without `ClearTriggeredList()`.
-
-Therefore C1-R1 must not add another cleanup action. Trigger-list clearing remains activation/rearm behavior.
-
-### Exact positive predicate
+Accepted repair predicate:
 
 ```text
 source obligation is outstanding
 + exact current equipped RIGHT/LEFT pointer establishes liveness
 + actual current source group == Item_Attack(7)
-→ repair exactly that source to Item_Equipped(5)
+→ exactly one SetCollisionGroup(Item_Equipped)
+→ no ClearTriggeredList()
+→ verify exact Item_Equipped(5)
 ```
 
-Anything outside that predicate is no-op/diagnostic only.
+Everything outside that predicate remains no-op/unresolved and non-mutating.
 
-### Required no-op branches
-
-```text
-NO_OP_NO_OUTSTANDING
-UNRESOLVED_NOT_EQUIPPED
-NO_OP_PHYSICALLY_CLEAN_RECONCILED
-```
-
-No unrelated group-7 adoption, no player-input classifier, no timeout, no polling and no broad scan.
-
-### Diagnostic ordering
-
-The repair setter intentionally passes through the existing SetCollisionGroup hook. Because that hook emits its own complete diagnostics, the finalizer must first classify/repair into fixed stack-local per-source results and only afterward emit the complete `C1 FINALIZATION` block.
-
-Do not allow nested SetCollisionGroup diagnostics to splice into a half-written finalization block.
-
-No heap allocation or new persistent/global state is required; the lifecycle already tracks at most two physical sources.
-
-Recommended successful outcome:
-
-```text
-REPAIRED_TO_ITEM_EQUIPPED
-```
-
-Any resulting group other than exact `Item_Equipped(5)` is a gate failure/divergence. Do not retry or add fallback mutation.
-
----
-
-## 4. C1-R1 Validation Sequence
-
-### R1-A — independent source audit
-
-Confirm before build:
-
-1. existing AISetState capture/original/finalize ordering is unchanged;
-2. existing ownership/acquisition/generation logic is unchanged;
-3. only the former `WOULD_REPAIR` predicate may mutate;
-4. exact equipped identity gates source dereference and mutation;
-5. only the exact outstanding source is reset;
-6. target is exactly `Item_Equipped(5)`;
-7. `ClearTriggeredList()` is not called by repair;
-8. no SetCollisionGroup-hook bypass/new hook/global repair machinery is added;
-9. finalization diagnostics are emitted only after nested repair setter diagnostics complete;
-10. record retirement remains once after finalization.
-
-### R1-B — build / isolated load
-
-```text
-sync exact implementation
-→ build Script_FrameCollisionTest
-→ deploy one exact DLL
-→ built/live SHA match
-→ main-menu load/unload
-→ exact C1-R1 startup identity
-→ no combat
-```
-
-### R1-C — targeted positive repair
-
-Reproduce one known armed destructive abandonment on a controlled player weapon source.
-
-Expected:
-
-```text
-real offense obligation
-→ no native cleanup
-→ destructive AISetState
-→ exact source still live/equipped and Item_Attack(7)
-→ one repair SetCollisionGroup(Item_Equipped)
-→ result exactly Item_Equipped(5)
-→ REPAIRED_TO_ITEM_EQUIPPED
-```
-
-Then perform a later legitimate attack with the same source.
-
-Expected consequence:
-
-```text
-new offense normally begins 5 -> 7
-```
-
-rather than inheriting the previous stale `7 -> 7`.
-
-### R1-D — no-op controls
-
-Verify **zero repair mutation** for:
+The validated regression envelope includes:
 
 ```text
 ordinary clean completion
-legitimate reaction/knockdown cleanup
-pre-activation interruption / no offense
-clean GetUpAttack with P2 acquisition + native cleanup
-GetUpParade / defensive no-offense case
+legitimate reaction cleanup
+pre-activation/no-offense
+P2 GetUpAttack acquisition + native cleanup
+GetUpParade/defensive no-offense
+inherited 7 -> 7 attribution
+Dual exact RIGHT/LEFT independence
+marked RIGHT/LEFT/BOTH/OFF interaction
+Fist/body separation
+crossbow unsupported-source fallback
+supplemental bow/magic negative regression
+mixed player/NPC hook stability
 ```
 
-Native cleanup must continue to win before finalization.
-
-### R1-E — source-specific / marker / broader stability
-
-Only after R1-C/R1-D meaning passes:
+Two explicit limits remain:
 
 ```text
-Dual RIGHT/LEFT source-specific destructive repair
-compact marked-source terminal-repair regression where relevant
-broader mixed player/NPC/negative stability
+- no positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED branch;
+- no positive NPC destructive-abandonment / C1 physical-repair case is claimed.
 ```
 
-The guard remains actor/source-general; do not add Hero-only production semantics merely to simplify the first test.
+These are qualifications, not reasons to invent another R1 test matrix.
 
 ---
 
-## 5. Acceptance / Failure Meaning
+## 4. Next Validation Responsibility — Stable Production Integration
 
-C1-R1 passes its controlled meaning gate only if:
+C1-R1 is validated in the research prototype but is not yet stable production behavior.
 
-```text
-proven outstanding exact live/equipped source at group 7
-→ one exact reset to group 5
-→ physical stale collision removed
-```
+Before implementation, Normal Chat should freeze the smallest integration responsibility: which already-validated guard/core code and hook responsibilities move into the production `Script_G3AnimationBehaviors` boundary, what diagnostics remain research-only, and how existing marker behavior remains unchanged.
 
-while all native-clean and no-obligation controls remain mutation-free.
-
-A later attack beginning `5 -> 7` after a repaired stale case is strong consequence evidence that the previous stale offensive state was actually removed rather than merely reclassified.
-
-C1-R1 fails at this boundary if safe repair requires:
+Production-integration validation must prove that integration itself did not change the accepted contract. At minimum, the eventual frozen matrix should protect:
 
 ```text
-family/action/input/cause classification
-null/liveness fallback
-polling/timer/world scan
-repair of unrelated equipped sources
-SetCollisionGroup-hook bypass
-ClearTriggeredList cleanup behavior
-new terminal owner beyond the proven exact obligation/finalization model
+startup/load identity for the production-integrated build
+one known positive stale-source repair
+ordinary native cleanup no-op
+legitimate reaction cleanup no-op
+Dual source independence
+one marked-source regression
+Fist/unarmed negative
+crossbow negative
+normal shutdown
 ```
 
-Do not broaden the implementation in the same gate to hide such a result.
+The exact matrix should be frozen **after** the integration boundary is known; do not pre-author a large new test suite before the source responsibility is understood.
+
+Integration failure means the production move requires changing the validated ownership/repair semantics, introduces new family/cause classification, bypasses native cleanup precedence, or destabilizes established marker/source behavior. In that case stop and reassess rather than broadening implementation to hide the contradiction.
 
 ---
 
-## 6. Explicit Regression Requirements
+## 5. Explicit Non-Combination Rule
 
-Protect throughout R1 and later integration:
+Stable production integration does not automatically authorize:
 
-- source-specific Dual RIGHT/LEFT behavior;
-- inherited `7 -> 7` attribution for legitimate later requests;
-- clean ordinary and reaction-side native cleanup precedence;
-- pre-activation no-obligation behavior;
-- P2 GetUp pre-Combat generation acquisition/bridge consumption;
-- GetUpParade/defensive no-offense behavior;
-- marker RIGHT/LEFT/BOTH/OFF semantics and marker bookkeeping retirement;
-- Fist/body-source separation;
-- bow, crossbow and magic negatives when broader regression is reached.
+```text
+held-Use2 / Alternative-AI root behavior changes
+marker-core simplification
+Raise implementation/generalization
+playback-speed implementation
+new body/monster/source-family semantics
+new cleanup timers/polling/world scans
+```
 
-Do not reintroduce rejected C1-O2 dispatch machinery.
+The held-Use2 root investigation remains separately documented in `BAD_SKIP_FUTURE_INVESTIGATION.md`. C1-R1 remains the collision-safety fail-safe even if a later root fix is pursued.
 
 ---
 
-## 7. After C1-R1
+## 6. Evidence Handling
 
-Only after controlled physical repair passes should the project expand toward:
+For future integration tests:
 
 ```text
-broader physical-repair stability
-→ marked/unmarked/player/NPC/negative regression
-→ stable production integration
-→ only later reconsider marker-bookkeeping simplification
+freeze exact question/matrix/raw filename
+→ preserve raw unchanged
+→ publish raw
+→ use deterministic large-log reduction only when retrieval requires it
+→ interpret in Normal Chat
+→ update canonical evidence/current authorities only when meaning changes
 ```
 
-Root-cause repair of the held-Use2 / Alternative-AI interruption remains unnecessary unless evidence proves the general collision guard cannot preserve collision integrity independently.
+Do not ask the User to paste large successful logs into Chat. Use `PROJECT_OPERATING_PROCEDURES.md` POP-05 through POP-07.
