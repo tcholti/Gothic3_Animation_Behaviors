@@ -1,23 +1,12 @@
 #include "CollisionLifecycleGuard.h"
 
-#include "CollisionDiagnostics.h"
 #include "CollisionSources.h"
-#include "HookBridgeRuntime.h"
 
-#include <cstdio>
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 namespace FrameCollision::CollisionLifecycleGuard
 {
-enum GenerationStatus
-{
-    GenerationStatus_Candidate,
-    GenerationStatus_Persisted,
-    GenerationStatus_OuterBound
-};
-
 struct OuterFrameBinding
 {
     gCScriptProcessingUnit *spu;
@@ -65,45 +54,6 @@ struct ScriptFunctionDispatchContext
 static std::uint64_t g_NextGeneration = 0;
 static std::unordered_map<eCEntity *, ActorLifecycleRecord> g_ActorRecords;
 static std::unordered_map<eCEntity *, SourceOwner> g_SourceOwners;
-static thread_local std::vector<ScriptFunctionDispatchContext>
-    g_ScriptFunctionDispatchStack;
-
-static char const *GetStatusName(GenerationStatus status)
-{
-    if (status == GenerationStatus_Persisted)
-        return "PERSISTED";
-    if (status == GenerationStatus_OuterBound)
-        return "OUTER_BOUND";
-    return "CANDIDATE";
-}
-
-static char const *GetSideName(unsigned int sideMask)
-{
-    if (sideMask == SourceMask_Both)
-        return "RIGHT|LEFT";
-    if (sideMask == SourceMask_Right)
-        return "RIGHT";
-    if (sideMask == SourceMask_Left)
-        return "LEFT";
-    return "NONE";
-}
-
-static std::string GetEntityName(eCEntity *instance)
-{
-    if (instance == nullptr)
-        return "<null>";
-    Entity entity(instance);
-    if (entity == None)
-        return "<unavailable>";
-    GELPCChar name = entity.GetName().GetText();
-    return name != nullptr ? name : "<unnamed>";
-}
-
-static bool IsPlayerActor(eCEntity *actorInstance)
-{
-    Entity player = Entity::GetPlayer();
-    return player != None && actorInstance == player.GetInstance();
-}
 
 static bool HasOutstandingObligation(ActorLifecycleRecord const &record)
 {
@@ -115,37 +65,83 @@ static bool HasOutstandingObligation(ActorLifecycleRecord const &record)
     return false;
 }
 
-static void LogInvariantWarning(
-    char const *code, eCEntity *actorInstance, std::uint64_t generation,
+static GenerationFacts MakeGenerationFacts(
+    ActorLifecycleRecord const &record)
+{
+    GenerationFacts facts = {};
+    facts.actorInstance = record.actorInstance;
+    facts.generation = record.generation;
+    facts.status = record.status;
+    facts.trackedSourceCount = record.sourceCount;
+    facts.outstanding = HasOutstandingObligation(record);
+    return facts;
+}
+
+static LifecycleIssue MakeIssue(
+    LifecycleIssueCode code, eCEntity *actorInstance,
+    std::uint64_t generation, eCEntity *sourceInstance = nullptr)
+{
+    LifecycleIssue issue = {};
+    issue.code = code;
+    issue.actorInstance = actorInstance;
+    issue.generation = generation;
+    issue.sourceInstance = sourceInstance;
+    return issue;
+}
+
+static BindingObservation MakeBindingObservation(
+    BindingEventCode code, ActorLifecycleRecord const &record,
+    ScriptFunctionDispatchContext const &frame,
     eCEntity *sourceInstance = nullptr)
 {
-    if (!IsPlayerActor(actorInstance))
-        return;
-    FILE *log = CollisionDiagnostics::GetLog();
-    if (log == nullptr)
-        return;
+    BindingObservation observation = {};
+    observation.code = code;
+    observation.generation = MakeGenerationFacts(record);
+    observation.spu = frame.spu;
+    observation.arguments = frame.arguments;
+    observation.scriptName = frame.scriptName;
+    observation.sourceInstance = sourceInstance;
+    return observation;
+}
 
-    std::fprintf(log, "===== C1 INVARIANT WARNING =====\n");
-    std::fprintf(log, "ElapsedMs: %.3f\n",
-                 HookBridgeRuntime::GetElapsedMilliseconds());
-    std::fprintf(log, "Code: %s\n", code);
-    std::fprintf(log, "ActorAddress: %p\n",
-                 static_cast<void *>(actorInstance));
-    std::fprintf(log, "Actor: %s\n", GetEntityName(actorInstance).c_str());
-    std::fprintf(log, "Generation: %llu\n",
-                 static_cast<unsigned long long>(generation));
-    if (sourceInstance != nullptr)
+static LifecycleStartFacts MakeLifecycleStartFacts(
+    ActorLifecycleRecord const &record,
+    std::uint64_t replacedGeneration, bool replacedOutstanding)
+{
+    LifecycleStartFacts result = {};
+    result.available = true;
+    result.generation = MakeGenerationFacts(record);
+    result.replacedGeneration = replacedGeneration;
+    result.replacedOutstanding = replacedOutstanding;
+    for (unsigned int i = 0; i < record.sourceCount; ++i)
     {
-        std::fprintf(log, "SourceAddress: %p\n",
-                     static_cast<void *>(sourceInstance));
-        std::fprintf(log, "Source: %s\n",
-                     GetEntityName(sourceInstance).c_str());
-        std::fprintf(log, "ActualGroup: %d\n",
-                     static_cast<GEInt>(sourceInstance->GetCollisionGroup()));
+        result.sources[i].sourceInstance = record.sources[i].sourceInstance;
+        result.sources[i].sideMask = record.sources[i].sideMask;
+        result.sources[i].actualGroup =
+            record.sources[i].sourceInstance != nullptr
+                ? record.sources[i].sourceInstance->GetCollisionGroup()
+                : static_cast<eECollisionGroup>(-1);
     }
-    std::fprintf(log, "PhysicalCollisionChanged: 0\n");
-    std::fprintf(log, "================================\n\n");
-    std::fflush(log);
+    return result;
+}
+
+static SourceEventFacts MakeSourceEventFacts(
+    ActorLifecycleRecord const &record,
+    SourceLifecycleRecord const &source,
+    eECollisionGroup actualGroup)
+{
+    SourceEventFacts result = {};
+    result.available = true;
+    result.actorInstance = record.actorInstance;
+    result.generation = record.generation;
+    result.status = record.status;
+    result.sourceInstance = source.sourceInstance;
+    result.sideMask = source.sideMask;
+    result.offensiveRequestCount = source.offensiveRequestCount;
+    result.outstandingCleanup = source.outstandingCleanup;
+    result.cleanupObserved = source.cleanupObserved;
+    result.actualGroup = actualGroup;
+    return result;
 }
 
 static void RemoveRecord(
@@ -202,118 +198,6 @@ static void RegisterSourceOwners(ActorLifecycleRecord const &record)
         owner.sourceIndex = i;
         g_SourceOwners[record.sources[i].sourceInstance] = owner;
     }
-}
-
-static void LogLifecycleStart(
-    ActorLifecycleRecord const &record, std::uint64_t replacedGeneration,
-    bool replacedOutstanding)
-{
-    if (!IsPlayerActor(record.actorInstance))
-        return;
-    FILE *log = CollisionDiagnostics::GetLog();
-    if (log == nullptr)
-        return;
-
-    std::fprintf(log, "===== C1 LIFECYCLE START =====\n");
-    std::fprintf(log, "ElapsedMs: %.3f\n",
-                 HookBridgeRuntime::GetElapsedMilliseconds());
-    std::fprintf(log, "ActorAddress: %p\n",
-                 static_cast<void *>(record.actorInstance));
-    std::fprintf(log, "Actor: %s\n",
-                 GetEntityName(record.actorInstance).c_str());
-    std::fprintf(log, "Generation: %llu\n",
-                 static_cast<unsigned long long>(record.generation));
-    std::fprintf(log, "Status: %s\n", GetStatusName(record.status));
-    std::fprintf(log, "ReplacedGeneration: %llu\n",
-                 static_cast<unsigned long long>(replacedGeneration));
-    std::fprintf(log, "ReplacedOutstanding: %d\n",
-                 replacedOutstanding ? 1 : 0);
-    std::fprintf(log, "TrackedSourceCount: %u\n", record.sourceCount);
-    for (unsigned int i = 0; i < record.sourceCount; ++i)
-    {
-        SourceLifecycleRecord const &source = record.sources[i];
-        std::fprintf(log, "Source[%u].Address: %p\n", i,
-                     static_cast<void *>(source.sourceInstance));
-        std::fprintf(log, "Source[%u].Name: %s\n", i,
-                     GetEntityName(source.sourceInstance).c_str());
-        std::fprintf(log, "Source[%u].SideMask: %u\n", i,
-                     source.sideMask);
-        std::fprintf(log, "Source[%u].Side: %s\n", i,
-                     GetSideName(source.sideMask));
-        std::fprintf(log, "Source[%u].ActualGroup: %d\n", i,
-                     static_cast<GEInt>(
-                         source.sourceInstance->GetCollisionGroup()));
-    }
-    std::fprintf(log, "PhysicalCollisionChanged: 0\n");
-    std::fprintf(log, "==============================\n\n");
-    std::fflush(log);
-}
-
-static void LogCandidateStatus(
-    ActorLifecycleRecord const &record, char const *event)
-{
-    if (!IsPlayerActor(record.actorInstance))
-        return;
-    FILE *log = CollisionDiagnostics::GetLog();
-    if (log == nullptr)
-        return;
-
-    std::fprintf(log, "===== C1 LIFECYCLE STATUS =====\n");
-    std::fprintf(log, "ElapsedMs: %.3f\n",
-                 HookBridgeRuntime::GetElapsedMilliseconds());
-    std::fprintf(log, "Event: %s\n", event);
-    std::fprintf(log, "ActorAddress: %p\n",
-                 static_cast<void *>(record.actorInstance));
-    std::fprintf(log, "Actor: %s\n",
-                 GetEntityName(record.actorInstance).c_str());
-    std::fprintf(log, "Generation: %llu\n",
-                 static_cast<unsigned long long>(record.generation));
-    std::fprintf(log, "Status: %s\n", GetStatusName(record.status));
-    std::fprintf(log, "Outstanding: %d\n",
-                 HasOutstandingObligation(record) ? 1 : 0);
-    std::fprintf(log, "PhysicalCollisionChanged: 0\n");
-    std::fprintf(log, "===============================\n\n");
-    std::fflush(log);
-}
-
-static void LogSourceEvent(
-    char const *heading, ActorLifecycleRecord const &record,
-    SourceLifecycleRecord const &source, eECollisionGroup actualGroup)
-{
-    if (!IsPlayerActor(record.actorInstance))
-        return;
-    FILE *log = CollisionDiagnostics::GetLog();
-    if (log == nullptr)
-        return;
-
-    std::fprintf(log, "===== %s =====\n", heading);
-    std::fprintf(log, "ElapsedMs: %.3f\n",
-                 HookBridgeRuntime::GetElapsedMilliseconds());
-    std::fprintf(log, "ActorAddress: %p\n",
-                 static_cast<void *>(record.actorInstance));
-    std::fprintf(log, "Actor: %s\n",
-                 GetEntityName(record.actorInstance).c_str());
-    std::fprintf(log, "Generation: %llu\n",
-                 static_cast<unsigned long long>(record.generation));
-    std::fprintf(log, "Status: %s\n", GetStatusName(record.status));
-    std::fprintf(log, "SourceAddress: %p\n",
-                 static_cast<void *>(source.sourceInstance));
-    std::fprintf(log, "Source: %s\n",
-                 GetEntityName(source.sourceInstance).c_str());
-    std::fprintf(log, "OriginalSideMask: %u\n", source.sideMask);
-    std::fprintf(log, "OriginalSide: %s\n",
-                 GetSideName(source.sideMask));
-    std::fprintf(log, "OffensiveRequestCount: %u\n",
-                 source.offensiveRequestCount);
-    std::fprintf(log, "Outstanding: %d\n",
-                 source.outstandingCleanup ? 1 : 0);
-    std::fprintf(log, "CleanupObserved: %d\n",
-                 source.cleanupObserved ? 1 : 0);
-    std::fprintf(log, "ActualGroup: %d\n",
-                 static_cast<GEInt>(actualGroup));
-    std::fprintf(log, "PhysicalCollisionChanged: 0\n");
-    std::fprintf(log, "==============================\n\n");
-    std::fflush(log);
 }
 
 static ScriptFunctionDispatchContext CaptureTopScriptFunction(
@@ -392,189 +276,14 @@ static void RetireOuterFrameBinding(ActorLifecycleRecord &record)
     record.outerFrame.preCombatTemporary = false;
 }
 
-static void LogOuterBindingEvent(
-    char const *event, ActorLifecycleRecord const &record,
-    ScriptFunctionDispatchContext const &frame,
-    eCEntity *sourceInstance = nullptr)
-{
-    if (!IsPlayerActor(record.actorInstance))
-        return;
-    FILE *log = CollisionDiagnostics::GetLog();
-    if (log == nullptr)
-        return;
-
-    std::fprintf(log, "===== C1-O2 OUTER BINDING =====\n");
-    std::fprintf(log, "ElapsedMs: %.3f\n",
-                 HookBridgeRuntime::GetElapsedMilliseconds());
-    std::fprintf(log, "Event: %s\n", event);
-    std::fprintf(log, "ActorAddress: %p\n",
-                 static_cast<void *>(record.actorInstance));
-    std::fprintf(log, "Actor: %s\n",
-                 GetEntityName(record.actorInstance).c_str());
-    std::fprintf(log, "Generation: %llu\n",
-                 static_cast<unsigned long long>(record.generation));
-    std::fprintf(log, "Status: %s\n", GetStatusName(record.status));
-    std::fprintf(log, "SPUAddress: %p\n", static_cast<void *>(frame.spu));
-    std::fprintf(log, "ArgumentsAddress: %p\n",
-                 static_cast<void *>(frame.arguments));
-    std::fprintf(log, "ScriptFunction: %s\n", frame.scriptName.c_str());
-    std::fprintf(log, "Outstanding: %d\n",
-                 HasOutstandingObligation(record) ? 1 : 0);
-    if (sourceInstance != nullptr)
-    {
-        std::fprintf(log, "SourceAddress: %p\n",
-                     static_cast<void *>(sourceInstance));
-        std::fprintf(log, "Source: %s\n",
-                     GetEntityName(sourceInstance).c_str());
-    }
-    for (unsigned int i = 0; i < record.sourceCount; ++i)
-    {
-        SourceLifecycleRecord const &source = record.sources[i];
-        if (!source.outstandingCleanup)
-            continue;
-        std::fprintf(log, "OutstandingSource[%u].Address: %p\n", i,
-                     static_cast<void *>(source.sourceInstance));
-        std::fprintf(log, "OutstandingSource[%u].Name: %s\n", i,
-                     GetEntityName(source.sourceInstance).c_str());
-        std::fprintf(log, "OutstandingSource[%u].ActualGroup: %d\n", i,
-                     static_cast<GEInt>(
-                         source.sourceInstance->GetCollisionGroup()));
-    }
-    std::fprintf(log, "PhysicalCollisionChanged: 0\n");
-    std::fprintf(log, "================================\n\n");
-    std::fflush(log);
-}
-
-static void LogOuterBindingFailure(
-    char const *code, eCEntity *actorInstance, std::uint64_t generation,
-    ScriptFunctionDispatchContext const &frame,
-    eCEntity *sourceInstance = nullptr)
-{
-    if (!IsPlayerActor(actorInstance))
-        return;
-    FILE *log = CollisionDiagnostics::GetLog();
-    if (log == nullptr)
-        return;
-
-    std::fprintf(log, "===== C1-O2 BINDING INVARIANT =====\n");
-    std::fprintf(log, "ElapsedMs: %.3f\n",
-                 HookBridgeRuntime::GetElapsedMilliseconds());
-    std::fprintf(log, "Code: %s\n", code);
-    std::fprintf(log, "ActorAddress: %p\n",
-                 static_cast<void *>(actorInstance));
-    std::fprintf(log, "Actor: %s\n",
-                 GetEntityName(actorInstance).c_str());
-    std::fprintf(log, "Generation: %llu\n",
-                 static_cast<unsigned long long>(generation));
-    std::fprintf(log, "SPUAddress: %p\n", static_cast<void *>(frame.spu));
-    std::fprintf(log, "TopIsScriptFunction: %d\n",
-                 frame.topIsScriptFunction ? 1 : 0);
-    std::fprintf(log, "ArgumentsAddress: %p\n",
-                 static_cast<void *>(frame.arguments));
-    std::fprintf(log, "ScriptFunction: %s\n", frame.scriptName.c_str());
-    if (sourceInstance != nullptr)
-    {
-        std::fprintf(log, "SourceAddress: %p\n",
-                     static_cast<void *>(sourceInstance));
-        std::fprintf(log, "Source: %s\n",
-                     GetEntityName(sourceInstance).c_str());
-    }
-    std::fprintf(log, "PhysicalCollisionChanged: 0\n");
-    std::fprintf(log, "===================================\n\n");
-    std::fflush(log);
-}
-
-ScriptFunctionDispatchToken BeginScriptFunctionDispatch(
-    bCString const &scriptName,
-    bTObjStack<gScriptRunTimeSingleState> &stateStack,
-    gCScriptProcessingUnit *spu)
-{
-    (void) scriptName;
-    ScriptFunctionDispatchContext context =
-        CaptureTopScriptFunction(spu, stateStack);
-    ScriptFunctionDispatchToken token = {};
-    token.spu = context.spu;
-    token.actorInstance = context.actorInstance;
-    token.arguments = context.arguments;
-    token.scriptName = context.scriptName;
-    token.dispatchDepth = g_ScriptFunctionDispatchStack.size();
-    token.hasLiveCorrelator = HasLiveCorrelator(context);
-    g_ScriptFunctionDispatchStack.push_back(context);
-    return token;
-}
-
-void EndScriptFunctionDispatch(
-    ScriptFunctionDispatchToken const &token, GEBool originalResult)
-{
-    bool const dispatchStillLive =
-        token.dispatchDepth < g_ScriptFunctionDispatchStack.size()
-        && token.hasLiveCorrelator
-        && g_ScriptFunctionDispatchStack[token.dispatchDepth].spu
-               == token.spu
-        && g_ScriptFunctionDispatchStack[token.dispatchDepth].actorInstance
-               == token.actorInstance
-        && g_ScriptFunctionDispatchStack[token.dispatchDepth].arguments
-               == token.arguments
-        && g_ScriptFunctionDispatchStack[token.dispatchDepth].scriptName
-               == token.scriptName
-        && g_ScriptFunctionDispatchStack[token.dispatchDepth]
-               .topIsScriptFunction;
-    if (originalResult == GETrue && dispatchStillLive)
-    {
-        auto recordIt = g_ActorRecords.find(token.actorInstance);
-        if (recordIt != g_ActorRecords.end())
-        {
-            ScriptFunctionDispatchContext completed = {};
-            completed.spu = token.spu;
-            completed.actorInstance = token.actorInstance;
-            completed.arguments = token.arguments;
-            completed.scriptName = token.scriptName;
-            completed.topIsScriptFunction = true;
-            if (MatchesRecordBinding(recordIt->second, completed))
-            {
-                bool const outstanding =
-                    HasOutstandingObligation(recordIt->second);
-                LogOuterBindingEvent(
-                    outstanding ? "OUTER_RETURN_OUTSTANDING"
-                                : "OUTER_RETURN_RETIRED",
-                    recordIt->second, completed);
-                RetireOuterFrameBinding(recordIt->second);
-                if (!outstanding)
-                    RemoveRecord(recordIt);
-            }
-        }
-    }
-
-    if (token.dispatchDepth <= g_ScriptFunctionDispatchStack.size())
-        g_ScriptFunctionDispatchStack.resize(token.dispatchDepth);
-    else
-        g_ScriptFunctionDispatchStack.clear();
-}
-
-void InvalidateScriptFunctionDispatchAfterAISetState(
-    eCEntity *actorInstance)
-{
-    for (ScriptFunctionDispatchContext &context
-         : g_ScriptFunctionDispatchStack)
-    {
-        if (context.actorInstance != actorInstance)
-            continue;
-        context.spu = nullptr;
-        context.actorInstance = nullptr;
-        context.arguments = nullptr;
-        context.scriptName.clear();
-        context.topIsScriptFunction = false;
-    }
-}
-
-GenerationToken BeginCombatMove(
+BeginCombatMoveResult BeginCombatMove(
     Entity &actor, EquippedCollisionSources const &sources,
     gCScriptProcessingUnit *spu,
     PreCombatBridgeToken *preCombatBridge)
 {
-    GenerationToken token = {};
+    BeginCombatMoveResult result = {};
     if (actor == None || actor.GetInstance() == nullptr)
-        return token;
+        return result;
 
     eCEntity *actorInstance = actor.GetInstance();
     ScriptFunctionDispatchContext const currentFrame =
@@ -601,41 +310,41 @@ GenerationToken BeginCombatMove(
                 RetireOuterFrameBinding(oldIt->second);
                 preCombatBridge->active = false;
                 preCombatBridge->consumed = true;
-                LogOuterBindingEvent(
-                    "PRECOMBAT_BRIDGE_CONSUMED",
+                result.binding = MakeBindingObservation(
+                    BindingEvent_PreCombatBridgeConsumed,
                     oldIt->second, currentFrame);
-                token.actorInstance = actorInstance;
-                token.generation = oldIt->second.generation;
-                token.valid = true;
-                token.combatMoveCandidate = false;
-                return token;
+                result.token.actorInstance = actorInstance;
+                result.token.generation = oldIt->second.generation;
+                result.token.valid = true;
+                result.token.combatMoveCandidate = false;
+                return result;
             }
 
-            LogOuterBindingFailure(
-                "PRECOMBAT_BRIDGE_COMBAT_MOVE_MISMATCH",
-                actorInstance, oldIt->second.generation,
-                currentFrame);
-            return token;
+            result.issue = MakeIssue(
+                LifecycleIssue_PreCombatBridgeCombatMoveMismatch,
+                actorInstance, oldIt->second.generation);
+            return result;
         }
 
         if (MatchesRecordBinding(oldIt->second, currentFrame))
         {
-            LogOuterBindingEvent(
-                "COMBAT_MOVE_REUSED", oldIt->second, currentFrame);
-            token.actorInstance = actorInstance;
-            token.generation = oldIt->second.generation;
-            token.valid = true;
-            token.combatMoveCandidate = false;
-            return token;
+            result.binding = MakeBindingObservation(
+                BindingEvent_CombatMoveReused,
+                oldIt->second, currentFrame);
+            result.token.actorInstance = actorInstance;
+            result.token.generation = oldIt->second.generation;
+            result.token.valid = true;
+            result.token.combatMoveCandidate = false;
+            return result;
         }
 
         replacedGeneration = oldIt->second.generation;
         replacedOutstanding = HasOutstandingObligation(oldIt->second);
         if (replacedOutstanding)
         {
-            LogInvariantWarning(
-                "OVERLAP_OUTSTANDING", actorInstance,
-                oldIt->second.generation);
+            result.issue = MakeIssue(
+                LifecycleIssue_OverlapOutstanding,
+                actorInstance, oldIt->second.generation);
         }
         RemoveRecord(oldIt);
     }
@@ -648,59 +357,66 @@ GenerationToken BeginCombatMove(
     AddSource(record, sources.leftInstance, SourceMask_Left);
     if (HasLiveCorrelator(currentFrame)
         && currentFrame.actorInstance == actorInstance)
+    {
         BindOuterFrame(record, currentFrame);
+    }
     g_ActorRecords[actorInstance] = record;
     RegisterSourceOwners(g_ActorRecords[actorInstance]);
-    LogLifecycleStart(
-        g_ActorRecords[actorInstance], replacedGeneration,
-        replacedOutstanding);
-    if (MatchesRecordBinding(
-            g_ActorRecords[actorInstance], currentFrame))
+    ActorLifecycleRecord &stored = g_ActorRecords[actorInstance];
+    result.start = MakeLifecycleStartFacts(
+        stored, replacedGeneration, replacedOutstanding);
+
+    if (MatchesRecordBinding(stored, currentFrame))
     {
-        LogOuterBindingEvent(
-            "COMBAT_MOVE_CANDIDATE_BOUND",
-            g_ActorRecords[actorInstance], currentFrame);
+        result.binding = MakeBindingObservation(
+            BindingEvent_CombatMoveCandidateBound,
+            stored, currentFrame);
     }
     else if (currentFrame.actorInstance == actorInstance
              && currentFrame.topIsScriptFunction
-             && currentFrame.arguments == nullptr)
+             && currentFrame.arguments == nullptr
+             && result.issue.code == LifecycleIssue_None)
     {
-        LogOuterBindingFailure(
-            "NULL_ARGUMENTS_COMBAT_MOVE", actorInstance,
-            record.generation, currentFrame);
+        result.issue = MakeIssue(
+            LifecycleIssue_NullArgumentsCombatMove,
+            actorInstance, stored.generation);
     }
 
-    token.actorInstance = actorInstance;
-    token.generation = record.generation;
-    token.valid = true;
-    token.combatMoveCandidate = true;
-    return token;
+    result.token.actorInstance = actorInstance;
+    result.token.generation = stored.generation;
+    result.token.valid = true;
+    result.token.combatMoveCandidate = true;
+    return result;
 }
 
-void CompleteCombatMoveCandidate(
+CompleteCombatMoveResult CompleteCombatMoveCandidate(
     GenerationToken const &token, GEBool originalResult)
 {
+    CompleteCombatMoveResult result = {};
     if (!token.valid || !token.combatMoveCandidate)
-        return;
+        return result;
     auto recordIt = g_ActorRecords.find(token.actorInstance);
     if (recordIt == g_ActorRecords.end()
         || recordIt->second.generation != token.generation)
     {
-        LogInvariantWarning(
-            "CANDIDATE_GENERATION_CHANGED", token.actorInstance,
-            token.generation);
-        return;
+        result.issue = MakeIssue(
+            LifecycleIssue_CandidateGenerationChanged,
+            token.actorInstance, token.generation);
+        return result;
     }
 
     if (originalResult == GEFalse)
     {
         recordIt->second.status = GenerationStatus_Persisted;
-        LogCandidateStatus(recordIt->second, "PERSISTED");
-        return;
+        result.statusEvent = CandidateStatus_Persisted;
+        result.generation = MakeGenerationFacts(recordIt->second);
+        return result;
     }
 
-    LogCandidateStatus(recordIt->second, "CANCELLED_IMMEDIATE_RESULT");
+    result.statusEvent = CandidateStatus_CancelledImmediateResult;
+    result.generation = MakeGenerationFacts(recordIt->second);
     RemoveRecord(recordIt);
+    return result;
 }
 
 static bool TryGetOwnedSource(
@@ -747,7 +463,8 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
     eCEntity *sourceInstance, ActorLifecycleRecord *&actorRecord,
     SourceLifecycleRecord *&sourceRecord,
     PreCombatDispatchView const *preCombatDispatch,
-    PreCombatBridgeToken *preCombatBridge)
+    PreCombatBridgeToken *preCombatBridge,
+    CollisionObservationResult &result)
 {
     if (preCombatDispatch == nullptr || preCombatBridge == nullptr)
         return PreCombatAcquisition_NotApplicable;
@@ -758,6 +475,9 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
         || preCombatDispatch->runtimeStack
             != &preCombatDispatch->spu->m_StateStack)
     {
+        result.issue = MakeIssue(
+            LifecycleIssue_LiveFrameMismatchPreCombatOffense,
+            nullptr, 0, sourceInstance);
         return PreCombatAcquisition_Rejected;
     }
 
@@ -767,20 +487,20 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
             *preCombatDispatch->runtimeStack);
     if (!liveFrame.topIsScriptFunction || liveFrame.arguments == nullptr)
     {
-        LogOuterBindingFailure(
+        result.issue = MakeIssue(
             liveFrame.topIsScriptFunction
-                ? "NULL_ARGUMENTS_PRECOMBAT_OFFENSE"
-                : "NON_FUNCTION_PRECOMBAT_OFFENSE",
-            liveFrame.actorInstance, 0, liveFrame, sourceInstance);
+                ? LifecycleIssue_NullArgumentsPreCombatOffense
+                : LifecycleIssue_NonFunctionPreCombatOffense,
+            liveFrame.actorInstance, 0, sourceInstance);
         return PreCombatAcquisition_Rejected;
     }
 
     GELPCChar const wrapperName = preCombatDispatch->scriptName->GetText();
     if (wrapperName == nullptr || liveFrame.scriptName != wrapperName)
     {
-        LogOuterBindingFailure(
-            "LIVE_FRAME_MISMATCH_PRECOMBAT_OFFENSE",
-            liveFrame.actorInstance, 0, liveFrame, sourceInstance);
+        result.issue = MakeIssue(
+            LifecycleIssue_LiveFrameMismatchPreCombatOffense,
+            liveFrame.actorInstance, 0, sourceInstance);
         return PreCombatAcquisition_Rejected;
     }
 
@@ -811,9 +531,9 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
             || preCombatBridge->active
             || preCombatBridge->consumed)
         {
-            LogOuterBindingFailure(
-                "PRECOMBAT_ACTOR_SOURCE_OR_BRIDGE_OVERLAP",
-                liveFrame.actorInstance, 0, liveFrame, sourceInstance);
+            result.issue = MakeIssue(
+                LifecycleIssue_PreCombatActorSourceOrBridgeOverlap,
+                liveFrame.actorInstance, 0, sourceInstance);
             return PreCombatAcquisition_Rejected;
         }
 
@@ -827,20 +547,23 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
         g_ActorRecords[record.actorInstance] = record;
         RegisterSourceOwners(g_ActorRecords[record.actorInstance]);
         recordIt = g_ActorRecords.find(record.actorInstance);
-        LogLifecycleStart(recordIt->second, 0, false);
-        LogOuterBindingEvent(
-            "PRECOMBAT_ACQUIRED", recordIt->second, liveFrame,
-            sourceInstance);
+        result.start = MakeLifecycleStartFacts(
+            recordIt->second, 0, false);
+        result.binding = MakeBindingObservation(
+            BindingEvent_PreCombatAcquired,
+            recordIt->second, liveFrame, sourceInstance);
     }
     else if (!recordIt->second.outerFrame.preCombatTemporary)
     {
         if (!preCombatBridge->active
             && actorRecord == &recordIt->second)
+        {
             return PreCombatAcquisition_NotApplicable;
-        LogOuterBindingFailure(
-            "PRECOMBAT_GENERATION_OVERLAP",
+        }
+        result.issue = MakeIssue(
+            LifecycleIssue_PreCombatGenerationOverlap,
             liveFrame.actorInstance, recordIt->second.generation,
-            liveFrame, sourceInstance);
+            sourceInstance);
         return PreCombatAcquisition_Rejected;
     }
     else if (!MatchesRecordBinding(recordIt->second, liveFrame)
@@ -849,25 +572,25 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
              || preCombatBridge->actorInstance != liveFrame.actorInstance
              || preCombatBridge->generation != recordIt->second.generation)
     {
-        LogOuterBindingFailure(
-            "PRECOMBAT_GENERATION_FRAME_OVERLAP",
+        result.issue = MakeIssue(
+            LifecycleIssue_PreCombatGenerationFrameOverlap,
             liveFrame.actorInstance, recordIt->second.generation,
-            liveFrame, sourceInstance);
+            sourceInstance);
         return PreCombatAcquisition_Rejected;
     }
     else
     {
-        LogOuterBindingEvent(
-            "PRECOMBAT_REUSED", recordIt->second, liveFrame,
-            sourceInstance);
+        result.binding = MakeBindingObservation(
+            BindingEvent_PreCombatReused,
+            recordIt->second, liveFrame, sourceInstance);
     }
 
     if (actorRecord != nullptr && actorRecord != &recordIt->second)
     {
-        LogOuterBindingFailure(
-            "SOURCE_ALREADY_OWNED_BY_OTHER_GENERATION",
+        result.issue = MakeIssue(
+            LifecycleIssue_SourceAlreadyOwnedByOtherGeneration,
             liveFrame.actorInstance, recordIt->second.generation,
-            liveFrame, sourceInstance);
+            sourceInstance);
         return PreCombatAcquisition_Rejected;
     }
 
@@ -883,10 +606,10 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
         if (!TryGetOwnedSource(sourceInstance, ownedActor, ownedSource)
             || ownedActor != &recordIt->second)
         {
-            LogOuterBindingFailure(
-                "EQUIPPED_SOURCE_REGISTRATION_FAILED",
+            result.issue = MakeIssue(
+                LifecycleIssue_EquippedSourceRegistrationFailed,
                 liveFrame.actorInstance, recordIt->second.generation,
-                liveFrame, sourceInstance);
+                sourceInstance);
             return PreCombatAcquisition_Rejected;
         }
     }
@@ -911,14 +634,15 @@ static bool IsCurrentlyEquippedByPlayer(eCEntity *sourceInstance)
         || sourceInstance == sources.leftInstance;
 }
 
-void ObserveCollisionGroupResult(
+CollisionObservationResult ObserveCollisionGroupResult(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
     eECollisionGroup resultingGroup,
     PreCombatDispatchView const *preCombatDispatch,
     PreCombatBridgeToken *preCombatBridge)
 {
+    CollisionObservationResult result = {};
     if (sourceInstance == nullptr)
-        return;
+        return result;
 
     ActorLifecycleRecord *actorRecord = nullptr;
     SourceLifecycleRecord *sourceRecord = nullptr;
@@ -933,9 +657,9 @@ void ObserveCollisionGroupResult(
         PreCombatAcquisitionResult const preCombat =
             ResolvePreCombatOffenseOwner(
                 sourceInstance, actorRecord, sourceRecord,
-                preCombatDispatch, preCombatBridge);
+                preCombatDispatch, preCombatBridge, result);
         if (preCombat == PreCombatAcquisition_Rejected)
-            return;
+            return result;
         bool const resolvedOwned =
             preCombat == PreCombatAcquisition_Ready || owned;
         if (!resolvedOwned)
@@ -943,21 +667,21 @@ void ObserveCollisionGroupResult(
             if (IsCurrentlyEquippedByPlayer(sourceInstance))
             {
                 Entity player = Entity::GetPlayer();
-                LogInvariantWarning(
-                    "UNOWNED_PLAYER_OFFENSE_REQUEST",
+                result.issue = MakeIssue(
+                    LifecycleIssue_UnownedPlayerOffenseRequest,
                     player != None ? player.GetInstance() : nullptr,
                     0, sourceInstance);
             }
-            return;
+            return result;
         }
 
         ++sourceRecord->offensiveRequestCount;
         sourceRecord->outstandingCleanup = true;
         sourceRecord->cleanupObserved = false;
-        LogSourceEvent(
-            "C1 OFFENSE REQUEST", *actorRecord, *sourceRecord,
-            resultingGroup);
-        return;
+        result.offenseRequestObserved = true;
+        result.sourceEvent = MakeSourceEventFacts(
+            *actorRecord, *sourceRecord, resultingGroup);
+        return result;
     }
 
     if (owned
@@ -966,39 +690,43 @@ void ObserveCollisionGroupResult(
     {
         sourceRecord->outstandingCleanup = false;
         sourceRecord->cleanupObserved = true;
-        LogSourceEvent(
-            "C1 CLEANUP FULFILLED", *actorRecord, *sourceRecord,
-            resultingGroup);
+        result.cleanupFulfilledObserved = true;
+        result.sourceEvent = MakeSourceEventFacts(
+            *actorRecord, *sourceRecord, resultingGroup);
     }
+    return result;
 }
 
-void RetirePreCombatBridgeAfterDispatch(
+BridgeRetirementResult RetirePreCombatBridgeAfterDispatch(
     PreCombatBridgeToken &preCombatBridge)
 {
+    BridgeRetirementResult result = {};
     if (!preCombatBridge.active)
-        return;
+        return result;
 
+    result.bridgeWasActive = true;
     auto recordIt = g_ActorRecords.find(preCombatBridge.actorInstance);
     if (recordIt != g_ActorRecords.end()
         && recordIt->second.generation == preCombatBridge.generation
         && recordIt->second.status == GenerationStatus_OuterBound
         && recordIt->second.outerFrame.preCombatTemporary)
     {
-        LogInvariantWarning(
-            "PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN",
-            preCombatBridge.actorInstance,
-            preCombatBridge.generation);
+        result.generation = MakeGenerationFacts(recordIt->second);
+        result.issue = MakeIssue(
+            LifecycleIssue_PreCombatBridgeUnconsumedAtDispatchReturn,
+            preCombatBridge.actorInstance, preCombatBridge.generation);
         RetireOuterFrameBinding(recordIt->second);
+        result.bindingRetired = true;
     }
     else
     {
-        LogInvariantWarning(
-            "PRECOMBAT_BRIDGE_RETIREMENT_MISMATCH",
-            preCombatBridge.actorInstance,
-            preCombatBridge.generation);
+        result.issue = MakeIssue(
+            LifecycleIssue_PreCombatBridgeRetirementMismatch,
+            preCombatBridge.actorInstance, preCombatBridge.generation);
     }
 
     preCombatBridge.active = false;
+    return result;
 }
 
 GenerationToken CaptureFinalizationToken(eCEntity *actorInstance)
@@ -1024,194 +752,102 @@ static unsigned int GetCurrentSideMask(
     return result;
 }
 
-void FinalizeAfterAISetState(GenerationToken const &token)
+FinalizationResult FinalizeAfterAISetState(
+    GenerationToken const &token)
 {
+    FinalizationResult result = {};
     if (!token.valid)
-        return;
+        return result;
     auto recordIt = g_ActorRecords.find(token.actorInstance);
     if (recordIt == g_ActorRecords.end()
         || recordIt->second.generation != token.generation)
     {
-        LogInvariantWarning(
-            "FINALIZATION_GENERATION_CHANGED", token.actorInstance,
-            token.generation);
-        return;
+        result.issue = MakeIssue(
+            LifecycleIssue_FinalizationGenerationChanged,
+            token.actorInstance, token.generation);
+        return result;
     }
 
     ActorLifecycleRecord &record = recordIt->second;
+    result.available = true;
+    result.actorInstance = record.actorInstance;
+    result.generation = record.generation;
+    result.status = record.status;
+    result.sourceCount = record.sourceCount;
+
     Entity actor(record.actorInstance);
     EquippedCollisionSources currentSources = {};
     if (actor != None)
         currentSources = CollisionSources::GetEquippedCollisionSources(actor);
 
-    struct FinalizationSourceResult
-    {
-        char const *outcome;
-        unsigned int currentSideMask;
-        eECollisionGroup actualGroupBeforeRepair;
-        eECollisionGroup repairRequestedGroup;
-        eECollisionGroup actualGroupAfterRepair;
-        bool outstandingBeforeFinalization;
-        bool cleanupObservedBeforeFinalization;
-        bool stillEquipped;
-        bool repairAttempted;
-        bool physicalCollisionChanged;
-    };
-
-    FinalizationSourceResult results[2] = {};
-    bool physicalCollisionChanged = false;
     for (unsigned int i = 0; i < record.sourceCount; ++i)
     {
         SourceLifecycleRecord &source = record.sources[i];
-        FinalizationSourceResult &result = results[i];
-        result.outstandingBeforeFinalization = source.outstandingCleanup;
-        result.cleanupObservedBeforeFinalization = source.cleanupObserved;
-        result.currentSideMask =
+        FinalizationSourceResult &sourceResult = result.sources[i];
+        sourceResult.sourceInstance = source.sourceInstance;
+        sourceResult.originalSideMask = source.sideMask;
+        sourceResult.offensiveRequestCount = source.offensiveRequestCount;
+        sourceResult.outstandingBeforeFinalization =
+            source.outstandingCleanup;
+        sourceResult.cleanupObservedBeforeFinalization =
+            source.cleanupObserved;
+        sourceResult.currentSideMask =
             GetCurrentSideMask(currentSources, source.sourceInstance);
-        result.stillEquipped =
-            result.currentSideMask != SourceMask_None;
-        result.actualGroupBeforeRepair =
+        sourceResult.livenessEstablished =
+            sourceResult.currentSideMask != SourceMask_None;
+        sourceResult.actualGroupBeforeRepair =
             static_cast<eECollisionGroup>(-1);
-        result.repairRequestedGroup =
+        sourceResult.repairRequestedGroup =
             static_cast<eECollisionGroup>(-1);
-        result.actualGroupAfterRepair =
+        sourceResult.actualGroupAfterRepair =
             static_cast<eECollisionGroup>(-1);
-        if (result.stillEquipped)
+        if (sourceResult.livenessEstablished)
         {
-            result.actualGroupBeforeRepair =
+            sourceResult.actualGroupBeforeRepair =
                 source.sourceInstance->GetCollisionGroup();
         }
 
-        if (!result.outstandingBeforeFinalization)
+        if (!sourceResult.outstandingBeforeFinalization)
         {
-            result.outcome = "NO_OP_NO_OUTSTANDING";
+            sourceResult.outcome =
+                FinalizationOutcome_NoOpNoOutstanding;
         }
-        else if (!result.stillEquipped)
+        else if (!sourceResult.livenessEstablished)
         {
-            result.outcome = "UNRESOLVED_NOT_EQUIPPED";
+            sourceResult.outcome =
+                FinalizationOutcome_UnresolvedNotEquipped;
         }
-        else if (result.actualGroupBeforeRepair
+        else if (sourceResult.actualGroupBeforeRepair
                  != eECollisionGroup_Item_Attack)
         {
-            result.outcome = "NO_OP_PHYSICALLY_CLEAN_RECONCILED";
+            sourceResult.outcome =
+                FinalizationOutcome_NoOpPhysicallyCleanReconciled;
         }
         else
         {
-            result.repairAttempted = true;
-            result.repairRequestedGroup =
+            sourceResult.repairAttempted = true;
+            sourceResult.repairRequestedGroup =
                 eECollisionGroup_Item_Equipped;
             Entity repairSource(source.sourceInstance);
             repairSource.SetCollisionGroup(
                 eECollisionGroup_Item_Equipped);
-            result.actualGroupAfterRepair =
+            sourceResult.actualGroupAfterRepair =
                 source.sourceInstance->GetCollisionGroup();
+            sourceResult.physicalCollisionChanged =
+                sourceResult.actualGroupAfterRepair
+                != sourceResult.actualGroupBeforeRepair;
             result.physicalCollisionChanged =
-                result.actualGroupAfterRepair
-                != result.actualGroupBeforeRepair;
-            physicalCollisionChanged =
-                physicalCollisionChanged
-                || result.physicalCollisionChanged;
-            result.outcome =
-                result.actualGroupAfterRepair
+                result.physicalCollisionChanged
+                || sourceResult.physicalCollisionChanged;
+            sourceResult.outcome =
+                sourceResult.actualGroupAfterRepair
                     == eECollisionGroup_Item_Equipped
-                ? "REPAIRED_TO_ITEM_EQUIPPED"
-                : "REPAIR_DIVERGED_FROM_ITEM_EQUIPPED";
+                ? FinalizationOutcome_RepairedToItemEquipped
+                : FinalizationOutcome_RepairDivergedFromItemEquipped;
         }
-    }
-
-    FILE *log = IsPlayerActor(record.actorInstance)
-        ? CollisionDiagnostics::GetLog() : nullptr;
-    if (log != nullptr)
-    {
-        std::fprintf(log, "===== C1 FINALIZATION =====\n");
-        std::fprintf(log, "ElapsedMs: %.3f\n",
-                     HookBridgeRuntime::GetElapsedMilliseconds());
-        std::fprintf(log, "Reason: AISETSTATE_AFTER_ORIGINAL\n");
-        std::fprintf(log, "ActorAddress: %p\n",
-                     static_cast<void *>(record.actorInstance));
-        std::fprintf(log, "Actor: %s\n",
-                     GetEntityName(record.actorInstance).c_str());
-        std::fprintf(log, "Generation: %llu\n",
-                     static_cast<unsigned long long>(record.generation));
-        std::fprintf(log, "Status: %s\n", GetStatusName(record.status));
-        std::fprintf(log, "TrackedSourceCount: %u\n", record.sourceCount);
-    }
-
-    for (unsigned int i = 0; i < record.sourceCount; ++i)
-    {
-        SourceLifecycleRecord const &source = record.sources[i];
-        FinalizationSourceResult const &result = results[i];
-
-        if (log != nullptr)
-        {
-            std::fprintf(log, "Source[%u].Outcome: %s\n", i,
-                         result.outcome);
-            std::fprintf(log, "Source[%u].Address: %p\n", i,
-                         static_cast<void *>(source.sourceInstance));
-            if (result.stillEquipped)
-            {
-                std::fprintf(log, "Source[%u].Name: %s\n", i,
-                             GetEntityName(source.sourceInstance).c_str());
-            }
-            else
-            {
-                std::fprintf(log,
-                             "Source[%u].Name: <not-dereferenced>\n", i);
-            }
-            std::fprintf(log, "Source[%u].LivenessEstablished: %d\n", i,
-                         result.stillEquipped ? 1 : 0);
-            std::fprintf(log, "Source[%u].OriginalSideMask: %u\n", i,
-                         source.sideMask);
-            std::fprintf(log, "Source[%u].OriginalSide: %s\n", i,
-                         GetSideName(source.sideMask));
-            std::fprintf(log, "Source[%u].OffensiveRequestCount: %u\n", i,
-                         source.offensiveRequestCount);
-            std::fprintf(
-                log, "Source[%u].OutstandingBeforeFinalization: %d\n", i,
-                result.outstandingBeforeFinalization ? 1 : 0);
-            std::fprintf(log, "Source[%u].ActualGroup: %d\n", i,
-                         static_cast<GEInt>(
-                             result.actualGroupBeforeRepair));
-            std::fprintf(
-                log, "Source[%u].ActualGroupBeforeRepair: %d\n", i,
-                static_cast<GEInt>(result.actualGroupBeforeRepair));
-            std::fprintf(log, "Source[%u].CleanupObserved: %d\n", i,
-                         result.cleanupObservedBeforeFinalization ? 1 : 0);
-            std::fprintf(
-                log,
-                "Source[%u].CleanupObservedBeforeFinalization: %d\n", i,
-                result.cleanupObservedBeforeFinalization ? 1 : 0);
-            std::fprintf(log, "Source[%u].StillEquipped: %d\n", i,
-                         result.stillEquipped ? 1 : 0);
-            std::fprintf(log, "Source[%u].CurrentSideMask: %u\n", i,
-                         result.currentSideMask);
-            std::fprintf(log, "Source[%u].RepairAttempted: %d\n", i,
-                         result.repairAttempted ? 1 : 0);
-            if (result.repairAttempted)
-            {
-                std::fprintf(
-                    log, "Source[%u].RepairRequestedGroup: %d\n", i,
-                    static_cast<GEInt>(result.repairRequestedGroup));
-                std::fprintf(
-                    log, "Source[%u].ActualGroupAfterRepair: %d\n", i,
-                    static_cast<GEInt>(result.actualGroupAfterRepair));
-            }
-            std::fprintf(
-                log, "Source[%u].PhysicalCollisionChanged: %d\n", i,
-                result.physicalCollisionChanged ? 1 : 0);
-        }
-    }
-
-    if (log != nullptr)
-    {
-        if (record.sourceCount == 0)
-            std::fprintf(log, "GenerationOutcome: NO_OP_NO_TRACKED_SOURCE\n");
-        std::fprintf(log, "PhysicalCollisionChanged: %d\n",
-                     physicalCollisionChanged ? 1 : 0);
-        std::fprintf(log, "===========================\n\n");
-        std::fflush(log);
     }
 
     RemoveRecord(recordIt);
+    return result;
 }
 }

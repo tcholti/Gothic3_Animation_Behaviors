@@ -1,8 +1,8 @@
-#include "HookBridgeRuntime.h"
+#include "RuntimeClock.h"
 
 #include <windows.h>
 
-namespace FrameCollision::HookBridgeRuntime
+namespace FrameCollision::RuntimeClock
 {
 static LARGE_INTEGER g_StartCounter = {};
 static LARGE_INTEGER g_Frequency = {};

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace FrameCollision::HookBridgeRuntime
+namespace FrameCollision::RuntimeClock
 {
 void InitializeClock();
 double GetElapsedMilliseconds();

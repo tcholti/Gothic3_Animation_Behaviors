@@ -1,6 +1,9 @@
-#include "CollisionDiagnostics.h"
 #include "EngineBridge.h"
-#include "HookBridgeRuntime.h"
+#include "RuntimeClock.h"
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+#include "CollisionDiagnostics.h"
+#endif
 
 #include <g3sdk/Script.h>
 
@@ -16,22 +19,26 @@ gSScriptInit &GetScriptInit()
 
 extern "C" __declspec(dllexport) gSScriptInit const *GE_STDCALL ScriptInit(void)
 {
-    HookBridgeRuntime::InitializeClock();
+    RuntimeClock::InitializeClock();
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::OpenLog();
     if (CollisionDiagnostics::IsLogOpen())
     {
-        std::fprintf(
-            CollisionDiagnostics::GetLog(),
-            "STEP C1-R1 PHYSICAL REPAIR: exact live/equipped outstanding Item_Attack source resets to Item_Equipped at destructive AISetState finalization; native cleanup/no-op paths unchanged; no ClearTriggeredList.\n");
-        std::fprintf(CollisionDiagnostics::GetLog(), "Installing hooks...\n");
+        std::fprintf(CollisionDiagnostics::GetLog(),
+                     "Installing behavior hooks...\n");
         std::fflush(CollisionDiagnostics::GetLog());
     }
+#endif
+
     EngineBridge::InstallHooks();
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     if (CollisionDiagnostics::IsLogOpen())
     {
         std::fprintf(CollisionDiagnostics::GetLog(), "Hooks installed.\n\n");
         std::fflush(CollisionDiagnostics::GetLog());
     }
+#endif
     return &GetScriptInit();
 }
 
@@ -39,8 +46,14 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD dwReason, LPVOID)
 {
     switch (dwReason)
     {
-        case DLL_PROCESS_ATTACH: ::DisableThreadLibraryCalls(hModule); break;
-        case DLL_PROCESS_DETACH: CollisionDiagnostics::CloseLog(); break;
+        case DLL_PROCESS_ATTACH:
+            ::DisableThreadLibraryCalls(hModule);
+            break;
+        case DLL_PROCESS_DETACH:
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+            CollisionDiagnostics::CloseLog();
+#endif
+            break;
     }
     return TRUE;
 }

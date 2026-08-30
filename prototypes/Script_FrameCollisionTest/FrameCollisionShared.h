@@ -42,6 +42,7 @@ struct EquippedCollisionSources
 struct CurrentMotionMarkerResult
 {
     bool foundMatchingMotion;
+    bool scanValid;
     bool markerPresent;
     GEInt frameEffectCount;
     GEInt firstMarkerFrames[MarkerOpcode_Count];
@@ -124,16 +125,5 @@ struct MarkerOwnedWindowView
     std::string animationName;
     GEInt action;
     GEInt phase;
-};
-
-struct PrimaryMotionLifetimeSnapshot
-{
-    bool available;
-    bool hasMotionInstance;
-    bool motionRunning;
-    GEDouble playTime;
-    GEDouble maxTime;
-    GEFloat playSpeed;
-    std::string motionName;
 };
 }

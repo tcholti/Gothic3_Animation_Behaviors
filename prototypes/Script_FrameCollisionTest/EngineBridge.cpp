@@ -1,39 +1,53 @@
 #include "EngineBridge.h"
 
-#include "CollisionControl.h"
-#include "CollisionDiagnostics.h"
 #include "CollisionLifecycleGuard.h"
 #include "CollisionSources.h"
-#include "HookBridgeRuntime.h"
+#include "FrameCollisionMarkers.h"
+#include "RuntimeClock.h"
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+#include "CollisionDiagnostics.h"
+#endif
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+#include "CollisionDiagnosticsDeep.h"
+#endif
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
+#endif
 #include <g3sdk/Game/ge_effectsystem.h>
 #include <g3sdk/Script.h>
 #include <g3sdk/util/Hook.h>
 #include <g3sdk/util/Memory.h>
 #include <g3sdk/util/ScriptUtil.h>
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+#include <cstdio>
 #include <intrin.h>
 #include <windows.h>
-
 #pragma intrinsic(_ReturnAddress)
+#endif
 
 using namespace FrameCollision;
 
-// Sole owner of every Gothic 3 hook used by this research DLL.
+// Sole owner of every Gothic 3 hook used by this DLL. Diagnostic-only hooks
+// do not exist in the behavior-only translation unit after preprocessing.
 static mCFunctionHook Hook_StartEffect;
 static mCFunctionHook Hook_OnAI_Attack;
 static mCFunctionHook Hook_OnAI_QuickAttack;
 static mCFunctionHook Hook_OnAI_WhirlAttack;
-static mCFunctionHook Hook_OnTick;
 static mCFunctionHook Hook_SetCollisionGroup;
-static mCFunctionHook Hook_PlayMotion;
-static mCFunctionHook Hook_StopMotion;
 static mCFunctionHook Hook_AICombatMoveInstr;
-static mCFunctionHook Hook_AICombatMoveStartRecover;
-static mCFunctionHook Hook_AIFullStop;
 static mCFunctionHook Hook_AISetState;
 static mCFunctionHook Hook_RunScriptFunction;
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+static mCFunctionHook Hook_OnTick;
+static mCFunctionHook Hook_PlayMotion;
+static mCFunctionHook Hook_StopMotion;
+static mCFunctionHook Hook_AICombatMoveStartRecover;
+static mCFunctionHook Hook_AIFullStop;
+#endif
 
 struct RunScriptFunctionScope
 {
@@ -42,15 +56,18 @@ struct RunScriptFunctionScope
     bTObjStack<gScriptRunTimeSingleState> *runtimeStack;
     bCString const *scriptName;
     CollisionLifecycleGuard::PreCombatBridgeToken preCombatBridge;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     bool offenseObserved;
+#endif
 };
 
 static thread_local RunScriptFunctionScope *g_pCurrentRunScriptFunctionScope = nullptr;
 
-static CollisionDiagnostics::RunScriptFunctionScopeIdentity
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+static CollisionDiagnosticsDeep::RunScriptFunctionScopeIdentity
 GetRunScriptFunctionScopeIdentity(RunScriptFunctionScope *scope)
 {
-    CollisionDiagnostics::RunScriptFunctionScopeIdentity identity = {};
+    CollisionDiagnosticsDeep::RunScriptFunctionScopeIdentity identity = {};
     if (scope == nullptr)
         return identity;
     identity.scopeAddress = static_cast<void *>(scope);
@@ -60,54 +77,7 @@ GetRunScriptFunctionScopeIdentity(RunScriptFunctionScope *scope)
     identity.parentScopeExists = scope->previous != nullptr;
     return identity;
 }
-
-static bool ShouldSuppressAttackCallback(Entity &actor)
-{
-    CurrentMotionMarkerResult decision = CollisionControl::GetCurrentMarkerDecision(actor);
-    EquippedCollisionSources sources = CollisionSources::GetEquippedCollisionSources(actor);
-    bool willSuppress = decision.foundMatchingMotion && decision.markerPresent
-                     && CollisionSources::HasRequiredCollisionSources(
-                            sources, decision.requiredSourceMask);
-
-    if (willSuppress)
-    {
-        ControlledCallbackObservation observation =
-            CollisionControl::ObserveControlledAttackCallback(actor, sources);
-        CollisionDiagnostics::LogControlledCallbackBoundary(actor, observation);
-    }
-
-    if (CollisionDiagnostics::ShouldLogOwnership(actor))
-        CollisionDiagnostics::LogOwnershipDecision(actor, decision, sources, willSuppress);
-
-    return willSuppress;
-}
-
-DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
-{
-    INIT_SCRIPT_CALLBACK()
-    if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Normal)
-        && ShouldSuppressAttackCallback(SelfEntity))
-        return GETrue;
-    return Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
-}
-
-DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
-{
-    INIT_SCRIPT_CALLBACK()
-    if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Quick)
-        && ShouldSuppressAttackCallback(SelfEntity))
-        return GETrue;
-    return Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
-}
-
-DECLARE_SCRIPT_CALLBACK(OnAI_WhirlAttack_FrameCollisionTest)
-{
-    INIT_SCRIPT_CALLBACK()
-    if (CollisionControl::IsAttackHit(SelfEntity, AttackFamily_Whirl)
-        && ShouldSuppressAttackCallback(SelfEntity))
-        return GETrue;
-    return Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
-}
+#endif
 
 static bool IsPlayerEntity(eCEntity *instance)
 {
@@ -115,6 +85,7 @@ static bool IsPlayerEntity(eCEntity *instance)
     return player != None && instance == player.GetInstance();
 }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static gCScriptProcessingUnit *GetActorSPU(Entity &actor)
 {
     if (actor == None)
@@ -123,68 +94,106 @@ static gCScriptProcessingUnit *GetActorSPU(Entity &actor)
         actor.Routine.m_pEngineEntityPropertySet);
     return routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
 }
+#endif
+
+static bool EvaluateAttackCallback(Entity &actor, AttackFamily family)
+{
+    FrameCollisionMarkers::AttackCallbackOwnershipResult const ownership =
+        FrameCollisionMarkers::EvaluateAttackCallbackOwnership(actor, family);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogAttackCallbackOwnership(actor, family, ownership);
+#endif
+    return ownership.suppressNativeCallback;
+}
+
+DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+    if (EvaluateAttackCallback(SelfEntity, AttackFamily_Normal))
+        return GETrue;
+    return Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
+}
+
+DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+    if (EvaluateAttackCallback(SelfEntity, AttackFamily_Quick))
+        return GETrue;
+    return Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
+}
+
+DECLARE_SCRIPT_CALLBACK(OnAI_WhirlAttack_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+    if (EvaluateAttackCallback(SelfEntity, AttackFamily_Whirl))
+        return GETrue;
+    return Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
+}
 
 static GELPVoid StartEffect_FrameCollisionTest(
     bCString const &a_EffectName, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
     bCMatrix const *a_pMatrix, GEBool a_bUnknown)
 {
-    GELPCChar effectName = a_EffectName.GetText();
-    MarkerOpcode markerOpcode = CollisionControl::GetMarkerOpcode(effectName);
+    GELPCChar const effectName = a_EffectName.GetText();
+    MarkerOpcode const markerOpcode =
+        FrameCollisionMarkers::GetMarkerOpcode(effectName);
     if (markerOpcode == MarkerOpcode_Invalid)
     {
         return Hook_StartEffect.GetOriginalFunction(&StartEffect_FrameCollisionTest)(
             a_EffectName, a_pEntity1, a_pEntity2, a_pMatrix, a_bUnknown);
     }
 
-    // Reserved markers are always consumed so Gothic 3 never resolves them as
-    // real effect resources.
+    // Reserved markers are consumed even when malformed so Gothic never tries
+    // to resolve them as real effect resources.
     if (a_pEntity1 == nullptr)
     {
+#ifdef FRAME_COLLISION_DIAGNOSTICS
         CollisionDiagnostics::LogNullMarker(effectName);
+#endif
         return nullptr;
     }
 
     Entity actor(a_pEntity1);
-    EquippedCollisionSources sources = CollisionSources::GetEquippedCollisionSources(actor);
-    CollisionDiagnostics::LogMarkerContext(effectName, markerOpcode, actor, sources);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogMarkerContext(actor, markerOpcode);
+#endif
 
-    MarkerProcessResult result = CollisionControl::ProcessMarker(
-        actor, sources, markerOpcode, effectName,
-        HookBridgeRuntime::GetElapsedMilliseconds());
+    MarkerProcessResult const result = FrameCollisionMarkers::ProcessMarker(
+        actor, markerOpcode, effectName,
+        RuntimeClock::GetElapsedMilliseconds());
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (result.code == MarkerResult_Accepted)
     {
         if (result.markerOwnedWeaponMask != SourceMask_None)
-            CollisionDiagnostics::ResetMarkerOwnedLifetime(a_pEntity1);
+            CollisionDiagnosticsDeep::ResetMarkerOwnedLifetime(a_pEntity1);
         else
-            CollisionDiagnostics::ForgetMarkerOwnedLifetime(a_pEntity1);
+            CollisionDiagnosticsDeep::ForgetMarkerOwnedLifetime(a_pEntity1);
     }
     else if ((result.code == MarkerResult_OffAccepted
-           || result.code == MarkerResult_OffNoWindow)
-          && result.markerOwnedWindowRemoved)
+              || result.code == MarkerResult_OffNoWindow)
+             && result.markerOwnedWindowRemoved)
     {
-        CollisionDiagnostics::ForgetMarkerOwnedLifetime(a_pEntity1);
+        CollisionDiagnosticsDeep::ForgetMarkerOwnedLifetime(a_pEntity1);
     }
-
-    CollisionDiagnostics::LogMarkerResult(result);
+#endif
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogMarkerResult(actor, result);
+#endif
     return nullptr;
 }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static bool DidPrimaryFirstReplace(
-    CollisionDiagnostics::PrimaryMotionEventSnapshot const &before,
-    CollisionDiagnostics::PrimaryMotionEventSnapshot const &after)
+    CollisionDiagnosticsDeep::PrimaryMotionEventSnapshot const &before,
+    CollisionDiagnosticsDeep::PrimaryMotionEventSnapshot const &after)
 {
     if (!before.primary.hasMotionInstance
         || !after.primary.available
         || !after.primary.hasMotionInstance)
         return false;
-
     if (before.primary.motionName != after.primary.motionName)
         return true;
-
-    // A same-name execution can still be replaced/restarted. B1 already
-    // records play time, so a clear rollback is the narrow evidence available
-    // here without guessing at opaque motion-instance internals.
     return after.primary.playTime + 0.0001 < before.primary.playTime;
 }
 
@@ -199,7 +208,8 @@ static void GE_STDCALL PlayMotion_FrameCollisionTest(
         return;
     }
 
-    eCVisualAnimation_PS *pThis = Hook_PlayMotion.GetSelf<eCVisualAnimation_PS *>();
+    eCVisualAnimation_PS *pThis =
+        Hook_PlayMotion.GetSelf<eCVisualAnimation_PS *>();
     eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
     if (!IsPlayerEntity(ownerEntity))
     {
@@ -208,49 +218,49 @@ static void GE_STDCALL PlayMotion_FrameCollisionTest(
         return;
     }
 
-    CollisionDiagnostics::PrimaryMotionEventSnapshot before =
-        CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    CollisionDiagnosticsDeep::PrimaryMotionEventSnapshot const before =
+        CollisionDiagnosticsDeep::CapturePrimaryMotionEventSnapshot(pThis);
     Entity actor(ownerEntity);
     bool const outgoingAttackHit =
-        CollisionDiagnostics::IsAttackHitPrimaryMotion(before);
-    CollisionDiagnostics::HitReplacementStackSnapshot replacement = {};
+        CollisionDiagnosticsDeep::IsAttackHitPrimaryMotion(before);
+    CollisionDiagnosticsDeep::HitReplacementStackSnapshot replacement = {};
     if (outgoingAttackHit)
     {
         replacement.outgoingMotionName = before.primary.motionName;
         replacement.frameCount = ::CaptureStackBackTrace(
-            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            0, CollisionDiagnosticsDeep::NativeCleanupStackCapacity,
             replacement.frames, nullptr);
-        CollisionDiagnostics::CaptureHitReplacementContext(
+        CollisionDiagnosticsDeep::CaptureHitReplacementContext(
             actor, static_cast<void *>(a_pMotionDesc), replacement);
     }
 
     bool const emptyPrimaryContext =
-        before.primary.available
-        && !before.primary.hasMotionInstance;
-    CollisionDiagnostics::HitReplacementStackSnapshot emptyPrimarySuccessor = {};
+        before.primary.available && !before.primary.hasMotionInstance;
+    CollisionDiagnosticsDeep::HitReplacementStackSnapshot emptyPrimary = {};
     if (emptyPrimaryContext)
     {
-        emptyPrimarySuccessor.frameCount = ::CaptureStackBackTrace(
-            0, CollisionDiagnostics::NativeCleanupStackCapacity,
-            emptyPrimarySuccessor.frames, nullptr);
-        CollisionDiagnostics::CaptureHitReplacementContext(
-            actor, static_cast<void *>(a_pMotionDesc), emptyPrimarySuccessor);
+        emptyPrimary.frameCount = ::CaptureStackBackTrace(
+            0, CollisionDiagnosticsDeep::NativeCleanupStackCapacity,
+            emptyPrimary.frames, nullptr);
+        CollisionDiagnosticsDeep::CaptureHitReplacementContext(
+            actor, static_cast<void *>(a_pMotionDesc), emptyPrimary);
     }
 
     Hook_PlayMotion.GetOriginalFunction(&PlayMotion_FrameCollisionTest)(
         a_MotionType, a_pMotionDesc);
-    CollisionDiagnostics::PrimaryMotionEventSnapshot after =
-        CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+
+    CollisionDiagnosticsDeep::PrimaryMotionEventSnapshot const after =
+        CollisionDiagnosticsDeep::CapturePrimaryMotionEventSnapshot(pThis);
     if (outgoingAttackHit && DidPrimaryFirstReplace(before, after))
-        CollisionDiagnostics::LogHitReplacementStack(actor, replacement, after);
-    if (emptyPrimaryContext
-        && after.primary.available
+        CollisionDiagnosticsDeep::LogHitReplacementStack(
+            actor, replacement, after);
+    if (emptyPrimaryContext && after.primary.available
         && after.primary.hasMotionInstance)
     {
-        CollisionDiagnostics::LogEmptyPrimarySuccessorStack(
-            actor, emptyPrimarySuccessor, after);
+        CollisionDiagnosticsDeep::LogEmptyPrimarySuccessorStack(
+            actor, emptyPrimary, after);
     }
-    CollisionDiagnostics::LogPrimaryMotionEvent(
+    CollisionDiagnosticsDeep::LogPrimaryMotionEvent(
         pThis, "PlayMotion", before, after);
 }
 
@@ -264,7 +274,8 @@ static void GE_STDCALL StopMotion_FrameCollisionTest(
         return;
     }
 
-    eCVisualAnimation_PS *pThis = Hook_StopMotion.GetSelf<eCVisualAnimation_PS *>();
+    eCVisualAnimation_PS *pThis =
+        Hook_StopMotion.GetSelf<eCVisualAnimation_PS *>();
     eCEntity *ownerEntity = pThis != nullptr ? pThis->GetEntity() : nullptr;
     if (!IsPlayerEntity(ownerEntity))
     {
@@ -273,25 +284,26 @@ static void GE_STDCALL StopMotion_FrameCollisionTest(
         return;
     }
 
-    CollisionDiagnostics::PrimaryMotionEventSnapshot before =
-        CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
+    CollisionDiagnosticsDeep::PrimaryMotionEventSnapshot const before =
+        CollisionDiagnosticsDeep::CapturePrimaryMotionEventSnapshot(pThis);
     Entity actor(ownerEntity);
-    if (CollisionDiagnostics::IsAttackHitPrimaryMotion(before))
+    if (CollisionDiagnosticsDeep::IsAttackHitPrimaryMotion(before))
     {
-        CollisionDiagnostics::HitReplacementStackSnapshot stop = {};
+        CollisionDiagnosticsDeep::HitReplacementStackSnapshot stop = {};
         stop.outgoingMotionName = before.primary.motionName;
         stop.frameCount = ::CaptureStackBackTrace(
-            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            0, CollisionDiagnosticsDeep::NativeCleanupStackCapacity,
             stop.frames, nullptr);
-        CollisionDiagnostics::CaptureHitReplacementContext(
+        CollisionDiagnosticsDeep::CaptureHitReplacementContext(
             actor, nullptr, stop);
-        CollisionDiagnostics::LogHitStopStack(actor, stop, a_fBlendTime);
+        CollisionDiagnosticsDeep::LogHitStopStack(actor, stop, a_fBlendTime);
     }
+
     Hook_StopMotion.GetOriginalFunction(&StopMotion_FrameCollisionTest)(
         a_MotionType, a_fBlendTime);
-    CollisionDiagnostics::PrimaryMotionEventSnapshot after =
-        CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(pThis);
-    CollisionDiagnostics::LogPrimaryMotionEvent(
+    CollisionDiagnosticsDeep::PrimaryMotionEventSnapshot const after =
+        CollisionDiagnosticsDeep::CapturePrimaryMotionEventSnapshot(pThis);
+    CollisionDiagnosticsDeep::LogPrimaryMotionEvent(
         pThis, "StopMotion", before, after);
 }
 
@@ -301,32 +313,36 @@ static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
     Entity actor;
     if (a_pSPU != nullptr)
         actor.AttachTo(a_pSPU->GetSelfEntity());
-    bool const shouldLog =
-        actor != None && IsPlayerEntity(actor.GetInstance());
+    bool const shouldLog = actor != None && IsPlayerEntity(actor.GetInstance());
 
     if (shouldLog)
     {
-        CollisionDiagnostics::LogCombatMoveStartRecoverBoundary(actor, "BEGIN");
-        CollisionDiagnostics::PrimaryMotionEventSnapshot begin =
-            CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(actor);
-        if (CollisionDiagnostics::IsAttackHitPrimaryMotion(begin))
+        CollisionDiagnosticsDeep::LogCombatMoveStartRecoverBoundary(
+            actor, "BEGIN");
+        CollisionDiagnosticsDeep::PrimaryMotionEventSnapshot const begin =
+            CollisionDiagnosticsDeep::CapturePrimaryMotionEventSnapshot(actor);
+        if (CollisionDiagnosticsDeep::IsAttackHitPrimaryMotion(begin))
         {
-            CollisionDiagnostics::HitReplacementStackSnapshot startRecover = {};
-            startRecover.outgoingMotionName = begin.primary.motionName;
-            startRecover.frameCount = ::CaptureStackBackTrace(
-                0, CollisionDiagnostics::NativeCleanupStackCapacity,
-                startRecover.frames, nullptr);
-            CollisionDiagnostics::CaptureHitReplacementContext(
-                actor, nullptr, startRecover);
-            CollisionDiagnostics::LogHitStartRecoverBeginStack(
-                actor, startRecover);
+            CollisionDiagnosticsDeep::HitReplacementStackSnapshot stack = {};
+            stack.outgoingMotionName = begin.primary.motionName;
+            stack.frameCount = ::CaptureStackBackTrace(
+                0, CollisionDiagnosticsDeep::NativeCleanupStackCapacity,
+                stack.frames, nullptr);
+            CollisionDiagnosticsDeep::CaptureHitReplacementContext(
+                actor, nullptr, stack);
+            CollisionDiagnosticsDeep::LogHitStartRecoverBeginStack(
+                actor, stack);
         }
     }
+
     Hook_AICombatMoveStartRecover.GetOriginalFunction(
         &AICombatMoveStartRecover_FrameCollisionTest)(a_pSPU);
+
     if (shouldLog)
-        CollisionDiagnostics::LogCombatMoveStartRecoverBoundary(actor, "END");
+        CollisionDiagnosticsDeep::LogCombatMoveStartRecoverBoundary(
+            actor, "END");
 }
+#endif
 
 static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
     gCScriptAdmin *a_pThis, bCString const &a_ScriptName,
@@ -343,19 +359,26 @@ static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
     GEBool const result = Hook_RunScriptFunction.GetOriginalFunction(
         &RunScriptFunction_FrameCollisionTest)(
             a_pThis, a_ScriptName, a_rRunTimeStack, a_pSPU);
+
     g_pCurrentRunScriptFunctionScope = scope.previous;
 
     if (scope.preCombatBridge.active)
     {
-        CollisionLifecycleGuard::RetirePreCombatBridgeAfterDispatch(
-            scope.preCombatBridge);
+        CollisionLifecycleGuard::BridgeRetirementResult const retirement =
+            CollisionLifecycleGuard::RetirePreCombatBridgeAfterDispatch(
+                scope.preCombatBridge);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+        CollisionDiagnostics::LogBridgeRetirementResult(retirement);
+#endif
     }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     if (scope.offenseObserved)
     {
         CollisionDiagnostics::LogRunScriptFunctionScopeReturn(
-            GetRunScriptFunctionScopeIdentity(&scope), result);
+            static_cast<void *>(&scope), scope.previous != nullptr, result);
     }
+#endif
     return result;
 }
 
@@ -369,48 +392,63 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
         actor.AttachTo(a_pSPU->GetSelfEntity());
         if (actor != None)
         {
-            EquippedCollisionSources sources =
+            EquippedCollisionSources const sources =
                 CollisionSources::GetEquippedCollisionSources(actor);
-            generation = CollisionLifecycleGuard::BeginCombatMove(
-                actor, sources, a_pSPU,
-                g_pCurrentRunScriptFunctionScope != nullptr
-                    ? &g_pCurrentRunScriptFunctionScope->preCombatBridge
-                    : nullptr);
+            CollisionLifecycleGuard::BeginCombatMoveResult const begin =
+                CollisionLifecycleGuard::BeginCombatMove(
+                    actor, sources, a_pSPU,
+                    g_pCurrentRunScriptFunctionScope != nullptr
+                        ? &g_pCurrentRunScriptFunctionScope->preCombatBridge
+                        : nullptr);
+            generation = begin.token;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+            CollisionDiagnostics::LogBeginCombatMoveResult(begin);
+#endif
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+            CollisionDiagnosticsDeep::OuterFrameSnapshot const outerFrame =
+                CollisionDiagnosticsDeep::CaptureOuterFrameSnapshot(
+                    actor, a_pSPU);
+            CollisionDiagnosticsDeep::LogOuterFrameSnapshot(
+                "DEEP OUTER_FRAME COMBAT_MOVE_INITIAL", actor, nullptr,
+                static_cast<eECollisionGroup>(-1),
+                static_cast<eECollisionGroup>(-1),
+                static_cast<eECollisionGroup>(-1), outerFrame);
+#endif
         }
-        CollisionDiagnostics::OuterFrameSnapshot outerFrame =
-            CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, a_pSPU);
-        CollisionDiagnostics::LogOuterFrameSnapshot(
-            "OUTER_FRAME COMBAT_MOVE_INITIAL", actor, nullptr,
-            static_cast<eECollisionGroup>(-1),
-            static_cast<eECollisionGroup>(-1),
-            static_cast<eECollisionGroup>(-1), outerFrame);
     }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (a_bFullStop == GETrue && a_pSPU != nullptr)
     {
         Entity actor;
         actor.AttachTo(a_pSPU->GetSelfEntity());
         if (actor != None && IsPlayerEntity(actor.GetInstance()))
         {
-            CollisionDiagnostics::HitReplacementStackSnapshot fullStop = {};
+            CollisionDiagnosticsDeep::HitReplacementStackSnapshot fullStop = {};
             fullStop.frameCount = ::CaptureStackBackTrace(
-                0, CollisionDiagnostics::NativeCleanupStackCapacity,
+                0, CollisionDiagnosticsDeep::NativeCleanupStackCapacity,
                 fullStop.frames, nullptr);
-            CollisionDiagnostics::CaptureHitReplacementContext(
+            CollisionDiagnosticsDeep::CaptureHitReplacementContext(
                 actor, a_pArgs, fullStop);
-            CollisionDiagnostics::PrimaryMotionEventSnapshot primary =
-                CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(actor);
-            CollisionDiagnostics::LogCombatMoveFullStopStack(
+            CollisionDiagnosticsDeep::PrimaryMotionEventSnapshot const primary =
+                CollisionDiagnosticsDeep::CapturePrimaryMotionEventSnapshot(actor);
+            CollisionDiagnosticsDeep::LogCombatMoveFullStopStack(
                 actor, fullStop, primary);
         }
     }
+#endif
 
-    GEBool result = Hook_AICombatMoveInstr.GetOriginalFunction(
+    GEBool const result = Hook_AICombatMoveInstr.GetOriginalFunction(
         &AICombatMoveInstr_FrameCollisionTest)(a_pArgs, a_pSPU, a_bFullStop);
-    CollisionLifecycleGuard::CompleteCombatMoveCandidate(generation, result);
+    CollisionLifecycleGuard::CompleteCombatMoveResult const complete =
+        CollisionLifecycleGuard::CompleteCombatMoveCandidate(generation, result);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogCompleteCombatMoveResult(complete);
+#endif
     return result;
 }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static void GE_STDCALL AIFullStop_FrameCollisionTest(
     gCScriptRoutine_PS *a_pThis)
 {
@@ -420,15 +458,15 @@ static void GE_STDCALL AIFullStop_FrameCollisionTest(
     if (IsPlayerEntity(ownerEntity))
     {
         Entity actor(ownerEntity);
-        CollisionDiagnostics::AIFullStopStackSnapshot fullStop = {};
+        CollisionDiagnosticsDeep::AIFullStopStackSnapshot fullStop = {};
         fullStop.callerAddress = callerAddress;
         fullStop.context.frameCount = ::CaptureStackBackTrace(
-            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            0, CollisionDiagnosticsDeep::NativeCleanupStackCapacity,
             fullStop.context.frames, nullptr);
-        CollisionDiagnostics::CaptureHitReplacementContext(
+        CollisionDiagnosticsDeep::CaptureHitReplacementContext(
             actor, nullptr, fullStop.context);
         fullStop.primary =
-            CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(actor);
+            CollisionDiagnosticsDeep::CapturePrimaryMotionEventSnapshot(actor);
 
         bCString currentState = actor.Routine.GetCurrentState();
         fullStop.currentState = currentState.GetText() != nullptr
@@ -443,99 +481,111 @@ static void GE_STDCALL AIFullStop_FrameCollisionTest(
         fullStop.durationPressedMSecs = actor.CharacterControl.GetProperty<
             PSCharacterControl::PropertyDurationPressedMSecs>();
 
-        CollisionDiagnostics::LogAIFullStopCallSite(actor, fullStop);
+        CollisionDiagnosticsDeep::LogAIFullStopCallSite(actor, fullStop);
     }
 
-    Hook_AIFullStop.GetOriginalFunction(&AIFullStop_FrameCollisionTest)(
-        a_pThis);
+    Hook_AIFullStop.GetOriginalFunction(&AIFullStop_FrameCollisionTest)(a_pThis);
 }
+#endif
 
 static void GE_STDCALL AISetState_FrameCollisionTest(
     gCScriptRoutine_PS *a_pThis, bCString const &a_State)
 {
-    void *callerAddress = _ReturnAddress();
     eCEntity *ownerEntity =
         a_pThis != nullptr ? a_pThis->GetEntity() : nullptr;
-    CollisionLifecycleGuard::GenerationToken finalization =
+    CollisionLifecycleGuard::GenerationToken const finalization =
         CollisionLifecycleGuard::CaptureFinalizationToken(ownerEntity);
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    void *callerAddress = _ReturnAddress();
     if (IsPlayerEntity(ownerEntity))
     {
         Entity actor(ownerEntity);
-        CollisionDiagnostics::AISetStateStackSnapshot setState = {};
+        CollisionDiagnosticsDeep::AISetStateStackSnapshot setState = {};
         setState.callerAddress = callerAddress;
         setState.context.frameCount = ::CaptureStackBackTrace(
-            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            0, CollisionDiagnosticsDeep::NativeCleanupStackCapacity,
             setState.context.frames, nullptr);
-        CollisionDiagnostics::CaptureHitReplacementContext(
+        CollisionDiagnosticsDeep::CaptureHitReplacementContext(
             actor, nullptr, setState.context);
         setState.primary =
-            CollisionDiagnostics::CapturePrimaryMotionEventSnapshot(actor);
-
+            CollisionDiagnosticsDeep::CapturePrimaryMotionEventSnapshot(actor);
         bCString currentState = actor.Routine.GetCurrentState();
         setState.currentState = currentState.GetText() != nullptr
             ? currentState.GetText() : "";
         setState.requestedState = a_State.GetText() != nullptr
             ? a_State.GetText() : "";
+        CollisionDiagnosticsDeep::LogAISetStateCallSite(actor, setState);
 
-        CollisionDiagnostics::LogAISetStateCallSite(actor, setState);
-
-        gCScriptProcessingUnit *spu =
-            a_pThis != nullptr ? &a_pThis->GetSPU() : nullptr;
-        CollisionDiagnostics::OuterFrameSnapshot outerFrame =
-            CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, spu);
-        CollisionDiagnostics::LogOuterFrameSnapshot(
-            "OUTER_FRAME AI_SET_STATE_BEFORE", actor, nullptr,
+        gCScriptProcessingUnit *spu = &a_pThis->GetSPU();
+        CollisionDiagnosticsDeep::OuterFrameSnapshot const outerFrame =
+            CollisionDiagnosticsDeep::CaptureOuterFrameSnapshot(actor, spu);
+        CollisionDiagnosticsDeep::LogOuterFrameSnapshot(
+            "DEEP OUTER_FRAME AI_SET_STATE_BEFORE", actor, nullptr,
             static_cast<eECollisionGroup>(-1),
             static_cast<eECollisionGroup>(-1),
             static_cast<eECollisionGroup>(-1), outerFrame);
     }
+#endif
 
     Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
         a_pThis, a_State);
-    CollisionLifecycleGuard::InvalidateScriptFunctionDispatchAfterAISetState(
-        ownerEntity);
-    CollisionLifecycleGuard::FinalizeAfterAISetState(finalization);
+
+    CollisionLifecycleGuard::FinalizationResult const result =
+        CollisionLifecycleGuard::FinalizeAfterAISetState(finalization);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogFinalizationResult(result);
+#endif
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (IsPlayerEntity(ownerEntity))
     {
         Entity actor(ownerEntity);
-        gCScriptProcessingUnit *spu =
-            a_pThis != nullptr ? &a_pThis->GetSPU() : nullptr;
-        CollisionDiagnostics::OuterFrameSnapshot outerFrame =
-            CollisionDiagnostics::CaptureOuterFrameSnapshot(actor, spu);
-        CollisionDiagnostics::LogOuterFrameSnapshot(
-            "OUTER_FRAME AI_SET_STATE_AFTER", actor, nullptr,
+        gCScriptProcessingUnit *spu = &a_pThis->GetSPU();
+        CollisionDiagnosticsDeep::OuterFrameSnapshot const outerFrame =
+            CollisionDiagnosticsDeep::CaptureOuterFrameSnapshot(actor, spu);
+        CollisionDiagnosticsDeep::LogOuterFrameSnapshot(
+            "DEEP OUTER_FRAME AI_SET_STATE_AFTER", actor, nullptr,
             static_cast<eECollisionGroup>(-1),
             static_cast<eECollisionGroup>(-1),
             static_cast<eECollisionGroup>(-1), outerFrame);
     }
+#endif
 }
 
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
     eCEntity *a_pThis, eECollisionGroup a_Group)
 {
-    void *callerAddress = _ReturnAddress();
-    eECollisionGroup beforeGroup = a_pThis != nullptr
-        ? a_pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
+    eECollisionGroup const beforeGroup = a_pThis != nullptr
+        ? a_pThis->GetCollisionGroup()
+        : static_cast<eECollisionGroup>(-1);
 
-    CollisionDiagnostics::NativeCleanupStackSnapshot cleanupStack = {};
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    void *callerAddress = _ReturnAddress();
+    CollisionDiagnosticsDeep::NativeCleanupStackSnapshot cleanupStack = {};
     if (a_Group == eECollisionGroup_Item_Equipped
         && beforeGroup == eECollisionGroup_Item_Attack)
     {
         cleanupStack.frameCount = ::CaptureStackBackTrace(
-            0, CollisionDiagnostics::NativeCleanupStackCapacity,
+            0, CollisionDiagnosticsDeep::NativeCleanupStackCapacity,
             cleanupStack.frames, nullptr);
     }
+#endif
 
-    Hook_SetCollisionGroup.GetOriginalFunction(&SetCollisionGroup_FrameCollisionTest)(
-        a_pThis, a_Group);
+    Hook_SetCollisionGroup.GetOriginalFunction(
+        &SetCollisionGroup_FrameCollisionTest)(a_pThis, a_Group);
 
     GEInt retiredMarkerExecutionCount = 0;
     if (a_pThis != nullptr
         && a_pThis->GetCollisionGroup() != eECollisionGroup_Item_Attack)
-        retiredMarkerExecutionCount = CollisionControl::RetireMarkerOwnedSource(a_pThis);
+    {
+        retiredMarkerExecutionCount =
+            FrameCollisionMarkers::RetireMarkerOwnedSource(a_pThis);
+    }
 
-    eECollisionGroup afterGroup = a_pThis != nullptr
-        ? a_pThis->GetCollisionGroup() : static_cast<eECollisionGroup>(-1);
+    eECollisionGroup const afterGroup = a_pThis != nullptr
+        ? a_pThis->GetCollisionGroup()
+        : static_cast<eECollisionGroup>(-1);
 
     CollisionLifecycleGuard::PreCombatDispatchView preCombatDispatch = {};
     CollisionLifecycleGuard::PreCombatDispatchView const *preCombatDispatchPtr =
@@ -552,18 +602,35 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
         preCombatDispatchPtr = &preCombatDispatch;
         preCombatBridge = &scope->preCombatBridge;
     }
-    CollisionLifecycleGuard::ObserveCollisionGroupResult(
-        a_pThis, a_Group, afterGroup, preCombatDispatchPtr,
-        preCombatBridge);
+
+    CollisionLifecycleGuard::CollisionObservationResult const observation =
+        CollisionLifecycleGuard::ObserveCollisionGroupResult(
+            a_pThis, a_Group, afterGroup, preCombatDispatchPtr,
+            preCombatBridge);
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogSetCollisionGroup(
         a_pThis, a_Group, beforeGroup, afterGroup,
-        retiredMarkerExecutionCount, callerAddress, cleanupStack);
+        retiredMarkerExecutionCount);
+    CollisionDiagnostics::LogCollisionObservationResult(observation);
+    if (observation.offenseRequestObserved
+        && g_pCurrentRunScriptFunctionScope != nullptr)
+    {
+        g_pCurrentRunScriptFunctionScope->offenseObserved = true;
+    }
+#endif
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    CollisionDiagnosticsDeep::LogNativeCleanupCallSite(
+        a_pThis, a_Group, beforeGroup, afterGroup,
+        callerAddress, cleanupStack);
+
     if (a_pThis != nullptr)
     {
         Entity player = Entity::GetPlayer();
         if (player != None)
         {
-            EquippedCollisionSources sources =
+            EquippedCollisionSources const sources =
                 CollisionSources::GetEquippedCollisionSources(player);
             bool const isEquippedPlayerSource =
                 a_pThis == sources.rightInstance
@@ -589,38 +656,38 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
                         scope != nullptr && spu != nullptr
                         && scope->spu == spu;
                     bool const runtimeStackMatchesPlayer =
-                        scope != nullptr && playerStateStackAddress != nullptr
+                        scope != nullptr && spu != nullptr
                         && scope->runtimeStack == &spu->m_StateStack;
-                    if (spuMatchesPlayer)
-                        scope->offenseObserved = true;
-                    CollisionDiagnostics::LogRunScriptFunctionOffenseScope(
+                    CollisionDiagnosticsDeep::LogRunScriptFunctionOffenseScope(
                         player, a_pThis,
                         GetRunScriptFunctionScopeIdentity(scope),
                         spu, playerStateStackAddress, spuMatchesPlayer,
                         runtimeStackMatchesPlayer, spuMatchesPlayer);
                 }
-                CollisionDiagnostics::OuterFrameSnapshot outerFrame =
-                    CollisionDiagnostics::CaptureOuterFrameSnapshot(
+                CollisionDiagnosticsDeep::OuterFrameSnapshot const outerFrame =
+                    CollisionDiagnosticsDeep::CaptureOuterFrameSnapshot(
                         player, spu);
-                CollisionDiagnostics::LogOuterFrameSnapshot(
+                CollisionDiagnosticsDeep::LogOuterFrameSnapshot(
                     successfulOffense
-                        ? "OUTER_FRAME OFFENSE"
-                        : "OUTER_FRAME CLEANUP",
+                        ? "DEEP OUTER_FRAME OFFENSE"
+                        : "DEEP OUTER_FRAME CLEANUP",
                     player, a_pThis, a_Group, beforeGroup, afterGroup,
                     outerFrame);
             }
         }
     }
+#endif
 }
 
-static GEInt GE_STDCALL OnTick_FrameCollisionTest(gCScriptProcessingUnit *a_pSPU,
-                                                  GELPVoid a_pSelfEntity,
-                                                  GELPVoid a_pOtherEntity,
-                                                  GEInt a_iArgs)
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+static GEInt GE_STDCALL OnTick_FrameCollisionTest(
+    gCScriptProcessingUnit *a_pSPU, GELPVoid a_pSelfEntity,
+    GELPVoid a_pOtherEntity, GEInt a_iArgs)
 {
-    GEInt result = Hook_OnTick.GetOriginalFunction(&OnTick_FrameCollisionTest)(
-        a_pSPU, a_pSelfEntity, a_pOtherEntity, a_iArgs);
-    if (!CollisionControl::HasMarkerOwnedWindows())
+    GEInt const result = Hook_OnTick.GetOriginalFunction(
+        &OnTick_FrameCollisionTest)(
+            a_pSPU, a_pSelfEntity, a_pOtherEntity, a_iArgs);
+    if (!FrameCollisionMarkers::HasMarkerOwnedWindows())
         return result;
 
     Entity actor;
@@ -632,38 +699,38 @@ static GEInt GE_STDCALL OnTick_FrameCollisionTest(gCScriptProcessingUnit *a_pSPU
     if (actor != None)
     {
         MarkerOwnedWindowView window = {};
-        if (CollisionControl::TryGetMarkerOwnedWindow(actor.GetInstance(), window))
-            CollisionDiagnostics::ObserveMarkerOwnedLifetimeOnTick(actor, window);
+        if (FrameCollisionMarkers::TryGetMarkerOwnedWindow(
+                actor.GetInstance(), window))
+        {
+            CollisionDiagnosticsDeep::ObserveMarkerOwnedLifetimeOnTick(
+                actor, window);
+        }
         else
-            CollisionDiagnostics::ForgetMarkerOwnedLifetime(actor.GetInstance());
+        {
+            CollisionDiagnosticsDeep::ForgetMarkerOwnedLifetime(
+                actor.GetInstance());
+        }
     }
     return result;
 }
+#endif
 
 void FrameCollision::EngineBridge::InstallHooks()
 {
     GetScriptAdmin().LoadScriptDLL("Script_Game.dll");
+
     Hook_OnAI_Attack.Hook(
-        GetScriptAdminExt().GetScriptAICallback("OnAI_Attack")->m_funcScriptAICallback,
+        GetScriptAdminExt().GetScriptAICallback("OnAI_Attack")
+            ->m_funcScriptAICallback,
         &OnAI_Attack_FrameCollisionTest);
     Hook_OnAI_QuickAttack.Hook(
-        GetScriptAdminExt().GetScriptAICallback("OnAI_QuickAttack")->m_funcScriptAICallback,
+        GetScriptAdminExt().GetScriptAICallback("OnAI_QuickAttack")
+            ->m_funcScriptAICallback,
         &OnAI_QuickAttack_FrameCollisionTest);
     Hook_OnAI_WhirlAttack.Hook(
-        GetScriptAdminExt().GetScriptAICallback("OnAI_WhirlAttack")->m_funcScriptAICallback,
+        GetScriptAdminExt().GetScriptAICallback("OnAI_WhirlAttack")
+            ->m_funcScriptAICallback,
         &OnAI_WhirlAttack_FrameCollisionTest);
-
-    gSScript const *onTickScript = GetScriptAdminExt().GetScript("OnTick");
-    if (onTickScript != nullptr)
-    {
-        Hook_OnTick.Hook(onTickScript->m_funcScript, &OnTick_FrameCollisionTest);
-    }
-    else if (CollisionDiagnostics::IsLogOpen())
-    {
-        std::fprintf(CollisionDiagnostics::GetLog(),
-                     "WARNING: OnTick script not found; primary-motion lifetime probe disabled.\n");
-        std::fflush(CollisionDiagnostics::GetLog());
-    }
 
     Hook_StartEffect
         .Prepare(RVA_Game(0x60850), &StartEffect_FrameCollisionTest,
@@ -673,24 +740,8 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Prepare(RVA_Engine(0x225660), &SetCollisionGroup_FrameCollisionTest)
         .ThisCall()
         .Hook();
-    Hook_PlayMotion
-        .Prepare(RVA_Engine(0x30860), &PlayMotion_FrameCollisionTest,
-                 mCBaseHook::mEHookType_ThisCall)
-        .Hook();
-    Hook_StopMotion
-        .Prepare(RVA_Engine(0x30980), &StopMotion_FrameCollisionTest,
-                 mCBaseHook::mEHookType_ThisCall)
-        .Hook();
     Hook_AICombatMoveInstr
         .Prepare(RVA_Game(0x1696E0), &AICombatMoveInstr_FrameCollisionTest)
-        .Hook();
-    Hook_AICombatMoveStartRecover
-        .Prepare(RVA_Game(0x16E360),
-                 &AICombatMoveStartRecover_FrameCollisionTest)
-        .Hook();
-    Hook_AIFullStop
-        .Prepare(RVA_Game(0x164430), &AIFullStop_FrameCollisionTest)
-        .ThisCall()
         .Hook();
     Hook_AISetState
         .Prepare(RVA_Game(0x164320), &AISetState_FrameCollisionTest)
@@ -700,4 +751,36 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Prepare(RVA_Game(0x1604E0), &RunScriptFunction_FrameCollisionTest)
         .ThisCall()
         .Hook();
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    gSScript const *onTickScript = GetScriptAdminExt().GetScript("OnTick");
+    if (onTickScript != nullptr)
+    {
+        Hook_OnTick.Hook(onTickScript->m_funcScript, &OnTick_FrameCollisionTest);
+    }
+    else if (CollisionDiagnostics::IsLogOpen())
+    {
+        std::fprintf(
+            CollisionDiagnostics::GetLog(),
+            "DEEP WARNING: OnTick script not found; marker lifetime probe disabled.\n");
+        std::fflush(CollisionDiagnostics::GetLog());
+    }
+
+    Hook_PlayMotion
+        .Prepare(RVA_Engine(0x30860), &PlayMotion_FrameCollisionTest,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_StopMotion
+        .Prepare(RVA_Engine(0x30980), &StopMotion_FrameCollisionTest,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_AICombatMoveStartRecover
+        .Prepare(RVA_Game(0x16E360),
+                 &AICombatMoveStartRecover_FrameCollisionTest)
+        .Hook();
+    Hook_AIFullStop
+        .Prepare(RVA_Game(0x164430), &AIFullStop_FrameCollisionTest)
+        .ThisCall()
+        .Hook();
+#endif
 }
