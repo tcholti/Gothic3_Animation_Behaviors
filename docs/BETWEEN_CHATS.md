@@ -197,6 +197,23 @@ Case B is intentionally **not** a C1-R1 repair responsibility. Do not make the m
 
 The practical consequence is limited to that one prematurely abandoned attack: it may miss completely if the bad skip occurs before collision activation. A later new attack gets a fresh native execution and fresh marker budget and activates collision normally.
 
+### Deliberate C1-R1 safety tradeoff for post-activation skips
+
+Before C1-R1, a destructive bad skip that happened **after** collision had already been activated could leave the weapon stuck in `Item_Attack(7)`. Because collision remained armed, the visually continuing abandoned attack could still deal damage after the native attack execution had already been destroyed, and the weapon could remain offensive until some later action happened to perform a cleanup.
+
+With C1-R1, that same post-activation skip is deliberately converted into a fail-closed outcome:
+
+```text
+collision already activated
+→ destructive bad skip kills native attack ownership
+→ C1-R1 immediately repairs exact outstanding source 7 -> 5
+→ any remaining visually continuing portion of that abandoned attack has no further weapon collision
+```
+
+Therefore C1-R1 does trade unsafe lingering damage for safety: if the bad skip occurs after collision activation but before the weapon has actually contacted a target, the remainder of that abandoned attack can miss. If damage/contact already happened before finalization, that already-observed hit is not undone. This is not considered a C1-R1 defect; it is the fail-closed consequence of refusing to keep collision armed without a live native attack owner.
+
+Before C1-R1, the post-activation route could appear more successful from a hit/damage perspective precisely because the unsafe collision leak remained active. Do not interpret that old behavior as a desirable lifecycle.
+
 After C1-R1 universal guard validation is complete, a separate root-cause investigation of the destructive bad skip is a valid future candidate. A safe root fix could eliminate both timing outcomes at the source: the post-activation stale-collision case and the pre-activation missed-attack case. Such work must remain separate from C1-R1 and must not weaken the validated guard; even if a root fix later succeeds, C1-R1 remains a useful fail-safe for lost cleanup.
 
 For case A, later frame markers from the **same abandoned execution** are not expected to continue normal RIGHT/OFF/RIGHT semantics after destructive finalization. They may arrive physically, but with native action ownership gone they are rejected. The relevant success condition is instead:
