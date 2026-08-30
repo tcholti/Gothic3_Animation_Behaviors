@@ -2,7 +2,7 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
 
-## Current bridge — C1-O2-P2-D broader stability
+## Current bridge — C1-O2-P2 closed; physical-repair gate design next
 
 C1-O2-P2 behavior implementation:
 
@@ -16,8 +16,6 @@ P2 build-identity banner correction:
 8b6a5873b8caa27b469ae831d25bf155a6c7f189
 ```
 
-Independent Normal Chat P2-A source audit: **PASS**.
-
 Validated P2 built/live DLL:
 
 ```text
@@ -27,106 +25,127 @@ SHA256: 1081B287912DB9A368164DDE13542A7EC2D6E5DBB0AA29B04C19BD7932D92C7C
 Built/live match: True
 ```
 
-P2-B isolated main-menu load/unload: **PASS**.
-
-P2-C targeted player 2H Normal + GetUpAttack meaning test: **PASS**.
-
-P2-C raw:
+Canonical promoted evidence:
 
 ```text
-research/raw/2026-08-30_c1o2p2_player_2h_normal_getup_bridge_consumption.log
+EV-205
 ```
 
-P2-C evidence commit:
+P2 validation result:
 
 ```text
-0697437cf9b3036367e9bdba2ec85576f86ddbe3
+P2-A independent source audit = PASS
+P2-B isolated load/unload = PASS
+P2-C targeted GetUp meaning = PASS
+P2-D broader gameplay ownership/stability = PASS
+P2-D shutdown/unload = NOT CAPTURED IN THAT RAW FILE
 ```
 
-The User performed three ordinary clean 2H Normal controls followed by five GetUpAttack executions. Some GetUpAttack inputs were attempted promptly after knockdown/sit-up and some after remaining seated longer. The runtime log does not directly label the User's input-timing category, so do not invent a classifier from that variation; all five positive acquisition events converged on the same `_AI_GetUpAttack` / `OnAI_GetUpAttack` path with native `gEAction_GetUpAttack` (`30`) at the acquisition point.
-
-The five pre-Combat generations were:
+P2-D canonical raw identity:
 
 ```text
-20
-33
-45
-54
-64
+research/raw/2026-08-30_c1o2p2_broader_combat_interruption_stability.log
+SHA256: 50AE4944C23DB30C78CE0373E241DDAAC32C252C2D8563584871F098C96BB041
+Bytes: 12123937
+Lines: 398143
 ```
 
-For each one, the log shows:
+Derived package:
+
+```text
+research/derived/2026-08-30_c1o2p2_broader_combat_interruption_stability_large_log/
+package commit: 680d5068a16034e122aeff2ef5528e9cc16477bf
+```
+
+Whole-run P2-D facts:
+
+```text
+Event blocks = 15387
+C1 OFFENSE REQUEST = 306
+C1 CLEANUP FULFILLED = 264
+C1 FINALIZATION = 436
+C1-O2 OUTER BINDING = 536
+COMBATMOVE FULLSTOP STACK = 157
+AISETSTATE CALLSITE = 1112
+ENGINE SetCollisionGroup = 844
+```
+
+Exactly 13 pre-Combat GetUp bridges were observed. Generations:
+
+```text
+200 298 314 364 384 473 622 658 660 671 726 857 868
+```
+
+For all tested positive bridges:
 
 ```text
 PRECOMBAT_ACQUIRED
-→ first C1 OFFENSE REQUEST while OUTER_BOUND
-→ PRECOMBAT_BRIDGE_CONSUMED on the SAME generation
-→ later timer C1 OFFENSE REQUEST while PERSISTED
-→ C1 CLEANUP FULFILLED on the SAME generation/source
-→ AISetState finalization = NO_OP_NO_OUTSTANDING
+→ first exact-source offense on same OUTER_BOUND generation
+→ matching CombatMove
+→ PRECOMBAT_BRIDGE_CONSUMED on SAME generation
+→ temporary native binding gone before RunScriptFunction return
+→ later timer offense remains on durable PERSISTED generation
+→ native cleanup fulfills that same generation/source when cleanup occurs
 ```
 
-Whole-run failure signals:
+Failure-signal result:
 
 ```text
-UNOWNED_PLAYER_OFFENSE_REQUEST = 0
-PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN = 0
 C1 INVARIANT WARNING = 0
+UNOWNED_PLAYER_OFFENSE_REQUEST = 0
+unconsumed bridge invariant = 0
+error/exception signal = 0
+failure signal = 0
+mismatch/divergence signal = 0
+stale signal = 0
+unresolved/orphan signal = 0
+unsafe/bad skip signal = 0
 ```
 
-The three initial ordinary Normal controls remained on the ordinary CombatMove-created `_AI_Attack` generation path and cleaned normally.
+There were 29 actual shadow `WOULD_REPAIR` finalization outcomes. Representative 2H, Staff, 1H/Torch and Dual contexts show exact live/equipped sources with real outstanding offense and no observed native cleanup at destructive AISetState. Physical collision remained unchanged by the guard.
 
-Physical repair remained disabled.
+A whole-run consistency check gives:
+
+```text
+306 offense-request events
+- 13 second GetUp requests belonging to the same 13 early-acquired obligations
+= 293 observed offensive source obligations
+
+264 native cleanup fulfillments
++ 29 shadow WOULD_REPAIR outcomes
+= 293
+```
+
+Two observed Staff `GetUpParade` action-31 sequences traversed their `Hit`/Recover resources without a C1 offense request. This supports consequence-based collision ownership; the filename's `Hit` token alone does not imply an offensive source obligation.
+
+P2-D does not contain `Script_FrameCollisionTest unloading.`. Do not claim P2-D shutdown evidence. The User reported that the game worked through the extensive run; P2-B separately proves clean unload for the exact same DLL.
+
+The User also reported that P2 subjectively felt smoother than several previous research builds. Preserve only as an uncontrolled observation; no causal performance improvement is established.
 
 ---
 
-## Current responsibility — P2-D
+## Current responsibility — Normal Chat physical-repair gate design
 
-P2-C has proved the bounded positive meaning. The next gate is broader stability/integration coverage before C1-O2 can be called complete.
+C1-O2 is closed for the tested outer-acquisition/binding model.
 
-Do **not** change implementation before P2-D unless the broader run exposes a contradiction.
+Do **not** send a Work implementation task yet.
 
-P2-D should cover the existing C1 runtime matrix rather than inventing new classification rules:
+Normal Chat must now retrieve only the exact current lifecycle/finalizer source and architecture needed to answer:
 
-```text
-ordinary clean attacks / multiple relevant weapon families
-legitimate reaction interruptions
-pre-activation interruption/no-offense cases
-known armed destructive abandonment as a positive shadow WOULD_REPAIR stress case
-later legitimate attack after stale 7 -> 7 when naturally produced
-repeated GetUpAttack opportunities when they occur
-normal traversal / draw-holster / state churn around combat
-```
+> What is the smallest controlled native-equivalent physical repair that can replace the already-proven shadow `WOULD_REPAIR` outcome while preserving exact-source ownership, source liveness, native-cleanup precedence, legitimate reaction behavior, inherited `7 -> 7` attribution and all current no-op cases?
 
-Expected model:
+Preserved design constraints:
 
 ```text
-pre-Combat GetUp offense
-→ temporary live-frame bridge only until matching CombatMove
-→ durable monotonic generation thereafter
-
-ordinary attacks
-→ unchanged CombatMove-created generation path
-
-successful native cleanup
-→ exact source obligation fulfilled
-
-destructive AISetState with outstanding exact live/equipped source
-→ existing shadow WOULD_REPAIR only
+repair is consequence/source-obligation based, not family/action/input/cause/time based
+only the exact outstanding source may be repaired
+current equipped identity/liveness must be established before dereference/mutation
+observed native cleanup always wins → no repair
+no arbitrary adoption of unrelated group-7 state
+no polling / timer / world scan
+no FullStop-as-cleanup-authority rule
+no marker-core refactor
+no restoration of rejected C1-O2 dispatch machinery
 ```
 
-Specifically inspect for:
-
-```text
-UNOWNED_PLAYER_OFFENSE_REQUEST
-PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN
-live-frame/binding mismatch or overlap invariants
-generation replacement where reuse was expected
-NULL_ARGUMENTS / unresolved binding failures
-unexpected physical collision change
-crash / abnormal unload
-```
-
-Physical repair remains **OFF**.
-
-Do not freeze physical-repair implementation until P2-D broader stability is interpreted by Normal Chat.
+Physical repair remains **OFF** until Normal Chat freezes a new bounded gate and its runtime falsification plan.
