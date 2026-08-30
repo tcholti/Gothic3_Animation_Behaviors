@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.1  
-**Updated:** 2026-08-29
+**Version:** 1.2  
+**Updated:** 2026-08-30
 
 ## Purpose
 
@@ -70,7 +70,7 @@ design/evidence question frozen
 → raw log copied unchanged into research/raw
 → raw artifact commit/push
 → Normal Chat analyzes committed evidence
-→ derived extract only if retrieval requires it
+→ derived package/extract only if retrieval requires it
 → normal knowledge-maintenance transaction
 ```
 
@@ -368,70 +368,96 @@ Use when the canonical raw log is too large for efficient GitHub/connector retri
 
 ### Core rule
 
-Do not reduce the raw logger output merely to make retrieval easier while the diagnostic system is still discovering unexpected paths.
+Do not reduce or rewrite the raw logger output merely to make retrieval easier.
 
 Instead:
 
 ```text
 full canonical raw log
-→ local deterministic post-processing
-→ compact analysis extract
-→ optional summary
-→ Assistant reads summary/extract first
-→ raw remains available for exact verification
+→ deterministic local post-processing
+→ derived retrieval package under research/derived/
+→ Assistant reads manifest/counts/signals/timeline slices first
+→ raw remains canonical and available for exact verification
 ```
 
-The raw log remains the evidence. Derived files are retrieval aids.
+The raw log remains the evidence. Derived files are retrieval/analysis aids.
 
-### Derived analysis extract
+### Current reusable tool
 
-A useful analysis extract should mechanically retain the important event blocks and enough nearby context to reconstruct chronology, such as:
+The project now has a deterministic large-log packaging tool at:
 
+```text
+tools/log_evidence/
+```
+
+On Windows, use the wrapper entrypoint rather than invoking the PowerShell implementation directly:
+
+```powershell
+.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd <arguments>
+```
+
+The wrapper deliberately provides:
+
+```text
+powershell.exe -NoProfile -ExecutionPolicy Bypass
++ absolute repository-root research\derived OutputRoot
+```
+
+This avoids the two already-observed direct-`.ps1` failure modes:
+
+1. local execution policy rejecting the script before it runs;
+2. relative `OutputRoot` resolving against an unrelated process working directory.
+
+The wrapper's `ExecutionPolicy Bypass` applies only to its child PowerShell process and does not require changing the machine's permanent policy.
+
+Full tool usage and argument examples: `tools/log_evidence/README.md`.
+
+### Derived package requirements
+
+The deterministic package should record/provide enough mechanically extracted information to support causal retrieval, including as applicable:
+
+- source raw relative path;
+- source SHA256;
+- source byte/line count;
+- tool/version identity and extraction criteria;
+- event counts;
+- event timeline chunks;
+- high-signal signal index/context chunks;
 - lifecycle start/status/finalization;
-- offensive collision requests, including `7 → 7`;
+- offensive requests, including `7 -> 7`;
 - cleanup observations;
-- `WOULD_REPAIR` or equivalent candidate outcomes;
-- invariant warnings/unowned/overlap/generation-change outcomes;
+- `WOULD_REPAIR` / `REPAIRED_TO_ITEM_EQUIPPED` / repair divergence outcomes;
+- invariant warnings/unowned/overlap/generation-change/liveness failures;
 - CombatMove/AIFullStop/AISetState context when relevant;
-- timestamps;
-- action/phase/state;
-- source identity/side/collision group;
-- caller module/RVA;
-- enough surrounding context to distinguish fixtures/configurations.
+- timestamps, action/phase/state and source identity/side/group;
+- enough context to distinguish fixtures/configurations.
 
-The derived file should record at minimum:
+Current derived package location is normally:
 
 ```text
-source raw relative path
-source SHA256
-source line count
-mechanical extraction purpose/criteria
+research/derived/<raw-stem>_large_log/
 ```
 
-Current derived location is normally:
+The source raw artifact remains unchanged in `research/raw/` or its later canonical archive location according to the normal evidence lifecycle.
 
-```text
-research/archive/
+Derived naming conventions are owned by `PROJECT_PIPELINE.md`.
+
+### Extra signal vocabulary
+
+When the current gate introduces high-signal strings not covered by the tool's built-in vocabulary, pass only the exact additional patterns needed for that gate. Example:
+
+```powershell
+.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd `
+    -InputPath '.\research\raw\example.log' `
+    -ExtraSignalPattern 'REPAIRED_TO_ITEM_EQUIPPED' `
+    -ExtraSignalPattern 'REPAIR_DIVERGED_FROM_ITEM_EQUIPPED'
 ```
 
-Derived filename suffix conventions are owned by `PROJECT_PIPELINE.md`.
+Do not rewrite the raw log merely because the built-in signal vocabulary needs extension.
 
-A compact summary may additionally reduce each lifecycle to one line, for example:
+### Direct `.ps1` invocation
 
-```text
-Gen 34 | Whirl | offense 5→7 | held-Use2 abandonment | WOULD_REPAIR
-Gen 35 | Normal | offense 7→7 | cleanup 7→5 | NO_OP
-```
-
-### Reusable extractor preference
-
-If this reduction is needed repeatedly, prefer a reusable local script such as:
-
-```text
-tools/extract_collision_log.ps1
-```
-
-rather than recreating a long inline extraction command in every Chat. The script should be revised when the diagnostic event vocabulary changes, while the canonical raw evidence remains unchanged.
+Direct invocation is not the normal procedure. If it is genuinely necessary, use an absolute `-OutputRoot` and an execution-policy scope appropriate to that explicit manual operation.
 
 Do not move extraction logic into production/runtime behavior merely for connector convenience.
 
@@ -480,7 +506,7 @@ startup banner missing / load crash
 Git rebase conflict
 → stop automatic Git procedure and inspect conflict
 
-unexpected invariant warning in a shadow diagnostic
+unexpected invariant warning in a diagnostic
 → treat as evidence/design question, not something to filter out
 ```
 
