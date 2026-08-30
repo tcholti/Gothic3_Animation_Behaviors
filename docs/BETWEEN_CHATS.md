@@ -2,7 +2,9 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
 
-## Current bridge — C1-R1-D no-op control validation
+## Current bridge — C1-R1-E source-specific / marker / broader validation
+
+C1-O2-P2 is closed for the tested outer-acquisition/binding model. Canonical result: **EV-205**.
 
 C1-R1 implementation:
 
@@ -10,7 +12,7 @@ C1-R1 implementation:
 93e5a2f2d4839ec908a8940927294217dd961c7a
 ```
 
-Validated C1-R1 built/live DLL:
+Validated C1-R1 DLL:
 
 ```text
 Script_FrameCollisionTest.dll
@@ -19,148 +21,161 @@ SHA256: 449AC6BECB38B8627CAFAEA6311F4CC0697B91328A15D63B3446DA4766D3EAB5
 Built/live match: True
 ```
 
+Startup identity:
+
+```text
+STEP C1-R1 PHYSICAL REPAIR: exact live/equipped outstanding Item_Attack source resets to Item_Equipped at destructive AISetState finalization; native cleanup/no-op paths unchanged; no ClearTriggeredList.
+```
+
+Canonical physical-repair evidence:
+
+```text
+EV-206
+```
+
 Validation state:
 
 ```text
 R1-A independent Normal Chat source audit = PASS
 R1-B build / exact DLL identity / isolated load-unload = PASS
-R1-C targeted physical repair = PASS
-R1-D no-op controls = CURRENT
-R1-E source-specific / marker / broader stability = pending
+R1-C targeted positive repair = PASS
+R1-D no-op controls = PASS
+R1-E source-specific / marker / broader stability = CURRENT
 ```
 
-R1-B raw:
+## R1-C result
+
+Three controlled 2H sequences were performed as:
 
 ```text
-research/raw/2026-08-30_c1r1_isolated_load.log
-commit: 246babb
+Whirl bad skip
+→ wait
+→ one ordinary Normal attack
 ```
 
-R1-C raw:
+Observed:
 
 ```text
-research/raw/2026-08-30_c1r1c_player_2h_targeted_physical_repair.log
-commit: 50d5a0e
-bytes: 226882
+Whirl generation 1
+→ real offense
+→ exact RIGHT It_2H_Sword_Flamberge remained live/equipped at 7
+→ no cleanup observed before destructive finalization
+→ one repair request 7 -> 5
+→ result exactly 5
+→ REPAIRED_TO_ITEM_EQUIPPED
+
+Whirl generation 4
+→ CombatMove existed
+→ no C1 offense request
+→ NO_OP_NO_OUTSTANDING
+→ no repair
+
+Whirl generation 7
+→ real offense
+→ exact RIGHT It_2H_Sword_Flamberge remained live/equipped at 7
+→ no cleanup observed before destructive finalization
+→ one repair request 7 -> 5
+→ result exactly 5
+→ REPAIRED_TO_ITEM_EQUIPPED
 ```
 
-### R1-C result
+Following Normal generations `2/5/8` behaved normally. Every actual offensive activation in the R1-C run began `5 -> 7`; there was no inherited stale `7 -> 7` after either repair.
 
-The User intentionally performed three repetitions of:
+## R1-D result
+
+Natural combat against a spawned golem exercised repeated Normal attacks, Stumbles/KnockDowns, four GetUpAttacks and three GetUpParades.
+
+Reaction cleanup:
 
 ```text
-2H full-Whirl known bad skip
-→ wait a few seconds
-→ one ordinary 2H Normal attack
+7 executions of established Script_Game +0x24AFF reaction cleanup
+→ exact RIGHT Flamberge 7 -> 5 each time
+→ zero R1 repair attempts in the whole run
 ```
 
-This usefully captured both positive and negative cases.
-
-Whirl generations:
+GetUpAttack generations:
 
 ```text
-generation 1 = armed destructive case → REPAIRED_TO_ITEM_EQUIPPED
-generation 4 = pre-activation/no-offense case → NO_OP_NO_OUTSTANDING
-generation 7 = armed destructive case → REPAIRED_TO_ITEM_EQUIPPED
+16 29 39 94
 ```
 
-For generations 1 and 7 the exact RIGHT source was `It_2H_Sword_Flamberge`. Each repair had:
+Each followed:
 
 ```text
-OutstandingBeforeFinalization: 1
-CleanupObservedBeforeFinalization: 0
-LivenessEstablished / StillEquipped: 1
-CurrentSideMask: RIGHT
-ActualGroupBeforeRepair: 7
-RepairAttempted: 1
-RepairRequestedGroup: 5
-ActualGroupAfterRepair: 5
-PhysicalCollisionChanged: 1
-Outcome: REPAIRED_TO_ITEM_EQUIPPED
+PRECOMBAT_ACQUIRED
+→ early exact-source offense on same OUTER_BOUND generation
+→ PRECOMBAT_BRIDGE_CONSUMED
+→ later persisted offense
+→ native cleanup
+→ finalization NO_OP_NO_OUTSTANDING
 ```
 
-No `REPAIR_DIVERGED_FROM_ITEM_EQUIPPED`, `UNRESOLVED_NOT_EQUIPPED`, or `C1 INVARIANT WARNING` occurred.
-
-Generation 4 reached `_AI_WhirlAttack` / CombatMove but produced no `C1 OFFENSE REQUEST`; finalization was `NO_OP_NO_OUTSTANDING`. This is a positive pre-activation negative control.
-
-Following ordinary Normal generations were:
+GetUpParade generations:
 
 ```text
-generation 2
-generation 5
-generation 8
+49 70 84
 ```
 
-All three were `_AI_Attack`, requested offense, received native cleanup, and finalized `NO_OP_NO_OUTSTANDING`.
+Each remained `Outstanding: 0` and finalized `NO_OP_NO_OUTSTANDING`; Hit-named defensive resources did not create offense ownership.
 
-Across the whole R1-C log there were exactly five actual offensive `SetCollisionGroup(Item_Attack)` transitions (duplicated into ten diagnostic records by the existing engine/outer-frame logging), and every one began:
+R1-D failure/mutation signals:
 
 ```text
-BeforeGroup: 5
-RequestedGroup: 7
-AfterGroup: 7
+RepairAttempted: 1 = 0
+REPAIRED_TO_ITEM_EQUIPPED = 0
+REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = 0
+UNRESOLVED_NOT_EQUIPPED = 0
+C1 INVARIANT WARNING = 0
+PhysicalCollisionChanged: 1 = 0
 ```
 
-Therefore neither successful R1-C repair left stale group 7 to be inherited by the following Normal attack. The physical stale state was actually removed.
+The run ended with normal DLL unload.
 
-R1-C therefore proves the first C1-R1 positive physical mutation twice and also contributes two R1-D controls already:
-
-```text
-ordinary clean completion = PASS in this run
-pre-activation/no-offense destructive skip = PASS in this run
-```
+Processed R1-B/C/D raws are promoted unchanged to `research/archive/`.
 
 ---
 
 ## Accepted C1-R1 repair rule
 
 ```text
-exact outstanding source
+existing finalizer has exact outstanding source
 + exact current equipped identity establishes liveness
-+ source still Item_Attack(7)
++ actual source group is Item_Attack(7)
 → SetCollisionGroup(Item_Equipped) exactly once on that source
 → no ClearTriggeredList()
 → verify exact result Item_Equipped(5)
 ```
 
-Native cleanup has precedence. Non-outstanding, not-safely-live and already-clean sources remain non-mutating. Dual/source ownership remains per exact source.
+No-op/unresolved branches remain non-mutating. Repair goes through the existing SetCollisionGroup hook. Finalization remains post-native-AISetState and uses fixed stack-local two-phase result capture/log emission.
 
-Do not change P1/P2 acquisition, CombatMove, hook transports, finalization timing, marker semantics, Fist/body semantics, external held-Use2 behavior, or rejected eager dispatch machinery.
+Do not change execution acquisition, P1/P2 bridge behavior, CombatMove, hook transport, finalization timing, marker semantics, ClearTriggeredList activation/rearm behavior, family/action/input classifiers, external held-Use2 behavior, Fist/body semantics or rejected eager dispatch machinery.
+
+EV-206 does **not** positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` case. Preserve the fail-closed rule and do not claim that branch runtime-proven.
 
 ---
 
-## Current runtime responsibility — R1-D remaining no-op controls
+## Current runtime responsibility — R1-E
 
-Already covered by R1-C:
+R1-E must now validate the same physical-repair rule beyond the single-source 2H targeted/no-op matrix without changing source.
 
-```text
-ordinary clean completion = covered
-pre-activation interruption/no offense = covered
-```
-
-Still required before R1-D closes:
+Minimum remaining responsibilities:
 
 ```text
-legitimate armed reaction/stumble/knockdown cleanup
-clean GetUpAttack with P2 pre-Combat acquisition + native cleanup
-GetUpParade defensive/no-offense control
+1. Dual source-specific destructive repair control
+   → prove an outstanding RIGHT or LEFT obligation repairs only that exact source
+   → fulfilled/non-outstanding other side is untouched
+
+2. Compact marker interaction
+   → exercise marked RIGHT/LEFT/BOTH/OFF behavior around ordinary cleanup and, if practical, one destructive repair
+   → prove R1 repair does not break marker-owned source retirement or exact-set semantics
+
+3. Broader mixed stability / negatives
+   → mixed player combat and interruptions across representative weapon configurations
+   → include unmarked/native behavior and ordinary no-op paths
+   → include some NPC combat if practical because production guard is actor/source-general
+   → protect Fist/bow/crossbow/magic negatives; do not force weapon-style repair onto unsupported source classes
 ```
 
-Expected:
+Do not treat R1-E as a requirement to reproduce every historical fixture. Use the smallest mixed run(s) that directly test source specificity, marker interaction and actor/general negative stability.
 
-```text
-legitimate reaction
-→ native/reaction cleanup fulfills outstanding source
-→ finalization no repair
-
-clean GetUpAttack
-→ P2 pre-Combat bridge remains correct where applicable
-→ native cleanup fulfills source
-→ finalization no repair
-
-GetUpParade
-→ Hit-named resource alone creates no C1 offense obligation
-→ no repair
-```
-
-Physical repair remains under validation. R1-E must not begin until these remaining no-op controls pass.
+No source change, rebuild or redeploy is required before R1-E.
