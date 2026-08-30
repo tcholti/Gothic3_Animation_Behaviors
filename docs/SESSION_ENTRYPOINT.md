@@ -76,7 +76,7 @@ Use `EVIDENCE_INDEX.md` Active-Problem Reconstruction when the causal model is n
 - C1-O2-P2 proved that a real pre-Combat offense can acquire the monotonic C1 generation, matching CombatMove can reuse that same generation and consume the temporary native-frame binding before wrapper return, and later timer offense/native cleanup continue on the durable generation;
 - C1's monotonic generation remains the durable plugin execution identity.
 
-Canonical evidence route: EV-151–EV-205.
+Canonical evidence route: EV-151–EV-205 plus dedicated P2 shutdown-closure evidence commit `4946d382041e9ec86400291395e5acbad77b1de6`.
 
 ---
 
@@ -91,7 +91,8 @@ Core evidence:
 - EV-195–EV-196 — outer ScriptFunction lifetime and C1-O1 correlation/pointer-reuse qualification;
 - EV-199–EV-203 — hook-transport/finalizer stabilization;
 - EV-204 — P1 lightweight live-scope bridge;
-- EV-205 — P2 lazy pre-Combat generation acquisition + bridge consumption, isolated/targeted/broad runtime validation.
+- EV-205 — P2 lazy pre-Combat generation acquisition + bridge consumption, isolated/targeted/broad runtime validation;
+- dedicated P2 shutdown closure — same validated P2 binary loaded a save, returned to menu and ended with `Script_FrameCollisionTest unloading.`.
 
 ### Directly relevant tested substrate
 
@@ -152,7 +153,8 @@ P2-A independent source audit = PASS
 P2-B isolated load/unload = PASS
 P2-C targeted GetUp meaning = PASS
 P2-D broad gameplay ownership/stability = PASS
-P2-D shutdown/unload = not captured in that raw file
+P2-D broad-run raw itself did not capture shutdown
+P2-D dedicated clean shutdown closure = PASS
 ```
 
 P2-C produced five clean GetUp bridge generations `20/33/45/54/64` with no unowned or binding invariant.
@@ -205,6 +207,13 @@ A consistency check over the observed run gives:
 ```
 
 Two observed Staff GetUpParade action-31 cases traversed `Hit`/Recover resources without C1 offense, reinforcing that filename grammar is engine-significant but collision ownership is still established from actual collision consequence/source evidence rather than a generic `Hit` token alone.
+
+The original broad-run raw ended during continued gameplay and therefore cannot itself prove shutdown. A separate closure run using the same validated P2 DLL loaded a save, idled briefly, returned to the main menu and exited normally; its final log line is `Script_FrameCollisionTest unloading.`. Raw commit:
+
+```text
+4946d382041e9ec86400291395e5acbad77b1de6
+research/archive/2026-08-30_c1o2p2d_clean_shutdown_closure.log
+```
 
 The User subjectively reported that P2 felt smoother than several previous research builds. No controlled performance comparison was performed; do not claim causal performance improvement.
 
