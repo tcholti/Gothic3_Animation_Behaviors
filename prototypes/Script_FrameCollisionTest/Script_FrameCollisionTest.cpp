@@ -1,6 +1,7 @@
 #include "CollisionControl.h"
 #include "CollisionDiagnostics.h"
 #include "CollisionLifecycleGuard.h"
+#include "CollisionSources.h"
 #include "HookBridgeRuntime.h"
 
 #include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
@@ -61,9 +62,9 @@ GetRunScriptFunctionScopeIdentity(RunScriptFunctionScope *scope)
 static bool ShouldSuppressAttackCallback(Entity &actor)
 {
     CurrentMotionMarkerResult decision = CollisionControl::GetCurrentMarkerDecision(actor);
-    EquippedCollisionSources sources = CollisionControl::GetEquippedCollisionSources(actor);
+    EquippedCollisionSources sources = CollisionSources::GetEquippedCollisionSources(actor);
     bool willSuppress = decision.foundMatchingMotion && decision.markerPresent
-                     && CollisionControl::HasRequiredCollisionSources(
+                     && CollisionSources::HasRequiredCollisionSources(
                             sources, decision.requiredSourceMask);
 
     if (willSuppress)
@@ -142,7 +143,7 @@ static GELPVoid StartEffect_FrameCollisionTest(
     }
 
     Entity actor(a_pEntity1);
-    EquippedCollisionSources sources = CollisionControl::GetEquippedCollisionSources(actor);
+    EquippedCollisionSources sources = CollisionSources::GetEquippedCollisionSources(actor);
     CollisionDiagnostics::LogMarkerContext(effectName, markerOpcode, actor, sources);
 
     MarkerProcessResult result = CollisionControl::ProcessMarker(
@@ -367,7 +368,7 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
         if (actor != None)
         {
             EquippedCollisionSources sources =
-                CollisionControl::GetEquippedCollisionSources(actor);
+                CollisionSources::GetEquippedCollisionSources(actor);
             generation = CollisionLifecycleGuard::BeginCombatMove(
                 actor, sources, a_pSPU,
                 g_pCurrentRunScriptFunctionScope != nullptr
@@ -561,7 +562,7 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
         if (player != None)
         {
             EquippedCollisionSources sources =
-                CollisionControl::GetEquippedCollisionSources(player);
+                CollisionSources::GetEquippedCollisionSources(player);
             bool const isEquippedPlayerSource =
                 a_pThis == sources.rightInstance
                 || a_pThis == sources.leftInstance;

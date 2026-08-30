@@ -1,7 +1,7 @@
 #include "CollisionLifecycleGuard.h"
 
-#include "CollisionControl.h"
 #include "CollisionDiagnostics.h"
+#include "CollisionSources.h"
 #include "HookBridgeRuntime.h"
 
 #include <cstdio>
@@ -788,7 +788,7 @@ static PreCombatAcquisitionResult ResolvePreCombatOffenseOwner(
     if (actor == None)
         return PreCombatAcquisition_Rejected;
     EquippedCollisionSources const equipped =
-        CollisionControl::GetEquippedCollisionSources(actor);
+        CollisionSources::GetEquippedCollisionSources(actor);
     unsigned int const sourceSideMask =
         GetEquippedSideMask(equipped, sourceInstance);
     if (sourceSideMask == SourceMask_None)
@@ -906,7 +906,7 @@ static bool IsCurrentlyEquippedByPlayer(eCEntity *sourceInstance)
     if (player == None)
         return false;
     EquippedCollisionSources sources =
-        CollisionControl::GetEquippedCollisionSources(player);
+        CollisionSources::GetEquippedCollisionSources(player);
     return sourceInstance == sources.rightInstance
         || sourceInstance == sources.leftInstance;
 }
@@ -1042,7 +1042,7 @@ void FinalizeAfterAISetState(GenerationToken const &token)
     Entity actor(record.actorInstance);
     EquippedCollisionSources currentSources = {};
     if (actor != None)
-        currentSources = CollisionControl::GetEquippedCollisionSources(actor);
+        currentSources = CollisionSources::GetEquippedCollisionSources(actor);
 
     struct FinalizationSourceResult
     {

@@ -1,4 +1,5 @@
 #include "CollisionControl.h"
+#include "CollisionSources.h"
 
 #include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
 #include <g3sdk/Engine/ge_resourceanimationmotion_ps.h>
@@ -435,25 +436,6 @@ bool IsAttackHit(Entity &actor, AttackFamily family)
     }
 }
 
-EquippedCollisionSources GetEquippedCollisionSources(Entity &actor)
-{
-    EquippedCollisionSources result = {};
-    Entity right = actor.Inventory.GetItemFromSlot(gESlot_RightHand);
-    Entity left = actor.Inventory.GetItemFromSlot(gESlot_LeftHand);
-    result.rightInstance = right != None ? right.GetInstance() : nullptr;
-    result.leftInstance = left != None ? left.GetInstance() : nullptr;
-    return result;
-}
-
-bool HasRequiredCollisionSources(EquippedCollisionSources const &sources, unsigned int requiredMask)
-{
-    if ((requiredMask & SourceMask_Right) != 0 && sources.rightInstance == nullptr)
-        return false;
-    if ((requiredMask & SourceMask_Left) != 0 && sources.leftInstance == nullptr)
-        return false;
-    return true;
-}
-
 static eCEntity *GetSourceInstance(EquippedCollisionSources const &sources, unsigned int sourceMask)
 {
     if (sourceMask == SourceMask_Right)
@@ -463,17 +445,11 @@ static eCEntity *GetSourceInstance(EquippedCollisionSources const &sources, unsi
     return nullptr;
 }
 
-gEUseType GetCollisionSourceUseType(Entity &source)
-{
-    eCEntity *instance = source.GetInstance();
-    return instance != nullptr ? gCEntity::GetUseType(instance) : gEUseType_None;
-}
-
 static bool IsFistCollisionSource(Entity &source)
 {
     if (source == None)
         return false;
-    gEUseType useType = GetCollisionSourceUseType(source);
+    gEUseType useType = CollisionSources::GetCollisionSourceUseType(source);
     return useType == gEUseType_Fist || useType == gEUseType_PhysicalFist;
 }
 
@@ -627,7 +603,8 @@ MarkerProcessResult ProcessMarker(Entity &actor, EquippedCollisionSources const 
         result.code = MarkerResult_RejectedMotionOwnership;
         return result;
     }
-    if (!HasRequiredCollisionSources(result.sources, result.decision.requiredSourceMask))
+    if (!CollisionSources::HasRequiredCollisionSources(
+            result.sources, result.decision.requiredSourceMask))
     {
         result.code = MarkerResult_UnsupportedMissingSource;
         return result;
@@ -755,7 +732,8 @@ MarkerProcessResult ProcessMarker(Entity &actor, EquippedCollisionSources const 
         eCEntity *sourceInstance = GetSourceInstance(result.sources, sourceMask);
         Entity selectedSource(sourceInstance);
         result.sourceGroupBefore[i] = static_cast<GEInt>(selectedSource.GetCollisionGroup());
-        result.sourceUseTypes[i] = static_cast<GEInt>(GetCollisionSourceUseType(selectedSource));
+        result.sourceUseTypes[i] = static_cast<GEInt>(
+            CollisionSources::GetCollisionSourceUseType(selectedSource));
         result.sourceSkippedGroupForFist[i] = IsFistCollisionSource(selectedSource);
         if (!result.sourceSkippedGroupForFist[i])
         {
