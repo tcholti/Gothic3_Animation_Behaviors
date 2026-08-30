@@ -48,7 +48,7 @@ When bootstrap is complete, tell me briefly what the current technical gate is a
 
 ## Active Subsystem
 
-**Frame-controlled melee collision lifecycle.**
+**Frame-controlled melee collision lifecycle and modular collision architecture.**
 
 Preferred invariant:
 
@@ -56,7 +56,13 @@ Preferred invariant:
 
 Markers control collision **inside a live Hit**. End-of-execution safety is one shared execution-level responsibility for marked and native attacks.
 
-Architecture authority: `docs/COLLISION_LIFECYCLE_PLAN.md`.
+Architecture authorities:
+
+```text
+docs/DESIGN.md §§10–11                  overall modular target / agreed roadmap
+docs/COLLISION_LIFECYCLE_PLAN.md        lifecycle safety contract
+docs/COLLISION_TEST_PLAN.md             staged validation sequence
+```
 
 ---
 
@@ -204,7 +210,7 @@ existing finalizer has exact outstanding source
 → verify exact resulting group 5
 ```
 
-Everything outside that predicate remains no-op/unresolved and non-mutating. Native cleanup retains precedence. Repair passes through the existing SetCollisionGroup hook and keeps marker retirement/source observation on the established path.
+Everything outside that predicate remains no-op/unresolved and non-mutating. Native cleanup retains precedence. Repair passes through the existing SetCollisionGroup path and keeps marker retirement/source observation on the established path.
 
 R1-E proved exact Dual source independence, marked-source terminal repair and late-callback rejection, broad mixed player/NPC stability, Fist/body separation and crossbow unsupported-source fallback. Supplemental bow and magic regression traffic also remained outside inappropriate weapon-style C1 repair ownership.
 
@@ -217,48 +223,69 @@ Two qualifications remain explicit:
 
 Neither qualification reopens R1. Do not invent another broad matrix solely to force them.
 
-Future root investigation of the held-Use2 destructive skip is separate: `docs/BAD_SKIP_FUTURE_INVESTIGATION.md`. Even if a later root fix succeeds, C1-R1 remains the general lost-cleanup fail-safe.
+---
+
+## Current Immediate Responsibility — Read-Only Architecture / Code Review
+
+Do **not** migrate C1-R1 directly into `src/Script_G3AnimationBehaviors` and do not begin a refactor yet.
+
+Normal Chat should now perform a bounded but complete read-only architecture review of:
+
+```text
+prototypes/Script_FrameCollisionTest/
+src/Script_G3AnimationBehaviors/
+```
+
+The current source already shows useful separation (`CollisionControl`, `CollisionLifecycleGuard`, `CollisionDiagnostics`, `HookBridgeRuntime`) and a main research file that owns the physical hooks. The review must determine whether those boundaries are clean enough for future modular growth and where research instrumentation is still entangled with behavior.
+
+Required review classification:
+
+```text
+1. shared engine hooks / calling-convention-safe transport
+2. validated CollisionLifecycleGuard production semantics
+3. frame-marker ownership/control semantics
+4. physical source adapters / equipped weapon vs Fist separation
+5. research-only diagnostics/probes and hooks that production does not need
+6. historical marker execution/window checks that may be redundant under C1 execution identity
+7. marker invariants that remain independently necessary
+8. existing Script_G3AnimationBehaviors module/config/hook structure
+9. New Balance / Jackydima shared-hook compatibility risks, especially current AttackSpeed
+```
+
+No source edit is authorized by this phase. The output should be a specific proposed module boundary and the **smallest behavior-preserving research-DLL refactor** to freeze next.
+
+Target architecture rule:
+
+> **One DLL may contain multiple independent behavior modules, but one central engine-bridge layer owns each shared Gothic hook. Feature modules consume authoritative engine events/facts; they do not compete with one another for the same physical hook.**
+
+Detailed roadmap: `docs/DESIGN.md` §§10–11.  
+Exact transient handoff: `docs/BETWEEN_CHATS.md`.
 
 ---
 
-## Current Immediate Responsibility — Plan / Freeze Stable Production Integration
+## Agreed Forward Direction After Review
 
-C1-R1 is validated in the research prototype but is **not production-integrated** into the stable collision behavior yet.
-
-Detailed continuation authority: `docs/BETWEEN_CHATS.md`.
-
-Normal Chat should now determine the smallest production-integration boundary that preserves the validated collision architecture and existing marker behavior, then freeze a bounded implementation responsibility before any source change.
-
-Production integration must preserve:
+Do not treat this as authorization to skip directly to a later step. Each phase is frozen separately and may be course-corrected by source/runtime evidence.
 
 ```text
-C1 monotonic generation as durable execution identity
-P1/P2 lightweight pre-Combat acquisition/bridge behavior
-exact per-source offensive obligations
-native cleanup always gets first opportunity
-post-native-AISetState finalization
-exact current-equipped liveness gate before source dereference/mutation
-exact source-specific Item_Attack(7) -> Item_Equipped(5) repair
-no ClearTriggeredList() in terminal repair
-Dual source independence
-marker RIGHT/LEFT/BOTH/OFF semantics and existing marker bookkeeping
-Fist/body separation
-unsupported-source fallback
-no family/action/input/cause cleanup matrix
-no polling/timer/world scan
+read-only full architecture/code review
+→ semantic-preserving modular refactor of Script_FrameCollisionTest
+→ compact collision-baseline revalidation
+→ marker-bookkeeping simplification audit against C1 authority
+→ equipped-melee marker expansion one mechanism at a time
+→ separate Fist source-adapter investigation/decision
+→ full marker + lifecycle regression
+→ modular AttackContinuationProtection investigation/implementation
+→ guard + markers + continuation regression
+→ mandatory New Balance/Jackydima compatibility on mature research DLL
+→ redesign/migrate collision modules into modular Script_G3AnimationBehaviors
+→ independent Raise + redesigned speed work
+→ final full Script_G3AnimationBehaviors + New Balance/Jackydima compatibility regression
 ```
 
-Do **not** automatically combine this responsibility with:
+The future held-Use2 prevention module remains separate from `CollisionLifecycleGuard`: `docs/BAD_SKIP_FUTURE_INVESTIGATION.md`.
 
-```text
-held-Use2 / Alternative-AI root behavior changes
-marker-core simplification
-Raise work
-playback-speed work
-new source-family expansion
-```
-
-Do not implement merely because R1 closed. First inspect only the exact production/research source boundary needed to define the integration responsibility; if integration design is not yet frozen, remain in Normal Chat reasoning/planning.
+The existing `AttackSpeed.cpp` direct `GetAnimationSpeedModifier` hook is proof-of-concept only; its production strategy must be re-evaluated for New Balance compatibility before final speed integration.
 
 ---
 
@@ -289,15 +316,16 @@ All addresses are tested-build-specific.
 
 | Need | Open |
 |---|---|
-| current exact continuation / integration boundary | `BETWEEN_CHATS.md` |
+| current exact architecture-review handoff | `BETWEEN_CHATS.md` |
+| modular target / agreed implementation order | `DESIGN.md` §§10–11 |
 | staged validation / closed R1 acceptance | `COLLISION_TEST_PLAN.md` |
 | active causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
 | canonical C1/P2 continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-205 |
 | canonical C1-R1 physical-repair evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206–EV-207 |
 | lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
-| future held-Use2 root investigation | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
+| future held-Use2 prevention | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
 | native cleanup semantics/RVAs | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
-| source/API lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/static reference as needed |
+| source/API/New Balance lookup | `SOURCE_HOOK_GUIDE.md` + pinned SDK/reference material as needed |
 | recurring local operations | `PROJECT_OPERATING_PROCEDURES.md` |
 | bounded Work implementation rules | `WORK_IMPLEMENTATION_PROTOCOL.md` |
 | naming/gate conventions | `PROJECT_PIPELINE.md` |
@@ -306,11 +334,11 @@ Do not load the whole documentation corpus by default.
 
 ---
 
-## After Collision
+## Broad Priority Order
 
-Broad priority order remains:
-
-1. integrate the validated collision lifecycle/core into stable production behavior;
-2. generalize Raise for intended Normal/Quick and selected full-Whirl families;
-3. implement/calibrate profile-aware playback speed;
-4. later investigate broader animation-selection/gameplay systems such as jumping, wading and climbing.
+1. mature and modularize the collision/marker/continuation system in the research DLL and prove New Balance/Jackydima compatibility;
+2. redesign/migrate that proven collision architecture into `Script_G3AnimationBehaviors` while preserving modularity;
+3. generalize Raise for intended Normal/Quick and selected full-Whirl families;
+4. redesign/implement compatible profile-aware playback speed;
+5. run final production DLL compatibility/regression before stable promotion;
+6. later investigate broader animation-selection/gameplay systems such as jumping, wading and climbing.
