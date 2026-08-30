@@ -1,7 +1,7 @@
 # Collision Lifecycle Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
-**Updated:** 2026-08-29
+**Updated:** 2026-08-30
 
 ## Purpose
 
@@ -28,7 +28,7 @@ Historical probe detail: evidence/raw/archive + `docs/archive/technical_2026-08-
 
 - preserves useful lifecycle/collision probes for controlled reproduction and future bug reports;
 - may be more verbose than release behavior;
-- must remain removable without changing collision behavior.
+- must remain removable without changing the intended production rule.
 
 ### General combat diagnostics
 
@@ -52,8 +52,9 @@ Script_FrameCollisionTest.dll
 │    captures factual engine events / transient native context
 │
 ├─ CollisionLifecycleGuard
-│    C1 shadow execution/source obligations
-│    no physical repair
+│    C1 monotonic execution/source obligations
+│    C1-O2 temporary pre-Combat ScriptFunction bridge
+│    C1-R1 exact controlled physical repair
 │
 ├─ CollisionControl
 │    proven marker/source behavior
@@ -62,7 +63,7 @@ Script_FrameCollisionTest.dll
      observation/logging only
 ```
 
-The current C1-O2 frozen task may add one `RunScriptFunction` hook/context owner at the tested native boundary. That context is infrastructure for exact actor/SPU/live-frame correlation; it must not become a second attack classifier or generic cleanup system.
+The `RunScriptFunction` context remains infrastructure for exact actor/SPU/live-frame correlation. It must not become a second attack classifier or generic cleanup system.
 
 Avoid diagnostic state feeding marker behavior decisions.
 
@@ -73,22 +74,20 @@ Avoid diagnostic state feeding marker behavior decisions.
 The collision diagnostic should answer factual questions around one exact execution/source obligation:
 
 1. Did a real equipped source successfully request `Item_Attack`, including `7 -> 7`?
-2. Which C1 generation owns that request?
-3. Was the request acquired before or at CombatMove?
-4. What live outer ScriptFunction correlator was bound to that generation while the frame existed?
-5. Did a later CombatMove reuse that same generation or create the ordinary candidate path?
-6. Did Gothic perform legitimate cleanup for the exact source?
-7. Did the native frame retire normally, or did destructive state replacement remove it?
-8. Did the generation finalize cleanly or remain a shadow `WOULD_REPAIR` candidate?
-9. Did any binding/frame invariant fail?
+2. Which C1 monotonic generation owns that request?
+3. Was the generation acquired through the ordinary CombatMove path or the proven pre-Combat ScriptFunction bridge?
+4. If early acquisition occurred, was the temporary native binding consumed by matching CombatMove before wrapper return?
+5. Did Gothic perform legitimate cleanup for the exact source?
+6. Did destructive AISetState finalize the generation with an obligation still outstanding?
+7. Was the remembered source still exact current equipped RIGHT/LEFT and therefore safe to observe/mutate?
+8. If the source was still physically `Item_Attack(7)`, did C1-R1 issue exactly one `Item_Equipped(5)` request and obtain exact group 5?
+9. Did any acquisition, binding, liveness, repair or generation invariant fail?
 
 Do not add fields merely because they are available.
 
 ---
 
 ## 4. Established Diagnostic Events to Preserve
-
-The current research prototype has accumulated useful factual observations. Preserve them while C1-O2 is being validated unless a bounded task explicitly removes superseded diagnostics after evidence is safely canonical.
 
 ### Collision request / cleanup observation
 
@@ -98,8 +97,9 @@ Existing `eCEntity::SetCollisionGroup` observation remains authoritative for:
 - equipped RIGHT/LEFT slot association;
 - requested/before/after group;
 - successful offensive `Item_Attack` request, including `7 -> 7`;
-- successful transition away from `Item_Attack` used as native cleanup fulfillment;
-- tested native cleanup call-site/stack evidence.
+- successful transition away from `Item_Attack` used as source-obligation fulfillment;
+- tested native cleanup call-site/stack evidence;
+- C1-R1 repair requests passing through the same normal hook path.
 
 A numeric group already being 7 does **not** mean no new request occurred.
 
@@ -110,24 +110,26 @@ Existing `sAICombatMoveInstr` observation remains useful for:
 - new initial invocation;
 - ordinary C1 candidate creation path;
 - persisted asynchronous instruction behavior;
-- fullStop termination evidence;
-- later C1-O2 generation reuse when the outer frame already owns the execution.
+- FullStop termination evidence;
+- matching consumption of the temporary pre-Combat bridge.
 
 CombatMove remains an inner milestone, not universal outer acquisition.
 
 ### AISetState observation
 
-Existing `gCScriptRoutine_PS::AISetState` observation remains the tested destructive-finalization checkpoint for C1 shadow classification when an exact generation/source obligation is already owned.
+Existing `gCScriptRoutine_PS::AISetState` observation remains the tested destructive-finalization checkpoint for an already-owned exact generation/source obligation.
 
-It is generic infrastructure and must stay a no-op for unrelated processing.
+Native AISetState executes first. C1 finalization runs afterward so native/reaction cleanup has precedence.
+
+AISetState is generic infrastructure and must remain a no-op for unrelated processing.
 
 ### Primary motion / StartRecover / FullStop historical probes
 
-Retain B1–B9 motion/StartRecover/AIFullStop probes as historical/reproduction diagnostics while useful. They no longer define the current gate and should not be extended simply because they already exist.
+Retain B1–B9 motion/StartRecover/AIFullStop probes as historical/reproduction diagnostics while useful. They no longer define the active gate and should not be extended simply because they already exist.
 
 Their durable conclusions route through EV-158–EV-191.
 
-### C1 shadow events
+### C1 lifecycle events
 
 Preserve the high-signal C1 records needed to verify:
 
@@ -135,141 +137,151 @@ Preserve the high-signal C1 records needed to verify:
 lifecycle/generation start
 source offense request
 source cleanup fulfilled
-shadow finalization outcome
+finalization outcome
+repair attempted/result
 invariant warning
 ```
 
-The C1 core result is EV-192–EV-193.
+Core ownership evidence: EV-192–EV-193.  
+Outer acquisition/binding closure: EV-204–EV-205.  
+Controlled physical repair: EV-206.
 
-### C1-O1 outer-frame snapshots
+### C1-O2 bridge events
 
-The broad C1-O1 stack/frame snapshot probe established the outer lifetime and pointer-reuse qualification. It remains useful evidence/reproduction support, but C1-O2 should **not** turn generic ScriptFunction dispatch into broad per-call logging.
-
-Evidence: EV-195–EV-196.
-
----
-
-## 5. Current Diagnostic Question — C1-O2 Outer Binding
-
-C1-O2 needs only enough new signal to prove the native binding lifecycle:
+The lightweight P1/P2 bridge is now established, not an open diagnostic hypothesis. Preserve only enough signal to prove/regress:
 
 ```text
-pre-CombatMove offense
-→ outer binding acquisition + generation
-
-later CombatMove
-→ same live binding reuses same generation
-
-ordinary CombatMove-first path
-→ candidate generation obtains live outer binding when available
-
-native true ScriptFunction return
-→ binding retirement before raw address reuse
-
-failure
-→ concise invariant, no guessed fallback
+PRECOMBAT_ACQUIRED
+PRECOMBAT_BRIDGE_CONSUMED
+relevant DISPATCH RETURN
+binding/generation/null-argument invariant failures
 ```
 
-### Required high-signal C1-O2 events
+Do not restore broad eager dispatch capture or broad per-call ScriptFunction logging.
 
-The frozen implementation contract should expose, at minimum:
+### C1-R1 repair events
 
-- **pre-CombatMove outer acquisition** with actor, generation, exact source and live-frame correlator summary;
-- **CombatMove reuse** showing the same generation was reused from a still-live outer binding;
-- **ordinary CombatMove binding** for the existing candidate-created path;
-- **outer binding retirement** on true `RunScriptFunction` return;
-- **frame mismatch / overlap invariant** if a request or later CombatMove cannot safely match the live binding;
-- **null-arguments invariant** if a relevant ScriptFunction cannot satisfy the frozen correlator;
-- **`OUTER_RETURN_OUTSTANDING`-style invariant** if a true return retires the live frame while the bound generation still has an outstanding source obligation.
+Preserve enough signal to distinguish:
 
-The exact event spelling may follow the frozen C1-O2 implementation contract. Do not create a parallel diagnostic vocabulary merely for documentation.
+```text
+NO_OP_NO_OUTSTANDING
+UNRESOLVED_NOT_EQUIPPED
+NO_OP_PHYSICALLY_CLEAN_RECONCILED
+REPAIRED_TO_ITEM_EQUIPPED
+REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
+```
+
+A repair result is meaningful only together with exact source ownership, liveness establishment, pre-repair group, requested group and post-repair group.
 
 ---
 
-## 6. C1-O2 Transient `RunScriptFunction` Context
+## 5. Current Diagnostic Question
 
-The new context is allowed only for the exact synchronous `gCScriptAdmin::RunScriptFunction(..., stateStack, spu)` dispatch.
+C1-O2 is closed for the tested bridge model. C1-R1 implementation and its main positive/no-op/source-specific/marker/broad exercised coverage are also established.
 
-Diagnostic/context rules:
+The current runtime question is narrow:
 
-1. capture the relevant live frame correlator before the original registered ScriptFunction execution can remove it;
-2. supplied `gCScriptProcessingUnit *` is the actor-context authority;
-3. actor comes from `spu->GetSelfEntity()`;
-4. matching live frame requires:
-   - exact SPU;
-   - top frame is ScriptFunction, not ScriptState;
-   - non-null `m_pArguments` equal to the bound value;
-   - same ScriptFunction name;
-5. break block is context only and may advance during one execution;
-6. top-entry address is diagnostic only;
-7. action/phase/state/input/family are context only, not ownership identity;
-8. wrapper calls original exactly once with unchanged arguments;
-9. transient dispatch context must be nesting-safe and leave no context after wrapper exit;
-10. true return retires the native binding before any raw-address reuse can match it later.
+> Do genuine unarmed/Fist and crossbow gameplay remain outside inappropriate weapon-style C1 repair ownership/mutation while the validated C1-R1 DLL remains stable?
+
+The exact current test responsibility is owned by `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md`.
+
+No new diagnostic architecture is required for that closure. Use the existing events and inspect only the signals needed to establish absence of inappropriate obligation/repair/failure behavior.
+
+---
+
+## 6. Established `RunScriptFunction` Context Rules
+
+The proven synchronous `gCScriptAdmin::RunScriptFunction(..., stateStack, spu)` context remains bounded by these rules:
+
+1. supplied `gCScriptProcessingUnit *` is the actor-context authority;
+2. actor comes from `spu->GetSelfEntity()`;
+3. relevant live-frame matching uses exact SPU, ScriptFunction frame, non-null `m_pArguments` and same ScriptFunction name;
+4. break block is context only and may advance during one execution;
+5. raw top-entry/argument addresses are lifetime-bound diagnostic correlators, not durable IDs;
+6. action/phase/state/input/family are context only, not ownership identity;
+7. wrapper calls original exactly once with unchanged arguments;
+8. transient scope is nesting-safe and does not persist after wrapper exit;
+9. the temporary native binding is consumed before wrapper return in the proven early-offense path;
+10. C1's monotonic generation remains the durable identity afterward.
 
 Do not dereference/classify arguments merely to invent a stronger identity.
 
-Evidence basis: EV-195–EV-196.
+Evidence: EV-195–EV-196, EV-204–EV-205.
 
 ---
 
 ## 7. Logging Restraint
 
-The generic `RunScriptFunction` path executes far more than attacks. Therefore:
+The generic script and collision paths execute far more than the active test needs. Therefore:
 
 - no broad per-call ScriptFunction dump;
 - no continuous state-stack logging;
 - no full stack dump for every dispatch;
-- no action/family table to decide which ScriptFunctions matter;
-- no logging merely because a frame exists.
+- no family/action table to decide ownership;
+- no polling/world scans;
+- no logging merely because a frame exists;
+- no new verbose probe when existing C1/SetCollisionGroup/marker diagnostics already answer the question.
 
-Emit C1-O2 records only when a fact is relevant to binding/acquisition/reuse/retirement or when a frozen invariant fails.
-
-The diagnostic should remain bounded enough that the controlled runtime matrix can be inspected causally.
+For large runtime logs, preserve the raw artifact and use the deterministic large-log evidence tooling described by POP-07 / `tools/log_evidence/README.md` rather than weakening runtime logging to fit connector limits.
 
 ---
 
-## 8. Cleanup Observation Semantics
+## 8. Cleanup and Repair Observation Semantics
 
 Do not define cleanup as “the group is currently not 7.”
 
-The current C1 model observes the actual successful consequence of a source request:
+The current C1 model observes consequences:
 
 ```text
 successful Item_Attack request
 → exact source obligation becomes outstanding
 
 successful later transition away from Item_Attack
-→ that exact source obligation is fulfilled
+→ exact source obligation is fulfilled
 ```
 
-Cleanup can execute under a different ScriptState/reaction context from the old attack ScriptFunction. Therefore C1-O2 frame matching must **not** be required for cleanup fulfillment.
+Cleanup can execute under a different ScriptState/reaction context from the old attack ScriptFunction. Therefore old frame matching is not required for cleanup fulfillment.
 
-Do not add cleanup because `RunScriptFunction` returned, CombatMove fullStopped, Recover appeared, or AISetState was requested.
+C1-R1 acts only after native AISetState has executed and only when:
+
+```text
+obligation still outstanding
++ exact current equipped identity establishes source liveness
++ actual group still Item_Attack(7)
+```
+
+Then and only then:
+
+```text
+SetCollisionGroup(Item_Equipped)
+→ verify exact Item_Equipped(5)
+```
+
+Do not add cleanup because `RunScriptFunction` returned, CombatMove FullStopped, Recover appeared, or AISetState was merely requested.
 
 ---
 
 ## 9. Execution Identity
 
-Current authority after C1-O1:
+Current authority:
 
 ```text
 C1 monotonic generation
 = durable plugin execution identity
 
 exact SPU + live ScriptFunction + non-null m_pArguments + same ScriptFunction name
-= temporary native lifetime correlator only
+= temporary native lifetime correlator only where early acquisition needs it
 ```
 
-Raw stack-entry or arguments addresses are not globally unique; they may be reused after retirement.
+Raw stack-entry or argument addresses are not globally unique and can be reused after retirement.
 
-If a future relevant ScriptFunction has null `m_pArguments`, log the failure and leave the new route unacquired. Do not guess another identity rule inside diagnostics.
+If a future relevant ScriptFunction has null `m_pArguments`, log the failure and leave that route unacquired. Do not guess another identity rule inside diagnostics.
 
 ---
 
 ## 10. Marker Diagnostics Remain Separate
 
-Marker occurrence/replay/source-set bookkeeping is proven behavior with its own regression history. C1/C1-O2 must not silently reinterpret marker diagnostics as execution cleanup state.
+Marker occurrence/replay/source-set bookkeeping is proven behavior with its own regression history. C1 must not reinterpret marker diagnostics as execution cleanup state.
 
 Preserve the distinction:
 
@@ -279,6 +291,8 @@ marker occurrence/exact-set bookkeeping
 physical source cleanup obligation
 ```
 
+C1-R1 repair intentionally passes through the existing SetCollisionGroup hook so established source-obligation transition and marker-owned source retirement remain on the normal path.
+
 Before any future marker-core simplification, retrieve the marker-lifetime route in `EVIDENCE_INDEX.md` and `COLLISION_LIFECYCLE_PLAN.md`.
 
 ---
@@ -287,7 +301,6 @@ Before any future marker-core simplification, retrieve the marker-lifetime route
 
 Do not add:
 
-- production physical repair;
 - GetUp/Quick/Whirl/action/input/state-name ownership classifiers;
 - unconditional cleanup/finalization on `RunScriptFunction` return, FullStop or AISetState;
 - adoption of arbitrary already-group-7 equipment;
@@ -296,24 +309,24 @@ Do not add:
 - wall-clock cleanup timers;
 - duplicate hook owners for the same target;
 - another lifecycle model inside diagnostics;
-- marker-core simplification during C1-O2;
+- marker-core simplification during C1-R1 closure;
+- `ClearTriggeredList()` as terminal repair behavior;
 - guessed binary layouts when SDK-supported fields or opaque factual logging are sufficient.
 
 ---
 
-## 12. C1-O2 Diagnostic Acceptance
+## 12. Current Diagnostic Acceptance
 
-The diagnostic architecture is sufficient for C1-O2 when a controlled run can establish, without broad dumps:
+The retained diagnostic architecture is sufficient when a controlled run can establish, without broad dumps:
 
-1. the pre-CombatMove GetUp offense acquired generation N from a live outer frame;
-2. its later CombatMove reused generation N;
-3. ordinary CombatMove-first controls still create/bind the expected candidate generation;
-4. legitimate native cleanup fulfills exact source obligations independently of old frame context;
-5. true-return binding retirement occurs before a later reused address could match;
-6. known bad armed abandonment keeps the existing shadow `WOULD_REPAIR` classification;
-7. clean/reaction/pre-activation controls remain no-op;
-8. any mismatch/null/outstanding-return condition appears as an explicit invariant rather than hidden fallback behavior;
-9. all records state/guarantee that physical collision behavior was not changed by the shadow diagnostic.
+1. exact source offense/cleanup obligation transitions;
+2. pre-Combat acquisition/bridge consumption when that path occurs;
+3. clean/reaction/no-offense finalizations as non-mutating;
+4. destructive outstanding live/equipped group-7 finalization as one exact `7 -> 5` repair;
+5. source-specific Dual behavior;
+6. marker-owned repair/retirement interaction without reopening stale collision;
+7. unsupported/negative source classes do not acquire inappropriate weapon-style repair obligations;
+8. any binding/liveness/repair divergence appears as an explicit invariant/failure rather than hidden fallback behavior.
 
 ---
 
