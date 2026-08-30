@@ -1,8 +1,8 @@
 # Gothic 3 Knowledge Maintenance Protocol
 
 **Status:** Active project knowledge-maintenance protocol  
-**Version:** 1.2
-**Updated:** 2026-08-29
+**Version:** 1.3
+**Updated:** 2026-08-30
 
 ## Purpose
 
@@ -94,8 +94,8 @@ update only authorities whose meaning changed
 check concrete future-relevance routes
         ↓
 freeze bounded implementation task
-update transient current/handoff state if needed
-produce Work prompt
+store exact transient contract in BETWEEN_CHATS when needed
+produce a small Work launcher that points to that authority
         ↓
 Work
 implement from the frozen contract
@@ -177,6 +177,30 @@ future comparison before removal/refactor
 
 Never leave a future chat with only “this can probably be simplified.” It must also be routed to the reproduced failures, invariants, or compatibility reasons that caused the current machinery to exist.
 
+### Project-to-CAM promotion boundary
+
+A collaboration/process lesson discovered during Gothic 3 work is maintained first at the lowest owning **project-local** layer.
+
+Normal Gothic 3 maintenance may:
+
+- fix the relevant project rule/procedure/route;
+- preserve why the change was needed;
+- compare the lesson with CAM `current` when that helps interpretation;
+- identify it as a candidate for wider reuse.
+
+It must not automatically edit the CAM repository or promote the lesson upward as part of the same maintenance transaction.
+
+```text
+project lesson
+→ improve lowest project-local owner
+→ observe real use
+→ preserve candidate reusable rationale when warranted
+→ STOP project-local promotion
+→ dedicated CAM-evolution responsibility later performs cross-project comparison and any upward change
+```
+
+The User may explicitly open that separate CAM-evolution responsibility. Until then, “compare with CAM” means use CAM as governing context/check consistency, not modify CAM.
+
 ---
 
 ## 4. Event Transactions
@@ -208,10 +232,14 @@ Default transaction:
 
 ```text
 confirm architecture already authoritative
-→ make current bounded task discoverable in SESSION_ENTRYPOINT or BETWEEN_CHATS as appropriate
-→ produce exact Work prompt
+→ place the detailed frozen implementation contract in BETWEEN_CHATS when transient handoff detail is needed
+→ keep SESSION_ENTRYPOINT limited to current-state routing
+→ produce a short Work launcher containing repository/branch/base identity + instruction to read the frozen contract/protocol + publish/stop requirement
+→ do not duplicate the full contract into both Normal Chat and Work
 → no broad documentation review
 ```
+
+The purpose of the short launcher is not brevity for its own sake. It keeps one authoritative implementation contract, reduces context duplication in both chats, and avoids spending Work budget on project reconstruction.
 
 Work should not be asked to reconstruct project history.
 
@@ -280,7 +308,7 @@ Use a somewhat broader but still scoped review:
 - archive/current-state cleanup;
 - lightweight knowledge-system health check for the affected subsystem.
 
-This is an appropriate time for consolidation. It is still not automatically a whole-repository audit.
+This is an appropriate time for consolidation. It is still not automatically a whole-repository audit and does not automatically open CAM-layer promotion.
 
 ---
 
@@ -337,7 +365,7 @@ Update when:
 - active subsystem changes;
 - current causal gate changes;
 - the immediate architecture candidate materially changes;
-- a test gate is completed and the next responsibility becomes different.
+- a test gate is completed and the next responsibility becomes different;
 - temporary prerequisite, isolation, contradiction-resolution or safety/hardening work materially replaces the immediate responsibility, even if the enclosing gate ID or long-term objective does not change.
 
 Do **not** add the full history of how the current state was reached.
@@ -502,4 +530,4 @@ If no document needs changing, it can simply continue; absence of documentation 
 
 ## Core Rule
 
-> **Every meaningful event updates the smallest owning records automatically. Preserve knowledge once, route to it by both present topic and concrete future responsibility when needed, preserve the reason behind workarounds before simplifying them, and keep full audits rare. If the retrieval system itself starts creating context or document bloat, surface that problem early and use audits/stabilization points to tighten it.**
+> **Every meaningful event updates the smallest owning records automatically. Preserve knowledge once, route to it by both present topic and concrete future responsibility when needed, preserve the reason behind workarounds before simplifying them, keep bounded Work contracts authoritative in the repository rather than duplicated into launch prompts, keep project-to-CAM promotion as a separate deliberate responsibility, and keep full audits rare. If the retrieval system itself starts creating context or document bloat, surface that problem early and use audits/stabilization points to tighten it.**
