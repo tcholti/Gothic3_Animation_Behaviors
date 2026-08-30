@@ -109,7 +109,7 @@ Current tested state:
 ```text
 RunScriptFunction
 = recursion-safe explicit-this pure pass-through
-= direct C1-O2 dispatch capture still suspended
+= stable transport baseline
 
 AISetState
 = explicit-this recursion-safe .ThisCall()
@@ -136,45 +136,59 @@ Important qualification: the corrected run did **not** positively exercise an ou
 
 ---
 
-## C1-O2 — Current Status
+## C1-O2 — Reassessment Result
 
 C1-O2 remains the higher-level architectural destination:
 
 > **Can C1 bind its monotonic generation to the live outer ScriptFunction frame, acquire legitimate offense before CombatMove, reuse the same generation when later CombatMove belongs to that still-live frame, and retire the native binding before pointer reuse without changing the already-passed cleanup/finalization model?**
 
-The original direct `RunScriptFunction` dispatch-capture attempt and its first recursion-safe correction crashed in equivalent registered-ScriptFunction paths around the tested `Game +0x1605EB` return point. That crash remains **unresolved**.
+The original direct `RunScriptFunction` capture and its ABI-corrected explicit-this successor both crashed while the same eager Begin/original/End capture lifecycle remained active. The current wrapper keeps the corrected explicit-this transport but removes that capture work and is stable. Therefore the hook transport alone is no longer the primary suspect.
 
-Later AISetState/AIFullStop/SetCollisionGroup/finalizer stability work does **not** prove that the old direct capture can simply be restored.
+The old crash was in native `Script.dll` `Entity::IsPlayer() const` at tested `+0x1494C`, reached during registered ScriptFunction execution with `Game +0x1605EB` below it. The faulting instruction reads from the preserved object register; the old crash report's `ECX=0` alone does not prove a null incoming `this`. Do not restore the old eager capture or attribute the crash to one unproven helper by assumption.
 
-`RunScriptFunction` remains generic infrastructure and must not become unconditional combat ownership or cleanup authority.
+Native/source review now also establishes:
+
+- `RunScriptFunction` already receives the SPU, runtime-stack reference and ScriptFunction name needed for a synchronous dispatch bridge;
+- native return `false` preserves/suspends the ScriptFunction frame, while `true` removes the completed top frame before returning;
+- the old post-call state-stack recapture was therefore unnecessary merely to learn completion;
+- the current stable SetCollisionGroup diagnostics already perform lazy outer-frame/state-stack inspection only at relevant offense/cleanup events, including hundreds of successful observations in the corrected extended run.
+
+This supports a smaller staged route rather than restoring the old `thread_local std::vector` / copied-string dispatch machinery.
 
 ---
 
-## Current Immediate Responsibility — C1-O2 Reassessment From Stabilized Substrate
+## Current Immediate Responsibility — C1-O2-P1 Frozen Work Task
 
-**No Work task is currently frozen.**
+**C1-O2-P1 is now frozen for bounded Work implementation.**
 
-Next session begins in Normal Chat with reasoning/source review, not implementation.
+Exact contract: `docs/BETWEEN_CHATS.md`.
 
-Answer in order:
+P1 asks only whether the stable RunScriptFunction wrapper can carry a zero-allocation, nesting-safe, stack-local current-dispatch scope across the native call with no engine/API work before native execution, then expose that scope only at an already-relevant player offensive SetCollisionGroup event.
 
-1. Reconstruct only the unresolved C1-O2 failure boundary from EV-199 plus the already-proven outer lifetime EV-195–EV-196.
-2. Compare that failure with the now-stable surrounding substrate in EV-200–EV-203.
-3. Determine whether a source-supported minimal nesting-safe dispatch context can be reintroduced without repeating the failed implementation.
-4. If direct capture remains unsafe/unsupported, identify the narrowest alternative that can correlate synchronous pre-CombatMove offense with the proven live outer ScriptFunction lifetime without making generic `RunScriptFunction` combat authority.
-5. Freeze only the smallest falsifiable source/diagnostic gate. Do not enable physical repair as part of this reassessment.
+P1 does **not** yet:
+
+- acquire or bind a C1 generation;
+- persist a native frame binding across suspension;
+- choose parent/outer ownership semantics;
+- solve continuation retirement;
+- change cleanup/finalization classification;
+- enable physical repair.
+
+The intended generic RunScriptFunction cost is only local/TLS pointer bookkeeping around the native call. State-stack inspection, actor lookup, collision work and logging remain event-driven and occur only after an existing relevant event has already justified them.
 
 ### Protected state
 
 Do **not**:
 
-- restore the old C1-O2 dispatch-capture implementation by assumption;
+- reconnect the old `BeginScriptFunctionDispatch()` / `EndScriptFunctionDispatch()` implementation;
 - enable physical repair;
+- change C1 generation/source/cleanup semantics;
 - roll back SetCollisionGroup explicit-this transport;
 - change AISetState/AIFullStop transport;
 - alter marker names, marker ownership, marker retirement or source selection;
 - classify production ownership by held Use2, 2500 ms, Whirl, Quick, GetUp or patch callsite;
 - mechanically convert StartEffect, PlayMotion or StopMotion;
+- add polling, timers, world scans or guessed null-argument fallback;
 - treat the unobserved liveness-negative branch as runtime-proven.
 
 The known destructive abandonment remains the strongest positive stress case. Clean completion, legitimate reaction cleanup, pre-activation interruption, inherited-state attribution, exact source-side behavior and no-repair outcomes remain protected controls.
@@ -221,7 +235,7 @@ All addresses are tested-build-specific.
 
 | Need | Open |
 |---|---|
-| current exact continuation | `BETWEEN_CHATS.md` |
+| current exact continuation / frozen Work task | `BETWEEN_CHATS.md` |
 | active stale-collision causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
 | C1-O2 / hook/finalizer continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-203 |
 | outer lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
@@ -231,6 +245,8 @@ All addresses are tested-build-specific.
 | diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
 | naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` relevant section only |
 | recurring Git/build/deploy/test/log procedure | `PROJECT_OPERATING_PROCEDURES.md` |
+| bounded implementation protocol | `WORK_IMPLEMENTATION_PROTOCOL.md` |
+| general architecture/review principles | `ENGINEERING_GUIDE.md` |
 | marker execution lifetime / future simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → `COLLISION_LIFECYCLE_PLAN.md` |
 | animation semantics/assets | `ANIMATION_INDEX.md` |
 | overall Raise/speed/collision architecture | `DESIGN.md` |
