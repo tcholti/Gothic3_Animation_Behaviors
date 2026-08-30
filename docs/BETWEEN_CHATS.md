@@ -175,6 +175,39 @@ C1 INVARIANT WARNING = 0
 
 Test-design note: preparing or modifying test animations is explicitly acceptable when it strengthens falsification. Do not avoid a purpose-built marker fixture merely to reuse an old animation.
 
+### Newly clarified bad-skip timing boundary
+
+The marked Staff run proves two distinct consequences of the same destructive bad-skip route depending on timing relative to collision activation:
+
+```text
+A. destructive skip AFTER an accepted collision-ON marker
+   → exact weapon source has a real outstanding Item_Attack(7) obligation
+   → ordinary marker cleanup can be lost with the destroyed attack execution
+   → C1-R1 repairs the exact live/equipped source 7 -> 5
+
+B. destructive skip BEFORE the first accepted collision-ON marker
+   → no offense obligation ever exists
+   → C1-R1 correctly performs no mutation
+   → later marker callbacks may still arrive from the abandoned motion,
+     but native action ownership is already gone and those callbacks are rejected
+   → that abandoned attack never gains collision/damage
+```
+
+Case B is intentionally **not** a C1-R1 repair responsibility. Do not make the marker system reactivate collision after native attack ownership has been destructively terminated merely to rescue the visually continuing animation; doing so would create damage from an execution Gothic 3 has already killed and risks orphaned collision ownership.
+
+The practical consequence is limited to that one prematurely abandoned attack: it may miss completely if the bad skip occurs before collision activation. A later new attack gets a fresh native execution and fresh marker budget and activates collision normally.
+
+After C1-R1 universal guard validation is complete, a separate root-cause investigation of the destructive bad skip is a valid future candidate. A safe root fix could eliminate both timing outcomes at the source: the post-activation stale-collision case and the pre-activation missed-attack case. Such work must remain separate from C1-R1 and must not weaken the validated guard; even if a root fix later succeeds, C1-R1 remains a useful fail-safe for lost cleanup.
+
+For case A, later frame markers from the **same abandoned execution** are not expected to continue normal RIGHT/OFF/RIGHT semantics after destructive finalization. They may arrive physically, but with native action ownership gone they are rejected. The relevant success condition is instead:
+
+```text
+outstanding source repaired to 5
+→ stale marker-owned bookkeeping retired through existing SetCollisionGroup hook
+→ abandoned motion's late callbacks cannot reopen collision
+→ next legitimate attack begins fresh and its markers work normally
+```
+
 ---
 
 ## Current runtime responsibility — R1-E broader mixed stability / negatives
