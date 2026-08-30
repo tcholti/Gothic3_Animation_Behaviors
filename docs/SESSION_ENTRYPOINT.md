@@ -72,45 +72,26 @@ Use `EVIDENCE_INDEX.md` Active-Problem Reconstruction when the causal model is n
 - stale collision can persist through later idle/movement and can be inherited by a later legitimate execution as `7 -> 7`;
 - C1 tracks successful offensive requests as exact per-source obligations, observes native cleanup, and classifies outstanding obligations at destructive AISetState finalization;
 - GetUpAttack can request offense before CombatMove, so CombatMove alone is too late as a universal execution-acquisition boundary;
-- C1-O1 proved the live outer ScriptFunction frame can correlate pre-CombatMove offense → CombatMove → cleanup, while raw frame/argument addresses are lifetime-bound correlators only and may be reused after retirement;
-- C1-O2-P1 proved that the missing GetUp pre-Combat offense occurs inside a safe lightweight live `RunScriptFunction` scope and that matching CombatMove begins before that wrapper returns/suspends;
-- C1-O2-P2 now proves the smaller bridge model on targeted GetUpAttack runtime evidence: a real pre-Combat offense acquires the monotonic C1 generation, matching CombatMove reuses that same generation and consumes the temporary native-frame binding before wrapper return, and later timer offense/native cleanup continue on the durable generation;
+- C1-O1/P1 established that a live ScriptFunction frame is a valid temporary correlator for the pre-Combat GetUp gap but not a durable execution identity;
+- C1-O2-P2 proved that a real pre-Combat offense can acquire the monotonic C1 generation, matching CombatMove can reuse that same generation and consume the temporary native-frame binding before wrapper return, and later timer offense/native cleanup continue on the durable generation;
 - C1's monotonic generation remains the durable plugin execution identity.
 
-Canonical evidence through P1: EV-151–EV-204. P2-C raw/runtime result is preserved on the active branch and awaits final P2 evidence-ledger promotion together with the broader P2-D stability result.
+Canonical evidence route: EV-151–EV-205.
 
 ---
 
-## Agreed Strategic Direction — Universal Guard First
+## C1 Shadow Guard — Current Proven State
 
-```text
-preserve proven marker behavior
-→ finish stable shadow execution/source ownership
-→ prove controlled native-equivalent physical repair
-→ preserve the known destructive abandonment as a stress case
-→ preserve ordinary / legitimate reaction / pre-activation / inherited-state controls
-→ broad marked/unmarked/player/NPC/negative regression
-→ stable production integration
-→ only later consider marker-bookkeeping simplification
-```
+C1 remains shadow-only; physical repair is disabled.
 
-The held-Use2 / 2500-ms path is a **test case**, not production classification authority.
-
-The universal guard owns collision safety only. It should not rewrite unrelated external/native movement, state, balance or interruption behavior when collision integrity can be guaranteed independently.
-
----
-
-## C1 Shadow Guard — Current Stable / Validation State
-
-C1 remains shadow-only; production physical repair is disabled.
-
-Core model and acquisition evidence:
+Core evidence:
 
 - EV-192–EV-193 — shadow execution/source obligation model;
 - EV-194 — GetUp pre-CombatMove acquisition gap;
 - EV-195–EV-196 — outer ScriptFunction lifetime and C1-O1 correlation/pointer-reuse qualification;
-- EV-204 — P1 lightweight dispatch bridge source/isolated/targeted validation;
-- P2-C active raw — targeted generation acquisition/bridge-consumption meaning PASS; broader stability still pending.
+- EV-199–EV-203 — hook-transport/finalizer stabilization;
+- EV-204 — P1 lightweight live-scope bridge;
+- EV-205 — P2 lazy pre-Combat generation acquisition + bridge consumption, isolated/targeted/broad runtime validation.
 
 ### Directly relevant tested substrate
 
@@ -118,9 +99,8 @@ Core model and acquisition evidence:
 RunScriptFunction
 = recursion-safe explicit-this .ThisCall()
 = stack-local/TLS lightweight current scope
-= P1 PASS source audit + isolated load + targeted meaning validation
-= P2 targeted acquisition/bridge-consumption meaning PASS
-= P2 broader stability still pending
+= P1 source/isolated/targeted PASS
+= P2 lazy acquisition + bridge-consumption source/isolated/targeted/broad gameplay PASS
 
 AISetState
 = explicit-this recursion-safe .ThisCall()
@@ -139,45 +119,25 @@ FinalizeAfterAISetState
 = PASS for tested isolated + extended stability
 ```
 
-Important qualification: the corrected EV-203 run did **not** positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` finalization branch. Do not claim runtime proof of that exact branch.
+Important qualification: EV-203 did not positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` finalization branch. Do not claim runtime proof of that exact branch.
 
 ---
 
-## C1-O2-P1 — Closed Meaning Gate
+## C1-O2-P2 — Closed for Tested Outer-Acquisition / Binding Model
 
-P1 implemented only a zero-allocation, nesting-safe, stack-local current `RunScriptFunction` scope around the already-correct explicit-this hook transport. The generic wrapper performs no state-stack, actor, C1, allocation or logging work before native execution.
-
-Validated corrected P1 DLL SHA256:
-
-```text
-44C15C068D34F82BDCB03EEBEC76C3C0A93094D64662B032954BFF637D51E05D
-```
-
-P1-B isolated main-menu load/unload passed.
-
-P1-C targeted gameplay produced four deliberate GetUpAttack acquisition-gap reproductions. In all four initial GetUp `5 -> 7` events the live scope matched the player SPU/state stack and `_AI_GetUpAttack`; matching CombatMove began in that same live invocation before `RunScriptFunction` returned `GEFalse` / suspended. Later timer `7 -> 7` offense occurred with no live wrapper scope while `_AI_GetUpAttack` remained suspended on the SPU.
-
-Ordinary Normal/Quick timer offense likewise often occurs with no live P1 scope; a live P1 scope is **not** a universal requirement for offense ownership and is used only as the proven pre-Combat bridge.
-
-P1-D was not run as a separate long-duration gate.
-
----
-
-## C1-O2-P2 — Targeted Meaning PASS; Broader Stability Pending
-
-Behavior implementation commit:
+Behavior implementation:
 
 ```text
 cc51c67c19425be4e4d6a4838803ed3e66b2a071
 ```
 
-Build-identity banner correction:
+Startup identity correction:
 
 ```text
 8b6a5873b8caa27b469ae831d25bf155a6c7f189
 ```
 
-Validated P2 DLL:
+Validated DLL:
 
 ```text
 Script_FrameCollisionTest.dll
@@ -185,116 +145,96 @@ Length: 465408
 SHA256: 1081B287912DB9A368164DDE13542A7EC2D6E5DBB0AA29B04C19BD7932D92C7C
 ```
 
-P2-A independent Normal Chat source review: **PASS**.
-
-P2-B isolated main-menu load/unload: **PASS**.
-
-P2-C targeted player 2H Normal + GetUpAttack runtime meaning test: **PASS**.
-
-P2-C evidence commit:
+Validation:
 
 ```text
-0697437cf9b3036367e9bdba2ec85576f86ddbe3
+P2-A independent source audit = PASS
+P2-B isolated load/unload = PASS
+P2-C targeted GetUp meaning = PASS
+P2-D broad gameplay ownership/stability = PASS
+P2-D shutdown/unload = not captured in that raw file
 ```
 
-P2-C raw:
+P2-C produced five clean GetUp bridge generations `20/33/45/54/64` with no unowned or binding invariant.
+
+P2-D canonical raw:
 
 ```text
-research/raw/2026-08-30_c1o2p2_player_2h_normal_getup_bridge_consumption.log
+research/archive/2026-08-30_c1o2p2_broader_combat_interruption_stability.log
+SHA256: 50AE4944C23DB30C78CE0373E241DDAAC32C252C2D8563584871F098C96BB041
+Bytes: 12123937
+Lines: 398143
 ```
 
-The run contained three initial ordinary clean 2H Normal controls and five deliberate GetUpAttack executions. The five GetUp pre-Combat generations were `20`, `33`, `45`, `54`, and `64`.
-
-For **all five**:
+Derived package:
 
 ```text
-PRECOMBAT_ACQUIRED
-→ C1 OFFENSE REQUEST while OUTER_BOUND
-→ matching PRECOMBAT_BRIDGE_CONSUMED on same generation
-→ later timer C1 OFFENSE REQUEST while PERSISTED
-→ C1 CLEANUP FULFILLED on same generation/source
-→ finalization NO_OP_NO_OUTSTANDING
+research/derived/2026-08-30_c1o2p2_broader_combat_interruption_stability_large_log/
 ```
 
-Whole-run counts relevant to the P2 gate:
+P2-D contained 13 successful pre-Combat bridges, generations:
 
 ```text
-PRECOMBAT_ACQUIRED = 5
-PRECOMBAT_BRIDGE_CONSUMED = 5
-UNOWNED_PLAYER_OFFENSE_REQUEST = 0
-PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN = 0
-C1 INVARIANT WARNING = 0
+200 298 314 364 384 473 622 658 660 671 726 857 868
 ```
 
-All five acquisition events used `_AI_GetUpAttack` / `OnAI_GetUpAttack` and native action `gEAction_GetUpAttack` (`30`) at the positive acquisition boundary. The User varied input timing—some attempts were made promptly after knockdown/sit-up and some after remaining seated longer—but the runtime log does not directly label those user-input timing categories. Do not invent a production classifier from that variation; by the acquisition point all five converged on the same proven path.
+All tested positive bridges followed:
 
-The three initial Normal controls remained on ordinary CombatMove-created `_AI_Attack` generations and cleaned/finalized normally.
+```text
+real exact-source early offense
+→ PRECOMBAT_ACQUIRED
+→ matching CombatMove reuses same generation
+→ PRECOMBAT_BRIDGE_CONSUMED before RunScriptFunction return
+→ durable generation/source obligation continues independently
+```
 
-Physical repair remained disabled.
+Whole-run failure-signal result was zero for C1 invariant warnings, unowned offense, unconsumed bridge, error/exception, failure, mismatch/divergence, stale, unresolved/orphan and unsafe/bad-skip classes.
+
+The broad run recorded 29 actual shadow `WOULD_REPAIR` source outcomes with physical repair still disabled. Representative 2H, Staff, 1H/Torch and Dual cases remained exact-source/consequence based. Dual included source-specific RIGHT and LEFT outcomes.
+
+A consistency check over the observed run gives:
+
+```text
+306 offense-request events
+- 13 second GetUp requests belonging to the same early-acquired obligations
+= 293 observed offensive source obligations
+
+264 native cleanup fulfillments
++ 29 shadow WOULD_REPAIR outcomes
+= 293
+```
+
+Two observed Staff GetUpParade action-31 cases traversed `Hit`/Recover resources without C1 offense, reinforcing that filename grammar is engine-significant but collision ownership is still established from actual collision consequence/source evidence rather than a generic `Hit` token alone.
+
+The User subjectively reported that P2 felt smoother than several previous research builds. No controlled performance comparison was performed; do not claim causal performance improvement.
 
 ---
 
-## Current Immediate Responsibility — C1-O2-P2-D Broader Stability
+## Current Immediate Responsibility — Normal Chat Physical-Repair Gate Design
 
-P2-C has proved the intended positive bridge meaning. The next responsibility is **broader runtime stability/integration coverage**, not another implementation task.
+C1-O2 is closed for the tested outer binding/acquisition model.
 
-Use the currently validated P2 DLL unless implementation identity changes.
+**Do not send a Work implementation task yet.**
 
-P2-D should exercise the existing C1 runtime matrix with varied normal gameplay and deliberate controls:
+Normal Chat must now retrieve only the exact current lifecycle/finalizer source and architecture needed to answer:
 
-```text
-ordinary clean attacks across relevant melee families
-legitimate reaction interruptions
-pre-activation interruption/no-offense cases
-known armed destructive abandonment as a positive shadow WOULD_REPAIR stress case
-inherited stale 7 -> 7 when naturally produced
-repeated GetUpAttack opportunities when available
-normal traversal / draw-holster / state churn around combat
-```
+> **What is the smallest controlled native-equivalent physical repair that can replace the already-proven shadow `WOULD_REPAIR` outcome while preserving exact-source ownership, source liveness, native-cleanup precedence, legitimate reaction behavior, inherited `7 -> 7` attribution and all current no-op cases?**
 
-Specifically watch for:
+Preserved constraints:
 
 ```text
-UNOWNED_PLAYER_OFFENSE_REQUEST
-PRECOMBAT_BRIDGE_UNCONSUMED_AT_DISPATCH_RETURN
-live-frame/binding mismatch or overlap invariants
-generation replacement where reuse was expected
-NULL_ARGUMENTS / unresolved binding failures
-unexpected physical collision change
-crash / abnormal unload
+repair is consequence/source-obligation based, not family/action/input/cause/time based
+only the exact outstanding source may be repaired
+current equipped identity/liveness must be established before dereference/mutation
+observed native cleanup always wins → no repair
+no arbitrary adoption of unrelated group-7 state
+no polling / timer / world scan
+no FullStop-as-cleanup-authority rule
+no marker-core refactor
+no restoration of rejected C1-O2 dispatch machinery
 ```
 
-Expected architecture remains:
-
-```text
-live ScriptFunction frame
-= temporary native correlator only where early acquisition needs it
-
-C1 monotonic generation
-= durable plugin execution identity
-
-successful Item_Attack request
-= exact source obligation
-
-native transition away from Item_Attack
-= obligation fulfilled
-
-destructive AISetState with obligation outstanding
-= existing shadow WOULD_REPAIR classification
-```
-
-Do not freeze physical-repair implementation until P2-D is interpreted and C1-O2 is closed.
-
----
-
-## Qualified Runtime Observations To Preserve
-
-These are useful future test hypotheses, not established causal mechanisms:
-
-- a reaction/knockdown sequence appeared to restore a stale source to the equipped collision state before a later GetUpAttack reactivated it; the exact cleanup owner was not isolated;
-- holster/draw appeared to restore stale collision; do not attribute this specifically to bone detachment or equip mechanics without a targeted sequence.
-
-Route to EV-203 before using either observation architecturally.
+Physical repair remains **OFF** until Normal Chat freezes one bounded implementation gate plus its runtime falsification matrix.
 
 ---
 
@@ -330,7 +270,7 @@ All addresses are tested-build-specific.
 | current exact continuation / transient handoff | `BETWEEN_CHATS.md` |
 | participant/tool responsibility allocation | `COLLABORATION_RULES.md` §6 |
 | active stale-collision causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
-| C1-O2 / hook/finalizer continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-204 + active P2 raw until final P2 promotion |
+| C1-O2 / hook/finalizer continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-205 |
 | outer lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | current staged validation | `COLLISION_TEST_PLAN.md` |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
