@@ -5,7 +5,7 @@
 
 ## Purpose
 
-Define the smallest observational instrumentation needed to answer collision-lifecycle questions without turning diagnostics into a second behavior/lifecycle system.
+Define the smallest observational instrumentation needed to answer collision-lifecycle questions without turning diagnostics into a second behavior/lifecycle system or making routine combat logs unnecessarily large.
 
 The logger measures the architecture. It does not define it.
 
@@ -27,8 +27,9 @@ Historical probe detail: evidence/raw/archive + `docs/archive/technical_2026-08-
 ### Retained diagnostic build/tool
 
 - preserves useful lifecycle/collision probes for controlled reproduction and future bug reports;
-- may be more verbose than release behavior;
-- must remain removable without changing the intended production rule.
+- may expose opt-in deep probes when a specific investigation requires them;
+- should keep ordinary collision-development logs compact enough to inspect efficiently;
+- must remain removable/reducible without changing intended behavior.
 
 ### General combat diagnostics
 
@@ -42,13 +43,14 @@ Do not merge every temporary collision probe into the general logger.
 
 While collision behavior and diagnostics need overlapping Gothic hooks, keep one research DLL with one owner per engine hook.
 
-Current responsibility boundary:
+Target responsibility boundary:
 
 ```text
 Script_FrameCollisionTest.dll
 │
-├─ Main / Hook Bridge
+├─ EngineBridge
 │    installs/owns Gothic hooks once
+│    preserves calling conventions / recursion safety / ordering
 │    captures factual engine events / transient native context
 │
 ├─ CollisionLifecycleGuard
@@ -56,8 +58,11 @@ Script_FrameCollisionTest.dll
 │    C1-O2 temporary pre-Combat ScriptFunction bridge
 │    C1-R1 exact controlled physical repair
 │
-├─ CollisionControl
-│    proven marker/source behavior
+├─ FrameCollisionMarkers / CollisionControl
+│    marker ownership and authored collision behavior
+│
+├─ CollisionSources
+│    generic source identity / source-specific operations
 │
 └─ CollisionDiagnostics
      observation/logging only
@@ -65,73 +70,40 @@ Script_FrameCollisionTest.dll
 
 The `RunScriptFunction` context remains infrastructure for exact actor/SPU/live-frame correlation. It must not become a second attack classifier or generic cleanup system.
 
-Avoid diagnostic state feeding marker behavior decisions.
+Avoid diagnostic state feeding marker or lifecycle behavior decisions.
 
 ---
 
 ## 3. Current Evidence Model
 
-The collision diagnostic should answer factual questions around one exact execution/source obligation:
+The collision diagnostic must be able to answer factual questions around one exact execution/source obligation:
 
-1. Did a real equipped source successfully request `Item_Attack`, including `7 -> 7`?
+1. Did an exact source successfully request offense, including `7 -> 7` for equipped weapons?
 2. Which C1 monotonic generation owns that request?
-3. Was the generation acquired through the ordinary CombatMove path or the proven pre-Combat ScriptFunction bridge?
+3. Was the generation acquired through ordinary CombatMove or the proven pre-Combat ScriptFunction bridge?
 4. If early acquisition occurred, was the temporary native binding consumed by matching CombatMove before wrapper return?
 5. Did Gothic perform legitimate cleanup for the exact source?
 6. Did destructive AISetState finalize the generation with an obligation still outstanding?
 7. Was the remembered source still exact current equipped RIGHT/LEFT and therefore safe to observe/mutate?
 8. If the source was still physically `Item_Attack(7)`, did C1-R1 issue exactly one `Item_Equipped(5)` request and obtain exact group 5?
-9. Did any acquisition, binding, liveness, repair or generation invariant fail?
+9. Did marker ownership, occurrence, exact-set switching, source rearm or native suppression behave as authored?
+10. Did any acquisition, binding, liveness, repair, marker or generation invariant fail?
 
 Do not add fields merely because they are available.
 
 ---
 
-## 4. Established Diagnostic Events to Preserve
+## 4. Core Collision Evidence — Preserve by Default
 
-### Collision request / cleanup observation
+Ordinary collision-development/regression runs should retain enough exact information to verify the active system without broad historical dumps.
 
-Existing `eCEntity::SetCollisionGroup` observation remains authoritative for:
+Preserve startup/build identity and clean unload.
 
-- exact changed source entity;
-- equipped RIGHT/LEFT slot association;
-- requested/before/after group;
-- successful offensive `Item_Attack` request, including `7 -> 7`;
-- successful transition away from `Item_Attack` used as source-obligation fulfillment;
-- tested native cleanup call-site/stack evidence;
-- C1-R1 repair requests passing through the same normal hook path.
+Preserve marker evidence sufficient to establish exact actor/current motion, action/phase, marker opcode, required/resolved source set, native callback suppression, accepted/rejected/duplicate/budget/OFF result, exact source-set switching, source activation/deactivation/rearm, and StatePosition mutation where it is part of native suppression.
 
-A numeric group already being 7 does **not** mean no new request occurred.
+Existing `eCEntity::SetCollisionGroup` observation remains authoritative for exact changed source, relevant equipped RIGHT/LEFT association, requested/before/after group, successful offensive `Item_Attack` request including `7 -> 7`, successful transition away from `Item_Attack`, and C1-R1 repair passing through the same normal hook path.
 
-### CombatMove observation
-
-Existing `sAICombatMoveInstr` observation remains useful for:
-
-- new initial invocation;
-- ordinary C1 candidate creation path;
-- persisted asynchronous instruction behavior;
-- FullStop termination evidence;
-- matching consumption of the temporary pre-Combat bridge.
-
-CombatMove remains an inner milestone, not universal outer acquisition.
-
-### AISetState observation
-
-Existing `gCScriptRoutine_PS::AISetState` observation remains the tested destructive-finalization checkpoint for an already-owned exact generation/source obligation.
-
-Native AISetState executes first. C1 finalization runs afterward so native/reaction cleanup has precedence.
-
-AISetState is generic infrastructure and must remain a no-op for unrelated processing.
-
-### Primary motion / StartRecover / FullStop historical probes
-
-Retain B1–B9 motion/StartRecover/AIFullStop probes as historical/reproduction diagnostics while useful. They no longer define the active gate and should not be extended simply because they already exist.
-
-Their durable conclusions route through EV-158–EV-191.
-
-### C1 lifecycle events
-
-Preserve the high-signal C1 records needed to verify:
+Preserve high-signal C1 records for:
 
 ```text
 lifecycle/generation start
@@ -139,29 +111,19 @@ source offense request
 source cleanup fulfilled
 finalization outcome
 repair attempted/result
-invariant warning
+explicit invariant/failure warning
 ```
 
-Core ownership evidence: EV-192–EV-193.  
-Outer acquisition/binding closure: EV-204–EV-205.  
-Controlled physical repair: EV-206.
-
-### C1-O2 bridge events
-
-The lightweight P1/P2 bridge is now established, not an open diagnostic hypothesis. Preserve only enough signal to prove/regress:
+Preserve only enough routine C1-O2 signal to regress:
 
 ```text
 PRECOMBAT_ACQUIRED
 PRECOMBAT_BRIDGE_CONSUMED
-relevant DISPATCH RETURN
+relevant DISPATCH RETURN when early offense occurred
 binding/generation/null-argument invariant failures
 ```
 
-Do not restore broad eager dispatch capture or broad per-call ScriptFunction logging.
-
-### C1-R1 repair events
-
-Preserve enough signal to distinguish:
+Preserve C1-R1 outcome distinctions:
 
 ```text
 NO_OP_NO_OUTSTANDING
@@ -175,21 +137,85 @@ A repair result is meaningful only together with exact source ownership, livenes
 
 ---
 
-## 5. Current Diagnostic Question
+## 5. Opt-In Deep Probes — Retain Only for Concrete Investigations
 
-C1-O2 is closed for the tested bridge model. C1-R1 implementation and its main positive/no-op/source-specific/marker/broad exercised coverage are also established.
+The B1–B9 research phase required broad observation to discover native ownership/cleanup paths. Those questions are now largely closed and their durable conclusions live in canonical evidence.
 
-The current runtime question is narrow:
+The following current probes are candidates for **opt-in diagnostic mode rather than ordinary always-on logging**:
 
-> Do genuine unarmed/Fist and crossbow gameplay remain outside inappropriate weapon-style C1 repair ownership/mutation while the validated C1-R1 DLL remains stable?
+```text
+PrimaryFirst PlayMotion / StopMotion snapshots
+OnTick marker-owned primary-motion lifetime tracking
+AICombatMoveStartRecover begin/end snapshots and stacks
+AIFullStop callsite / input-duration / stack capture
+broad AISetState caller/context stack snapshots
+broad outer ScriptFunction frame snapshots
+full native-cleanup stack capture for every 7 -> 5 transition
+empty-primary successor / replacement stack probes
+```
 
-The exact current test responsibility is owned by `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md`.
+These are candidates, not an instruction to delete them immediately.
 
-No new diagnostic architecture is required for that closure. Use the existing events and inspect only the signals needed to establish absence of inappropriate obligation/repair/failure behavior.
+Use them only when a concrete future question needs them, such as `AttackContinuationProtection`, a new cleanup contradiction, a hook-order/calling-convention contradiction, a source-lifetime problem or a new animation-replacement question.
 
 ---
 
-## 6. Established `RunScriptFunction` Context Rules
+## 6. Obsolete Historical Noise — Removal Rule
+
+A diagnostic path may be removed entirely only when all of the following are true:
+
+```text
+1. the question it answered is closed;
+2. its durable conclusion/provenance already exists in canonical evidence;
+3. no current collision/marker/lifecycle/continuation responsibility depends on the runtime signal;
+4. an opt-in deep mode would not provide realistic future value;
+5. removing it cannot alter behavior, hook ordering or feature state.
+```
+
+Do not delete a probe merely because its output is large. Prefer a compact core event or an opt-in deep mode before deleting useful investigative capability.
+
+---
+
+## 7. Mandatory Post-EngineBridge Diagnostics Review
+
+After the central EngineBridge extraction, every `.cpp` in `prototypes/Script_FrameCollisionTest` is reviewed one by one before marker simplification begins. `CollisionDiagnostics.cpp` receives a dedicated evidence-volume audit during that gate.
+
+For every diagnostic function/event, classify it as exactly one of:
+
+```text
+CORE COLLISION EVIDENCE
+OPT-IN DEEP PROBE
+OBSOLETE HISTORICAL NOISE
+```
+
+The review must answer:
+
+```text
+- Which current/future collision question does this event answer?
+- Is the same fact already available from a smaller authoritative event?
+- Does it execute on a high-frequency path?
+- Does it duplicate large state/stack blocks repeatedly?
+- Would moving it behind a diagnostic mode preserve investigative precision?
+- Could removing/guarding it accidentally change hook behavior or ordering?
+```
+
+Do not perform logger slimming before the EngineBridge refactor has passed its own compact runtime baseline with the existing logger. Structural behavior and observation changes must remain causally separable.
+
+Preferred sequence:
+
+```text
+EngineBridge extraction
+→ build/source audit
+→ one-by-one .cpp review including diagnostics classification
+→ compact collision baseline with unchanged logger
+→ freeze/implement approved logger reduction separately
+→ prove reduced/default logger still exposes all required collision signals
+→ only then begin marker-bookkeeping simplification
+```
+
+---
+
+## 8. Established `RunScriptFunction` Context Rules
 
 The proven synchronous `gCScriptAdmin::RunScriptFunction(..., stateStack, spu)` context remains bounded by these rules:
 
@@ -210,23 +236,24 @@ Evidence: EV-195–EV-196, EV-204–EV-205.
 
 ---
 
-## 7. Logging Restraint
+## 9. Logging Restraint
 
-The generic script and collision paths execute far more than the active test needs. Therefore:
+Generic script/collision paths execute far more than most active tests need. Therefore:
 
 - no broad per-call ScriptFunction dump;
 - no continuous state-stack logging;
-- no full stack dump for every dispatch;
-- no family/action table to decide ownership;
-- no polling/world scans;
+- no full stack dump for every ordinary dispatch/cleanup;
+- no family/action table to decide lifecycle ownership;
+- no polling/world scans for diagnostic convenience;
 - no logging merely because a frame exists;
+- no repeated large context block when a compact generation/source event already answers the question;
 - no new verbose probe when existing C1/SetCollisionGroup/marker diagnostics already answer the question.
 
-For large runtime logs, preserve the raw artifact and use the deterministic large-log evidence tooling described by POP-07 / `tools/log_evidence/README.md` rather than weakening runtime logging to fit connector limits.
+Large logs may still legitimately occur during broad compatibility or actor-general tests. Preserve raw evidence and use POP-07 when necessary, but **large-log tooling is not a reason to keep avoidable routine verbosity**.
 
 ---
 
-## 8. Cleanup and Repair Observation Semantics
+## 10. Cleanup and Repair Observation Semantics
 
 Do not define cleanup as “the group is currently not 7.”
 
@@ -261,7 +288,7 @@ Do not add cleanup because `RunScriptFunction` returned, CombatMove FullStopped,
 
 ---
 
-## 9. Execution Identity
+## 11. Execution Identity
 
 Current authority:
 
@@ -279,7 +306,7 @@ If a future relevant ScriptFunction has null `m_pArguments`, log the failure and
 
 ---
 
-## 10. Marker Diagnostics Remain Separate
+## 12. Marker Diagnostics Remain Separate
 
 Marker occurrence/replay/source-set bookkeeping is proven behavior with its own regression history. C1 must not reinterpret marker diagnostics as execution cleanup state.
 
@@ -297,11 +324,33 @@ Before any future marker-core simplification, retrieve the marker-lifetime route
 
 ---
 
-## 11. What Not to Add Without a New Question
+## 13. Diagnostic Sufficiency Contract
+
+The default retained diagnostic profile is sufficient only if controlled runs can still establish, without deep probes:
+
+1. exact marker ownership/suppression and accepted/rejected marker result;
+2. exact source offense/cleanup transition;
+3. C1 generation identity for the relevant source obligation;
+4. pre-Combat acquisition/bridge consumption when that path occurs;
+5. clean/reaction/no-offense finalization as non-mutating;
+6. destructive outstanding live/equipped group-7 finalization as one exact `7 -> 5` repair;
+7. source-specific Dual independence;
+8. marker-owned repair/retirement interaction without reopening stale collision;
+9. unsupported/negative source classes do not acquire inappropriate weapon-style repair obligations;
+10. any binding/liveness/repair/marker divergence appears as an explicit invariant/failure rather than hidden fallback behavior;
+11. build identity and clean unload.
+
+If slimming the logger makes any of these facts ambiguous, the reduction is too aggressive and must be revised.
+
+For a dedicated future investigation, an opt-in deep profile may add call stacks, motion snapshots or broader native context without changing behavior.
+
+---
+
+## 14. What Not to Add Without a New Question
 
 Do not add:
 
-- GetUp/Quick/Whirl/action/input/state-name ownership classifiers;
+- GetUp/Quick/Whirl/action/input/state-name lifecycle ownership classifiers;
 - unconditional cleanup/finalization on `RunScriptFunction` return, FullStop or AISetState;
 - adoption of arbitrary already-group-7 equipment;
 - null-arguments identity fallback;
@@ -309,33 +358,19 @@ Do not add:
 - wall-clock cleanup timers;
 - duplicate hook owners for the same target;
 - another lifecycle model inside diagnostics;
-- marker-core simplification during C1-R1 closure;
+- marker-core simplification merely to reduce log size;
 - `ClearTriggeredList()` as terminal repair behavior;
 - guessed binary layouts when SDK-supported fields or opaque factual logging are sufficient.
 
 ---
 
-## 12. Current Diagnostic Acceptance
-
-The retained diagnostic architecture is sufficient when a controlled run can establish, without broad dumps:
-
-1. exact source offense/cleanup obligation transitions;
-2. pre-Combat acquisition/bridge consumption when that path occurs;
-3. clean/reaction/no-offense finalizations as non-mutating;
-4. destructive outstanding live/equipped group-7 finalization as one exact `7 -> 5` repair;
-5. source-specific Dual behavior;
-6. marker-owned repair/retirement interaction without reopening stale collision;
-7. unsupported/negative source classes do not acquire inappropriate weapon-style repair obligations;
-8. any binding/liveness/repair divergence appears as an explicit invariant/failure rather than hidden fallback behavior.
-
----
-
-## 13. Release Extraction Rule
+## 15. Release Extraction Rule
 
 When collision behavior is stable:
 
 1. keep production behavior modules and required hook ownership;
-2. omit verbose research diagnostics from the release build;
-3. retain a diagnostic build/tool for future controlled reproduction;
-4. selectively migrate only generally useful observations to the combat logger;
-5. preserve raw logs/evidence IDs so removed instrumentation does not erase what it taught us.
+2. omit default research verbosity from the release build;
+3. retain a diagnostic build/profile for future controlled reproduction;
+4. keep compact exact failure/invariant observability where it is useful and cheap;
+5. selectively migrate only generally useful observations to the general combat logger;
+6. preserve raw logs/evidence IDs so removed instrumentation does not erase what it taught us.
