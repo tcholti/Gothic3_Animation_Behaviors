@@ -2,7 +2,7 @@
 
 **Purpose:** Small transient bridge between Normal Chat and Work/local execution. Replace rather than accumulate chronology.
 
-## Current bridge — C1-R1-E marker / broader validation
+## Current bridge — C1-R1-E broader mixed stability / negatives
 
 C1-O2-P2 is closed for the tested outer-acquisition/binding model. Canonical result: **EV-205**.
 
@@ -31,8 +31,8 @@ R1-B build / identity / isolated load-unload = PASS
 R1-C targeted positive repair = PASS
 R1-D no-op / reaction / GetUp controls = PASS
 R1-E Dual source-specific repair = PASS
-R1-E compact marker regression = CURRENT
-R1-E broader mixed player/NPC/negative stability = pending
+R1-E compact marker regression = PASS
+R1-E broader mixed player/NPC/negative stability = CURRENT
 ```
 
 ---
@@ -67,46 +67,25 @@ blob: 9e879f9a86e61b62c3c5c86fd23cdfea7c543334
 bytes: 1275389
 ```
 
-User deliberately exercised repeated Dual QuickAttack bad-skip attempts from one stance/source, changed P0/P1 side with a Normal attack, then repeated from the other stance/source. Testing outside combat removed enemy-interruption noise.
-
-Exact first-copy accounting from the committed raw:
+Exact first-copy accounting:
 
 ```text
 44 C1 finalizations
 × 2 tracked Dual sources
-= 88 per-source finalization outcomes
+= 88 per-source outcomes
 
 13 REPAIRED_TO_ITEM_EQUIPPED
 75 NO_OP_NO_OUTSTANDING
+
+13 repairs:
+5 RIGHT
+8 LEFT
 
 34 C1 OFFENSE REQUEST
 34 C1 CLEANUP FULFILLED
 ```
 
-The 13 repairs split across both exact Dual sources:
-
-```text
-5 RIGHT repairs
-8 LEFT repairs
-```
-
-Representative source-specific behavior:
-
-```text
-RIGHT outstanding at 7
-→ RIGHT RepairAttempted=1
-→ one request 5
-→ RIGHT result 5 / PhysicalCollisionChanged=1
-→ LEFT NO_OP_NO_OUTSTANDING / RepairAttempted=0 / PhysicalCollisionChanged=0
-
-LEFT outstanding at 7
-→ LEFT RepairAttempted=1
-→ one request 5
-→ LEFT result 5 / PhysicalCollisionChanged=1
-→ RIGHT NO_OP_NO_OUTSTANDING / RepairAttempted=0 / PhysicalCollisionChanged=0
-```
-
-There was no `RequestedGroup: 7` with `BeforeGroup: 7`; later legitimate Dual activations began clean rather than inheriting stale offense.
+Each repair mutated only the exact outstanding side. The opposite Dual source remained `RepairAttempted=0 / PhysicalCollisionChanged=0`. Later legitimate activations did not inherit `7 -> 7`.
 
 Failure signals:
 
@@ -116,91 +95,133 @@ UNRESOLVED_NOT_EQUIPPED = 0
 C1 INVARIANT WARNING = 0
 ```
 
-Normal DLL unload was captured.
-
-This Dual run was **unmarked/native**: observed QuickAttack motion decisions reported `ContainsReservedSourceMarker: 0`. It therefore closes only the source-specific portion of R1-E and does not count as marker regression.
+This run was unmarked/native and closes only Dual source specificity.
 
 ---
 
-## Current runtime responsibility — R1-E compact marked terminal-repair regression
+## R1-E compact marked Staff regression — PASS
 
-Reuse the already-proven v0.20 marked Staff full-Whirl fixture from:
+Raw evidence:
 
 ```text
-research/archive/2026-08-25_framecollision_v0.20_player_staff_2h_dual_block_timeout_marked_probe.log
+research/raw/2026-08-30_c1r1e_marked_staff_terminal_repair_regression.log
+commit: 82e5873
+bytes: 268710
 ```
 
-Known fixture:
+Authored marked Staff Whirl fixture:
 
 ```text
 weapon/source: Wrestling Staff_BBM, RIGHT
 motion: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
-ContainsReservedSourceMarker: 1
-G3AB_COL_RIGHT occurrence at frame 4
-G3AB_COL_OFF occurrence at frame 10
-later RIGHT occurrence also authored
+markers:
+frame 4  = G3AB_COL_RIGHT
+frame 10 = G3AB_COL_OFF
+frame 15 = G3AB_COL_RIGHT
 ```
 
-Historical marked bad-skip behavior showed the first accepted RIGHT marker activating the Staff `5 -> 7`; after destructive state/action replacement, later marker callbacks could arrive with unsupported action and be rejected while the source remained offensive. That is exactly the interaction C1-R1 must now make safe without changing marker semantics.
-
-### Frozen test
-
-Use the same C1-R1 DLL; no rebuild/redeploy.
+User runtime sequence:
 
 ```text
-1. Equip Wrestling Staff_BBM / Staff setup using the existing marked full-Whirl animation.
-2. Perform ONE clean full Whirl and let it finish normally.
-3. Reproduce the known held-Use2 bad skip on the marked full Whirl.
-   Because manual timing can miss the armed window, make up to 3 attempts if needed.
-4. After each bad-skip attempt, wait a couple of seconds.
-5. After the attempts, perform ONE clean marked full Whirl and let it finish.
-6. Exit normally.
+1 clean Whirl
+2 back-to-back skipped Whirls
+1 normal Whirl where bad-skip attempt failed
+1 confirmed bad-skip Whirl
+1 final clean Whirl
 ```
 
-The log, not visual timing, decides whether each attempted bad skip armed the marker-owned source.
-
-### Required meaning
-
-Clean marked Whirl before the destructive attempt must preserve existing marker behavior and ordinary cleanup/no-op finalization.
-
-For any armed destructive marked case:
+Six C1 generations were observed:
 
 ```text
-accepted RIGHT marker
-→ exact Staff source obligation / marker-owned source active at 7
-→ later marker OFF may be rejected if native action/state was already destroyed
-→ destructive finalization sees exact outstanding live Staff at 7
-→ C1-R1 performs one exact 7 -> 5 repair
-→ existing SetCollisionGroup hook observes cleanup
-→ marker-owned source bookkeeping is retired through existing logic
-→ finalization REPAIRED_TO_ITEM_EQUIPPED
+gen 1 = clean marked Whirl
+gen 2 = destructive skip after first RIGHT marker armed
+gen 3 = destructive skip before offense marker
+gen 4 = clean marked Whirl / failed bad-skip attempt
+gen 5 = destructive skip before offense marker
+gen 6 = final clean marked Whirl
 ```
 
-The later clean marked Whirl must then begin from a clean source and accept its marker sequence normally; no stale `7 -> 7` inheritance or stale marker-owned bookkeeping may block/reuse the previous execution.
-
-If an attempted bad skip occurs before the first accepted RIGHT marker, zero obligation/zero repair is the correct result.
-
-Failure/high-signal checks:
+Generation 2 is the decisive marker-owned repair case:
 
 ```text
-repair divergence
-C1 invariant warning
-unresolved source
-stale marker-owned source carried into the next execution
-marker occurrence budget not resetting for the new execution
-unexpected suppression/fallback change
+accepted G3AB_COL_RIGHT
+→ exact RIGHT Wrestling Staff obligation
+→ Staff 5 -> 7
+→ destructive finalization before marker-owned cleanup
+→ outstanding exact Staff still live/equipped at 7
+→ one C1-R1 request Item_Equipped(5)
+→ resulting group exactly 5
+→ REPAIRED_TO_ITEM_EQUIPPED
+→ C1 CLEANUP FULFILLED observed through existing SetCollisionGroup hook
+→ repair caller = Script_FrameCollisionTest.dll
+→ RetiredMarkerExecutionCount: 1
 ```
 
-Frozen raw filename:
+Thus the physical repair retired the existing marker-owned source bookkeeping through the normal SetCollisionGroup hook rather than bypassing marker cleanup semantics.
+
+After the repair, late callbacks from the abandoned marked motion arrived with unsupported action and the Staff already at 5, so they were rejected and did not reopen stale ownership.
+
+Generations 3 and 5 prove destructive skips can occur before the first marker arms offense; both correctly finalized `NO_OP_NO_OUTSTANDING` with zero mutation.
+
+Clean generations 1, 4 and 6 preserved existing marker behavior. Their authored RIGHT/OFF/RIGHT flow produced fresh marker budgets and clean `5 -> 7` activations; generation 6 proves the execution after the physical repair begins from clean source and marker-owned state rather than inheriting the abandoned execution.
+
+Failure signals:
 
 ```text
-research/raw/2026-08-30_c1r1e_marked_staff_terminal_repair_regression.log
+REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = 0
+UNRESOLVED_NOT_EQUIPPED = 0
+C1 INVARIANT WARNING = 0
 ```
 
-Stop and preserve the run if the game crashes or behavior is clearly abnormal.
+Test-design note: preparing or modifying test animations is explicitly acceptable when it strengthens falsification. Do not avoid a purpose-built marker fixture merely to reuse an old animation.
 
 ---
 
-## After marker regression
+## Current runtime responsibility — R1-E broader mixed stability / negatives
 
-If the compact marked test passes, the only remaining R1-E responsibility is broader mixed player/NPC/negative stability. That final run should deliberately cover representative weapon families plus some NPC activity and protect Fist/bow/crossbow/magic negative behavior without attempting to force C1 weapon-source repair onto unsupported source classes.
+No source change, rebuild or redeploy is required.
+
+Goal: one broader runtime run that tests the already-frozen C1-R1 rule under ordinary gameplay diversity without adding new production classifiers or forcing unsupported sources into the weapon repair model.
+
+Minimum useful coverage:
+
+```text
+player:
+- representative 1H
+- Shield + 1H
+- Dual
+- Staff
+- 2H
+- mix clean attacks and ordinary interruption/reaction churn
+- some held-Use2 destructive skips are useful but not mandatory for every family
+
+NPC/general actor:
+- allow several NPC melee exchanges / attacks / reactions
+- no Hero-only assumption; observe existing general actor/source guard under natural activity
+
+negative/unsupported source classes:
+- Fist/unarmed
+- bow
+- crossbow
+- magic
+```
+
+Negative classes do not need artificial bad-skip reproduction. Their role is to prove ordinary use does not create inappropriate weapon-source repair obligations or crashes/regressions.
+
+What must remain true:
+
+```text
+- legitimate/native cleanup still wins with zero R1 mutation
+- any actual R1 repair is exact-source, 7 -> 5, one-shot
+- no stale later 7 -> 7 inheritance after repair
+- no repair divergence
+- no C1 invariant warning
+- no unsafe unresolved-source dereference
+- no inappropriate weapon-style repair on Fist/bow/crossbow/magic
+- marker behavior remains stable if marked motions happen to be exercised
+- game remains stable through ordinary player/NPC state churn and normal unload
+```
+
+Do not treat this as a requirement to reproduce every historical test family. Prefer a reasonably long natural mixed session with deliberate representative coverage.
+
+After this broader run is inspected, package the Dual + marker + broad R1-E evidence canonically and decide whether C1-R1 validation is closed or whether one specific remaining falsification is still justified.
