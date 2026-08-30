@@ -67,9 +67,10 @@ Use `EVIDENCE_INDEX.md` Active-Problem Reconstruction when the causal model is n
 - C1 tracks successful offensive requests as exact per-source obligations, observes native cleanup, and classifies outstanding obligations at destructive AISetState finalization;
 - GetUpAttack can request offense before CombatMove, so CombatMove alone is too late as a universal acquisition boundary;
 - C1-O1 proved the live outer ScriptFunction frame can correlate pre-CombatMove offense → CombatMove → cleanup, while raw frame/argument addresses are lifetime-bound correlators only and may be reused after retirement;
-- C1's own monotonic generation remains the durable plugin execution identity.
+- C1-O2-P1 proved that the missing GetUp pre-Combat offense occurs inside a safe lightweight live `RunScriptFunction` scope and that matching CombatMove begins before that wrapper returns/suspends;
+- C1's monotonic generation remains the durable plugin execution identity.
 
-Evidence route: EV-151–EV-203.
+Evidence route: EV-151–EV-204.
 
 ---
 
@@ -100,16 +101,17 @@ Core model and acquisition evidence:
 
 - EV-192–EV-193 — shadow execution/source obligation model;
 - EV-194 — GetUp pre-CombatMove acquisition gap;
-- EV-195–EV-196 — outer ScriptFunction lifetime and C1-O1 correlation/pointer-reuse qualification.
+- EV-195–EV-196 — outer ScriptFunction lifetime and C1-O1 correlation/pointer-reuse qualification;
+- EV-204 — P1 lightweight dispatch bridge source/isolated/targeted validation.
 
-### Directly relevant hook/finalizer substrate
-
-Current tested state:
+### Directly relevant tested substrate
 
 ```text
 RunScriptFunction
-= recursion-safe explicit-this pure pass-through
-= stable transport baseline
+= recursion-safe explicit-this .ThisCall()
+= stack-local/TLS lightweight current scope
+= PASS source audit + isolated load + targeted P1 meaning validation
+= no separate P1 extended-stability claim yet
 
 AISetState
 = explicit-this recursion-safe .ThisCall()
@@ -128,70 +130,82 @@ FinalizeAfterAISetState
 = PASS for tested isolated + extended stability
 ```
 
-Canonical continuation evidence: `docs/EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-203.
+Canonical continuation evidence: `docs/EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-204.
 
-The 2026-08-30 corrected extended run covered about 852.7 seconds with 992 SetCollisionGroup events, 333 C1 finalizations, 235 AIFullStop calls, 147 CombatMove FullStops and 195 native cleanup call sites without reproducing the prior finalizer crash. All nine C1 invariant warnings inspected were the already-known `UNOWNED_PLAYER_OFFENSE_REQUEST` acquisition-gap family.
-
-Important qualification: the corrected run did **not** positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` finalization branch. Do not claim runtime proof of that exact branch.
+Important qualification: the corrected EV-203 run did **not** positively exercise an outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` finalization branch. Do not claim runtime proof of that exact branch.
 
 ---
 
-## C1-O2 — Reassessment Result
+## C1-O2-P1 — Closed Meaning Gate
 
-C1-O2 remains the higher-level architectural destination:
+P1 implemented only a zero-allocation, nesting-safe, stack-local current `RunScriptFunction` scope around the already-correct explicit-this hook transport. The generic wrapper still performs no state-stack, actor, C1, allocation or logging work before native execution.
 
-> **Can C1 bind its monotonic generation to the live outer ScriptFunction frame, acquire legitimate offense before CombatMove, reuse the same generation when later CombatMove belongs to that still-live frame, and retire the native binding before pointer reuse without changing the already-passed cleanup/finalization model?**
+Validated corrected P1 DLL SHA256:
 
-The original direct `RunScriptFunction` capture and its ABI-corrected explicit-this successor both crashed while the same eager Begin/original/End capture lifecycle remained active. The current wrapper keeps the corrected explicit-this transport but removes that capture work and is stable. Therefore the hook transport alone is no longer the primary suspect.
+```text
+44C15C068D34F82BDCB03EEBEC76C3C0A93094D64662B032954BFF637D51E05D
+```
 
-The old crash was in native `Script.dll` `Entity::IsPlayer() const` at tested `+0x1494C`, reached during registered ScriptFunction execution with `Game +0x1605EB` below it. The faulting instruction reads from the preserved object register; the old crash report's `ECX=0` alone does not prove a null incoming `this`. Do not restore the old eager capture or attribute the crash to one unproven helper by assumption.
+P1-B isolated main-menu load/unload passed.
 
-Native/source review now also establishes:
+P1-C targeted gameplay produced 27 relevant offense-scope records and four deliberate GetUpAttack acquisition-gap reproductions. In all four initial GetUp `5 -> 7` events:
 
-- `RunScriptFunction` already receives the SPU, runtime-stack reference and ScriptFunction name needed for a synchronous dispatch bridge;
-- native return `false` preserves/suspends the ScriptFunction frame, while `true` removes the completed top frame before returning;
-- the old post-call state-stack recapture was therefore unnecessary merely to learn completion;
-- the current stable SetCollisionGroup diagnostics already perform lazy outer-frame/state-stack inspection only at relevant offense/cleanup events, including hundreds of successful observations in the corrected extended run.
+```text
+CurrentScopeExists = 1
+scope SPU = player SPU
+scope runtime stack = player SPU state stack
+ScriptFunctionName = _AI_GetUpAttack
+OffenseObservedSet = 1
+ParentScopeExists = 0
+```
 
-This supports a smaller staged route rather than restoring the old `thread_local std::vector` / copied-string dispatch machinery.
+The independent outer-frame probe at the same event agreed on `_AI_GetUpAttack`, `OnAI_GetUpAttack`, the same SPU and a non-null arguments pointer. In all four cases matching CombatMove began in that same live ScriptFunction invocation, then the wrapper returned `GEFalse` / suspended. Later timer `7 -> 7` offense occurred with no live wrapper scope while `_AI_GetUpAttack` remained suspended on the SPU.
+
+Ordinary Normal/Quick timer offense likewise often occurs with `CurrentScopeExists = 0`; a live P1 scope is therefore **not** a universal requirement for offense ownership and must only bridge the proven pre-Combat case.
+
+P1-D was not run as a separate long-duration gate. P1 is accepted for its source, isolated and targeted meaning responsibility; do not describe it as independently extended-stability proven.
 
 ---
 
-## Current Immediate Responsibility — C1-O2-P1 Frozen Work Task
+## Current Immediate Responsibility — C1-O2-P2
 
-**C1-O2-P1 is now frozen for bounded Work implementation.**
+**C1-O2-P2 is now frozen for bounded Work implementation.**
 
 Exact contract: `docs/BETWEEN_CHATS.md`.
 
-P1 asks only whether the stable RunScriptFunction wrapper can carry a zero-allocation, nesting-safe, stack-local current-dispatch scope across the native call with no engine/API work before native execution, then expose that scope only at an already-relevant player offensive SetCollisionGroup event.
+P2 asks:
 
-P1 does **not** yet:
+> **Can C1 use the proven P1 live `RunScriptFunction` scope only at a successful exact equipped-source pre-CombatMove offense to acquire its existing monotonic generation, let matching CombatMove in that same live ScriptFunction invocation reuse that generation, then consume/retire the native-frame bridge before `RunScriptFunction` returns — without reconnecting the rejected eager dispatch machinery or changing cleanup/finalization/physical collision behavior?**
 
-- acquire or bind a C1 generation;
-- persist a native frame binding across suspension;
-- choose parent/outer ownership semantics;
-- solve continuation retirement;
-- change cleanup/finalization classification;
-- enable physical repair.
+The key simplification is deliberate:
 
-The intended generic RunScriptFunction cost is only local/TLS pointer bookkeeping around the native call. State-stack inspection, actor lookup, collision work and logging remain event-driven and occur only after an existing relevant event has already justified them.
+```text
+native ScriptFunction identity
+= temporary offense -> CombatMove correlator only
+
+C1 monotonic generation
+= durable execution identity
+```
+
+P2 must first test whether the temporary native binding can be consumed at matching CombatMove. Do **not** assume it must persist across ScriptFunction suspension. If it reaches wrapper return unconsumed, retire the native binding and report a diagnostic gate failure without dropping the already-real C1 source obligation or inventing continuation ownership.
 
 ### Protected state
 
 Do **not**:
 
-- reconnect the old `BeginScriptFunctionDispatch()` / `EndScriptFunctionDispatch()` implementation;
+- reconnect `g_ScriptFunctionDispatchStack`, `BeginScriptFunctionDispatch()` or `EndScriptFunctionDispatch()`;
+- add eager per-dispatch state-stack/actor/string/container work;
+- add parent/outer fallback selection;
+- add family/action/input/GetUp/state-name production classifiers;
+- add guessed null-argument fallback;
 - enable physical repair;
-- change C1 generation/source/cleanup semantics;
-- roll back SetCollisionGroup explicit-this transport;
-- change AISetState/AIFullStop transport;
-- alter marker names, marker ownership, marker retirement or source selection;
-- classify production ownership by held Use2, 2500 ms, Whirl, Quick, GetUp or patch callsite;
-- mechanically convert StartEffect, PlayMotion or StopMotion;
-- add polling, timers, world scans or guessed null-argument fallback;
-- treat the unobserved liveness-negative branch as runtime-proven.
+- change source-obligation/native-cleanup semantics;
+- change AISetState finalization semantics;
+- change hook transport;
+- alter marker names, ownership, retirement or source selection;
+- add polling, timers or world scans.
 
-The known destructive abandonment remains the strongest positive stress case. Clean completion, legitimate reaction cleanup, pre-activation interruption, inherited-state attribution, exact source-side behavior and no-repair outcomes remain protected controls.
+The known destructive abandonment remains the strongest positive later stress case. Clean completion, legitimate reaction cleanup, pre-activation interruption, inherited-state attribution, exact source-side behavior and no-repair outcomes remain protected controls.
 
 ---
 
@@ -237,7 +251,7 @@ All addresses are tested-build-specific.
 |---|---|
 | current exact continuation / frozen Work task | `BETWEEN_CHATS.md` |
 | active stale-collision causal reconstruction | `EVIDENCE_INDEX.md` Active-Problem Reconstruction |
-| C1-O2 / hook/finalizer continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-203 |
+| C1-O2 / hook/finalizer continuation evidence | `EVIDENCE_LEDGER_STEP_C.md` EV-199–EV-204 |
 | outer lifetime / cleanup architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | current staged validation | `COLLISION_TEST_PLAN.md` |
 | native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
