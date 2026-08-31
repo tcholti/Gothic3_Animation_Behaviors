@@ -27,7 +27,7 @@ shared behavior architecture
 → separate instrumented DIAGNOSTIC twin used in place of release for controlled testing
 ```
 
-Never normally load the behavior-only and diagnostic twins together.
+Never normally load behavior-only and diagnostic twins together.
 
 ---
 
@@ -48,8 +48,8 @@ After bootstrap, report briefly:
 ```text
 current technical responsibility
 Gates 1–4 evidence state
-exact historical regression still required before promotion checkpoint
-what comes after that regression
+what exact architecture-verification steps still remain
+what happens only after architecture verification is complete
 ```
 
 ---
@@ -114,82 +114,138 @@ Preserve RIGHT/LEFT/BOTH/OFF exact-set semantics, occurrence budgets, duplicate/
 
 ---
 
-## Current Technical Responsibility — Exact EV-131 Historical Regression Confirmation
+## Current Technical Responsibility — Finish Verification of the New Architecture
 
-EV-213 validly closed Gate 4 using the equivalent two-contact full-Whirl no-leak proof because the **installed** marked 2H Normal P0 asset in that run had only one authored RIGHT.
+The project is **not moving on to documentation audit, branch cleanup or new marker expansion yet**.
 
-The User has now clarified that this was a test-fixture misunderstanding: the original **two-marker/two-contact 2H Normal regression fixture still exists in Blender** and simply was not exported/installed for the final run.
+EV-213 validly closed Gate 4 under the evidence already collected, including the equivalent two-contact full-Whirl no-leak proof. However, the User clarified that the original two-marker/two-contact 2H Normal historical regression fixture still exists in Blender and was simply not exported/installed for the last test.
 
-Therefore, before treating the new architecture as ready for its stable promotion/documentation checkpoint, perform one final literal EV-131-class confirmation with that restored Normal fixture.
+Before declaring the new architecture fully verified for the next project phase, finish two final steps:
 
-This is a **confidence/promotion completion**, not a source redesign. EV-213 remains valid evidence; do not erase or rewrite the Whirl-equivalent proof.
+```text
+1. literal EV-131-class diagnostic regression with the restored two-marker 2H Normal fixture
+2. final behavior-only smoke with that restored fixture and ordinary melee afterwards
+```
+
+Only after **both** pass is architecture verification complete.
+
+### Step 1 — literal EV-131 historical regression
 
 Required causal route before freezing the test:
 
 ```text
-EV-131  historical occurrence-budget leak
+EV-131 historical occurrence-budget leak
 EV-132–EV-133 historical correction/test fixture
-EV-213  generation-scoped replacement and equivalent Whirl proof
+EV-213 generation-scoped replacement and equivalent Whirl proof
 MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
 COLLISION_TEST_PLAN.md
 ```
 
-Required result:
+The User must first export/install the preserved Blender two-contact 2H Normal fixture.
+
+Before attempting interruption, verify through CORE diagnostics that the live fixture is actually correct:
 
 ```text
-marked two-contact 2H Normal execution A
-→ first RIGHT accepted under generation A
-→ execution interrupted before later genuine RIGHT
-
-next same exact Normal motion execution B
-→ different fresh C1 generation
-→ first RIGHT starts a fresh occurrence budget (0 -> 1, ExecutionBudgetReset: 1)
-→ later genuine RIGHT is accepted (1 -> 2)
-→ replay protection remains intact
-→ no no-generation / generation-inconsistency / invariant / divergence / unresolved signal
-→ clean shutdown
+Actor: PC_Hero
+Family: NORMAL
+exact intended 2H Normal motion
+ContainsReservedSourceMarker: 1
+AuthoredRIGHTCount: 2
 ```
 
-If the exact historical confirmation fails, **reopen Gate 4 and stop before documentation audit/promotion work**.
+Then prove:
 
-If it passes, record the literal confirmation as the next evidence item and complete one compact behavior-only fixture smoke if useful; no source rebuild is required merely because the animation fixture changed.
+```text
+marked two-contact Normal execution A
+→ first genuine RIGHT accepted under generation A
+→ execution A interrupted before later genuine RIGHT
 
-Do not begin equipped-melee expansion before this checkpoint sequence is complete.
+immediate next attack execution B
+→ same exact Normal motion as A
+→ different fresh C1 generation
+→ first RIGHT starts fresh budget: 0 -> 1, ExecutionBudgetReset: 1
+→ later genuine RIGHT accepted: 1 -> 2
+→ replay protection remains intact
+→ no REJECTED_NO_C1_GENERATION
+→ no REJECTED_C1_GENERATION_INCONSISTENCY
+→ no INVARIANT / DIVERGED / UNRESOLVED signal
+→ clean diagnostic shutdown
+```
+
+If this fails, **reopen Gate 4 and stop**. Do not audit, promote or begin new feature work.
+
+If it passes, record the literal historical confirmation as the next global evidence item. Preserve EV-213 and its Whirl-equivalent proof unchanged as valid prior evidence.
+
+No source rebuild is required merely because the animation fixture changes.
+
+### Step 2 — final behavior-only architecture smoke
+
+After the exact diagnostic regression passes:
+
+```text
+remove diagnostic twin
+→ deploy the already-validated Gate 4 behavior-only DLL alone
+→ verify exact built/live identity
+→ main-menu load/normal exit
+→ test the restored two-contact Normal fixture visibly
+→ perform several interruption/restart attempts
+→ then ordinary Staff / 1H / 2H combat
+→ confirm no stuck collision, crash or obvious regression
+→ normal exit
+```
+
+Authoritative Gate 4 behavior-only identity:
+
+```text
+Script_FrameCollisionBehaviorTest.dll
+Length: 378880
+SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
+```
+
+This final smoke is a functional/release-purity check only; internal proof remains the diagnostic evidence.
+
+If both final steps pass:
+
+```text
+NEW ARCHITECTURE VERIFICATION = COMPLETE
+```
+
+Do not invent another broad matrix unless these tests expose a concrete contradiction.
 
 ---
 
-## Mandatory Checkpoint After Exact Gate 4 Confirmation — Documentation / Knowledge-System Audit
+## Only After Architecture Verification Is Complete — Documentation / Knowledge-System Audit
 
-The User explicitly wants a broad documentation review **after the new architecture is fully tested and before branch/stable-integration cleanup or new marker expansion**.
+The User is not in a rush to audit. The audit begins **only after the new architecture has been completely verified**.
 
-This is an appropriate stable-subsystem/promotion checkpoint under `KNOWLEDGE_MAINTENANCE.md`.
+This is then the correct stable-subsystem checkpoint under `KNOWLEDGE_MAINTENANCE.md` and `KNOWLEDGE_REGISTRY.md`.
 
-The audit must review the repository knowledge system for:
+Audit for:
 
 ```text
 contradictions between current authorities
 unnecessary repeated narrative facts
-same fact maintained independently in multiple documents
+same fact independently maintained in multiple documents
 stale current-state or closed-contract wording
 bootstrap/read-first bloat
 index routes that no longer narrow retrieval
-ledger continuation clarity and monotonic EV continuity
+ledger continuation clarity and global EV continuity
 EVIDENCE_LEDGER / STEP_B / STEP_C / STEP_D duplication versus useful storage splitting
-processed artifacts still unnecessarily left in research/raw
+processed artifacts unnecessarily left in research/raw
 active vs archive boundaries
 superseded documents that should be archived or compressed
-future-use cross-routes that became speculative or redundant
+redundant/speculative future-use cross-routes
 ```
 
 Important boundary:
 
-> **Do not merge/delete evidence ledgers or authorities merely because there are several files. First determine whether the split is useful retrieval/storage structure or actual duplication. Preserve provenance and old evidence IDs.**
+> **Do not merge/delete evidence ledgers or authorities merely because several files exist. First determine whether the split is useful retrieval/storage structure or actual duplication. Preserve provenance and global EV IDs.**
 
-The audit should first produce a concise findings/cleanup plan. Perform destructive merge/delete/archive actions only after the rationale is clear and the User has had a chance to review material changes.
+The audit should first produce concise findings + proposed cleanup. Perform destructive merge/delete/archive actions only when justified and after the User can review material changes.
 
 ---
 
-## Branch / Stable-Integration Checkpoint After Documentation Audit
+## After the Audit — Stable Main Update and Branch Cleanup
 
 `PROJECT_PIPELINE.md` already defines the intended normal two-branch model:
 
@@ -201,13 +257,15 @@ docs/collision-source-evidence
 = active development/research branch
 ```
 
-The repository currently has a third temporary branch:
+`main` is currently stale. After architecture verification and the documentation audit/cleanup, this is the natural checkpoint to bring `main` up to the proven, reviewed architecture baseline.
+
+A third temporary branch currently exists:
 
 ```text
 temp/second-pass-rewrite-publish
 ```
 
-Do **not** simply delete it. A comparison on 2026-09-01 showed it is diverged from the active branch:
+Do **not** simply delete it. Comparison on 2026-09-01 showed:
 
 ```text
 active branch ahead of temp by 35 commits
@@ -215,16 +273,20 @@ temp branch ahead of active by 10 commits
 merge base: 0aa6d19a6815934a3158715070320020bac64292
 ```
 
-After the documentation audit:
+Required sequence:
 
 ```text
-inspect the temp-only commits/content
-→ identify anything unique that still needs preservation
-→ define the stable promotion set for the proven new architecture/docs
-→ deliberately integrate the stable checkpoint into protected main
+architecture verification complete
+→ documentation/knowledge audit complete
+→ justified documentation cleanup complete
+→ inspect temp-only commits/content
+→ preserve anything unique that still matters
+→ define stable promotion set
+→ deliberately integrate proven + cleaned checkpoint into protected main
 → verify main
-→ delete temp/second-pass-rewrite-publish only if its unique history/content is safely preserved or intentionally superseded
-→ retain main + docs/collision-source-evidence as the normal two-branch model
+→ delete temp/second-pass-rewrite-publish only if safe
+→ retain main + docs/collision-source-evidence as normal two-branch model
+→ continue new work on docs/collision-source-evidence
 ```
 
 Do not change branch meanings merely to achieve a branch count of two.
@@ -234,13 +296,18 @@ Do not change branch meanings merely to achieve a branch count of two.
 ## Forward Order
 
 ```text
-exact restored two-contact 2H Normal EV-131 regression — NEXT
-→ evidence/behavior-only closure confirmation
+restore two-contact 2H Normal fixture — NEXT
+→ literal EV-131 same-motion interruption/restart diagnostic regression
+→ final behavior-only restored-fixture + ordinary-melee smoke
+→ architecture verification COMPLETE
 → documentation + knowledge-system audit
 → review findings and perform justified cleanup/consolidation
-→ stable-integration checkpoint to main
-→ verify and retire temp/second-pass-rewrite-publish if safe
-→ return to normal two-branch model
+→ inspect temp-only branch history
+→ update protected main to proven + cleaned stable checkpoint
+→ verify main
+→ retire temp branch if safe
+→ normal two-branch model restored
+→ continue collision-source branch
 → equipped-melee marker expansion planning
 → freeze/implement/test one mechanism at a time
 → separate Fist source-adapter investigation

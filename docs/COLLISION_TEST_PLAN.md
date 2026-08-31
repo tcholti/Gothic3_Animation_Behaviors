@@ -1,6 +1,6 @@
 # Collision Lifecycle Test Plan
 
-**Status:** Gates 1–4 currently CLOSED/PASS by existing evidence; exact historical EV-131 Normal-fixture confirmation required before stable promotion/audit checkpoint  
+**Status:** Gates 1–4 currently CLOSED/PASS by existing evidence; new-architecture verification still requires the literal EV-131 Normal regression plus final behavior-only restored-fixture smoke  
 **Updated:** 2026-09-01
 
 ## Purpose
@@ -29,7 +29,7 @@ Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 - If compact diagnostics make a required validation fact ambiguous, treat that as diagnostic insufficiency; do not reinterpret ambiguity as proof.
 - The monotonic C1 generation is the durable marker occurrence/dedupe execution identity.
 - C1 generation does not replace authored marker semantics, source-set meaning, occurrence counts, replay suppression, OFF, repeated-contact rearm, supported-family ownership or physical marker-window state.
-- Expand future marker support one bounded mechanism/family at a time.
+- Do not begin documentation audit, stable promotion or new marker expansion while the final architecture-verification steps below remain pending.
 
 Authoritative diagnostic target:
 
@@ -207,20 +207,21 @@ PASS 1H/Dual source-specific repair regression
 PASS unsupported Power/native fallback regression
 PASS zero no-generation / generation-inconsistency / invariant / divergence / unresolved signal
 PASS clean diagnostic shutdown
-PASS behavior-only build/deploy isolation + functional smoke
+PASS Gate-4 behavior-only build/deploy isolation + broad functional smoke
 ```
 
-### 4.1 Precision correction / final promotion-confidence test: PENDING
+### 4.1 Final architecture-verification step A — literal historical Normal regression: PENDING
 
 The last Gate-4 run used the installed marked 2H Normal P0 asset, which had only one authored RIGHT. The User later clarified that the original historical two-marker/two-contact Normal regression fixture still exists in Blender and was simply not exported for that run.
 
-Therefore EV-213 remains valid, but before the new architecture is accepted for stable promotion/documentation cleanup, perform the literal EV-131-class Normal regression with the restored fixture.
+EV-213 remains valid, but the new architecture is not considered completely verified for the next project phase until the literal historical fixture is also tested.
 
 Before the runtime attempt, verify through CORE diagnostics that the live fixture actually reports:
 
 ```text
 Actor: PC_Hero
 Family: NORMAL
+exact intended 2H Normal motion
 ContainsReservedSourceMarker: 1
 AuthoredRIGHTCount: 2
 ```
@@ -231,7 +232,7 @@ Then prove:
 A. execution A uses exact Normal motion M
 B. first genuine RIGHT accepted under generation A
 C. execution A interrupted before its later genuine RIGHT
-D. next attack execution uses same exact motion M
+D. immediate next attack execution uses same exact motion M
 E. execution B has a different fresh C1 generation
 F. first RIGHT of B = 0 -> 1 and ExecutionBudgetReset: 1
 G. later genuine RIGHT of B = 1 -> 2
@@ -239,7 +240,7 @@ H. replay callbacks remain rejected
 I. no REJECTED_NO_C1_GENERATION
 J. no REJECTED_C1_GENERATION_INCONSISTENCY
 K. no INVARIANT / DIVERGED / UNRESOLVED signal
-L. clean shutdown
+L. clean diagnostic shutdown
 ```
 
 Freeze one exact raw filename before the test according to `PROJECT_PIPELINE.md` and POP-05.
@@ -249,20 +250,59 @@ Interpretation:
 ```text
 PASS
 → add next global EV confirmation
-→ EV-213 remains valid and is strengthened by literal historical-fixture coverage
-→ optionally perform one compact behavior-only fixture smoke with the already-built Gate-4 behavior-only DLL
-→ architecture validation/promotion checkpoint complete
+→ preserve EV-213 unchanged
+→ proceed immediately to final behavior-only architecture smoke
 
 FAIL
 → reopen Gate 4
-→ stop before documentation audit, stable integration or new marker expansion
+→ stop before audit, stable integration or new marker expansion
 ```
 
 No source rebuild is required solely because the animation fixture changes.
 
+### 4.2 Final architecture-verification step B — restored-fixture behavior-only smoke: PENDING
+
+This step is required after 4.1 passes.
+
+Use the already-validated Gate-4 behavior-only DLL alone:
+
+```text
+Script_FrameCollisionBehaviorTest.dll
+Length: 378880
+SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
+```
+
+Required smoke:
+
+```text
+PASS diagnostic twin removed
+PASS behavior-only DLL deployed alone
+PASS exact built/live identity
+PASS main-menu load / normal exit
+PASS restored two-contact Normal visually behaves correctly
+PASS several interruption/restart attempts show no visible stuck collision/regression
+PASS ordinary Staff / 1H / 2H combat afterwards
+PASS normal exit
+```
+
+Interpretation boundary:
+
+```text
+behavior-only smoke = functional/release-purity evidence only
+CORE diagnostic evidence = internal execution/marker proof
+```
+
+If 4.1 + 4.2 both pass:
+
+```text
+NEW ARCHITECTURE VERIFICATION = COMPLETE
+```
+
+At that point do not invent another broad matrix unless a concrete contradiction has appeared.
+
 ---
 
-## 5. Stable-Subsystem Checkpoint After Exact Gate 4 Confirmation
+## 5. Only After Architecture Verification Is Complete — Documentation / Knowledge-System Audit
 
 Before new equipped-melee expansion, perform the User-requested documentation/knowledge-system audit under `KNOWLEDGE_MAINTENANCE.md` and `KNOWLEDGE_REGISTRY.md`.
 
@@ -271,6 +311,7 @@ Audit targets include:
 ```text
 authority contradictions
 unnecessary narrative duplication
+same facts independently maintained in several documents
 stale current-state/closed-contract wording
 bootstrap/read-first bloat
 index routing quality
@@ -281,18 +322,20 @@ superseded/obsolete documents
 redundant future-use routes
 ```
 
-Do not collapse ledger files merely because several exist. Preserve provenance and evidence IDs. First produce findings and a cleanup plan; then perform only justified consolidation/archive/deletion.
+Do not collapse ledger files merely because several exist. Preserve provenance and evidence IDs. First produce findings + a cleanup plan; then perform only justified consolidation/archive/deletion.
 
 ---
 
-## 6. Stable Integration / Branch Cleanup After Documentation Audit
+## 6. After the Audit — Stable Main Update / Branch Cleanup
 
-The established normal branch model is already:
+The established normal branch model is:
 
 ```text
 main
 + docs/collision-source-evidence
 ```
+
+`main` is stale. After architecture verification and documentation audit/cleanup, use this checkpoint to update protected `main` to the proven + reviewed stable architecture baseline.
 
 A third temporary branch exists:
 
@@ -311,23 +354,25 @@ merge base 0aa6d19a6815934a3158715070320020bac64292
 Required sequence:
 
 ```text
-audit documentation/knowledge first
+architecture verification complete
+→ documentation audit/cleanup complete
 → inspect temp-only commits/content
 → preserve anything unique that matters
-→ define stable promotion set for proven architecture + cleaned knowledge
-→ deliberately integrate stable checkpoint into protected main
+→ define stable promotion set
+→ deliberately integrate proven + cleaned checkpoint into protected main
 → verify main
 → delete temp branch only if safe
-→ keep main + docs/collision-source-evidence as the normal two-branch model
+→ keep main + docs/collision-source-evidence as normal two-branch model
+→ continue active collision work on docs/collision-source-evidence
 ```
 
 Do not change branch meanings just to reduce the branch count.
 
 ---
 
-## 7. Work After the Promotion Checkpoint
+## 7. Work After the Stable Checkpoint
 
-Only after the exact Gate-4 confirmation, audit and branch/stable-integration checkpoint should Normal Chat return to equipped-melee marker expansion planning.
+Only after the exact Gate-4 confirmation, final behavior-only smoke, documentation audit and stable/branch checkpoint should Normal Chat return to equipped-melee marker expansion planning.
 
 Then:
 
