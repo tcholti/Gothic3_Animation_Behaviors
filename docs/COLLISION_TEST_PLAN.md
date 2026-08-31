@@ -1,6 +1,6 @@
 # Collision Lifecycle Test Plan
 
-**Status:** Current staged validation plan — Gates 1–3 CLOSED/PASS; Gate 4 AUDIT OPEN  
+**Status:** Current staged validation plan — Gates 1–3 CLOSED/PASS; Gate 4 audit CLOSED/PASS; bounded implementation FROZEN  
 **Updated:** 2026-08-31
 
 ## Purpose
@@ -9,6 +9,7 @@ Validate the collision system through small falsifiable stages while preserving 
 
 Current state: `SESSION_ENTRYPOINT.md`.  
 Exact transient continuation: `BETWEEN_CHATS.md`.  
+Frozen Gate 4 implementation: `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`.  
 Frozen rewrite: `SECOND_PASS_REWRITE_CONTRACT.md`.  
 Lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.  
 Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
@@ -26,7 +27,7 @@ Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 - Do not deploy diagnostic and behavior-only prototype DLLs together.
 - Preserve raw runtime logs exactly as produced.
 - If compact diagnostics make a required validation fact ambiguous, treat that as diagnostic insufficiency; do not reinterpret ambiguity as proof.
-- Marker-bookkeeping simplification may remove only execution-lifetime inference genuinely superseded by stronger authority; independent marker invariants remain protected until direct evidence says otherwise.
+- Gate 4 may replace only marker-local execution-lifetime inference with existing C1 generation identity. Independent marker invariants remain protected.
 
 Authoritative diagnostic target:
 
@@ -110,13 +111,6 @@ Initial post-rewrite diagnostic startup/load-unload also passed. Evidence: EV-20
 
 ## 4. Gate 2 — Post-Rewrite CORE Diagnostic Sufficiency: CLOSED/PASS
 
-Purpose:
-
-```text
-prove the reduced default CORE diagnostic build still supplies enough evidence
-for the frozen structural-regression matrix without enabling deep diagnostics
-```
-
 Required sentinels:
 
 ```text
@@ -148,13 +142,11 @@ DiagnosticProfile: CORE
 DeepDiagnostics: DISABLED
 ```
 
-Gate 2 conclusion:
+Conclusion:
 
 ```text
 Gate 2 = CLOSED/PASS
 ```
-
-The compact CORE diagnostic profile is sufficient for the frozen post-rewrite structural matrix. Deep diagnostics were not required.
 
 Do not rerun Gate 2 merely because later work uses the behavior-only target.
 
@@ -162,21 +154,13 @@ Do not rerun Gate 2 merely because later work uses the behavior-only target.
 
 ## 5. Gate 3 — Behavior-Only Smoke / Equivalence: CLOSED/PASS
 
-Purpose:
-
-```text
-prove intended collision behavior does not depend on diagnostic source/state/hooks
-```
-
-### 5.1 Build/deployment identity
-
 The User synchronized the local checkout to:
 
 ```text
 2fb28e5a27333eb6da902dc5c1d46a11fbe0d809
 ```
 
-The behavior-only target built successfully:
+Behavior-only target:
 
 ```text
 Script_FrameCollisionBehaviorTest.dll
@@ -184,49 +168,15 @@ Length: 380416
 SHA256: 2802FD584F84BBAA0F7D9E1AAD502BDB2CE91D994EE303CF880CA82AC2737EB4
 ```
 
-Deployment checks:
+Deployment isolation passed; the diagnostic target was absent and built/live SHA matched.
 
-```text
-Script_FrameCollisionTest.dll diagnostic target removed
-Script_FrameCollisionBehaviorTest.dll deployed alone
-live listing contained only Script_FrameCollisionBehaviorTest.dll
-built SHA == live SHA
-```
-
-### 5.2 Frozen functional matrix
-
-The frozen minimum exercise was:
-
-```text
-A. marked 2H Normal positive
-B. established vulnerable 2H full-Whirl held-Use2 stale-source consequence check
-C. crossbow/native-fallback smoke
-D. normal exit
-```
-
-Acceptance was:
-
-```text
-main-menu load succeeds
-no runtime crash
-marked melee positive behavior remains functional
-no passive stale-weapon damage after destructive skip
-later legitimate melee attack remains functional
-crossbow/native fallback remains functional
-normal exit
-```
-
-### 5.3 Runtime result
-
-Observed:
+Runtime result:
 
 ```text
 main menu reached successfully
 main-menu exit succeeded normally
 User then performed many different functional tests under the frozen Gate-3 exercise and reported everything working as intended
 ```
-
-Because `Script_FrameCollisionBehaviorTest` intentionally contains no diagnostics, no diagnostic runtime artifact was expected or required.
 
 Interpretation boundary:
 
@@ -236,98 +186,178 @@ Gate 3 does NOT independently prove internal C1/marker/source events
 Gate 2 remains the internal diagnostic evidence authority
 ```
 
+Evidence: EV-212.
+
 Conclusion:
 
 ```text
 Gate 3 = CLOSED/PASS
 ```
 
-If a later behavior-only regression appears, isolate that regression directly rather than reopening this entire smoke matrix by default.
-
 ---
 
-## 6. Gate 4 — Marker-Bookkeeping Simplification Audit: OPEN
+## 6. Gate 4 — Marker-Bookkeeping Simplification
 
-### 6.1 Purpose
-
-Determine whether parts of the current marker execution/bookkeeping machinery are now redundant because stronger native/C1 execution authority exists, without weakening independent marker correctness.
-
-This gate begins as an **audit/classification responsibility only**. It does not authorize source changes yet.
-
-### 6.2 Required evidence route
-
-Before proposing removal/consolidation, review only the active causal set:
+Frozen authority:
 
 ```text
-EV-066–EV-075
-EV-131–EV-133
-EV-167
-EV-182–EV-196
-EV-206–EV-207
-EV-209–EV-211
-COLLISION_LIFECYCLE_PLAN.md §9
+docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
 ```
 
-Then inspect only the current `FrameCollisionMarkers` source necessary to map each relevant guard/check to the evidence.
+### 6.1 Audit/classification: CLOSED/PASS
 
-### 6.3 Required classification
+The audit reconstructed the required historical route and inspected the current marker/C1 source.
 
-For every relevant marker guard/check classify:
+Result:
+
+> **The C1 monotonic generation now supplies the durable attack-execution identity that the older marker module inferred from source/motion/action/phase/state-time. Only that execution-lifetime inference is superseded. Authored marker semantics remain independent and protected.**
+
+Superseded class A:
 
 ```text
-A. execution-lifetime inference genuinely superseded by stronger C1/native authority
-B. independent marker invariant still required
+controlled-callback key/state-time retirement
+lastControlledCallbackStateTime
+MarkerWindowStillMatchesActorExecution as lifetime authority
+new-execution reset inferred from source/motion/action/phase/state-time changes
+authored-count change used as new-execution trigger
+whole marker-execution retirement inferred from natural source cleanup
 ```
 
-A guard may be removed or consolidated only if the audit can state:
+Preserved class B:
 
 ```text
-what responsibility it currently owns
-what stronger mechanism now owns that exact responsibility
-why the old regression it prevented remains impossible or independently protected
-which evidence establishes that claim
-```
-
-If that chain is incomplete, classify it as B / preserve.
-
-### 6.4 Mandatory preserve-unless-disproved set
-
-```text
-exact current-motion marker ownership
+exact current-motion ownership
+Normal / Quick / full-Whirl eligibility
+required RIGHT/LEFT source preflight
+RIGHT / LEFT / BOTH / OFF exact-set semantics
 authored occurrence budgets
-same-update duplicate/replay protection
+same-update duplicate/replay suppression
 repeated-contact ClearTriggeredList rearm
-RIGHT/LEFT/BOTH/OFF exact-set behavior
-StatePosition native-activation suppression
-interruption/dead-execution rejection
+marker-owned active source/window mask
+exact-set switching
+natural retirement of exact physical source bits
+OFF intra-Hit gap
+Quick/full-Whirl StatePosition suppression
+Fist current research behavior
+unmarked/unsupported native fallback
+late/dead/unsupported marker rejection
+valid-motion-only marker caching
 ```
 
-EV-131–EV-133 and EV-167 are mandatory before removing execution-retirement machinery.
+### 6.2 Bounded implementation: FROZEN / NEXT
 
-### 6.5 Gate 4 output
+Implement only the contract.
 
-The audit must produce a bounded table or equivalent mapping:
+Required new factual authority:
 
 ```text
-current guard/check
-→ responsibility
-→ evidence route
-→ classification A or B
-→ proposed action: remove / consolidate / preserve
-→ regression risk / required validation
+CollisionLifecycleGuard read-only current-generation query
+
+no actor record -> invalid
+actor record -> current exact actor + monotonic generation
+no lifecycle mutation
 ```
 
-Only after Normal Chat freezes an evidence-supported bounded simplification may a Work/source implementation task begin.
+Marker occurrence/dedupe execution records become generation-scoped:
 
-The current Dual P1 Quick authored RIGHT-marker/native LEFT-source mismatch belongs to later equipped-melee marker expansion and should not be folded into this bookkeeping audit unless it directly bears on one guard's correctness.
+```text
+different valid C1 generation
+→ fresh marker budget + dedupe state
+
+same valid C1 generation
+→ preserve occurrence history
+→ do not silently create a fresh execution because source/motion/action/phase/state-time changed
+```
+
+Unexpected contradiction within one generation must fail closed/reject rather than reset as a new execution.
+
+Natural source retirement remains factual only:
+
+```text
+source leaves Item_Attack
+→ clear exact active marker-owned source bit
+→ erase physical marker-owned window if empty
+```
+
+It must no longer decide occurrence/dedupe execution lifetime through action/phase/motion/state-time heuristics.
+
+Critical stop condition:
+
+```text
+if a marker point requiring generation-scoped bookkeeping has no valid C1 generation
+OR source/API/calling-convention evidence contradicts the frozen contract
+→ STOP and report
+→ do not invent fallback execution identity
+```
+
+No new hook, no family expansion, no C1 repair change, no marker semantic change.
+
+### 6.3 Required source implementation audit
+
+Before publication:
+
+```text
+confirm no marker semantic removed
+confirm no C1 lifecycle mutation semantics changed
+confirm no new hook added
+confirm RetireMarkerOwnedSource still retires exact physical source bits
+confirm OFF/exact-set switching cannot retire whole occurrence execution
+confirm duplicate + occurrence protection remain active
+git diff --check
+```
+
+### 6.4 Frozen post-implementation CORE regression
+
+After independent Normal Chat source review, deploy the diagnostic product alone and prove:
+
+```text
+A. same-motion two-contact attack
+   - first genuine marker accepted
+   - later genuine marker accepted
+   - replay callbacks still rejected
+
+B. interrupted attack after first marker -> immediate same-motion new attack
+   - new attack receives a fresh C1 generation
+   - first marker receives fresh occurrence budget
+   - later genuine marker accepted
+
+C. explicit OFF / exact-set switching inside one execution
+   - remains on one C1 generation
+   - does not reset occurrence execution
+
+D. natural cleanup inside one execution
+   - exact physical marker-owned source/window bit retires
+   - no fabricated new generation
+
+E. marked full-Whirl destructive bad skip
+   - dead/late callbacks do not reopen collision
+   - C1 terminal repair remains unchanged
+
+F. whole run
+   - no invariant/divergence/unresolved/failure signal
+   - clean shutdown
+```
+
+If compact CORE does not expose the generation facts needed to prove this, add only the smallest compact factual field needed; do not enable deep diagnostics by default.
+
+### 6.5 Behavior-only follow-up
+
+Only after the CORE regression passes:
+
+```text
+rebuild/deploy Script_FrameCollisionBehaviorTest alone
+perform compact functional smoke
+confirm no diagnostic dependency
+```
+
+Then Gate 4 implementation can close.
 
 ---
 
 ## 7. Later Order
 
 ```text
-finish Gate 4 audit
-→ implement/review/test only the bounded simplification actually justified
+implement/review/test Gate 4 bounded simplification
 → equipped-melee marker expansion one mechanism at a time
 → separate Fist source-adapter investigation
 → full marker + lifecycle regression
