@@ -8,9 +8,10 @@
 
 Immediate current handoff: `docs/BETWEEN_CHATS.md`  
 Validation authority: `docs/COLLISION_TEST_PLAN.md`  
-Closed Gate 4 contract: `docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`  
+Gate 4 contract: `docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`  
 Frozen architecture rewrite: `docs/SECOND_PASS_REWRITE_CONTRACT.md`  
-Release/build rule: `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`  
+Knowledge-maintenance/audit rules: `docs/KNOWLEDGE_MAINTENANCE.md` / `docs/KNOWLEDGE_REGISTRY.md`  
+Branch/convention authority: `docs/PROJECT_PIPELINE.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md` / `docs/EVIDENCE_LEDGER_STEP_D.md`  
 Local procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`
 
@@ -20,15 +21,13 @@ Local procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`
 
 > **Every released Gothic 3 behavior DLL contains behavior only. Research diagnostics are a separate build product and are not compiled into the release binary.**
 
-Long-term model:
-
 ```text
 shared behavior architecture
-→ diagnostics-free RELEASE build
+→ diagnostics-free RELEASE/behavior-only build
 → separate instrumented DIAGNOSTIC twin used in place of release for controlled testing
 ```
 
-Never normally load release/behavior-only and diagnostic twins together.
+Never normally load the behavior-only and diagnostic twins together.
 
 ---
 
@@ -38,36 +37,24 @@ Never normally load release/behavior-only and diagnostic twins together.
 2. Read `docs/BETWEEN_CHATS.md` for the exact current responsibility and latest accepted boundary.
 3. Treat the release-purity rule above as standing architecture.
 4. If the active subsystem is not already oriented, use the one-time Subsystem Orientation Pass from `docs/README.md`.
-5. If substantial reasoning will reinterpret evidence or propose a new fix, reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md`.
+5. If substantial reasoning will reinterpret evidence or propose a fix, reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md`.
 6. Read `docs/PROJECT_OPERATING_PROCEDURES.md` once when entering a local Git/build/deploy/runtime-artifact sequence.
-7. Before changing gate/test IDs, artifact naming, prototype/build labels or validation-flow conventions, retrieve the relevant `docs/PROJECT_PIPELINE.md` section.
+7. Before changing gate/test IDs, artifact naming, build labels, branch meanings or validation-flow conventions, retrieve the relevant `docs/PROJECT_PIPELINE.md` section.
 8. Do not scan the whole repository or reconstruct the project from old chat history.
 9. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
 
-If the previous Chat ended unexpectedly, after bootstrap report briefly:
+After bootstrap, report briefly:
 
 ```text
 current technical responsibility
-Gate 1 / Gate 2 / Gate 3 / Gate 4 closure state
-protected behavior/architecture invariants
-exact next planning step
+Gates 1–4 evidence state
+exact historical regression still required before promotion checkpoint
+what comes after that regression
 ```
 
 ---
 
-## Active Subsystem
-
-**Frame-controlled melee collision lifecycle and modular marker architecture.**
-
-Governing lifecycle invariant:
-
-> **For every real attack-Hit execution that requests offensive collision, Gothic 3 gets its legitimate cleanup opportunity. When that exact execution ends or is destructively abandoned, if cleanup was observed, do nothing; if not, repair only that execution's remaining offensive collision using native cleanup semantics.**
-
-Markers control collision inside a live Hit. Terminal exact-source safety is a separate execution-level responsibility.
-
----
-
-## Closed Foundations — Do Not Reopen
+## Closed Foundations — Do Not Reopen Without Contradicting Evidence
 
 ### C1-R1 lifecycle safety
 
@@ -91,20 +78,20 @@ post-native-AISetState finalization
 
 Native cleanup always gets first opportunity.
 
-Explicit retained qualifications:
+Retained qualifications:
 
 ```text
 no positive outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED runtime case
 no positive NPC destructive-abandonment / physical-repair case claimed
 ```
 
-### Closed rewrite / validation gates
+### Second-pass architecture / product gates
 
 ```text
-Gate 1 source/build separation       CLOSED/PASS — EV-208
-Gate 2 CORE diagnostic sufficiency   CLOSED/PASS — EV-209–EV-211
-Gate 3 behavior-only smoke           CLOSED/PASS — EV-212
-Gate 4 marker-bookkeeping simplification CLOSED/PASS — EV-213
+Gate 1 source/build separation            CLOSED/PASS — EV-208
+Gate 2 CORE diagnostic sufficiency        CLOSED/PASS — EV-209–EV-211
+Gate 3 behavior-only smoke                CLOSED/PASS — EV-212
+Gate 4 generation-scoped bookkeeping      CLOSED/PASS by current evidence — EV-213
 ```
 
 Second-pass architecture implementation:
@@ -119,128 +106,147 @@ Gate 4 implementation:
 7667c428a580d18f625317702ededb76aa5e8bb5
 ```
 
----
+Accepted Gate 4 architecture:
 
-## Gate 4 — CLOSED/PASS
+> **The monotonic C1 generation is the durable marker occurrence/dedupe execution identity. Marker-local guesses based on source/motion/action/phase/state-time are no longer execution-boundary authority. Authored marker semantics remain independent.**
 
-Frozen authority and closure record:
-
-```text
-docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
-docs/EVIDENCE_LEDGER_STEP_D.md — EV-213
-```
-
-Accepted architecture:
-
-> **The monotonic C1 generation is the durable marker-execution identity. Marker-local guesses based on source/motion/action/phase/state-time are no longer execution-boundary authority. Authored marker semantics remain independent.**
-
-Preserve:
-
-```text
-exact current-motion ownership
-Normal / Quick / full-Whirl eligibility
-RIGHT / LEFT / BOTH / OFF exact-set semantics
-authored occurrence budgets
-same-update duplicate/replay suppression
-repeated-contact ClearTriggeredList rearm
-marker-owned current source/window mask
-exact-set source switching
-natural retirement of exact physical source bits
-OFF as an intra-Hit inactive gap
-Quick/full-Whirl StatePosition suppression
-current Fist/PhysicalFist research behavior
-late/dead/unsupported marker rejection
-unmarked/unsupported native fallback
-valid-motion-only marker caching
-```
-
-Gate 4 validation established same-generation `RIGHT -> OFF -> RIGHT`, fresh budgets across incomplete prior executions, exact physical-bit retirement, dead/late rejection and unchanged C1 terminal repair.
-
-Authoritative Gate 4 CORE diagnostic identity:
-
-```text
-Script_FrameCollisionTest.dll
-Length: 416768
-SHA256: E69FB2602E3599A0905B63F2064B732D57CA9E1817CDED2BD7AB6C01C08392E9
-```
-
-Authoritative Gate 4 behavior-only follow-up identity:
-
-```text
-Script_FrameCollisionBehaviorTest.dll
-Length: 378880
-SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
-```
-
-The behavior-only DLL was deployed alone, reached main menu, exited normally and then passed user-observed Staff/1H/2H combat plus repeated destructive bad-skip smoke without visible stuck collision, crash or regression.
-
-Precision qualification from the final Gate 4 regression: the current marked 2H Normal P0 asset contains only one authored RIGHT, so it cannot literally reproduce EV-131's old two-RIGHT Normal fixture. The equivalent incomplete-execution/no-leak property was directly proven with the still-two-contact P0 full Whirl: generation 34 consumed only first RIGHT; later generation 40 on the exact same motion started with a fresh budget and accepted both genuine RIGHTs. EV-213 owns the exact claim.
+Preserve RIGHT/LEFT/BOTH/OFF exact-set semantics, occurrence budgets, duplicate/replay suppression, repeated-contact rearm, supported-family ownership, physical marker-window retirement, StatePosition behavior, late/dead rejection, native fallback and the closed C1 terminal-repair contract.
 
 ---
 
-## Current Technical Responsibility — Equipped-Melee Marker Expansion Planning
+## Current Technical Responsibility — Exact EV-131 Historical Regression Confirmation
 
-Gate 4 is finished. Do not begin another Gate 4 test matrix.
+EV-213 validly closed Gate 4 using the equivalent two-contact full-Whirl no-leak proof because the **installed** marked 2H Normal P0 asset in that run had only one authored RIGHT.
 
-The next responsibility is **Normal Chat design/planning for equipped-melee marker expansion**, one bounded mechanism/family at a time.
+The User has now clarified that this was a test-fixture misunderstanding: the original **two-marker/two-contact 2H Normal regression fixture still exists in Blender** and simply was not exported/installed for the final run.
 
-First planning pass:
+Therefore, before treating the new architecture as ready for its stable promotion/documentation checkpoint, perform one final literal EV-131-class confirmation with that restored Normal fixture.
 
-```text
-1. classify current equipped-melee marker coverage versus unsupported candidate attack families;
-2. retrieve only the source/animation evidence needed for those candidates;
-3. explicitly review the known Dual P1 Quick discrepancy:
-   tested authored marker = G3AB_COL_RIGHT
-   older native-source evidence = LEFT
-4. decide whether that discrepancy is authoring, fixture, source-map or intended-semantic work before expansion;
-5. choose and freeze the first bounded expansion responsibility;
-6. only then launch bounded Work implementation.
-```
+This is a **confidence/promotion completion**, not a source redesign. EV-213 remains valid evidence; do not erase or rewrite the Whirl-equivalent proof.
 
-Do not mix this planning step with:
+Required causal route before freezing the test:
 
 ```text
-Fist source-adapter/generalization
-AttackContinuationProtection / held-Use2 prevention
-C1 redesign or repair changes
-Raise
-speed/config redesign
-New Balance / Jackydima compatibility work
-production migration
-target acquisition
-climbing
+EV-131  historical occurrence-budget leak
+EV-132–EV-133 historical correction/test fixture
+EV-213  generation-scoped replacement and equivalent Whirl proof
+MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+COLLISION_TEST_PLAN.md
 ```
+
+Required result:
+
+```text
+marked two-contact 2H Normal execution A
+→ first RIGHT accepted under generation A
+→ execution interrupted before later genuine RIGHT
+
+next same exact Normal motion execution B
+→ different fresh C1 generation
+→ first RIGHT starts a fresh occurrence budget (0 -> 1, ExecutionBudgetReset: 1)
+→ later genuine RIGHT is accepted (1 -> 2)
+→ replay protection remains intact
+→ no no-generation / generation-inconsistency / invariant / divergence / unresolved signal
+→ clean shutdown
+```
+
+If the exact historical confirmation fails, **reopen Gate 4 and stop before documentation audit/promotion work**.
+
+If it passes, record the literal confirmation as the next evidence item and complete one compact behavior-only fixture smoke if useful; no source rebuild is required merely because the animation fixture changed.
+
+Do not begin equipped-melee expansion before this checkpoint sequence is complete.
 
 ---
 
-## Retrieval — Only What the Question Needs
+## Mandatory Checkpoint After Exact Gate 4 Confirmation — Documentation / Knowledge-System Audit
 
-| Need | Open |
-|---|---|
-| exact current continuation | `BETWEEN_CHATS.md` |
-| Gate 4 contract/closure | `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`; EV-213 |
-| staged validation | `COLLISION_TEST_PLAN.md` |
-| closed lifecycle safety | `COLLISION_LIFECYCLE_PLAN.md`; EV-206–EV-207 |
-| post-rewrite evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-208–EV-213 |
-| Dual/native physical source evidence | `EVIDENCE_INDEX.md` physical-source/Dual routes; EV-090–EV-094, EV-207, EV-211 |
-| animation-family/assets | `ANIMATION_INDEX.md`; `ANIMATION_CATALOG.md`; `ANIMATION_RULES.md` |
-| source/API/hook lookup | `SOURCE_HOOK_GUIDE.md` |
-| release/diagnostic separation | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
-| local build/deploy procedure | `PROJECT_OPERATING_PROCEDURES.md` |
-| bounded implementation rules | `WORK_IMPLEMENTATION_PROTOCOL.md` |
+The User explicitly wants a broad documentation review **after the new architecture is fully tested and before branch/stable-integration cleanup or new marker expansion**.
+
+This is an appropriate stable-subsystem/promotion checkpoint under `KNOWLEDGE_MAINTENANCE.md`.
+
+The audit must review the repository knowledge system for:
+
+```text
+contradictions between current authorities
+unnecessary repeated narrative facts
+same fact maintained independently in multiple documents
+stale current-state or closed-contract wording
+bootstrap/read-first bloat
+index routes that no longer narrow retrieval
+ledger continuation clarity and monotonic EV continuity
+EVIDENCE_LEDGER / STEP_B / STEP_C / STEP_D duplication versus useful storage splitting
+processed artifacts still unnecessarily left in research/raw
+active vs archive boundaries
+superseded documents that should be archived or compressed
+future-use cross-routes that became speculative or redundant
+```
+
+Important boundary:
+
+> **Do not merge/delete evidence ledgers or authorities merely because there are several files. First determine whether the split is useful retrieval/storage structure or actual duplication. Preserve provenance and old evidence IDs.**
+
+The audit should first produce a concise findings/cleanup plan. Perform destructive merge/delete/archive actions only after the rationale is clear and the User has had a chance to review material changes.
+
+---
+
+## Branch / Stable-Integration Checkpoint After Documentation Audit
+
+`PROJECT_PIPELINE.md` already defines the intended normal two-branch model:
+
+```text
+main
+= stable integration + reusable stable Gothic 3 knowledge baseline
+
+docs/collision-source-evidence
+= active development/research branch
+```
+
+The repository currently has a third temporary branch:
+
+```text
+temp/second-pass-rewrite-publish
+```
+
+Do **not** simply delete it. A comparison on 2026-09-01 showed it is diverged from the active branch:
+
+```text
+active branch ahead of temp by 35 commits
+temp branch ahead of active by 10 commits
+merge base: 0aa6d19a6815934a3158715070320020bac64292
+```
+
+After the documentation audit:
+
+```text
+inspect the temp-only commits/content
+→ identify anything unique that still needs preservation
+→ define the stable promotion set for the proven new architecture/docs
+→ deliberately integrate the stable checkpoint into protected main
+→ verify main
+→ delete temp/second-pass-rewrite-publish only if its unique history/content is safely preserved or intentionally superseded
+→ retain main + docs/collision-source-evidence as the normal two-branch model
+```
+
+Do not change branch meanings merely to achieve a branch count of two.
 
 ---
 
 ## Forward Order
 
 ```text
-equipped-melee marker expansion planning — NEXT
-→ freeze first bounded equipped-melee expansion
-→ implement/review/test one mechanism at a time
+exact restored two-contact 2H Normal EV-131 regression — NEXT
+→ evidence/behavior-only closure confirmation
+→ documentation + knowledge-system audit
+→ review findings and perform justified cleanup/consolidation
+→ stable-integration checkpoint to main
+→ verify and retire temp/second-pass-rewrite-publish if safe
+→ return to normal two-branch model
+→ equipped-melee marker expansion planning
+→ freeze/implement/test one mechanism at a time
 → separate Fist source-adapter investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
-→ mature research compatibility gate
+→ mature compatibility gate
 → migrate/redesign Raise + speed + config
 → later target acquisition/climbing
 → final diagnostics-free Script_G3AnimationBehaviors

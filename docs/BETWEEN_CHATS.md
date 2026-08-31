@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — Gate 4 CLOSED/PASS; equipped-melee marker expansion planning NEXT
+## Current bridge — exact EV-131 Normal fixture confirmation NEXT; audit/promotion checkpoint after PASS
 
 Repository:
 
@@ -24,65 +24,139 @@ Do not reconstruct the project from old chat history and do not scan the whole r
 
 ---
 
-## Closed foundations — do not reopen
+## Accepted technical state
 
 ```text
-C1-R1 lifecycle safety                CLOSED — EV-206–EV-207
-Gate 1 source/build separation        CLOSED/PASS — EV-208
-Gate 2 CORE diagnostic sufficiency    CLOSED/PASS — EV-209–EV-211
-Gate 3 behavior-only smoke            CLOSED/PASS — EV-212
-Gate 4 marker-bookkeeping simplification CLOSED/PASS — EV-213
+C1-R1 lifecycle safety                     CLOSED — EV-206–EV-207
+Gate 1 source/build separation             CLOSED/PASS — EV-208
+Gate 2 CORE diagnostic sufficiency         CLOSED/PASS — EV-209–EV-211
+Gate 3 behavior-only smoke                 CLOSED/PASS — EV-212
+Gate 4 generation-scoped bookkeeping       CLOSED/PASS by current evidence — EV-213
 ```
 
-Gate 4 implementation commit:
+Gate 4 implementation:
 
 ```text
 7667c428a580d18f625317702ededb76aa5e8bb5
 ```
 
-Gate 4 contract/closure authority:
+Gate 4 contract/evidence:
 
 ```text
 docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
 docs/EVIDENCE_LEDGER_STEP_D.md — EV-213
 ```
 
-Accepted marker execution model:
+Accepted execution model:
 
 ```text
 valid C1 generation
 = durable marker occurrence/dedupe execution identity
 ```
 
-Different generation -> fresh marker budget/dedupe state.
+Independent marker semantics remain protected: exact current-motion ownership; Normal/Quick/full-Whirl eligibility; RIGHT/LEFT/BOTH/OFF; authored occurrence budgets; duplicate/replay suppression; repeated-contact `ClearTriggeredList()` rearm; exact-set switching; physical marker-window retirement; OFF intra-Hit gap; Quick/full-Whirl StatePosition suppression; current Fist research behavior; late/dead rejection; unsupported/unmarked native fallback.
 
-Same generation -> do not silently reset because source, motion, action, phase or state-time changed.
-
-Natural SetCollisionGroup cleanup still retires the exact physical marker-owned source bit only; it is not occurrence-execution retirement.
-
-Preserve independent marker semantics:
-
-```text
-exact current-motion ownership
-Normal / Quick / full-Whirl eligibility
-RIGHT / LEFT / BOTH / OFF exact-set semantics
-authored occurrence budgets
-same-update duplicate/replay suppression
-repeated-contact ClearTriggeredList rearm
-exact-set source switching
-marker-owned active source/window mask
-OFF intra-Hit gap
-Quick/full-Whirl StatePosition suppression
-current Fist/PhysicalFist research behavior
-late/dead/unsupported rejection
-unmarked/unsupported native fallback
-```
-
-C1 terminal repair remains unchanged and native cleanup still gets first opportunity.
+C1 terminal repair remains unchanged and native cleanup gets first opportunity.
 
 ---
 
-## Gate 4 validated products
+## User correction that changes the immediate next responsibility
+
+The final Gate 4 diagnostic run used the currently installed 2H Normal P0 asset, which reported only one authored RIGHT. EV-213 therefore used a two-contact full-Whirl sequence to prove the same incomplete-execution/no-leak property.
+
+The User has now clarified:
+
+> The original two-marker/two-contact 2H Normal fixture used for the historical EV-131-style regression still exists in Blender. It was not exported/installed because the User misread the last test as Whirl-focused.
+
+This does **not** invalidate EV-213. It creates one final literal historical-regression confidence test before the new architecture is treated as ready for audit/stable promotion.
+
+Do not proceed to equipped-melee expansion yet.
+
+---
+
+## Exact next responsibility — restore and run the literal EV-131-class Normal regression
+
+First retrieve only:
+
+```text
+EVIDENCE_LEDGER.md — EV-131, EV-132, EV-133
+EVIDENCE_LEDGER_STEP_D.md — EV-213
+MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+COLLISION_TEST_PLAN.md
+PROJECT_PIPELINE.md only for test/log naming conventions
+PROJECT_OPERATING_PROCEDURES.md for deploy/runtime/raw-artifact procedure
+```
+
+Then work one manageable step at a time.
+
+### Fixture requirement
+
+The User must export/install the preserved Blender two-contact 2H Normal fixture before the test.
+
+Before attempting the interruption regression, use the CORE diagnostic marker-ownership record to verify that the live Normal fixture is actually the intended one. At minimum it must show:
+
+```text
+Actor: PC_Hero
+Family: NORMAL
+exact intended 2H Normal motion
+ContainsReservedSourceMarker: 1
+AuthoredRIGHTCount: 2
+```
+
+Do not rely on visual memory alone. If the fixture does not report two authored RIGHTs, stop and correct the fixture/deployment before testing.
+
+### Historical regression requirement
+
+Create an execution where:
+
+```text
+Normal execution A
+→ first genuine RIGHT accepted
+→ interrupt execution A before its later genuine RIGHT
+
+immediate next attack execution B
+→ same exact Normal motion as A
+→ fresh C1 generation
+→ first RIGHT accepted 0 -> 1 with ExecutionBudgetReset: 1
+→ later genuine RIGHT accepted 1 -> 2
+```
+
+Also confirm replay suppression remains intact and whole-log searches show no:
+
+```text
+REJECTED_NO_C1_GENERATION
+REJECTED_C1_GENERATION_INCONSISTENCY
+INVARIANT
+DIVERGED
+UNRESOLVED
+```
+
+Require clean DLL shutdown.
+
+Freeze the exact raw filename in the same message that requests the runtime test, following the established project pipeline. The User will copy the generated log unchanged to `research/raw/`, confirm it is there, then receive verify/add/commit/push commands.
+
+### Result handling
+
+If PASS:
+
+```text
+record the literal historical confirmation as the next global EV item
+preserve EV-213's Whirl-equivalent proof as valid prior evidence
+```
+
+Because no source change is required, do not rebuild merely for the animation fixture. For maximum release-purity confidence, a small final behavior-only fixture smoke may follow using the already-validated Gate 4 behavior-only DLL; keep its claim functional/visual only.
+
+If FAIL:
+
+```text
+Gate 4 reopens
+STOP
+interpret the contradiction before audit/promotion/new feature work
+```
+
+---
+
+## Validated Gate 4 products / current live state
 
 CORE diagnostic:
 
@@ -92,7 +166,7 @@ Length: 416768
 SHA256: E69FB2602E3599A0905B63F2064B732D57CA9E1817CDED2BD7AB6C01C08392E9
 ```
 
-Behavior-only follow-up:
+Behavior-only:
 
 ```text
 Script_FrameCollisionBehaviorTest.dll
@@ -100,81 +174,17 @@ Length: 378880
 SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
 ```
 
-The behavior-only target was deployed alone, reached main menu, exited normally, and passed user-observed Staff/1H/2H combat plus repeated destructive bad-skip smoke.
+At the end of the previous Chat, the validated **diagnostic** DLL was the sole live `Script_FrameCollision*.dll` in Gothic 3's `scripts` directory. The behavior-only twin had been removed.
 
-Final no-leak precision:
+The last diagnostic run exited cleanly.
 
-```text
-current marked 2H Normal P0 asset now has one authored RIGHT
-→ cannot literally recreate old EV-131 two-RIGHT Normal fixture
-
-same property proved with P0 full Whirl:
-generation 34: first RIGHT accepted 0 -> 1, execution ends before OFF/second RIGHT
-generation 40: same exact motion, fresh 0 -> 1, later genuine RIGHT 1 -> 2
-```
-
-Whole final diagnostic log contained zero no-generation/generation-inconsistency/invariant/divergence/unresolved signal and unloaded cleanly.
-
----
-
-## Exact next responsibility — equipped-melee marker expansion planning
-
-This is a **Normal Chat design/planning responsibility first**, not a source-implementation task yet.
-
-Do the smallest retrieval necessary to answer:
+The User's local repository was synchronized to:
 
 ```text
-1. Which equipped-melee attack families/actions are currently marker-supported?
-2. Which additional equipped-melee families are the next realistic expansion candidates?
-3. What exact physical source does each candidate require?
-4. Does each candidate need an existing callback adapter or a genuinely new behavior mechanism?
-5. Which single candidate should become the first bounded expansion?
+39229a3b8dcdc1b0c427cdf07e5e12dad5758206
 ```
 
-Explicitly review the known Dual P1 Quick discrepancy before expanding around it:
-
-```text
-tested authored asset: G3AB_COL_RIGHT
-older tested native-source evidence: LEFT
-```
-
-Do not assume either side is automatically wrong. Determine whether this is authoring/fixture choice, source-map evidence, or intended semantic difference.
-
-Then freeze **one** bounded expansion responsibility before any Work implementation.
-
----
-
-## Keep separate
-
-Do not combine the next equipped-melee planning step with:
-
-```text
-Fist source-adapter/generalization
-AttackContinuationProtection / held-Use2 prevention
-C1 repair redesign
-Raise
-speed/config redesign
-compatibility work
-production migration
-target acquisition
-climbing
-```
-
----
-
-## Local/runtime handoff note
-
-The last local runtime step redeployed the validated Gate 4 diagnostic `Script_FrameCollisionTest.dll` alone in Gothic 3's live `scripts` directory for the final regression. The behavior-only twin was removed before that run.
-
-Before any later runtime test, preserve the one-product-at-a-time rule and deploy whichever product the frozen test actually requires.
-
-The User's local Git checkout contains the published raw evidence through:
-
-```text
-9483992bbe9513277382147ac20d0a27bd231a96
-```
-
-Assistant-side documentation maintenance follows that evidence commit. Before the next local source/build/commit window, synchronize the branch per POP-01 after receiving the new documentation commit SHA.
+Assistant-side handoff documentation advances remote beyond that commit. At the start of the next local write/build/test window, sync first per POP-01 after reading the updated handoff.
 
 Known unrelated local file to leave untouched if still present:
 
@@ -184,36 +194,92 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Authorities
+## Mandatory phase after the exact regression passes — documentation/knowledge-system audit
+
+The User explicitly wants the project documentation audited before stable branch cleanup and before new equipped-melee expansion.
+
+This is a deliberate stable-subsystem/promotion checkpoint. Use `KNOWLEDGE_MAINTENANCE.md` and `KNOWLEDGE_REGISTRY.md` as the audit rules.
+
+Audit for:
 
 ```text
-SESSION_ENTRYPOINT.md                          current front door
-BETWEEN_CHATS.md                               this exact continuation
-COLLISION_TEST_PLAN.md                         staged validation / next gate
-MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md  closed Gate 4 contract
-EVIDENCE_LEDGER_STEP_D.md EV-213               Gate 4 evidence closure
-EVIDENCE_INDEX.md                              evidence routing
-ANIMATION_INDEX.md / ANIMATION_CATALOG.md      family/asset routing
-COLLISION_LIFECYCLE_PLAN.md                    closed lifecycle architecture
-SECOND_PASS_REWRITE_CONTRACT.md                modular architecture/invariants
-GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md          release-purity rule
-PROJECT_OPERATING_PROCEDURES.md                local Git/build/deploy/test workflow
-WORK_IMPLEMENTATION_PROTOCOL.md                bounded Work rules
+contradictions between authorities
+unnecessary repetition / separately maintained copies of the same fact
+stale current-state wording
+closed contracts that should be compressed or archived
+read-first/bootstrap growth
+index routes that no longer narrow retrieval
+EVIDENCE_LEDGER + STEP_B + STEP_C + STEP_D continuity and duplication
+whether ledger splitting is useful structure or unnecessary fragmentation
+processed research/raw artifacts that should move to archive
+archive/current-state boundaries
+obsolete cross-routes or duplicated future-use notes
 ```
+
+Do not automatically merge the ledgers. Preserve the global EV sequence and provenance. First determine whether the split is solving file-size/retrieval needs or merely copying information.
+
+The audit should produce a concise findings + proposed cleanup plan before destructive consolidation/deletion.
+
+---
+
+## Branch/stable-integration checkpoint after the audit
+
+`PROJECT_PIPELINE.md` already defines the intended normal branch model:
+
+```text
+main
++ docs/collision-source-evidence
+```
+
+A third temporary branch currently exists:
+
+```text
+temp/second-pass-rewrite-publish
+```
+
+Do not delete it blindly. A comparison performed on 2026-09-01 found:
+
+```text
+status: diverged
+active branch ahead by: 35 commits
+temp branch ahead by: 10 commits
+merge base: 0aa6d19a6815934a3158715070320020bac64292
+```
+
+After the documentation audit:
+
+```text
+inspect temp-only commits/content
+→ preserve anything unique that still matters
+→ decide the stable promotion set for the proven architecture + cleaned knowledge
+→ integrate the stable checkpoint deliberately into protected main
+→ verify main
+→ delete temp/second-pass-rewrite-publish only when safe
+→ retain main + docs/collision-source-evidence as the normal two-branch model
+```
+
+Do not change branch meanings just to reduce the count.
 
 ---
 
 ## Forward order
 
 ```text
-equipped-melee marker expansion planning — NEXT
-→ freeze first bounded equipped-melee expansion
-→ implement/review/test one mechanism at a time
+restore two-contact 2H Normal fixture
+→ literal EV-131 same-motion interruption/restart diagnostic regression
+→ final evidence / optional compact behavior-only fixture smoke
+→ documentation + knowledge-system audit
+→ review findings and perform justified cleanup
+→ stable integration to main
+→ inspect/retire temp branch if safe
+→ normal two-branch model restored
+→ equipped-melee marker expansion planning
+→ freeze/implement/test one expansion mechanism at a time
 → separate Fist source-adapter investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
-→ mature research New Balance/Jackydima compatibility gate
-→ migrate/redesign Raise + speed + config
+→ mature compatibility gate
+→ Raise + speed + config redesign/migration
 → later target acquisition/climbing
 → final diagnostics-free Script_G3AnimationBehaviors
 → final compatibility regression
