@@ -1,14 +1,14 @@
 # Marker Bookkeeping Simplification Contract
 
-**Status:** FROZEN GATE 4 IMPLEMENTATION CONTRACT  
-**Date:** 2026-08-31  
+**Status:** IMPLEMENTED + VALIDATED — GATE 4 CLOSED/PASS  
+**Date:** 2026-09-01  
 **Scope:** marker execution identity/bookkeeping only
 
 ## 1. Purpose
 
-Gate 4 audited the current `FrameCollisionMarkers` bookkeeping against the historical marker regressions and the now-proven C1 lifecycle authority.
+Gate 4 audited the current `FrameCollisionMarkers` bookkeeping against the historical marker regressions and the proven C1 lifecycle authority.
 
-The result is deliberately narrow:
+The accepted result is deliberately narrow:
 
 > **Use the existing monotonic C1 generation as durable marker-execution identity where that generation is already valid; remove older marker-local guesses about whether a new attack execution has begun. Preserve all independent authored-marker semantics and protections.**
 
@@ -27,7 +27,7 @@ EV-155–EV-156
 EV-167
 EV-182–EV-196
 EV-206–EV-207
-EV-209–EV-212
+EV-209–EV-213
 COLLISION_LIFECYCLE_PLAN.md §9
 ```
 
@@ -37,12 +37,13 @@ Key historical distinction:
 - EV-133 proved natural marker-owned source retirement fixed that tested case; callback state-time rollback was not the observed boundary that supplied the fix.
 - EV-167 explicitly classifies `RetireMarkerOwnedSource()` as marker-bookkeeping retirement, separate from physical cleanup.
 - C1 now has the durable monotonic attack generation that the old marker module did not have.
+- EV-213 closes the implementation and regression gate for replacing the old inferred execution boundary with C1 generation identity.
 
 ## 3. Classification result
 
 ### A — execution-lifetime inference superseded by C1 generation
 
-The following responsibilities may be removed or consolidated:
+The following responsibilities were removed or consolidated:
 
 ```text
 ObserveControlledAttackCallback() retirement based on:
@@ -93,23 +94,19 @@ valid-motion-only marker caching
 
 C1 tracks lifecycle obligations. It does not replace the animator-authored desired source set, occurrence counts, duplicate suppression, rearm, OFF, or native-activation suppression.
 
-## 4. Frozen implementation responsibility
+## 4. Implemented responsibility
 
-Implement only the following.
-
-### 4.1 Expose factual current C1 generation
-
-Add one read-only `CollisionLifecycleGuard` query that returns the actor's currently active C1 generation token/fact without creating, replacing, finalizing, or mutating a generation.
-
-Conceptual API:
+Implementation commit:
 
 ```text
-CaptureCurrentGenerationToken(actorInstance)
+7667c428a580d18f625317702ededb76aa5e8bb5
 ```
 
-Exact naming may follow existing local conventions.
+### 4.1 Factual current C1 generation
 
-Rules:
+`CollisionLifecycleGuard` exposes a read-only current-generation query for the actor without creating, replacing, finalizing, repairing or otherwise mutating a generation.
+
+Conceptual rule:
 
 ```text
 no actor record -> invalid token
@@ -119,9 +116,9 @@ no new hook
 no polling
 ```
 
-### 4.2 Scope marker execution budget to C1 generation
+### 4.2 Marker execution budget scoped to C1 generation
 
-A marker execution-budget record must carry the exact C1 generation that owned its first accepted marker.
+A marker execution-budget record carries the exact C1 generation that owns it.
 
 For later reserved-marker callbacks:
 
@@ -133,23 +130,17 @@ different valid C1 generation
 → fresh marker execution budget and dedupe state
 ```
 
-Do not infer a new execution from state time, action, phase, motion filename, source pointers, or authored-count changes.
-
-Those facts remain validation/ownership facts where independently required; they are no longer durable execution identity.
+State time, action, phase, motion filename, source pointers and authored-count changes remain independent validation/ownership facts where needed; they are not durable execution identity.
 
 ### 4.3 Fail closed on internal inconsistency inside one generation
 
-If the same C1 generation unexpectedly presents marker-budget identity facts that contradict the record in a way the existing supported marker semantics do not permit, do **not** silently reset the budget and call it a new execution.
-
-The marker must remain non-mutating/rejected unless an already-proven intra-execution operation explains the difference.
-
-Do not invent recovery policy during this task.
+If one valid C1 generation presents marker-budget identity facts that contradict the stored record in a way unsupported by existing marker semantics, the marker remains non-mutating/rejected rather than silently resetting the budget as a fabricated new execution.
 
 ### 4.4 Narrow natural source retirement
 
-Keep `RetireMarkerOwnedSource()` and the existing SetCollisionGroup bridge call.
+`RetireMarkerOwnedSource()` remains wired through the existing SetCollisionGroup bridge.
 
-Its factual responsibility becomes only:
+Its factual responsibility is only:
 
 ```text
 source successfully leaves Item_Attack
@@ -157,13 +148,13 @@ source successfully leaves Item_Attack
 → erase window when no active source bits remain
 ```
 
-It must no longer use action/phase/motion/state-time heuristics to decide that the actor's authored occurrence/dedupe execution record has ended.
+It no longer uses action/phase/motion/state-time heuristics to decide that the actor's occurrence/dedupe execution record ended.
 
-Natural source cleanup, explicit OFF, and exact-set switching remain distinct operations.
+Natural source cleanup, explicit OFF and exact-set switching remain distinct operations.
 
-### 4.5 Preserve marker-window semantics
+### 4.5 Marker-window semantics preserved
 
-Do not use C1 cleanup fulfillment as a substitute for marker-window meaning.
+C1 cleanup fulfillment does not replace marker-window meaning.
 
 Examples:
 
@@ -180,7 +171,7 @@ natural 7 -> 5 cleanup
 
 ### 4.6 C1 lifecycle ownership remains unchanged
 
-`FrameCollisionMarkers` must not create, finalize, replace, or repair C1 generations.
+`FrameCollisionMarkers` does not create, finalize, replace or repair C1 generations.
 
 The existing lifecycle remains authoritative:
 
@@ -190,11 +181,11 @@ SetCollisionGroup observations create/fulfill exact-source obligations
 post-native AISetState finalizes/repairs only the established outstanding predicate
 ```
 
-If no valid C1 generation exists at a marker point where generation-scoped bookkeeping is required, STOP during implementation/source audit and report the concrete contradiction instead of inventing a fallback execution-ID scheme.
+If no valid C1 generation exists at a legitimate marker point where generation-scoped bookkeeping is required, fail closed; do not invent a fallback execution-ID scheme.
 
 ## 5. Explicit non-goals
 
-Do not change:
+Gate 4 did not change:
 
 ```text
 marker names
@@ -217,76 +208,105 @@ New Balance / Jackydima integration
 production migration
 ```
 
-Do not add new hooks or deep diagnostic probes.
+No new hooks or deep diagnostic probes were added by the bounded simplification.
 
-## 6. Expected source scope
+## 6. Source scope / audit result
 
-The bounded implementation should normally require only the files necessary for:
-
-```text
-CollisionLifecycleGuard.h/.cpp
-FrameCollisionMarkers.h/.cpp
-FrameCollisionShared.h        only if the generation fact must cross an existing result structure
-EngineBridge.cpp              only for factual generation transport / existing call wiring
-CollisionDiagnostics.cpp/.h   only if compact observability needs a generation/result field for validation
-```
-
-Do not broaden beyond these without a concrete compile/API contradiction.
-
-## 7. Required implementation audit
-
-Before publishing source implementation:
+The bounded implementation stayed within the expected marker/C1/transport/compact-observability source area. Independent Normal Chat review confirmed:
 
 ```text
-confirm no marker semantic was removed
-confirm no C1 lifecycle mutation semantics changed
-confirm no new hook added
-confirm RetireMarkerOwnedSource still retires exact physical source bits
-confirm OFF/exact-set switching cannot retire the whole occurrence execution
-confirm duplicate + occurrence protection remain active
-git diff --check
+read-only generation transport
+no marker semantic removed
+no C1 lifecycle mutation semantics changed
+no new hook added
+RetireMarkerOwnedSource still retires exact physical source bits
+OFF/exact-set switching cannot retire the whole occurrence execution
+duplicate + authored occurrence protection remain active
+same-generation inconsistency fails closed
 ```
 
-If a concrete API/calling-convention/lifecycle contradiction appears, STOP and report it rather than improvising.
+## 7. Validation result
 
-## 8. Validation after implementation
-
-First perform source review/build separation as usual.
-
-Then use the CORE diagnostic product alone for a compact marker regression that specifically proves:
+### CORE diagnostic identity
 
 ```text
-1. two-contact same-motion attack:
-   first and later genuine marker both accepted
-   replay callbacks still rejected
-
-2. interrupted attack after first marker -> immediate same-motion new attack:
-   new attack receives a fresh C1 generation
-   first marker receives a fresh occurrence budget
-   later genuine marker remains accepted
-
-3. explicit OFF / exact-set switching inside one execution:
-   does not create a fresh marker execution
-
-4. natural cleanup inside one execution:
-   retires physical marker-owned source/window bit
-   does not fabricate a new C1 generation
-
-5. marked full-Whirl destructive bad skip:
-   dead/late callbacks do not reopen collision
-   C1 terminal repair behavior remains unchanged
-
-6. no invariant/divergence/unresolved/failure signal
-   clean shutdown
+Script_FrameCollisionTest.dll
+Length: 416768
+SHA256: E69FB2602E3599A0905B63F2064B732D57CA9E1817CDED2BD7AB6C01C08392E9
 ```
 
-Behavior-only smoke follows only if the diagnostic regression passes.
+Controlled diagnostic regression established:
 
-## 9. Gate state
+```text
+PASS same-generation full-Whirl RIGHT -> OFF -> RIGHT
+PASS first genuine RIGHT 0 -> 1
+PASS OFF accepted without occurrence execution reset
+PASS later genuine RIGHT 1 -> 2
+PASS replay OFF rejected by authored occurrence budget
+PASS replay RIGHT rejected by same-update duplicate guard
+PASS natural cleanup retires exact physical marker-owned source bit
+PASS incomplete prior execution cannot leak occurrence state into later same-motion generation
+PASS marked full-Whirl destructive bad skip cannot reopen through dead/late callbacks
+PASS exact C1 terminal repair remains unchanged
+PASS 1H/Dual source-specific regression
+PASS unsupported Power/native fallback regression
+PASS no no-generation/generation-inconsistency/invariant/divergence/unresolved failure signal
+PASS clean diagnostic unload
+```
+
+Final no-leak qualification:
+
+```text
+The current marked 2H Normal P0 asset now reports one authored RIGHT,
+so the historical EV-131 two-RIGHT Normal fixture cannot be reproduced literally.
+
+The equivalent occurrence-lifetime failure class was tested with the still-two-contact
+P0 full Whirl:
+
+Generation 34, exact motion
+Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+→ first RIGHT accepted 0 -> 1 with ExecutionBudgetReset: 1
+→ execution ends before OFF/second RIGHT
+
+Later Generation 40, same exact motion
+→ first RIGHT accepted 0 -> 1 with ExecutionBudgetReset: 1
+→ later genuine RIGHT accepted 1 -> 2
+```
+
+This directly proves the incomplete previous execution no longer leaks its authored occurrence budget into the next same-motion execution.
+
+### Behavior-only follow-up identity
+
+```text
+Script_FrameCollisionBehaviorTest.dll
+Length: 378880
+SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
+```
+
+It was deployed alone, reached main menu, exited normally and passed user-observed Staff/1H/2H combat plus repeated destructive bad-skip smoke with no visible stuck collision, crash or regression.
+
+Canonical evidence: EV-213.
+
+## 8. Gate state
 
 ```text
 Gate 4 audit/classification: CLOSED/PASS
-Gate 4 bounded implementation: FROZEN / NOT YET IMPLEMENTED
+Gate 4 bounded implementation: CLOSED/PASS
+Gate 4 CORE diagnostic regression: CLOSED/PASS
+Gate 4 behavior-only follow-up: CLOSED/PASS
 ```
 
-Next responsibility is a bounded Work implementation of this contract, followed by independent Normal Chat source review and the frozen regression above.
+Gate 4 is complete. Do not reopen it merely for additional incidental combat coverage.
+
+## 9. Next responsibility
+
+The next responsibility is **equipped-melee marker expansion planning**, one bounded mechanism/family at a time.
+
+Explicit first review item:
+
+```text
+tested Dual P1 Quick authored marker = G3AB_COL_RIGHT
+older tested native-source evidence = LEFT
+```
+
+Resolve that discrepancy deliberately as part of the equipped-melee planning boundary. Do not mix it with Fist source adaptation, AttackContinuationProtection, C1 redesign, Raise/speed/config or compatibility work.
