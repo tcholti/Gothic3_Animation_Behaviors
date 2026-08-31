@@ -1,0 +1,1169 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Quick Whirl
+MarkerOpcodes: RIGHT LEFT BOTH OFF
+Installing behavior hooks...
+Hooks installed.
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 31392.668
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70EAC10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 31392.693
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_WhirlAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 31393.084
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 31393.113
+Actor: PC_Hero
+Family: WHIRL
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+Action: 10
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 1
+AuthoredRIGHTCount: 2
+FirstRIGHTFrame: 4
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 1
+FirstOFFFrame: 10
+RightSourceResolved: 1
+RightSourceName: It_2H_Sword_Flamberge
+RightSourceAddress: E70EAC10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 1
+=====================================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 31549.106
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.165973
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31549.136
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.165973
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 31549.161
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 1
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 3
+RightGroupRequested: 1
+RightFistGroupSkip: 0
+RightTriggeredListCleared: 1
+WhirlStatePositionBefore: 0
+WhirlStatePositionAfter: 1
+===========================
+
+===== OFF RECEIVED =====
+ElapsedMs: 31787.608
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.404958
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31787.637
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.404958
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 31787.716
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+C1GenerationValid: 1
+C1Generation: 1
+MarkerAction: OFF_ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 1
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 1
+TriggeredListClearCount: 0
+===========================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 31984.676
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602936
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31984.703
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.602936
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 31984.732
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 2
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 1
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 3
+RightGroupRequested: 1
+RightFistGroupSkip: 0
+RightTriggeredListCleared: 1
+WhirlStatePositionBefore: 1
+WhirlStatePositionAfter: 1
+===========================
+
+===== OFF RECEIVED =====
+ElapsedMs: 31984.764
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602936
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+C1GenerationValid: 1
+C1Generation: 1
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 0
+===========================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 31984.786
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602936
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 1
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.105300
+AuthoredMarkerOccurrences: 0
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 0
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 32200.022
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerStateTime: 0.804920
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 32200.054
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 2
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 32200.076
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70EAC10
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 2
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 33971.832
+Actor: Golem
+Family: NORMAL
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6A6C210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34224.034
+Source: Fist
+SourceAddress: E6A6C210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerStateTime: 0.178829
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_350.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 34502.529
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70EAC10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34502.541
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 34502.902
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 34541.758
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70EAC10
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 34546.021
+Actor: PC_Hero
+Generation: 7
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70EAC10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34546.033
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 7
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_WhirlAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 34546.128
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 34698.378
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.163003
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34698.406
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.163003
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 34698.436
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 7
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 3
+RightGroupRequested: 1
+RightFistGroupSkip: 0
+RightTriggeredListCleared: 1
+WhirlStatePositionBefore: 0
+WhirlStatePositionAfter: 1
+===========================
+
+===== OFF RECEIVED =====
+ElapsedMs: 34946.518
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.410955
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34946.546
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.410955
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 34946.577
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+C1GenerationValid: 1
+C1Generation: 7
+MarkerAction: OFF_ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 1
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 1
+TriggeredListClearCount: 0
+===========================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 35143.107
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.606966
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 35143.134
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.606966
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 35143.159
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 2
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 7
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 3
+RightGroupRequested: 1
+RightFistGroupSkip: 0
+RightTriggeredListCleared: 1
+WhirlStatePositionBefore: 1
+WhirlStatePositionAfter: 1
+===========================
+
+===== OFF RECEIVED =====
+ElapsedMs: 35143.241
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.606966
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+C1GenerationValid: 1
+C1Generation: 7
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 0
+===========================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 35143.268
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.606966
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 7
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.156500
+AuthoredMarkerOccurrences: 0
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 0
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 35347.611
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerStateTime: 0.800944
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 35347.647
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 2
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 35347.668
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70EAC10
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 2
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36100.186
+Source: Fist
+SourceAddress: E6A6C210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerStateTime: 0.744938
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Recover_N_Fwd_00_%_00_P0_0_R.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37765.953
+Source: Fist
+SourceAddress: E6A6C210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.332970
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 37810.703
+Actor: PC_Hero
+Generation: 11
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70EAC10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 37810.714
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 11
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_WhirlAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 37810.779
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 37968.162
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.167994
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37968.190
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.167994
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 37968.219
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 11
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 3
+RightGroupRequested: 1
+RightFistGroupSkip: 0
+RightTriggeredListCleared: 1
+WhirlStatePositionBefore: 0
+WhirlStatePositionAfter: 1
+===========================
+
+===== OFF RECEIVED =====
+ElapsedMs: 38206.719
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.405996
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38206.749
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.405996
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 38206.780
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+C1GenerationValid: 1
+C1Generation: 11
+MarkerAction: OFF_ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 1
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 1
+TriggeredListClearCount: 0
+===========================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 38403.056
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602949
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38403.083
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 1
+PlayerStateTime: 0.602949
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 38403.119
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 2
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 11
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 2
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 2
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 3
+RightGroupRequested: 1
+RightFistGroupSkip: 0
+RightTriggeredListCleared: 1
+WhirlStatePositionBefore: 1
+WhirlStatePositionAfter: 1
+===========================
+
+===== OFF RECEIVED =====
+ElapsedMs: 38403.155
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602949
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+C1GenerationValid: 1
+C1Generation: 11
+MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 1
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 0
+===========================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 38403.179
+Actor: PC_Hero
+Action: 10
+AniPhase: 1
+StateTime: 0.602949
+CurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+C1GenerationValid: 1
+C1Generation: 11
+MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+DuplicateStateTimeDelta: 0.000000000
+DuplicateElapsedMsDelta: 0.118600
+AuthoredMarkerOccurrences: 0
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 0
+ExecutionBudgetReset: 0
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38621.973
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+SlotAssociation: RIGHT
+PlayerAction: 10
+PlayerAniPhase: 3
+PlayerStateTime: 0.805941
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 38622.011
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EAC10
+Side: RIGHT
+OffensiveRequestCount: 2
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 38622.033
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70EAC10
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 2
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39900.261
+Source: Fist
+SourceAddress: E6A6C210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.042999
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 41488.403
+Source: Fist
+SourceAddress: E6A6C210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.630867
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+Script_FrameCollisionTest unloading cleanly.
