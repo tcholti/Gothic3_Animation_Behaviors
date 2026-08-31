@@ -4,7 +4,7 @@
 
 **Updated:** 2026-08-31
 
-## Current bridge — Gate 2 CORE diagnostic sufficiency OPEN
+## Current bridge — Gate 2 CORE diagnostic sufficiency OPEN; build validation NEXT
 
 Repository:
 
@@ -89,19 +89,6 @@ Implementation commit:
 4eeb701725e8b77d8850116d408155653ff4ad36
 ```
 
-Implemented modules:
-
-```text
-EngineBridge
-FrameCollisionMarkers
-CollisionSources
-CollisionSourceOperations
-CollisionLifecycleGuard
-RuntimeClock
-CollisionDiagnostics          diagnostic target only
-CollisionDiagnosticsDeep      diagnostic/deep capability only
-```
-
 Build products:
 
 ```text
@@ -113,44 +100,11 @@ Script_FrameCollisionBehaviorTest
 = no diagnostic sources/defines/hooks
 ```
 
-Gate 1:
-
-```text
-source audit PASS
-git diff --check PASS
-diagnostic build PASS
-behavior-only build PASS
-behavior-only mechanical diagnostic exclusion PASS
-```
-
-Validated deployed diagnostic DLL before Gate 2:
-
-```text
-SHA256 25980C09DC0AB3ECAF69397F0AE3CA8D5566FF816B1210F44182D4508B292109
-Length 417792
-```
-
-Startup/load-unload sentinel:
-
-```text
-research/raw/2026-08-30_second_pass_core_diagnostic_startup_load_unload.log
-commit 6bf59e6c08aebf6097566192b239092f0f734ea5
-```
-
-Contains:
-
-```text
-DiagnosticProfile: CORE
-DeepDiagnostics: DISABLED
-Hooks installed.
-Script_FrameCollisionTest unloading cleanly.
-```
-
-Gate 1 / startup = CLOSED/PASS. Evidence EV-208.
+Gate 1 source/build validation and initial post-rewrite CORE startup/load-unload are closed/PASS. Evidence EV-208.
 
 ---
 
-## Gate 2 progress — already closed in CORE diagnostics
+## Gate 2 progress — already PASS
 
 Mixed runtime artifact:
 
@@ -159,31 +113,9 @@ research/raw/2026-08-30_second_pass_core_mixed_melee_bad_skip_attempts.log
 commit a7995225310789c78a85cbce9940c86d41de74b0
 ```
 
-The User performed 2H Normal, repeated 2H Whirl bad-skip attempts, repeated 1H Quick bad-skip attempts and a couple of 1H Normal attacks. Manual timing was intentionally not treated as authoritative; the log classified what actually happened.
+The run contains eight exact positive `REPAIRED_TO_ITEM_EQUIPPED` outcomes across 2H Whirl and 1H Quick, plus ordinary native cleanup/no-op and marked Normal/Quick/Whirl coverage.
 
-The run contains eight exact positive repairs:
-
-```text
-2H Whirl generations: 5, 9, 10, 13
-1H Quick generations: 14, 15, 17, 22
-```
-
-Each positive case established:
-
-```text
-OutstandingBeforeFinalization: 1
-CleanupObservedBeforeFinalization: 0
-ActualGroupBeforeRepair: 7
-RepairAttempted: 1
-RepairRequestedGroup: 5
-ActualGroupAfterRepair: 5
-PhysicalCollisionChanged: 1
-Outcome: REPAIRED_TO_ITEM_EQUIPPED
-```
-
-The same run also contains ordinary native `7 -> 5` cleanup with `NO_OP_NO_OUTSTANDING`, marked Normal/Quick/Whirl ownership, Whirl OFF/occurrence/dead-marker handling, no searched invariant/divergence/unresolved/failure signal, and clean unload.
-
-Therefore Gate 2 currently has:
+Gate 2 currently stands at:
 
 ```text
 PASS  known positive stale-source repair
@@ -199,11 +131,11 @@ OPEN  crossbow negative
 
 Evidence EV-209.
 
-Do not rerun the already-PASS sentinels unless a later source change actually touches their behavior/evidence.
+Do not rerun already-PASS sentinels unless a later behavior/source change actually requires it.
 
 ---
 
-## Current blocker — CORE reaction evidence is ambiguous
+## Reaction diagnostic-sufficiency gap
 
 Focused reaction artifact:
 
@@ -218,37 +150,7 @@ User observation:
 visually things looked correct
 ```
 
-CORE log:
-
-```text
-healthy exact source 7 -> 5 cleanup exists
-finalization NO_OP_NO_OUTSTANDING
-no repair indicated
-```
-
-But current compact `ENGINE SetCollisionGroup` records only:
-
-```text
-Source
-SourceAddress
-SlotAssociation
-RequestedGroup
-BeforeGroup
-AfterGroup
-RetiredMarkerExecutionCount
-```
-
-It no longer records player action/phase/state/motion around the transition. Therefore Normal Chat cannot prove whether a specific cleanup was:
-
-```text
-ordinary Hit -> Recover
-or
-legitimate damage-reaction cleanup
-```
-
-Gate-2 rule:
-
-> If compact diagnostics make a required fact ambiguous, the diagnostic reduction is too aggressive.
+CORE log showed healthy exact-source `7 -> 5` cleanup followed by `NO_OP_NO_OUTSTANDING`, but the reduced `ENGINE SetCollisionGroup` record lacked player action/phase/state/motion. Therefore the old compact run could not distinguish ordinary Hit→Recover cleanup from legitimate reaction cleanup.
 
 Classification:
 
@@ -257,13 +159,24 @@ CORE DIAGNOSTIC SUFFICIENCY GAP
 NOT a demonstrated collision-behavior failure
 ```
 
-Stop the remaining Gate-2 runtime matrix until this is corrected.
-
 ---
 
-## FROZEN NEXT RESPONSIBILITY — diagnostics-only one-file correction
+## CORE SetCollisionGroup context restoration — IMPLEMENTED / REVIEW PASS
 
-Immediate target:
+Frozen one-file correction was published at:
+
+```text
+5b92b79a5af63c38e66a7ec8deecd0876c2cf141
+Restore Gate 2 SetCollisionGroup context
+```
+
+Parent:
+
+```text
+56b75d7d6801ac7015a59254733c9ef84258267f
+```
+
+Changed file only:
 
 ```text
 prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
@@ -275,7 +188,7 @@ Function:
 CollisionDiagnostics::LogSetCollisionGroup
 ```
 
-Restore these current-player context fields on relevant compact `ENGINE SetCollisionGroup` records:
+Restored fields:
 
 ```text
 PlayerAction
@@ -284,59 +197,56 @@ PlayerStateTime
 PlayerCurrentMovementAni
 ```
 
-Use the already-established `Entity::GetPlayer`, routine/action, ani-phase, state-time and current-movement-animation APIs already used in the diagnostic source.
+Implementation uses already-established current-player/routine/animation APIs in the diagnostic source.
 
-This is a compact logger correction only.
+Independent Normal Chat source review: **PASS**.
 
-Do NOT:
+Verified from the published diff:
 
 ```text
-restore deep stack/callsite probes
-add hooks
-change EngineBridge hook targets/calling conventions/order
-change CollisionLifecycleGuard
-change C1 generation/obligation/finalization/repair semantics
-change FrameCollisionMarkers or marker bookkeeping
-change CollisionSources or CollisionSourceOperations
-change RuntimeClock or duplicate timing
-change CMake product separation
-change Script_FrameCollisionBehaviorTest
-turn deep diagnostics on by default
-expand attack families
-change/generalize Fist semantics
-implement AttackContinuationProtection
-change Raise/speed/config
-start New Balance/Jackydima compatibility work
-start production migration
-touch target acquisition/climbing
+only CollisionDiagnostics.cpp changed
+all four required fields are emitted
+no deep diagnostic dependency added
+no hook change
+no lifecycle/C1 change
+no marker/source-operation change
+no RuntimeClock change
+no CMake/behavior-only target change
 ```
 
-If source inspection exposes a concrete API/calling-convention contradiction to this exact responsibility, STOP and report it rather than improvising.
+This correction is diagnostic-only. It does not itself establish runtime success.
+
+The Work handoff pasted into Normal Chat after publication was stale and incorrectly described historical C1-R1 commit `93e5a2f2...`; ignore that text. The actual remote branch/source commit is `5b92b79a...` and was independently verified from GitHub.
 
 ---
 
-## Validation after the one-file correction
+## EXACT NEXT RESPONSIBILITY — authoritative Windows build
 
-Do one stage at a time.
+The current source is ready for local validation. **Do not assign another behavior/source coding task before this build/runtime boundary is crossed.**
 
-Source stage:
+When the User is on the authoritative Windows/game PC:
 
-```text
-bounded diff audit
-git diff --check for editable source
-confirm only intended compact diagnostics changed
-confirm behavior-only target remains mechanically unaffected
-```
+### 1. Synchronize local checkout
 
-Build stage:
+The local checkout predates the latest remote source/documentation state. Preserve the unrelated untracked file below and synchronize normally per POP-01.
+
+Unrelated local file to preserve exactly in place:
 
 ```text
-build Script_FrameCollisionTest Release
+research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
 ```
 
-Because the intended file is diagnostic-only and is excluded from `Script_FrameCollisionBehaviorTest`, the behavior-only build is not automatically required again unless the actual diff crosses that boundary.
+Do not delete, move, stage or commit it as part of this gate.
 
-Deployment stage:
+### 2. Build only diagnostic target
+
+```text
+Script_FrameCollisionTest Release
+```
+
+Because the source change is confined to diagnostic-only `CollisionDiagnostics.cpp`, `Script_FrameCollisionBehaviorTest` does not need a repeat build unless a later diff crosses that boundary.
+
+### 3. Deploy / identity
 
 ```text
 deploy Script_FrameCollisionTest.dll only
@@ -344,89 +254,114 @@ verify exactly one intended live collision DLL
 verify built/live SHA equality
 ```
 
-Startup stage:
+Never deploy diagnostic and behavior-only prototype DLLs together.
+
+### 4. Startup/load verification
+
+Require the normal CORE identity:
 
 ```text
 DiagnosticProfile: CORE
 DeepDiagnostics: DISABLED
-expected hook-install banner
+Hooks installed.
 ```
 
-Runtime stage:
+### 5. Focused runtime rerun only
 
-```text
-rerun only focused legitimate-reaction cleanup/no-op sentinel
-```
+Rerun the legitimate reaction cleanup/no-op sentinel. Freeze a new exact raw filename in the same message that requests the rerun; the old reaction raw remains canonical and unchanged.
 
-Freeze a new exact raw filename in the same message that requests the rerun. The prior reaction raw remains canonical and unchanged.
-
-Expected proof after correction:
+Expected proof:
 
 ```text
 attack collision armed
 → exact source Item_Attack(7)
-→ cleanup 7 -> 5 occurs while compact action/phase/state/motion establishes reaction context
+→ ENGINE SetCollisionGroup cleanup 7 -> 5
+→ restored compact PlayerAction / PlayerAniPhase / PlayerStateTime / PlayerCurrentMovementAni establish legitimate reaction context
 → C1 cleanup fulfilled
 → finalization NO_OP_NO_OUTSTANDING
 → RepairAttempted: 0
 → PhysicalCollisionChanged: 0
 ```
 
-If proved, mark reaction sentinel PASS and continue:
+If proved:
 
 ```text
-Dual source independence
-Fist/unarmed negative
-crossbow negative
+reaction sentinel PASS
+→ continue Dual source independence
+→ Fist/unarmed negative
+→ crossbow negative
 ```
 
 If still ambiguous, stop and reassess the smallest compact evidence addition before enabling deep diagnostics.
 
 ---
 
-## Local / branch handoff state
+## Current environment boundary
 
-The User's last local evidence push before this documentation close was:
+The User is presently on a computer without the local Gothic 3 repository/build/game environment.
 
-```text
-86d41d4772ebfc320d67ca063e51b28523fcfb9e
-```
-
-After that push, Normal Chat performed documentation-only remote maintenance. Therefore at the start of the next local writer window the User must synchronize from the latest remote `docs/collision-source-evidence` before editing/building.
-
-Preserve the existing unrelated untracked local file exactly in place:
+Allowed now:
 
 ```text
-research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
+Normal Chat planning/review
+GitHub source/document inspection
+bounded future-task planning
 ```
 
-It is legitimate derived research context from the earlier AISetState stability work. Do not delete, move, stage or commit it as part of the Gate-2 logger correction.
+Blocked until authoritative PC:
 
-One branch writer window at a time per POP-01.
+```text
+local sync/build
+DLL deployment
+binary identity verification
+Gothic 3 runtime testing
+raw runtime capture
+```
+
+Planning may continue, but the technical gate must not be claimed beyond the Windows build/runtime boundary.
 
 ---
 
-## Authorities for the next Chat
+## Explicit non-goals before Gate 2 closes
+
+Do not start:
 
 ```text
-SESSION_ENTRYPOINT.md                current gate/front door
-BETWEEN_CHATS.md                     this exact continuation
-COLLISION_TEST_PLAN.md               Gate 2 validation state
-EVIDENCE_LEDGER_STEP_D.md            EV-206–EV-209
-SECOND_PASS_REWRITE_CONTRACT.md      frozen rewrite/invariants
-GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md release-purity rule
-PROJECT_OPERATING_PROCEDURES.md      local build/deploy/test/raw workflow
-WORK_IMPLEMENTATION_PROTOCOL.md      bounded source implementation if Work is used
+new hooks/deep stack probes
+C1 redesign
+marker simplification
+new attack-family marker support
+new/generalized Fist semantics
+AttackContinuationProtection
+Raise
+speed/config redesign
+New Balance / Jackydima compatibility fixes
+production migration
+target acquisition
+climbing
 ```
 
-Do not load other documents unless a concrete question requires them.
+---
+
+## Authorities
+
+```text
+SESSION_ENTRYPOINT.md                 current gate/front door
+BETWEEN_CHATS.md                      this exact continuation
+COLLISION_TEST_PLAN.md                Gate 2 validation state
+EVIDENCE_LEDGER_STEP_D.md             EV-206–EV-209
+SECOND_PASS_REWRITE_CONTRACT.md       frozen architecture/invariants
+GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md release-purity rule
+PROJECT_OPERATING_PROCEDURES.md       local build/deploy/test/raw workflow
+WORK_IMPLEMENTATION_PROTOCOL.md       bounded source implementation rules
+```
 
 ---
 
 ## Forward order
 
 ```text
-CORE SetCollisionGroup context restoration — NEXT
+Windows build/deploy of 5b92b79... — NEXT
 → focused reaction CORE rerun
 → finish Gate 2 Dual/Fist/crossbow
 → Gate 2 CLOSED/PASS
@@ -437,7 +372,7 @@ CORE SetCollisionGroup context restoration — NEXT
 → full marker/lifecycle regression
 → AttackContinuationProtection
 → mature research compatibility gate
-→ migrate/redesign Raise + speed + config into mature modular foundation
+→ migrate/redesign Raise + speed + config
 → later target acquisition/climbing
 → final diagnostics-free Script_G3AnimationBehaviors
 → final compatibility regression
