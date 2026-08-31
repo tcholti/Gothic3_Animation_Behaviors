@@ -1,6 +1,6 @@
 # Collision Lifecycle Test Plan
 
-**Status:** Current staged validation plan — post-rewrite Gate 2 open  
+**Status:** Current staged validation plan — Gate 2 CLOSED/PASS; Gate 3 OPEN/FROZEN  
 **Updated:** 2026-08-31
 
 ## Purpose
@@ -27,9 +27,9 @@ Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 - Preserve raw runtime logs exactly as produced.
 - If compact diagnostics make a required validation fact ambiguous, treat that as diagnostic insufficiency; do not reinterpret ambiguity as proof.
 - Do not deploy diagnostic and behavior-only prototype DLLs together.
-- Follow `PROJECT_OPERATING_PROCEDURES.md` for build/deploy/test/raw-artifact operations.
+- Follow `PROJECT_OPERATING_PROCEDURES.md` for local build/deploy/test/artifact operations.
 
-Authoritative diagnostic research target:
+Authoritative diagnostic target:
 
 ```text
 Script_FrameCollisionTest
@@ -108,74 +108,42 @@ Script_FrameCollisionBehaviorTest Release build = PASS
 behavior-only target excludes CollisionDiagnostics/deep sources/defines/hooks = PASS
 ```
 
-Startup/deployment sentinel also passed:
-
-```text
-built/live diagnostic SHA256:
-25980C09DC0AB3ECAF69397F0AE3CA8D5566FF816B1210F44182D4508B292109
-
-DiagnosticProfile: CORE
-DeepDiagnostics: DISABLED
-Hooks installed.
-Script_FrameCollisionTest unloading cleanly.
-```
-
-Raw:
-
-```text
-research/raw/2026-08-30_second_pass_core_diagnostic_startup_load_unload.log
-commit 6bf59e6c08aebf6097566192b239092f0f734ea5
-```
-
-Evidence: EV-208.
+Initial post-rewrite diagnostic startup/load-unload also passed. Evidence: EV-208.
 
 ---
 
-## 4. Gate 2 — Post-Rewrite CORE Diagnostic Sufficiency: OPEN
+## 4. Gate 2 — Post-Rewrite CORE Diagnostic Sufficiency: CLOSED/PASS
 
 Purpose:
 
 ```text
 prove the reduced default CORE diagnostic build still supplies enough evidence
-for the small structural-regression matrix without enabling deep diagnostics
+for the frozen structural-regression matrix without enabling deep diagnostics
 ```
 
-Minimum sentinels:
+Required sentinels:
 
 ```text
-known positive stale-source repair
-ordinary native cleanup no-op
-legitimate reaction cleanup no-op
-Dual source independence
-one marked-source regression
-Fist/unarmed negative
-crossbow negative
-clean shutdown
+PASS  known positive stale-source repair
+PASS  ordinary native cleanup no-op
+PASS  legitimate reaction cleanup no-op
+PASS  Dual source independence
+PASS  one marked-source regression
+PASS  Fist/unarmed negative
+PASS  crossbow negative
+PASS  clean shutdown
 ```
 
-CORE diagnostics must establish, where relevant:
+### 4.1 Initial mixed CORE closure
 
-```text
-marker ownership/suppression/result
-exact source requested/before/after transition
-C1 generation + exact-source obligation
-cleanup fulfillment
-pre-Combat acquisition/consumption
-finalization/repair outcome
-explicit invariant/failure signals
-enough gameplay context to classify the sentinel being tested
-```
-
-### Gate 2 progress already closed/PASS
-
-Mixed raw:
+Raw:
 
 ```text
 research/raw/2026-08-30_second_pass_core_mixed_melee_bad_skip_attempts.log
 commit a7995225310789c78a85cbce9940c86d41de74b0
 ```
 
-This run establishes:
+Established:
 
 ```text
 PASS  known positive stale-source repair
@@ -184,51 +152,20 @@ PASS  marked-source regression
 PASS  clean shutdown
 ```
 
-Positive repair coverage is stronger than one sentinel: eight exact `REPAIRED_TO_ITEM_EQUIPPED` finalizations were observed across 2H Whirl and 1H Quick, each with outstanding exact source at group 7 and exact repair to group 5. Ordinary 2H/1H Normal and clean Quick cases show native cleanup fulfillment followed by `NO_OP_NO_OUTSTANDING`. Normal/Quick/Whirl marker ownership and Whirl OFF/occurrence/dead-callback handling are also represented.
+Eight exact `REPAIRED_TO_ITEM_EQUIPPED` finalizations were observed across 2H Whirl and 1H Quick; ordinary clean attacks remained native-cleanup/no-op. Evidence: EV-209.
 
-Evidence: EV-209.
+### 4.2 Reaction ambiguity and bounded diagnostic correction
 
-### Current Gate 2 blocker — reaction classification ambiguity
+The first focused reaction run behaved correctly but lacked enough compact context to prove reaction-owned cleanup. That was classified as diagnostic insufficiency, not behavior failure.
 
-Focused reaction raw:
-
-```text
-research/raw/2026-08-30_second_pass_core_legitimate_reaction_cleanup_noop.log
-commit 86d41d4772ebfc320d67ca063e51b28523fcfb9e
-```
-
-Observed:
+Diagnostics-only correction:
 
 ```text
-visual behavior looked correct
-healthy exact source 7 -> 5 cleanup exists
-C1 finalization is NO_OP_NO_OUTSTANDING
-no repair is indicated
+5b92b79a5af63c38e66a7ec8deecd0876c2cf141
+Restore Gate 2 SetCollisionGroup context
 ```
 
-But current compact `ENGINE SetCollisionGroup` evidence does not include enough player gameplay context to distinguish:
-
-```text
-ordinary Hit -> Recover cleanup
-vs
-legitimate reaction-owned cleanup
-```
-
-Therefore the reaction sentinel is **NOT CLOSED**. This is a compact diagnostic-sufficiency failure, not a demonstrated collision behavior failure.
-
-Per the Gate-2 rule, do not continue remaining sentinels while this required fact is ambiguous.
-
----
-
-## 5. Immediate Bounded Correction Before More Gate 2 Runtime Testing
-
-Change only compact diagnostics:
-
-```text
-CollisionDiagnostics::LogSetCollisionGroup
-```
-
-Restore these fields on relevant `ENGINE SetCollisionGroup` records:
+Restored compact fields:
 
 ```text
 PlayerAction
@@ -237,66 +174,71 @@ PlayerStateTime
 PlayerCurrentMovementAni
 ```
 
-These use already-established actor APIs; no new source/API/calling-convention question is open.
-
-Do not:
+Validated rebuilt diagnostic DLL:
 
 ```text
-add or restore deep hooks
-add stack/callsite probes
-change EngineBridge hook transport/order
-change CollisionLifecycleGuard
-change C1 predicates or repair
-change marker semantics/bookkeeping
-change source operations
-change RuntimeClock
-change behavior-only target
-turn deep diagnostics on by default
-expand attack families/Fist semantics
+Length: 418304
+SHA256: 635B2AD1E7DD4B037317CA6BD5FC3477A427E5EBF1772623D7A41DBC728CB0F3
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
 ```
 
-Required validation after the diagnostics-only source correction:
+Focused reaction rerun:
 
 ```text
-bounded source diff audit
-git diff --check
-build Script_FrameCollisionTest Release
-verify only intended diagnostic source changed and behavior-only separation remains intact
-deploy exact diagnostic DLL alone
-verify built/live SHA
-verify CORE / DeepDiagnostics: DISABLED startup
-rerun focused legitimate-reaction cleanup sentinel
+research/raw/2026-08-31_second_pass_core_legitimate_reaction_cleanup_noop_context_restored.log
+commit 2ca3f76aeb1b832d5be22985e3f6fd58ef8d4191
 ```
 
-If CORE then unambiguously proves reaction-owned 7->5 cleanup + `NO_OP_NO_OUTSTANDING`, mark reaction sentinel PASS and continue Gate 2.
+The restored context separated ordinary completion cleanup from interruption/knockdown cleanup and proved the reaction sentinel unambiguously while remaining `NO_OP_NO_OUTSTANDING` with no repair. Evidence: EV-210.
 
-If the required fact remains ambiguous, stop and reassess the smallest compact evidence addition before enabling deep diagnostics.
+### 4.3 Remaining sentinel closure
 
----
-
-## 6. Remaining Gate 2 Sentinels After Reaction Closure
+Dual:
 
 ```text
-OPEN  Dual source independence
-OPEN  Fist/unarmed negative
-OPEN  crossbow negative
+research/raw/2026-08-31_second_pass_core_dual_source_independence.log
+commit c5d833c6d749636f238879b46d196e7865248ac8
 ```
 
-Do not rerun already-closed positive repair, ordinary cleanup, marked-source or shutdown sentinels unless a later source change actually touches their behavior/diagnostic evidence.
+Fist/unarmed:
 
-When all Gate-2 sentinels are unambiguous and clean:
+```text
+research/raw/2026-08-31_second_pass_core_fist_unarmed_negative.log
+commit b914f7660a424f502b21f85ee668b694760dbbae
+```
+
+Crossbow:
+
+```text
+research/raw/2026-08-31_second_pass_core_crossbow_negative.log
+commit 0b23be7a22c3b96e817db2fc9522d854b4739d2f
+```
+
+Results:
+
+```text
+PASS  Dual exact-source independence
+PASS  Fist group-0 / no weapon-style C1 obligation
+PASS  crossbow/Bolt negative behavior
+PASS  clean shutdown
+```
+
+No searched repair-divergence/invariant/unresolved/failure signal occurred in these focused runs. Evidence: EV-211.
+
+### 4.4 Gate 2 conclusion
 
 ```text
 Gate 2 = CLOSED/PASS
 ```
 
-Only then proceed to behavior-only runtime testing.
+The compact CORE diagnostic profile is sufficient for the frozen post-rewrite structural matrix. Deep diagnostics were not required.
+
+Do not rerun Gate 2 merely because Gate 3 uses the behavior-only target.
 
 ---
 
-## 7. Gate 3 — Behavior-Only Smoke / Equivalence
-
-After Gate 2 passes, deploy `Script_FrameCollisionBehaviorTest` **instead of** the diagnostic target.
+## 5. Gate 3 — Behavior-Only Smoke / Equivalence: OPEN / FROZEN
 
 Purpose:
 
@@ -304,13 +246,115 @@ Purpose:
 prove intended collision behavior does not depend on diagnostic source/state/hooks
 ```
 
-Freeze the exact small matrix only after Gate 2 closes. Do not infer behavior-only runtime correctness from compilation alone.
+This is a **small functional smoke**, not a duplicate of the full diagnostic Gate-2 matrix.
+
+### 5.1 Build/deploy contract
+
+```text
+sync local branch to current remote head
+→ build Script_FrameCollisionBehaviorTest Release
+→ identify/hash exact built DLL
+→ remove Script_FrameCollisionTest diagnostic DLL from live scripts
+→ deploy Script_FrameCollisionBehaviorTest.dll alone
+→ verify exactly one intended collision prototype DLL is live
+→ verify built/live SHA equality
+→ main-menu load/exit smoke
+→ only then run the functional matrix
+```
+
+Diagnostic and behavior-only prototypes must never be live together.
+
+Because the post-Gate-1 source correction touched diagnostic-only `CollisionDiagnostics.cpp`, no behavior-core semantic change has occurred since the behavior-only target's Gate-1 build. Gate 3 still rebuilds the behavior-only target at the current branch head so deployment identity is explicit.
+
+### 5.2 Frozen functional matrix
+
+#### A. Marked 2H Normal positive
+
+```text
+fixture:
+marked player 2H Normal
+
+minimum:
+2–3 attacks against a target
+
+pass:
+intended attack damage/contact still occurs
+no crash or obvious marker-path regression
+```
+
+#### B. Stale-source repair functional smoke
+
+```text
+fixture:
+established vulnerable player 2H full-Whirl held-Use2 bad-skip reproduction
+
+minimum:
+3 attempts in which the attack has already made offensive contact before the destructive skip
+
+after each successful destructive skip:
+return to Ambient/running
+→ touch/run into the target without attacking
+→ target must not take passive stale-weapon damage
+→ perform a following ordinary attack
+→ that ordinary attack must damage normally
+```
+
+This is the user-visible consequence check for the already-validated C1 repair. It does not attempt to re-prove internal per-source diagnostics without diagnostics.
+
+#### C. Unsupported/native-fallback smoke
+
+```text
+fixture:
+player crossbow
+
+minimum:
+3 ordinary shot cycles against a target
+
+pass:
+aim/shoot/reload flow remains normal
+no visible melee-marker/repair interference
+```
+
+#### D. Shutdown
+
+```text
+exit Gothic 3 normally
+```
+
+### 5.3 Gate 3 acceptance
+
+```text
+main-menu load succeeds
+no runtime crash
+marked 2H positive behavior remains functional
+no passive stale-weapon damage after destructive skip
+later legitimate melee attack remains functional
+crossbow/native fallback remains functional
+normal exit
+```
+
+### 5.4 Evidence handling
+
+`Script_FrameCollisionBehaviorTest` intentionally contains no diagnostics, so no `Script_FrameCollisionTest.log`-style raw runtime artifact is expected.
+
+Do **not** co-load diagnostics or add logging just to create Gate-3 evidence.
+
+Gate-3 evidence will consist of:
+
+```text
+exact source/branch head
+exact behavior-only built/live DLL identity/hash
+successful main-menu load
+User's controlled functional observations for A–D
+```
+
+If a functional failure occurs, stop and isolate the smallest failing case before any source change.
 
 ---
 
-## 8. Gate 4 — Later Marker Bookkeeping Simplification
+## 6. Gate 4 — Later Marker Bookkeeping Simplification
 
-Only after rewrite + Gate 2 + behavior-only smoke pass.
+Only after rewrite + Gate 2 + Gate 3 pass.
 
 Classify every existing marker guard/check into:
 
@@ -335,11 +379,10 @@ EV-131–EV-133 and EV-167 are mandatory evidence before removing execution-reti
 
 ---
 
-## 9. Later Order
+## 7. Later Order
 
 ```text
-finish Gate 2
-→ behavior-only smoke/equivalence
+Gate 3 behavior-only smoke/equivalence
 → marker bookkeeping simplification audit
 → equipped-melee marker expansion one mechanism at a time
 → separate Fist source-adapter investigation
@@ -357,9 +400,9 @@ Do not combine unrelated later responsibilities unless a separately frozen contr
 
 ---
 
-## 10. Evidence Handling
+## 8. Evidence Handling Rule
 
-For runtime stages:
+For diagnostic runtime stages:
 
 ```text
 freeze exact question/matrix/raw filename
@@ -370,4 +413,4 @@ freeze exact question/matrix/raw filename
 → update exact evidence/current authorities when meaning changes
 ```
 
-Do not ask the User to paste large successful logs into Chat.
+For behavior-only Gate 3, follow §5.4 instead; do not add diagnostics merely to force the diagnostic artifact workflow onto a diagnostics-free product.

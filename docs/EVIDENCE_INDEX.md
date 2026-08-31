@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-08-30
+**Updated:** 2026-08-31
 
 ## Purpose
 
@@ -29,11 +29,11 @@ Raw logs are verification/provenance, not routine reading.
 | frame effects / marker channel / frame-effect layout | EV-012–EV-018 | source guide Frame effects |
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | later lifecycle evidence if asking about abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick implementation evidence EV-066+; R1-E NPC Staff stability EV-207 |
-| Fist/body-contact source semantics | EV-029–EV-032, EV-080–EV-085, EV-207 | `ANIMATION_CATALOG.md` Fist fixture |
+| Fist/body-contact source semantics | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211 | `ANIMATION_CATALOG.md` Fist fixture |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | marker-core later evidence / catalog fixtures |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075 | EV-182–EV-196 for native lifecycle/bookkeeping context |
-| Dual native source map | EV-090–EV-094 | EV-207 for C1-R1 exact-source repair validation |
+| Dual native source map / source-explicit marker review | EV-090–EV-094 | EV-207 for C1-R1 exact-source repair; EV-211 for post-rewrite Dual independence and current P1 Quick authored-marker review note |
 | multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | archived v0.10–v0.13 fixture logs |
 | marker execution retirement after interruption | EV-131–EV-133 | EV-167, EV-182–EV-196, EV-207 for later lifecycle/terminal-repair interpretation |
 | final RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` §6 / `ANIMATION_RULES.md` §20 |
@@ -50,7 +50,7 @@ Raw logs are verification/provenance, not routine reading.
 | no-Recover and Dual Quick broad defect | EV-161–EV-162 | EV-190 for held-Use2 state-stack-abandonment generality |
 | action-specific native cleanup matrix | EV-163 | `COLLISION_CLEANUP_CALLSITE_MAP.md` §2 |
 | same serialized asset, different runtime action | EV-164 | cleanup map §3 |
-| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179, EV-184, EV-186, EV-188, EV-191, EV-203, EV-206 | cleanup map / lifecycle plan §3 |
+| legitimate reaction interruption cleanup/successor | EV-165, EV-177–EV-179, EV-184, EV-186, EV-188, EV-191, EV-203, EV-206, EV-210 | cleanup map / lifecycle plan §3 |
 | B5 parent stack | EV-166 | EV-169–EV-170 static identification |
 | marker bookkeeping vs physical cleanup | EV-167, EV-182–EV-196, EV-206–EV-207 | `COLLISION_LIFECYCLE_PLAN.md` §9 |
 | future marker-core simplification / native execution boundary | EV-066–EV-075, EV-131–EV-133, EV-167, EV-182–EV-196, EV-207 | **Read `COLLISION_LIFECYCLE_PLAN.md` §9 before changing marker bookkeeping** |
@@ -66,7 +66,7 @@ Raw logs are verification/provenance, not routine reading.
 | long-lived stale group 7 / later inherited 7->7 | EV-181, EV-193, EV-203 | C1 core confirms new-generation attribution for inherited stale state |
 | persisted CombatMove instruction / FullStop semantics | EV-182, EV-185–EV-191 | lifecycle plan §§3–4 / source guide CombatMove symbols |
 | full-Whirl break-block continuation to native cleanup | EV-183, EV-189 | lifecycle plan §§3–4 |
-| reaction-side FullStop before separate cleanup ownership | EV-184, EV-186, EV-188, EV-191, EV-203, EV-206 | lifecycle plan §3 |
+| reaction-side FullStop before separate cleanup ownership | EV-184, EV-186, EV-188, EV-191, EV-203, EV-206, EV-210 | lifecycle plan §3 |
 | bad full-Whirl exact held-Use2 FullStop caller | EV-187 | `SOURCE_HOOK_GUIDE.md` §5 |
 | exact tested Normal/Quick reaction FullStop caller | EV-188 | EV-191 adds another legitimate reaction caller; do not universalize one RVA |
 | `FullStop -> SetState` state-stack abandonment causal chain | EV-189–EV-191 | B8 generality + B9 ordering close the tested known stale class |
@@ -84,8 +84,9 @@ Raw logs are verification/provenance, not routine reading.
 | C1 finalizer remembered-source liveness crash and correction | EV-202–EV-203 | correction is stable; exact liveness-negative outstanding branch lacks positive runtime coverage |
 | C1-O2 lightweight dispatch bridge / outer acquisition closure | EV-204–EV-205 | P1 establishes synchronous scope; P2 closes tested pre-Combat offense→CombatMove bridge model |
 | C1-R1 controlled native-equivalent physical repair | EV-206–EV-207 | exact live/equipped outstanding weapon-source `7 -> 5` repair plus Dual/marker/broad/Fist/crossbow closure; controlled validation CLOSED |
-| crossbow / bow / magic C1 negative regression | EV-207 | crossbow independently remains outside exact tracked C1 weapon-source ownership; bow/magic provide supplemental negative coverage |
-| C1-R1 closure / next integration boundary | EV-207 | do not invent another R1 matrix; `SESSION_ENTRYPOINT.md` owns production-integration planning state |
+| crossbow / bow / magic C1 negative regression | EV-207, EV-211 | crossbow remains outside melee exact-source offense ownership; EV-211 separately confirms post-rewrite Bolt `1 -> 7 -> 6` behavior with no C1 offense/repair |
+| post-rewrite diagnostic/behavior product separation and CORE Gate 2 | EV-208–EV-211 | `SECOND_PASS_REWRITE_CONTRACT.md` / `COLLISION_TEST_PLAN.md` |
+| C1-R1 closure / next integration boundary | EV-207 | do not invent another R1 matrix; `SESSION_ENTRYPOINT.md` owns the active post-rewrite gate |
 
 ---
 
@@ -96,7 +97,7 @@ When this stale-collision problem is the active engineering responsibility, a fr
 1. **Historical trigger / manual reproduction context:** EV-187, EV-197, EV-198.
 2. **Native stale physical consequence / persistence:** EV-156, EV-162, EV-181, EV-193, EV-202–EV-203, EV-206.
 3. **Normal attack/CombatMove continuation and ordinary cleanup:** EV-163, EV-182–EV-183.
-4. **Legitimate reaction interruption and separate cleanup ownership:** EV-165, EV-184, EV-186, EV-188, EV-191, EV-203, EV-206.
+4. **Legitimate reaction interruption and separate cleanup ownership:** EV-165, EV-184, EV-186, EV-188, EV-191, EV-203, EV-206, EV-210.
 5. **Bad held-Use2 abandonment causal chain:** EV-185, EV-187, EV-189–EV-191.
 6. **Cross-family generality:** EV-162, EV-190.
 7. **Rejected Recover/StartRecover/replacement/callback explanations:** EV-154, EV-159–EV-162, EV-168, EV-174–EV-181.
@@ -104,7 +105,8 @@ When this stale-collision problem is the active engineering responsibility, a fr
 9. **C1 execution/source-obligation invariant and lifetime work:** EV-192–EV-196 → `COLLISION_LIFECYCLE_PLAN.md`.
 10. **C1 hook/finalizer substrate stabilization:** EV-199–EV-203.
 11. **C1-O2 outer acquisition/binding closure:** EV-204–EV-205.
-12. **Controlled native-equivalent physical repair and closure:** EV-206–EV-207 → `COLLISION_LIFECYCLE_PLAN.md` / `COLLISION_TEST_PLAN.md`; `SESSION_ENTRYPOINT.md` owns the next production-integration responsibility.
+12. **Controlled native-equivalent physical repair and closure:** EV-206–EV-207 → `COLLISION_LIFECYCLE_PLAN.md`.
+13. **Post-rewrite structural validation / CORE sufficiency:** EV-208–EV-211 → `COLLISION_TEST_PLAN.md`; `SESSION_ENTRYPOINT.md` owns the current behavior-only gate.
 
 ---
 
@@ -137,7 +139,8 @@ Evidence anchors:
 - EV-145–EV-147;
 - EV-192–EV-194 for C1 exact equipped-source obligation/acquisition behavior;
 - EV-206 for exact-source physical-repair semantics and controlled no-op coverage;
-- EV-207 for Dual repair independence plus Fist/crossbow source-scope closure.
+- EV-207 for Dual repair independence plus Fist/crossbow source-scope closure;
+- EV-211 for post-rewrite Dual source-independence, Fist/crossbow negatives and the current Dual P1 Quick authored-marker review note.
 
 Asset-level routing: `ANIMATION_INDEX.md`.
 
@@ -159,7 +162,8 @@ Evidence anchors:
 - EV-131–EV-133;
 - EV-167;
 - EV-181–EV-196;
-- EV-206–EV-207 for controlled terminal repair and marked-source regression.
+- EV-206–EV-207 for controlled terminal repair and marked-source regression;
+- EV-209–EV-211 for post-rewrite marked regression and CORE sufficiency.
 
 Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§3–9.
 
@@ -169,7 +173,7 @@ Architecture: `COLLISION_LIFECYCLE_PLAN.md` §§3–9.
 
 Search terms: `Item_Attack`, `Item_Equipped`, `SetCollisionGroup`, cleanup, block skip, StartRecover, PlayMotion, StopMotion, ProcessScript, StateTime, StatePosition, `m_pfInstrCallback`, `FullStop`, `SetState`, `RunScriptFunction`, `m_StateStack`, `m_pArguments`, `FinalizeAfterAISetState`, `LivenessEstablished`, `REPAIRED_TO_ITEM_EQUIPPED`
 
-Evidence anchors: EV-151–EV-207.
+Evidence anchors: EV-151–EV-211.
 
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Current architecture/test: `COLLISION_LIFECYCLE_PLAN.md`; `COLLISION_TEST_PLAN.md`; current integration responsibility in `SESSION_ENTRYPOINT.md`.
@@ -224,6 +228,10 @@ Practical source route: `SOURCE_HOOK_GUIDE.md` §8–§11.
 | C1-O2-P2 ownership integration | EV-205 | early exact offense acquires the monotonic generation and matching CombatMove consumes the native bridge before wrapper return; tested model closes |
 | C1-R1 controlled physical repair | EV-206 | exact live/equipped outstanding weapon source is repaired `7 -> 5`; clean/reaction/pre-activation/GetUp/GetUpParade controls remain non-mutating |
 | C1-R1-E source/marker/broad closure | EV-207 | Dual exact-source independence, marked terminal repair, broad player/NPC stability, Fist/body separation and crossbow negative behavior close the controlled R1 gate |
+| second-pass rewrite / build separation | EV-208 | behavior core and diagnostics are structurally separated; diagnostic and behavior-only targets both build |
+| post-rewrite CORE mixed validation | EV-209 | positive repair, ordinary no-op, marked regression and shutdown pass; reaction ambiguity exposes compact diagnostic gap |
+| CORE context restoration / reaction closure | EV-210 | restored compact player context makes legitimate reaction cleanup/no-op unambiguous without deep diagnostics |
+| Gate 2 completion | EV-211 | Dual/Fist/crossbow focused sentinels pass and the entire post-rewrite CORE diagnostic gate closes |
 
 ---
 
@@ -240,7 +248,7 @@ Key Step-B comparative artifacts include:
 - `research/raw/2026-08-28_b8_player_dual_quick_state_stack_abandonment.log`
 - `research/raw/2026-08-28_b9_player_aisetstate_cleanup_ordering.log`
 
-Current C1 evidence includes:
+Current C1/post-rewrite evidence includes:
 
 - `research/raw/2026-08-28_c1_shadow_core_lifecycle_matrix.log`
 - `research/archive/2026-08-28_c1_shadow_core_lifecycle_matrix_connector_extract.txt`
@@ -255,6 +263,11 @@ Current C1 evidence includes:
 - `research/raw/2026-08-30_c1r1e_broad_player_npc_negative_stability.log`
 - `research/derived/2026-08-30_c1r1e_broad_player_npc_negative_stability_large_log/`
 - `research/raw/2026-08-30_c1r1e_unarmed_crossbow_negative_closure.log`
+- `research/raw/2026-08-30_second_pass_core_mixed_melee_bad_skip_attempts.log`
+- `research/raw/2026-08-31_second_pass_core_legitimate_reaction_cleanup_noop_context_restored.log`
+- `research/raw/2026-08-31_second_pass_core_dual_source_independence.log`
+- `research/raw/2026-08-31_second_pass_core_fist_unarmed_negative.log`
+- `research/raw/2026-08-31_second_pass_core_crossbow_negative.log`
 
 Open archived/raw logs only when verifying ledger wording, reinterpreting a result, or extracting a new fact.
 
