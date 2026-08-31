@@ -471,6 +471,21 @@ void LogSetCollisionGroup(
                  static_cast<void *>(changedEntity));
     std::fprintf(g_pLog, "SlotAssociation: %s\n",
                  PlayerSlotMatch(changedEntity));
+    Entity player = Entity::GetPlayer();
+    if (player != None)
+    {
+        bCString currentAni = player.NPC.GetCurrentMovementAni();
+        std::fprintf(
+            g_pLog, "PlayerAction: %d\n",
+            static_cast<GEInt>(
+                player.Routine.GetProperty<PSRoutine::PropertyAction>()));
+        std::fprintf(g_pLog, "PlayerAniPhase: %d\n",
+                     static_cast<GEInt>(player.GetCurrentAniPhase()));
+        std::fprintf(g_pLog, "PlayerStateTime: %.6f\n",
+                     player.Routine.GetStateTime());
+        std::fprintf(g_pLog, "PlayerCurrentMovementAni: %s\n",
+                     currentAni.GetText());
+    }
     std::fprintf(g_pLog, "RequestedGroup: %d\n",
                  static_cast<GEInt>(requestedGroup));
     std::fprintf(g_pLog, "BeforeGroup: %d\n",
