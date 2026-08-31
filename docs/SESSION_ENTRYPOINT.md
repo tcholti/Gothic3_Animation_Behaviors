@@ -48,7 +48,7 @@ If the previous Chat ended unexpectedly, after bootstrap report briefly:
 ```text
 current technical gate
 exact immediate responsibility
-Gate 2 closure state
+Gate 2 / Gate 3 closure state
 protected behavior/architecture invariants
 ```
 
@@ -83,7 +83,7 @@ exact outstanding source
 
 Native cleanup always gets first opportunity.
 
-Preserve marker invariants until the later dedicated simplification gate:
+Preserve these independent marker invariants while the simplification audit is active:
 
 ```text
 exact current-motion marker ownership
@@ -100,7 +100,7 @@ unmarked/unsupported native fallback
 current research Fist behavior without forcing weapon Item_Attack semantics
 ```
 
-Do not reopen C1-R1 or simplify marker bookkeeping during Gate 3.
+Do not reopen C1-R1. Gate 4 may classify bookkeeping for removal only where stronger native/C1 authority genuinely supersedes execution-lifetime inference; it must not remove independent marker invariants merely because Gate 3 passed.
 
 ---
 
@@ -144,7 +144,7 @@ Gate 1 source/build separation is CLOSED/PASS. Evidence: EV-208.
 
 ## Gate 2 — CORE Diagnostic Sufficiency: CLOSED/PASS
 
-The compact CORE diagnostic profile has now proved the complete frozen structural sentinel matrix without enabling deep diagnostics.
+The compact CORE diagnostic profile proved the complete frozen structural sentinel matrix without enabling deep diagnostics:
 
 ```text
 PASS  known positive stale-source repair
@@ -157,22 +157,9 @@ PASS  crossbow negative
 PASS  clean shutdown
 ```
 
-Evidence:
+Evidence: EV-209–EV-211.
 
-```text
-EV-209  mixed CORE positive/ordinary/marker/shutdown pass + reaction ambiguity
-EV-210  compact SetCollisionGroup context restoration + unambiguous reaction rerun
-EV-211  Dual/Fist/crossbow completion and Gate 2 closure
-```
-
-The diagnostic-only context correction was implemented at:
-
-```text
-5b92b79a5af63c38e66a7ec8deecd0876c2cf141
-Restore Gate 2 SetCollisionGroup context
-```
-
-Validated diagnostic DLL after that correction:
+Validated diagnostic DLL after the diagnostics-only context correction:
 
 ```text
 Length: 418304
@@ -181,83 +168,103 @@ DiagnosticProfile: CORE
 DeepDiagnostics: DISABLED
 ```
 
-The focused reaction rerun proved reaction-owned cleanup unambiguously from restored action/phase/state-time/current-motion context and remained `NO_OP_NO_OUTSTANDING` with no repair. Dual exact-source independence, Fist group-0 non-ownership and crossbow/Bolt negative behavior then passed cleanly.
-
-One later marker-expansion note is preserved in EV-211: the current tested Dual P1 Quick asset carries `G3AB_COL_RIGHT`, so the behavior correctly follows the authored RIGHT marker even though older native-source evidence maps tested Dual P1 Quick to LEFT. Treat that as a later marker-authoring/source-map review item, not a Gate-2 lifecycle failure.
+The current tested Dual P1 Quick asset carries `G3AB_COL_RIGHT`, so the behavior follows RIGHT even though older native-source evidence maps tested Dual P1 Quick to LEFT. Preserve that as a later equipped-melee marker-authoring/source-map review item, not a Gate-2 lifecycle failure.
 
 ---
 
-## Current Technical Gate — GATE 3 BEHAVIOR-ONLY SMOKE / EQUIVALENCE
+## Gate 3 — Behavior-Only Smoke / Equivalence: CLOSED/PASS
 
 Purpose:
 
-> **Prove the intended collision behavior still works when the diagnostic sources/state/hooks are not compiled or loaded.**
+> **Prove intended collision behavior still works when diagnostic sources/state/hooks are not compiled or loaded.**
 
-The exact Gate 3 matrix is frozen in `docs/COLLISION_TEST_PLAN.md`.
-
-### Required local sequence
+Authoritative local source head for the behavior-only build:
 
 ```text
-sync local branch to latest remote head
-→ build Script_FrameCollisionBehaviorTest Release
-→ identify/hash exact built behavior-only DLL
-→ remove the diagnostic prototype from the live scripts directory
-→ deploy Script_FrameCollisionBehaviorTest.dll alone
-→ verify exactly one intended collision prototype DLL is live
-→ verify built/live SHA equality
-→ main-menu load/exit smoke
-→ run the frozen small behavior-only functional matrix
-→ report observations
+2fb28e5a27333eb6da902dc5c1d46a11fbe0d809
 ```
 
-No diagnostic log is expected from the behavior-only target. Do **not** reintroduce or co-load diagnostics merely to manufacture Gate-3 log evidence.
-
-### Frozen Gate 3 functional matrix
+Built and deployed behavior-only DLL:
 
 ```text
-A. marked 2H Normal positive
-   - perform 2–3 marked 2H Normal attacks against a target
-   - intended attack damage/contact must still occur
-
-B. stale-source repair functional smoke
-   - use the established vulnerable 2H full-Whirl held-Use2 bad-skip reproduction
-   - perform 3 attempts where the attack has already made an offensive contact before the destructive skip
-   - after returning to Ambient/running, touch/run into the target without attacking
-   - there must be no passive stale-weapon damage
-   - a following ordinary attack must still damage normally
-
-C. unsupported/native-fallback smoke
-   - perform 3 normal crossbow shot cycles against a target
-   - aim/shoot/reload flow must remain normal
-   - no melee-marker/repair behavior may visibly interfere
-
-D. exit Gothic 3 normally
+Script_FrameCollisionBehaviorTest.dll
+Length: 380416
+SHA256: 2802FD584F84BBAA0F7D9E1AAD502BDB2CE91D994EE303CF880CA82AC2737EB4
 ```
 
-Acceptance:
+Deployment isolation was verified:
 
 ```text
-no load/runtime crash
-marked melee positive behavior remains functional
-known stale-source consequence is absent after destructive skip
-later legitimate melee attack still functions
-crossbow/native fallback remains functional
-normal exit
+only Script_FrameCollisionBehaviorTest.dll was live
+built SHA == live SHA
+Script_FrameCollisionTest.dll diagnostic target absent
 ```
 
-This is intentionally smaller than Gate 2. Gate 3 validates diagnostics independence, not the already-closed diagnostic sentinel matrix again.
+Runtime observations:
+
+```text
+main menu reached successfully
+normal main-menu exit succeeded
+User then performed many different functional tests under the frozen Gate-3 exercise and reported everything working as intended
+```
+
+Because the behavior-only target intentionally contains no diagnostics, this is a **functional smoke/equivalence claim only**. It does not replace Gate-2 internal event evidence or create new internal lifecycle/source claims.
+
+Gate 3 is CLOSED/PASS.
+
+---
+
+## Current Technical Gate — GATE 4 MARKER-BOOKKEEPING SIMPLIFICATION AUDIT
+
+Immediate responsibility is **audit/classification only**. No source edit is authorized yet.
+
+Question:
+
+> Which current `FrameCollisionMarkers` execution/bookkeeping checks are now genuinely superseded by stronger native/C1 execution authority, and which remain independent marker invariants that must be preserved?
+
+Required evidence route before proposing removals:
+
+```text
+EV-066–EV-075
+EV-131–EV-133
+EV-167
+EV-182–EV-196
+EV-206–EV-207
+EV-209–EV-211
+COLLISION_LIFECYCLE_PLAN.md §9
+```
+
+Classify each relevant current marker guard/check as:
+
+```text
+A. execution-lifetime inference genuinely superseded by stronger C1/native authority
+B. independent marker invariant still required
+```
+
+Group B must continue to include, unless direct contradictory evidence is found:
+
+```text
+exact current-motion marker ownership
+authored occurrence budgets
+same-update duplicate/replay protection
+repeated-contact ClearTriggeredList rearm
+RIGHT/LEFT/BOTH/OFF exact-set behavior
+StatePosition native-activation suppression
+interruption/dead-execution rejection
+```
+
+Only after the audit is complete and a bounded simplification is frozen may Work/source implementation begin.
 
 ---
 
 ## Explicit Current Non-Goals
 
-Do not combine Gate 3 with:
+Do not combine Gate 4 audit with:
 
 ```text
-new source changes
+source edits before classification is frozen
 new hooks/deep probes
 C1 redesign
-marker simplification
 new attack-family marker support
 new/generalized Fist semantics
 AttackContinuationProtection
@@ -276,14 +283,14 @@ climbing
 | Need | Open |
 |---|---|
 | exact current continuation | `BETWEEN_CHATS.md` |
-| staged validation / Gate 3 matrix | `COLLISION_TEST_PLAN.md` |
+| staged validation / Gate 4 audit | `COLLISION_TEST_PLAN.md` |
 | rewrite architecture/invariants | `SECOND_PASS_REWRITE_CONTRACT.md` |
 | post-rewrite evidence / Gate 2 closure | `EVIDENCE_LEDGER_STEP_D.md` EV-208–EV-211 |
 | C1-R1 evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206–EV-207 |
-| lifecycle safety | `COLLISION_LIFECYCLE_PLAN.md` |
+| lifecycle safety / simplification constraints | `COLLISION_LIFECYCLE_PLAN.md` §9 |
 | diagnostics architecture | `COLLISION_LOGGER_PLAN.md` |
 | release/diagnostic separation | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
-| local build/deploy/log procedure | `PROJECT_OPERATING_PROCEDURES.md` |
+| local build/deploy procedure | `PROJECT_OPERATING_PROCEDURES.md` |
 | bounded implementation rules | `WORK_IMPLEMENTATION_PROTOCOL.md` |
 
 ---
@@ -291,9 +298,9 @@ climbing
 ## Forward Order
 
 ```text
-Gate 3 behavior-only build/deploy/functional smoke — NEXT
-→ Gate 3 CLOSED/PASS if clean
-→ dedicated marker-bookkeeping simplification audit
+Gate 4 marker-bookkeeping simplification audit — NEXT
+→ freeze only evidence-supported bounded simplification, if any
+→ implement/review/test that bounded simplification
 → equipped-melee marker expansion
 → separate Fist source-adapter investigation
 → full marker/lifecycle regression
