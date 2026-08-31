@@ -729,7 +729,7 @@ BridgeRetirementResult RetirePreCombatBridgeAfterDispatch(
     return result;
 }
 
-GenerationToken CaptureFinalizationToken(eCEntity *actorInstance)
+GenerationToken CaptureCurrentGenerationToken(eCEntity *actorInstance)
 {
     GenerationToken token = {};
     auto recordIt = g_ActorRecords.find(actorInstance);
@@ -739,6 +739,11 @@ GenerationToken CaptureFinalizationToken(eCEntity *actorInstance)
     token.generation = recordIt->second.generation;
     token.valid = true;
     return token;
+}
+
+GenerationToken CaptureFinalizationToken(eCEntity *actorInstance)
+{
+    return CaptureCurrentGenerationToken(actorInstance);
 }
 
 static unsigned int GetCurrentSideMask(

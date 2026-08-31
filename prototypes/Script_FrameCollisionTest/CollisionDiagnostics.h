@@ -21,7 +21,7 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &result);
 void LogSetCollisionGroup(
     eCEntity *changedEntity, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
-    GEInt retiredMarkerExecutionCount);
+    GEInt retiredMarkerSourceBitCount);
 
 void LogBeginCombatMoveResult(
     CollisionLifecycleGuard::BeginCombatMoveResult const &result);

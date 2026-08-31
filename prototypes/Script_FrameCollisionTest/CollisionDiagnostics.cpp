@@ -266,29 +266,6 @@ void LogAttackCallbackOwnership(
         std::fprintf(g_pLog, "=====================================\n\n");
     }
 
-    if (result.controlledObservationAvailable
-        && result.controlledObservation.executionRetired)
-    {
-        ControlledCallbackObservation const &observation =
-            result.controlledObservation;
-        std::fprintf(g_pLog, "===== CONTROLLED CALLBACK EXECUTION BOUNDARY =====\n");
-        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                     RuntimeClock::GetElapsedMilliseconds());
-        std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-        std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
-                     observation.currentAnimation.GetText());
-        std::fprintf(g_pLog, "Action: %d\n", observation.currentAction);
-        std::fprintf(g_pLog, "AniPhase: %d\n", observation.currentPhase);
-        std::fprintf(g_pLog, "PreviousStateTime: %.6f\n",
-                     observation.previousStateTime);
-        std::fprintf(g_pLog, "CurrentStateTime: %.6f\n",
-                     observation.currentStateTime);
-        std::fprintf(g_pLog, "KeyChanged: %d\n",
-                     observation.keyChanged ? 1 : 0);
-        std::fprintf(g_pLog, "StateTimeRolledBack: %d\n",
-                     observation.stateTimeRolledBack ? 1 : 0);
-        std::fprintf(g_pLog, "=====================================\n\n");
-    }
     std::fflush(g_pLog);
 }
 
@@ -330,6 +307,10 @@ void LogMarkerResult(Entity &, MarkerProcessResult const &r)
     std::fprintf(g_pLog, "MarkerName: %s\n", r.markerName.c_str());
     std::fprintf(g_pLog, "MarkerOpcode: %s\n",
                  FrameCollisionMarkers::GetMarkerOpcodeName(r.opcode));
+    std::fprintf(g_pLog, "C1GenerationValid: %d\n",
+                 r.c1GenerationValid ? 1 : 0);
+    std::fprintf(g_pLog, "C1Generation: %llu\n",
+                 static_cast<unsigned long long>(r.c1Generation));
     switch (r.code)
     {
         case MarkerResult_RejectedUnsupportedHit:
@@ -343,12 +324,20 @@ void LogMarkerResult(Entity &, MarkerProcessResult const &r)
             std::fprintf(g_pLog, "RequiredSourceMask: %u\n",
                          r.decision.requiredSourceMask);
             break;
+        case MarkerResult_RejectedNoGeneration:
+            std::fprintf(g_pLog, "MarkerAction: REJECTED_NO_C1_GENERATION\n");
+            break;
         case MarkerResult_DuplicateIgnored:
             std::fprintf(g_pLog, "MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED\n");
             std::fprintf(g_pLog, "DuplicateStateTimeDelta: %.9f\n",
                          r.duplicateStateTimeDelta);
             std::fprintf(g_pLog, "DuplicateElapsedMsDelta: %.6f\n",
                          r.duplicateElapsedMsDelta);
+            break;
+        case MarkerResult_RejectedGenerationInconsistency:
+            std::fprintf(
+                g_pLog,
+                "MarkerAction: REJECTED_C1_GENERATION_INCONSISTENCY\n");
             break;
         case MarkerResult_BudgetIgnored:
             std::fprintf(g_pLog, "MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED\n");
@@ -452,7 +441,7 @@ static char const *PlayerSlotMatch(eCEntity *changedEntity)
 void LogSetCollisionGroup(
     eCEntity *changedEntity, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
-    GEInt retiredMarkerExecutionCount)
+    GEInt retiredMarkerSourceBitCount)
 {
     if (g_pLog == nullptr || changedEntity == nullptr)
         return;
@@ -492,8 +481,8 @@ void LogSetCollisionGroup(
                  static_cast<GEInt>(beforeGroup));
     std::fprintf(g_pLog, "AfterGroup: %d\n",
                  static_cast<GEInt>(afterGroup));
-    std::fprintf(g_pLog, "RetiredMarkerExecutionCount: %d\n",
-                 retiredMarkerExecutionCount);
+    std::fprintf(g_pLog, "RetiredMarkerSourceBitCount: %d\n",
+                 retiredMarkerSourceBitCount);
     std::fprintf(g_pLog, "====================================\n\n");
     std::fflush(g_pLog);
 }

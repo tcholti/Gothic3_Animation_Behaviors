@@ -575,11 +575,11 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
     Hook_SetCollisionGroup.GetOriginalFunction(
         &SetCollisionGroup_FrameCollisionTest)(a_pThis, a_Group);
 
-    GEInt retiredMarkerExecutionCount = 0;
+    GEInt retiredMarkerSourceBitCount = 0;
     if (a_pThis != nullptr
         && a_pThis->GetCollisionGroup() != eECollisionGroup_Item_Attack)
     {
-        retiredMarkerExecutionCount =
+        retiredMarkerSourceBitCount =
             FrameCollisionMarkers::RetireMarkerOwnedSource(a_pThis);
     }
 
@@ -611,7 +611,7 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogSetCollisionGroup(
         a_pThis, a_Group, beforeGroup, afterGroup,
-        retiredMarkerExecutionCount);
+        retiredMarkerSourceBitCount);
     CollisionDiagnostics::LogCollisionObservationResult(observation);
     if (observation.offenseRequestObserved
         && g_pCurrentRunScriptFunctionScope != nullptr)

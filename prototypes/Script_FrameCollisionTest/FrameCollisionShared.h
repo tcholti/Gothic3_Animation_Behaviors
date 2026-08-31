@@ -2,6 +2,7 @@
 
 #include <g3sdk/Script.h>
 
+#include <cstdint>
 #include <string>
 
 namespace FrameCollision
@@ -50,24 +51,14 @@ struct CurrentMotionMarkerResult
     unsigned int requiredSourceMask;
 };
 
-struct ControlledCallbackObservation
-{
-    bool executionRetired;
-    bCString currentAnimation;
-    GEInt currentAction;
-    GEInt currentPhase;
-    GEFloat currentStateTime;
-    GEFloat previousStateTime;
-    bool keyChanged;
-    bool stateTimeRolledBack;
-};
-
 enum MarkerResultCode
 {
     MarkerResult_RejectedUnsupportedHit,
     MarkerResult_RejectedMotionOwnership,
     MarkerResult_UnsupportedMissingSource,
+    MarkerResult_RejectedNoGeneration,
     MarkerResult_DuplicateIgnored,
+    MarkerResult_RejectedGenerationInconsistency,
     MarkerResult_BudgetIgnored,
     MarkerResult_OffAccepted,
     MarkerResult_OffNoWindow,
@@ -88,6 +79,8 @@ struct MarkerProcessResult
     GEInt markerPhase;
     GEFloat markerStateTime;
     double markerElapsedMs;
+    std::uint64_t c1Generation;
+    bool c1GenerationValid;
     GEFloat duplicateStateTimeDelta;
     double duplicateElapsedMsDelta;
     GEInt authoredMarkerCount;
@@ -121,6 +114,7 @@ struct MarkerProcessResult
 
 struct MarkerOwnedWindowView
 {
+    std::uint64_t c1Generation;
     unsigned int activeSourceMask;
     std::string animationName;
     GEInt action;

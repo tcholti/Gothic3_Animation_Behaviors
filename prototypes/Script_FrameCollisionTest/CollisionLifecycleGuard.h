@@ -217,6 +217,7 @@ CollisionObservationResult ObserveCollisionGroupResult(
     PreCombatBridgeToken *preCombatBridge);
 BridgeRetirementResult RetirePreCombatBridgeAfterDispatch(
     PreCombatBridgeToken &preCombatBridge);
+GenerationToken CaptureCurrentGenerationToken(eCEntity *actorInstance);
 GenerationToken CaptureFinalizationToken(eCEntity *actorInstance);
 FinalizationResult FinalizeAfterAISetState(GenerationToken const &token);
 }

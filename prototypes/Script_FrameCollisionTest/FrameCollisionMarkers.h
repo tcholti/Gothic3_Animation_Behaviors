@@ -8,10 +8,8 @@ struct AttackCallbackOwnershipResult
 {
     bool attackHitEligible;
     bool suppressNativeCallback;
-    bool controlledObservationAvailable;
     CurrentMotionMarkerResult decision;
     EquippedCollisionSources sources;
-    ControlledCallbackObservation controlledObservation;
 };
 
 MarkerOpcode GetMarkerOpcode(char const *effectName);

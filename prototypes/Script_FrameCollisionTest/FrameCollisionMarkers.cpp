@@ -1,5 +1,6 @@
 #include "FrameCollisionMarkers.h"
 
+#include "CollisionLifecycleGuard.h"
 #include "CollisionSourceOperations.h"
 #include "CollisionSources.h"
 
@@ -24,6 +25,7 @@ struct CachedMarkerInfo
 
 struct LastAcceptedMarkerDispatch
 {
+    std::uint64_t c1Generation;
     eCEntity *rightSourceInstance;
     eCEntity *leftSourceInstance;
     std::string animationName;
@@ -36,6 +38,7 @@ struct LastAcceptedMarkerDispatch
 
 struct MarkerExecutionBudget
 {
+    std::uint64_t c1Generation;
     eCEntity *rightSourceInstance;
     eCEntity *leftSourceInstance;
     std::string animationName;
@@ -44,11 +47,11 @@ struct MarkerExecutionBudget
     GEInt authoredCounts[MarkerOpcode_Count];
     GEInt acceptedCounts[MarkerOpcode_Count];
     GEFloat lastMarkerStateTime;
-    GEFloat lastControlledCallbackStateTime;
 };
 
 struct MarkerOwnedCollisionWindow
 {
+    std::uint64_t c1Generation;
     eCEntity *rightSourceInstance;
     eCEntity *leftSourceInstance;
     unsigned int activeSourceMask;
@@ -164,7 +167,8 @@ static GEFloat AbsoluteFloat(GEFloat value)
 }
 
 static bool IsDuplicateSameUpdateMarker(
-    eCEntity *actorInstance, EquippedCollisionSources const &sources,
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    EquippedCollisionSources const &sources,
     char const *animationName, char const *markerName,
     GEInt action, GEInt phase, GEFloat stateTime,
     double elapsedMs, GEFloat &stateTimeDelta, double &elapsedMsDelta)
@@ -178,7 +182,8 @@ static bool IsDuplicateSameUpdateMarker(
     LastAcceptedMarkerDispatch const &previous = found->second;
     stateTimeDelta = AbsoluteFloat(stateTime - previous.stateTime);
     elapsedMsDelta = elapsedMs - previous.elapsedMs;
-    return previous.rightSourceInstance == sources.rightInstance
+    return previous.c1Generation == c1Generation
+        && previous.rightSourceInstance == sources.rightInstance
         && previous.leftSourceInstance == sources.leftInstance
         && SameFileName(previous.animationName.c_str(), animationName)
         && previous.markerName == (markerName != nullptr ? markerName : "")
@@ -190,11 +195,13 @@ static bool IsDuplicateSameUpdateMarker(
 }
 
 static void RememberAcceptedMarker(
-    eCEntity *actorInstance, EquippedCollisionSources const &sources,
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    EquippedCollisionSources const &sources,
     char const *animationName, char const *markerName,
     GEInt action, GEInt phase, GEFloat stateTime, double elapsedMs)
 {
     LastAcceptedMarkerDispatch record = {};
+    record.c1Generation = c1Generation;
     record.rightSourceInstance = sources.rightInstance;
     record.leftSourceInstance = sources.leftInstance;
     record.animationName = animationName != nullptr ? animationName : "";
@@ -206,16 +213,16 @@ static void RememberAcceptedMarker(
     g_LastAcceptedMarkerDispatchByActor[actorInstance] = record;
 }
 
-static void ForgetMarkerExecutionForActor(eCEntity *actorInstance)
+enum MarkerOccurrenceConsumption
 {
-    if (actorInstance == nullptr)
-        return;
-    g_MarkerExecutionBudgetByActor.erase(actorInstance);
-    g_LastAcceptedMarkerDispatchByActor.erase(actorInstance);
-}
+    MarkerOccurrenceConsumption_Accepted,
+    MarkerOccurrenceConsumption_BudgetExhausted,
+    MarkerOccurrenceConsumption_GenerationInconsistent
+};
 
-static bool TryConsumeAuthoredMarkerOccurrence(
-    eCEntity *actorInstance, EquippedCollisionSources const &sources,
+static MarkerOccurrenceConsumption TryConsumeAuthoredMarkerOccurrence(
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    EquippedCollisionSources const &sources,
     char const *animationName, GEInt action, GEInt phase, GEFloat stateTime,
     MarkerOpcode opcode, CurrentMotionMarkerResult const &decision,
     GEInt &authoredCount, GEInt &acceptedBefore, GEInt &acceptedAfter,
@@ -226,30 +233,35 @@ static bool TryConsumeAuthoredMarkerOccurrence(
     acceptedAfter = 0;
     executionReset = false;
     auto found = g_MarkerExecutionBudgetByActor.find(actorInstance);
-    bool startsNewExecution = found == g_MarkerExecutionBudgetByActor.end();
+    bool const startsNewExecution =
+        found == g_MarkerExecutionBudgetByActor.end()
+        || found->second.c1Generation != c1Generation;
 
     if (!startsNewExecution)
     {
         MarkerExecutionBudget const &previous = found->second;
-        startsNewExecution = previous.rightSourceInstance != sources.rightInstance
-                          || previous.leftSourceInstance != sources.leftInstance
-                          || !SameFileName(
-                                 previous.animationName.c_str(), animationName)
-                          || previous.action != action
-                          || previous.phase != phase
-                          || stateTime + 0.000001f
-                                 < previous.lastMarkerStateTime;
+        bool identityConsistent =
+            previous.rightSourceInstance == sources.rightInstance
+            && previous.leftSourceInstance == sources.leftInstance
+            && SameFileName(
+                   previous.animationName.c_str(), animationName)
+            && previous.action == action
+            && previous.phase == phase
+            && stateTime + 0.000001f >= previous.lastMarkerStateTime;
         for (GEInt i = 0;
-             !startsNewExecution && i < MarkerOpcode_Count; ++i)
+             identityConsistent && i < MarkerOpcode_Count; ++i)
         {
-            startsNewExecution =
-                previous.authoredCounts[i] != decision.markerCounts[i];
+            identityConsistent =
+                previous.authoredCounts[i] == decision.markerCounts[i];
         }
+        if (!identityConsistent)
+            return MarkerOccurrenceConsumption_GenerationInconsistent;
     }
 
     if (startsNewExecution)
     {
         MarkerExecutionBudget record = {};
+        record.c1Generation = c1Generation;
         record.rightSourceInstance = sources.rightInstance;
         record.leftSourceInstance = sources.leftInstance;
         record.animationName = animationName != nullptr ? animationName : "";
@@ -261,7 +273,6 @@ static bool TryConsumeAuthoredMarkerOccurrence(
             record.acceptedCounts[i] = 0;
         }
         record.lastMarkerStateTime = stateTime;
-        record.lastControlledCallbackStateTime = stateTime;
         g_MarkerExecutionBudgetByActor[actorInstance] = record;
         found = g_MarkerExecutionBudgetByActor.find(actorInstance);
         executionReset = true;
@@ -269,64 +280,26 @@ static bool TryConsumeAuthoredMarkerOccurrence(
 
     MarkerExecutionBudget &record = found->second;
     if (opcode < 0 || opcode >= MarkerOpcode_Count)
-        return false;
+        return MarkerOccurrenceConsumption_GenerationInconsistent;
     GEInt &acceptedCount = record.acceptedCounts[opcode];
     acceptedBefore = acceptedCount;
     acceptedAfter = acceptedCount;
     if (authoredCount <= 0 || acceptedCount >= authoredCount)
-        return false;
+        return MarkerOccurrenceConsumption_BudgetExhausted;
     ++acceptedCount;
     record.lastMarkerStateTime = stateTime;
     acceptedAfter = acceptedCount;
-    return true;
-}
-
-static ControlledCallbackObservation ObserveControlledAttackCallback(
-    Entity &actor, EquippedCollisionSources const &sources)
-{
-    ControlledCallbackObservation result = {};
-    eCEntity *actorInstance = actor.GetInstance();
-    if (actorInstance == nullptr)
-        return result;
-    auto found = g_MarkerExecutionBudgetByActor.find(actorInstance);
-    if (found == g_MarkerExecutionBudgetByActor.end())
-        return result;
-
-    result.currentAnimation = actor.NPC.GetCurrentMovementAni();
-    result.currentAction = static_cast<GEInt>(
-        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
-    result.currentPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
-    result.currentStateTime = actor.Routine.GetStateTime();
-    MarkerExecutionBudget &previous = found->second;
-    result.previousStateTime = previous.lastControlledCallbackStateTime;
-    result.keyChanged = previous.rightSourceInstance != sources.rightInstance
-                     || previous.leftSourceInstance != sources.leftInstance
-                     || !SameFileName(
-                            previous.animationName.c_str(),
-                            result.currentAnimation.GetText())
-                     || previous.action != result.currentAction
-                     || previous.phase != result.currentPhase;
-    result.stateTimeRolledBack =
-        result.currentStateTime + 0.000001f
-            < previous.lastControlledCallbackStateTime;
-
-    if (result.keyChanged || result.stateTimeRolledBack)
-    {
-        ForgetMarkerExecutionForActor(actorInstance);
-        result.executionRetired = true;
-        return result;
-    }
-
-    previous.lastControlledCallbackStateTime = result.currentStateTime;
-    return result;
+    return MarkerOccurrenceConsumption_Accepted;
 }
 
 static void RememberMarkerOwnedWindow(
-    eCEntity *actorInstance, EquippedCollisionSources const &sources,
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    EquippedCollisionSources const &sources,
     unsigned int activeSourceMask, char const *animationName,
     GEInt action, GEInt phase)
 {
     MarkerOwnedCollisionWindow record = {};
+    record.c1Generation = c1Generation;
     record.rightSourceInstance = sources.rightInstance;
     record.leftSourceInstance = sources.leftInstance;
     record.activeSourceMask = activeSourceMask;
@@ -337,14 +310,16 @@ static void RememberMarkerOwnedWindow(
 }
 
 static MarkerOwnedCollisionWindow *FindMatchingMarkerOwnedWindow(
-    eCEntity *actorInstance, EquippedCollisionSources const &sources,
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    EquippedCollisionSources const &sources,
     char const *animationName, GEInt action, GEInt phase)
 {
     auto found = g_MarkerOwnedWindowByActor.find(actorInstance);
     if (found == g_MarkerOwnedWindowByActor.end())
         return nullptr;
     MarkerOwnedCollisionWindow &record = found->second;
-    bool matches = record.rightSourceInstance == sources.rightInstance
+    bool matches = record.c1Generation == c1Generation
+                && record.rightSourceInstance == sources.rightInstance
                 && record.leftSourceInstance == sources.leftInstance
                 && SameFileName(record.animationName.c_str(), animationName)
                 && record.action == action
@@ -358,34 +333,28 @@ static void ForgetMarkerOwnedWindowForActor(eCEntity *actorInstance)
         g_MarkerOwnedWindowByActor.erase(actorInstance);
 }
 
-static bool MarkerWindowStillMatchesActorExecution(
-    eCEntity *actorInstance, MarkerOwnedCollisionWindow const &record)
+static bool MarkerOwnedWindowIdentityIsConsistent(
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    EquippedCollisionSources const &sources,
+    char const *animationName, GEInt action, GEInt phase)
 {
-    if (actorInstance == nullptr)
-        return false;
-    Entity actor(actorInstance);
-    bCString currentAnimation = actor.NPC.GetCurrentMovementAni();
-    GEInt currentAction = static_cast<GEInt>(
-        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
-    GEInt currentPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
-    bool semanticIdentityMatches =
-        SameFileName(record.animationName.c_str(), currentAnimation.GetText())
-        && record.action == currentAction
-        && record.phase == currentPhase;
-    if (!semanticIdentityMatches)
-        return false;
-    auto budget = g_MarkerExecutionBudgetByActor.find(actorInstance);
-    if (budget == g_MarkerExecutionBudgetByActor.end())
+    auto found = g_MarkerOwnedWindowByActor.find(actorInstance);
+    if (found == g_MarkerOwnedWindowByActor.end())
         return true;
-    GEFloat currentStateTime = actor.Routine.GetStateTime();
-    return currentStateTime + 0.000001f >= budget->second.lastMarkerStateTime;
+    MarkerOwnedCollisionWindow const &record = found->second;
+    return record.c1Generation == c1Generation
+        && record.rightSourceInstance == sources.rightInstance
+        && record.leftSourceInstance == sources.leftInstance
+        && SameFileName(record.animationName.c_str(), animationName)
+        && record.action == action
+        && record.phase == phase;
 }
 
 GEInt RetireMarkerOwnedSource(eCEntity *sourceInstance)
 {
     if (sourceInstance == nullptr)
         return 0;
-    GEInt retiredExecutionCount = 0;
+    GEInt retiredSourceBitCount = 0;
     for (auto entry = g_MarkerOwnedWindowByActor.begin();
          entry != g_MarkerOwnedWindowByActor.end();)
     {
@@ -396,20 +365,17 @@ GEInt RetireMarkerOwnedSource(eCEntity *sourceInstance)
         {
             record.activeSourceMask &= ~SourceMask_Right;
             retiredSource = true;
+            ++retiredSourceBitCount;
         }
         if ((record.activeSourceMask & SourceMask_Left) != 0
             && record.leftSourceInstance == sourceInstance)
         {
             record.activeSourceMask &= ~SourceMask_Left;
             retiredSource = true;
+            ++retiredSourceBitCount;
         }
         if (retiredSource)
         {
-            if (!MarkerWindowStillMatchesActorExecution(entry->first, record))
-            {
-                ForgetMarkerExecutionForActor(entry->first);
-                ++retiredExecutionCount;
-            }
             if (record.activeSourceMask == SourceMask_None)
                 entry = g_MarkerOwnedWindowByActor.erase(entry);
             else
@@ -420,7 +386,7 @@ GEInt RetireMarkerOwnedSource(eCEntity *sourceInstance)
             ++entry;
         }
     }
-    return retiredExecutionCount;
+    return retiredSourceBitCount;
 }
 
 static bool IsNormalAttackHit(Entity &actor)
@@ -625,12 +591,6 @@ AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
         && result.decision.markerPresent
         && CollisionSources::HasRequiredCollisionSources(
             result.sources, result.decision.requiredSourceMask);
-    if (result.suppressNativeCallback)
-    {
-        result.controlledObservation =
-            ObserveControlledAttackCallback(actor, result.sources);
-        result.controlledObservationAvailable = true;
-    }
     return result;
 }
 
@@ -697,8 +657,28 @@ MarkerProcessResult ProcessMarker(
     result.markerPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
     result.markerStateTime = actor.Routine.GetStateTime();
 
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            actor.GetInstance());
+    result.c1GenerationValid = generation.valid;
+    result.c1Generation = generation.generation;
+    if (!generation.valid)
+    {
+        result.code = MarkerResult_RejectedNoGeneration;
+        return result;
+    }
+
+    if (!MarkerOwnedWindowIdentityIsConsistent(
+            actor.GetInstance(), generation.generation,
+            result.sources, result.currentAnimation.c_str(),
+            result.markerAction, result.markerPhase))
+    {
+        result.code = MarkerResult_RejectedGenerationInconsistency;
+        return result;
+    }
+
     if (IsDuplicateSameUpdateMarker(
-            actor.GetInstance(), result.sources,
+            actor.GetInstance(), generation.generation, result.sources,
             result.currentAnimation.c_str(), effectName,
             result.markerAction, result.markerPhase,
             result.markerStateTime, elapsedMs,
@@ -709,23 +689,29 @@ MarkerProcessResult ProcessMarker(
         return result;
     }
 
-    bool occurrenceAccepted = TryConsumeAuthoredMarkerOccurrence(
-        actor.GetInstance(), result.sources, result.currentAnimation.c_str(),
-        result.markerAction, result.markerPhase, result.markerStateTime,
-        markerOpcode, result.decision, result.authoredMarkerCount,
-        result.acceptedMarkerCountBefore,
-        result.acceptedMarkerCountAfter,
-        result.executionBudgetReset);
-    if (!occurrenceAccepted)
+    MarkerOccurrenceConsumption const occurrence =
+        TryConsumeAuthoredMarkerOccurrence(
+            actor.GetInstance(), generation.generation, result.sources,
+            result.currentAnimation.c_str(),
+            result.markerAction, result.markerPhase, result.markerStateTime,
+            markerOpcode, result.decision, result.authoredMarkerCount,
+            result.acceptedMarkerCountBefore,
+            result.acceptedMarkerCountAfter,
+            result.executionBudgetReset);
+    if (occurrence != MarkerOccurrenceConsumption_Accepted)
     {
-        result.code = MarkerResult_BudgetIgnored;
+        result.code =
+            occurrence
+                == MarkerOccurrenceConsumption_GenerationInconsistent
+            ? MarkerResult_RejectedGenerationInconsistency
+            : MarkerResult_BudgetIgnored;
         return result;
     }
 
     if (markerOpcode == MarkerOpcode_Off)
     {
         MarkerOwnedCollisionWindow *window = FindMatchingMarkerOwnedWindow(
-            actor.GetInstance(), result.sources,
+            actor.GetInstance(), generation.generation, result.sources,
             result.currentAnimation.c_str(),
             result.markerAction, result.markerPhase);
         result.ownedMask = window != nullptr
@@ -754,7 +740,7 @@ MarkerProcessResult ProcessMarker(
             result.markerOwnedWindowRemoved = true;
         }
         RememberAcceptedMarker(
-            actor.GetInstance(), result.sources,
+            actor.GetInstance(), generation.generation, result.sources,
             result.currentAnimation.c_str(), effectName,
             result.markerAction, result.markerPhase,
             result.markerStateTime, elapsedMs);
@@ -784,7 +770,7 @@ MarkerProcessResult ProcessMarker(
 
     MarkerOwnedCollisionWindow *previousWindow =
         FindMatchingMarkerOwnedWindow(
-            actor.GetInstance(), result.sources,
+            actor.GetInstance(), generation.generation, result.sources,
             result.currentAnimation.c_str(),
             result.markerAction, result.markerPhase);
     result.previousSourceMask = previousWindow != nullptr
@@ -792,7 +778,8 @@ MarkerProcessResult ProcessMarker(
     result.retiredSourceMask =
         result.previousSourceMask & ~result.desiredSourceMask;
     RememberMarkerOwnedWindow(
-        actor.GetInstance(), result.sources, result.desiredSourceMask,
+        actor.GetInstance(), generation.generation, result.sources,
+        result.desiredSourceMask,
         result.currentAnimation.c_str(),
         result.markerAction, result.markerPhase);
 
@@ -845,7 +832,7 @@ MarkerProcessResult ProcessMarker(
     if (result.markerOwnedWeaponMask != SourceMask_None)
     {
         RememberMarkerOwnedWindow(
-            actor.GetInstance(), result.sources,
+            actor.GetInstance(), generation.generation, result.sources,
             result.markerOwnedWeaponMask,
             result.currentAnimation.c_str(),
             result.markerAction, result.markerPhase);
@@ -879,7 +866,7 @@ MarkerProcessResult ProcessMarker(
     }
 
     RememberAcceptedMarker(
-        actor.GetInstance(), result.sources,
+        actor.GetInstance(), generation.generation, result.sources,
         result.currentAnimation.c_str(), effectName,
         result.markerAction, result.markerPhase,
         result.markerStateTime, elapsedMs);
@@ -898,6 +885,7 @@ bool TryGetMarkerOwnedWindow(
     auto found = g_MarkerOwnedWindowByActor.find(actorInstance);
     if (found == g_MarkerOwnedWindowByActor.end())
         return false;
+    view.c1Generation = found->second.c1Generation;
     view.activeSourceMask = found->second.activeSourceMask;
     view.animationName = found->second.animationName;
     view.action = found->second.action;
