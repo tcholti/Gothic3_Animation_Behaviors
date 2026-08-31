@@ -4,7 +4,7 @@
 
 **Updated:** 2026-08-31
 
-## Current bridge — Gate 3 CLOSED/PASS; Gate 4 audit NEXT
+## Current bridge — Gate 4 audit CLOSED/PASS; bounded implementation FROZEN
 
 Repository:
 
@@ -19,6 +19,12 @@ docs/collision-source-evidence
 ```
 
 Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its Fresh Normal Chat Bootstrap, then read this file.
+
+Frozen Gate 4 implementation authority:
+
+```text
+docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+```
 
 Do not reconstruct the project from old chat history and do not scan the whole repository.
 
@@ -48,7 +54,7 @@ post-native-AISetState finalization
 
 Native cleanup always gets first opportunity.
 
-### Marker invariants still protected during Gate 4 audit
+### Marker invariants protected through Gate 4
 
 ```text
 exact current-motion ownership
@@ -58,20 +64,21 @@ authored occurrence budgets
 same-update duplicate/replay suppression
 repeated-contact ClearTriggeredList rearm
 Quick/full-Whirl StatePosition suppression
-marker-owned source/window retirement
+marker-owned source/window state
+natural retirement of exact physical source bits
 OFF as intra-Hit gap
-late/dead-execution rejection
+late/dead/unsupported marker rejection
 current research Fist semantics
 unmarked/unsupported native fallback
 ```
 
-Gate 4 may only classify whether some execution-lifetime inference is superseded. It must not silently collapse independent marker invariants.
+Gate 4 does not authorize weakening any of these.
 
 ---
 
-## Product separation
+## Product / validation state
 
-Implementation:
+Implementation architecture commit:
 
 ```text
 4eeb701725e8b77d8850116d408155653ff4ad36
@@ -88,101 +95,168 @@ Script_FrameCollisionBehaviorTest
 = no diagnostic sources/defines/hooks
 ```
 
-Gate 1 source/build separation is CLOSED/PASS. EV-208.
-
-Gate 2 CORE diagnostic sufficiency is CLOSED/PASS. EV-209–EV-211.
-
----
-
-## Gate 3 — behavior-only smoke/equivalence CLOSED/PASS
-
-The User synchronized local source to:
-
 ```text
-2fb28e5a27333eb6da902dc5c1d46a11fbe0d809
+Gate 1 source/build separation       CLOSED/PASS — EV-208
+Gate 2 CORE diagnostic sufficiency   CLOSED/PASS — EV-209–EV-211
+Gate 3 behavior-only smoke            CLOSED/PASS — EV-212
+Gate 4 bookkeeping audit              CLOSED/PASS
+Gate 4 bounded implementation         FROZEN / NEXT
 ```
 
-`Script_FrameCollisionBehaviorTest` Release then built successfully.
-
-Built behavior-only DLL:
+Behavior-only Gate 3 DLL:
 
 ```text
-Script_FrameCollisionBehaviorTest.dll
 Length: 380416
 SHA256: 2802FD584F84BBAA0F7D9E1AAD502BDB2CE91D994EE303CF880CA82AC2737EB4
 ```
 
-Deployment isolation:
-
-```text
-Script_FrameCollisionTest.dll removed from live scripts
-Script_FrameCollisionBehaviorTest.dll deployed alone
-built/live SHA exact match
-live enumeration showed only Script_FrameCollisionBehaviorTest.dll
-```
-
-Runtime:
-
-```text
-main menu reached normally
-main-menu exit normal
-User then performed many different functional tests under the frozen Gate-3 exercise and reported everything working as intended
-```
-
-This closes the intended behavior-only functional smoke/equivalence gate. Because the behavior-only DLL intentionally contains no diagnostics, do not turn this into an internal-event claim and do not reintroduce diagnostics merely to manufacture a Gate-3 log.
-
-The behavior-only DLL may still be present in the live Gothic 3 scripts directory after the successful test. Before any future diagnostic run, preserve the one-product-at-a-time rule and remove/swap it deliberately.
+The behavior-only DLL may still be present in the live Gothic 3 scripts directory. Preserve the one-product-at-a-time rule before any later diagnostic run.
 
 ---
 
-## Exact next responsibility — Gate 4 marker-bookkeeping simplification audit
+## Gate 4 audit result
 
-**No source edit is authorized yet.**
-
-The audit question is:
+The audit classified the current marker state into three conceptual responsibilities:
 
 ```text
-for each current FrameCollisionMarkers execution/bookkeeping guard:
-A. is it execution-lifetime inference now genuinely superseded by stronger native/C1 authority?
-or
-B. is it an independent marker invariant that must remain?
+1. duplicate/replay + authored occurrence protection
+2. marker-owned physical source/window state
+3. marker-local execution-boundary inference
 ```
 
-Before proposing removal or consolidation, reconstruct only this evidence route:
+Only responsibility 3 is superseded.
+
+### Superseded execution-lifetime inference
+
+Remove/consolidate only the marker-local guesses that a fresh execution began because of:
 
 ```text
-EV-066–EV-075
-EV-131–EV-133
-EV-167
-EV-182–EV-196
-EV-206–EV-207
-EV-209–EV-211
-COLLISION_LIFECYCLE_PLAN.md §9
+source pointer change
+motion filename change
+action change
+phase change
+state-time rollback
+authored-count change
+controlled-callback key/state-time retirement
+MarkerWindowStillMatchesActorExecution lifetime inference
 ```
 
-Then inspect only the current marker source necessary to map each relevant guard/check to that evidence.
+The stronger authority is the already-proven monotonic C1 generation.
 
-Mandatory preserve-unless-disproved set:
+### Preserved independent marker behavior
+
+Keep:
 
 ```text
-exact current-motion marker ownership
-authored occurrence budgets
-same-update duplicate/replay protection
-repeated-contact ClearTriggeredList rearm
-RIGHT/LEFT/BOTH/OFF exact-set behavior
-StatePosition native-activation suppression
-interruption/dead-execution rejection
+exact current motion
+family/action/Hit eligibility
+required source preflight
+RIGHT/LEFT/BOTH/OFF
+occurrence budgets
+duplicate suppression
+ClearTriggeredList rearm
+source-set switching
+marker-owned active mask/window
+StatePosition suppression
+Fist behavior
+native fallback
+late/dead rejection
 ```
 
-The Gate-2 Dual P1 Quick authoring/source-map mismatch is a later equipped-melee marker-expansion item. Do not mix it into the bookkeeping audit unless it directly bears on a guard's correctness.
+Natural `SetCollisionGroup` retirement must still remove the exact physical source bit from marker-owned state, but it must no longer guess that the entire occurrence/dedupe execution ended.
+
+---
+
+## Exact next responsibility — bounded Work implementation
+
+Implement **only** `docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`.
+
+Core rule:
+
+```text
+existing valid C1 generation
+= durable marker-execution identity
+```
+
+Add one read-only factual `CollisionLifecycleGuard` query for the actor's current generation. It must not create, replace, finalize or repair anything.
+
+Scope marker occurrence/dedupe state to that generation.
+
+Different valid C1 generation:
+
+```text
+→ fresh marker execution budget/dedupe record
+```
+
+Same valid C1 generation:
+
+```text
+→ never silently reset occurrence history because action/phase/motion/source/state-time changed
+→ preserve independent ownership checks
+→ fail closed/reject on unexplained internal inconsistency
+```
+
+`FrameCollisionMarkers` must not become owner of C1 generation creation/finalization.
+
+If a marker point requiring generation-scoped bookkeeping has no valid C1 generation, or source/API/calling-convention evidence contradicts the contract, **STOP and report rather than inventing a fallback execution-ID scheme**.
+
+Expected bounded source scope:
+
+```text
+CollisionLifecycleGuard.h/.cpp
+FrameCollisionMarkers.h/.cpp
+FrameCollisionShared.h only if required for factual transport
+EngineBridge.cpp only if required for factual generation transport
+CollisionDiagnostics.cpp/.h only if compact validation observability requires it
+```
+
+No new hooks. No new attack family. No marker semantic change. No C1 repair change.
+
+Before publishing implementation:
+
+```text
+source audit
+git diff --check
+commit/push
+STOP
+```
+
+Do not build or run Gothic 3 inside the bounded Work implementation.
+
+---
+
+## Validation after implementation
+
+After independent Normal Chat source review, the frozen CORE diagnostic regression will prove:
+
+```text
+same-motion two-contact genuine markers remain accepted
+replay callbacks remain rejected
+interrupted attack -> immediate same-motion new attack gets fresh C1 generation/budget
+OFF/exact-set switching stays within one generation
+natural cleanup retires physical source/window bit without inventing a new generation
+full-Whirl destructive bad skip still rejects dead/late reopening and preserves C1 repair
+no invariant/divergence/unresolved/failure signal
+clean shutdown
+```
+
+Only after diagnostic regression passes should behavior-only smoke be repeated.
+
+---
+
+## Separate later item
+
+The tested Dual P1 Quick asset currently carries `G3AB_COL_RIGHT` although older native-source evidence maps tested Dual P1 Quick to LEFT.
+
+This remains a later equipped-melee marker-authoring/source-map review item. Do not mix it into Gate 4 implementation.
 
 ---
 
 ## Local/branch handoff note
 
-The assistant-side documentation maintenance after the User's Gate-3 runtime test advances the remote branch beyond local source head `2fb28e5...`.
+Assistant-side documentation has advanced the remote branch beyond the User's previous local source head.
 
-Do not require a local sync merely for Normal Chat evidence/source review. Before the next local build, local source edit, or local commit window, synchronize per POP-01 and preserve unrelated local work.
+Before the next local source/build/commit window, synchronize per POP-01 and preserve unrelated local work.
 
 Known unrelated local file to leave untouched if still present:
 
@@ -192,39 +266,20 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Explicit non-goals during the audit
-
-Do not start:
-
-```text
-source changes before classification is frozen
-new hooks/deep probes
-C1 redesign
-new attack-family marker support
-new/generalized Fist semantics
-AttackContinuationProtection
-Raise
-speed/config redesign
-New Balance / Jackydima compatibility fixes
-production migration
-target acquisition
-climbing
-```
-
----
-
 ## Authorities
 
 ```text
-SESSION_ENTRYPOINT.md                 current gate/front door
-BETWEEN_CHATS.md                      this exact continuation
-COLLISION_TEST_PLAN.md                Gate 4 audit state
-EVIDENCE_LEDGER_STEP_D.md             current collision evidence
-SECOND_PASS_REWRITE_CONTRACT.md       frozen architecture/invariants
-COLLISION_LIFECYCLE_PLAN.md §9        marker simplification constraints
-GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md release-purity rule
-PROJECT_OPERATING_PROCEDURES.md       local build/deploy/test workflow
-WORK_IMPLEMENTATION_PROTOCOL.md       bounded source implementation rules
+SESSION_ENTRYPOINT.md                          current front door
+BETWEEN_CHATS.md                               this exact continuation
+MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md  frozen Gate 4 implementation
+COLLISION_TEST_PLAN.md                         staged validation
+COLLISION_LIFECYCLE_PLAN.md §9                 marker/C1 separation
+EVIDENCE_INDEX.md                              evidence routing
+EVIDENCE_LEDGER_STEP_D.md                      current collision evidence
+SECOND_PASS_REWRITE_CONTRACT.md                architecture/invariants
+GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md          release-purity rule
+PROJECT_OPERATING_PROCEDURES.md                local build/deploy/test workflow
+WORK_IMPLEMENTATION_PROTOCOL.md                bounded source implementation rules
 ```
 
 ---
@@ -232,14 +287,15 @@ WORK_IMPLEMENTATION_PROTOCOL.md       bounded source implementation rules
 ## Forward order
 
 ```text
-Gate 4 marker-bookkeeping simplification audit — NEXT
-→ freeze only evidence-supported bounded simplification, if any
-→ implement/review/test that bounded simplification
+Gate 4 bounded implementation — NEXT
+→ independent source review
+→ frozen CORE marker-generation regression
+→ behavior-only smoke if diagnostic regression passes
 → equipped-melee marker expansion
 → separate Fist source-adapter investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
-→ mature research compatibility gate
+→ mature research New Balance/Jackydima compatibility gate
 → migrate/redesign Raise + speed + config
 → later target acquisition/climbing
 → final diagnostics-free Script_G3AnimationBehaviors
