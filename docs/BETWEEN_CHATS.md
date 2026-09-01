@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — stabilization Pass 4
+## Current bridge — stabilization complete / stable promotion
 
 Repository:
 
@@ -24,22 +24,9 @@ Stable branch:
 main
 ```
 
-Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its bootstrap. Do not reconstruct the project from old chat history and do not scan the whole repository.
+Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its bootstrap.
 
 CAM is the constitutional collaboration layer; `COLLABORATION_RULES.md` owns its Gothic operationalization. Do not modify CAM from Gothic 3 work.
-
----
-
-## Accepted stabilization boundary
-
-```text
-collision architecture verification        COMPLETE — EV-206–EV-215
-repository cleanup/stable promotion        COMPLETE for pre-stabilization checkpoint
-Pass 1 structural simplification           COMPLETE
-Pass 2 rules/procedures consistency        COMPLETE
-Pass 3 build/product/repository shape      COMPLETE
-Pass 4 final readiness                     CURRENT
-```
 
 Known unrelated local file remains completely untouched:
 
@@ -49,48 +36,39 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Current responsibility — Pass 4
-
-Verify, without opening another redesign cycle:
+## Accepted boundary
 
 ```text
-Fresh Normal Chat:
-SESSION_ENTRYPOINT → optional BETWEEN_CHATS → README orientation only when needed
-
-Bounded Work:
-SESSION_ENTRYPOINT → frozen handoff → WORK_IMPLEMENTATION_PROTOCOL → assigned source/API only
-
-Evidence:
-EVIDENCE_INDEX → exact EV in one of three canonical ledgers → provenance only when needed
-
-Products:
-Script_G3AnimationBehaviors
-Script_FrameCollisionBehaviorTest
-Script_FrameCollisionTest
-Script_CombatMoveLogger
-+ offline tools/log_evidence
-
-Branches:
-main = stable baseline
-docs/collision-source-evidence = active development/research
+collision architecture verification        COMPLETE — EV-206–EV-215
+Pass 1 structural simplification           PASS
+Pass 2 rules/procedures consistency        PASS
+Pass 3 build/product/repository shape      PASS
+Pass 4 final readiness                     PASS
+PROJECT STABILIZATION                      COMPLETE
 ```
 
-Pass criteria:
+No remaining stabilization issue is known that should delay engineering.
+
+---
+
+## Immediate repository operation
+
+Promote the exact cleaned active tree to protected `main` while preserving both histories.
+
+Requirements:
 
 ```text
-no broken first-hop authority route
-no competing current-state authority
-no ambiguous collision twin deploy/load rule
-no orphan active target/tool
-no unresolved stabilization issue that would materially impair the next engineering responsibility
+no force update
+old main history remains reachable
+promotion commit tree == active cleaned tree
+main protection remains active
+verify main vs active tree after promotion
 ```
 
-If PASS:
+After promotion is verified, replace this bridge with the next engineering responsibility:
 
 ```text
-mark stabilization COMPLETE
-→ deliberately promote exact cleaned active checkpoint to protected main while preserving both histories
-→ verify tree identity / branch protection
-→ synchronize User local checkout
-→ resume equipped-melee marker expansion planning
+equipped-melee marker expansion planning
 ```
+
+That planning begins from current authorities/evidence, not from old chat reconstruction. Freeze one expansion mechanism/family before implementation. Keep Fist source adaptation and AttackContinuationProtection separate.
