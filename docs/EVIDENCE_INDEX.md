@@ -59,11 +59,11 @@ Current project responsibility is never owned by this historical index. Use `SES
 | hook transport stabilization / recursion-safe explicit-this | EV-199–EV-203 | `SOURCE_HOOK_GUIDE.md` if implementation detail needed |
 | C1-O2 pre-Combat bridge closure | EV-204–EV-205 | lifecycle plan |
 | C1-R1 physical repair closure | EV-206–EV-207 | exact-source `7 -> 5`; controlled validation closed |
-| second-pass source/build separation | EV-208 | release architecture / rewrite contract |
+| second-pass source/build separation | EV-208 | `DESIGN.md` modular architecture / release architecture |
 | second-pass CORE diagnostic sufficiency | EV-209–EV-211 | `COLLISION_TEST_PLAN.md` |
 | first behavior-only architecture smoke | EV-212 | release architecture |
-| Gate 4 C1-generation marker bookkeeping | EV-213 | `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md` |
-| literal EV-131 same-motion interruption/restart closure | EV-214 | Gate 4 contract / restored 2H Normal fixture |
+| Gate 4 C1-generation marker bookkeeping | EV-213 | `COLLISION_LIFECYCLE_PLAN.md` §9 / `DESIGN.md` §8 |
+| literal EV-131 same-motion interruption/restart closure | EV-214 | restored 2H Normal fixture / Gate-4 evidence route |
 | final diagnostics-free architecture verification | EV-215 | new architecture verification complete |
 
 ---
@@ -207,8 +207,8 @@ EV-167
 EV-182–EV-196
 EV-206–EV-207
 EV-209–EV-214
-MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
-COLLISION_LIFECYCLE_PLAN.md
+COLLISION_LIFECYCLE_PLAN.md §9
+DESIGN.md §8
 ```
 
 Accepted current result:
@@ -302,9 +302,9 @@ EV-215 final behavior-only functional/release-purity smoke
 Authorities:
 
 ```text
+DESIGN.md
 GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
-SECOND_PASS_REWRITE_CONTRACT.md
-MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+COLLISION_LIFECYCLE_PLAN.md
 COLLISION_TEST_PLAN.md
 ```
 
@@ -340,7 +340,7 @@ Before changing ownership/source behavior:
 
 ```text
 DESIGN.md collision architecture
-MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+COLLISION_LIFECYCLE_PLAN.md §9
 EV-143–EV-147
 EV-206–EV-215
 ANIMATION_INDEX.md / ANIMATION_CATALOG.md for exact assets
