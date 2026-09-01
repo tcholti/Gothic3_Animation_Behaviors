@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — documentation / knowledge-system audit
+## Current bridge — documentation cleanup checkpoint
 
 Repository:
 
@@ -22,7 +22,7 @@ Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its Fresh Nor
 
 ---
 
-## Accepted technical state
+## Accepted boundary
 
 ```text
 C1-R1 lifecycle safety                     CLOSED — EV-206–EV-207
@@ -30,142 +30,109 @@ Gate 1 source/build separation             CLOSED/PASS — EV-208
 Gate 2 CORE diagnostic sufficiency         CLOSED/PASS — EV-209–EV-211
 Gate 3 behavior-only smoke                 CLOSED/PASS — EV-212
 Gate 4 generation-scoped bookkeeping       CLOSED/PASS — EV-213
-Literal historical EV-131 confirmation     PASS — EV-214
-Final behavior-only architecture smoke     PASS — EV-215
+Literal historical EV-131 regression       CLOSED/PASS — EV-214
+Final behavior-only architecture smoke     CLOSED/PASS — EV-215
 
-NEW ARCHITECTURE VERIFICATION              COMPLETE
+NEW COLLISION ARCHITECTURE VERIFICATION    COMPLETE
 ```
 
-Gate 4 implementation:
+Accepted marker execution identity:
 
 ```text
-7667c428a580d18f625317702ededb76aa5e8bb5
-```
-
-Accepted execution model:
-
-```text
-valid C1 generation
+C1 monotonic generation
 = durable marker occurrence/dedupe execution identity
 ```
 
-Independent marker semantics remain protected: exact current-motion ownership; Normal/Quick/full-Whirl eligibility; RIGHT/LEFT/BOTH/OFF; authored occurrence budgets; duplicate/replay suppression; repeated-contact `ClearTriggeredList()` rearm; exact-set switching; physical marker-window retirement; OFF intra-Hit gap; Quick/full-Whirl StatePosition suppression; current Fist research behavior; late/dead rejection; unsupported/unmarked native fallback. C1 terminal repair remains unchanged and native cleanup gets first opportunity.
+Independent marker semantics and the closed C1 terminal-repair contract remain unchanged. Exact architecture/evidence belongs in:
 
-Do not reopen the completed architecture gates or invent another broad diagnostic/runtime matrix absent a concrete contradiction.
+```text
+MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+COLLISION_LIFECYCLE_PLAN.md
+COLLISION_TEST_PLAN.md
+EVIDENCE_INDEX.md
+EVIDENCE_LEDGER_STEP_D.md — EV-206–EV-214
+EVIDENCE_LEDGER_STEP_E.md — EV-215 onward
+```
+
+Do not reopen a completed architecture gate or invent another broad diagnostic/runtime matrix absent a concrete contradiction.
 
 ---
 
-## EV-214 — literal historical occurrence-budget defect closed
+## Documentation audit result / current responsibility
 
-Preserved historical exact 2H Normal motion:
+The first approved audit cleanup pass is **non-destructive authority repair only**.
 
-```text
-Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
-```
-
-Authored schedule proved live under CORE:
+Completed in this pass:
 
 ```text
-RIGHT frame 4
-OFF   frame 10
-RIGHT frame 15
+SESSION_ENTRYPOINT.md
+COLLISION_TEST_PLAN.md
+KNOWLEDGE_REGISTRY.md
+EVIDENCE_INDEX.md
+SECOND_PASS_REWRITE_CONTRACT.md
+COLLISION_LIFECYCLE_PLAN.md
+DESIGN.md
+COLLISION_LOGGER_PLAN.md
+RESEARCH_MAP.md
+README.md
+EVIDENCE_LEDGER_STEP_D.md range metadata only
+BETWEEN_CHATS.md
 ```
 
-Decisive sequence:
+Result:
 
 ```text
-generation 11
-→ first RIGHT accepted 0 -> 1
-→ interrupted before OFF / later RIGHT
-→ exact physical source naturally cleaned 7 -> 5
-
-next actual _AI_Attack of same exact motion = generation 18
-→ first RIGHT accepted fresh 0 -> 1
-→ OFF accepted within same generation
-→ later genuine RIGHT accepted 1 -> 2
+- stale pending-verification language removed from active authorities
+- EV-215 / EVIDENCE_LEDGER_STEP_E routing added
+- Step D explicitly closes at EV-214
+- completed second-pass contract retained as reference/provenance rather than deleted
+- DESIGN/lifecycle/logger authorities aligned with C1-generation marker execution identity
+- RESEARCH_MAP restored to history-only routing
+- README/entrypoint bootstrap routing reduced and clarified
+- evidence-ledger split retained as useful storage/retrieval structure
+- no source code changed
+- no evidence claim was renumbered or deleted
+- no raw evidence moved or deleted
 ```
 
-The same run preserved special Dual Normal exact-set fixtures:
-
-```text
-P0: BOTH -> LEFT  -> OFF -> BOTH
-P1: BOTH -> RIGHT -> OFF -> BOTH
-```
-
-Authoritative raw:
-
-```text
-research/raw/2026-09-01_gate4_pc_2h_dual_interruption_restart_mixed_combat.log
-raw-evidence commit: 1040a16926bb4b8a450c7548636dd886ddf17aaf
-raw blob: 3c2ea936a90114d47bedc39a67345161ea4d14cb
-EV-214 documentation commit: 551980fcb102aae864a49404630166246d958001
-```
-
-EV-213 remains valid and unchanged; EV-214 supplies the later-requested literal historical fixture confirmation.
+Next responsibility after review/synchronization is the **separate processed-evidence raw→archive migration decision/transaction**. Do not mix that with this authority-repair pass.
 
 ---
 
-## EV-215 — final behavior-only architecture verification
+## Raw/archive boundary — deliberately deferred
 
-Validated Gate-4 release-purity product:
+Several already-processed artifacts still live under `research/raw/` and are cited there by canonical evidence.
 
-```text
-Script_FrameCollisionBehaviorTest.dll
-Length: 378880
-SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
-```
+Do not move them piecemeal.
 
-Correct build location:
+If the migration is performed, it must be one deliberate transaction:
 
 ```text
-build/prototypes/Script_FrameCollisionTest/Release/Script_FrameCollisionBehaviorTest.dll
+identify exact processed raw set
+→ verify current canonical provenance references
+→ move bytes unchanged to research/archive/
+→ update every affected canonical path/reference in the same transaction
+→ verify hashes/provenance
+→ commit/publish the complete migration
 ```
 
-The diagnostic twin was removed from the live scripts directory and the behavior-only DLL was deployed alone with exact built/live identity. Gothic 3 reached main menu and exited normally.
-
-The final in-game smoke then exercised the requested restored-fixture/interruption/restart coverage repeatedly across different weapon types and marked/unmarked animations. The User explicitly reported marked 2H, Staff and Dual Wield fixtures plus bows, crossbows and magic, and reported that everything worked as expected with no visible stuck collision, crash or obvious regression.
-
-This is deliberately functional/release-purity evidence only. Internal C1-generation and marker bookkeeping proof remains the CORE diagnostic evidence EV-213/EV-214.
-
-Global evidence continuation:
-
-```text
-docs/EVIDENCE_LEDGER_STEP_E.md — EV-215 onward
-EV-215 evidence commit: f0ada39b6849499aa0012611348f6ead68dbf226
-```
+No historical artifact should be renamed merely for cosmetic normalization.
 
 ---
 
-## Current responsibility — documentation / knowledge-system audit
+## Local synchronization / branch ownership
 
-Use:
+Assistant documentation writes have advanced the remote branch beyond the User's last synchronized local HEAD.
+
+Before any new local Git/build/deploy/runtime window:
 
 ```text
-docs/KNOWLEDGE_MAINTENANCE.md
-docs/KNOWLEDGE_REGISTRY.md
+User synchronizes local branch
+→ verify HEAD/status
+→ only then begin the next local window
 ```
 
-Audit current authorities for:
-
-- contradictions between current-state documents;
-- duplicate maintained facts or repeated policy text;
-- stale wording that still describes closed gates as pending;
-- read-first / bootstrap growth and unnecessary mandatory reads;
-- usefulness and routing quality of indexes;
-- evidence-ledger continuity and whether the current split remains useful;
-- raw-vs-archive boundaries;
-- superseded documents that should be archived or clearly demoted;
-- speculative or redundant cross-routes that increase context cost without helping retrieval.
-
-First produce concise findings and a proposed cleanup plan. Do not automatically merge evidence ledgers, delete/archive authorities, or rewrite provenance. Preserve global EV IDs and historical evidence. Perform destructive consolidation/archive/delete only when justified by the audit.
-
----
-
-## Local synchronization / ownership
-
-The User completed the final local behavior-only runtime window before the EV-215 documentation write. Assistant documentation has now advanced the remote branch.
-
-Before the next local git/build/deploy/runtime window, synchronize per POP-01. Once the User owns a new local test or implementation window, the assistant must not concurrently write the branch.
+Once the User owns a local implementation/test window, the assistant must not concurrently write this branch.
 
 Known unrelated local file to leave completely untouched if still present:
 
@@ -175,7 +142,7 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## After audit — stable promotion / branch cleanup
+## Stable promotion / temporary branch — later
 
 Normal branch model remains:
 
@@ -187,7 +154,7 @@ docs/collision-source-evidence
 = active development/research
 ```
 
-`main` is stale and must be updated deliberately only after the documentation audit / justified cleanup.
+`main` must be updated deliberately only after this cleanup checkpoint and any justified evidence-location cleanup have been reviewed.
 
 Temporary branch:
 
@@ -195,36 +162,29 @@ Temporary branch:
 temp/second-pass-rewrite-publish
 ```
 
-Last known comparison on 2026-09-01:
+Do not delete it blindly. Its unique history/content must be inspected first; preserve anything unique that still matters, then define the stable promotion set, update/verify protected `main`, and retire the temporary branch only if safe.
 
-```text
-status: diverged
-active branch ahead by: 35 commits
-temp branch ahead by: 10 commits
-merge base: 0aa6d19a6815934a3158715070320020bac64292
-```
-
-Do not delete it blindly. Inspect temp-only commits/content, preserve anything unique, define the stable promotion set, update/verify protected `main`, then delete the temp branch only if safe.
+Any previously recorded ahead/behind counts are historical snapshots and must be re-queried when this branch-cleanup responsibility actually begins.
 
 ---
 
 ## Forward order
 
 ```text
-documentation + knowledge-system audit — NEXT
-→ review findings and perform justified cleanup
-→ inspect temp-only branch history
-→ update protected main to proven + cleaned stable checkpoint
+review/synchronize completed authority-repair pass — NEXT
+→ separate justified raw→archive provenance migration
+→ inspect temp-only branch history/content
+→ define stable promotion checkpoint
+→ update protected main
 → verify main
 → retire temp branch if safe
 → normal two-branch model restored
-→ continue collision-source branch
 → equipped-melee marker expansion planning
-→ freeze/implement/test one expansion mechanism at a time
+→ freeze/implement/test one mechanism at a time
 → separate Fist source-adapter investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
-→ mature compatibility gate
+→ mature New Balance/Jackydima compatibility gate
 → Raise + speed + config redesign/migration
 → later target acquisition/climbing
 → final diagnostics-free Script_G3AnimationBehaviors
