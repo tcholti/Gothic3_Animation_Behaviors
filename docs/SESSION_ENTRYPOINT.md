@@ -140,9 +140,9 @@ Do not invent another broad architecture-verification matrix absent a concrete c
 
 ---
 
-## Completed Repository Knowledge Cleanup
+## Completed Repository Knowledge / Evidence Cleanup
 
-The documentation/knowledge audit and first authority-repair pass are complete. The processed-evidence location cleanup is also complete.
+The documentation/knowledge audit, authority-repair pass and processed-evidence location cleanup are complete.
 
 Accepted cleanup result:
 
@@ -150,28 +150,18 @@ Accepted cleanup result:
 active authorities no longer describe closed architecture verification as pending
 EV-215 / EVIDENCE_LEDGER_STEP_E routing is current
 EVIDENCE_LEDGER_STEP_D explicitly owns EV-206–EV-214
-historical contracts/research remain preserved as reference rather than competing current state
 19 already-processed collision logs moved from research/raw/ to research/archive/
 all 19 archived logs retain their exact original Git blob SHA
 EVIDENCE_LEDGER_STEP_D provenance paths now point to research/archive/
 research/raw/ contains only Keep.txt
 ```
 
-The evidence migration was deliberately staged without a broken provenance state:
+Evidence migration commits:
 
 ```text
-copy exact existing blobs to research/archive/
-→ repoint canonical Step-D provenance
-→ remove raw duplicates
-→ verify 19/19 blob identities + zero stale Step-D research/raw/ paths
-```
-
-Migration commits:
-
-```text
-c366c5147d5128b7e53e47b57731b498a0ac1602  copy processed collision evidence into archive
-a3eb460d323a8590444d950b3a60a8e0db5c7083  repoint processed evidence provenance to archive
-87e3ffc24ca0bf604ffb6314248e4ab0b4d3ce39  remove archived evidence from raw intake
+c366c5147d5128b7e53e47b57731b498a0ac1602
+a3eb460d323a8590444d950b3a60a8e0db5c7083
+87e3ffc24ca0bf604ffb6314248e4ab0b4d3ce39
 ```
 
 The unrelated local untracked file remains outside this migration and must stay untouched:
@@ -182,9 +172,7 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Current Technical Responsibility — Inspect Temporary Branch Before Stable Promotion
-
-The next responsibility is repository integration hygiene, not collision implementation.
+## Temporary Branch Inspection — COMPLETE
 
 Temporary branch:
 
@@ -192,21 +180,78 @@ Temporary branch:
 temp/second-pass-rewrite-publish
 ```
 
-Do **not** merge or delete it blindly. Re-query its current relationship to the active branch and inspect only its temp-only commits/content.
-
-Required decision sequence:
+Current comparison established:
 
 ```text
-compare temp branch with docs/collision-source-evidence
-→ identify temp-only commits/files/changes
-→ determine whether any content is genuinely unique and still valuable
-→ preserve unique material deliberately if needed
-→ only then define the stable promotion checkpoint for main
+merge base with active branch: 0aa6d19a6815934a3158715070320020bac64292
+temp-only commits: 10
+active branch ahead of temp: 60 commits at inspection time
 ```
 
-Do not change `main`, delete the temporary branch, or begin new equipped-melee work until this inspection is complete.
+The 10 temp-only commits are staging commits for the frozen second-pass rewrite: marker module, lifecycle guard, EngineBridge split, compact/deep diagnostics, RuntimeClock, source operations and final staging assembly.
 
-Normal intended branch model after cleanup remains:
+Decisive preservation fact:
+
+```text
+temp head:
+515d73fab14e7a66d94f3f19b0843072bbf70ef3
+
+temp head tree:
+f303ba47624fc904dd4bc3f64aadfab43cd536d6
+
+accepted active rewrite commit:
+4eeb701725e8b77d8850116d408155653ff4ad36
+
+active rewrite tree:
+f303ba47624fc904dd4bc3f64aadfab43cd536d6
+```
+
+Therefore the temp branch contains **no unique final file content that must be preserved**. Its only unique value is intermediate staging chronology, already superseded by the single accepted implementation commit plus Git history. Do not merge temp into the active branch.
+
+Do not delete temp until stable `main` promotion is verified.
+
+---
+
+## Current Technical Responsibility — Promote Cleaned Verified Checkpoint to `main`
+
+Current main comparison at inspection time:
+
+```text
+active branch ahead of main: 693 commits
+main ahead of merge base: 1 commit
+main-only commit: 76703d362a0aef0a749fc30626eb2b75a3d5fec3
+message: Add adaptive collaboration and usage rules
+```
+
+That main-only commit contains old `COLLABORATION_RULES.md` v0.1. The active branch now contains the evolved project collaboration authority v1.8 and explicitly treats older Gothic collaboration rules as superseded where they conflict with the current project delta/CAM framework. No main-only content requires cherry-picking.
+
+Main ruleset is active and protects against deletion and non-fast-forward updates. Stable promotion must therefore preserve history and remain fast-forward.
+
+Preferred promotion shape:
+
+```text
+new main merge commit
+  tree = exact cleaned active-branch tree
+  parent 1 = old main head
+  parent 2 = cleaned active head
+```
+
+This preserves the old main-only commit in ancestry without letting its obsolete v0.1 file overwrite the active v1.8 authority.
+
+After promotion:
+
+```text
+verify main contains both histories
+verify main tree equals promoted active tree
+verify branch protection remains active
+→ only then retire temp/second-pass-rewrite-publish
+```
+
+---
+
+## After Stable Repository Checkpoint
+
+Normal intended branch model:
 
 ```text
 main
@@ -216,20 +261,7 @@ docs/collision-source-evidence
 = active development/research
 ```
 
----
-
-## After Temporary-Branch Inspection
-
-```text
-preserve any unique temp-only material that still matters
-→ define stable promotion set/checkpoint
-→ deliberately update protected main
-→ verify main
-→ retire temp/second-pass-rewrite-publish only if safe
-→ retain main + docs/collision-source-evidence as the normal two-branch model
-```
-
-Only after that repository checkpoint is stable should the project resume new collision feature expansion.
+After main verification and safe temp retirement, resume engineering from the active branch.
 
 ---
 
