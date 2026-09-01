@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — stable main promotion
+## Current bridge — temp retirement, then marker expansion planning
 
 Repository:
 
@@ -46,15 +46,13 @@ Do not reopen a completed architecture gate absent concrete contradicting eviden
 
 ---
 
-## Repository cleanup complete
+## Cleanup checkpoint complete
 
-Documentation/knowledge authority repair is complete.
-
-Processed-evidence migration is complete:
+Documentation/knowledge authority repair and processed-evidence migration are complete.
 
 ```text
 19 processed collision logs moved raw → archive
-19/19 archived files retain original Git blob SHA
+19/19 retained original Git blob SHA
 Step D canonical paths repointed to archive
 research/raw/ contains only Keep.txt
 Step D contains zero research/raw/ paths
@@ -68,7 +66,7 @@ a3eb460d323a8590444d950b3a60a8e0db5c7083
 87e3ffc24ca0bf604ffb6314248e4ab0b4d3ce39
 ```
 
-Known unrelated local file to leave completely untouched:
+Known unrelated local file to leave untouched:
 
 ```text
 research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
@@ -76,7 +74,7 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Temporary branch inspection complete
+## Temp inspection complete — safe to retire
 
 Temporary branch:
 
@@ -84,104 +82,104 @@ Temporary branch:
 temp/second-pass-rewrite-publish
 ```
 
-At inspection:
+Its 10 unique commits are only component staging chronology for the accepted second-pass rewrite.
 
-```text
-merge base: 0aa6d19a6815934a3158715070320020bac64292
-temp-only commits: 10
-active ahead of temp: 60
-```
-
-Those 10 commits are only the component-by-component staging history of the second-pass rewrite.
-
-Decisive equality:
+Decisive content equality:
 
 ```text
 temp head: 515d73fab14e7a66d94f3f19b0843072bbf70ef3
 temp tree: f303ba47624fc904dd4bc3f64aadfab43cd536d6
 
 accepted active rewrite: 4eeb701725e8b77d8850116d408155653ff4ad36
-active rewrite tree: f303ba47624fc904dd4bc3f64aadfab43cd536d6
+accepted rewrite tree: f303ba47624fc904dd4bc3f64aadfab43cd536d6
 ```
 
-Therefore no unique final file content must be rescued from temp. Do not merge temp into the active branch. Retain it only until main promotion is verified, then it may be deleted safely.
+No unique final content needs rescue. Do not merge temp into active.
 
 ---
 
-## Main-only history inspected
+## `main` promotion verified
 
-Before promotion:
-
-```text
-main head: 76703d362a0aef0a749fc30626eb2b75a3d5fec3
-main-only commits: 1
-message: Add adaptive collaboration and usage rules
-```
-
-That commit contains old Gothic Collaboration Rules v0.1.
-
-Current active authority:
+Old main head:
 
 ```text
-docs/COLLABORATION_RULES.md
-Version: 1.8
+76703d362a0aef0a749fc30626eb2b75a3d5fec3
 ```
 
-The active authority explicitly routes general collaboration to CAM/current reusable authorities and states that older Gothic collaboration rules are superseded where they conflict. No main-only content needs cherry-picking.
+Its only unique commit contained old Collaboration Rules v0.1; active already contains the evolved v1.8 authority.
+
+History-preserving promotion commit:
+
+```text
+84a00d206bb6b939dccce06d7d4fe680c10d5cc3
+```
+
+Verified commit structure:
+
+```text
+parent 1 = 76703d362a0aef0a749fc30626eb2b75a3d5fec3
+parent 2 = 50cf676046e305e2646c5ed47a4188a5ba863dc5
+tree     = c19473642354f207914ca6d0ada03dde0ffbfcf6
+```
+
+Post-promotion active-vs-main comparison:
+
+```text
+main ahead: 2 commits
+main behind: 0
+file differences: 0
+```
+
+Main remains protected against deletion and non-fast-forward updates.
 
 ---
 
-## Current responsibility — stable main promotion
+## Immediate repository operation — retire temp
 
-Main has an active ruleset protecting:
-
-```text
-deletion
-non-fast-forward updates
-```
-
-No bypass is available or required.
-
-Use a history-preserving fast-forward merge commit:
+The connected GitHub tool cannot delete branch refs. The User/local repository must therefore perform the single remote deletion:
 
 ```text
-tree = exact cleaned active tree
-parent 1 = old main head
-parent 2 = cleaned active head
+temp/second-pass-rewrite-publish
 ```
 
-This keeps old main history reachable while making stable content exactly the cleaned/verified active checkpoint.
+Do not delete `main` or `docs/collision-source-evidence`.
 
-Required order:
-
-```text
-create promotion merge commit
-→ fast-forward main to it
-→ verify main contains both histories
-→ verify promoted tree identity
-→ verify main protection remains active
-→ only then delete temp/second-pass-rewrite-publish
-```
-
-Do not force-update main.
-
----
-
-## After repository checkpoint
-
-Normal branch model:
+After deletion, verify the intended normal two-branch model:
 
 ```text
 main
-= stable integration + reusable stable Gothic 3 knowledge
 
 docs/collision-source-evidence
-= active development/research
 ```
 
-After main verification and temp retirement, return to engineering on the active branch.
+---
 
-Forward engineering order:
+## Next engineering responsibility — equipped-melee marker expansion planning
+
+After temp retirement is confirmed, plan the next expansion on `docs/collision-source-evidence`. Do not implement until one exact mechanism/family responsibility is frozen.
+
+Known review item from EV-211:
+
+```text
+Dual P1 Quick tested authored marker = RIGHT
+older native-source evidence for tested Dual P1 Quick = LEFT
+```
+
+Treat this as a deliberate authoring/source-map review item, not a reopened lifecycle/Gate-4 defect.
+
+Keep later responsibilities separate:
+
+```text
+Fist source-adapter investigation
+full marker/lifecycle regression
+AttackContinuationProtection
+New Balance/Jackydima compatibility gate
+Raise + speed + config redesign/migration
+```
+
+---
+
+## Forward engineering order
 
 ```text
 equipped-melee marker expansion planning
