@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — final behavior-only architecture smoke
+## Current bridge — documentation / knowledge-system audit
 
 Repository:
 
@@ -31,6 +31,9 @@ Gate 2 CORE diagnostic sufficiency         CLOSED/PASS — EV-209–EV-211
 Gate 3 behavior-only smoke                 CLOSED/PASS — EV-212
 Gate 4 generation-scoped bookkeeping       CLOSED/PASS — EV-213
 Literal historical EV-131 confirmation     PASS — EV-214
+Final behavior-only architecture smoke     PASS — EV-215
+
+NEW ARCHITECTURE VERIFICATION              COMPLETE
 ```
 
 Gate 4 implementation:
@@ -48,71 +51,48 @@ valid C1 generation
 
 Independent marker semantics remain protected: exact current-motion ownership; Normal/Quick/full-Whirl eligibility; RIGHT/LEFT/BOTH/OFF; authored occurrence budgets; duplicate/replay suppression; repeated-contact `ClearTriggeredList()` rearm; exact-set switching; physical marker-window retirement; OFF intra-Hit gap; Quick/full-Whirl StatePosition suppression; current Fist research behavior; late/dead rejection; unsupported/unmarked native fallback. C1 terminal repair remains unchanged and native cleanup gets first opportunity.
 
+Do not reopen the completed architecture gates or invent another broad diagnostic/runtime matrix absent a concrete contradiction.
+
 ---
 
-## EV-214 — literal historical regression is now closed
+## EV-214 — literal historical occurrence-budget defect closed
 
-The preserved historical 2H Normal fixture was re-exported/reinstalled and tested with the current Gate-4 CORE diagnostic.
-
-Exact motion:
+Preserved historical exact 2H Normal motion:
 
 ```text
 Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
 ```
 
-Live fixture proof:
+Authored schedule proved live under CORE:
 
 ```text
-Actor: PC_Hero
-Family: NORMAL
-ContainsReservedSourceMarker: 1
-AuthoredRIGHTCount: 2
-FirstRIGHTMarkerFrame: 4
-AuthoredOFFCount: 1
-FirstOFFMarkerFrame: 10
+RIGHT frame 4
+OFF   frame 10
+RIGHT frame 15
 ```
 
-Decisive EV-131-class sequence:
+Decisive sequence:
 
 ```text
 generation 11
 → first RIGHT accepted 0 -> 1
-→ ExecutionBudgetReset: 1
 → interrupted before OFF / later RIGHT
 → exact physical source naturally cleaned 7 -> 5
 
 next actual _AI_Attack of same exact motion = generation 18
 → first RIGHT accepted fresh 0 -> 1
-→ ExecutionBudgetReset: 1
 → OFF accepted within same generation
 → later genuine RIGHT accepted 1 -> 2
-→ replay protections remain intact
 ```
 
-Intervening reaction/ambient generations did not carry marker occurrence state into the next attack execution.
-
-The same mixed run also exercised special Dual Normal fixtures:
+The same run preserved special Dual Normal exact-set fixtures:
 
 ```text
 P0: BOTH -> LEFT  -> OFF -> BOTH
 P1: BOTH -> RIGHT -> OFF -> BOTH
 ```
 
-These preserved exact-set semantics: BOTH-to-single retired only the opposite physical source bit, OFF closed the exact owned window, and later BOTH reopened/rearmed both sources without resetting the same-generation execution budget.
-
-Whole-log exact searches found zero:
-
-```text
-REJECTED_NO_C1_GENERATION
-REJECTED_C1_GENERATION_INCONSISTENCY
-INVARIANT
-DIVERGED
-UNRESOLVED
-```
-
-The diagnostic unloaded cleanly.
-
-Authoritative raw evidence:
+Authoritative raw:
 
 ```text
 research/raw/2026-09-01_gate4_pc_2h_dual_interruption_restart_mixed_combat.log
@@ -121,17 +101,13 @@ raw blob: 3c2ea936a90114d47bedc39a67345161ea4d14cb
 EV-214 documentation commit: 551980fcb102aae864a49404630166246d958001
 ```
 
-EV-213 remains valid and unchanged. Its Whirl sequence was equivalent proof for the asset installed at that time; EV-214 is the later-requested literal historical fixture confirmation.
-
-**Do not reopen Gate 4 or invent another diagnostic matrix unless a concrete contradiction appears.**
+EV-213 remains valid and unchanged; EV-214 supplies the later-requested literal historical fixture confirmation.
 
 ---
 
-## Only remaining architecture-verification step — behavior-only restored-fixture smoke
+## EV-215 — final behavior-only architecture verification
 
-This step is required before declaring the whole new collision architecture verified.
-
-Validated Gate-4 behavior-only product:
+Validated Gate-4 release-purity product:
 
 ```text
 Script_FrameCollisionBehaviorTest.dll
@@ -139,56 +115,63 @@ Length: 378880
 SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
 ```
 
-Required sequence:
+Correct build location:
 
 ```text
-remove diagnostic twin
-→ deploy behavior-only DLL alone
-→ verify exact built/live identity
-→ main-menu load / normal exit
-→ load test save
-→ restored two-contact 2H Normal behaves correctly
-→ several interruption/restart attempts
-→ ordinary Staff / 1H / 2H combat afterwards
-→ no visible stuck collision, crash or obvious regression
-→ normal exit
+build/prototypes/Script_FrameCollisionTest/Release/Script_FrameCollisionBehaviorTest.dll
 ```
 
-Because the behavior-only product intentionally has no diagnostics, this result is functional/release-purity evidence only. Internal generation/marker proof remains EV-213/EV-214 CORE diagnostic evidence.
+The diagnostic twin was removed from the live scripts directory and the behavior-only DLL was deployed alone with exact built/live identity. Gothic 3 reached main menu and exited normally.
 
-If this smoke passes:
+The final in-game smoke then exercised the requested restored-fixture/interruption/restart coverage repeatedly across different weapon types and marked/unmarked animations. The User explicitly reported marked 2H, Staff and Dual Wield fixtures plus bows, crossbows and magic, and reported that everything worked as expected with no visible stuck collision, crash or obvious regression.
+
+This is deliberately functional/release-purity evidence only. Internal C1-generation and marker bookkeeping proof remains the CORE diagnostic evidence EV-213/EV-214.
+
+Global evidence continuation:
 
 ```text
-NEW ARCHITECTURE VERIFICATION = COMPLETE
+docs/EVIDENCE_LEDGER_STEP_E.md — EV-215 onward
+EV-215 evidence commit: f0ada39b6849499aa0012611348f6ead68dbf226
 ```
 
-Do not add another broad architecture matrix after it absent a concrete contradiction.
+---
+
+## Current responsibility — documentation / knowledge-system audit
+
+Use:
+
+```text
+docs/KNOWLEDGE_MAINTENANCE.md
+docs/KNOWLEDGE_REGISTRY.md
+```
+
+Audit current authorities for:
+
+- contradictions between current-state documents;
+- duplicate maintained facts or repeated policy text;
+- stale wording that still describes closed gates as pending;
+- read-first / bootstrap growth and unnecessary mandatory reads;
+- usefulness and routing quality of indexes;
+- evidence-ledger continuity and whether the current split remains useful;
+- raw-vs-archive boundaries;
+- superseded documents that should be archived or clearly demoted;
+- speculative or redundant cross-routes that increase context cost without helping retrieval.
+
+First produce concise findings and a proposed cleanup plan. Do not automatically merge evidence ledgers, delete/archive authorities, or rewrite provenance. Preserve global EV IDs and historical evidence. Perform destructive consolidation/archive/delete only when justified by the audit.
 
 ---
 
 ## Local synchronization / ownership
 
-The User's last pushed local head before the documentation updates was:
+The User completed the final local behavior-only runtime window before the EV-215 documentation write. Assistant documentation has now advanced the remote branch.
 
-```text
-1040a16926bb4b8a450c7548636dd886ddf17aaf
-```
-
-Assistant documentation advanced the remote branch after that point. Before the next local deploy/test window, synchronize first per POP-01. Once the User owns the local test window, the assistant must not write this branch again until that local work is complete/pushed.
+Before the next local git/build/deploy/runtime window, synchronize per POP-01. Once the User owns a new local test or implementation window, the assistant must not concurrently write the branch.
 
 Known unrelated local file to leave completely untouched if still present:
 
 ```text
 research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
 ```
-
----
-
-## After architecture verification — documentation/knowledge-system audit
-
-Only after the final behavior-only smoke passes, use `KNOWLEDGE_MAINTENANCE.md` and `KNOWLEDGE_REGISTRY.md` to audit current authorities for contradictions, duplicate maintained facts, stale current-state wording, read-first/bootstrap growth, index usefulness, evidence-ledger continuity/splitting, raw-vs-archive boundaries, superseded documents and unnecessary cross-routes.
-
-Do not automatically merge evidence ledgers. Preserve global EV IDs and provenance. First produce concise findings + proposed cleanup; perform destructive consolidation/archive/delete only when justified.
 
 ---
 
@@ -204,7 +187,7 @@ docs/collision-source-evidence
 = active development/research
 ```
 
-`main` is stale and must be updated deliberately only after architecture verification + documentation audit.
+`main` is stale and must be updated deliberately only after the documentation audit / justified cleanup.
 
 Temporary branch:
 
@@ -228,9 +211,7 @@ Do not delete it blindly. Inspect temp-only commits/content, preserve anything u
 ## Forward order
 
 ```text
-final behavior-only restored-fixture + ordinary-melee smoke — NEXT
-→ NEW ARCHITECTURE VERIFICATION COMPLETE
-→ documentation + knowledge-system audit
+documentation + knowledge-system audit — NEXT
 → review findings and perform justified cleanup
 → inspect temp-only branch history
 → update protected main to proven + cleaned stable checkpoint
