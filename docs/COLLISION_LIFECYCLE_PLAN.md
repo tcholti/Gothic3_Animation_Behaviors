@@ -1,7 +1,7 @@
 # Collision Lifecycle Plan
 
 **Status:** Current collision-lifecycle architecture / research authority  
-**Updated:** 2026-08-30
+**Updated:** 2026-09-01
 
 ## Purpose
 
@@ -314,7 +314,7 @@ This is diagnostic hygiene, not new lifecycle machinery.
 
 ---
 
-## 9. Marker Timing Remains Separate
+## 9. Marker Timing / Execution Bookkeeping Remain Separate from Physical Cleanup
 
 Inside a live marked Hit:
 
@@ -329,9 +329,50 @@ Each marker defines the complete desired offensive equipped-source set at that a
 
 `G3AB_COL_OFF` is an authored inactive gap inside a still-live Hit. It is not terminal safety and must not retire the execution by itself.
 
-C1-R1 does not automatically replace marker occurrence budgets, duplicate/replay protection, StatePosition handling, exact-set switching, repeated-contact rearm, or dead-execution rejection.
+C1-R1 does not replace marker occurrence budgets, duplicate/replay protection, StatePosition handling, exact-set switching, repeated-contact rearm or dead-execution rejection.
 
-The proven C1 generation may allow some older **execution-lifetime inference** inside the marker module to be simplified later. That must be established check-by-check against the historical marker regressions. A shorter implementation is not evidence that a guard is redundant.
+Gate 4 completed the separate marker execution-identity simplification audit. Current accepted split:
+
+```text
+C1 monotonic generation
+= durable marker occurrence/dedupe execution identity
+
+marker-local source/motion/action/phase/state-time changes
+controlled-callback state-time rollback
+= NOT execution-boundary authority
+```
+
+The older marker-local guesses were removed/consolidated because C1 now supplies the stronger durable execution identity. `RetireMarkerOwnedSource()` natural handling is narrowed to factual retirement of the exact physical marker-owned source bit/window; it does not infer that the whole execution ended.
+
+Independent marker invariants remain mandatory:
+
+```text
+exact current-motion marker ownership
+supported Normal / Quick / full-Whirl family predicates
+required source preflight
+RIGHT / LEFT / BOTH / OFF exact-set semantics
+authored occurrence budgets
+same-update duplicate/replay suppression
+repeated-contact ClearTriggeredList rearm
+physical marker-owned source/window mask
+exact-set switching
+OFF intra-Hit gaps
+Quick/full-Whirl StatePosition suppression
+late/dead/unsupported rejection
+unmarked/unsupported native fallback
+valid-motion-only marker caching
+```
+
+Authority/evidence:
+
+```text
+MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+EV-213 Gate-4 implementation/regression closure
+EV-214 literal historical EV-131 same-motion interruption/restart closure
+EV-215 final behavior-only architecture verification
+```
+
+Do not restore the older inferred execution-boundary machinery absent contradicting evidence.
 
 ---
 
@@ -365,19 +406,22 @@ Fist/body separation
 bow/crossbow/magic negative regression
 ```
 
-A central engine-bridge layer should own shared Gothic hooks and report authoritative events/facts to independent feature modules. `CollisionLifecycleGuard` should consume those events without becoming the owner of marker timing, bad-skip prevention, Raise, speed, or diagnostics.
+A central engine-bridge layer should own shared Gothic hooks and report authoritative events/facts to independent feature modules. `CollisionLifecycleGuard` should consume those events without becoming the owner of marker timing, bad-skip prevention, Raise, speed or diagnostics.
 
 ---
 
-## 11. Universal-Guard-First Development Order
+## 11. Development Order After Architecture Verification
+
+The collision architecture through C1-R1, second-pass modularization/product separation and generation-scoped marker bookkeeping is verified complete through EV-215.
+
+Repository/knowledge maintenance now happens before new feature expansion:
 
 ```text
-stable shadow execution/source ownership        CLOSED through P2
-→ controlled native-equivalent physical repair CLOSED through C1-R1 / EV-207
-→ read-only architecture/code review            NEXT
-→ semantic-preserving research-DLL modularization
-→ compact baseline revalidation
-→ marker-lifetime simplification audit
+architecture verification COMPLETE through EV-215
+→ documentation/knowledge cleanup
+→ deliberate processed-evidence archive migration if justified
+→ inspect temporary branch unique content
+→ stable protected-main promotion/verification
 → equipped-melee marker expansion
 → separate Fist source-adapter decision
 → full marker + lifecycle regression
@@ -389,7 +433,7 @@ stable shadow execution/source ownership        CLOSED through P2
 → final production DLL + New Balance/Jackydima regression
 ```
 
-This sequence deliberately keeps the validated collision guard in the research DLL while the marker/source behavior around it is matured. Production migration comes **after** the collision subsystem has reached the intended feature scope and passed the first third-party compatibility gate.
+This sequence keeps the validated collision guard in the research behavior core while marker/source behavior around it is matured. Production migration comes **after** the collision subsystem has reached the intended feature scope and passed the first third-party compatibility gate.
 
 The known held-Use2 / Alternative-AI skip remains a separate prevention responsibility, not production collision classification authority. Its future module is documented in `BAD_SKIP_FUTURE_INVESTIGATION.md`. Even if prevention succeeds, it does not replace the C1-R1 collision-safety fail-safe.
 
@@ -405,7 +449,7 @@ The known held-Use2 / Alternative-AI skip remains a separate prevention responsi
 6. Central ownership of shared Gothic hooks; feature modules consume bridge events rather than competing for the same hook.
 7. No family/cause/input cleanup classification.
 8. Preserve native/modded combat-rule choices.
-9. Preserve independent marker invariants; simplify only execution-lifetime checks actually superseded by stronger proven authority.
+9. Use the proven C1 generation for marker execution identity while preserving independent authored-marker invariants.
 10. Keep Fist/body semantics behind a separate source adapter rather than forcing weapon collision-group behavior.
 11. Keep bad-skip prevention separate from collision cleanup.
 12. Require compatibility evidence before production migration and again after the full production DLL is assembled.
