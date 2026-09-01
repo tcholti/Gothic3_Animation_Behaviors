@@ -140,38 +140,41 @@ Do not invent another broad architecture-verification matrix absent a concrete c
 
 ---
 
-## Current Technical Responsibility — Documentation / Knowledge-System Cleanup
+## Completed Repository Knowledge Cleanup
 
-Architecture verification is complete. The active responsibility is now the planned documentation/knowledge audit and justified cleanup under:
+The documentation/knowledge audit and first authority-repair pass are complete. The processed-evidence location cleanup is also complete.
 
-```text
-docs/KNOWLEDGE_MAINTENANCE.md
-docs/KNOWLEDGE_REGISTRY.md
-```
-
-Current cleanup boundary:
+Accepted cleanup result:
 
 ```text
-repair stale current-state/routing language
-reduce bootstrap/handoff duplication
-make Step-E/EV-215 discoverable
-align durable authorities with accepted Gate-4 execution identity
-preserve historical provenance and global EV IDs
-preserve evidence-ledger splitting where it is useful retrieval/storage structure
+active authorities no longer describe closed architecture verification as pending
+EV-215 / EVIDENCE_LEDGER_STEP_E routing is current
+EVIDENCE_LEDGER_STEP_D explicitly owns EV-206–EV-214
+historical contracts/research remain preserved as reference rather than competing current state
+19 already-processed collision logs moved from research/raw/ to research/archive/
+all 19 archived logs retain their exact original Git blob SHA
+EVIDENCE_LEDGER_STEP_D provenance paths now point to research/archive/
+research/raw/ contains only Keep.txt
 ```
 
-Do **not** during this first cleanup pass:
+The evidence migration was deliberately staged without a broken provenance state:
 
 ```text
-delete/merge evidence ledgers
-rewrite evidence claims for cosmetic consistency
-move processed raw evidence without updating every affected provenance path atomically
-delete temporary branch history before inspecting temp-only content
-promote main before the cleaned checkpoint is reviewed
-begin equipped-melee expansion or another collision implementation step
+copy exact existing blobs to research/archive/
+→ repoint canonical Step-D provenance
+→ remove raw duplicates
+→ verify 19/19 blob identities + zero stale Step-D research/raw/ paths
 ```
 
-The unrelated local untracked file may remain untouched:
+Migration commits:
+
+```text
+c366c5147d5128b7e53e47b57731b498a0ac1602  copy processed collision evidence into archive
+a3eb460d323a8590444d950b3a60a8e0db5c7083  repoint processed evidence provenance to archive
+87e3ffc24ca0bf604ffb6314248e4ab0b4d3ce39  remove archived evidence from raw intake
+```
+
+The unrelated local untracked file remains outside this migration and must stay untouched:
 
 ```text
 research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
@@ -179,18 +182,51 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## After This Non-Destructive Cleanup Pass
+## Current Technical Responsibility — Inspect Temporary Branch Before Stable Promotion
+
+The next responsibility is repository integration hygiene, not collision implementation.
+
+Temporary branch:
 
 ```text
-review cleaned authorities for contradictions
-→ perform separate atomic research/raw → research/archive migration if justified
-→ inspect temp/second-pass-rewrite-publish unique history/content
-→ preserve anything unique that still matters
-→ define stable promotion set
-→ deliberately update protected main to the proven + cleaned checkpoint
+temp/second-pass-rewrite-publish
+```
+
+Do **not** merge or delete it blindly. Re-query its current relationship to the active branch and inspect only its temp-only commits/content.
+
+Required decision sequence:
+
+```text
+compare temp branch with docs/collision-source-evidence
+→ identify temp-only commits/files/changes
+→ determine whether any content is genuinely unique and still valuable
+→ preserve unique material deliberately if needed
+→ only then define the stable promotion checkpoint for main
+```
+
+Do not change `main`, delete the temporary branch, or begin new equipped-melee work until this inspection is complete.
+
+Normal intended branch model after cleanup remains:
+
+```text
+main
+= stable integration + reusable stable Gothic 3 knowledge baseline
+
+docs/collision-source-evidence
+= active development/research
+```
+
+---
+
+## After Temporary-Branch Inspection
+
+```text
+preserve any unique temp-only material that still matters
+→ define stable promotion set/checkpoint
+→ deliberately update protected main
 → verify main
-→ retire temp branch only if safe
-→ retain main + docs/collision-source-evidence as normal two-branch model
+→ retire temp/second-pass-rewrite-publish only if safe
+→ retain main + docs/collision-source-evidence as the normal two-branch model
 ```
 
 Only after that repository checkpoint is stable should the project resume new collision feature expansion.
