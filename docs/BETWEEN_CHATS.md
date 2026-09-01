@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — Gothic project stabilization
+## Current bridge — stabilization Pass 2
 
 Repository:
 
@@ -49,7 +49,7 @@ Final behavior-only architecture smoke     CLOSED/PASS — EV-215
 NEW COLLISION ARCHITECTURE VERIFICATION    COMPLETE
 ```
 
-Repository cleanup/stable promotion completed before this responsibility:
+Repository cleanup/stable promotion completed before this stabilization responsibility:
 
 ```text
 processed evidence migrated raw → archive
@@ -66,24 +66,60 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Current responsibility — stabilization before new engineering
+## Pass 1 — structural simplification: COMPLETE
 
-### Pass 1 — structural simplification
-
-Agreed targets:
+Verified active-tree result:
 
 ```text
-- consolidate evidence-ledger storage from five files to a smaller range-based set without changing EV content/status/provenance
-- retire obsolete active Script_FrameEffectLogger target/code if its role is fully absorbed by the collision diagnostic twin
-- remove standalone LARGE_LOG_EVIDENCE_PROCEDURE if POP-07 already owns the complete procedure
-- review completed one-off contracts/history routers/future-investigation documents and remove top-level duplicates only after durable content is confirmed elsewhere
-- simplify docs/archive usage in favor of Git history when no unique knowledge would be lost
-- preserve research/raw, research/archive and research/derived as distinct evidence-lifecycle layers
+Evidence:
+EVIDENCE_LEDGER.md                EV-001–EV-157
+EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
+EVIDENCE_LEDGER_199_ONWARD.md     EV-199 onward
+
+Retired active duplicate/obsolete surfaces:
+EVIDENCE_LEDGER_STEP_C.md
+EVIDENCE_LEDGER_STEP_D.md
+EVIDENCE_LEDGER_STEP_E.md
+SECOND_PASS_REWRITE_CONTRACT.md
+MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+RESEARCH_MAP.md
+LARGE_LOG_EVIDENCE_PROCEDURE.md
+BAD_SKIP_FUTURE_INVESTIGATION.md
+active Script_FrameEffectLogger target/source
+duplicate docs/archive documentation snapshots
 ```
 
-### Pass 2 — Gothic rules/procedures consistency audit
+Durable ownership after retirement:
 
-Audit together rather than individually:
+```text
+current architecture       → DESIGN / collision plans / release architecture
+exact factual proof        → EVIDENCE_INDEX → canonical EV ledger → provenance
+historical doc wording     → Git history
+large-log procedure        → PROJECT_OPERATING_PROCEDURES POP-07
+AttackContinuationProtection future boundary → COLLISION_TEST_PLAN §6
+runtime/source provenance  → research/raw / archive / derived lifecycle
+```
+
+Build/source verification for the obsolete logger passed:
+
+```text
+root CMake includes:
+src/Script_G3AnimationBehaviors
+prototypes/Script_FrameCollisionTest
+tools/Script_CombatMoveLogger
+
+tools/ contains:
+Script_CombatMoveLogger
+log_evidence
+```
+
+No collision behavior or closed evidence meaning changed during Pass 1.
+
+---
+
+## Current responsibility — Pass 2 Gothic rules/procedures consistency audit
+
+Audit these as one responsibility system:
 
 ```text
 COLLABORATION_RULES.md
@@ -96,28 +132,48 @@ README.md
 SESSION_ENTRYPOINT.md
 ```
 
-Goal:
+Question to answer:
+
+> Do these documents now describe one coherent Gothic-project collaboration/operation model with clear authority ownership, or do they still contain contradictory, duplicated, temporary or unnecessarily burdensome rules?
+
+Audit criteria:
 
 ```text
 one responsibility → one primary authority
-no contradictory rules
-no duplicated philosophy/procedure
-no obsolete temporary rule
-no unnecessary rereading/document churn
-clear User / Normal Chat / Work / local-PC / repository allocation
-explicit Gothic-project-only scope
-CAM never modified from this responsibility
+no contradictory User / Normal Chat / Work / local-PC / repository allocation
+no duplicated philosophy presented as multiple independent rules
+no obsolete rule from earlier context/workarounds
+no unnecessary rereading or document-maintenance burden
+stable conventions live in PROJECT_PIPELINE
+recurring operational sequences live in PROJECT_OPERATING_PROCEDURES
+bounded Work execution lives in WORK_IMPLEMENTATION_PROTOCOL
+project collaboration delta lives in COLLABORATION_RULES
+knowledge ownership/update triggers live in KNOWLEDGE_REGISTRY
+knowledge maintenance process lives in KNOWLEDGE_MAINTENANCE
+README routes; it does not become another authority for everything
+SESSION_ENTRYPOINT states current responsibility; it does not accumulate chronology
+CAM is read/compare-only; never modify CAM from this pass
 ```
 
-### Pass 3 — technical/project-shape audit
+Method:
 
-Verify justified current products, release/diagnostic separation, dependencies, root build targets, branch assumptions and orphan prototype paths.
+```text
+compare responsibilities first
+→ identify concrete contradiction/duplication/stale burden
+→ preserve useful distinct practice
+→ consolidate only where one surviving owner is clear
+→ update routes atomically
+→ do not rewrite merely for stylistic uniformity
+```
 
-### Pass 4 — readiness check
+After Pass 2 is clean:
 
-Confirm small fresh-chat retrieval surface, index → EV → provenance recovery, clean build-product model and unambiguous repository state.
+```text
+Pass 3 — build/product/repository-shape audit
+Pass 4 — final readiness check
+```
 
-Only after all four passes are clean:
+Only after all stabilization passes are complete:
 
 ```text
 resume equipped-melee marker expansion planning
