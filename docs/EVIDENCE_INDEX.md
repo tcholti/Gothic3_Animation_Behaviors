@@ -10,11 +10,9 @@ Route a technical question to the smallest relevant evidence range without loadi
 Canonical evidence remains one global monotonic namespace split only for storage/retrieval:
 
 ```text
-EVIDENCE_LEDGER.md          EV-001–EV-157
-EVIDENCE_LEDGER_STEP_B.md   EV-158–EV-198
-EVIDENCE_LEDGER_STEP_C.md   EV-199–EV-205
-EVIDENCE_LEDGER_STEP_D.md   EV-206–EV-214
-EVIDENCE_LEDGER_STEP_E.md   EV-215 onward
+EVIDENCE_LEDGER.md                EV-001–EV-157
+EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
+EVIDENCE_LEDGER_199_ONWARD.md     EV-199 onward
 ```
 
 This index does **not** restate or change evidence status. Open the exact EV entry when wording, qualification, provenance, build scope or engineering consequence matters.
@@ -365,7 +363,7 @@ Do not force weapon `Item_Attack` semantics onto Fist/body sources.
 ```text
 EV-182–EV-191
 EV-197–EV-198
-BAD_SKIP_FUTURE_INVESTIGATION.md
+COLLISION_TEST_PLAN.md
 COLLISION_LIFECYCLE_PLAN.md
 ```
 
