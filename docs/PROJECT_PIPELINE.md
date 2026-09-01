@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active operating-convention authority  
-**Version:** 1.2  
+**Version:** 1.3  
 **Updated:** 2026-09-01
 
 ## Purpose
@@ -47,14 +47,41 @@ main
 = stable integration + reusable stable Gothic 3 knowledge baseline
 
 docs/collision-source-evidence
-= active development/research branch with newest collision implementation and newest research
+= active collision development/research branch
+= owns remaining collision expansion, source/lifecycle/protection work,
+  collision compatibility, and production collision migration
+```
+
+Current branch lifecycle is deliberately:
+
+```text
+main and docs/collision-source-evidence aligned at the accepted pre-expansion checkpoint
+        ↓
+continue collision engineering only on docs/collision-source-evidence
+        ↓
+complete marker/source/lifecycle/protection/compatibility responsibilities
+        ↓
+migrate mature collision behavior into Script_G3AnimationBehaviors
+while keeping research diagnostics separate
+        ↓
+validate the diagnostics-free collision integration
+        ↓
+promote completed collision checkpoint to main
+        ↓
+create feature/raise-attack-speed from that updated main
+        ↓
+develop Raise + general/action/profile attack-speed + configuration work there
 ```
 
 Do not reinterpret `main` as the newest working state merely because it is the default branch.
 
-Unfinished collision implementation stays on the active branch until a deliberate stable-integration decision.
+Unfinished collision implementation stays on `docs/collision-source-evidence` until the complete collision responsibility, including production-direction migration into `Script_G3AnimationBehaviors`, has passed its required validation and is deliberately promoted.
 
-Stable documentation/knowledge may be promoted separately when it has been reviewed and is suitable for the stable baseline.
+The public/integration DLL keeps the name `Script_G3AnimationBehaviors`; completing collision does not create a collision-named production DLL.
+
+`feature/raise-attack-speed` is the accepted next feature branch name, but it must **not** be created early. Create it from the newly updated `main` only after the collision branch is complete and promoted.
+
+Stable documentation/knowledge may still be promoted separately when it has been reviewed and is suitable for the stable baseline, but ordinary collision implementation remains on the collision branch.
 
 ---
 
@@ -223,7 +250,7 @@ From the current C1-era research onward:
 - do not create a new decimal prototype version merely because another Chat edited the code;
 - do not let prototype/research numbering or temporary target names silently define the eventual public `Script_G3AnimationBehaviors` release version.
 
-The eventual production integration target remains `Script_G3AnimationBehaviors`; collision migration into that target is a later engineering responsibility, not part of current prototype naming cleanup.
+The production integration target remains `Script_G3AnimationBehaviors`. Mature collision behavior is migrated into that target before the collision branch is promoted; Raise/speed/config then continue from that stable production-direction foundation on `feature/raise-attack-speed`.
 
 Public/stable release versioning should be decided deliberately at the stable-integration/release stage.
 
