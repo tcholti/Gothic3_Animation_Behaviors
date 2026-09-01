@@ -94,6 +94,8 @@ docs/collision-source-evidence
 = active development/research
 ```
 
+Project structural/rules/product stabilization is complete and the cleaned checkpoint has been deliberately promoted to protected `main` with both histories preserved.
+
 Known unrelated local file remains outside project maintenance and must stay untouched:
 
 ```text
@@ -104,43 +106,65 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ## Project Stabilization — COMPLETE
 
-All four stabilization passes are closed:
-
 ```text
 Pass 1 structural document/tool simplification   PASS
 Pass 2 Gothic rules/procedures consistency       PASS
 Pass 3 build/product/repository-shape audit      PASS
 Pass 4 final fresh-context/readiness check       PASS
+stable main promotion                            PASS
 ```
 
-Stable result:
+Stable product/tool model:
 
 ```text
-three canonical evidence ledgers
-one responsibility → one primary project authority
-CAM constitutional layer → Gothic operationalization → procedures/task execution
-small current-state/bootstrap path
-Git history owns superseded ordinary documentation wording
-raw/archive/derived evidence layers remain distinct
-obsolete FrameEffectLogger retired
-collision behavior-only / diagnostic twins remain separate and mutually exclusive at runtime
-CombatMoveLogger retained for independent speed/combat research
-official SDK = build dependency; Jackydima SDK = reference-only
+Script_G3AnimationBehaviors
+= production-direction behavior DLL; current Raise/speed implementation
+
+Script_FrameCollisionBehaviorTest
+= diagnostics-free collision behavior research twin
+
+Script_FrameCollisionTest
+= same collision behavior + diagnostic instrumentation
+
+Script_CombatMoveLogger
+= independent generic CombatMove / playback-speed diagnostic tool
+
+tools/log_evidence
+= offline deterministic large-log processor
 ```
 
-The stabilization audit found no remaining structural ambiguity that should delay engineering.
+The cleanup found no remaining structural ambiguity that should delay engineering. Do not start another documentation cleanup merely for stylistic uniformity.
 
-### Immediate repository operation
+---
 
-Promote this exact cleaned active checkpoint to protected `main` while preserving both branch histories; verify tree identity and protection. Do not force-update `main`.
+## CURRENT RESPONSIBILITY — Equipped-Melee Marker Expansion Planning
 
-After promotion is verified, current engineering responsibility becomes:
+Return to engineering, but **do not modify code yet**.
+
+First reconstruct only the current supported marker-family/source boundary from the existing architecture, `ANIMATION_INDEX.md` / `ANIMATION_CATALOG.md`, and the relevant evidence routes.
+
+Then choose and freeze **one exact equipped-melee expansion mechanism/family** before implementation.
+
+Required planning boundaries:
 
 ```text
-equipped-melee marker expansion planning
+preserve closed C1 lifecycle/generation architecture
+preserve RIGHT / LEFT / BOTH / OFF semantics
+preserve native fallback for unmarked/unsupported cases
+separate physical source selection from action/family identity
+review the recorded Dual P1 Quick authored-RIGHT vs older native-LEFT discrepancy deliberately
+keep Fist/body source adaptation separate
+keep AttackContinuationProtection separate
+no broad all-family implementation in one step
 ```
 
-Start by recovering the currently supported marker-family/source boundary and freeze **one** expansion mechanism/family before implementation. Keep Fist source adaptation and AttackContinuationProtection separate.
+Immediate next step:
+
+```text
+orientation/retrieval of current supported equipped-melee marker boundary
+→ identify the smallest logical next expansion candidate
+→ discuss/freeze it with the User
+```
 
 ---
 
