@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active operating-convention authority  
-**Version:** 1.0  
-**Established:** 2026-08-29
+**Version:** 1.1  
+**Updated:** 2026-09-01
 
 ## Purpose
 
@@ -102,7 +102,15 @@ Rules:
 - corrected/superseded evidence keeps its original ID and status/history rather than being silently replaced by a new meaning;
 - ledger splitting is storage/retrieval structure, not a new evidence namespace.
 
-`EVIDENCE_LEDGER.md` and its continuation files own the claims themselves.
+Current storage boundaries:
+
+```text
+EVIDENCE_LEDGER.md                EV-001–EV-157
+EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
+EVIDENCE_LEDGER_199_ONWARD.md     EV-199 onward
+```
+
+The ledger files own the claims themselves.
 
 ---
 
@@ -172,9 +180,11 @@ Example:
 → 2026-08-29_c1o1_outer_scriptfunction_identity_probe_connector_extract.txt
 ```
 
-Derived files must identify their source raw path and source SHA256/other provenance as defined by POP-07.
+Derived files must identify their source raw/archive path and source SHA256/other provenance as defined by POP-07.
 
-The raw log remains canonical evidence; derived files are retrieval aids.
+Derived retrieval/analysis material belongs under `research/derived/`; it does not become canonical raw evidence merely because it is committed.
+
+The unchanged source raw/archive artifact remains canonical provenance.
 
 ---
 
@@ -242,15 +252,17 @@ design/evidence question frozen
 → build only
 → deploy exact built DLL
 → verify single live DLL + SHA match
-→ startup/load verification + exact banner
-→ freeze exact runtime matrix + exact raw filename
+→ startup/load verification appropriate to that product
+→ freeze exact runtime matrix + exact raw filename when diagnostic evidence is expected
 → User runs test
-→ raw log copied unchanged into research/raw
+→ raw log copied unchanged into research/raw when the product emits evidence
 → raw artifact commit/push
 → Normal Chat analyzes committed evidence
-→ derived extract only if retrieval requires it
+→ derived extract/package only if retrieval requires it
 → knowledge-maintenance transaction
 ```
+
+For diagnostics-free behavior-only smoke, the raw-log stages are omitted by design; load/exit and functional observation are the applicable evidence surface.
 
 Do not collapse gates merely because another Chat prefers fewer steps when the separation protects causal certainty.
 
@@ -264,15 +276,29 @@ Current project evidence flow:
 
 ```text
 controlled runtime/source investigation
-→ research/raw/ canonical intake
+→ research/raw/ for active canonical intake
 → commit/publish unchanged artifact
 → Normal Chat interpretation
-→ EVIDENCE_LEDGER* canonical evidence update
+→ canonical EV/result update
 → EVIDENCE_INDEX route only when retrieval changes
-→ research/archive/ for processed provenance / derived aids when appropriate
+→ research/archive/ when the unchanged source artifact is processed and no longer active
+→ research/derived/ only for deterministic retrieval/analysis aids when needed
 ```
 
-Raw, interpreted evidence, and derived retrieval aids must remain distinguishable.
+The three layers are distinct:
+
+```text
+research/raw/
+= active/unprocessed or intentionally still-comparative canonical evidence
+
+research/archive/
+= processed durable source/runtime provenance, preserved unchanged
+
+research/derived/
+= deterministic non-canonical retrieval/analysis material tied back to canonical provenance
+```
+
+Raw/source provenance, interpreted evidence, and derived retrieval aids must remain distinguishable.
 
 ---
 
