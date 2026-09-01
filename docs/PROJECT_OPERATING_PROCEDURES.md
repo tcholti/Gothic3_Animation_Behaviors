@@ -2,12 +2,12 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.2  
-**Updated:** 2026-08-30
+**Version:** 1.3  
+**Updated:** 2026-09-01
 
 ## Purpose
 
-This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, bounded Work authority, or stable project convention authority.
+This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, bounded Work authority, stable project convention authority, or participant-allocation rules.
 
 It exists so a new Chat does not have to rediscover how we normally:
 
@@ -20,11 +20,11 @@ It exists so a new Chat does not have to rediscover how we normally:
 - reduce oversized logs for efficient analysis without altering the evidence;
 - work with large static binary/reference material.
 
-`PROJECT_PIPELINE.md` owns the stable naming, numbering, version/test ID, branch/state, artifact-flow and validation-gate conventions used by these procedures. This file owns the **sequences**, not independent alternative convention schemes.
+`PROJECT_PIPELINE.md` owns the stable naming, numbering, version/test ID, branch/state, artifact-flow and validation-gate conventions used by these procedures. This file owns the **recurring sequences and their failure/stop behavior**, not independent alternative convention schemes.
 
-These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law.
+Participant/tool allocation is owned by `COLLABORATION_RULES.md`. Bounded Work implementation execution is owned by `WORK_IMPLEMENTATION_PROTOCOL.md`.
 
-The procedure-evolution rule is owned by `COLLABORATION_RULES.md` §9: use the established procedure without repeatedly auditing it, but if either participant notices repeated friction/mistakes, one serious failure, or a clearly better method, raise the improvement and revise the lowest owning procedure.
+These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law. Procedure maintenance/evolution is owned by §12 below; `KNOWLEDGE_REGISTRY.md` determines whether a discovered improvement belongs here or in another authority.
 
 ---
 
@@ -44,6 +44,7 @@ A procedure name should usually be enough to reconstruct the sequence from memor
 This document does not replace:
 
 - `PROJECT_PIPELINE.md` — stable project naming/numbering/version/test/artifact conventions;
+- `COLLABORATION_RULES.md` — User/Normal Chat/Work/home-PC/repository responsibility allocation;
 - `WORK_IMPLEMENTATION_PROTOCOL.md` — bounded implementation/Work execution;
 - `KNOWLEDGE_MAINTENANCE.md` — what durable authorities change after a meaningful result;
 - `SESSION_ENTRYPOINT.md` — current technical responsibility;
@@ -523,7 +524,7 @@ Use this maintenance trigger:
 ```text
 use procedure normally
 → no routine audit
-→ repeated friction/mistake OR one serious failure OR clearly better method appears
+→ repeated friction/mistake OR one serious failure OR clearly better recurring method appears
 → whichever participant notices first raises it
 → diagnose actual cause
 → revise the smallest owning procedure/rule
@@ -531,6 +532,8 @@ use procedure normally
 ```
 
 If the issue is actually a naming/numbering/version/state convention rather than a recurring sequence, update `PROJECT_PIPELINE.md` instead of silently embedding a new convention here.
+
+If the issue is participant/tool allocation rather than an operational sequence, update `COLLABORATION_RULES.md` instead.
 
 When a procedure becomes too long, ask whether stable detail can be moved into a reusable script/tool while this document keeps only the trigger, invariant, and sequence cue.
 
