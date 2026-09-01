@@ -262,21 +262,34 @@ controlled runtime/source investigation
 → research/archive/ once processed provenance is deliberately migrated
 ```
 
-A raw→archive migration must preserve bytes/provenance and update affected canonical paths atomically. Do not move already-cited evidence piecemeal merely to make directory structure look cleaner.
+Future raw→archive migrations must preserve bytes/provenance and update affected canonical paths without leaving a broken reference state. Do not move already-cited evidence piecemeal merely to make directory structure look cleaner.
+
+The 2026-09-01 cleanup migrated 19 already-processed collision logs with the safe sequence:
+
+```text
+copy exact existing Git blobs to research/archive/
+→ repoint canonical EVIDENCE_LEDGER_STEP_D provenance
+→ remove raw duplicates
+→ verify all 19 archive blob identities
+→ verify research/raw/ contains only Keep.txt
+→ verify Step D contains zero research/raw/ paths
+```
+
+No runtime artifact was renamed or rewritten.
 
 ---
 
 ## 8. Current Project Sequence
 
-Architecture verification is already complete. Current repository work is documentation/knowledge cleanup, followed by deliberate branch/stable integration work.
+Architecture verification, authority cleanup and the processed-evidence location cleanup are complete. Current repository work is stable-integration preparation.
 
 ```text
-documentation/knowledge cleanup
-→ separate justified raw→archive migration
-→ inspect temp-only branch content
+inspect temp/second-pass-rewrite-publish unique history/content
+→ preserve anything unique that still matters
 → define stable promotion set
 → update protected main
 → verify main
+→ retire temporary branch only if safe
 → resume new collision feature expansion
 ```
 
