@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active operating-convention authority  
-**Version:** 1.1  
+**Version:** 1.2  
 **Updated:** 2026-09-01
 
 ## Purpose
@@ -190,28 +190,40 @@ The unchanged source raw/archive artifact remains canonical provenance.
 
 ## 8. Prototype / Build Identity and Versioning
 
-The current collision work uses a research prototype DLL:
+The current collision research architecture has two mutually exclusive runtime twins built from the same behavior source set:
 
 ```text
+Script_FrameCollisionBehaviorTest
+= diagnostics-free collision behavior build
+
 Script_FrameCollisionTest
+= same collision behavior + diagnostic instrumentation
 ```
+
+These are **research identities**, not the final public product names. Do not rename them merely for cosmetic cleanup while the current research/validation architecture is still active.
 
 For controlled research builds, the primary identity is:
 
 ```text
 exact Git commit
++ exact selected product/target name
 + exact deployed DLL identity/hash
-+ exact startup/banner label tied to the active gate/probe
++ exact startup/banner identity when that product emits one
 ```
 
-Historical decimal prototype labels such as `v0.xx` remain valid historical references where they already exist, but they must not be casually incremented or restarted as a substitute for the gate/commit identity.
+For diagnostic runs, also tie the build to the active gate/probe and the expected diagnostic startup/banner label. For diagnostics-free behavior-only smoke, the absence of a diagnostic banner is intentional; product name + commit + deployed DLL hash + agreed load/functional observation are the applicable identity surface.
+
+Historical decimal prototype labels such as `v0.xx` remain valid historical references where they already exist, but they must not be casually incremented or restarted as a substitute for the gate/commit/product identity.
 
 From the current C1-era research onward:
 
-- use the active gate/probe label plus commit SHA as the authoritative research-build identity;
-- change the startup/banner text when the tested diagnostic meaning changes enough that confusing builds would invalidate a test;
+- use the active gate/probe plus commit SHA and selected product identity as the authoritative diagnostic research-build identity;
+- change diagnostic startup/banner text when the tested diagnostic meaning changes enough that confusing builds would invalidate a test;
+- for behavior-only verification, preserve exact target/DLL/hash identity even though diagnostic strings are absent by design;
 - do not create a new decimal prototype version merely because another Chat edited the code;
-- do not let prototype/research numbering silently define the eventual public `Script_G3AnimationBehaviors` release version.
+- do not let prototype/research numbering or temporary target names silently define the eventual public `Script_G3AnimationBehaviors` release version.
+
+The eventual production integration target remains `Script_G3AnimationBehaviors`; collision migration into that target is a later engineering responsibility, not part of current prototype naming cleanup.
 
 Public/stable release versioning should be decided deliberately at the stable-integration/release stage.
 
@@ -338,4 +350,4 @@ When such a convention matters, retrieve the relevant section and **preserve the
 
 ## Core Rule
 
-> **Do not let Chat migration silently change the project's identity grammar. Tests, evidence, logs, versions, procedures, branches, and validation stages keep their established meanings until we deliberately change them for a reason.**
+> **Do not let Chat migration silently change the project's identity grammar. Tests, evidence, logs, versions, procedures, branches, products, and validation stages keep their established meanings until we deliberately change them for a reason.**
