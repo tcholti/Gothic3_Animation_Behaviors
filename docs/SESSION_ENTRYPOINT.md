@@ -99,10 +99,24 @@ main
 = stable integration + reusable stable Gothic 3 knowledge baseline
 
 docs/collision-source-evidence
-= active development/research
+= active collision development/research
+= remains the sole active feature branch through completed collision behavior,
+  production collision migration and collision validation
 ```
 
-Project structural/rules/product stabilization is complete and the cleaned checkpoint has been deliberately promoted to protected `main` with both histories preserved.
+The stabilized governance/planning checkpoint is kept aligned with protected `main` before new collision implementation resumes. After that checkpoint, collision development may advance on `docs/collision-source-evidence` while `main` remains the stable baseline until the completed collision responsibility is deliberately promoted.
+
+Accepted phase transition:
+
+```text
+complete collision on docs/collision-source-evidence
+→ migrate mature collision behavior into Script_G3AnimationBehaviors
+→ validate diagnostics-free collision integration
+→ promote completed collision checkpoint to main
+→ create feature/raise-attack-speed from that newly updated main
+```
+
+Do **not** create `feature/raise-attack-speed` early.
 
 Known unrelated local file remains outside project maintenance and must stay untouched:
 
@@ -184,10 +198,15 @@ equipped-melee marker expansion planning
 → separate Fist source-adapter investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
-→ compatibility gate
-→ Raise + speed + config redesign/migration
+→ combined collision regression
+→ mature research-collision compatibility gate
+→ migrate mature collision behavior into Script_G3AnimationBehaviors on the collision branch
+→ diagnostics-free collision integration + compatibility validation
+→ promote completed collision checkpoint to main
+→ create feature/raise-attack-speed from updated main
+→ Raise + general/action/profile attack-speed + config redesign/migration
+→ final assembled-behavior compatibility/regression
+→ promote mature Raise/speed checkpoint to main
 → later target acquisition/climbing
-→ final diagnostics-free Script_G3AnimationBehaviors
-→ final compatibility regression
-→ retain diagnostic twin
+→ retain separate diagnostic twins/tools
 ```

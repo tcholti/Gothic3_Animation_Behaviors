@@ -39,12 +39,28 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 ## Accepted boundary
 
 ```text
-collision architecture verification        COMPLETE — EV-206–EV-215
-project structural/rules/product stabilization COMPLETE
-clean stabilized checkpoint promoted to protected main
+collision architecture verification             COMPLETE — EV-206–EV-215
+project structural/rules/product stabilization  COMPLETE
+governance/planning checkpoint                  aligned to protected main before new collision implementation
 ```
 
 Do not reopen the verified lifecycle/generation architecture without concrete contradicting evidence.
+
+Accepted branch/phase plan:
+
+```text
+docs/collision-source-evidence
+= sole active feature branch through completed collision work
+
+complete collision research/implementation
+→ migrate mature collision behavior into Script_G3AnimationBehaviors
+→ validate diagnostics-free collision integration
+→ promote completed collision checkpoint to main
+→ create feature/raise-attack-speed from that updated main
+→ continue Raise + attack-speed + configuration work there
+```
+
+Do not create `feature/raise-attack-speed` before the collision promotion.
 
 ---
 
@@ -70,12 +86,14 @@ while older native-source evidence mapped tested Dual P1 Quick to LEFT.
 
 Treat that as an authoring/source-map question to resolve deliberately, not as permission to generalize by filename or silently change source semantics.
 
-Keep separate:
+Keep separate from the immediate marker-expansion step:
 
 ```text
 Fist/body source adaptation
 AttackContinuationProtection
-compatibility gate
+mature collision compatibility gate
+production collision migration into Script_G3AnimationBehaviors
+feature/raise-attack-speed creation
 Raise/speed/config redesign
 ```
 

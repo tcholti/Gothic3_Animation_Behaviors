@@ -445,19 +445,23 @@ Unmarked/unconfigured attacks must remain compatible with native behavior.
 
 Compatibility with New Balance and the relevant Jackydima DLL stack is a **required project constraint**.
 
-Two explicit compatibility gates are required:
+Required compatibility checkpoints are:
 
 ```text
-Gate 1 — mature research collision DLL
-marker/source system + lifecycle guard + AttackContinuationProtection
-→ test against New Balance / relevant Jackydima DLLs before production migration
+Collision research checkpoint
+mature marker/source system + lifecycle guard + AttackContinuationProtection
+→ test against New Balance / relevant Jackydima DLLs before production collision migration
 
-Gate 2 — final Script_G3AnimationBehaviors
-migrated collision modules + Raise + redesigned speed control
-→ retest against New Balance / relevant Jackydima DLLs before stable promotion
+Collision production-integration checkpoint
+migrated collision modules in diagnostics-free Script_G3AnimationBehaviors
+→ verify the collision-only production integration before promoting the completed collision branch to main
+
+Final assembled behavior checkpoint
+collision modules + Raise + redesigned speed/config in Script_G3AnimationBehaviors
+→ retest against New Balance / relevant Jackydima DLLs before promoting the later Raise/speed branch to main
 ```
 
-Passing Gate 1 does not prove the final speed/Raise assembly compatible. Passing Gate 2 is required before release/stable integration.
+Passing one checkpoint does not prove a later assembled product compatible. Each branch-level stable promotion must be backed by the validation appropriate to the behavior being added in that branch.
 
 ---
 
@@ -539,7 +543,7 @@ Completed structural rewrite proof: EV-208–EV-212 plus current source/build st
 
 ## 11. Current Implementation Order
 
-The architecture-verification sequence through Gate 4 is complete; it is no longer an executable roadmap.
+The architecture-verification and project-stabilization phases are complete; they are closed foundations rather than executable roadmap steps.
 
 Closed foundation:
 
@@ -548,41 +552,43 @@ second-pass rewrite / product separation      EV-208–EV-212
 Gate-4 generation-scoped marker bookkeeping  EV-213
 literal historical regression closure        EV-214
 final behavior-only architecture smoke       EV-215
+project structural/governance stabilization  COMPLETE
 ```
 
-Current order:
+Current branch/implementation order:
 
-1. **Complete project stabilization.** Finish structural document/tool simplification, Gothic-specific rules/procedures consistency, build/product/repository-shape audit, and the final readiness check.
-2. **Expand markers across intended equipped-melee attack mechanisms one at a time.** Keep RIGHT/LEFT/BOTH/OFF vocabulary and native no-marker fallback.
-3. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics.
-4. **Run complete marker + lifecycle regression.** Protect closed C1-R1/Gate-4 behavior after marker/source maturity.
-5. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
-6. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
-7. **Mandatory New Balance/Jackydima compatibility gate on mature research behavior.** Resolve hook/callback conflicts deliberately.
-8. **Retain the mature modular foundation and migrate/redesign Raise + speed + config into final `Script_G3AnimationBehaviors`.** Do not pour collision back into the old v0.1 hook/file structure.
-9. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
-10. **Final diagnostics-free production compatibility/regression.** Test assembled public `Script_G3AnimationBehaviors` with New Balance/relevant Jackydima DLLs before stable promotion; retain separate instrumented diagnostic twin for future reproduction.
+1. **Expand markers across intended equipped-melee attack mechanisms one at a time on `docs/collision-source-evidence`.** Keep RIGHT/LEFT/BOTH/OFF vocabulary, explicit physical-source semantics and native no-marker fallback.
+2. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics.
+3. **Run complete marker + lifecycle regression.** Protect closed C1-R1/Gate-4 behavior after marker/source maturity.
+4. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
+5. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
+6. **Run the mandatory New Balance/Jackydima compatibility checkpoint on mature research collision behavior.** Resolve hook/callback conflicts deliberately before production migration.
+7. **Migrate the mature collision behavior modules into the production-direction `Script_G3AnimationBehaviors` on the same collision branch.** Keep the `Script_G3AnimationBehaviors` name; do not create a collision-named public DLL and do not pour the new architecture back into the old v0.1 hook/file structure. Research diagnostics remain separate.
+8. **Validate the diagnostics-free collision integration in `Script_G3AnimationBehaviors`.** Include source/build review, load/functional regression and the compatibility checks appropriate to the collision-only production checkpoint.
+9. **Promote the completed collision branch to `main`.** At that boundary `main` becomes the stable Animation Behaviors baseline with mature collision behavior integrated into the production-direction DLL.
+10. **Create `feature/raise-attack-speed` from that newly updated `main` only after the collision promotion is complete.** Do not create or develop the branch early.
+11. **On `feature/raise-attack-speed`, mature Raise + general/action/profile attack-speed control and redesign/migrate configuration into the shared `Script_G3AnimationBehaviors` architecture.** Preserve feature independence and the closed collision foundation.
+12. **Run final diagnostics-free assembled-behavior compatibility/regression before promoting the Raise/speed branch to `main`.** Retain separate diagnostic twins/tools for future reproduction.
+13. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
 
 ---
 
-## 12. Non-Goals for the Current Repository-Cleanup Iteration
+## 12. Non-Goals for the Current Marker-Expansion Responsibility
 
-Do not combine the current documentation/stable-integration checkpoint with:
+Do not combine the current equipped-melee marker planning/expansion step with:
 
-- new attack-family marker support;
-- new marker vocabulary;
+- broad all-family marker implementation in one change;
+- new marker vocabulary without a separately proven source model;
 - generalized Fist support;
 - universal monster/body adapters;
 - AttackContinuationProtection implementation;
 - Raise/speed changes;
 - configuration redesign;
-- production DLL migration;
+- production collision migration before collision research maturity;
+- creation of `feature/raise-attack-speed` before the completed collision checkpoint is on `main`;
 - target acquisition;
 - climbing;
-- New Balance/Jackydima compatibility fixes;
-- rewriting input arbitration;
-- changing closed C1-R1 or Gate-4 behavior without contradicting evidence;
-- moving processed evidence piecemeal without atomic provenance updates.
+- changing closed C1-R1 or Gate-4 behavior without contradicting evidence.
 
 ---
 
