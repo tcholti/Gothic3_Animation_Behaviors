@@ -162,43 +162,82 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Current Technical Responsibility — Project Structural Stabilization
+## Project Structural Stabilization
 
-Before resuming new collision feature research/implementation, simplify and stabilize the Gothic 3 project itself.
+### Pass 1 — structural document/tool simplification: COMPLETE
 
-Current ordered responsibility:
+Verified completed changes:
 
 ```text
-1. structural document/tool simplification
-   - reduce evidence-ledger fragmentation without changing EV content/status
-   - retire obsolete Script_FrameEffectLogger active target/code
-   - eliminate duplicated active procedure/contract/history surfaces where durable authority already exists
-   - simplify documentation archive usage in favor of Git history when no unique knowledge would be lost
-   - keep research/raw, research/archive and research/derived distinct
+- evidence storage reduced to three canonical files:
+  EVIDENCE_LEDGER.md                EV-001–EV-157
+  EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
+  EVIDENCE_LEDGER_199_ONWARD.md     EV-199 onward
 
-2. Gothic-specific rules/procedures consistency audit
-   - COLLABORATION_RULES
-   - WORK_IMPLEMENTATION_PROTOCOL
-   - PROJECT_OPERATING_PROCEDURES
-   - PROJECT_PIPELINE
-   - KNOWLEDGE_MAINTENANCE
-   - KNOWLEDGE_REGISTRY
-   - README / SESSION_ENTRYPOINT routing
-   - remove contradictions/duplication while preserving useful project-specific practice
-   - CAM remains read/compare-only; do not modify it
-
-3. build/product/repository-shape audit
-   - verify only justified current build products/tools remain
-   - preserve release/diagnostic twin architecture
-   - verify branch/dependency/build assumptions are explicit
-
-4. final readiness check
-   - confirm a fresh Chat/Work task can recover the project with a small retrieval surface
-   - confirm important engine facts remain routeable index → EV → provenance
-   - confirm no unresolved repository-state ambiguity remains
+- obsolete active Script_FrameEffectLogger target/source removed
+- standalone LARGE_LOG_EVIDENCE_PROCEDURE removed; POP-07 remains the recurring procedure authority
+- completed second-pass and Gate-4 one-off contracts retired after durable content was absorbed by current authorities/evidence
+- duplicate RESEARCH_MAP chronology router retired; EVIDENCE_INDEX + exact EV/provenance + Git history now own historical retrieval
+- duplicate docs/archive documentation snapshots retired; Git history owns superseded documentation wording
+- research/raw, research/archive and research/derived remain distinct evidence-lifecycle layers
+- stale routes/build references found during the pass were repaired
 ```
 
-Do **not** start equipped-melee marker expansion until this stabilization sequence is complete.
+No collision behavior, marker semantics or closed evidence status changed in this pass.
+
+### Pass 2 — CURRENT: Gothic-specific rules/procedures consistency audit
+
+Audit together rather than independently:
+
+```text
+COLLABORATION_RULES.md
+WORK_IMPLEMENTATION_PROTOCOL.md
+PROJECT_OPERATING_PROCEDURES.md
+PROJECT_PIPELINE.md
+KNOWLEDGE_MAINTENANCE.md
+KNOWLEDGE_REGISTRY.md
+README.md
+SESSION_ENTRYPOINT.md
+```
+
+Immediate objective:
+
+```text
+one responsibility → one primary authority
+no contradictory rules
+no duplicated philosophy/procedure
+no obsolete temporary rule
+no unnecessary rereading/document churn
+clear User / Normal Chat / Work / local-PC / repository allocation
+explicit Gothic-project-only scope
+CAM remains read/compare-only and is never modified from this responsibility
+```
+
+Perform this as a consistency/ownership audit first. Preserve distinct responsibilities and useful project-specific practice; do not broadly rewrite merely to make wording uniform.
+
+### Pass 3 — after Pass 2
+
+Build/product/repository-shape audit:
+
+```text
+- verify only justified current build products/tools remain
+- preserve release/diagnostic twin architecture
+- verify branch/dependency/build assumptions are explicit
+- identify orphan prototype/build paths only if they actually exist
+```
+
+### Pass 4 — after Pass 3
+
+Final readiness check:
+
+```text
+- fresh Chat/Work can recover the project from a small retrieval surface
+- important engine facts remain routeable index → EV → provenance
+- build/product model is unambiguous
+- repository state has no unresolved structural ambiguity
+```
+
+Do **not** start equipped-melee marker expansion until all four stabilization passes are complete.
 
 ---
 
