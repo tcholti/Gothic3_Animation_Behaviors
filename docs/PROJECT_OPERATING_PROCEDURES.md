@@ -2,12 +2,12 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.5  
+**Version:** 1.6  
 **Updated:** 2026-09-01
 
 ## Purpose
 
-This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, bounded Work authority, stable project convention authority, or participant-allocation rules.
+This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, bounded Work authority, stable project convention authority, participant-allocation rules, or the project charter.
 
 It exists so a new Chat does not have to rediscover how we normally:
 
@@ -18,13 +18,16 @@ It exists so a new Chat does not have to rediscover how we normally:
 - freeze runtime tests/logs;
 - preserve and publish raw evidence;
 - reduce oversized logs for efficient analysis without altering the evidence;
-- work with large static binary/reference material.
+- work with large static binary/reference material;
+- preflight a formal project review/audit so it respects the project hierarchy and each target's intended use.
+
+`docs/README.md` is the Gothic project charter and highest project-specific authority beneath CAM for project purpose, long-term direction, scope and authority topology.
 
 `PROJECT_PIPELINE.md` owns the stable naming, numbering, version/test ID, branch/state, product-identity, artifact-flow and validation-gate conventions used by these procedures. This file owns the **recurring sequences and their failure/stop behavior**, not independent alternative convention schemes.
 
 Participant/tool allocation is owned by `COLLABORATION_RULES.md`. Bounded Work implementation execution is owned by `WORK_IMPLEMENTATION_PROTOCOL.md`.
 
-These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law. Procedure maintenance/evolution is owned by §12 below; `KNOWLEDGE_REGISTRY.md` determines whether a discovered improvement belongs here or in another authority.
+These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law. Procedure maintenance/evolution is owned by §13 below; `KNOWLEDGE_REGISTRY.md` determines whether a discovered improvement belongs here or in another authority.
 
 ---
 
@@ -35,7 +38,8 @@ Read or spot-read this document when entering an active local-operation sequence
 - source review → build → deploy → runtime test;
 - runtime evidence capture/publish;
 - Git handoff between connected GitHub writes and the User's local checkout;
-- large-log or large-reference retrieval.
+- large-log or large-reference retrieval;
+- a formal review/audit of project rules, procedures, architecture, documentation/knowledge structure, repository shape, or another cross-authority project surface.
 
 Do not reread it after every prompt or every attack/test repetition.
 
@@ -43,8 +47,9 @@ A procedure name should usually be enough to reconstruct the sequence from memor
 
 This document does not replace:
 
+- `README.md` — project charter, highest project-specific authority, authority topology and retrieval map;
 - `PROJECT_PIPELINE.md` — stable project naming/numbering/version/test/product/artifact conventions;
-- `COLLABORATION_RULES.md` — User/Normal Chat/Work/home-PC/repository responsibility allocation;
+- `COLLABORATION_RULES.md` — User/Normal Chat/Work/home-PC/repository responsibility allocation and Gothic CAM operationalization;
 - `WORK_IMPLEMENTATION_PROTOCOL.md` — bounded implementation/Work execution;
 - `KNOWLEDGE_MAINTENANCE.md` — what durable authorities change after a meaningful result;
 - `SESSION_ENTRYPOINT.md` — current technical responsibility;
@@ -515,7 +520,102 @@ Do not ask the User for full successful outputs or entire logs merely because a 
 
 ---
 
-## 12. Procedure Maintenance
+## 12. POP-10 — Formal Project Review / Audit Preflight
+
+### Trigger
+
+Use **before every formal project review or audit** whose conclusions may evaluate or change project rules, procedures, architecture, authority/document structure, knowledge organization, repository/product shape, or another cross-authority project surface.
+
+A narrow source review of an already-frozen implementation also inherits this principle. It does not need to reload the whole charter/authority system when the governing hierarchy and target responsibility are already explicit and fresh in the current context, but it must still know which higher authority defines the behavior being reviewed.
+
+### Hard gate
+
+> **A review/audit has not started until the reviewer can explain the governing authority hierarchy and the intended responsibility of the material being reviewed.**
+
+Do not begin by comparing files as if every document were a peer.
+
+### Required preflight sequence
+
+```text
+identify the project and exact review/audit question
+→ read/confirm `docs/README.md` §0 Project Charter first
+→ state the relevant hierarchy from CAM → Gothic charter → specialist owner → procedure/task layer
+→ identify every target document/system's stated Purpose / Scope / Status
+→ use `KNOWLEDGE_REGISTRY.md` when ownership/update responsibility is not already obvious
+→ classify what each target is: charter / specialist authority / convention / procedure / evidence / current-state / historical / implementation
+→ state the review criteria that follow from those roles
+→ ONLY THEN evaluate content, duplication, contradiction, quality or cleanup
+```
+
+For a large audit, the preflight statement should be explicit and compact. It should normally identify:
+
+```text
+governing hierarchy
+review scope
+intended use/owner of each major target
+what higher-level intent must be preserved
+what the review is not authorized to redefine
+```
+
+### Review interpretation rules
+
+1. **Hierarchy comes before textual similarity.** Similar wording across a charter, specialist rule and procedure may be deliberate layered operationalization rather than duplication.
+2. **Intended use comes before cleanup.** Do not merge/delete documents until the review understands why each exists and whether it owns a distinct responsibility.
+3. **File size, age, detail and recency do not define authority.** Authority comes from the project charter and ownership structure.
+4. **Lower authorities specialize higher ones; they do not silently rewrite them.** A procedure cannot redefine a project goal; a current-state file cannot redefine architecture; an implementation cannot redefine the frozen semantic authority merely because the code is newer.
+5. **Specialist authorities may be parallel.** `DESIGN.md`, `COLLABORATION_RULES.md`, `PROJECT_PIPELINE.md`, evidence authorities and other owners govern different domains beneath the charter. Do not invent a false total ordering between them.
+6. **Evidence and normative authority are distinct.** New evidence may justify changing architecture/rules, but the evidence record itself does not silently become the project rule.
+7. **Historical/current separation remains mandatory.** Git history and historical EV wording can explain why an older decision existed, but they do not override maintained current authorities.
+8. **Resolve at the lowest correct owner.** When a problem can be fixed consistently within an existing lower authority, change that owner rather than unnecessarily rewriting a higher layer.
+9. **Escalate genuine higher-level conflict.** If a proposed review finding would change the project's why, long-term direction, scope or authority topology, expose it to the User and update the charter deliberately rather than hiding it in a lower edit.
+10. **CAM is constitutional but externally evolved.** A Gothic review may identify a possible CAM gap, but it must not modify CAM. Preserve the project lesson and route it to a separate User-authorized CAM-focused responsibility.
+
+### Contradiction / duplication test
+
+Before labeling two statements contradictory or redundant, ask:
+
+```text
+Do they own the same responsibility?
+Are they at the same authority layer?
+Is one a principle and the other its operational procedure?
+Is one factual evidence and the other an engineering consequence?
+Is one current authority and the other historical explanation?
+Would removing one make its intended responsibility harder to reconstruct?
+```
+
+Only after those questions are answered should the review decide whether text is truly duplicated or conflicting.
+
+### Stop / escalation conditions
+
+Stop the review's destructive or normative change path and surface the issue when:
+
+- the reviewer cannot explain the relevant authority hierarchy;
+- a target's intended purpose/owner is unclear or two current documents claim the same primary responsibility;
+- the proposed cleanup may remove unique durable knowledge before a surviving owner is identified;
+- a lower-level fix would materially change the project charter's purpose/direction/scope;
+- the issue appears to require CAM evolution rather than Gothic operationalization;
+- a factual premise needed for the review is disputed and the relevant evidence has not been reconstructed.
+
+A review may continue gathering facts after such a stop condition, but it must not pretend the unresolved authority question is already settled.
+
+### Output discipline
+
+For a structural/rules/procedure audit, prefer:
+
+```text
+preflight hierarchy + intended-use statement
+→ findings
+→ proposed smallest-owner corrections
+→ User discussion when higher-level intent is implicated
+→ implementation only after the review boundary is clear
+→ post-change contradiction/retrieval check
+```
+
+Do not create another review-procedure document. This POP section is the reusable project procedure.
+
+---
+
+## 13. Procedure Maintenance
 
 The active procedure is the current best project-specific operationalization. Git history preserves old versions; the active document should not accumulate obsolete variants.
 
@@ -534,6 +634,8 @@ use procedure normally
 If the issue is actually a naming/numbering/version/state/product convention rather than a recurring sequence, update `PROJECT_PIPELINE.md` instead of silently embedding a new convention here.
 
 If the issue is participant/tool allocation or CAM operationalization rather than an operational sequence, update `COLLABORATION_RULES.md` instead.
+
+If the issue is project purpose, long-term direction, scope or authority topology, update the project charter in `README.md` rather than hiding that change in a procedure.
 
 When a procedure becomes too long, ask whether stable detail can be moved into a reusable script/tool while this document keeps only the trigger, invariant, and sequence cue.
 
@@ -554,7 +656,8 @@ When a new recurring operation appears, first ask whether an existing POP sectio
 | raw/archive log too large to retrieve efficiently | POP-07 Large runtime log analysis |
 | large static Engine/Game/Script_Game material | POP-08 Static binary/reference retrieval |
 | routine command/procedure fails | POP-09 Routine failure/stop behavior |
+| formal project review/audit | POP-10 Authority-hierarchy + intended-use preflight |
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, use stable project conventions rather than reinventing them, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
+> **Preserve causal certainty and canonical evidence, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, understand the project hierarchy and each target's intended use before formal review/audit, use stable project conventions rather than reinventing them, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
