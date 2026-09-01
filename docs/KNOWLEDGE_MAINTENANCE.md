@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Maintenance Protocol
 
 **Status:** Active project knowledge-maintenance protocol  
-**Version:** 1.4
+**Version:** 1.5
 **Updated:** 2026-09-01
 
 ## Purpose
@@ -16,13 +16,26 @@ This protocol does not require every event to change documentation. It requires 
 
 It also requires checking whether a new finding has become materially relevant to a **different future responsibility**. When that happens, preserve the fact in its one owning authority and add only the smallest retrieval route needed so that future work can find it.
 
-> **Normal maintenance is incremental. Full documentation audits are exceptional.**
+> **Normal maintenance is incremental. Full documentation audits are exceptional; when one is justified, it must begin with the authority/intended-use preflight in POP-10.**
 
 ---
 
 ## 1. Governing Model
 
-The repository stores knowledge in four layers.
+Before the storage/maintenance layers below, the project has a governing authority structure:
+
+```text
+CAM constitutional collaboration layer
+        ↓
+docs/README.md project charter
+(purpose / long-term direction / scope / authority topology)
+        ↓
+specialist Gothic authorities within delegated domains
+```
+
+This maintenance protocol operates **inside** that structure. It must not silently alter the project charter or CAM while performing lower-level housekeeping.
+
+The repository then stores maintainable knowledge in four layers.
 
 ### Layer A — evidence / provenance
 
@@ -143,6 +156,7 @@ After a meaningful project event, Normal Chat asks internally:
 8. If the finding may replace/simplify an existing workaround, does the retrieval route also preserve **why the workaround exists** and the regressions/invariants it currently protects?
 9. Does the current-state pointer need to advance?
 10. Has a raw artifact now been fully processed and become archive material?
+11. Would the proposed maintenance change project purpose, long-term direction, scope or authority topology rather than a lower specialist responsibility? If yes, stop ordinary maintenance and surface the charter-level decision to the User.
 
 Then update only those local targets.
 
@@ -179,33 +193,35 @@ Never leave a future chat with only “this can probably be simplified.” It mu
 
 ### CAM ↔ project learning boundary
 
-`COLLABORATION_RULES.md` owns the constitutional relationship: CAM is the higher-order collaboration philosophy and Gothic authorities are its project-specific operationalization.
+`README.md` owns the Gothic project charter beneath CAM. `COLLABORATION_RULES.md` owns the detailed Gothic operationalization of CAM for participant allocation and collaboration.
 
 Knowledge maintenance therefore preserves both directions without collapsing them into one transaction:
 
 ```text
 CAM principles
-→ deliberately operationalized in Gothic rules/procedures
+→ project charter defines Gothic purpose/direction/authority topology
+→ specialist Gothic rules/procedures operationalize that structure
 → used in real project work
 → project success/friction/failure produces empirical lessons
-→ improve the lowest owning Gothic authority when the lesson fits the adopted CAM principles
+→ improve the lowest owning Gothic authority when the lesson fits the charter + adopted CAM principles
 → observe the revised project behavior
-→ identify candidate wider value or a possible CAM-level gap when warranted
-→ STOP upward modification in Gothic work
+→ identify candidate wider value or a possible charter/CAM-level gap when warranted
+→ STOP upward modification in ordinary Gothic maintenance
+→ charter-level changes are discussed with the User
 → dedicated CAM-evolution responsibility compares across projects and may evolve CAM
-→ deliberately review/apply adopted CAM evolution back into affected Gothic authorities
+→ deliberately review/apply adopted CAM evolution back into the Gothic charter/specialist authorities
 ```
 
 Normal Gothic 3 maintenance may:
 
 - fix the relevant project rule/procedure/route;
 - preserve why the change was needed;
-- use CAM as governing context/check consistency when that is materially relevant;
+- use the charter/CAM as governing context when materially relevant;
 - identify a lesson as a candidate for wider reuse or CAM-level review.
 
-It must not edit the CAM repository or pretend that a lower project-local rule has silently changed CAM philosophy.
+It must not edit the CAM repository or pretend that a lower project-local rule has silently changed the project charter or CAM philosophy.
 
-Likewise, a later CAM revision does not silently alter this repository. Applicable CAM evolution is deliberately brought back down into the appropriate Gothic authority so the operational consequence is explicit.
+Likewise, a later CAM revision does not silently alter this repository. Applicable CAM evolution is deliberately brought back down into the project charter and appropriate specialist authority so the operational consequence is explicit.
 
 The User may explicitly open the separate CAM-evolution responsibility. Until then, Gothic maintenance stops at the project-local boundary.
 
@@ -233,6 +249,8 @@ update owning architecture/design authority
 ```
 
 Do not update unrelated evidence/history/reference documents merely because a design discussion occurred.
+
+If the decision changes project purpose, long-term direction, scope or authority topology rather than technical architecture inside the existing charter, treat it as a charter-level decision instead of hiding it in `DESIGN.md`.
 
 ### Event B — frozen Work handoff
 
@@ -315,6 +333,8 @@ Use a somewhat broader but still scoped review:
 - `main` promotion set;
 - archive/current-state cleanup;
 - lightweight knowledge-system health check for the affected subsystem.
+
+Before beginning that formal review, apply POP-10: confirm the project charter hierarchy and the intended role of the affected authorities. This prevents the checkpoint review from flattening specialist documents into peers or treating layered operationalization as accidental duplication.
 
 This is an appropriate time for consolidation. It is still not automatically a whole-repository audit and does not automatically open CAM-layer promotion.
 
@@ -459,12 +479,30 @@ A full review is **not** the normal response to:
 - another confirmation of an already-canonical fact;
 - one new future-relevance route.
 
+### Mandatory review/audit preflight
+
+Every formal review/audit covered by this section must begin with POP-10 in `PROJECT_OPERATING_PROCEDURES.md`.
+
+Before findings, the reviewer must be able to state:
+
+```text
+CAM → Gothic project charter → relevant specialist authorities → procedure/task layer
+review scope
+intended use / owner of each major target
+higher-level intent that must be preserved
+what the review is not authorized to redefine
+```
+
+The reviewer must read/confirm `README.md` §0 and each target's Purpose/Scope/Status before judging contradiction, duplication or cleanup. If that hierarchy/intended-use model is not clear, the review has not started yet.
+
+This does not require loading every project document or the whole CAM repository. It requires enough targeted retrieval to understand authority before evaluation.
+
 ### Knowledge-system health check during an audit/review
 
 When an audit/review is already justified, explicitly inspect whether the knowledge system itself is becoming a burden. Check for:
 
-- duplicated narrative facts maintained in several authorities;
-- documents whose responsibilities substantially overlap;
+- duplicated narrative facts maintained in several authorities **after accounting for deliberate layering between charter, specialist rule and procedure**;
+- documents whose responsibilities substantially overlap at the same ownership layer;
 - indexes that point to too many documents instead of narrowing the search;
 - one future task requiring a broad repository scan despite existing indexes;
 - `SESSION_ENTRYPOINT.md` or subsystem-orientation context growing beyond what a fresh chat should reasonably load;
@@ -478,7 +516,8 @@ Possible audit remedies include:
 
 - tighten future-relevance criteria;
 - remove redundant cross-routes;
-- merge overlapping authorities only when one responsibility truly exists;
+- merge overlapping authorities only when one responsibility truly exists at the same layer;
+- preserve necessary higher-to-lower operationalization rather than deleting it as superficial repetition;
 - archive/compress obsolete narrative while preserving provenance;
 - improve one index route instead of adding another document;
 - shorten bootstrap/current-state pointers;
@@ -538,4 +577,4 @@ If no document needs changing, it can simply continue; absence of documentation 
 
 ## Core Rule
 
-> **Every meaningful event updates the smallest owning records automatically. Preserve knowledge once, route to it by both present topic and concrete future responsibility when needed, preserve the reason behind workarounds before simplifying them, keep bounded Work contracts authoritative in the repository rather than duplicated into launch prompts, keep CAM as the constitutional collaboration layer while reserving CAM evolution for a separate deliberate responsibility, deliberately bring adopted CAM evolution back into affected Gothic authorities, and keep full audits rare. If the retrieval system itself starts creating context or document bloat, surface that problem early and use audits/stabilization points to tighten it.**
+> **Every meaningful event updates the smallest owning records automatically. Preserve the project charter as the highest Gothic-specific purpose/direction/topology authority beneath CAM; preserve knowledge once, route to it by both present topic and concrete future responsibility when needed, preserve the reason behind workarounds before simplifying them, keep bounded Work contracts authoritative in the repository rather than duplicated into launch prompts, keep CAM as the constitutional collaboration layer while reserving CAM evolution for a separate deliberate responsibility, deliberately bring adopted CAM evolution back into the charter/affected Gothic authorities, and keep full audits rare. When a formal audit is justified, establish hierarchy and intended use first through POP-10. If the retrieval system itself starts creating context or document bloat, surface that problem early and use audits/stabilization points to tighten it.**
