@@ -2,39 +2,18 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active bounded-implementation protocol  
-**Version:** 1.3  
+**Version:** 1.4  
 **Updated:** 2026-09-01
 
 ## Purpose
 
-This protocol defines how Work or another implementation agent should execute a bounded Gothic 3 source task after the important semantics have already been decided.
+Define how Work or another implementation agent executes a bounded Gothic 3 source task **after User + Normal Chat have assigned that responsibility and sufficiently decided its important semantics**.
+
+Participant allocation and why Work is used are owned by `COLLABORATION_RULES.md`. This protocol begins once the bounded implementation responsibility exists.
 
 It replaces the previous split between the general Work protocol and `FROZEN_WORK_TASK_RULES.md`.
 
-A bounded implementation task is an implementation assignment, not an invitation to complete missing architecture by brute force.
-
-### Operating intent
-
-Work is intentionally given bounded responsibilities because its comparative advantage in this project is disciplined execution against an already-decided contract: narrow source/API inspection, implementation, source audit and publication. Architecture, semantic uncertainty, evidence interpretation and creative simplification normally stay upstream in User + Normal Chat, where accumulated collaborative context is strongest.
-
-This boundary also uses project resources deliberately. The User's Work access has limited hourly/weekly budget, so Work should not spend that budget reconstructing project history, performing routine knowledge maintenance, or exploring open-ended design when those responsibilities are already owned effectively elsewhere.
-
-The objective is not to constrain a strong executor unnecessarily. It is to give Work enough intent, authority and context to implement well while preventing implementation pressure or available compute from silently turning Work into a second architect.
-
-The normal responsibility split is currently:
-
-```text
-User + Normal Chat
-reason from evidence / decide semantics / freeze bounded task
-        ↓
-Work
-inspect only what implementation needs / edit / source-audit / commit-publish / concise handoff
-        ↓
-Normal Chat + authoritative home PC
-independent source review / build / runtime evidence / interpretation
-```
-
-This allocation is evidence-based and revisable; it is not a universal product hierarchy.
+> **A bounded implementation task is an implementation assignment, not an invitation to complete missing architecture by brute force.**
 
 ---
 
@@ -148,6 +127,8 @@ Do not add persistent state, polling, caches, masks, classifiers, fallback table
 "Simple" means the smallest direct implementation of the already-decided behavior—not the fewest lines at any cost.
 
 "Separate" means responsibilities/authority remain independently understandable and removable, not merely that code lives in different files.
+
+These are Work-facing guardrails for implementing the current project architecture; the owning technical semantics remain in the relevant design/evidence authorities.
 
 ---
 
