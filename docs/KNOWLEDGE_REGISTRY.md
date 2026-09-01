@@ -41,7 +41,7 @@ The registry exists to prevent the same fact becoming a separately maintained co
 | source/API/symbol/hook practical lookup | `SOURCE_HOOK_GUIDE.md` | reusable symbol/API/hook pattern/address/search route is established/revised | experiment chronology or one-off implementation detail |
 | native collision cleanup callsites/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` | tested cleanup RVA/stack/symbol/caller interpretation changes | higher-level lifecycle design changes with no new native callsite fact |
 | project-wide engineering principles | `ENGINEERING_GUIDE.md` | a durable technical engineering principle generalizes beyond one subsystem | local implementation workaround/test detail |
-| research chronology / where an older line happened | `RESEARCH_MAP.md` | a meaningful historical milestone/topic route becomes hard to recover otherwise | every incremental test/result |
+| research chronology / why an older technical decision existed | `EVIDENCE_INDEX.md` → exact EV/provenance; Git history when historical wording/sequence is needed | evidence interpretation changes or a new retrieval route is needed | ordinary chronology growth; do not maintain a parallel milestone/history summary |
 | active/unprocessed runtime/source artifact | `research/raw/` | new artifact still needs interpretation/comparison | artifact has already been canonically processed |
 | processed provenance/history | `research/archive/` | artifact has durable verification value after processing | active unresolved artifact |
 | superseded documentation wording/history | Git history | an older active wording or removed document must be recovered for historical reasoning | ordinary active retrieval, because Git history is not a competing current authority |
