@@ -124,11 +124,11 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Current Responsibility — Project Stabilization Pass 2
+## Project Stabilization
 
-### Pass 1 — COMPLETE
+### Pass 1 — structural simplification: COMPLETE
 
-Structural simplification is complete. Durable result:
+Durable result:
 
 ```text
 three canonical evidence-ledger files
@@ -140,11 +140,9 @@ superseded documentation snapshots retired in favor of Git history
 research/raw / archive / derived evidence layers retained
 ```
 
-Exact details are recoverable from Git history and the current documentation/evidence map; do not reconstruct Pass-1 chronology during normal work.
+### Pass 2 — Gothic rules/procedures consistency: COMPLETE
 
-### Pass 2 — CURRENT
-
-Audit the Gothic project rules/procedures as one responsibility hierarchy:
+Audited together:
 
 ```text
 COLLABORATION_RULES.md
@@ -157,33 +155,52 @@ README.md
 SESSION_ENTRYPOINT.md
 ```
 
-Current objective:
+Accepted responsibility hierarchy:
 
 ```text
-CAM principles remain the constitutional layer
-Gothic rules operationalize CAM rather than competing with it
-one responsibility → one primary project authority
-no contradictory User / Normal Chat / Work / home-PC / repository allocation
-no duplicate convention/procedure ownership
-no obsolete temporary rules
-no unnecessary rereading or current-state bloat
-no CAM modification from this project
+CAM constitutional collaboration layer
+→ COLLABORATION_RULES: Gothic operationalization / participant allocation
+→ PROJECT_PIPELINE: stable conventions
+→ PROJECT_OPERATING_PROCEDURES: recurring operational sequences
+→ WORK_IMPLEMENTATION_PROTOCOL: bounded implementation execution
+→ KNOWLEDGE_REGISTRY: authority/update ownership
+→ KNOWLEDGE_MAINTENANCE: maintenance process
+→ README: retrieval map
+→ SESSION_ENTRYPOINT: current state only
 ```
 
-Preserve useful distinct responsibilities. Do not merge documents merely because they are related.
+Key cleanup outcome:
 
----
+```text
+no competing project authority found
+KNOWLEDGE_MAINTENANCE and KNOWLEDGE_REGISTRY remain distinct by design
+Work protocol remains distinct by design
+pipeline remains convention authority rather than procedure library
+SESSION_ENTRYPOINT reduced to routing/current state
+POP no longer owns active branch identity or duplicates the large-log tool manual
+CAM evolution remains separate; project experience can inform it only through dedicated later review
+```
 
-## After Pass 2
+Pass-2 changes were limited to the eight audited collaboration/operation documents; no technical behavior or evidence meaning changed.
 
-### Pass 3 — build/product/repository-shape audit
+### Pass 3 — CURRENT: build/product/repository-shape audit
+
+Audit only current product/tool/repository structure:
 
 ```text
 verify only justified current build products/tools remain
 preserve release/diagnostic twin architecture
 verify branch/dependency/build assumptions are explicit
 identify orphan prototype/build paths only if they actually exist
+separate active products from historical research artifacts
+avoid renaming working products merely for cosmetic cleanup
 ```
+
+Do not reopen collision semantics during this pass.
+
+---
+
+## After Pass 3
 
 ### Pass 4 — final readiness check
 
