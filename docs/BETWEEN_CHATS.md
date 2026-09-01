@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — stabilization Pass 3
+## Current bridge — stabilization Pass 4
 
 Repository:
 
@@ -34,35 +34,11 @@ CAM is the constitutional collaboration layer; `COLLABORATION_RULES.md` owns its
 
 ```text
 collision architecture verification        COMPLETE — EV-206–EV-215
-repository cleanup/stable promotion        COMPLETE
+repository cleanup/stable promotion        COMPLETE for pre-stabilization checkpoint
 Pass 1 structural simplification           COMPLETE
 Pass 2 rules/procedures consistency        COMPLETE
-Pass 3 build/product/repository shape      CURRENT
-Pass 4 final readiness                     NOT STARTED
-```
-
-Pass-1 durable result:
-
-```text
-three canonical evidence ledgers
-obsolete Script_FrameEffectLogger retired
-redundant one-off contracts/history routes retired after durable absorption
-Git history owns superseded documentation wording
-research/raw / archive / derived remain separate evidence layers
-```
-
-Pass-2 durable authority model:
-
-```text
-CAM constitutional principles
-→ COLLABORATION_RULES project operationalization
-→ PROJECT_PIPELINE stable conventions
-→ PROJECT_OPERATING_PROCEDURES recurring sequences
-→ WORK_IMPLEMENTATION_PROTOCOL bounded implementation
-→ KNOWLEDGE_REGISTRY ownership/update routing
-→ KNOWLEDGE_MAINTENANCE maintenance process
-→ README retrieval map
-→ SESSION_ENTRYPOINT current state
+Pass 3 build/product/repository shape      COMPLETE
+Pass 4 final readiness                     CURRENT
 ```
 
 Known unrelated local file remains completely untouched:
@@ -73,40 +49,48 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Current responsibility — Pass 3
+## Current responsibility — Pass 4
 
-Audit the **current repository/product shape only**.
-
-Questions:
+Verify, without opening another redesign cycle:
 
 ```text
-Which CMake targets are active?
-Which source/prototype/tool directories correspond to those targets?
-Does each surviving DLL/tool have a distinct responsibility?
-Is release-vs-diagnostic twin ownership still explicit and consistent?
-Are there orphan prototype directories, stale build routes, or removed-target references?
-Are branch/dependency/build assumptions clear enough for a fresh implementation context?
-Are product names temporary-but-valid research identities rather than accidental release names?
+Fresh Normal Chat:
+SESSION_ENTRYPOINT → optional BETWEEN_CHATS → README orientation only when needed
+
+Bounded Work:
+SESSION_ENTRYPOINT → frozen handoff → WORK_IMPLEMENTATION_PROTOCOL → assigned source/API only
+
+Evidence:
+EVIDENCE_INDEX → exact EV in one of three canonical ledgers → provenance only when needed
+
+Products:
+Script_G3AnimationBehaviors
+Script_FrameCollisionBehaviorTest
+Script_FrameCollisionTest
+Script_CombatMoveLogger
++ offline tools/log_evidence
+
+Branches:
+main = stable baseline
+docs/collision-source-evidence = active development/research
 ```
 
-Constraints:
+Pass criteria:
 
 ```text
-do not reopen collision behavior semantics
-do not rename working products merely for cosmetic cleanup
-do not remove Script_CombatMoveLogger if it still owns independent speed/combat research responsibility
-do not collapse behavior-only and diagnostic twins
-do not change final public release architecture
+no broken first-hop authority route
+no competing current-state authority
+no ambiguous collision twin deploy/load rule
+no orphan active target/tool
+no unresolved stabilization issue that would materially impair the next engineering responsibility
 ```
 
-After Pass 3 is clean:
+If PASS:
 
 ```text
-Pass 4 — final readiness check
-```
-
-Only after Pass 4:
-
-```text
-resume equipped-melee marker expansion planning
+mark stabilization COMPLETE
+→ deliberately promote exact cleaned active checkpoint to protected main while preserving both histories
+→ verify tree identity / branch protection
+→ synchronize User local checkout
+→ resume equipped-melee marker expansion planning
 ```
