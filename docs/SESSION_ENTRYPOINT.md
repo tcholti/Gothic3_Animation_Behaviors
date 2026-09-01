@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-01
+**Updated:** 2026-09-02
 
 Immediate transient handoff when needed: `docs/BETWEEN_CHATS.md`  
 Project charter / highest Gothic-specific authority / retrieval map: `docs/README.md`  
@@ -159,13 +159,45 @@ The cleanup found no remaining structural ambiguity that should delay engineerin
 
 ---
 
-## CURRENT RESPONSIBILITY — Equipped-Melee Marker Expansion Planning
+## CURRENT RESPONSIBILITY — Remaining Equipped-Melee Marker Architecture Review
 
-Return to engineering, but **do not modify code yet**.
+Return to engineering, but **do not modify behavior code yet**.
 
-First reconstruct only the current supported marker-family/source boundary from the existing architecture, `ANIMATION_INDEX.md` / `ANIMATION_CATALOG.md`, and the relevant evidence routes.
+The shared marker/source/generation core has already been reviewed and accepted as suitable for broader family expansion. The previous one-family-per-implementation planning rule is superseded for the remaining already-understood equipped-weapon callback families.
 
-Then choose and freeze **one exact equipped-melee expansion mechanism/family** before implementation.
+Accepted scope:
+
+```text
+REQUIRED MARKER SUPPORT:
+PowerAttack
+PierceAttack
+SimpleWhirl
+HackAttack
+
+OPTIONAL / NICE TO HAVE:
+GetUpAttack
+= include only if it fits the established architecture cleanly
+
+DELIBERATELY EXCLUDED:
+FinishingAttack
+= preserve native downed-enemy execution behavior; no marker requirement
+
+Fist/body
+= separate source-adapter research after equipped-weapon coverage
+```
+
+Accepted implementation/validation strategy:
+
+```text
+finish architecture/source review
+→ implement all remaining proven-compatible required equipped-melee adapters in one bounded code change
+→ validate Power independently
+→ validate Pierce independently
+→ validate SimpleWhirl independently
+→ validate Hack independently
+→ validate GetUp separately only if included
+→ run combined marker/lifecycle regression afterward
+```
 
 Required planning boundaries:
 
@@ -174,18 +206,59 @@ preserve closed C1 lifecycle/generation architecture
 preserve RIGHT / LEFT / BOTH / OFF semantics
 preserve native fallback for unmarked/unsupported cases
 separate physical source selection from action/family identity
-review the recorded Dual P1 Quick authored-RIGHT vs older native-LEFT discrepancy deliberately
+use one canonical family/action eligibility policy rather than multiplying marker-core special cases
+complete only the native callback bookkeeping needed to prevent competing timed activation
 keep Fist/body source adaptation separate
 keep AttackContinuationProtection separate
-no broad all-family implementation in one step
 ```
+
+### HackAttack
+
+Hack is a required marker family and a related animation-resolution improvement.
+
+Tested/runtime facts already establish distinct semantics:
+
+```text
+gEAction_HackAttack       = 14
+gEAction_FinishingAttack  = 15
+```
+
+The tested game can use the serialized `FinishingAttack` asset family for runtime Hack. Simply providing HackAttack-style renamed assets did not make Gothic select them in the User's small rename test.
+
+Preferred target is a narrow native-compatible routing change:
+
+```text
+runtime HackAttack remains action 14
+→ Gothic resolves dedicated HackAttack animation assets
+→ Gothic itself continues interpreting normal filename metadata
+→ Hack Hit markers use the ordinary equipped-slot marker architecture
+
+runtime FinishingAttack remains action 15
+→ existing execution assets and timer-driven execution semantics remain native/unmarked
+```
+
+Preferred Hack fixture names:
+
+```text
+Hero_Parade_None_2H_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
+Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot
+Hero_Parade_None_2H_P0_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
+
+Hero_Parade_None_Staff_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
+Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot
+Hero_Parade_None_Staff_P0_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
+```
+
+`100` is the current animation-author Hit-distance candidate, not a DLL constant. The behavior code should depend on native action/phase/UseType/resolved-motion facts and should not parse/reimplement destination-pose, movement-distance, or other filename semantics that Gothic already consumes natively. `ANIMATION_RULES.md` remains the authority for this distinction.
 
 Immediate next step:
 
 ```text
-orientation/retrieval of current supported equipped-melee marker boundary
-→ identify the smallest logical next expansion candidate
-→ discuss/freeze it with the User
+inspect Power/Pierce/SimpleWhirl callback bookkeeping
++ trace Hack action-14 collision ownership and FinishingAttack asset selection
++ classify GetUp as trivial vs materially different
+→ freeze exact multi-family implementation architecture with User
+→ only then create the bounded Work responsibility
 ```
 
 ---
@@ -193,8 +266,9 @@ orientation/retrieval of current supported equipped-melee marker boundary
 ## Forward Order
 
 ```text
-equipped-melee marker expansion planning
-→ freeze/implement/test one mechanism at a time
+remaining equipped-melee architecture review
+→ one bounded Power/Pierce/SimpleWhirl/Hack implementation (+ GetUp only if clean)
+→ family-by-family validation
 → separate Fist source-adapter investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
