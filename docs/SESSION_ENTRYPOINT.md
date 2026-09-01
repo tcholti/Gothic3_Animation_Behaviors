@@ -9,7 +9,7 @@
 Immediate current handoff: `docs/BETWEEN_CHATS.md`  
 Current validation authority: `docs/COLLISION_TEST_PLAN.md`  
 Current lifecycle authority: `docs/COLLISION_LIFECYCLE_PLAN.md`  
-Gate 4 result/contract: `docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`  
+Gate 4 contract/result: `docs/MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`  
 Completed second-pass rewrite reference: `docs/SECOND_PASS_REWRITE_CONTRACT.md`  
 Release/build rule: `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`  
 Knowledge-maintenance/audit rules: `docs/KNOWLEDGE_MAINTENANCE.md` / `docs/KNOWLEDGE_REGISTRY.md`  
@@ -59,55 +59,23 @@ what remains deliberately deferred
 
 ## Closed Collision Architecture — Do Not Reopen Without Contradicting Evidence
 
-### Lifecycle safety
-
-C1-R1 is closed through EV-206–EV-207.
-
 ```text
-successful exact-source Item_Attack request
-→ exact source obligation
+C1-R1 lifecycle safety                     CLOSED — EV-206–EV-207
+Gate 1 source/build separation             CLOSED/PASS — EV-208
+Gate 2 CORE diagnostic sufficiency         CLOSED/PASS — EV-209–EV-211
+Gate 3 behavior-only smoke                 CLOSED/PASS — EV-212
+Gate 4 generation-scoped bookkeeping       CLOSED/PASS — EV-213
+literal historical EV-131 regression       CLOSED/PASS — EV-214
+final behavior-only architecture smoke     CLOSED/PASS — EV-215
 
-successful transition away from Item_Attack
-→ obligation fulfilled
-
-post-native-AISetState finalization
-+ exact obligation still outstanding
-+ exact current equipped RIGHT/LEFT identity establishes liveness
-+ actual group == Item_Attack(7)
-→ exactly one SetCollisionGroup(Item_Equipped)
-→ no ClearTriggeredList
-→ verify exact group 5
-```
-
-Native cleanup always gets first opportunity.
-
-Retained qualifications:
-
-```text
-no positive outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED runtime case
-no positive NPC destructive-abandonment / physical-repair case claimed
-```
-
-### Second-pass architecture and marker bookkeeping
-
-```text
-Gate 1 source/build separation            CLOSED/PASS — EV-208
-Gate 2 CORE diagnostic sufficiency        CLOSED/PASS — EV-209–EV-211
-Gate 3 behavior-only smoke                CLOSED/PASS — EV-212
-Gate 4 generation-scoped bookkeeping      CLOSED/PASS — EV-213
-literal historical EV-131 regression      CLOSED/PASS — EV-214
-final behavior-only architecture smoke    CLOSED/PASS — EV-215
-```
-
-```text
-NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
+NEW COLLISION ARCHITECTURE VERIFICATION    COMPLETE
 ```
 
 Accepted Gate 4 rule:
 
 > **The monotonic C1 generation is the durable marker occurrence/dedupe execution identity. Marker-local guesses based on source/motion/action/phase/state-time or controlled-callback rollback are no longer execution-boundary authority. Authored marker semantics remain independent.**
 
-Preserve unchanged in meaning:
+Preserve independently:
 
 ```text
 RIGHT / LEFT / BOTH / OFF exact-set semantics
@@ -122,13 +90,20 @@ unmarked/unsupported native fallback
 closed C1 terminal-repair ordering and exact-source contract
 ```
 
+Native cleanup gets first opportunity. Retained C1-R1 qualifications remain evidence limits, not open gates:
+
+```text
+no positive outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED runtime case
+no positive NPC destructive-abandonment / physical-repair case claimed
+```
+
 Gate 4 implementation:
 
 ```text
 7667c428a580d18f625317702ededb76aa5e8bb5
 ```
 
-Validated behavior-only product used for EV-215:
+Validated behavior-only product from EV-215:
 
 ```text
 Script_FrameCollisionBehaviorTest.dll
@@ -140,19 +115,17 @@ Do not invent another broad architecture-verification matrix absent a concrete c
 
 ---
 
-## Completed Repository Knowledge / Evidence Cleanup
+## Repository Knowledge / Evidence Cleanup — COMPLETE
 
 The documentation/knowledge audit, authority-repair pass and processed-evidence location cleanup are complete.
 
-Accepted cleanup result:
-
 ```text
-active authorities no longer describe closed architecture verification as pending
-EV-215 / EVIDENCE_LEDGER_STEP_E routing is current
-EVIDENCE_LEDGER_STEP_D explicitly owns EV-206–EV-214
-19 already-processed collision logs moved from research/raw/ to research/archive/
-all 19 archived logs retain their exact original Git blob SHA
-EVIDENCE_LEDGER_STEP_D provenance paths now point to research/archive/
+active authorities no longer describe closed verification as pending
+Step D owns EV-206–EV-214
+Step E begins at EV-215
+19 processed collision logs moved research/raw/ → research/archive/
+19/19 archived logs retain their exact original Git blob SHA
+Step-D provenance points to research/archive/
 research/raw/ contains only Keep.txt
 ```
 
@@ -164,7 +137,7 @@ a3eb460d323a8590444d950b3a60a8e0db5c7083
 87e3ffc24ca0bf604ffb6314248e4ab0b4d3ce39
 ```
 
-The unrelated local untracked file remains outside this migration and must stay untouched:
+Known unrelated local file remains outside this cleanup and must stay untouched:
 
 ```text
 research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
@@ -180,15 +153,11 @@ Temporary branch:
 temp/second-pass-rewrite-publish
 ```
 
-Current comparison established:
+It has 10 temp-only staging commits after merge base:
 
 ```text
-merge base with active branch: 0aa6d19a6815934a3158715070320020bac64292
-temp-only commits: 10
-active branch ahead of temp: 60 commits at inspection time
+0aa6d19a6815934a3158715070320020bac64292
 ```
-
-The 10 temp-only commits are staging commits for the frozen second-pass rewrite: marker module, lifecycle guard, EngineBridge split, compact/deep diagnostics, RuntimeClock, source operations and final staging assembly.
 
 Decisive preservation fact:
 
@@ -199,59 +168,70 @@ temp head:
 temp head tree:
 f303ba47624fc904dd4bc3f64aadfab43cd536d6
 
-accepted active rewrite commit:
+accepted active rewrite:
 4eeb701725e8b77d8850116d408155653ff4ad36
 
-active rewrite tree:
+accepted rewrite tree:
 f303ba47624fc904dd4bc3f64aadfab43cd536d6
 ```
 
-Therefore the temp branch contains **no unique final file content that must be preserved**. Its only unique value is intermediate staging chronology, already superseded by the single accepted implementation commit plus Git history. Do not merge temp into the active branch.
-
-Do not delete temp until stable `main` promotion is verified.
+Therefore temp contains no unique final file content needing rescue. Its only unique value is intermediate staging chronology. Do not merge it into the active branch.
 
 ---
 
-## Current Technical Responsibility — Promote Cleaned Verified Checkpoint to `main`
+## Stable `main` Promotion — VERIFIED
 
-Current main comparison at inspection time:
-
-```text
-active branch ahead of main: 693 commits
-main ahead of merge base: 1 commit
-main-only commit: 76703d362a0aef0a749fc30626eb2b75a3d5fec3
-message: Add adaptive collaboration and usage rules
-```
-
-That main-only commit contains old `COLLABORATION_RULES.md` v0.1. The active branch now contains the evolved project collaboration authority v1.8 and explicitly treats older Gothic collaboration rules as superseded where they conflict with the current project delta/CAM framework. No main-only content requires cherry-picking.
-
-Main ruleset is active and protects against deletion and non-fast-forward updates. Stable promotion must therefore preserve history and remain fast-forward.
-
-Preferred promotion shape:
+Old main head:
 
 ```text
-new main merge commit
-  tree = exact cleaned active-branch tree
-  parent 1 = old main head
-  parent 2 = cleaned active head
+76703d362a0aef0a749fc30626eb2b75a3d5fec3
 ```
 
-This preserves the old main-only commit in ancestry without letting its obsolete v0.1 file overwrite the active v1.8 authority.
+Its only main-only change was the superseded Collaboration Rules v0.1. The active branch already contains the evolved project authority v1.8.
 
-After promotion:
+Protected `main` was promoted without force through history-preserving merge commit:
 
 ```text
-verify main contains both histories
-verify main tree equals promoted active tree
-verify branch protection remains active
-→ only then retire temp/second-pass-rewrite-publish
+84a00d206bb6b939dccce06d7d4fe680c10d5cc3
 ```
+
+Promotion commit facts:
+
+```text
+parent 1 = 76703d362a0aef0a749fc30626eb2b75a3d5fec3  old main
+parent 2 = 50cf676046e305e2646c5ed47a4188a5ba863dc5  cleaned active checkpoint
+tree     = c19473642354f207914ca6d0ada03dde0ffbfcf6  exact active tree
+```
+
+Post-promotion comparison:
+
+```text
+main ahead of active checkpoint: 2 commits
+main behind active checkpoint: 0
+file differences: 0
+```
+
+Main remains protected. Its active ruleset forbids deletion and non-fast-forward updates.
 
 ---
 
-## After Stable Repository Checkpoint
+## Current Technical Responsibility — Retire Proven-Redundant Temp Branch
 
-Normal intended branch model:
+`temp/second-pass-rewrite-publish` is now safe to delete because:
+
+```text
+its final staging tree is already preserved exactly by 4eeb701...
+main promotion is verified
+both old-main and active histories are reachable from main
+```
+
+The current connector cannot delete a branch ref. The next repository operation is therefore a single explicit User/local deletion of only:
+
+```text
+temp/second-pass-rewrite-publish
+```
+
+After deletion, verify that the intended normal branch model is restored:
 
 ```text
 main
@@ -261,7 +241,31 @@ docs/collision-source-evidence
 = active development/research
 ```
 
-After main verification and safe temp retirement, resume engineering from the active branch.
+Do not delete either of those two branches.
+
+---
+
+## Next Engineering Responsibility — Equipped-Melee Marker Expansion Planning
+
+After temp retirement is confirmed, return to the active branch and plan the next marker expansion. Do not begin implementation before one exact mechanism/family responsibility is frozen.
+
+Known deliberate review item from EV-211:
+
+```text
+Dual P1 Quick tested asset authored marker = RIGHT
+older native-source evidence for tested Dual P1 Quick = LEFT
+```
+
+Treat that as an authoring/source-map review question for expansion planning, not as evidence that closed lifecycle or Gate-4 behavior is wrong.
+
+Keep these later responsibilities separate:
+
+```text
+Fist source-adapter investigation
+AttackContinuationProtection
+New Balance/Jackydima compatibility gate
+Raise + speed + config migration/redesign
+```
 
 ---
 
