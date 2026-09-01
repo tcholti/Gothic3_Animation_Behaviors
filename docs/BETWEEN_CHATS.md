@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — temporary branch inspection
+## Current bridge — stable main promotion
 
 Repository:
 
@@ -12,10 +12,16 @@ Repository:
 tcholti/Gothic3_Animation_Behaviors
 ```
 
-Branch:
+Active branch:
 
 ```text
 docs/collision-source-evidence
+```
+
+Stable branch:
+
+```text
+main
 ```
 
 Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its Fresh Normal Chat Bootstrap, then read this file. Do not reconstruct the project from old chat history and do not scan the whole repository.
@@ -36,31 +42,22 @@ Final behavior-only architecture smoke     CLOSED/PASS — EV-215
 NEW COLLISION ARCHITECTURE VERIFICATION    COMPLETE
 ```
 
-Accepted marker execution identity remains:
-
-```text
-C1 monotonic generation
-= durable marker occurrence/dedupe execution identity
-```
-
-Independent marker semantics and the closed C1 terminal-repair contract remain unchanged. Do not reopen a completed architecture gate absent concrete contradicting evidence.
+Do not reopen a completed architecture gate absent concrete contradicting evidence.
 
 ---
 
-## Completed documentation / evidence-location cleanup
+## Repository cleanup complete
 
-The approved authority-repair pass is complete. Active routing now agrees that architecture verification is closed; Step D owns EV-206–EV-214 and Step E begins at EV-215.
+Documentation/knowledge authority repair is complete.
 
-The separate processed-evidence migration is also complete:
+Processed-evidence migration is complete:
 
 ```text
-19 processed collision logs identified under research/raw/
-→ copied to research/archive/ using their existing Git blob SHAs
-→ Step-D canonical provenance repointed to archive
-→ raw duplicates removed
-→ research/raw/ now contains only Keep.txt
-→ 19/19 archive files verified against their original blob SHAs
-→ EVIDENCE_LEDGER_STEP_D contains zero research/raw/ paths
+19 processed collision logs moved raw → archive
+19/19 archived files retain original Git blob SHA
+Step D canonical paths repointed to archive
+research/raw/ contains only Keep.txt
+Step D contains zero research/raw/ paths
 ```
 
 Migration commits:
@@ -71,11 +68,7 @@ a3eb460d323a8590444d950b3a60a8e0db5c7083
 87e3ffc24ca0bf604ffb6314248e4ab0b4d3ce39
 ```
 
-This migration did not rename artifacts, rewrite log bytes, change evidence IDs, or alter evidence conclusions.
-
-`research/README.md` was deliberately not expanded with 19 additional narrative copies of already-canonical EV evidence; the evidence ledgers/index remain the canonical retrieval route for these processed runtime artifacts.
-
-Known unrelated local file to leave completely untouched if still present:
+Known unrelated local file to leave completely untouched:
 
 ```text
 research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
@@ -83,7 +76,7 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Current responsibility — inspect temp-only branch history/content
+## Temporary branch inspection complete
 
 Temporary branch:
 
@@ -91,26 +84,92 @@ Temporary branch:
 temp/second-pass-rewrite-publish
 ```
 
-Do not rely on older ahead/behind counts. Re-query the branch relationship now that the active branch has advanced.
-
-Inspection must answer only:
+At inspection:
 
 ```text
-which commits are temp-only?
-which files/changes are genuinely unique to temp?
-is any unique content still valuable or already superseded on the active branch?
-what, if anything, must be preserved before temp can be retired?
+merge base: 0aa6d19a6815934a3158715070320020bac64292
+temp-only commits: 10
+active ahead of temp: 60
 ```
 
-Do not merge/delete the temp branch while answering these questions. Do not update `main` yet.
+Those 10 commits are only the component-by-component staging history of the second-pass rewrite.
 
-If the temp-only content has no remaining unique value, record that conclusion with the comparison evidence. If something matters, preserve only that material deliberately before stable promotion.
+Decisive equality:
+
+```text
+temp head: 515d73fab14e7a66d94f3f19b0843072bbf70ef3
+temp tree: f303ba47624fc904dd4bc3f64aadfab43cd536d6
+
+accepted active rewrite: 4eeb701725e8b77d8850116d408155653ff4ad36
+active rewrite tree: f303ba47624fc904dd4bc3f64aadfab43cd536d6
+```
+
+Therefore no unique final file content must be rescued from temp. Do not merge temp into the active branch. Retain it only until main promotion is verified, then it may be deleted safely.
 
 ---
 
-## Stable promotion — after temp inspection
+## Main-only history inspected
 
-Normal intended branch model:
+Before promotion:
+
+```text
+main head: 76703d362a0aef0a749fc30626eb2b75a3d5fec3
+main-only commits: 1
+message: Add adaptive collaboration and usage rules
+```
+
+That commit contains old Gothic Collaboration Rules v0.1.
+
+Current active authority:
+
+```text
+docs/COLLABORATION_RULES.md
+Version: 1.8
+```
+
+The active authority explicitly routes general collaboration to CAM/current reusable authorities and states that older Gothic collaboration rules are superseded where they conflict. No main-only content needs cherry-picking.
+
+---
+
+## Current responsibility — stable main promotion
+
+Main has an active ruleset protecting:
+
+```text
+deletion
+non-fast-forward updates
+```
+
+No bypass is available or required.
+
+Use a history-preserving fast-forward merge commit:
+
+```text
+tree = exact cleaned active tree
+parent 1 = old main head
+parent 2 = cleaned active head
+```
+
+This keeps old main history reachable while making stable content exactly the cleaned/verified active checkpoint.
+
+Required order:
+
+```text
+create promotion merge commit
+→ fast-forward main to it
+→ verify main contains both histories
+→ verify promoted tree identity
+→ verify main protection remains active
+→ only then delete temp/second-pass-rewrite-publish
+```
+
+Do not force-update main.
+
+---
+
+## After repository checkpoint
+
+Normal branch model:
 
 ```text
 main
@@ -120,23 +179,9 @@ docs/collision-source-evidence
 = active development/research
 ```
 
-Required order:
+After main verification and temp retirement, return to engineering on the active branch.
 
-```text
-inspect temp-only history/content — NEXT
-→ preserve any still-valuable unique material
-→ define stable promotion checkpoint
-→ update protected main deliberately
-→ verify main
-→ retire temp branch only if safe
-→ normal two-branch model restored
-```
-
-Only after that repository checkpoint is stable should new collision feature work resume.
-
----
-
-## Forward engineering order
+Forward engineering order:
 
 ```text
 equipped-melee marker expansion planning
