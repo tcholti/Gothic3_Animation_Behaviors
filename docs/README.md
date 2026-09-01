@@ -1,6 +1,7 @@
 # Gothic 3 Animation Behaviors — Documentation and Knowledge Map
 
-**Purpose:** Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.
+**Purpose:** Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.  
+**Updated:** 2026-09-01
 
 > **Do not load every document by default. Find the current responsibility, recover a compact model of the relevant subsystem when needed, open the smallest relevant authority/index, and broaden only when the question requires it.**
 
@@ -69,7 +70,7 @@ Normally read:
 - `SESSION_ENTRYPOINT.md`;
 - `BETWEEN_CHATS.md` only when an active transient handoff matters.
 
-This recovers the active subsystem, causal gate, implementation/test state and immediate responsibility.
+This recovers the active subsystem, accepted boundary and immediate responsibility.
 
 The entry point may additionally route to one relevant `PROJECT_PIPELINE.md` section when the next task will create/change a project identifier, filename, version/build identity, branch/state meaning or validation/artifact-flow convention.
 
@@ -126,7 +127,7 @@ Reconstruct only the targeted active problem by answering:
 9. Which observations or hypotheses remain unresolved?
 10. Why does the current architecture or gate follow from that evidence?
 
-Use the active-problem route in `SESSION_ENTRYPOINT.md` and `EVIDENCE_INDEX.md`; retrieve exact EV entries and raw/source provenance only as needed. Synthesize a temporary working model rather than creating another generic summary document. Keep that model for the same active problem and refresh it only when meaningful new evidence or a context change makes it stale.
+Use `EVIDENCE_INDEX.md` plus the current subsystem authority; retrieve exact EV entries and raw/source provenance only as needed. Synthesize a temporary working model rather than creating another generic summary document. Keep that model for the same active problem and refresh it only when meaningful new evidence or a context change makes it stale.
 
 ### Retrieval depth D — question-specific retrieval
 
@@ -151,9 +152,9 @@ This keeps a **small active cognitive surface without reducing understanding to 
 
 #### `SESSION_ENTRYPOINT.md`
 
-Minimal front door for the current branch/subsystem/next validation responsibility.
+Minimal front door for the current branch/subsystem/accepted boundary/immediate responsibility.
 
-Read first for active collision work.
+Read first for active project work.
 
 #### `BETWEEN_CHATS.md`
 
@@ -193,15 +194,15 @@ Canonical **project architecture** for Raise, speed and frame collision. It avoi
 
 #### `COLLISION_LIFECYCLE_PLAN.md`
 
-Current collision-lifecycle authority: exact execution/source obligations, temporary pre-Combat ScriptFunction bridge, native-cleanup precedence and controlled C1-R1 terminal repair.
+Current collision-lifecycle authority: exact execution/source obligations, temporary pre-Combat ScriptFunction bridge, native-cleanup precedence, controlled C1-R1 terminal repair and the current separation between generation-scoped marker identity and physical cleanup.
 
 #### `COLLISION_LOGGER_PLAN.md`
 
-Current diagnostic architecture: hook ownership, factual event model, C1/P2/R1 signal responsibilities and diagnostic/release separation.
+Current diagnostic architecture: hook ownership, factual event model, C1/P2/R1/Gate-4 signal responsibilities and diagnostic/release separation.
 
 #### `COLLISION_TEST_PLAN.md`
 
-Current staged validation plan and acceptance/control matrices. `SESSION_ENTRYPOINT.md` owns the exact immediate closure responsibility when the broad plan has already advanced within a gate.
+Current collision validation posture, closed gate boundaries and future required validation gates. It is not a chronological queue of already-completed tests.
 
 #### `PROJECT_SCOPE_CONTEXT.md`
 
@@ -251,7 +252,11 @@ Canonical EV-199 through EV-205.
 
 #### `EVIDENCE_LEDGER_STEP_D.md`
 
-Canonical EV-206 onward for controlled C1-R1 physical-repair evidence and later continuation.
+Canonical EV-206 through EV-214: C1-R1 physical repair, second-pass structural/product gates and Gate-4/literal-regression closure.
+
+#### `EVIDENCE_LEDGER_STEP_E.md`
+
+Canonical EV-215 onward, beginning with final diagnostics-free architecture verification.
 
 Ledger splits are preservation/retrieval boundaries, not competing authorities or new evidence namespaces.
 
@@ -290,9 +295,11 @@ For exact filename existence/variants, search these **before** opening the catal
 
 - `research/raw/` — active/unprocessed or still-comparative canonical raw artifacts;
 - `research/archive/` — processed historical logs/source material;
-- `research/derived/` — deterministic retrieval/analysis packages whose source raw artifacts remain canonical.
+- `research/derived/` — deterministic retrieval/analysis packages whose source raw artifacts remain canonical until deliberately migrated.
 
 Prefer an EV entry first. Open raw evidence when verifying wording, challenging an interpretation, or extracting a fact not represented canonically. For oversized logs, use POP-07 and read the deterministic derived package before loading broad raw content.
+
+Processed artifacts already cited under `research/raw/` are migrated only through a deliberate atomic provenance update; do not move them piecemeal for cosmetic cleanliness.
 
 #### Superseded documentation snapshots
 
@@ -307,8 +314,8 @@ Archived documents preserve history/rationale; they never override current autho
 
 | Question | Start here | Broaden only if needed |
 |---|---|---|
-| What are we doing now? | `SESSION_ENTRYPOINT.md` | named current architecture/source |
-| What causal model constrains the current collision problem? | `SESSION_ENTRYPOINT.md` active-problem route | `EVIDENCE_INDEX.md` reconstruction route → exact EV entries |
+| What are we doing now? | `SESSION_ENTRYPOINT.md` | `BETWEEN_CHATS.md` for exact transient continuation |
+| What causal model constrains an active collision problem? | current subsystem authority | `EVIDENCE_INDEX.md` reconstruction route → exact EV entries |
 | What did the last Chat/Work handoff do? | `BETWEEN_CHATS.md` | exact commit/diff |
 | Who should own this responsibility / should this go to Work? | `COLLABORATION_RULES.md` §6 | `WORK_IMPLEMENTATION_PROTOCOL.md` only if bounded implementation is selected |
 | What naming/numbering/version/test/artifact convention should I use? | `PROJECT_PIPELINE.md` relevant section | owning procedure/current plan only for task semantics |
@@ -317,7 +324,7 @@ Archived documents preserve history/rationale; they never override current autho
 | What is the overall architecture? | `DESIGN.md` | evidence index if a premise must be checked |
 | What is the current collision lifecycle model? | `COLLISION_LIFECYCLE_PLAN.md` | cleanup map / EV range |
 | What should current diagnostics capture? | `COLLISION_LOGGER_PLAN.md` | source + exact EV |
-| What tests are next? | `SESSION_ENTRYPOINT.md` → `COLLISION_TEST_PLAN.md` | `BETWEEN_CHATS.md` for exact active runtime contract |
+| What is the current collision validation posture / is any test actually pending? | `SESSION_ENTRYPOINT.md` → `COLLISION_TEST_PLAN.md` | `BETWEEN_CHATS.md` only for an exact active runtime contract |
 | Is an engine claim proven? | `EVIDENCE_INDEX.md` | exact ledger entry → raw/source |
 | Where does native cleanup occur? | `COLLISION_CLEANUP_CALLSITE_MAP.md` | relevant EV/raw logs |
 | What does this animation token/UseType/action/pose mean? | `ANIMATION_INDEX.md` | exact `ANIMATION_RULES` section |
@@ -404,7 +411,7 @@ Work may inspect necessary source/API material when implementation reveals a rea
 
 | Responsibility | Authority |
 |---|---|
-| current continuation / next validation | `SESSION_ENTRYPOINT.md` |
+| current continuation / immediate responsibility | `SESSION_ENTRYPOINT.md` |
 | transient cross-context handoff | `BETWEEN_CHATS.md` |
 | stable project naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` |
 | recurring local operational sequences | `PROJECT_OPERATING_PROCEDURES.md` |
@@ -413,8 +420,8 @@ Work may inspect necessary source/API material when implementation reveals a rea
 | overall intended system architecture | `DESIGN.md` |
 | current collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | current diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
-| current staged collision tests | `COLLISION_TEST_PLAN.md` |
-| exact evidence status/provenance | evidence ledgers, currently through `EVIDENCE_LEDGER_STEP_D.md` |
+| current/future collision validation boundaries | `COLLISION_TEST_PLAN.md` |
+| exact evidence status/provenance | `EVIDENCE_LEDGER.md` + Steps B/C/D/E |
 | evidence lookup | `EVIDENCE_INDEX.md` |
 | animation generalized semantics | `ANIMATION_RULES.md` |
 | concrete assets/fixtures | `ANIMATION_CATALOG.md` / data files |
