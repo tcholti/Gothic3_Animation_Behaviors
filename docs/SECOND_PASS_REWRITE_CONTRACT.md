@@ -1,19 +1,27 @@
 # Second-Pass Collision Architecture Rewrite Contract
 
-**Status:** FROZEN ARCHITECTURE CONTRACT — implementation blocked until unchanged post-EngineBridge runtime baseline passes  
-**Updated:** 2026-08-30  
+**Status:** IMPLEMENTED + VALIDATED REFERENCE CONTRACT — rewrite closed through EV-208–EV-212; later Gate-4 verification closed through EV-213–EV-215  
+**Updated:** 2026-09-01  
 **Scope:** `prototypes/Script_FrameCollisionTest/` only, plus its CMake/build-product separation  
 **Release rule:** `docs/GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`
 
 ## 1. Purpose
 
-Freeze the exact semantic-preserving rewrite that follows the completed first per-CPP review and second-pass architecture synthesis.
+Preserve the exact semantic-preserving rewrite contract that followed the completed first per-CPP review and second-pass architecture synthesis.
 
-This rewrite exists to remove rejected historical baggage, separate responsibilities cleanly, reduce permanent research-hook/diagnostic coupling, and mechanically prove that the behavior core can compile without diagnostics.
+This rewrite removed rejected historical baggage, separated responsibilities cleanly, reduced permanent research-hook/diagnostic coupling, and mechanically proved that the behavior core can compile without diagnostics.
 
-It does **not** add a new attack family, change collision semantics, redesign C1, implement bad-skip prevention, migrate production Raise/speed, or begin final `Script_G3AnimationBehaviors` integration.
+It did **not** add a new attack family, change collision semantics, redesign C1, implement bad-skip prevention, migrate production Raise/speed, or begin final `Script_G3AnimationBehaviors` integration.
 
-Implementation must not start until the current unchanged EngineBridge build passes the compact runtime baseline recorded in `BETWEEN_CHATS.md` / `COLLISION_TEST_PLAN.md`.
+The rewrite was implemented at:
+
+```text
+4eeb701725e8b77d8850116d408155653ff4ad36
+```
+
+Its source/build and product-validation gates are closed through EV-208–EV-212. The separate later marker-bookkeeping simplification was then completed by Gate 4 / EV-213, directly regressed against the historical EV-131 fixture in EV-214, and the final behavior-only architecture smoke passed in EV-215.
+
+Historical preconditions and validation steps remain below as provenance. They are **not current executable next steps**. Current validation posture is owned by `COLLISION_TEST_PLAN.md`; current project responsibility is owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
 ---
 
@@ -76,7 +84,9 @@ current research Fist behavior without generalizing it
 unmarked/unsupported native fallback
 ```
 
-Do **not** replace marker bookkeeping with C1 in this rewrite. EV-131–EV-133 and EV-167 prove that marker execution/occurrence retirement has independent historical regressions. The dedicated C1-vs-marker simplification audit remains a later gate.
+Historical rewrite-scope constraint: this second-pass rewrite itself did **not** replace marker execution bookkeeping with C1. EV-131–EV-133 and EV-167 were the regression authority that required a later dedicated audit rather than an opportunistic deletion during structural rewrite.
+
+That later audit is now complete. Gate 4 / EV-213 established the monotonic C1 generation as durable marker occurrence/dedupe execution identity and removed the older marker-local source/motion/action/phase/state-time and controlled-callback rollback guesses about a new execution. Independent marker invariants listed above remain preserved. Current authority: `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`.
 
 ### Hook transport / ordering
 
@@ -511,13 +521,15 @@ new cleanup/finalization predicates
 new timers/polling/world scans
 ```
 
-Do not change current marker frames, occurrence budgets, replay rules, source masks, action eligibility or collision timings.
+These are the historical scope boundaries of the second-pass rewrite. Gate 4 later completed the first item as a separate responsibility; the remaining items are still separate unless another current authority explicitly changes them.
+
+Do not change current marker frames, occurrence budgets, replay rules, source masks, action eligibility or collision timings merely because this completed structural contract is being referenced.
 
 ---
 
-## 6. Stop Conditions During Implementation
+## 6. Historical Stop Conditions During Implementation
 
-STOP and return to Normal Chat rather than improvising if implementation discovers a concrete contradiction in:
+During the original rewrite, implementation was required to stop and return to Normal Chat rather than improvise if it discovered a concrete contradiction in:
 
 ```text
 calling convention / hook macro linkage
@@ -530,15 +542,17 @@ current Fist source operation semantics
 CMake/toolchain ability to produce a diagnostics-free behavior target from the shared behavior core
 ```
 
-A source/API contradiction may narrow or change the frozen architecture. It does not authorize opportunistic redesign.
+A source/API contradiction could narrow or change the frozen architecture. It did not authorize opportunistic redesign.
+
+This section is retained as implementation provenance, not as a current gate.
 
 ---
 
-## 7. Validation Sequence
+## 7. Validation Sequence — Historical and Closed
 
 ### Gate 0 — unchanged post-EngineBridge baseline
 
-Before source rewrite:
+Historical precondition before source rewrite:
 
 ```text
 current source unchanged
@@ -548,13 +562,13 @@ run compact runtime sentinels
 preserve raw log
 ```
 
-Purpose: isolate the already-completed EngineBridge extraction from every later rewrite.
+This baseline passed before the rewrite proceeded.
 
-If this baseline fails, STOP. Diagnose EngineBridge/current source; do not begin the architecture rewrite.
+### Gate 1 — source/build audit after rewrite — CLOSED/PASS
 
-### Gate 1 — source/build audit after rewrite
+Evidence: EV-208.
 
-Required:
+Historical requirements:
 
 ```text
 git diff --check
@@ -564,11 +578,11 @@ build Script_FrameCollisionBehaviorTest behavior-only target
 verify behavior-only target does not compile/link CollisionDiagnostics or deep diagnostic sources
 ```
 
-Do not run Gothic 3 from Work/automation.
+### Gate 2 — compact diagnostic sufficiency regression — CLOSED/PASS
 
-### Gate 2 — compact diagnostic sufficiency regression
+Evidence: EV-209–EV-211.
 
-On the diagnostic target, validate the current minimum structural sentinels from `COLLISION_TEST_PLAN.md`:
+Validated sentinels:
 
 ```text
 known positive stale-source repair
@@ -581,17 +595,24 @@ crossbow negative
 clean shutdown
 ```
 
-The compact default log must establish these without deep probes.
+### Gate 3 — behavior-only smoke/equivalence — CLOSED/PASS
 
-### Gate 3 — behavior-only smoke/equivalence
+Evidence: EV-212.
 
-Deploy the behavior-only prototype **instead of** the diagnostic prototype, never beside it.
+The behavior-only prototype was deployed instead of the diagnostic twin and passed the required smoke/equivalence boundary.
 
-Run a small positive/native-fallback smoke proving behavior does not depend on diagnostics. Exact matrix is frozen only after Gate 2 passes.
+### Gate 4 — separate marker simplification — CLOSED/PASS
 
-### Gate 4 — later marker simplification
+Evidence: EV-213, with literal historical regression closure EV-214 and final diagnostics-free architecture smoke EV-215.
 
-Only after rewrite + diagnostic sufficiency + behavior-only smoke pass may the separate C1-vs-marker bookkeeping simplification audit begin.
+Current accepted result:
+
+```text
+C1 monotonic generation
+= durable marker occurrence/dedupe execution identity
+```
+
+Do not execute Gates 0–4 again as pending work absent a concrete contradiction or a later responsibility that intentionally changes the relevant architecture.
 
 ---
 
