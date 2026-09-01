@@ -37,12 +37,6 @@ Ordinary Gothic engineering should use the lowest relevant Gothic authority rath
 
 > **Every released Gothic 3 behavior DLL contains behavior only. Research diagnostics are a separate build product and are not compiled into the release binary.**
 
-```text
-shared behavior architecture
-→ diagnostics-free RELEASE/behavior-only build
-→ separate instrumented DIAGNOSTIC twin used in place of release for controlled testing
-```
-
 Never normally load behavior-only and diagnostic twins together.
 
 Release/product details live in `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
@@ -54,10 +48,10 @@ Release/product details live in `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 1. Read this file first.
 2. Read `docs/BETWEEN_CHATS.md` only when it contains an active transient responsibility.
 3. Treat the CAM/project authority boundary and release-purity rule above as standing constraints.
-4. If the active subsystem is not already oriented in the current Chat, use the one-time Subsystem Orientation Pass from `docs/README.md`.
+4. If the active subsystem is not already oriented, use the one-time Subsystem Orientation Pass from `docs/README.md`.
 5. If substantial reasoning will reinterpret evidence or propose a new fix, reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority.
 6. Read `docs/PROJECT_OPERATING_PROCEDURES.md` only when entering a relevant local Git/build/deploy/runtime-artifact sequence.
-7. Retrieve the relevant `docs/PROJECT_PIPELINE.md` section before changing gate/test IDs, evidence/procedure IDs, artifact naming, build labels, branch meanings or validation-flow conventions.
+7. Retrieve the relevant `docs/PROJECT_PIPELINE.md` section before changing gate/test/evidence/procedure IDs, artifact naming, build labels, branch meanings or validation-flow conventions.
 8. Do not scan the whole repository or reconstruct the project from old chat history.
 9. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
 10. Do not modify CAM from this project responsibility.
@@ -65,7 +59,7 @@ Release/product details live in `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 After bootstrap, report briefly:
 
 ```text
-current technical/project responsibility
+current responsibility
 closed boundary relevant to it
 exact immediate next step
 what remains deliberately deferred
@@ -74,8 +68,6 @@ what remains deliberately deferred
 ---
 
 ## Closed Collision Architecture Boundary
-
-Collision architecture verification is complete and should not be reopened without concrete contradicting evidence.
 
 ```text
 C1-R1 lifecycle safety                     CLOSED — EV-206–EV-207
@@ -88,17 +80,7 @@ Final behavior-only architecture smoke     CLOSED/PASS — EV-215
 NEW COLLISION ARCHITECTURE VERIFICATION    COMPLETE
 ```
 
-For the actual architecture and protected semantics, use:
-
-```text
-DESIGN.md
-COLLISION_LIFECYCLE_PLAN.md
-COLLISION_LOGGER_PLAN.md
-COLLISION_TEST_PLAN.md
-GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
-```
-
-For proof and provenance, use `EVIDENCE_INDEX.md` → exact EV entry → archive/raw/source only when needed.
+Do not reopen this architecture without concrete contradicting evidence. Technical semantics live in `DESIGN.md` and the collision authorities; proof lives behind `EVIDENCE_INDEX.md`.
 
 ---
 
@@ -112,8 +94,6 @@ docs/collision-source-evidence
 = active development/research
 ```
 
-The verified collision-architecture checkpoint is already on `main`. The post-verification project stabilization is being completed on the active branch before another deliberate stable promotion.
-
 Known unrelated local file remains outside project maintenance and must stay untouched:
 
 ```text
@@ -122,90 +102,49 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ---
 
-## Project Stabilization
+## Project Stabilization — COMPLETE
 
-### Pass 1 — structural simplification: COMPLETE
-
-```text
-three canonical evidence-ledger files
-obsolete Script_FrameEffectLogger retired
-redundant standalone large-log procedure retired
-completed one-off collision contracts retired after durable absorption
-parallel RESEARCH_MAP chronology retired
-superseded documentation snapshots retired in favor of Git history
-research/raw / archive / derived evidence layers retained
-```
-
-### Pass 2 — Gothic rules/procedures consistency: COMPLETE
-
-Accepted responsibility hierarchy:
+All four stabilization passes are closed:
 
 ```text
-CAM constitutional collaboration layer
-→ COLLABORATION_RULES: Gothic operationalization / participant allocation
-→ PROJECT_PIPELINE: stable conventions
-→ PROJECT_OPERATING_PROCEDURES: recurring operational sequences
-→ WORK_IMPLEMENTATION_PROTOCOL: bounded implementation execution
-→ KNOWLEDGE_REGISTRY: authority/update ownership
-→ KNOWLEDGE_MAINTENANCE: maintenance process
-→ README: retrieval map
-→ SESSION_ENTRYPOINT: current state only
+Pass 1 structural document/tool simplification   PASS
+Pass 2 Gothic rules/procedures consistency       PASS
+Pass 3 build/product/repository-shape audit      PASS
+Pass 4 final fresh-context/readiness check       PASS
 ```
 
-### Pass 3 — build/product/repository shape: COMPLETE
-
-Verified current product/tool shape:
+Stable result:
 
 ```text
-Script_G3AnimationBehaviors
-= production-direction behavior DLL; current Raise/speed implementation
-
-Script_FrameCollisionBehaviorTest
-= diagnostics-free collision behavior research twin
-
-Script_FrameCollisionTest
-= same collision behavior + diagnostic instrumentation
-
-Script_CombatMoveLogger
-= independent generic CombatMove / playback-speed diagnostic tool
-
-tools/log_evidence
-= offline deterministic large-log processor; not a Gothic DLL target
+three canonical evidence ledgers
+one responsibility → one primary project authority
+CAM constitutional layer → Gothic operationalization → procedures/task execution
+small current-state/bootstrap path
+Git history owns superseded ordinary documentation wording
+raw/archive/derived evidence layers remain distinct
+obsolete FrameEffectLogger retired
+collision behavior-only / diagnostic twins remain separate and mutually exclusive at runtime
+CombatMoveLogger retained for independent speed/combat research
+official SDK = build dependency; Jackydima SDK = reference-only
 ```
 
-Verified structural rules:
+The stabilization audit found no remaining structural ambiguity that should delay engineering.
+
+### Immediate repository operation
+
+Promote this exact cleaned active checkpoint to protected `main` while preserving both branch histories; verify tree identity and protection. Do not force-update `main`.
+
+After promotion is verified, current engineering responsibility becomes:
 
 ```text
-only one active collision prototype directory
-behavior-only and diagnostic collision twins share one behavior source list
-do not co-load the collision twins
-official Georgeto SDK submodule is the build dependency
-Jackydima SDK submodule is reference-only
-obsolete FrameEffectLogger target/source and active build references are retired
-prototype/research names remain until deliberate production migration
-product-aware build/deploy/load procedures now distinguish diagnostic vs behavior-only evidence surfaces
+equipped-melee marker expansion planning
 ```
 
-No collision behavior was changed during Pass 3.
-
-### Pass 4 — CURRENT: final readiness check
-
-Prove the stabilized repository is ready to return to engineering:
-
-```text
-fresh Normal Chat can recover current state from a small hot path
-bounded Work can recover a frozen implementation without reconstructing the project
-important engine facts route EVIDENCE_INDEX → exact EV → provenance
-build/product/dependency roles are unambiguous
-active/stable branch roles are explicit
-no unresolved structural/authority ambiguity remains
-```
-
-Do not create another cleanup task merely for stylistic uniformity. If these checks pass, stabilization is complete and the active checkpoint may be promoted to `main` deliberately.
+Start by recovering the currently supported marker-family/source boundary and freeze **one** expansion mechanism/family before implementation. Keep Fist source adaptation and AttackContinuationProtection separate.
 
 ---
 
-## After Stabilization
+## Forward Order
 
 ```text
 equipped-melee marker expansion planning
