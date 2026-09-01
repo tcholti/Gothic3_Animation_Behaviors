@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 2.1  
+**Version:** 2.2  
 **Updated:** 2026-09-01
 
 ## Purpose
@@ -12,15 +12,15 @@ Define only the collaboration rules that are specific to the Gothic 3 Animation 
 This file does **not** own:
 
 ```text
-retrieval-depth procedure / subsystem orientation  → README.md
-stable branch/test/log/version conventions          → PROJECT_PIPELINE.md
-recurring Git/build/deploy/test/evidence sequences  → PROJECT_OPERATING_PROCEDURES.md
-bounded Work execution details                      → WORK_IMPLEMENTATION_PROTOCOL.md
-knowledge-maintenance transactions                  → KNOWLEDGE_MAINTENANCE.md
-knowledge authority/update triggers                 → KNOWLEDGE_REGISTRY.md
-technical engineering principles                    → ENGINEERING_GUIDE.md / technical authorities
-current technical responsibility                    → SESSION_ENTRYPOINT.md
-transient continuation detail                       → BETWEEN_CHATS.md
+project purpose / long-term goal / scope / authority topology / retrieval → README.md charter
+stable branch/test/log/version conventions                            → PROJECT_PIPELINE.md
+recurring Git/build/deploy/test/evidence/review sequences             → PROJECT_OPERATING_PROCEDURES.md
+bounded Work execution details                                        → WORK_IMPLEMENTATION_PROTOCOL.md
+knowledge-maintenance transactions                                    → KNOWLEDGE_MAINTENANCE.md
+knowledge authority/update triggers                                   → KNOWLEDGE_REGISTRY.md
+technical engineering principles                                      → ENGINEERING_GUIDE.md / technical authorities
+current technical responsibility                                      → SESSION_ENTRYPOINT.md
+transient continuation detail                                         → BETWEEN_CHATS.md
 ```
 
 > **One collaboration responsibility should have one project-local owner. This file allocates responsibility; it does not duplicate every procedure used by those responsibilities.**
@@ -29,21 +29,26 @@ transient continuation detail                       → BETWEEN_CHATS.md
 
 ## 1. Authority Hierarchy and CAM Boundary
 
-The Gothic 3 project operates under CAM as its higher-order collaboration philosophy. CAM is the constitutional layer: it supplies the reusable principles and agency model that project-local rules are meant to operationalize.
+The Gothic 3 project operates under CAM as its higher-order collaboration philosophy. CAM is the constitutional layer: it supplies the reusable principles and agency model that project-local authorities are meant to operationalize.
+
+Immediately beneath CAM, `docs/README.md` is the **Gothic project charter**. It owns the project's why, long-term direction, scope, authority topology and retrieval model. This collaboration document is one specialist authority beneath that charter.
 
 The practical hierarchy is:
 
 ```text
 CAM philosophy / reusable collaboration principles
         ↓
-Gothic 3 project-specific rules and responsibility allocation
+Gothic project charter (`docs/README.md`)
         ↓
-stable project conventions / authority routing
+specialist Gothic authorities within delegated domains
+(including this collaboration authority)
         ↓
 recurring procedures and bounded implementation protocols
         ↓
 exact task-specific execution / transient handoff
 ```
+
+The specialist layer is not a single total ordering. Collaboration, technical architecture, stable conventions, evidence, knowledge ownership and other domains have different primary owners beneath the charter.
 
 A lower layer may specialize, constrain and operationalize a higher layer for Gothic 3, but it should not silently redefine or contradict the higher layer.
 
@@ -54,7 +59,7 @@ The separate `tcholti/Collaborative-Agency-Model` repository may evolve through 
 From Gothic 3 work:
 
 ```text
-apply the adopted CAM principles through current Gothic authorities
+apply the adopted CAM principles through the Gothic project charter and specialist authorities
 read/compare CAM when a collaboration-level question genuinely requires it
 improve the lowest owning Gothic authority when project experience exposes friction
 identify a lesson as a possible CAM-evolution candidate when warranted
@@ -69,12 +74,18 @@ preserve the concrete project lesson
 → mark the issue for separate CAM comparison/evolution
 → STOP upward modification in this project
 → dedicated User-authorized CAM chat decides whether CAM should change
-→ any adopted CAM evolution is then deliberately operationalized back into Gothic authorities
+→ any adopted CAM evolution is then deliberately operationalized back into the Gothic charter/specialist authorities as appropriate
 ```
 
 Editing CAM rules, profiles, procedures, philosophy, reusable baselines, or theory requires that separate User-authorized CAM-focused responsibility.
 
-Do not load CAM documents during ordinary Gothic engineering merely to reconfirm established project practice. Constitutional authority does not imply repeated pre-reading when the current project rules already operationalize it clearly.
+Do not load CAM documents during ordinary Gothic engineering merely to reconfirm established project practice. Constitutional authority does not imply repeated pre-reading when the current project authorities already operationalize it clearly.
+
+### Formal review/audit boundary
+
+A formal project review/audit must establish the hierarchy above and the intended responsibility of its targets **before** judging their contents. The recurring preflight is POP-10 in `PROJECT_OPERATING_PROCEDURES.md`.
+
+This prevents a review from flattening charter, specialist authority, procedure, evidence and current-state documents into peer texts or treating layered operationalization as accidental duplication.
 
 ---
 
@@ -195,7 +206,7 @@ When placement is uncertain, ask:
 
 More compute, a larger context window, or repository automation does not automatically make Work the right owner of context-heavy design. Conversely, mechanically substantial but semantically frozen implementation need not remain in Normal Chat when Work materially improves execution.
 
-This allocation is evidence-based and revisable within the CAM hierarchy. Change the lowest owning project rule deliberately if capabilities, constraints, or repeated results materially change the best allocation; if the lesson appears to challenge a CAM-level principle, use the separate upward-review path in §1 rather than silently redefining it here.
+This allocation is evidence-based and revisable within the CAM → project-charter hierarchy. Change the lowest owning project rule deliberately if capabilities, constraints, or repeated results materially change the best allocation; if the lesson appears to challenge the project charter or a CAM-level principle, use the appropriate higher-level review path rather than silently redefining it here.
 
 No permanent Medium/High reasoning-mode rule belongs in this project. Use sufficient reasoning for the responsibility and avoid spending resources reconstructing context that the repository can recover.
 
@@ -280,11 +291,12 @@ A Chat or Work context is not the sole project memory.
 For continuation:
 
 ```text
-current durable state          → SESSION_ENTRYPOINT.md
-transient exact continuation   → BETWEEN_CHATS.md when genuinely needed
-retrieval depth/routes         → README.md
-exact technical evidence       → EVIDENCE_INDEX.md → exact EV/provenance
-stable project conventions     → PROJECT_PIPELINE.md
+project purpose / authority topology → README.md charter
+current durable state               → SESSION_ENTRYPOINT.md
+transient exact continuation        → BETWEEN_CHATS.md when genuinely needed
+retrieval depth/routes              → README.md
+exact technical evidence            → EVIDENCE_INDEX.md → exact EV/provenance
+stable project conventions          → PROJECT_PIPELINE.md
 ```
 
 Do not ask the User to repeat technical state that can be reliably recovered from project authority.
@@ -297,13 +309,13 @@ When the User announces a new Normal Chat, perform only the maintenance necessar
 
 ## 8. Project Method Evolution
 
-Project procedures/rules are working operationalizations under the CAM constitutional layer, not immutable law.
+Project procedures/rules are working operationalizations under the CAM constitutional layer and the Gothic project charter, not immutable law.
 
 When repeated friction, one serious failure, or a clearly better method exposes a real weakness:
 
 ```text
 diagnose the actual mechanism
-→ change the lowest owning Gothic authority that can solve it consistently with CAM
+→ change the lowest owning Gothic authority that can solve it consistently with CAM + project charter
 → preserve only necessary rationale/history through current authority + Git history
 → use the revised method and observe it
 ```
@@ -313,12 +325,12 @@ Do not add a new rule or document simply because a problem occurred once if an e
 Ownership of the change is determined by `KNOWLEDGE_REGISTRY.md`:
 
 ```text
-stable convention            → PROJECT_PIPELINE.md
-recurring operation          → PROJECT_OPERATING_PROCEDURES.md
-bounded Work execution       → WORK_IMPLEMENTATION_PROTOCOL.md
-knowledge maintenance        → KNOWLEDGE_MAINTENANCE.md
-collaboration allocation     → this file
-retrieval/document map       → README.md
+project purpose / long-term direction / authority topology → README.md charter
+stable convention                                         → PROJECT_PIPELINE.md
+recurring operation                                       → PROJECT_OPERATING_PROCEDURES.md
+bounded Work execution                                    → WORK_IMPLEMENTATION_PROTOCOL.md
+knowledge maintenance                                     → KNOWLEDGE_MAINTENANCE.md
+collaboration allocation                                  → this file
 ```
 
 ### Bottom-up learning / upward CAM review
@@ -327,18 +339,18 @@ Gothic project experience is one empirical source from which CAM may eventually 
 
 ```text
 Gothic success/friction/failure
-→ improve the lowest Gothic owner when the lesson fits the adopted CAM principles
+→ improve the lowest Gothic owner when the lesson fits the project charter + adopted CAM principles
 → observe actual use
 → identify candidate wider value or a possible CAM-level gap when warranted
 → STOP upward modification in Gothic work
 → dedicated User-authorized CAM responsibility compares across projects and decides any CAM evolution
-→ deliberately operationalize adopted CAM changes back into Gothic authorities where relevant
+→ deliberately operationalize adopted CAM changes back into the Gothic charter/specialist authorities where relevant
 ```
 
 This preserves both directions of learning:
 
 ```text
-CAM → governs and shapes project operationalization
+CAM → shapes the project charter → governs project operationalization
 project experience → supplies evidence for later CAM evolution
 ```
 
@@ -348,4 +360,4 @@ Do not modify CAM from this project-maintenance transaction.
 
 ## Core Project Collaboration Rule
 
-> **Use CAM as the constitutional collaboration layer and the Gothic repository as its maintained project-specific operationalization: keep User + Normal Chat responsible for context-heavy interpretation/design, Work responsible for bounded execution when it materially helps, the authoritative home PC responsible for real build/game stages, and the repository responsible for durable memory; expose new interpretive responsibilities before executing them, minimize transfer burden, evolve the lowest Gothic authority from evidence, and reserve any CAM evolution for a separate deliberate upward-review responsibility.**
+> **Use CAM as the constitutional collaboration layer, the Gothic project charter as the highest project-specific statement of purpose/direction/authority topology, and the specialist Gothic authorities as its maintained operationalization: keep User + Normal Chat responsible for context-heavy interpretation/design, Work responsible for bounded execution when it materially helps, the authoritative home PC responsible for real build/game stages, and the repository responsible for durable memory; expose new interpretive responsibilities before executing them, minimize transfer burden, evolve the lowest correct Gothic authority from evidence, and reserve any CAM evolution for a separate deliberate upward-review responsibility.**
