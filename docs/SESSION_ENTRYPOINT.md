@@ -7,10 +7,10 @@
 **Updated:** 2026-09-01
 
 Immediate transient handoff when needed: `docs/BETWEEN_CHATS.md`  
-Documentation/retrieval map: `docs/README.md`  
+Project charter / highest Gothic-specific authority / retrieval map: `docs/README.md`  
 Project collaboration/CAM operationalization: `docs/COLLABORATION_RULES.md`  
 Stable conventions: `docs/PROJECT_PIPELINE.md`  
-Recurring local procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`  
+Recurring local + formal review/audit procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`  
 Knowledge maintenance/ownership: `docs/KNOWLEDGE_MAINTENANCE.md` / `docs/KNOWLEDGE_REGISTRY.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
 
@@ -18,16 +18,21 @@ Evidence routing: `docs/EVIDENCE_INDEX.md`
 
 ## Authority Boundary
 
-CAM is the higher-order collaboration philosophy for this project. `COLLABORATION_RULES.md` owns how those principles are operationalized for Gothic 3.
+CAM is the constitutional collaboration layer above this project. `docs/README.md` is the **highest project-specific authority immediately beneath CAM** for the project's purpose, long-term direction, scope and authority topology. `COLLABORATION_RULES.md` owns how CAM/project principles are operationalized for participant allocation and collaboration inside Gothic 3.
 
 ```text
 CAM constitutional collaboration principles
-→ Gothic project-specific rules / authority allocation
-→ project conventions and procedures
+→ Gothic project charter (`docs/README.md`)
+→ specialist Gothic authorities within delegated domains
+→ procedures / bounded protocols
 → exact task execution
 ```
 
-Ordinary Gothic engineering should use the lowest relevant Gothic authority rather than rereading CAM by default.
+Specialist authorities are not all linearly ranked; each owns its delegated domain beneath the charter.
+
+Ordinary Gothic engineering should use the lowest relevant Gothic authority rather than rereading CAM or the full charter by default.
+
+A **formal project review/audit** must instead apply POP-10: establish the charter hierarchy and each target's intended responsibility before judging content, contradiction, duplication or cleanup.
 
 > **Do not modify the Collaborative-Agency-Model repository from Gothic 3 project work.** Any CAM evolution requires a separate User-authorized CAM-focused responsibility; adopted CAM changes are then deliberately operationalized back into this project.
 
@@ -47,14 +52,15 @@ Release/product details live in `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
 1. Read this file first.
 2. Read `docs/BETWEEN_CHATS.md` only when it contains an active transient responsibility.
-3. Treat the CAM/project authority boundary and release-purity rule above as standing constraints.
-4. If the active subsystem is not already oriented, use the one-time Subsystem Orientation Pass from `docs/README.md`.
-5. If substantial reasoning will reinterpret evidence or propose a new fix, reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority.
-6. Read `docs/PROJECT_OPERATING_PROCEDURES.md` only when entering a relevant local Git/build/deploy/runtime-artifact sequence.
-7. Retrieve the relevant `docs/PROJECT_PIPELINE.md` section before changing gate/test/evidence/procedure IDs, artifact naming, build labels, branch meanings or validation-flow conventions.
-8. Do not scan the whole repository or reconstruct the project from old chat history.
-9. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
-10. Do not modify CAM from this project responsibility.
+3. Treat the CAM → project charter → specialist authority hierarchy and the release-purity rule above as standing constraints.
+4. If the current responsibility is a **formal review/audit**, apply POP-10 in `docs/PROJECT_OPERATING_PROCEDURES.md` before evaluating the target. Read/confirm `docs/README.md` §0 and each target's intended Purpose/Scope/owner first. The review has not started until that preflight is satisfied.
+5. If the active technical subsystem is not already oriented, use the one-time Subsystem Orientation Pass from `docs/README.md`.
+6. If substantial reasoning will reinterpret evidence or propose a new fix, reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority.
+7. Read other `docs/PROJECT_OPERATING_PROCEDURES.md` sections only when entering their relevant local Git/build/deploy/runtime-artifact sequences.
+8. Retrieve the relevant `docs/PROJECT_PIPELINE.md` section before changing gate/test/evidence/procedure IDs, artifact naming, build labels, branch meanings or validation-flow conventions.
+9. Do not scan the whole repository or reconstruct the project from old chat history.
+10. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
+11. Do not modify CAM from this project responsibility.
 
 After bootstrap, report briefly:
 
@@ -64,6 +70,8 @@ closed boundary relevant to it
 exact immediate next step
 what remains deliberately deferred
 ```
+
+For a formal review/audit, also state the compact POP-10 preflight hierarchy and intended use of the major targets before findings.
 
 ---
 

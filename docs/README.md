@@ -1,9 +1,122 @@
-# Gothic 3 Animation Behaviors — Documentation and Knowledge Map
+# Gothic 3 Animation Behaviors — Project Charter and Knowledge Map
 
-**Purpose:** Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.  
+**Purpose:** Highest project-specific authority beneath CAM for the Gothic 3 project's **purpose, long-term direction, scope, authority topology, and retrieval model**. Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.  
 **Updated:** 2026-09-01
 
-> **Do not load every document by default. Find the current responsibility, recover a compact model of the relevant subsystem when needed, open the smallest relevant authority/index, and broaden only when the question requires it.**
+> **Understand the project authority structure before judging lower-level documents. For ordinary engineering, do not load every document by default: find the current responsibility, recover a compact model of the relevant subsystem when needed, open the smallest relevant authority/index, and broaden only when the question requires it.**
+
+---
+
+## 0. Project Charter — Highest Gothic-Specific Authority
+
+### Authority position
+
+CAM is the constitutional collaboration layer above this project. This file is the **highest project-specific authority immediately beneath CAM** for why this repository exists, what it is trying to achieve over the long term, what belongs inside the project, and how the project's specialist authorities relate to one another.
+
+```text
+CAM constitutional collaboration philosophy
+        ↓
+this Gothic project charter (`docs/README.md`)
+        ↓
+specialist Gothic authorities within their delegated domains
+        ↓
+recurring procedures / bounded implementation protocols
+        ↓
+current-state / exact task execution
+```
+
+This does **not** mean this file restates every specialist rule or technical fact. Specialist authorities remain primary inside their assigned domains. The charter defines the purpose and authority topology those lower authorities operationalize.
+
+A lower project authority may specialize or constrain a higher one for its own domain, but it must not silently redefine the project purpose, long-term direction, or CAM relationship. If evidence or project experience appears to require such a change, surface that conflict explicitly and update the correct higher authority deliberately.
+
+The User remains the final project-direction authority. A material change to the project's why, long-term goal, scope, or authority topology should therefore update this charter rather than being smuggled into a lower technical/procedure document.
+
+CAM itself is not modified from Gothic 3 project work. Any possible CAM evolution belongs to a separate User-authorized CAM-focused responsibility; adopted CAM changes are then deliberately operationalized back into this project.
+
+### Why this project exists
+
+The project exists to turn Gothic 3 animation-behavior research into **robust, reusable, configurable systems** rather than a collection of one-off patches.
+
+Its durable aims are to:
+
+- improve animation behavior where Gothic 3's fixed/native behavior prevents the intended animation design;
+- prefer animation-authored and native-semantic control where those are the strongest facts available;
+- preserve native fallback and compatibility for unconfigured, unmarked, or unsupported cases;
+- build systems generally for supported actors/animations rather than becoming Hero-only by accident;
+- separate production behavior from research diagnostics;
+- preserve reusable Gothic 3 engine, animation, source/API, and testing knowledge so future work does not have to rediscover established facts.
+
+Research prototypes, evidence logs, reverse engineering and diagnostic tools are means to that end. They are not the final product by themselves.
+
+### Long-term goal
+
+The long-term engineering destination is a maintainable Gothic 3 behavior system centered on a diagnostics-free production DLL:
+
+```text
+Script_G3AnimationBehaviors.dll
+```
+
+It should host selectively enabled, compatible behavior modules such as:
+
+```text
+animation-authored frame collision
+Raise control
+playback-speed control
+future animation/gameplay behavior modules when deliberately adopted
+```
+
+Research instrumentation remains available separately through diagnostic twins/tools rather than becoming a production dependency.
+
+The project should mature incrementally: prove one responsibility, preserve native/fallback behavior, retain causal evidence, then integrate proven behavior into the production architecture. Final public behavior should not depend on diagnostic state, research logs, or diagnostic-only hooks.
+
+The durable knowledge base is part of the long-term result as well: future Chat/Work contexts should be able to reconstruct established Gothic 3 facts through a small retrieval surface instead of carrying the whole project history in active context.
+
+### Specialist authority topology
+
+The main specialist authorities sit **beneath this charter but are not all in one linear hierarchy**. They govern different delegated domains:
+
+```text
+collaboration / CAM operationalization
+→ COLLABORATION_RULES.md
+
+technical architecture / subsystem meaning
+→ DESIGN.md + subsystem/release authorities
+
+stable conventions / authority ownership
+→ PROJECT_PIPELINE.md + KNOWLEDGE_REGISTRY.md
+
+recurring operations / bounded execution
+→ PROJECT_OPERATING_PROCEDURES.md + WORK_IMPLEMENTATION_PROTOCOL.md
+
+knowledge/evidence maintenance and proof
+→ KNOWLEDGE_MAINTENANCE.md + evidence authorities/indexes
+
+current responsibility / transient execution state
+→ SESSION_ENTRYPOINT.md + BETWEEN_CHATS.md when needed
+```
+
+File size, age, detail, or implementation proximity does not make one specialist authority superior to another outside its delegated domain.
+
+When authorities appear to conflict:
+
+```text
+identify the responsibility each document actually owns
+→ compare the lower-level statement with this charter and its owning higher/specialist authority
+→ preserve factual evidence separately from normative/project-direction decisions
+→ change the lowest correct owner that can resolve the conflict
+→ escalate to the User when project purpose/direction is genuinely implicated
+→ never silently resolve a CAM-level conflict from Gothic project work
+```
+
+### Mandatory review/audit principle
+
+A formal project review or audit must **first** recover this hierarchy and the intended use of the material being reviewed. The recurring procedure is `POP-10` in `PROJECT_OPERATING_PROCEDURES.md`.
+
+> **If the reviewer cannot explain the governing hierarchy and the intended responsibility of the documents/systems being reviewed, the review has not started yet.**
+
+This prerequisite prevents an audit from flattening the project into peer documents, mistaking layered operationalization for duplication, or changing lower-level rules in ways that unintentionally alter higher-level intent.
+
+Understanding the hierarchy does not require rereading the entire CAM repository or every Gothic document. The review should retrieve the smallest material needed to establish the authority chain and each target's stated purpose before judging its contents.
 
 ---
 
@@ -27,11 +140,12 @@ Normal development continues on `docs/collision-source-evidence`. Stable promoti
 
 CAM is the higher-order collaboration philosophy for this project. Gothic 3 is a project-specific operationalization of that constitutional layer, not a file-for-file copy of CAM templates.
 
-The detailed Gothic↔CAM authority relationship is owned by `COLLABORATION_RULES.md`. In retrieval terms:
+This charter owns the project's purpose, long-term direction and authority topology. The detailed Gothic↔CAM collaboration relationship is owned by `COLLABORATION_RULES.md`. In retrieval terms:
 
 ```text
 CAM principles / philosophy
-→ operationalized by Gothic project authorities
+→ this project charter
+→ operationalized by specialist Gothic project authorities
 → ordinary work reads the lowest relevant Gothic owner
 ```
 
@@ -45,6 +159,7 @@ The project predates CAM's newer `PROJECT_MANIFEST.md` template. Its manifest re
 
 | Reusable project-manifest responsibility | Gothic 3 authority |
 |---|---|
+| project purpose / long-term goal / authority topology | this `README.md` charter |
 | repository / branch model | this `README.md` + `PROJECT_PIPELINE.md` |
 | current-state entry point | `SESSION_ENTRYPOINT.md` |
 | project-specific collaboration delta / participant allocation / CAM operationalization | `COLLABORATION_RULES.md` |
@@ -52,7 +167,7 @@ The project predates CAM's newer `PROJECT_MANIFEST.md` template. Its manifest re
 | authority ownership / update triggers | `KNOWLEDGE_REGISTRY.md` |
 | retrieval model / subsystem orientation routes | this `README.md` |
 | evidence and maintenance lifecycle | `KNOWLEDGE_MAINTENANCE.md` + evidence authorities |
-| recurring local operational sequences | `PROJECT_OPERATING_PROCEDURES.md` |
+| recurring local operational sequences and formal review/audit preflight | `PROJECT_OPERATING_PROCEDURES.md` |
 | bounded implementation procedure | `WORK_IMPLEMENTATION_PROTOCOL.md` |
 | transient continuation bridge | `BETWEEN_CHATS.md` when needed |
 | technical architecture / intended behavior | `DESIGN.md` and subsystem authorities |
@@ -167,7 +282,7 @@ Retrieve the relevant section when a convention is actually involved; do not rea
 
 #### `PROJECT_OPERATING_PROCEDURES.md`
 
-Recurring concrete Git/build/deploy/load/test/evidence procedures. Read/spot-read only when entering those local operation sequences.
+Recurring concrete Git/build/deploy/load/test/evidence procedures plus the mandatory preflight for formal project reviews/audits. Read/spot-read only when entering those operation/review sequences.
 
 #### `WORK_IMPLEMENTATION_PROTOCOL.md`
 
@@ -286,10 +401,12 @@ Removed/superseded active documents and earlier wording remain recoverable from 
 
 | Question | Start here | Broaden only if needed |
 |---|---|---|
+| Why does this project exist / what is its long-term goal / what is the authority hierarchy? | this `README.md` §0 | owning specialist authority only after the charter role is clear |
 | What are we doing now? | `SESSION_ENTRYPOINT.md` | `BETWEEN_CHATS.md` for exact transient continuation |
 | What causal model constrains an active collision problem? | current subsystem authority | `EVIDENCE_INDEX.md` reconstruction route → exact EV entries |
 | What did the last Chat/Work handoff do? | `BETWEEN_CHATS.md` | exact commit/diff |
-| How does CAM govern this project / who should own this responsibility / should this go to Work? | `COLLABORATION_RULES.md` | CAM itself only for a genuine principle-level comparison; `WORK_IMPLEMENTATION_PROTOCOL.md` only if bounded implementation is selected |
+| How does CAM govern this project / who should own this responsibility / should this go to Work? | this charter → `COLLABORATION_RULES.md` | CAM itself only for a genuine principle-level comparison; `WORK_IMPLEMENTATION_PROTOCOL.md` only if bounded implementation is selected |
+| How must a formal review/audit begin? | `PROJECT_OPERATING_PROCEDURES.md` POP-10 | this charter + target documents' Purpose/Scope + `KNOWLEDGE_REGISTRY.md` ownership |
 | What naming/numbering/version/test/artifact convention should I use? | `PROJECT_PIPELINE.md` relevant section | owning procedure/current plan only for task semantics |
 | How do I execute recurring Git/build/deploy/test/evidence work? | `PROJECT_OPERATING_PROCEDURES.md` | `PROJECT_PIPELINE.md` only if a convention itself is relevant |
 | How should bounded Work execute? | `WORK_IMPLEMENTATION_PROTOCOL.md` | only task-named source/API/evidence |
@@ -365,6 +482,8 @@ Usually:
 
 Within the same continuing subsystem/problem context, do not rerun orientation/reconstruction or reread unchanged authorities/procedures after every prompt.
 
+A **formal project review/audit** is different from ordinary continuation: before evaluating the target, apply POP-10 and recover this charter hierarchy plus the target authorities' intended use.
+
 ### Work — bounded implementation
 
 Usually:
@@ -383,15 +502,15 @@ Work preserves already-frozen identifiers, filenames and build labels. It may in
 
 | Responsibility | Authority |
 |---|---|
+| project purpose / long-term direction / scope / authority topology / retrieval model | this `README.md` charter |
 | current continuation / immediate responsibility | `SESSION_ENTRYPOINT.md` |
 | transient cross-context handoff | `BETWEEN_CHATS.md` |
 | project-specific CAM operationalization / participant allocation / authorization | `COLLABORATION_RULES.md` |
 | stable project naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` |
-| recurring local operational sequences | `PROJECT_OPERATING_PROCEDURES.md` |
+| recurring local operational sequences + formal review/audit preflight | `PROJECT_OPERATING_PROCEDURES.md` |
 | bounded implementation execution | `WORK_IMPLEMENTATION_PROTOCOL.md` |
 | knowledge-maintenance process | `KNOWLEDGE_MAINTENANCE.md` |
 | knowledge ownership/update triggers | `KNOWLEDGE_REGISTRY.md` |
-| documentation map / retrieval depth / subsystem orientation | this `README.md` |
 | overall intended system architecture | `DESIGN.md` |
 | current collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | current diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |

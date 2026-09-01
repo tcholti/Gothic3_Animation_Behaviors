@@ -26,7 +26,7 @@ main
 
 Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its bootstrap.
 
-CAM is the constitutional collaboration layer; `COLLABORATION_RULES.md` owns its Gothic operationalization. Do not modify CAM from Gothic 3 work.
+CAM is the constitutional collaboration layer; `docs/README.md` is the highest Gothic-specific project charter beneath CAM; `COLLABORATION_RULES.md` owns participant allocation and detailed Gothic CAM operationalization. Do not modify CAM from Gothic 3 work.
 
 Known unrelated local file remains completely untouched:
 
