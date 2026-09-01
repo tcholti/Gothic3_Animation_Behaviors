@@ -31,7 +31,7 @@ The registry exists to prevent the same fact becoming a separately maintained co
 | current collision execution/cleanup lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` | ownership/lifetime/cleanup invariant or causal architecture changes | a test confirms the existing lifecycle model without changing it |
 | current collision diagnostic architecture | `COLLISION_LOGGER_PLAN.md` | hook ownership, diagnostic event model, active probe responsibility changes | a log adds evidence without changing diagnostic design |
 | current/future staged collision validation gates | `COLLISION_TEST_PLAN.md` | current gate, acceptance criteria, control matrix, interpretation rule, or future required validation boundary changes | historical completed-test detail already preserved by evidence |
-| exact evidence status/provenance | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` + `EVIDENCE_LEDGER_STEP_C.md` + `EVIDENCE_LEDGER_STEP_D.md` + `EVIDENCE_LEDGER_STEP_E.md` | a controlled/source fact is established, qualified, contradicted, or materially reinterpreted | pure design preference without factual claim |
+| exact evidence status/provenance | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` + `EVIDENCE_LEDGER_199_ONWARD.md` | a controlled/source fact is established, qualified, contradicted, or materially reinterpreted | pure design preference without factual claim |
 | evidence topic / future-responsibility routing | `EVIDENCE_INDEX.md` | a new evidence domain/range/search route is useful, an existing route materially changes, or proven knowledge becomes materially relevant to a different future engineering responsibility | every new EV already covered by an existing route or speculative “might be useful someday” relationships |
 | generalized animation semantics / authoring rules | `ANIMATION_RULES.md` | a generalized filename/UseType/action/phase/pose/authoring semantic changes | one concrete asset/test that does not generalize the rule |
 | concrete animation families/assets/fixtures | `ANIMATION_CATALOG.md` | a concrete family/asset/source annotation/fixture materially changes reusable asset knowledge | runtime architecture result with no asset-level consequence |
@@ -44,10 +44,10 @@ The registry exists to prevent the same fact becoming a separately maintained co
 | research chronology / where an older line happened | `RESEARCH_MAP.md` | a meaningful historical milestone/topic route becomes hard to recover otherwise | every incremental test/result |
 | active/unprocessed runtime/source artifact | `research/raw/` | new artifact still needs interpretation/comparison | artifact has already been canonically processed |
 | processed provenance/history | `research/archive/` | artifact has durable verification value after processing | active unresolved artifact |
-| superseded documentation wording/history | `docs/archive/` | active document is deliberately replaced/compressed and old wording retains historical value | ordinary edits that Git history already represents adequately |
+| superseded documentation wording/history | Git history | an older active wording or removed document must be recovered for historical reasoning | ordinary active retrieval, because Git history is not a competing current authority |
 | technical project scope/context for engine-facing prompts | `PROJECT_SCOPE_CONTEXT.md` | factual scope or standard prompt-context wording changes | ordinary technical implementation/evidence |
 
-The evidence-ledger files are one global monotonic evidence namespace. File splitting is storage/retrieval structure only; Step D currently ends at EV-214 and Step E begins at EV-215.
+The evidence-ledger files are one global monotonic evidence namespace. File splitting is storage/retrieval structure only: `EVIDENCE_LEDGER.md` owns EV-001–157, `EVIDENCE_LEDGER_STEP_B.md` owns EV-158–198, and `EVIDENCE_LEDGER_199_ONWARD.md` owns EV-199 onward.
 
 ---
 
