@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-08-30  
+**Updated:** 2026-09-01  
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -16,7 +16,7 @@ The active behavior domains are:
 
 Future independent behavior domains may include target acquisition, climbing and other animation/gameplay systems.
 
-This file defines the **intended architecture and current implementation order**. It does not preserve experiment chronology. For the exact current bounded rewrite use `SECOND_PASS_REWRITE_CONTRACT.md`; for proof history use `EVIDENCE_INDEX.md` → the evidence ledgers/raw logs; for lifecycle use `COLLISION_LIFECYCLE_PLAN.md`; for staged validation use `COLLISION_TEST_PLAN.md`.
+This file defines the **intended architecture and current implementation order**. It does not preserve experiment chronology. The completed second-pass structural rewrite is preserved in `SECOND_PASS_REWRITE_CONTRACT.md`; the completed generation-scoped marker-bookkeeping result is in `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`; proof history routes through `EVIDENCE_INDEX.md` → the evidence ledgers/raw logs; lifecycle authority is `COLLISION_LIFECYCLE_PLAN.md`; staged validation authority is `COLLISION_TEST_PLAN.md`.
 
 The pre-information-architecture design, including detailed prototype chronology, is preserved at:
 
@@ -357,7 +357,7 @@ Current lifecycle authority and constraints:
 - `COLLISION_LIFECYCLE_PLAN.md`
 - `COLLISION_TEST_PLAN.md`
 - `COLLISION_CLEANUP_CALLSITE_MAP.md`
-- `EVIDENCE_INDEX.md` → EV-151–EV-207
+- `EVIDENCE_INDEX.md` → EV-151–EV-215
 
 Do not implement family-specific cleanup matrices, timers, polling, held-Use2 classifiers, arbitrary group-7 adoption, or broad scans merely because native cleanup has several internal paths.
 
@@ -383,37 +383,53 @@ Authority: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
 
 The marker occurrence/duplicate/window state used to survive Gothic frame-effect replay is a different responsibility from physically returning a stale offensive source to a safe state.
 
-A natural/native source reset may retire marker bookkeeping when it proves the old execution ended. Intentional OFF or exact-set source switching must not retire the entire execution.
+The accepted execution identity is now:
 
-Existing marker bookkeeping fixes are proven behavior and must remain until a stronger authority replaces them. Preserve:
+```text
+C1 monotonic generation
+= durable marker occurrence/dedupe execution identity
+```
+
+Gate 4 removed/consolidated the older marker-local guesses that a new execution began from:
+
+```text
+source changes
+motion changes
+action changes
+phase changes
+state-time rollback
+authored-count changes
+controlled-callback rollback inference
+```
+
+Natural `RetireMarkerOwnedSource()` handling is narrowed to factual retirement of the exact physical marker-owned source bit/window. It is not whole-execution retirement authority.
+
+Preserve all independent marker invariants:
 
 - `Routine.StatePosition` advancement after custom ownership where required to suppress Gothic's competing timed activation;
 - repeated-marker / repeated-contact rearm semantics;
-- occurrence/replay protection;
+- authored occurrence budgets and replay/duplicate protection;
 - exact-set RIGHT/LEFT/BOTH/OFF switching;
-- interruption/dead-execution rejection so one execution's marker state does not survive into another.
+- OFF as an intra-Hit inactive gap rather than terminal execution authority;
+- interruption/dead-execution rejection;
+- supported-family/current-motion/source-preflight ownership;
+- physical marker-window/source-bit state;
+- native fallback for unmarked/unsupported cases;
+- valid-motion-only marker caching.
 
-EV-131–EV-133 prove a real interrupted-execution occurrence-budget defect and its natural marker-owned source-retirement correction. EV-167 explicitly separates this marker-bookkeeping retirement from physical cleanup.
+EV-131–EV-133 establish the historical interrupted-execution occurrence-budget defect. EV-167 separates marker bookkeeping from physical cleanup. EV-213 establishes the generation-scoped replacement, and EV-214 directly closes the literal historical same-motion interruption/restart regression under C1-generation identity. EV-215 completes behavior-only architecture verification.
 
-The C1 generation creates a legitimate **later simplification question**, but not authority to delete marker execution protections during the frozen structural rewrite.
-
-The later simplification audit must classify each check into:
-
-```text
-A. execution-lifetime inference genuinely superseded by C1/native authority
-B. independent marker invariant still required
-```
-
-Only group A may be removed.
-
-Before any marker-core consolidation/reimplementation:
+Before any future marker-core consolidation/reimplementation:
 
 ```text
 EVIDENCE_INDEX.md
 → Marker execution lifetime / bookkeeping
-→ EV-131–EV-133 / EV-167
+→ MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+→ EV-131–EV-133 / EV-167 / EV-213–EV-214
 → COLLISION_LIFECYCLE_PLAN.md §9
 ```
+
+Do not restore the superseded execution-boundary heuristics merely because a later expansion touches marker code.
 
 ---
 
@@ -467,9 +483,9 @@ Script_FrameCollisionTest / later Script_G3AnimationBehaviors
 │    exact current-motion marker ownership
 │    current attack-family eligibility / callback ownership
 │    RIGHT / LEFT / BOTH / OFF semantics
-│    authored occurrence/replay/duplicate bookkeeping
+│    C1-generation-scoped authored occurrence/replay/duplicate bookkeeping
 │    competing native activation suppression
-│    marker-owned source/window bookkeeping
+│    marker-owned physical source/window bookkeeping
 │
 ├─ CollisionSources
 │    factual current RIGHT/LEFT source identity / UseType / availability
@@ -520,51 +536,59 @@ The release and instrumented diagnostic twin are mutually exclusive runtime prod
 
 Canonical release rule: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
-Exact current rewrite contract: `SECOND_PASS_REWRITE_CONTRACT.md`.
+Completed structural rewrite reference: `SECOND_PASS_REWRITE_CONTRACT.md`.
 
 ---
 
 ## 11. Current Implementation Order
 
-This is the current agreed roadmap. A later destination does not authorize skipping an earlier validation boundary.
+The architecture-verification sequence through Gate 4 is complete; it is no longer an executable roadmap.
 
-1. **Unchanged post-EngineBridge runtime baseline — NEXT.** Current source and current logger only. Prove the already-completed EngineBridge extraction using the compact sentinel matrix in `COLLISION_TEST_PLAN.md` / `BETWEEN_CHATS.md`.
-2. **If baseline passes, implement the frozen semantic-preserving second-pass rewrite.** Exact authority: `SECOND_PASS_REWRITE_CONTRACT.md`. This includes RuntimeClock rename, FrameCollisionMarkers boundary, CollisionSourceOperations, cache correction, dead lifecycle dispatch removal, diagnostics-independent lifecycle, compact/deep diagnostic separation and a diagnostics-free behavior-only prototype build.
-3. **Build/source audit both prototype products.** Diagnostic target + behavior-only target; release-purity architecture must be mechanically enforceable.
-4. **Compact diagnostic sufficiency regression.** Default diagnostic output must still prove core marker/source/C1 invariants without deep probes.
-5. **Behavior-only smoke/equivalence.** Prove behavior does not depend on diagnostics.
-6. **Dedicated marker-bookkeeping audit against C1 authority.** Remove only checks proven to duplicate execution-lifetime inference; preserve independent marker invariants.
-7. **Expand markers across intended equipped-melee attack mechanisms one at a time.** Keep RIGHT/LEFT/BOTH/OFF vocabulary and native no-marker fallback.
-8. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics.
-9. **Run complete marker + lifecycle regression.** Protect closed C1-R1 behavior after marker/source maturity.
-10. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
-11. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
-12. **Mandatory New Balance/Jackydima compatibility gate on mature research behavior.** Resolve hook/callback conflicts deliberately.
-13. **Retain the mature modular foundation and migrate/redesign Raise + speed + config into final `Script_G3AnimationBehaviors`.** Do not pour collision back into the old v0.1 hook/file structure.
-14. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
-15. **Final diagnostics-free production compatibility/regression.** Test assembled public `Script_G3AnimationBehaviors` with New Balance/relevant Jackydima DLLs before stable promotion; retain separate instrumented diagnostic twin for future reproduction.
+Closed foundation:
+
+```text
+second-pass rewrite / product separation      EV-208–EV-212
+Gate-4 generation-scoped marker bookkeeping  EV-213
+literal historical regression closure        EV-214
+final behavior-only architecture smoke       EV-215
+```
+
+Current order:
+
+1. **Complete documentation/knowledge cleanup and review.** Remove stale routing/current-state language without destroying provenance.
+2. **Perform any justified processed-evidence raw→archive migration as a separate atomic transaction.** Update affected provenance paths together.
+3. **Inspect `temp/second-pass-rewrite-publish` unique history/content.** Preserve anything unique that still matters.
+4. **Define and verify the stable protected-`main` promotion checkpoint.** Keep `main` stable and `docs/collision-source-evidence` as active development/research.
+5. **Expand markers across intended equipped-melee attack mechanisms one at a time.** Keep RIGHT/LEFT/BOTH/OFF vocabulary and native no-marker fallback.
+6. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics.
+7. **Run complete marker + lifecycle regression.** Protect closed C1-R1/Gate-4 behavior after marker/source maturity.
+8. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
+9. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
+10. **Mandatory New Balance/Jackydima compatibility gate on mature research behavior.** Resolve hook/callback conflicts deliberately.
+11. **Retain the mature modular foundation and migrate/redesign Raise + speed + config into final `Script_G3AnimationBehaviors`.** Do not pour collision back into the old v0.1 hook/file structure.
+12. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
+13. **Final diagnostics-free production compatibility/regression.** Test assembled public `Script_G3AnimationBehaviors` with New Balance/relevant Jackydima DLLs before stable promotion; retain separate instrumented diagnostic twin for future reproduction.
 
 ---
 
-## 12. Non-Goals for the Current Iteration
+## 12. Non-Goals for the Current Repository-Cleanup Iteration
 
-Not part of the frozen second-pass structural rewrite:
+Do not combine the current documentation/stable-integration checkpoint with:
 
-- C1-driven marker bookkeeping simplification;
 - new attack-family marker support;
 - new marker vocabulary;
 - generalized Fist support;
 - universal monster/body adapters;
-- AttackContinuationProtection;
+- AttackContinuationProtection implementation;
 - Raise/speed changes;
 - configuration redesign;
-- production migration;
+- production DLL migration;
 - target acquisition;
 - climbing;
 - New Balance/Jackydima compatibility fixes;
 - rewriting input arbitration;
-- simplifying proven marker code solely to reduce line count;
-- keeping historical diagnostic hooks in behavior builds merely because they already exist.
+- changing closed C1-R1 or Gate-4 behavior without contradicting evidence;
+- moving processed evidence piecemeal without atomic provenance updates.
 
 ---
 
@@ -573,17 +597,19 @@ Not part of the frozen second-pass structural rewrite:
 | Need | Authority |
 |---|---|
 | Current exact task / branch state | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
-| Frozen post-baseline rewrite | `SECOND_PASS_REWRITE_CONTRACT.md` |
+| Completed second-pass structural contract | `SECOND_PASS_REWRITE_CONTRACT.md` |
+| Completed Gate-4 marker bookkeeping contract | `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md` |
 | Current roadmap / overall architecture | this `DESIGN.md` §§10–11 |
 | Release vs diagnostic products | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
 | Collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
-| Current collision validation | `COLLISION_TEST_PLAN.md` |
+| Current collision validation posture | `COLLISION_TEST_PLAN.md` |
 | Diagnostic core/deep architecture | `COLLISION_LOGGER_PLAN.md` |
-| Marker execution lifetime / later simplification | `EVIDENCE_INDEX.md` Marker execution lifetime → EV-131–EV-133 / EV-167 → `COLLISION_LIFECYCLE_PLAN.md` §9 |
+| Marker execution lifetime / generation-scoped identity | `EVIDENCE_INDEX.md` Marker execution lifetime → EV-131–EV-133 / EV-167 / EV-213–EV-214 → `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md` |
 | Future held-Use2 prevention | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
 | Tested native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
-| Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → ledgers/raw logs |
+| Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER*.md` / raw/archive evidence |
 | C1-R1 canonical evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206–EV-207 |
+| Gate 4 + final architecture verification evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-213–EV-214 → `EVIDENCE_LEDGER_STEP_E.md` EV-215 |
 | Animation semantics / UseType / action / pose | `ANIMATION_INDEX.md` → `ANIMATION_RULES.md` |
 | Exact asset/family/fixture | `ANIMATION_INDEX.md` → `ANIMATION_CATALOG.md` / animation-name data |
 | Hook/source/API/New Balance lookup | `SOURCE_HOOK_GUIDE.md` |
