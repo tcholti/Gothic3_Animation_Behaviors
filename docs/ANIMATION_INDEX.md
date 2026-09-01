@@ -1,7 +1,7 @@
 # Gothic 3 Animation Knowledge Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-08-27
+**Updated:** 2026-09-01
 
 ## Purpose
 
@@ -276,4 +276,4 @@ When new animation knowledge matters:
 4. put controlled runtime/source claims in the Evidence Ledger;
 5. update this index only when a new route/search term would materially improve retrieval.
 
-Do not copy the same animation history into Design, Source Guide, Research Map, and Catalog.
+Do not copy the same animation history into Design, Source Guide, Evidence Index, and Catalog. Historical chronology belongs behind the exact EV/provenance route and Git history when needed.
