@@ -11,10 +11,10 @@ Define the smallest observational instrumentation needed to validate collision b
 
 Release/build separation is governed by `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
-Completed structural rewrite reference: `SECOND_PASS_REWRITE_CONTRACT.md`.  
-Current marker-bookkeeping authority: `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`.  
+Current modular behavior architecture: `DESIGN.md`.  
+Current marker/lifecycle authority: `COLLISION_LIFECYCLE_PLAN.md`.  
 Exact evidence: `EVIDENCE_INDEX.md` → canonical evidence ledgers.  
-Historical probe detail: evidence/raw/archive + archived pre-IA logger documents.
+Historical probe detail: exact EV provenance → `research/archive/` / `research/derived/` / Git history only when needed.
 
 ---
 
@@ -347,7 +347,6 @@ Before any future marker-core change:
 EVIDENCE_INDEX.md
 → marker execution lifetime/bookkeeping
 → EV-131–EV-133 / EV-167 / EV-213–EV-214
-→ MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
 → COLLISION_LIFECYCLE_PLAN.md §9
 ```
 
@@ -494,11 +493,14 @@ Architecture verification is complete through EV-215. There is no pending diagno
 Current repository sequence:
 
 ```text
-documentation/knowledge cleanup
-→ separate justified raw→archive provenance migration
-→ temporary-branch inspection
-→ protected-main stable promotion/verification
-→ new collision feature expansion
+project structural stabilization
+→ equipped-melee marker expansion
+→ separate Fist source-adapter decision
+→ full marker/lifecycle regression
+→ AttackContinuationProtection
+→ mature research compatibility gate
+→ production Raise/speed/config migration
+→ final diagnostics-free compatibility/regression
 ```
 
 When future engineering creates a new diagnostic question:
