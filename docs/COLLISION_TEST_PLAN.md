@@ -281,16 +281,24 @@ No runtime artifact was renamed or rewritten.
 
 ## 8. Current Project Sequence
 
-Architecture verification, authority cleanup and the processed-evidence location cleanup are complete. Current repository work is stable-integration preparation.
+Architecture verification, authority cleanup, processed-evidence migration, temporary-branch inspection and protected-main stable promotion are complete.
+
+The temporary staging branch has been proven redundant by exact tree equality and is safe to retire. Its deletion is an operational repository cleanup step, not a collision validation gate.
+
+After that branch is removed, resume engineering from `docs/collision-source-evidence` with the next planned responsibility:
 
 ```text
-inspect temp/second-pass-rewrite-publish unique history/content
-→ preserve anything unique that still matters
-→ define stable promotion set
-→ update protected main
-→ verify main
-→ retire temporary branch only if safe
-→ resume new collision feature expansion
+equipped-melee marker expansion planning
+→ freeze one exact mechanism/family responsibility
+→ define its minimum positive + native-fallback/regression controls
+→ only then implement/test that bounded expansion
+```
+
+Known deliberate source/authoring review item for that planning phase:
+
+```text
+Dual P1 Quick tested authored marker = RIGHT
+older native-source evidence for tested Dual P1 Quick = LEFT
 ```
 
 Exact current responsibility remains owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
