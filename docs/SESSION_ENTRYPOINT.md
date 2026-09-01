@@ -100,8 +100,6 @@ GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
 
 For proof and provenance, use `EVIDENCE_INDEX.md` → exact EV entry → archive/raw/source only when needed.
 
-Do not carry detailed Gate-4 history or validated binary identities in this front door; those are owned by the technical/evidence authorities.
-
 ---
 
 ## Repository Boundary
@@ -114,7 +112,7 @@ docs/collision-source-evidence
 = active development/research
 ```
 
-The verified collision-architecture checkpoint is already on `main`. Structural stabilization after that checkpoint is intentionally being completed on the active branch before another stable promotion.
+The verified collision-architecture checkpoint is already on `main`. The post-verification project stabilization is being completed on the active branch before another deliberate stable promotion.
 
 Known unrelated local file remains outside project maintenance and must stay untouched:
 
@@ -128,8 +126,6 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ### Pass 1 — structural simplification: COMPLETE
 
-Durable result:
-
 ```text
 three canonical evidence-ledger files
 obsolete Script_FrameEffectLogger retired
@@ -141,19 +137,6 @@ research/raw / archive / derived evidence layers retained
 ```
 
 ### Pass 2 — Gothic rules/procedures consistency: COMPLETE
-
-Audited together:
-
-```text
-COLLABORATION_RULES.md
-WORK_IMPLEMENTATION_PROTOCOL.md
-PROJECT_OPERATING_PROCEDURES.md
-PROJECT_PIPELINE.md
-KNOWLEDGE_MAINTENANCE.md
-KNOWLEDGE_REGISTRY.md
-README.md
-SESSION_ENTRYPOINT.md
-```
 
 Accepted responsibility hierarchy:
 
@@ -169,51 +152,60 @@ CAM constitutional collaboration layer
 → SESSION_ENTRYPOINT: current state only
 ```
 
-Key cleanup outcome:
+### Pass 3 — build/product/repository shape: COMPLETE
+
+Verified current product/tool shape:
 
 ```text
-no competing project authority found
-KNOWLEDGE_MAINTENANCE and KNOWLEDGE_REGISTRY remain distinct by design
-Work protocol remains distinct by design
-pipeline remains convention authority rather than procedure library
-SESSION_ENTRYPOINT reduced to routing/current state
-POP no longer owns active branch identity or duplicates the large-log tool manual
-CAM evolution remains separate; project experience can inform it only through dedicated later review
+Script_G3AnimationBehaviors
+= production-direction behavior DLL; current Raise/speed implementation
+
+Script_FrameCollisionBehaviorTest
+= diagnostics-free collision behavior research twin
+
+Script_FrameCollisionTest
+= same collision behavior + diagnostic instrumentation
+
+Script_CombatMoveLogger
+= independent generic CombatMove / playback-speed diagnostic tool
+
+tools/log_evidence
+= offline deterministic large-log processor; not a Gothic DLL target
 ```
 
-Pass-2 changes were limited to the eight audited collaboration/operation documents; no technical behavior or evidence meaning changed.
-
-### Pass 3 — CURRENT: build/product/repository-shape audit
-
-Audit only current product/tool/repository structure:
+Verified structural rules:
 
 ```text
-verify only justified current build products/tools remain
-preserve release/diagnostic twin architecture
-verify branch/dependency/build assumptions are explicit
-identify orphan prototype/build paths only if they actually exist
-separate active products from historical research artifacts
-avoid renaming working products merely for cosmetic cleanup
+only one active collision prototype directory
+behavior-only and diagnostic collision twins share one behavior source list
+do not co-load the collision twins
+official Georgeto SDK submodule is the build dependency
+Jackydima SDK submodule is reference-only
+obsolete FrameEffectLogger target/source and active build references are retired
+prototype/research names remain until deliberate production migration
+product-aware build/deploy/load procedures now distinguish diagnostic vs behavior-only evidence surfaces
 ```
 
-Do not reopen collision semantics during this pass.
+No collision behavior was changed during Pass 3.
+
+### Pass 4 — CURRENT: final readiness check
+
+Prove the stabilized repository is ready to return to engineering:
+
+```text
+fresh Normal Chat can recover current state from a small hot path
+bounded Work can recover a frozen implementation without reconstructing the project
+important engine facts route EVIDENCE_INDEX → exact EV → provenance
+build/product/dependency roles are unambiguous
+active/stable branch roles are explicit
+no unresolved structural/authority ambiguity remains
+```
+
+Do not create another cleanup task merely for stylistic uniformity. If these checks pass, stabilization is complete and the active checkpoint may be promoted to `main` deliberately.
 
 ---
 
-## After Pass 3
-
-### Pass 4 — final readiness check
-
-```text
-fresh Chat/Work can recover the project from a small retrieval surface
-important engine facts route index → EV → provenance
-build/product model is unambiguous
-repository state has no unresolved structural ambiguity
-```
-
-Do **not** start equipped-melee marker expansion until all stabilization passes are complete.
-
-After stabilization:
+## After Stabilization
 
 ```text
 equipped-melee marker expansion planning
