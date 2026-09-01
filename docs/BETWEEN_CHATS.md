@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-01
 
-## Current bridge — stabilization complete / stable promotion
+## Current bridge — equipped-melee marker expansion planning
 
 Repository:
 
@@ -40,35 +40,50 @@ research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stabi
 
 ```text
 collision architecture verification        COMPLETE — EV-206–EV-215
-Pass 1 structural simplification           PASS
-Pass 2 rules/procedures consistency        PASS
-Pass 3 build/product/repository shape      PASS
-Pass 4 final readiness                     PASS
-PROJECT STABILIZATION                      COMPLETE
+project structural/rules/product stabilization COMPLETE
+clean stabilized checkpoint promoted to protected main
 ```
 
-No remaining stabilization issue is known that should delay engineering.
+Do not reopen the verified lifecycle/generation architecture without concrete contradicting evidence.
 
 ---
 
-## Immediate repository operation
+## Current responsibility
 
-Promote the exact cleaned active tree to protected `main` while preserving both histories.
+Plan the **first bounded equipped-melee marker expansion**. Do not implement yet.
 
-Requirements:
-
-```text
-no force update
-old main history remains reachable
-promotion commit tree == active cleaned tree
-main protection remains active
-verify main vs active tree after promotion
-```
-
-After promotion is verified, replace this bridge with the next engineering responsibility:
+Retrieve only enough current authority/evidence to answer:
 
 ```text
-equipped-melee marker expansion planning
+Which equipped-melee families/actions are already supported by marker ownership?
+Which physical RIGHT/LEFT/BOTH source semantics are already proven for them?
+Which relevant equipped-melee route remains unsupported or intentionally deferred?
+What is the smallest next expansion candidate that can be isolated and tested without changing lifecycle architecture?
 ```
 
-That planning begins from current authorities/evidence, not from old chat reconstruction. Freeze one expansion mechanism/family before implementation. Keep Fist source adaptation and AttackContinuationProtection separate.
+Mandatory review item:
+
+```text
+EV-211 recorded a Dual P1 Quick authored G3AB_COL_RIGHT marker
+while older native-source evidence mapped tested Dual P1 Quick to LEFT.
+```
+
+Treat that as an authoring/source-map question to resolve deliberately, not as permission to generalize by filename or silently change source semantics.
+
+Keep separate:
+
+```text
+Fist/body source adaptation
+AttackContinuationProtection
+compatibility gate
+Raise/speed/config redesign
+```
+
+Next step in Normal Chat:
+
+```text
+orient current marker-family/source boundary
+→ propose the smallest logical expansion candidate and its evidence basis
+→ discuss/freeze with User
+→ only then create a bounded implementation responsibility
+```
