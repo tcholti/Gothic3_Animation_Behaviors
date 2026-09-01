@@ -1,0 +1,428 @@
+Script_FrameCollisionTest v0.14 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: current animation contains _Attack_Hit_ and a RIGHT/LEFT source marker.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT source marker.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+G3AB_COL_TEST is the preserved RIGHT-hand marker alias.
+G3AB_COL_LEFT_TEST is the provisional LEFT-hand marker.
+RIGHT and LEFT use exact-set semantics: the selected source replaces the previous marker-owned set.
+BOTH is intentionally disabled until LEFT and preserved RIGHT pass runtime validation.
+If any source required by the exact motion is missing, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+G3AB_COL_OFF_TEST closes only a weapon window opened by this prototype.
+OFF requests Item_Equipped and never clears the triggered list.
+OFF before ON or after natural reset is consumed as a logged no-op.
+Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Preserved RIGHT Normal/Quick behavior remains the validated v0.9 path; LEFT is new and provisional.
+
+v0.14 preserves same-update marker deduplication for RIGHT, LEFT, and OFF.
+Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.
+
+Authored-occurrence budgets are cached separately for RIGHT, LEFT, and OFF.
+Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase; state-time rollback starts a new execution.
+Natural collision reset outside the owning Hit execution retires the actor budget.
+No per-frame actor scan; budget work occurs only when a reserved marker is received.
+
+Installing hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 28571.928
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 2
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 1
+FirstLEFTMarkerFrame: 4
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Sword_Rust_01
+RightHandSourceAddress: E70E8610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Sword_Rust_01
+LeftHandSourceAddress: E69F4C10
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 28837.315
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.276980
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Sword_Rust_01
+RightHandSourceAddress: E70E8610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Sword_Rust_01
+LeftHandSourceAddress: E69F4C10
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 28837.349
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E69F4C10
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.276980
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Sword_Rust_01
+PlayerLeftItemAddress: E69F4C10
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_LEFT_TEST
+MarkerOpcode: LEFT
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 2
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 2
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 29106.113
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E69F4C10
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.534982
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Sword_Rust_01
+PlayerLeftItemAddress: E69F4C10
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 31365.969
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Sword_Rust_01
+RightHandSourceAddress: E70E8610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Sword_Rust_01
+LeftHandSourceAddress: E69F4C10
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31621.535
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.254992
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Sword_Rust_01
+PlayerLeftItemAddress: E69F4C10
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31908.198
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E70E8610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.541986
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Sword_Rust_01
+PlayerLeftItemAddress: E69F4C10
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 50605.331
+Actor: Boar
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 3
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: Fist
+RightHandSourceAddress: E704DE10
+RightHandSourceUseType: 8
+RightHandSourceCollisionGroup: 0
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 50856.536
+Entity: Fist
+ChangedEntityAddress: E704DE10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 8.620936
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+PlayerLeftItem: It_1H_Sword_Rust_01
+PlayerLeftItemAddress: E69F4C10
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 51806.488
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 2
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 1
+FirstLEFTMarkerFrame: 4
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Sword_Rust_01
+RightHandSourceAddress: E70E8610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Sword_Rust_01
+LeftHandSourceAddress: E69F4C10
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 52058.507
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.266867
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Sword_Rust_01
+RightHandSourceAddress: E70E8610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Sword_Rust_01
+LeftHandSourceAddress: E69F4C10
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52058.539
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E69F4C10
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.266867
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Sword_Rust_01
+PlayerLeftItemAddress: E69F4C10
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_LEFT_TEST
+MarkerOpcode: LEFT
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 2
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 2
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52338.933
+Entity: It_1H_Sword_Rust_01
+ChangedEntityAddress: E69F4C10
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.545951
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Sword_Rust_01
+PlayerLeftItemAddress: E69F4C10
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53355.270
+Entity: Fist
+ChangedEntityAddress: E704DE10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.037775
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+PlayerLeftItem: It_1H_Sword_Rust_01
+PlayerLeftItemAddress: E69F4C10
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Sword_Rust_01
+PlayerRightItemAddress: E70E8610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+Script_FrameCollisionTest unloading.

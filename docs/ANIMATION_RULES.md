@@ -1,7 +1,7 @@
 # Gothic 3 Animation Rules
 
 **Status:** Canonical engine-facing animation reference  
-**Date:** 2026-08-20
+**Date:** 2026-08-22
 
 ## 1. Purpose
 
@@ -311,7 +311,26 @@ enum gEAction
 
 The full enum continues through `gEAction_Count = 145`.
 
-For current combat code, use the exact native action rather than collapsing QuickAttackR/L into a filename heuristic.
+Use the exact native action rather than collapsing QuickAttackR/L into a filename heuristic. In the current stateless marker prototype, exact Quick/QuickR/QuickL action values also let global `StartEffect` correlate the marker with the Quick callback family whose native timer was suppressed.
+
+Inventory caveat: serialized action tokens are not proven to map 1:1 to enum names in every family. Native filenames contain `LightStumble`, while the SDK exposes `gEAction_Stumble` but no separate `gEAction_LightStumble`. A mapping from `gEAction_Stumble` to the `LightStumble` resource token is plausible but remains unverified.
+
+### 8.1 Whirl-family naming and input coverage
+
+Do not equate a serialized `WhirlAttack` filename token with the full
+`gEAction_WhirlAttack` path without runtime action logging.
+
+Current human-melee observations:
+
+- Dual has SimpleWhirl only, but its exact Hit/Recover filenames use
+  `WhirlAttack`; input is an attack hold slightly shorter than PowerAttack.
+- 2H and Staff have full Whirl; input is Block + quick attack.
+- Block + held attack with 2H/Staff selects Finishing rather than Whirl.
+- ordinary 1H families have no Whirl.
+- hand-to-hand coverage remains unknown.
+
+This family mismatch is another reason to use native callback/action identity for
+behavior and filenames for exact asset selection/cataloging.
 
 ## 9. `gEPhase`
 
@@ -359,7 +378,31 @@ The supplied naming analysis identifies:
 - `O` — overlay animation;
 - `I` — interaction animation.
 
-This classification is useful for filename analysis.
+Animation-author observation adds an important behavioral distinction:
+
+- known melee attacks use their own non-overlay action and take priority over
+  locomotion, even while a movement key remains held. They may contain authored
+  forward movement such as a short step, but the player does not continue
+  steering through the locomotion animation during the attack;
+- actions that genuinely remain controllable while moving have separate
+  `_O_` resources. These can animate only the required upper-body region and
+  layer over the continuing locomotion animation;
+- the same logical action can therefore have both standing/non-overlay and
+  moving/overlay resources. Native 2H `HoldRight` provides a direct example:
+
+```text
+Hero_Stand_None_2H_P0_HoldRight_Begin_N_Fwd_00_%_00_P0_0
+Hero_Stand_None_2H_P0_HoldRight_End_N_Fwd_00_%_00_P0_0
+Hero_Stand_None_2H_P0_HoldRight_Begin_O_Fwd_00_%_00_P0_0
+Hero_Stand_None_2H_P0_HoldRight_End_O_Fwd_00_%_00_P0_0
+```
+
+No separate moving melee-Quick family is currently known. A Quick request made
+while a movement key is held cancels locomotion and enters the normal Quick
+action; holding movement at request time does not make the selected asset a
+locomotion overlay.
+
+This classification is useful for filename and authoring analysis.
 
 Exact engine enum/internal representation should be source-verified before using these one-letter tokens as runtime authority.
 
@@ -442,11 +485,19 @@ This can require archive/resource management when changing distance-encoded anim
 
 Examples: `L`, `R`.
 
-The supplied source describes this as likely related to attack direction/side.
+The native SDK exposes a separate two-valued `gEHitDirection` (`Left`, `Right`) on `gCScriptRoutine_PS`. The complete native filename inventory strongly correlates attack-side naming with the final token:
 
-**Status: WORKING HYPOTHESIS.**
+- every indexed Hero `QuickAttackR` Hit ends in `R`;
+- every indexed Hero `QuickAttackL` Hit ends in `L`;
+- every indexed Hero Normal `N_Left` Hit ends in `L`;
+- every indexed Hero Normal `N_Right` Hit ends in `R`;
+- forward Normal attacks use P0/P2 -> `R` and P1/P3 -> `L` across the indexed human equipment families.
 
-Do not build physical collision-source ownership solely from this token.
+Jackydima's commented Normal-Attack experiment assigns `PropertyHitDirection` using the same P0/P2 -> Right and P1/P3 -> Left pattern. Because that block is disabled reconstruction/reference code, it supports the correlation but does not prove the native assignment pipeline.
+
+**Status: STRONGLY SUPPORTED as logical attack/hit-direction metadata; exact causal pipeline remains UNKNOWN.**
+
+This direction channel is not a physical collision-arm selector. Animation-author runtime evidence shows that changing the visible swing direction without changing animation identity does not change gameplay behavior, and known Torch+1H/Dual cases can use the left-hand source independently of QuickAttackR/QuickAttackL. Never use the final token or action-side letter alone to choose right-hand, left-hand, or both collision sources.
 
 ## 17. Human Melee Pose Patterns
 
@@ -483,7 +534,24 @@ The source material states that multiple movement modes are needed for blending 
 
 The interpretation that the numeric values are literal blending weights/dominance values is a **working hypothesis** and should not be promoted to confirmed without runtime/source verification.
 
-## 19. Authoring Rule for Frame Collision
+## 19. Frame Indexing and Duration Convention
+
+Gothic 3 animations are authored starting at frame 0. Therefore a Blender range
+from frame 0 through frame N inclusive contains N + 1 sampled frames.
+
+Canonical documentation should state both values when timing or rescaling matters:
+
+- `0–12 inclusive` = 13 sampled frames;
+- `0–4 inclusive` = 5 sampled frames;
+- `0–8 inclusive` = 9 sampled frames.
+
+A bare phrase such as "12-frame animation" is ambiguous in this project because
+the animation author has often used the ending frame number as shorthand. Ask
+whether the number means the inclusive ending index or the actual sampled-frame
+count before performing duration, speed, or rescaling calculations. Authored
+marker indices such as frame 2, 3, or 8 remain literal Blender frame indices.
+
+## 20. Authoring Rule for Frame Collision
 
 For marker-controlled attacks:
 
@@ -492,14 +560,38 @@ For marker-controlled attacks:
 - marker presence declares that execution frame-controlled;
 - the current system must not infer ownership from source pose alone.
 
-For the tested 12-frame 2H normal attack:
+The frozen equipped-slot command names are:
+
+- `G3AB_COL_RIGHT` — exact active set `{RIGHT}`, with RIGHT rearmed;
+- `G3AB_COL_LEFT` — exact active set `{LEFT}`, with LEFT rearmed;
+- `G3AB_COL_BOTH` — exact active set `{RIGHT, LEFT}`, with both rearmed;
+- `G3AB_COL_OFF` — close the marker-owned set without clearing hit lists.
+
+RIGHT and LEFT identify Gothic 3 equipped slots, not the final filename
+direction token. Use no more than one collision command on an authored frame.
+Use BOTH instead of same-frame RIGHT+LEFT, and keep OFF plus the next activation
+on different frames. Repeating a source command later in the Hit authors a new
+contact. The old `*_TEST` spellings are not supported aliases. Body, unarmed,
+Fist, and monster-source command terminology is not yet frozen.
+
+The animation author's general working preference is to place collision one
+authored frame before the intended visual contact. Exact-contact placement can
+look as though collision begins only after the weapon has entered the target.
+This is an authoring judgement, not a hardcoded engine delay; marker timing must
+remain per animation.
+
+For the earlier tested 2H normal attack authored from frame 0 through frame 12
+inclusive (13 sampled frames):
 
 - first plausible visual contact: frame 9;
 - marker at frame 8 felt best in controlled testing.
 
-This is a tested guideline for that attack, not a universal "one frame early" rule for every animation.
+The later double-contact fixture used markers and whooshes at frames 4 and 15,
+one authored frame before its intended visual contacts. These fixtures support
+the preference, but do not prove why the one-frame lead looks better or require
+other animators/animations to use the same offset.
 
-## 20. Filename Rule vs Runtime Rule
+## 21. Filename Rule vs Runtime Rule
 
 Use filenames for authoring, asset inspection, debugging, identifying serialized state, and cases where no higher-level semantic API is available.
 

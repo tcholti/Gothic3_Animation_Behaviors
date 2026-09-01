@@ -1,336 +1,435 @@
-# Collaboration Rules
+# Gothic 3 Project Collaboration Delta
 
 **Project:** Gothic3_Animation_Behaviors  
-**Status:** Experimental / living document  
-**Version:** 0.1  
-**Purpose:** Preserve the quality, continuity, and adaptability of our collaboration while using Work, repository review, documentation updates, and higher reasoning levels deliberately rather than automatically.
+**Status:** Active project-specific collaboration authority  
+**Version:** 1.8
+**Updated:** 2026-08-30
+
+## Purpose
+
+This file contains only the collaboration rules that are specific to the Gothic 3 Animation Behaviors project.
+
+General collaboration behavior is governed by the active CAM framework in `tcholti/Collaborative-Agency-Model`, especially:
+
+- `COLLABORATION_RULES.md` — general collaboration behavior;
+- `COLLABORATION_PROFILE.md` — current User + Chat collaboration pattern;
+- `PROJECT_COLLABORATION.md` — sustained-project mechanisms;
+- `BETWEEN_CHATS.md` — context continuity.
+
+This project also deliberately tracks the candidate reusable operational layer on CAM branch `current` where it reflects mechanisms already proven useful here or elsewhere:
+
+- `REUSABLE_COLLABORATION_BASELINE.md` — candidate cross-project operating baseline;
+- `KNOWLEDGE_SYSTEM.md` — reusable knowledge, retrieval, authority and maintenance model;
+- `COLLABORATION_PROCEDURES.md` — recurring event-driven collaboration procedures.
+
+The CAM `current` baseline does not replace this project delta or the Gothic-specific authorities below. It is the reusable layer against which project experience can be compared. Project-specific variation is expected; a mechanism should move upward only when evidence shows that it generalizes beyond the local conditions that produced it.
+
+Do **not** reload those CAM documents for every Gothic 3 prompt. This file is the project delta. Retrieve the broader CAM authority or candidate baseline only when a collaboration/process question, cross-project comparison, or method-evolution question actually requires it.
+
+Older Gothic 3 collaboration rules remain useful history but are superseded where they conflict with this document or the active CAM framework.
 
 ---
 
-## 1. Core Principle
+## 1. Branch and Authority Model
 
-These rules exist to improve the collaboration, not to constrain it.
+The current active development branch is:
 
-**Quality, correctness, evidence, and continuity take priority over usage savings.**
+`docs/collision-source-evidence`
 
-Usage efficiency should come primarily from avoiding unnecessary repeated work: rereading unchanged material, updating many documents after every small test, or using heavier reasoning when an established step can be handled reliably with less.
+It contains the newest collision research, prototype implementation, evidence, and continuation state.
 
-If following a rule would materially reduce the quality of the work, hide relevant evidence, create uncertainty, or make the process harder, the rule should be relaxed or changed.
+`main` is the stable integration and reusable Gothic 3 knowledge baseline. It may receive stable documentation/research improvements before the current collision implementation is ready, but unfinished collision code should remain on the active branch until a deliberate stable integration point is reached.
 
-The rules are defaults, not hard limits.
+For current work:
 
----
+- current task/state → `docs/SESSION_ENTRYPOINT.md`;
+- latest transient Chat/Work handoff → `docs/BETWEEN_CHATS.md` when one exists;
+- document roles and retrieval routes → `docs/README.md`;
+- knowledge-maintenance event model → `docs/KNOWLEDGE_MAINTENANCE.md`;
+- knowledge authority/update triggers → `docs/KNOWLEDGE_REGISTRY.md`;
+- exact implementation/source truth → the current branch source files and commits;
+- exact technical evidence → the relevant evidence/reference document or raw artifact.
 
-## 2. Preserve the Working Method That Already Works
-
-The normal implementation cycle remains:
-
-**hypothesis / question -> controlled test -> evidence -> interpretation -> smallest useful code change -> rebuild -> retest**
-
-Do not weaken this cycle merely to save usage.
-
-Continue to:
-
-- investigate Gothic 3 behavior from evidence rather than assumption;
-- use relevant SDK, example, binary-reference, source, and repository material when needed;
-- preserve proven paths and change one meaningful variable at a time when practical;
-- use logger evidence for timing and collision behavior rather than visual observation alone;
-- reconsider earlier assumptions when new evidence contradicts them;
-- broaden the investigation whenever the narrow path is no longer sufficient.
-
-Efficiency should remove redundant work around the investigation, not reduce the quality of the investigation itself.
+Do not assume `main` represents the newest implementation state while the active branch is ahead.
 
 ---
 
-## 3. Reasoning-Level Guidance
+## 2. Keep the Active Retrieval Surface Small
 
-The assistant should actively recommend the reasoning level rather than leaving the user to guess what a task requires.
+Do not reread the whole repository, documentation set, research history, or evidence corpus between prompts.
 
-### Medium reasoning — normal default
+Start from the smallest useful current state:
 
-Recommend **Medium** when the work is a continuation of an established path, for example:
+1. `docs/SESSION_ENTRYPOINT.md`;
+2. `docs/BETWEEN_CHATS.md` only when a real transient handoff must be continued;
+3. the exact source/task-specific authority required by the current responsibility.
 
-- interpreting a normal test result;
-- making a small or localized code change;
-- adjusting an existing hook, logger, configuration value, or known implementation;
-- fixing a straightforward compile error;
-- repeating a controlled experiment with one changed variable;
-- reviewing a small number of already-known relevant files;
-- discussing the next test in an established investigation.
+Then broaden only when the task exposes a concrete need.
 
-Typical wording:
+Within one continuing Chat or Work context, do not reread unchanged documents merely because another prompt arrived.
 
-> **Medium is enough for this step.** We are continuing an established path and do not need a broad review.
+Large reference documents are durable external memory. Their existence does not make them mandatory context.
 
-### High reasoning — escalate when it provides real value
+The knowledge-maintenance protocol and registry are process tools. They are not additional mandatory pre-reading for ordinary technical prompts; Normal Chat applies their trigger logic when a meaningful event completes.
 
-Recommend **High** when the task materially benefits from broader or deeper reasoning, for example:
+### 2.1 Subsystem Orientation Pass
 
-- tracing an unknown Gothic 3 engine mechanism;
-- designing a new subsystem or architecture;
-- rewriting or substantially restructuring code;
-- reviewing many files, systems, documents, or repositories together;
-- resolving contradictory evidence or several competing explanations;
-- investigating a failure after the established approach has stopped producing useful progress;
-- making a decision that could create significant rework if wrong;
-- performing a broad integration or stabilization review;
-- reconstructing the state of the project after substantial changes or an uncertain handoff.
+A small active retrieval surface must not become **context starvation**.
 
-Typical wording:
+There are four useful retrieval depths:
 
-> **I recommend switching to High for this step.** I need to trace/rewrite/cross-reference several parts of the project, and the extra reasoning is likely to improve the result.
+```text
+current-state retrieval
+→ subsystem orientation when needed
+→ active-problem reconstruction when needed
+→ question-specific retrieval
+```
 
-### Return to Medium after the difficult step
+Normal Chat should automatically perform a **Subsystem Orientation Pass once** when it enters a substantial technical subsystem without a sufficiently fresh working model of that subsystem in the current Chat context.
 
-High reasoning should not become the automatic setting for the rest of the session simply because one difficult task required it.
+Automatic triggers include:
 
-When the difficult investigation has produced a stable path, the assistant should say so and recommend returning to Medium.
+- a new Normal Chat enters ongoing collision, Raise, playback-speed, animation-selection or another substantial subsystem;
+- the collaboration deliberately switches to a different substantial subsystem inside the same Chat;
+- the collaboration returns to a subsystem after substantial work elsewhere;
+- the User points out that previously established subsystem context is missing or being treated as new.
 
-Typical wording:
+Do **not** trigger the pass merely because:
 
-> **We can return to Medium now.** The uncertain part is resolved and the next steps are controlled implementation/tests.
+- another prompt arrived;
+- another B6/B7/etc. substep starts inside the same active subsystem;
+- another runtime log is interpreted;
+- Work returns a bounded implementation;
+- a short tangent mentions another subsystem without actually switching work to it.
 
-### Lighter reasoning
+The orientation procedure is:
 
-A lighter setting may be suggested for genuinely simple work such as status checks, very small clerical changes, or other tasks that do not require meaningful engineering judgment.
+```text
+recover current state / transient handoff
+→ identify the active subsystem
+→ use the Subsystem Orientation Route in docs/README.md
+→ spot-read the small set of relevant indexes/canonical sections
+→ synthesize a temporary compact mental model of the subsystem
+→ continue with exact question-specific retrieval
+```
 
-Do not recommend a lighter setting merely to save usage when the current code/test decision contains real uncertainty.
+The temporary model should be broad enough to retain major mechanisms, established findings, important negative results, known historical traps, relevant reference/third-party work and unresolved boundaries. It should not attempt to memorize every EV number, address, filename or raw-log detail; those remain external and are retrieved when needed.
 
----
+Do not create a new persistent summary document merely to hold the temporary orientation model. If the orientation pass repeatedly cannot recover an important topic efficiently, strengthen an existing index/subject route rather than duplicating canonical facts into another summary.
 
-## 4. Targeted Repository Review First
+The detailed retrieval-depth model and subject routes live in `docs/README.md`.
 
-Do not automatically reread or re-review the entire repository between prompts.
+### 2.2 Active-Problem Reconstruction Pass
 
-Start with the smallest set of files that is reasonably sufficient for the current question.
+Before proposing a new fix or architecture for a substantial active problem, Normal Chat should reconstruct that problem once when its current causal model is stale. Use the route in `SESSION_ENTRYPOINT.md` / `EVIDENCE_INDEX.md` to recover phenotype, reproduction, normal mechanism, established failure, legitimate alternate paths, consequences, proven scope, rejected explanations/fixes, unresolved observations and why the current gate follows.
 
-Examples:
-
-- if a test concerns one hook, inspect the hook implementation and the directly related logger/code first;
-- if a compile error names a file or symbol, start there;
-- if an existing design decision is already known and unchanged, do not reopen all design documents merely to confirm it again.
-
-Broaden the review when evidence requires it.
-
-There is **no fixed maximum number of files**. If five, twenty, or more files are genuinely needed to understand the problem correctly, review them. The rule prevents habitual broad review, not necessary broad review.
-
----
-
-## 5. Do Not Re-Verify Stable Knowledge Without a Reason
-
-Previously established project knowledge may be reused when:
-
-- it is documented clearly;
-- the relevant code or assumptions have not changed;
-- there is no new evidence suggesting that it may be wrong.
-
-Re-verify when:
-
-- new results conflict with it;
-- the implementation that supported it has changed;
-- the current task depends critically on a subtle detail;
-- the assistant is uncertain whether the remembered/documented conclusion still applies.
-
-The objective is to avoid spending substantial work repeatedly proving the same stable fact while retaining the ability to challenge it when necessary.
+The reconstruction is targeted and temporary. Keep it fresh through the same active problem; do not repeat it for routine continuation, every test, every Work result or every prompt.
 
 ---
 
-## 6. Batch Routine Documentation Updates
+## 3. Evidence-First Gothic 3 Engineering
 
-Do not update every project document after every small experiment.
+The normal engineering loop remains:
 
-During a rapid test/code/test cycle, minor observations can accumulate until a **meaningful checkpoint**.
+```text
+question / hypothesis
+    ↓
+smallest useful source or runtime investigation
+    ↓
+controlled evidence
+    ↓
+interpretation
+    ↓
+smallest justified design/code change
+    ↓
+build / runtime test
+    ↓
+update durable state when the result matters
+```
 
-Good checkpoints include:
+For engine-facing behavior:
 
-- a hypothesis being confirmed or rejected;
-- a hook or implementation path becoming stable;
-- a feature reaching a testable or working state;
-- a significant engine behavior being established;
-- the project changing direction;
-- a session ending after meaningful progress;
-- preparing to move to another chat or hand the work off;
-- enough related evidence accumulating that consolidation will simplify later work.
+- prefer native action, phase, UseType, source/API, hook, and runtime evidence over assumptions from filenames alone;
+- use controlled player/NPC tests where actor scope matters;
+- use logging for collision timing/reset and other subtle runtime behavior rather than visual inspection alone;
+- preserve proven paths while testing one meaningful conceptual variable at a time when that improves causal evidence;
+- let contradictory evidence challenge the current model.
 
-At a checkpoint, update only the documents whose purpose is affected.
+Do not re-prove stable findings without a reason, but do not protect them from new evidence.
 
-Avoid touching unrelated documents simply because a repository update is being made.
+### Runtime test log handoff
 
----
+When Normal Chat asks the User to run a controlled runtime test whose log is expected to become evidence, use this default transfer procedure:
 
-## 7. Important Findings Are an Exception to Batching
+```text
+Normal Chat defines test conditions + exact raw-log filename
+        ↓
+User runs the test locally
+        ↓
+User places the resulting log in research/raw/ under that filename
+        ↓
+User confirms that the file is in place
+        ↓
+Normal Chat gives concise Git commands to verify, stage only the intended artifact, commit, and push
+        ↓
+Normal Chat reads the committed raw log from GitHub and performs interpretation/maintenance
+```
 
-Do not leave a major confirmed finding only in transient chat context just to save usage.
+Rules:
 
-Record important information promptly when losing it could cause meaningful rework, especially:
+- include the intended `research/raw/...` filename in the same message that defines the test whenever practical;
+- prefer descriptive filenames containing the date and enough gate/family/condition information to distinguish the artifact later;
+- do not ask the User to paste a complete successful build output or full runtime log into Chat by default;
+- for routine successful commands, a short confirmation or the relevant final line is sufficient;
+- if a build/test fails, request only the smallest error/output excerpt needed to diagnose it, broadening to full output only when necessary;
+- after the User confirms the raw artifact is in place, provide commands that first verify the intended path/status, then stage only the intended file(s), commit descriptively, and push the active branch;
+- once pushed, retrieve and analyze the artifact from GitHub rather than duplicating it into the chat context;
+- if GitHub transfer is temporarily unavailable, use the smallest relevant pasted excerpt as a fallback;
+- do not commit every trivial exploratory run automatically: use this procedure for logs that support the active causal gate, evidence record, regression result, or another result worth preserving.
 
-- confirmed engine behavior;
-- a newly proven callback/hook path;
-- a disproven assumption that future work might otherwise repeat;
-- a compatibility or safety constraint;
-- a change to the project's current implementation direction;
-- a result necessary for another chat to continue correctly.
-
-Minor test details may wait for consolidation. Important durable knowledge should not.
-
----
-
-## 8. Separate Code Progress From Documentation Churn
-
-A code commit does not automatically require a full documentation pass.
-
-Likewise, a documentation update does not require reviewing every implementation file.
-
-During active experimentation, prioritize getting reliable evidence and a stable implementation. Consolidate documentation when the result is mature enough to describe accurately.
-
-This avoids repeatedly rewriting documentation around temporary hypotheses that may change one or two tests later.
-
----
-
-## 9. Use Broader Reviews Deliberately
-
-A broad repository/document review is valuable when it has a clear purpose.
-
-Examples:
-
-- before a major architectural change;
-- after several related implementations have accumulated;
-- before declaring a subsystem stable;
-- when contradictions appear between code, evidence, and documentation;
-- when a new chat lacks enough context to continue safely;
-- when technical debt or accumulated temporary decisions need consolidation.
-
-When proposing a broad review, the assistant should explain briefly why it is useful.
-
-Example:
-
-> **This is a good point for a broader review.** We now have several collision findings and two implementation paths that affect the same subsystem, so consolidating them before the next change should reduce mistakes.
+This procedure keeps chat context compact while making the repository the durable evidence surface.
 
 ---
 
-## 10. Assistant Usage-Awareness Responsibility
+## 4. Preserve Deep Gothic 3 Knowledge; Optimize Retrieval Instead
 
-The assistant should consider likely Work/reasoning cost as one engineering constraint among many, but should not optimize blindly for it.
+This repository is intended to become a useful Gothic 3 modding knowledge base, not merely a record of one feature.
 
-The assistant should proactively say when:
+Do not archive or delete valuable technical evidence, hook research, animation semantics, catalogs, source findings, or reusable engine knowledge merely because they are large or not needed by the current prompt.
 
-- Medium is sufficient;
-- High is likely to materially improve the result;
-- a broad repository review can probably wait;
-- enough evidence has accumulated that a documentation checkpoint is worthwhile;
-- several small updates can be combined into one coherent update;
-- an attempted saving would create unacceptable uncertainty or risk.
+Instead:
 
-The user should not have to manage this alone.
+- index large documents by topic, heading, evidence range, symbol, action family, hook, subsystem, or search term;
+- keep exact evidence and raw artifacts available for verification;
+- prefer targeted section/evidence retrieval over full-document reading;
+- separate current conclusions from chronological research history where practical;
+- keep historical evidence discoverable when it explains why a current conclusion exists;
+- reconstruct a compact subsystem model once when entering that subject, then retrieve exact details only as needed.
 
----
+The objective is:
 
-## 11. No Artificial Fragmentation
-
-Do not split a naturally connected engineering task into many chats or artificial microtasks solely to reduce Work usage if doing so would damage context or efficiency.
-
-Normal chat may be useful for general planning, conceptual discussion, or unrelated questions, but active repository implementation can remain together when continuity is valuable.
-
-The choice of Chat versus Work should serve the task rather than become a rigid rule.
+> **small active cognitive surface, deep recoverable Gothic 3 knowledge, and enough subsystem orientation to avoid rediscovering established work.**
 
 ---
 
-## 12. Preserve Adaptability
+## 5. Incremental Knowledge Maintenance Is Part of Completing the Step
 
-These rules must never prevent the assistant from changing approach when the evidence warrants it.
+The User should not need to ask after every design decision, Work session, build, or runtime test whether documentation, evidence, indexes, handoffs, raw artifacts, or archives were updated.
 
-The assistant may:
+For meaningful engineering events, Normal Chat should automatically perform the small maintenance transaction defined in:
 
-- inspect additional files without prior permission when they become relevant;
-- propose a different test or implementation path;
-- recommend abandoning an approach that is failing;
-- recommend High reasoning unexpectedly when a supposedly simple task reveals deeper uncertainty;
-- update documentation earlier than planned if an important finding should be preserved;
-- postpone a planned documentation update if the underlying result is still unstable.
+- `docs/KNOWLEDGE_MAINTENANCE.md`;
+- `docs/KNOWLEDGE_REGISTRY.md`.
 
-When deviating substantially from the normal default, briefly state why.
+The rule is:
 
----
+```text
+meaningful event completes
+→ determine what actually changed
+→ update only the owning authorities whose trigger fired
+→ update index/current-state routing only when needed
+→ archive processed provenance when appropriate
+→ continue
+```
 
-## 13. Quality-Degradation Check
+A normal result should usually require one evidence update plus zero to three local authority/index/current-state updates, not a repository-wide documentation review.
 
-Periodically ask:
+A code commit does not automatically require documentation changes. A repeated runtime confirmation does not automatically require architecture changes. Absence of documentation churn is correct when no authority changed.
 
-**Are these rules helping us avoid redundant work, or are they starting to make the engineering worse?**
-
-Warning signs include:
-
-- missing relevant references because the review was kept too narrow;
-- repeated mistakes because documentation was postponed too long;
-- loss of continuity between chats;
-- reluctance to use High reasoning for a genuinely difficult problem;
-- accumulating undocumented assumptions;
-- spending more effort managing the rules than doing the work;
-- lower confidence or slower progress than before the rules were introduced.
-
-If these appear, change the rules rather than forcing the workflow to comply with them.
+Full documentation audits remain valuable but should be exceptional: schema/authority changes, contradiction resolution, major stabilization/promotion checkpoints, or occasional health reviews after substantial growth.
 
 ---
 
-## 14. Collaboration-Rule Revision Process
+## 6. Division of Labor — Intent and Allocation
 
-This is a living document.
+### Intent / why
 
-Changes should be based primarily on observed collaboration results rather than theoretical optimization.
+The User, Normal Chat, Work, the home PC and the repository are not interchangeable participants. They have different strengths, constraints, context and costs. The purpose of the allocation below is to place each responsibility where it has produced the best results, while preserving enough shared intent that the lower-level plan can adapt without changing project meaning.
 
-When a rule appears useful:
+Normal Chat is the primary environment for evidence interpretation, disagreement, architecture, semantic design, creative simplification and task freezing because those responsibilities benefit from accumulated User + Chat context and from the collaborative reasoning style developed through sustained work. Work is strongest when the semantics are already decided and its execution environment can materially help with bounded source inspection, implementation, source audit and publication.
 
-- keep it and refine it if necessary.
+The User's Work access also has limited hourly/weekly budget. That budget is a real project resource. Do not spend it on documentation maintenance, project reconstruction, open-ended architecture or reasoning that Normal Chat can perform as well or better. Use Work where its execution environment buys real implementation capability.
 
-When a rule is neutral:
+The intent is not to create a permanent product hierarchy or to deny initiative. It is to combine complementary strengths and avoid using more expensive or less context-calibrated machinery for responsibilities that do not benefit from it.
 
-- do not add complexity without a reason.
+### Current allocation
 
-When a rule degrades work:
+```text
+User + Normal Chat
+research / evidence interpretation / disagreement / architecture / semantics /
+creative simplification / planning / task freezing / knowledge maintenance
+        ↓
+Work when materially useful
+bounded implementation / narrowly necessary source or API inspection /
+source audit / commit-publish / concise handoff
+        ↓
+Normal Chat + authoritative home PC
+independent source review / build / deploy / runtime testing /
+evidence interpretation / next design decision
+```
 
-- modify or remove it.
+Normal Chat owns the project knowledge-maintenance transaction around those stages. Work remains an implementation responsibility and should not become a second documentation/architecture authority unless a task explicitly assigns a narrow documentation edit for a concrete reason.
 
-When a recurring successful practice emerges naturally:
+Detailed frozen implementation contracts should normally live once in `docs/BETWEEN_CHATS.md`. The launcher sent to Work should stay small: repository, branch/base identity, the exact frozen responsibility to read, the implementation protocol, publication/stop instruction, and only other information that is genuinely unavailable from the repository. Do not duplicate a long contract into both Normal Chat and Work merely for self-containment.
 
-- consider adding it here so it survives chat transitions and can later be reused in other projects.
+### Allocation decision rule
 
-Major changes should increment the document version so the evolution of the collaboration method remains understandable.
+When uncertain where a responsibility belongs, ask:
+
+> **Which environment materially improves this responsibility, given the context it needs, the authority it carries, the execution tools it can use, and the resources it consumes?**
+
+More compute, a larger context window or stronger repository automation does not automatically make Work the better owner of a context-heavy design problem. Conversely, do not keep mechanically large bounded implementation in Normal Chat merely to preserve a habit when Work materially improves execution.
+
+This allocation is evidence-based and revisable. If capabilities, resource constraints or demonstrated performance change, revise the lowest owning allocation rule deliberately.
+
+No permanent Medium/High reasoning policy is part of this project. Use sufficient reasoning for the actual responsibility and avoid spending resources on repeated reconstruction that the repository can prevent.
+
+### Interpretive transition rule
+
+**Routine continuation:** when an exact responsibility is already frozen—build, deploy, verify, run the controlled test or preserve its log—a short result such as “done”, “passed” or the requested artifact advances that responsibility. Do not require the User to reconfirm the already-clear next operation.
+
+**Interpretive/discovery work:** when unexpected evidence changes an interpretation, exposes a contradiction or creates an architecture choice, present the interpretation and let the User add observations or challenge it. Do not silently append an unannounced implementation task. Once the discussion converges, explicitly expose the next responsibility and why it follows. A natural `agree`, `continue`, `yes` or `let's do it` authorizes that clearly exposed responsibility; do not require a second ceremonial confirmation. Agreement given before the next responsibility was exposed is agreement with the interpretation, not authorization for an unannounced task.
+
+> **Advance routine work from the established referent; expose a new interpretive responsibility before treating agreement as authority to execute it.**
 
 ---
 
-## 15. Assistant Questions and Proposed Improvements
+## 7. Bounded Implementation Must Not Invent Missing Architecture
 
-This section is intentionally reserved for future refinement.
+For an implementation task whose semantics have already been decided:
 
-The assistant may raise questions or propose additions when repeated work reveals a pattern that may deserve a rule.
+- preserve the frozen question and protected behavior;
+- inspect only source/API material necessary to implement it;
+- do not silently create new ownership, lifecycle, classification, fallback, or architecture rules;
+- return material semantic contradictions to the design responsibility;
+- distinguish source completion from build/runtime proof;
+- independently review meaningful Work diffs against the contract before treating them as implementation authority while current evidence still justifies that review depth.
 
-Before turning a preference into a significant permanent rule, discuss it with the user when practical.
-
-Possible questions to revisit later:
-
-- How frequently should HANDOFF be refreshed during long experimental sessions?
-- Which findings deserve immediate Evidence Ledger updates versus checkpoint batching?
-- Does Medium reasoning remain sufficient for most controlled code/test loops in practice?
-- Which repository reviews consume substantial usage without improving outcomes?
-- Are there recurring tasks that should have their own lightweight procedure?
-- Which parts of this protocol generalize well enough to become a project-independent collaboration framework?
-
-Add new questions here as experience accumulates rather than prematurely creating rules for situations we have not encountered.
+The detailed compact execution contract is in `docs/WORK_IMPLEMENTATION_PROTOCOL.md`.
 
 ---
 
-## 16. Current Experimental Default
+## 8. Continuity and Interruption
 
-Until experience suggests otherwise:
+A Chat or Work context is not the sole project memory.
 
-1. **Use Medium reasoning for normal implementation and controlled test loops.**
-2. **Escalate to High when broad review, substantial rewriting, unknown engine tracing, contradictory evidence, or major architectural judgment makes it worthwhile.**
-3. **The assistant should explicitly recommend the change in reasoning level when it sees the need.**
-4. **Read relevant repository material selectively first; broaden freely when necessary.**
-5. **Do not update every document after every small result.**
-6. **Batch routine documentation at meaningful checkpoints.**
-7. **Record major durable findings promptly rather than risking their loss.**
-8. **Never sacrifice engineering quality merely to preserve usage allowance.**
-9. **Review and revise these rules if they begin to hamper the work.**
+Before reconstructing or redoing interrupted work:
 
-This default is an experiment. The objective is to learn what produces the best balance of engineering quality, continuity, speed, and sustainable tool usage through actual collaboration.
+1. inspect `docs/SESSION_ENTRYPOINT.md`;
+2. inspect the relevant durable commit/source/document;
+3. inspect `docs/BETWEEN_CHATS.md` if it carries newer transient state;
+4. if the active subsystem is not already sufficiently oriented in the current Chat, perform the one-time Subsystem Orientation Pass from `docs/README.md`;
+5. if substantial interpretation or architecture work will resume and the active problem model is stale, perform the targeted Active-Problem Reconstruction Pass from `docs/README.md`;
+6. continue only the missing responsibility.
+
+Do not ask the User to repeat exact technical information that can be reliably retrieved from project authority.
+
+When the product exposes a real context/usage warning and losing transient work would matter, preserve a minimal durable checkpoint. Do not invent hidden context percentages or usage state the product has not exposed.
+
+### When the User says they are moving to a new Normal Chat
+
+Treat the announced chat move as a small continuity-maintenance event, not as a request to write a large narrative handoff.
+
+Before ending the current chat:
+
+1. inspect the current `docs/SESSION_ENTRYPOINT.md` and the actual latest repository/task state;
+2. check whether any already-completed design, Work review, build, runtime result, evidence interpretation, raw/archive transition, or gate change still needs its normal local maintenance transaction;
+3. update `SESSION_ENTRYPOINT.md` only if the current subsystem, causal gate, immediate candidate, or next Normal Chat responsibility has changed;
+4. inspect `docs/BETWEEN_CHATS.md` and decide whether a transient handoff is genuinely needed;
+5. create or refresh `BETWEEN_CHATS.md` only when exact transient context would otherwise be lost — for example an active/fresh Work contract or result, a frozen implementation boundary, an unresolved local-only test/build state, or another short-lived responsibility not yet represented by durable authority;
+6. if `SESSION_ENTRYPOINT.md` already contains everything the next Normal Chat needs and no transient state exists, do **not** create another handoff file merely because the chat is changing;
+7. never create a parallel "new chat handoff" authority; use `SESSION_ENTRYPOINT.md` as the durable front door and `BETWEEN_CHATS.md` as the replaceable transient bridge;
+8. give the User one short copyable starter instruction for the new Normal Chat, normally telling it to read `docs/SESSION_ENTRYPOINT.md` on the active branch and continue from the current Normal Chat responsibility;
+9. the new Normal Chat should then perform the one-time Subsystem Orientation Pass for the active subsystem, and the targeted Active-Problem Reconstruction Pass when the causal model is stale, before deep question-specific work unless those models are already present in its context;
+10. do not require the User to summarize project history, relay technical state between chats, or decide which deeper documents the new chat should preload.
+
+The intended transition is:
+
+```text
+User announces chat move
+        ↓
+Normal Chat checks current maintenance + continuity state
+        ↓
+SESSION_ENTRYPOINT current?
+        ├─ no  → update it
+        └─ yes → leave it alone
+        ↓
+real transient context to preserve?
+        ├─ yes → replace/update BETWEEN_CHATS
+        └─ no  → no extra handoff document
+        ↓
+provide one short new-chat starter instruction
+        ↓
+new Normal Chat reads SESSION_ENTRYPOINT first
+        ↓
+performs subsystem orientation once
+        ↓
+retrieves BETWEEN_CHATS / deeper exact authority only as needed
+```
+
+This procedure should itself be revisited only when repeated chat transitions show that it is losing context, forcing redundant retrieval, or creating unnecessary document churn.
+
+---
+
+## 9. Evolve the Project Method From Evidence
+
+If collaboration becomes slow, lossy, over-documented, under-documented, or unreliable, diagnose the cause before adding another rule.
+
+Established procedures are **working defaults, not frozen law**. Use them normally without reviewing every procedure on every task or chat. Procedure review should be event-driven:
+
+- repeated friction, repeated mistakes, or repeated unnecessary work;
+- one serious failure or high-cost problem;
+- a newly discovered method that is clearly simpler, safer, more reliable, or materially less wasteful.
+
+Whoever notices such a trigger first — User or Chat — should raise the possible improvement. Diagnose the actual cause, change only the lowest owning procedure/rule that needs changing, and then use the revised procedure in subsequent work. Do not preserve obsolete active versions merely for history; Git already preserves procedure history.
+
+The intended procedure-evolution pattern is:
+
+```text
+use established procedure normally
+→ do not audit it merely because it exists
+→ friction / failure / clearly better method appears
+→ whoever notices first proposes improvement
+→ diagnose the actual mechanism
+→ revise the smallest owning procedure or rule
+→ use the revision and observe whether it resolves the problem
+```
+
+### Upward-promotion boundary
+
+Ordinary Gothic 3 project work stops at the lowest project-local authority that owns the problem. A Gothic 3 Chat may compare a lesson with CAM `current`, identify that it may generalize, and preserve enough rationale for later review, but it should **not** modify the CAM repository, reusable baseline, General Collaboration Rules, Project Collaboration Framework, collaboration profile, or CAM theory as part of the same project-maintenance transaction.
+
+Cross-project comparison and upward promotion are a separate responsibility performed in a dedicated CAM-evolution context. Only when the User explicitly opens that responsibility should higher-layer changes be considered. Stable CAM/theoretical authority has the highest change threshold and should be revised only through deliberate constitutional review, not as automatic fallout from one project's local improvement.
+
+Therefore “compare with CAM current” normally means **check consistency and identify candidate reusable value**, not “edit CAM now.”
+
+Prefer changing the lowest justified project layer:
+
+- task wording;
+- project retrieval/indexing;
+- knowledge authority/update triggers;
+- Work implementation protocol;
+- project operating procedure;
+- this Gothic 3 project delta.
+
+The intended learning loop inside this project is:
+
+```text
+real project success / friction / failure
+→ diagnose the actual mechanism
+→ improve the lowest owning project layer
+→ observe subsequent use
+→ compare the lesson with CAM current when useful
+→ preserve candidate reusable rationale if warranted
+→ dedicated CAM-evolution responsibility decides any upward promotion later
+```
+
+A CAM template is a starting structure, not a demand for identical project form. When another project legitimately varies from the template, first ask whether that is a useful project-specific adaptation or evidence to preserve for later cross-project review.
+
+Old collaboration documents and experiments may be archived once their durable lessons are represented in current authority. Their historical rationale remains available through archive/history.
+
+---
+
+## Core Project Collaboration Rule
+
+> **Start from current state, orient once to the relevant subsystem, reconstruct a stale active-problem model before new interpretation or architecture, retrieve only what the responsibility needs, preserve deep technical evidence for targeted reuse, automatically maintain only the records whose authority actually changed, allocate responsibilities where context/capability/resources make them strongest, and let Gothic 3 runtime/source evidence—not documentation volume—drive both the engineering and any collaboration-method lessons preserved for later wider review.**

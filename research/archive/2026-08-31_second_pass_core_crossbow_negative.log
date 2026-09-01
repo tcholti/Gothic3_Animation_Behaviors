@@ -1,0 +1,584 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Quick Whirl
+MarkerOpcodes: RIGHT LEFT BOTH OFF
+Installing behavior hooks...
+Hooks installed.
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51340.640
+Source: Bolt
+SourceAddress: E6EA7A10
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_Bolt_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 1
+AfterGroup: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51535.569
+Source: Bolt
+SourceAddress: E6EA7A10
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.205274
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 6
+BeforeGroup: 7
+AfterGroup: 6
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 58590.251
+Source: Bolt
+SourceAddress: E6EA8010
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_Bolt_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 1
+AfterGroup: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 58801.179
+Source: Bolt
+SourceAddress: E6EA8010
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.216006
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 6
+BeforeGroup: 7
+AfterGroup: 6
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 66008.876
+Source: Bolt
+SourceAddress: E6EB9210
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_Bolt_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 1
+AfterGroup: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 66230.392
+Source: Bolt
+SourceAddress: E6EB9210
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.237296
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 6
+BeforeGroup: 7
+AfterGroup: 6
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 81167.324
+Source: Bolt
+SourceAddress: E6E7DA10
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_Bolt_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 1
+AfterGroup: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 81411.364
+Source: Bolt
+SourceAddress: E6E7DA10
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.257121
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 6
+BeforeGroup: 7
+AfterGroup: 6
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 84657.443
+Source: Fist
+SourceAddress: E6E7D810
+SlotAssociation: NONE
+PlayerAction: 43
+PlayerAniPhase: 5
+PlayerStateTime: 2.674897
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 85102.070
+Actor: PC_Hero
+Generation: 3
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E8B33210
+Source[0].Side: LEFT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 85102.082
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 3
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 85105.536
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 85402.292
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E8B33210
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_Crossbow_BloodHarvest
+Source[0].OriginalSide: LEFT
+Source[0].CurrentSideMask: 2
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 86728.894
+Source: Fist
+SourceAddress: E6E7D810
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerStateTime: 1.410842
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Move_Walk_N_Back_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 87164.699
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E8B33210
+Source[0].Side: LEFT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 87164.711
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 87164.771
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 87466.348
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E8B33210
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_Crossbow_BloodHarvest
+Source[0].OriginalSide: LEFT
+Source[0].CurrentSideMask: 2
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 88915.658
+Source: Fist
+SourceAddress: E6E7D810
+SlotAssociation: NONE
+PlayerAction: 43
+PlayerAniPhase: 8
+PlayerStateTime: 0.553197
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Move_Walk_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 90896.853
+Actor: Boar
+Family: NORMAL
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E7D810
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 91127.625
+Source: Fist
+SourceAddress: E6E7D810
+SlotAssociation: NONE
+PlayerAction: 42
+PlayerAniPhase: 8
+PlayerStateTime: 2.896700
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Move_Walk_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 91170.198
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E8B33210
+Source[0].Side: LEFT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 91170.211
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 91172.042
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 91468.790
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E8B33210
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_Crossbow_BloodHarvest
+Source[0].OriginalSide: LEFT
+Source[0].CurrentSideMask: 2
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 93424.005
+Source: Fist
+SourceAddress: E6E7D810
+SlotAssociation: NONE
+PlayerAction: 43
+PlayerAniPhase: 12
+PlayerStateTime: 0.652050
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 93847.898
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E8B33210
+Source[0].Side: LEFT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 93847.924
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 93847.998
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 94143.225
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E8B33210
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_Crossbow_BloodHarvest
+Source[0].OriginalSide: LEFT
+Source[0].CurrentSideMask: 2
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 95504.751
+Source: Fist
+SourceAddress: E6E7D810
+SlotAssociation: NONE
+PlayerAction: 43
+PlayerAniPhase: 5
+PlayerStateTime: 1.073649
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 95917.815
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E8B33210
+Source[0].Side: LEFT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 95917.827
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 95917.889
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 96204.697
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E8B33210
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_Crossbow_BloodHarvest
+Source[0].OriginalSide: LEFT
+Source[0].CurrentSideMask: 2
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 112791.583
+Source: Bolt
+SourceAddress: E27B3010
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_Bolt_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 1
+AfterGroup: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 113073.292
+Source: Bolt
+SourceAddress: E27B3010
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.288983
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 6
+BeforeGroup: 7
+AfterGroup: 6
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 119137.398
+Source: Bolt
+SourceAddress: E700DC10
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_Bolt_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 1
+AfterGroup: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 119233.384
+Source: Bolt
+SourceAddress: E700DC10
+SlotAssociation: NONE
+PlayerAction: 41
+PlayerAniPhase: 5
+PlayerStateTime: 0.101005
+PlayerCurrentMovementAni: Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 6
+BeforeGroup: 7
+AfterGroup: 6
+RetiredMarkerExecutionCount: 0
+====================================
+
+Script_FrameCollisionTest unloading cleanly.

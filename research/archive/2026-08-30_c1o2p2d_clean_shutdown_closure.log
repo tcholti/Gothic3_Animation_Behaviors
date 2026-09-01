@@ -1,0 +1,351 @@
+Script_FrameCollisionTest v0.20 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT/BOTH source marker.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl eligibility: OnAI_WhirlAttack + exact WhirlAttack action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.
+v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.
+STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.
+STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.
+STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.
+STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.
+STEP B6 HIT STARTRECOVER / STOP / REPLACEMENT / UNGATED EMPTY-PRIMARY SUCCESSOR STACK PROBE: player PrimaryFirst outgoing attack-Hit or factual empty-Primary successor stack; diagnostic-only.
+STEP B7 COMBATMOVE FULLSTOP STACK PROBE: player sAICombatMoveInstr fullStop=true caller/context stack; diagnostic-only.
+STEP B7b AIFULLSTOP CALLSITE PROBE: player gCScriptRoutine_PS::AIFullStop immediate caller/context stack; diagnostic-only.
+STEP B9 AISETSTATE ORDERING PROBE: player gCScriptRoutine_PS::AISetState requested-state/caller/context stack before original; diagnostic-only.
+STEP C1 SHADOW LIFECYCLE GUARD: event-driven execution/source obligations; WOULD_REPAIR only; no physical repair.
+STEP C1 AISETSTATE RECURSION-SAFE THISCALL BASELINE: explicit per-invocation this; RunScriptFunction remains pure pass-through.
+STEP C1 AIFULLSTOP RECURSION-SAFE THISCALL BASELINE: explicit per-invocation this; AISetState and RunScriptFunction unchanged.
+STEP C1-O1 OUTER SCRIPTFRAME IDENTITY PROBE: top SPU frame snapshots only; no lifecycle or collision behavior change.
+STEP C1-O2-P1 LIGHTWEIGHT DISPATCH BRIDGE: stack-local/TLS current scope; relevant-offense diagnostics only; no lifecycle or collision behavior change.
+v0.20 probe runs only while a marker-owned collision window exists.
+Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+G3AB_COL_RIGHT is the final RIGHT equipped-slot marker.
+G3AB_COL_LEFT is the final LEFT equipped-slot marker.
+G3AB_COL_BOTH is the final BOTH equipped-slot marker.
+RIGHT, LEFT, and BOTH use exact-set semantics: the selected source set replaces the previous marker-owned set.
+BOTH activates/rearms the right and left equipped slot entities independently at one authored marker.
+If any source required by the exact motion is missing, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+G3AB_COL_OFF closes only a weapon window opened by this prototype.
+OFF requests Item_Equipped and never clears the triggered list.
+OFF before ON or after natural reset is consumed as a logged no-op.
+Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.
+
+v0.19 adds only the full 2H/Staff OnAI_WhirlAttack adapter.
+v0.19 preserves the validated v0.18 Normal/Quick RIGHT/LEFT/BOTH/OFF core unchanged.
+No Dual SimpleWhirl, Power, collision-source, timing, or cleanup behavior is added in v0.19.
+Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.
+
+Authored-occurrence budgets are cached separately for RIGHT, LEFT, BOTH, and OFF.
+Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase.
+Marker-time or controlled-callback state-time rollback starts a new execution.
+Natural collision reset outside the owning Hit execution retires the actor budget.
+No per-frame actor scan; budget work occurs only when a reserved marker is received.
+
+STEP C1-O2-P2 LAZY PRE-COMBAT BRIDGE: event-driven pre-Combat generation acquisition; matching CombatMove consumes temporary binding; shadow-only; no physical repair.
+Installing hooks...
+Hooks installed.
+
+===== AIFULLSTOP CALLSITE =====
+ElapsedMs: 20426.848
+ActorAddress: EBB66E10
+Actor: PC_Hero
+CallerAddress: 1F45B74A
+CallerModuleResolved: 1
+CallerModule: Script_Game.dll
+CallerModuleBase: 1F3B0000
+CallerRVA: 0x000AB74A
+CurrentAction: 0
+CurrentAniPhase: 5
+CurrentState: PS_Normal_Loop
+CurrentStateTime: 0.000000
+CurrentStatePosition: 0
+PressedKey: 8
+IsPressed: 1
+IsPressedBefore: 1
+DurationPressedMSecs: 14939
+CurrentMovementAni: 
+Stage: BEFORE_ORIGINAL
+ElapsedMs: 20426.852
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+LeftHandSourceResolved: 0
+LeftHandSource: <none>
+LeftHandSourceAddress: 00000000
+LeftHandSourceCollisionGroup: -1
+RightHandSourceResolved: 0
+RightHandSource: <none>
+RightHandSourceAddress: 00000000
+RightHandSourceCollisionGroup: -1
+CapturedStackFrameCount: 3
+StackFrame[0]: Address=7C0A0518 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x00010518
+StackFrame[1]: Address=1F45B74A Module=Script_Game.dll Base=1F3B0000 RVA=0x000AB74A
+StackFrame[2]: Address=00BA093B Module=Game.dll Base=00A40000 RVA=0x0016093B
+CleanupBehaviorChanged: 0
+===============================
+
+===== EMPTY-PRIMARY SUCCESSOR STACK =====
+ElapsedMs: 20449.071
+Actor: PC_Hero
+PrimaryWasEmptyBefore: 1
+IncomingMotionRequestAddress: 0019E288
+SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+SuccessorPrimarySnapshotAvailable: 1
+SuccessorPrimaryHasMotionInstance: 1
+CurrentActionBeforeOriginal: 0
+CurrentAniPhaseBeforeOriginal: 5
+CurrentStateTimeBeforeOriginal: 0.000000
+CurrentStatePositionBeforeOriginal: 0
+CurrentMovementAniBeforeOriginal: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+LeftHandSourceResolved: 0
+LeftHandSource: <none>
+LeftHandSourceAddress: 00000000
+LeftHandSourceCollisionGroup: -1
+RightHandSourceResolved: 0
+RightHandSource: <none>
+RightHandSourceAddress: 00000000
+RightHandSourceCollisionGroup: -1
+CapturedStackFrameCount: 2
+StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+StackFrame[1]: Address=00B19CB3 Module=Game.dll Base=00A40000 RVA=0x000D9CB3
+CleanupBehaviorChanged: 0
+=============================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20449.069
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20449.445
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 4.000000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== AISETSTATE CALLSITE =====
+ElapsedMs: 20449.535
+ActorAddress: EBB66E10
+Actor: PC_Hero
+RequestedState: PS_Normal_Loop
+CallerAddress: 1AA42F61
+CallerModuleResolved: 1
+CallerModule: Script.dll
+CallerModuleBase: 1AA30000
+CallerRVA: 0x00012F61
+CurrentStateBeforeOriginal: PS_Normal
+CurrentAction: 0
+CurrentAniPhase: 5
+CurrentStateTime: 0.000000
+CurrentStatePosition: 0
+CurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+Stage: BEFORE_ORIGINAL
+ElapsedMs: 20449.537
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 4.000000
+PrimaryPlaySpeed: 1.000000
+LeftHandSourceResolved: 0
+LeftHandSource: <none>
+LeftHandSourceAddress: 00000000
+LeftHandSourceCollisionGroup: -1
+RightHandSourceResolved: 0
+RightHandSource: <none>
+RightHandSourceAddress: 00000000
+RightHandSourceCollisionGroup: -1
+CapturedStackFrameCount: 3
+StackFrame[0]: Address=7C0A0AD8 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x00010AD8
+StackFrame[1]: Address=1AA42F61 Module=Script.dll Base=1AA30000 RVA=0x00012F61
+StackFrame[2]: Address=00BA04D3 Module=Game.dll Base=00A40000 RVA=0x001604D3
+CleanupBehaviorChanged: 0
+==============================
+
+===== OUTER_FRAME AI_SET_STATE_BEFORE =====
+ElapsedMs: 20449.620
+ActorAddress: EBB66E10
+Actor: PC_Hero
+SPUAddress: EBB67074
+StateStackCount: 1
+HasTopFrame: 1
+TopIndex: 0
+TopEntryAddressDiagnosticOnly: DC490C10
+TopScriptName: PS_Normal
+TopIsScriptState: 1
+TopBreakBlock: 4
+TopArgumentsAddress: 00000000
+TopLocalCallback: 
+TopExtraFloat: 1000.000000
+CurrentState: PS_Normal
+CurrentAction: 0
+CurrentStatePosition: 0
+CurrentStateTime: 0.000000
+TopEntryAddressIsExecutionIdentity: 0
+ArgumentsDereferencedOrClassified: 0
+LifecycleBehaviorChanged: 0
+CollisionBehaviorChanged: 0
+===============================
+
+===== OUTER_FRAME AI_SET_STATE_AFTER =====
+ElapsedMs: 20449.643
+ActorAddress: EBB66E10
+Actor: PC_Hero
+SPUAddress: EBB67074
+StateStackCount: 1
+HasTopFrame: 1
+TopIndex: 0
+TopEntryAddressDiagnosticOnly: DC490C10
+TopScriptName: PS_Normal_Loop
+TopIsScriptState: 1
+TopBreakBlock: 0
+TopArgumentsAddress: 00000000
+TopLocalCallback: 
+TopExtraFloat: 1000.000000
+CurrentState: PS_Normal_Loop
+CurrentAction: 0
+CurrentStatePosition: 0
+CurrentStateTime: 0.000000
+TopEntryAddressIsExecutionIdentity: 0
+ArgumentsDereferencedOrClassified: 0
+LifecycleBehaviorChanged: 0
+CollisionBehaviorChanged: 0
+===============================
+
+===== EMPTY-PRIMARY SUCCESSOR STACK =====
+ElapsedMs: 24317.511
+Actor: PC_Hero
+PrimaryWasEmptyBefore: 1
+IncomingMotionRequestAddress: 0019EB18
+SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+SuccessorPrimarySnapshotAvailable: 1
+SuccessorPrimaryHasMotionInstance: 1
+CurrentActionBeforeOriginal: 0
+CurrentAniPhaseBeforeOriginal: 5
+CurrentStateTimeBeforeOriginal: 3.704574
+CurrentStatePositionBeforeOriginal: 0
+CurrentMovementAniBeforeOriginal: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+LeftHandSourceResolved: 0
+LeftHandSource: <none>
+LeftHandSourceAddress: 00000000
+LeftHandSourceCollisionGroup: -1
+RightHandSourceResolved: 0
+RightHandSource: <none>
+RightHandSourceAddress: 00000000
+RightHandSourceCollisionGroup: -1
+CapturedStackFrameCount: 2
+StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+StackFrame[1]: Address=00B19CB3 Module=Game.dll Base=00A40000 RVA=0x000D9CB3
+CleanupBehaviorChanged: 0
+=============================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 24317.509
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 24317.526
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 2.800000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== EMPTY-PRIMARY SUCCESSOR STACK =====
+ElapsedMs: 26915.791
+Actor: PC_Hero
+PrimaryWasEmptyBefore: 1
+IncomingMotionRequestAddress: 0019EB18
+SuccessorPrimaryMotionNameAfterOriginal: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+SuccessorPrimarySnapshotAvailable: 1
+SuccessorPrimaryHasMotionInstance: 1
+CurrentActionBeforeOriginal: 0
+CurrentAniPhaseBeforeOriginal: 5
+CurrentStateTimeBeforeOriginal: 6.306872
+CurrentStatePositionBeforeOriginal: 0
+CurrentMovementAniBeforeOriginal: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+LeftHandSourceResolved: 0
+LeftHandSource: <none>
+LeftHandSourceAddress: 00000000
+LeftHandSourceCollisionGroup: -1
+RightHandSourceResolved: 0
+RightHandSource: <none>
+RightHandSourceAddress: 00000000
+RightHandSourceCollisionGroup: -1
+CapturedStackFrameCount: 2
+StackFrame[0]: Address=7C09F5A3 Module=Script_FrameCollisionTest.dll Base=7C090000 RVA=0x0000F5A3
+StackFrame[1]: Address=00B19CB3 Module=Game.dll Base=00A40000 RVA=0x000D9CB3
+CleanupBehaviorChanged: 0
+=============================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 26915.789
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 26916.641
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 8.000000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+Script_FrameCollisionTest unloading.

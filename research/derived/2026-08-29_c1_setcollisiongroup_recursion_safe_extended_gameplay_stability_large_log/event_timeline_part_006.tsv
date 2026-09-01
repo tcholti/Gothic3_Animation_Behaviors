@@ -1,0 +1,842 @@
+StartLine	EndLine	Event	SelectedFields
+110660	110681	C1 FINALIZATION	ElapsedMs=416063.296 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=176 | Status=PERSISTED | PhysicalCollisionChanged=0
+110682	110706	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=416063.318 | Actor=PC_Hero | CurrentAction=5 | CurrentStateTime=0.000000
+110707	110746	AISETSTATE CALLSITE	ElapsedMs=416063.394 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+110747	110771	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=416063.435 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+110772	110796	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=416063.455 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+110797	110813	C1 LIFECYCLE START	ElapsedMs=416074.121 | Actor=PC_Hero | Generation=178 | Status=CANDIDATE | PhysicalCollisionChanged=0
+110814	110827	C1-O2 OUTER BINDING	ElapsedMs=416074.159 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=178 | Status=CANDIDATE | PhysicalCollisionChanged=0
+110828	110852	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=416074.171 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+110853	110877	PRIMARYFIRST StopMotion	ElapsedMs=416074.206
+110878	110909	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=416074.231 | Actor=PC_Hero
+110910	110934	PRIMARYFIRST PlayMotion	ElapsedMs=416074.230
+110935	110945	C1 LIFECYCLE STATUS	ElapsedMs=416074.330 | Event=PERSISTED | Actor=PC_Hero | Generation=178 | Status=PERSISTED | PhysicalCollisionChanged=0
+110946	110970	MARKER OWNERSHIP DECISION	ElapsedMs=416074.347 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+110971	110987	C1 OFFENSE REQUEST	ElapsedMs=416333.903 | Actor=PC_Hero | Generation=178 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+110988	111014	ENGINE SetCollisionGroup	ElapsedMs=416333.936 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.259980 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+111015	111044	OUTER_FRAME OFFENSE	ElapsedMs=416333.961 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.259980
+111045	111069	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=416631.412 | Actor=It_2H_Sword_Flamberge | CurrentAction=0 | CurrentStateTime=0.000000
+111070	111094	PRIMARYFIRST StopMotion	ElapsedMs=416631.481
+111095	111127	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=416631.509 | Actor=PC_Hero
+111128	111152	PRIMARYFIRST PlayMotion	ElapsedMs=416631.509
+111153	111195	AIFULLSTOP CALLSITE	ElapsedMs=417231.209 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=1.156878 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+111196	111231	COMBATMOVE FULLSTOP STACK	ElapsedMs=417231.323 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=1.156878 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+111232	111248	C1 CLEANUP FULFILLED	ElapsedMs=417231.430 | Actor=PC_Hero | Generation=178 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+111249	111275	ENGINE SetCollisionGroup	ElapsedMs=417231.446 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+111276	111296	NATIVE CLEANUP CALL SITE	ElapsedMs=417231.465 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+111297	111326	OUTER_FRAME CLEANUP	ElapsedMs=417231.487 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.000000
+111327	111366	AISETSTATE CALLSITE	ElapsedMs=417231.509 | Actor=PC_Hero | CurrentAction=59 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+111367	111391	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=417231.575 | Actor=PC_Hero | CurrentAction=59 | CurrentStateTime=0.000000
+111392	111413	C1 FINALIZATION	ElapsedMs=417231.597 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=178 | Status=PERSISTED | PhysicalCollisionChanged=0
+111414	111438	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=417231.615 | Actor=PC_Hero | CurrentAction=59 | CurrentStateTime=0.000000
+111439	111463	PRIMARYFIRST StopMotion	ElapsedMs=417266.110
+111464	111490	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=417266.160 | Actor=PC_Hero
+111491	111515	PRIMARYFIRST PlayMotion	ElapsedMs=417266.159
+111516	111540	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=417334.975 | Actor=ReddockOrcScout02 | CurrentAction=14 | CurrentStateTime=0.000000
+111541	111565	PRIMARYFIRST StopMotion	ElapsedMs=417335.224
+111566	111592	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=417335.257 | Actor=PC_Hero
+111593	111617	PRIMARYFIRST PlayMotion	ElapsedMs=417335.256
+111618	111642	PRIMARYFIRST StopMotion	ElapsedMs=417411.075
+111643	111669	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=417411.146 | Actor=PC_Hero
+111670	111694	PRIMARYFIRST PlayMotion	ElapsedMs=417411.144
+111695	111719	PRIMARYFIRST StopMotion	ElapsedMs=417495.105
+111720	111746	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=417495.157 | Actor=PC_Hero
+111747	111771	PRIMARYFIRST PlayMotion	ElapsedMs=417495.156
+111772	111796	PRIMARYFIRST StopMotion	ElapsedMs=417505.968
+111797	111823	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=417506.020 | Actor=PC_Hero
+111824	111848	PRIMARYFIRST PlayMotion	ElapsedMs=417506.019
+111849	111891	AIFULLSTOP CALLSITE	ElapsedMs=417580.660 | Actor=PC_Hero | CurrentAction=59 | CurrentAniPhase=12 | CurrentStateTime=0.339899 | CurrentMovementAni=Hero_Stand_None_2H_P1_Move_Turn90_N_Right_00_%_00_P1_0.xmot
+111892	111916	PRIMARYFIRST StopMotion	ElapsedMs=417580.819
+111917	111941	PRIMARYFIRST StopMotion	ElapsedMs=417580.910
+111942	111968	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=417580.946 | Actor=PC_Hero
+111969	111993	PRIMARYFIRST PlayMotion	ElapsedMs=417580.945
+111994	112033	AISETSTATE CALLSITE	ElapsedMs=417581.351 | Actor=PC_Hero | CurrentAction=59 | CurrentAniPhase=12 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_Move_Stand_N_Fwd_00_%_00_P1_0.xmot
+112034	112058	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=417581.446 | Actor=PC_Hero | CurrentAction=59 | CurrentStateTime=0.000000
+112059	112083	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=417581.466 | Actor=PC_Hero | CurrentAction=59 | CurrentStateTime=0.000000
+112084	112108	PRIMARYFIRST StopMotion	ElapsedMs=417591.448
+112109	112133	PRIMARYFIRST StopMotion	ElapsedMs=417591.492
+112134	112160	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=417591.521 | Actor=PC_Hero
+112161	112185	PRIMARYFIRST PlayMotion	ElapsedMs=417591.520
+112186	112225	AISETSTATE CALLSITE	ElapsedMs=417591.644 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=12 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_Move_Turn90_N_Right_00_%_00_P1_0.xmot
+112226	112250	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=417591.688 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+112251	112275	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=417591.710 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+112276	112292	C1 LIFECYCLE START	ElapsedMs=417603.862 | Actor=PC_Hero | Generation=181 | Status=CANDIDATE | PhysicalCollisionChanged=0
+112293	112306	C1-O2 OUTER BINDING	ElapsedMs=417603.895 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=181 | Status=CANDIDATE | PhysicalCollisionChanged=0
+112307	112331	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=417603.906 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+112332	112356	PRIMARYFIRST StopMotion	ElapsedMs=417603.941
+112357	112388	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=417603.964 | Actor=PC_Hero
+112389	112413	PRIMARYFIRST PlayMotion	ElapsedMs=417603.963
+112414	112424	C1 LIFECYCLE STATUS	ElapsedMs=417604.056 | Event=PERSISTED | Actor=PC_Hero | Generation=181 | Status=PERSISTED | PhysicalCollisionChanged=0
+112425	112449	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=417895.627 | Actor=ReddockOrcScout02 | CurrentAction=14 | CurrentStateTime=0.562958
+112450	112476	ENGINE SetCollisionGroup	ElapsedMs=417895.736 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=2 | PlayerAniPhase=0 | PlayerStateTime=0.294969 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_R.xmot
+112477	112490	C1-O2 OUTER BINDING	ElapsedMs=418194.033 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=181 | Status=PERSISTED | PhysicalCollisionChanged=0
+112491	112515	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=418194.065 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.591947
+112516	112540	PRIMARYFIRST StopMotion	ElapsedMs=418194.105
+112541	112571	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=418194.134 | Actor=PC_Hero
+112572	112596	PRIMARYFIRST PlayMotion	ElapsedMs=418194.133
+112597	112613	C1 OFFENSE REQUEST	ElapsedMs=418194.280 | Actor=PC_Hero | Generation=181 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+112614	112640	ENGINE SetCollisionGroup	ElapsedMs=418194.296 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=2 | PlayerAniPhase=1 | PlayerStateTime=0.591947 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot
+112641	112670	OUTER_FRAME OFFENSE	ElapsedMs=418194.318 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=2 | CurrentStateTime=0.591947
+112671	112715	AIFULLSTOP CALLSITE	ElapsedMs=418263.761 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=1 | CurrentStateTime=0.668941 | CurrentMovementAni=Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot
+112716	112753	COMBATMOVE FULLSTOP STACK	ElapsedMs=418263.843 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=1 | CurrentStateTime=0.668941 | CurrentMovementAni=Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot
+112754	112770	C1 CLEANUP FULFILLED	ElapsedMs=418271.541 | Actor=PC_Hero | Generation=181 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+112771	112797	ENGINE SetCollisionGroup	ElapsedMs=418271.575 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=2 | PlayerAniPhase=1 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot
+112798	112818	NATIVE CLEANUP CALL SITE	ElapsedMs=418271.597 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+112819	112848	OUTER_FRAME CLEANUP	ElapsedMs=418271.626 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=2 | CurrentStateTime=0.000000
+112849	112865	C1 LIFECYCLE START	ElapsedMs=418273.002 | Actor=PC_Hero | Generation=182 | Status=CANDIDATE | PhysicalCollisionChanged=0
+112866	112890	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=418273.022 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+112891	112915	PRIMARYFIRST StopMotion	ElapsedMs=418273.334
+112916	112946	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=418273.363 | Actor=PC_Hero
+112947	112971	PRIMARYFIRST PlayMotion	ElapsedMs=418273.362
+112972	112982	C1 LIFECYCLE STATUS	ElapsedMs=418273.449 | Event=PERSISTED | Actor=PC_Hero | Generation=182 | Status=PERSISTED | PhysicalCollisionChanged=0
+112983	113009	ENGINE SetCollisionGroup	ElapsedMs=418498.695 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=29 | PlayerAniPhase=4 | PlayerStateTime=0.226989 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_LieKnockDown_Begin_N_Fwd_00_%_00_P0_150.xmot
+113010	113034	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=418498.744 | Actor=ReddockOrcScout02 | CurrentAction=14 | CurrentStateTime=1.163919
+113035	113059	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=418874.967 | Actor=ReddockOrcScout02 | CurrentAction=10 | CurrentStateTime=0.000000
+113060	113084	MARKER OWNERSHIP DECISION	ElapsedMs=418875.053 | Actor=ReddockOrcScout02 | CurrentMovementAni=Orc_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+113085	113111	ENGINE SetCollisionGroup	ElapsedMs=419125.986 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=29 | PlayerAniPhase=4 | PlayerStateTime=0.854973 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_LieKnockDown_Begin_N_Fwd_00_%_00_P0_150.xmot
+113112	113138	ENGINE SetCollisionGroup	ElapsedMs=419478.392 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=29 | PlayerAniPhase=4 | PlayerStateTime=1.205952 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_LieKnockDown_Begin_N_Fwd_00_%_00_P0_150.xmot
+113139	113163	PRIMARYFIRST StopMotion	ElapsedMs=419483.163
+113164	113190	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=419483.199 | Actor=PC_Hero
+113191	113215	PRIMARYFIRST PlayMotion	ElapsedMs=419483.197
+113216	113255	AISETSTATE CALLSITE	ElapsedMs=420286.980 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=2.014890 | CurrentMovementAni=Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Fwd_00_%_00_P0_0.xmot
+113256	113280	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=420287.054 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=2.014890
+113281	113302	C1 FINALIZATION	ElapsedMs=420287.079 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=182 | Status=PERSISTED | PhysicalCollisionChanged=0
+113303	113327	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=420287.099 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+113328	113367	AISETSTATE CALLSITE	ElapsedMs=420452.667 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=0.154000 | CurrentMovementAni=Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Fwd_00_%_00_P0_0.xmot
+113368	113392	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=420452.743 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.154000
+113393	113417	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=420452.769 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+113418	113429	C1 INVARIANT WARNING	ElapsedMs=420462.820 | Code=UNOWNED_PLAYER_OFFENSE_REQUEST | Actor=PC_Hero | Generation=0 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+113430	113456	ENGINE SetCollisionGroup	ElapsedMs=420462.853 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=30 | PlayerAniPhase=4 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Fwd_00_%_00_P0_0.xmot
+113457	113486	OUTER_FRAME OFFENSE	ElapsedMs=420462.877 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=30 | CurrentStateTime=0.000000
+113487	113503	C1 LIFECYCLE START	ElapsedMs=420462.907 | Actor=PC_Hero | Generation=184 | Status=CANDIDATE | PhysicalCollisionChanged=0
+113504	113517	C1-O2 OUTER BINDING	ElapsedMs=420462.925 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=184 | Status=CANDIDATE | PhysicalCollisionChanged=0
+113518	113542	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=420462.937 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+113543	113567	PRIMARYFIRST StopMotion	ElapsedMs=420463.036
+113568	113599	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=420463.075 | Actor=PC_Hero
+113600	113624	PRIMARYFIRST PlayMotion	ElapsedMs=420463.074
+113625	113635	C1 LIFECYCLE STATUS	ElapsedMs=420463.170 | Event=PERSISTED | Actor=PC_Hero | Generation=184 | Status=PERSISTED | PhysicalCollisionChanged=0
+113636	113652	C1 OFFENSE REQUEST	ElapsedMs=420571.049 | Actor=PC_Hero | Generation=184 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+113653	113679	ENGINE SetCollisionGroup	ElapsedMs=420571.085 | RequestedGroup=7 | BeforeGroup=7 | AfterGroup=7 | PlayerAction=30 | PlayerAniPhase=1 | PlayerStateTime=0.106998 | PlayerCurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+113680	113709	OUTER_FRAME OFFENSE	ElapsedMs=420571.110 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=7 | AfterGroup=7 | CurrentAction=30 | CurrentStateTime=0.106998
+113710	113734	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=420712.989 | Actor=ReddockOrcScout02 | CurrentAction=2 | CurrentStateTime=0.000000
+113735	113757	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=420873.610 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=1 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+113758	113781	HIT STARTRECOVER BEGIN STACK	ElapsedMs=420873.659 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=1 | CurrentStateTime=0.405971 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+113782	113806	PRIMARYFIRST StopMotion	ElapsedMs=420873.715
+113807	113833	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=420873.743 | Actor=PC_Hero
+113834	113858	PRIMARYFIRST PlayMotion	ElapsedMs=420873.742
+113859	113881	COMBATMOVE STARTRECOVER END	ElapsedMs=420873.811 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=3 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+113882	113898	C1 CLEANUP FULFILLED	ElapsedMs=420873.870 | Actor=PC_Hero | Generation=184 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+113899	113925	ENGINE SetCollisionGroup	ElapsedMs=420873.969 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=30 | PlayerAniPhase=3 | PlayerStateTime=0.405971 | PlayerCurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+113926	113945	NATIVE CLEANUP CALL SITE	ElapsedMs=420873.990 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+113946	113975	OUTER_FRAME CLEANUP	ElapsedMs=420874.013 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=30 | CurrentStateTime=0.405971
+113976	114015	AISETSTATE CALLSITE	ElapsedMs=420874.055 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+114016	114040	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=420874.094 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+114041	114062	C1 FINALIZATION	ElapsedMs=420874.145 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=184 | Status=PERSISTED | PhysicalCollisionChanged=0
+114063	114087	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=420874.168 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+114088	114127	AISETSTATE CALLSITE	ElapsedMs=420952.071 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.067008 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+114128	114152	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=420952.139 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.067008
+114153	114177	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=420952.161 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+114178	114194	C1 LIFECYCLE START	ElapsedMs=420964.009 | Actor=PC_Hero | Generation=186 | Status=CANDIDATE | PhysicalCollisionChanged=0
+114195	114208	C1-O2 OUTER BINDING	ElapsedMs=420964.046 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=186 | Status=CANDIDATE | PhysicalCollisionChanged=0
+114209	114233	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=420964.057 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+114234	114258	PRIMARYFIRST StopMotion	ElapsedMs=420964.095
+114259	114290	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=420964.120 | Actor=PC_Hero
+114291	114315	PRIMARYFIRST PlayMotion	ElapsedMs=420964.119
+114316	114326	C1 LIFECYCLE STATUS	ElapsedMs=420964.219 | Event=PERSISTED | Actor=PC_Hero | Generation=186 | Status=PERSISTED | PhysicalCollisionChanged=0
+114327	114351	MARKER OWNERSHIP DECISION	ElapsedMs=420964.237 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114352	114376	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=421159.695 | Actor=ReddockOrcScout02 | CurrentAction=2 | CurrentStateTime=0.445985
+114377	114403	ENGINE SetCollisionGroup	ElapsedMs=421159.800 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.199985 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114404	114420	C1 OFFENSE REQUEST	ElapsedMs=421222.514 | Actor=PC_Hero | Generation=186 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+114421	114447	ENGINE SetCollisionGroup	ElapsedMs=421222.548 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.258973 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114448	114477	OUTER_FRAME OFFENSE	ElapsedMs=421222.572 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.258973
+114478	114504	ENGINE SetCollisionGroup	ElapsedMs=421244.419 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.282973 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114505	114529	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=421245.707 | Actor=ReddockOrcScout02 | CurrentAction=26 | CurrentStateTime=0.000000
+114530	114552	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=421544.018 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114553	114576	HIT STARTRECOVER BEGIN STACK	ElapsedMs=421544.066 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.580969 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114577	114601	PRIMARYFIRST StopMotion	ElapsedMs=421544.118
+114602	114628	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=421544.148 | Actor=PC_Hero
+114629	114653	PRIMARYFIRST PlayMotion	ElapsedMs=421544.147
+114654	114676	COMBATMOVE STARTRECOVER END	ElapsedMs=421544.217 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114677	114693	C1 CLEANUP FULFILLED	ElapsedMs=421544.275 | Actor=PC_Hero | Generation=186 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+114694	114720	ENGINE SetCollisionGroup	ElapsedMs=421544.290 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.580969 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114721	114740	NATIVE CLEANUP CALL SITE	ElapsedMs=421544.308 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+114741	114770	OUTER_FRAME CLEANUP	ElapsedMs=421544.330 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.580969
+114771	114810	AISETSTATE CALLSITE	ElapsedMs=421544.358 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.580969 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114811	114835	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=421544.394 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.580969
+114836	114857	C1 FINALIZATION	ElapsedMs=421544.416 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=186 | Status=PERSISTED | PhysicalCollisionChanged=0
+114858	114882	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=421544.434 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+114883	114922	AISETSTATE CALLSITE	ElapsedMs=421544.497 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+114923	114947	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=421544.536 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+114948	114972	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=421544.555 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+114973	114989	C1 LIFECYCLE START	ElapsedMs=421556.215 | Actor=PC_Hero | Generation=188 | Status=CANDIDATE | PhysicalCollisionChanged=0
+114990	115003	C1-O2 OUTER BINDING	ElapsedMs=421556.248 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=188 | Status=CANDIDATE | PhysicalCollisionChanged=0
+115004	115028	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=421556.259 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+115029	115053	PRIMARYFIRST StopMotion	ElapsedMs=421556.297
+115054	115085	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=421556.323 | Actor=PC_Hero
+115086	115110	PRIMARYFIRST PlayMotion	ElapsedMs=421556.322
+115111	115121	C1 LIFECYCLE STATUS	ElapsedMs=421556.413 | Event=PERSISTED | Actor=PC_Hero | Generation=188 | Status=PERSISTED | PhysicalCollisionChanged=0
+115122	115146	MARKER OWNERSHIP DECISION	ElapsedMs=421556.428 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+115147	115171	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=421575.998 | Actor=ReddockOrcScout02 | CurrentAction=16 | CurrentStateTime=0.000000
+115172	115188	C1 OFFENSE REQUEST	ElapsedMs=421813.110 | Actor=PC_Hero | Generation=188 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+115189	115215	ENGINE SetCollisionGroup	ElapsedMs=421813.146 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.256984 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+115216	115245	OUTER_FRAME OFFENSE	ElapsedMs=421813.172 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.256984
+115246	115270	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=422094.107 | Actor=It_2H_Sword_Flamberge | CurrentAction=0 | CurrentStateTime=0.000000
+115271	115295	PRIMARYFIRST StopMotion	ElapsedMs=422094.167
+115296	115328	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=422094.193 | Actor=PC_Hero
+115329	115353	PRIMARYFIRST PlayMotion	ElapsedMs=422094.192
+115354	115378	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=422193.976 | Actor=ReddockOrcScout02 | CurrentAction=10 | CurrentStateTime=0.618973
+115379	115401	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=422721.457 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+115402	115426	PRIMARYFIRST StopMotion	ElapsedMs=422721.521
+115427	115453	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=422721.546 | Actor=PC_Hero
+115454	115478	PRIMARYFIRST PlayMotion	ElapsedMs=422721.545
+115479	115501	COMBATMOVE STARTRECOVER END	ElapsedMs=422721.627 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+115502	115518	C1 CLEANUP FULFILLED	ElapsedMs=422721.681 | Actor=PC_Hero | Generation=188 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+115519	115545	ENGINE SetCollisionGroup	ElapsedMs=422721.697 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=1.165953 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+115546	115565	NATIVE CLEANUP CALL SITE	ElapsedMs=422721.716 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+115566	115595	OUTER_FRAME CLEANUP	ElapsedMs=422721.738 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=1.165953
+115596	115635	AISETSTATE CALLSITE	ElapsedMs=422721.767 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=1.165953 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+115636	115660	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=422721.805 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=1.165953
+115661	115682	C1 FINALIZATION	ElapsedMs=422721.826 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=188 | Status=PERSISTED | PhysicalCollisionChanged=0
+115683	115707	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=422721.845 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+115708	115747	AISETSTATE CALLSITE	ElapsedMs=422721.905 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+115748	115772	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=422721.944 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+115773	115797	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=422721.964 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+115798	115814	C1 LIFECYCLE START	ElapsedMs=422733.169 | Actor=PC_Hero | Generation=192 | Status=CANDIDATE | PhysicalCollisionChanged=0
+115815	115828	C1-O2 OUTER BINDING	ElapsedMs=422733.202 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=192 | Status=CANDIDATE | PhysicalCollisionChanged=0
+115829	115853	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=422733.212 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+115854	115878	PRIMARYFIRST StopMotion	ElapsedMs=422733.253
+115879	115910	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=422733.280 | Actor=PC_Hero
+115911	115935	PRIMARYFIRST PlayMotion	ElapsedMs=422733.279
+115936	115946	C1 LIFECYCLE STATUS	ElapsedMs=422733.371 | Event=PERSISTED | Actor=PC_Hero | Generation=192 | Status=PERSISTED | PhysicalCollisionChanged=0
+115947	115971	MARKER OWNERSHIP DECISION	ElapsedMs=422733.385 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+115972	115988	C1 OFFENSE REQUEST	ElapsedMs=422989.626 | Actor=PC_Hero | Generation=192 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+115989	116015	ENGINE SetCollisionGroup	ElapsedMs=422989.664 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.260994 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+116016	116045	OUTER_FRAME OFFENSE	ElapsedMs=422989.691 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.260994
+116046	116070	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=423007.764 | Actor=It_2H_Sword_Flamberge | CurrentAction=0 | CurrentStateTime=0.000000
+116071	116095	PRIMARYFIRST StopMotion	ElapsedMs=423007.820
+116096	116128	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=423007.845 | Actor=PC_Hero
+116129	116153	PRIMARYFIRST PlayMotion	ElapsedMs=423007.844
+116154	116178	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=423172.875 | Actor=ReddockOrcScoutLeader | CurrentAction=1 | CurrentStateTime=0.000000
+116179	116203	MARKER OWNERSHIP DECISION	ElapsedMs=423172.964 | Actor=ReddockOrcScoutLeader | CurrentMovementAni=Orc_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot
+116204	116230	ENGINE SetCollisionGroup	ElapsedMs=423426.407 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.696968 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+116231	116253	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=423628.572 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+116254	116278	PRIMARYFIRST StopMotion	ElapsedMs=423628.637
+116279	116305	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=423628.667 | Actor=PC_Hero
+116306	116330	PRIMARYFIRST PlayMotion	ElapsedMs=423628.666
+116331	116353	COMBATMOVE STARTRECOVER END	ElapsedMs=423628.744 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+116354	116370	C1 CLEANUP FULFILLED	ElapsedMs=423628.843 | Actor=PC_Hero | Generation=192 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+116371	116397	ENGINE SetCollisionGroup	ElapsedMs=423628.859 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.900982 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+116398	116417	NATIVE CLEANUP CALL SITE	ElapsedMs=423628.891 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+116418	116447	OUTER_FRAME CLEANUP	ElapsedMs=423628.913 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.900982
+116448	116487	AISETSTATE CALLSITE	ElapsedMs=423628.968 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.900982 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+116488	116512	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=423629.004 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.900982
+116513	116534	C1 FINALIZATION	ElapsedMs=423629.025 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=192 | Status=PERSISTED | PhysicalCollisionChanged=0
+116535	116559	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=423629.045 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+116560	116599	AISETSTATE CALLSITE	ElapsedMs=423629.111 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+116600	116624	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=423629.149 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+116625	116649	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=423629.168 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+116650	116666	C1 LIFECYCLE START	ElapsedMs=423640.590 | Actor=PC_Hero | Generation=195 | Status=CANDIDATE | PhysicalCollisionChanged=0
+116667	116680	C1-O2 OUTER BINDING	ElapsedMs=423640.625 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=195 | Status=CANDIDATE | PhysicalCollisionChanged=0
+116681	116705	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=423640.641 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+116706	116730	PRIMARYFIRST StopMotion	ElapsedMs=423640.689
+116731	116762	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=423640.715 | Actor=PC_Hero
+116763	116787	PRIMARYFIRST PlayMotion	ElapsedMs=423640.714
+116788	116798	C1 LIFECYCLE STATUS	ElapsedMs=423640.867 | Event=PERSISTED | Actor=PC_Hero | Generation=195 | Status=PERSISTED | PhysicalCollisionChanged=0
+116799	116825	ENGINE SetCollisionGroup	ElapsedMs=423861.404 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.221976 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+116826	116842	C1 OFFENSE REQUEST	ElapsedMs=423894.629 | Actor=PC_Hero | Generation=195 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+116843	116869	ENGINE SetCollisionGroup	ElapsedMs=423894.665 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.255975 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+116870	116899	OUTER_FRAME OFFENSE	ElapsedMs=423894.688 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.255975
+116900	116924	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=423897.786 | Actor=It_2H_Sword_Flamberge | CurrentAction=0 | CurrentStateTime=0.000000
+116925	116949	PRIMARYFIRST StopMotion	ElapsedMs=423897.832
+116950	116982	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=423897.857 | Actor=PC_Hero
+116983	117007	PRIMARYFIRST PlayMotion	ElapsedMs=423897.856
+117008	117032	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=424032.972 | Actor=ReddockOrcScout02 | CurrentAction=10 | CurrentStateTime=0.000000
+117033	117059	ENGINE SetCollisionGroup	ElapsedMs=424289.996 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.649953 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+117060	117104	AIFULLSTOP CALLSITE	ElapsedMs=424293.537 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.661942 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+117105	117142	COMBATMOVE FULLSTOP STACK	ElapsedMs=424293.606 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.661942 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+117143	117159	C1 CLEANUP FULFILLED	ElapsedMs=424301.634 | Actor=PC_Hero | Generation=195 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+117160	117186	ENGINE SetCollisionGroup	ElapsedMs=424301.666 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+117187	117207	NATIVE CLEANUP CALL SITE	ElapsedMs=424301.689 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+117208	117237	OUTER_FRAME CLEANUP	ElapsedMs=424301.718 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.000000
+117238	117254	C1 LIFECYCLE START	ElapsedMs=424303.065 | Actor=PC_Hero | Generation=198 | Status=CANDIDATE | PhysicalCollisionChanged=0
+117255	117268	C1-O2 OUTER BINDING	ElapsedMs=424303.085 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=198 | Status=CANDIDATE | PhysicalCollisionChanged=0
+117269	117293	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=424303.096 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+117294	117318	PRIMARYFIRST StopMotion	ElapsedMs=424303.131
+117319	117350	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=424303.156 | Actor=PC_Hero
+117351	117375	PRIMARYFIRST PlayMotion	ElapsedMs=424303.155
+117376	117386	C1 LIFECYCLE STATUS	ElapsedMs=424303.245 | Event=PERSISTED | Actor=PC_Hero | Generation=198 | Status=PERSISTED | PhysicalCollisionChanged=0
+117387	117409	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=424610.250 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+117410	117434	PRIMARYFIRST StopMotion	ElapsedMs=424610.316
+117435	117461	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=424610.342 | Actor=PC_Hero
+117462	117486	PRIMARYFIRST PlayMotion	ElapsedMs=424610.341
+117487	117509	COMBATMOVE STARTRECOVER END	ElapsedMs=424610.419 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+117510	117549	AISETSTATE CALLSITE	ElapsedMs=424610.481 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+117550	117574	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=424610.520 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+117575	117596	C1 FINALIZATION	ElapsedMs=424610.541 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=198 | Status=PERSISTED | PhysicalCollisionChanged=0
+117597	117621	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=424610.561 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+117622	117648	ENGINE SetCollisionGroup	ElapsedMs=424643.162 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=0 | PlayerAniPhase=3 | PlayerStateTime=0.021021 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+117649	117688	AISETSTATE CALLSITE	ElapsedMs=424862.383 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.240945 | CurrentMovementAni=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+117689	117713	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=424862.452 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.240945
+117714	117738	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=424862.475 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+117739	117778	AISETSTATE CALLSITE	ElapsedMs=424873.291 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+117779	117803	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=424873.362 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+117804	117828	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=424873.387 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+117829	117868	AISETSTATE CALLSITE	ElapsedMs=424908.659 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.022009 | CurrentMovementAni=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+117869	117893	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=424908.726 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.022009
+117894	117918	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=424908.749 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+117919	117935	C1 LIFECYCLE START	ElapsedMs=424919.578 | Actor=PC_Hero | Generation=199 | Status=CANDIDATE | PhysicalCollisionChanged=0
+117936	117949	C1-O2 OUTER BINDING	ElapsedMs=424919.616 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=199 | Status=CANDIDATE | PhysicalCollisionChanged=0
+117950	117974	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=424919.628 | Actor=PC_Hero | CurrentAction=4 | CurrentStateTime=0.000000
+117975	117999	PRIMARYFIRST StopMotion	ElapsedMs=424919.709
+118000	118031	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=424919.735 | Actor=PC_Hero
+118032	118056	PRIMARYFIRST PlayMotion	ElapsedMs=424919.734
+118057	118067	C1 LIFECYCLE STATUS	ElapsedMs=424919.836 | Event=PERSISTED | Actor=PC_Hero | Generation=199 | Status=PERSISTED | PhysicalCollisionChanged=0
+118068	118092	MARKER OWNERSHIP DECISION	ElapsedMs=424919.853 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+118093	118109	C1 OFFENSE REQUEST	ElapsedMs=425019.790 | Actor=PC_Hero | Generation=199 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+118110	118136	ENGINE SetCollisionGroup	ElapsedMs=425019.823 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=4 | PlayerAniPhase=1 | PlayerStateTime=0.100018 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+118137	118166	OUTER_FRAME OFFENSE	ElapsedMs=425019.847 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=4 | CurrentStateTime=0.100018
+118167	118191	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=425230.136 | Actor=It_2H_Sword_Flamberge | CurrentAction=0 | CurrentStateTime=0.000000
+118192	118216	PRIMARYFIRST StopMotion	ElapsedMs=425230.331
+118217	118249	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=425230.407 | Actor=PC_Hero
+118250	118274	PRIMARYFIRST PlayMotion	ElapsedMs=425230.405
+118275	118299	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=425307.117 | Actor=ReddockOrcScoutLeader | CurrentAction=25 | CurrentStateTime=0.000000
+118300	118324	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=425532.115 | Actor=ReddockOrcScoutLeader | CurrentAction=1 | CurrentStateTime=0.000000
+118325	118351	ENGINE SetCollisionGroup	ElapsedMs=425791.590 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=4 | PlayerAniPhase=3 | PlayerStateTime=0.871968 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+118352	118374	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=425858.152 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+118375	118399	PRIMARYFIRST StopMotion	ElapsedMs=425858.220
+118400	118426	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=425858.247 | Actor=PC_Hero
+118427	118451	PRIMARYFIRST PlayMotion	ElapsedMs=425858.246
+118452	118474	COMBATMOVE STARTRECOVER END	ElapsedMs=425858.382 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+118475	118491	C1 CLEANUP FULFILLED	ElapsedMs=425858.455 | Actor=PC_Hero | Generation=199 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+118492	118518	ENGINE SetCollisionGroup	ElapsedMs=425858.471 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=4 | PlayerAniPhase=3 | PlayerStateTime=0.938954 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+118519	118538	NATIVE CLEANUP CALL SITE	ElapsedMs=425858.491 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+118539	118568	OUTER_FRAME CLEANUP	ElapsedMs=425858.511 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=4 | CurrentStateTime=0.938954
+118569	118613	AIFULLSTOP CALLSITE	ElapsedMs=425894.498 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=3 | CurrentStateTime=0.982951 | CurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+118614	118630	C1 LIFECYCLE START	ElapsedMs=425903.934 | Actor=PC_Hero | Generation=203 | Status=CANDIDATE | PhysicalCollisionChanged=0
+118631	118644	C1-O2 OUTER BINDING	ElapsedMs=425903.964 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=203 | Status=CANDIDATE | PhysicalCollisionChanged=0
+118645	118669	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=425903.975 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+118670	118694	PRIMARYFIRST StopMotion	ElapsedMs=425904.184
+118695	118726	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=425904.213 | Actor=PC_Hero
+118727	118751	PRIMARYFIRST PlayMotion	ElapsedMs=425904.212
+118752	118762	C1 LIFECYCLE STATUS	ElapsedMs=425904.398 | Event=PERSISTED | Actor=PC_Hero | Generation=203 | Status=PERSISTED | PhysicalCollisionChanged=0
+118763	118787	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=425959.026 | Actor=ReddockOrcScout02 | CurrentAction=10 | CurrentStateTime=0.000000
+118788	118814	ENGINE SetCollisionGroup	ElapsedMs=426214.765 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=26 | PlayerAniPhase=1 | PlayerStateTime=0.312985 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Fwd_00_%_00_P1_100.xmot
+118815	118837	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=426215.092 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Fwd_00_%_00_P1_100.xmot
+118838	118862	PRIMARYFIRST StopMotion	ElapsedMs=426215.350
+118863	118889	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=426215.436 | Actor=PC_Hero
+118890	118914	PRIMARYFIRST PlayMotion	ElapsedMs=426215.434
+118915	118937	COMBATMOVE STARTRECOVER END	ElapsedMs=426215.512 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Fwd_00_%_00_P1_100.xmot
+118938	118977	AISETSTATE CALLSITE	ElapsedMs=426215.573 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Fwd_00_%_00_P1_100.xmot
+118978	119002	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=426215.643 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+119003	119024	C1 FINALIZATION	ElapsedMs=426215.668 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=203 | Status=PERSISTED | PhysicalCollisionChanged=0
+119025	119049	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=426215.688 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+119050	119076	ENGINE SetCollisionGroup	ElapsedMs=426226.843 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=26 | PlayerAniPhase=3 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Fwd_00_%_00_P1_100.xmot
+119077	119121	AIFULLSTOP CALLSITE	ElapsedMs=426231.212 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.011976 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Recover_N_Fwd_00_%_00_P1_0.xmot
+119122	119138	C1 LIFECYCLE START	ElapsedMs=426245.502 | Actor=PC_Hero | Generation=205 | Status=CANDIDATE | PhysicalCollisionChanged=0
+119139	119152	C1-O2 OUTER BINDING	ElapsedMs=426245.531 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=205 | Status=CANDIDATE | PhysicalCollisionChanged=0
+119153	119177	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=426245.542 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+119178	119202	PRIMARYFIRST StopMotion	ElapsedMs=426245.577
+119203	119234	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=426245.600 | Actor=PC_Hero
+119235	119259	PRIMARYFIRST PlayMotion	ElapsedMs=426245.599
+119260	119270	C1 LIFECYCLE STATUS	ElapsedMs=426245.738 | Event=PERSISTED | Actor=PC_Hero | Generation=205 | Status=PERSISTED | PhysicalCollisionChanged=0
+119271	119293	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=426547.034 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+119294	119318	PRIMARYFIRST StopMotion	ElapsedMs=426547.098
+119319	119345	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=426547.122 | Actor=PC_Hero
+119346	119370	PRIMARYFIRST PlayMotion	ElapsedMs=426547.121
+119371	119393	COMBATMOVE STARTRECOVER END	ElapsedMs=426547.194 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+119394	119433	AISETSTATE CALLSITE	ElapsedMs=426547.307 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+119434	119458	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=426547.349 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+119459	119480	C1 FINALIZATION	ElapsedMs=426547.370 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=205 | Status=PERSISTED | PhysicalCollisionChanged=0
+119481	119505	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=426547.388 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+119506	119532	ENGINE SetCollisionGroup	ElapsedMs=426569.857 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=0 | PlayerAniPhase=3 | PlayerStateTime=0.011000 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+119533	119572	AISETSTATE CALLSITE	ElapsedMs=426683.840 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.123997 | CurrentMovementAni=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+119573	119597	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=426683.911 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.123997
+119598	119622	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=426683.933 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+119623	119666	AIFULLSTOP CALLSITE	ElapsedMs=426693.721 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+119667	119707	AISETSTATE CALLSITE	ElapsedMs=426693.878 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+119708	119732	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=426693.924 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+119733	119757	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=426693.946 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+119758	119774	C1 LIFECYCLE START	ElapsedMs=426695.424 | Actor=PC_Hero | Generation=206 | Status=CANDIDATE | PhysicalCollisionChanged=0
+119775	119788	C1-O2 OUTER BINDING	ElapsedMs=426695.513 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=206 | Status=CANDIDATE | PhysicalCollisionChanged=0
+119789	119813	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=426695.526 | Actor=PC_Hero | CurrentAction=5 | CurrentStateTime=0.000000
+119814	119838	PRIMARYFIRST StopMotion	ElapsedMs=426695.829
+119839	119870	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=426695.860 | Actor=PC_Hero
+119871	119895	PRIMARYFIRST PlayMotion	ElapsedMs=426695.859
+119896	119906	C1 LIFECYCLE STATUS	ElapsedMs=426695.956 | Event=PERSISTED | Actor=PC_Hero | Generation=206 | Status=PERSISTED | PhysicalCollisionChanged=0
+119907	119931	MARKER OWNERSHIP DECISION	ElapsedMs=426695.974 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+119932	119948	C1 OFFENSE REQUEST	ElapsedMs=426798.140 | Actor=PC_Hero | Generation=206 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+119949	119975	ENGINE SetCollisionGroup	ElapsedMs=426798.204 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=5 | PlayerAniPhase=1 | PlayerStateTime=0.103005 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot
+119976	120005	OUTER_FRAME OFFENSE	ElapsedMs=426798.228 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=5 | CurrentStateTime=0.103005
+120006	120030	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=427042.869 | Actor=It_2H_Sword_Flamberge | CurrentAction=0 | CurrentStateTime=0.000000
+120031	120055	PRIMARYFIRST StopMotion	ElapsedMs=427043.179
+120056	120088	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=427043.210 | Actor=PC_Hero
+120089	120113	PRIMARYFIRST PlayMotion	ElapsedMs=427043.209
+120114	120138	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=427145.143 | Actor=ReddockOrcScoutLeader | CurrentAction=25 | CurrentStateTime=0.000000
+120139	120163	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=427480.812 | Actor=ReddockOrcScoutLeader | CurrentAction=2 | CurrentStateTime=0.000000
+120164	120186	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=427670.396 | Actor=PC_Hero | CurrentAction=5 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L.xmot
+120187	120211	PRIMARYFIRST StopMotion	ElapsedMs=427670.467
+120212	120238	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=427670.549 | Actor=PC_Hero
+120239	120263	PRIMARYFIRST PlayMotion	ElapsedMs=427670.548
+120264	120286	COMBATMOVE STARTRECOVER END	ElapsedMs=427670.626 | Actor=PC_Hero | CurrentAction=5 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L.xmot
+120287	120303	C1 CLEANUP FULFILLED	ElapsedMs=427670.681 | Actor=PC_Hero | Generation=206 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+120304	120330	ENGINE SetCollisionGroup	ElapsedMs=427670.698 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=5 | PlayerAniPhase=3 | PlayerStateTime=0.975966 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L.xmot
+120331	120350	NATIVE CLEANUP CALL SITE	ElapsedMs=427670.716 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+120351	120380	OUTER_FRAME CLEANUP	ElapsedMs=427670.773 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=5 | CurrentStateTime=0.975966
+120381	120420	AISETSTATE CALLSITE	ElapsedMs=427775.566 | Actor=PC_Hero | CurrentAction=5 | CurrentAniPhase=3 | CurrentStateTime=1.080974 | CurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L.xmot
+120421	120445	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=427775.635 | Actor=PC_Hero | CurrentAction=5 | CurrentStateTime=1.080974
+120446	120467	C1 FINALIZATION	ElapsedMs=427775.659 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=206 | Status=PERSISTED | PhysicalCollisionChanged=0
+120468	120492	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=427775.678 | Actor=PC_Hero | CurrentAction=5 | CurrentStateTime=0.000000
+120493	120532	AISETSTATE CALLSITE	ElapsedMs=427775.787 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L.xmot
+120533	120557	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=427775.827 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+120558	120582	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=427775.846 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+120583	120599	C1 LIFECYCLE START	ElapsedMs=427786.371 | Actor=PC_Hero | Generation=210 | Status=CANDIDATE | PhysicalCollisionChanged=0
+120600	120613	C1-O2 OUTER BINDING	ElapsedMs=427786.405 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=210 | Status=CANDIDATE | PhysicalCollisionChanged=0
+120614	120638	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=427786.416 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+120639	120663	PRIMARYFIRST StopMotion	ElapsedMs=427786.460
+120664	120695	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=427786.484 | Actor=PC_Hero
+120696	120720	PRIMARYFIRST PlayMotion	ElapsedMs=427786.484
+120721	120731	C1 LIFECYCLE STATUS	ElapsedMs=427786.590 | Event=PERSISTED | Actor=PC_Hero | Generation=210 | Status=PERSISTED | PhysicalCollisionChanged=0
+120732	120756	MARKER OWNERSHIP DECISION	ElapsedMs=427786.605 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+120757	120781	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=427862.586 | Actor=ReddockOrcScout02 | CurrentAction=10 | CurrentStateTime=0.000000
+120782	120806	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=427928.351 | Actor=ReddockOrcScoutLeader | CurrentAction=2 | CurrentStateTime=0.446973
+120807	120833	ENGINE SetCollisionGroup	ElapsedMs=427928.455 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.140995 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+120834	120850	C1 OFFENSE REQUEST	ElapsedMs=428045.796 | Actor=PC_Hero | Generation=210 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+120851	120877	ENGINE SetCollisionGroup	ElapsedMs=428045.828 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.258991 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+120878	120907	OUTER_FRAME OFFENSE	ElapsedMs=428045.852 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.258991
+120908	120932	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=428079.809 | Actor=ReddockOrcScout02 | CurrentAction=0 | CurrentStateTime=0.000000
+120933	120955	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=428369.792 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+120956	120979	HIT STARTRECOVER BEGIN STACK	ElapsedMs=428369.844 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.581979 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+120980	121004	PRIMARYFIRST StopMotion	ElapsedMs=428369.897
+121005	121031	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=428369.923 | Actor=PC_Hero
+121032	121056	PRIMARYFIRST PlayMotion	ElapsedMs=428369.921
+121057	121079	COMBATMOVE STARTRECOVER END	ElapsedMs=428369.997 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+121080	121096	C1 CLEANUP FULFILLED	ElapsedMs=428370.053 | Actor=PC_Hero | Generation=210 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+121097	121123	ENGINE SetCollisionGroup	ElapsedMs=428370.068 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.581979 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+121124	121143	NATIVE CLEANUP CALL SITE	ElapsedMs=428370.087 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+121144	121173	OUTER_FRAME CLEANUP	ElapsedMs=428370.107 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.581979
+121174	121213	AISETSTATE CALLSITE	ElapsedMs=428370.153 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.581979 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+121214	121238	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=428370.205 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.581979
+121239	121260	C1 FINALIZATION	ElapsedMs=428370.227 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=210 | Status=PERSISTED | PhysicalCollisionChanged=0
+121261	121285	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=428370.246 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+121286	121330	AIFULLSTOP CALLSITE	ElapsedMs=428429.378 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.056995 | CurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+121331	121347	C1 LIFECYCLE START	ElapsedMs=428439.021 | Actor=PC_Hero | Generation=213 | Status=CANDIDATE | PhysicalCollisionChanged=0
+121348	121372	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=428439.049 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+121373	121397	PRIMARYFIRST StopMotion	ElapsedMs=428439.087
+121398	121428	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=428439.112 | Actor=PC_Hero
+121429	121453	PRIMARYFIRST PlayMotion	ElapsedMs=428439.111
+121454	121464	C1 LIFECYCLE STATUS	ElapsedMs=428439.201 | Event=PERSISTED | Actor=PC_Hero | Generation=213 | Status=PERSISTED | PhysicalCollisionChanged=0
+121465	121489	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=428871.740 | Actor=ReddockOrcScoutLeader | CurrentAction=1 | CurrentStateTime=0.000000
+121490	121514	MARKER OWNERSHIP DECISION	ElapsedMs=428875.168 | Actor=ReddockOrcScoutLeader | CurrentMovementAni=Orc_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_140_L.xmot
+121515	121541	ENGINE SetCollisionGroup	ElapsedMs=429128.135 | RequestedGroup=7 | BeforeGroup=7 | AfterGroup=7 | PlayerAction=29 | PlayerAniPhase=4 | PlayerStateTime=0.688954 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot
+121542	121568	ENGINE SetCollisionGroup	ElapsedMs=429392.628 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=29 | PlayerAniPhase=4 | PlayerStateTime=0.952955 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot
+121569	121593	PRIMARYFIRST StopMotion	ElapsedMs=429647.198
+121594	121620	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=429647.249 | Actor=PC_Hero
+121621	121645	PRIMARYFIRST PlayMotion	ElapsedMs=429647.248
+121646	121685	AISETSTATE CALLSITE	ElapsedMs=430449.787 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=2.009891 | CurrentMovementAni=Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+121686	121710	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=430449.857 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=2.009891
+121711	121732	C1 FINALIZATION	ElapsedMs=430449.896 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=213 | Status=PERSISTED | PhysicalCollisionChanged=0
+121733	121757	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=430449.934 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+121758	121797	AISETSTATE CALLSITE	ElapsedMs=430449.957 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+121798	121822	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=430449.994 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+121823	121847	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=430450.012 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+121848	121859	C1 INVARIANT WARNING	ElapsedMs=430461.128 | Code=UNOWNED_PLAYER_OFFENSE_REQUEST | Actor=PC_Hero | Generation=0 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+121860	121886	ENGINE SetCollisionGroup	ElapsedMs=430461.164 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=30 | PlayerAniPhase=4 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+121887	121916	OUTER_FRAME OFFENSE	ElapsedMs=430461.191 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=30 | CurrentStateTime=0.000000
+121917	121933	C1 LIFECYCLE START	ElapsedMs=430461.223 | Actor=PC_Hero | Generation=215 | Status=CANDIDATE | PhysicalCollisionChanged=0
+121934	121947	C1-O2 OUTER BINDING	ElapsedMs=430461.237 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=215 | Status=CANDIDATE | PhysicalCollisionChanged=0
+121948	121972	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=430461.247 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+121973	121997	PRIMARYFIRST StopMotion	ElapsedMs=430461.328
+121998	122029	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=430461.352 | Actor=PC_Hero
+122030	122054	PRIMARYFIRST PlayMotion	ElapsedMs=430461.352
+122055	122065	C1 LIFECYCLE STATUS	ElapsedMs=430461.449 | Event=PERSISTED | Actor=PC_Hero | Generation=215 | Status=PERSISTED | PhysicalCollisionChanged=0
+122066	122082	C1 OFFENSE REQUEST	ElapsedMs=430568.799 | Actor=PC_Hero | Generation=215 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+122083	122109	ENGINE SetCollisionGroup	ElapsedMs=430568.834 | RequestedGroup=7 | BeforeGroup=7 | AfterGroup=7 | PlayerAction=30 | PlayerAniPhase=1 | PlayerStateTime=0.106001 | PlayerCurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+122110	122139	OUTER_FRAME OFFENSE	ElapsedMs=430568.860 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=7 | AfterGroup=7 | CurrentAction=30 | CurrentStateTime=0.106001
+122140	122164	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=430657.236 | Actor=ReddockOrcScoutLeader | CurrentAction=10 | CurrentStateTime=0.000000
+122165	122189	MARKER OWNERSHIP DECISION	ElapsedMs=430657.339 | Actor=ReddockOrcScoutLeader | CurrentMovementAni=Orc_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+122190	122214	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=430741.527 | Actor=ReddockOrcScoutLeader | CurrentAction=0 | CurrentStateTime=0.000000
+122215	122237	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=430866.406 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=1 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+122238	122261	HIT STARTRECOVER BEGIN STACK	ElapsedMs=430866.457 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=1 | CurrentStateTime=0.404978 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+122262	122286	PRIMARYFIRST StopMotion	ElapsedMs=430866.509
+122287	122313	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=430866.537 | Actor=PC_Hero
+122314	122338	PRIMARYFIRST PlayMotion	ElapsedMs=430866.536
+122339	122361	COMBATMOVE STARTRECOVER END	ElapsedMs=430866.608 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=3 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+122362	122378	C1 CLEANUP FULFILLED	ElapsedMs=430866.663 | Actor=PC_Hero | Generation=215 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+122379	122405	ENGINE SetCollisionGroup	ElapsedMs=430866.677 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=30 | PlayerAniPhase=3 | PlayerStateTime=0.404978 | PlayerCurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+122406	122425	NATIVE CLEANUP CALL SITE	ElapsedMs=430866.695 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+122426	122455	OUTER_FRAME CLEANUP	ElapsedMs=430866.716 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=30 | CurrentStateTime=0.404978
+122456	122495	AISETSTATE CALLSITE	ElapsedMs=430866.756 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+122496	122520	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=430866.793 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+122521	122542	C1 FINALIZATION	ElapsedMs=430866.813 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=215 | Status=PERSISTED | PhysicalCollisionChanged=0
+122543	122567	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=430866.832 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+122568	122607	AISETSTATE CALLSITE	ElapsedMs=431104.696 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.221978 | CurrentMovementAni=Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+122608	122632	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=431104.764 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.221978
+122633	122657	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=431104.787 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+122658	122674	C1 LIFECYCLE START	ElapsedMs=431118.521 | Actor=PC_Hero | Generation=218 | Status=CANDIDATE | PhysicalCollisionChanged=0
+122675	122688	C1-O2 OUTER BINDING	ElapsedMs=431118.555 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=218 | Status=CANDIDATE | PhysicalCollisionChanged=0
+122689	122713	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=431118.566 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+122714	122738	PRIMARYFIRST StopMotion	ElapsedMs=431118.659
+122739	122770	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=431118.689 | Actor=PC_Hero
+122771	122795	PRIMARYFIRST PlayMotion	ElapsedMs=431118.688
+122796	122806	C1 LIFECYCLE STATUS	ElapsedMs=431118.783 | Event=PERSISTED | Actor=PC_Hero | Generation=218 | Status=PERSISTED | PhysicalCollisionChanged=0
+122807	122823	C1 OFFENSE REQUEST	ElapsedMs=431372.007 | Actor=PC_Hero | Generation=218 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+122824	122850	ENGINE SetCollisionGroup	ElapsedMs=431372.039 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.255996 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+122851	122880	OUTER_FRAME OFFENSE	ElapsedMs=431372.119 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.255996
+122881	122903	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=431686.365 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+122904	122927	HIT STARTRECOVER BEGIN STACK	ElapsedMs=431686.418 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.571987 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+122928	122952	PRIMARYFIRST StopMotion	ElapsedMs=431686.472
+122953	122979	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=431686.497 | Actor=PC_Hero
+122980	123004	PRIMARYFIRST PlayMotion	ElapsedMs=431686.496
+123005	123027	COMBATMOVE STARTRECOVER END	ElapsedMs=431686.633 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+123028	123044	C1 CLEANUP FULFILLED	ElapsedMs=431686.690 | Actor=PC_Hero | Generation=218 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+123045	123071	ENGINE SetCollisionGroup	ElapsedMs=431686.705 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.571987 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+123072	123091	NATIVE CLEANUP CALL SITE	ElapsedMs=431686.724 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+123092	123121	OUTER_FRAME CLEANUP	ElapsedMs=431686.746 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.571987
+123122	123161	AISETSTATE CALLSITE	ElapsedMs=431686.776 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.571987 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+123162	123186	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=431686.814 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.571987
+123187	123208	C1 FINALIZATION	ElapsedMs=431686.836 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=218 | Status=PERSISTED | PhysicalCollisionChanged=0
+123209	123233	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=431686.855 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+123234	123258	PRIMARYFIRST StopMotion	ElapsedMs=432055.622
+123259	123283	PRIMARYFIRST StopMotion	ElapsedMs=432055.678
+123284	123310	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=432055.706 | Actor=PC_Hero
+123311	123335	PRIMARYFIRST PlayMotion	ElapsedMs=432055.705
+123336	123360	PRIMARYFIRST StopMotion	ElapsedMs=432243.542
+123361	123387	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=432243.595 | Actor=PC_Hero
+123388	123412	PRIMARYFIRST PlayMotion	ElapsedMs=432243.593
+123413	123452	AISETSTATE CALLSITE	ElapsedMs=433004.064 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=1.299940 | CurrentMovementAni=Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+123453	123477	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=433004.133 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=1.299940
+123478	123502	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=433004.156 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+123503	123519	C1 LIFECYCLE START	ElapsedMs=433017.522 | Actor=PC_Hero | Generation=219 | Status=CANDIDATE | PhysicalCollisionChanged=0
+123520	123533	C1-O2 OUTER BINDING	ElapsedMs=433017.560 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=219 | Status=CANDIDATE | PhysicalCollisionChanged=0
+123534	123558	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=433017.574 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+123559	123583	PRIMARYFIRST StopMotion	ElapsedMs=433017.612
+123584	123615	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=433017.638 | Actor=PC_Hero
+123616	123640	PRIMARYFIRST PlayMotion	ElapsedMs=433017.637
+123641	123651	C1 LIFECYCLE STATUS	ElapsedMs=433017.734 | Event=PERSISTED | Actor=PC_Hero | Generation=219 | Status=PERSISTED | PhysicalCollisionChanged=0
+123652	123676	MARKER OWNERSHIP DECISION	ElapsedMs=433017.752 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+123677	123693	C1 OFFENSE REQUEST	ElapsedMs=433268.752 | Actor=PC_Hero | Generation=219 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+123694	123720	ENGINE SetCollisionGroup	ElapsedMs=433268.785 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.252980 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+123721	123750	OUTER_FRAME OFFENSE	ElapsedMs=433268.809 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.252980
+123751	123775	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=433585.420 | Actor=ReddockOrcScout01 | CurrentAction=26 | CurrentStateTime=0.000000
+123776	123798	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=433760.273 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+123799	123822	HIT STARTRECOVER BEGIN STACK	ElapsedMs=433760.326 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.743921 | CurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+123823	123847	PRIMARYFIRST StopMotion	ElapsedMs=433760.378
+123848	123874	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=433760.402 | Actor=PC_Hero
+123875	123899	PRIMARYFIRST PlayMotion	ElapsedMs=433760.402
+123900	123922	COMBATMOVE STARTRECOVER END	ElapsedMs=433760.469 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+123923	123939	C1 CLEANUP FULFILLED	ElapsedMs=433760.528 | Actor=PC_Hero | Generation=219 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+123940	123966	ENGINE SetCollisionGroup	ElapsedMs=433760.544 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.743921 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+123967	123986	NATIVE CLEANUP CALL SITE	ElapsedMs=433760.562 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+123987	124016	OUTER_FRAME CLEANUP	ElapsedMs=433760.581 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.743921
+124017	124056	AISETSTATE CALLSITE	ElapsedMs=433760.608 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.743921 | CurrentMovementAni=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+124057	124081	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=433760.645 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.743921
+124082	124103	C1 FINALIZATION	ElapsedMs=433760.666 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=219 | Status=PERSISTED | PhysicalCollisionChanged=0
+124104	124128	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=433760.691 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+124129	124168	AISETSTATE CALLSITE	ElapsedMs=433859.381 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.087009 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+124169	124193	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=433859.451 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.087009
+124194	124218	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=433859.474 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+124219	124235	C1 LIFECYCLE START	ElapsedMs=433871.697 | Actor=PC_Hero | Generation=221 | Status=CANDIDATE | PhysicalCollisionChanged=0
+124236	124249	C1-O2 OUTER BINDING	ElapsedMs=433871.735 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=221 | Status=CANDIDATE | PhysicalCollisionChanged=0
+124250	124274	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=433871.746 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+124275	124299	PRIMARYFIRST StopMotion	ElapsedMs=433871.783
+124300	124331	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=433871.809 | Actor=PC_Hero
+124332	124356	PRIMARYFIRST PlayMotion	ElapsedMs=433871.808
+124357	124367	C1 LIFECYCLE STATUS	ElapsedMs=433871.907 | Event=PERSISTED | Actor=PC_Hero | Generation=221 | Status=PERSISTED | PhysicalCollisionChanged=0
+124368	124392	MARKER OWNERSHIP DECISION	ElapsedMs=433871.924 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+124393	124409	C1 OFFENSE REQUEST	ElapsedMs=434123.747 | Actor=PC_Hero | Generation=221 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+124410	124436	ENGINE SetCollisionGroup	ElapsedMs=434123.779 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.252965 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+124437	124466	OUTER_FRAME OFFENSE	ElapsedMs=434123.802 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.252965
+124467	124491	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=434252.282 | Actor=ReddockOrcScout01 | CurrentAction=0 | CurrentStateTime=0.000000
+124492	124514	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=434448.568 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+124515	124538	HIT STARTRECOVER BEGIN STACK	ElapsedMs=434448.624 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.580858 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+124539	124563	PRIMARYFIRST StopMotion	ElapsedMs=434448.678
+124564	124590	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=434448.704 | Actor=PC_Hero
+124591	124615	PRIMARYFIRST PlayMotion	ElapsedMs=434448.703
+124616	124638	COMBATMOVE STARTRECOVER END	ElapsedMs=434448.777 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+124639	124655	C1 CLEANUP FULFILLED	ElapsedMs=434448.837 | Actor=PC_Hero | Generation=221 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+124656	124682	ENGINE SetCollisionGroup	ElapsedMs=434448.852 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.580858 | PlayerCurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+124683	124702	NATIVE CLEANUP CALL SITE	ElapsedMs=434448.871 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+124703	124732	OUTER_FRAME CLEANUP	ElapsedMs=434448.891 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.580858
+124733	124772	AISETSTATE CALLSITE	ElapsedMs=434448.920 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.580858 | CurrentMovementAni=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+124773	124797	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=434448.959 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.580858
+124798	124819	C1 FINALIZATION	ElapsedMs=434448.982 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=221 | Status=PERSISTED | PhysicalCollisionChanged=0
+124820	124844	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=434449.001 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+124845	124869	PRIMARYFIRST StopMotion	ElapsedMs=434780.073
+124870	124894	PRIMARYFIRST StopMotion	ElapsedMs=434780.126
+124895	124921	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=434780.153 | Actor=PC_Hero
+124922	124946	PRIMARYFIRST PlayMotion	ElapsedMs=434780.152
+124947	124971	PRIMARYFIRST StopMotion	ElapsedMs=434963.281
+124972	124998	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=434963.334 | Actor=PC_Hero
+124999	125023	PRIMARYFIRST PlayMotion	ElapsedMs=434963.333
+125024	125063	AISETSTATE CALLSITE	ElapsedMs=435366.388 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=0.901974 | CurrentMovementAni=Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+125064	125088	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=435366.459 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.901974
+125089	125113	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=435366.481 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+125114	125153	AISETSTATE CALLSITE	ElapsedMs=435378.181 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+125154	125178	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=435378.253 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+125179	125203	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=435378.278 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+125204	125228	PRIMARYFIRST StopMotion	ElapsedMs=435390.606
+125229	125253	PRIMARYFIRST StopMotion	ElapsedMs=435390.720
+125254	125280	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=435390.749 | Actor=PC_Hero
+125281	125305	PRIMARYFIRST PlayMotion	ElapsedMs=435390.748
+125306	125330	PRIMARYFIRST StopMotion	ElapsedMs=435543.656
+125331	125355	PRIMARYFIRST StopMotion	ElapsedMs=435543.705
+125356	125382	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=435543.730 | Actor=PC_Hero
+125383	125407	PRIMARYFIRST PlayMotion	ElapsedMs=435543.729
+125408	125434	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=435566.061 | Actor=PC_Hero
+125435	125459	PRIMARYFIRST PlayMotion	ElapsedMs=435566.058
+125460	125499	AISETSTATE CALLSITE	ElapsedMs=435727.351 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=5 | CurrentStateTime=0.339998 | CurrentMovementAni=Hero_Parade_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+125500	125524	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=435727.421 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.339998
+125525	125549	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=435727.442 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+125550	125566	C1 LIFECYCLE START	ElapsedMs=435738.952 | Actor=PC_Hero | Generation=223 | Status=CANDIDATE | PhysicalCollisionChanged=0
+125567	125580	C1-O2 OUTER BINDING	ElapsedMs=435738.991 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=223 | Status=CANDIDATE | PhysicalCollisionChanged=0
+125581	125605	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=435739.005 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.000000
+125606	125630	PRIMARYFIRST StopMotion	ElapsedMs=435739.044
+125631	125662	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=435739.069 | Actor=PC_Hero
+125663	125687	PRIMARYFIRST PlayMotion	ElapsedMs=435739.066
+125688	125698	C1 LIFECYCLE STATUS	ElapsedMs=435739.183 | Event=PERSISTED | Actor=PC_Hero | Generation=223 | Status=PERSISTED | PhysicalCollisionChanged=0
+125699	125712	C1-O2 OUTER BINDING	ElapsedMs=436709.494 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=223 | Status=PERSISTED | PhysicalCollisionChanged=0
+125713	125737	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=436709.529 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.969970
+125738	125762	PRIMARYFIRST StopMotion	ElapsedMs=436709.571
+125763	125793	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=436709.596 | Actor=PC_Hero
+125794	125818	PRIMARYFIRST PlayMotion	ElapsedMs=436709.595
+125819	125835	C1 OFFENSE REQUEST	ElapsedMs=436709.702 | Actor=PC_Hero | Generation=223 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+125836	125862	ENGINE SetCollisionGroup	ElapsedMs=436709.721 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=15 | PlayerAniPhase=1 | PlayerStateTime=0.969970 | PlayerCurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+125863	125892	OUTER_FRAME OFFENSE	ElapsedMs=436709.744 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=15 | CurrentStateTime=0.969970
+125893	125915	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=437200.987 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+125916	125939	HIT STARTRECOVER BEGIN STACK	ElapsedMs=437201.039 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=1 | CurrentStateTime=1.460888 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+125940	125964	PRIMARYFIRST StopMotion	ElapsedMs=437201.092
+125965	125991	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=437201.122 | Actor=PC_Hero
+125992	126016	PRIMARYFIRST PlayMotion	ElapsedMs=437201.121
+126017	126039	COMBATMOVE STARTRECOVER END	ElapsedMs=437201.197 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+126040	126056	C1 CLEANUP FULFILLED	ElapsedMs=437201.252 | Actor=PC_Hero | Generation=223 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+126057	126083	ENGINE SetCollisionGroup	ElapsedMs=437201.268 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=15 | PlayerAniPhase=3 | PlayerStateTime=1.460888 | PlayerCurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+126084	126103	NATIVE CLEANUP CALL SITE	ElapsedMs=437201.287 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+126104	126133	OUTER_FRAME CLEANUP	ElapsedMs=437201.309 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=15 | CurrentStateTime=1.460888
+126134	126147	C1-O2 OUTER BINDING	ElapsedMs=437201.338 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=223 | Status=PERSISTED | PhysicalCollisionChanged=0
+126148	126172	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=437201.349 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=1.460888
+126173	126197	PRIMARYFIRST StopMotion	ElapsedMs=437201.382
+126198	126228	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=437201.406 | Actor=PC_Hero
+126229	126253	PRIMARYFIRST PlayMotion	ElapsedMs=437201.405
+126254	126293	AISETSTATE CALLSITE	ElapsedMs=438089.399 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=3 | CurrentStateTime=2.345839 | CurrentMovementAni=Hero_Parade_None_2H_P1_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
+126294	126318	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=438089.469 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=2.345839
+126319	126340	C1 FINALIZATION	ElapsedMs=438089.494 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=223 | Status=PERSISTED | PhysicalCollisionChanged=0
+126341	126365	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=438089.514 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.000000
+126366	126390	PRIMARYFIRST StopMotion	ElapsedMs=438101.839
+126391	126417	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=438101.894 | Actor=PC_Hero
+126418	126442	PRIMARYFIRST PlayMotion	ElapsedMs=438101.893
+126443	126469	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=438126.164 | Actor=PC_Hero
+126470	126494	PRIMARYFIRST PlayMotion	ElapsedMs=438126.161
+126495	126519	PRIMARYFIRST StopMotion	ElapsedMs=438262.273
+126520	126544	PRIMARYFIRST StopMotion	ElapsedMs=438275.692
+126545	126571	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=438275.817 | Actor=PC_Hero
+126572	126596	PRIMARYFIRST PlayMotion	ElapsedMs=438275.816
+126597	126621	PRIMARYFIRST StopMotion	ElapsedMs=438440.728
+126622	126648	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=438440.788 | Actor=PC_Hero
+126649	126673	PRIMARYFIRST PlayMotion	ElapsedMs=438440.787
+126674	126713	AISETSTATE CALLSITE	ElapsedMs=439019.233 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=0.918961 | CurrentMovementAni=Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+126714	126738	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=439019.301 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.918961
+126739	126763	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=439019.323 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+126764	126788	PRIMARYFIRST StopMotion	ElapsedMs=439031.006
+126789	126815	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=439031.061 | Actor=PC_Hero
+126816	126840	PRIMARYFIRST PlayMotion	ElapsedMs=439031.060
+126841	126880	AISETSTATE CALLSITE	ElapsedMs=439031.188 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P0_Move_Walk_N_Right_00_%_00_P0_160.xmot
+126881	126905	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=439031.231 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+126906	126930	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=439031.254 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+126931	126955	PRIMARYFIRST StopMotion	ElapsedMs=439043.119
+126956	126980	PRIMARYFIRST StopMotion	ElapsedMs=439043.222
+126981	127007	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=439043.250 | Actor=PC_Hero
+127008	127032	PRIMARYFIRST PlayMotion	ElapsedMs=439043.248
+127033	127072	AISETSTATE CALLSITE	ElapsedMs=439229.234 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=0.185975 | CurrentMovementAni=Hero_Parade_None_2H_P0_Move_Walk_N_Right_00_%_00_P0_200.xmot
+127073	127097	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=439229.306 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.185975
+127098	127122	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=439229.329 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+127123	127139	C1 LIFECYCLE START	ElapsedMs=439241.467 | Actor=PC_Hero | Generation=224 | Status=CANDIDATE | PhysicalCollisionChanged=0
+127140	127153	C1-O2 OUTER BINDING	ElapsedMs=439241.496 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=224 | Status=CANDIDATE | PhysicalCollisionChanged=0
+127154	127178	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=439241.508 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.000000
+127179	127203	PRIMARYFIRST StopMotion	ElapsedMs=439241.550
+127204	127235	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=439241.578 | Actor=PC_Hero
+127236	127260	PRIMARYFIRST PlayMotion	ElapsedMs=439241.577
+127261	127271	C1 LIFECYCLE STATUS	ElapsedMs=439241.668 | Event=PERSISTED | Actor=PC_Hero | Generation=224 | Status=PERSISTED | PhysicalCollisionChanged=0
+127272	127285	C1-O2 OUTER BINDING	ElapsedMs=440208.465 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=224 | Status=PERSISTED | PhysicalCollisionChanged=0
+127286	127310	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=440208.497 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.966965
+127311	127335	PRIMARYFIRST StopMotion	ElapsedMs=440208.541
+127336	127366	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=440208.568 | Actor=PC_Hero
+127367	127391	PRIMARYFIRST PlayMotion	ElapsedMs=440208.567
+127392	127408	C1 OFFENSE REQUEST	ElapsedMs=440208.676 | Actor=PC_Hero | Generation=224 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+127409	127435	ENGINE SetCollisionGroup	ElapsedMs=440208.689 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=15 | PlayerAniPhase=1 | PlayerStateTime=0.966965 | PlayerCurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+127436	127465	OUTER_FRAME OFFENSE	ElapsedMs=440208.712 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=15 | CurrentStateTime=0.966965
+127466	127488	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=440695.610 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+127489	127512	HIT STARTRECOVER BEGIN STACK	ElapsedMs=440695.659 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=1 | CurrentStateTime=1.453943 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+127513	127537	PRIMARYFIRST StopMotion	ElapsedMs=440695.709
+127538	127564	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=440695.732 | Actor=PC_Hero
+127565	127589	PRIMARYFIRST PlayMotion	ElapsedMs=440695.732
+127590	127612	COMBATMOVE STARTRECOVER END	ElapsedMs=440695.803 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+127613	127629	C1 CLEANUP FULFILLED	ElapsedMs=440695.860 | Actor=PC_Hero | Generation=224 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+127630	127656	ENGINE SetCollisionGroup	ElapsedMs=440695.874 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=15 | PlayerAniPhase=3 | PlayerStateTime=1.453943 | PlayerCurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+127657	127676	NATIVE CLEANUP CALL SITE	ElapsedMs=440695.892 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+127677	127706	OUTER_FRAME CLEANUP	ElapsedMs=440695.912 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=15 | CurrentStateTime=1.453943
+127707	127720	C1-O2 OUTER BINDING	ElapsedMs=440695.939 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=224 | Status=PERSISTED | PhysicalCollisionChanged=0
+127721	127745	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=440695.950 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=1.453943
+127746	127770	PRIMARYFIRST StopMotion	ElapsedMs=440695.982
+127771	127801	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=440696.004 | Actor=PC_Hero
+127802	127826	PRIMARYFIRST PlayMotion	ElapsedMs=440696.003
+127827	127866	AISETSTATE CALLSITE	ElapsedMs=441580.308 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=3 | CurrentStateTime=2.339875 | CurrentMovementAni=Hero_Parade_None_2H_P1_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
+127867	127891	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=441580.381 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=2.339875
+127892	127913	C1 FINALIZATION	ElapsedMs=441580.405 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=224 | Status=PERSISTED | PhysicalCollisionChanged=0
+127914	127938	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=441580.423 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.000000
+127939	127963	PRIMARYFIRST StopMotion	ElapsedMs=441603.937
+127964	127988	PRIMARYFIRST StopMotion	ElapsedMs=441603.988
+127989	128015	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=441604.016 | Actor=PC_Hero
+128016	128040	PRIMARYFIRST PlayMotion	ElapsedMs=441604.015
+128041	128065	PRIMARYFIRST StopMotion	ElapsedMs=441616.163
+128066	128090	PRIMARYFIRST StopMotion	ElapsedMs=441616.217
+128091	128117	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=441616.243 | Actor=PC_Hero
+128118	128142	PRIMARYFIRST PlayMotion	ElapsedMs=441616.242
+128143	128167	PRIMARYFIRST StopMotion	ElapsedMs=441771.285
+128168	128194	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=441771.337 | Actor=PC_Hero
+128195	128219	PRIMARYFIRST PlayMotion	ElapsedMs=441771.336
+128220	128259	AISETSTATE CALLSITE	ElapsedMs=442841.233 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=1.248947 | CurrentMovementAni=Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+128260	128284	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=442841.307 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=1.248947
+128285	128309	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=442841.343 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+128310	128349	AISETSTATE CALLSITE	ElapsedMs=442851.767 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+128350	128374	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=442851.836 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+128375	128399	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=442851.862 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+128400	128424	PRIMARYFIRST StopMotion	ElapsedMs=442862.043
+128425	128449	PRIMARYFIRST StopMotion	ElapsedMs=442862.097
+128450	128476	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=442862.123 | Actor=PC_Hero
+128477	128501	PRIMARYFIRST PlayMotion	ElapsedMs=442862.122
+128502	128526	PRIMARYFIRST StopMotion	ElapsedMs=443053.294
+128527	128551	PRIMARYFIRST StopMotion	ElapsedMs=443053.378
+128552	128578	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=443053.432 | Actor=PC_Hero
+128579	128603	PRIMARYFIRST PlayMotion	ElapsedMs=443053.431
+128604	128630	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=443074.624 | Actor=PC_Hero
+128631	128655	PRIMARYFIRST PlayMotion	ElapsedMs=443074.622
+128656	128695	AISETSTATE CALLSITE	ElapsedMs=443074.791 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=5 | CurrentStateTime=0.212995 | CurrentMovementAni=Hero_Parade_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+128696	128720	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=443074.833 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.212995
+128721	128745	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=443074.854 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+128746	128762	C1 LIFECYCLE START	ElapsedMs=443086.143 | Actor=PC_Hero | Generation=225 | Status=CANDIDATE | PhysicalCollisionChanged=0
+128763	128776	C1-O2 OUTER BINDING	ElapsedMs=443086.183 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=225 | Status=CANDIDATE | PhysicalCollisionChanged=0
+128777	128801	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=443086.198 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.000000
+128802	128826	PRIMARYFIRST StopMotion	ElapsedMs=443086.238
+128827	128858	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=443086.277 | Actor=PC_Hero
+128859	128883	PRIMARYFIRST PlayMotion	ElapsedMs=443086.276
+128884	128894	C1 LIFECYCLE STATUS	ElapsedMs=443086.367 | Event=PERSISTED | Actor=PC_Hero | Generation=225 | Status=PERSISTED | PhysicalCollisionChanged=0
+128895	128908	C1-O2 OUTER BINDING	ElapsedMs=444049.816 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=225 | Status=PERSISTED | PhysicalCollisionChanged=0
+128909	128933	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=444049.852 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.964939
+128934	128958	PRIMARYFIRST StopMotion	ElapsedMs=444049.894
+128959	128989	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=444049.918 | Actor=PC_Hero
+128990	129014	PRIMARYFIRST PlayMotion	ElapsedMs=444049.917
+129015	129031	C1 OFFENSE REQUEST	ElapsedMs=444050.026 | Actor=PC_Hero | Generation=225 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=7 | PhysicalCollisionChanged=0
+129032	129058	ENGINE SetCollisionGroup	ElapsedMs=444050.044 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=15 | PlayerAniPhase=1 | PlayerStateTime=0.964939 | PlayerCurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+129059	129088	OUTER_FRAME OFFENSE	ElapsedMs=444050.066 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=15 | CurrentStateTime=0.964939
+129089	129111	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=444538.993 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+129112	129135	HIT STARTRECOVER BEGIN STACK	ElapsedMs=444539.042 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=1 | CurrentStateTime=1.453914 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+129136	129160	PRIMARYFIRST StopMotion	ElapsedMs=444539.095
+129161	129187	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=444539.205 | Actor=PC_Hero
+129188	129212	PRIMARYFIRST PlayMotion	ElapsedMs=444539.204
+129213	129235	COMBATMOVE STARTRECOVER END	ElapsedMs=444539.277 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+129236	129252	C1 CLEANUP FULFILLED	ElapsedMs=444539.337 | Actor=PC_Hero | Generation=225 | Status=PERSISTED | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | ActualGroup=5 | PhysicalCollisionChanged=0
+129253	129279	ENGINE SetCollisionGroup	ElapsedMs=444539.352 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=15 | PlayerAniPhase=3 | PlayerStateTime=1.453914 | PlayerCurrentMovementAni=Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
+129280	129299	NATIVE CLEANUP CALL SITE	ElapsedMs=444539.371 | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+129300	129329	OUTER_FRAME CLEANUP	ElapsedMs=444539.428 | Actor=PC_Hero | Source=It_2H_Sword_Flamberge | SourceAddress=E6F5CA10 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=15 | CurrentStateTime=1.453914
+129330	129343	C1-O2 OUTER BINDING	ElapsedMs=444539.457 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=225 | Status=PERSISTED | PhysicalCollisionChanged=0
+129344	129368	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=444539.468 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=1.453914
+129369	129393	PRIMARYFIRST StopMotion	ElapsedMs=444539.502
+129394	129424	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=444539.526 | Actor=PC_Hero
+129425	129449	PRIMARYFIRST PlayMotion	ElapsedMs=444539.525
+129450	129489	AISETSTATE CALLSITE	ElapsedMs=445425.006 | Actor=PC_Hero | CurrentAction=15 | CurrentAniPhase=3 | CurrentStateTime=2.340865 | CurrentMovementAni=Hero_Parade_None_2H_P1_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
+129490	129514	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=445425.078 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=2.340865
+129515	129536	C1 FINALIZATION	ElapsedMs=445425.102 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=225 | Status=PERSISTED | PhysicalCollisionChanged=0
+129537	129561	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=445425.121 | Actor=PC_Hero | CurrentAction=15 | CurrentStateTime=0.000000
+129562	129586	PRIMARYFIRST StopMotion	ElapsedMs=445436.689
+129587	129613	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=445436.739 | Actor=PC_Hero
+129614	129638	PRIMARYFIRST PlayMotion	ElapsedMs=445436.738
+129639	129663	PRIMARYFIRST StopMotion	ElapsedMs=445448.841
+129664	129688	PRIMARYFIRST StopMotion	ElapsedMs=445448.894
+129689	129715	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=445448.919 | Actor=PC_Hero
+129716	129740	PRIMARYFIRST PlayMotion	ElapsedMs=445448.918
+129741	129765	PRIMARYFIRST StopMotion	ElapsedMs=445626.273
+129766	129792	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=445626.327 | Actor=PC_Hero
+129793	129817	PRIMARYFIRST PlayMotion	ElapsedMs=445626.326
+129818	129842	PRIMARYFIRST StopMotion	ElapsedMs=445859.396
+129843	129869	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=445859.448 | Actor=PC_Hero
+129870	129894	PRIMARYFIRST PlayMotion	ElapsedMs=445859.447
+129895	129919	PRIMARYFIRST StopMotion	ElapsedMs=446377.727
+129920	129946	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=446377.782 | Actor=PC_Hero
+129947	129971	PRIMARYFIRST PlayMotion	ElapsedMs=446377.781
+129972	129998	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=446542.362 | Actor=PC_Hero
+129999	130023	PRIMARYFIRST PlayMotion	ElapsedMs=446542.361
+130024	130048	PRIMARYFIRST StopMotion	ElapsedMs=446631.365
+130049	130075	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=446631.413 | Actor=PC_Hero
+130076	130100	PRIMARYFIRST PlayMotion	ElapsedMs=446631.411
+130101	130125	PRIMARYFIRST StopMotion	ElapsedMs=446992.170
+130126	130152	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=446992.217 | Actor=PC_Hero
+130153	130177	PRIMARYFIRST PlayMotion	ElapsedMs=446992.215
+130178	130202	PRIMARYFIRST StopMotion	ElapsedMs=447196.629
+130203	130229	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=447196.722 | Actor=PC_Hero
+130230	130254	PRIMARYFIRST PlayMotion	ElapsedMs=447196.720
+130255	130294	AISETSTATE CALLSITE	ElapsedMs=447763.671 | Actor=PC_Hero | CurrentAction=68 | CurrentAniPhase=6 | CurrentStateTime=1.533781 | CurrentMovementAni=Hero_Stand_None_1H_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot
+130295	130319	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=447763.756 | Actor=PC_Hero | CurrentAction=68 | CurrentStateTime=1.533781
+130320	130344	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=447763.792 | Actor=PC_Hero | CurrentAction=68 | CurrentStateTime=0.000000
+130345	130369	PRIMARYFIRST StopMotion	ElapsedMs=447775.235
+130370	130394	PRIMARYFIRST StopMotion	ElapsedMs=447775.378
+130395	130421	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=447775.406 | Actor=PC_Hero
+130422	130446	PRIMARYFIRST PlayMotion	ElapsedMs=447775.405
+130447	130486	AISETSTATE CALLSITE	ElapsedMs=448446.612 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=0.665727 | CurrentMovementAni=Hero_Stand_None_1H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+130487	130511	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=448446.684 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.665727
+130512	130536	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=448446.709 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+130537	130553	C1 LIFECYCLE START	ElapsedMs=448458.088 | Actor=PC_Hero | Generation=226 | Status=CANDIDATE | PhysicalCollisionChanged=0
+130554	130567	C1-O2 OUTER BINDING	ElapsedMs=448458.122 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=226 | Status=CANDIDATE | PhysicalCollisionChanged=0
+130568	130592	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=448458.133 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+130593	130617	PRIMARYFIRST StopMotion	ElapsedMs=448458.363
+130618	130649	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=448458.396 | Actor=PC_Hero
+130650	130674	PRIMARYFIRST PlayMotion	ElapsedMs=448458.395
+130675	130685	C1 LIFECYCLE STATUS	ElapsedMs=448458.486 | Event=PERSISTED | Actor=PC_Hero | Generation=226 | Status=PERSISTED | PhysicalCollisionChanged=0
+130686	130710	MARKER OWNERSHIP DECISION	ElapsedMs=448458.503 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+130711	130727	C1 OFFENSE REQUEST	ElapsedMs=448711.028 | Actor=PC_Hero | Generation=226 | Status=PERSISTED | Source=It_1H_Sword_Rust_01 | SourceAddress=E89C3810 | ActualGroup=7 | PhysicalCollisionChanged=0
+130728	130754	ENGINE SetCollisionGroup	ElapsedMs=448711.061 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.252012 | PlayerCurrentMovementAni=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+130755	130784	OUTER_FRAME OFFENSE	ElapsedMs=448711.089 | Actor=PC_Hero | Source=It_1H_Sword_Rust_01 | SourceAddress=E89C3810 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.252012
+130785	130809	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=448734.052 | Actor=ReddockOrcWarrior01 | CurrentAction=26 | CurrentStateTime=0.000000
+130810	130832	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=448994.284 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+130833	130856	HIT STARTRECOVER BEGIN STACK	ElapsedMs=448994.334 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.536987 | CurrentMovementAni=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+130857	130881	PRIMARYFIRST StopMotion	ElapsedMs=448994.581
+130882	130908	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=448994.615 | Actor=PC_Hero
+130909	130933	PRIMARYFIRST PlayMotion	ElapsedMs=448994.614
+130934	130956	COMBATMOVE STARTRECOVER END	ElapsedMs=448994.685 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+130957	130973	C1 CLEANUP FULFILLED	ElapsedMs=448994.742 | Actor=PC_Hero | Generation=226 | Status=PERSISTED | Source=It_1H_Sword_Rust_01 | SourceAddress=E89C3810 | ActualGroup=5 | PhysicalCollisionChanged=0
+130974	131000	ENGINE SetCollisionGroup	ElapsedMs=448994.757 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.536987 | PlayerCurrentMovementAni=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+131001	131020	NATIVE CLEANUP CALL SITE	ElapsedMs=448994.776 | Source=It_1H_Sword_Rust_01 | SourceAddress=E89C3810 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+131021	131050	OUTER_FRAME CLEANUP	ElapsedMs=448994.799 | Actor=PC_Hero | Source=It_1H_Sword_Rust_01 | SourceAddress=E89C3810 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.536987
+131051	131090	AISETSTATE CALLSITE	ElapsedMs=448994.828 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.536987 | CurrentMovementAni=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+131091	131115	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=448994.894 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.536987
+131116	131137	C1 FINALIZATION	ElapsedMs=448994.916 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=226 | Status=PERSISTED | PhysicalCollisionChanged=0
+131138	131162	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=448994.936 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+131163	131202	AISETSTATE CALLSITE	ElapsedMs=449333.516 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.327978 | CurrentMovementAni=Hero_Stand_None_1H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+131203	131227	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=449333.588 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.327978
+131228	131252	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=449333.611 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+131253	131269	C1 LIFECYCLE START	ElapsedMs=449345.572 | Actor=PC_Hero | Generation=228 | Status=CANDIDATE | PhysicalCollisionChanged=0
+131270	131283	C1-O2 OUTER BINDING	ElapsedMs=449345.607 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=228 | Status=CANDIDATE | PhysicalCollisionChanged=0
+131284	131308	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=449345.619 | Actor=PC_Hero | CurrentAction=16 | CurrentStateTime=0.000000
+131309	131333	PRIMARYFIRST StopMotion	ElapsedMs=449346.130
+131334	131365	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=449346.162 | Actor=PC_Hero
+131366	131390	PRIMARYFIRST PlayMotion	ElapsedMs=449346.161
+131391	131401	C1 LIFECYCLE STATUS	ElapsedMs=449346.252 | Event=PERSISTED | Actor=PC_Hero | Generation=228 | Status=PERSISTED | PhysicalCollisionChanged=0
+131402	131445	AIFULLSTOP CALLSITE	ElapsedMs=449367.499 | Actor=PC_Hero | CurrentAction=16 | CurrentAniPhase=4 | CurrentStateTime=0.024000 | CurrentMovementAni=Hero_Stand_None_1H_P1_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot
+131446	131482	COMBATMOVE FULLSTOP STACK	ElapsedMs=449367.595 | Actor=PC_Hero | CurrentAction=16 | CurrentAniPhase=4 | CurrentStateTime=0.024000 | CurrentMovementAni=Hero_Stand_None_1H_P1_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot
+131483	131523	AISETSTATE CALLSITE	ElapsedMs=449367.665 | Actor=PC_Hero | CurrentAction=16 | CurrentAniPhase=4 | CurrentStateTime=0.024000 | CurrentMovementAni=Hero_Stand_None_1H_P1_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot
+131524	131548	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=449367.705 | Actor=PC_Hero | CurrentAction=16 | CurrentStateTime=0.024000
+131549	131570	C1 FINALIZATION	ElapsedMs=449367.730 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=228 | Status=PERSISTED | PhysicalCollisionChanged=0
+131571	131595	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=449367.751 | Actor=PC_Hero | CurrentAction=16 | CurrentStateTime=0.000000
+131596	131612	C1 LIFECYCLE START	ElapsedMs=449372.529 | Actor=PC_Hero | Generation=229 | Status=CANDIDATE | PhysicalCollisionChanged=0
+131613	131626	C1-O2 OUTER BINDING	ElapsedMs=449372.562 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=229 | Status=CANDIDATE | PhysicalCollisionChanged=0
+131627	131651	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=449372.573 | Actor=PC_Hero | CurrentAction=5 | CurrentStateTime=0.000000
+131652	131676	PRIMARYFIRST StopMotion	ElapsedMs=449373.015
+131677	131708	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=449373.046 | Actor=PC_Hero
+131709	131733	PRIMARYFIRST PlayMotion	ElapsedMs=449373.044
+131734	131744	C1 LIFECYCLE STATUS	ElapsedMs=449373.144 | Event=PERSISTED | Actor=PC_Hero | Generation=229 | Status=PERSISTED | PhysicalCollisionChanged=0
+131745	131769	MARKER OWNERSHIP DECISION	ElapsedMs=449373.162 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P50_100_L.xmot
+131770	131786	C1 OFFENSE REQUEST	ElapsedMs=449478.717 | Actor=PC_Hero | Generation=229 | Status=PERSISTED | Source=It_1H_Sword_Rust_01 | SourceAddress=E89C3810 | ActualGroup=7 | PhysicalCollisionChanged=0
+131787	131813	ENGINE SetCollisionGroup	ElapsedMs=449478.750 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=5 | PlayerAniPhase=1 | PlayerStateTime=0.110005 | PlayerCurrentMovementAni=Hero_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P50_100_L.xmot
+131814	131843	OUTER_FRAME OFFENSE	ElapsedMs=449478.772 | Actor=PC_Hero | Source=It_1H_Sword_Rust_01 | SourceAddress=E89C3810 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=5 | CurrentStateTime=0.110005
+131844	131866	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=449775.255 | Actor=PC_Hero | CurrentAction=5 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P50_100_L.xmot
+131867	131889	COMBATMOVE STARTRECOVER END	ElapsedMs=449775.363 | Actor=PC_Hero | CurrentAction=5 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P50_100_L.xmot
+131890	131906	C1 CLEANUP FULFILLED	ElapsedMs=449775.420 | Actor=PC_Hero | Generation=229 | Status=PERSISTED | Source=It_1H_Sword_Rust_01 | SourceAddress=E89C3810 | ActualGroup=5 | PhysicalCollisionChanged=0

@@ -1,0 +1,806 @@
+StartLine	EndLine	Event	SelectedFields
+156113	156137	PRIMARYFIRST PlayMotion	ElapsedMs=440441.879
+156138	156162	PRIMARYFIRST StopMotion	ElapsedMs=449354.525
+156163	156187	PRIMARYFIRST StopMotion	ElapsedMs=449354.609
+156188	156214	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=449354.635 | Actor=PC_Hero
+156215	156239	PRIMARYFIRST PlayMotion	ElapsedMs=449354.634
+156240	156264	PRIMARYFIRST StopMotion	ElapsedMs=449504.624
+156265	156291	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=449504.726 | Actor=PC_Hero
+156292	156316	PRIMARYFIRST PlayMotion	ElapsedMs=449504.725
+156317	156356	AISETSTATE CALLSITE	ElapsedMs=450011.628 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=8 | CurrentStateTime=17.781143 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+156357	156381	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=450011.697 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=17.781143
+156382	156406	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=450011.724 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+156407	156423	C1 LIFECYCLE START	ElapsedMs=450024.364 | Actor=PC_Hero | Generation=191 | Status=CANDIDATE | PhysicalCollisionChanged=0
+156424	156437	C1-O2 OUTER BINDING	ElapsedMs=450024.394 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=191 | Status=CANDIDATE | PhysicalCollisionChanged=0
+156438	156462	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=450024.406 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+156463	156487	PRIMARYFIRST StopMotion	ElapsedMs=450024.444
+156488	156520	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=450024.470 | Actor=PC_Hero
+156521	156545	PRIMARYFIRST PlayMotion	ElapsedMs=450024.468
+156546	156556	C1 LIFECYCLE STATUS	ElapsedMs=450024.573 | Event=PERSISTED | Actor=PC_Hero | Generation=191 | Status=PERSISTED | PhysicalCollisionChanged=0
+156557	156581	MARKER OWNERSHIP DECISION	ElapsedMs=450024.590 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+156582	156598	C1 OFFENSE REQUEST	ElapsedMs=450285.458 | Actor=PC_Hero | Generation=191 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+156599	156625	ENGINE SetCollisionGroup	ElapsedMs=450285.492 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.260984 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+156626	156645	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=450285.517 | SourceAddress=E6AAC610
+156646	156675	OUTER_FRAME OFFENSE	ElapsedMs=450285.531 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.260984
+156676	156700	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=450365.710 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+156701	156723	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=450774.723 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+156724	156747	HIT STARTRECOVER BEGIN STACK	ElapsedMs=450774.775 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.750965 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+156748	156772	PRIMARYFIRST StopMotion	ElapsedMs=450774.825
+156773	156799	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=450774.849 | Actor=PC_Hero
+156800	156824	PRIMARYFIRST PlayMotion	ElapsedMs=450774.849
+156825	156847	COMBATMOVE STARTRECOVER END	ElapsedMs=450774.925 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+156848	156864	C1 CLEANUP FULFILLED	ElapsedMs=450774.976 | Actor=PC_Hero | Generation=191 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+156865	156891	ENGINE SetCollisionGroup	ElapsedMs=450774.991 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.750965 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+156892	156912	NATIVE CLEANUP CALL SITE	ElapsedMs=450775.008 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+156913	156942	OUTER_FRAME CLEANUP	ElapsedMs=450775.030 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.750965
+156943	156982	AISETSTATE CALLSITE	ElapsedMs=450775.058 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.750965 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+156983	157007	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=450775.095 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.750965
+157008	157030	C1 FINALIZATION	ElapsedMs=450775.116 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=191 | Status=PERSISTED | PhysicalCollisionChanged=0
+157031	157055	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=450775.134 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+157056	157095	AISETSTATE CALLSITE	ElapsedMs=451155.949 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.367994 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+157096	157120	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=451156.055 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.367994
+157121	157145	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=451156.079 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+157146	157162	C1 LIFECYCLE START	ElapsedMs=451168.414 | Actor=PC_Hero | Generation=193 | Status=CANDIDATE | PhysicalCollisionChanged=0
+157163	157176	C1-O2 OUTER BINDING	ElapsedMs=451168.449 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=193 | Status=CANDIDATE | PhysicalCollisionChanged=0
+157177	157201	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=451168.460 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+157202	157226	PRIMARYFIRST StopMotion	ElapsedMs=451168.496
+157227	157259	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=451168.525 | Actor=PC_Hero
+157260	157284	PRIMARYFIRST PlayMotion	ElapsedMs=451168.523
+157285	157295	C1 LIFECYCLE STATUS	ElapsedMs=451168.673 | Event=PERSISTED | Actor=PC_Hero | Generation=193 | Status=PERSISTED | PhysicalCollisionChanged=0
+157296	157320	MARKER OWNERSHIP DECISION	ElapsedMs=451168.690 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+157321	157337	C1 OFFENSE REQUEST	ElapsedMs=451422.112 | Actor=PC_Hero | Generation=193 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+157338	157364	ENGINE SetCollisionGroup	ElapsedMs=451422.145 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.254994 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+157365	157384	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=451422.173 | SourceAddress=E6AAC610
+157385	157414	OUTER_FRAME OFFENSE	ElapsedMs=451422.190 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.254994
+157415	157439	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=451560.938 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+157440	157462	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=451739.447 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+157463	157486	HIT STARTRECOVER BEGIN STACK	ElapsedMs=451739.497 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.571977 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+157487	157511	PRIMARYFIRST StopMotion	ElapsedMs=451739.553
+157512	157538	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=451739.579 | Actor=PC_Hero
+157539	157563	PRIMARYFIRST PlayMotion	ElapsedMs=451739.579
+157564	157586	COMBATMOVE STARTRECOVER END	ElapsedMs=451739.644 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+157587	157603	C1 CLEANUP FULFILLED	ElapsedMs=451739.702 | Actor=PC_Hero | Generation=193 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+157604	157630	ENGINE SetCollisionGroup	ElapsedMs=451739.716 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.571977 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+157631	157651	NATIVE CLEANUP CALL SITE	ElapsedMs=451739.735 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+157652	157681	OUTER_FRAME CLEANUP	ElapsedMs=451739.757 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.571977
+157682	157721	AISETSTATE CALLSITE	ElapsedMs=451739.799 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.571977 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+157722	157746	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=451739.848 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.571977
+157747	157769	C1 FINALIZATION	ElapsedMs=451739.869 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=193 | Status=PERSISTED | PhysicalCollisionChanged=0
+157770	157794	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=451739.889 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+157795	157834	AISETSTATE CALLSITE	ElapsedMs=452055.805 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.299979 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+157835	157859	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=452055.875 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.299979
+157860	157884	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=452055.897 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+157885	157924	AISETSTATE CALLSITE	ElapsedMs=452068.922 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+157925	157949	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=452068.994 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+157950	157974	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=452069.018 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+157975	158014	AISETSTATE CALLSITE	ElapsedMs=452108.521 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.025010 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+158015	158039	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=452108.585 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.025010
+158040	158064	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=452108.611 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+158065	158081	C1 LIFECYCLE START	ElapsedMs=452121.624 | Actor=PC_Hero | Generation=195 | Status=CANDIDATE | PhysicalCollisionChanged=0
+158082	158095	C1-O2 OUTER BINDING	ElapsedMs=452121.659 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=195 | Status=CANDIDATE | PhysicalCollisionChanged=0
+158096	158120	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=452121.670 | Actor=PC_Hero | CurrentAction=4 | CurrentStateTime=0.000000
+158121	158145	PRIMARYFIRST StopMotion	ElapsedMs=452121.709
+158146	158178	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=452121.734 | Actor=PC_Hero
+158179	158203	PRIMARYFIRST PlayMotion	ElapsedMs=452121.733
+158204	158214	C1 LIFECYCLE STATUS	ElapsedMs=452121.835 | Event=PERSISTED | Actor=PC_Hero | Generation=195 | Status=PERSISTED | PhysicalCollisionChanged=0
+158215	158239	MARKER OWNERSHIP DECISION	ElapsedMs=452121.851 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+158240	158264	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=452213.375 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.000000
+158265	158281	C1 OFFENSE REQUEST	ElapsedMs=452233.463 | Actor=PC_Hero | Generation=195 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+158282	158308	ENGINE SetCollisionGroup	ElapsedMs=452233.497 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=4 | PlayerAniPhase=1 | PlayerStateTime=0.108990 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+158309	158328	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=452233.521 | SourceAddress=E6AAC610
+158329	158358	OUTER_FRAME OFFENSE	ElapsedMs=452233.540 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=4 | CurrentStateTime=0.108990
+158359	158383	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=452565.736 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.355001
+158384	158410	ENGINE SetCollisionGroup	ElapsedMs=452566.020 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=4 | PlayerAniPhase=1 | PlayerStateTime=0.449001 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+158411	158433	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=452650.291 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+158434	158458	PRIMARYFIRST StopMotion	ElapsedMs=452650.357
+158459	158485	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=452650.383 | Actor=PC_Hero
+158486	158510	PRIMARYFIRST PlayMotion	ElapsedMs=452650.382
+158511	158533	COMBATMOVE STARTRECOVER END	ElapsedMs=452650.500 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+158534	158550	C1 CLEANUP FULFILLED	ElapsedMs=452650.558 | Actor=PC_Hero | Generation=195 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+158551	158577	ENGINE SetCollisionGroup	ElapsedMs=452650.574 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=4 | PlayerAniPhase=3 | PlayerStateTime=0.530992 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+158578	158598	NATIVE CLEANUP CALL SITE	ElapsedMs=452650.593 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+158599	158628	OUTER_FRAME CLEANUP	ElapsedMs=452650.617 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=4 | CurrentStateTime=0.530992
+158629	158673	AIFULLSTOP CALLSITE	ElapsedMs=452726.779 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=3 | CurrentStateTime=0.609981 | CurrentMovementAni=Hero_Stand_None_Staff_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+158674	158690	C1 LIFECYCLE START	ElapsedMs=452732.380 | Actor=PC_Hero | Generation=197 | Status=CANDIDATE | PhysicalCollisionChanged=0
+158691	158715	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=452732.401 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+158716	158740	PRIMARYFIRST StopMotion	ElapsedMs=452735.919
+158741	158771	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=452735.969 | Actor=PC_Hero
+158772	158796	PRIMARYFIRST PlayMotion	ElapsedMs=452735.967
+158797	158807	C1 LIFECYCLE STATUS	ElapsedMs=452736.106 | Event=PERSISTED | Actor=PC_Hero | Generation=197 | Status=PERSISTED | PhysicalCollisionChanged=0
+158808	158832	PRIMARYFIRST StopMotion	ElapsedMs=453939.304
+158833	158859	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=453939.346 | Actor=PC_Hero
+158860	158884	PRIMARYFIRST PlayMotion	ElapsedMs=453939.345
+158885	158909	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=454075.511 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+158910	158934	MARKER OWNERSHIP DECISION	ElapsedMs=454075.782 | Actor=Golem | CurrentMovementAni=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+158935	158961	ENGINE SetCollisionGroup	ElapsedMs=454324.856 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=29 | PlayerAniPhase=4 | PlayerStateTime=1.599939 | PlayerCurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+158962	158986	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=454488.771 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+158987	159026	AISETSTATE CALLSITE	ElapsedMs=454735.260 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=2.008930 | CurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+159027	159051	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=454735.335 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=2.008930
+159052	159074	C1 FINALIZATION	ElapsedMs=454735.361 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=197 | Status=PERSISTED | PhysicalCollisionChanged=0
+159075	159099	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=454735.381 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+159100	159139	AISETSTATE CALLSITE	ElapsedMs=454735.401 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+159140	159164	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=454735.439 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+159165	159189	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=454735.458 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+159190	159206	C1 LIFECYCLE START	ElapsedMs=454746.387 | Actor=PC_Hero | Generation=200 | Status=OUTER_BOUND | PhysicalCollisionChanged=0
+159207	159222	C1-O2 OUTER BINDING	ElapsedMs=454746.420 | Event=PRECOMBAT_ACQUIRED | Actor=PC_Hero | Generation=200 | Status=OUTER_BOUND | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | PhysicalCollisionChanged=0
+159223	159239	C1 OFFENSE REQUEST	ElapsedMs=454746.433 | Actor=PC_Hero | Generation=200 | Status=OUTER_BOUND | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+159240	159266	ENGINE SetCollisionGroup	ElapsedMs=454746.445 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=30 | PlayerAniPhase=4 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+159267	159286	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=454746.469 | SourceAddress=E6AAC610
+159287	159316	OUTER_FRAME OFFENSE	ElapsedMs=454746.486 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=30 | CurrentStateTime=0.000000
+159317	159333	C1-O2 OUTER BINDING	ElapsedMs=454746.518 | Event=PRECOMBAT_BRIDGE_CONSUMED | Actor=PC_Hero | Generation=200 | Status=PERSISTED | PhysicalCollisionChanged=0
+159334	159358	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=454746.531 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+159359	159383	PRIMARYFIRST StopMotion	ElapsedMs=454748.237
+159384	159416	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=454748.268 | Actor=PC_Hero
+159417	159441	PRIMARYFIRST PlayMotion	ElapsedMs=454748.267
+159442	159458	C1-O2-P1 DISPATCH RETURN	ElapsedMs=454748.368
+159459	159475	C1 OFFENSE REQUEST	ElapsedMs=454851.106 | Actor=PC_Hero | Generation=200 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+159476	159502	ENGINE SetCollisionGroup	ElapsedMs=454851.141 | RequestedGroup=7 | BeforeGroup=7 | AfterGroup=7 | PlayerAction=30 | PlayerAniPhase=1 | PlayerStateTime=0.103950 | PlayerCurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+159503	159522	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=454851.166 | SourceAddress=E6AAC610
+159523	159552	OUTER_FRAME OFFENSE	ElapsedMs=454851.181 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=7 | AfterGroup=7 | CurrentAction=30 | CurrentStateTime=0.103950
+159553	159577	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=455009.809 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+159578	159600	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=455153.809 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=1 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+159601	159624	HIT STARTRECOVER BEGIN STACK	ElapsedMs=455153.861 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=1 | CurrentStateTime=0.405940 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+159625	159649	PRIMARYFIRST StopMotion	ElapsedMs=455155.493
+159650	159676	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=455155.525 | Actor=PC_Hero
+159677	159701	PRIMARYFIRST PlayMotion	ElapsedMs=455155.524
+159702	159724	COMBATMOVE STARTRECOVER END	ElapsedMs=455155.598 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=3 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+159725	159741	C1 CLEANUP FULFILLED	ElapsedMs=455155.657 | Actor=PC_Hero | Generation=200 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+159742	159768	ENGINE SetCollisionGroup	ElapsedMs=455155.672 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=30 | PlayerAniPhase=3 | PlayerStateTime=0.405940 | PlayerCurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+159769	159789	NATIVE CLEANUP CALL SITE	ElapsedMs=455155.691 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+159790	159819	OUTER_FRAME CLEANUP	ElapsedMs=455155.712 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=30 | CurrentStateTime=0.405940
+159820	159859	AISETSTATE CALLSITE	ElapsedMs=455155.751 | Actor=PC_Hero | CurrentAction=30 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+159860	159884	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=455155.789 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+159885	159907	C1 FINALIZATION	ElapsedMs=455155.810 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=200 | Status=PERSISTED | PhysicalCollisionChanged=0
+159908	159932	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=455155.828 | Actor=PC_Hero | CurrentAction=30 | CurrentStateTime=0.000000
+159933	159959	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=455409.649 | Actor=PC_Hero
+159960	159984	PRIMARYFIRST PlayMotion	ElapsedMs=455409.647
+159985	160024	AISETSTATE CALLSITE	ElapsedMs=455509.875 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=5 | CurrentStateTime=0.342987 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+160025	160049	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=455509.944 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.342987
+160050	160074	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=455509.966 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+160075	160091	C1 LIFECYCLE START	ElapsedMs=455522.076 | Actor=PC_Hero | Generation=202 | Status=CANDIDATE | PhysicalCollisionChanged=0
+160092	160105	C1-O2 OUTER BINDING	ElapsedMs=455522.110 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=202 | Status=CANDIDATE | PhysicalCollisionChanged=0
+160106	160130	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=455522.126 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+160131	160155	PRIMARYFIRST StopMotion	ElapsedMs=455522.167
+160156	160188	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=455522.192 | Actor=PC_Hero
+160189	160213	PRIMARYFIRST PlayMotion	ElapsedMs=455522.190
+160214	160224	C1 LIFECYCLE STATUS	ElapsedMs=455522.286 | Event=PERSISTED | Actor=PC_Hero | Generation=202 | Status=PERSISTED | PhysicalCollisionChanged=0
+160225	160249	MARKER OWNERSHIP DECISION	ElapsedMs=455522.303 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+160250	160266	C1 OFFENSE REQUEST	ElapsedMs=455773.453 | Actor=PC_Hero | Generation=202 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+160267	160293	ENGINE SetCollisionGroup	ElapsedMs=455773.489 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.250995 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+160294	160313	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=455773.514 | SourceAddress=E6AAC610
+160314	160343	OUTER_FRAME OFFENSE	ElapsedMs=455773.528 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.250995
+160344	160368	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=455870.380 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+160369	160393	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=455883.432 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+160394	160416	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=456103.735 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+160417	160440	HIT STARTRECOVER BEGIN STACK	ElapsedMs=456103.787 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.581971 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+160441	160465	PRIMARYFIRST StopMotion	ElapsedMs=456103.840
+160466	160492	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=456103.866 | Actor=PC_Hero
+160493	160517	PRIMARYFIRST PlayMotion	ElapsedMs=456103.865
+160518	160540	COMBATMOVE STARTRECOVER END	ElapsedMs=456103.936 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+160541	160557	C1 CLEANUP FULFILLED	ElapsedMs=456103.995 | Actor=PC_Hero | Generation=202 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+160558	160584	ENGINE SetCollisionGroup	ElapsedMs=456104.010 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.581971 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+160585	160605	NATIVE CLEANUP CALL SITE	ElapsedMs=456104.029 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+160606	160635	OUTER_FRAME CLEANUP	ElapsedMs=456104.052 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.581971
+160636	160675	AISETSTATE CALLSITE	ElapsedMs=456104.079 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.581971 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+160676	160700	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=456104.154 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.581971
+160701	160723	C1 FINALIZATION	ElapsedMs=456104.179 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=202 | Status=PERSISTED | PhysicalCollisionChanged=0
+160724	160748	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=456104.199 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+160749	160788	AISETSTATE CALLSITE	ElapsedMs=456216.736 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.102989 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+160789	160813	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=456216.809 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.102989
+160814	160838	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=456216.835 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+160839	160855	C1 LIFECYCLE START	ElapsedMs=456229.809 | Actor=PC_Hero | Generation=205 | Status=CANDIDATE | PhysicalCollisionChanged=0
+160856	160869	C1-O2 OUTER BINDING	ElapsedMs=456229.857 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=205 | Status=CANDIDATE | PhysicalCollisionChanged=0
+160870	160894	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=456229.869 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+160895	160919	PRIMARYFIRST StopMotion	ElapsedMs=456229.907
+160920	160952	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=456229.932 | Actor=PC_Hero
+160953	160977	PRIMARYFIRST PlayMotion	ElapsedMs=456229.931
+160978	160988	C1 LIFECYCLE STATUS	ElapsedMs=456230.035 | Event=PERSISTED | Actor=PC_Hero | Generation=205 | Status=PERSISTED | PhysicalCollisionChanged=0
+160989	161013	MARKER OWNERSHIP DECISION	ElapsedMs=456230.052 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+161014	161038	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=456279.871 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.000000
+161039	161055	C1 OFFENSE REQUEST	ElapsedMs=456484.903 | Actor=PC_Hero | Generation=205 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+161056	161082	ENGINE SetCollisionGroup	ElapsedMs=456484.936 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.256993 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+161083	161102	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=456484.965 | SourceAddress=E6AAC610
+161103	161132	OUTER_FRAME OFFENSE	ElapsedMs=456484.982 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.256993
+161133	161157	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=456634.657 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.353994
+161158	161184	ENGINE SetCollisionGroup	ElapsedMs=456634.742 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.404993 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+161185	161209	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=456923.339 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+161210	161232	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=456971.667 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+161233	161256	HIT STARTRECOVER BEGIN STACK	ElapsedMs=456971.720 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.742971 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+161257	161281	PRIMARYFIRST StopMotion	ElapsedMs=456971.775
+161282	161308	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=456971.800 | Actor=PC_Hero
+161309	161333	PRIMARYFIRST PlayMotion	ElapsedMs=456971.799
+161334	161356	COMBATMOVE STARTRECOVER END	ElapsedMs=456971.866 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+161357	161373	C1 CLEANUP FULFILLED	ElapsedMs=456971.921 | Actor=PC_Hero | Generation=205 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+161374	161400	ENGINE SetCollisionGroup	ElapsedMs=456971.937 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.742971 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+161401	161421	NATIVE CLEANUP CALL SITE	ElapsedMs=456971.956 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+161422	161451	OUTER_FRAME CLEANUP	ElapsedMs=456971.979 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.742971
+161452	161491	AISETSTATE CALLSITE	ElapsedMs=456972.007 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.742971 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+161492	161516	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=456972.046 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.742971
+161517	161539	C1 FINALIZATION	ElapsedMs=456972.068 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=205 | Status=PERSISTED | PhysicalCollisionChanged=0
+161540	161564	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=456972.088 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+161565	161604	AISETSTATE CALLSITE	ElapsedMs=457405.505 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.420977 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+161605	161629	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=457405.577 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.420977
+161630	161654	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=457405.603 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+161655	161671	C1 LIFECYCLE START	ElapsedMs=457417.682 | Actor=PC_Hero | Generation=208 | Status=CANDIDATE | PhysicalCollisionChanged=0
+161672	161685	C1-O2 OUTER BINDING	ElapsedMs=457417.717 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=208 | Status=CANDIDATE | PhysicalCollisionChanged=0
+161686	161710	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=457417.729 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+161711	161735	PRIMARYFIRST StopMotion	ElapsedMs=457417.765
+161736	161768	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=457417.790 | Actor=PC_Hero
+161769	161793	PRIMARYFIRST PlayMotion	ElapsedMs=457417.789
+161794	161804	C1 LIFECYCLE STATUS	ElapsedMs=457417.889 | Event=PERSISTED | Actor=PC_Hero | Generation=208 | Status=PERSISTED | PhysicalCollisionChanged=0
+161805	161829	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=457505.133 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.000000
+161830	161854	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=457861.049 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.355999
+161855	161881	ENGINE SetCollisionGroup	ElapsedMs=457861.138 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=2 | PlayerAniPhase=0 | PlayerStateTime=0.443997 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+161882	161895	C1-O2 OUTER BINDING	ElapsedMs=458009.448 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=208 | Status=PERSISTED | PhysicalCollisionChanged=0
+161896	161920	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=458009.478 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.591975
+161921	161945	PRIMARYFIRST StopMotion	ElapsedMs=458009.524
+161946	161977	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=458009.553 | Actor=PC_Hero
+161978	162002	PRIMARYFIRST PlayMotion	ElapsedMs=458009.551
+162003	162019	C1 OFFENSE REQUEST	ElapsedMs=458009.703 | Actor=PC_Hero | Generation=208 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+162020	162046	ENGINE SetCollisionGroup	ElapsedMs=458009.720 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=2 | PlayerAniPhase=1 | PlayerStateTime=0.591975 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+162047	162066	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=458009.745 | SourceAddress=E6AAC610
+162067	162096	OUTER_FRAME OFFENSE	ElapsedMs=458009.760 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=2 | CurrentStateTime=0.591975
+162097	162121	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=458146.482 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+162122	162146	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=458217.396 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+162147	162169	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=458497.523 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+162170	162193	HIT STARTRECOVER BEGIN STACK	ElapsedMs=458497.572 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=1 | CurrentStateTime=1.079969 | CurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+162194	162218	PRIMARYFIRST StopMotion	ElapsedMs=458497.628
+162219	162245	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=458497.656 | Actor=PC_Hero
+162246	162270	PRIMARYFIRST PlayMotion	ElapsedMs=458497.655
+162271	162293	COMBATMOVE STARTRECOVER END	ElapsedMs=458497.724 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+162294	162310	C1 CLEANUP FULFILLED	ElapsedMs=458497.778 | Actor=PC_Hero | Generation=208 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+162311	162337	ENGINE SetCollisionGroup	ElapsedMs=458497.794 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=2 | PlayerAniPhase=3 | PlayerStateTime=1.079969 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+162338	162358	NATIVE CLEANUP CALL SITE	ElapsedMs=458497.813 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+162359	162388	OUTER_FRAME CLEANUP	ElapsedMs=458497.837 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=2 | CurrentStateTime=1.079969
+162389	162428	AISETSTATE CALLSITE	ElapsedMs=458497.866 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=3 | CurrentStateTime=1.079969 | CurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+162429	162453	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=458497.904 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=1.079969
+162454	162476	C1 FINALIZATION	ElapsedMs=458497.927 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=208 | Status=PERSISTED | PhysicalCollisionChanged=0
+162477	162501	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=458497.948 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+162502	162541	AISETSTATE CALLSITE	ElapsedMs=458932.600 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.422978 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+162542	162566	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=458932.672 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.422978
+162567	162591	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=458932.695 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+162592	162608	C1 LIFECYCLE START	ElapsedMs=458945.032 | Actor=PC_Hero | Generation=212 | Status=CANDIDATE | PhysicalCollisionChanged=0
+162609	162622	C1-O2 OUTER BINDING	ElapsedMs=458945.071 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=212 | Status=CANDIDATE | PhysicalCollisionChanged=0
+162623	162647	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=458945.083 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+162648	162672	PRIMARYFIRST StopMotion	ElapsedMs=458945.122
+162673	162705	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=458945.147 | Actor=PC_Hero
+162706	162730	PRIMARYFIRST PlayMotion	ElapsedMs=458945.146
+162731	162741	C1 LIFECYCLE STATUS	ElapsedMs=458945.245 | Event=PERSISTED | Actor=PC_Hero | Generation=212 | Status=PERSISTED | PhysicalCollisionChanged=0
+162742	162766	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=459146.683 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+162767	162780	C1-O2 OUTER BINDING	ElapsedMs=459539.338 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=212 | Status=PERSISTED | PhysicalCollisionChanged=0
+162781	162805	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=459539.368 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.594976
+162806	162830	PRIMARYFIRST StopMotion	ElapsedMs=459539.407
+162831	162862	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=459539.432 | Actor=PC_Hero
+162863	162887	PRIMARYFIRST PlayMotion	ElapsedMs=459539.431
+162888	162904	C1 OFFENSE REQUEST	ElapsedMs=459539.649 | Actor=PC_Hero | Generation=212 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+162905	162931	ENGINE SetCollisionGroup	ElapsedMs=459539.666 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=2 | PlayerAniPhase=1 | PlayerStateTime=0.594976 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+162932	162951	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=459539.692 | SourceAddress=E6AAC610
+162952	162981	OUTER_FRAME OFFENSE	ElapsedMs=459539.706 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=2 | CurrentStateTime=0.594976
+162982	163006	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=459775.889 | Actor=Golem | CurrentAction=2 | CurrentStateTime=0.000000
+163007	163031	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=459887.188 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+163032	163054	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=459951.058 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+163055	163078	HIT STARTRECOVER BEGIN STACK	ElapsedMs=459951.119 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=1 | CurrentStateTime=1.005962 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+163079	163103	PRIMARYFIRST StopMotion	ElapsedMs=459951.166
+163104	163130	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=459951.189 | Actor=PC_Hero
+163131	163155	PRIMARYFIRST PlayMotion	ElapsedMs=459951.189
+163156	163178	COMBATMOVE STARTRECOVER END	ElapsedMs=459951.258 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+163179	163195	C1 CLEANUP FULFILLED	ElapsedMs=459951.310 | Actor=PC_Hero | Generation=212 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+163196	163222	ENGINE SetCollisionGroup	ElapsedMs=459951.324 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=2 | PlayerAniPhase=3 | PlayerStateTime=1.005962 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+163223	163243	NATIVE CLEANUP CALL SITE	ElapsedMs=459951.342 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+163244	163273	OUTER_FRAME CLEANUP	ElapsedMs=459951.363 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=2 | CurrentStateTime=1.005962
+163274	163313	AISETSTATE CALLSITE	ElapsedMs=459951.392 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=3 | CurrentStateTime=1.005962 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+163314	163338	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=459951.429 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=1.005962
+163339	163361	C1 FINALIZATION	ElapsedMs=459951.449 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=212 | Status=PERSISTED | PhysicalCollisionChanged=0
+163362	163386	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=459951.468 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+163387	163426	AISETSTATE CALLSITE	ElapsedMs=460604.556 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.639988 | CurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+163427	163451	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=460604.633 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.639988
+163452	163476	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=460604.655 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+163477	163493	C1 LIFECYCLE START	ElapsedMs=460616.905 | Actor=PC_Hero | Generation=216 | Status=CANDIDATE | PhysicalCollisionChanged=0
+163494	163507	C1-O2 OUTER BINDING	ElapsedMs=460616.997 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=216 | Status=CANDIDATE | PhysicalCollisionChanged=0
+163508	163532	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=460617.022 | Actor=PC_Hero | CurrentAction=16 | CurrentStateTime=0.000000
+163533	163557	PRIMARYFIRST StopMotion	ElapsedMs=460617.056
+163558	163590	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=460617.081 | Actor=PC_Hero
+163591	163615	PRIMARYFIRST PlayMotion	ElapsedMs=460617.080
+163616	163626	C1 LIFECYCLE STATUS	ElapsedMs=460617.179 | Event=PERSISTED | Actor=PC_Hero | Generation=216 | Status=PERSISTED | PhysicalCollisionChanged=0
+163627	163670	AIFULLSTOP CALLSITE	ElapsedMs=460640.607 | Actor=PC_Hero | CurrentAction=16 | CurrentAniPhase=4 | CurrentStateTime=0.024999 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot
+163671	163707	COMBATMOVE FULLSTOP STACK	ElapsedMs=460640.753 | Actor=PC_Hero | CurrentAction=16 | CurrentAniPhase=4 | CurrentStateTime=0.024999 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot
+163708	163748	AISETSTATE CALLSITE	ElapsedMs=460640.825 | Actor=PC_Hero | CurrentAction=16 | CurrentAniPhase=4 | CurrentStateTime=0.024999 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot
+163749	163773	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=460640.896 | Actor=PC_Hero | CurrentAction=16 | CurrentStateTime=0.024999
+163774	163796	C1 FINALIZATION	ElapsedMs=460640.921 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=216 | Status=PERSISTED | PhysicalCollisionChanged=0
+163797	163821	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=460640.941 | Actor=PC_Hero | CurrentAction=16 | CurrentStateTime=0.000000
+163822	163838	C1 LIFECYCLE START	ElapsedMs=460642.426 | Actor=PC_Hero | Generation=217 | Status=CANDIDATE | PhysicalCollisionChanged=0
+163839	163852	C1-O2 OUTER BINDING	ElapsedMs=460642.452 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=217 | Status=CANDIDATE | PhysicalCollisionChanged=0
+163853	163877	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=460642.463 | Actor=PC_Hero | CurrentAction=5 | CurrentStateTime=0.000000
+163878	163902	PRIMARYFIRST StopMotion	ElapsedMs=460642.498
+163903	163935	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=460642.523 | Actor=PC_Hero
+163936	163960	PRIMARYFIRST PlayMotion	ElapsedMs=460642.522
+163961	163971	C1 LIFECYCLE STATUS	ElapsedMs=460642.622 | Event=PERSISTED | Actor=PC_Hero | Generation=217 | Status=PERSISTED | PhysicalCollisionChanged=0
+163972	163996	MARKER OWNERSHIP DECISION	ElapsedMs=460642.638 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+163997	164013	C1 OFFENSE REQUEST	ElapsedMs=460742.348 | Actor=PC_Hero | Generation=217 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+164014	164040	ENGINE SetCollisionGroup	ElapsedMs=460742.380 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=5 | PlayerAniPhase=1 | PlayerStateTime=0.101006 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+164041	164060	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=460742.404 | SourceAddress=E6AAC610
+164061	164090	OUTER_FRAME OFFENSE	ElapsedMs=460742.418 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=5 | CurrentStateTime=0.101006
+164091	164115	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=460870.782 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+164116	164140	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=460890.624 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+164141	164163	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=461048.072 | Actor=PC_Hero | CurrentAction=5 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+164164	164188	PRIMARYFIRST StopMotion	ElapsedMs=461048.141
+164189	164215	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=461048.171 | Actor=PC_Hero
+164216	164240	PRIMARYFIRST PlayMotion	ElapsedMs=461048.170
+164241	164263	COMBATMOVE STARTRECOVER END	ElapsedMs=461048.250 | Actor=PC_Hero | CurrentAction=5 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+164264	164280	C1 CLEANUP FULFILLED	ElapsedMs=461048.305 | Actor=PC_Hero | Generation=217 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+164281	164307	ENGINE SetCollisionGroup	ElapsedMs=461048.320 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=5 | PlayerAniPhase=3 | PlayerStateTime=0.406971 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+164308	164328	NATIVE CLEANUP CALL SITE	ElapsedMs=461048.338 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+164329	164358	OUTER_FRAME CLEANUP	ElapsedMs=461048.359 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=5 | CurrentStateTime=0.406971
+164359	164398	AISETSTATE CALLSITE	ElapsedMs=461158.572 | Actor=PC_Hero | CurrentAction=5 | CurrentAniPhase=3 | CurrentStateTime=0.516949 | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+164399	164423	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=461158.645 | Actor=PC_Hero | CurrentAction=5 | CurrentStateTime=0.516949
+164424	164446	C1 FINALIZATION	ElapsedMs=461158.674 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=217 | Status=PERSISTED | PhysicalCollisionChanged=0
+164447	164471	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=461158.695 | Actor=PC_Hero | CurrentAction=5 | CurrentStateTime=0.000000
+164472	164511	AISETSTATE CALLSITE	ElapsedMs=461267.761 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.097007 | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+164512	164536	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=461267.834 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.097007
+164537	164561	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=461267.859 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+164562	164601	AISETSTATE CALLSITE	ElapsedMs=461280.018 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+164602	164626	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=461280.085 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+164627	164651	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=461280.152 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+164652	164691	AISETSTATE CALLSITE	ElapsedMs=461317.979 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.024999 | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+164692	164716	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=461318.051 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.024999
+164717	164741	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=461318.075 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+164742	164758	C1 LIFECYCLE START	ElapsedMs=461330.773 | Actor=PC_Hero | Generation=220 | Status=CANDIDATE | PhysicalCollisionChanged=0
+164759	164772	C1-O2 OUTER BINDING	ElapsedMs=461330.807 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=220 | Status=CANDIDATE | PhysicalCollisionChanged=0
+164773	164797	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=461330.818 | Actor=PC_Hero | CurrentAction=4 | CurrentStateTime=0.000000
+164798	164822	PRIMARYFIRST StopMotion	ElapsedMs=461330.863
+164823	164855	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=461330.892 | Actor=PC_Hero
+164856	164880	PRIMARYFIRST PlayMotion	ElapsedMs=461330.890
+164881	164891	C1 LIFECYCLE STATUS	ElapsedMs=461330.991 | Event=PERSISTED | Actor=PC_Hero | Generation=220 | Status=PERSISTED | PhysicalCollisionChanged=0
+164892	164916	MARKER OWNERSHIP DECISION	ElapsedMs=461331.008 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+164917	164933	C1 OFFENSE REQUEST	ElapsedMs=461432.348 | Actor=PC_Hero | Generation=220 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+164934	164960	ENGINE SetCollisionGroup	ElapsedMs=461432.385 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=4 | PlayerAniPhase=1 | PlayerStateTime=0.101008 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+164961	164980	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=461432.409 | SourceAddress=E6AAC610
+164981	165010	OUTER_FRAME OFFENSE	ElapsedMs=461432.422 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=4 | CurrentStateTime=0.101008
+165011	165035	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=461595.372 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+165036	165060	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=461689.307 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+165061	165083	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=461851.388 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+165084	165108	PRIMARYFIRST StopMotion	ElapsedMs=461851.525
+165109	165135	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=461851.556 | Actor=PC_Hero
+165136	165160	PRIMARYFIRST PlayMotion	ElapsedMs=461851.554
+165161	165183	COMBATMOVE STARTRECOVER END	ElapsedMs=461851.631 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+165184	165200	C1 CLEANUP FULFILLED	ElapsedMs=461851.687 | Actor=PC_Hero | Generation=220 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+165201	165227	ENGINE SetCollisionGroup	ElapsedMs=461851.703 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=4 | PlayerAniPhase=3 | PlayerStateTime=0.520978 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+165228	165248	NATIVE CLEANUP CALL SITE	ElapsedMs=461851.722 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+165249	165278	OUTER_FRAME CLEANUP	ElapsedMs=461851.746 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=4 | CurrentStateTime=0.520978
+165279	165318	AISETSTATE CALLSITE	ElapsedMs=461953.567 | Actor=PC_Hero | CurrentAction=4 | CurrentAniPhase=3 | CurrentStateTime=0.622987 | CurrentMovementAni=Hero_Stand_None_Staff_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+165319	165343	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=461953.649 | Actor=PC_Hero | CurrentAction=4 | CurrentStateTime=0.622987
+165344	165366	C1 FINALIZATION	ElapsedMs=461953.678 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=220 | Status=PERSISTED | PhysicalCollisionChanged=0
+165367	165391	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=461953.701 | Actor=PC_Hero | CurrentAction=4 | CurrentStateTime=0.000000
+165392	165431	AISETSTATE CALLSITE	ElapsedMs=462552.882 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.586001 | CurrentMovementAni=Hero_Stand_None_Staff_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+165432	165456	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=462552.950 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.586001
+165457	165481	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=462552.971 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+165482	165498	C1 LIFECYCLE START	ElapsedMs=462564.809 | Actor=PC_Hero | Generation=223 | Status=CANDIDATE | PhysicalCollisionChanged=0
+165499	165512	C1-O2 OUTER BINDING	ElapsedMs=462564.895 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=223 | Status=CANDIDATE | PhysicalCollisionChanged=0
+165513	165537	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=462564.906 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+165538	165562	PRIMARYFIRST StopMotion	ElapsedMs=462564.948
+165563	165595	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=462564.971 | Actor=PC_Hero
+165596	165620	PRIMARYFIRST PlayMotion	ElapsedMs=462564.970
+165621	165631	C1 LIFECYCLE STATUS	ElapsedMs=462565.068 | Event=PERSISTED | Actor=PC_Hero | Generation=223 | Status=PERSISTED | PhysicalCollisionChanged=0
+165632	165656	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=462565.488 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+165657	165701	AIFULLSTOP CALLSITE	ElapsedMs=462806.917 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=0 | CurrentStateTime=0.253992 | CurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+165702	165739	COMBATMOVE FULLSTOP STACK	ElapsedMs=462806.995 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=0 | CurrentStateTime=0.253992 | CurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+165740	165756	C1 LIFECYCLE START	ElapsedMs=462821.017 | Actor=PC_Hero | Generation=225 | Status=CANDIDATE | PhysicalCollisionChanged=0
+165757	165770	C1-O2 OUTER BINDING	ElapsedMs=462821.046 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=225 | Status=CANDIDATE | PhysicalCollisionChanged=0
+165771	165795	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=462821.057 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+165796	165820	PRIMARYFIRST StopMotion	ElapsedMs=462821.615
+165821	165853	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=462821.647 | Actor=PC_Hero
+165854	165878	PRIMARYFIRST PlayMotion	ElapsedMs=462821.646
+165879	165889	C1 LIFECYCLE STATUS	ElapsedMs=462821.746 | Event=PERSISTED | Actor=PC_Hero | Generation=225 | Status=PERSISTED | PhysicalCollisionChanged=0
+165890	165916	ENGINE SetCollisionGroup	ElapsedMs=462822.152 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=26 | PlayerAniPhase=1 | PlayerStateTime=0.012010 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+165917	165939	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=463127.969 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+165940	165964	PRIMARYFIRST StopMotion	ElapsedMs=463131.458
+165965	165991	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=463131.492 | Actor=PC_Hero
+165992	166016	PRIMARYFIRST PlayMotion	ElapsedMs=463131.491
+166017	166039	COMBATMOVE STARTRECOVER END	ElapsedMs=463131.574 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+166040	166079	AISETSTATE CALLSITE	ElapsedMs=463131.638 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+166080	166104	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=463131.678 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+166105	166127	C1 FINALIZATION	ElapsedMs=463131.699 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=225 | Status=PERSISTED | PhysicalCollisionChanged=0
+166128	166152	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=463131.718 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+166153	166179	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=463608.694 | Actor=PC_Hero
+166180	166204	PRIMARYFIRST PlayMotion	ElapsedMs=463608.692
+166205	166244	AISETSTATE CALLSITE	ElapsedMs=463936.215 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=5 | CurrentStateTime=0.796987 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+166245	166269	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=463936.341 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.796987
+166270	166294	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=463936.395 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+166295	166311	C1 LIFECYCLE START	ElapsedMs=463948.641 | Actor=PC_Hero | Generation=226 | Status=CANDIDATE | PhysicalCollisionChanged=0
+166312	166325	C1-O2 OUTER BINDING	ElapsedMs=463948.675 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=226 | Status=CANDIDATE | PhysicalCollisionChanged=0
+166326	166350	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=463948.686 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+166351	166375	PRIMARYFIRST StopMotion	ElapsedMs=463948.725
+166376	166408	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=463948.749 | Actor=PC_Hero
+166409	166433	PRIMARYFIRST PlayMotion	ElapsedMs=463948.748
+166434	166444	C1 LIFECYCLE STATUS	ElapsedMs=463948.848 | Event=PERSISTED | Actor=PC_Hero | Generation=226 | Status=PERSISTED | PhysicalCollisionChanged=0
+166445	166469	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=463961.256 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+166470	166494	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=464460.350 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+166495	166508	C1-O2 OUTER BINDING	ElapsedMs=464534.877 | Event=COMBAT_MOVE_REUSED | Actor=PC_Hero | Generation=226 | Status=PERSISTED | PhysicalCollisionChanged=0
+166509	166533	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=464534.907 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.586969
+166534	166558	PRIMARYFIRST StopMotion	ElapsedMs=464534.948
+166559	166590	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=464534.977 | Actor=PC_Hero
+166591	166615	PRIMARYFIRST PlayMotion	ElapsedMs=464534.976
+166616	166632	C1 OFFENSE REQUEST	ElapsedMs=464535.133 | Actor=PC_Hero | Generation=226 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+166633	166659	ENGINE SetCollisionGroup	ElapsedMs=464535.148 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=2 | PlayerAniPhase=1 | PlayerStateTime=0.586969 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+166660	166679	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=464535.170 | SourceAddress=E6AAC610
+166680	166709	OUTER_FRAME OFFENSE	ElapsedMs=464535.185 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=2 | CurrentStateTime=0.586969
+166710	166732	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=464947.771 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+166733	166756	HIT STARTRECOVER BEGIN STACK	ElapsedMs=464947.852 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=1 | CurrentStateTime=0.998952 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+166757	166781	PRIMARYFIRST StopMotion	ElapsedMs=464947.907
+166782	166808	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=464947.932 | Actor=PC_Hero
+166809	166833	PRIMARYFIRST PlayMotion	ElapsedMs=464947.931
+166834	166856	COMBATMOVE STARTRECOVER END	ElapsedMs=464948.008 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+166857	166873	C1 CLEANUP FULFILLED	ElapsedMs=464948.064 | Actor=PC_Hero | Generation=226 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+166874	166900	ENGINE SetCollisionGroup	ElapsedMs=464948.079 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=2 | PlayerAniPhase=3 | PlayerStateTime=0.998952 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+166901	166921	NATIVE CLEANUP CALL SITE	ElapsedMs=464948.099 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+166922	166951	OUTER_FRAME CLEANUP	ElapsedMs=464948.121 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=2 | CurrentStateTime=0.998952
+166952	166991	AISETSTATE CALLSITE	ElapsedMs=464948.153 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=3 | CurrentStateTime=0.998952 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+166992	167016	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=464948.191 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.998952
+167017	167039	C1 FINALIZATION	ElapsedMs=464948.214 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=226 | Status=PERSISTED | PhysicalCollisionChanged=0
+167040	167064	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=464948.234 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+167065	167089	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=465562.033 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+167090	167134	AIFULLSTOP CALLSITE	ElapsedMs=465809.445 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.860974 | CurrentMovementAni=Hero_Stand_None_Staff_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+167135	167151	C1 LIFECYCLE START	ElapsedMs=465822.952 | Actor=PC_Hero | Generation=230 | Status=CANDIDATE | PhysicalCollisionChanged=0
+167152	167165	C1-O2 OUTER BINDING	ElapsedMs=465822.980 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=230 | Status=CANDIDATE | PhysicalCollisionChanged=0
+167166	167190	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=465822.992 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+167191	167215	PRIMARYFIRST StopMotion	ElapsedMs=465823.029
+167216	167248	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=465823.054 | Actor=PC_Hero
+167249	167273	PRIMARYFIRST PlayMotion	ElapsedMs=465823.053
+167274	167284	C1 LIFECYCLE STATUS	ElapsedMs=465823.190 | Event=PERSISTED | Actor=PC_Hero | Generation=230 | Status=PERSISTED | PhysicalCollisionChanged=0
+167285	167311	ENGINE SetCollisionGroup	ElapsedMs=465823.556 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=26 | PlayerAniPhase=1 | PlayerStateTime=0.013000 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+167312	167334	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=466133.007 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+167335	167359	PRIMARYFIRST StopMotion	ElapsedMs=466133.079
+167360	167386	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=466133.108 | Actor=PC_Hero
+167387	167411	PRIMARYFIRST PlayMotion	ElapsedMs=466133.107
+167412	167434	COMBATMOVE STARTRECOVER END	ElapsedMs=466133.183 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+167435	167474	AISETSTATE CALLSITE	ElapsedMs=466133.237 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+167475	167499	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=466133.277 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+167500	167522	C1 FINALIZATION	ElapsedMs=466133.298 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=230 | Status=PERSISTED | PhysicalCollisionChanged=0
+167523	167547	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=466133.317 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+167548	167587	AISETSTATE CALLSITE	ElapsedMs=466408.715 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.262976 | CurrentMovementAni=Hero_Stand_None_Staff_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+167588	167612	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=466408.785 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.262976
+167613	167637	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=466408.808 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+167638	167654	C1 LIFECYCLE START	ElapsedMs=466421.376 | Actor=PC_Hero | Generation=231 | Status=CANDIDATE | PhysicalCollisionChanged=0
+167655	167668	C1-O2 OUTER BINDING	ElapsedMs=466421.415 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=231 | Status=CANDIDATE | PhysicalCollisionChanged=0
+167669	167693	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=466421.427 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+167694	167718	PRIMARYFIRST StopMotion	ElapsedMs=466421.468
+167719	167751	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=466421.494 | Actor=PC_Hero
+167752	167776	PRIMARYFIRST PlayMotion	ElapsedMs=466421.492
+167777	167787	C1 LIFECYCLE STATUS	ElapsedMs=466421.630 | Event=PERSISTED | Actor=PC_Hero | Generation=231 | Status=PERSISTED | PhysicalCollisionChanged=0
+167788	167812	MARKER OWNERSHIP DECISION	ElapsedMs=466421.674 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+167813	167837	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=466435.047 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+167838	167854	C1 OFFENSE REQUEST	ElapsedMs=466676.645 | Actor=PC_Hero | Generation=231 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+167855	167881	ENGINE SetCollisionGroup	ElapsedMs=466676.679 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.255010 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+167882	167901	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=466676.704 | SourceAddress=E6AAC610
+167902	167931	OUTER_FRAME OFFENSE	ElapsedMs=466676.718 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.255010
+167932	167956	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=466932.260 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+167957	167979	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=467166.350 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+167980	168003	HIT STARTRECOVER BEGIN STACK	ElapsedMs=467166.437 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.745973 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+168004	168028	PRIMARYFIRST StopMotion	ElapsedMs=467166.490
+168029	168055	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=467166.514 | Actor=PC_Hero
+168056	168080	PRIMARYFIRST PlayMotion	ElapsedMs=467166.513
+168081	168103	COMBATMOVE STARTRECOVER END	ElapsedMs=467166.588 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+168104	168120	C1 CLEANUP FULFILLED	ElapsedMs=467166.641 | Actor=PC_Hero | Generation=231 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+168121	168147	ENGINE SetCollisionGroup	ElapsedMs=467166.655 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.745973 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+168148	168168	NATIVE CLEANUP CALL SITE	ElapsedMs=467166.673 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+168169	168198	OUTER_FRAME CLEANUP	ElapsedMs=467166.694 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.745973
+168199	168238	AISETSTATE CALLSITE	ElapsedMs=467166.722 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.745973 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+168239	168263	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=467166.760 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.745973
+168264	168286	C1 FINALIZATION	ElapsedMs=467166.781 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=231 | Status=PERSISTED | PhysicalCollisionChanged=0
+168287	168311	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=467166.799 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+168312	168336	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=468108.824 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+168337	168376	AISETSTATE CALLSITE	ElapsedMs=468350.989 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=1.172962 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+168377	168401	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=468351.062 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=1.172962
+168402	168426	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=468351.101 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+168427	168471	AIFULLSTOP CALLSITE	ElapsedMs=468351.488 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+168472	168488	C1 LIFECYCLE START	ElapsedMs=468364.363 | Actor=PC_Hero | Generation=235 | Status=CANDIDATE | PhysicalCollisionChanged=0
+168489	168502	C1-O2 OUTER BINDING	ElapsedMs=468364.393 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=235 | Status=CANDIDATE | PhysicalCollisionChanged=0
+168503	168527	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=468364.404 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+168528	168552	PRIMARYFIRST StopMotion	ElapsedMs=468364.439
+168553	168585	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=468364.463 | Actor=PC_Hero
+168586	168610	PRIMARYFIRST PlayMotion	ElapsedMs=468364.462
+168611	168621	C1 LIFECYCLE STATUS	ElapsedMs=468364.556 | Event=PERSISTED | Actor=PC_Hero | Generation=235 | Status=PERSISTED | PhysicalCollisionChanged=0
+168622	168648	ENGINE SetCollisionGroup	ElapsedMs=468364.867 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=26 | PlayerAniPhase=1 | PlayerStateTime=0.012000 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+168649	168671	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=468675.452 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+168672	168696	PRIMARYFIRST StopMotion	ElapsedMs=468675.524
+168697	168723	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=468675.550 | Actor=PC_Hero
+168724	168748	PRIMARYFIRST PlayMotion	ElapsedMs=468675.549
+168749	168771	COMBATMOVE STARTRECOVER END	ElapsedMs=468675.631 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+168772	168811	AISETSTATE CALLSITE	ElapsedMs=468675.687 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+168812	168836	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=468675.727 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+168837	168859	C1 FINALIZATION	ElapsedMs=468675.748 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=235 | Status=PERSISTED | PhysicalCollisionChanged=0
+168860	168884	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=468675.771 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+168885	168924	AISETSTATE CALLSITE	ElapsedMs=468859.777 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.171013 | CurrentMovementAni=Hero_Stand_None_Staff_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot
+168925	168949	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=468859.901 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.171013
+168950	168974	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=468859.925 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+168975	168991	C1 LIFECYCLE START	ElapsedMs=468872.927 | Actor=PC_Hero | Generation=236 | Status=CANDIDATE | PhysicalCollisionChanged=0
+168992	169005	C1-O2 OUTER BINDING	ElapsedMs=468872.993 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=236 | Status=CANDIDATE | PhysicalCollisionChanged=0
+169006	169030	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=468873.009 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+169031	169055	PRIMARYFIRST StopMotion	ElapsedMs=468873.052
+169056	169088	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=468873.078 | Actor=PC_Hero
+169089	169113	PRIMARYFIRST PlayMotion	ElapsedMs=468873.077
+169114	169124	C1 LIFECYCLE STATUS	ElapsedMs=468873.177 | Event=PERSISTED | Actor=PC_Hero | Generation=236 | Status=PERSISTED | PhysicalCollisionChanged=0
+169125	169149	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=468873.551 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.000000
+169150	169166	C1 OFFENSE REQUEST	ElapsedMs=469134.595 | Actor=PC_Hero | Generation=236 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+169167	169193	ENGINE SetCollisionGroup	ElapsedMs=469134.631 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.262005 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+169194	169213	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=469134.656 | SourceAddress=E6AAC610
+169214	169243	OUTER_FRAME OFFENSE	ElapsedMs=469134.670 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.262005
+169244	169268	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=469223.016 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.350993
+169269	169295	ENGINE SetCollisionGroup	ElapsedMs=469223.104 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.363002 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+169296	169340	AIFULLSTOP CALLSITE	ElapsedMs=469383.538 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.522998 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+169341	169378	COMBATMOVE FULLSTOP STACK	ElapsedMs=469383.629 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.522998 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+169379	169395	C1 CLEANUP FULFILLED	ElapsedMs=469396.444 | Actor=PC_Hero | Generation=236 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+169396	169422	ENGINE SetCollisionGroup	ElapsedMs=469396.477 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+169423	169443	NATIVE CLEANUP CALL SITE	ElapsedMs=469396.500 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+169444	169473	OUTER_FRAME CLEANUP	ElapsedMs=469396.572 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.000000
+169474	169490	C1 LIFECYCLE START	ElapsedMs=469397.843 | Actor=PC_Hero | Generation=238 | Status=CANDIDATE | PhysicalCollisionChanged=0
+169491	169515	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=469397.862 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+169516	169540	PRIMARYFIRST StopMotion	ElapsedMs=469397.899
+169541	169571	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=469397.924 | Actor=PC_Hero
+169572	169596	PRIMARYFIRST PlayMotion	ElapsedMs=469397.923
+169597	169607	C1 LIFECYCLE STATUS	ElapsedMs=469398.008 | Event=PERSISTED | Actor=PC_Hero | Generation=238 | Status=PERSISTED | PhysicalCollisionChanged=0
+169608	169632	PRIMARYFIRST StopMotion	ElapsedMs=470596.679
+169633	169659	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=470596.730 | Actor=PC_Hero
+169660	169684	PRIMARYFIRST PlayMotion	ElapsedMs=470596.728
+169685	169709	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=470731.191 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+169710	169736	ENGINE SetCollisionGroup	ElapsedMs=470985.083 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=29 | PlayerAniPhase=4 | PlayerStateTime=1.601948 | PlayerCurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+169737	169761	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=471153.099 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+169762	169801	AISETSTATE CALLSITE	ElapsedMs=471396.044 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=2.001932 | CurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+169802	169826	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=471396.113 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=2.001932
+169827	169849	C1 FINALIZATION	ElapsedMs=471396.143 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=238 | Status=PERSISTED | PhysicalCollisionChanged=0
+169850	169874	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=471396.167 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+169875	169914	AISETSTATE CALLSITE	ElapsedMs=471504.412 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=0.097007 | CurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+169915	169939	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=471504.480 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.097007
+169940	169964	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=471504.503 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+169965	169981	C1 LIFECYCLE START	ElapsedMs=471515.414 | Actor=PC_Hero | Generation=241 | Status=CANDIDATE | PhysicalCollisionChanged=0
+169982	169995	C1-O2 OUTER BINDING	ElapsedMs=471515.451 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=241 | Status=CANDIDATE | PhysicalCollisionChanged=0
+169996	170020	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=471515.463 | Actor=PC_Hero | CurrentAction=31 | CurrentStateTime=0.000000
+170021	170045	PRIMARYFIRST StopMotion	ElapsedMs=471518.869
+170046	170075	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=471518.902 | Actor=PC_Hero
+170076	170100	PRIMARYFIRST PlayMotion	ElapsedMs=471518.901
+170101	170111	C1 LIFECYCLE STATUS	ElapsedMs=471518.997 | Event=PERSISTED | Actor=PC_Hero | Generation=241 | Status=PERSISTED | PhysicalCollisionChanged=0
+170112	170136	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=471654.090 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+170137	170159	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=472526.184 | Actor=PC_Hero | CurrentAction=31 | CurrentAniPhase=1 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Hit_N_Fwd_00_%_00_P0_0.xmot
+170160	170184	PRIMARYFIRST StopMotion	ElapsedMs=472527.967
+170185	170211	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=472528.000 | Actor=PC_Hero
+170212	170236	PRIMARYFIRST PlayMotion	ElapsedMs=472527.999
+170237	170259	COMBATMOVE STARTRECOVER END	ElapsedMs=472528.082 | Actor=PC_Hero | CurrentAction=31 | CurrentAniPhase=3 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Hit_N_Fwd_00_%_00_P0_0.xmot
+170260	170299	AISETSTATE CALLSITE	ElapsedMs=472528.144 | Actor=PC_Hero | CurrentAction=31 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Hit_N_Fwd_00_%_00_P0_0.xmot
+170300	170324	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=472528.184 | Actor=PC_Hero | CurrentAction=31 | CurrentStateTime=0.000000
+170325	170347	C1 FINALIZATION	ElapsedMs=472528.204 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=241 | Status=PERSISTED | PhysicalCollisionChanged=0
+170348	170372	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=472528.224 | Actor=PC_Hero | CurrentAction=31 | CurrentStateTime=0.000000
+170373	170412	AISETSTATE CALLSITE	ElapsedMs=472539.372 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Recover_N_Fwd_00_%_00_P0_0.xmot
+170413	170437	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=472539.487 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+170438	170462	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=472539.521 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+170463	170502	AISETSTATE CALLSITE	ElapsedMs=472551.196 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Recover_N_Fwd_00_%_00_P0_0.xmot
+170503	170527	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=472551.267 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+170528	170552	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=472551.291 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+170553	170579	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=472698.562 | Actor=PC_Hero
+170580	170604	PRIMARYFIRST PlayMotion	ElapsedMs=472698.561
+170605	170629	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=472900.691 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+170630	170674	AIFULLSTOP CALLSITE	ElapsedMs=473147.070 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=5 | CurrentStateTime=0.595991 | CurrentMovementAni=Hero_Parade_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+170675	170691	C1 LIFECYCLE START	ElapsedMs=473159.661 | Actor=PC_Hero | Generation=244 | Status=CANDIDATE | PhysicalCollisionChanged=0
+170692	170705	C1-O2 OUTER BINDING	ElapsedMs=473159.691 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=244 | Status=CANDIDATE | PhysicalCollisionChanged=0
+170706	170730	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=473159.716 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+170731	170755	PRIMARYFIRST StopMotion	ElapsedMs=473163.205
+170756	170788	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=473163.238 | Actor=PC_Hero
+170789	170813	PRIMARYFIRST PlayMotion	ElapsedMs=473163.237
+170814	170824	C1 LIFECYCLE STATUS	ElapsedMs=473163.340 | Event=PERSISTED | Actor=PC_Hero | Generation=244 | Status=PERSISTED | PhysicalCollisionChanged=0
+170825	170851	ENGINE SetCollisionGroup	ElapsedMs=473163.638 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=26 | PlayerAniPhase=1 | PlayerStateTime=0.011000 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+170852	170874	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=473471.057 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+170875	170899	PRIMARYFIRST StopMotion	ElapsedMs=473474.547
+170900	170926	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=473474.581 | Actor=PC_Hero
+170927	170951	PRIMARYFIRST PlayMotion	ElapsedMs=473474.580
+170952	170974	COMBATMOVE STARTRECOVER END	ElapsedMs=473474.665 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+170975	171014	AISETSTATE CALLSITE	ElapsedMs=473474.725 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+171015	171039	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=473474.764 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+171040	171062	C1 FINALIZATION	ElapsedMs=473474.787 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=244 | Status=PERSISTED | PhysicalCollisionChanged=0
+171063	171087	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=473474.808 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+171088	171127	AISETSTATE CALLSITE	ElapsedMs=473657.921 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.175986 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Recover_N_Back_00_%_00_P0_0.xmot
+171128	171152	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=473657.990 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.175986
+171153	171177	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=473658.014 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+171178	171194	C1 LIFECYCLE START	ElapsedMs=473670.664 | Actor=PC_Hero | Generation=245 | Status=CANDIDATE | PhysicalCollisionChanged=0
+171195	171208	C1-O2 OUTER BINDING	ElapsedMs=473670.707 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=245 | Status=CANDIDATE | PhysicalCollisionChanged=0
+171209	171233	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=473670.719 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+171234	171258	PRIMARYFIRST StopMotion	ElapsedMs=473670.817
+171259	171291	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=473670.842 | Actor=PC_Hero
+171292	171316	PRIMARYFIRST PlayMotion	ElapsedMs=473670.841
+171317	171327	C1 LIFECYCLE STATUS	ElapsedMs=473671.024 | Event=PERSISTED | Actor=PC_Hero | Generation=245 | Status=PERSISTED | PhysicalCollisionChanged=0
+171328	171371	AIFULLSTOP CALLSITE	ElapsedMs=473681.634 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=0 | CurrentStateTime=0.012978 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+171372	171408	COMBATMOVE FULLSTOP STACK	ElapsedMs=473681.777 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=0 | CurrentStateTime=0.012978 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+171409	171449	AISETSTATE CALLSITE	ElapsedMs=473681.839 | Actor=PC_Hero | CurrentAction=2 | CurrentAniPhase=0 | CurrentStateTime=0.012978 | CurrentMovementAni=Hero_Stand_None_Staff_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+171450	171474	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=473681.882 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.012978
+171475	171497	C1 FINALIZATION	ElapsedMs=473681.908 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=245 | Status=PERSISTED | PhysicalCollisionChanged=0
+171498	171522	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=473681.927 | Actor=PC_Hero | CurrentAction=2 | CurrentStateTime=0.000000
+171523	171539	C1 LIFECYCLE START	ElapsedMs=473682.640 | Actor=PC_Hero | Generation=246 | Status=CANDIDATE | PhysicalCollisionChanged=0
+171540	171553	C1-O2 OUTER BINDING	ElapsedMs=473682.663 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=246 | Status=CANDIDATE | PhysicalCollisionChanged=0
+171554	171578	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=473682.673 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+171579	171603	PRIMARYFIRST StopMotion	ElapsedMs=473682.894
+171604	171636	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=473682.922 | Actor=PC_Hero
+171637	171661	PRIMARYFIRST PlayMotion	ElapsedMs=473682.922
+171662	171672	C1 LIFECYCLE STATUS	ElapsedMs=473683.017 | Event=PERSISTED | Actor=PC_Hero | Generation=246 | Status=PERSISTED | PhysicalCollisionChanged=0
+171673	171697	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=473705.520 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+171698	171714	C1 OFFENSE REQUEST	ElapsedMs=473932.167 | Actor=PC_Hero | Generation=246 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+171715	171741	ENGINE SetCollisionGroup	ElapsedMs=473932.202 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.250009 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+171742	171761	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=473932.226 | SourceAddress=E6AAC610
+171762	171791	OUTER_FRAME OFFENSE	ElapsedMs=473932.240 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.250009
+171792	171816	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=474274.064 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+171817	171839	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=474433.798 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+171840	171863	HIT STARTRECOVER BEGIN STACK	ElapsedMs=474433.849 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.751975 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+171864	171888	PRIMARYFIRST StopMotion	ElapsedMs=474433.906
+171889	171915	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=474433.930 | Actor=PC_Hero
+171916	171940	PRIMARYFIRST PlayMotion	ElapsedMs=474433.930
+171941	171963	COMBATMOVE STARTRECOVER END	ElapsedMs=474433.997 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+171964	171980	C1 CLEANUP FULFILLED	ElapsedMs=474434.050 | Actor=PC_Hero | Generation=246 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+171981	172007	ENGINE SetCollisionGroup	ElapsedMs=474434.066 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.751975 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+172008	172028	NATIVE CLEANUP CALL SITE	ElapsedMs=474434.084 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+172029	172058	OUTER_FRAME CLEANUP	ElapsedMs=474434.105 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.751975
+172059	172098	AISETSTATE CALLSITE	ElapsedMs=474434.132 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.751975 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+172099	172123	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=474434.168 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.751975
+172124	172146	C1 FINALIZATION	ElapsedMs=474434.190 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=246 | Status=PERSISTED | PhysicalCollisionChanged=0
+172147	172171	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=474434.208 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+172172	172211	AISETSTATE CALLSITE	ElapsedMs=474840.327 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.394983 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+172212	172236	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=474840.393 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.394983
+172237	172261	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=474840.415 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+172262	172278	C1 LIFECYCLE START	ElapsedMs=474851.087 | Actor=PC_Hero | Generation=249 | Status=CANDIDATE | PhysicalCollisionChanged=0
+172279	172292	C1-O2 OUTER BINDING	ElapsedMs=474851.124 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=249 | Status=CANDIDATE | PhysicalCollisionChanged=0
+172293	172317	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=474851.135 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+172318	172342	PRIMARYFIRST StopMotion	ElapsedMs=474851.174
+172343	172375	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=474851.197 | Actor=PC_Hero
+172376	172400	PRIMARYFIRST PlayMotion	ElapsedMs=474851.196
+172401	172411	C1 LIFECYCLE STATUS	ElapsedMs=474851.297 | Event=PERSISTED | Actor=PC_Hero | Generation=249 | Status=PERSISTED | PhysicalCollisionChanged=0
+172412	172436	MARKER OWNERSHIP DECISION	ElapsedMs=474851.312 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+172437	172453	C1 OFFENSE REQUEST	ElapsedMs=475102.908 | Actor=PC_Hero | Generation=249 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+172454	172480	ENGINE SetCollisionGroup	ElapsedMs=475102.942 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.251983 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+172481	172500	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=475102.967 | SourceAddress=E6AAC610
+172501	172530	OUTER_FRAME OFFENSE	ElapsedMs=475102.982 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.251983
+172531	172555	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=475204.109 | Actor=Golem | CurrentAction=26 | CurrentStateTime=0.000000
+172556	172578	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=475424.169 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+172579	172602	HIT STARTRECOVER BEGIN STACK	ElapsedMs=475424.219 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.572970 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+172603	172627	PRIMARYFIRST StopMotion	ElapsedMs=475424.270
+172628	172654	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=475424.294 | Actor=PC_Hero
+172655	172679	PRIMARYFIRST PlayMotion	ElapsedMs=475424.293
+172680	172702	COMBATMOVE STARTRECOVER END	ElapsedMs=475424.366 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+172703	172719	C1 CLEANUP FULFILLED	ElapsedMs=475424.421 | Actor=PC_Hero | Generation=249 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+172720	172746	ENGINE SetCollisionGroup	ElapsedMs=475424.435 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=3 | PlayerStateTime=0.572970 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+172747	172767	NATIVE CLEANUP CALL SITE	ElapsedMs=475424.453 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+172768	172797	OUTER_FRAME CLEANUP	ElapsedMs=475424.474 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.572970
+172798	172837	AISETSTATE CALLSITE	ElapsedMs=475424.500 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=3 | CurrentStateTime=0.572970 | CurrentMovementAni=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+172838	172862	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=475424.538 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.572970
+172863	172885	C1 FINALIZATION	ElapsedMs=475424.560 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=249 | Status=PERSISTED | PhysicalCollisionChanged=0
+172886	172910	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=475424.578 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+172911	172935	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=476195.027 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+172936	172975	AISETSTATE CALLSITE	ElapsedMs=476392.374 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.954947 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+172976	173000	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=476392.450 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.954947
+173001	173025	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=476392.476 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+173026	173042	C1 LIFECYCLE START	ElapsedMs=476403.847 | Actor=PC_Hero | Generation=252 | Status=CANDIDATE | PhysicalCollisionChanged=0
+173043	173056	C1-O2 OUTER BINDING	ElapsedMs=476403.880 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=252 | Status=CANDIDATE | PhysicalCollisionChanged=0
+173057	173081	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=476403.892 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+173082	173106	PRIMARYFIRST StopMotion	ElapsedMs=476403.931
+173107	173139	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=476403.965 | Actor=PC_Hero
+173140	173164	PRIMARYFIRST PlayMotion	ElapsedMs=476403.963
+173165	173175	C1 LIFECYCLE STATUS	ElapsedMs=476404.068 | Event=PERSISTED | Actor=PC_Hero | Generation=252 | Status=PERSISTED | PhysicalCollisionChanged=0
+173176	173200	MARKER OWNERSHIP DECISION	ElapsedMs=476404.085 | Actor=PC_Hero | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+173201	173245	AIFULLSTOP CALLSITE	ElapsedMs=476439.463 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.047008 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+173246	173283	COMBATMOVE FULLSTOP STACK	ElapsedMs=476439.540 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.047008 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+173284	173300	C1 LIFECYCLE START	ElapsedMs=476451.972 | Actor=PC_Hero | Generation=253 | Status=CANDIDATE | PhysicalCollisionChanged=0
+173301	173314	C1-O2 OUTER BINDING	ElapsedMs=476452.000 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=253 | Status=CANDIDATE | PhysicalCollisionChanged=0
+173315	173339	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=476452.011 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+173340	173364	PRIMARYFIRST StopMotion	ElapsedMs=476452.048
+173365	173397	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=476452.077 | Actor=PC_Hero
+173398	173422	PRIMARYFIRST PlayMotion	ElapsedMs=476452.076
+173423	173433	C1 LIFECYCLE STATUS	ElapsedMs=476452.171 | Event=PERSISTED | Actor=PC_Hero | Generation=253 | Status=PERSISTED | PhysicalCollisionChanged=0
+173434	173460	ENGINE SetCollisionGroup	ElapsedMs=476452.518 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=26 | PlayerAniPhase=1 | PlayerStateTime=0.012000 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+173461	173483	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=476768.931 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+173484	173508	PRIMARYFIRST StopMotion	ElapsedMs=476769.043
+173509	173535	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=476769.074 | Actor=PC_Hero
+173536	173560	PRIMARYFIRST PlayMotion	ElapsedMs=476769.072
+173561	173583	COMBATMOVE STARTRECOVER END	ElapsedMs=476769.150 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+173584	173623	AISETSTATE CALLSITE	ElapsedMs=476769.209 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+173624	173648	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=476769.293 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+173649	173671	C1 FINALIZATION	ElapsedMs=476769.332 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=253 | Status=PERSISTED | PhysicalCollisionChanged=0
+173672	173696	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=476769.353 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+173697	173736	AISETSTATE CALLSITE	ElapsedMs=477080.511 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.299979 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Recover_N_Back_00_%_00_P0_0.xmot
+173737	173761	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=477080.579 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.299979
+173762	173786	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=477080.640 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+173787	173803	C1 LIFECYCLE START	ElapsedMs=477091.701 | Actor=PC_Hero | Generation=254 | Status=CANDIDATE | PhysicalCollisionChanged=0
+173804	173817	C1-O2 OUTER BINDING	ElapsedMs=477091.733 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=254 | Status=CANDIDATE | PhysicalCollisionChanged=0
+173818	173842	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=477091.744 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+173843	173867	PRIMARYFIRST StopMotion	ElapsedMs=477091.784
+173868	173900	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=477091.807 | Actor=PC_Hero
+173901	173925	PRIMARYFIRST PlayMotion	ElapsedMs=477091.807
+173926	173936	C1 LIFECYCLE STATUS	ElapsedMs=477091.909 | Event=PERSISTED | Actor=PC_Hero | Generation=254 | Status=PERSISTED | PhysicalCollisionChanged=0
+173937	173961	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=477092.273 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.000000
+173962	173978	C1 OFFENSE REQUEST	ElapsedMs=477352.420 | Actor=PC_Hero | Generation=254 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+173979	174005	ENGINE SetCollisionGroup	ElapsedMs=477352.466 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.259992 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+174006	174025	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=477352.491 | SourceAddress=E6AAC610
+174026	174055	OUTER_FRAME OFFENSE	ElapsedMs=477352.520 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.259992
+174056	174080	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=477444.665 | Actor=Golem | CurrentAction=9 | CurrentStateTime=0.352979
+174081	174107	ENGINE SetCollisionGroup	ElapsedMs=477444.757 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.364979 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+174108	174152	AIFULLSTOP CALLSITE	ElapsedMs=477606.269 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.525985 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+174153	174190	COMBATMOVE FULLSTOP STACK	ElapsedMs=477606.342 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.525985 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+174191	174207	C1 CLEANUP FULFILLED	ElapsedMs=477617.539 | Actor=PC_Hero | Generation=254 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=5 | PhysicalCollisionChanged=0
+174208	174234	ENGINE SetCollisionGroup	ElapsedMs=477617.577 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.000000 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+174235	174255	NATIVE CLEANUP CALL SITE	ElapsedMs=477617.600 | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5
+174256	174285	OUTER_FRAME CLEANUP	ElapsedMs=477617.625 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=5 | BeforeGroup=7 | AfterGroup=5 | CurrentAction=1 | CurrentStateTime=0.000000
+174286	174302	C1 LIFECYCLE START	ElapsedMs=477619.255 | Actor=PC_Hero | Generation=256 | Status=CANDIDATE | PhysicalCollisionChanged=0
+174303	174327	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=477619.290 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+174328	174352	PRIMARYFIRST StopMotion	ElapsedMs=477619.344
+174353	174383	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=477619.371 | Actor=PC_Hero
+174384	174408	PRIMARYFIRST PlayMotion	ElapsedMs=477619.370
+174409	174419	C1 LIFECYCLE STATUS	ElapsedMs=477619.453 | Event=PERSISTED | Actor=PC_Hero | Generation=256 | Status=PERSISTED | PhysicalCollisionChanged=0
+174420	174444	PRIMARYFIRST StopMotion	ElapsedMs=478823.370
+174445	174471	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=478823.476 | Actor=PC_Hero
+174472	174496	PRIMARYFIRST PlayMotion	ElapsedMs=478823.474
+174497	174521	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=478964.015 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+174522	174548	ENGINE SetCollisionGroup	ElapsedMs=479222.828 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=29 | PlayerAniPhase=4 | PlayerStateTime=1.606938 | PlayerCurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+174549	174573	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=479380.490 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+174574	174613	AISETSTATE CALLSITE	ElapsedMs=479626.303 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=2.008931 | CurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+174614	174638	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=479626.375 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=2.008931
+174639	174661	C1 FINALIZATION	ElapsedMs=479626.402 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=256 | Status=PERSISTED | PhysicalCollisionChanged=0
+174662	174686	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=479626.422 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+174687	174726	AISETSTATE CALLSITE	ElapsedMs=479681.209 | Actor=PC_Hero | CurrentAction=29 | CurrentAniPhase=4 | CurrentStateTime=0.043988 | CurrentMovementAni=Hero_LieKnockDown_None_Staff_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+174727	174751	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=479681.280 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.043988
+174752	174776	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=479681.306 | Actor=PC_Hero | CurrentAction=29 | CurrentStateTime=0.000000
+174777	174793	C1 LIFECYCLE START	ElapsedMs=479692.140 | Actor=PC_Hero | Generation=259 | Status=CANDIDATE | PhysicalCollisionChanged=0
+174794	174807	C1-O2 OUTER BINDING	ElapsedMs=479692.180 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=259 | Status=CANDIDATE | PhysicalCollisionChanged=0
+174808	174832	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=479692.191 | Actor=PC_Hero | CurrentAction=31 | CurrentStateTime=0.000000
+174833	174857	PRIMARYFIRST StopMotion	ElapsedMs=479692.231
+174858	174887	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=479692.257 | Actor=PC_Hero
+174888	174912	PRIMARYFIRST PlayMotion	ElapsedMs=479692.255
+174913	174923	C1 LIFECYCLE STATUS	ElapsedMs=479692.356 | Event=PERSISTED | Actor=PC_Hero | Generation=259 | Status=PERSISTED | PhysicalCollisionChanged=0
+174924	174948	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=479875.181 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+174949	174971	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=480703.324 | Actor=PC_Hero | CurrentAction=31 | CurrentAniPhase=1 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Hit_N_Fwd_00_%_00_P0_0.xmot
+174972	174996	PRIMARYFIRST StopMotion	ElapsedMs=480703.392
+174997	175023	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=480703.423 | Actor=PC_Hero
+175024	175048	PRIMARYFIRST PlayMotion	ElapsedMs=480703.421
+175049	175071	COMBATMOVE STARTRECOVER END	ElapsedMs=480703.498 | Actor=PC_Hero | CurrentAction=31 | CurrentAniPhase=3 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Hit_N_Fwd_00_%_00_P0_0.xmot
+175072	175111	AISETSTATE CALLSITE	ElapsedMs=480703.553 | Actor=PC_Hero | CurrentAction=31 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Hit_N_Fwd_00_%_00_P0_0.xmot
+175112	175136	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=480703.595 | Actor=PC_Hero | CurrentAction=31 | CurrentStateTime=0.000000
+175137	175159	C1 FINALIZATION	ElapsedMs=480703.617 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=259 | Status=PERSISTED | PhysicalCollisionChanged=0
+175160	175184	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=480703.638 | Actor=PC_Hero | CurrentAction=31 | CurrentStateTime=0.000000
+175185	175224	AISETSTATE CALLSITE	ElapsedMs=480715.319 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Recover_N_Fwd_00_%_00_P0_0.xmot
+175225	175249	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=480715.389 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+175250	175274	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=480715.411 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+175275	175314	AISETSTATE CALLSITE	ElapsedMs=480726.963 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_SitKnockDown_None_Staff_P0_GetUpParade_Recover_N_Fwd_00_%_00_P0_0.xmot
+175315	175339	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=480727.033 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+175340	175364	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=480727.055 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+175365	175391	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=480877.847 | Actor=PC_Hero
+175392	175416	PRIMARYFIRST PlayMotion	ElapsedMs=480877.845
+175417	175441	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=481120.669 | Actor=Golem | CurrentAction=1 | CurrentStateTime=0.000000
+175442	175486	AIFULLSTOP CALLSITE	ElapsedMs=481366.159 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=5 | CurrentStateTime=0.628977 | CurrentMovementAni=Hero_Parade_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+175487	175503	C1 LIFECYCLE START	ElapsedMs=481367.878 | Actor=PC_Hero | Generation=262 | Status=CANDIDATE | PhysicalCollisionChanged=0
+175504	175517	C1-O2 OUTER BINDING	ElapsedMs=481367.898 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=262 | Status=CANDIDATE | PhysicalCollisionChanged=0
+175518	175542	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=481367.909 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+175543	175567	PRIMARYFIRST StopMotion	ElapsedMs=481367.948
+175568	175600	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=481367.974 | Actor=PC_Hero
+175601	175625	PRIMARYFIRST PlayMotion	ElapsedMs=481367.973
+175626	175636	C1 LIFECYCLE STATUS	ElapsedMs=481368.058 | Event=PERSISTED | Actor=PC_Hero | Generation=262 | Status=PERSISTED | PhysicalCollisionChanged=0
+175637	175663	ENGINE SetCollisionGroup	ElapsedMs=481378.772 | RequestedGroup=7 | BeforeGroup=0 | AfterGroup=0 | PlayerAction=26 | PlayerAniPhase=1 | PlayerStateTime=0.011000 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+175664	175686	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=481677.786 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+175687	175711	PRIMARYFIRST StopMotion	ElapsedMs=481677.852
+175712	175738	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=481677.876 | Actor=PC_Hero
+175739	175763	PRIMARYFIRST PlayMotion	ElapsedMs=481677.876
+175764	175786	COMBATMOVE STARTRECOVER END	ElapsedMs=481677.944 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+175787	175826	AISETSTATE CALLSITE	ElapsedMs=481678.000 | Actor=PC_Hero | CurrentAction=26 | CurrentAniPhase=3 | CurrentStateTime=0.000000 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+175827	175851	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=481678.039 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+175852	175874	C1 FINALIZATION	ElapsedMs=481678.060 | Reason=AISETSTATE_AFTER_ORIGINAL | Actor=PC_Hero | Generation=262 | Status=PERSISTED | PhysicalCollisionChanged=0
+175875	175899	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=481678.079 | Actor=PC_Hero | CurrentAction=26 | CurrentStateTime=0.000000
+175900	175939	AISETSTATE CALLSITE	ElapsedMs=481723.214 | Actor=PC_Hero | CurrentAction=0 | CurrentAniPhase=3 | CurrentStateTime=0.033999 | CurrentMovementAni=Hero_Stand_None_Staff_P0_StumbleR_Recover_N_Back_00_%_00_P0_0.xmot
+175940	175964	OUTER_FRAME AI_SET_STATE_BEFORE	ElapsedMs=481723.323 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.033999
+175965	175989	OUTER_FRAME AI_SET_STATE_AFTER	ElapsedMs=481723.350 | Actor=PC_Hero | CurrentAction=0 | CurrentStateTime=0.000000
+175990	176006	C1 LIFECYCLE START	ElapsedMs=481734.577 | Actor=PC_Hero | Generation=263 | Status=CANDIDATE | PhysicalCollisionChanged=0
+176007	176020	C1-O2 OUTER BINDING	ElapsedMs=481734.612 | Event=COMBAT_MOVE_CANDIDATE_BOUND | Actor=PC_Hero | Generation=263 | Status=CANDIDATE | PhysicalCollisionChanged=0
+176021	176045	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=481734.624 | Actor=PC_Hero | CurrentAction=1 | CurrentStateTime=0.000000
+176046	176070	PRIMARYFIRST StopMotion	ElapsedMs=481734.660
+176071	176103	EMPTY-PRIMARY SUCCESSOR STACK	ElapsedMs=481734.692 | Actor=PC_Hero
+176104	176128	PRIMARYFIRST PlayMotion	ElapsedMs=481734.691
+176129	176139	C1 LIFECYCLE STATUS	ElapsedMs=481734.842 | Event=PERSISTED | Actor=PC_Hero | Generation=263 | Status=PERSISTED | PhysicalCollisionChanged=0
+176140	176164	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=481861.371 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+176165	176181	C1 OFFENSE REQUEST	ElapsedMs=481987.538 | Actor=PC_Hero | Generation=263 | Status=PERSISTED | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | ActualGroup=7 | PhysicalCollisionChanged=0
+176182	176208	ENGINE SetCollisionGroup	ElapsedMs=481987.571 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | PlayerAction=1 | PlayerAniPhase=1 | PlayerStateTime=0.253990 | PlayerCurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+176209	176228	C1-O2-P1 OFFENSE SCOPE	ElapsedMs=481987.600 | SourceAddress=E6AAC610
+176229	176258	OUTER_FRAME OFFENSE	ElapsedMs=481987.617 | Actor=PC_Hero | Source=Wrestling Staff_BBM | SourceAddress=E6AAC610 | RequestedGroup=7 | BeforeGroup=5 | AfterGroup=7 | CurrentAction=1 | CurrentStateTime=0.253990
+176259	176283	OUTER_FRAME COMBAT_MOVE_INITIAL	ElapsedMs=482376.462 | Actor=Golem | CurrentAction=51 | CurrentStateTime=0.000000
+176284	176306	COMBATMOVE STARTRECOVER BEGIN	ElapsedMs=482486.972 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+176307	176330	HIT STARTRECOVER BEGIN STACK	ElapsedMs=482487.020 | Actor=PC_Hero | CurrentAction=1 | CurrentAniPhase=1 | CurrentStateTime=0.753963 | CurrentMovementAni=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot

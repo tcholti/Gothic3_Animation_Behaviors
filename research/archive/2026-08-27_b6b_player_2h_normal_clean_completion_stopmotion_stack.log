@@ -1,0 +1,1088 @@
+Script_FrameCollisionTest v0.20 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: exact Attack action + Hit phase + current _Attack_Hit_ motion + RIGHT/LEFT/BOTH source marker.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl eligibility: OnAI_WhirlAttack + exact WhirlAttack action + Hit phase + a RIGHT/LEFT/BOTH source marker.
+Accepted full-Whirl marker completes one-shot callback bookkeeping: StatePosition -> 1.
+Full Whirl uses explicit marker windows; ResetOnUntouch is NOT enabled.
+v0.20 PRIMARY-MOTION LIFETIME PROBE: read-only; cleanup behavior is unchanged.
+STEP B1 PRIMARYFIRST EVENT PROBE: PlayMotion/StopMotion request/result snapshots; diagnostic-only.
+STEP B3 COMBATMOVE STARTRECOVER BOUNDARY PROBE: player-only BEGIN/END snapshots; diagnostic-only.
+STEP B4 NATIVE CLEANUP CALL-SITE PROBE: exact player weapon 7 -> 5 caller module/RVA; diagnostic-only.
+STEP B5 CLEANUP PARENT-STACK PROBE: short Win32-captured raw stack for exact player weapon 7 -> 5 cleanup; diagnostic-only.
+STEP B6 HIT REPLACEMENT STACK PROBE: player PrimaryFirst outgoing attack-Hit replacement stack; diagnostic-only.
+v0.20 probe runs only while a marker-owned collision window exists.
+Dual SimpleWhirl remains on the original OnAI_SimpleWhirl callback in v0.19.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+G3AB_COL_RIGHT is the final RIGHT equipped-slot marker.
+G3AB_COL_LEFT is the final LEFT equipped-slot marker.
+G3AB_COL_BOTH is the final BOTH equipped-slot marker.
+RIGHT, LEFT, and BOTH use exact-set semantics: the selected source set replaces the previous marker-owned set.
+BOTH activates/rearms the right and left equipped slot entities independently at one authored marker.
+If any source required by the exact motion is missing, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+G3AB_COL_OFF closes only a weapon window opened by this prototype.
+OFF requests Item_Equipped and never clears the triggered list.
+OFF before ON or after natural reset is consumed as a logged no-op.
+Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Preserved RIGHT and LEFT Normal paths passed v0.14 source validation.
+
+v0.19 adds only the full 2H/Staff OnAI_WhirlAttack adapter.
+v0.19 preserves the validated v0.18 Normal/Quick RIGHT/LEFT/BOTH/OFF core unchanged.
+No Dual SimpleWhirl, Power, collision-source, timing, or cleanup behavior is added in v0.19.
+Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.
+
+Authored-occurrence budgets are cached separately for RIGHT, LEFT, BOTH, and OFF.
+Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase.
+Marker-time or controlled-callback state-time rollback starts a new execution.
+Natural collision reset outside the owning Hit execution retires the actor budget.
+No per-frame actor scan; budget work occurs only when a reserved marker is received.
+
+Installing hooks...
+Hooks installed.
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 17843.489
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 17843.797
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 4.000000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20041.577
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20041.578
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20041.713
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20041.714
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20041.740
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20041.946
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.800000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20310.524
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20311.385
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 8.000000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20362.058
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20362.059
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20362.100
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20362.111
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_HoldRight_Begin_N_Fwd_00_%_00_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.360000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20706.752
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20706.753
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 20706.793
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 20706.805
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.400000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 22436.627
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 22436.628
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 22436.668
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 22436.684
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.520000
+PrimaryPlaySpeed: 0.700000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 22436.730
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredBOTHMarkerCount: 0
+FirstBOTHMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceUseType: 3
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 22696.557
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70EA810
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.259968
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70EA810
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== COMBATMOVE STARTRECOVER BEGIN =====
+ActorAddress: EBB66E10
+Actor: PC_Hero
+CurrentAction: 1
+CurrentAniPhase: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+Stage: BEGIN
+ElapsedMs: 23192.109
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.519990
+PrimaryMaxTime: 0.520000
+PrimaryPlaySpeed: 0.000000
+LeftHandSourceResolved: 0
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceCollisionGroup: 7
+CleanupBehaviorChanged: 0
+=========================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 23192.512
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 23192.512
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 23192.540
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 23192.555
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.920000
+PrimaryPlaySpeed: 0.700000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== COMBATMOVE STARTRECOVER END =====
+ActorAddress: EBB66E10
+Actor: PC_Hero
+CurrentAction: 1
+CurrentAniPhase: 3
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+Stage: END
+ElapsedMs: 23192.577
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.920000
+PrimaryPlaySpeed: 0.700000
+LeftHandSourceResolved: 0
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceCollisionGroup: 7
+CleanupBehaviorChanged: 0
+=========================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 23192.631
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70EA810
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.751541
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70EA810
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== NATIVE CLEANUP CALL SITE =====
+ElapsedMs: 23192.652
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EA810
+PlayerSlotMatch: RIGHT
+CallerAddress: 1B1E851A
+CallerModuleResolved: 1
+CallerModule: Script_Game.dll
+CallerModuleBase: 1B1B0000
+CallerRVA: 0x0003851A
+CapturedStackFrameCount: 3
+StackFrame[0]: Address=78A7A6CE Module=Script_FrameCollisionTest.dll Base=78A70000 RVA=0x0000A6CE
+StackFrame[1]: Address=1B1E851A Module=Script_Game.dll Base=1B1B0000 RVA=0x0003851A
+StackFrame[2]: Address=012F05EB Module=Game.dll Base=01190000 RVA=0x001605EB
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+CleanupBehaviorChanged: 0
+====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 24515.687
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 24516.106
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 4.000000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 26172.762
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 26172.763
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 26172.803
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 26172.817
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.400000
+PrimaryPlaySpeed: 0.700000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 26172.863
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredBOTHMarkerCount: 0
+FirstBOTHMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceUseType: 3
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 26427.206
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70EA810
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.254294
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70EA810
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== COMBATMOVE STARTRECOVER BEGIN =====
+ActorAddress: EBB66E10
+Actor: PC_Hero
+CurrentAction: 1
+CurrentAniPhase: 1
+CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+Stage: BEGIN
+ElapsedMs: 26750.274
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.399990
+PrimaryMaxTime: 0.400000
+PrimaryPlaySpeed: 0.000000
+LeftHandSourceResolved: 0
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceCollisionGroup: 7
+CleanupBehaviorChanged: 0
+=========================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 26750.577
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 26750.577
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 26750.605
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 26750.620
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.760000
+PrimaryPlaySpeed: 0.700000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== COMBATMOVE STARTRECOVER END =====
+ActorAddress: EBB66E10
+Actor: PC_Hero
+CurrentAction: 1
+CurrentAniPhase: 3
+CurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+Stage: END
+ElapsedMs: 26750.642
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.760000
+PrimaryPlaySpeed: 0.700000
+LeftHandSourceResolved: 0
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceCollisionGroup: 7
+CleanupBehaviorChanged: 0
+=========================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 26750.697
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70EA810
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.578568
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70EA810
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== NATIVE CLEANUP CALL SITE =====
+ElapsedMs: 26750.719
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EA810
+PlayerSlotMatch: RIGHT
+CallerAddress: 1B1E851A
+CallerModuleResolved: 1
+CallerModule: Script_Game.dll
+CallerModuleBase: 1B1B0000
+CallerRVA: 0x0003851A
+CapturedStackFrameCount: 3
+StackFrame[0]: Address=78A7A6CE Module=Script_FrameCollisionTest.dll Base=78A70000 RVA=0x0000A6CE
+StackFrame[1]: Address=1B1E851A Module=Script_Game.dll Base=1B1B0000 RVA=0x0003851A
+StackFrame[2]: Address=012F05EB Module=Game.dll Base=01190000 RVA=0x001605EB
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+CleanupBehaviorChanged: 0
+====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 27851.118
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 27851.491
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 4.000000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 29916.821
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 29916.822
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 29916.868
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 29916.884
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.520000
+PrimaryPlaySpeed: 0.700000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 29916.925
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredBOTHMarkerCount: 0
+FirstBOTHMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceUseType: 3
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30169.187
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70EA810
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.254174
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70EA810
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== COMBATMOVE STARTRECOVER BEGIN =====
+ActorAddress: EBB66E10
+Actor: PC_Hero
+CurrentAction: 1
+CurrentAniPhase: 1
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+Stage: BEGIN
+ElapsedMs: 30666.234
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.519990
+PrimaryMaxTime: 0.520000
+PrimaryPlaySpeed: 0.000000
+LeftHandSourceResolved: 0
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceCollisionGroup: 7
+CleanupBehaviorChanged: 0
+=========================================
+
+===== PRIMARYFIRST StopMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 30666.386
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 30666.387
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 30666.415
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 30666.432
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.920000
+PrimaryPlaySpeed: 0.700000
+CleanupBehaviorChanged: 0
+=====================================
+
+===== COMBATMOVE STARTRECOVER END =====
+ActorAddress: EBB66E10
+Actor: PC_Hero
+CurrentAction: 1
+CurrentAniPhase: 3
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+Stage: END
+ElapsedMs: 30666.455
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.920000
+PrimaryPlaySpeed: 0.700000
+LeftHandSourceResolved: 0
+RightHandSourceResolved: 1
+RightHandSource: It_2H_Sword_Flamberge
+RightHandSourceAddress: E70EA810
+RightHandSourceCollisionGroup: 7
+CleanupBehaviorChanged: 0
+=========================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30666.511
+Entity: It_2H_Sword_Flamberge
+ChangedEntityAddress: E70EA810
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.752771
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: It_2H_Sword_Flamberge
+PlayerRightItemAddress: E70EA810
+PlayerRightUseType: 3
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+RetiredMarkerExecutionCount: 0
+====================================
+
+===== NATIVE CLEANUP CALL SITE =====
+ElapsedMs: 30666.533
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70EA810
+PlayerSlotMatch: RIGHT
+CallerAddress: 1B1E851A
+CallerModuleResolved: 1
+CallerModule: Script_Game.dll
+CallerModuleBase: 1B1B0000
+CallerRVA: 0x0003851A
+CapturedStackFrameCount: 3
+StackFrame[0]: Address=78A7A6CE Module=Script_FrameCollisionTest.dll Base=78A70000 RVA=0x0000A6CE
+StackFrame[1]: Address=1B1E851A Module=Script_Game.dll Base=1B1B0000 RVA=0x0003851A
+StackFrame[2]: Address=012F05EB Module=Game.dll Base=01190000 RVA=0x001605EB
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+CleanupBehaviorChanged: 0
+====================================
+
+===== PRIMARYFIRST PlayMotion =====
+OwnerEntityAddress: EBB66E10
+OwnerEntity: PC_Hero
+MotionType: 0
+Stage: REQUEST_BEFORE_ORIGINAL
+ElapsedMs: 31996.343
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: 
+PrimaryHasMotionInstance: 0
+PrimaryMotionRunning: 0
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 0.000000
+PrimaryPlaySpeed: 0.000000
+Stage: RESULT_AFTER_ORIGINAL
+ElapsedMs: 31996.361
+PrimarySnapshotAvailable: 1
+PrimaryMotionName: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+PrimaryHasMotionInstance: 1
+PrimaryMotionRunning: 1
+PrimaryPlayTime: 0.000000
+PrimaryMaxTime: 4.000000
+PrimaryPlaySpeed: 1.000000
+CleanupBehaviorChanged: 0
+=====================================
+
+Script_FrameCollisionTest unloading.

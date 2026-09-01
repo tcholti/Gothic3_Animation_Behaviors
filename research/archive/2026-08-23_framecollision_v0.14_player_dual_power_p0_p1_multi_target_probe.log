@@ -1,0 +1,4287 @@
+Script_FrameCollisionTest v0.14 loaded.
+GENERALIZED ACTOR / WEAPON-SLOT PROTOTYPE.
+NO IsPlayer restriction.
+NO 2H / Staff / 1H use-type restriction.
+NO P0/P1/P2 restriction.
+Normal eligibility: current animation contains _Attack_Hit_ and a RIGHT/LEFT source marker.
+Quick eligibility: OnAI_QuickAttack + exact Quick/QuickR/QuickL action + Hit phase + a RIGHT/LEFT source marker.
+Accepted Quick marker completes one-shot callback bookkeeping: StatePosition -> 1.
+FIST CAUSAL TEST: raw Fist/PhysicalFist skips SetCollisionGroup(Item_Attack).
+FIST CAUSAL TEST: ClearTriggeredList remains active.
+G3AB_COL_TEST is the preserved RIGHT-hand marker alias.
+G3AB_COL_LEFT_TEST is the provisional LEFT-hand marker.
+RIGHT and LEFT use exact-set semantics: the selected source replaces the previous marker-owned set.
+BOTH is intentionally disabled until LEFT and preserved RIGHT pass runtime validation.
+If any source required by the exact motion is missing, its original attack callback is NOT suppressed.
+This protects unarmed/monster attacks until body-source resolution is implemented.
+Marker action: non-Fist -> Item_Attack + ClearTriggeredList; Fist -> ClearTriggeredList only.
+G3AB_COL_OFF_TEST closes only a weapon window opened by this prototype.
+OFF requests Item_Equipped and never clears the triggered list.
+OFF before ON or after natural reset is consumed as a logged no-op.
+Fist/body OFF remains unsupported; Gothic 3 still owns Hit->Recover reset.
+Known collision groups: Item_Equipped=5, Item_Attack=7.
+PASSIVE DUAL DISCOVERY: Item_Attack transitions are labelled by exact player LEFT/RIGHT slot entity identity.
+A Dual both-weapon activation normally appears as separate LEFT and RIGHT transition records.
+Preserved RIGHT Normal/Quick behavior remains the validated v0.9 path; LEFT is new and provisional.
+
+v0.14 preserves same-update marker deduplication for RIGHT, LEFT, and OFF.
+Dedup key: actor + RIGHT/LEFT slot snapshot + motion + marker + action + phase + state time; wall window <= 5 ms.
+
+Authored-occurrence budgets are cached separately for RIGHT, LEFT, and OFF.
+Budget key: actor + RIGHT/LEFT slot snapshot + motion + action + phase; state-time rollback starts a new execution.
+Natural collision reset outside the owning Hit execution retires the actor budget.
+No per-frame actor scan; budget work occurs only when a reserved marker is received.
+
+Installing hooks...
+Hooks installed.
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31367.422
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 1
+PlayerStateTime: 13.344073
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: <none>
+PlayerRightItemAddress: 00000000
+PlayerRightUseType: -1
+PlayerRightCollisionGroup: -1
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 32100.717
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 14.072361
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Walk_N_Back_00_%_00_P0_160.xmot
+PlayerLeftItem: <none>
+PlayerLeftItemAddress: 00000000
+PlayerLeftUseType: -1
+PlayerLeftCollisionGroup: -1
+PlayerRightItem: <none>
+PlayerRightItemAddress: 00000000
+PlayerRightUseType: -1
+PlayerRightCollisionGroup: -1
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 33020.300
+Actor: Golem
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 3
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: Fist
+RightHandSourceAddress: E6E4C010
+RightHandSourceUseType: 8
+RightHandSourceCollisionGroup: 0
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 33271.385
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 10
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.271279
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Sprint_N_Left_00_%_00_P0_400.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 34047.676
+Actor: Golem
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 3
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: Fist
+RightHandSourceAddress: E6A91C10
+RightHandSourceUseType: 8
+RightHandSourceCollisionGroup: 0
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34298.090
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.307797
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Walk_N_Right_00_%_00_P0_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 35890.151
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.482892
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 35890.191
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.482892
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 35929.630
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.532901
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36124.592
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.729878
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 36146.794
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.752877
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 36589.072
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.194850
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 36589.115
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.194850
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 36589.136
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.194850
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36701.289
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.292836
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36701.335
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.292836
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37818.033
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.102981
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38212.556
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.485801
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38212.595
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.485801
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 38246.958
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.531789
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 38475.618
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.760775
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 38925.102
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.209695
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 38925.149
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.209695
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 38925.170
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.209695
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39027.071
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.299694
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39027.113
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.299694
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39698.733
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.670937
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Walk_N_Left_00_%_00_P0_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39803.404
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 10
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.761944
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Sprint_N_Left_00_%_00_P0_400.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 39828.282
+Actor: Golem
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 3
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: Fist
+RightHandSourceAddress: E6FA0810
+RightHandSourceUseType: 8
+RightHandSourceCollisionGroup: 0
+LeftHandSourceResolved: 0
+Decision: LEGACY/NATIVE - call original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40089.610
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 10
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.049937
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Sprint_N_Left_00_%_00_P0_400.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 40956.245
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 2
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 1
+FirstLEFTMarkerFrame: 4
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 41214.663
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.268984
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 41214.696
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.268984
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_LEFT_TEST
+MarkerOpcode: LEFT
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 2
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 2
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 41494.021
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.537932
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42312.502
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.079986
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42384.586
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.152974
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42384.993
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.152974
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42724.492
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.489961
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42724.531
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.489961
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 42762.708
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.541949
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 42982.173
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.761923
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 43433.498
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.212882
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 43433.539
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.212882
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 43433.645
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.212882
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 43531.281
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.295870
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 43531.321
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.295870
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 44275.933
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.722939
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Walk_N_Back_00_%_00_P1_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 44276.410
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.722939
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Walk_N_Back_00_%_00_P1_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 44586.567
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.042934
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Walk_N_Back_00_%_00_P1_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45094.534
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.492988
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45094.576
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.492988
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 45136.062
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.548976
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 45356.851
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.769960
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 45803.056
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.215934
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 45803.097
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.215934
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 45803.121
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.215934
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45906.814
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.303923
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45906.854
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.303923
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 46261.644
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.341003
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 46658.700
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.737979
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Walk_N_Left_00_%_00_P1_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 47136.957
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 1
+AuthoredRIGHTMarkerCount: 1
+FirstRIGHTMarkerFrame: 4
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 47399.408
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.278979
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 47399.440
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.278979
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 2
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 47680.334
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.545978
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48386.078
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.690973
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Walk_N_Left_00_%_00_P0_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48726.673
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.079008
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49082.724
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.423006
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49150.027
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.490996
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49150.067
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.490996
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 49190.482
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.541986
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 49414.184
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.766970
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 49849.444
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.202968
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 49849.490
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.202968
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 49849.512
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.202968
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49959.045
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.298962
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49959.086
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.298962
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 50764.703
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.000000
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Walk_N_Left_00_%_00_P0_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 50765.444
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 2
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 1
+FirstLEFTMarkerFrame: 4
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 50985.896
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.221971
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 51025.475
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.273968
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51025.507
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.273968
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_LEFT_TEST
+MarkerOpcode: LEFT
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 2
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 2
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51300.017
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.534962
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52002.621
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.339987
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52143.974
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.480985
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52144.012
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.480985
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 52183.281
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.532984
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 52397.954
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.747938
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 52853.349
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.201935
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 52853.388
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.201935
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 52853.462
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.201935
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52955.954
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.289924
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52955.993
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.289924
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53198.544
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.228012
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 53895.169
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 1
+AuthoredRIGHTMarkerCount: 1
+FirstRIGHTMarkerFrame: 4
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53990.886
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.097006
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 54150.285
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.269999
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 54150.315
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.269999
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 2
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 54241.980
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.349006
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 54435.757
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.542990
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 55431.735
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.484999
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 55432.447
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.484999
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 55432.479
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.484999
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 55457.764
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.510989
+PlayerStatePosition: 1
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 55471.077
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.536989
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 55686.327
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.751976
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 56007.498
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.057966
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 56143.639
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.208970
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 56143.685
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.208970
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 56143.712
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.208970
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 56239.399
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.291967
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 56239.437
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.291967
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 89453.655
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.849960
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 89569.631
+Entity: Fist
+ChangedEntityAddress: E6E4C010
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.965955
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 89875.171
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.127994
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 90232.107
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.484987
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 90232.148
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.484987
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 90277.966
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.544967
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 90492.107
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.759987
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 90939.859
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.206987
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 90939.898
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.206987
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 90939.917
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.206987
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 91037.765
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.286923
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 91037.804
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.286923
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 91261.776
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.214955
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 91852.733
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.803923
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Walk_N_Left_00_%_00_P0_160.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 92082.158
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 2
+AuthoredRIGHTMarkerCount: 0
+FirstRIGHTMarkerFrame: -1
+AuthoredLEFTMarkerCount: 1
+FirstLEFTMarkerFrame: 4
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 92332.724
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.267006
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 92332.757
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.267006
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_LEFT_TEST
+MarkerOpcode: LEFT
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 2
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 2
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 92626.436
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.544979
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 94028.836
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.182004
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 94284.073
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.424992
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 94344.208
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.485979
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 94344.249
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.485979
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 94380.913
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.534974
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 94604.895
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.758958
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 95051.977
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.204948
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 95052.020
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.204948
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 95052.041
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.204948
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 95151.212
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.289943
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 95151.252
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 2
+PlayerStateTime: 1.289943
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 96018.408
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.867984
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 96085.231
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.000000
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 96085.929
+Actor: PC_Hero
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MatchingMotionFound: 1
+FrameEffectCount: 2
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 1
+AuthoredRIGHTMarkerCount: 1
+FirstRIGHTMarkerFrame: 4
+AuthoredLEFTMarkerCount: 0
+FirstLEFTMarkerFrame: -1
+AuthoredOFFMarkerCount: 0
+FirstOFFMarkerFrame: -1
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+Decision: FRAME-CONTROLLED - suppress original timer callback
+=====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 96353.458
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.281962
+StatePosition: 0
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 5
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 5
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 96353.491
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerPrimaryPose: 2
+PlayerStateTime: 0.281962
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+MarkerAction: ACCEPTED
+MarkerName: G3AB_COL_TEST
+MarkerOpcode: RIGHT
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+AuthoredMarkerFrame: 4
+PreviousMarkerOwnedSourceMask: 0
+DesiredMarkerOwnedSourceMask: 1
+RetiredMarkerOwnedSourceMask: 0
+RetiredSourceCount: 0
+CollisionGroupBeforeMarker: 5
+CollisionGroupAfterMarker: 7
+ResolvedSourceUseTypeAtMarker: 2
+SetCollisionGroupAction: REQUESTED_ITEM_ATTACK
+TriggeredDamageList: CLEARED
+Original StartEffect for marker: NOT CALLED
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 96631.183
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.545971
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 97620.246
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 10
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.987877
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Sprint_N_Right_00_%_00_P0_400.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 98161.818
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.162054
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 98484.766
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.485056
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 98484.807
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.485056
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 98523.539
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.537043
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 98748.387
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.762037
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 99187.892
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.201023
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 99187.932
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.201023
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 99187.951
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.201023
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 99298.270
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.298010
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 99298.310
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.298010
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 100099.255
+Entity: Fist
+ChangedEntityAddress: E6A91C10
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.786956
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 100618.030
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 2
+PlayerAniPhase: 0
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.211993
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 100895.415
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.490984
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 100895.485
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.490984
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 7
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 100939.606
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.546973
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 101159.556
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.767976
+StatePosition: 1
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 101603.976
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.212947
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_LEFT_TEST RECEIVED =====
+ElapsedMs: 101604.022
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.212947
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: LEFT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== G3AB_COL_TEST RECEIVED =====
+ElapsedMs: 101604.043
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 1.212947
+StatePosition: 2
+CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+MarkerOpcode: RIGHT
+RightHandSourceResolved: 1
+RightHandSource: It_1H_Longsword_01
+RightHandSourceAddress: E2BFE610
+RightHandSourceUseType: 2
+RightHandSourceCollisionGroup: 7
+LeftHandSourceResolved: 1
+LeftHandSource: It_1H_Longsword_01
+LeftHandSourceAddress: E2BFE810
+LeftHandSourceUseType: 2
+LeftHandSourceCollisionGroup: 7
+MarkerAction: REJECTED - unsupported Normal/Quick Hit context
+=================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 101710.515
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE610
+PlayerSlotMatch: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.304912
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 7
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 101710.555
+Entity: It_1H_Longsword_01
+ChangedEntityAddress: E2BFE810
+PlayerSlotMatch: LEFT
+PlayerAction: 2
+PlayerAniPhase: 3
+PlayerPrimaryPose: 1
+PlayerStateTime: 1.304912
+PlayerStatePosition: 2
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 102669.399
+Entity: Fist
+ChangedEntityAddress: E6FA0810
+PlayerSlotMatch: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerPrimaryPose: 1
+PlayerStateTime: 0.946970
+PlayerStatePosition: 0
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+PlayerLeftItem: It_1H_Longsword_01
+PlayerLeftItemAddress: E2BFE810
+PlayerLeftUseType: 2
+PlayerLeftCollisionGroup: 5
+PlayerRightItem: It_1H_Longsword_01
+PlayerRightItemAddress: E2BFE610
+PlayerRightUseType: 2
+PlayerRightCollisionGroup: 5
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+Item_EquippedValue: 5
+Item_AttackValue: 7
+====================================
+
+Script_FrameCollisionTest unloading.

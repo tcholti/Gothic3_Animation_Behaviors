@@ -1,334 +1,222 @@
-# Gothic 3 Animation Behaviors — Research Map
+# Gothic 3 Animation Behaviors — Research Topic & History Map
+
+**Status:** Cold/reference research router  
+**Updated:** 2026-09-01
+
+## Purpose
+
+Recover **where a line of research happened, what durable result came from it, and where to retrieve the exact evidence now**.
 
-**Status:** Canonical engineering-state map  
-**Date:** 2026-08-20  
-**Supersedes:** the "current/next" state in the older v0.2 Research & Implementation Map and v0.1 handoff.
+This document is **not current continuation state** and must never declare a live technical gate.
+
+Current state:
 
-## 1. Purpose
+```text
+docs/SESSION_ENTRYPOINT.md
+docs/BETWEEN_CHATS.md
+```
 
-This document records the current engineering state of the Gothic 3 Animation Behaviors project.
+Exact evidence:
 
-It separates confirmed facts, strongly supported findings, working hypotheses, unresolved questions, design decisions, completed milestones, and the immediate implementation sequence.
+```text
+docs/EVIDENCE_INDEX.md
+→ docs/EVIDENCE_LEDGER*.md
+```
 
-Historical documents remain useful source material, but this file is the current continuation map.
+The full pre-information-architecture research map—including old “current prototype” and “next” sections—is preserved at:
+
+`docs/archive/technical_2026-08-27/RESEARCH_MAP_pre_ia.md`
 
-## 2. Evidence Vocabulary
+Use this active file as a topic/history router, not as a document to read end-to-end for ordinary continuation.
 
-- **CONFIRMED** — SDK/source verification, controlled runtime logging, or controlled behavior-changing test.
-- **STRONGLY SUPPORTED** — repeated empirical animation-modding evidence and/or multiple converging observations.
-- **WORKING HYPOTHESIS** — plausible explanation still requiring isolation.
-- **UNKNOWN** — not sufficiently investigated.
-- **DESIGN DECISION** — intended project behavior, not a claim about native engine behavior.
+---
 
-## 3. Current Project Priorities
+## 1. Evidence Vocabulary
+
+Canonical statuses used by the ledgers include:
 
-### Priority A — Frame-controlled melee collision
-
-Complete the generalized authored-frame collision mechanism while preserving correct source selection and native reset behavior.
-
-### Priority B — Raise control
-
-Move the proven Raise mechanism into the unified production system and generalize it carefully across intended human melee families.
-
-### Priority C — Playback-speed control
-
-Implement profile-aware speed authority that is compatible with existing mods and supports a consistent animation-timing standard.
-
-### Later
-
-- intended-target/crosshair enforcement;
-- Recover interruptibility consistency if still needed;
-- climbing and broader Gothic 3 scripting research.
-
-## 4. Completed Milestones
-
-### 4.1 Development and diagnostic foundation — COMPLETE
-
-- Visual Studio 2022 / CMake / Win32 toolchain established.
-- SDK/examples build path proven.
-- CombatMove logger created and used successfully.
-- multiple dedicated prototype DLLs created and tested.
-
-### 4.2 CombatMove phase/speed baseline — COMPLETE
-
-Confirmed tested values include:
-
-- 1H Attack Hit `0.600`
-- 2H Attack Hit `0.700`
-- QuickAttack Hit `1.000`
-- PowerAttack Raise `1.500`
-- PowerAttack Hit `1.000`
-
-Ordinary Recover visibly plays without appearing as a normal separate external CombatMove request in the original logger.
-
-### 4.3 Raise proof of concept — COMPLETE
-
-A previously unused 2H normal-Attack Raise was successfully prepended with `PREPEND_BREAK_BLOCK`.
-
-The engine resolved the correct P0/P1 Raise automatically.
-
-Original Hit, target propagation, collision, pose alternation, and Recover remained intact.
-
-### 4.4 Initial speed override — COMPLETE AS PROOF
-
-`Script_G3AnimationBehaviors v0.1` proved a Raise toggle for normal 2H, configurable normal 2H Hit speed, and that the stock 2H Hit modifier could be observed at `0.700` and overridden to `1.000`.
-
-Compatibility with another mod using the same upstream speed hook is not solved.
-
-### 4.5 Frame-effect reverse engineering — COMPLETE
-
-Confirmed pipeline:
-
-`custom authored frame effect in Blender -> exported .xmot -> eCVisualAnimation_PS::UpdateFrameEffects -> gCEffectSystem::StartEffect -> DLL marker recognition -> custom code at the authored frame`
-
-### 4.6 Marker-driven collision proof — COMPLETE
-
-Confirmed:
-
-- exact current Hit motion can be inspected before marker fires;
-- marker presence can declare custom ownership;
-- native timed `OnAI_Attack` activation can be suppressed for that execution;
-- marker can activate collision and clear the triggered list;
-- marker ownership follows the marked exact animation rather than a hard-coded P0/P1 rule.
-
-### 4.7 Natural weapon collision reset — COMPLETE
-
-A hook on `eCEntity::SetCollisionGroup` confirmed the ordinary weapon path resets:
-
-`5 -> 7` at activation, then `7 -> 5` at Hit -> Recover.
-
-A mandatory end marker is not needed for ordinary single-hit attacks.
-
-### 4.8 Playback-speed synchronization of marker — COMPLETE
-
-For a tested 12-frame 2H normal Hit:
-
-- marker frame stayed tied to the authored animation frame when playback speed changed;
-- marker timing shifted in real time as expected with speed;
-- marker-to-collision call delay was approximately `0.02–0.03 ms`.
-
-### 4.9 Staff player test — COMPLETE
-
-`Script_FrameCollisionTest v0.6` successfully controlled a Staff normal attack using the actor's actual right-hand Staff/Halberd item.
-
-Natural reset also worked.
-
-### 4.10 NPC Staff test — COMPLETE
-
-A non-player human NPC using Hero-family Staff animations successfully used marker-controlled collision on its own equipped halberd.
-
-This confirms the system is not inherently player-specific.
-
-### 4.11 QuickAttack diagnostic — COMPLETE
-
-Staff QuickAttack markers fire correctly.
-
-Native action values observed include QuickAttackR and QuickAttackL.
-
-`v0.6` still rejects those executions because its eligibility path is tied to the literal `_Attack_Hit_` Normal-attack naming assumption, so native collision occurs before the marker.
-
-This is an implementation limitation, not a frame-marker limitation.
-
-### 4.12 Fist/body-contact observation — COMPLETE
-
-With marked Fist tests and native timed activation suppressed:
-
-- left leg damage worked;
-- right leg damage worked;
-- right hand damage worked;
-- left hand damage worked.
-
-The same logical right-slot `Fist` entity was used, remained collision group `0`, and `SetCollisionGroup(Item_Attack)` did not visibly change that stored group.
-
-## 5. Current Prototype State
-
-### Script_G3AnimationBehaviors
-
-Current known integrated proof version: `v0.1`.
-
-Proven concepts:
-
-- Raise configuration;
-- speed configuration;
-- game loads correctly alongside the separate frame-collision prototype.
-
-### Script_FrameCollisionTest
-
-Current known prototype: `v0.6`.
-
-Proven:
-
-- exact-motion marker ownership;
-- normal attack path;
-- generalized player/NPC eligibility;
-- Staff normal;
-- natural weapon collision reset.
-
-Current limitation:
-
-- Normal-specific eligibility still blocks QuickAttack ownership.
-
-### Prototype marker
-
-`G3AB_COL_TEST`
-
-Status: proven research marker, not finalized production vocabulary.
-
-## 6. Immediate Next Implementation — v0.7
-
-Preserve the proven Normal path unchanged.
-
-Add QuickAttack frame-collision ownership by:
-
-1. using `OnAI_QuickAttack`;
-2. using `gEPhase_Hit`;
-3. accepting exact actions:
-   - `gEAction_QuickAttack`
-   - `gEAction_QuickAttackR`
-   - `gEAction_QuickAttackL`
-4. inspecting the exact current Hit motion for the marker;
-5. suppressing native QuickAttack timed activation only when that exact motion is marked;
-6. letting the authored marker trigger the collision operation.
-
-For the first Staff Quick prototype, the source resolver may remain intentionally narrow if needed, but it must not be mistaken for final general source-selection architecture.
-
-## 7. v0.7 Test Matrix
-
-### Player Staff Quick
-
-Required observations:
-
-- no native `5 -> 7` before marker;
-- marker causes activation/rearm at authored frame;
-- QuickAttackR and QuickAttackL both work;
-- natural reset occurs after Hit.
-
-### NPC Staff Quick
-
-Repeat with a controlled human NPC.
-
-Required result:
-
-same authored-frame behavior on the NPC's own equipped Staff/Halberd.
-
-## 8. Fist Causal Test — Next Dedicated Diagnostic
-
-Current question:
-
-Does `SetCollisionGroup(Item_Attack)` contribute to marked Fist damage, or is triggered-list rearming the effective operation?
-
-Preferred controlled test:
-
-1. keep frame ownership and native suppression unchanged;
-2. remove only the Fist `SetCollisionGroup` call;
-3. keep `ClearTriggeredList`;
-4. repeat controlled contact tests with left leg, right leg, right hand, and left hand.
-
-If damage remains, `SetCollisionGroup` is likely irrelevant for the Fist path.
-
-Then, if useful, perform the inverse test: keep the group call while removing the triggered-list clear.
-
-## 9. Source-Resolver Work After Quick + Fist
-
-The production collision API must separate callback/action family, primary/secondary logical attack source, and physical body contact mechanism.
-
-Needed future validation includes:
-
-- 1H;
-- Torch + 1H;
-- Shield + 1H;
-- Dual;
-- 2H;
-- Staff;
-- Fist;
-- multi-hit Power/Whirl;
-- later monster-specific cases.
-
-## 10. Production Marker Vocabulary — NOT FROZEN
-
-Possible terms such as PRIMARY/SECONDARY/ALL/OFF remain design candidates.
-
-Do not mass-author them until source resolution and repeated-hit semantics are proven.
-
-## 11. Raise Generalization — After Collision Core Stabilizes
-
-Known starting point: 2H Normal works.
-
-Likely controlled expansion:
-
-1. 2H normal integrated into unified module;
-2. Staff normal;
-3. 2H/Staff Quick where Raise assets exist;
-4. 1H family;
-5. Torch + 1H;
-6. Shield + 1H;
-7. Dual;
-8. selected Whirl/SimpleWhirl only where desired.
-
-At each step verify resolved Raise, source/destination pose, Hit, Recover, speed, collision, and player/NPC behavior where relevant.
-
-## 12. Speed-System Continuation
-
-Current design goal:
-
-- configure by animation family + normalized left/right animation UseTypes + action profile;
-- preserve native behavior for missing profiles;
-- apply custom speed only to matching profiles;
-- avoid unsafe conflict with NewBalance's upstream speed hook.
-
-Open implementation question:
-
-What is the safest final point for production speed authority?
-
-A downstream CombatMove `AniSpeedScale` intervention remains a leading option.
-
-## 13. Recover Policy
-
-Confirmed engine behavior:
-
-ordinary Recover can start internally without appearing as a separate external CombatMove request.
-
-Project design decision:
-
-controlled Recover should follow the effective Hit speed and should not expose a separate user tuning key.
-
-Separate issue:
-
-Recover interruptibility has shown inconsistencies among attack variants and may later need a dedicated diagnostic.
-
-## 14. Important Current Unknowns
-
-1. Final production collision marker names.
-2. General primary/secondary/all source resolver.
-3. Exact Fist activation/rearm causality.
-4. Safe compatibility strategy when multiple DLLs hook the same callback/function.
-5. Final production speed-hook location.
-6. Exact final INI syntax after current code is migrated.
-7. Which Whirl/SimpleWhirl attacks should opt into Raise.
-8. Multi-hit source/rearm semantics across all supported weapon families.
-9. Monster-specific physical damage-source resolution.
-
-## 15. Superseded Earlier Continuation Points
-
-The following old "next tasks" are historical, not current:
-
-- first Recover-speed search;
-- first collision ON/OFF comparison;
-- first player-only 2H collision proof;
-- Staff marker feasibility;
-- NPC marker feasibility;
-- whether marker timing remains synchronized when speed changes.
-
-Those questions produced later results and should not be restarted unless a new regression specifically requires them.
-
-## 16. Later Research
-
-### Intended target
-
-Still relevant but outside the current immediate animation-behavior core.
-
-Distinct concepts remain FocusEntity, CurrentTarget, AlternativeTarget, AlignmentTarget, action target, CombatMove TargetEntity, and SPU context entities.
-
-### Climbing
-
-Long-term separate Gothic 3 scripting investigation. Not part of the current combat implementation.
+- **CONFIRMED**
+- **STRONGLY SUPPORTED**
+- **WORKING HYPOTHESIS**
+- **UNKNOWN**
+- **DESIGN DECISION**
+
+This map summarizes topics; it does not promote or downgrade evidence. Open the exact EV entry when status/qualification matters.
+
+Current ledger storage split:
+
+```text
+EV-001–EV-157   EVIDENCE_LEDGER.md
+EV-158–EV-198   EVIDENCE_LEDGER_STEP_B.md
+EV-199–EV-205   EVIDENCE_LEDGER_STEP_C.md
+EV-206–EV-214   EVIDENCE_LEDGER_STEP_D.md
+EV-215 onward   EVIDENCE_LEDGER_STEP_E.md
+```
+
+---
+
+## 2. Project Research Lines
+
+| Research line | Durable result / current relevance | Primary retrieval route |
+|---|---|---|
+| CombatMove phase/speed | measured native family/phase speeds; `AniSpeedScale` is real duration authority; upstream speed hook proven but compatibility constrained | EV-001–EV-011; `DESIGN.md` playback speed; `SOURCE_HOOK_GUIDE.md` |
+| Raise insertion | `PREPEND_BREAK_BLOCK` can prepend custom Raise while preserving original melee state/Hit continuation | EV-006–EV-007; `DESIGN.md` Raise |
+| Frame-effect channel | authored `.xmot` frame effects reach `UpdateFrameEffects`/`StartEffect`; exact motion can be scanned before dispatch | EV-012–EV-018; source guide |
+| Marker timing / playback speed | marker timing follows authored animation time and scales with playback; tested latency negligible | EV-020–EV-023; `ANIMATION_RULES.md` |
+| Native weapon collision reset | ordinary tested weapon cleanup is `Item_Attack(7) -> Item_Equipped(5)`; later work proved cleanup can be lost on destructive abandonment | EV-019, EV-151–EV-207 |
+| Quick callback/bookkeeping | `OnAI_QuickAttack` + StatePosition handling enabled marker-controlled Quick without post-reset native reactivation | EV-026–EV-028, EV-066–EV-075 |
+| Fist/body contact | logical Fist contacts can damage through several body contacts without weapon-style group activation; general source adapter remains separate | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211 |
+| Dual physical source mapping | Normal/Quick/Pierce/Power source behavior mapped; R/L attack-direction metadata is not collision-hand authority | EV-047–EV-059, EV-090–EV-094 |
+| Multi-target / repeated-contact rearm | one window can hit multiple targets; repeated same-target authored contacts require source rearm | EV-106–EV-116 |
+| Exact-set markers | RIGHT/LEFT/BOTH/OFF complete desired-set semantics validated and vocabulary frozen | EV-112–EV-116, EV-143–EV-144 |
+| Marker execution lifetime | interruption exposed occurrence-budget leakage across executions; marker bookkeeping is distinct from physical cleanup | EV-131–EV-133, EV-167 |
+| Generation-scoped marker identity | durable C1 generation replaced older marker-local guesses about execution boundaries while independent marker invariants remained | EV-213; `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md` |
+| Literal historical marker regression closure | restored two-contact 2H Normal proved interrupted execution budget does not leak into next same-motion generation; Dual all-marker exact-set preservation also exercised | EV-214 |
+| Whirl family separation | Dual SimpleWhirl/action 6 and full 2H/Staff Whirl/action 10 are separate runtime families | EV-145–EV-153 |
+| New Balance / AttackCollision compatibility | tested marked Whirl configurations can coexist, but arbitrary same-function hook chaining/load order is not proven | EV-035, EV-148–EV-150 |
+| Staff/block-skip stale collision | native and marked tests proved stale offense can survive bad teardown and later damage while moving | EV-151–EV-156, EV-180–EV-181 |
+| Actual PrimaryFirst lifetime | PlayMotion type0 gives replacement evidence; action/phase can drift while physical Hit remains; replacement precedes cleanup | EV-157–EV-160, EV-174–EV-180 |
+| Recover lifecycle | Recover asset playback is not required for native cleanup/bookkeeping; StartRecover is not universal cleanup authority | EV-154, EV-160–EV-162 |
+| Native cleanup call sites | ordinary cleanup is action-specific; legitimate reaction interruption has a separate cleanup route | EV-163–EV-166; cleanup callsite map |
+| Generic script parents | `RunScriptFunction` / `RunScriptState` converge in generic processing; neither is unconditional combat cleanup authority | EV-169–EV-171, EV-195 |
+| State-stack abandonment | held-Use2 bad route terminates CombatMove and destroys suspended attack continuation while legitimate reactions have separate cleanup ownership | EV-182–EV-191 |
+| C1 execution/source guard | monotonic generation + exact source obligations distinguish successful offense, cleanup and terminal outstanding state | EV-192–EV-193 |
+| GetUp pre-Combat acquisition | legitimate offense can occur before CombatMove, requiring the lightweight outer ScriptFunction bridge | EV-194–EV-196 |
+| Hook/finalizer transport stabilization | explicit-this transport corrections and source-liveness hardening stabilized behavior-critical hooks/finalization | EV-199–EV-203 |
+| C1-O2 outer bridge closure | pre-Combat exact offense can lazily acquire C1 and matching CombatMove consumes the temporary native bridge | EV-204–EV-205 |
+| C1-R1 physical repair | exact live/equipped outstanding weapon source gets one native-equivalent `7 -> 5` repair; clean/reaction/source-negative paths remain non-mutating | EV-206–EV-207 |
+| Second-pass modular architecture | central EngineBridge, behavior modules, source operations, diagnostics-independent lifecycle and diagnostics-free behavior target implemented | EV-208; `SECOND_PASS_REWRITE_CONTRACT.md` |
+| CORE diagnostic sufficiency | compact diagnostic twin proved required lifecycle/marker/source sentinels after one diagnostics-only context correction | EV-209–EV-211 |
+| Diagnostics-free behavior product | behavior-only target functions without diagnostic sources/state/hooks | EV-212 and final EV-215 |
+| Architecture verification completion | Gate 4 + literal historical regression + final behavior-only smoke completed the new collision architecture verification | EV-213–EV-215 |
+| Animation-name semantics | actor family, UseType normalization, poses, action/phase serialization, overlays, distance and direction metadata | `ANIMATION_INDEX.md` → `ANIMATION_RULES.md` |
+| Animation family/asset inventory | exact human melee assets, Raise availability, possible unused files, stumbles and controlled fixtures | `ANIMATION_INDEX.md` → `ANIMATION_CATALOG.md` / data lists |
+| Future animation selection / disabled variants | CombatMove animation-string interception at `Game +0x16B065` is reusable engine knowledge; jump/wade/climb remain later work | `SOURCE_HOOK_GUIDE.md` third-party/reference patterns |
+
+---
+
+## 3. Milestone Timeline — Retrieval, Not Current Authority
+
+### Foundation — EV-001–EV-025
+
+- Win32/CMake/Gothic SDK build path established.
+- CombatMove logger established phase/speed baseline.
+- Raise prepend proof established.
+- Frame-effect marker channel reverse-engineered and proven.
+
+### Normal / Quick marker ownership — EV-026–EV-075
+
+- Normal exact-motion marker ownership proven.
+- Quick callback and StatePosition behavior isolated/fixed.
+- Player + controlled human NPC Quick validation completed.
+
+### Fist/source causality and Dual map — EV-080–EV-094
+
+- Fist weapon-style group request shown unnecessary for tested contacts while list rearm remained.
+- Dual Normal/Quick/Pierce/Power physical source map logged.
+
+### Repeated-contact / exact-set / replay protection — EV-106–EV-144
+
+- multi-target single window confirmed;
+- same-target second contact isolated to later `ClearTriggeredList()` rearm;
+- OFF window closure validated;
+- repeated frame-effect replay discovered;
+- same-update duplicate + authored-occurrence budget architecture validated;
+- LEFT/BOTH/mixed exact-set behavior and final marker vocabulary validated;
+- interruption exposed the historical occurrence-budget execution-lifetime defect.
+
+### Full Whirl and native cleanup defect — EV-145–EV-167
+
+- full Whirl/action 10 separated from Dual SimpleWhirl/action 6;
+- 2H/Staff marked Whirl contact behavior validated;
+- rare Staff cleanup failure reproduced;
+- no-Recover Quick and native Staff/Dual cases broadened the defect;
+- stale collision proved physically harmful/native;
+- native cleanup callsites and marker-bookkeeping/physical-cleanup distinction established.
+
+### Step B lifecycle causal search — EV-158–EV-191
+
+- B1 replacement proved too early for repair;
+- callback and StartRecover boundaries rejected;
+- missing Recover asset rejected as root cause;
+- action-specific + reaction cleanup map built;
+- generic script parents identified;
+- replacement-time post-script candidate rejected;
+- FullStop/SetState causal chain established;
+- held-Use2 abandonment generalized across tested families;
+- AISetState ordering established native cleanup precedence and bad-path no-cleanup condition.
+
+### C1 identity and source obligation — EV-192–EV-205
+
+- C1 monotonic generation/source-obligation model implemented in shadow form;
+- core bad/clean/reaction/pre-activation/inherited-stale controls passed;
+- GetUp exposed legitimate pre-Combat offense;
+- outer ScriptFunction lifetime/correlation proved;
+- transport/finalizer substrate stabilized;
+- lightweight pre-Combat bridge closed the acquisition gap without durable raw-frame identity.
+
+### C1-R1 physical repair closure — EV-206–EV-207
+
+- exact outstanding live/equipped weapon source `7 -> 5` repair validated;
+- ordinary/reaction/GetUp/no-offense controls remained non-mutating;
+- Dual exact-source independence, marker interaction, Fist/crossbow negatives and broad player/NPC hook stability closed the controlled gate.
+
+### Second-pass architecture and product separation — EV-208–EV-212
+
+- structural rewrite separated EngineBridge, marker policy, source facts/operations, lifecycle and diagnostics;
+- behavior-only target mechanically excluded diagnostics;
+- CORE diagnostic matrix passed after bounded diagnostic-context restoration;
+- behavior-only target loaded and functioned without diagnostic dependency.
+
+### Generation-scoped marker bookkeeping and final verification — EV-213–EV-215
+
+- C1 generation became durable marker occurrence/dedupe execution identity;
+- older source/motion/action/phase/state-time and controlled-callback rollback execution guesses were removed/consolidated;
+- exact physical marker-owned source-bit/window retirement remained separate;
+- literal historical EV-131 same-motion interruption/restart defect was directly closed with restored two-contact 2H Normal;
+- final diagnostics-free restored-fixture/mixed-combat smoke passed;
+- **new collision architecture verification completed**.
+
+This timeline records history only. It does not authorize another diagnostic matrix or define what the project should do next.
+
+---
+
+## 4. Topic Search Keywords
+
+Use exact terms rather than reading broad documents:
+
+```text
+AniSpeedScale
+PREPEND_BREAK_BLOCK
+UpdateFrameEffects
+StartEffect
+G3AB_COL_RIGHT
+G3AB_COL_LEFT
+G3AB_COL_BOTH
+G3AB_COL_OFF
+ClearTriggeredList
+MarkerExecutionBudget
+C1Generation
+ExecutionBudgetReset
+RetireMarkerOwnedSource
+Item_Attack
+Item_Equipped
+SetCollisionGroup
+RunScriptFunction
+AISetState
+AIFullStop
+FullStop
+AttackContinuationProtection
+LivenessEstablished
+REPAIRED_TO_ITEM_EQUIPPED
+NewBalance
+Jackydima
+```
+
+Use `EVIDENCE_INDEX.md` to route the term to exact evidence.
+
+---
+
+## Core Rule
+
+> **History explains how the project learned something; current authorities define what is true now. Use this map to find history, never to override `SESSION_ENTRYPOINT.md`, `DESIGN.md`, subsystem authorities or the canonical evidence ledger.**

@@ -1,0 +1,70 @@
+LARGE LOG EVIDENCE PACKAGE
+ToolVersion: 1
+SourceInput: .\research\raw\2026-08-30_c1_finalization_source_liveness_safe_setcollisiongroup_extended_gameplay_stability.log
+SourceFileName: 2026-08-30_c1_finalization_source_liveness_safe_setcollisiongroup_extended_gameplay_stability.log
+SourceSHA256: D6298DA4C7C490FC84BC2A4586CC92A2F8D1A5003B54CC734EC584FECF5CE72B
+SourceBytes: 10797185
+SourceLineCount: 356139
+EventBlockCount: 13723
+DistinctEventTypes: 25
+SignalMatchCount: 273
+DistinctSignalLines: 264
+SignalContextBefore: 80
+SignalContextAfter: 120
+MergedSignalContextRanges: 261
+MaxOutputPartBytes: 120000
+EventTimelineParts: 16
+SignalIndexParts: 1
+SignalContextParts: 18
+RequestedRangeCount: 0
+RequestedRangeParts: 0
+
+SignalPatterns:
+- C1_INVARIANT_WARNING = C1 INVARIANT WARNING
+- WOULD_REPAIR = WOULD_REPAIR
+- WARNING = (?i)\bWARNING\b
+- ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
+- FAILED_OR_FAILURE = (?i)\b(FAILED|FAILURE)\b
+- MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
+- STALE = (?i)\bSTALE\b
+- UNRESOLVED_OR_ORPHAN = (?i)\b(UNRESOLVED|ORPHAN)\b
+- BAD_OR_UNSAFE_SKIP = (?i)(BAD|UNSAFE|FAILED|STALE|MISMATCH).*(SKIP|SKIPPED)|(SKIP|SKIPPED).*(BAD|UNSAFE|FAILED|STALE|MISMATCH)
+- OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
+
+Files:
+- event_counts.tsv
+- event_timeline_part_001.tsv
+- event_timeline_part_002.tsv
+- event_timeline_part_003.tsv
+- event_timeline_part_004.tsv
+- event_timeline_part_005.tsv
+- event_timeline_part_006.tsv
+- event_timeline_part_007.tsv
+- event_timeline_part_008.tsv
+- event_timeline_part_009.tsv
+- event_timeline_part_010.tsv
+- event_timeline_part_011.tsv
+- event_timeline_part_012.tsv
+- event_timeline_part_013.tsv
+- event_timeline_part_014.tsv
+- event_timeline_part_015.tsv
+- event_timeline_part_016.tsv
+- signals_part_001.tsv
+- signal_context_part_001.txt
+- signal_context_part_002.txt
+- signal_context_part_003.txt
+- signal_context_part_004.txt
+- signal_context_part_005.txt
+- signal_context_part_006.txt
+- signal_context_part_007.txt
+- signal_context_part_008.txt
+- signal_context_part_009.txt
+- signal_context_part_010.txt
+- signal_context_part_011.txt
+- signal_context_part_012.txt
+- signal_context_part_013.txt
+- signal_context_part_014.txt
+- signal_context_part_015.txt
+- signal_context_part_016.txt
+- signal_context_part_017.txt
+- signal_context_part_018.txt

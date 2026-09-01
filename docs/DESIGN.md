@@ -1,292 +1,616 @@
 # Gothic 3 Animation Behaviors — Design
 
-**Status:** Canonical working design  
-**Date:** 2026-08-20  
+**Status:** Canonical project architecture  
+**Updated:** 2026-09-01  
 **Project:** `Gothic3_Animation_Behaviors`
 
-## 1. Purpose
+## Purpose
 
-`Script_G3AnimationBehaviors` is intended to provide a general animation-behavior layer for Gothic 3 that can support rebuilt combat animations without forcing them to conform to legacy timing assumptions.
+`Script_G3AnimationBehaviors` is intended to provide a general animation-behavior layer for Gothic 3 that can support rebuilt animations without forcing them to inherit every legacy timing assumption.
 
-The current system has three primary behavior domains:
+The active behavior domains are:
 
-1. Raise-phase control.
-2. Attack playback-speed control.
-3. Authored-frame collision control.
+1. Raise-phase control;
+2. attack playback-speed control;
+3. authored-frame collision control.
 
-The design must preserve Gothic 3's native animation/action resolution wherever possible and intervene only when a configured profile or authored animation explicitly opts in.
+Future independent behavior domains may include target acquisition, climbing and other animation/gameplay systems.
 
-## 2. Scope
+This file defines the **intended architecture and current implementation order**. It does not preserve experiment chronology. The completed second-pass structural rewrite is preserved in `SECOND_PASS_REWRITE_CONTRACT.md`; the completed generation-scoped marker-bookkeeping result is in `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`; proof history routes through `EVIDENCE_INDEX.md` → the evidence ledgers/raw logs; lifecycle authority is `COLLISION_LIFECYCLE_PLAN.md`; staged validation authority is `COLLISION_TEST_PLAN.md`.
+
+The pre-information-architecture design, including detailed prototype chronology, is preserved at:
+
+`docs/archive/technical_2026-08-27/DESIGN_pre_ia.md`
+
+---
+
+## 1. Scope
 
 The system is actor-general by design.
 
-`Hero` is an animation-family identifier used by compatible human actors; it is not a player-only selector. The frame-collision mechanism must also remain technically usable by other animation families, including monsters, when their animations and physical damage sources are understood.
+`Hero` is an animation-family identifier used by compatible human actors; it is **not** a player-only selector. Collision, Raise, and speed systems should remain technically extensible to other actor/animation families when their native semantics and physical damage sources are understood.
 
-Current practical development emphasis is human melee because that is the animation set being rebuilt and tested first.
+Current practical development emphasis remains human melee because that is the animation set being rebuilt and tested first.
 
 Unconfigured profiles and unmarked animations must retain native behavior.
 
-## 3. Design Principles
+---
+
+## 2. Governing Design Principles
 
 ### DP-01 — Native semantics first
 
-Use Gothic 3's native `gEAction`, `gEPhase`, `gEAniState`, `gEPose`, raw `gEUseType` plus its animation UseType mapping, and current resolved motion/animation context.
+Prefer Gothic 3's native action, phase, animation state, pose, UseType, resolved motion, and source/API facts over filename heuristics when those native facts are available.
 
-Do not make filename substring parsing the sole authority when the engine already exposes the semantic state directly.
+Filenames remain important asset selectors and serialized state, but they must not become the sole behavioral parser.
 
 ### DP-02 — Preserve engine animation resolution
 
-Do not manually construct exact P0/P1/P2/P10/etc. animation filenames when Gothic 3 can resolve the correct animation from the current actor, pose, action, phase, direction, and use types.
+Do not manually construct exact P0/P1/P2/P10/etc. filenames when Gothic 3 can resolve the correct animation from native actor/state/action/phase/pose/use-type context.
 
-### DP-03 — Opt-in behavior
+### DP-03 — Explicit opt-in ownership
 
-Speed/Raise behavior is controlled by configuration.
+- Raise/speed ownership comes from matching configuration.
+- Frame collision ownership comes from reserved markers in the **exact current Hit motion** plus the relevant native callback/action/phase context.
+- Missing configuration/marker means custom behavior does not take ownership.
 
-Frame collision is controlled by a reserved frame marker embedded in the exact animation motion.
+### DP-04 — Separate attack semantics from physical damage source
 
-Missing configuration or missing marker means the corresponding custom behavior does not take ownership.
+Action/callback/phase identify the attack mechanism. The physical source that damages a target is a separate concern.
 
-### DP-04 — Separate attack family from physical damage source
+Possible sources include:
 
-The current action/callback determines the broad attack mechanism.
+- equipped right weapon;
+- equipped left weapon;
+- both equipped weapons;
+- logical Fist/body-contact source;
+- future monster/body/limb/head sources.
 
-The physical source that can damage a target is a separate concern.
+Never infer the physical source from a generic `Hit`, final filename `R/L`, or QuickAttackR/L token alone.
 
-Examples include the right-hand weapon, left-hand weapon, both equipped weapons, a logical unarmed/Fist source whose contact comes from body collision geometry, and future monster-specific body/limb/head sources.
+### DP-05 — Separate responsibilities
 
-A generic `Hit` label does not identify the physical damage source.
+Conceptually:
 
-### DP-05 — Preserve proven paths while expanding
+```text
+Engine bridge / hook transport
+    owns physical Gothic hook installation and reports authoritative events/facts
 
-Add one action family/callback at a time. Do not rewrite a proven Normal-attack path while adding QuickAttack support.
+Behavior modules
+    own Raise / speed / marker / lifecycle / continuation decisions
 
-### DP-06 — Controlled fallback
+Source facts
+    identify current physical sources and source metadata
 
-If a custom rule does not intentionally apply, preserve original behavior.
+Physical source operations
+    translate an already-decided behavior request into source-specific engine operations
 
-### DP-07 — Configuration is loaded once
+Runtime infrastructure
+    provides behavior-required neutral services such as monotonic timing
 
-Parse configuration at initialization into normalized in-memory rules. Do not repeatedly parse the INI during attacks.
+Diagnostics
+    observe and record facts in diagnostic builds only
+```
 
-### DP-08 — Evidence before generalization
+Production behavior must remain correct when diagnostics are **not compiled**.
 
-Player tests alone are insufficient for an actor-general feature. Important behavior must be checked with both controlled player and NPC cases where applicable.
+Canonical release/build rule: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
-## 4. Configuration Identity
+### DP-06 — Preserve proven paths while expanding
 
-The configuration concept is indexed by:
+Change one meaningful subsystem/family responsibility at a time when that improves causal confidence. Do not rewrite a proven path merely because another family is being added.
 
-`AnimationFamily + LeftAnimationUseType + RightAnimationUseType + ActionProfile`
+### DP-07 — Controlled fallback
 
-The exact textual INI syntax is not frozen until the current code is migrated into this repository.
+If a custom rule does not intentionally apply, preserve the original/native path.
 
-### 4.1 Animation UseType normalization
+### DP-08 — Configuration loaded once
 
-Raw `gEUseType` is not always the same as the animation token.
+Parse configuration during initialization into normalized in-memory rules. Do not repeatedly parse the INI during attacks.
 
-Examples:
+### DP-09 — Evidence before generalization
 
-- `gEUseType_Axe` -> `2H`
-- `gEUseType_Pickaxe` -> `2H`
-- `gEUseType_Halberd` -> `Staff`
-- `gEUseType_Rake` -> `Staff`
-- `gEUseType_Shovel` -> `Staff`
-- `gEUseType_Broom` -> `Staff`
-- `gEUseType_Fan` -> `Staff`
-- `gEUseType_PhysicalFist` -> `Fist`
+Player-only success is not sufficient evidence for an actor-general feature. Use controlled NPC cases when actor scope matters, and use runtime/source evidence for subtle engine behavior.
 
-The full known mapping is maintained in `ANIMATION_RULES.md`.
+### DP-10 — One hook owner, independent feature modules
 
-### 4.2 Action profiles
+One DLL may contain many independent behavior modules, but one central engine-bridge layer owns each shared Gothic hook.
 
-Configuration may group closely related native actions for user-facing simplicity, but the runtime implementation must still identify the exact `gEAction`.
+Feature modules consume authoritative bridge events/facts; they do **not** independently compete for the same physical Gothic function merely because each feature needs information from that function.
 
-Minimum intended groups:
+This rule is especially important for shared lifecycle/control paths such as `RunScriptFunction`, CombatMove, `AISetState`, `AIFullStop`, `SetCollisionGroup`, animation callbacks and future speed/compatibility interception points.
 
-- **Normal**: `gEAction_Attack`
-- **Quick**: `gEAction_QuickAttack`, `gEAction_QuickAttackR`, `gEAction_QuickAttackL`
+A module may be enabled/disabled or replaced without redefining another module's semantic responsibility.
 
-Likely future groups include PowerAttack, SimpleWhirl, WhirlAttack, PierceAttack, and other actions only when their behavior is deliberately supported.
+### DP-11 — Diagnostics-free release product
 
-## 5. Raise Architecture
+Every released Gothic 3 behavior DLL contains behavior only.
 
-A normal 2H Attack Raise has already been successfully inserted by hooking the original melee state and using `PREPEND_BREAK_BLOCK`.
+```text
+shared behavior architecture
+→ diagnostics-free RELEASE build
+→ separate instrumented DIAGNOSTIC twin used in place of release during controlled testing
+```
 
-This preserves the original state after the inserted asynchronous Raise completes.
+The public release must not compile diagnostic source/state/hooks merely because research builds historically used them.
 
-The proven sequence is conceptually:
+---
 
-`custom Raise -> original state -> original Hit -> native continuation`
+## 3. Configuration Identity
 
-The engine resolves the correct P0/P1 Raise animation automatically.
+The intended profile identity is:
 
-Raise should be enabled only for matching configured profiles/actions. The production system should reuse the proven prepend mechanism where it is the highest-level sufficient intervention.
+```text
+AnimationFamily
++ LeftAnimationUseType
++ RightAnimationUseType
++ ActionProfile
+```
 
-Actions that already have valid native Raise behavior, such as existing PowerAttack cases, should not be needlessly reconstructed.
+Raw `gEUseType` values must be normalized to the animation categories used by Gothic 3 resources. The canonical mapping and filename semantics are in `ANIMATION_RULES.md`; use `ANIMATION_INDEX.md` for targeted routing.
 
-## 6. Playback-Speed Architecture
+The exact user-facing INI syntax can evolve while the implementation is still being consolidated, but the profile identity should remain semantic rather than filename-specific.
 
-### 6.1 Proven facts
+Configuration should eventually allow behavior modules to be independently enabled/configured while still sharing one DLL and one engine bridge.
 
-`AniSpeedScale` participates in actual animation duration.
+---
 
-The tested stock/configured values include:
+## 4. Raise Architecture
 
-- 1H normal Hit: `0.600`
-- 2H normal Hit: `0.700`
-- QuickAttack Hit: `1.000`
-- PowerAttack Raise: `1.500`
-- PowerAttack Hit: `1.000`
+A normal 2H Attack Raise has already been proven by prepending an asynchronous Raise with `PREPEND_BREAK_BLOCK` before the untouched original melee state.
 
-An upstream action/phase-aware modifier hook at `Script_Game + 0x42A0` has also been proven.
+Conceptually:
 
-### 6.2 Production goal
+```text
+configured custom Raise
+→ original state
+→ original Hit
+→ native continuation
+```
 
-Speed authority should be limited to matching configured profiles and phases.
+The engine resolves the correct pose-specific Raise asset.
 
-The current design preference is to avoid globally replacing values for unrelated actors/attacks.
+Production rules:
 
-### 6.3 Compatibility
+- enable Raise only for matching configured profiles/actions;
+- reuse the highest-level proven native/state mechanism where sufficient;
+- do not reconstruct actions that already have correct native Raise behavior;
+- keep Raise separate from collision lifecycle repair and attack-continuation protection;
+- initially generalize Normal and Quick families, then selected full-Whirl paths where evidence/assets justify it;
+- install/consume hooks through the common engine-bridge architecture when a hook path is shared with another behavior.
 
-The current upstream speed hook conflicts with NewBalance/other code that hooks the same speed-modifier path.
+Exact Raise proof evidence routes through `EVIDENCE_INDEX.md`.
 
-A production implementation should prefer the safest point that allows matching-profile authority without depending on DLL load order or unsafe same-function hook chaining.
+---
 
-A downstream final `CombatMove` / `AniSpeedScale` intervention remains a strong candidate, but the final code location must be verified against the migrated implementation.
+## 5. Playback-Speed Architecture
 
-### 6.4 Recover policy
+`AniSpeedScale` participates in real animation duration and action/phase-aware speed control has been proven feasible.
 
-There is intentionally no planned user-facing `RecoverSpeed` tuning key.
+Production goal:
 
-**Design decision:** Recover should follow the effective Hit speed for a controlled attack profile.
+> Apply speed authority only to matching configured profiles/phases while preserving unrelated native/mod behavior.
 
-This is a project behavior requirement, not a claim that vanilla Gothic 3 always does this automatically.
+Requirements:
 
-## 7. Frame-Controlled Collision Architecture
+- avoid global replacement of unrelated attack speeds;
+- avoid unsafe dependence on DLL load order when another mod hooks the same upstream speed path;
+- prefer the narrowest point that provides final authority for the configured execution;
+- calibrate final family values from measured native/custom durations rather than freezing provisional authoring guesses;
+- keep speed control independent from Raise, collision markers, lifecycle repair and attack-continuation protection.
 
-### 7.1 Ownership declaration
+The current `src/Script_G3AnimationBehaviors/AttackSpeed.cpp` direct hook of `Script_Game +0x42A0 GetAnimationSpeedModifier` is a **proof-of-concept implementation, not frozen production architecture**. The project source guide already records this path as a compatibility concern when another DLL owns the same function. Before final speed implementation, re-evaluate the intervention point against New Balance/Jackydima behavior rather than assuming same-function hook chaining/load order is safe.
 
-At Hit execution/start, inspect the exact current motion resource and its frame-effect list.
+### Recover policy
 
-If no reserved G3AB collision marker is present, frame collision does not take ownership and existing/native/legacy collision behavior remains active.
+There is intentionally no planned user-facing `RecoverSpeed` key.
 
-If a reserved marker is present, that exact animation execution opts into frame-controlled collision and legacy timed activation for that execution must be suppressed before it can activate earlier than the authored marker.
+**Design decision:** controlled Recover should follow the effective Hit speed for that attack profile.
 
-### 7.2 Marker execution
+This is desired project behavior, not a claim that vanilla Gothic 3 always does so automatically.
 
-When the authored marker reaches `gCEffectSystem::StartEffect`, immediately execute the collision activation/rearm operation associated with the current attack family/source resolver.
+---
 
-Measured prototype behavior shows marker-to-collision code execution is effectively immediate at the authored frame.
+## 6. Authored-Frame Collision Architecture
 
-### 7.3 Natural end reset
+### 6.1 Ownership declaration
 
-For ordinary weapon single-hit attacks, Gothic 3 has been observed resetting:
+At attack-Hit execution/start, inspect the exact resolved Hit motion and its frame-effect list.
 
-`Item_Attack (7) -> Item_Equipped (5)`
+If no reserved G3AB collision marker is present, custom frame collision does not take ownership.
 
-at the Hit -> Recover transition.
+If a reserved marker is present and the relevant native callback/action/phase/source preflight succeeds, that exact execution opts into authored collision timing and its competing native timed activation must be suppressed.
 
-Therefore an explicit OFF marker is not required at normal Hit end.
+Marker-specific callback ownership policy belongs to `FrameCollisionMarkers`, not to the transport-only EngineBridge.
 
-An explicit OFF capability may still be useful for deliberate inactive gaps inside multi-hit animations, but this is not yet a finalized production requirement.
+### 6.2 Frozen equipped-slot marker vocabulary
 
-### 7.4 Repeated authored hits
+```text
+G3AB_COL_RIGHT
+G3AB_COL_LEFT
+G3AB_COL_BOTH
+G3AB_COL_OFF
+```
 
-For a later hit in the same attack to damage the same target again, the relevant triggered-damage list must be rearmed/cleared at the later authored strike.
+Exact-set semantics:
 
-The final generalized rearm/source API is not yet frozen.
+```text
+RIGHT -> {RIGHT}
+LEFT  -> {LEFT}
+BOTH  -> {RIGHT, LEFT}
+OFF   -> {}
+```
 
-### 7.5 Marker vocabulary
+RIGHT/LEFT mean Gothic 3 equipped slots, not animation-direction metadata.
 
-The prototype marker `G3AB_COL_TEST` is proven.
+Authoring rules:
 
-Possible production terms such as `G3AB_COL_PRIMARY`, `G3AB_COL_SECONDARY`, `G3AB_COL_ALL`, and `G3AB_COL_OFF` remain **proposals only**.
+- at most one G3AB collision command on one authored frame;
+- use BOTH instead of same-frame RIGHT + LEFT;
+- keep OFF and a later activation on different frames;
+- a repeated source marker later in the same Hit is a new authored contact and rearms that source with `ClearTriggeredList()`;
+- marker timing is animation-specific, not a universal fixed offset;
+- do not create action-specific marker names such as Power/Quick/Whirl RIGHT variants; action-family support belongs in the ownership layer, not the marker vocabulary.
 
-Do not mass-author those names into animation libraries until source resolution and multi-hit behavior are validated across the intended attack families.
+Body/Fist/monster marker vocabulary remains separate and must not be invented before its source model is understood.
 
-## 8. Callback + Action + Phase + Marker Model
+### 6.3 Physical source model
 
-The preferred collision control model is:
+Source identity/facts and source mutation are separate layers.
 
-1. native callback family identifies the broad collision mechanism;
-2. `gEAction` identifies the exact action;
-3. `gEPhase` confirms the relevant phase;
-4. exact current-motion marker presence declares frame-controlled ownership;
-5. a source resolver chooses the logical/physical damage source;
-6. marker execution performs that action family's activation/rearm operation.
+Conceptually:
 
-This avoids using a generic filename substring such as `_Attack_Hit_` as the sole eligibility test.
+```text
+FrameCollisionMarkers
+    ↓ desired source set / authored contact
+CollisionSources
+    ↓ factual RIGHT/LEFT entity + UseType/source availability
+CollisionSourceOperations
+    ├─ equipped weapon operations
+    │    Item_Attack / Item_Equipped
+    │    repeated-contact ClearTriggeredList rearm
+    └─ current research Fist operation
+         no forced weapon Item_Attack mutation
+         preserve existing ClearTriggeredList behavior
+```
 
-## 9. Current Callback Families of Interest
+`CollisionSources` does **not** own marker policy or mutation.
 
-Known attack callbacks include:
+`CollisionSourceOperations` does **not** decide attack family, marker ownership or desired source set.
 
-- `OnAI_Attack`
-- `OnAI_GetUpAttack`
-- `OnAI_PierceAttack`
-- `OnAI_QuickAttack`
-- `OnAI_PowerAttack`
-- `OnAI_SimpleWhirl`
-- `OnAI_WhirlAttack`
+Fist/body contact is not assumed to use the same physical collision-group mechanism. Controlled Fist evidence shows logical rearm/contact can work while the logical Fist entity remains outside weapon-style `Item_Attack` group handling.
 
-`OnAI_QuickAttack` covers native actions including QuickAttackR and QuickAttackL; the exact `Routine.Action`/`gEAction` is therefore still required.
+A generalized `FistSourceAdapter` remains a later separately proven responsibility.
 
-## 10. Current Source-Selection Knowledge
+### 6.4 Repeated contacts
 
-### Normal
+A weapon/entity visit list can suppress repeated damage to the same target. Repeated authored contacts therefore rearm the selected logical source through `ClearTriggeredList()`.
 
-Source may depend on weapon configuration and pose/action logic. A simple right-hand assumption is not sufficient for all final cases.
+`BOTH` rearms both selected sources at that authored moment; it is not a substitute for later repeated source markers.
 
-### QuickAttack
+### 6.5 Marker decision caching
 
-Known third-party behavior selects left-hand collision for some Dual and Torch+1H P1 contexts; otherwise right-hand is commonly used.
+Only cache a marker/no-marker decision after the exact current motion is resolved and the frame-effect scan is valid enough to establish a factual result.
 
-### PowerAttack
+Do not permanently cache a transient unresolved-motion failure as a negative marker decision.
 
-Known third-party behavior can activate both right and left sources for Dual wield and later re-clear them for subsequent hit behavior.
+---
 
-### WhirlAttack
+## 7. Collision Lifetime and Cleanup
 
-Known third-party code historically used right-hand activation and has needed reset/rearm fixes. Current upstream Jackydima work added `PropertyResetOnUntouch = GETrue` to WhirlAttack handling.
+Marker timing inside a live Hit and terminal collision safety are separate responsibilities.
 
-### Fist
+Governing rules:
 
-The logical Fist source does not behave like a normal equipped weapon collision group.
+```text
+WHILE THE HIT IS ALIVE:
+markers define the desired offensive collision set.
+```
 
-Marked Fist tests have produced damage from multiple limbs while the logical Fist entity remained collision group `0`.
+```text
+WHEN THE EXECUTION ENDS OR IS DESTRUCTIVELY ABANDONED:
+Gothic 3 gets its legitimate cleanup opportunity first.
+If the exact source obligation is already fulfilled -> no-op.
+If it remains outstanding -> repair only that exact live/equipped offensive source using native cleanup semantics.
+```
 
-The exact causal role of `SetCollisionGroup` versus triggered-list rearming is still under test.
+The accepted lifecycle architecture is an **execution-level exact-source cleanup guard**:
 
-## 11. Compatibility Rules
+```text
+real attack execution
+→ monotonic C1 generation
+→ successful exact-source Item_Attack request creates/refreshes obligation
+→ successful later transition away from Item_Attack fulfills obligation
+→ destructive post-native-AISetState finalization checks only remaining obligations
+```
 
-Do not rely on DLL load order to solve multiple independent hooks on the same function.
+Execution identity is intentionally split:
 
-Before integrating with NewBalance or `Script_AttackCollision`, inspect the hook implementation and choose one of:
+```text
+live ScriptFunction frame
+= temporary native correlator only where pre-Combat acquisition needs it
 
-- one shared downstream intervention;
-- integration into one owner;
-- a proven chain-safe mechanism.
+C1 monotonic generation
+= durable plugin execution identity
+```
 
-Unmarked/unconfigured attacks must remain compatible with existing behavior.
+C1-O2-P2 proved the early-offense bridge can be consumed by matching CombatMove before `RunScriptFunction` returns/suspends. Cross-suspension raw-frame persistence is not part of the durable ownership model.
 
-## 12. Implementation Strategy
+For currently proven equipped weapon sources, the native-equivalent terminal repair is exactly:
 
-1. Keep proven Normal marker-controlled collision unchanged.
-2. Add QuickAttack ownership using its native callback and exact action checks.
-3. Validate player and NPC Staff Quick cases.
-4. Run the dedicated Fist causality test.
-5. Generalize source resolution.
-6. Freeze a production marker vocabulary only after source/rearm behavior is understood.
-7. Integrate the validated behavior into `Script_G3AnimationBehaviors`.
-8. Expand Raise and speed control incrementally using the same evidence discipline.
+```text
+outstanding exact source
++ exact current equipped RIGHT/LEFT identity establishes liveness
++ actual group == Item_Attack(7)
+→ SetCollisionGroup(Item_Equipped)
+→ verify exact Item_Equipped(5)
+```
 
-## 13. Non-Goals for the Current Iteration
+No `ClearTriggeredList()` is part of terminal cleanup. Trigger-list clearing remains activation/rearm behavior.
 
-The following are not immediate implementation targets:
+C1-R1 controlled validation is **closed** through EV-207.
 
-- global creature reanimation;
-- intended-target/crosshair correction;
+The outstanding `LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED` branch remains fail-closed and is not claimed positively runtime-exercised. Natural NPC combat/Staff marker traffic supports actor-general stability, but no positive NPC destructive-abandonment physical-repair case is claimed.
+
+Current lifecycle authority and constraints:
+
+- `COLLISION_LIFECYCLE_PLAN.md`
+- `COLLISION_TEST_PLAN.md`
+- `COLLISION_CLEANUP_CALLSITE_MAP.md`
+- `EVIDENCE_INDEX.md` → EV-151–EV-215
+
+Do not implement family-specific cleanup matrices, timers, polling, held-Use2 classifiers, arbitrary group-7 adoption, or broad scans merely because native cleanup has several internal paths.
+
+### Known bad-skip root relationship
+
+The known held-Use2 destructive route is a separate future prevention responsibility.
+
+```text
+AttackContinuationProtection
+= prevent the known destructive route from killing a valid active attack
+
+CollisionLifecycleGuard
+= make an exact stale offensive source safe if cleanup is nevertheless lost
+```
+
+`AttackContinuationProtection` must not be implemented inside `CollisionLifecycleGuard`. Even if prevention later succeeds, keep C1-R1 as the general lost-cleanup fail-safe.
+
+Authority: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
+
+---
+
+## 8. Marker Bookkeeping Is Not Physical Cleanup
+
+The marker occurrence/duplicate/window state used to survive Gothic frame-effect replay is a different responsibility from physically returning a stale offensive source to a safe state.
+
+The accepted execution identity is now:
+
+```text
+C1 monotonic generation
+= durable marker occurrence/dedupe execution identity
+```
+
+Gate 4 removed/consolidated the older marker-local guesses that a new execution began from:
+
+```text
+source changes
+motion changes
+action changes
+phase changes
+state-time rollback
+authored-count changes
+controlled-callback rollback inference
+```
+
+Natural `RetireMarkerOwnedSource()` handling is narrowed to factual retirement of the exact physical marker-owned source bit/window. It is not whole-execution retirement authority.
+
+Preserve all independent marker invariants:
+
+- `Routine.StatePosition` advancement after custom ownership where required to suppress Gothic's competing timed activation;
+- repeated-marker / repeated-contact rearm semantics;
+- authored occurrence budgets and replay/duplicate protection;
+- exact-set RIGHT/LEFT/BOTH/OFF switching;
+- OFF as an intra-Hit inactive gap rather than terminal execution authority;
+- interruption/dead-execution rejection;
+- supported-family/current-motion/source-preflight ownership;
+- physical marker-window/source-bit state;
+- native fallback for unmarked/unsupported cases;
+- valid-motion-only marker caching.
+
+EV-131–EV-133 establish the historical interrupted-execution occurrence-budget defect. EV-167 separates marker bookkeeping from physical cleanup. EV-213 establishes the generation-scoped replacement, and EV-214 directly closes the literal historical same-motion interruption/restart regression under C1-generation identity. EV-215 completes behavior-only architecture verification.
+
+Before any future marker-core consolidation/reimplementation:
+
+```text
+EVIDENCE_INDEX.md
+→ Marker execution lifetime / bookkeeping
+→ MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+→ EV-131–EV-133 / EV-167 / EV-213–EV-214
+→ COLLISION_LIFECYCLE_PLAN.md §9
+```
+
+Do not restore the superseded execution-boundary heuristics merely because a later expansion touches marker code.
+
+---
+
+## 9. Compatibility
+
+Do not rely on arbitrary DLL load order or assumed same-function hook chaining.
+
+When another mod owns the same engine function/path, choose deliberately among:
+
+- a single shared/downstream intervention;
+- integration into one authoritative owner;
+- a proven chain-safe mechanism;
+- a documented replacement/integration path.
+
+Unmarked/unconfigured attacks must remain compatible with native behavior.
+
+Compatibility with New Balance and the relevant Jackydima DLL stack is a **required project constraint**.
+
+Two explicit compatibility gates are required:
+
+```text
+Gate 1 — mature research collision DLL
+marker/source system + lifecycle guard + AttackContinuationProtection
+→ test against New Balance / relevant Jackydima DLLs before production migration
+
+Gate 2 — final Script_G3AnimationBehaviors
+migrated collision modules + Raise + redesigned speed control
+→ retest against New Balance / relevant Jackydima DLLs before stable promotion
+```
+
+Passing Gate 1 does not prove the final speed/Raise assembly compatible. Passing Gate 2 is required before release/stable integration.
+
+---
+
+## 10. Target Modular DLL Architecture
+
+The mature research behavior core is the architectural ancestor of the eventual production `Script_G3AnimationBehaviors` DLL.
+
+Conceptual behavior core:
+
+```text
+Script_FrameCollisionTest / later Script_G3AnimationBehaviors
+│
+├─ EngineBridge
+│    sole owner of behavior-required shared Gothic hooks
+│    calling-convention-safe transport
+│    publishes factual native context/events
+│    no marker/lifecycle/source policy
+│
+├─ FrameCollisionMarkers
+│    exact current-motion marker ownership
+│    current attack-family eligibility / callback ownership
+│    RIGHT / LEFT / BOTH / OFF semantics
+│    C1-generation-scoped authored occurrence/replay/duplicate bookkeeping
+│    competing native activation suppression
+│    marker-owned physical source/window bookkeeping
+│
+├─ CollisionSources
+│    factual current RIGHT/LEFT source identity / UseType / availability
+│
+├─ CollisionSourceOperations
+│    source-specific physical operations already requested by marker behavior
+│
+├─ CollisionLifecycleGuard
+│    C1 generation / durable execution identity
+│    P2 temporary pre-Combat correlator
+│    exact per-source offense obligations
+│    native-cleanup observation
+│    terminal exact 7 -> 5 fail-safe
+│    no diagnostic dependency
+│
+├─ RuntimeClock
+│    behavior-required monotonic elapsed-time service
+│    current same-update duplicate-marker timing support
+│
+├─ AttackContinuationProtection [later]
+│
+├─ AttackRaise [later production module]
+├─ AttackSpeed [later production module]
+├─ Config [later production]
+├─ TargetAcquisition [future]
+└─ Climbing [future]
+```
+
+Research/validation product adds diagnostics around the same behavior core:
+
+```text
+CollisionDiagnostics
+= compact default proof evidence
+
+CollisionDiagnosticsDeep
+= opt-in deep probes / diagnostic-only hooks
+```
+
+Public release product:
+
+```text
+same mature behavior architecture
++ production config/features
+- all diagnostic source/state/hooks/strings
+```
+
+The release and instrumented diagnostic twin are mutually exclusive runtime products unless a future architecture explicitly proves coexistence safe.
+
+Canonical release rule: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
+
+Completed structural rewrite reference: `SECOND_PASS_REWRITE_CONTRACT.md`.
+
+---
+
+## 11. Current Implementation Order
+
+The architecture-verification sequence through Gate 4 is complete; it is no longer an executable roadmap.
+
+Closed foundation:
+
+```text
+second-pass rewrite / product separation      EV-208–EV-212
+Gate-4 generation-scoped marker bookkeeping  EV-213
+literal historical regression closure        EV-214
+final behavior-only architecture smoke       EV-215
+```
+
+Current order:
+
+1. **Complete documentation/knowledge cleanup and review.** Remove stale routing/current-state language without destroying provenance.
+2. **Perform any justified processed-evidence raw→archive migration as a separate atomic transaction.** Update affected provenance paths together.
+3. **Inspect `temp/second-pass-rewrite-publish` unique history/content.** Preserve anything unique that still matters.
+4. **Define and verify the stable protected-`main` promotion checkpoint.** Keep `main` stable and `docs/collision-source-evidence` as active development/research.
+5. **Expand markers across intended equipped-melee attack mechanisms one at a time.** Keep RIGHT/LEFT/BOTH/OFF vocabulary and native no-marker fallback.
+6. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics.
+7. **Run complete marker + lifecycle regression.** Protect closed C1-R1/Gate-4 behavior after marker/source maturity.
+8. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
+9. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
+10. **Mandatory New Balance/Jackydima compatibility gate on mature research behavior.** Resolve hook/callback conflicts deliberately.
+11. **Retain the mature modular foundation and migrate/redesign Raise + speed + config into final `Script_G3AnimationBehaviors`.** Do not pour collision back into the old v0.1 hook/file structure.
+12. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
+13. **Final diagnostics-free production compatibility/regression.** Test assembled public `Script_G3AnimationBehaviors` with New Balance/relevant Jackydima DLLs before stable promotion; retain separate instrumented diagnostic twin for future reproduction.
+
+---
+
+## 12. Non-Goals for the Current Repository-Cleanup Iteration
+
+Do not combine the current documentation/stable-integration checkpoint with:
+
+- new attack-family marker support;
+- new marker vocabulary;
+- generalized Fist support;
+- universal monster/body adapters;
+- AttackContinuationProtection implementation;
+- Raise/speed changes;
+- configuration redesign;
+- production DLL migration;
+- target acquisition;
 - climbing;
-- rewriting Gothic 3 input arbitration;
-- manually constructing all combat animation filenames;
-- replacing every third-party collision behavior before equivalent source selection is implemented.
+- New Balance/Jackydima compatibility fixes;
+- rewriting input arbitration;
+- changing closed C1-R1 or Gate-4 behavior without contradicting evidence;
+- moving processed evidence piecemeal without atomic provenance updates.
+
+---
+
+## 13. Retrieval Routes
+
+| Need | Authority |
+|---|---|
+| Current exact task / branch state | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
+| Completed second-pass structural contract | `SECOND_PASS_REWRITE_CONTRACT.md` |
+| Completed Gate-4 marker bookkeeping contract | `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md` |
+| Current roadmap / overall architecture | this `DESIGN.md` §§10–11 |
+| Release vs diagnostic products | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
+| Collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
+| Current collision validation posture | `COLLISION_TEST_PLAN.md` |
+| Diagnostic core/deep architecture | `COLLISION_LOGGER_PLAN.md` |
+| Marker execution lifetime / generation-scoped identity | `EVIDENCE_INDEX.md` Marker execution lifetime → EV-131–EV-133 / EV-167 / EV-213–EV-214 → `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md` |
+| Future held-Use2 prevention | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
+| Tested native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
+| Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER*.md` / raw/archive evidence |
+| C1-R1 canonical evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206–EV-207 |
+| Gate 4 + final architecture verification evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-213–EV-214 → `EVIDENCE_LEDGER_STEP_E.md` EV-215 |
+| Animation semantics / UseType / action / pose | `ANIMATION_INDEX.md` → `ANIMATION_RULES.md` |
+| Exact asset/family/fixture | `ANIMATION_INDEX.md` → `ANIMATION_CATALOG.md` / animation-name data |
+| Hook/source/API/New Balance lookup | `SOURCE_HOOK_GUIDE.md` |
+| Historical design/prototype chronology | `RESEARCH_MAP.md` / archived pre-IA documents / raw logs |

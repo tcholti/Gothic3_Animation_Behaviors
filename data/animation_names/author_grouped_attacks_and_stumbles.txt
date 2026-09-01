@@ -1,0 +1,786 @@
+Normally hit collsion is enabled on the weapon held in this bone: "Slot_RightHand_Weapon"
+But there are some animations where it is enabled in this bone: "Slot_LeftHand_Weapon", I am not sure about all animations where it works that way, nor do I know if there are animations where both are enabled. What I assume is that "Slot_LeftHand_Weapon" has collision enabled in half of 1h1h animations and I know of a couple of quick attacks for 1H with torch. There also were a couple of normal attacks with 1h and torch, where that was the case, but it is now fixed through a mod which I have installed. I will mark the animations where I know "Slot_LeftHand_Weapon" is enabled.
+
+-----1H Weapons-----
+
+Normal Attacks Fwd (Raise doesn't Work)
+
+P0 to P1
+
+Hero_Stand_None_1H_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R
+Hero_Stand_None_1H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P2 
+
+Hero_Stand_None_1H_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L
+Hero_Stand_None_1H_P2_Attack_Recover_N_Fwd_00_%_00_P2_0_L
+
+P2 to P3 
+
+Hero_Stand_None_1H_P2_Attack_Raise_N_Fwd_00_%_00_P2_0_R
+Hero_Stand_None_1H_P2_Attack_Hit_N_Fwd_00_%_00_P3_115_R
+Hero_Stand_None_1H_P3_Attack_Recover_N_Fwd_00_%_00_P3_0_R
+
+
+P3 to P0 
+
+Hero_Stand_None_1H_P3_Attack_Raise_N_Fwd_00_%_00_P3_0_L
+Hero_Stand_None_1H_P3_Attack_Hit_N_Fwd_00_%_00_P0_106_L
+Hero_Stand_None_1H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L
+
+Normal Attacks Right (Raise doesn't Work)
+
+P0 to p1
+
+Hero_Stand_None_1H_P0_Attack_Raise_N_Right_00_%_00_P0_0_R
+Hero_Stand_None_1H_P0_Attack_Hit_N_Right_00_%_00_P1_127_R
+Hero_Stand_None_1H_P1_Attack_Recover_N_Right_00_%_00_P1_0_R
+
+P1 to P0 
+
+Hero_Stand_None_1H_P1_Attack_Raise_N_Right_00_%_00_P1_0_R
+Hero_Stand_None_1H_P1_Attack_Hit_N_Right_00_%_00_P10_103_R
+Hero_Stand_None_1H_P10_Attack_Recover_N_Right_00_%_00_P10_0_R
+
+P2 to P1 
+
+Hero_Stand_None_1H_P2_Attack_Raise_N_Right_00_%_00_P2_0_R
+Hero_Stand_None_1H_P2_Attack_Hit_N_Right_00_%_00_P21_110_R
+Hero_Stand_None_1H_P21_Attack_Recover_N_Right_00_%_00_P21_0_R
+
+P3 to P0 
+
+Hero_Stand_None_1H_P3_Attack_Raise_N_Right_00_%_00_P3_0_R
+Hero_Stand_None_1H_P3_Attack_Hit_N_Right_00_%_00_P30_103_R
+Hero_Stand_None_1H_P30_Attack_Recover_N_Right_00_%_00_P30_0_R
+
+Normal Attacks Left (Raise doesn't Work)
+
+P0 to P2
+
+Hero_Stand_None_1H_P0_Attack_Raise_N_Left_00_%_00_P0_0_L
+Hero_Stand_None_1H_P0_Attack_Hit_N_Left_00_%_00_P2_140_L
+Hero_Stand_None_1H_P2_Attack_Recover_N_Left_00_%_00_P2_0_L
+
+P1 to P2
+
+Hero_Stand_None_1H_P1_Attack_Raise_N_Left_00_%_00_P1_0_L
+Hero_Stand_None_1H_P1_Attack_Hit_N_Left_00_%_00_P12_121_L
+Hero_Stand_None_1H_P12_Attack_Recover_N_Left_00_%_00_P12_0_L
+
+P2 to P2
+
+Hero_Stand_None_1H_P2_Attack_Raise_N_Left_00_%_00_P2_0_L
+Hero_Stand_None_1H_P2_Attack_Hit_N_Left_00_%_00_P22_94_L
+Hero_Stand_None_1H_P22_Attack_Recover_N_Left_00_%_00_P22_0_L
+
+P3 to P2
+
+Hero_Stand_None_1H_P3_Attack_Raise_N_Left_00_%_00_P3_0_L
+Hero_Stand_None_1H_P3_Attack_Hit_N_Left_00_%_00_P32_121_L
+Hero_Stand_None_1H_P32_Attack_Recover_N_Left_00_%_00_P32_0_L
+
+Quick Attacks (Raise dosen't exist, we will have to make based on how the rest are made)
+
+P0 to P0
+
+Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L
+Hero_Stand_None_1H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L
+
+P0 to P0
+
+Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R
+Hero_Stand_None_1H_P0_QuickAttackR_Recover_N_Fwd_00_%_00_P0_0_R
+
+P1 to P0
+
+Hero_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P50_100_L
+Hero_Stand_None_1H_P50_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L (made by me)
+
+P3 to P0
+
+Hero_Stand_None_1H_P3_QuickAttackL_Hit_N_Fwd_00_%_00_P70_100_L
+Hero_Stand_None_1H_P70_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L (made by me)
+
+P2 to P0
+
+Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R
+Hero_Stand_None_1H_P60_QuickAttackR_Recover_N_Fwd_00_%_00_P0_0_R (made by me)
+
+
+Power Attacks (Raise Works)
+
+P0 to P1
+
+Hero_Stand_None_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_1H_P0_PowerAttack_Loop_N_Fwd_00_%_00_P0_0_R (Not implemented in game, as far as I know, probably a function that was planned but never implemented. only 1H weapons have this files, we don't need to do anything about this, included it only in case it has some effect on game, which I do not know about)
+Hero_Stand_None_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_125_R
+Hero_Stand_None_1H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P2
+
+Hero_Stand_None_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_None_1H_P1_PowerAttack_Loop_N_Fwd_00_%_00_P1_0_L (Not implemented in game, as far as I know, probably a function that was planned but never implemented. only 1H weapons have this files, we don't need to do anything about this, included it only in case it has some effect on game, which I do not know about)
+Hero_Stand_None_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P2_100_L
+Hero_Stand_None_1H_P2_PowerAttack_Recover_N_Fwd_00_%_00_P2_0_L
+
+P2 to P3
+
+Hero_Stand_None_1H_P2_PowerAttack_Raise_N_Fwd_00_%_00_P2_0_R
+Hero_Stand_None_1H_P2_PowerAttack_Loop_N_Fwd_00_%_00_P2_0_R (Not implemented in game, as far as I know, probably a function that was planned but never implemented. only 1H weapons have this files, we don't need to do anything about this, included it only in case it has some effect on game, which I do not know about)
+Hero_Stand_None_1H_P2_PowerAttack_Hit_N_Fwd_00_%_00_P3_125_R
+Hero_Stand_None_1H_P3_PowerAttack_Recover_N_Fwd_00_%_00_P3_0_R
+
+P3 to P0
+
+Hero_Stand_None_1H_P3_PowerAttack_Raise_N_Fwd_00_%_00_P3_0_L
+Hero_Stand_None_1H_P3_PowerAttack_Loop_N_Fwd_00_%_00_P3_0_L (Not implemented in game, as far as I know, probably a function that was planned but never implemented. only 1H weapons have this files, we don't need to do anything about this, included it only in case it has some effect on game, which I do not know about)
+Hero_Stand_None_1H_P3_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L
+Hero_Stand_None_1H_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_L
+
+
+Attacks that start from Block (Parade is Block stance)
+
+Pierce Attack (Raise Works)
+
+Hero_Parade_None_1H_P0_PierceAttack_Raise_N_Fwd_00_%_00_P0_0
+Hero_Parade_None_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P1_120
+Hero_Parade_None_1H_P1_PierceAttack_Recover_N_Fwd_00_%_00_P0_0
+
+Finishing attack (Raise is not needed)
+
+Hero_Parade_None_1H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_200
+Hero_Parade_None_1H_P0_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0
+
+
+Attacks that start from sitting position (no changes required, but if it makes the mod more complicated to exclude this ones, than they can be included, very easy for me to fix raise animations)
+
+Hero_SitKnockDown_None_1H_P0_GetUpAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_SitKnockDown_None_1H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_SitKnockDown_None_1H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+Hero_SitKnockDown_None_1H_P0_GetUpAttack_Raise_N_Back_00_%_00_P0_0_R
+Hero_SitKnockDown_None_1H_P0_GetUpAttack_Hit_N_Back_00_%_00_P1_100_R
+Hero_SitKnockDown_None_1H_P1_GetUpAttack_Recover_N_Back_00_%_00_P1_0_R
+
+-----1h and torch-----
+
+Normal Attacks Fwd (Raise doesn't Work)
+
+P0 to P1
+
+Hero_Stand_Torch_1H_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_Torch_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R
+Hero_Stand_Torch_1H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P2
+
+Hero_Stand_Torch_1H_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_Torch_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L
+Hero_Stand_Torch_1H_P2_Attack_Recover_N_Fwd_00_%_00_P2_0_L
+
+P2 to P3
+
+Hero_Stand_Torch_1H_P2_Attack_Raise_N_Fwd_00_%_00_P2_0_R
+Hero_Stand_Torch_1H_P2_Attack_Hit_N_Fwd_00_%_00_P3_115_R
+Hero_Stand_Torch_1H_P3_Attack_Recover_N_Fwd_00_%_00_P3_0_R
+
+P3 to P0
+
+Hero_Stand_Torch_1H_P3_Attack_Raise_N_Fwd_00_%_00_P3_0_L
+Hero_Stand_Torch_1H_P3_Attack_Hit_N_Fwd_00_%_00_P0_106_L
+Hero_Stand_Torch_1H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L
+
+Normal Attacks Right (Raise doesn't Work)
+
+P0 to P1
+
+Hero_Stand_Torch_1H_P0_Attack_Raise_N_Right_00_%_00_P0_0_R
+Hero_Stand_Torch_1H_P0_Attack_Hit_N_Right_00_%_00_P1_127_R
+Hero_Stand_Torch_1H_P1_Attack_Recover_N_Right_00_%_00_P1_0_R
+
+P1 to P0
+
+Hero_Stand_Torch_1H_P1_Attack_Raise_N_Right_00_%_00_P1_0_R
+Hero_Stand_Torch_1H_P1_Attack_Hit_N_Right_00_%_00_P10_103_R
+Hero_Stand_Torch_1H_P10_Attack_Recover_N_Right_00_%_00_P10_0_R
+
+P2 to P1
+
+Hero_Stand_Torch_1H_P2_Attack_Raise_N_Right_00_%_00_P2_0_R
+Hero_Stand_Torch_1H_P2_Attack_Hit_N_Right_00_%_00_P21_110_R
+Hero_Stand_Torch_1H_P21_Attack_Recover_N_Right_00_%_00_P21_0_R
+
+P3 to P0
+
+Hero_Stand_Torch_1H_P3_Attack_Raise_N_Right_00_%_00_P3_0_R
+Hero_Stand_Torch_1H_P3_Attack_Hit_N_Right_00_%_00_P30_103_R
+Hero_Stand_Torch_1H_P30_Attack_Recover_N_Right_00_%_00_P30_0_R
+
+Normal Attacks Left (Raise doesn't Work)
+
+P0 to P2
+
+Hero_Stand_Torch_1H_P0_Attack_Raise_N_Left_00_%_00_P0_0_L
+Hero_Stand_Torch_1H_P0_Attack_Hit_N_Left_00_%_00_P2_140_L
+Hero_Stand_Torch_1H_P2_Attack_Recover_N_Left_00_%_00_P2_0_L
+
+P1 to P2
+
+Hero_Stand_Torch_1H_P1_Attack_Raise_N_Left_00_%_00_P1_0_L
+Hero_Stand_Torch_1H_P1_Attack_Hit_N_Left_00_%_00_P12_121_L
+Hero_Stand_Torch_1H_P12_Attack_Recover_N_Left_00_%_00_P12_0_L
+
+P2 to P2
+
+Hero_Stand_Torch_1H_P2_Attack_Raise_N_Left_00_%_00_P2_0_L
+Hero_Stand_Torch_1H_P2_Attack_Hit_N_Left_00_%_00_P22_94_L
+Hero_Stand_Torch_1H_P22_Attack_Recover_N_Left_00_%_00_P22_0_L
+
+P3 to P2
+
+Hero_Stand_Torch_1H_P3_Attack_Raise_N_Left_00_%_00_P3_0_L
+Hero_Stand_Torch_1H_P3_Attack_Hit_N_Left_00_%_00_P32_121_L
+Hero_Stand_Torch_1H_P32_Attack_Recover_N_Left_00_%_00_P32_0_L
+
+Quick Attacks (Raise dosen't exist, we will have to make based on how the rest are made)
+
+P0 to P0
+
+Hero_Stand_Torch_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L
+Hero_Stand_Torch_1H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L
+
+P0 to P0
+
+Hero_Stand_Torch_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R
+Hero_Stand_Torch_1H_P0_QuickAttackR_Recover_N_Fwd_00_%_00_P0_0_R
+
+P1 to P1
+
+Hero_Stand_Torch_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P1_100_L (hit collision "Slot_LeftHand_Weapon")
+Hero_Stand_Torch_1H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L
+
+P1 to P1
+
+Hero_Stand_Torch_1H_P1_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R (hit collision "Slot_LeftHand_Weapon")
+Hero_Stand_Torch_1H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R
+
+P3 to P1
+
+Hero_Stand_Torch_1H_P3_QuickAttackL_Hit_N_Fwd_00_%_00_P31_100_L (hit collision "Slot_LeftHand_Weapon")
+Hero_Stand_Torch_1H_P31_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L
+
+P2 to P0
+
+Hero_Stand_Torch_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R
+Hero_Stand_Torch_1H_P60_QuickAttackR_Recover_N_Fwd_00_%_00_P0_0_R
+
+Power Attacks (Raise Works)
+
+P0 to P1
+
+Hero_Stand_Torch_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_Torch_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_125_R
+Hero_Stand_Torch_1H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P2
+
+Hero_Stand_Torch_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_Torch_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P2_100_L
+Hero_Stand_Torch_1H_P2_PowerAttack_Recover_N_Fwd_00_%_00_P2_0_L
+
+P2 to P3
+
+Hero_Stand_Torch_1H_P2_PowerAttack_Raise_N_Fwd_00_%_00_P2_0_R
+Hero_Stand_Torch_1H_P2_PowerAttack_Hit_N_Fwd_00_%_00_P3_125_R
+Hero_Stand_Torch_1H_P3_PowerAttack_Recover_N_Fwd_00_%_00_P3_0_R
+
+P3 to P0
+
+Hero_Stand_Torch_1H_P3_PowerAttack_Raise_N_Fwd_00_%_00_P3_0_L
+Hero_Stand_Torch_1H_P3_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L
+Hero_Stand_Torch_1H_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_L
+
+Attacks that start from Block (Parade is Block stance)
+
+Pierce Attack (Raise Works)
+
+Hero_Parade_Torch_1H_P0_PierceAttack_Raise_N_Fwd_00_%_00_P0_0_F
+Hero_Parade_Torch_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_123_F
+Hero_Parade_Torch_1H_P0_PierceAttack_Recover_N_Fwd_00_%_00_P0_0_F
+
+Finishing attack (Raise is not needed)
+
+Hero_Parade_Torch_1H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_200
+Hero_Parade_Torch_1H_P0_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0
+
+Attacks that start from sitting position (no changes required, but if it makes the mod more complicated to exclude this ones, than they can be included, very easy for me to fix raise animations)
+
+Hero_SitKnockDown_Torch_1H_P0_GetUpAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_SitKnockDown_Torch_1H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_SitKnockDown_Torch_1H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+Hero_SitKnockDown_Torch_1H_P0_GetUpAttack_Raise_N_Back_00_%_00_P0_0_R
+Hero_SitKnockDown_Torch_1H_P0_GetUpAttack_Hit_N_Back_00_%_00_P1_100_R
+Hero_SitKnockDown_Torch_1H_P1_GetUpAttack_Recover_N_Back_00_%_00_P1_0_R
+
+-----1h and Shield-----
+
+Normal Attacks (Raise doesn't Work)
+
+P0 to P1
+
+Hero_Stand_Shield_1H_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R
+Hero_Stand_Shield_1H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P2
+
+Hero_Stand_Shield_1H_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_Shield_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L
+Hero_Stand_Shield_1H_P2_Attack_Recover_N_Fwd_00_%_00_P2_0_L
+
+P2 to P3
+
+Hero_Stand_Shield_1H_P2_Attack_Raise_N_Fwd_00_%_00_P2_0_R
+Hero_Stand_Shield_1H_P2_Attack_Hit_N_Fwd_00_%_00_P3_115_R
+Hero_Stand_Shield_1H_P3_Attack_Recover_N_Fwd_00_%_00_P3_0_R
+
+P3 to P0
+
+Hero_Stand_Shield_1H_P3_Attack_Raise_N_Fwd_00_%_00_P3_0_L
+Hero_Stand_Shield_1H_P3_Attack_Hit_N_Fwd_00_%_00_P0_106_L
+Hero_Stand_Shield_1H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L
+
+Quick Attacks (Raise dosen't exist, we will have to make based on how the rest are made)
+
+P0 to P0
+
+Hero_Stand_Shield_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L
+Hero_Stand_Shield_1H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L
+
+P0 to P0
+Hero_Stand_Shield_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R
+Hero_Stand_Shield_1H_P0_QuickAttackR_Recover_N_Fwd_00_%_00_P0_0_R
+
+P1 to P0
+Hero_Stand_Shield_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P50_100_L
+Hero_Stand_Shield_1H_P50_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L (made by me)
+
+P3 to P0
+Hero_Stand_Shield_1H_P3_QuickAttackL_Hit_N_Fwd_00_%_00_P70_100_L
+Hero_Stand_Shield_1H_P70_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L (made by me)
+
+P2 to P0
+Hero_Stand_Shield_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R
+Hero_Stand_Shield_1H_P60_QuickAttackR_Recover_N_Fwd_00_%_00_P0_0_R (made by me)
+
+Power Attacks (Raise Works)
+
+P0 to P1
+
+Hero_Stand_Shield_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_Shield_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_125_R
+Hero_Stand_Shield_1H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P2
+
+Hero_Stand_Shield_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_Shield_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P2_100_L
+Hero_Stand_Shield_1H_P2_PowerAttack_Recover_N_Fwd_00_%_00_P2_0_L
+
+P2 to P3
+
+Hero_Stand_Shield_1H_P2_PowerAttack_Raise_N_Fwd_00_%_00_P2_0_R
+Hero_Stand_Shield_1H_P2_PowerAttack_Hit_N_Fwd_00_%_00_P3_125_R
+Hero_Stand_Shield_1H_P3_PowerAttack_Recover_N_Fwd_00_%_00_P3_0_R
+
+P3 to P0
+
+Hero_Stand_Shield_1H_P3_PowerAttack_Raise_N_Fwd_00_%_00_P3_0_L
+Hero_Stand_Shield_1H_P3_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L
+Hero_Stand_Shield_1H_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_L
+
+Attacks that start from Block (Parade is Block stance)
+
+Pierce Attack (Raise Works)
+
+Hero_Parade_Shield_1H_P1_PierceAttack_Raise_N_Fwd_00_%_00_P1_0_F
+Hero_Parade_Shield_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P0_100_F
+Hero_Parade_Shield_1H_P0_PierceAttack_Recover_N_Fwd_00_%_00_P1_0_F
+
+Finishing attack (Raise is not needed)
+
+Hero_Parade_Shield_1H_P1_FinishingAttack_Hit_N_Fwd_00_%_00_P1_200
+Hero_Parade_Shield_1H_P1_FinishingAttack_Recover_N_Fwd_00_%_00_P1_0
+
+
+Attacks that start from sitting position (no changes required, but if it makes the mod more complicated to exclude this ones, than they can be included, very easy for me to fix raise animations)
+
+Hero_SitKnockDown_Shield_1H_P0_GetUpAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_SitKnockDown_Shield_1H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_SitKnockDown_Shield_1H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+Hero_SitKnockDown_Shield_1H_P0_GetUpAttack_Raise_N_Back_00_%_00_P0_0_R
+Hero_SitKnockDown_Shield_1H_P0_GetUpAttack_Hit_N_Back_00_%_00_P1_100_R
+Hero_SitKnockDown_Shield_1H_P1_GetUpAttack_Recover_N_Back_00_%_00_P1_0_R
+
+
+-----2h Weapons-----
+
+Normal Attacks (Raise doesn't Work)
+
+p0 to p1
+
+Hero_Stand_None_2H_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R
+Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P0
+
+Hero_Stand_None_2H_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L
+Hero_Stand_None_2H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L
+
+
+Quick Attacks (Raise doesn't Work)
+
+P0 to P1
+Hero_Stand_None_2H_P0_QuickAttackR_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R
+Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R
+
+P0 to P1
+
+Hero_Stand_None_2H_P0_QuickAttackL_Raise_N_Fwd_00_%_00_P0_0_L
+Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L
+Hero_Stand_None_2H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L
+
+P1 to P0
+
+Hero_Stand_None_2H_P1_QuickAttackL_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L
+Hero_Stand_None_2H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L
+
+
+Power Attacks (raise Works)
+
+P0 to P1
+
+Hero_Stand_None_2H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_Stand_None_2H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P0
+
+Hero_Stand_None_2H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_R
+Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R
+Hero_Stand_None_2H_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_R
+
+Attacks from Block (Parade)
+
+Whirl Attack (I am pretty sure that the raise does not Work, would be Nice to have it Work)
+
+Parade P0 to P0
+
+Hero_Parade_None_2H_P0_WhirlAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R
+Hero_Parade_None_2H_P0_WhirlAttack_Recover_N_Fwd_00_%_00_P0_0_R
+
+Parade P1 to p1
+
+Hero_Parade_None_2H_P1_WhirlAttack_Raise_N_Fwd_00_%_00_P0_0_R - Don't think that this one is used or needed
+Hero_Parade_None_2H_P1_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R - Don't think that this one is used or needed
+
+
+Finishing attack
+
+Hero_Parade_None_2H_P0_FinishingAttack_Raise_N_Fwd_00_%_00_P0_0
+Hero_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P1_100
+Hero_Parade_None_2H_P1_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0
+
+Hero_Parade_None_2H_P1_FinishingAttack_Raise_N_Fwd_00_%_00_P0_0 - Don't think that this one is used or needed
+
+
+Attacks that start from sitting position (no changes required, but if it makes the mod more complicated to exclude this ones, than they can be included, very easy for me to fix raise animations)
+
+Hero_SitKnockDown_None_2H_P0_GetUpAttack_Raise_N_Back_00_%_00_P0_0_R
+Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Back_00_%_00_P1_100_R
+Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Back_00_%_00_P1_0_R
+
+Hero_SitKnockDown_None_2H_P0_GetUpAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+
+-----Staffs-----
+
+Normal Attacks (Raise doesn't Work)
+
+P0 to P1
+
+Hero_Stand_None_Staff_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R
+Hero_Stand_None_Staff_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P0
+
+Hero_Stand_None_Staff_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L
+Hero_Stand_None_Staff_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L
+
+Quick attacks (Raise doesn't Work)
+
+P0 to P1
+
+Hero_Stand_None_Staff_P0_QuickAttackR_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R
+Hero_Stand_None_Staff_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R
+
+P0 to P1
+
+Hero_Stand_None_Staff_P0_QuickAttackL_Raise_N_Fwd_00_%_00_P0_0_L
+Hero_Stand_None_Staff_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L
+Hero_Stand_None_Staff_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L
+
+P1 to P0
+
+Hero_Stand_None_Staff_P1_QuickAttackL_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L
+Hero_Stand_None_Staff_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L
+
+Power Attacks (Raise Works)
+
+P0 to P1
+
+Hero_Stand_None_Staff_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_Stand_None_Staff_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P0
+
+Hero_Stand_None_Staff_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L
+Hero_Stand_None_Staff_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_L
+
+Attacks from Block (Parade)
+Whirl Attack (I am pretty sure that the raise does not Work, would be Nice to have it Work)
+
+Parade P0 to P0
+Hero_Parade_None_Staff_P0_WhirlAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R
+Hero_Parade_None_Staff_P0_WhirlAttack_Recover_N_Fwd_00_%_00_P0_0_R
+
+P1 to P1
+
+Hero_Parade_None_Staff_P1_WhirlAttack_Raise_N_Fwd_00_%_00_P0_0_R - Don't think that this one is used or needed
+Hero_Parade_None_Staff_P1_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R - Don't think that this one is used or needed
+
+
+Finishing attack (Raise Works)
+
+Hero_Parade_None_Staff_P0_FinishingAttack_Raise_N_Fwd_00_%_00_P0_0
+Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50
+Hero_Parade_None_Staff_P0_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0
+
+Hero_Parade_None_Staff_P1_FinishingAttack_Raise_N_Fwd_00_%_00_P0_0 - Don't think that this one is used or needed
+
+
+Attacks that start from sitting position (no changes required, but if it makes the mod more complicated to exclude this ones, than they can be included, very easy for me to fix raise animations)
+
+Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_SitKnockDown_None_Staff_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Raise_N_Back_00_%_00_P0_0_R
+Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Back_00_%_00_P1_100_R
+Hero_SitKnockDown_None_Staff_P1_GetUpAttack_Recover_N_Back_00_%_00_P1_0_R
+
+
+
+-----Dual wield (1h1h)-----
+
+Normal Attacks Fwd (Raise dosen't exist, we will have to make based on how the rest are made)
+
+P0 to P1
+
+Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R (hit collision "Slot_LeftHand_Weapon")
+Hero_Stand_1H_1H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P0
+
+Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L
+Hero_Stand_1H_1H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L
+
+
+Normal Attacks Right (Raise doesn't Work)
+
+P0 to P1
+
+Hero_Stand_1H_1H_P0_Attack_Raise_N_Right_00_%_00_P0_0_R
+Hero_Stand_1H_1H_P0_Attack_Hit_N_Right_00_%_00_P11_110_R (Don't know which one has hit collision, visually both should)
+Hero_Stand_1H_1H_P11_Attack_Recover_N_Right_00_%_00_P11_0_R
+
+P1 to P1
+
+Hero_Stand_1H_1H_P1_Attack_Raise_N_Right_00_%_00_P1_0_R
+Hero_Stand_1H_1H_P1_Attack_Hit_N_Right_00_%_00_P31_90_R (Don't know which one has hit collision, visually both should)
+Hero_Stand_1H_1H_P31_Attack_Recover_N_Right_00_%_00_P31_0_R
+
+Normal Attacks Left (Raise doesn't Work)
+
+P0 to P0
+
+Hero_Stand_1H_1H_P0_Attack_Raise_N_Left_00_%_00_P0_0_L
+Hero_Stand_1H_1H_P0_Attack_Hit_N_Left_00_%_00_P0_90_L (Don't know which one has hit collision, visually both should)
+Hero_Stand_1H_1H_P0_Attack_Recover_N_Left_00_%_00_P0_0_L
+
+P1 to P1
+
+Hero_Stand_1H_1H_P1_Attack_Raise_N_Left_00_%_00_P1_0_L
+Hero_Stand_1H_1H_P1_Attack_Hit_N_Left_00_%_00_P21_90_L (Don't know which one has hit collision, visually both weapon slots should)
+Hero_Stand_1H_1H_P21_Attack_Recover_N_Left_00_%_00_P21_0_L
+
+Quick Attacks (Raise dosen't exist, we will have to make based on how the rest are made)
+
+P0 to P0
+
+Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R
+Hero_Stand_1H_1H_P0_QuickAttackR_Recover_N_Fwd_00_%_00_P0_0_R
+
+P0 to P0
+
+Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L
+Hero_Stand_1H_1H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L
+
+P1 to P1
+
+Hero_Stand_1H_1H_P1_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R (hit collision "Slot_LeftHand_Weapon")
+Hero_Stand_1H_1H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R
+
+P1 to P1
+
+Hero_Stand_1H_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P1_100_L (hit collision "Slot_LeftHand_Weapon")
+Hero_Stand_1H_1H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L
+
+P3 to P1 (Don't think that this one is used or needed)
+
+Hero_Stand_1H_1H_P3_QuickAttackL_Hit_N_Fwd_00_%_00_P61_100_L (visually hit collision "Slot_LeftHand_Weapon")
+Hero_Stand_1H_1H_P61_QuickAttackL_Recover_N_Fwd_00_%_00_P61_0_L
+
+Power Attacks (Raise Works)
+
+P0 to P0
+
+Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R (some kind of whirl attack, so visually both should have hot collision, fixed by jackydima)
+Hero_Stand_1H_1H_P0_PowerAttack_Recover_N_Fwd_00_%_00_P0_0_R
+
+P1 to P1
+
+Hero_Stand_1H_1H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L (some kind of whirl attack, so visually both should have hot collision, fixed by jackydima)
+Hero_Stand_1H_1H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_L
+
+Whirl Attack (Raise is not needed)
+
+P0 to P1 
+
+Hero_Stand_1H_1H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P1_100_L (hit collision "Slot_LeftHand_Weapon")
+Hero_Stand_1H_1H_P1_WhirlAttack_Recover_N_Fwd_00_%_00_P1_0_L
+
+P1 to P0
+
+Hero_Stand_1H_1H_P1_WhirlAttack_Hit_N_Fwd_00_%_00_P0_100_R
+Hero_Stand_1H_1H_P0_WhirlAttack_Recover_N_Fwd_00_%_00_P0_0_R
+
+Attacks from Block (Parade)
+
+Pierce Attack (Raise Works)
+
+P0 to P0
+
+Hero_Parade_1H_1H_P0_PierceAttack_Raise_N_Fwd_00_%_00_P0_0_F
+Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F
+Hero_Parade_1H_1H_P0_PierceAttack_Recover_N_Fwd_00_%_00_P0_0_F
+
+P1 to P1
+
+Hero_Parade_1H_1H_P1_PierceAttack_Raise_N_Fwd_00_%_00_P1_0_F
+Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F (hit collision "Slot_LeftHand_Weapon")
+Hero_Parade_1H_1H_P1_PierceAttack_Recover_N_Fwd_00_%_00_P1_0_F
+
+
+Finishing Attack (Raise is not needed)
+
+P0 To P0
+
+Hero_Parade_1H_1H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_200 (visually both could have hit collision, but does not really matter here, the enemy dies after a certain time not on impact, have tested with making the animation file longer and shorter)
+Hero_Parade_1H_1H_P0_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0
+
+P1 to P1
+
+Hero_Parade_1H_1H_P1_FinishingAttack_Hit_N_Fwd_00_%_00_P1_200 (visually both could have hit collision, but does not really matter here, the enemy dies after a certain time not on impact, have tested with making the animation file longer and shorter)
+Hero_Parade_1H_1H_P1_FinishingAttack_Recover_N_Fwd_00_%_00_P1_0
+
+Attacks that start from sitting position (no changes required, but if it makes the mod more complicated to exclude this ones, than they can be included, very easy for me to fix raise animations)
+
+Hero_SitKnockDown_1H_1H_P0_GetUpAttack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_SitKnockDown_1H_1H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R
+Hero_SitKnockDown_1H_1H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R
+
+
+Hero_SitKnockDown_1H_1H_P0_GetUpAttack_Raise_N_Back_00_%_00_P0_0_R
+Hero_SitKnockDown_1H_1H_P0_GetUpAttack_Hit_N_Back_00_%_00_P1_100_R
+Hero_SitKnockDown_1H_1H_P1_GetUpAttack_Recover_N_Back_00_%_00_P1_0_R
+
+
+
+Some Stumbles 2H
+
+Hero_Stand_None_2H_P0_LightStumble_Hit_N_Back_00_%_00_P0_0_U
+Hero_Stand_None_2H_P0_LightStumble_Recover_N_Back_00_%_00_P0_0_U
+
+Hero_Stand_None_2H_P1_LightStumble_Hit_N_Back_00_%_00_P1_0_U
+Hero_Stand_None_2H_P1_LightStumble_Recover_N_Back_00_%_00_P1_0_U
+
+Hero_Stand_None_2H_P0_StumbleL_Hit_N_Back_00_%_00_P1_90
+Hero_Stand_None_2H_P1_StumbleL_Recover_N_Back_00_%_00_P1_0
+
+Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90
+Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0
+
+Hero_Stand_None_2H_P0_StumbleR_Hit_N_Back_00_%_00_P0_90
+Hero_Stand_None_2H_P0_StumbleR_Recover_N_Back_00_%_00_P0_0
+
+Hero_Stand_None_2H_P1_StumbleL_Hit_N_Back_00_%_00_P11_90
+Hero_Stand_None_2H_P11_StumbleL_Recover_N_Back_00_%_00_P11_0
+
+Hero_Stand_None_2H_P0_PierceStumble_Hit_N_Fwd_00_%_00_P0_120
+Hero_Stand_None_2H_P0_PierceStumble_Recover_N_Fwd_00_%_00_P0_0
+
+Hero_Stand_None_2H_P0_PierceStumble_Hit_N_Back_00_%_00_P0_100
+Hero_Stand_None_2H_P0_PierceStumble_Recover_N_Back_00_%_00_P0_0
+
+
+Some Stumbles 1H
+
+Hero_Parade_None_1H_P0_ParadeStumbleR_Hit_N_Fwd_00_%_00_P0_90
+Hero_Parade_None_1H_P0_ParadeStumbleR_Recover_N_Fwd_00_%_00_P0_0
+
+Hero_Parade_None_1H_P0_ParadeStumbleL_Hit_N_Fwd_00_%_00_P0_90
+Hero_Parade_None_1H_P0_ParadeStumbleL_Recover_N_Fwd_00_%_00_P0_0
+
+Hero_Stand_None_1H_P0_QuickStumble_Hit_N_Fwd_00_%_00_P0_90
+Hero_Stand_None_1H_P0_QuickStumble_Recover_N_Fwd_00_%_00_P0_0
+
+Hero_Stand_None_1H_P0_QuickStumble_Hit_N_Back_00_%_00_P0_90
+Hero_Stand_None_1H_P0_QuickStumble_Recover_N_Back_00_%_00_P0_0
+
+Hero_Stand_None_1H_P2_StumbleR_Hit_N_Back_00_%_00_P20_90
+Hero_Stand_None_1H_P20_StumbleR_Recover_N_Back_00_%_00_P0_0
+
+Hero_Stand_None_1H_P1_StumbleL_Hit_N_Back_00_%_00_P13_90
+Hero_Stand_None_1H_P13_StumbleL_Recover_N_Back_00_%_00_P3_0
