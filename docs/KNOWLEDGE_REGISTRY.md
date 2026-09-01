@@ -7,11 +7,13 @@
 
 Define **where project knowledge/responsibility belongs** and what kinds of events should update each authority.
 
-Use this registry during the maintenance transaction in `KNOWLEDGE_MAINTENANCE.md`.
+Use this registry during the maintenance transaction in `KNOWLEDGE_MAINTENANCE.md` and during the intended-use/ownership step of formal review/audit preflight in POP-10.
 
-This file owns authority/update routing. It does not repeat the maintenance procedure itself.
+This file owns authority/update routing. It does not repeat the project charter, maintenance procedure, or review procedure itself.
 
 > **One responsibility should have one primary authority. Other documents route to it.**
+
+`README.md` is the project charter and highest project-specific authority beneath CAM for purpose, long-term direction, scope and authority topology. This registry maps the specialist responsibilities operating beneath that charter.
 
 ---
 
@@ -19,12 +21,12 @@ This file owns authority/update routing. It does not repeat the maintenance proc
 
 | Knowledge / project responsibility | Primary authority | Update when | Usually do NOT update when |
 |---|---|---|---|
+| project purpose / long-term direction / scope / authority topology / retrieval model / subsystem-orientation routes | `README.md` project charter | User-authorized project purpose, durable long-term direction, project scope, authority topology, document/retrieval roles, Hot/Warm/Cold model, subject routes, or fresh-context retrieval structure materially changes | underlying technical/evidence content changes inside an already-valid specialist authority; routine current-state movement |
 | current active subsystem / causal gate / immediate next responsibility | `SESSION_ENTRYPOINT.md` | active gate/subsystem/immediate candidate/next responsibility changes, including a material temporary prerequisite or safety/contradiction route | routine continuation or another confirmation inside the same route |
 | transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact short-lived implementation/test/continuation detail not already represented durably | ordinary project facts already live in durable authorities |
-| project-specific collaboration behavior / participant-tool allocation / Gothic↔CAM authority boundary | `COLLABORATION_RULES.md` | a recurring Gothic-specific collaboration lesson materially changes participant allocation, authorization/interaction behavior, or the project-local/CAM boundary | one isolated annoyance already covered elsewhere; technical result with no collaboration consequence |
-| documentation map / retrieval depth / subsystem-orientation routes | `README.md` | document roles, Hot/Warm/Cold retrieval model, subject routes, or fresh-context retrieval structure materially changes | underlying technical/evidence content changes without affecting routing |
+| project-specific collaboration behavior / participant-tool allocation / Gothic↔CAM operationalization | `COLLABORATION_RULES.md` | a recurring Gothic-specific collaboration lesson materially changes participant allocation, authorization/interaction behavior, or project-local CAM operationalization | project purpose/topology change that belongs in the charter; one isolated annoyance already covered elsewhere; technical result with no collaboration consequence |
 | stable operating conventions: branch/state meanings, gate/test IDs, evidence/procedure IDs, raw/derived naming, build identity, document versioning, validation/artifact flow | `PROJECT_PIPELINE.md` | an accepted convention changes or a new convention responsibility/transition must be defined | routine use of an established convention |
-| recurring project-local operations: Git handoff/sync, build/deploy/load verification, runtime-artifact intake/publish, large-log reduction, static-reference retrieval | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistakes, one serious failure, a clearly better recurring method, or a genuinely new recurring operation changes the best procedure | every routine use or one-off command variation |
+| recurring project-local operations: Git handoff/sync, build/deploy/load verification, runtime-artifact intake/publish, large-log reduction, static-reference retrieval, formal review/audit preflight | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistakes, one serious failure, a clearly better recurring method, a genuinely new recurring operation, or the review/audit preflight sequence changes | every routine use, one-off command variation, or a review finding whose actual owner is another authority |
 | bounded Work execution contract | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work implementation authority, preflight, publication, stop conditions, review responsibility, or bounded-task execution model changes | participant allocation changes without changing Work execution itself; technical Gothic finding unrelated to Work behavior |
 | knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing rule, workaround-reevaluation rule, audit-health criteria, or bloat early-warning process changes | ordinary technical evidence/result handled by the existing process |
 | authority/update routing | `KNOWLEDGE_REGISTRY.md` | a responsibility gains/moves/loses an owner or its update-trigger logic changes | underlying knowledge grows inside an existing authority |
@@ -42,8 +44,8 @@ This file owns authority/update routing. It does not repeat the maintenance proc
 | author-grouped exact animation names/notes | `data/animation_names/author_grouped_attacks_and_stumbles.txt` | authoritative grouped source changes | generalized interpretation derived from the source |
 | source/API/symbol/hook practical lookup | `SOURCE_HOOK_GUIDE.md` | reusable symbol/API/hook pattern/address/search route is established/revised | experiment chronology or one-off implementation detail |
 | native collision cleanup callsites/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` | tested cleanup RVA/stack/symbol/caller interpretation changes | higher-level lifecycle design changes with no native callsite fact |
-| project-wide engineering principles | `ENGINEERING_GUIDE.md` | a durable technical engineering principle generalizes beyond one subsystem | local implementation workaround/test detail |
-| technical project scope/context for engine-facing prompts | `PROJECT_SCOPE_CONTEXT.md` | factual scope or standard prompt-context wording changes | ordinary technical implementation/evidence |
+| project-wide engineering principles | `ENGINEERING_GUIDE.md` | a durable technical engineering principle generalizes beyond one subsystem while remaining consistent with the project charter | local implementation workaround/test detail; change to project purpose/direction |
+| technical project scope/context for engine-facing prompts | `PROJECT_SCOPE_CONTEXT.md` | factual engine-facing authorization/scope-context wording changes | ordinary technical implementation/evidence; durable project-purpose/topology change |
 | research chronology / why an older technical decision existed | `EVIDENCE_INDEX.md` → exact EV/provenance; Git history when historical wording/sequence is actually needed | evidence interpretation or retrieval route changes | ordinary chronology growth; do not maintain a parallel milestone/history summary |
 | active/unprocessed runtime/source artifact | `research/raw/` | a new artifact is still active input to interpretation/comparison | artifact has been canonically processed |
 | processed runtime/source provenance | `research/archive/` | an unchanged source artifact has durable verification value after processing | active unresolved artifact; derived analysis material |
@@ -60,9 +62,26 @@ EVIDENCE_LEDGER_199_ONWARD.md     EV-199 onward
 
 ---
 
-## 2. Dependency Direction
+## 2. Authority and Knowledge Direction
 
-The intended knowledge direction is mostly:
+The project-level normative/operational direction is:
+
+```text
+CAM constitutional collaboration layer
+        ↓
+README.md project charter
+(purpose / long-term direction / scope / authority topology)
+        ↓
+specialist Gothic authorities within delegated domains
+        ↓
+recurring procedures / bounded protocols
+        ↓
+current task execution
+```
+
+Specialist authorities can be parallel rather than linearly ranked. Ownership is determined by responsibility, not by file size, age, detail, or recency.
+
+The factual knowledge direction is mostly:
 
 ```text
 raw/source observation
@@ -76,9 +95,11 @@ index route (only if retrieval changes)
 current-state pointer (only if active responsibility changes)
 ```
 
-Stable operating conventions are orthogonal project state; procedures and current-state documents route to `PROJECT_PIPELINE.md` rather than maintaining alternative naming/numbering/version schemes.
+These directions interact but are not identical: evidence can justify a change to a normative/technical authority, but evidence does not silently rewrite the charter, architecture or procedure by itself.
 
-Participant allocation is likewise orthogonal: `COLLABORATION_RULES.md` chooses where a responsibility belongs; the owning execution/procedure authority then defines how that responsibility is performed.
+Stable operating conventions are orthogonal specialist state; procedures and current-state documents route to `PROJECT_PIPELINE.md` rather than maintaining alternative naming/numbering/version schemes.
+
+Within the charter topology, participant/tool allocation is owned by `COLLABORATION_RULES.md`; the owning execution/procedure authority then defines how that allocated responsibility is performed.
 
 Do not create sideways dependency chains where every authority repeats every other authority.
 
@@ -108,7 +129,8 @@ Default order:
 
 ```text
 noticed gap/refinement
-→ can an existing authority absorb it cleanly?
+→ does the project charter already define the relevant purpose/topology?
+→ can an existing specialist authority absorb it cleanly?
 → can an existing section be strengthened?
 → can an existing index/route make it discoverable?
 → can an existing procedure be refined?
@@ -119,12 +141,13 @@ Create a new authority only when placing the responsibility in an existing autho
 
 Before creating another document ask:
 
-1. Does an existing authority already own this responsibility?
-2. Can the gap be solved by strengthening an existing section, procedure, or index route?
-3. Is the problem actually missing indexing rather than missing authority?
-4. Would a new document create another independently stale copy or another file fresh contexts must load?
-5. Would adding the material to an existing authority genuinely distort that authority's responsibility?
+1. Does the charter place this responsibility inside an existing project domain?
+2. Does an existing authority already own this responsibility?
+3. Can the gap be solved by strengthening an existing section, procedure, or index route?
+4. Is the problem actually missing indexing rather than missing authority?
+5. Would a new document create another independently stale copy or another file fresh contexts must load?
+6. Would adding the material to an existing authority genuinely distort that authority's responsibility?
 
-A full registry review is appropriate only when the knowledge schema itself changes, repeated maintenance transactions reveal unclear ownership, or a knowledge-system health check shows material retrieval/document burden.
+A full registry review is appropriate only when the knowledge schema itself changes, repeated maintenance transactions reveal unclear ownership, or a knowledge-system health check shows material retrieval/document burden. Such a formal review must apply POP-10 before judging the structure.
 
 The event-by-event maintenance procedure belongs in `KNOWLEDGE_MAINTENANCE.md`, not here.
