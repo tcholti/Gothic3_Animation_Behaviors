@@ -16,11 +16,9 @@ The active behavior domains are:
 
 Future independent behavior domains may include target acquisition, climbing and other animation/gameplay systems.
 
-This file defines the **intended architecture and current implementation order**. It does not preserve experiment chronology. The completed second-pass structural rewrite is preserved in `SECOND_PASS_REWRITE_CONTRACT.md`; the completed generation-scoped marker-bookkeeping result is in `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`; proof history routes through `EVIDENCE_INDEX.md` → the evidence ledgers/raw logs; lifecycle authority is `COLLISION_LIFECYCLE_PLAN.md`; staged validation authority is `COLLISION_TEST_PLAN.md`.
+This file defines the **intended architecture and current implementation order**. It does not preserve experiment chronology. The completed second-pass structural rewrite and generation-scoped marker-bookkeeping work are preserved by EV-208–EV-215 plus current source/build state; proof history routes through `EVIDENCE_INDEX.md` → the evidence ledgers/raw logs; lifecycle authority is `COLLISION_LIFECYCLE_PLAN.md`; staged validation authority is `COLLISION_TEST_PLAN.md`; release/build separation is owned by `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
-The pre-information-architecture design, including detailed prototype chronology, is preserved at:
-
-`docs/archive/technical_2026-08-27/DESIGN_pre_ia.md`
+Superseded design/contract wording remains recoverable through Git history rather than a parallel active archive tree.
 
 ---
 
@@ -375,7 +373,7 @@ CollisionLifecycleGuard
 
 `AttackContinuationProtection` must not be implemented inside `CollisionLifecycleGuard`. Even if prevention later succeeds, keep C1-R1 as the general lost-cleanup fail-safe.
 
-Authority: `BAD_SKIP_FUTURE_INVESTIGATION.md`.
+Authority: `COLLISION_TEST_PLAN.md` §6, with causal evidence routed through `EVIDENCE_INDEX.md`.
 
 ---
 
@@ -424,7 +422,6 @@ Before any future marker-core consolidation/reimplementation:
 ```text
 EVIDENCE_INDEX.md
 → Marker execution lifetime / bookkeeping
-→ MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
 → EV-131–EV-133 / EV-167 / EV-213–EV-214
 → COLLISION_LIFECYCLE_PLAN.md §9
 ```
@@ -536,7 +533,7 @@ The release and instrumented diagnostic twin are mutually exclusive runtime prod
 
 Canonical release rule: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
-Completed structural rewrite reference: `SECOND_PASS_REWRITE_CONTRACT.md`.
+Completed structural rewrite proof: EV-208–EV-212 plus current source/build state.
 
 ---
 
@@ -555,19 +552,16 @@ final behavior-only architecture smoke       EV-215
 
 Current order:
 
-1. **Complete documentation/knowledge cleanup and review.** Remove stale routing/current-state language without destroying provenance.
-2. **Perform any justified processed-evidence raw→archive migration as a separate atomic transaction.** Update affected provenance paths together.
-3. **Inspect `temp/second-pass-rewrite-publish` unique history/content.** Preserve anything unique that still matters.
-4. **Define and verify the stable protected-`main` promotion checkpoint.** Keep `main` stable and `docs/collision-source-evidence` as active development/research.
-5. **Expand markers across intended equipped-melee attack mechanisms one at a time.** Keep RIGHT/LEFT/BOTH/OFF vocabulary and native no-marker fallback.
-6. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics.
-7. **Run complete marker + lifecycle regression.** Protect closed C1-R1/Gate-4 behavior after marker/source maturity.
-8. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
-9. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
-10. **Mandatory New Balance/Jackydima compatibility gate on mature research behavior.** Resolve hook/callback conflicts deliberately.
-11. **Retain the mature modular foundation and migrate/redesign Raise + speed + config into final `Script_G3AnimationBehaviors`.** Do not pour collision back into the old v0.1 hook/file structure.
-12. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
-13. **Final diagnostics-free production compatibility/regression.** Test assembled public `Script_G3AnimationBehaviors` with New Balance/relevant Jackydima DLLs before stable promotion; retain separate instrumented diagnostic twin for future reproduction.
+1. **Complete project stabilization.** Finish structural document/tool simplification, Gothic-specific rules/procedures consistency, build/product/repository-shape audit, and the final readiness check.
+2. **Expand markers across intended equipped-melee attack mechanisms one at a time.** Keep RIGHT/LEFT/BOTH/OFF vocabulary and native no-marker fallback.
+3. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics.
+4. **Run complete marker + lifecycle regression.** Protect closed C1-R1/Gate-4 behavior after marker/source maturity.
+5. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
+6. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
+7. **Mandatory New Balance/Jackydima compatibility gate on mature research behavior.** Resolve hook/callback conflicts deliberately.
+8. **Retain the mature modular foundation and migrate/redesign Raise + speed + config into final `Script_G3AnimationBehaviors`.** Do not pour collision back into the old v0.1 hook/file structure.
+9. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
+10. **Final diagnostics-free production compatibility/regression.** Test assembled public `Script_G3AnimationBehaviors` with New Balance/relevant Jackydima DLLs before stable promotion; retain separate instrumented diagnostic twin for future reproduction.
 
 ---
 
@@ -597,20 +591,20 @@ Do not combine the current documentation/stable-integration checkpoint with:
 | Need | Authority |
 |---|---|
 | Current exact task / branch state | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
-| Completed second-pass structural contract | `SECOND_PASS_REWRITE_CONTRACT.md` |
-| Completed Gate-4 marker bookkeeping contract | `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md` |
+| Completed second-pass structural proof | `EVIDENCE_INDEX.md` → EV-208–EV-212 + current source/build state |
+| Completed Gate-4 marker bookkeeping proof | `EVIDENCE_INDEX.md` → EV-213–EV-215 |
 | Current roadmap / overall architecture | this `DESIGN.md` §§10–11 |
 | Release vs diagnostic products | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
 | Collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
 | Current collision validation posture | `COLLISION_TEST_PLAN.md` |
 | Diagnostic core/deep architecture | `COLLISION_LOGGER_PLAN.md` |
-| Marker execution lifetime / generation-scoped identity | `EVIDENCE_INDEX.md` Marker execution lifetime → EV-131–EV-133 / EV-167 / EV-213–EV-214 → `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md` |
-| Future held-Use2 prevention | `BAD_SKIP_FUTURE_INVESTIGATION.md` |
+| Marker execution lifetime / generation-scoped identity | `EVIDENCE_INDEX.md` Marker execution lifetime → EV-131–EV-133 / EV-167 / EV-213–EV-214 → `COLLISION_LIFECYCLE_PLAN.md` §9 |
+| Future held-Use2 prevention | `COLLISION_TEST_PLAN.md` §6 AttackContinuationProtection + `EVIDENCE_INDEX.md` causal route |
 | Tested native cleanup RVAs/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
-| Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER*.md` / raw/archive evidence |
-| C1-R1 canonical evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-206–EV-207 |
-| Gate 4 + final architecture verification evidence | `EVIDENCE_LEDGER_STEP_D.md` EV-213–EV-214 → `EVIDENCE_LEDGER_STEP_E.md` EV-215 |
+| Exact evidence claim / provenance | `EVIDENCE_INDEX.md` → canonical evidence ledgers / raw/archive evidence |
+| C1-R1 canonical evidence | `EVIDENCE_LEDGER_199_ONWARD.md` EV-206–EV-207 |
+| Gate 4 + final architecture verification evidence | `EVIDENCE_LEDGER_199_ONWARD.md` EV-213–EV-215 |
 | Animation semantics / UseType / action / pose | `ANIMATION_INDEX.md` → `ANIMATION_RULES.md` |
 | Exact asset/family/fixture | `ANIMATION_INDEX.md` → `ANIMATION_CATALOG.md` / animation-name data |
 | Hook/source/API/New Balance lookup | `SOURCE_HOOK_GUIDE.md` |
-| Historical design/prototype chronology | `RESEARCH_MAP.md` / archived pre-IA documents / raw logs |
+| Historical design/prototype chronology | `EVIDENCE_INDEX.md` → exact EV/provenance, then Git history/raw logs when chronology is actually needed |
