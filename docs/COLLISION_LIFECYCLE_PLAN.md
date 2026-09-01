@@ -366,7 +366,7 @@ valid-motion-only marker caching
 Authority/evidence:
 
 ```text
-MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
+EVIDENCE_INDEX.md → marker execution lifetime / bookkeeping route
 EV-213 Gate-4 implementation/regression closure
 EV-214 literal historical EV-131 same-motion interruption/restart closure
 EV-215 final behavior-only architecture verification
@@ -414,14 +414,10 @@ A central engine-bridge layer should own shared Gothic hooks and report authorit
 
 The collision architecture through C1-R1, second-pass modularization/product separation and generation-scoped marker bookkeeping is verified complete through EV-215.
 
-Repository/knowledge maintenance now happens before new feature expansion:
+Current order:
 
 ```text
-architecture verification COMPLETE through EV-215
-→ documentation/knowledge cleanup
-→ deliberate processed-evidence archive migration if justified
-→ inspect temporary branch unique content
-→ stable protected-main promotion/verification
+project structural stabilization
 → equipped-melee marker expansion
 → separate Fist source-adapter decision
 → full marker + lifecycle regression
@@ -435,7 +431,7 @@ architecture verification COMPLETE through EV-215
 
 This sequence keeps the validated collision guard in the research behavior core while marker/source behavior around it is matured. Production migration comes **after** the collision subsystem has reached the intended feature scope and passed the first third-party compatibility gate.
 
-The known held-Use2 / Alternative-AI skip remains a separate prevention responsibility, not production collision classification authority. Its future module is documented in `BAD_SKIP_FUTURE_INVESTIGATION.md`. Even if prevention succeeds, it does not replace the C1-R1 collision-safety fail-safe.
+The known held-Use2 / Alternative-AI skip remains a separate prevention responsibility, not production collision classification authority. Its future investigation and minimum controls are owned by `COLLISION_TEST_PLAN.md` §6. Even if prevention succeeds, it does not replace the C1-R1 collision-safety fail-safe.
 
 ---
 
