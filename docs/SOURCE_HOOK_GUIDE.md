@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Source & Hook Guide
 
 **Status:** Canonical practical source/hook lookup guide  
-**Updated:** 2026-08-30
+**Updated:** 2026-09-01
 
 ## Purpose
 
@@ -18,9 +18,7 @@ Current state: `SESSION_ENTRYPOINT.md`
 Evidence routing: `EVIDENCE_INDEX.md`  
 Detailed cleanup RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`
 
-The pre-information-architecture version, including v0.11–v0.19 implementation chronology, is preserved at:
-
-`docs/archive/technical_2026-08-27/SOURCE_HOOK_GUIDE_pre_ia.md`
+Historical pre-information-architecture wording and older v0.x implementation chronology remain recoverable through Git history and the exact EV/raw provenance routes. They are not maintained as a duplicate active documentation archive.
 
 ---
 
@@ -455,7 +453,7 @@ cmake -S . -B build -G "Visual Studio 17 2022" -A Win32
 cmake --build build --config Release --target <TargetName>
 ```
 
-Current known targets include `Script_G3AnimationBehaviors`, `Script_FrameCollisionTest`, `Script_FrameEffectLogger`, `Script_CombatMoveLogger`.
+Current known targets include `Script_G3AnimationBehaviors`, `Script_FrameCollisionTest`, `Script_FrameCollisionBehaviorTest`, and `Script_CombatMoveLogger`.
 
 Game scripts directory:
 
@@ -477,7 +475,7 @@ For isolated collision tests, remove conflicting collision DLLs unless compatibi
 |---|---|
 | Exact native cleanup action/RVA/parent stack | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
 | Why a hook/path is accepted/rejected architecturally | `COLLISION_LIFECYCLE_PLAN.md` + evidence IDs |
-| Marker execution lifetime / future bookkeeping simplification | `EVIDENCE_INDEX.md` → Marker execution lifetime / bookkeeping, then `COLLISION_LIFECYCLE_PLAN.md` |
+| Marker execution lifetime / generation-scoped bookkeeping | `EVIDENCE_INDEX.md` → Marker execution lifetime / bookkeeping, then `COLLISION_LIFECYCLE_PLAN.md` |
 | CombatMove persisted instruction / FullStop / SetState / state-stack abandonment | EV-182–EV-191 + this guide §4–§5 |
 | Outer ScriptFunction lifetime / `RunScriptFunction` persistence | EV-195–EV-196 + this guide §4–§5 |
 | Proven P1/P2 `RunScriptFunction` bridge / explicit-this transport | EV-199–EV-205 + this guide §§4–8 |
@@ -488,6 +486,6 @@ For isolated collision tests, remove conflicting collision DLLs unless compatibi
 | Exact evidence status/provenance | `EVIDENCE_INDEX.md` → evidence ledger |
 | Animation action/UseType/pose/name meaning | `ANIMATION_INDEX.md` |
 | Exact animation asset | animation-name data / `ANIMATION_CATALOG.md` |
-| Old v0.x hook/prototype chronology | archived pre-IA guide / `RESEARCH_MAP.md` / evidence ledger |
+| Old v0.x hook/prototype chronology | `EVIDENCE_INDEX.md` → exact EV/provenance → Git history/raw/archive only when needed |
 
 When adding a new durable hook finding, update the relevant symbol/RVA/index row here and the exact evidence entry rather than appending another long chronological narrative.

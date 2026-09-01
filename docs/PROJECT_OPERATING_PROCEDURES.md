@@ -2,29 +2,29 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.2  
-**Updated:** 2026-08-30
+**Version:** 1.5  
+**Updated:** 2026-09-01
 
 ## Purpose
 
-This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, bounded Work authority, or stable project convention authority.
+This document stores recurring operational patterns that are useful during normal Gothic 3 development but do not belong in technical architecture, evidence, current-state, bounded Work authority, stable project convention authority, or participant-allocation rules.
 
 It exists so a new Chat does not have to rediscover how we normally:
 
 - synchronize and hand off the active Git branch;
-- build the current prototype;
+- build the selected current product/target;
 - deploy and verify a DLL before testing;
-- verify that a diagnostic build actually loaded;
+- verify that the selected product actually loaded;
 - freeze runtime tests/logs;
 - preserve and publish raw evidence;
 - reduce oversized logs for efficient analysis without altering the evidence;
 - work with large static binary/reference material.
 
-`PROJECT_PIPELINE.md` owns the stable naming, numbering, version/test ID, branch/state, artifact-flow and validation-gate conventions used by these procedures. This file owns the **sequences**, not independent alternative convention schemes.
+`PROJECT_PIPELINE.md` owns the stable naming, numbering, version/test ID, branch/state, product-identity, artifact-flow and validation-gate conventions used by these procedures. This file owns the **recurring sequences and their failure/stop behavior**, not independent alternative convention schemes.
 
-These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law.
+Participant/tool allocation is owned by `COLLABORATION_RULES.md`. Bounded Work implementation execution is owned by `WORK_IMPLEMENTATION_PROTOCOL.md`.
 
-The procedure-evolution rule is owned by `COLLABORATION_RULES.md` §9: use the established procedure without repeatedly auditing it, but if either participant notices repeated friction/mistakes, one serious failure, or a clearly better method, raise the improvement and revise the lowest owning procedure.
+These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law. Procedure maintenance/evolution is owned by §12 below; `KNOWLEDGE_REGISTRY.md` determines whether a discovered improvement belongs here or in another authority.
 
 ---
 
@@ -43,7 +43,8 @@ A procedure name should usually be enough to reconstruct the sequence from memor
 
 This document does not replace:
 
-- `PROJECT_PIPELINE.md` — stable project naming/numbering/version/test/artifact conventions;
+- `PROJECT_PIPELINE.md` — stable project naming/numbering/version/test/product/artifact conventions;
+- `COLLABORATION_RULES.md` — User/Normal Chat/Work/home-PC/repository responsibility allocation;
 - `WORK_IMPLEMENTATION_PROTOCOL.md` — bounded implementation/Work execution;
 - `KNOWLEDGE_MAINTENANCE.md` — what durable authorities change after a meaningful result;
 - `SESSION_ENTRYPOINT.md` — current technical responsibility;
@@ -53,7 +54,7 @@ This document does not replace:
 
 ## 2. End-to-End Validation Cue
 
-For a normal engine-facing prototype change, the broad sequence is:
+For a normal engine-facing change, the broad sequence is:
 
 ```text
 design/evidence question frozen
@@ -61,20 +62,21 @@ design/evidence question frozen
 → implementation commit/publish
 → independent Normal Chat source review
 → User/local branch synchronization
+→ select exact build product/target for the question
 → build only
 → deploy exact built DLL
-→ verify single live DLL + SHA match
-→ launch/load verification + expected startup banner
-→ freeze exact runtime matrix + raw filename
+→ verify selected product is the only intended live twin + SHA match
+→ startup/load verification appropriate to that product
+→ freeze exact runtime matrix + raw filename when diagnostic evidence is expected
 → User runs test
-→ raw log copied unchanged into research/raw
+→ raw log copied unchanged into research/raw when the selected product emits canonical evidence
 → raw artifact commit/push
 → Normal Chat analyzes committed evidence
 → derived package/extract only if retrieval requires it
 → normal knowledge-maintenance transaction
 ```
 
-This sequence conforms to the validation pipeline in `PROJECT_PIPELINE.md`. Do not collapse separate validation stages merely to save a message when the separation protects causal certainty. A successful build does not prove deployment; a matching deployment does not prove load; a startup banner does not prove runtime behavior.
+This sequence conforms to the validation pipeline in `PROJECT_PIPELINE.md`. Do not collapse separate validation stages merely to save a message when the separation protects causal certainty. A successful build does not prove deployment; a matching deployment does not prove load; diagnostic banner presence proves neither the later behavioral result nor behavior-only loading.
 
 ---
 
@@ -112,19 +114,18 @@ Assistant pushes
 
 If the assistant has changed the remote branch since the User last synchronized, perform the pull/rebase before the User begins a new local artifact/commit window whenever practical.
 
-Current active branch/state meaning is owned by `SESSION_ENTRYPOINT.md` + `PROJECT_PIPELINE.md`. At this revision the active branch is:
+The exact active branch is current project state owned by `SESSION_ENTRYPOINT.md` / `PROJECT_PIPELINE.md`; this procedure must not maintain a competing branch identity.
 
-```text
-docs/collision-source-evidence
-```
-
-Typical synchronization:
+Typical synchronization shape:
 
 ```powershell
 Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
 
-git pull --rebase origin docs/collision-source-evidence
+$branch = '<active branch from SESSION_ENTRYPOINT.md>'
+git pull --rebase origin $branch
 ```
+
+Normal Chat should normally provide the resolved exact branch in the concrete command rather than making the User look it up manually.
 
 Do not run a blind pull/rebase across important uncommitted local work. The normal handoff rule should make that unnecessary; if local work already exists, inspect the concrete state first.
 
@@ -133,8 +134,9 @@ Do not run a blind pull/rebase across important uncommitted local work. The norm
 If the intended local commit already exists and the only problem is that the remote branch advanced:
 
 ```powershell
-git pull --rebase origin docs/collision-source-evidence
-git push origin docs/collision-source-evidence
+$branch = '<active branch from SESSION_ENTRYPOINT.md>'
+git pull --rebase origin $branch
+git push origin $branch
 git rev-parse HEAD
 ```
 
@@ -152,18 +154,37 @@ Use after the relevant source implementation has passed its required source-leve
 
 ```text
 correct branch/source state
-→ build requested target
+→ choose the exact target required by the frozen question
+→ build only that target
 → User reports success or smallest useful error excerpt
 → STOP build stage
 ```
 
-Current prototype command:
+Current collision research targets:
+
+```text
+Script_FrameCollisionTest
+= diagnostic twin
+
+Script_FrameCollisionBehaviorTest
+= diagnostics-free behavior twin
+```
+
+Example diagnostic build:
 
 ```powershell
 Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
 
 cmake --build build --config Release --target Script_FrameCollisionTest
 ```
+
+Example behavior-only build:
+
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
+```
+
+Do not build both merely because both exist; build the product selected by the current test responsibility.
 
 A successful build does not automatically deploy the DLL.
 
@@ -179,51 +200,67 @@ If the build fails, request or use only the smallest relevant error excerpt firs
 
 Use after a successful build and before launching Gothic 3 for that build.
 
-### Current paths
+### Current collision twin paths
 
-Built DLL:
+Both collision research targets are emitted from the same prototype build directory:
 
 ```text
-E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\build\prototypes\Script_FrameCollisionTest\Release\Script_FrameCollisionTest.dll
+E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\build\prototypes\Script_FrameCollisionTest\Release\
 ```
 
-Live DLL:
+Current product files:
 
 ```text
-E:\SteamLibrary\steamapps\common\Gothic 3\scripts\Script_FrameCollisionTest.dll
+Script_FrameCollisionTest.dll
+= diagnostic twin
+
+Script_FrameCollisionBehaviorTest.dll
+= diagnostics-free behavior twin
+```
+
+Live scripts directory:
+
+```text
+E:\SteamLibrary\steamapps\common\Gothic 3\scripts
 ```
 
 ### Pattern
 
 ```text
-copy exact built DLL to live scripts
-→ enumerate matching live DLL names
-→ require exactly one intended matching DLL
-→ SHA256 built == live
+resolve the exact selected built DLL
+→ remove/avoid the other mutually exclusive collision twin from the live directory
+→ copy selected DLL to its exact live name
+→ enumerate both collision twin names
+→ require exactly one selected twin live
+→ SHA256 built == selected live DLL
 → only then launch
 ```
 
-Typical command:
+For collision research, **do not co-load** `Script_FrameCollisionTest.dll` and `Script_FrameCollisionBehaviorTest.dll`.
+
+Normal Chat should provide the concrete selected product paths rather than asking the User to infer them. A guarded deployment should verify both twin names, not only a wildcard that happens to match one of them.
+
+Conceptual check:
 
 ```powershell
-$built = 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\build\prototypes\Script_FrameCollisionTest\Release\Script_FrameCollisionTest.dll'
 $liveDir = 'E:\SteamLibrary\steamapps\common\Gothic 3\scripts'
-$live = Join-Path $liveDir 'Script_FrameCollisionTest.dll'
 
-Copy-Item -LiteralPath $built -Destination $live -Force
-
-Get-ChildItem -LiteralPath $liveDir -Filter 'Script_FrameCollisionTest*.dll' |
+Get-ChildItem -LiteralPath $liveDir |
+    Where-Object {
+        $_.Name -eq 'Script_FrameCollisionTest.dll' -or
+        $_.Name -eq 'Script_FrameCollisionBehaviorTest.dll'
+    } |
     Select-Object Name, Length, LastWriteTime
-
-(Get-FileHash $built -Algorithm SHA256).Hash -eq (Get-FileHash $live -Algorithm SHA256).Hash
 ```
 
 Expected:
 
-- one intended `Script_FrameCollisionTest.dll`;
-- final comparison `True`.
+- exactly one collision twin, and it is the product selected by the frozen test;
+- built/live SHA256 match.
 
-Never leave backup/alternate DLLs matching the same loader pattern in the live `scripts` directory. If duplicates appear or the hash is false, stop before launching and resolve deployment first.
+If both twins are present, the wrong twin is present, or the hash is false, stop before launching and resolve deployment first.
+
+For another future product, apply the same invariant using its defined mutually exclusive/loader set rather than mechanically reusing the collision names.
 
 ---
 
@@ -231,19 +268,21 @@ Never leave backup/alternate DLLs matching the same loader pattern in the live `
 
 ### Trigger
 
-Use after deploy/hash verification and before spending time on a runtime matrix.
+Use after deploy/hash verification and before spending time on the full runtime matrix.
 
-### Pattern
+### Common invariant
 
 ```text
-launch Gothic 3 only far enough to load the script
-→ reach main menu or other agreed minimal load point
-→ exit normally
-→ search current log for the exact startup/banner text of this build
-→ only then freeze/run the behavioral matrix
+launch Gothic 3 only far enough to exercise script loading
+→ reach the agreed minimal load point
+→ exit normally unless the frozen test requires continuing directly
+→ verify loading using the evidence surface appropriate to the selected product
+→ only then run/spend time on the behavioral matrix
 ```
 
-For `Script_FrameCollisionTest`, the current log is normally:
+### Diagnostic collision twin
+
+For `Script_FrameCollisionTest`, loading is normally verified with both normal game startup and the exact expected diagnostic banner in:
 
 ```text
 E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log
@@ -251,17 +290,30 @@ E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log
 
 Normal Chat should provide the exact banner substring for the build being tested rather than expecting the User to remember it.
 
-The build-identity convention is owned by `PROJECT_PIPELINE.md`: active gate/probe label + exact Git commit + deployed DLL identity/hash + startup banner.
-
-Typical check:
+Typical diagnostic check:
 
 ```powershell
 $log = 'E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log'
-
 Select-String -Path $log -Pattern '<exact frozen startup banner substring>'
 ```
 
-Missing banner, wrong binary, load failure, or crash is a stop condition for the runtime matrix.
+A missing expected diagnostic banner, wrong binary, load failure or crash is a stop condition.
+
+### Diagnostics-free collision behavior twin
+
+For `Script_FrameCollisionBehaviorTest`, **no diagnostic startup banner/log is required or expected by design**.
+
+After sole-live-DLL + SHA verification, the load check is the agreed minimal behavior-only observation, normally:
+
+```text
+Gothic 3 reaches the main menu normally
+→ normal exit
+→ no crash/load error/obvious abnormal behavior
+```
+
+A later functional smoke provides the behavior evidence applicable to that diagnostics-free product.
+
+The product/build identity convention is owned by `PROJECT_PIPELINE.md`.
 
 ---
 
@@ -279,7 +331,9 @@ Freeze in the same message whenever practical:
 2. the minimum fixture/configuration cases;
 3. important ordering/reset requirements;
 4. the outcomes or invariants to watch for;
-5. one exact raw filename.
+5. one exact raw filename **when the selected product/test is expected to emit canonical runtime evidence**.
+
+Do not invent a raw-log requirement for a diagnostics-free behavior-only smoke merely to make every validation step look identical.
 
 Do not change the meaning of the test after the run merely to fit the observed result.
 
@@ -287,7 +341,7 @@ Do not change the meaning of the test after the run merely to fit the observed r
 
 The canonical gate/test-ID and raw/derived filename conventions live in `PROJECT_PIPELINE.md` §§3, 6–7.
 
-POP-05 owns the act of freezing the test and one exact filename; it does not define a separate naming scheme.
+POP-05 owns the act of freezing the test and filename when applicable; it does not define a separate naming scheme.
 
 Before inventing a new gate/test identifier or filename pattern, retrieve the relevant pipeline section and preserve the established convention.
 
@@ -295,11 +349,11 @@ If a test crosses midnight or is delayed after the filename is frozen, keep the 
 
 ### User responsibility
 
-Run the test, then copy the complete produced log to the exact frozen path.
+Run the frozen test. When a canonical raw artifact is part of the test, copy the complete produced log to the exact frozen path.
 
 Extra repetitions are acceptable and often useful. If the configuration/order materially differs from the frozen matrix, tell Normal Chat so interpretation can distinguish those sections.
 
-After copying, a short confirmation such as:
+After copying a raw artifact, a short confirmation such as:
 
 ```text
 file is in raw
@@ -326,6 +380,8 @@ Editable source/docs may still use normal whitespace/diff checks.
 
 ### Publish pattern
 
+Use this section only when the frozen test actually produced a canonical raw artifact.
+
 The normal sequence is:
 
 ```text
@@ -344,6 +400,7 @@ Typical command pattern:
 ```powershell
 Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
 
+$branch = '<active branch from SESSION_ENTRYPOINT.md>'
 $log = '.\research\raw\<frozen-log-name>.log'
 
 Get-Item -LiteralPath $log |
@@ -352,9 +409,11 @@ Get-Item -LiteralPath $log |
 git status --short -- $log
 git add -- $log
 git commit -m '<descriptive evidence commit message>'
-git push origin docs/collision-source-evidence
+git push origin $branch
 git rev-parse HEAD
 ```
+
+Normal Chat should provide the resolved exact branch and exact frozen filename in the concrete command. The User should not have to substitute placeholders during an actual test transaction.
 
 Normal Chat should normally ask only for the final SHA or a short success confirmation.
 
@@ -364,100 +423,39 @@ Normal Chat should normally ask only for the final SHA or a short success confir
 
 ### Trigger
 
-Use when the canonical raw log is too large for efficient GitHub/connector retrieval or would create unnecessary Chat/tool context pressure.
+Use when a canonical runtime log is too large for efficient repository/connector retrieval or would create unnecessary Chat/tool context pressure.
 
-### Core rule
+### Invariant
 
-Do not reduce or rewrite the raw logger output merely to make retrieval easier.
-
-Instead:
+The source log remains canonical evidence. Retrieval convenience must never cause it to be trimmed, rewritten or replaced by a summary.
 
 ```text
-full canonical raw log
-→ deterministic local post-processing
+canonical raw/archive log
+→ deterministic local post-processing when needed
 → derived retrieval package under research/derived/
-→ Assistant reads manifest/counts/signals/timeline slices first
-→ raw remains canonical and available for exact verification
+→ read the smallest useful derived signals/timeline first
+→ return to canonical source whenever exact verification is required
 ```
 
-The raw log remains the evidence. Derived files are retrieval/analysis aids.
+### Reusable tool
 
-### Current reusable tool
-
-The project now has a deterministic large-log packaging tool at:
+The current deterministic implementation lives under:
 
 ```text
 tools/log_evidence/
 ```
 
-On Windows, use the wrapper entrypoint rather than invoking the PowerShell implementation directly:
-
-```powershell
-.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd <arguments>
-```
-
-The wrapper deliberately provides:
+Use its normal Windows wrapper and exact usage documented in:
 
 ```text
-powershell.exe -NoProfile -ExecutionPolicy Bypass
-+ absolute repository-root research\derived OutputRoot
+tools/log_evidence/README.md
 ```
 
-This avoids the two already-observed direct-`.ps1` failure modes:
+The tool README owns wrapper syntax, execution-policy handling, examples and implementation-specific invocation details. Do not duplicate that manual here.
 
-1. local execution policy rejecting the script before it runs;
-2. relative `OutputRoot` resolving against an unrelated process working directory.
+A derived package must remain reproducibly tied to its canonical source, including source identity/hash and tool/extraction identity sufficient to verify how it was produced. Gate-specific extra signal patterns may be supplied when necessary; do not rewrite the canonical log because the built-in vocabulary is incomplete.
 
-The wrapper's `ExecutionPolicy Bypass` applies only to its child PowerShell process and does not require changing the machine's permanent policy.
-
-Full tool usage and argument examples: `tools/log_evidence/README.md`.
-
-### Derived package requirements
-
-The deterministic package should record/provide enough mechanically extracted information to support causal retrieval, including as applicable:
-
-- source raw relative path;
-- source SHA256;
-- source byte/line count;
-- tool/version identity and extraction criteria;
-- event counts;
-- event timeline chunks;
-- high-signal signal index/context chunks;
-- lifecycle start/status/finalization;
-- offensive requests, including `7 -> 7`;
-- cleanup observations;
-- `WOULD_REPAIR` / `REPAIRED_TO_ITEM_EQUIPPED` / repair divergence outcomes;
-- invariant warnings/unowned/overlap/generation-change/liveness failures;
-- CombatMove/AIFullStop/AISetState context when relevant;
-- timestamps, action/phase/state and source identity/side/group;
-- enough context to distinguish fixtures/configurations.
-
-Current derived package location is normally:
-
-```text
-research/derived/<raw-stem>_large_log/
-```
-
-The source raw artifact remains unchanged in `research/raw/` or its later canonical archive location according to the normal evidence lifecycle.
-
-Derived naming conventions are owned by `PROJECT_PIPELINE.md`.
-
-### Extra signal vocabulary
-
-When the current gate introduces high-signal strings not covered by the tool's built-in vocabulary, pass only the exact additional patterns needed for that gate. Example:
-
-```powershell
-.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd `
-    -InputPath '.\research\raw\example.log' `
-    -ExtraSignalPattern 'REPAIRED_TO_ITEM_EQUIPPED' `
-    -ExtraSignalPattern 'REPAIR_DIVERGED_FROM_ITEM_EQUIPPED'
-```
-
-Do not rewrite the raw log merely because the built-in signal vocabulary needs extension.
-
-### Direct `.ps1` invocation
-
-Direct invocation is not the normal procedure. If it is genuinely necessary, use an absolute `-OutputRoot` and an execution-policy scope appropriate to that explicit manual operation.
+Derived artifact naming/location conventions remain owned by `PROJECT_PIPELINE.md`. Derived material is a retrieval aid, not a replacement evidence authority.
 
 Do not move extraction logic into production/runtime behavior merely for connector convenience.
 
@@ -494,14 +492,17 @@ Examples:
 build error
 → inspect smallest useful error excerpt
 
-multiple matching live DLLs
+both mutually exclusive collision twins live / wrong selected product live
 → stop before game launch
 
 built/live SHA mismatch
 → stop before game launch
 
-startup banner missing / load crash
+diagnostic product: expected startup banner missing
 → stop before runtime matrix
+
+behavior-only product: load crash / main-menu failure / abnormal exit
+→ stop before functional smoke
 
 Git rebase conflict
 → stop automatic Git procedure and inspect conflict
@@ -516,21 +517,23 @@ Do not ask the User for full successful outputs or entire logs merely because a 
 
 ## 12. Procedure Maintenance
 
-The active procedure is the current best default. Git history preserves old versions; the active document should not accumulate obsolete variants.
+The active procedure is the current best project-specific operationalization. Git history preserves old versions; the active document should not accumulate obsolete variants.
 
 Use this maintenance trigger:
 
 ```text
 use procedure normally
 → no routine audit
-→ repeated friction/mistake OR one serious failure OR clearly better method appears
+→ repeated friction/mistake OR one serious failure OR clearly better recurring method appears
 → whichever participant notices first raises it
 → diagnose actual cause
 → revise the smallest owning procedure/rule
 → continue using revised procedure
 ```
 
-If the issue is actually a naming/numbering/version/state convention rather than a recurring sequence, update `PROJECT_PIPELINE.md` instead of silently embedding a new convention here.
+If the issue is actually a naming/numbering/version/state/product convention rather than a recurring sequence, update `PROJECT_PIPELINE.md` instead of silently embedding a new convention here.
+
+If the issue is participant/tool allocation or CAM operationalization rather than an operational sequence, update `COLLABORATION_RULES.md` instead.
 
 When a procedure becomes too long, ask whether stable detail can be moved into a reusable script/tool while this document keeps only the trigger, invariant, and sequence cue.
 
@@ -543,15 +546,15 @@ When a new recurring operation appears, first ask whether an existing POP sectio
 | Cue | Procedure |
 |---|---|
 | assistant/user both writing same branch | POP-01 Git branch handoff and synchronization |
-| source reviewed, need DLL | POP-02 Build only |
-| build succeeded, need live DLL | POP-03 Deploy and binary-identity verification |
-| DLL copied, before full test | POP-04 Startup/load verification |
-| ready for controlled runtime evidence | POP-05 Freeze runtime test and raw filename |
+| source reviewed, need selected DLL | POP-02 Build only |
+| build succeeded, need exact live product | POP-03 Deploy and binary-identity verification |
+| DLL copied, before full test | POP-04 Product-appropriate startup/load verification |
+| ready for controlled runtime evidence | POP-05 Freeze runtime test and raw filename when applicable |
 | runtime log copied locally | POP-06 Raw evidence integrity and publish |
-| raw log too large to retrieve efficiently | POP-07 Large runtime log analysis |
+| raw/archive log too large to retrieve efficiently | POP-07 Large runtime log analysis |
 | large static Engine/Game/Script_Game material | POP-08 Static binary/reference retrieval |
 | routine command/procedure fails | POP-09 Routine failure/stop behavior |
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence, hand the active Git branch between writers deliberately, use the stable project conventions rather than reinventing them, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
+> **Preserve causal certainty and canonical evidence, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, use stable project conventions rather than reinventing them, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**

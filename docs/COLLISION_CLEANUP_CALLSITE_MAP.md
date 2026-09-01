@@ -1,7 +1,7 @@
 # Gothic 3 Native Collision Cleanup Call-Site Map
 
 **Status:** Runtime/static reverse-engineering reference for the current tested build  
-**Updated:** 2026-08-27  
+**Updated:** 2026-09-01  
 **Scope:** Native/unmarked player melee cleanup observations from Step B4/B4b/B5 plus later static parent identification
 
 ## Purpose
@@ -18,9 +18,7 @@ Use this file when searching by:
 
 Current lifecycle architecture is in `COLLISION_LIFECYCLE_PLAN.md`.
 
-The pre-information-architecture map is preserved at:
-
-`docs/archive/technical_2026-08-27/COLLISION_CLEANUP_CALLSITE_MAP_pre_ia.md`
+Superseded pre-information-architecture wording remains recoverable through Git history. Exact factual provenance routes through the EV entries and processed runtime logs below.
 
 ---
 
@@ -207,7 +205,7 @@ Therefore:
 
 > `ProcessScript()` is a **generic dispatcher**, not a collision-cleanup owner.
 
-If it is ever used by the final lifecycle design, it may provide only a tightly gated **timing checkpoint** for an already-owned exact attack execution.
+If it is ever used by a future lifecycle design, it may provide only a tightly gated timing checkpoint for an already-owned exact attack execution.
 
 ---
 
@@ -250,7 +248,7 @@ Some families share local instruction shapes, but full Whirl diverges.
 
 The first demonstrated ordinary common point is the generic `RunScriptFunction` return, which is broader than combat.
 
-This is why the project moved to the B6 question rather than adding another family/helper hook.
+This is why the project proceeded to the later replacement/lifetime investigation rather than adding another family/helper hook.
 
 ---
 
@@ -273,7 +271,7 @@ This is why the project moved to the B6 question rather than adding another fami
 | Script state runner | `RunScriptState` | `Game + 0x1603D0` | generic B5 interruption-side parent |
 | Script function runner | `RunScriptFunction` | `Game + 0x1604E0` | generic B5 ordinary-side parent |
 | script dispatcher | `ProcessScript` | `Game + 0x16F120` | common higher generic dispatcher |
-| collision group | `eCEntity::SetCollisionGroup` | `Game + 0x225660` | B4/B5 observation point |
+| collision group | `eCEntity::SetCollisionGroup` | `Engine + 0x225660` | B4/B5 observation point |
 
 For broader hook lookup use `SOURCE_HOOK_GUIDE.md`.
 
@@ -292,29 +290,34 @@ marked source requests offense
 → old marker occurrence/execution bookkeeping can survive
 ```
 
-The retirement helper reacts to an **already-performed** source reset and may retire stale marker bookkeeping.
+The retirement helper reacts to an **already-performed** source reset and may retire the exact physical marker-owned source bit/window.
 
 Intentional OFF and exact-set switching remain intra-Hit operations and must not retire the entire execution.
 
-Evidence: EV-131–EV-133, EV-167.
+Current marker execution identity is the monotonic C1 generation; see `EVIDENCE_INDEX.md` → marker execution lifetime/bookkeeping and EV-213–EV-214.
 
 ---
 
-## 13. Current B6 Question
+## 13. Historical B6 Question — Resolved
 
-The previous open question—“what are the B5 sibling functions?”—is resolved.
+B6 asked whether clean Hit→Recover replacement, legitimate damage/reaction replacement, and destructive direct replacement occurred in a useful current SPU/`ProcessScript()` context that could support a tightly gated post-native-cleanup check.
 
-The current question is:
+The subsequent B6–B9/C1/O1/P2 investigations superseded that candidate. The accepted architecture now uses:
 
-> **Do clean Hit -> Recover replacement, legitimate damage/reaction replacement, and bad block-skip direct replacement all occur inside a useful current SPU / `ProcessScript()` invocation, so a tightly gated one-shot check can wait until Gothic's native cleanup opportunity has passed?**
+```text
+C1 monotonic generation
+= durable execution/source-obligation identity
 
-B6 uses the existing type-0 `PlayMotion` observation to capture replacement stacks without adding production cleanup.
+live ScriptFunction frame
+= temporary correlator only where pre-Combat acquisition requires it
 
-See:
+post-native AISetState finalization
+= terminal exact-source repair checkpoint
+```
 
-- `SESSION_ENTRYPOINT.md`
-- `COLLISION_LIFECYCLE_PLAN.md` §8–§9
-- `COLLISION_TEST_PLAN.md` Gate B6
+Do not revive the old B6 `ProcessScript()` checkpoint candidate without new contradicting evidence.
+
+Historical causal proof routes through `EVIDENCE_INDEX.md` (EV-174 onward) and exact raw/archive provenance.
 
 ---
 
@@ -322,7 +325,7 @@ See:
 
 This map does not claim native cleanup coverage for every combat enum/source/actor type.
 
-Not established by this matrix include, among others:
+Not established by the original B4/B5 matrix include, among others:
 
 - generic Quick/action 3;
 - SprintAttack;

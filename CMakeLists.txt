@@ -19,7 +19,6 @@ add_subdirectory(src/Script_G3AnimationBehaviors)
 
 if(G3AB_BUILD_PROTOTYPES)
     add_subdirectory(prototypes/Script_FrameCollisionTest)
-    add_subdirectory(prototypes/Script_FrameEffectLogger)
 endif()
 
 if(G3AB_BUILD_TOOLS)

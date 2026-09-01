@@ -1,8 +1,8 @@
 # Gothic 3 Knowledge Maintenance Protocol
 
 **Status:** Active project knowledge-maintenance protocol  
-**Version:** 1.3
-**Updated:** 2026-08-30
+**Version:** 1.4
+**Updated:** 2026-09-01
 
 ## Purpose
 
@@ -177,29 +177,37 @@ future comparison before removal/refactor
 
 Never leave a future chat with only “this can probably be simplified.” It must also be routed to the reproduced failures, invariants, or compatibility reasons that caused the current machinery to exist.
 
-### Project-to-CAM promotion boundary
+### CAM ↔ project learning boundary
 
-A collaboration/process lesson discovered during Gothic 3 work is maintained first at the lowest owning **project-local** layer.
+`COLLABORATION_RULES.md` owns the constitutional relationship: CAM is the higher-order collaboration philosophy and Gothic authorities are its project-specific operationalization.
+
+Knowledge maintenance therefore preserves both directions without collapsing them into one transaction:
+
+```text
+CAM principles
+→ deliberately operationalized in Gothic rules/procedures
+→ used in real project work
+→ project success/friction/failure produces empirical lessons
+→ improve the lowest owning Gothic authority when the lesson fits the adopted CAM principles
+→ observe the revised project behavior
+→ identify candidate wider value or a possible CAM-level gap when warranted
+→ STOP upward modification in Gothic work
+→ dedicated CAM-evolution responsibility compares across projects and may evolve CAM
+→ deliberately review/apply adopted CAM evolution back into affected Gothic authorities
+```
 
 Normal Gothic 3 maintenance may:
 
 - fix the relevant project rule/procedure/route;
 - preserve why the change was needed;
-- compare the lesson with CAM `current` when that helps interpretation;
-- identify it as a candidate for wider reuse.
+- use CAM as governing context/check consistency when that is materially relevant;
+- identify a lesson as a candidate for wider reuse or CAM-level review.
 
-It must not automatically edit the CAM repository or promote the lesson upward as part of the same maintenance transaction.
+It must not edit the CAM repository or pretend that a lower project-local rule has silently changed CAM philosophy.
 
-```text
-project lesson
-→ improve lowest project-local owner
-→ observe real use
-→ preserve candidate reusable rationale when warranted
-→ STOP project-local promotion
-→ dedicated CAM-evolution responsibility later performs cross-project comparison and any upward change
-```
+Likewise, a later CAM revision does not silently alter this repository. Applicable CAM evolution is deliberately brought back down into the appropriate Gothic authority so the operational consequence is explicit.
 
-The User may explicitly open that separate CAM-evolution responsibility. Until then, “compare with CAM” means use CAM as governing context/check consistency, not modify CAM.
+The User may explicitly open the separate CAM-evolution responsibility. Until then, Gothic maintenance stops at the project-local boundary.
 
 ---
 
@@ -530,4 +538,4 @@ If no document needs changing, it can simply continue; absence of documentation 
 
 ## Core Rule
 
-> **Every meaningful event updates the smallest owning records automatically. Preserve knowledge once, route to it by both present topic and concrete future responsibility when needed, preserve the reason behind workarounds before simplifying them, keep bounded Work contracts authoritative in the repository rather than duplicated into launch prompts, keep project-to-CAM promotion as a separate deliberate responsibility, and keep full audits rare. If the retrieval system itself starts creating context or document bloat, surface that problem early and use audits/stabilization points to tighten it.**
+> **Every meaningful event updates the smallest owning records automatically. Preserve knowledge once, route to it by both present topic and concrete future responsibility when needed, preserve the reason behind workarounds before simplifying them, keep bounded Work contracts authoritative in the repository rather than duplicated into launch prompts, keep CAM as the constitutional collaboration layer while reserving CAM evolution for a separate deliberate responsibility, deliberately bring adopted CAM evolution back into affected Gothic authorities, and keep full audits rare. If the retrieval system itself starts creating context or document bloat, surface that problem early and use audits/stabilization points to tighten it.**
