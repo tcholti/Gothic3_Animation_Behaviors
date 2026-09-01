@@ -23,13 +23,23 @@ Contains the newest active research, implementation and continuation state.
 
 Normal development continues on `docs/collision-source-evidence`. Stable promotion remains deliberate rather than automatic.
 
-### Relationship to the reusable CAM baseline
+### Relationship to CAM
 
-The central `tcholti/Collaborative-Agency-Model` repository is a reusable collaboration framework. Gothic 3 is an empirical project-specific instantiation of that broader model, not a file-for-file copy of its templates.
+CAM is the higher-order collaboration philosophy for this project. Gothic 3 is a project-specific operationalization of that constitutional layer, not a file-for-file copy of CAM templates.
 
-Use CAM as a comparison/reference when collaboration structure itself is being evaluated. Gothic 3's mature authorities remain authoritative for their own responsibilities.
+The detailed Gothic↔CAM authority relationship is owned by `COLLABORATION_RULES.md`. In retrieval terms:
 
-> **CAM boundary:** Gothic 3 work may read/compare against CAM, but it must not modify CAM rules, philosophy, profiles, procedures or theory. CAM evolution belongs to a separate User-authorized CAM-focused responsibility.
+```text
+CAM principles / philosophy
+→ operationalized by Gothic project authorities
+→ ordinary work reads the lowest relevant Gothic owner
+```
+
+Constitutional authority does not mean every engineering task must reread CAM. Use the maintained Gothic authorities for ordinary project work; retrieve CAM itself when collaboration structure, principle-level consistency, or a later upward-review question genuinely requires it.
+
+A newer CAM revision does not silently rewrite Gothic project authorities. CAM evolution and project adoption are separate deliberate steps.
+
+> **CAM boundary:** Gothic 3 work must not modify CAM rules, philosophy, profiles, procedures or theory. Any CAM evolution belongs to a separate User-authorized CAM-focused responsibility; applicable adopted changes are then deliberately operationalized back into Gothic authorities.
 
 The project predates CAM's newer `PROJECT_MANIFEST.md` template. Its manifest responsibilities are already distributed across established authorities:
 
@@ -37,7 +47,7 @@ The project predates CAM's newer `PROJECT_MANIFEST.md` template. Its manifest re
 |---|---|
 | repository / branch model | this `README.md` + `PROJECT_PIPELINE.md` |
 | current-state entry point | `SESSION_ENTRYPOINT.md` |
-| project-specific collaboration delta / participant allocation | `COLLABORATION_RULES.md` |
+| project-specific collaboration delta / participant allocation / CAM operationalization | `COLLABORATION_RULES.md` |
 | stable naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` |
 | authority ownership / update triggers | `KNOWLEDGE_REGISTRY.md` |
 | retrieval model / subsystem orientation routes | this `README.md` |
@@ -147,7 +157,7 @@ Transient latest Chat/Work handoff only. Read only when continuing that exact tr
 
 #### `COLLABORATION_RULES.md`
 
-Gothic 3 project-specific collaboration delta, including User/Normal Chat/Work responsibility allocation. General reusable collaboration theory remains in CAM and is not routine engineering pre-reading.
+Gothic 3 project-specific collaboration delta: CAM operationalization, User/Normal Chat/Work responsibility allocation, authorization boundaries and project-method evolution. CAM itself is constitutional context, not routine engineering pre-reading.
 
 #### `PROJECT_PIPELINE.md`
 
@@ -279,10 +289,12 @@ Removed/superseded active documents and earlier wording remain recoverable from 
 | What are we doing now? | `SESSION_ENTRYPOINT.md` | `BETWEEN_CHATS.md` for exact transient continuation |
 | What causal model constrains an active collision problem? | current subsystem authority | `EVIDENCE_INDEX.md` reconstruction route → exact EV entries |
 | What did the last Chat/Work handoff do? | `BETWEEN_CHATS.md` | exact commit/diff |
-| Who should own this responsibility / should this go to Work? | `COLLABORATION_RULES.md` | `WORK_IMPLEMENTATION_PROTOCOL.md` only if bounded implementation is selected |
+| How does CAM govern this project / who should own this responsibility / should this go to Work? | `COLLABORATION_RULES.md` | CAM itself only for a genuine principle-level comparison; `WORK_IMPLEMENTATION_PROTOCOL.md` only if bounded implementation is selected |
 | What naming/numbering/version/test/artifact convention should I use? | `PROJECT_PIPELINE.md` relevant section | owning procedure/current plan only for task semantics |
 | How do I execute recurring Git/build/deploy/test/evidence work? | `PROJECT_OPERATING_PROCEDURES.md` | `PROJECT_PIPELINE.md` only if a convention itself is relevant |
 | How should bounded Work execute? | `WORK_IMPLEMENTATION_PROTOCOL.md` | only task-named source/API/evidence |
+| How is project knowledge maintained? | `KNOWLEDGE_MAINTENANCE.md` | `KNOWLEDGE_REGISTRY.md` for exact owner/update trigger |
+| Who owns this type of project knowledge? | `KNOWLEDGE_REGISTRY.md` | owning authority named there |
 | What is the overall architecture? | `DESIGN.md` | evidence index if a premise must be checked |
 | What is the current collision lifecycle model? | `COLLISION_LIFECYCLE_PLAN.md` | cleanup map / EV range |
 | What should diagnostics capture? | `COLLISION_LOGGER_PLAN.md` | source + exact EV |
@@ -373,9 +385,12 @@ Work preserves already-frozen identifiers, filenames and build labels. It may in
 |---|---|
 | current continuation / immediate responsibility | `SESSION_ENTRYPOINT.md` |
 | transient cross-context handoff | `BETWEEN_CHATS.md` |
+| project-specific CAM operationalization / participant allocation / authorization | `COLLABORATION_RULES.md` |
 | stable project naming/numbering/version/test/artifact conventions | `PROJECT_PIPELINE.md` |
 | recurring local operational sequences | `PROJECT_OPERATING_PROCEDURES.md` |
-| project collaboration configuration | `COLLABORATION_RULES.md` |
+| bounded implementation execution | `WORK_IMPLEMENTATION_PROTOCOL.md` |
+| knowledge-maintenance process | `KNOWLEDGE_MAINTENANCE.md` |
+| knowledge ownership/update triggers | `KNOWLEDGE_REGISTRY.md` |
 | documentation map / retrieval depth / subsystem orientation | this `README.md` |
 | overall intended system architecture | `DESIGN.md` |
 | current collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
