@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.3  
+**Version:** 1.4  
 **Updated:** 2026-09-01
 
 ## Purpose
@@ -113,19 +113,18 @@ Assistant pushes
 
 If the assistant has changed the remote branch since the User last synchronized, perform the pull/rebase before the User begins a new local artifact/commit window whenever practical.
 
-Current active branch/state meaning is owned by `SESSION_ENTRYPOINT.md` + `PROJECT_PIPELINE.md`. At this revision the active branch is:
+The exact active branch is current project state owned by `SESSION_ENTRYPOINT.md` / `PROJECT_PIPELINE.md`; this procedure must not maintain a competing branch identity.
 
-```text
-docs/collision-source-evidence
-```
-
-Typical synchronization:
+Typical synchronization shape:
 
 ```powershell
 Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
 
-git pull --rebase origin docs/collision-source-evidence
+$branch = '<active branch from SESSION_ENTRYPOINT.md>'
+git pull --rebase origin $branch
 ```
+
+Normal Chat should normally provide the resolved exact branch in the concrete command rather than making the User look it up manually.
 
 Do not run a blind pull/rebase across important uncommitted local work. The normal handoff rule should make that unnecessary; if local work already exists, inspect the concrete state first.
 
@@ -134,8 +133,9 @@ Do not run a blind pull/rebase across important uncommitted local work. The norm
 If the intended local commit already exists and the only problem is that the remote branch advanced:
 
 ```powershell
-git pull --rebase origin docs/collision-source-evidence
-git push origin docs/collision-source-evidence
+$branch = '<active branch from SESSION_ENTRYPOINT.md>'
+git pull --rebase origin $branch
+git push origin $branch
 git rev-parse HEAD
 ```
 
@@ -345,6 +345,7 @@ Typical command pattern:
 ```powershell
 Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
 
+$branch = '<active branch from SESSION_ENTRYPOINT.md>'
 $log = '.\research\raw\<frozen-log-name>.log'
 
 Get-Item -LiteralPath $log |
@@ -353,9 +354,11 @@ Get-Item -LiteralPath $log |
 git status --short -- $log
 git add -- $log
 git commit -m '<descriptive evidence commit message>'
-git push origin docs/collision-source-evidence
+git push origin $branch
 git rev-parse HEAD
 ```
+
+Normal Chat should provide the resolved exact branch and exact frozen filename in the concrete command. The User should not have to substitute placeholders during an actual test transaction.
 
 Normal Chat should normally ask only for the final SHA or a short success confirmation.
 
@@ -365,100 +368,39 @@ Normal Chat should normally ask only for the final SHA or a short success confir
 
 ### Trigger
 
-Use when the canonical raw log is too large for efficient GitHub/connector retrieval or would create unnecessary Chat/tool context pressure.
+Use when a canonical runtime log is too large for efficient repository/connector retrieval or would create unnecessary Chat/tool context pressure.
 
-### Core rule
+### Invariant
 
-Do not reduce or rewrite the raw logger output merely to make retrieval easier.
-
-Instead:
+The source log remains canonical evidence. Retrieval convenience must never cause it to be trimmed, rewritten or replaced by a summary.
 
 ```text
-full canonical raw log
-→ deterministic local post-processing
+canonical raw/archive log
+→ deterministic local post-processing when needed
 → derived retrieval package under research/derived/
-→ Assistant reads manifest/counts/signals/timeline slices first
-→ raw remains canonical and available for exact verification
+→ read the smallest useful derived signals/timeline first
+→ return to canonical source whenever exact verification is required
 ```
 
-The raw log remains the evidence. Derived files are retrieval/analysis aids.
+### Reusable tool
 
-### Current reusable tool
-
-The project now has a deterministic large-log packaging tool at:
+The current deterministic implementation lives under:
 
 ```text
 tools/log_evidence/
 ```
 
-On Windows, use the wrapper entrypoint rather than invoking the PowerShell implementation directly:
-
-```powershell
-.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd <arguments>
-```
-
-The wrapper deliberately provides:
+Use its normal Windows wrapper and exact usage documented in:
 
 ```text
-powershell.exe -NoProfile -ExecutionPolicy Bypass
-+ absolute repository-root research\derived OutputRoot
+tools/log_evidence/README.md
 ```
 
-This avoids the two already-observed direct-`.ps1` failure modes:
+The tool README owns wrapper syntax, execution-policy handling, examples and implementation-specific invocation details. Do not duplicate that manual here.
 
-1. local execution policy rejecting the script before it runs;
-2. relative `OutputRoot` resolving against an unrelated process working directory.
+A derived package must remain reproducibly tied to its canonical source, including source identity/hash and tool/extraction identity sufficient to verify how it was produced. Gate-specific extra signal patterns may be supplied when necessary; do not rewrite the canonical log because the built-in vocabulary is incomplete.
 
-The wrapper's `ExecutionPolicy Bypass` applies only to its child PowerShell process and does not require changing the machine's permanent policy.
-
-Full tool usage and argument examples: `tools/log_evidence/README.md`.
-
-### Derived package requirements
-
-The deterministic package should record/provide enough mechanically extracted information to support causal retrieval, including as applicable:
-
-- source raw relative path;
-- source SHA256;
-- source byte/line count;
-- tool/version identity and extraction criteria;
-- event counts;
-- event timeline chunks;
-- high-signal signal index/context chunks;
-- lifecycle start/status/finalization;
-- offensive requests, including `7 -> 7`;
-- cleanup observations;
-- `WOULD_REPAIR` / `REPAIRED_TO_ITEM_EQUIPPED` / repair divergence outcomes;
-- invariant warnings/unowned/overlap/generation-change/liveness failures;
-- CombatMove/AIFullStop/AISetState context when relevant;
-- timestamps, action/phase/state and source identity/side/group;
-- enough context to distinguish fixtures/configurations.
-
-Current derived package location is normally:
-
-```text
-research/derived/<raw-stem>_large_log/
-```
-
-The source raw artifact remains unchanged in `research/raw/` or its later canonical archive location according to the normal evidence lifecycle.
-
-Derived naming conventions are owned by `PROJECT_PIPELINE.md`.
-
-### Extra signal vocabulary
-
-When the current gate introduces high-signal strings not covered by the tool's built-in vocabulary, pass only the exact additional patterns needed for that gate. Example:
-
-```powershell
-.\tools\log_evidence\Build-LargeLogEvidencePackage.cmd `
-    -InputPath '.\research\raw\example.log' `
-    -ExtraSignalPattern 'REPAIRED_TO_ITEM_EQUIPPED' `
-    -ExtraSignalPattern 'REPAIR_DIVERGED_FROM_ITEM_EQUIPPED'
-```
-
-Do not rewrite the raw log merely because the built-in signal vocabulary needs extension.
-
-### Direct `.ps1` invocation
-
-Direct invocation is not the normal procedure. If it is genuinely necessary, use an absolute `-OutputRoot` and an execution-policy scope appropriate to that explicit manual operation.
+Derived artifact naming/location conventions remain owned by `PROJECT_PIPELINE.md`. Derived material is a retrieval aid, not a replacement evidence authority.
 
 Do not move extraction logic into production/runtime behavior merely for connector convenience.
 
@@ -517,7 +459,7 @@ Do not ask the User for full successful outputs or entire logs merely because a 
 
 ## 12. Procedure Maintenance
 
-The active procedure is the current best default. Git history preserves old versions; the active document should not accumulate obsolete variants.
+The active procedure is the current best project-specific operationalization. Git history preserves old versions; the active document should not accumulate obsolete variants.
 
 Use this maintenance trigger:
 
@@ -533,7 +475,7 @@ use procedure normally
 
 If the issue is actually a naming/numbering/version/state convention rather than a recurring sequence, update `PROJECT_PIPELINE.md` instead of silently embedding a new convention here.
 
-If the issue is participant/tool allocation rather than an operational sequence, update `COLLABORATION_RULES.md` instead.
+If the issue is participant/tool allocation or CAM operationalization rather than an operational sequence, update `COLLABORATION_RULES.md` instead.
 
 When a procedure becomes too long, ask whether stable detail can be moved into a reusable script/tool while this document keeps only the trigger, invariant, and sequence cue.
 
@@ -551,7 +493,7 @@ When a new recurring operation appears, first ask whether an existing POP sectio
 | DLL copied, before full test | POP-04 Startup/load verification |
 | ready for controlled runtime evidence | POP-05 Freeze runtime test and raw filename |
 | runtime log copied locally | POP-06 Raw evidence integrity and publish |
-| raw log too large to retrieve efficiently | POP-07 Large runtime log analysis |
+| raw/archive log too large to retrieve efficiently | POP-07 Large runtime log analysis |
 | large static Engine/Game/Script_Game material | POP-08 Static binary/reference retrieval |
 | routine command/procedure fails | POP-09 Routine failure/stop behavior |
 
