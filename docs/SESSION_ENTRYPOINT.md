@@ -159,43 +159,33 @@ The cleanup found no remaining structural ambiguity that should delay engineerin
 
 ---
 
-## CURRENT RESPONSIBILITY — Remaining Equipped-Melee Marker Architecture Review
+## CURRENT RESPONSIBILITY — Finalize Remaining Equipped-Melee Marker Architecture
 
 Return to engineering, but **do not modify behavior code yet**.
 
-The shared marker/source/generation core has already been reviewed and accepted as suitable for broader family expansion. The previous one-family-per-implementation planning rule is superseded for the remaining already-understood equipped-weapon callback families.
-
-Accepted scope:
+Required marker expansion is now:
 
 ```text
-REQUIRED MARKER SUPPORT:
 PowerAttack
 PierceAttack
 SimpleWhirl
 HackAttack
-
-OPTIONAL / NICE TO HAVE:
-GetUpAttack
-= include only if it fits the established architecture cleanly
-
-DELIBERATELY EXCLUDED:
-FinishingAttack
-= preserve native downed-enemy execution behavior; no marker requirement
-
-Fist/body
-= separate source-adapter research after equipped-weapon coverage
 ```
+
+`GetUpAttack` is now **deferred** rather than part of the immediate batch: it can perform legitimate offense before later CombatMove and its native callback also changes `AniState` to `Stand`, so suppressing it would cross into non-collision semantics.
+
+`FinishingAttack` remains deliberately excluded and native. Fist/body remains a separate later source-adapter investigation.
 
 Accepted implementation/validation strategy:
 
 ```text
-finish architecture/source review
-→ implement all remaining proven-compatible required equipped-melee adapters in one bounded code change
+finish the last two narrow Hack facts
+→ freeze exact shared adapter architecture with User
+→ implement Power + Pierce + SimpleWhirl + Hack in one bounded code change
 → validate Power independently
 → validate Pierce independently
 → validate SimpleWhirl independently
 → validate Hack independently
-→ validate GetUp separately only if included
 → run combined marker/lifecycle regression afterward
 ```
 
@@ -212,32 +202,49 @@ keep Fist/body source adaptation separate
 keep AttackContinuationProtection separate
 ```
 
-### HackAttack
+### Current callback/bookkeeping classification
 
-Hack is a required marker family and a related animation-resolution improvement.
+```text
+Pierce
+→ one-stage native collision callback
+→ StatePosition 1
 
-Tested/runtime facts already establish distinct semantics:
+SimpleWhirl
+→ one-stage native collision callback
+→ StatePosition 1
+
+Hack
+→ native callback-shaped routine at Script_Game +0x433D0 performs Item_Attack(7), triggered-list clearing and StatePosition 1
+→ exact registered callback name/entry still needs confirmation
+
+Power
+→ native two-stage collision callback
+→ ordinary/non-Dual marker-owned completion at StatePosition 1
+→ Dual 1H+1H marker-owned completion at StatePosition 2 so all competing native collision/rearm timing is consumed
+```
+
+Repeated Power contacts remain authored through the existing marker vocabulary and `ClearTriggeredList()` rearm; do not rebuild Power as a separate marker engine.
+
+### HackAttack optional animation routing
+
+Known runtime/static facts:
 
 ```text
 gEAction_HackAttack       = 14
 gEAction_FinishingAttack  = 15
+
+gCScriptProcessingUnit::GetAniName
+= Game +0x16F840
+= receives native gEAction
+
+Game +0x16FA16
+→ indexes action-string table at Game +0x3F75C0
+→ serializes the action token used in the animation name
 ```
 
-The tested game can use the serialized `FinishingAttack` asset family for runtime Hack. Simply providing HackAttack-style renamed assets did not make Gothic select them in the User's small rename test.
+This explains why simply adding `_HackAttack_` files did not make the tested game select them: runtime Hack currently serializes the shared `FinishingAttack` action family.
 
-Preferred target is a narrow native-compatible routing change:
-
-```text
-runtime HackAttack remains action 14
-→ Gothic resolves dedicated HackAttack animation assets
-→ Gothic itself continues interpreting normal filename metadata
-→ Hack Hit markers use the ordinary equipped-slot marker architecture
-
-runtime FinishingAttack remains action 15
-→ existing execution assets and timer-driven execution semantics remain native/unmarked
-```
-
-Preferred Hack fixture names:
+Preferred Hack fixture names remain:
 
 ```text
 Hero_Parade_None_2H_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
@@ -249,15 +256,57 @@ Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot
 Hero_Parade_None_Staff_P0_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
 ```
 
-`100` is the current animation-author Hit-distance candidate, not a DLL constant. The behavior code should depend on native action/phase/UseType/resolved-motion facts and should not parse/reimplement destination-pose, movement-distance, or other filename semantics that Gothic already consumes natively. `ANIMATION_RULES.md` remains the authority for this distinction.
+`100` remains animation-author metadata, not a DLL constant. Gothic keeps ownership of destination pose, movement distance and the rest of its filename contract.
 
-Immediate next step:
+The accepted feature behavior is now **optional override with fallback**:
 
 ```text
-inspect Power/Pierce/SimpleWhirl callback bookkeeping
-+ trace Hack action-14 collision ownership and FinishingAttack asset selection
-+ classify GetUp as trivial vs materially different
-→ freeze exact multi-family implementation architecture with User
+runtime action == HackAttack
++ active/native animation resolver produces the ordinary serialized name
+→ derive only the corresponding HackAttack action-token variant
+→ if matching HackAttack asset exists: use it
+→ if it does not exist: preserve the original FinishingAttack name/path unchanged
+```
+
+Therefore G3AB must work normally with **no custom Hack assets**. Dedicated Hack assets are optional content discovered/used only when present.
+
+### Jackydima Script_Animation compatibility requirement
+
+`Jackydima/Script_Animation` is now a relevant compatibility reference.
+
+It hooks `GetAniName` at `Game +0x16F840`, rebuilds animation names, and globally changes the UseType→string table at `Game +0x2BAC98` so normally shared weapon types can acquire namespaces such as `Axe`. It uses the same action-string table at `Game +0x3F75C0` identified independently by this project.
+
+G3AB must not assume exclusive ownership of that hook or undo the resulting animation namespace.
+
+Required compatibility behavior:
+
+```text
+preserve whatever serialized actor/weapon/pose/phase/direction/etc. name the active resolver already produced
+→ modify only the exact FinishingAttack→HackAttack action token for factual runtime Hack
+→ only when the matching optional Hack asset is valid/present
+```
+
+Do not globally patch action 14's action-string-table entry: the stock inventory has no native HackAttack assets, while FinishingAttack assets exist across multiple Hero/Orc weapon families, so a global replacement would be too broad.
+
+Do not choose the New Balance `Game +0x16B065` interception merely because it is known; New Balance compatibility also remains required.
+
+### Exact immediate next step
+
+Only two narrow factual questions remain before Work:
+
+```text
+1. Resolve the registered AI-callback identity/name corresponding to Script_Game +0x433D0.
+
+2. Find the narrowest safe result-level/post-name-construction Hack override path plus exact-animation existence/preflight mechanism that:
+   - does not require exclusive ownership of GetAniName,
+   - preserves namespaces produced by native Gothic or Script_Animation,
+   - falls back to the untouched FinishingAttack name when no matching Hack asset exists.
+```
+
+After those are answered:
+
+```text
+freeze exact multi-family implementation architecture with User
 → only then create the bounded Work responsibility
 ```
 
@@ -267,7 +316,7 @@ inspect Power/Pierce/SimpleWhirl callback bookkeeping
 
 ```text
 remaining equipped-melee architecture review
-→ one bounded Power/Pierce/SimpleWhirl/Hack implementation (+ GetUp only if clean)
+→ one bounded Power/Pierce/SimpleWhirl/Hack implementation
 → family-by-family validation
 → separate Fist source-adapter investigation
 → full marker/lifecycle regression
