@@ -3,7 +3,7 @@
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active bounded-implementation protocol  
 **Version:** 1.3  
-**Updated:** 2026-08-30
+**Updated:** 2026-09-01
 
 ## Purpose
 
@@ -48,7 +48,7 @@ For a frozen/bounded implementation task, start with only:
 4. the exact source files assigned by the task;
 5. the specific design/evidence/reference section explicitly named by the task.
 
-Do **not** automatically read `ENGINEERING_GUIDE.md`, the full evidence ledgers, `RESEARCH_MAP.md`, `SOURCE_HOOK_GUIDE.md`, the entire collision plan set, or the whole repository before coding.
+Do **not** automatically read `ENGINEERING_GUIDE.md`, the full evidence ledgers, `SOURCE_HOOK_GUIDE.md`, the entire collision plan set, or the whole repository before coding.
 
 Retrieve additional material only when the implementation exposes a concrete dependency, contradiction, API uncertainty, or source question that requires it.
 
