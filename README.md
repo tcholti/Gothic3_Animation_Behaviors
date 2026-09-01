@@ -12,15 +12,18 @@ Do not assume `main` contains the newest working implementation merely because i
 ## Start Here
 
 - [Session entry point](docs/SESSION_ENTRYPOINT.md) — minimal current-state front door.
-- [Documentation and knowledge map](docs/README.md) — Hot/Warm/Cold retrieval routes and authority by question.
+- [Project charter and knowledge map](docs/README.md) — highest Gothic-specific authority beneath CAM for project purpose, long-term direction, authority topology, and Hot/Warm/Cold retrieval routes.
 - [Evidence index](docs/EVIDENCE_INDEX.md) — route engine/research questions to exact EV ranges and provenance.
 - [Animation knowledge index](docs/ANIMATION_INDEX.md) — route filename/UseType/action/pose/asset questions to exact sections/data.
 - [Knowledge maintenance protocol](docs/KNOWLEDGE_MAINTENANCE.md) — event-driven local documentation/evidence/archive updates; use when completing meaningful engineering events, not as routine pre-reading.
-- [Knowledge authority registry](docs/KNOWLEDGE_REGISTRY.md) — tells which document owns each knowledge responsibility and what changes trigger an update.
+- [Knowledge authority registry](docs/KNOWLEDGE_REGISTRY.md) — tells which specialist document owns each knowledge responsibility and what changes trigger an update.
+- [Project operating procedures](docs/PROJECT_OPERATING_PROCEDURES.md) — recurring local operations plus POP-10, the mandatory authority/intended-use preflight for formal project reviews/audits.
 - [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — bounded-implementation contract for Work/coding sessions.
-- [Gothic 3 project collaboration delta](docs/COLLABORATION_RULES.md) — project-specific operationalization of the higher-order CAM collaboration philosophy, including participant/tool allocation and the boundary that CAM itself is changed only in dedicated CAM work.
+- [Gothic 3 project collaboration delta](docs/COLLABORATION_RULES.md) — project-specific operationalization of the CAM constitutional collaboration layer, including participant/tool allocation and the boundary that CAM itself is changed only in dedicated CAM work.
 
 Do **not** load every document by default. The repository is designed as deep external memory: start with current state, then spot-search the exact technical knowledge needed for the current responsibility.
+
+For a formal review/audit, do not start by treating documents as peers. Apply POP-10: establish `CAM → Gothic project charter → specialist authority → procedure/task` and each target's intended use before evaluating contradiction, duplication or cleanup.
 
 The maintenance protocol/registry are process tools, not mandatory context for every prompt. Normal Chat should apply their trigger logic automatically when a meaningful project event completes so the User does not have to request documentation housekeeping separately.
 
