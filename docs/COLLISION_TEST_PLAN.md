@@ -1,19 +1,17 @@
-# Collision Lifecycle Test Plan
+# Collision Validation Plan
 
-**Status:** Current collision validation authority — second-pass architecture verification COMPLETE through EV-215  
+**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215  
 **Updated:** 2026-09-01
 
 ## Purpose
 
-Define the current collision validation rules and preserve the closed gate boundaries without turning completed test chronology into an executable next-step list.
+Define standing collision-validation rules, preserve closed boundaries, and state the minimum validation responsibilities for future collision work without retaining completed test chronology as a live queue.
 
 Current state: `SESSION_ENTRYPOINT.md`.  
-Exact continuation: `BETWEEN_CHATS.md`.  
-Gate 4 result/contract: `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`.  
-Completed rewrite reference: `SECOND_PASS_REWRITE_CONTRACT.md`.  
+Transient continuation: `BETWEEN_CHATS.md` when needed.  
 Lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.  
 Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
-Exact proof: `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER*.md`.
+Exact proof: `EVIDENCE_INDEX.md` → canonical evidence ledgers.
 
 ---
 
@@ -26,23 +24,21 @@ Exact proof: `EVIDENCE_INDEX.md` → `EVIDENCE_LEDGER*.md`.
 - The monotonic C1 generation is the durable marker occurrence/dedupe execution identity.
 - C1 generation does not replace authored marker semantics, exact-set meaning, occurrence counts, replay suppression, OFF, repeated-contact rearm, supported-family ownership, physical marker-window state or terminal lifecycle repair.
 - Keep diagnostics independent from behavior correctness.
-- Public/released behavior must not compile research diagnostics.
-- Do not deploy diagnostic and behavior-only prototype DLLs together.
+- Released behavior must not compile research diagnostics.
+- Do not deploy diagnostic and behavior-only twins together.
 - Preserve raw runtime logs exactly as produced.
-- If compact diagnostics make a required validation fact ambiguous, treat that as diagnostic insufficiency; do not reinterpret ambiguity as proof.
+- If compact diagnostics make a required fact ambiguous, treat that as diagnostic insufficiency rather than proof.
 - Freeze exact test purpose/cases/order/raw filename before controlled diagnostic runs according to `PROJECT_PIPELINE.md` and POP-05.
-- Do not invent a broader matrix after a gate is closed unless a concrete contradiction creates a new falsifiable question.
+- Do not invent a broader matrix after a gate is closed unless a concrete contradiction or intentionally new responsibility creates a new falsifiable question.
 
-Authoritative diagnostic target:
+Authoritative current prototype products:
 
 ```text
 Script_FrameCollisionTest
-```
+= instrumented diagnostic twin
 
-Behavior-only architecture target:
-
-```text
 Script_FrameCollisionBehaviorTest
+= diagnostics-free behavior twin
 ```
 
 ---
@@ -63,7 +59,7 @@ C1-O2-P2 lazy pre-Combat acquisition/consumption     EV-205
 C1-R1 controlled native-equivalent physical repair   EV-206–EV-207
 ```
 
-Accepted terminal repair remains exactly:
+Accepted terminal repair:
 
 ```text
 exact outstanding source
@@ -74,18 +70,18 @@ exact outstanding source
 → verify Item_Equipped(5)
 ```
 
-Explicit R1 qualifications remain:
+Retained qualifications:
 
 ```text
 no positive outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED runtime case
 no positive NPC destructive-abandonment / C1 physical-repair case claimed
 ```
 
-These qualifications are retained limits, not open validation gates.
+These are limits on what is claimed, not open validation gates.
 
 ---
 
-## 3. Second-Pass Architecture / Product Gates — CLOSED
+## 3. Verified Modular Architecture / Product Boundary
 
 Second-pass architecture implementation:
 
@@ -106,9 +102,7 @@ final behavior-only architecture smoke    CLOSED/PASS — EV-215
 NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
 ```
 
-### Gate 2 validated control classes
-
-The CORE diagnostic product already established the required architecture controls, including:
+CORE diagnostics already proved the required architecture controls, including:
 
 ```text
 known positive stale-source repair
@@ -121,13 +115,13 @@ crossbow negative
 clean shutdown
 ```
 
-Historical exact product identities and per-run provenance remain in EV-208–EV-212 and the raw/archive evidence. They are not current deployment instructions.
+Historical product identities and exact run provenance remain in EV-208–EV-215 and archived evidence. They are not current deployment instructions.
 
 ---
 
-## 4. Gate 4 — Accepted Generation-Scoped Marker Model
+## 4. Accepted Generation-Scoped Marker Model
 
-Implementation:
+Gate-4 implementation:
 
 ```text
 7667c428a580d18f625317702ededb76aa5e8bb5
@@ -140,17 +134,7 @@ valid C1 generation
 = durable marker occurrence/dedupe execution identity
 ```
 
-Execution-boundary authority removed from marker-local guesses based on:
-
-```text
-source changes
-motion changes
-action changes
-phase changes
-state-time rollback
-authored-count changes
-controlled-callback rollback inference
-```
+Marker execution boundaries are no longer inferred from marker-local guesses based on source/motion/action/phase/state-time/authored-count changes or controlled-callback rollback.
 
 Preserve independently:
 
@@ -174,9 +158,9 @@ valid-motion-only marker caching
 C1 terminal repair contract and ordering
 ```
 
-EV-213 proves the generation-scoped implementation and regression gate. EV-214 directly closes the literal historical EV-131 same-motion interruption/restart occurrence-budget defect using the restored two-contact 2H Normal fixture. EV-215 closes the final diagnostics-free behavior-only functional/release-purity smoke.
+EV-213 proves the generation-scoped implementation; EV-214 directly closes the literal EV-131 same-motion interruption/restart defect; EV-215 closes the final diagnostics-free functional/release-purity smoke.
 
-Validated Gate-4 behavior-only identity used for EV-215:
+Validated behavior-only identity used for EV-215:
 
 ```text
 Script_FrameCollisionBehaviorTest.dll
@@ -184,7 +168,7 @@ Length: 378880
 SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
 ```
 
-The behavior-only result is functional/release-purity evidence only. Internal C1-generation, occurrence-budget, exact-set, replay/dedupe and terminal-repair proof remains in CORE diagnostic evidence EV-213/EV-214 and preceding rows.
+The behavior-only result is functional/release-purity evidence only. Internal generation, occurrence-budget, exact-set, replay/dedupe and terminal-repair proof remains in diagnostic evidence.
 
 ---
 
@@ -192,9 +176,7 @@ The behavior-only result is functional/release-purity evidence only. Internal C1
 
 There is **no pending architecture-verification test**.
 
-Do not run another broad second-pass/Gate-4 matrix merely to reconfirm the closed result.
-
-New collision tests should begin only when one of these occurs:
+New collision testing begins only when one of these occurs:
 
 ```text
 a concrete contradiction appears
@@ -224,20 +206,70 @@ reconstruct only the causal evidence route relevant to that responsibility
 
 Add one mechanism/family responsibility at a time. Preserve all closed Normal/Quick/full-Whirl marker and C1 lifecycle behavior as regression controls.
 
+Known deliberate source/authoring review item:
+
+```text
+Dual P1 Quick tested authored marker = RIGHT
+older native-source evidence for tested Dual P1 Quick = LEFT
+```
+
 ### Fist/body source adapter
 
 Fist/body semantics remain separate from equipped weapon `Item_Attack`/`Item_Equipped` handling. Do not use weapon-style assumptions until a dedicated source model is proven.
 
 ### AttackContinuationProtection
 
-This is a prevention responsibility for the known destructive continuation-loss route. It must remain separate from `CollisionLifecycleGuard`, which stays the general lost-cleanup fail-safe.
+`AttackContinuationProtection` is a **prevention** responsibility for the known held-Use2 destructive continuation-loss route. It must remain separate from `CollisionLifecycleGuard`, which remains the general exact-source lost-cleanup fail-safe.
 
-Required regression must show both:
+Do not begin by resurrecting an attack after destructive teardown. First investigate whether the cleaner root fix is to prevent or defer only the destructive timeout consequence while a real attack CombatMove execution is active.
+
+Preferred investigation model:
 
 ```text
-valid active attacks are no longer destructively killed by the targeted route
-AND
-C1 lifecycle repair/native-cleanup precedence remains unchanged
+held-Use2 timer continues normally
+
+when its destructive consumer becomes due:
+    if a real attack CombatMove execution would be destroyed
+        suppress/defer only that destructive consequence
+    else
+        preserve native timeout behavior
+```
+
+Do not assume the timer itself should be reset/frozen; changing the timer may alter post-attack input semantics. Prefer the smallest native decision boundary supported by source/runtime evidence.
+
+Before implementation prove:
+
+1. the exact timeout decision/call path leading to destructive AIFullStop/state replacement;
+2. whether that timeout has any legitimate responsibility while attack CombatMove is active;
+3. whether preventing/defering only the destructive decision lets the attack complete normally;
+4. whether the same timeout still behaves natively outside attacks;
+5. whether legitimate reaction/interruption FullStop and AISetState remain untouched;
+6. whether the module can consume shared execution facts without redefining C1 collision ownership.
+
+Minimum first runtime falsification if source evidence supports the model:
+
+```text
+known bad-skip attack + held Use2 crossing threshold
+→ destructive skip does not occur
+→ attack continues through normal marker/native lifecycle
+→ collision windows and native cleanup remain normal
+→ C1-R1 remains available underneath but should not need to repair the prevented case
+
+outside-attack control
+→ same held-Use2 timeout preserves native behavior
+
+reaction control
+→ legitimate interruption/reaction cleanup and FullStop behavior still works
+```
+
+Even if prevention succeeds, keep C1-R1:
+
+```text
+AttackContinuationProtection
+= prevent the known destructive route
+
+CollisionLifecycleGuard / C1-R1
+= fail-safe if an exact offensive source nevertheless loses cleanup opportunity
 ```
 
 ### Compatibility Gate 1 — mature research collision DLL
@@ -257,48 +289,29 @@ controlled runtime/source investigation
 → research/raw/ canonical intake
 → commit/publish unchanged artifact
 → interpretation
-→ EVIDENCE_LEDGER* canonical evidence update
+→ canonical EV update
 → EVIDENCE_INDEX route only when retrieval changes
 → research/archive/ once processed provenance is deliberately migrated
 ```
 
-Future raw→archive migrations must preserve bytes/provenance and update affected canonical paths without leaving a broken reference state. Do not move already-cited evidence piecemeal merely to make directory structure look cleaner.
+Future raw→archive migrations must preserve bytes/provenance and update canonical paths without leaving broken references.
 
-The 2026-09-01 cleanup migrated 19 already-processed collision logs with the safe sequence:
-
-```text
-copy exact existing Git blobs to research/archive/
-→ repoint canonical EVIDENCE_LEDGER_STEP_D provenance
-→ remove raw duplicates
-→ verify all 19 archive blob identities
-→ verify research/raw/ contains only Keep.txt
-→ verify Step D contains zero research/raw/ paths
-```
-
-No runtime artifact was renamed or rewritten.
+`research/derived/` remains a deterministic navigation/analysis layer for oversized evidence; it does not replace canonical raw/archive artifacts.
 
 ---
 
 ## 8. Current Project Sequence
 
-Architecture verification, authority cleanup, processed-evidence migration, temporary-branch inspection and protected-main stable promotion are complete.
+Architecture verification, evidence migration, stable promotion and temporary-branch retirement are complete.
 
-The temporary staging branch has been proven redundant by exact tree equality and is safe to retire. Its deletion is an operational repository cleanup step, not a collision validation gate.
-
-After that branch is removed, resume engineering from `docs/collision-source-evidence` with the next planned responsibility:
+The current repository responsibility is project stabilization, not collision testing:
 
 ```text
-equipped-melee marker expansion planning
-→ freeze one exact mechanism/family responsibility
-→ define its minimum positive + native-fallback/regression controls
-→ only then implement/test that bounded expansion
-```
-
-Known deliberate source/authoring review item for that planning phase:
-
-```text
-Dual P1 Quick tested authored marker = RIGHT
-older native-source evidence for tested Dual P1 Quick = LEFT
+structural document/tool simplification
+→ Gothic rules/procedures consistency audit
+→ build/product/repository-shape audit
+→ final readiness check
+→ equipped-melee marker expansion planning
 ```
 
 Exact current responsibility remains owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
