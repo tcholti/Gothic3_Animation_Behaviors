@@ -1,12 +1,12 @@
 # Gothic 3 Animation Behaviors — Evidence Ledger: C1-R1 Physical Repair
 
-**Status:** Canonical continuation after `EVIDENCE_LEDGER_STEP_C.md` EV-205  
+**Status:** Canonical continuation after `EVIDENCE_LEDGER_STEP_C.md` EV-205; continued by `EVIDENCE_LEDGER_STEP_E.md` after EV-214  
 **Date:** 2026-09-01  
-**ID range:** EV-206 onward
+**ID range:** EV-206–EV-214
 
 ## Purpose
 
-Continue the global monotonic evidence sequence for controlled physical-repair validation and the immediately following collision-architecture validation. Source facts, runtime facts, user observations and design consequences remain separately qualified.
+Continue the global monotonic evidence sequence for controlled physical-repair validation and the immediately following collision-architecture validation through the literal Gate-4 historical regression closure. `EVIDENCE_LEDGER_STEP_E.md` continues at EV-215. Source facts, runtime facts, user observations and design consequences remain separately qualified.
 
 | ID | Statement | Status | Provenance / note | Engineering consequence |
 |---|---|---|---|---|
