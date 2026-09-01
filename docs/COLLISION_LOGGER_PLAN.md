@@ -1,7 +1,7 @@
 # Collision Lifecycle Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
-**Updated:** 2026-08-30
+**Updated:** 2026-09-01
 
 ## Purpose
 
@@ -11,8 +11,9 @@ Define the smallest observational instrumentation needed to validate collision b
 
 Release/build separation is governed by `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
-Current frozen structural rewrite: `SECOND_PASS_REWRITE_CONTRACT.md`.  
-Exact evidence: `EVIDENCE_INDEX.md` → canonical evidence ledger.  
+Completed structural rewrite reference: `SECOND_PASS_REWRITE_CONTRACT.md`.  
+Current marker-bookkeeping authority: `MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md`.  
+Exact evidence: `EVIDENCE_INDEX.md` → canonical evidence ledgers.  
 Historical probe detail: evidence/raw/archive + archived pre-IA logger documents.
 
 ---
@@ -79,7 +80,7 @@ behavior correctness
 → requires diagnostic polling
 ```
 
-The behavior-only prototype target introduced by `SECOND_PASS_REWRITE_CONTRACT.md` exists specifically to enforce this mechanically.
+The behavior-only prototype target created by the completed second-pass rewrite mechanically enforces this separation and passed functional/release-purity verification through EV-215.
 
 ---
 
@@ -138,6 +139,7 @@ action / phase
 marker opcode
 required/resolved source set
 native callback suppression decision
+C1 generation used as marker execution identity
 accepted/rejected/duplicate/budget/OFF outcome
 exact source-set switch
 activation/deactivation/rearm
@@ -154,7 +156,7 @@ before group
 after group
 successful offense including 7 -> 7
 successful transition away from Item_Attack
-marker-owned source retirement
+exact marker-owned physical source-bit retirement
 ```
 
 ### C1 lifecycle
@@ -273,14 +275,14 @@ same actor/source/motion/marker/action/phase/state time
 → same-update duplicate rejection
 ```
 
-Therefore the frozen rewrite renames:
+The completed rewrite renamed:
 
 ```text
 HookBridgeRuntime
 → RuntimeClock
 ```
 
-and keeps it in the behavior core.
+`RuntimeClock` remains in the behavior core.
 
 Do not remove or diagnostic-gate this clock until a separate behavior change proves a replacement duplicate predicate.
 
@@ -288,11 +290,9 @@ Do not remove or diagnostic-gate this clock until a separate behavior change pro
 
 ## 8. CollisionLifecycleGuard Diagnostic Boundary
 
-Current research source still formats/writes many C1 log records directly inside `CollisionLifecycleGuard`.
+The completed second-pass rewrite removed direct diagnostic formatting/output responsibility from `CollisionLifecycleGuard`.
 
-The frozen rewrite removes that dependency.
-
-Target:
+Current boundary:
 
 ```text
 CollisionLifecycleGuard
@@ -328,18 +328,30 @@ marker occurrence/exact-set bookkeeping
 physical source cleanup obligation
 ```
 
-C1-R1 repair intentionally passes through the normal SetCollisionGroup bridge so marker-owned source retirement and C1 source-obligation observation remain on the established path.
+Gate 4 established:
 
-Do not use logger reduction as a reason to simplify marker behavior.
+```text
+C1 monotonic generation
+= durable marker occurrence/dedupe execution identity
+```
 
-Before any marker-core simplification:
+The older marker-local source/motion/action/phase/state-time and controlled-callback rollback guesses are no longer execution-boundary authority. Natural marker-source retirement is factual retirement of the exact physical source bit/window only.
+
+This does **not** collapse marker behavior into lifecycle repair. Preserve occurrence budgets, duplicate/replay protection, exact-set RIGHT/LEFT/BOTH/OFF semantics, OFF intra-Hit gaps, repeated-contact rearm, StatePosition handling, supported-family ownership, physical source/window state and dead/late rejection.
+
+C1-R1 repair intentionally passes through the normal SetCollisionGroup bridge so marker-owned physical source retirement and C1 source-obligation observation remain on the established path.
+
+Before any future marker-core change:
 
 ```text
 EVIDENCE_INDEX.md
 → marker execution lifetime/bookkeeping
-→ EV-131–EV-133 / EV-167
+→ EV-131–EV-133 / EV-167 / EV-213–EV-214
+→ MARKER_BOOKKEEPING_SIMPLIFICATION_CONTRACT.md
 → COLLISION_LIFECYCLE_PLAN.md §9
 ```
+
+Do not use logger reduction as a reason to weaken marker behavior.
 
 ---
 
@@ -350,18 +362,18 @@ The default diagnostic twin is sufficient only if controlled runs can establish 
 ```text
 1. exact marker ownership/suppression/result
 2. exact source offense/cleanup transition
-3. C1 generation for the source obligation
+3. C1 generation for marker execution identity and source obligation
 4. pre-Combat acquisition/bridge consumption when present
 5. clean/reaction/no-offense finalization as non-mutating
 6. destructive outstanding live/equipped group-7 finalization as one exact 7 -> 5 repair
 7. Dual source independence
-8. marker-owned repair/retirement without stale reopen
+8. marker-owned repair/physical-bit retirement without stale reopen
 9. unsupported/negative sources do not acquire inappropriate weapon-style repair
 10. invariant/failure divergence appears explicitly
 11. build identity + clean unload
 ```
 
-If compacting the diagnostic product makes any of these facts ambiguous, the reduction is too aggressive.
+If compacting the diagnostic product makes any required fact ambiguous, the reduction is too aggressive.
 
 ---
 
@@ -421,6 +433,7 @@ Do not add cleanup because `RunScriptFunction` returned, CombatMove FullStopped,
 ```text
 C1 monotonic generation
 = durable plugin execution identity
+= durable marker occurrence/dedupe execution identity
 
 exact SPU + live ScriptFunction + non-null m_pArguments + same ScriptFunction name
 = temporary native correlator only where early acquisition needs it
@@ -434,7 +447,7 @@ Diagnostics may observe failures but must not invent identity fallbacks.
 
 ## 14. Build / Release Extraction Rule
 
-Current prototype rewrite must mechanically produce:
+Current prototype architecture mechanically produces:
 
 ```text
 Script_FrameCollisionTest
@@ -445,6 +458,8 @@ Script_FrameCollisionBehaviorTest
 ```
 
 Never deploy both together.
+
+This separation passed source/build verification and behavior-only runtime verification through EV-208–EV-215.
 
 Later production:
 
@@ -474,13 +489,26 @@ Canonical release rule: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
 ## 15. Current Sequence
 
+Architecture verification is complete through EV-215. There is no pending diagnostic regression merely to reconfirm the second-pass/Gate-4 architecture.
+
+Current repository sequence:
+
 ```text
-unchanged post-EngineBridge runtime baseline
-→ if PASS, implement SECOND_PASS_REWRITE_CONTRACT
-→ build diagnostic + behavior-only targets
-→ compact diagnostic sufficiency regression
-→ behavior-only smoke/equivalence
-→ only then marker-bookkeeping simplification audit
+documentation/knowledge cleanup
+→ separate justified raw→archive provenance migration
+→ temporary-branch inspection
+→ protected-main stable promotion/verification
+→ new collision feature expansion
+```
+
+When future engineering creates a new diagnostic question:
+
+```text
+freeze the smallest falsifiable question
+→ use CORE diagnostics if sufficient
+→ enable deep probes only when CORE cannot establish the required fact
+→ test the diagnostic twin in place of behavior-only release product
+→ return to behavior-only verification when the changed behavior is ready
 ```
 
 Structural behavior and observation changes remain causally separated.
