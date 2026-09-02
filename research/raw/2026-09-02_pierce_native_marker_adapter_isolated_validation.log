@@ -1,0 +1,1182 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 50301.686
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 2
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+Source[1].Address: E6A92610
+Source[1].Side: LEFT
+Source[1].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 50301.715
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_PierceAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 50309.000
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 50863.825
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_PierceAttack
+SourceAddress: 00000000
+=============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 50872.123
+Actor: PC_Hero
+Family: PIERCE
+CurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+Action: 11
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 1
+AuthoredRIGHTCount: 1
+FirstRIGHTFrame: 6
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_1H_Sword_Rust_01
+RightSourceAddress: E70E8610
+RightSourceUseType: 2
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 1
+LeftSourceName: It_1H_Sword_Rust_01
+LeftSourceAddress: E6A92610
+LeftSourceUseType: 2
+LeftSourceCollisionGroup: 5
+SuppressNativeCallback: 1
+=====================================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 51096.355
+Actor: PC_Hero
+Action: 11
+AniPhase: 1
+StateTime: 0.802885
+StatePositionBeforeMarker: 0
+CurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51096.428
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 11
+PlayerAniPhase: 1
+PlayerStateTime: 0.802885
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 51096.452
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+StatePositionAfterMarker: 1
+C1GenerationValid: 1
+C1Generation: 1
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 2
+RightGroupRequested: 1
+RightFistGroupSkip: 0
+RightTriggeredListCleared: 1
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51285.595
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 11
+PlayerAniPhase: 3
+PlayerStateTime: 0.972771
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 51285.670
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 51285.700
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+TrackedSourceCount: 2
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_1H_Sword_Rust_01
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+Source[1].Outcome: NO_OP_NO_OUTSTANDING
+Source[1].Address: E6A92610
+Source[1].LivenessEstablished: 1
+Source[1].Name: It_1H_Sword_Rust_01
+Source[1].OriginalSide: LEFT
+Source[1].CurrentSideMask: 2
+Source[1].OffensiveRequestCount: 0
+Source[1].OutstandingBeforeFinalization: 0
+Source[1].CleanupObservedBeforeFinalization: 0
+Source[1].ActualGroupBeforeRepair: 5
+Source[1].RepairAttempted: 0
+Source[1].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 53411.991
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 2
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+Source[1].Address: E6A92610
+Source[1].Side: LEFT
+Source[1].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 53412.006
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Attack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 53418.726
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 53418.761
+Actor: PC_Hero
+Family: NORMAL
+CurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_1H_Sword_Rust_01
+RightSourceAddress: E70E8610
+RightSourceUseType: 2
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 1
+LeftSourceName: It_1H_Sword_Rust_01
+LeftSourceAddress: E6A92610
+LeftSourceUseType: 2
+LeftSourceCollisionGroup: 5
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53677.900
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+SlotAssociation: LEFT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.259912
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 53677.934
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+Side: LEFT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53952.841
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+SlotAssociation: LEFT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerStateTime: 0.533925
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 53952.874
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+Side: LEFT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 53952.901
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 2
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_1H_Sword_Rust_01
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+Source[1].Outcome: NO_OP_NO_OUTSTANDING
+Source[1].Address: E6A92610
+Source[1].LivenessEstablished: 1
+Source[1].Name: It_1H_Sword_Rust_01
+Source[1].OriginalSide: LEFT
+Source[1].CurrentSideMask: 2
+Source[1].OffensiveRequestCount: 1
+Source[1].OutstandingBeforeFinalization: 0
+Source[1].CleanupObservedBeforeFinalization: 1
+Source[1].ActualGroupBeforeRepair: 5
+Source[1].RepairAttempted: 0
+Source[1].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 56078.134
+Actor: PC_Hero
+Generation: 3
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 2
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+Source[1].Address: E6A92610
+Source[1].Side: LEFT
+Source[1].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 56078.149
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 3
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_PierceAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 56084.895
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 56638.304
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_PierceAttack
+SourceAddress: 00000000
+=============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 56645.721
+Actor: PC_Hero
+Family: PIERCE
+CurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+Action: 11
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 2
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 1
+FirstLEFTFrame: 6
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_1H_Sword_Rust_01
+RightSourceAddress: E70E8610
+RightSourceUseType: 2
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 1
+LeftSourceName: It_1H_Sword_Rust_01
+LeftSourceAddress: E6A92610
+LeftSourceUseType: 2
+LeftSourceCollisionGroup: 5
+SuppressNativeCallback: 1
+=====================================
+
+===== LEFT RECEIVED =====
+ElapsedMs: 56873.277
+Actor: PC_Hero
+Action: 11
+AniPhase: 1
+StateTime: 0.807687
+StatePositionBeforeMarker: 0
+CurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 56873.308
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+SlotAssociation: LEFT
+PlayerAction: 11
+PlayerAniPhase: 1
+PlayerStateTime: 0.807687
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 56873.342
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+Side: LEFT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_LEFT
+MarkerOpcode: LEFT
+StatePositionAfterMarker: 1
+C1GenerationValid: 1
+C1Generation: 3
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 2
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 2
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+LeftGroupBefore: 5
+LeftGroupAfter: 7
+LeftUseType: 2
+LeftGroupRequested: 1
+LeftFistGroupSkip: 0
+LeftTriggeredListCleared: 1
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 57050.241
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+SlotAssociation: LEFT
+PlayerAction: 11
+PlayerAniPhase: 3
+PlayerStateTime: 0.968693
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 57050.270
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+Side: LEFT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 57050.295
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+TrackedSourceCount: 2
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_1H_Sword_Rust_01
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+Source[1].Outcome: NO_OP_NO_OUTSTANDING
+Source[1].Address: E6A92610
+Source[1].LivenessEstablished: 1
+Source[1].Name: It_1H_Sword_Rust_01
+Source[1].OriginalSide: LEFT
+Source[1].CurrentSideMask: 2
+Source[1].OffensiveRequestCount: 1
+Source[1].OutstandingBeforeFinalization: 0
+Source[1].CleanupObservedBeforeFinalization: 1
+Source[1].ActualGroupBeforeRepair: 5
+Source[1].RepairAttempted: 0
+Source[1].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 74179.404
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 2
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+Source[1].Address: E6A92610
+Source[1].Side: LEFT
+Source[1].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 74179.417
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_PierceAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 74179.484
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 74746.280
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_PierceAttack
+SourceAddress: 00000000
+=============================
+
+===== LEFT RECEIVED =====
+ElapsedMs: 74981.855
+Actor: PC_Hero
+Action: 11
+AniPhase: 1
+StateTime: 0.813943
+StatePositionBeforeMarker: 0
+CurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 74981.886
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+SlotAssociation: LEFT
+PlayerAction: 11
+PlayerAniPhase: 1
+PlayerStateTime: 0.813943
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 74981.966
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+Side: LEFT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_LEFT
+MarkerOpcode: LEFT
+StatePositionAfterMarker: 1
+C1GenerationValid: 1
+C1Generation: 4
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 2
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 2
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+LeftGroupBefore: 5
+LeftGroupAfter: 7
+LeftUseType: 2
+LeftGroupRequested: 1
+LeftFistGroupSkip: 0
+LeftTriggeredListCleared: 1
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 75152.186
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+SlotAssociation: LEFT
+PlayerAction: 11
+PlayerAniPhase: 3
+PlayerStateTime: 0.973933
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P1_PierceAttack_Hit_N_Fwd_00_%_00_P1_50_F.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 75152.223
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E6A92610
+Side: LEFT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 75152.247
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+TrackedSourceCount: 2
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_1H_Sword_Rust_01
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+Source[1].Outcome: NO_OP_NO_OUTSTANDING
+Source[1].Address: E6A92610
+Source[1].LivenessEstablished: 1
+Source[1].Name: It_1H_Sword_Rust_01
+Source[1].OriginalSide: LEFT
+Source[1].CurrentSideMask: 2
+Source[1].OffensiveRequestCount: 1
+Source[1].OutstandingBeforeFinalization: 0
+Source[1].CleanupObservedBeforeFinalization: 1
+Source[1].ActualGroupBeforeRepair: 5
+Source[1].RepairAttempted: 0
+Source[1].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 76082.897
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 2
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+Source[1].Address: E6A92610
+Source[1].Side: LEFT
+Source[1].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 76082.910
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Attack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 76091.133
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 76091.168
+Actor: PC_Hero
+Family: NORMAL
+CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_1H_Sword_Rust_01
+RightSourceAddress: E70E8610
+RightSourceUseType: 2
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 1
+LeftSourceName: It_1H_Sword_Rust_01
+LeftSourceAddress: E6A92610
+LeftSourceUseType: 2
+LeftSourceCollisionGroup: 5
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 76335.284
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.251938
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 76335.324
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 76633.943
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerStateTime: 0.541946
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 76633.973
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 76633.999
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+TrackedSourceCount: 2
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_1H_Sword_Rust_01
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+Source[1].Outcome: NO_OP_NO_OUTSTANDING
+Source[1].Address: E6A92610
+Source[1].LivenessEstablished: 1
+Source[1].Name: It_1H_Sword_Rust_01
+Source[1].OriginalSide: LEFT
+Source[1].CurrentSideMask: 2
+Source[1].OffensiveRequestCount: 0
+Source[1].OutstandingBeforeFinalization: 0
+Source[1].CleanupObservedBeforeFinalization: 0
+Source[1].ActualGroupBeforeRepair: 5
+Source[1].RepairAttempted: 0
+Source[1].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 77264.764
+Actor: Golem
+Family: NORMAL
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F8E810
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 77357.759
+Actor: PC_Hero
+Generation: 9
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 2
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+Source[1].Address: E6A92610
+Source[1].Side: LEFT
+Source[1].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 77357.772
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 9
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_PierceAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 77357.843
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 77515.797
+Source: Fist
+SourceAddress: E6F8E810
+SlotAssociation: NONE
+PlayerAction: 11
+PlayerAniPhase: 0
+PlayerStateTime: 0.161005
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Raise_N_Fwd_00_%_00_P0_0_F.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 77922.407
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_PierceAttack
+SourceAddress: 00000000
+=============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 77922.485
+Actor: PC_Hero
+Family: PIERCE
+CurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+Action: 11
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 1
+AuthoredRIGHTCount: 1
+FirstRIGHTFrame: 6
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_1H_Sword_Rust_01
+RightSourceAddress: E70E8610
+RightSourceUseType: 2
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 1
+LeftSourceName: It_1H_Sword_Rust_01
+LeftSourceAddress: E6A92610
+LeftSourceUseType: 2
+LeftSourceCollisionGroup: 5
+SuppressNativeCallback: 1
+=====================================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 78154.940
+Actor: PC_Hero
+Action: 11
+AniPhase: 1
+StateTime: 0.807948
+StatePositionBeforeMarker: 0
+CurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 78154.968
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 11
+PlayerAniPhase: 1
+PlayerStateTime: 0.807948
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 78154.998
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+StatePositionAfterMarker: 1
+C1GenerationValid: 1
+C1Generation: 9
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 2
+RightGroupRequested: 1
+RightFistGroupSkip: 0
+RightTriggeredListCleared: 1
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 78330.036
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 11
+PlayerAniPhase: 3
+PlayerStateTime: 0.970903
+PlayerCurrentMovementAni: Hero_Parade_1H_1H_P0_PierceAttack_Hit_N_Fwd_00_%_00_P0_50_F.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 78330.073
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Source: It_1H_Sword_Rust_01
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 78330.106
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+TrackedSourceCount: 2
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_1H_Sword_Rust_01
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+Source[1].Outcome: NO_OP_NO_OUTSTANDING
+Source[1].Address: E6A92610
+Source[1].LivenessEstablished: 1
+Source[1].Name: It_1H_Sword_Rust_01
+Source[1].OriginalSide: LEFT
+Source[1].CurrentSideMask: 2
+Source[1].OffensiveRequestCount: 0
+Source[1].OutstandingBeforeFinalization: 0
+Source[1].CleanupObservedBeforeFinalization: 0
+Source[1].ActualGroupBeforeRepair: 5
+Source[1].RepairAttempted: 0
+Source[1].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 79558.937
+Source: Fist
+SourceAddress: E6F8E810
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.218900
+PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+Script_FrameCollisionTest unloading cleanly.
