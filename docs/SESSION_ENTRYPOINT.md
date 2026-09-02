@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-02
+**Updated:** 2026-09-03
 
 Immediate transient handoff: `docs/BETWEEN_CHATS.md`  
 Project charter / highest Gothic-specific authority: `docs/README.md`  
@@ -30,8 +30,6 @@ CAM
 → exact task execution
 ```
 
-Specialist authorities are not all linearly ranked; each owns its delegated domain beneath the charter.
-
 A formal project review/audit must apply POP-10 before judging content, contradiction, duplication or cleanup.
 
 > **Do not modify the Collaborative-Agency-Model repository from Gothic 3 project work.**
@@ -51,7 +49,7 @@ Release/product details live in `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 ## Fresh Normal Chat Bootstrap
 
 1. Read this file first.
-2. Read `docs/BETWEEN_CHATS.md` when it contains an active transient responsibility.
+2. Read `docs/BETWEEN_CHATS.md` for the active transient responsibility.
 3. Treat CAM → project charter → specialist authority and release purity as standing constraints.
 4. For a formal review/audit, apply POP-10 before evaluating targets.
 5. If the active technical subsystem is not already oriented, use the one-time Subsystem Orientation Pass from `docs/README.md`.
@@ -114,9 +112,19 @@ Do **not** create `feature/raise-attack-speed` early.
 
 ---
 
-## CURRENT RESPONSIBILITY — Finalize Remaining Equipped-Melee Marker Architecture
+## CURRENT RESPONSIBILITY — Complete Remaining Equipped-Melee Marker Validation
 
-Do not modify behavior code until the exact bounded implementation responsibility is frozen.
+Implemented batch baseline:
+
+```text
+f0d929c90fbe086f44f66f91a2523904d06c3903
+```
+
+Generic before/after-marker StatePosition diagnostics:
+
+```text
+7c31784c5ef86bc79b54d573144b8e40f33e5e6b
+```
 
 Required marker expansion:
 
@@ -127,23 +135,19 @@ SimpleWhirl
 HackAttack
 ```
 
-`GetUpAttack` is **not part of the planned development roadmap**. Current review found materially different behavior: legitimate offense can occur before later CombatMove and its native callback also changes `AniState` to `Stand`. Do not spend further marker-engineering time on it absent a future concrete requirement.
-
-`FinishingAttack` remains deliberately excluded/native. Fist/body remains a separate source-adapter responsibility.
-
-Accepted implementation/validation strategy:
+Current status:
 
 ```text
-freeze/issue one bounded Work implementation responsibility
-for Power + Pierce + SimpleWhirl + Hack
-plus the narrow optional Hack animation-routing adapter
-→ implement the bounded batch
-→ validate Power
-→ validate Pierce
-→ validate SimpleWhirl
-→ validate Hack
-→ combined marker/lifecycle regression
+PowerAttack   CLOSED/PASS for current marker-expansion stage
+PierceAttack  CLOSED/PASS for current marker-expansion stage
+SimpleWhirl   NEXT — isolated runtime validation
+HackAttack    implementation complete; isolated marker/routing validation pending
+combined marker/lifecycle regression pending afterward
 ```
+
+Compact Power/Pierce evidence retrieval checkpoint:
+
+`research/derived/2026-09-03_power_pierce_marker_validation_checkpoint.md`
 
 Current bookkeeping classification:
 
@@ -155,39 +159,43 @@ Power normal → StatePosition 1
 Power Dual   → StatePosition 2
 ```
 
-EV-216 closes the Hack callback identity for the tested runtime build: `Script_Game +0x433D0` has one unique registration-table match, `OnAI_HackAttack`, from `.\Script\AI\AI_Commands\AI_HackAttack.cpp`. This does not yet validate Hack marker behavior or optional Hack animation routing.
+EV-216 closes the Hack callback identity for the tested runtime build: `Script_Game +0x433D0` has one unique registration-table match, `OnAI_HackAttack`, from `.\Script\AI\AI_Commands\AI_HackAttack.cpp`.
+
+`GetUpAttack` is not part of the planned marker roadmap. `FinishingAttack` remains deliberately excluded/native. Fist/body remains a separate source-adapter responsibility.
+
+---
+
+## Pierce Closure Note
+
+Pierce validation established that marker-authored RIGHT / LEFT / BOTH / OFF source behavior can be changed independently of stock Pierce motion content while runtime action remains Pierce and bookkeeping remains `StatePosition 1`.
+
+User runtime observation additionally indicates that Pierce retains native focused-target/reaction semantics: copied Power motion content still produced the distinctive humanoid Pierce stumble on successful selected-target contacts, while nearby non-selected targets were not hit by the same Pierce swings in the observed multi-target test.
+
+A repeated diagnostic cadence where a fresh `MARKER OWNERSHIP DECISION` appears once per distinct Pierce motion rather than once per execution remains unexplained. It also persists with New Balance bad-skip prevention active while all execution generations, marker budgets, physical source transitions and cleanup remain correct. Do not investigate further absent a concrete behavioral contradiction. A relationship to native Pierce target/effect semantics is plausible but unproven.
+
+The tested Pierce configuration also passed with New Balance + Jackydima `Script_AttackCollision` active across 1H, Torch+1H, Shield+1H and both Dual Pierce sides. This is Pierce-specific compatibility evidence, not blanket certification of every AttackCollision callback family.
 
 ---
 
 ## HackAttack Optional Animation Routing
 
-Dedicated Hack animations are **optional overrides**, not a dependency.
+Dedicated Hack animations are optional overrides, not a dependency.
 
-Required behavior:
+Implemented behavior:
 
 ```text
-runtime action == HackAttack
+runtime action == HackAttack (14)
 → preserve the serialized name/namespace produced by the active resolver
-→ derive only the matching HackAttack action-token variant
+→ at the narrow CombatMove motion-resource query callsite, derive only the matching _HackAttack_ token variant
 → matching Hack asset exists: use it
 → matching Hack asset absent: preserve original FinishingAttack resource/path unchanged
 ```
 
 True runtime `FinishingAttack` action 15 stays native/unmarked.
 
-Preferred authored 2H/Staff Hack names are recorded in `BETWEEN_CHATS.md`. Their pose/distance suffixes remain animation-author/engine metadata; the DLL must not recreate those semantics.
+Preserve namespaces created by native Gothic or compatible resolvers such as Jackydima `Script_Animation`; do not normalize Axe/other namespaces into G3AB guesses.
 
-Static review now identifies the current preferred compatibility direction:
-
-```text
-GetAniName builds the final name
-→ New Balance may modify the CombatMove animation string around Game +0x16B065
-→ CombatMove queries the motion resource at Game +0x16B10C
-```
-
-Gothic's normal loader uses `IsAnimationMissed`, `QueryMotionDataEntity` and `AddMissingAnimation`, then uses the returned resource's filename and installs the returned resource through `SetMotion`. The SDK hook substrate supports callsite interposition.
-
-Therefore prefer a **narrow CombatMove resource-query adapter** over exclusive ownership of `GetAniName` or a global action-string-table patch. Preserve namespaces created by native Gothic or Jackydima `Script_Animation` (for example `Axe`) and change only the action token when the exact optional Hack asset resolves. This remains to be implemented/runtime-validated.
+Exact preferred authored fixtures and routing notes remain in `docs/BETWEEN_CHATS.md`.
 
 ---
 
@@ -198,9 +206,7 @@ prevent the known destructive continuation/bad-skip mechanism
 from terminating or advancing through a legitimately live Hit execution
 ```
 
-The required outcome is frozen; the exact mechanism is not. Current preferred research direction is to identify and, if appropriate, freeze/suppress the responsible timer/continuation trigger while Hit remains authoritatively alive. Prefer a cleaner native operation if research exposes one.
-
-Keep this responsibility separate from `CollisionLifecycleGuard`; retain C1-R1 underneath as the general lost-cleanup fail-safe.
+The required outcome is frozen; the exact mechanism is not. Keep this responsibility separate from `CollisionLifecycleGuard`; retain C1-R1 underneath as the general lost-cleanup fail-safe.
 
 ---
 
@@ -218,22 +224,19 @@ general marker/collision framework
 
 **Release 1 animation content is intentionally 2H only.** The framework does not wait for every weapon family to have finished replacement animations.
 
-The 2H set is the first complete reference implementation. Release communication/video should explain how other animators/modders can use markers, Raise assets and speed configuration.
-
-After Release 1, animation content is updated and released weapon family by weapon family. During that longer authoring period, climbing may be revisited sporadically; target-acquisition changes remain independent future work. Other animation-system fixes (for example enabling more specific jump animations when valid assets exist) should be investigated one at a time as concrete useful cases appear.
+After Release 1, animation content is updated and released weapon family by weapon family. Climbing may be revisited sporadically during that longer authoring period; target-acquisition changes remain independent future work.
 
 ---
 
 ## Exact Immediate Next Step
 
 ```text
-freeze/issue one bounded Work implementation responsibility
-for Power + Pierce + SimpleWhirl + Hack
-plus the narrow optional Hack animation-routing adapter
-using the already-proven callback/action/bookkeeping architecture
-
-then validate:
-Power → Pierce → SimpleWhirl → Hack → combined regression
+NEXT SESSION:
+inspect only the exact existing SimpleWhirl fixture/source evidence needed
+→ freeze the isolated SimpleWhirl runtime test
+→ validate SimpleWhirl
+→ validate Hack
+→ combined marker/lifecycle regression
 ```
 
-Detailed current reasoning, the Sprint fallback observation, Hack fixture names and compatibility notes are in `docs/BETWEEN_CHATS.md`.
+Do not reopen Power or Pierce merely to broaden already-passing evidence or investigate benign diagnostic cadence.
