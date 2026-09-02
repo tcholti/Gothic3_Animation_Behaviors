@@ -25,8 +25,12 @@ enum MarkerOpcode
 enum AttackFamily
 {
     AttackFamily_Normal,
+    AttackFamily_Power,
     AttackFamily_Quick,
-    AttackFamily_Whirl
+    AttackFamily_SimpleWhirl,
+    AttackFamily_Whirl,
+    AttackFamily_Pierce,
+    AttackFamily_Hack
 };
 
 unsigned int const SourceMask_None = 0;

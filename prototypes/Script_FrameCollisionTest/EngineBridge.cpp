@@ -15,11 +15,14 @@
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
 #endif
+#include <g3sdk/Engine/animation/ge_animationadmin.h>
 #include <g3sdk/Game/ge_effectsystem.h>
 #include <g3sdk/Script.h>
 #include <g3sdk/util/Hook.h>
 #include <g3sdk/util/Memory.h>
 #include <g3sdk/util/ScriptUtil.h>
+
+#include <string>
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include <cstdio>
@@ -34,8 +37,13 @@ using namespace FrameCollision;
 // do not exist in the behavior-only translation unit after preprocessing.
 static mCFunctionHook Hook_StartEffect;
 static mCFunctionHook Hook_OnAI_Attack;
+static mCFunctionHook Hook_OnAI_PowerAttack;
 static mCFunctionHook Hook_OnAI_QuickAttack;
+static mCFunctionHook Hook_OnAI_SimpleWhirl;
 static mCFunctionHook Hook_OnAI_WhirlAttack;
+static mCFunctionHook Hook_OnAI_PierceAttack;
+static mCFunctionHook Hook_OnAI_HackAttack;
+static mCCallHook Hook_CombatMoveMotionResourceQuery;
 static mCFunctionHook Hook_SetCollisionGroup;
 static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AISetState;
@@ -114,6 +122,15 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
     return Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
 }
 
+DECLARE_SCRIPT_CALLBACK(OnAI_PowerAttack_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+    if (EvaluateAttackCallback(SelfEntity, AttackFamily_Power))
+        return GETrue;
+    return Hook_OnAI_PowerAttack.GetOriginalFunction(
+        &OnAI_PowerAttack_FrameCollisionTest)(a_pSPU);
+}
+
 DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
@@ -122,12 +139,82 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
     return Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
 }
 
+DECLARE_SCRIPT_CALLBACK(OnAI_SimpleWhirl_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+    if (EvaluateAttackCallback(SelfEntity, AttackFamily_SimpleWhirl))
+        return GETrue;
+    return Hook_OnAI_SimpleWhirl.GetOriginalFunction(
+        &OnAI_SimpleWhirl_FrameCollisionTest)(a_pSPU);
+}
+
 DECLARE_SCRIPT_CALLBACK(OnAI_WhirlAttack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
     if (EvaluateAttackCallback(SelfEntity, AttackFamily_Whirl))
         return GETrue;
     return Hook_OnAI_WhirlAttack.GetOriginalFunction(&OnAI_WhirlAttack_FrameCollisionTest)(a_pSPU);
+}
+
+DECLARE_SCRIPT_CALLBACK(OnAI_PierceAttack_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+    if (EvaluateAttackCallback(SelfEntity, AttackFamily_Pierce))
+        return GETrue;
+    return Hook_OnAI_PierceAttack.GetOriginalFunction(
+        &OnAI_PierceAttack_FrameCollisionTest)(a_pSPU);
+}
+
+DECLARE_SCRIPT_CALLBACK(OnAI_HackAttack_FrameCollisionTest)
+{
+    INIT_SCRIPT_CALLBACK()
+    if (EvaluateAttackCallback(SelfEntity, AttackFamily_Hack))
+        return GETrue;
+    return Hook_OnAI_HackAttack.GetOriginalFunction(
+        &OnAI_HackAttack_FrameCollisionTest)(a_pSPU);
+}
+
+static gEAction GetCombatMoveFactualAction(
+    gCScriptProcessingUnit const *a_pSPU)
+{
+    if (a_pSPU == nullptr)
+        return gEAction_None;
+    // Tested sAICombatMoveInstr layout: the factual action used by this path
+    // is stored directly at SPU + 0x154.
+    GEU8 const *const bytes = reinterpret_cast<GEU8 const *>(a_pSPU);
+    return *reinterpret_cast<gEAction const *>(bytes + 0x154);
+}
+
+static eCResourceDataEntity *GE_STDCALL
+QueryCombatMoveMotionResource_FrameCollisionTest(
+    gCScriptProcessingUnit *a_pSPU, eCAnimationAdmin *a_pAnimationAdmin,
+    bCString const &a_ResourceName,
+    eEResourceCacheBehavior a_CacheBehavior)
+{
+    char const *const resourceName = a_ResourceName.GetText();
+    if (GetCombatMoveFactualAction(a_pSPU) == gEAction_HackAttack
+        && resourceName != nullptr)
+    {
+        static char const FinishingToken[] = "_FinishingAttack_";
+        static char const HackToken[] = "_HackAttack_";
+        std::string candidate(resourceName);
+        std::string::size_type const actionToken =
+            candidate.find(FinishingToken);
+        if (actionToken != std::string::npos)
+        {
+            candidate.replace(actionToken, sizeof(FinishingToken) - 1,
+                              HackToken);
+            bCString const candidateName(candidate.c_str());
+            eCResourceDataEntity *const candidateResource =
+                a_pAnimationAdmin->QueryMotionDataEntity(
+                    candidateName, a_CacheBehavior);
+            if (candidateResource != nullptr)
+                return candidateResource;
+        }
+    }
+
+    return a_pAnimationAdmin->QueryMotionDataEntity(
+        a_ResourceName, a_CacheBehavior);
 }
 
 static GELPVoid StartEffect_FrameCollisionTest(
@@ -723,14 +810,38 @@ void FrameCollision::EngineBridge::InstallHooks()
         GetScriptAdminExt().GetScriptAICallback("OnAI_Attack")
             ->m_funcScriptAICallback,
         &OnAI_Attack_FrameCollisionTest);
+    Hook_OnAI_PowerAttack.Hook(
+        GetScriptAdminExt().GetScriptAICallback("OnAI_PowerAttack")
+            ->m_funcScriptAICallback,
+        &OnAI_PowerAttack_FrameCollisionTest);
     Hook_OnAI_QuickAttack.Hook(
         GetScriptAdminExt().GetScriptAICallback("OnAI_QuickAttack")
             ->m_funcScriptAICallback,
         &OnAI_QuickAttack_FrameCollisionTest);
+    Hook_OnAI_SimpleWhirl.Hook(
+        GetScriptAdminExt().GetScriptAICallback("OnAI_SimpleWhirl")
+            ->m_funcScriptAICallback,
+        &OnAI_SimpleWhirl_FrameCollisionTest);
     Hook_OnAI_WhirlAttack.Hook(
         GetScriptAdminExt().GetScriptAICallback("OnAI_WhirlAttack")
             ->m_funcScriptAICallback,
         &OnAI_WhirlAttack_FrameCollisionTest);
+    Hook_OnAI_PierceAttack.Hook(
+        GetScriptAdminExt().GetScriptAICallback("OnAI_PierceAttack")
+            ->m_funcScriptAICallback,
+        &OnAI_PierceAttack_FrameCollisionTest);
+    Hook_OnAI_HackAttack.Hook(
+        GetScriptAdminExt().GetScriptAICallback("OnAI_HackAttack")
+            ->m_funcScriptAICallback,
+        &OnAI_HackAttack_FrameCollisionTest);
+
+    Hook_CombatMoveMotionResourceQuery
+        .Prepare(RVA_Game(0x16B10C),
+                 &QueryCombatMoveMotionResource_FrameCollisionTest)
+        // sAICombatMoveInstr's EBP + 0x0C argument is its existing SPU.
+        .AddPtrStackArgEbp(0xC)
+        .AddThisArg()
+        .Hook();
 
     Hook_StartEffect
         .Prepare(RVA_Game(0x60850), &StartEffect_FrameCollisionTest,

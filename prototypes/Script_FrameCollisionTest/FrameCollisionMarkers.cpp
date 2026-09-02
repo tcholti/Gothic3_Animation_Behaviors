@@ -389,47 +389,83 @@ GEInt RetireMarkerOwnedSource(eCEntity *sourceInstance)
     return retiredSourceBitCount;
 }
 
-static bool IsNormalAttackHit(Entity &actor)
+static bool TryGetCurrentAttackHitFamily(
+    Entity &actor, AttackFamily &family)
 {
-    bCString ani = actor.NPC.GetCurrentMovementAni();
-    gEAction action =
-        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
-    return action == gEAction_Attack
-        && actor.GetCurrentAniPhase() == gEPhase_Hit
-        && Contains(ani.GetText(), "_Attack_Hit_");
-}
+    if (actor.GetCurrentAniPhase() != gEPhase_Hit)
+        return false;
 
-static bool IsQuickAttackAction(gEAction action)
-{
-    return action == gEAction_QuickAttack
-        || action == gEAction_QuickAttackR
-        || action == gEAction_QuickAttackL;
-}
-
-static bool IsQuickAttackHit(Entity &actor)
-{
-    gEAction action =
+    gEAction const action =
         actor.Routine.GetProperty<PSRoutine::PropertyAction>();
-    return IsQuickAttackAction(action)
-        && actor.GetCurrentAniPhase() == gEPhase_Hit;
-}
-
-static bool IsWhirlAttackHit(Entity &actor)
-{
-    gEAction action =
-        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
-    return action == gEAction_WhirlAttack
-        && actor.GetCurrentAniPhase() == gEPhase_Hit;
+    switch (action)
+    {
+        case gEAction_Attack:
+        {
+            bCString const animation = actor.NPC.GetCurrentMovementAni();
+            if (!Contains(animation.GetText(), "_Attack_Hit_"))
+                return false;
+            family = AttackFamily_Normal;
+            return true;
+        }
+        case gEAction_PowerAttack:
+            family = AttackFamily_Power;
+            return true;
+        case gEAction_QuickAttack:
+        case gEAction_QuickAttackR:
+        case gEAction_QuickAttackL:
+            family = AttackFamily_Quick;
+            return true;
+        case gEAction_SimpleWhirl:
+            family = AttackFamily_SimpleWhirl;
+            return true;
+        case gEAction_WhirlAttack:
+            family = AttackFamily_Whirl;
+            return true;
+        case gEAction_PierceAttack:
+            family = AttackFamily_Pierce;
+            return true;
+        case gEAction_HackAttack:
+            family = AttackFamily_Hack;
+            return true;
+        default:
+            return false;
+    }
 }
 
 bool IsAttackHit(Entity &actor, AttackFamily family)
 {
+    AttackFamily currentFamily = AttackFamily_Normal;
+    return TryGetCurrentAttackHitFamily(actor, currentFamily)
+        && currentFamily == family;
+}
+
+static bool IsOneHandedSource(eCEntity *sourceInstance)
+{
+    if (sourceInstance == nullptr)
+        return false;
+    Entity source(sourceInstance);
+    return source != None
+        && CollisionSources::GetCollisionSourceUseType(source)
+            == gEUseType_1H;
+}
+
+static GEInt GetMarkerOwnedStatePosition(
+    AttackFamily family, EquippedCollisionSources const &sources)
+{
     switch (family)
     {
-        case AttackFamily_Normal: return IsNormalAttackHit(actor);
-        case AttackFamily_Quick: return IsQuickAttackHit(actor);
-        case AttackFamily_Whirl: return IsWhirlAttackHit(actor);
-        default: return false;
+        case AttackFamily_Power:
+            return IsOneHandedSource(sources.rightInstance)
+                    && IsOneHandedSource(sources.leftInstance)
+                ? 2 : 1;
+        case AttackFamily_Quick:
+        case AttackFamily_SimpleWhirl:
+        case AttackFamily_Whirl:
+        case AttackFamily_Pierce:
+        case AttackFamily_Hack:
+            return 1;
+        default:
+            return -1;
     }
 }
 
@@ -624,10 +660,8 @@ MarkerProcessResult ProcessMarker(
         CollisionSources::GetEquippedCollisionSources(actor);
     MarkerProcessResult result =
         MakeMarkerResult(sources, markerOpcode, effectName, elapsedMs);
-    bool isNormalAttackHit = IsNormalAttackHit(actor);
-    bool isQuickAttackHit = IsQuickAttackHit(actor);
-    bool isWhirlAttackHit = IsWhirlAttackHit(actor);
-    if (!isNormalAttackHit && !isQuickAttackHit && !isWhirlAttackHit)
+    AttackFamily family = AttackFamily_Normal;
+    if (!TryGetCurrentAttackHitFamily(actor, family))
     {
         result.code = MarkerResult_RejectedUnsupportedHit;
         return result;
@@ -842,21 +876,24 @@ MarkerProcessResult ProcessMarker(
         ForgetMarkerOwnedWindowForActor(actor.GetInstance());
     }
 
-    if (isQuickAttackHit || isWhirlAttackHit)
+    GEInt const markerOwnedStatePosition =
+        GetMarkerOwnedStatePosition(family, result.sources);
+    if (markerOwnedStatePosition >= 0)
     {
         GEInt statePositionBeforeMarker = static_cast<GEInt>(
             actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
-        actor.Routine.AccessProperty<PSRoutine::PropertyStatePosition>() = 1;
+        actor.Routine.AccessProperty<PSRoutine::PropertyStatePosition>() =
+            markerOwnedStatePosition;
         GEInt statePositionAfterMarker = static_cast<GEInt>(
             actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
-        if (isQuickAttackHit)
+        if (family == AttackFamily_Quick)
         {
             result.quickStatePositionBeforeMarker =
                 statePositionBeforeMarker;
             result.quickStatePositionAfterMarker =
                 statePositionAfterMarker;
         }
-        else
+        else if (family == AttackFamily_Whirl)
         {
             result.whirlStatePositionBeforeMarker =
                 statePositionBeforeMarker;

@@ -44,8 +44,12 @@ static char const *AttackFamilyName(AttackFamily family)
     switch (family)
     {
         case AttackFamily_Normal: return "NORMAL";
+        case AttackFamily_Power: return "POWER";
         case AttackFamily_Quick: return "QUICK";
+        case AttackFamily_SimpleWhirl: return "SIMPLE_WHIRL";
         case AttackFamily_Whirl: return "WHIRL";
+        case AttackFamily_Pierce: return "PIERCE";
+        case AttackFamily_Hack: return "HACK";
         default: return "UNKNOWN";
     }
 }
@@ -177,7 +181,8 @@ void OpenLog()
 #endif
     std::fprintf(g_pLog, "BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock\n");
     std::fprintf(g_pLog, "C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.\n");
-    std::fprintf(g_pLog, "MarkerFamilies: Normal Quick Whirl\n");
+    std::fprintf(g_pLog,
+                 "MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack\n");
     std::fprintf(g_pLog, "MarkerOpcodes: RIGHT LEFT BOTH OFF\n");
     std::fflush(g_pLog);
 }
