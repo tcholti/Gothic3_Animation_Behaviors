@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-01
+**Updated:** 2026-09-02
 
 ## Purpose
 
@@ -41,6 +41,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | historical marker occurrence-budget leak | EV-131–EV-133 | EV-167; EV-213–EV-214 for C1-generation replacement/closure |
 | final RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` / `ANIMATION_RULES.md` |
 | Whirl callback/action/source separation | EV-145–EV-147 | `ANIMATION_RULES.md` / cleanup map |
+| Hack callback identity / remaining marker expansion | EV-216 | `DESIGN.md` §6.6 |
 | New Balance / AttackCollision Whirl compatibility | EV-035, EV-148–EV-150 | source-guide same-function caution |
 | Staff full-Whirl cleanup anomaly | EV-151–EV-156 | EV-180–EV-191, EV-206–EV-207 |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` |
@@ -343,6 +344,7 @@ DESIGN.md collision architecture
 COLLISION_LIFECYCLE_PLAN.md §9
 EV-143–EV-147
 EV-206–EV-215
+EV-216 for the tested Hack callback identity
 ANIMATION_INDEX.md / ANIMATION_CATALOG.md for exact assets
 ```
 

@@ -14,12 +14,6 @@ Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its bootstrap
 
 CAM is the constitutional collaboration layer; `docs/README.md` is the highest Gothic-specific project charter beneath CAM. Do not modify CAM from Gothic 3 work.
 
-Known unrelated local file remains completely untouched:
-
-```text
-research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
-```
-
 ---
 
 ## Closed boundary
@@ -61,9 +55,14 @@ HackAttack
 Accepted implementation strategy:
 
 ```text
-freeze shared adapter architecture
-→ implement Power + Pierce + SimpleWhirl + Hack in one bounded code change
-→ validate each family independently
+freeze/issue one bounded Work implementation responsibility
+for Power + Pierce + SimpleWhirl + Hack
+plus the narrow optional Hack animation-routing adapter
+→ implement the bounded batch
+→ validate Power
+→ validate Pierce
+→ validate SimpleWhirl
+→ validate Hack
 → combined marker/lifecycle regression afterward
 ```
 
@@ -72,14 +71,14 @@ Current callback bookkeeping:
 ```text
 Pierce       → StatePosition 1
 SimpleWhirl  → StatePosition 1
-Hack         → callback-shaped native routine at Script_Game +0x433D0 ends at StatePosition 1
+Hack         → OnAI_HackAttack → StatePosition 1
 Power normal → StatePosition 1
 Power Dual   → StatePosition 2
 ```
 
 Power repeated contacts remain authored through RIGHT/LEFT/BOTH/OFF + `ClearTriggeredList()` rearm. Do not create a separate Power marker engine.
 
-One unresolved Hack collision fact remains: prove the registered callback identity/name corresponding to `Script_Game +0x433D0`; do not guess it from proximity.
+EV-216 closes the Hack callback identity for the tested runtime build: `Script_Game +0x433D0` has one unique registration-table match, `OnAI_HackAttack`, from `.\Script\AI\AI_Commands\AI_HackAttack.cpp`. This does not yet validate Hack marker behavior or optional Hack animation routing.
 
 ---
 
@@ -209,18 +208,12 @@ During that long content-update period, climbing may be revisited sporadically a
 
 ## Immediate next step
 
-Without the Gothic PC, continue static planning/source work only as useful.
-
-The first fact that may genuinely require the Gothic installation is:
-
 ```text
-resolve/confirm the registered AI callback identity for Script_Game +0x433D0
-```
+freeze/issue one bounded Work implementation responsibility
+for Power + Pierce + SimpleWhirl + Hack
+plus the narrow optional Hack animation-routing adapter
+using the already-proven callback/action/bookkeeping architecture
 
-Then:
-
-```text
-freeze exact Power/Pierce/SimpleWhirl/Hack adapter + Hack optional-routing architecture with User
-→ create one bounded Work implementation responsibility
-→ build/deploy/test when the Gothic PC is available
+then validate:
+Power → Pierce → SimpleWhirl → Hack → combined regression
 ```

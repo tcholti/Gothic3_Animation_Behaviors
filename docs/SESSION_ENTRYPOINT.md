@@ -14,6 +14,8 @@ Recurring procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`
 Knowledge ownership: `docs/KNOWLEDGE_MAINTENANCE.md` / `docs/KNOWLEDGE_REGISTRY.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
 
+Local workstation/build/runtime paths: `docs/LOCAL_WORKSTATION_PATHS.md` (retrieve only when deployment paths matter)
+
 ---
 
 ## Authority Boundary
@@ -110,12 +112,6 @@ complete collision on docs/collision-source-evidence
 
 Do **not** create `feature/raise-attack-speed` early.
 
-Known unrelated local file remains outside project maintenance and must stay untouched:
-
-```text
-research/archive/2026-08-29_c1_aisetstate_recursion_safe_extended_gameplay_stability_would_repair_context.txt
-```
-
 ---
 
 ## CURRENT RESPONSIBILITY — Finalize Remaining Equipped-Melee Marker Architecture
@@ -138,10 +134,14 @@ HackAttack
 Accepted implementation/validation strategy:
 
 ```text
-finish exact Hack facts
-→ freeze shared adapter architecture with User
-→ implement Power + Pierce + SimpleWhirl + Hack in one bounded code change
-→ validate each family independently
+freeze/issue one bounded Work implementation responsibility
+for Power + Pierce + SimpleWhirl + Hack
+plus the narrow optional Hack animation-routing adapter
+→ implement the bounded batch
+→ validate Power
+→ validate Pierce
+→ validate SimpleWhirl
+→ validate Hack
 → combined marker/lifecycle regression
 ```
 
@@ -150,12 +150,12 @@ Current bookkeeping classification:
 ```text
 Pierce       → StatePosition 1
 SimpleWhirl  → StatePosition 1
-Hack         → callback-shaped routine at Script_Game +0x433D0 ends at StatePosition 1
+Hack         → OnAI_HackAttack → StatePosition 1
 Power normal → StatePosition 1
 Power Dual   → StatePosition 2
 ```
 
-One Hack collision fact still needs exact proof: the registered AI callback identity/name corresponding to `Script_Game +0x433D0`.
+EV-216 closes the Hack callback identity for the tested runtime build: `Script_Game +0x433D0` has one unique registration-table match, `OnAI_HackAttack`, from `.\Script\AI\AI_Commands\AI_HackAttack.cpp`. This does not yet validate Hack marker behavior or optional Hack animation routing.
 
 ---
 
@@ -226,14 +226,14 @@ After Release 1, animation content is updated and released weapon family by weap
 
 ## Exact Immediate Next Step
 
-Without the Gothic PC, static planning/source work can continue. The first fact likely requiring the game installation is the exact registered callback identity for `Script_Game +0x433D0`.
-
-Then:
-
 ```text
-freeze exact Power/Pierce/SimpleWhirl/Hack adapter + Hack optional-routing architecture with User
-→ create one bounded Work implementation responsibility
-→ build/deploy/test when the Gothic PC is available
+freeze/issue one bounded Work implementation responsibility
+for Power + Pierce + SimpleWhirl + Hack
+plus the narrow optional Hack animation-routing adapter
+using the already-proven callback/action/bookkeeping architecture
+
+then validate:
+Power → Pierce → SimpleWhirl → Hack → combined regression
 ```
 
 Detailed current reasoning, the Sprint fallback observation, Hack fixture names and compatibility notes are in `docs/BETWEEN_CHATS.md`.

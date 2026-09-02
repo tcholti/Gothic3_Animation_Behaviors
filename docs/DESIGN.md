@@ -309,32 +309,67 @@ SimpleWhirl
 HackAttack
 ```
 
-`GetUpAttack` is optional/nice-to-have and should be included only if source review shows that it fits the established C1/marker architecture without new guessed execution identity or disproportionate lifecycle machinery.
+`GetUpAttack` is **not part of the planned development roadmap**. Current review found materially different behavior: legitimate offense can occur before later CombatMove, and its native callback also changes `AniState` to `Stand`. Do not spend further marker-engineering time on GetUp unless a future concrete requirement explicitly reopens it as a separate investigation.
 
 `FinishingAttack` is deliberately excluded. The true downed-enemy Finishing path is an execution mechanic whose observed kill timing is not dependent on ordinary weapon contact; preserve its native behavior and do not require collision markers for it.
 
 Fist/body contact remains a separate source-adapter responsibility after equipped-weapon coverage.
 
-The remaining compatible equipped-melee adapters may be implemented in **one bounded code change** after their family/callback bookkeeping and Hack routing are frozen. Validation remains family-specific: Power, Pierce, SimpleWhirl, Hack and optional GetUp are tested independently before combined regression.
+The remaining compatible equipped-melee adapters may be implemented in **one bounded code change** after their family/callback bookkeeping and Hack routing are frozen. Validation remains family-specific: Power, Pierce, SimpleWhirl and Hack are tested independently before combined regression.
 
-#### HackAttack animation routing
+#### HackAttack optional animation routing
 
-Runtime `gEAction_HackAttack` and `gEAction_FinishingAttack` are distinct behavior/cleanup semantics even though tested 2H Hack currently reuses the serialized `FinishingAttack` asset family.
+Runtime `gEAction_HackAttack` and `gEAction_FinishingAttack` remain distinct behavior/cleanup semantics even though tested Hack currently reuses the serialized `FinishingAttack` asset family.
 
-The preferred architecture is:
+Established static/native facts:
 
 ```text
-runtime HackAttack remains native action 14
-→ narrow native-compatible animation-selection/routing change
-→ Gothic resolves dedicated HackAttack assets
-→ Gothic continues interpreting the normal filename contract itself
-→ Hack Hit markers use the ordinary equipped-slot marker system
+gEAction_HackAttack      = 14
+gEAction_FinishingAttack = 15
 
-runtime FinishingAttack remains native action 15
-→ existing execution animation/semantics remain native and unmarked
+GetAniName = Game +0x16F840
+
+within sAICombatMoveInstr:
+    GetAniName call                 = Game +0x16B056
+    factual current action          = [SPU + 0x154] immediately afterward
+    native motion-resource query    = Game +0x16B10C
 ```
 
-Do not make behavior code depend on the authored Hit-distance suffix or hardcode P0/P1 filename fields. The current proposed Hack assets intentionally mirror the existing Finishing naming structure while using the distinct `HackAttack` action token and a P0-preserving 2H stance; exact filenames/authoring notes belong in `ANIMATION_CATALOG.md` / animation data, and their engine-facing field semantics remain governed by `ANIMATION_RULES.md`.
+EV-216 closes the tested callback identity: `Script_Game +0x433D0` uniquely registers as `OnAI_HackAttack`, source `.\Script\AI\AI_Commands\AI_HackAttack.cpp`. This does not yet validate Hack markers or resource routing.
+
+Compatibility facts:
+
+- Jackydima `Script_Animation` can hook `GetAniName` and change the serialized weapon namespace, for example `2H` to `Axe`.
+- New Balance performs known CombatMove animation-string work around `Game +0x16B065`.
+- G3AB therefore should not unnecessarily own/replace `GetAniName` and should not globally patch action 14's action-string table.
+
+The preferred architecture for the coming implementation responsibility is:
+
+```text
+active native/installed resolver produces the final ordinary resource name
+→ CombatMove factual action is read from the existing SPU context
+→ at the narrow CombatMove motion-resource query callsite
+→ IF factual action == HackAttack (14)
+   AND the requested resource contains the exact FinishingAttack action token:
+       derive one candidate by replacing only
+           _FinishingAttack_ → _HackAttack_
+
+       query the candidate through Gothic's native animation resource system
+
+       candidate exists:
+           return/use the candidate resource
+
+       candidate absent:
+           query/return the untouched original FinishingAttack resource
+→ any non-Hack action, including true FinishingAttack (15):
+       untouched native path
+```
+
+Dedicated Hack assets are optional overrides. Matching asset existence is the opt-in; no Hero/2H/Staff hardcoded gate is required.
+
+Preserve every namespace, pose, direction, distance and variation field produced by Gothic or another active resolver. Do not parse or reimplement ordinary filename metadata. Do not release the returned candidate resource before returning it when it becomes the actual motion resource.
+
+True `FinishingAttack` remains native and unmarked. The narrow query-callsite direction is preferred/frozen for the coming implementation responsibility, but optional Hack routing and Hack marker behavior remain unvalidated until their later runtime tests.
 
 ---
 
@@ -415,7 +450,11 @@ CollisionLifecycleGuard
 = make an exact stale offensive source safe if cleanup is nevertheless lost
 ```
 
-`AttackContinuationProtection` must not be implemented inside `CollisionLifecycleGuard`. Even if prevention later succeeds, keep C1-R1 as the general lost-cleanup fail-safe.
+The required `AttackContinuationProtection` outcome is frozen: prevent the known destructive continuation/bad-skip mechanism from terminating or advancing through a legitimately live Hit execution.
+
+The exact mechanism is not frozen. The current preferred investigation may identify and freeze/suppress the responsible timer or continuation trigger while Hit is authoritatively alive, but literal timer-freezing is not the only permitted implementation. Prefer a cleaner native operation if it enforces the same invariant.
+
+Keep `AttackContinuationProtection` separate from `CollisionLifecycleGuard`. Even if prevention later succeeds, retain C1-R1 as the general lost-cleanup fail-safe.
 
 Authority: `COLLISION_TEST_PLAN.md` §6, with causal evidence routed through `EVIDENCE_INDEX.md`.
 
@@ -599,25 +638,48 @@ final behavior-only architecture smoke       EV-215
 project structural/governance stabilization  COMPLETE
 ```
 
-Current branch/implementation order:
+Current accepted sequence:
 
-1. **Finish the remaining equipped-melee source/architecture review on `docs/collision-source-evidence`.** Required marker scope is PowerAttack, PierceAttack, SimpleWhirl and HackAttack. Classify GetUpAttack only as cleanly includable vs defer; true FinishingAttack is deliberately excluded and Fist/body remains separate.
-2. **Freeze one shared remaining-equipped-melee adapter architecture.** Preserve RIGHT/LEFT/BOTH/OFF, explicit physical-source semantics, C1-generation marker identity and native no-marker fallback. Use one canonical family/action eligibility policy and explicit per-family callback-bookkeeping policy rather than multiplying marker-core special cases.
-3. **For HackAttack, identify the narrow native-compatible action-14 animation-routing change needed to resolve dedicated HackAttack assets while keeping native Hack semantics and Gothic's ordinary filename interpretation.** Do not change true FinishingAttack action-15 execution behavior.
-4. **Implement all remaining proven-compatible required equipped-melee adapters in one bounded code change.** At minimum Power + Pierce + SimpleWhirl + Hack; include GetUp only if the architecture review proves it genuinely clean.
-5. **Validate every newly supported family independently before combined regression.** Power, Pierce, SimpleWhirl and Hack each get their own controlled test; GetUp is separate if included. Family-by-family testing is the causal isolation mechanism even though implementation is batched.
-6. **Investigate Fist as a separate source adapter.** Do not force Fist through weapon-style `Item_Attack` semantics; start from the logical body-contact/rearm and target-gating evidence.
-7. **Run complete marker + lifecycle regression.** Protect closed C1-R1/Gate-4 behavior after marker/source maturity.
-8. **Investigate/implement modular `AttackContinuationProtection`.** Separate from `CollisionLifecycleGuard`; keep C1-R1 underneath.
-9. **Validate guard + markers + continuation protection together.** Include bad-skip prevention, ordinary completion, reactions and non-attack held-Use2 control.
-10. **Run the mandatory New Balance/Jackydima compatibility checkpoint on mature research collision behavior.** Resolve hook/callback conflicts deliberately before production migration.
-11. **Migrate the mature collision behavior modules into the production-direction `Script_G3AnimationBehaviors` on the same collision branch.** Keep the `Script_G3AnimationBehaviors` name; do not create a collision-named public DLL and do not pour the new architecture back into the old v0.1 hook/file structure. Research diagnostics remain separate.
-12. **Validate the diagnostics-free collision integration in `Script_G3AnimationBehaviors`.** Include source/build review, load/functional regression and the compatibility checks appropriate to the collision-only production checkpoint.
-13. **Promote the completed collision branch to `main`.** At that boundary `main` becomes the stable Animation Behaviors baseline with mature collision behavior integrated into the production-direction DLL.
-14. **Create `feature/raise-attack-speed` from that newly updated `main` only after the collision promotion is complete.** Do not create or develop the branch early.
-15. **On `feature/raise-attack-speed`, mature Raise + general/action/profile attack-speed control and redesign/migrate configuration into the shared `Script_G3AnimationBehaviors` architecture.** Preserve feature independence and the closed collision foundation.
-16. **Run final diagnostics-free assembled-behavior compatibility/regression before promoting the Raise/speed branch to `main`.** Retain separate diagnostic twins/tools for future reproduction.
-17. **Later add independent systems such as target acquisition/climbing under the same central-bridge/module/release-purity architecture.**
+```text
+finish Power/Pierce/SimpleWhirl/Hack architecture
+→ one bounded implementation batch
+→ Power isolated validation
+→ Pierce isolated validation
+→ SimpleWhirl isolated validation
+→ Hack isolated validation
+→ combined marker/lifecycle regression
+→ separate Fist investigation
+→ full marker/lifecycle regression
+→ AttackContinuationProtection
+→ combined collision regression
+→ mature New Balance/Jackydima compatibility gate
+→ migrate mature collision behavior into Script_G3AnimationBehaviors
+→ diagnostics-free integration + compatibility
+→ promote collision checkpoint to main
+→ create feature/raise-attack-speed from updated main
+→ mature Raise + action/profile speed + configuration redesign
+→ final assembled compatibility/regression
+→ promote mature Raise/speed checkpoint to main
+→ FIRST PUBLIC FRAMEWORK RELEASE with 2H animation content
+```
+
+### Release 1 boundary
+
+Framework:
+
+```text
+general marker/collision framework
++ validated AttackContinuationProtection / bad-skip prevention
++ mature Raise framework
++ general/action/profile attack-speed + configuration framework
++ required compatibility/regression
+```
+
+Release 1 animation content is intentionally 2H only. Framework completeness does not require every weapon family to have finished replacement animations.
+
+After Release 1, update remaining weapon-family animation content one family at a time: adapt each family to the new speed possibilities, add or adjust Raise animations, add markers, and release families incrementally.
+
+During that longer content period, climbing may be revisited sporadically or opportunistically; target acquisition remains a separate future system; and other animation-system improvements should be investigated individually when a concrete need appears rather than preplanned as one giant rewrite.
 
 ---
 
@@ -626,18 +688,16 @@ Current branch/implementation order:
 Do not combine the current remaining-equipped-melee architecture/implementation step with:
 
 - new marker vocabulary without a separately proven source model;
-- true `FinishingAttack` marker ownership or execution redesign;
-- generalized Fist/body support;
+- `GetUpAttack`, unless a future concrete requirement separately reopens it;
+- `FinishingAttack` marker/execution redesign;
+- Fist/body support;
 - universal monster/body adapters;
-- forcing `GetUpAttack` into the batch if it requires new execution identity/lifecycle machinery;
 - parsing/reimplementing Gothic's destination-pose, movement-distance or other ordinary filename semantics in behavior code;
 - AttackContinuationProtection implementation;
-- Raise/speed changes;
-- configuration redesign;
-- production collision migration before collision research maturity;
+- Raise/speed/configuration work;
+- production collision migration;
 - creation of `feature/raise-attack-speed` before the completed collision checkpoint is on `main`;
-- target acquisition;
-- climbing;
+- unrelated systems, including target acquisition and climbing;
 - changing closed C1-R1 or Gate-4 behavior without contradicting evidence.
 
 ---
