@@ -1,0 +1,60 @@
+LARGE LOG EVIDENCE PACKAGE
+ToolVersion: 1
+SourceInput: .\research\raw\2026-09-02_power_legitimate_interruption_cleanup_validation.log
+SourceFileName: 2026-09-02_power_legitimate_interruption_cleanup_validation.log
+SourceSHA256: 391719FF6134D4DA3BD48B45AD655F06F904E7F96AF1A4EDA1F85BE890DF594D
+SourceBytes: 1401838
+SourceLineCount: 55793
+EventBlockCount: 3253
+DistinctEventTypes: 13
+SignalMatchCount: 733
+DistinctSignalLines: 733
+SignalContextBefore: 80
+SignalContextAfter: 120
+MergedSignalContextRanges: 15
+MaxOutputPartBytes: 120000
+EventTimelineParts: 6
+SignalIndexParts: 1
+SignalContextParts: 17
+RequestedRangeCount: 0
+RequestedRangeParts: 0
+
+SignalPatterns:
+- C1_INVARIANT_WARNING = C1 INVARIANT WARNING
+- WOULD_REPAIR = WOULD_REPAIR
+- WARNING = (?i)\bWARNING\b
+- ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
+- FAILED_OR_FAILURE = (?i)\b(FAILED|FAILURE)\b
+- MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
+- STALE = (?i)\bSTALE\b
+- UNRESOLVED_OR_ORPHAN = (?i)\b(UNRESOLVED|ORPHAN)\b
+- BAD_OR_UNSAFE_SKIP = (?i)(BAD|UNSAFE|FAILED|STALE|MISMATCH).*(SKIP|SKIPPED)|(SKIP|SKIPPED).*(BAD|UNSAFE|FAILED|STALE|MISMATCH)
+- OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
+- EXTRA_01 = Family: POWER|MarkerAction: ACCEPTED|Reason: AISETSTATE_AFTER_ORIGINAL
+
+Files:
+- event_counts.tsv
+- event_timeline_part_001.tsv
+- event_timeline_part_002.tsv
+- event_timeline_part_003.tsv
+- event_timeline_part_004.tsv
+- event_timeline_part_005.tsv
+- event_timeline_part_006.tsv
+- signals_part_001.tsv
+- signal_context_part_001.txt
+- signal_context_part_002.txt
+- signal_context_part_003.txt
+- signal_context_part_004.txt
+- signal_context_part_005.txt
+- signal_context_part_006.txt
+- signal_context_part_007.txt
+- signal_context_part_008.txt
+- signal_context_part_009.txt
+- signal_context_part_010.txt
+- signal_context_part_011.txt
+- signal_context_part_012.txt
+- signal_context_part_013.txt
+- signal_context_part_014.txt
+- signal_context_part_015.txt
+- signal_context_part_016.txt
+- signal_context_part_017.txt

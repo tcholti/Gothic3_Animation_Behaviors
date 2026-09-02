@@ -1,0 +1,3405 @@
+00037623: Source[0].Name: It_1H_Sword_Rust_01
+00037624: Source[0].OriginalSide: RIGHT
+00037625: Source[0].CurrentSideMask: 1
+00037626: Source[0].OffensiveRequestCount: 0
+00037627: Source[0].OutstandingBeforeFinalization: 0
+00037628: Source[0].CleanupObservedBeforeFinalization: 0
+00037629: Source[0].ActualGroupBeforeRepair: 5
+00037630: Source[0].RepairAttempted: 0
+00037631: Source[0].PhysicalCollisionChanged: 0
+00037632: Source[1].Outcome: NO_OP_NO_OUTSTANDING
+00037633: Source[1].Address: E6AA3610
+00037634: Source[1].LivenessEstablished: 1
+00037635: Source[1].Name: It_1H_Sword_Rust_01
+00037636: Source[1].OriginalSide: LEFT
+00037637: Source[1].CurrentSideMask: 2
+00037638: Source[1].OffensiveRequestCount: 0
+00037639: Source[1].OutstandingBeforeFinalization: 0
+00037640: Source[1].CleanupObservedBeforeFinalization: 0
+00037641: Source[1].ActualGroupBeforeRepair: 5
+00037642: Source[1].RepairAttempted: 0
+00037643: Source[1].PhysicalCollisionChanged: 0
+00037644: PhysicalCollisionChanged: 0
+00037645: ===========================
+00037646: 
+00037647: ===== C1 LIFECYCLE START =====
+00037648: ElapsedMs: 236786.270
+00037649: Actor: PC_Hero
+00037650: Generation: 1041
+00037651: Status: CANDIDATE
+00037652: ReplacedGeneration: 0
+00037653: ReplacedOutstanding: 0
+00037654: TrackedSourceCount: 2
+00037655: Source[0].Address: E70EAC10
+00037656: Source[0].Side: RIGHT
+00037657: Source[0].ActualGroup: 5
+00037658: Source[1].Address: E6AA3610
+00037659: Source[1].Side: LEFT
+00037660: Source[1].ActualGroup: 5
+00037661: ==============================
+00037662: 
+00037663: ===== C1 SCRIPT BINDING =====
+00037664: ElapsedMs: 236786.285
+00037665: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00037666: Actor: PC_Hero
+00037667: Generation: 1041
+00037668: Status: CANDIDATE
+00037669: Outstanding: 0
+00037670: ScriptFunction: _AI_PowerAttack
+00037671: SourceAddress: 00000000
+00037672: =============================
+00037673: 
+00037674: ===== C1 LIFECYCLE STATUS =====
+00037675: ElapsedMs: 236786.353
+00037676: Event: PERSISTED
+00037677: Actor: PC_Hero
+00037678: Generation: 1041
+00037679: Status: PERSISTED
+00037680: Outstanding: 0
+00037681: ===============================
+00037682: 
+00037683: ===== ENGINE SetCollisionGroup =====
+00037684: ElapsedMs: 237003.341
+00037685: Source: Fist
+00037686: SourceAddress: EBB69A10
+00037687: SlotAssociation: NONE
+00037688: PlayerAction: 2
+00037689: PlayerAniPhase: 0
+00037690: PlayerStateTime: 0.229003
+00037691: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+00037692: RequestedGroup: 7
+00037693: BeforeGroup: 0
+00037694: AfterGroup: 0
+00037695: RetiredMarkerSourceBitCount: 0
+00037696: ====================================
+00037697: 
+00037698: ===== MARKER OWNERSHIP DECISION =====
+00037699: ElapsedMs: 237185.438
+00037700: Actor: Golem
+00037701: Family: NORMAL
+00037702: CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00037703: Action: 1
+00037704: AniPhase: 1
+00037705: MatchingMotionFound: 1
+00037706: MarkerScanValid: 1
+00037707: ContainsReservedSourceMarker: 0
+00037708: RequiredSourceMask: 0
+00037709: AuthoredRIGHTCount: 0
+00037710: FirstRIGHTFrame: -1
+00037711: AuthoredLEFTCount: 0
+00037712: FirstLEFTFrame: -1
+00037713: AuthoredBOTHCount: 0
+00037714: FirstBOTHFrame: -1
+00037715: AuthoredOFFCount: 0
+00037716: FirstOFFFrame: -1
+00037717: RightSourceResolved: 1
+00037718: RightSourceName: Fist
+00037719: RightSourceAddress: E6F9AA10
+00037720: RightSourceUseType: 8
+00037721: RightSourceCollisionGroup: 0
+00037722: LeftSourceResolved: 0
+00037723: SuppressNativeCallback: 0
+00037724: =====================================
+00037725: 
+00037726: ===== C1 SCRIPT BINDING =====
+00037727: ElapsedMs: 237279.066
+00037728: Event: COMBAT_MOVE_REUSED
+00037729: Actor: PC_Hero
+00037730: Generation: 1041
+00037731: Status: PERSISTED
+00037732: Outstanding: 0
+00037733: ScriptFunction: _AI_PowerAttack
+00037734: SourceAddress: 00000000
+00037735: =============================
+00037736: 
+00037737: ===== MARKER OWNERSHIP DECISION =====
+00037738: ElapsedMs: 237307.068
+00037739: Actor: Golem
+00037740: Family: NORMAL
+00037741: CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00037742: Action: 1
+00037743: AniPhase: 1
+00037744: MatchingMotionFound: 1
+00037745: MarkerScanValid: 1
+00037746: ContainsReservedSourceMarker: 0
+00037747: RequiredSourceMask: 0
+00037748: AuthoredRIGHTCount: 0
+00037749: FirstRIGHTFrame: -1
+00037750: AuthoredLEFTCount: 0
+00037751: FirstLEFTFrame: -1
+00037752: AuthoredBOTHCount: 0
+00037753: FirstBOTHFrame: -1
+00037754: AuthoredOFFCount: 0
+00037755: FirstOFFFrame: -1
+00037756: RightSourceResolved: 1
+00037757: RightSourceName: Fist
+00037758: RightSourceAddress: E89FA610
+00037759: RightSourceUseType: 8
+00037760: RightSourceCollisionGroup: 0
+00037761: LeftSourceResolved: 0
+00037762: SuppressNativeCallback: 0
+00037763: =====================================
+00037764: 
+00037765: ===== BOTH RECEIVED =====
+00037766: ElapsedMs: 237320.288
+00037767: Actor: PC_Hero
+00037768: Action: 2
+00037769: AniPhase: 1
+00037770: StateTime: 0.545985
+00037771: StatePositionBeforeMarker: 0
+00037772: CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+00037773: ===== ENGINE SetCollisionGroup =====
+00037774: ElapsedMs: 237320.319
+00037775: Source: It_1H_Sword_Rust_01
+00037776: SourceAddress: E70EAC10
+00037777: SlotAssociation: RIGHT
+00037778: PlayerAction: 2
+00037779: PlayerAniPhase: 1
+00037780: PlayerStateTime: 0.545985
+00037781: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+00037782: RequestedGroup: 7
+00037783: BeforeGroup: 5
+00037784: AfterGroup: 7
+00037785: RetiredMarkerSourceBitCount: 0
+00037786: ====================================
+00037787: 
+00037788: ===== C1 OFFENSE REQUEST =====
+00037789: ElapsedMs: 237320.352
+00037790: Actor: PC_Hero
+00037791: Generation: 1041
+00037792: Status: PERSISTED
+00037793: Source: It_1H_Sword_Rust_01
+00037794: SourceAddress: E70EAC10
+00037795: Side: RIGHT
+00037796: OffensiveRequestCount: 1
+00037797: Outstanding: 1
+00037798: CleanupObserved: 0
+00037799: ActualGroup: 7
+00037800: ==============================
+00037801: 
+00037802: ===== ENGINE SetCollisionGroup =====
+00037803: ElapsedMs: 237320.388
+00037804: Source: It_1H_Sword_Rust_01
+00037805: SourceAddress: E6AA3610
+00037806: SlotAssociation: LEFT
+00037807: PlayerAction: 2
+00037808: PlayerAniPhase: 1
+00037809: PlayerStateTime: 0.545985
+00037810: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+00037811: RequestedGroup: 7
+00037812: BeforeGroup: 5
+00037813: AfterGroup: 7
+00037814: RetiredMarkerSourceBitCount: 0
+00037815: ====================================
+00037816: 
+00037817: ===== C1 OFFENSE REQUEST =====
+00037818: ElapsedMs: 237320.418
+00037819: Actor: PC_Hero
+00037820: Generation: 1041
+00037821: Status: PERSISTED
+00037822: Source: It_1H_Sword_Rust_01
+00037823: SourceAddress: E6AA3610
+00037824: Side: LEFT
+00037825: OffensiveRequestCount: 1
+00037826: Outstanding: 1
+00037827: CleanupObserved: 0
+00037828: ActualGroup: 7
+00037829: ==============================
+00037830: 
+00037831: MarkerName: G3AB_COL_BOTH
+00037832: MarkerOpcode: BOTH
+00037833: StatePositionAfterMarker: 2
+00037834: C1GenerationValid: 1
+00037835: C1Generation: 1041
+00037836: MarkerAction: ACCEPTED
+00037837: AuthoredMarkerOccurrences: 2
+00037838: AcceptedMarkerOccurrencesBefore: 0
+00037839: AcceptedMarkerOccurrencesAfter: 1
+00037840: ExecutionBudgetReset: 1
+00037841: PreviousSourceMask: 0
+00037842: DesiredSourceMask: 3
+00037843: RetiredSourceMask: 0
+00037844: OwnedMaskAtOff: 0
+00037845: MarkerOwnedWeaponMask: 3
+00037846: ActivatedSourceCount: 2
+00037847: RetiredSourceCount: 0
+00037848: DeactivatedSourceCount: 0
+00037849: TriggeredListClearCount: 2
+00037850: RightGroupBefore: 5
+00037851: RightGroupAfter: 7
+00037852: RightUseType: 2
+00037853: RightGroupRequested: 1
+00037854: RightFistGroupSkip: 0
+00037855: RightTriggeredListCleared: 1
+00037856: LeftGroupBefore: 5
+00037857: LeftGroupAfter: 7
+00037858: LeftUseType: 2
+00037859: LeftGroupRequested: 1
+00037860: LeftFistGroupSkip: 0
+00037861: LeftTriggeredListCleared: 1
+00037862: ===========================
+00037863: 
+00037864: ===== LEFT RECEIVED =====
+00037865: ElapsedMs: 237536.790
+00037866: Actor: PC_Hero
+00037867: Action: 2
+00037868: AniPhase: 1
+00037869: StateTime: 0.762979
+00037870: StatePositionBeforeMarker: 2
+00037871: CurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+00037872: ===== ENGINE SetCollisionGroup =====
+00037873: ElapsedMs: 237536.821
+00037874: Source: It_1H_Sword_Rust_01
+00037875: SourceAddress: E70EAC10
+00037876: SlotAssociation: RIGHT
+00037877: PlayerAction: 2
+00037878: PlayerAniPhase: 1
+00037879: PlayerStateTime: 0.762979
+00037880: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+00037881: RequestedGroup: 5
+00037882: BeforeGroup: 7
+00037883: AfterGroup: 5
+00037884: RetiredMarkerSourceBitCount: 0
+00037885: ====================================
+00037886: 
+00037887: ===== C1 CLEANUP FULFILLED =====
+00037888: ElapsedMs: 237536.850
+00037889: Actor: PC_Hero
+00037890: Generation: 1041
+00037891: Status: PERSISTED
+00037892: Source: It_1H_Sword_Rust_01
+00037893: SourceAddress: E70EAC10
+00037894: Side: RIGHT
+00037895: OffensiveRequestCount: 1
+00037896: Outstanding: 0
+00037897: CleanupObserved: 1
+00037898: ActualGroup: 5
+00037899: ==============================
+00037900: 
+00037901: ===== ENGINE SetCollisionGroup =====
+00037902: ElapsedMs: 237536.864
+00037903: Source: It_1H_Sword_Rust_01
+00037904: SourceAddress: E6AA3610
+00037905: SlotAssociation: LEFT
+00037906: PlayerAction: 2
+00037907: PlayerAniPhase: 1
+00037908: PlayerStateTime: 0.762979
+00037909: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+00037910: RequestedGroup: 7
+00037911: BeforeGroup: 7
+00037912: AfterGroup: 7
+00037913: RetiredMarkerSourceBitCount: 0
+00037914: ====================================
+00037915: 
+00037916: ===== C1 OFFENSE REQUEST =====
+00037917: ElapsedMs: 237536.928
+00037918: Actor: PC_Hero
+00037919: Generation: 1041
+00037920: Status: PERSISTED
+00037921: Source: It_1H_Sword_Rust_01
+00037922: SourceAddress: E6AA3610
+00037923: Side: LEFT
+00037924: OffensiveRequestCount: 2
+00037925: Outstanding: 1
+00037926: CleanupObserved: 0
+00037927: ActualGroup: 7
+00037928: ==============================
+00037929: 
+00037930: MarkerName: G3AB_COL_LEFT
+00037931: MarkerOpcode: LEFT
+00037932: StatePositionAfterMarker: 2
+00037933: C1GenerationValid: 1
+00037934: C1Generation: 1041
+00037935: MarkerAction: ACCEPTED
+00037936: AuthoredMarkerOccurrences: 1
+00037937: AcceptedMarkerOccurrencesBefore: 0
+00037938: AcceptedMarkerOccurrencesAfter: 1
+00037939: ExecutionBudgetReset: 0
+00037940: PreviousSourceMask: 3
+00037941: DesiredSourceMask: 2
+00037942: RetiredSourceMask: 1
+00037943: OwnedMaskAtOff: 0
+00037944: MarkerOwnedWeaponMask: 2
+00037945: ActivatedSourceCount: 1
+00037946: RetiredSourceCount: 1
+00037947: DeactivatedSourceCount: 0
+00037948: TriggeredListClearCount: 1
+00037949: LeftGroupBefore: 7
+00037950: LeftGroupAfter: 7
+00037951: LeftUseType: 2
+00037952: LeftGroupRequested: 1
+00037953: LeftFistGroupSkip: 0
+00037954: LeftTriggeredListCleared: 1
+00037955: ===========================
+00037956: 
+00037957: ===== ENGINE SetCollisionGroup =====
+00037958: ElapsedMs: 237562.793
+00037959: Source: It_1H_Sword_Rust_01
+00037960: SourceAddress: E6AA3610
+00037961: SlotAssociation: LEFT
+00037962: PlayerAction: 2
+00037963: PlayerAniPhase: 1
+00037964: PlayerStateTime: 0.000000
+00037965: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot
+00037966: RequestedGroup: 5
+00037967: BeforeGroup: 7
+00037968: AfterGroup: 5
+00037969: RetiredMarkerSourceBitCount: 1
+00037970: ====================================
+00037971: 
+00037972: ===== C1 CLEANUP FULFILLED =====
+00037973: ElapsedMs: 237562.842
+00037974: Actor: PC_Hero
+00037975: Generation: 1041
+00037976: Status: PERSISTED
+00037977: Source: It_1H_Sword_Rust_01
+00037978: SourceAddress: E6AA3610
+00037979: Side: LEFT
+00037980: OffensiveRequestCount: 2
+00037981: Outstanding: 0
+00037982: CleanupObserved: 1
+00037983: ActualGroup: 5
+00037984: ==============================
+00037985: 
+00037986: ===== C1 LIFECYCLE START =====
+00037987: ElapsedMs: 237564.195
+00037988: Actor: PC_Hero
+00037989: Generation: 1049
+00037990: Status: CANDIDATE
+00037991: ReplacedGeneration: 1041
+00037992: ReplacedOutstanding: 0
+00037993: TrackedSourceCount: 2
+00037994: Source[0].Address: E70EAC10
+00037995: Source[0].Side: RIGHT
+00037996: Source[0].ActualGroup: 5
+00037997: Source[1].Address: E6AA3610
+00037998: Source[1].Side: LEFT
+00037999: Source[1].ActualGroup: 5
+00038000: ==============================
+00038001: 
+00038002: ===== C1 SCRIPT BINDING =====
+00038003: ElapsedMs: 237564.207
+00038004: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00038005: Actor: PC_Hero
+00038006: Generation: 1049
+00038007: Status: CANDIDATE
+00038008: Outstanding: 0
+00038009: ScriptFunction: _AI_Stumble
+00038010: SourceAddress: 00000000
+00038011: =============================
+00038012: 
+00038013: ===== C1 LIFECYCLE STATUS =====
+00038014: ElapsedMs: 237564.267
+00038015: Event: PERSISTED
+00038016: Actor: PC_Hero
+00038017: Generation: 1049
+00038018: Status: PERSISTED
+00038019: Outstanding: 0
+00038020: ===============================
+00038021: 
+00038022: ===== ENGINE SetCollisionGroup =====
+00038023: ElapsedMs: 237565.014
+00038024: Source: Fist
+00038025: SourceAddress: E89FA610
+00038026: SlotAssociation: NONE
+00038027: PlayerAction: 26
+00038028: PlayerAniPhase: 1
+00038029: PlayerStateTime: 0.013000
+00038030: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_StumbleR_Hit_N_Fwd_00_%_00_P1_100.xmot
+00038031: RequestedGroup: 7
+00038032: BeforeGroup: 0
+00038033: AfterGroup: 0
+00038034: RetiredMarkerSourceBitCount: 0
+00038035: ====================================
+00038036: 
+00038037: ===== C1 FINALIZATION =====
+00038038: ElapsedMs: 237876.523
+00038039: Reason: AISETSTATE_AFTER_ORIGINAL
+00038040: Actor: PC_Hero
+00038041: Generation: 1049
+00038042: Status: PERSISTED
+00038043: TrackedSourceCount: 2
+00038044: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00038045: Source[0].Address: E70EAC10
+00038046: Source[0].LivenessEstablished: 1
+00038047: Source[0].Name: It_1H_Sword_Rust_01
+00038048: Source[0].OriginalSide: RIGHT
+00038049: Source[0].CurrentSideMask: 1
+00038050: Source[0].OffensiveRequestCount: 0
+00038051: Source[0].OutstandingBeforeFinalization: 0
+00038052: Source[0].CleanupObservedBeforeFinalization: 0
+00038053: Source[0].ActualGroupBeforeRepair: 5
+00038054: Source[0].RepairAttempted: 0
+00038055: Source[0].PhysicalCollisionChanged: 0
+00038056: Source[1].Outcome: NO_OP_NO_OUTSTANDING
+00038057: Source[1].Address: E6AA3610
+00038058: Source[1].LivenessEstablished: 1
+00038059: Source[1].Name: It_1H_Sword_Rust_01
+00038060: Source[1].OriginalSide: LEFT
+00038061: Source[1].CurrentSideMask: 2
+00038062: Source[1].OffensiveRequestCount: 0
+00038063: Source[1].OutstandingBeforeFinalization: 0
+00038064: Source[1].CleanupObservedBeforeFinalization: 0
+00038065: Source[1].ActualGroupBeforeRepair: 5
+00038066: Source[1].RepairAttempted: 0
+00038067: Source[1].PhysicalCollisionChanged: 0
+00038068: PhysicalCollisionChanged: 0
+00038069: ===========================
+00038070: 
+00038071: ===== MARKER OWNERSHIP DECISION =====
+00038072: ElapsedMs: 237905.168
+00038073: Actor: Golem
+00038074: Family: POWER
+00038075: CurrentMovementAni: Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00038076: Action: 2
+00038077: AniPhase: 1
+00038078: MatchingMotionFound: 1
+00038079: MarkerScanValid: 1
+00038080: ContainsReservedSourceMarker: 0
+00038081: RequiredSourceMask: 0
+00038082: AuthoredRIGHTCount: 0
+00038083: FirstRIGHTFrame: -1
+00038084: AuthoredLEFTCount: 0
+00038085: FirstLEFTFrame: -1
+00038086: AuthoredBOTHCount: 0
+00038087: FirstBOTHFrame: -1
+00038088: AuthoredOFFCount: 0
+00038089: FirstOFFFrame: -1
+00038090: RightSourceResolved: 1
+00038091: RightSourceName: Fist
+00038092: RightSourceAddress: E6F52A10
+00038093: RightSourceUseType: 8
+00038094: RightSourceCollisionGroup: 0
+00038095: LeftSourceResolved: 0
+00038096: SuppressNativeCallback: 0
+00038097: =====================================
+00038098: 
+00038099: ===== ENGINE SetCollisionGroup =====
+00038100: ElapsedMs: 237905.213
+00038101: Source: Fist
+00038102: SourceAddress: E6F52A10
+00038103: SlotAssociation: NONE
+00038104: PlayerAction: 0
+00038105: PlayerAniPhase: 3
+00038106: PlayerStateTime: 0.026991
+00038107: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_StumbleR_Recover_N_Fwd_00_%_00_P1_0.xmot
+00038108: RequestedGroup: 7
+00038109: BeforeGroup: 0
+00038110: AfterGroup: 0
+00038111: RetiredMarkerSourceBitCount: 0
+00038112: ====================================
+00038113: 
+00038114: ===== ENGINE SetCollisionGroup =====
+00038115: ElapsedMs: 237960.783
+00038116: Source: Fist
+00038117: SourceAddress: E6EE3610
+00038118: SlotAssociation: NONE
+00038119: PlayerAction: 0
+00038120: PlayerAniPhase: 3
+00038121: PlayerStateTime: 0.081997
+00038122: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_StumbleR_Recover_N_Fwd_00_%_00_P1_0.xmot
+00038123: RequestedGroup: 7
+00038124: BeforeGroup: 0
+00038125: AfterGroup: 0
+00038126: RetiredMarkerSourceBitCount: 0
+00038127: ====================================
+00038128: 
+00038129: ===== ENGINE SetCollisionGroup =====
+00038130: ElapsedMs: 238610.574
+00038131: Source: Fist
+00038132: SourceAddress: E6F9AA10
+00038133: SlotAssociation: NONE
+00038134: PlayerAction: 0
+00038135: PlayerAniPhase: 8
+00038136: PlayerStateTime: 0.731965
+00038137: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Walk_N_Right_00_%_00_P1_160.xmot
+00038138: RequestedGroup: 7
+00038139: BeforeGroup: 0
+00038140: AfterGroup: 0
+00038141: RetiredMarkerSourceBitCount: 0
+00038142: ====================================
+00038143: 
+00038144: ===== ENGINE SetCollisionGroup =====
+00038145: ElapsedMs: 238994.739
+00038146: Source: Fist
+00038147: SourceAddress: EBB69A10
+00038148: SlotAssociation: NONE
+00038149: PlayerAction: 0
+00038150: PlayerAniPhase: 10
+00038151: PlayerStateTime: 1.116958
+00038152: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Sprint_N_Right_00_%_00_P1_400.xmot
+00038153: RequestedGroup: 7
+00038154: BeforeGroup: 0
+00038155: AfterGroup: 0
+00038156: RetiredMarkerSourceBitCount: 0
+00038157: ====================================
+00038158: 
+00038159: ===== C1 LIFECYCLE START =====
+00038160: ElapsedMs: 239368.370
+00038161: Actor: PC_Hero
+00038162: Generation: 1057
+00038163: Status: CANDIDATE
+00038164: ReplacedGeneration: 0
+00038165: ReplacedOutstanding: 0
+00038166: TrackedSourceCount: 2
+00038167: Source[0].Address: E70EAC10
+00038168: Source[0].Side: RIGHT
+00038169: Source[0].ActualGroup: 5
+00038170: Source[1].Address: E6AA3610
+00038171: Source[1].Side: LEFT
+00038172: Source[1].ActualGroup: 5
+00038173: ==============================
+00038174: 
+00038175: ===== C1 SCRIPT BINDING =====
+00038176: ElapsedMs: 239368.384
+00038177: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00038178: Actor: PC_Hero
+00038179: Generation: 1057
+00038180: Status: CANDIDATE
+00038181: Outstanding: 0
+00038182: ScriptFunction: _AI_Attack
+00038183: SourceAddress: 00000000
+00038184: =============================
+00038185: 
+00038186: ===== C1 LIFECYCLE STATUS =====
+00038187: ElapsedMs: 239378.801
+00038188: Event: PERSISTED
+00038189: Actor: PC_Hero
+00038190: Generation: 1057
+00038191: Status: PERSISTED
+00038192: Outstanding: 0
+00038193: ===============================
+00038194: 
+00038195: ===== MARKER OWNERSHIP DECISION =====
+00038196: ElapsedMs: 239378.836
+00038197: Actor: PC_Hero
+00038198: Family: NORMAL
+00038199: CurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Left_00_%_00_P21_90_L.xmot
+00038200: Action: 1
+00038201: AniPhase: 1
+00038202: MatchingMotionFound: 1
+00038203: MarkerScanValid: 1
+00038204: ContainsReservedSourceMarker: 0
+00038205: RequiredSourceMask: 0
+00038206: AuthoredRIGHTCount: 0
+00038207: FirstRIGHTFrame: -1
+00038208: AuthoredLEFTCount: 0
+00038209: FirstLEFTFrame: -1
+00038210: AuthoredBOTHCount: 0
+00038211: FirstBOTHFrame: -1
+00038212: AuthoredOFFCount: 0
+00038213: FirstOFFFrame: -1
+00038214: RightSourceResolved: 1
+00038215: RightSourceName: It_1H_Sword_Rust_01
+00038216: RightSourceAddress: E70EAC10
+00038217: RightSourceUseType: 2
+00038218: RightSourceCollisionGroup: 5
+00038219: LeftSourceResolved: 1
+00038220: LeftSourceName: It_1H_Sword_Rust_01
+00038221: LeftSourceAddress: E6AA3610
+00038222: LeftSourceUseType: 2
+00038223: LeftSourceCollisionGroup: 5
+00038224: SuppressNativeCallback: 0
+00038225: =====================================
+00038226: 
+00038227: ===== ENGINE SetCollisionGroup =====
+00038228: ElapsedMs: 239624.806
+00038229: Source: It_1H_Sword_Rust_01
+00038230: SourceAddress: E70EAC10
+00038231: SlotAssociation: RIGHT
+00038232: PlayerAction: 1
+00038233: PlayerAniPhase: 1
+00038234: PlayerStateTime: 0.255947
+00038235: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Left_00_%_00_P21_90_L.xmot
+00038236: RequestedGroup: 7
+00038237: BeforeGroup: 5
+00038238: AfterGroup: 7
+00038239: RetiredMarkerSourceBitCount: 0
+00038240: ====================================
+00038241: 
+00038242: ===== C1 OFFENSE REQUEST =====
+00038243: ElapsedMs: 239624.889
+00038244: Actor: PC_Hero
+00038245: Generation: 1057
+00038246: Status: PERSISTED
+00038247: Source: It_1H_Sword_Rust_01
+00038248: SourceAddress: E70EAC10
+00038249: Side: RIGHT
+00038250: OffensiveRequestCount: 1
+00038251: Outstanding: 1
+00038252: CleanupObserved: 0
+00038253: ActualGroup: 7
+00038254: ==============================
+00038255: 
+00038256: ===== ENGINE SetCollisionGroup =====
+00038257: ElapsedMs: 239848.432
+00038258: Source: It_1H_Sword_Rust_01
+00038259: SourceAddress: E70EAC10
+00038260: SlotAssociation: RIGHT
+00038261: PlayerAction: 1
+00038262: PlayerAniPhase: 3
+00038263: PlayerStateTime: 0.466928
+00038264: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Attack_Hit_N_Left_00_%_00_P21_90_L.xmot
+00038265: RequestedGroup: 5
+00038266: BeforeGroup: 7
+00038267: AfterGroup: 5
+00038268: RetiredMarkerSourceBitCount: 0
+00038269: ====================================
+00038270: 
+00038271: ===== C1 CLEANUP FULFILLED =====
+00038272: ElapsedMs: 239848.460
+00038273: Actor: PC_Hero
+00038274: Generation: 1057
+00038275: Status: PERSISTED
+00038276: Source: It_1H_Sword_Rust_01
+00038277: SourceAddress: E70EAC10
+00038278: Side: RIGHT
+00038279: OffensiveRequestCount: 1
+00038280: Outstanding: 0
+00038281: CleanupObserved: 1
+00038282: ActualGroup: 5
+00038283: ==============================
+00038284: 
+00038285: ===== C1 FINALIZATION =====
+00038286: ElapsedMs: 239848.487
+00038287: Reason: AISETSTATE_AFTER_ORIGINAL
+00038288: Actor: PC_Hero
+00038289: Generation: 1057
+00038290: Status: PERSISTED
+00038291: TrackedSourceCount: 2
+00038292: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00038293: Source[0].Address: E70EAC10
+00038294: Source[0].LivenessEstablished: 1
+00038295: Source[0].Name: It_1H_Sword_Rust_01
+00038296: Source[0].OriginalSide: RIGHT
+00038297: Source[0].CurrentSideMask: 1
+00038298: Source[0].OffensiveRequestCount: 1
+00038299: Source[0].OutstandingBeforeFinalization: 0
+00038300: Source[0].CleanupObservedBeforeFinalization: 1
+00038301: Source[0].ActualGroupBeforeRepair: 5
+00038302: Source[0].RepairAttempted: 0
+00038303: Source[0].PhysicalCollisionChanged: 0
+00038304: Source[1].Outcome: NO_OP_NO_OUTSTANDING
+00038305: Source[1].Address: E6AA3610
+00038306: Source[1].LivenessEstablished: 1
+00038307: Source[1].Name: It_1H_Sword_Rust_01
+00038308: Source[1].OriginalSide: LEFT
+00038309: Source[1].CurrentSideMask: 2
+00038310: Source[1].OffensiveRequestCount: 0
+00038311: Source[1].OutstandingBeforeFinalization: 0
+00038312: Source[1].CleanupObservedBeforeFinalization: 0
+00038313: Source[1].ActualGroupBeforeRepair: 5
+00038314: Source[1].RepairAttempted: 0
+00038315: Source[1].PhysicalCollisionChanged: 0
+00038316: PhysicalCollisionChanged: 0
+00038317: ===========================
+00038318: 
+00038319: ===== ENGINE SetCollisionGroup =====
+00038320: ElapsedMs: 239960.991
+00038321: Source: Fist
+00038322: SourceAddress: E6EE3610
+00038323: SlotAssociation: NONE
+00038324: PlayerAction: 0
+00038325: PlayerAniPhase: 12
+00038326: PlayerStateTime: 0.122981
+00038327: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Stand_N_Fwd_00_%_00_P1_0.xmot
+00038328: RequestedGroup: 7
+00038329: BeforeGroup: 0
+00038330: AfterGroup: 0
+00038331: RetiredMarkerSourceBitCount: 0
+00038332: ====================================
+00038333: 
+00038334: ===== C1 LIFECYCLE START =====
+00038335: ElapsedMs: 240116.064
+00038336: Actor: PC_Hero
+00038337: Generation: 1065
+00038338: Status: CANDIDATE
+00038339: ReplacedGeneration: 0
+00038340: ReplacedOutstanding: 0
+00038341: TrackedSourceCount: 2
+00038342: Source[0].Address: E70EAC10
+00038343: Source[0].Side: RIGHT
+00038344: Source[0].ActualGroup: 5
+00038345: Source[1].Address: E6AA3610
+00038346: Source[1].Side: LEFT
+00038347: Source[1].ActualGroup: 5
+00038348: ==============================
+00038349: 
+00038350: ===== C1 SCRIPT BINDING =====
+00038351: ElapsedMs: 240116.078
+00038352: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00038353: Actor: PC_Hero
+00038354: Generation: 1065
+00038355: Status: CANDIDATE
+00038356: Outstanding: 0
+00038357: ScriptFunction: _AI_PowerAttack
+00038358: SourceAddress: 00000000
+00038359: =============================
+00038360: 
+00038361: ===== C1 LIFECYCLE STATUS =====
+00038362: ElapsedMs: 240116.147
+00038363: Event: PERSISTED
+00038364: Actor: PC_Hero
+00038365: Generation: 1065
+00038366: Status: PERSISTED
+00038367: Outstanding: 0
+00038368: ===============================
+00038369: 
+00038370: ===== C1 SCRIPT BINDING =====
+00038371: ElapsedMs: 240604.029
+00038372: Event: COMBAT_MOVE_REUSED
+00038373: Actor: PC_Hero
+00038374: Generation: 1065
+00038375: Status: PERSISTED
+00038376: Outstanding: 0
+00038377: ScriptFunction: _AI_PowerAttack
+00038378: SourceAddress: 00000000
+00038379: =============================
+00038380: 
+00038381: ===== MARKER OWNERSHIP DECISION =====
+00038382: ElapsedMs: 240604.116
+00038383: Actor: PC_Hero
+00038384: Family: POWER
+00038385: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038386: Action: 2
+00038387: AniPhase: 1
+00038388: MatchingMotionFound: 1
+00038389: MarkerScanValid: 1
+00038390: ContainsReservedSourceMarker: 1
+00038391: RequiredSourceMask: 3
+00038392: AuthoredRIGHTCount: 1
+00038393: FirstRIGHTFrame: 6
+00038394: AuthoredLEFTCount: 0
+00038395: FirstLEFTFrame: -1
+00038396: AuthoredBOTHCount: 2
+00038397: FirstBOTHFrame: 1
+00038398: AuthoredOFFCount: 1
+00038399: FirstOFFFrame: 10
+00038400: RightSourceResolved: 1
+00038401: RightSourceName: It_1H_Sword_Rust_01
+00038402: RightSourceAddress: E70EAC10
+00038403: RightSourceUseType: 2
+00038404: RightSourceCollisionGroup: 5
+00038405: LeftSourceResolved: 1
+00038406: LeftSourceName: It_1H_Sword_Rust_01
+00038407: LeftSourceAddress: E6AA3610
+00038408: LeftSourceUseType: 2
+00038409: LeftSourceCollisionGroup: 5
+00038410: SuppressNativeCallback: 1
+00038411: =====================================
+00038412: 
+00038413: ===== BOTH RECEIVED =====
+00038414: ElapsedMs: 240644.866
+00038415: Actor: PC_Hero
+00038416: Action: 2
+00038417: AniPhase: 1
+00038418: StateTime: 0.542997
+00038419: StatePositionBeforeMarker: 0
+00038420: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038421: ===== ENGINE SetCollisionGroup =====
+00038422: ElapsedMs: 240644.894
+00038423: Source: It_1H_Sword_Rust_01
+00038424: SourceAddress: E70EAC10
+00038425: SlotAssociation: RIGHT
+00038426: PlayerAction: 2
+00038427: PlayerAniPhase: 1
+00038428: PlayerStateTime: 0.542997
+00038429: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038430: RequestedGroup: 7
+00038431: BeforeGroup: 5
+00038432: AfterGroup: 7
+00038433: RetiredMarkerSourceBitCount: 0
+00038434: ====================================
+00038435: 
+00038436: ===== C1 OFFENSE REQUEST =====
+00038437: ElapsedMs: 240644.928
+00038438: Actor: PC_Hero
+00038439: Generation: 1065
+00038440: Status: PERSISTED
+00038441: Source: It_1H_Sword_Rust_01
+00038442: SourceAddress: E70EAC10
+00038443: Side: RIGHT
+00038444: OffensiveRequestCount: 1
+00038445: Outstanding: 1
+00038446: CleanupObserved: 0
+00038447: ActualGroup: 7
+00038448: ==============================
+00038449: 
+00038450: ===== ENGINE SetCollisionGroup =====
+00038451: ElapsedMs: 240644.945
+00038452: Source: It_1H_Sword_Rust_01
+00038453: SourceAddress: E6AA3610
+00038454: SlotAssociation: LEFT
+00038455: PlayerAction: 2
+00038456: PlayerAniPhase: 1
+00038457: PlayerStateTime: 0.542997
+00038458: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038459: RequestedGroup: 7
+00038460: BeforeGroup: 5
+00038461: AfterGroup: 7
+00038462: RetiredMarkerSourceBitCount: 0
+00038463: ====================================
+00038464: 
+00038465: ===== C1 OFFENSE REQUEST =====
+00038466: ElapsedMs: 240644.959
+00038467: Actor: PC_Hero
+00038468: Generation: 1065
+00038469: Status: PERSISTED
+00038470: Source: It_1H_Sword_Rust_01
+00038471: SourceAddress: E6AA3610
+00038472: Side: LEFT
+00038473: OffensiveRequestCount: 1
+00038474: Outstanding: 1
+00038475: CleanupObserved: 0
+00038476: ActualGroup: 7
+00038477: ==============================
+00038478: 
+00038479: MarkerName: G3AB_COL_BOTH
+00038480: MarkerOpcode: BOTH
+00038481: StatePositionAfterMarker: 2
+00038482: C1GenerationValid: 1
+00038483: C1Generation: 1065
+00038484: MarkerAction: ACCEPTED
+00038485: AuthoredMarkerOccurrences: 2
+00038486: AcceptedMarkerOccurrencesBefore: 0
+00038487: AcceptedMarkerOccurrencesAfter: 1
+00038488: ExecutionBudgetReset: 1
+00038489: PreviousSourceMask: 0
+00038490: DesiredSourceMask: 3
+00038491: RetiredSourceMask: 0
+00038492: OwnedMaskAtOff: 0
+00038493: MarkerOwnedWeaponMask: 3
+00038494: ActivatedSourceCount: 2
+00038495: RetiredSourceCount: 0
+00038496: DeactivatedSourceCount: 0
+00038497: TriggeredListClearCount: 2
+00038498: RightGroupBefore: 5
+00038499: RightGroupAfter: 7
+00038500: RightUseType: 2
+00038501: RightGroupRequested: 1
+00038502: RightFistGroupSkip: 0
+00038503: RightTriggeredListCleared: 1
+00038504: LeftGroupBefore: 5
+00038505: LeftGroupAfter: 7
+00038506: LeftUseType: 2
+00038507: LeftGroupRequested: 1
+00038508: LeftFistGroupSkip: 0
+00038509: LeftTriggeredListCleared: 1
+00038510: ===========================
+00038511: 
+00038512: ===== RIGHT RECEIVED =====
+00038513: ElapsedMs: 240856.444
+00038514: Actor: PC_Hero
+00038515: Action: 2
+00038516: AniPhase: 1
+00038517: StateTime: 0.754990
+00038518: StatePositionBeforeMarker: 2
+00038519: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038520: ===== ENGINE SetCollisionGroup =====
+00038521: ElapsedMs: 240856.472
+00038522: Source: It_1H_Sword_Rust_01
+00038523: SourceAddress: E6AA3610
+00038524: SlotAssociation: LEFT
+00038525: PlayerAction: 2
+00038526: PlayerAniPhase: 1
+00038527: PlayerStateTime: 0.754990
+00038528: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038529: RequestedGroup: 5
+00038530: BeforeGroup: 7
+00038531: AfterGroup: 5
+00038532: RetiredMarkerSourceBitCount: 0
+00038533: ====================================
+00038534: 
+00038535: ===== C1 CLEANUP FULFILLED =====
+00038536: ElapsedMs: 240856.501
+00038537: Actor: PC_Hero
+00038538: Generation: 1065
+00038539: Status: PERSISTED
+00038540: Source: It_1H_Sword_Rust_01
+00038541: SourceAddress: E6AA3610
+00038542: Side: LEFT
+00038543: OffensiveRequestCount: 1
+00038544: Outstanding: 0
+00038545: CleanupObserved: 1
+00038546: ActualGroup: 5
+00038547: ==============================
+00038548: 
+00038549: ===== ENGINE SetCollisionGroup =====
+00038550: ElapsedMs: 240856.514
+00038551: Source: It_1H_Sword_Rust_01
+00038552: SourceAddress: E70EAC10
+00038553: SlotAssociation: RIGHT
+00038554: PlayerAction: 2
+00038555: PlayerAniPhase: 1
+00038556: PlayerStateTime: 0.754990
+00038557: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038558: RequestedGroup: 7
+00038559: BeforeGroup: 7
+00038560: AfterGroup: 7
+00038561: RetiredMarkerSourceBitCount: 0
+00038562: ====================================
+00038563: 
+00038564: ===== C1 OFFENSE REQUEST =====
+00038565: ElapsedMs: 240856.532
+00038566: Actor: PC_Hero
+00038567: Generation: 1065
+00038568: Status: PERSISTED
+00038569: Source: It_1H_Sword_Rust_01
+00038570: SourceAddress: E70EAC10
+00038571: Side: RIGHT
+00038572: OffensiveRequestCount: 2
+00038573: Outstanding: 1
+00038574: CleanupObserved: 0
+00038575: ActualGroup: 7
+00038576: ==============================
+00038577: 
+00038578: MarkerName: G3AB_COL_RIGHT
+00038579: MarkerOpcode: RIGHT
+00038580: StatePositionAfterMarker: 2
+00038581: C1GenerationValid: 1
+00038582: C1Generation: 1065
+00038583: MarkerAction: ACCEPTED
+00038584: AuthoredMarkerOccurrences: 1
+00038585: AcceptedMarkerOccurrencesBefore: 0
+00038586: AcceptedMarkerOccurrencesAfter: 1
+00038587: ExecutionBudgetReset: 0
+00038588: PreviousSourceMask: 3
+00038589: DesiredSourceMask: 1
+00038590: RetiredSourceMask: 2
+00038591: OwnedMaskAtOff: 0
+00038592: MarkerOwnedWeaponMask: 1
+00038593: ActivatedSourceCount: 1
+00038594: RetiredSourceCount: 1
+00038595: DeactivatedSourceCount: 0
+00038596: TriggeredListClearCount: 1
+00038597: RightGroupBefore: 7
+00038598: RightGroupAfter: 7
+00038599: RightUseType: 2
+00038600: RightGroupRequested: 1
+00038601: RightFistGroupSkip: 0
+00038602: RightTriggeredListCleared: 1
+00038603: ===========================
+00038604: 
+00038605: ===== ENGINE SetCollisionGroup =====
+00038606: ElapsedMs: 240969.156
+00038607: Source: Fist
+00038608: SourceAddress: EBB69A10
+00038609: SlotAssociation: NONE
+00038610: PlayerAction: 2
+00038611: PlayerAniPhase: 1
+00038612: PlayerStateTime: 0.853994
+00038613: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038614: RequestedGroup: 7
+00038615: BeforeGroup: 0
+00038616: AfterGroup: 0
+00038617: RetiredMarkerSourceBitCount: 0
+00038618: ====================================
+00038619: 
+00038620: ===== OFF RECEIVED =====
+00038621: ElapsedMs: 241040.267
+00038622: Actor: PC_Hero
+00038623: Action: 2
+00038624: AniPhase: 1
+00038625: StateTime: 0.937985
+00038626: StatePositionBeforeMarker: 2
+00038627: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038628: ===== ENGINE SetCollisionGroup =====
+00038629: ElapsedMs: 241040.296
+00038630: Source: It_1H_Sword_Rust_01
+00038631: SourceAddress: E70EAC10
+00038632: SlotAssociation: RIGHT
+00038633: PlayerAction: 2
+00038634: PlayerAniPhase: 1
+00038635: PlayerStateTime: 0.937985
+00038636: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038637: RequestedGroup: 5
+00038638: BeforeGroup: 7
+00038639: AfterGroup: 5
+00038640: RetiredMarkerSourceBitCount: 0
+00038641: ====================================
+00038642: 
+00038643: ===== C1 CLEANUP FULFILLED =====
+00038644: ElapsedMs: 241040.325
+00038645: Actor: PC_Hero
+00038646: Generation: 1065
+00038647: Status: PERSISTED
+00038648: Source: It_1H_Sword_Rust_01
+00038649: SourceAddress: E70EAC10
+00038650: Side: RIGHT
+00038651: OffensiveRequestCount: 2
+00038652: Outstanding: 0
+00038653: CleanupObserved: 1
+00038654: ActualGroup: 5
+00038655: ==============================
+00038656: 
+00038657: MarkerName: G3AB_COL_OFF
+00038658: MarkerOpcode: OFF
+00038659: StatePositionAfterMarker: 2
+00038660: C1GenerationValid: 1
+00038661: C1Generation: 1065
+00038662: MarkerAction: OFF_ACCEPTED
+00038663: AuthoredMarkerOccurrences: 1
+00038664: AcceptedMarkerOccurrencesBefore: 0
+00038665: AcceptedMarkerOccurrencesAfter: 1
+00038666: ExecutionBudgetReset: 0
+00038667: PreviousSourceMask: 0
+00038668: DesiredSourceMask: 0
+00038669: RetiredSourceMask: 0
+00038670: OwnedMaskAtOff: 1
+00038671: MarkerOwnedWeaponMask: 0
+00038672: ActivatedSourceCount: 0
+00038673: RetiredSourceCount: 0
+00038674: DeactivatedSourceCount: 1
+00038675: TriggeredListClearCount: 0
+00038676: ===========================
+00038677: 
+00038678: ===== BOTH RECEIVED =====
+00038679: ElapsedMs: 241305.182
+00038680: Actor: PC_Hero
+00038681: Action: 2
+00038682: AniPhase: 1
+00038683: StateTime: 1.202975
+00038684: StatePositionBeforeMarker: 2
+00038685: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038686: ===== ENGINE SetCollisionGroup =====
+00038687: ElapsedMs: 241305.213
+00038688: Source: It_1H_Sword_Rust_01
+00038689: SourceAddress: E70EAC10
+00038690: SlotAssociation: RIGHT
+00038691: PlayerAction: 2
+00038692: PlayerAniPhase: 1
+00038693: PlayerStateTime: 1.202975
+00038694: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038695: RequestedGroup: 7
+00038696: BeforeGroup: 5
+00038697: AfterGroup: 7
+00038698: RetiredMarkerSourceBitCount: 0
+00038699: ====================================
+00038700: 
+00038701: ===== C1 OFFENSE REQUEST =====
+00038702: ElapsedMs: 241305.242
+00038703: Actor: PC_Hero
+00038704: Generation: 1065
+00038705: Status: PERSISTED
+00038706: Source: It_1H_Sword_Rust_01
+00038707: SourceAddress: E70EAC10
+00038708: Side: RIGHT
+00038709: OffensiveRequestCount: 3
+00038710: Outstanding: 1
+00038711: CleanupObserved: 0
+00038712: ActualGroup: 7
+00038713: ==============================
+00038714: 
+00038715: ===== ENGINE SetCollisionGroup =====
+00038716: ElapsedMs: 241305.259
+00038717: Source: It_1H_Sword_Rust_01
+00038718: SourceAddress: E6AA3610
+00038719: SlotAssociation: LEFT
+00038720: PlayerAction: 2
+00038721: PlayerAniPhase: 1
+00038722: PlayerStateTime: 1.202975
+00038723: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038724: RequestedGroup: 7
+00038725: BeforeGroup: 5
+00038726: AfterGroup: 7
+00038727: RetiredMarkerSourceBitCount: 0
+00038728: ====================================
+00038729: 
+00038730: ===== C1 OFFENSE REQUEST =====
+00038731: ElapsedMs: 241305.315
+00038732: Actor: PC_Hero
+00038733: Generation: 1065
+00038734: Status: PERSISTED
+00038735: Source: It_1H_Sword_Rust_01
+00038736: SourceAddress: E6AA3610
+00038737: Side: LEFT
+00038738: OffensiveRequestCount: 2
+00038739: Outstanding: 1
+00038740: CleanupObserved: 0
+00038741: ActualGroup: 7
+00038742: ==============================
+00038743: 
+00038744: MarkerName: G3AB_COL_BOTH
+00038745: MarkerOpcode: BOTH
+00038746: StatePositionAfterMarker: 2
+00038747: C1GenerationValid: 1
+00038748: C1Generation: 1065
+00038749: MarkerAction: ACCEPTED
+00038750: AuthoredMarkerOccurrences: 2
+00038751: AcceptedMarkerOccurrencesBefore: 1
+00038752: AcceptedMarkerOccurrencesAfter: 2
+00038753: ExecutionBudgetReset: 0
+00038754: PreviousSourceMask: 0
+00038755: DesiredSourceMask: 3
+00038756: RetiredSourceMask: 0
+00038757: OwnedMaskAtOff: 0
+00038758: MarkerOwnedWeaponMask: 3
+00038759: ActivatedSourceCount: 2
+00038760: RetiredSourceCount: 0
+00038761: DeactivatedSourceCount: 0
+00038762: TriggeredListClearCount: 2
+00038763: RightGroupBefore: 5
+00038764: RightGroupAfter: 7
+00038765: RightUseType: 2
+00038766: RightGroupRequested: 1
+00038767: RightFistGroupSkip: 0
+00038768: RightTriggeredListCleared: 1
+00038769: LeftGroupBefore: 5
+00038770: LeftGroupAfter: 7
+00038771: LeftUseType: 2
+00038772: LeftGroupRequested: 1
+00038773: LeftFistGroupSkip: 0
+00038774: LeftTriggeredListCleared: 1
+00038775: ===========================
+00038776: 
+00038777: ===== RIGHT RECEIVED =====
+00038778: ElapsedMs: 241305.377
+00038779: Actor: PC_Hero
+00038780: Action: 2
+00038781: AniPhase: 1
+00038782: StateTime: 1.202975
+00038783: StatePositionBeforeMarker: 2
+00038784: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038785: MarkerName: G3AB_COL_RIGHT
+00038786: MarkerOpcode: RIGHT
+00038787: StatePositionAfterMarker: 2
+00038788: C1GenerationValid: 1
+00038789: C1Generation: 1065
+00038790: MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+00038791: AuthoredMarkerOccurrences: 1
+00038792: AcceptedMarkerOccurrencesBefore: 1
+00038793: AcceptedMarkerOccurrencesAfter: 1
+00038794: ExecutionBudgetReset: 0
+00038795: PreviousSourceMask: 0
+00038796: DesiredSourceMask: 0
+00038797: RetiredSourceMask: 0
+00038798: OwnedMaskAtOff: 0
+00038799: MarkerOwnedWeaponMask: 0
+00038800: ActivatedSourceCount: 0
+00038801: RetiredSourceCount: 0
+00038802: DeactivatedSourceCount: 0
+00038803: TriggeredListClearCount: 0
+00038804: ===========================
+00038805: 
+00038806: ===== OFF RECEIVED =====
+00038807: ElapsedMs: 241305.401
+00038808: Actor: PC_Hero
+00038809: Action: 2
+00038810: AniPhase: 1
+00038811: StateTime: 1.202975
+00038812: StatePositionBeforeMarker: 2
+00038813: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038814: MarkerName: G3AB_COL_OFF
+00038815: MarkerOpcode: OFF
+00038816: StatePositionAfterMarker: 2
+00038817: C1GenerationValid: 1
+00038818: C1Generation: 1065
+00038819: MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+00038820: AuthoredMarkerOccurrences: 1
+00038821: AcceptedMarkerOccurrencesBefore: 1
+00038822: AcceptedMarkerOccurrencesAfter: 1
+00038823: ExecutionBudgetReset: 0
+00038824: PreviousSourceMask: 0
+00038825: DesiredSourceMask: 0
+00038826: RetiredSourceMask: 0
+00038827: OwnedMaskAtOff: 0
+00038828: MarkerOwnedWeaponMask: 0
+00038829: ActivatedSourceCount: 0
+00038830: RetiredSourceCount: 0
+00038831: DeactivatedSourceCount: 0
+00038832: TriggeredListClearCount: 0
+00038833: ===========================
+00038834: 
+00038835: ===== BOTH RECEIVED =====
+00038836: ElapsedMs: 241305.424
+00038837: Actor: PC_Hero
+00038838: Action: 2
+00038839: AniPhase: 1
+00038840: StateTime: 1.202975
+00038841: StatePositionBeforeMarker: 2
+00038842: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038843: MarkerName: G3AB_COL_BOTH
+00038844: MarkerOpcode: BOTH
+00038845: StatePositionAfterMarker: 2
+00038846: C1GenerationValid: 1
+00038847: C1Generation: 1065
+00038848: MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+00038849: DuplicateStateTimeDelta: 0.000000000
+00038850: DuplicateElapsedMsDelta: 0.235700
+00038851: AuthoredMarkerOccurrences: 0
+00038852: AcceptedMarkerOccurrencesBefore: 0
+00038853: AcceptedMarkerOccurrencesAfter: 0
+00038854: ExecutionBudgetReset: 0
+00038855: PreviousSourceMask: 0
+00038856: DesiredSourceMask: 0
+00038857: RetiredSourceMask: 0
+00038858: OwnedMaskAtOff: 0
+00038859: MarkerOwnedWeaponMask: 0
+00038860: ActivatedSourceCount: 0
+00038861: RetiredSourceCount: 0
+00038862: DeactivatedSourceCount: 0
+00038863: TriggeredListClearCount: 0
+00038864: ===========================
+00038865: 
+00038866: ===== ENGINE SetCollisionGroup =====
+00038867: ElapsedMs: 241419.308
+00038868: Source: It_1H_Sword_Rust_01
+00038869: SourceAddress: E70EAC10
+00038870: SlotAssociation: RIGHT
+00038871: PlayerAction: 2
+00038872: PlayerAniPhase: 3
+00038873: PlayerStateTime: 1.302964
+00038874: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038875: RequestedGroup: 5
+00038876: BeforeGroup: 7
+00038877: AfterGroup: 5
+00038878: RetiredMarkerSourceBitCount: 1
+00038879: ====================================
+00038880: 
+00038881: ===== C1 CLEANUP FULFILLED =====
+00038882: ElapsedMs: 241419.345
+00038883: Actor: PC_Hero
+00038884: Generation: 1065
+00038885: Status: PERSISTED
+00038886: Source: It_1H_Sword_Rust_01
+00038887: SourceAddress: E70EAC10
+00038888: Side: RIGHT
+00038889: OffensiveRequestCount: 3
+00038890: Outstanding: 0
+00038891: CleanupObserved: 1
+00038892: ActualGroup: 5
+00038893: ==============================
+00038894: 
+00038895: ===== ENGINE SetCollisionGroup =====
+00038896: ElapsedMs: 241419.372
+00038897: Source: It_1H_Sword_Rust_01
+00038898: SourceAddress: E6AA3610
+00038899: SlotAssociation: LEFT
+00038900: PlayerAction: 2
+00038901: PlayerAniPhase: 3
+00038902: PlayerStateTime: 1.302964
+00038903: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00038904: RequestedGroup: 5
+00038905: BeforeGroup: 7
+00038906: AfterGroup: 5
+00038907: RetiredMarkerSourceBitCount: 1
+00038908: ====================================
+00038909: 
+00038910: ===== C1 CLEANUP FULFILLED =====
+00038911: ElapsedMs: 241419.390
+00038912: Actor: PC_Hero
+00038913: Generation: 1065
+00038914: Status: PERSISTED
+00038915: Source: It_1H_Sword_Rust_01
+00038916: SourceAddress: E6AA3610
+00038917: Side: LEFT
+00038918: OffensiveRequestCount: 2
+00038919: Outstanding: 0
+00038920: CleanupObserved: 1
+00038921: ActualGroup: 5
+00038922: ==============================
+00038923: 
+00038924: ===== C1 FINALIZATION =====
+00038925: ElapsedMs: 241419.413
+00038926: Reason: AISETSTATE_AFTER_ORIGINAL
+00038927: Actor: PC_Hero
+00038928: Generation: 1065
+00038929: Status: PERSISTED
+00038930: TrackedSourceCount: 2
+00038931: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00038932: Source[0].Address: E70EAC10
+00038933: Source[0].LivenessEstablished: 1
+00038934: Source[0].Name: It_1H_Sword_Rust_01
+00038935: Source[0].OriginalSide: RIGHT
+00038936: Source[0].CurrentSideMask: 1
+00038937: Source[0].OffensiveRequestCount: 3
+00038938: Source[0].OutstandingBeforeFinalization: 0
+00038939: Source[0].CleanupObservedBeforeFinalization: 1
+00038940: Source[0].ActualGroupBeforeRepair: 5
+00038941: Source[0].RepairAttempted: 0
+00038942: Source[0].PhysicalCollisionChanged: 0
+00038943: Source[1].Outcome: NO_OP_NO_OUTSTANDING
+00038944: Source[1].Address: E6AA3610
+00038945: Source[1].LivenessEstablished: 1
+00038946: Source[1].Name: It_1H_Sword_Rust_01
+00038947: Source[1].OriginalSide: LEFT
+00038948: Source[1].CurrentSideMask: 2
+00038949: Source[1].OffensiveRequestCount: 2
+00038950: Source[1].OutstandingBeforeFinalization: 0
+00038951: Source[1].CleanupObservedBeforeFinalization: 1
+00038952: Source[1].ActualGroupBeforeRepair: 5
+00038953: Source[1].RepairAttempted: 0
+00038954: Source[1].PhysicalCollisionChanged: 0
+00038955: PhysicalCollisionChanged: 0
+00038956: ===========================
+00038957: 
+00038958: ===== ENGINE SetCollisionGroup =====
+00038959: ElapsedMs: 241944.076
+00038960: Source: Fist
+00038961: SourceAddress: E6EE3610
+00038962: SlotAssociation: NONE
+00038963: PlayerAction: 0
+00038964: PlayerAniPhase: 8
+00038965: PlayerStateTime: 0.522966
+00038966: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Walk_N_Back_00_%_00_P1_160.xmot
+00038967: RequestedGroup: 7
+00038968: BeforeGroup: 0
+00038969: AfterGroup: 0
+00038970: RetiredMarkerSourceBitCount: 0
+00038971: ====================================
+00038972: 
+00038973: ===== C1 LIFECYCLE START =====
+00038974: ElapsedMs: 242428.602
+00038975: Actor: PC_Hero
+00038976: Generation: 1076
+00038977: Status: CANDIDATE
+00038978: ReplacedGeneration: 0
+00038979: ReplacedOutstanding: 0
+00038980: TrackedSourceCount: 2
+00038981: Source[0].Address: E70EAC10
+00038982: Source[0].Side: RIGHT
+00038983: Source[0].ActualGroup: 5
+00038984: Source[1].Address: E6AA3610
+00038985: Source[1].Side: LEFT
+00038986: Source[1].ActualGroup: 5
+00038987: ==============================
+00038988: 
+00038989: ===== C1 SCRIPT BINDING =====
+00038990: ElapsedMs: 242428.617
+00038991: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00038992: Actor: PC_Hero
+00038993: Generation: 1076
+00038994: Status: CANDIDATE
+00038995: Outstanding: 0
+00038996: ScriptFunction: _AI_PowerAttack
+00038997: SourceAddress: 00000000
+00038998: =============================
+00038999: 
+00039000: ===== C1 LIFECYCLE STATUS =====
+00039001: ElapsedMs: 242428.690
+00039002: Event: PERSISTED
+00039003: Actor: PC_Hero
+00039004: Generation: 1076
+00039005: Status: PERSISTED
+00039006: Outstanding: 0
+00039007: ===============================
+00039008: 
+00039009: ===== C1 SCRIPT BINDING =====
+00039010: ElapsedMs: 242919.633
+00039011: Event: COMBAT_MOVE_REUSED
+00039012: Actor: PC_Hero
+00039013: Generation: 1076
+00039014: Status: PERSISTED
+00039015: Outstanding: 0
+00039016: ScriptFunction: _AI_PowerAttack
+00039017: SourceAddress: 00000000
+00039018: =============================
+00039019: 
+00039020: ===== ENGINE SetCollisionGroup =====
+00039021: ElapsedMs: 242948.089
+00039022: Source: Fist
+00039023: SourceAddress: EBB69A10
+00039024: SlotAssociation: NONE
+00039025: PlayerAction: 2
+00039026: PlayerAniPhase: 1
+00039027: PlayerStateTime: 0.520965
+00039028: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039029: RequestedGroup: 7
+00039030: BeforeGroup: 0
+00039031: AfterGroup: 0
+00039032: RetiredMarkerSourceBitCount: 0
+00039033: ====================================
+00039034: 
+00039035: ===== BOTH RECEIVED =====
+00039036: ElapsedMs: 242962.953
+00039037: Actor: PC_Hero
+00039038: Action: 2
+00039039: AniPhase: 1
+00039040: StateTime: 0.548973
+00039041: StatePositionBeforeMarker: 0
+00039042: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039043: ===== ENGINE SetCollisionGroup =====
+00039044: ElapsedMs: 242962.982
+00039045: Source: It_1H_Sword_Rust_01
+00039046: SourceAddress: E70EAC10
+00039047: SlotAssociation: RIGHT
+00039048: PlayerAction: 2
+00039049: PlayerAniPhase: 1
+00039050: PlayerStateTime: 0.548973
+00039051: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039052: RequestedGroup: 7
+00039053: BeforeGroup: 5
+00039054: AfterGroup: 7
+00039055: RetiredMarkerSourceBitCount: 0
+00039056: ====================================
+00039057: 
+00039058: ===== C1 OFFENSE REQUEST =====
+00039059: ElapsedMs: 242963.017
+00039060: Actor: PC_Hero
+00039061: Generation: 1076
+00039062: Status: PERSISTED
+00039063: Source: It_1H_Sword_Rust_01
+00039064: SourceAddress: E70EAC10
+00039065: Side: RIGHT
+00039066: OffensiveRequestCount: 1
+00039067: Outstanding: 1
+00039068: CleanupObserved: 0
+00039069: ActualGroup: 7
+00039070: ==============================
+00039071: 
+00039072: ===== ENGINE SetCollisionGroup =====
+00039073: ElapsedMs: 242963.038
+00039074: Source: It_1H_Sword_Rust_01
+00039075: SourceAddress: E6AA3610
+00039076: SlotAssociation: LEFT
+00039077: PlayerAction: 2
+00039078: PlayerAniPhase: 1
+00039079: PlayerStateTime: 0.548973
+00039080: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039081: RequestedGroup: 7
+00039082: BeforeGroup: 5
+00039083: AfterGroup: 7
+00039084: RetiredMarkerSourceBitCount: 0
+00039085: ====================================
+00039086: 
+00039087: ===== C1 OFFENSE REQUEST =====
+00039088: ElapsedMs: 242963.053
+00039089: Actor: PC_Hero
+00039090: Generation: 1076
+00039091: Status: PERSISTED
+00039092: Source: It_1H_Sword_Rust_01
+00039093: SourceAddress: E6AA3610
+00039094: Side: LEFT
+00039095: OffensiveRequestCount: 1
+00039096: Outstanding: 1
+00039097: CleanupObserved: 0
+00039098: ActualGroup: 7
+00039099: ==============================
+00039100: 
+00039101: MarkerName: G3AB_COL_BOTH
+00039102: MarkerOpcode: BOTH
+00039103: StatePositionAfterMarker: 2
+00039104: C1GenerationValid: 1
+00039105: C1Generation: 1076
+00039106: MarkerAction: ACCEPTED
+00039107: AuthoredMarkerOccurrences: 2
+00039108: AcceptedMarkerOccurrencesBefore: 0
+00039109: AcceptedMarkerOccurrencesAfter: 1
+00039110: ExecutionBudgetReset: 1
+00039111: PreviousSourceMask: 0
+00039112: DesiredSourceMask: 3
+00039113: RetiredSourceMask: 0
+00039114: OwnedMaskAtOff: 0
+00039115: MarkerOwnedWeaponMask: 3
+00039116: ActivatedSourceCount: 2
+00039117: RetiredSourceCount: 0
+00039118: DeactivatedSourceCount: 0
+00039119: TriggeredListClearCount: 2
+00039120: RightGroupBefore: 5
+00039121: RightGroupAfter: 7
+00039122: RightUseType: 2
+00039123: RightGroupRequested: 1
+00039124: RightFistGroupSkip: 0
+00039125: RightTriggeredListCleared: 1
+00039126: LeftGroupBefore: 5
+00039127: LeftGroupAfter: 7
+00039128: LeftUseType: 2
+00039129: LeftGroupRequested: 1
+00039130: LeftFistGroupSkip: 0
+00039131: LeftTriggeredListCleared: 1
+00039132: ===========================
+00039133: 
+00039134: ===== RIGHT RECEIVED =====
+00039135: ElapsedMs: 243179.127
+00039136: Actor: PC_Hero
+00039137: Action: 2
+00039138: AniPhase: 1
+00039139: StateTime: 0.764951
+00039140: StatePositionBeforeMarker: 2
+00039141: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039142: ===== ENGINE SetCollisionGroup =====
+00039143: ElapsedMs: 243179.157
+00039144: Source: It_1H_Sword_Rust_01
+00039145: SourceAddress: E6AA3610
+00039146: SlotAssociation: LEFT
+00039147: PlayerAction: 2
+00039148: PlayerAniPhase: 1
+00039149: PlayerStateTime: 0.764951
+00039150: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039151: RequestedGroup: 5
+00039152: BeforeGroup: 7
+00039153: AfterGroup: 5
+00039154: RetiredMarkerSourceBitCount: 0
+00039155: ====================================
+00039156: 
+00039157: ===== C1 CLEANUP FULFILLED =====
+00039158: ElapsedMs: 243179.190
+00039159: Actor: PC_Hero
+00039160: Generation: 1076
+00039161: Status: PERSISTED
+00039162: Source: It_1H_Sword_Rust_01
+00039163: SourceAddress: E6AA3610
+00039164: Side: LEFT
+00039165: OffensiveRequestCount: 1
+00039166: Outstanding: 0
+00039167: CleanupObserved: 1
+00039168: ActualGroup: 5
+00039169: ==============================
+00039170: 
+00039171: ===== ENGINE SetCollisionGroup =====
+00039172: ElapsedMs: 243179.203
+00039173: Source: It_1H_Sword_Rust_01
+00039174: SourceAddress: E70EAC10
+00039175: SlotAssociation: RIGHT
+00039176: PlayerAction: 2
+00039177: PlayerAniPhase: 1
+00039178: PlayerStateTime: 0.764951
+00039179: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039180: RequestedGroup: 7
+00039181: BeforeGroup: 7
+00039182: AfterGroup: 7
+00039183: RetiredMarkerSourceBitCount: 0
+00039184: ====================================
+00039185: 
+00039186: ===== C1 OFFENSE REQUEST =====
+00039187: ElapsedMs: 243179.218
+00039188: Actor: PC_Hero
+00039189: Generation: 1076
+00039190: Status: PERSISTED
+00039191: Source: It_1H_Sword_Rust_01
+00039192: SourceAddress: E70EAC10
+00039193: Side: RIGHT
+00039194: OffensiveRequestCount: 2
+00039195: Outstanding: 1
+00039196: CleanupObserved: 0
+00039197: ActualGroup: 7
+00039198: ==============================
+00039199: 
+00039200: MarkerName: G3AB_COL_RIGHT
+00039201: MarkerOpcode: RIGHT
+00039202: StatePositionAfterMarker: 2
+00039203: C1GenerationValid: 1
+00039204: C1Generation: 1076
+00039205: MarkerAction: ACCEPTED
+00039206: AuthoredMarkerOccurrences: 1
+00039207: AcceptedMarkerOccurrencesBefore: 0
+00039208: AcceptedMarkerOccurrencesAfter: 1
+00039209: ExecutionBudgetReset: 0
+00039210: PreviousSourceMask: 3
+00039211: DesiredSourceMask: 1
+00039212: RetiredSourceMask: 2
+00039213: OwnedMaskAtOff: 0
+00039214: MarkerOwnedWeaponMask: 1
+00039215: ActivatedSourceCount: 1
+00039216: RetiredSourceCount: 1
+00039217: DeactivatedSourceCount: 0
+00039218: TriggeredListClearCount: 1
+00039219: RightGroupBefore: 7
+00039220: RightGroupAfter: 7
+00039221: RightUseType: 2
+00039222: RightGroupRequested: 1
+00039223: RightFistGroupSkip: 0
+00039224: RightTriggeredListCleared: 1
+00039225: ===========================
+00039226: 
+00039227: ===== OFF RECEIVED =====
+00039228: ElapsedMs: 243362.583
+00039229: Actor: PC_Hero
+00039230: Action: 2
+00039231: AniPhase: 1
+00039232: StateTime: 0.948950
+00039233: StatePositionBeforeMarker: 2
+00039234: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039235: ===== ENGINE SetCollisionGroup =====
+00039236: ElapsedMs: 243362.612
+00039237: Source: It_1H_Sword_Rust_01
+00039238: SourceAddress: E70EAC10
+00039239: SlotAssociation: RIGHT
+00039240: PlayerAction: 2
+00039241: PlayerAniPhase: 1
+00039242: PlayerStateTime: 0.948950
+00039243: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039244: RequestedGroup: 5
+00039245: BeforeGroup: 7
+00039246: AfterGroup: 5
+00039247: RetiredMarkerSourceBitCount: 0
+00039248: ====================================
+00039249: 
+00039250: ===== C1 CLEANUP FULFILLED =====
+00039251: ElapsedMs: 243362.644
+00039252: Actor: PC_Hero
+00039253: Generation: 1076
+00039254: Status: PERSISTED
+00039255: Source: It_1H_Sword_Rust_01
+00039256: SourceAddress: E70EAC10
+00039257: Side: RIGHT
+00039258: OffensiveRequestCount: 2
+00039259: Outstanding: 0
+00039260: CleanupObserved: 1
+00039261: ActualGroup: 5
+00039262: ==============================
+00039263: 
+00039264: MarkerName: G3AB_COL_OFF
+00039265: MarkerOpcode: OFF
+00039266: StatePositionAfterMarker: 2
+00039267: C1GenerationValid: 1
+00039268: C1Generation: 1076
+00039269: MarkerAction: OFF_ACCEPTED
+00039270: AuthoredMarkerOccurrences: 1
+00039271: AcceptedMarkerOccurrencesBefore: 0
+00039272: AcceptedMarkerOccurrencesAfter: 1
+00039273: ExecutionBudgetReset: 0
+00039274: PreviousSourceMask: 0
+00039275: DesiredSourceMask: 0
+00039276: RetiredSourceMask: 0
+00039277: OwnedMaskAtOff: 1
+00039278: MarkerOwnedWeaponMask: 0
+00039279: ActivatedSourceCount: 0
+00039280: RetiredSourceCount: 0
+00039281: DeactivatedSourceCount: 1
+00039282: TriggeredListClearCount: 0
+00039283: ===========================
+00039284: 
+00039285: ===== BOTH RECEIVED =====
+00039286: ElapsedMs: 243623.869
+00039287: Actor: PC_Hero
+00039288: Action: 2
+00039289: AniPhase: 1
+00039290: StateTime: 1.209934
+00039291: StatePositionBeforeMarker: 2
+00039292: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039293: ===== ENGINE SetCollisionGroup =====
+00039294: ElapsedMs: 243623.899
+00039295: Source: It_1H_Sword_Rust_01
+00039296: SourceAddress: E70EAC10
+00039297: SlotAssociation: RIGHT
+00039298: PlayerAction: 2
+00039299: PlayerAniPhase: 1
+00039300: PlayerStateTime: 1.209934
+00039301: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039302: RequestedGroup: 7
+00039303: BeforeGroup: 5
+00039304: AfterGroup: 7
+00039305: RetiredMarkerSourceBitCount: 0
+00039306: ====================================
+00039307: 
+00039308: ===== C1 OFFENSE REQUEST =====
+00039309: ElapsedMs: 243623.929
+00039310: Actor: PC_Hero
+00039311: Generation: 1076
+00039312: Status: PERSISTED
+00039313: Source: It_1H_Sword_Rust_01
+00039314: SourceAddress: E70EAC10
+00039315: Side: RIGHT
+00039316: OffensiveRequestCount: 3
+00039317: Outstanding: 1
+00039318: CleanupObserved: 0
+00039319: ActualGroup: 7
+00039320: ==============================
+00039321: 
+00039322: ===== ENGINE SetCollisionGroup =====
+00039323: ElapsedMs: 243623.945
+00039324: Source: It_1H_Sword_Rust_01
+00039325: SourceAddress: E6AA3610
+00039326: SlotAssociation: LEFT
+00039327: PlayerAction: 2
+00039328: PlayerAniPhase: 1
+00039329: PlayerStateTime: 1.209934
+00039330: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039331: RequestedGroup: 7
+00039332: BeforeGroup: 5
+00039333: AfterGroup: 7
+00039334: RetiredMarkerSourceBitCount: 0
+00039335: ====================================
+00039336: 
+00039337: ===== C1 OFFENSE REQUEST =====
+00039338: ElapsedMs: 243623.959
+00039339: Actor: PC_Hero
+00039340: Generation: 1076
+00039341: Status: PERSISTED
+00039342: Source: It_1H_Sword_Rust_01
+00039343: SourceAddress: E6AA3610
+00039344: Side: LEFT
+00039345: OffensiveRequestCount: 2
+00039346: Outstanding: 1
+00039347: CleanupObserved: 0
+00039348: ActualGroup: 7
+00039349: ==============================
+00039350: 
+00039351: MarkerName: G3AB_COL_BOTH
+00039352: MarkerOpcode: BOTH
+00039353: StatePositionAfterMarker: 2
+00039354: C1GenerationValid: 1
+00039355: C1Generation: 1076
+00039356: MarkerAction: ACCEPTED
+00039357: AuthoredMarkerOccurrences: 2
+00039358: AcceptedMarkerOccurrencesBefore: 1
+00039359: AcceptedMarkerOccurrencesAfter: 2
+00039360: ExecutionBudgetReset: 0
+00039361: PreviousSourceMask: 0
+00039362: DesiredSourceMask: 3
+00039363: RetiredSourceMask: 0
+00039364: OwnedMaskAtOff: 0
+00039365: MarkerOwnedWeaponMask: 3
+00039366: ActivatedSourceCount: 2
+00039367: RetiredSourceCount: 0
+00039368: DeactivatedSourceCount: 0
+00039369: TriggeredListClearCount: 2
+00039370: RightGroupBefore: 5
+00039371: RightGroupAfter: 7
+00039372: RightUseType: 2
+00039373: RightGroupRequested: 1
+00039374: RightFistGroupSkip: 0
+00039375: RightTriggeredListCleared: 1
+00039376: LeftGroupBefore: 5
+00039377: LeftGroupAfter: 7
+00039378: LeftUseType: 2
+00039379: LeftGroupRequested: 1
+00039380: LeftFistGroupSkip: 0
+00039381: LeftTriggeredListCleared: 1
+00039382: ===========================
+00039383: 
+00039384: ===== RIGHT RECEIVED =====
+00039385: ElapsedMs: 243623.997
+00039386: Actor: PC_Hero
+00039387: Action: 2
+00039388: AniPhase: 1
+00039389: StateTime: 1.209934
+00039390: StatePositionBeforeMarker: 2
+00039391: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039392: MarkerName: G3AB_COL_RIGHT
+00039393: MarkerOpcode: RIGHT
+00039394: StatePositionAfterMarker: 2
+00039395: C1GenerationValid: 1
+00039396: C1Generation: 1076
+00039397: MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+00039398: AuthoredMarkerOccurrences: 1
+00039399: AcceptedMarkerOccurrencesBefore: 1
+00039400: AcceptedMarkerOccurrencesAfter: 1
+00039401: ExecutionBudgetReset: 0
+00039402: PreviousSourceMask: 0
+00039403: DesiredSourceMask: 0
+00039404: RetiredSourceMask: 0
+00039405: OwnedMaskAtOff: 0
+00039406: MarkerOwnedWeaponMask: 0
+00039407: ActivatedSourceCount: 0
+00039408: RetiredSourceCount: 0
+00039409: DeactivatedSourceCount: 0
+00039410: TriggeredListClearCount: 0
+00039411: ===========================
+00039412: 
+00039413: ===== OFF RECEIVED =====
+00039414: ElapsedMs: 243624.024
+00039415: Actor: PC_Hero
+00039416: Action: 2
+00039417: AniPhase: 1
+00039418: StateTime: 1.209934
+00039419: StatePositionBeforeMarker: 2
+00039420: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039421: MarkerName: G3AB_COL_OFF
+00039422: MarkerOpcode: OFF
+00039423: StatePositionAfterMarker: 2
+00039424: C1GenerationValid: 1
+00039425: C1Generation: 1076
+00039426: MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED
+00039427: AuthoredMarkerOccurrences: 1
+00039428: AcceptedMarkerOccurrencesBefore: 1
+00039429: AcceptedMarkerOccurrencesAfter: 1
+00039430: ExecutionBudgetReset: 0
+00039431: PreviousSourceMask: 0
+00039432: DesiredSourceMask: 0
+00039433: RetiredSourceMask: 0
+00039434: OwnedMaskAtOff: 0
+00039435: MarkerOwnedWeaponMask: 0
+00039436: ActivatedSourceCount: 0
+00039437: RetiredSourceCount: 0
+00039438: DeactivatedSourceCount: 0
+00039439: TriggeredListClearCount: 0
+00039440: ===========================
+00039441: 
+00039442: ===== BOTH RECEIVED =====
+00039443: ElapsedMs: 243624.047
+00039444: Actor: PC_Hero
+00039445: Action: 2
+00039446: AniPhase: 1
+00039447: StateTime: 1.209934
+00039448: StatePositionBeforeMarker: 2
+00039449: CurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039450: MarkerName: G3AB_COL_BOTH
+00039451: MarkerOpcode: BOTH
+00039452: StatePositionAfterMarker: 2
+00039453: C1GenerationValid: 1
+00039454: C1Generation: 1076
+00039455: MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED
+00039456: DuplicateStateTimeDelta: 0.000000000
+00039457: DuplicateElapsedMsDelta: 0.172200
+00039458: AuthoredMarkerOccurrences: 0
+00039459: AcceptedMarkerOccurrencesBefore: 0
+00039460: AcceptedMarkerOccurrencesAfter: 0
+00039461: ExecutionBudgetReset: 0
+00039462: PreviousSourceMask: 0
+00039463: DesiredSourceMask: 0
+00039464: RetiredSourceMask: 0
+00039465: OwnedMaskAtOff: 0
+00039466: MarkerOwnedWeaponMask: 0
+00039467: ActivatedSourceCount: 0
+00039468: RetiredSourceCount: 0
+00039469: DeactivatedSourceCount: 0
+00039470: TriggeredListClearCount: 0
+00039471: ===========================
+00039472: 
+00039473: ===== ENGINE SetCollisionGroup =====
+00039474: ElapsedMs: 243731.261
+00039475: Source: It_1H_Sword_Rust_01
+00039476: SourceAddress: E70EAC10
+00039477: SlotAssociation: RIGHT
+00039478: PlayerAction: 2
+00039479: PlayerAniPhase: 3
+00039480: PlayerStateTime: 1.304926
+00039481: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039482: RequestedGroup: 5
+00039483: BeforeGroup: 7
+00039484: AfterGroup: 5
+00039485: RetiredMarkerSourceBitCount: 1
+00039486: ====================================
+00039487: 
+00039488: ===== C1 CLEANUP FULFILLED =====
+00039489: ElapsedMs: 243731.298
+00039490: Actor: PC_Hero
+00039491: Generation: 1076
+00039492: Status: PERSISTED
+00039493: Source: It_1H_Sword_Rust_01
+00039494: SourceAddress: E70EAC10
+00039495: Side: RIGHT
+00039496: OffensiveRequestCount: 3
+00039497: Outstanding: 0
+00039498: CleanupObserved: 1
+00039499: ActualGroup: 5
+00039500: ==============================
+00039501: 
+00039502: ===== ENGINE SetCollisionGroup =====
+00039503: ElapsedMs: 243731.320
+00039504: Source: It_1H_Sword_Rust_01
+00039505: SourceAddress: E6AA3610
+00039506: SlotAssociation: LEFT
+00039507: PlayerAction: 2
+00039508: PlayerAniPhase: 3
+00039509: PlayerStateTime: 1.304926
+00039510: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot
+00039511: RequestedGroup: 5
+00039512: BeforeGroup: 7
+00039513: AfterGroup: 5
+00039514: RetiredMarkerSourceBitCount: 1
+00039515: ====================================
+00039516: 
+00039517: ===== C1 CLEANUP FULFILLED =====
+00039518: ElapsedMs: 243731.363
+00039519: Actor: PC_Hero
+00039520: Generation: 1076
+00039521: Status: PERSISTED
+00039522: Source: It_1H_Sword_Rust_01
+00039523: SourceAddress: E6AA3610
+00039524: Side: LEFT
+00039525: OffensiveRequestCount: 2
+00039526: Outstanding: 0
+00039527: CleanupObserved: 1
+00039528: ActualGroup: 5
+00039529: ==============================
+00039530: 
+00039531: ===== C1 FINALIZATION =====
+00039532: ElapsedMs: 243731.385
+00039533: Reason: AISETSTATE_AFTER_ORIGINAL
+00039534: Actor: PC_Hero
+00039535: Generation: 1076
+00039536: Status: PERSISTED
+00039537: TrackedSourceCount: 2
+00039538: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00039539: Source[0].Address: E70EAC10
+00039540: Source[0].LivenessEstablished: 1
+00039541: Source[0].Name: It_1H_Sword_Rust_01
+00039542: Source[0].OriginalSide: RIGHT
+00039543: Source[0].CurrentSideMask: 1
+00039544: Source[0].OffensiveRequestCount: 3
+00039545: Source[0].OutstandingBeforeFinalization: 0
+00039546: Source[0].CleanupObservedBeforeFinalization: 1
+00039547: Source[0].ActualGroupBeforeRepair: 5
+00039548: Source[0].RepairAttempted: 0
+00039549: Source[0].PhysicalCollisionChanged: 0
+00039550: Source[1].Outcome: NO_OP_NO_OUTSTANDING
+00039551: Source[1].Address: E6AA3610
+00039552: Source[1].LivenessEstablished: 1
+00039553: Source[1].Name: It_1H_Sword_Rust_01
+00039554: Source[1].OriginalSide: LEFT
+00039555: Source[1].CurrentSideMask: 2
+00039556: Source[1].OffensiveRequestCount: 2
+00039557: Source[1].OutstandingBeforeFinalization: 0
+00039558: Source[1].CleanupObservedBeforeFinalization: 1
+00039559: Source[1].ActualGroupBeforeRepair: 5
+00039560: Source[1].RepairAttempted: 0
+00039561: Source[1].PhysicalCollisionChanged: 0
+00039562: PhysicalCollisionChanged: 0
+00039563: ===========================
+00039564: 
+00039565: ===== ENGINE SetCollisionGroup =====
+00039566: ElapsedMs: 243987.640
+00039567: Source: Fist
+00039568: SourceAddress: E6EE3610
+00039569: SlotAssociation: NONE
+00039570: PlayerAction: 0
+00039571: PlayerAniPhase: 8
+00039572: PlayerStateTime: 0.254849
+00039573: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Walk_N_Back_00_%_00_P1_160.xmot
+00039574: RequestedGroup: 7
+00039575: BeforeGroup: 0
+00039576: AfterGroup: 0
+00039577: RetiredMarkerSourceBitCount: 0
+00039578: ====================================
+00039579: 
+00039580: ===== ENGINE SetCollisionGroup =====
+00039581: ElapsedMs: 245020.372
+00039582: Source: Fist
+00039583: SourceAddress: EBB69A10
+00039584: SlotAssociation: NONE
+00039585: PlayerAction: 0
+00039586: PlayerAniPhase: 10
+00039587: PlayerStateTime: 1.276813
+00039588: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P1_Move_Sprint_N_Left_00_%_00_P1_400.xmot
+00039589: RequestedGroup: 7
+00039590: BeforeGroup: 0
+00039591: AfterGroup: 0
+00039592: RetiredMarkerSourceBitCount: 0
+00039593: ====================================
+00039594: 
+00039595: ===== ENGINE SetCollisionGroup =====
+00039596: ElapsedMs: 246003.442
+00039597: Source: Fist
+00039598: SourceAddress: E6EE3610
+00039599: SlotAssociation: NONE
+00039600: PlayerAction: 68
+00039601: PlayerAniPhase: 4
+00039602: PlayerStateTime: 0.471289
+00039603: PlayerCurrentMovementAni: Hero_Stand_1H_1H_P0_Hold_Begin_N_Fwd_00_%_00_P0_0.xmot
+00039604: RequestedGroup: 7
+00039605: BeforeGroup: 0
+00039606: AfterGroup: 0
+00039607: RetiredMarkerSourceBitCount: 0
+00039608: ====================================
+00039609: 
+00039610: ===== ENGINE SetCollisionGroup =====
+00039611: ElapsedMs: 247015.627
+00039612: Source: Fist
+00039613: SourceAddress: EBB69A10
+00039614: SlotAssociation: NONE
+00039615: PlayerAction: 68
+00039616: PlayerAniPhase: 8
+00039617: PlayerStateTime: 1.493359
+00039618: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+00039619: RequestedGroup: 7
+00039620: BeforeGroup: 0
+00039621: AfterGroup: 0
+00039622: RetiredMarkerSourceBitCount: 0
+00039623: ====================================
+00039624: 
+00039625: ===== ENGINE SetCollisionGroup =====
+00039626: ElapsedMs: 247977.224
+00039627: Source: Fist
+00039628: SourceAddress: E6EE3610
+00039629: SlotAssociation: NONE
+00039630: PlayerAction: 0
+00039631: PlayerAniPhase: 5
+00039632: PlayerStateTime: 0.879937
+00039633: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00039634: RequestedGroup: 7
+00039635: BeforeGroup: 0
+00039636: AfterGroup: 0
+00039637: RetiredMarkerSourceBitCount: 0
+00039638: ====================================
+00039639: 
+00039640: ===== ENGINE SetCollisionGroup =====
+00039641: ElapsedMs: 248976.633
+00039642: Source: Fist
+00039643: SourceAddress: EBB69A10
+00039644: SlotAssociation: NONE
+00039645: PlayerAction: 0
+00039646: PlayerAniPhase: 5
+00039647: PlayerStateTime: 1.868873
+00039648: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00039649: RequestedGroup: 7
+00039650: BeforeGroup: 0
+00039651: AfterGroup: 0
+00039652: RetiredMarkerSourceBitCount: 0
+00039653: ====================================
+00039654: 
+00039655: ===== MARKER OWNERSHIP DECISION =====
+00039656: ElapsedMs: 249787.787
+00039657: Actor: Golem
+00039658: Family: NORMAL
+00039659: CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00039660: Action: 1
+00039661: AniPhase: 1
+00039662: MatchingMotionFound: 1
+00039663: MarkerScanValid: 1
+00039664: ContainsReservedSourceMarker: 0
+00039665: RequiredSourceMask: 0
+00039666: AuthoredRIGHTCount: 0
+00039667: FirstRIGHTFrame: -1
+00039668: AuthoredLEFTCount: 0
+00039669: FirstLEFTFrame: -1
+00039670: AuthoredBOTHCount: 0
+00039671: FirstBOTHFrame: -1
+00039672: AuthoredOFFCount: 0
+00039673: FirstOFFFrame: -1
+00039674: RightSourceResolved: 1
+00039675: RightSourceName: Fist
+00039676: RightSourceAddress: C1FD8210
+00039677: RightSourceUseType: 8
+00039678: RightSourceCollisionGroup: 0
+00039679: LeftSourceResolved: 0
+00039680: SuppressNativeCallback: 0
+00039681: =====================================
+00039682: 
+00039683: ===== ENGINE SetCollisionGroup =====
+00039684: ElapsedMs: 249986.614
+00039685: Source: Fist
+00039686: SourceAddress: E6EE3610
+00039687: SlotAssociation: NONE
+00039688: PlayerAction: 0
+00039689: PlayerAniPhase: 5
+00039690: PlayerStateTime: 2.888798
+00039691: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00039692: RequestedGroup: 7
+00039693: BeforeGroup: 0
+00039694: AfterGroup: 0
+00039695: RetiredMarkerSourceBitCount: 0
+00039696: ====================================
+00039697: 
+00039698: ===== ENGINE SetCollisionGroup =====
+00039699: ElapsedMs: 250061.084
+00039700: Source: Fist
+00039701: SourceAddress: C1FD8210
+00039702: SlotAssociation: NONE
+00039703: PlayerAction: 0
+00039704: PlayerAniPhase: 5
+00039705: PlayerStateTime: 2.963796
+00039706: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+00039707: RequestedGroup: 7
+00039708: BeforeGroup: 0
+00039709: AfterGroup: 0
+00039710: RetiredMarkerSourceBitCount: 0
+00039711: ====================================
+00039712: 
+00039713: ===== MARKER OWNERSHIP DECISION =====
+00039714: ElapsedMs: 250549.754
+00039715: Actor: Golem
+00039716: Family: POWER
+00039717: CurrentMovementAni: Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00039718: Action: 2
+00039719: AniPhase: 1
+00039720: MatchingMotionFound: 1
+00039721: MarkerScanValid: 1
+00039722: ContainsReservedSourceMarker: 0
+00039723: RequiredSourceMask: 0
+00039724: AuthoredRIGHTCount: 0
+00039725: FirstRIGHTFrame: -1
+00039726: AuthoredLEFTCount: 0
+00039727: FirstLEFTFrame: -1
+00039728: AuthoredBOTHCount: 0
+00039729: FirstBOTHFrame: -1
+00039730: AuthoredOFFCount: 0
+00039731: FirstOFFFrame: -1
+00039732: RightSourceResolved: 1
+00039733: RightSourceName: Fist
+00039734: RightSourceAddress: C2008010
+00039735: RightSourceUseType: 8
+00039736: RightSourceCollisionGroup: 0
+00039737: LeftSourceResolved: 0
+00039738: SuppressNativeCallback: 0
+00039739: =====================================
+00039740: 
+00039741: ===== ENGINE SetCollisionGroup =====
+00039742: ElapsedMs: 250549.799
+00039743: Source: Fist
+00039744: SourceAddress: C2008010
+00039745: SlotAssociation: NONE
+00039746: PlayerAction: 0
+00039747: PlayerAniPhase: 8
+00039748: PlayerStateTime: 3.448609
+00039749: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Move_Walk_N_Left_00_%_00_P0_160.xmot
+00039750: RequestedGroup: 7
+00039751: BeforeGroup: 0
+00039752: AfterGroup: 0
+00039753: RetiredMarkerSourceBitCount: 0
+00039754: ====================================
+00039755: 
+00039756: ===== MARKER OWNERSHIP DECISION =====
+00039757: ElapsedMs: 250700.011
+00039758: Actor: Golem
+00039759: Family: NORMAL
+00039760: CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00039761: Action: 1
+00039762: AniPhase: 1
+00039763: MatchingMotionFound: 1
+00039764: MarkerScanValid: 1
+00039765: ContainsReservedSourceMarker: 0
+00039766: RequiredSourceMask: 0
+00039767: AuthoredRIGHTCount: 0
+00039768: FirstRIGHTFrame: -1
+00039769: AuthoredLEFTCount: 0
+00039770: FirstLEFTFrame: -1
+00039771: AuthoredBOTHCount: 0
+00039772: FirstBOTHFrame: -1
+00039773: AuthoredOFFCount: 0
+00039774: FirstOFFFrame: -1
+00039775: RightSourceResolved: 1
+00039776: RightSourceName: Fist
+00039777: RightSourceAddress: C2022410
+00039778: RightSourceUseType: 8
+00039779: RightSourceCollisionGroup: 0
+00039780: LeftSourceResolved: 0
+00039781: SuppressNativeCallback: 0
+00039782: =====================================
+00039783: 
+00039784: ===== C1 LIFECYCLE START =====
+00039785: ElapsedMs: 250825.245
+00039786: Actor: PC_Hero
+00039787: Generation: 1106
+00039788: Status: CANDIDATE
+00039789: ReplacedGeneration: 0
+00039790: ReplacedOutstanding: 0
+00039791: TrackedSourceCount: 1
+00039792: Source[0].Address: C1FF8010
+00039793: Source[0].Side: RIGHT
+00039794: Source[0].ActualGroup: 5
+00039795: ==============================
+00039796: 
+00039797: ===== C1 LIFECYCLE STATUS =====
+00039798: ElapsedMs: 250832.746
+00039799: Event: PERSISTED
+00039800: Actor: PC_Hero
+00039801: Generation: 1106
+00039802: Status: PERSISTED
+00039803: Outstanding: 0
+00039804: ===============================
+00039805: 
+00039806: ===== ENGINE SetCollisionGroup =====
+00039807: ElapsedMs: 250973.451
+00039808: Source: Fist
+00039809: SourceAddress: C2022410
+00039810: SlotAssociation: NONE
+00039811: PlayerAction: 29
+00039812: PlayerAniPhase: 4
+00039813: PlayerStateTime: 0.160911
+00039814: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot
+00039815: RequestedGroup: 7
+00039816: BeforeGroup: 0
+00039817: AfterGroup: 0
+00039818: RetiredMarkerSourceBitCount: 0
+00039819: ====================================
+00039820: 
+00039821: ===== ENGINE SetCollisionGroup =====
+00039822: ElapsedMs: 251043.739
+00039823: Source: Fist
+00039824: SourceAddress: EBB69A10
+00039825: SlotAssociation: NONE
+00039826: PlayerAction: 29
+00039827: PlayerAniPhase: 4
+00039828: PlayerStateTime: 0.218952
+00039829: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot
+00039830: RequestedGroup: 7
+00039831: BeforeGroup: 0
+00039832: AfterGroup: 0
+00039833: RetiredMarkerSourceBitCount: 0
+00039834: ====================================
+00039835: 
+00039836: ===== ENGINE SetCollisionGroup =====
+00039837: ElapsedMs: 251666.004
+00039838: Source: Fist
+00039839: SourceAddress: C1FD8210
+00039840: SlotAssociation: NONE
+00039841: PlayerAction: 29
+00039842: PlayerAniPhase: 4
+00039843: PlayerStateTime: 0.856931
+00039844: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot
+00039845: RequestedGroup: 7
+00039846: BeforeGroup: 0
+00039847: AfterGroup: 0
+00039848: RetiredMarkerSourceBitCount: 0
+00039849: ====================================
+00039850: 
+00039851: ===== ENGINE SetCollisionGroup =====
+00039852: ElapsedMs: 252064.577
+00039853: Source: Fist
+00039854: SourceAddress: E6EE3610
+00039855: SlotAssociation: NONE
+00039856: PlayerAction: 29
+00039857: PlayerAniPhase: 4
+00039858: PlayerStateTime: 1.229923
+00039859: PlayerCurrentMovementAni: Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+00039860: RequestedGroup: 7
+00039861: BeforeGroup: 0
+00039862: AfterGroup: 0
+00039863: RetiredMarkerSourceBitCount: 0
+00039864: ====================================
+00039865: 
+00039866: ===== C1 FINALIZATION =====
+00039867: ElapsedMs: 252839.576
+00039868: Reason: AISETSTATE_AFTER_ORIGINAL
+00039869: Actor: PC_Hero
+00039870: Generation: 1106
+00039871: Status: PERSISTED
+00039872: TrackedSourceCount: 1
+00039873: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00039874: Source[0].Address: C1FF8010
+00039875: Source[0].LivenessEstablished: 1
+00039876: Source[0].Name: It_2H_Sword_Flamberge
+00039877: Source[0].OriginalSide: RIGHT
+00039878: Source[0].CurrentSideMask: 1
+00039879: Source[0].OffensiveRequestCount: 0
+00039880: Source[0].OutstandingBeforeFinalization: 0
+00039881: Source[0].CleanupObservedBeforeFinalization: 0
+00039882: Source[0].ActualGroupBeforeRepair: 5
+00039883: Source[0].RepairAttempted: 0
+00039884: Source[0].PhysicalCollisionChanged: 0
+00039885: PhysicalCollisionChanged: 0
+00039886: ===========================
+00039887: 
+00039888: ===== ENGINE SetCollisionGroup =====
+00039889: ElapsedMs: 252855.789
+00039890: Source: It_2H_Sword_Flamberge
+00039891: SourceAddress: C1FF8010
+00039892: SlotAssociation: RIGHT
+00039893: PlayerAction: 30
+00039894: PlayerAniPhase: 4
+00039895: PlayerStateTime: 0.000000
+00039896: PlayerCurrentMovementAni: Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+00039897: RequestedGroup: 7
+00039898: BeforeGroup: 5
+00039899: AfterGroup: 7
+00039900: RetiredMarkerSourceBitCount: 0
+00039901: ====================================
+00039902: 
+00039903: ===== C1 LIFECYCLE START =====
+00039904: ElapsedMs: 252855.824
+00039905: Actor: PC_Hero
+00039906: Generation: 1118
+00039907: Status: OUTER_BOUND
+00039908: ReplacedGeneration: 0
+00039909: ReplacedOutstanding: 0
+00039910: TrackedSourceCount: 1
+00039911: Source[0].Address: C1FF8010
+00039912: Source[0].Side: RIGHT
+00039913: Source[0].ActualGroup: 7
+00039914: ==============================
+00039915: 
+00039916: ===== C1 SCRIPT BINDING =====
+00039917: ElapsedMs: 252855.832
+00039918: Event: PRECOMBAT_ACQUIRED
+00039919: Actor: PC_Hero
+00039920: Generation: 1118
+00039921: Status: OUTER_BOUND
+00039922: Outstanding: 0
+00039923: ScriptFunction: _AI_GetUpAttack
+00039924: SourceAddress: C1FF8010
+00039925: =============================
+00039926: 
+00039927: ===== C1 OFFENSE REQUEST =====
+00039928: ElapsedMs: 252855.837
+00039929: Actor: PC_Hero
+00039930: Generation: 1118
+00039931: Status: OUTER_BOUND
+00039932: Source: It_2H_Sword_Flamberge
+00039933: SourceAddress: C1FF8010
+00039934: Side: RIGHT
+00039935: OffensiveRequestCount: 1
+00039936: Outstanding: 1
+00039937: CleanupObserved: 0
+00039938: ActualGroup: 7
+00039939: ==============================
+00039940: 
+00039941: ===== C1 SCRIPT BINDING =====
+00039942: ElapsedMs: 252855.856
+00039943: Event: PRECOMBAT_BRIDGE_CONSUMED
+00039944: Actor: PC_Hero
+00039945: Generation: 1118
+00039946: Status: PERSISTED
+00039947: Outstanding: 1
+00039948: ScriptFunction: _AI_GetUpAttack
+00039949: SourceAddress: 00000000
+00039950: =============================
+00039951: 
+00039952: ===== C1 DISPATCH RETURN =====
+00039953: ElapsedMs: 252867.332
+00039954: ScopeAddress: 0019E7D0
+00039955: ParentScopeExists: 0
+00039956: NativeResult: 0
+00039957: ==============================
+00039958: 
+00039959: ===== ENGINE SetCollisionGroup =====
+00039960: ElapsedMs: 252956.675
+00039961: Source: It_2H_Sword_Flamberge
+00039962: SourceAddress: C1FF8010
+00039963: SlotAssociation: RIGHT
+00039964: PlayerAction: 30
+00039965: PlayerAniPhase: 1
+00039966: PlayerStateTime: 0.101969
+00039967: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00039968: RequestedGroup: 7
+00039969: BeforeGroup: 7
+00039970: AfterGroup: 7
+00039971: RetiredMarkerSourceBitCount: 0
+00039972: ====================================
+00039973: 
+00039974: ===== C1 OFFENSE REQUEST =====
+00039975: ElapsedMs: 252956.713
+00039976: Actor: PC_Hero
+00039977: Generation: 1118
+00039978: Status: PERSISTED
+00039979: Source: It_2H_Sword_Flamberge
+00039980: SourceAddress: C1FF8010
+00039981: Side: RIGHT
+00039982: OffensiveRequestCount: 2
+00039983: Outstanding: 1
+00039984: CleanupObserved: 0
+00039985: ActualGroup: 7
+00039986: ==============================
+00039987: 
+00039988: ===== MARKER OWNERSHIP DECISION =====
+00039989: ElapsedMs: 252974.804
+00039990: Actor: Golem
+00039991: Family: POWER
+00039992: CurrentMovementAni: Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00039993: Action: 2
+00039994: AniPhase: 1
+00039995: MatchingMotionFound: 1
+00039996: MarkerScanValid: 1
+00039997: ContainsReservedSourceMarker: 0
+00039998: RequiredSourceMask: 0
+00039999: AuthoredRIGHTCount: 0
+00040000: FirstRIGHTFrame: -1
+00040001: AuthoredLEFTCount: 0
+00040002: FirstLEFTFrame: -1
+00040003: AuthoredBOTHCount: 0
+00040004: FirstBOTHFrame: -1
+00040005: AuthoredOFFCount: 0
+00040006: FirstOFFFrame: -1
+00040007: RightSourceResolved: 1
+00040008: RightSourceName: Fist
+00040009: RightSourceAddress: C2041C10
+00040010: RightSourceUseType: 8
+00040011: RightSourceCollisionGroup: 0
+00040012: LeftSourceResolved: 0
+00040013: SuppressNativeCallback: 0
+00040014: =====================================
+00040015: 
+00040016: ===== ENGINE SetCollisionGroup =====
+00040017: ElapsedMs: 252974.891
+00040018: Source: Fist
+00040019: SourceAddress: C2041C10
+00040020: SlotAssociation: NONE
+00040021: PlayerAction: 30
+00040022: PlayerAniPhase: 1
+00040023: PlayerStateTime: 0.132961
+00040024: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040025: RequestedGroup: 7
+00040026: BeforeGroup: 0
+00040027: AfterGroup: 0
+00040028: RetiredMarkerSourceBitCount: 0
+00040029: ====================================
+00040030: 
+00040031: ===== ENGINE SetCollisionGroup =====
+00040032: ElapsedMs: 253099.661
+00040033: Source: Fist
+00040034: SourceAddress: EBB69A10
+00040035: SlotAssociation: NONE
+00040036: PlayerAction: 30
+00040037: PlayerAniPhase: 1
+00040038: PlayerStateTime: 0.241959
+00040039: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040040: RequestedGroup: 7
+00040041: BeforeGroup: 0
+00040042: AfterGroup: 0
+00040043: RetiredMarkerSourceBitCount: 0
+00040044: ====================================
+00040045: 
+00040046: ===== ENGINE SetCollisionGroup =====
+00040047: ElapsedMs: 253287.218
+00040048: Source: It_2H_Sword_Flamberge
+00040049: SourceAddress: C1FF8010
+00040050: SlotAssociation: RIGHT
+00040051: PlayerAction: 30
+00040052: PlayerAniPhase: 3
+00040053: PlayerStateTime: 0.415946
+00040054: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040055: RequestedGroup: 5
+00040056: BeforeGroup: 7
+00040057: AfterGroup: 5
+00040058: RetiredMarkerSourceBitCount: 0
+00040059: ====================================
+00040060: 
+00040061: ===== C1 CLEANUP FULFILLED =====
+00040062: ElapsedMs: 253287.246
+00040063: Actor: PC_Hero
+00040064: Generation: 1118
+00040065: Status: PERSISTED
+00040066: Source: It_2H_Sword_Flamberge
+00040067: SourceAddress: C1FF8010
+00040068: Side: RIGHT
+00040069: OffensiveRequestCount: 2
+00040070: Outstanding: 0
+00040071: CleanupObserved: 1
+00040072: ActualGroup: 5
+00040073: ==============================
+00040074: 
+00040075: ===== C1 FINALIZATION =====
+00040076: ElapsedMs: 253287.284
+00040077: Reason: AISETSTATE_AFTER_ORIGINAL
+00040078: Actor: PC_Hero
+00040079: Generation: 1118
+00040080: Status: PERSISTED
+00040081: TrackedSourceCount: 1
+00040082: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00040083: Source[0].Address: C1FF8010
+00040084: Source[0].LivenessEstablished: 1
+00040085: Source[0].Name: It_2H_Sword_Flamberge
+00040086: Source[0].OriginalSide: RIGHT
+00040087: Source[0].CurrentSideMask: 1
+00040088: Source[0].OffensiveRequestCount: 2
+00040089: Source[0].OutstandingBeforeFinalization: 0
+00040090: Source[0].CleanupObservedBeforeFinalization: 1
+00040091: Source[0].ActualGroupBeforeRepair: 5
+00040092: Source[0].RepairAttempted: 0
+00040093: Source[0].PhysicalCollisionChanged: 0
+00040094: PhysicalCollisionChanged: 0
+00040095: ===========================
+00040096: 
+00040097: ===== C1 LIFECYCLE START =====
+00040098: ElapsedMs: 253800.875
+00040099: Actor: PC_Hero
+00040100: Generation: 1123
+00040101: Status: CANDIDATE
+00040102: ReplacedGeneration: 0
+00040103: ReplacedOutstanding: 0
+00040104: TrackedSourceCount: 1
+00040105: Source[0].Address: C1FF8010
+00040106: Source[0].Side: RIGHT
+00040107: Source[0].ActualGroup: 5
+00040108: ==============================
+00040109: 
+00040110: ===== C1 SCRIPT BINDING =====
+00040111: ElapsedMs: 253800.887
+00040112: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00040113: Actor: PC_Hero
+00040114: Generation: 1123
+00040115: Status: CANDIDATE
+00040116: Outstanding: 0
+00040117: ScriptFunction: _AI_PowerAttack
+00040118: SourceAddress: 00000000
+00040119: =============================
+00040120: 
+00040121: ===== C1 LIFECYCLE STATUS =====
+00040122: ElapsedMs: 253801.406
+00040123: Event: PERSISTED
+00040124: Actor: PC_Hero
+00040125: Generation: 1123
+00040126: Status: PERSISTED
+00040127: Outstanding: 0
+00040128: ===============================
+00040129: 
+00040130: ===== C1 SCRIPT BINDING =====
+00040131: ElapsedMs: 254322.870
+00040132: Event: COMBAT_MOVE_REUSED
+00040133: Actor: PC_Hero
+00040134: Generation: 1123
+00040135: Status: PERSISTED
+00040136: Outstanding: 0
+00040137: ScriptFunction: _AI_PowerAttack
+00040138: SourceAddress: 00000000
+00040139: =============================
+00040140: 
+00040141: ===== MARKER OWNERSHIP DECISION =====
+00040142: ElapsedMs: 254323.294
+00040143: Actor: PC_Hero
+00040144: Family: POWER
+00040145: CurrentMovementAni: Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040146: Action: 2
+00040147: AniPhase: 1
+00040148: MatchingMotionFound: 1
+00040149: MarkerScanValid: 1
+00040150: ContainsReservedSourceMarker: 1
+00040151: RequiredSourceMask: 1
+00040152: AuthoredRIGHTCount: 1
+00040153: FirstRIGHTFrame: 7
+00040154: AuthoredLEFTCount: 0
+00040155: FirstLEFTFrame: -1
+00040156: AuthoredBOTHCount: 0
+00040157: FirstBOTHFrame: -1
+00040158: AuthoredOFFCount: 0
+00040159: FirstOFFFrame: -1
+00040160: RightSourceResolved: 1
+00040161: RightSourceName: It_2H_Sword_Flamberge
+00040162: RightSourceAddress: C1FF8010
+00040163: RightSourceUseType: 3
+00040164: RightSourceCollisionGroup: 5
+00040165: LeftSourceResolved: 0
+00040166: SuppressNativeCallback: 1
+00040167: =====================================
+00040168: 
+00040169: ===== ENGINE SetCollisionGroup =====
+00040170: ElapsedMs: 254339.843
+00040171: Source: Fist
+00040172: SourceAddress: EBB69A10
+00040173: SlotAssociation: NONE
+00040174: PlayerAction: 2
+00040175: PlayerAniPhase: 1
+00040176: PlayerStateTime: 0.538962
+00040177: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040178: RequestedGroup: 7
+00040179: BeforeGroup: 0
+00040180: AfterGroup: 0
+00040181: RetiredMarkerSourceBitCount: 0
+00040182: ====================================
+00040183: 
+00040184: ===== ENGINE SetCollisionGroup =====
+00040185: ElapsedMs: 254357.466
+00040186: Source: Fist
+00040187: SourceAddress: C2008010
+00040188: SlotAssociation: NONE
+00040189: PlayerAction: 2
+00040190: PlayerAniPhase: 1
+00040191: PlayerStateTime: 0.572962
+00040192: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040193: RequestedGroup: 7
+00040194: BeforeGroup: 0
+00040195: AfterGroup: 0
+00040196: RetiredMarkerSourceBitCount: 0
+00040197: ====================================
+00040198: 
+00040199: ===== MARKER OWNERSHIP DECISION =====
+00040200: ElapsedMs: 254421.035
+00040201: Actor: Golem
+00040202: Family: POWER
+00040203: CurrentMovementAni: Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00040204: Action: 2
+00040205: AniPhase: 1
+00040206: MatchingMotionFound: 1
+00040207: MarkerScanValid: 1
+00040208: ContainsReservedSourceMarker: 0
+00040209: RequiredSourceMask: 0
+00040210: AuthoredRIGHTCount: 0
+00040211: FirstRIGHTFrame: -1
+00040212: AuthoredLEFTCount: 0
+00040213: FirstLEFTFrame: -1
+00040214: AuthoredBOTHCount: 0
+00040215: FirstBOTHFrame: -1
+00040216: AuthoredOFFCount: 0
+00040217: FirstOFFFrame: -1
+00040218: RightSourceResolved: 1
+00040219: RightSourceName: Fist
+00040220: RightSourceAddress: C1FD8210
+00040221: RightSourceUseType: 8
+00040222: RightSourceCollisionGroup: 0
+00040223: LeftSourceResolved: 0
+00040224: SuppressNativeCallback: 0
+00040225: =====================================
+00040226: 
+00040227: ===== ENGINE SetCollisionGroup =====
+00040228: ElapsedMs: 254421.078
+00040229: Source: Fist
+00040230: SourceAddress: C1FD8210
+00040231: SlotAssociation: NONE
+00040232: PlayerAction: 2
+00040233: PlayerAniPhase: 1
+00040234: PlayerStateTime: 0.636975
+00040235: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040236: RequestedGroup: 7
+00040237: BeforeGroup: 0
+00040238: AfterGroup: 0
+00040239: RetiredMarkerSourceBitCount: 0
+00040240: ====================================
+00040241: 
+00040242: ===== C1 LIFECYCLE START =====
+00040243: ElapsedMs: 254547.138
+00040244: Actor: PC_Hero
+00040245: Generation: 1131
+00040246: Status: CANDIDATE
+00040247: ReplacedGeneration: 1123
+00040248: ReplacedOutstanding: 0
+00040249: TrackedSourceCount: 1
+00040250: Source[0].Address: C1FF8010
+00040251: Source[0].Side: RIGHT
+00040252: Source[0].ActualGroup: 5
+00040253: ==============================
+00040254: 
+00040255: ===== C1 SCRIPT BINDING =====
+00040256: ElapsedMs: 254547.150
+00040257: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00040258: Actor: PC_Hero
+00040259: Generation: 1131
+00040260: Status: CANDIDATE
+00040261: Outstanding: 0
+00040262: ScriptFunction: _AI_Stumble
+00040263: SourceAddress: 00000000
+00040264: =============================
+00040265: 
+00040266: ===== C1 LIFECYCLE STATUS =====
+00040267: ElapsedMs: 254557.603
+00040268: Event: PERSISTED
+00040269: Actor: PC_Hero
+00040270: Generation: 1131
+00040271: Status: PERSISTED
+00040272: Outstanding: 0
+00040273: ===============================
+00040274: 
+00040275: ===== ENGINE SetCollisionGroup =====
+00040276: ElapsedMs: 254558.706
+00040277: Source: Fist
+00040278: SourceAddress: C2022410
+00040279: SlotAssociation: NONE
+00040280: PlayerAction: 26
+00040281: PlayerAniPhase: 1
+00040282: PlayerStateTime: 0.015008
+00040283: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+00040284: RequestedGroup: 7
+00040285: BeforeGroup: 0
+00040286: AfterGroup: 0
+00040287: RetiredMarkerSourceBitCount: 0
+00040288: ====================================
+00040289: 
+00040290: ===== C1 LIFECYCLE START =====
+00040291: ElapsedMs: 254636.364
+00040292: Actor: PC_Hero
+00040293: Generation: 1132
+00040294: Status: CANDIDATE
+00040295: ReplacedGeneration: 1131
+00040296: ReplacedOutstanding: 0
+00040297: TrackedSourceCount: 1
+00040298: Source[0].Address: C1FF8010
+00040299: Source[0].Side: RIGHT
+00040300: Source[0].ActualGroup: 5
+00040301: ==============================
+00040302: 
+00040303: ===== C1 LIFECYCLE STATUS =====
+00040304: ElapsedMs: 254636.429
+00040305: Event: PERSISTED
+00040306: Actor: PC_Hero
+00040307: Generation: 1132
+00040308: Status: PERSISTED
+00040309: Outstanding: 0
+00040310: ===============================
+00040311: 
+00040312: ===== ENGINE SetCollisionGroup =====
+00040313: ElapsedMs: 255286.962
+00040314: Source: Fist
+00040315: SourceAddress: E6EE3610
+00040316: SlotAssociation: NONE
+00040317: PlayerAction: 29
+00040318: PlayerAniPhase: 4
+00040319: PlayerStateTime: 0.674968
+00040320: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot
+00040321: RequestedGroup: 7
+00040322: BeforeGroup: 0
+00040323: AfterGroup: 0
+00040324: RetiredMarkerSourceBitCount: 0
+00040325: ====================================
+00040326: 
+00040327: ===== ENGINE SetCollisionGroup =====
+00040328: ElapsedMs: 255544.866
+00040329: Source: Fist
+00040330: SourceAddress: C2041C10
+00040331: SlotAssociation: NONE
+00040332: PlayerAction: 29
+00040333: PlayerAniPhase: 4
+00040334: PlayerStateTime: 0.932974
+00040335: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot
+00040336: RequestedGroup: 7
+00040337: BeforeGroup: 0
+00040338: AfterGroup: 0
+00040339: RetiredMarkerSourceBitCount: 0
+00040340: ====================================
+00040341: 
+00040342: ===== ENGINE SetCollisionGroup =====
+00040343: ElapsedMs: 256199.854
+00040344: Source: Fist
+00040345: SourceAddress: C2022410
+00040346: SlotAssociation: NONE
+00040347: PlayerAction: 29
+00040348: PlayerAniPhase: 4
+00040349: PlayerStateTime: 1.570936
+00040350: PlayerCurrentMovementAni: Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+00040351: RequestedGroup: 7
+00040352: BeforeGroup: 0
+00040353: AfterGroup: 0
+00040354: RetiredMarkerSourceBitCount: 0
+00040355: ====================================
+00040356: 
+00040357: ===== ENGINE SetCollisionGroup =====
+00040358: ElapsedMs: 256611.770
+00040359: Source: Fist
+00040360: SourceAddress: C2008010
+00040361: SlotAssociation: NONE
+00040362: PlayerAction: 29
+00040363: PlayerAniPhase: 4
+00040364: PlayerStateTime: 1.984948
+00040365: PlayerCurrentMovementAni: Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+00040366: RequestedGroup: 7
+00040367: BeforeGroup: 0
+00040368: AfterGroup: 0
+00040369: RetiredMarkerSourceBitCount: 0
+00040370: ====================================
+00040371: 
+00040372: ===== C1 FINALIZATION =====
+00040373: ElapsedMs: 256644.762
+00040374: Reason: AISETSTATE_AFTER_ORIGINAL
+00040375: Actor: PC_Hero
+00040376: Generation: 1132
+00040377: Status: PERSISTED
+00040378: TrackedSourceCount: 1
+00040379: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00040380: Source[0].Address: C1FF8010
+00040381: Source[0].LivenessEstablished: 1
+00040382: Source[0].Name: It_2H_Sword_Flamberge
+00040383: Source[0].OriginalSide: RIGHT
+00040384: Source[0].CurrentSideMask: 1
+00040385: Source[0].OffensiveRequestCount: 0
+00040386: Source[0].OutstandingBeforeFinalization: 0
+00040387: Source[0].CleanupObservedBeforeFinalization: 0
+00040388: Source[0].ActualGroupBeforeRepair: 5
+00040389: Source[0].RepairAttempted: 0
+00040390: Source[0].PhysicalCollisionChanged: 0
+00040391: PhysicalCollisionChanged: 0
+00040392: ===========================
+00040393: 
+00040394: ===== ENGINE SetCollisionGroup =====
+00040395: ElapsedMs: 256660.463
+00040396: Source: It_2H_Sword_Flamberge
+00040397: SourceAddress: C1FF8010
+00040398: SlotAssociation: RIGHT
+00040399: PlayerAction: 30
+00040400: PlayerAniPhase: 4
+00040401: PlayerStateTime: 0.000000
+00040402: PlayerCurrentMovementAni: Hero_LieKnockDown_None_2H_P0_SitKnockDown_Begin_N_Back_00_%_00_P0_0.xmot
+00040403: RequestedGroup: 7
+00040404: BeforeGroup: 5
+00040405: AfterGroup: 7
+00040406: RetiredMarkerSourceBitCount: 0
+00040407: ====================================
+00040408: 
+00040409: ===== C1 LIFECYCLE START =====
+00040410: ElapsedMs: 256660.494
+00040411: Actor: PC_Hero
+00040412: Generation: 1146
+00040413: Status: OUTER_BOUND
+00040414: ReplacedGeneration: 0
+00040415: ReplacedOutstanding: 0
+00040416: TrackedSourceCount: 1
+00040417: Source[0].Address: C1FF8010
+00040418: Source[0].Side: RIGHT
+00040419: Source[0].ActualGroup: 7
+00040420: ==============================
+00040421: 
+00040422: ===== C1 SCRIPT BINDING =====
+00040423: ElapsedMs: 256660.502
+00040424: Event: PRECOMBAT_ACQUIRED
+00040425: Actor: PC_Hero
+00040426: Generation: 1146
+00040427: Status: OUTER_BOUND
+00040428: Outstanding: 0
+00040429: ScriptFunction: _AI_GetUpAttack
+00040430: SourceAddress: C1FF8010
+00040431: =============================
+00040432: 
+00040433: ===== C1 OFFENSE REQUEST =====
+00040434: ElapsedMs: 256660.507
+00040435: Actor: PC_Hero
+00040436: Generation: 1146
+00040437: Status: OUTER_BOUND
+00040438: Source: It_2H_Sword_Flamberge
+00040439: SourceAddress: C1FF8010
+00040440: Side: RIGHT
+00040441: OffensiveRequestCount: 1
+00040442: Outstanding: 1
+00040443: CleanupObserved: 0
+00040444: ActualGroup: 7
+00040445: ==============================
+00040446: 
+00040447: ===== C1 SCRIPT BINDING =====
+00040448: ElapsedMs: 256660.526
+00040449: Event: PRECOMBAT_BRIDGE_CONSUMED
+00040450: Actor: PC_Hero
+00040451: Generation: 1146
+00040452: Status: PERSISTED
+00040453: Outstanding: 1
+00040454: ScriptFunction: _AI_GetUpAttack
+00040455: SourceAddress: 00000000
+00040456: =============================
+00040457: 
+00040458: ===== C1 DISPATCH RETURN =====
+00040459: ElapsedMs: 256660.578
+00040460: ScopeAddress: 0019E7D0
+00040461: ParentScopeExists: 0
+00040462: NativeResult: 0
+00040463: ==============================
+00040464: 
+00040465: ===== ENGINE SetCollisionGroup =====
+00040466: ElapsedMs: 256675.916
+00040467: Source: Fist
+00040468: SourceAddress: EBB69A10
+00040469: SlotAssociation: NONE
+00040470: PlayerAction: 30
+00040471: PlayerAniPhase: 1
+00040472: PlayerStateTime: 0.016000
+00040473: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040474: RequestedGroup: 7
+00040475: BeforeGroup: 0
+00040476: AfterGroup: 0
+00040477: RetiredMarkerSourceBitCount: 0
+00040478: ====================================
+00040479: 
+00040480: ===== ENGINE SetCollisionGroup =====
+00040481: ElapsedMs: 256768.251
+00040482: Source: It_2H_Sword_Flamberge
+00040483: SourceAddress: C1FF8010
+00040484: SlotAssociation: RIGHT
+00040485: PlayerAction: 30
+00040486: PlayerAniPhase: 1
+00040487: PlayerStateTime: 0.101981
+00040488: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040489: RequestedGroup: 7
+00040490: BeforeGroup: 7
+00040491: AfterGroup: 7
+00040492: RetiredMarkerSourceBitCount: 0
+00040493: ====================================
+00040494: 
+00040495: ===== C1 OFFENSE REQUEST =====
+00040496: ElapsedMs: 256768.300
+00040497: Actor: PC_Hero
+00040498: Generation: 1146
+00040499: Status: PERSISTED
+00040500: Source: It_2H_Sword_Flamberge
+00040501: SourceAddress: C1FF8010
+00040502: Side: RIGHT
+00040503: OffensiveRequestCount: 2
+00040504: Outstanding: 1
+00040505: CleanupObserved: 0
+00040506: ActualGroup: 7
+00040507: ==============================
+00040508: 
+00040509: ===== ENGINE SetCollisionGroup =====
+00040510: ElapsedMs: 257076.219
+00040511: Source: It_2H_Sword_Flamberge
+00040512: SourceAddress: C1FF8010
+00040513: SlotAssociation: RIGHT
+00040514: PlayerAction: 30
+00040515: PlayerAniPhase: 3
+00040516: PlayerStateTime: 0.413979
+00040517: PlayerCurrentMovementAni: Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040518: RequestedGroup: 5
+00040519: BeforeGroup: 7
+00040520: AfterGroup: 5
+00040521: RetiredMarkerSourceBitCount: 0
+00040522: ====================================
+00040523: 
+00040524: ===== C1 CLEANUP FULFILLED =====
+00040525: ElapsedMs: 257076.259
+00040526: Actor: PC_Hero
+00040527: Generation: 1146
+00040528: Status: PERSISTED
+00040529: Source: It_2H_Sword_Flamberge
+00040530: SourceAddress: C1FF8010
+00040531: Side: RIGHT
+00040532: OffensiveRequestCount: 2
+00040533: Outstanding: 0
+00040534: CleanupObserved: 1
+00040535: ActualGroup: 5
+00040536: ==============================
+00040537: 
+00040538: ===== C1 FINALIZATION =====
+00040539: ElapsedMs: 257076.293
+00040540: Reason: AISETSTATE_AFTER_ORIGINAL
+00040541: Actor: PC_Hero
+00040542: Generation: 1146
+00040543: Status: PERSISTED
+00040544: TrackedSourceCount: 1
+00040545: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00040546: Source[0].Address: C1FF8010
+00040547: Source[0].LivenessEstablished: 1
+00040548: Source[0].Name: It_2H_Sword_Flamberge
+00040549: Source[0].OriginalSide: RIGHT
+00040550: Source[0].CurrentSideMask: 1
+00040551: Source[0].OffensiveRequestCount: 2
+00040552: Source[0].OutstandingBeforeFinalization: 0
+00040553: Source[0].CleanupObservedBeforeFinalization: 1
+00040554: Source[0].ActualGroupBeforeRepair: 5
+00040555: Source[0].RepairAttempted: 0
+00040556: Source[0].PhysicalCollisionChanged: 0
+00040557: PhysicalCollisionChanged: 0
+00040558: ===========================
+00040559: 
+00040560: ===== MARKER OWNERSHIP DECISION =====
+00040561: ElapsedMs: 257571.714
+00040562: Actor: Golem
+00040563: Family: NORMAL
+00040564: CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00040565: Action: 1
+00040566: AniPhase: 1
+00040567: MatchingMotionFound: 1
+00040568: MarkerScanValid: 1
+00040569: ContainsReservedSourceMarker: 0
+00040570: RequiredSourceMask: 0
+00040571: AuthoredRIGHTCount: 0
+00040572: FirstRIGHTFrame: -1
+00040573: AuthoredLEFTCount: 0
+00040574: FirstLEFTFrame: -1
+00040575: AuthoredBOTHCount: 0
+00040576: FirstBOTHFrame: -1
+00040577: AuthoredOFFCount: 0
+00040578: FirstOFFFrame: -1
+00040579: RightSourceResolved: 1
+00040580: RightSourceName: Fist
+00040581: RightSourceAddress: C2041C10
+00040582: RightSourceUseType: 8
+00040583: RightSourceCollisionGroup: 0
+00040584: LeftSourceResolved: 0
+00040585: SuppressNativeCallback: 0
+00040586: =====================================
+00040587: 
+00040588: ===== C1 LIFECYCLE START =====
+00040589: ElapsedMs: 257572.389
+00040590: Actor: PC_Hero
+00040591: Generation: 1153
+00040592: Status: CANDIDATE
+00040593: ReplacedGeneration: 0
+00040594: ReplacedOutstanding: 0
+00040595: TrackedSourceCount: 1
+00040596: Source[0].Address: C1FF8010
+00040597: Source[0].Side: RIGHT
+00040598: Source[0].ActualGroup: 5
+00040599: ==============================
+00040600: 
+00040601: ===== C1 SCRIPT BINDING =====
+00040602: ElapsedMs: 257572.399
+00040603: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00040604: Actor: PC_Hero
+00040605: Generation: 1153
+00040606: Status: CANDIDATE
+00040607: Outstanding: 0
+00040608: ScriptFunction: _AI_PowerAttack
+00040609: SourceAddress: 00000000
+00040610: =============================
+00040611: 
+00040612: ===== C1 LIFECYCLE STATUS =====
+00040613: ElapsedMs: 257572.787
+00040614: Event: PERSISTED
+00040615: Actor: PC_Hero
+00040616: Generation: 1153
+00040617: Status: PERSISTED
+00040618: Outstanding: 0
+00040619: ===============================
+00040620: 
+00040621: ===== ENGINE SetCollisionGroup =====
+00040622: ElapsedMs: 257729.348
+00040623: Source: Fist
+00040624: SourceAddress: E6EE3610
+00040625: SlotAssociation: NONE
+00040626: PlayerAction: 2
+00040627: PlayerAniPhase: 0
+00040628: PlayerStateTime: 0.163916
+00040629: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_R.xmot
+00040630: RequestedGroup: 7
+00040631: BeforeGroup: 0
+00040632: AfterGroup: 0
+00040633: RetiredMarkerSourceBitCount: 0
+00040634: ====================================
+00040635: 
+00040636: ===== MARKER OWNERSHIP DECISION =====
+00040637: ElapsedMs: 257763.716
+00040638: Actor: Golem
+00040639: Family: NORMAL
+00040640: CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00040641: Action: 1
+00040642: AniPhase: 1
+00040643: MatchingMotionFound: 1
+00040644: MarkerScanValid: 1
+00040645: ContainsReservedSourceMarker: 0
+00040646: RequiredSourceMask: 0
+00040647: AuthoredRIGHTCount: 0
+00040648: FirstRIGHTFrame: -1
+00040649: AuthoredLEFTCount: 0
+00040650: FirstLEFTFrame: -1
+00040651: AuthoredBOTHCount: 0
+00040652: FirstBOTHFrame: -1
+00040653: AuthoredOFFCount: 0
+00040654: FirstOFFFrame: -1
+00040655: RightSourceResolved: 1
+00040656: RightSourceName: Fist
+00040657: RightSourceAddress: C1FD8210
+00040658: RightSourceUseType: 8
+00040659: RightSourceCollisionGroup: 0
+00040660: LeftSourceResolved: 0
+===== SOURCE RANGE 40664-41091 =====
+00040664: ===== ENGINE SetCollisionGroup =====
+00040665: ElapsedMs: 257816.915
+00040666: Source: Fist
+00040667: SourceAddress: C2041C10
+00040668: SlotAssociation: NONE
+00040669: PlayerAction: 2
+00040670: PlayerAniPhase: 0
+00040671: PlayerStateTime: 0.250961
+00040672: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_R.xmot
+00040673: RequestedGroup: 7
+00040674: BeforeGroup: 0
+00040675: AfterGroup: 0
+00040676: RetiredMarkerSourceBitCount: 0
+00040677: ====================================
+00040678: 
+00040679: ===== C1 LIFECYCLE START =====
+00040680: ElapsedMs: 258011.929
+00040681: Actor: PC_Hero
+00040682: Generation: 1158
+00040683: Status: CANDIDATE
+00040684: ReplacedGeneration: 1153
+00040685: ReplacedOutstanding: 0
+00040686: TrackedSourceCount: 1
+00040687: Source[0].Address: C1FF8010
+00040688: Source[0].Side: RIGHT
+00040689: Source[0].ActualGroup: 5
+00040690: ==============================
+00040691: 
+00040692: ===== C1 SCRIPT BINDING =====
+00040693: ElapsedMs: 258011.942
+00040694: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00040695: Actor: PC_Hero
+00040696: Generation: 1158
+00040697: Status: CANDIDATE
+00040698: Outstanding: 0
+00040699: ScriptFunction: _AI_Stumble
+00040700: SourceAddress: 00000000
+00040701: =============================
+00040702: 
+00040703: ===== C1 LIFECYCLE STATUS =====
+00040704: ElapsedMs: 258023.091
+00040705: Event: PERSISTED
+00040706: Actor: PC_Hero
+00040707: Generation: 1158
+00040708: Status: PERSISTED
+00040709: Outstanding: 0
+00040710: ===============================
+00040711: 
+00040712: ===== ENGINE SetCollisionGroup =====
+00040713: ElapsedMs: 258039.113
+00040714: Source: Fist
+00040715: SourceAddress: C1FD8210
+00040716: SlotAssociation: NONE
+00040717: PlayerAction: 26
+00040718: PlayerAniPhase: 1
+00040719: PlayerStateTime: 0.017993
+00040720: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+00040721: RequestedGroup: 7
+00040722: BeforeGroup: 0
+00040723: AfterGroup: 0
+00040724: RetiredMarkerSourceBitCount: 0
+00040725: ====================================
+00040726: 
+00040727: ===== ENGINE SetCollisionGroup =====
+00040728: ElapsedMs: 258226.422
+00040729: Source: Fist
+00040730: SourceAddress: C2008010
+00040731: SlotAssociation: NONE
+00040732: PlayerAction: 26
+00040733: PlayerAniPhase: 1
+00040734: PlayerStateTime: 0.217958
+00040735: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+00040736: RequestedGroup: 7
+00040737: BeforeGroup: 0
+00040738: AfterGroup: 0
+00040739: RetiredMarkerSourceBitCount: 0
+00040740: ====================================
+00040741: 
+00040742: ===== C1 FINALIZATION =====
+00040743: ElapsedMs: 258338.926
+00040744: Reason: AISETSTATE_AFTER_ORIGINAL
+00040745: Actor: PC_Hero
+00040746: Generation: 1158
+00040747: Status: PERSISTED
+00040748: TrackedSourceCount: 1
+00040749: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00040750: Source[0].Address: C1FF8010
+00040751: Source[0].LivenessEstablished: 1
+00040752: Source[0].Name: It_2H_Sword_Flamberge
+00040753: Source[0].OriginalSide: RIGHT
+00040754: Source[0].CurrentSideMask: 1
+00040755: Source[0].OffensiveRequestCount: 0
+00040756: Source[0].OutstandingBeforeFinalization: 0
+00040757: Source[0].CleanupObservedBeforeFinalization: 0
+00040758: Source[0].ActualGroupBeforeRepair: 5
+00040759: Source[0].RepairAttempted: 0
+00040760: Source[0].PhysicalCollisionChanged: 0
+00040761: PhysicalCollisionChanged: 0
+00040762: ===========================
+00040763: 
+00040764: ===== C1 LIFECYCLE START =====
+00040765: ElapsedMs: 258662.599
+00040766: Actor: PC_Hero
+00040767: Generation: 1162
+00040768: Status: CANDIDATE
+00040769: ReplacedGeneration: 0
+00040770: ReplacedOutstanding: 0
+00040771: TrackedSourceCount: 1
+00040772: Source[0].Address: C1FF8010
+00040773: Source[0].Side: RIGHT
+00040774: Source[0].ActualGroup: 5
+00040775: ==============================
+00040776: 
+00040777: ===== C1 SCRIPT BINDING =====
+00040778: ElapsedMs: 258662.612
+00040779: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00040780: Actor: PC_Hero
+00040781: Generation: 1162
+00040782: Status: CANDIDATE
+00040783: Outstanding: 0
+00040784: ScriptFunction: _AI_PowerAttack
+00040785: SourceAddress: 00000000
+00040786: =============================
+00040787: 
+00040788: ===== C1 LIFECYCLE STATUS =====
+00040789: ElapsedMs: 258662.680
+00040790: Event: PERSISTED
+00040791: Actor: PC_Hero
+00040792: Generation: 1162
+00040793: Status: PERSISTED
+00040794: Outstanding: 0
+00040795: ===============================
+00040796: 
+00040797: ===== ENGINE SetCollisionGroup =====
+00040798: ElapsedMs: 258784.802
+00040799: Source: Fist
+00040800: SourceAddress: EBB69A10
+00040801: SlotAssociation: NONE
+00040802: PlayerAction: 2
+00040803: PlayerAniPhase: 0
+00040804: PlayerStateTime: 0.124013
+00040805: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+00040806: RequestedGroup: 7
+00040807: BeforeGroup: 0
+00040808: AfterGroup: 0
+00040809: RetiredMarkerSourceBitCount: 0
+00040810: ====================================
+00040811: 
+00040812: ===== C1 SCRIPT BINDING =====
+00040813: ElapsedMs: 259204.097
+00040814: Event: COMBAT_MOVE_REUSED
+00040815: Actor: PC_Hero
+00040816: Generation: 1162
+00040817: Status: PERSISTED
+00040818: Outstanding: 0
+00040819: ScriptFunction: _AI_PowerAttack
+00040820: SourceAddress: 00000000
+00040821: =============================
+00040822: 
+00040823: ===== RIGHT RECEIVED =====
+00040824: ElapsedMs: 259454.025
+00040825: Actor: PC_Hero
+00040826: Action: 2
+00040827: AniPhase: 1
+00040828: StateTime: 0.808956
+00040829: StatePositionBeforeMarker: 0
+00040830: CurrentMovementAni: Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040831: ===== ENGINE SetCollisionGroup =====
+00040832: ElapsedMs: 259454.053
+00040833: Source: It_2H_Sword_Flamberge
+00040834: SourceAddress: C1FF8010
+00040835: SlotAssociation: RIGHT
+00040836: PlayerAction: 2
+00040837: PlayerAniPhase: 1
+00040838: PlayerStateTime: 0.808956
+00040839: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040840: RequestedGroup: 7
+00040841: BeforeGroup: 5
+00040842: AfterGroup: 7
+00040843: RetiredMarkerSourceBitCount: 0
+00040844: ====================================
+00040845: 
+00040846: ===== C1 OFFENSE REQUEST =====
+00040847: ElapsedMs: 259454.088
+00040848: Actor: PC_Hero
+00040849: Generation: 1162
+00040850: Status: PERSISTED
+00040851: Source: It_2H_Sword_Flamberge
+00040852: SourceAddress: C1FF8010
+00040853: Side: RIGHT
+00040854: OffensiveRequestCount: 1
+00040855: Outstanding: 1
+00040856: CleanupObserved: 0
+00040857: ActualGroup: 7
+00040858: ==============================
+00040859: 
+00040860: MarkerName: G3AB_COL_RIGHT
+00040861: MarkerOpcode: RIGHT
+00040862: StatePositionAfterMarker: 1
+00040863: C1GenerationValid: 1
+00040864: C1Generation: 1162
+00040865: MarkerAction: ACCEPTED
+00040866: AuthoredMarkerOccurrences: 1
+00040867: AcceptedMarkerOccurrencesBefore: 0
+00040868: AcceptedMarkerOccurrencesAfter: 1
+00040869: ExecutionBudgetReset: 1
+00040870: PreviousSourceMask: 0
+00040871: DesiredSourceMask: 1
+00040872: RetiredSourceMask: 0
+00040873: OwnedMaskAtOff: 0
+00040874: MarkerOwnedWeaponMask: 1
+00040875: ActivatedSourceCount: 1
+00040876: RetiredSourceCount: 0
+00040877: DeactivatedSourceCount: 0
+00040878: TriggeredListClearCount: 1
+00040879: RightGroupBefore: 5
+00040880: RightGroupAfter: 7
+00040881: RightUseType: 3
+00040882: RightGroupRequested: 1
+00040883: RightFistGroupSkip: 0
+00040884: RightTriggeredListCleared: 1
+00040885: ===========================
+00040886: 
+00040887: ===== ENGINE SetCollisionGroup =====
+00040888: ElapsedMs: 259668.508
+00040889: Source: It_2H_Sword_Flamberge
+00040890: SourceAddress: C1FF8010
+00040891: SlotAssociation: RIGHT
+00040892: PlayerAction: 2
+00040893: PlayerAniPhase: 3
+00040894: PlayerStateTime: 1.006952
+00040895: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00040896: RequestedGroup: 5
+00040897: BeforeGroup: 7
+00040898: AfterGroup: 5
+00040899: RetiredMarkerSourceBitCount: 1
+00040900: ====================================
+00040901: 
+00040902: ===== C1 CLEANUP FULFILLED =====
+00040903: ElapsedMs: 259668.536
+00040904: Actor: PC_Hero
+00040905: Generation: 1162
+00040906: Status: PERSISTED
+00040907: Source: It_2H_Sword_Flamberge
+00040908: SourceAddress: C1FF8010
+00040909: Side: RIGHT
+00040910: OffensiveRequestCount: 1
+00040911: Outstanding: 0
+00040912: CleanupObserved: 1
+00040913: ActualGroup: 5
+00040914: ==============================
+00040915: 
+00040916: ===== C1 FINALIZATION =====
+00040917: ElapsedMs: 259668.561
+00040918: Reason: AISETSTATE_AFTER_ORIGINAL
+00040919: Actor: PC_Hero
+00040920: Generation: 1162
+00040921: Status: PERSISTED
+00040922: TrackedSourceCount: 1
+00040923: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00040924: Source[0].Address: C1FF8010
+00040925: Source[0].LivenessEstablished: 1
+00040926: Source[0].Name: It_2H_Sword_Flamberge
+00040927: Source[0].OriginalSide: RIGHT
+00040928: Source[0].CurrentSideMask: 1
+00040929: Source[0].OffensiveRequestCount: 1
+00040930: Source[0].OutstandingBeforeFinalization: 0
+00040931: Source[0].CleanupObservedBeforeFinalization: 1
+00040932: Source[0].ActualGroupBeforeRepair: 5
+00040933: Source[0].RepairAttempted: 0
+00040934: Source[0].PhysicalCollisionChanged: 0
+00040935: PhysicalCollisionChanged: 0
+00040936: ===========================
+00040937: 
+00040938: ===== ENGINE SetCollisionGroup =====
+00040939: ElapsedMs: 259812.234
+00040940: Source: Fist
+00040941: SourceAddress: E6EE3610
+00040942: SlotAssociation: NONE
+00040943: PlayerAction: 0
+00040944: PlayerAniPhase: 3
+00040945: PlayerStateTime: 0.125996
+00040946: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00040947: RequestedGroup: 7
+00040948: BeforeGroup: 0
+00040949: AfterGroup: 0
+00040950: RetiredMarkerSourceBitCount: 0
+00040951: ====================================
+00040952: 
+00040953: ===== ENGINE SetCollisionGroup =====
+00040954: ElapsedMs: 259812.847
+00040955: Source: Fist
+00040956: SourceAddress: C2041C10
+00040957: SlotAssociation: NONE
+00040958: PlayerAction: 0
+00040959: PlayerAniPhase: 3
+00040960: PlayerStateTime: 0.125996
+00040961: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00040962: RequestedGroup: 7
+00040963: BeforeGroup: 0
+00040964: AfterGroup: 0
+00040965: RetiredMarkerSourceBitCount: 0
+00040966: ====================================
+00040967: 
+00040968: ===== MARKER OWNERSHIP DECISION =====
+00040969: ElapsedMs: 259938.765
+00040970: Actor: Golem
+00040971: Family: POWER
+00040972: CurrentMovementAni: Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00040973: Action: 2
+00040974: AniPhase: 1
+00040975: MatchingMotionFound: 1
+00040976: MarkerScanValid: 1
+00040977: ContainsReservedSourceMarker: 0
+00040978: RequiredSourceMask: 0
+00040979: AuthoredRIGHTCount: 0
+00040980: FirstRIGHTFrame: -1
+00040981: AuthoredLEFTCount: 0
+00040982: FirstLEFTFrame: -1
+00040983: AuthoredBOTHCount: 0
+00040984: FirstBOTHFrame: -1
+00040985: AuthoredOFFCount: 0
+00040986: FirstOFFFrame: -1
+00040987: RightSourceResolved: 1
+00040988: RightSourceName: Fist
+00040989: RightSourceAddress: C2022410
+00040990: RightSourceUseType: 8
+00040991: RightSourceCollisionGroup: 0
+00040992: LeftSourceResolved: 0
+00040993: SuppressNativeCallback: 0
+00040994: =====================================
+00040995: 
+00040996: ===== ENGINE SetCollisionGroup =====
+00040997: ElapsedMs: 259938.810
+00040998: Source: Fist
+00040999: SourceAddress: C2022410
+00041000: SlotAssociation: NONE
+00041001: PlayerAction: 0
+00041002: PlayerAniPhase: 3
+00041003: PlayerStateTime: 0.250988
+00041004: PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+00041005: RequestedGroup: 7
+00041006: BeforeGroup: 0
+00041007: AfterGroup: 0
+00041008: RetiredMarkerSourceBitCount: 0
+00041009: ====================================
+00041010: 
+00041011: ===== ENGINE SetCollisionGroup =====
+00041012: ElapsedMs: 260763.053
+00041013: Source: Fist
+00041014: SourceAddress: EBB69A10
+00041015: SlotAssociation: NONE
+00041016: PlayerAction: 0
+00041017: PlayerAniPhase: 10
+00041018: PlayerStateTime: 1.075827
+00041019: PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Move_Sprint_N_Right_00_%_00_P0_400.xmot
+00041020: RequestedGroup: 7
+00041021: BeforeGroup: 0
+00041022: AfterGroup: 0
+00041023: RetiredMarkerSourceBitCount: 0
+00041024: ====================================
+00041025: 
+00041026: ===== C1 LIFECYCLE START =====
+00041027: ElapsedMs: 261091.906
+00041028: Actor: PC_Hero
+00041029: Generation: 1177

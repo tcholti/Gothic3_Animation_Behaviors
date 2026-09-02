@@ -1,0 +1,3469 @@
+00048130: ActualGroup: 7
+00048131: ==============================
+00048132: 
+00048133: MarkerName: G3AB_COL_RIGHT
+00048134: MarkerOpcode: RIGHT
+00048135: StatePositionAfterMarker: 0
+00048136: C1GenerationValid: 1
+00048137: C1Generation: 1542
+00048138: MarkerAction: ACCEPTED
+00048139: AuthoredMarkerOccurrences: 1
+00048140: AcceptedMarkerOccurrencesBefore: 0
+00048141: AcceptedMarkerOccurrencesAfter: 1
+00048142: ExecutionBudgetReset: 1
+00048143: PreviousSourceMask: 0
+00048144: DesiredSourceMask: 1
+00048145: RetiredSourceMask: 0
+00048146: OwnedMaskAtOff: 0
+00048147: MarkerOwnedWeaponMask: 1
+00048148: ActivatedSourceCount: 1
+00048149: RetiredSourceCount: 0
+00048150: DeactivatedSourceCount: 0
+00048151: TriggeredListClearCount: 1
+00048152: RightGroupBefore: 5
+00048153: RightGroupAfter: 7
+00048154: RightUseType: 12
+00048155: RightGroupRequested: 1
+00048156: RightFistGroupSkip: 0
+00048157: RightTriggeredListCleared: 1
+00048158: ===========================
+00048159: 
+00048160: ===== ENGINE SetCollisionGroup =====
+00048161: ElapsedMs: 350483.762
+00048162: Source: It_Spear_Combat
+00048163: SourceAddress: C1FF8010
+00048164: SlotAssociation: RIGHT
+00048165: PlayerAction: 1
+00048166: PlayerAniPhase: 3
+00048167: PlayerStateTime: 0.572932
+00048168: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048169: RequestedGroup: 5
+00048170: BeforeGroup: 7
+00048171: AfterGroup: 5
+00048172: RetiredMarkerSourceBitCount: 1
+00048173: ====================================
+00048174: 
+00048175: ===== C1 CLEANUP FULFILLED =====
+00048176: ElapsedMs: 350483.798
+00048177: Actor: PC_Hero
+00048178: Generation: 1542
+00048179: Status: PERSISTED
+00048180: Source: It_Spear_Combat
+00048181: SourceAddress: C1FF8010
+00048182: Side: RIGHT
+00048183: OffensiveRequestCount: 1
+00048184: Outstanding: 0
+00048185: CleanupObserved: 1
+00048186: ActualGroup: 5
+00048187: ==============================
+00048188: 
+00048189: ===== C1 FINALIZATION =====
+00048190: ElapsedMs: 350483.825
+00048191: Reason: AISETSTATE_AFTER_ORIGINAL
+00048192: Actor: PC_Hero
+00048193: Generation: 1542
+00048194: Status: PERSISTED
+00048195: TrackedSourceCount: 1
+00048196: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00048197: Source[0].Address: C1FF8010
+00048198: Source[0].LivenessEstablished: 1
+00048199: Source[0].Name: It_Spear_Combat
+00048200: Source[0].OriginalSide: RIGHT
+00048201: Source[0].CurrentSideMask: 1
+00048202: Source[0].OffensiveRequestCount: 1
+00048203: Source[0].OutstandingBeforeFinalization: 0
+00048204: Source[0].CleanupObservedBeforeFinalization: 1
+00048205: Source[0].ActualGroupBeforeRepair: 5
+00048206: Source[0].RepairAttempted: 0
+00048207: Source[0].PhysicalCollisionChanged: 0
+00048208: PhysicalCollisionChanged: 0
+00048209: ===========================
+00048210: 
+00048211: ===== C1 LIFECYCLE START =====
+00048212: ElapsedMs: 350902.763
+00048213: Actor: PC_Hero
+00048214: Generation: 1544
+00048215: Status: CANDIDATE
+00048216: ReplacedGeneration: 0
+00048217: ReplacedOutstanding: 0
+00048218: TrackedSourceCount: 1
+00048219: Source[0].Address: C1FF8010
+00048220: Source[0].Side: RIGHT
+00048221: Source[0].ActualGroup: 5
+00048222: ==============================
+00048223: 
+00048224: ===== C1 SCRIPT BINDING =====
+00048225: ElapsedMs: 350902.776
+00048226: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00048227: Actor: PC_Hero
+00048228: Generation: 1544
+00048229: Status: CANDIDATE
+00048230: Outstanding: 0
+00048231: ScriptFunction: _AI_PowerAttack
+00048232: SourceAddress: 00000000
+00048233: =============================
+00048234: 
+00048235: ===== C1 LIFECYCLE STATUS =====
+00048236: ElapsedMs: 350902.847
+00048237: Event: PERSISTED
+00048238: Actor: PC_Hero
+00048239: Generation: 1544
+00048240: Status: PERSISTED
+00048241: Outstanding: 0
+00048242: ===============================
+00048243: 
+00048244: ===== C1 SCRIPT BINDING =====
+00048245: ElapsedMs: 351444.951
+00048246: Event: COMBAT_MOVE_REUSED
+00048247: Actor: PC_Hero
+00048248: Generation: 1544
+00048249: Status: PERSISTED
+00048250: Outstanding: 0
+00048251: ScriptFunction: _AI_PowerAttack
+00048252: SourceAddress: 00000000
+00048253: =============================
+00048254: 
+00048255: ===== MARKER OWNERSHIP DECISION =====
+00048256: ElapsedMs: 351445.038
+00048257: Actor: PC_Hero
+00048258: Family: POWER
+00048259: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00048260: Action: 2
+00048261: AniPhase: 1
+00048262: MatchingMotionFound: 1
+00048263: MarkerScanValid: 1
+00048264: ContainsReservedSourceMarker: 1
+00048265: RequiredSourceMask: 1
+00048266: AuthoredRIGHTCount: 1
+00048267: FirstRIGHTFrame: 6
+00048268: AuthoredLEFTCount: 0
+00048269: FirstLEFTFrame: -1
+00048270: AuthoredBOTHCount: 0
+00048271: FirstBOTHFrame: -1
+00048272: AuthoredOFFCount: 0
+00048273: FirstOFFFrame: -1
+00048274: RightSourceResolved: 1
+00048275: RightSourceName: It_Spear_Combat
+00048276: RightSourceAddress: C1FF8010
+00048277: RightSourceUseType: 12
+00048278: RightSourceCollisionGroup: 5
+00048279: LeftSourceResolved: 0
+00048280: SuppressNativeCallback: 1
+00048281: =====================================
+00048282: 
+00048283: ===== C1 LIFECYCLE START =====
+00048284: ElapsedMs: 351490.762
+00048285: Actor: PC_Hero
+00048286: Generation: 1546
+00048287: Status: CANDIDATE
+00048288: ReplacedGeneration: 1544
+00048289: ReplacedOutstanding: 0
+00048290: TrackedSourceCount: 1
+00048291: Source[0].Address: C1FF8010
+00048292: Source[0].Side: RIGHT
+00048293: Source[0].ActualGroup: 5
+00048294: ==============================
+00048295: 
+00048296: ===== C1 SCRIPT BINDING =====
+00048297: ElapsedMs: 351490.775
+00048298: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00048299: Actor: PC_Hero
+00048300: Generation: 1546
+00048301: Status: CANDIDATE
+00048302: Outstanding: 0
+00048303: ScriptFunction: _AI_Stumble
+00048304: SourceAddress: 00000000
+00048305: =============================
+00048306: 
+00048307: ===== C1 LIFECYCLE STATUS =====
+00048308: ElapsedMs: 351490.835
+00048309: Event: PERSISTED
+00048310: Actor: PC_Hero
+00048311: Generation: 1546
+00048312: Status: PERSISTED
+00048313: Outstanding: 0
+00048314: ===============================
+00048315: 
+00048316: ===== ENGINE SetCollisionGroup =====
+00048317: ElapsedMs: 351490.989
+00048318: Source: Fist
+00048319: SourceAddress: C1FFC410
+00048320: SlotAssociation: NONE
+00048321: PlayerAction: 26
+00048322: PlayerAniPhase: 1
+00048323: PlayerStateTime: 0.011975
+00048324: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+00048325: RequestedGroup: 7
+00048326: BeforeGroup: 0
+00048327: AfterGroup: 0
+00048328: RetiredMarkerSourceBitCount: 0
+00048329: ====================================
+00048330: 
+00048331: ===== C1 FINALIZATION =====
+00048332: ElapsedMs: 351802.717
+00048333: Reason: AISETSTATE_AFTER_ORIGINAL
+00048334: Actor: PC_Hero
+00048335: Generation: 1546
+00048336: Status: PERSISTED
+00048337: TrackedSourceCount: 1
+00048338: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00048339: Source[0].Address: C1FF8010
+00048340: Source[0].LivenessEstablished: 1
+00048341: Source[0].Name: It_Spear_Combat
+00048342: Source[0].OriginalSide: RIGHT
+00048343: Source[0].CurrentSideMask: 1
+00048344: Source[0].OffensiveRequestCount: 0
+00048345: Source[0].OutstandingBeforeFinalization: 0
+00048346: Source[0].CleanupObservedBeforeFinalization: 0
+00048347: Source[0].ActualGroupBeforeRepair: 5
+00048348: Source[0].RepairAttempted: 0
+00048349: Source[0].PhysicalCollisionChanged: 0
+00048350: PhysicalCollisionChanged: 0
+00048351: ===========================
+00048352: 
+00048353: ===== C1 LIFECYCLE START =====
+00048354: ElapsedMs: 352808.945
+00048355: Actor: PC_Hero
+00048356: Generation: 1547
+00048357: Status: CANDIDATE
+00048358: ReplacedGeneration: 0
+00048359: ReplacedOutstanding: 0
+00048360: TrackedSourceCount: 1
+00048361: Source[0].Address: C1FF8010
+00048362: Source[0].Side: RIGHT
+00048363: Source[0].ActualGroup: 5
+00048364: ==============================
+00048365: 
+00048366: ===== C1 SCRIPT BINDING =====
+00048367: ElapsedMs: 352808.958
+00048368: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00048369: Actor: PC_Hero
+00048370: Generation: 1547
+00048371: Status: CANDIDATE
+00048372: Outstanding: 0
+00048373: ScriptFunction: _AI_Attack
+00048374: SourceAddress: 00000000
+00048375: =============================
+00048376: 
+00048377: ===== C1 LIFECYCLE STATUS =====
+00048378: ElapsedMs: 352809.031
+00048379: Event: PERSISTED
+00048380: Actor: PC_Hero
+00048381: Generation: 1547
+00048382: Status: PERSISTED
+00048383: Outstanding: 0
+00048384: ===============================
+00048385: 
+00048386: ===== MARKER OWNERSHIP DECISION =====
+00048387: ElapsedMs: 352809.049
+00048388: Actor: PC_Hero
+00048389: Family: NORMAL
+00048390: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048391: Action: 1
+00048392: AniPhase: 1
+00048393: MatchingMotionFound: 1
+00048394: MarkerScanValid: 1
+00048395: ContainsReservedSourceMarker: 1
+00048396: RequiredSourceMask: 1
+00048397: AuthoredRIGHTCount: 1
+00048398: FirstRIGHTFrame: 5
+00048399: AuthoredLEFTCount: 0
+00048400: FirstLEFTFrame: -1
+00048401: AuthoredBOTHCount: 0
+00048402: FirstBOTHFrame: -1
+00048403: AuthoredOFFCount: 0
+00048404: FirstOFFFrame: -1
+00048405: RightSourceResolved: 1
+00048406: RightSourceName: It_Spear_Combat
+00048407: RightSourceAddress: C1FF8010
+00048408: RightSourceUseType: 12
+00048409: RightSourceCollisionGroup: 5
+00048410: LeftSourceResolved: 0
+00048411: SuppressNativeCallback: 1
+00048412: =====================================
+00048413: 
+00048414: ===== RIGHT RECEIVED =====
+00048415: ElapsedMs: 353084.033
+00048416: Actor: PC_Hero
+00048417: Action: 1
+00048418: AniPhase: 1
+00048419: StateTime: 0.287966
+00048420: StatePositionBeforeMarker: 0
+00048421: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048422: ===== ENGINE SetCollisionGroup =====
+00048423: ElapsedMs: 353084.063
+00048424: Source: It_Spear_Combat
+00048425: SourceAddress: C1FF8010
+00048426: SlotAssociation: RIGHT
+00048427: PlayerAction: 1
+00048428: PlayerAniPhase: 1
+00048429: PlayerStateTime: 0.287966
+00048430: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048431: RequestedGroup: 7
+00048432: BeforeGroup: 5
+00048433: AfterGroup: 7
+00048434: RetiredMarkerSourceBitCount: 0
+00048435: ====================================
+00048436: 
+00048437: ===== C1 OFFENSE REQUEST =====
+00048438: ElapsedMs: 353084.097
+00048439: Actor: PC_Hero
+00048440: Generation: 1547
+00048441: Status: PERSISTED
+00048442: Source: It_Spear_Combat
+00048443: SourceAddress: C1FF8010
+00048444: Side: RIGHT
+00048445: OffensiveRequestCount: 1
+00048446: Outstanding: 1
+00048447: CleanupObserved: 0
+00048448: ActualGroup: 7
+00048449: ==============================
+00048450: 
+00048451: MarkerName: G3AB_COL_RIGHT
+00048452: MarkerOpcode: RIGHT
+00048453: StatePositionAfterMarker: 0
+00048454: C1GenerationValid: 1
+00048455: C1Generation: 1547
+00048456: MarkerAction: ACCEPTED
+00048457: AuthoredMarkerOccurrences: 1
+00048458: AcceptedMarkerOccurrencesBefore: 0
+00048459: AcceptedMarkerOccurrencesAfter: 1
+00048460: ExecutionBudgetReset: 1
+00048461: PreviousSourceMask: 0
+00048462: DesiredSourceMask: 1
+00048463: RetiredSourceMask: 0
+00048464: OwnedMaskAtOff: 0
+00048465: MarkerOwnedWeaponMask: 1
+00048466: ActivatedSourceCount: 1
+00048467: RetiredSourceCount: 0
+00048468: DeactivatedSourceCount: 0
+00048469: TriggeredListClearCount: 1
+00048470: RightGroupBefore: 5
+00048471: RightGroupAfter: 7
+00048472: RightUseType: 12
+00048473: RightGroupRequested: 1
+00048474: RightFistGroupSkip: 0
+00048475: RightTriggeredListCleared: 1
+00048476: ===========================
+00048477: 
+00048478: ===== ENGINE SetCollisionGroup =====
+00048479: ElapsedMs: 353379.986
+00048480: Source: It_Spear_Combat
+00048481: SourceAddress: C1FF8010
+00048482: SlotAssociation: RIGHT
+00048483: PlayerAction: 1
+00048484: PlayerAniPhase: 3
+00048485: PlayerStateTime: 0.572900
+00048486: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048487: RequestedGroup: 5
+00048488: BeforeGroup: 7
+00048489: AfterGroup: 5
+00048490: RetiredMarkerSourceBitCount: 1
+00048491: ====================================
+00048492: 
+00048493: ===== C1 CLEANUP FULFILLED =====
+00048494: ElapsedMs: 353380.024
+00048495: Actor: PC_Hero
+00048496: Generation: 1547
+00048497: Status: PERSISTED
+00048498: Source: It_Spear_Combat
+00048499: SourceAddress: C1FF8010
+00048500: Side: RIGHT
+00048501: OffensiveRequestCount: 1
+00048502: Outstanding: 0
+00048503: CleanupObserved: 1
+00048504: ActualGroup: 5
+00048505: ==============================
+00048506: 
+00048507: ===== C1 FINALIZATION =====
+00048508: ElapsedMs: 353380.047
+00048509: Reason: AISETSTATE_AFTER_ORIGINAL
+00048510: Actor: PC_Hero
+00048511: Generation: 1547
+00048512: Status: PERSISTED
+00048513: TrackedSourceCount: 1
+00048514: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00048515: Source[0].Address: C1FF8010
+00048516: Source[0].LivenessEstablished: 1
+00048517: Source[0].Name: It_Spear_Combat
+00048518: Source[0].OriginalSide: RIGHT
+00048519: Source[0].CurrentSideMask: 1
+00048520: Source[0].OffensiveRequestCount: 1
+00048521: Source[0].OutstandingBeforeFinalization: 0
+00048522: Source[0].CleanupObservedBeforeFinalization: 1
+00048523: Source[0].ActualGroupBeforeRepair: 5
+00048524: Source[0].RepairAttempted: 0
+00048525: Source[0].PhysicalCollisionChanged: 0
+00048526: PhysicalCollisionChanged: 0
+00048527: ===========================
+00048528: 
+00048529: ===== C1 LIFECYCLE START =====
+00048530: ElapsedMs: 353562.001
+00048531: Actor: PC_Hero
+00048532: Generation: 1550
+00048533: Status: CANDIDATE
+00048534: ReplacedGeneration: 0
+00048535: ReplacedOutstanding: 0
+00048536: TrackedSourceCount: 1
+00048537: Source[0].Address: C1FF8010
+00048538: Source[0].Side: RIGHT
+00048539: Source[0].ActualGroup: 5
+00048540: ==============================
+00048541: 
+00048542: ===== C1 SCRIPT BINDING =====
+00048543: ElapsedMs: 353562.015
+00048544: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00048545: Actor: PC_Hero
+00048546: Generation: 1550
+00048547: Status: CANDIDATE
+00048548: Outstanding: 0
+00048549: ScriptFunction: _AI_PowerAttack
+00048550: SourceAddress: 00000000
+00048551: =============================
+00048552: 
+00048553: ===== C1 LIFECYCLE STATUS =====
+00048554: ElapsedMs: 353562.091
+00048555: Event: PERSISTED
+00048556: Actor: PC_Hero
+00048557: Generation: 1550
+00048558: Status: PERSISTED
+00048559: Outstanding: 0
+00048560: ===============================
+00048561: 
+00048562: ===== ENGINE SetCollisionGroup =====
+00048563: ElapsedMs: 354000.845
+00048564: Source: Fist
+00048565: SourceAddress: C1FFC410
+00048566: SlotAssociation: NONE
+00048567: PlayerAction: 2
+00048568: PlayerAniPhase: 0
+00048569: PlayerStateTime: 0.452928
+00048570: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot
+00048571: RequestedGroup: 7
+00048572: BeforeGroup: 0
+00048573: AfterGroup: 0
+00048574: RetiredMarkerSourceBitCount: 0
+00048575: ====================================
+00048576: 
+00048577: ===== C1 SCRIPT BINDING =====
+00048578: ElapsedMs: 354094.900
+00048579: Event: COMBAT_MOVE_REUSED
+00048580: Actor: PC_Hero
+00048581: Generation: 1550
+00048582: Status: PERSISTED
+00048583: Outstanding: 0
+00048584: ScriptFunction: _AI_PowerAttack
+00048585: SourceAddress: 00000000
+00048586: =============================
+00048587: 
+00048588: ===== MARKER OWNERSHIP DECISION =====
+00048589: ElapsedMs: 354094.987
+00048590: Actor: PC_Hero
+00048591: Family: POWER
+00048592: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00048593: Action: 2
+00048594: AniPhase: 1
+00048595: MatchingMotionFound: 1
+00048596: MarkerScanValid: 1
+00048597: ContainsReservedSourceMarker: 1
+00048598: RequiredSourceMask: 1
+00048599: AuthoredRIGHTCount: 1
+00048600: FirstRIGHTFrame: 6
+00048601: AuthoredLEFTCount: 0
+00048602: FirstLEFTFrame: -1
+00048603: AuthoredBOTHCount: 0
+00048604: FirstBOTHFrame: -1
+00048605: AuthoredOFFCount: 0
+00048606: FirstOFFFrame: -1
+00048607: RightSourceResolved: 1
+00048608: RightSourceName: It_Spear_Combat
+00048609: RightSourceAddress: C1FF8010
+00048610: RightSourceUseType: 12
+00048611: RightSourceCollisionGroup: 5
+00048612: LeftSourceResolved: 0
+00048613: SuppressNativeCallback: 1
+00048614: =====================================
+00048615: 
+00048616: ===== RIGHT RECEIVED =====
+00048617: ElapsedMs: 354334.940
+00048618: Actor: PC_Hero
+00048619: Action: 2
+00048620: AniPhase: 1
+00048621: StateTime: 0.785930
+00048622: StatePositionBeforeMarker: 0
+00048623: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00048624: ===== ENGINE SetCollisionGroup =====
+00048625: ElapsedMs: 354334.970
+00048626: Source: It_Spear_Combat
+00048627: SourceAddress: C1FF8010
+00048628: SlotAssociation: RIGHT
+00048629: PlayerAction: 2
+00048630: PlayerAniPhase: 1
+00048631: PlayerStateTime: 0.785930
+00048632: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00048633: RequestedGroup: 7
+00048634: BeforeGroup: 5
+00048635: AfterGroup: 7
+00048636: RetiredMarkerSourceBitCount: 0
+00048637: ====================================
+00048638: 
+00048639: ===== C1 OFFENSE REQUEST =====
+00048640: ElapsedMs: 354335.001
+00048641: Actor: PC_Hero
+00048642: Generation: 1550
+00048643: Status: PERSISTED
+00048644: Source: It_Spear_Combat
+00048645: SourceAddress: C1FF8010
+00048646: Side: RIGHT
+00048647: OffensiveRequestCount: 1
+00048648: Outstanding: 1
+00048649: CleanupObserved: 0
+00048650: ActualGroup: 7
+00048651: ==============================
+00048652: 
+00048653: MarkerName: G3AB_COL_RIGHT
+00048654: MarkerOpcode: RIGHT
+00048655: StatePositionAfterMarker: 1
+00048656: C1GenerationValid: 1
+00048657: C1Generation: 1550
+00048658: MarkerAction: ACCEPTED
+00048659: AuthoredMarkerOccurrences: 1
+00048660: AcceptedMarkerOccurrencesBefore: 0
+00048661: AcceptedMarkerOccurrencesAfter: 1
+00048662: ExecutionBudgetReset: 1
+00048663: PreviousSourceMask: 0
+00048664: DesiredSourceMask: 1
+00048665: RetiredSourceMask: 0
+00048666: OwnedMaskAtOff: 0
+00048667: MarkerOwnedWeaponMask: 1
+00048668: ActivatedSourceCount: 1
+00048669: RetiredSourceCount: 0
+00048670: DeactivatedSourceCount: 0
+00048671: TriggeredListClearCount: 1
+00048672: RightGroupBefore: 5
+00048673: RightGroupAfter: 7
+00048674: RightUseType: 12
+00048675: RightGroupRequested: 1
+00048676: RightFistGroupSkip: 0
+00048677: RightTriggeredListCleared: 1
+00048678: ===========================
+00048679: 
+00048680: ===== ENGINE SetCollisionGroup =====
+00048681: ElapsedMs: 354578.517
+00048682: Source: It_Spear_Combat
+00048683: SourceAddress: C1FF8010
+00048684: SlotAssociation: RIGHT
+00048685: PlayerAction: 2
+00048686: PlayerAniPhase: 3
+00048687: PlayerStateTime: 1.018903
+00048688: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00048689: RequestedGroup: 5
+00048690: BeforeGroup: 7
+00048691: AfterGroup: 5
+00048692: RetiredMarkerSourceBitCount: 1
+00048693: ====================================
+00048694: 
+00048695: ===== C1 CLEANUP FULFILLED =====
+00048696: ElapsedMs: 354578.556
+00048697: Actor: PC_Hero
+00048698: Generation: 1550
+00048699: Status: PERSISTED
+00048700: Source: It_Spear_Combat
+00048701: SourceAddress: C1FF8010
+00048702: Side: RIGHT
+00048703: OffensiveRequestCount: 1
+00048704: Outstanding: 0
+00048705: CleanupObserved: 1
+00048706: ActualGroup: 5
+00048707: ==============================
+00048708: 
+00048709: ===== C1 FINALIZATION =====
+00048710: ElapsedMs: 354578.616
+00048711: Reason: AISETSTATE_AFTER_ORIGINAL
+00048712: Actor: PC_Hero
+00048713: Generation: 1550
+00048714: Status: PERSISTED
+00048715: TrackedSourceCount: 1
+00048716: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00048717: Source[0].Address: C1FF8010
+00048718: Source[0].LivenessEstablished: 1
+00048719: Source[0].Name: It_Spear_Combat
+00048720: Source[0].OriginalSide: RIGHT
+00048721: Source[0].CurrentSideMask: 1
+00048722: Source[0].OffensiveRequestCount: 1
+00048723: Source[0].OutstandingBeforeFinalization: 0
+00048724: Source[0].CleanupObservedBeforeFinalization: 1
+00048725: Source[0].ActualGroupBeforeRepair: 5
+00048726: Source[0].RepairAttempted: 0
+00048727: Source[0].PhysicalCollisionChanged: 0
+00048728: PhysicalCollisionChanged: 0
+00048729: ===========================
+00048730: 
+00048731: ===== C1 LIFECYCLE START =====
+00048732: ElapsedMs: 355721.234
+00048733: Actor: PC_Hero
+00048734: Generation: 1555
+00048735: Status: CANDIDATE
+00048736: ReplacedGeneration: 0
+00048737: ReplacedOutstanding: 0
+00048738: TrackedSourceCount: 1
+00048739: Source[0].Address: C1FF8010
+00048740: Source[0].Side: RIGHT
+00048741: Source[0].ActualGroup: 5
+00048742: ==============================
+00048743: 
+00048744: ===== C1 SCRIPT BINDING =====
+00048745: ElapsedMs: 355721.247
+00048746: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00048747: Actor: PC_Hero
+00048748: Generation: 1555
+00048749: Status: CANDIDATE
+00048750: Outstanding: 0
+00048751: ScriptFunction: _AI_Stumble
+00048752: SourceAddress: 00000000
+00048753: =============================
+00048754: 
+00048755: ===== C1 LIFECYCLE STATUS =====
+00048756: ElapsedMs: 355721.318
+00048757: Event: PERSISTED
+00048758: Actor: PC_Hero
+00048759: Generation: 1555
+00048760: Status: PERSISTED
+00048761: Outstanding: 0
+00048762: ===============================
+00048763: 
+00048764: ===== ENGINE SetCollisionGroup =====
+00048765: ElapsedMs: 355721.463
+00048766: Source: Fist
+00048767: SourceAddress: C1FFC410
+00048768: SlotAssociation: NONE
+00048769: PlayerAction: 26
+00048770: PlayerAniPhase: 1
+00048771: PlayerStateTime: 0.012000
+00048772: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+00048773: RequestedGroup: 7
+00048774: BeforeGroup: 0
+00048775: AfterGroup: 0
+00048776: RetiredMarkerSourceBitCount: 0
+00048777: ====================================
+00048778: 
+00048779: ===== C1 FINALIZATION =====
+00048780: ElapsedMs: 356031.361
+00048781: Reason: AISETSTATE_AFTER_ORIGINAL
+00048782: Actor: PC_Hero
+00048783: Generation: 1555
+00048784: Status: PERSISTED
+00048785: TrackedSourceCount: 1
+00048786: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00048787: Source[0].Address: C1FF8010
+00048788: Source[0].LivenessEstablished: 1
+00048789: Source[0].Name: It_Spear_Combat
+00048790: Source[0].OriginalSide: RIGHT
+00048791: Source[0].CurrentSideMask: 1
+00048792: Source[0].OffensiveRequestCount: 0
+00048793: Source[0].OutstandingBeforeFinalization: 0
+00048794: Source[0].CleanupObservedBeforeFinalization: 0
+00048795: Source[0].ActualGroupBeforeRepair: 5
+00048796: Source[0].RepairAttempted: 0
+00048797: Source[0].PhysicalCollisionChanged: 0
+00048798: PhysicalCollisionChanged: 0
+00048799: ===========================
+00048800: 
+00048801: ===== C1 LIFECYCLE START =====
+00048802: ElapsedMs: 356519.752
+00048803: Actor: PC_Hero
+00048804: Generation: 1556
+00048805: Status: CANDIDATE
+00048806: ReplacedGeneration: 0
+00048807: ReplacedOutstanding: 0
+00048808: TrackedSourceCount: 1
+00048809: Source[0].Address: C1FF8010
+00048810: Source[0].Side: RIGHT
+00048811: Source[0].ActualGroup: 5
+00048812: ==============================
+00048813: 
+00048814: ===== C1 SCRIPT BINDING =====
+00048815: ElapsedMs: 356519.766
+00048816: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00048817: Actor: PC_Hero
+00048818: Generation: 1556
+00048819: Status: CANDIDATE
+00048820: Outstanding: 0
+00048821: ScriptFunction: _AI_Attack
+00048822: SourceAddress: 00000000
+00048823: =============================
+00048824: 
+00048825: ===== C1 LIFECYCLE STATUS =====
+00048826: ElapsedMs: 356519.836
+00048827: Event: PERSISTED
+00048828: Actor: PC_Hero
+00048829: Generation: 1556
+00048830: Status: PERSISTED
+00048831: Outstanding: 0
+00048832: ===============================
+00048833: 
+00048834: ===== MARKER OWNERSHIP DECISION =====
+00048835: ElapsedMs: 356519.855
+00048836: Actor: PC_Hero
+00048837: Family: NORMAL
+00048838: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048839: Action: 1
+00048840: AniPhase: 1
+00048841: MatchingMotionFound: 1
+00048842: MarkerScanValid: 1
+00048843: ContainsReservedSourceMarker: 1
+00048844: RequiredSourceMask: 1
+00048845: AuthoredRIGHTCount: 1
+00048846: FirstRIGHTFrame: 5
+00048847: AuthoredLEFTCount: 0
+00048848: FirstLEFTFrame: -1
+00048849: AuthoredBOTHCount: 0
+00048850: FirstBOTHFrame: -1
+00048851: AuthoredOFFCount: 0
+00048852: FirstOFFFrame: -1
+00048853: RightSourceResolved: 1
+00048854: RightSourceName: It_Spear_Combat
+00048855: RightSourceAddress: C1FF8010
+00048856: RightSourceUseType: 12
+00048857: RightSourceCollisionGroup: 5
+00048858: LeftSourceResolved: 0
+00048859: SuppressNativeCallback: 1
+00048860: =====================================
+00048861: 
+00048862: ===== RIGHT RECEIVED =====
+00048863: ElapsedMs: 356795.635
+00048864: Actor: PC_Hero
+00048865: Action: 1
+00048866: AniPhase: 1
+00048867: StateTime: 0.287989
+00048868: StatePositionBeforeMarker: 0
+00048869: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048870: ===== ENGINE SetCollisionGroup =====
+00048871: ElapsedMs: 356795.665
+00048872: Source: It_Spear_Combat
+00048873: SourceAddress: C1FF8010
+00048874: SlotAssociation: RIGHT
+00048875: PlayerAction: 1
+00048876: PlayerAniPhase: 1
+00048877: PlayerStateTime: 0.287989
+00048878: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048879: RequestedGroup: 7
+00048880: BeforeGroup: 5
+00048881: AfterGroup: 7
+00048882: RetiredMarkerSourceBitCount: 0
+00048883: ====================================
+00048884: 
+00048885: ===== C1 OFFENSE REQUEST =====
+00048886: ElapsedMs: 356795.697
+00048887: Actor: PC_Hero
+00048888: Generation: 1556
+00048889: Status: PERSISTED
+00048890: Source: It_Spear_Combat
+00048891: SourceAddress: C1FF8010
+00048892: Side: RIGHT
+00048893: OffensiveRequestCount: 1
+00048894: Outstanding: 1
+00048895: CleanupObserved: 0
+00048896: ActualGroup: 7
+00048897: ==============================
+00048898: 
+00048899: MarkerName: G3AB_COL_RIGHT
+00048900: MarkerOpcode: RIGHT
+00048901: StatePositionAfterMarker: 0
+00048902: C1GenerationValid: 1
+00048903: C1Generation: 1556
+00048904: MarkerAction: ACCEPTED
+00048905: AuthoredMarkerOccurrences: 1
+00048906: AcceptedMarkerOccurrencesBefore: 0
+00048907: AcceptedMarkerOccurrencesAfter: 1
+00048908: ExecutionBudgetReset: 1
+00048909: PreviousSourceMask: 0
+00048910: DesiredSourceMask: 1
+00048911: RetiredSourceMask: 0
+00048912: OwnedMaskAtOff: 0
+00048913: MarkerOwnedWeaponMask: 1
+00048914: ActivatedSourceCount: 1
+00048915: RetiredSourceCount: 0
+00048916: DeactivatedSourceCount: 0
+00048917: TriggeredListClearCount: 1
+00048918: RightGroupBefore: 5
+00048919: RightGroupAfter: 7
+00048920: RightUseType: 12
+00048921: RightGroupRequested: 1
+00048922: RightFistGroupSkip: 0
+00048923: RightTriggeredListCleared: 1
+00048924: ===========================
+00048925: 
+00048926: ===== ENGINE SetCollisionGroup =====
+00048927: ElapsedMs: 357100.923
+00048928: Source: It_Spear_Combat
+00048929: SourceAddress: C1FF8010
+00048930: SlotAssociation: RIGHT
+00048931: PlayerAction: 1
+00048932: PlayerAniPhase: 3
+00048933: PlayerStateTime: 0.580990
+00048934: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00048935: RequestedGroup: 5
+00048936: BeforeGroup: 7
+00048937: AfterGroup: 5
+00048938: RetiredMarkerSourceBitCount: 1
+00048939: ====================================
+00048940: 
+00048941: ===== C1 CLEANUP FULFILLED =====
+00048942: ElapsedMs: 357100.964
+00048943: Actor: PC_Hero
+00048944: Generation: 1556
+00048945: Status: PERSISTED
+00048946: Source: It_Spear_Combat
+00048947: SourceAddress: C1FF8010
+00048948: Side: RIGHT
+00048949: OffensiveRequestCount: 1
+00048950: Outstanding: 0
+00048951: CleanupObserved: 1
+00048952: ActualGroup: 5
+00048953: ==============================
+00048954: 
+00048955: ===== C1 FINALIZATION =====
+00048956: ElapsedMs: 357100.991
+00048957: Reason: AISETSTATE_AFTER_ORIGINAL
+00048958: Actor: PC_Hero
+00048959: Generation: 1556
+00048960: Status: PERSISTED
+00048961: TrackedSourceCount: 1
+00048962: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00048963: Source[0].Address: C1FF8010
+00048964: Source[0].LivenessEstablished: 1
+00048965: Source[0].Name: It_Spear_Combat
+00048966: Source[0].OriginalSide: RIGHT
+00048967: Source[0].CurrentSideMask: 1
+00048968: Source[0].OffensiveRequestCount: 1
+00048969: Source[0].OutstandingBeforeFinalization: 0
+00048970: Source[0].CleanupObservedBeforeFinalization: 1
+00048971: Source[0].ActualGroupBeforeRepair: 5
+00048972: Source[0].RepairAttempted: 0
+00048973: Source[0].PhysicalCollisionChanged: 0
+00048974: PhysicalCollisionChanged: 0
+00048975: ===========================
+00048976: 
+00048977: ===== C1 LIFECYCLE START =====
+00048978: ElapsedMs: 357469.198
+00048979: Actor: PC_Hero
+00048980: Generation: 1559
+00048981: Status: CANDIDATE
+00048982: ReplacedGeneration: 0
+00048983: ReplacedOutstanding: 0
+00048984: TrackedSourceCount: 1
+00048985: Source[0].Address: C1FF8010
+00048986: Source[0].Side: RIGHT
+00048987: Source[0].ActualGroup: 5
+00048988: ==============================
+00048989: 
+00048990: ===== C1 SCRIPT BINDING =====
+00048991: ElapsedMs: 357469.211
+00048992: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00048993: Actor: PC_Hero
+00048994: Generation: 1559
+00048995: Status: CANDIDATE
+00048996: Outstanding: 0
+00048997: ScriptFunction: _AI_PowerAttack
+00048998: SourceAddress: 00000000
+00048999: =============================
+00049000: 
+00049001: ===== C1 LIFECYCLE STATUS =====
+00049002: ElapsedMs: 357469.277
+00049003: Event: PERSISTED
+00049004: Actor: PC_Hero
+00049005: Generation: 1559
+00049006: Status: PERSISTED
+00049007: Outstanding: 0
+00049008: ===============================
+00049009: 
+00049010: ===== C1 SCRIPT BINDING =====
+00049011: ElapsedMs: 358006.448
+00049012: Event: COMBAT_MOVE_REUSED
+00049013: Actor: PC_Hero
+00049014: Generation: 1559
+00049015: Status: PERSISTED
+00049016: Outstanding: 0
+00049017: ScriptFunction: _AI_PowerAttack
+00049018: SourceAddress: 00000000
+00049019: =============================
+00049020: 
+00049021: ===== MARKER OWNERSHIP DECISION =====
+00049022: ElapsedMs: 358006.533
+00049023: Actor: PC_Hero
+00049024: Family: POWER
+00049025: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00049026: Action: 2
+00049027: AniPhase: 1
+00049028: MatchingMotionFound: 1
+00049029: MarkerScanValid: 1
+00049030: ContainsReservedSourceMarker: 1
+00049031: RequiredSourceMask: 1
+00049032: AuthoredRIGHTCount: 1
+00049033: FirstRIGHTFrame: 6
+00049034: AuthoredLEFTCount: 0
+00049035: FirstLEFTFrame: -1
+00049036: AuthoredBOTHCount: 0
+00049037: FirstBOTHFrame: -1
+00049038: AuthoredOFFCount: 0
+00049039: FirstOFFFrame: -1
+00049040: RightSourceResolved: 1
+00049041: RightSourceName: It_Spear_Combat
+00049042: RightSourceAddress: C1FF8010
+00049043: RightSourceUseType: 12
+00049044: RightSourceCollisionGroup: 5
+00049045: LeftSourceResolved: 0
+00049046: SuppressNativeCallback: 1
+00049047: =====================================
+00049048: 
+00049049: ===== C1 LIFECYCLE START =====
+00049050: ElapsedMs: 358092.660
+00049051: Actor: PC_Hero
+00049052: Generation: 1561
+00049053: Status: CANDIDATE
+00049054: ReplacedGeneration: 1559
+00049055: ReplacedOutstanding: 0
+00049056: TrackedSourceCount: 1
+00049057: Source[0].Address: C1FF8010
+00049058: Source[0].Side: RIGHT
+00049059: Source[0].ActualGroup: 5
+00049060: ==============================
+00049061: 
+00049062: ===== C1 SCRIPT BINDING =====
+00049063: ElapsedMs: 358092.673
+00049064: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049065: Actor: PC_Hero
+00049066: Generation: 1561
+00049067: Status: CANDIDATE
+00049068: Outstanding: 0
+00049069: ScriptFunction: _AI_Stumble
+00049070: SourceAddress: 00000000
+00049071: =============================
+00049072: 
+00049073: ===== C1 LIFECYCLE STATUS =====
+00049074: ElapsedMs: 358092.740
+00049075: Event: PERSISTED
+00049076: Actor: PC_Hero
+00049077: Generation: 1561
+00049078: Status: PERSISTED
+00049079: Outstanding: 0
+00049080: ===============================
+00049081: 
+00049082: ===== ENGINE SetCollisionGroup =====
+00049083: ElapsedMs: 358103.862
+00049084: Source: Fist
+00049085: SourceAddress: C1FFC410
+00049086: SlotAssociation: NONE
+00049087: PlayerAction: 26
+00049088: PlayerAniPhase: 1
+00049089: PlayerStateTime: 0.012990
+00049090: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+00049091: RequestedGroup: 7
+00049092: BeforeGroup: 0
+00049093: AfterGroup: 0
+00049094: RetiredMarkerSourceBitCount: 0
+00049095: ====================================
+00049096: 
+00049097: ===== C1 FINALIZATION =====
+00049098: ElapsedMs: 358405.821
+00049099: Reason: AISETSTATE_AFTER_ORIGINAL
+00049100: Actor: PC_Hero
+00049101: Generation: 1561
+00049102: Status: PERSISTED
+00049103: TrackedSourceCount: 1
+00049104: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00049105: Source[0].Address: C1FF8010
+00049106: Source[0].LivenessEstablished: 1
+00049107: Source[0].Name: It_Spear_Combat
+00049108: Source[0].OriginalSide: RIGHT
+00049109: Source[0].CurrentSideMask: 1
+00049110: Source[0].OffensiveRequestCount: 0
+00049111: Source[0].OutstandingBeforeFinalization: 0
+00049112: Source[0].CleanupObservedBeforeFinalization: 0
+00049113: Source[0].ActualGroupBeforeRepair: 5
+00049114: Source[0].RepairAttempted: 0
+00049115: Source[0].PhysicalCollisionChanged: 0
+00049116: PhysicalCollisionChanged: 0
+00049117: ===========================
+00049118: 
+00049119: ===== C1 LIFECYCLE START =====
+00049120: ElapsedMs: 359560.622
+00049121: Actor: PC_Hero
+00049122: Generation: 1562
+00049123: Status: CANDIDATE
+00049124: ReplacedGeneration: 0
+00049125: ReplacedOutstanding: 0
+00049126: TrackedSourceCount: 1
+00049127: Source[0].Address: C1FF8010
+00049128: Source[0].Side: RIGHT
+00049129: Source[0].ActualGroup: 5
+00049130: ==============================
+00049131: 
+00049132: ===== C1 SCRIPT BINDING =====
+00049133: ElapsedMs: 359560.634
+00049134: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049135: Actor: PC_Hero
+00049136: Generation: 1562
+00049137: Status: CANDIDATE
+00049138: Outstanding: 0
+00049139: ScriptFunction: _AI_Attack
+00049140: SourceAddress: 00000000
+00049141: =============================
+00049142: 
+00049143: ===== C1 LIFECYCLE STATUS =====
+00049144: ElapsedMs: 359560.704
+00049145: Event: PERSISTED
+00049146: Actor: PC_Hero
+00049147: Generation: 1562
+00049148: Status: PERSISTED
+00049149: Outstanding: 0
+00049150: ===============================
+00049151: 
+00049152: ===== MARKER OWNERSHIP DECISION =====
+00049153: ElapsedMs: 359560.722
+00049154: Actor: PC_Hero
+00049155: Family: NORMAL
+00049156: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049157: Action: 1
+00049158: AniPhase: 1
+00049159: MatchingMotionFound: 1
+00049160: MarkerScanValid: 1
+00049161: ContainsReservedSourceMarker: 1
+00049162: RequiredSourceMask: 1
+00049163: AuthoredRIGHTCount: 1
+00049164: FirstRIGHTFrame: 5
+00049165: AuthoredLEFTCount: 0
+00049166: FirstLEFTFrame: -1
+00049167: AuthoredBOTHCount: 0
+00049168: FirstBOTHFrame: -1
+00049169: AuthoredOFFCount: 0
+00049170: FirstOFFFrame: -1
+00049171: RightSourceResolved: 1
+00049172: RightSourceName: It_Spear_Combat
+00049173: RightSourceAddress: C1FF8010
+00049174: RightSourceUseType: 12
+00049175: RightSourceCollisionGroup: 5
+00049176: LeftSourceResolved: 0
+00049177: SuppressNativeCallback: 1
+00049178: =====================================
+00049179: 
+00049180: ===== RIGHT RECEIVED =====
+00049181: ElapsedMs: 359834.869
+00049182: Actor: PC_Hero
+00049183: Action: 1
+00049184: AniPhase: 1
+00049185: StateTime: 0.288979
+00049186: StatePositionBeforeMarker: 0
+00049187: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049188: ===== ENGINE SetCollisionGroup =====
+00049189: ElapsedMs: 359834.898
+00049190: Source: It_Spear_Combat
+00049191: SourceAddress: C1FF8010
+00049192: SlotAssociation: RIGHT
+00049193: PlayerAction: 1
+00049194: PlayerAniPhase: 1
+00049195: PlayerStateTime: 0.288979
+00049196: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049197: RequestedGroup: 7
+00049198: BeforeGroup: 5
+00049199: AfterGroup: 7
+00049200: RetiredMarkerSourceBitCount: 0
+00049201: ====================================
+00049202: 
+00049203: ===== C1 OFFENSE REQUEST =====
+00049204: ElapsedMs: 359834.927
+00049205: Actor: PC_Hero
+00049206: Generation: 1562
+00049207: Status: PERSISTED
+00049208: Source: It_Spear_Combat
+00049209: SourceAddress: C1FF8010
+00049210: Side: RIGHT
+00049211: OffensiveRequestCount: 1
+00049212: Outstanding: 1
+00049213: CleanupObserved: 0
+00049214: ActualGroup: 7
+00049215: ==============================
+00049216: 
+00049217: MarkerName: G3AB_COL_RIGHT
+00049218: MarkerOpcode: RIGHT
+00049219: StatePositionAfterMarker: 0
+00049220: C1GenerationValid: 1
+00049221: C1Generation: 1562
+00049222: MarkerAction: ACCEPTED
+00049223: AuthoredMarkerOccurrences: 1
+00049224: AcceptedMarkerOccurrencesBefore: 0
+00049225: AcceptedMarkerOccurrencesAfter: 1
+00049226: ExecutionBudgetReset: 1
+00049227: PreviousSourceMask: 0
+00049228: DesiredSourceMask: 1
+00049229: RetiredSourceMask: 0
+00049230: OwnedMaskAtOff: 0
+00049231: MarkerOwnedWeaponMask: 1
+00049232: ActivatedSourceCount: 1
+00049233: RetiredSourceCount: 0
+00049234: DeactivatedSourceCount: 0
+00049235: TriggeredListClearCount: 1
+00049236: RightGroupBefore: 5
+00049237: RightGroupAfter: 7
+00049238: RightUseType: 12
+00049239: RightGroupRequested: 1
+00049240: RightFistGroupSkip: 0
+00049241: RightTriggeredListCleared: 1
+00049242: ===========================
+00049243: 
+00049244: ===== ENGINE SetCollisionGroup =====
+00049245: ElapsedMs: 360135.341
+00049246: Source: It_Spear_Combat
+00049247: SourceAddress: C1FF8010
+00049248: SlotAssociation: RIGHT
+00049249: PlayerAction: 1
+00049250: PlayerAniPhase: 3
+00049251: PlayerStateTime: 0.574990
+00049252: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049253: RequestedGroup: 5
+00049254: BeforeGroup: 7
+00049255: AfterGroup: 5
+00049256: RetiredMarkerSourceBitCount: 1
+00049257: ====================================
+00049258: 
+00049259: ===== C1 CLEANUP FULFILLED =====
+00049260: ElapsedMs: 360135.382
+00049261: Actor: PC_Hero
+00049262: Generation: 1562
+00049263: Status: PERSISTED
+00049264: Source: It_Spear_Combat
+00049265: SourceAddress: C1FF8010
+00049266: Side: RIGHT
+00049267: OffensiveRequestCount: 1
+00049268: Outstanding: 0
+00049269: CleanupObserved: 1
+00049270: ActualGroup: 5
+00049271: ==============================
+00049272: 
+00049273: ===== C1 FINALIZATION =====
+00049274: ElapsedMs: 360135.408
+00049275: Reason: AISETSTATE_AFTER_ORIGINAL
+00049276: Actor: PC_Hero
+00049277: Generation: 1562
+00049278: Status: PERSISTED
+00049279: TrackedSourceCount: 1
+00049280: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00049281: Source[0].Address: C1FF8010
+00049282: Source[0].LivenessEstablished: 1
+00049283: Source[0].Name: It_Spear_Combat
+00049284: Source[0].OriginalSide: RIGHT
+00049285: Source[0].CurrentSideMask: 1
+00049286: Source[0].OffensiveRequestCount: 1
+00049287: Source[0].OutstandingBeforeFinalization: 0
+00049288: Source[0].CleanupObservedBeforeFinalization: 1
+00049289: Source[0].ActualGroupBeforeRepair: 5
+00049290: Source[0].RepairAttempted: 0
+00049291: Source[0].PhysicalCollisionChanged: 0
+00049292: PhysicalCollisionChanged: 0
+00049293: ===========================
+00049294: 
+00049295: ===== C1 LIFECYCLE START =====
+00049296: ElapsedMs: 360354.975
+00049297: Actor: PC_Hero
+00049298: Generation: 1565
+00049299: Status: CANDIDATE
+00049300: ReplacedGeneration: 0
+00049301: ReplacedOutstanding: 0
+00049302: TrackedSourceCount: 1
+00049303: Source[0].Address: C1FF8010
+00049304: Source[0].Side: RIGHT
+00049305: Source[0].ActualGroup: 5
+00049306: ==============================
+00049307: 
+00049308: ===== C1 SCRIPT BINDING =====
+00049309: ElapsedMs: 360354.988
+00049310: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049311: Actor: PC_Hero
+00049312: Generation: 1565
+00049313: Status: CANDIDATE
+00049314: Outstanding: 0
+00049315: ScriptFunction: _AI_PowerAttack
+00049316: SourceAddress: 00000000
+00049317: =============================
+00049318: 
+00049319: ===== C1 LIFECYCLE STATUS =====
+00049320: ElapsedMs: 360355.053
+00049321: Event: PERSISTED
+00049322: Actor: PC_Hero
+00049323: Generation: 1565
+00049324: Status: PERSISTED
+00049325: Outstanding: 0
+00049326: ===============================
+00049327: 
+00049328: ===== C1 SCRIPT BINDING =====
+00049329: ElapsedMs: 360898.345
+00049330: Event: COMBAT_MOVE_REUSED
+00049331: Actor: PC_Hero
+00049332: Generation: 1565
+00049333: Status: PERSISTED
+00049334: Outstanding: 0
+00049335: ScriptFunction: _AI_PowerAttack
+00049336: SourceAddress: 00000000
+00049337: =============================
+00049338: 
+00049339: ===== MARKER OWNERSHIP DECISION =====
+00049340: ElapsedMs: 360898.425
+00049341: Actor: PC_Hero
+00049342: Family: POWER
+00049343: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00049344: Action: 2
+00049345: AniPhase: 1
+00049346: MatchingMotionFound: 1
+00049347: MarkerScanValid: 1
+00049348: ContainsReservedSourceMarker: 1
+00049349: RequiredSourceMask: 1
+00049350: AuthoredRIGHTCount: 1
+00049351: FirstRIGHTFrame: 6
+00049352: AuthoredLEFTCount: 0
+00049353: FirstLEFTFrame: -1
+00049354: AuthoredBOTHCount: 0
+00049355: FirstBOTHFrame: -1
+00049356: AuthoredOFFCount: 0
+00049357: FirstOFFFrame: -1
+00049358: RightSourceResolved: 1
+00049359: RightSourceName: It_Spear_Combat
+00049360: RightSourceAddress: C1FF8010
+00049361: RightSourceUseType: 12
+00049362: RightSourceCollisionGroup: 5
+00049363: LeftSourceResolved: 0
+00049364: SuppressNativeCallback: 1
+00049365: =====================================
+00049366: 
+00049367: ===== C1 LIFECYCLE START =====
+00049368: ElapsedMs: 361084.023
+00049369: Actor: PC_Hero
+00049370: Generation: 1567
+00049371: Status: CANDIDATE
+00049372: ReplacedGeneration: 1565
+00049373: ReplacedOutstanding: 0
+00049374: TrackedSourceCount: 1
+00049375: Source[0].Address: C1FF8010
+00049376: Source[0].Side: RIGHT
+00049377: Source[0].ActualGroup: 5
+00049378: ==============================
+00049379: 
+00049380: ===== C1 SCRIPT BINDING =====
+00049381: ElapsedMs: 361084.036
+00049382: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049383: Actor: PC_Hero
+00049384: Generation: 1567
+00049385: Status: CANDIDATE
+00049386: Outstanding: 0
+00049387: ScriptFunction: _AI_Stumble
+00049388: SourceAddress: 00000000
+00049389: =============================
+00049390: 
+00049391: ===== C1 LIFECYCLE STATUS =====
+00049392: ElapsedMs: 361084.128
+00049393: Event: PERSISTED
+00049394: Actor: PC_Hero
+00049395: Generation: 1567
+00049396: Status: PERSISTED
+00049397: Outstanding: 0
+00049398: ===============================
+00049399: 
+00049400: ===== ENGINE SetCollisionGroup =====
+00049401: ElapsedMs: 361098.865
+00049402: Source: Fist
+00049403: SourceAddress: C1FFC410
+00049404: SlotAssociation: NONE
+00049405: PlayerAction: 26
+00049406: PlayerAniPhase: 1
+00049407: PlayerStateTime: 0.014000
+00049408: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+00049409: RequestedGroup: 7
+00049410: BeforeGroup: 0
+00049411: AfterGroup: 0
+00049412: RetiredMarkerSourceBitCount: 0
+00049413: ====================================
+00049414: 
+00049415: ===== C1 FINALIZATION =====
+00049416: ElapsedMs: 361396.238
+00049417: Reason: AISETSTATE_AFTER_ORIGINAL
+00049418: Actor: PC_Hero
+00049419: Generation: 1567
+00049420: Status: PERSISTED
+00049421: TrackedSourceCount: 1
+00049422: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00049423: Source[0].Address: C1FF8010
+00049424: Source[0].LivenessEstablished: 1
+00049425: Source[0].Name: It_Spear_Combat
+00049426: Source[0].OriginalSide: RIGHT
+00049427: Source[0].CurrentSideMask: 1
+00049428: Source[0].OffensiveRequestCount: 0
+00049429: Source[0].OutstandingBeforeFinalization: 0
+00049430: Source[0].CleanupObservedBeforeFinalization: 0
+00049431: Source[0].ActualGroupBeforeRepair: 5
+00049432: Source[0].RepairAttempted: 0
+00049433: Source[0].PhysicalCollisionChanged: 0
+00049434: PhysicalCollisionChanged: 0
+00049435: ===========================
+00049436: 
+00049437: ===== C1 LIFECYCLE START =====
+00049438: ElapsedMs: 362546.089
+00049439: Actor: PC_Hero
+00049440: Generation: 1568
+00049441: Status: CANDIDATE
+00049442: ReplacedGeneration: 0
+00049443: ReplacedOutstanding: 0
+00049444: TrackedSourceCount: 1
+00049445: Source[0].Address: C1FF8010
+00049446: Source[0].Side: RIGHT
+00049447: Source[0].ActualGroup: 5
+00049448: ==============================
+00049449: 
+00049450: ===== C1 SCRIPT BINDING =====
+00049451: ElapsedMs: 362546.102
+00049452: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049453: Actor: PC_Hero
+00049454: Generation: 1568
+00049455: Status: CANDIDATE
+00049456: Outstanding: 0
+00049457: ScriptFunction: _AI_PowerAttack
+00049458: SourceAddress: 00000000
+00049459: =============================
+00049460: 
+00049461: ===== C1 LIFECYCLE STATUS =====
+00049462: ElapsedMs: 362546.170
+00049463: Event: PERSISTED
+00049464: Actor: PC_Hero
+00049465: Generation: 1568
+00049466: Status: PERSISTED
+00049467: Outstanding: 0
+00049468: ===============================
+00049469: 
+00049470: ===== C1 FINALIZATION =====
+00049471: ElapsedMs: 362584.114
+00049472: Reason: AISETSTATE_AFTER_ORIGINAL
+00049473: Actor: PC_Hero
+00049474: Generation: 1568
+00049475: Status: PERSISTED
+00049476: TrackedSourceCount: 1
+00049477: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00049478: Source[0].Address: C1FF8010
+00049479: Source[0].LivenessEstablished: 1
+00049480: Source[0].Name: It_Spear_Combat
+00049481: Source[0].OriginalSide: RIGHT
+00049482: Source[0].CurrentSideMask: 1
+00049483: Source[0].OffensiveRequestCount: 0
+00049484: Source[0].OutstandingBeforeFinalization: 0
+00049485: Source[0].CleanupObservedBeforeFinalization: 0
+00049486: Source[0].ActualGroupBeforeRepair: 5
+00049487: Source[0].RepairAttempted: 0
+00049488: Source[0].PhysicalCollisionChanged: 0
+00049489: PhysicalCollisionChanged: 0
+00049490: ===========================
+00049491: 
+00049492: ===== C1 LIFECYCLE START =====
+00049493: ElapsedMs: 362588.820
+00049494: Actor: PC_Hero
+00049495: Generation: 1569
+00049496: Status: CANDIDATE
+00049497: ReplacedGeneration: 0
+00049498: ReplacedOutstanding: 0
+00049499: TrackedSourceCount: 1
+00049500: Source[0].Address: C1FF8010
+00049501: Source[0].Side: RIGHT
+00049502: Source[0].ActualGroup: 5
+00049503: ==============================
+00049504: 
+00049505: ===== C1 SCRIPT BINDING =====
+00049506: ElapsedMs: 362588.831
+00049507: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049508: Actor: PC_Hero
+00049509: Generation: 1569
+00049510: Status: CANDIDATE
+00049511: Outstanding: 0
+00049512: ScriptFunction: _AI_Attack
+00049513: SourceAddress: 00000000
+00049514: =============================
+00049515: 
+00049516: ===== C1 LIFECYCLE STATUS =====
+00049517: ElapsedMs: 362588.899
+00049518: Event: PERSISTED
+00049519: Actor: PC_Hero
+00049520: Generation: 1569
+00049521: Status: PERSISTED
+00049522: Outstanding: 0
+00049523: ===============================
+00049524: 
+00049525: ===== MARKER OWNERSHIP DECISION =====
+00049526: ElapsedMs: 362588.916
+00049527: Actor: PC_Hero
+00049528: Family: NORMAL
+00049529: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049530: Action: 1
+00049531: AniPhase: 1
+00049532: MatchingMotionFound: 1
+00049533: MarkerScanValid: 1
+00049534: ContainsReservedSourceMarker: 1
+00049535: RequiredSourceMask: 1
+00049536: AuthoredRIGHTCount: 1
+00049537: FirstRIGHTFrame: 5
+00049538: AuthoredLEFTCount: 0
+00049539: FirstLEFTFrame: -1
+00049540: AuthoredBOTHCount: 0
+00049541: FirstBOTHFrame: -1
+00049542: AuthoredOFFCount: 0
+00049543: FirstOFFFrame: -1
+00049544: RightSourceResolved: 1
+00049545: RightSourceName: It_Spear_Combat
+00049546: RightSourceAddress: C1FF8010
+00049547: RightSourceUseType: 12
+00049548: RightSourceCollisionGroup: 5
+00049549: LeftSourceResolved: 0
+00049550: SuppressNativeCallback: 1
+00049551: =====================================
+00049552: 
+00049553: ===== RIGHT RECEIVED =====
+00049554: ElapsedMs: 362867.617
+00049555: Actor: PC_Hero
+00049556: Action: 1
+00049557: AniPhase: 1
+00049558: StateTime: 0.295988
+00049559: StatePositionBeforeMarker: 0
+00049560: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049561: ===== ENGINE SetCollisionGroup =====
+00049562: ElapsedMs: 362867.645
+00049563: Source: It_Spear_Combat
+00049564: SourceAddress: C1FF8010
+00049565: SlotAssociation: RIGHT
+00049566: PlayerAction: 1
+00049567: PlayerAniPhase: 1
+00049568: PlayerStateTime: 0.295988
+00049569: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049570: RequestedGroup: 7
+00049571: BeforeGroup: 5
+00049572: AfterGroup: 7
+00049573: RetiredMarkerSourceBitCount: 0
+00049574: ====================================
+00049575: 
+00049576: ===== C1 OFFENSE REQUEST =====
+00049577: ElapsedMs: 362867.680
+00049578: Actor: PC_Hero
+00049579: Generation: 1569
+00049580: Status: PERSISTED
+00049581: Source: It_Spear_Combat
+00049582: SourceAddress: C1FF8010
+00049583: Side: RIGHT
+00049584: OffensiveRequestCount: 1
+00049585: Outstanding: 1
+00049586: CleanupObserved: 0
+00049587: ActualGroup: 7
+00049588: ==============================
+00049589: 
+00049590: MarkerName: G3AB_COL_RIGHT
+00049591: MarkerOpcode: RIGHT
+00049592: StatePositionAfterMarker: 0
+00049593: C1GenerationValid: 1
+00049594: C1Generation: 1569
+00049595: MarkerAction: ACCEPTED
+00049596: AuthoredMarkerOccurrences: 1
+00049597: AcceptedMarkerOccurrencesBefore: 0
+00049598: AcceptedMarkerOccurrencesAfter: 1
+00049599: ExecutionBudgetReset: 1
+00049600: PreviousSourceMask: 0
+00049601: DesiredSourceMask: 1
+00049602: RetiredSourceMask: 0
+00049603: OwnedMaskAtOff: 0
+00049604: MarkerOwnedWeaponMask: 1
+00049605: ActivatedSourceCount: 1
+00049606: RetiredSourceCount: 0
+00049607: DeactivatedSourceCount: 0
+00049608: TriggeredListClearCount: 1
+00049609: RightGroupBefore: 5
+00049610: RightGroupAfter: 7
+00049611: RightUseType: 12
+00049612: RightGroupRequested: 1
+00049613: RightFistGroupSkip: 0
+00049614: RightTriggeredListCleared: 1
+00049615: ===========================
+00049616: 
+00049617: ===== ENGINE SetCollisionGroup =====
+00049618: ElapsedMs: 363167.855
+00049619: Source: It_Spear_Combat
+00049620: SourceAddress: C1FF8010
+00049621: SlotAssociation: RIGHT
+00049622: PlayerAction: 1
+00049623: PlayerAniPhase: 3
+00049624: PlayerStateTime: 0.581979
+00049625: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049626: RequestedGroup: 5
+00049627: BeforeGroup: 7
+00049628: AfterGroup: 5
+00049629: RetiredMarkerSourceBitCount: 1
+00049630: ====================================
+00049631: 
+00049632: ===== C1 CLEANUP FULFILLED =====
+00049633: ElapsedMs: 363167.894
+00049634: Actor: PC_Hero
+00049635: Generation: 1569
+00049636: Status: PERSISTED
+00049637: Source: It_Spear_Combat
+00049638: SourceAddress: C1FF8010
+00049639: Side: RIGHT
+00049640: OffensiveRequestCount: 1
+00049641: Outstanding: 0
+00049642: CleanupObserved: 1
+00049643: ActualGroup: 5
+00049644: ==============================
+00049645: 
+00049646: ===== C1 FINALIZATION =====
+00049647: ElapsedMs: 363167.921
+00049648: Reason: AISETSTATE_AFTER_ORIGINAL
+00049649: Actor: PC_Hero
+00049650: Generation: 1569
+00049651: Status: PERSISTED
+00049652: TrackedSourceCount: 1
+00049653: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00049654: Source[0].Address: C1FF8010
+00049655: Source[0].LivenessEstablished: 1
+00049656: Source[0].Name: It_Spear_Combat
+00049657: Source[0].OriginalSide: RIGHT
+00049658: Source[0].CurrentSideMask: 1
+00049659: Source[0].OffensiveRequestCount: 1
+00049660: Source[0].OutstandingBeforeFinalization: 0
+00049661: Source[0].CleanupObservedBeforeFinalization: 1
+00049662: Source[0].ActualGroupBeforeRepair: 5
+00049663: Source[0].RepairAttempted: 0
+00049664: Source[0].PhysicalCollisionChanged: 0
+00049665: PhysicalCollisionChanged: 0
+00049666: ===========================
+00049667: 
+00049668: ===== C1 LIFECYCLE START =====
+00049669: ElapsedMs: 363314.533
+00049670: Actor: PC_Hero
+00049671: Generation: 1571
+00049672: Status: CANDIDATE
+00049673: ReplacedGeneration: 0
+00049674: ReplacedOutstanding: 0
+00049675: TrackedSourceCount: 1
+00049676: Source[0].Address: C1FF8010
+00049677: Source[0].Side: RIGHT
+00049678: Source[0].ActualGroup: 5
+00049679: ==============================
+00049680: 
+00049681: ===== C1 SCRIPT BINDING =====
+00049682: ElapsedMs: 363314.546
+00049683: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049684: Actor: PC_Hero
+00049685: Generation: 1571
+00049686: Status: CANDIDATE
+00049687: Outstanding: 0
+00049688: ScriptFunction: _AI_PowerAttack
+00049689: SourceAddress: 00000000
+00049690: =============================
+00049691: 
+00049692: ===== C1 LIFECYCLE STATUS =====
+00049693: ElapsedMs: 363314.645
+00049694: Event: PERSISTED
+00049695: Actor: PC_Hero
+00049696: Generation: 1571
+00049697: Status: PERSISTED
+00049698: Outstanding: 0
+00049699: ===============================
+00049700: 
+00049701: ===== C1 SCRIPT BINDING =====
+00049702: ElapsedMs: 363860.628
+00049703: Event: COMBAT_MOVE_REUSED
+00049704: Actor: PC_Hero
+00049705: Generation: 1571
+00049706: Status: PERSISTED
+00049707: Outstanding: 0
+00049708: ScriptFunction: _AI_PowerAttack
+00049709: SourceAddress: 00000000
+00049710: =============================
+00049711: 
+00049712: ===== MARKER OWNERSHIP DECISION =====
+00049713: ElapsedMs: 363860.708
+00049714: Actor: PC_Hero
+00049715: Family: POWER
+00049716: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00049717: Action: 2
+00049718: AniPhase: 1
+00049719: MatchingMotionFound: 1
+00049720: MarkerScanValid: 1
+00049721: ContainsReservedSourceMarker: 1
+00049722: RequiredSourceMask: 1
+00049723: AuthoredRIGHTCount: 1
+00049724: FirstRIGHTFrame: 6
+00049725: AuthoredLEFTCount: 0
+00049726: FirstLEFTFrame: -1
+00049727: AuthoredBOTHCount: 0
+00049728: FirstBOTHFrame: -1
+00049729: AuthoredOFFCount: 0
+00049730: FirstOFFFrame: -1
+00049731: RightSourceResolved: 1
+00049732: RightSourceName: It_Spear_Combat
+00049733: RightSourceAddress: C1FF8010
+00049734: RightSourceUseType: 12
+00049735: RightSourceCollisionGroup: 5
+00049736: LeftSourceResolved: 0
+00049737: SuppressNativeCallback: 1
+00049738: =====================================
+00049739: 
+00049740: ===== RIGHT RECEIVED =====
+00049741: ElapsedMs: 364090.993
+00049742: Actor: PC_Hero
+00049743: Action: 2
+00049744: AniPhase: 1
+00049745: StateTime: 0.789029
+00049746: StatePositionBeforeMarker: 0
+00049747: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00049748: ===== ENGINE SetCollisionGroup =====
+00049749: ElapsedMs: 364091.022
+00049750: Source: It_Spear_Combat
+00049751: SourceAddress: C1FF8010
+00049752: SlotAssociation: RIGHT
+00049753: PlayerAction: 2
+00049754: PlayerAniPhase: 1
+00049755: PlayerStateTime: 0.789029
+00049756: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00049757: RequestedGroup: 7
+00049758: BeforeGroup: 5
+00049759: AfterGroup: 7
+00049760: RetiredMarkerSourceBitCount: 0
+00049761: ====================================
+00049762: 
+00049763: ===== C1 OFFENSE REQUEST =====
+00049764: ElapsedMs: 364091.056
+00049765: Actor: PC_Hero
+00049766: Generation: 1571
+00049767: Status: PERSISTED
+00049768: Source: It_Spear_Combat
+00049769: SourceAddress: C1FF8010
+00049770: Side: RIGHT
+00049771: OffensiveRequestCount: 1
+00049772: Outstanding: 1
+00049773: CleanupObserved: 0
+00049774: ActualGroup: 7
+00049775: ==============================
+00049776: 
+00049777: MarkerName: G3AB_COL_RIGHT
+00049778: MarkerOpcode: RIGHT
+00049779: StatePositionAfterMarker: 1
+00049780: C1GenerationValid: 1
+00049781: C1Generation: 1571
+00049782: MarkerAction: ACCEPTED
+00049783: AuthoredMarkerOccurrences: 1
+00049784: AcceptedMarkerOccurrencesBefore: 0
+00049785: AcceptedMarkerOccurrencesAfter: 1
+00049786: ExecutionBudgetReset: 1
+00049787: PreviousSourceMask: 0
+00049788: DesiredSourceMask: 1
+00049789: RetiredSourceMask: 0
+00049790: OwnedMaskAtOff: 0
+00049791: MarkerOwnedWeaponMask: 1
+00049792: ActivatedSourceCount: 1
+00049793: RetiredSourceCount: 0
+00049794: DeactivatedSourceCount: 0
+00049795: TriggeredListClearCount: 1
+00049796: RightGroupBefore: 5
+00049797: RightGroupAfter: 7
+00049798: RightUseType: 12
+00049799: RightGroupRequested: 1
+00049800: RightFistGroupSkip: 0
+00049801: RightTriggeredListCleared: 1
+00049802: ===========================
+00049803: 
+00049804: ===== ENGINE SetCollisionGroup =====
+00049805: ElapsedMs: 364352.698
+00049806: Source: It_Spear_Combat
+00049807: SourceAddress: C1FF8010
+00049808: SlotAssociation: RIGHT
+00049809: PlayerAction: 2
+00049810: PlayerAniPhase: 3
+00049811: PlayerStateTime: 1.036012
+00049812: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00049813: RequestedGroup: 5
+00049814: BeforeGroup: 7
+00049815: AfterGroup: 5
+00049816: RetiredMarkerSourceBitCount: 1
+00049817: ====================================
+00049818: 
+00049819: ===== C1 CLEANUP FULFILLED =====
+00049820: ElapsedMs: 364352.736
+00049821: Actor: PC_Hero
+00049822: Generation: 1571
+00049823: Status: PERSISTED
+00049824: Source: It_Spear_Combat
+00049825: SourceAddress: C1FF8010
+00049826: Side: RIGHT
+00049827: OffensiveRequestCount: 1
+00049828: Outstanding: 0
+00049829: CleanupObserved: 1
+00049830: ActualGroup: 5
+00049831: ==============================
+00049832: 
+00049833: ===== C1 FINALIZATION =====
+00049834: ElapsedMs: 364352.762
+00049835: Reason: AISETSTATE_AFTER_ORIGINAL
+00049836: Actor: PC_Hero
+00049837: Generation: 1571
+00049838: Status: PERSISTED
+00049839: TrackedSourceCount: 1
+00049840: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00049841: Source[0].Address: C1FF8010
+00049842: Source[0].LivenessEstablished: 1
+00049843: Source[0].Name: It_Spear_Combat
+00049844: Source[0].OriginalSide: RIGHT
+00049845: Source[0].CurrentSideMask: 1
+00049846: Source[0].OffensiveRequestCount: 1
+00049847: Source[0].OutstandingBeforeFinalization: 0
+00049848: Source[0].CleanupObservedBeforeFinalization: 1
+00049849: Source[0].ActualGroupBeforeRepair: 5
+00049850: Source[0].RepairAttempted: 0
+00049851: Source[0].PhysicalCollisionChanged: 0
+00049852: PhysicalCollisionChanged: 0
+00049853: ===========================
+00049854: 
+00049855: ===== C1 LIFECYCLE START =====
+00049856: ElapsedMs: 364648.805
+00049857: Actor: PC_Hero
+00049858: Generation: 1574
+00049859: Status: CANDIDATE
+00049860: ReplacedGeneration: 0
+00049861: ReplacedOutstanding: 0
+00049862: TrackedSourceCount: 1
+00049863: Source[0].Address: C1FF8010
+00049864: Source[0].Side: RIGHT
+00049865: Source[0].ActualGroup: 5
+00049866: ==============================
+00049867: 
+00049868: ===== C1 SCRIPT BINDING =====
+00049869: ElapsedMs: 364648.817
+00049870: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049871: Actor: PC_Hero
+00049872: Generation: 1574
+00049873: Status: CANDIDATE
+00049874: Outstanding: 0
+00049875: ScriptFunction: _AI_PowerAttack
+00049876: SourceAddress: 00000000
+00049877: =============================
+00049878: 
+00049879: ===== C1 LIFECYCLE STATUS =====
+00049880: ElapsedMs: 364648.887
+00049881: Event: PERSISTED
+00049882: Actor: PC_Hero
+00049883: Generation: 1574
+00049884: Status: PERSISTED
+00049885: Outstanding: 0
+00049886: ===============================
+00049887: 
+00049888: ===== C1 FINALIZATION =====
+00049889: ElapsedMs: 365005.511
+00049890: Reason: AISETSTATE_AFTER_ORIGINAL
+00049891: Actor: PC_Hero
+00049892: Generation: 1574
+00049893: Status: PERSISTED
+00049894: TrackedSourceCount: 1
+00049895: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00049896: Source[0].Address: C1FF8010
+00049897: Source[0].LivenessEstablished: 1
+00049898: Source[0].Name: It_Spear_Combat
+00049899: Source[0].OriginalSide: RIGHT
+00049900: Source[0].CurrentSideMask: 1
+00049901: Source[0].OffensiveRequestCount: 0
+00049902: Source[0].OutstandingBeforeFinalization: 0
+00049903: Source[0].CleanupObservedBeforeFinalization: 0
+00049904: Source[0].ActualGroupBeforeRepair: 5
+00049905: Source[0].RepairAttempted: 0
+00049906: Source[0].PhysicalCollisionChanged: 0
+00049907: PhysicalCollisionChanged: 0
+00049908: ===========================
+00049909: 
+00049910: ===== C1 LIFECYCLE START =====
+00049911: ElapsedMs: 365007.073
+00049912: Actor: PC_Hero
+00049913: Generation: 1575
+00049914: Status: CANDIDATE
+00049915: ReplacedGeneration: 0
+00049916: ReplacedOutstanding: 0
+00049917: TrackedSourceCount: 1
+00049918: Source[0].Address: C1FF8010
+00049919: Source[0].Side: RIGHT
+00049920: Source[0].ActualGroup: 5
+00049921: ==============================
+00049922: 
+00049923: ===== C1 SCRIPT BINDING =====
+00049924: ElapsedMs: 365007.083
+00049925: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00049926: Actor: PC_Hero
+00049927: Generation: 1575
+00049928: Status: CANDIDATE
+00049929: Outstanding: 0
+00049930: ScriptFunction: _AI_Attack
+00049931: SourceAddress: 00000000
+00049932: =============================
+00049933: 
+00049934: ===== C1 LIFECYCLE STATUS =====
+00049935: ElapsedMs: 365007.174
+00049936: Event: PERSISTED
+00049937: Actor: PC_Hero
+00049938: Generation: 1575
+00049939: Status: PERSISTED
+00049940: Outstanding: 0
+00049941: ===============================
+00049942: 
+00049943: ===== MARKER OWNERSHIP DECISION =====
+00049944: ElapsedMs: 365007.216
+00049945: Actor: PC_Hero
+00049946: Family: NORMAL
+00049947: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049948: Action: 1
+00049949: AniPhase: 1
+00049950: MatchingMotionFound: 1
+00049951: MarkerScanValid: 1
+00049952: ContainsReservedSourceMarker: 1
+00049953: RequiredSourceMask: 1
+00049954: AuthoredRIGHTCount: 1
+00049955: FirstRIGHTFrame: 5
+00049956: AuthoredLEFTCount: 0
+00049957: FirstLEFTFrame: -1
+00049958: AuthoredBOTHCount: 0
+00049959: FirstBOTHFrame: -1
+00049960: AuthoredOFFCount: 0
+00049961: FirstOFFFrame: -1
+00049962: RightSourceResolved: 1
+00049963: RightSourceName: It_Spear_Combat
+00049964: RightSourceAddress: C1FF8010
+00049965: RightSourceUseType: 12
+00049966: RightSourceCollisionGroup: 5
+00049967: LeftSourceResolved: 0
+00049968: SuppressNativeCallback: 1
+00049969: =====================================
+00049970: 
+00049971: ===== RIGHT RECEIVED =====
+00049972: ElapsedMs: 365279.404
+00049973: Actor: PC_Hero
+00049974: Action: 1
+00049975: AniPhase: 1
+00049976: StateTime: 0.287002
+00049977: StatePositionBeforeMarker: 0
+00049978: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049979: ===== ENGINE SetCollisionGroup =====
+00049980: ElapsedMs: 365279.433
+00049981: Source: It_Spear_Combat
+00049982: SourceAddress: C1FF8010
+00049983: SlotAssociation: RIGHT
+00049984: PlayerAction: 1
+00049985: PlayerAniPhase: 1
+00049986: PlayerStateTime: 0.287002
+00049987: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00049988: RequestedGroup: 7
+00049989: BeforeGroup: 5
+00049990: AfterGroup: 7
+00049991: RetiredMarkerSourceBitCount: 0
+00049992: ====================================
+00049993: 
+00049994: ===== C1 OFFENSE REQUEST =====
+00049995: ElapsedMs: 365279.463
+00049996: Actor: PC_Hero
+00049997: Generation: 1575
+00049998: Status: PERSISTED
+00049999: Source: It_Spear_Combat
+00050000: SourceAddress: C1FF8010
+00050001: Side: RIGHT
+00050002: OffensiveRequestCount: 1
+00050003: Outstanding: 1
+00050004: CleanupObserved: 0
+00050005: ActualGroup: 7
+00050006: ==============================
+00050007: 
+00050008: MarkerName: G3AB_COL_RIGHT
+00050009: MarkerOpcode: RIGHT
+00050010: StatePositionAfterMarker: 0
+00050011: C1GenerationValid: 1
+00050012: C1Generation: 1575
+00050013: MarkerAction: ACCEPTED
+00050014: AuthoredMarkerOccurrences: 1
+00050015: AcceptedMarkerOccurrencesBefore: 0
+00050016: AcceptedMarkerOccurrencesAfter: 1
+00050017: ExecutionBudgetReset: 1
+00050018: PreviousSourceMask: 0
+00050019: DesiredSourceMask: 1
+00050020: RetiredSourceMask: 0
+00050021: OwnedMaskAtOff: 0
+00050022: MarkerOwnedWeaponMask: 1
+00050023: ActivatedSourceCount: 1
+00050024: RetiredSourceCount: 0
+00050025: DeactivatedSourceCount: 0
+00050026: TriggeredListClearCount: 1
+00050027: RightGroupBefore: 5
+00050028: RightGroupAfter: 7
+00050029: RightUseType: 12
+00050030: RightGroupRequested: 1
+00050031: RightFistGroupSkip: 0
+00050032: RightTriggeredListCleared: 1
+00050033: ===========================
+00050034: 
+00050035: ===== ENGINE SetCollisionGroup =====
+00050036: ElapsedMs: 365580.624
+00050037: Source: It_Spear_Combat
+00050038: SourceAddress: C1FF8010
+00050039: SlotAssociation: RIGHT
+00050040: PlayerAction: 1
+00050041: PlayerAniPhase: 3
+00050042: PlayerStateTime: 0.574986
+00050043: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050044: RequestedGroup: 5
+00050045: BeforeGroup: 7
+00050046: AfterGroup: 5
+00050047: RetiredMarkerSourceBitCount: 1
+00050048: ====================================
+00050049: 
+00050050: ===== C1 CLEANUP FULFILLED =====
+00050051: ElapsedMs: 365580.659
+00050052: Actor: PC_Hero
+00050053: Generation: 1575
+00050054: Status: PERSISTED
+00050055: Source: It_Spear_Combat
+00050056: SourceAddress: C1FF8010
+00050057: Side: RIGHT
+00050058: OffensiveRequestCount: 1
+00050059: Outstanding: 0
+00050060: CleanupObserved: 1
+00050061: ActualGroup: 5
+00050062: ==============================
+00050063: 
+00050064: ===== C1 FINALIZATION =====
+00050065: ElapsedMs: 365580.683
+00050066: Reason: AISETSTATE_AFTER_ORIGINAL
+00050067: Actor: PC_Hero
+00050068: Generation: 1575
+00050069: Status: PERSISTED
+00050070: TrackedSourceCount: 1
+00050071: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00050072: Source[0].Address: C1FF8010
+00050073: Source[0].LivenessEstablished: 1
+00050074: Source[0].Name: It_Spear_Combat
+00050075: Source[0].OriginalSide: RIGHT
+00050076: Source[0].CurrentSideMask: 1
+00050077: Source[0].OffensiveRequestCount: 1
+00050078: Source[0].OutstandingBeforeFinalization: 0
+00050079: Source[0].CleanupObservedBeforeFinalization: 1
+00050080: Source[0].ActualGroupBeforeRepair: 5
+00050081: Source[0].RepairAttempted: 0
+00050082: Source[0].PhysicalCollisionChanged: 0
+00050083: PhysicalCollisionChanged: 0
+00050084: ===========================
+00050085: 
+00050086: ===== C1 LIFECYCLE START =====
+00050087: ElapsedMs: 365819.481
+00050088: Actor: PC_Hero
+00050089: Generation: 1578
+00050090: Status: CANDIDATE
+00050091: ReplacedGeneration: 0
+00050092: ReplacedOutstanding: 0
+00050093: TrackedSourceCount: 1
+00050094: Source[0].Address: C1FF8010
+00050095: Source[0].Side: RIGHT
+00050096: Source[0].ActualGroup: 5
+00050097: ==============================
+00050098: 
+00050099: ===== C1 SCRIPT BINDING =====
+00050100: ElapsedMs: 365819.495
+00050101: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050102: Actor: PC_Hero
+00050103: Generation: 1578
+00050104: Status: CANDIDATE
+00050105: Outstanding: 0
+00050106: ScriptFunction: _AI_PowerAttack
+00050107: SourceAddress: 00000000
+00050108: =============================
+00050109: 
+00050110: ===== C1 LIFECYCLE STATUS =====
+00050111: ElapsedMs: 365819.572
+00050112: Event: PERSISTED
+00050113: Actor: PC_Hero
+00050114: Generation: 1578
+00050115: Status: PERSISTED
+00050116: Outstanding: 0
+00050117: ===============================
+00050118: 
+00050119: ===== C1 SCRIPT BINDING =====
+00050120: ElapsedMs: 366356.009
+00050121: Event: COMBAT_MOVE_REUSED
+00050122: Actor: PC_Hero
+00050123: Generation: 1578
+00050124: Status: PERSISTED
+00050125: Outstanding: 0
+00050126: ScriptFunction: _AI_PowerAttack
+00050127: SourceAddress: 00000000
+00050128: =============================
+00050129: 
+00050130: ===== MARKER OWNERSHIP DECISION =====
+00050131: ElapsedMs: 366356.093
+00050132: Actor: PC_Hero
+00050133: Family: POWER
+00050134: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00050135: Action: 2
+00050136: AniPhase: 1
+00050137: MatchingMotionFound: 1
+00050138: MarkerScanValid: 1
+00050139: ContainsReservedSourceMarker: 1
+00050140: RequiredSourceMask: 1
+00050141: AuthoredRIGHTCount: 1
+00050142: FirstRIGHTFrame: 6
+00050143: AuthoredLEFTCount: 0
+00050144: FirstLEFTFrame: -1
+00050145: AuthoredBOTHCount: 0
+00050146: FirstBOTHFrame: -1
+00050147: AuthoredOFFCount: 0
+00050148: FirstOFFFrame: -1
+00050149: RightSourceResolved: 1
+00050150: RightSourceName: It_Spear_Combat
+00050151: RightSourceAddress: C1FF8010
+00050152: RightSourceUseType: 12
+00050153: RightSourceCollisionGroup: 5
+00050154: LeftSourceResolved: 0
+00050155: SuppressNativeCallback: 1
+00050156: =====================================
+00050157: 
+00050158: ===== C1 LIFECYCLE START =====
+00050159: ElapsedMs: 366466.889
+00050160: Actor: PC_Hero
+00050161: Generation: 1580
+00050162: Status: CANDIDATE
+00050163: ReplacedGeneration: 1578
+00050164: ReplacedOutstanding: 0
+00050165: TrackedSourceCount: 1
+00050166: Source[0].Address: C1FF8010
+00050167: Source[0].Side: RIGHT
+00050168: Source[0].ActualGroup: 5
+00050169: ==============================
+00050170: 
+00050171: ===== C1 SCRIPT BINDING =====
+00050172: ElapsedMs: 366466.902
+00050173: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050174: Actor: PC_Hero
+00050175: Generation: 1580
+00050176: Status: CANDIDATE
+00050177: Outstanding: 0
+00050178: ScriptFunction: _AI_Stumble
+00050179: SourceAddress: 00000000
+00050180: =============================
+00050181: 
+00050182: ===== C1 LIFECYCLE STATUS =====
+00050183: ElapsedMs: 366466.963
+00050184: Event: PERSISTED
+00050185: Actor: PC_Hero
+00050186: Generation: 1580
+00050187: Status: PERSISTED
+00050188: Outstanding: 0
+00050189: ===============================
+00050190: 
+00050191: ===== ENGINE SetCollisionGroup =====
+00050192: ElapsedMs: 366480.508
+00050193: Source: Fist
+00050194: SourceAddress: C1FFC410
+00050195: SlotAssociation: NONE
+00050196: PlayerAction: 26
+00050197: PlayerAniPhase: 1
+00050198: PlayerStateTime: 0.013009
+00050199: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+00050200: RequestedGroup: 7
+00050201: BeforeGroup: 0
+00050202: AfterGroup: 0
+00050203: RetiredMarkerSourceBitCount: 0
+00050204: ====================================
+00050205: 
+00050206: ===== C1 FINALIZATION =====
+00050207: ElapsedMs: 366774.934
+00050208: Reason: AISETSTATE_AFTER_ORIGINAL
+00050209: Actor: PC_Hero
+00050210: Generation: 1580
+00050211: Status: PERSISTED
+00050212: TrackedSourceCount: 1
+00050213: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00050214: Source[0].Address: C1FF8010
+00050215: Source[0].LivenessEstablished: 1
+00050216: Source[0].Name: It_Spear_Combat
+00050217: Source[0].OriginalSide: RIGHT
+00050218: Source[0].CurrentSideMask: 1
+00050219: Source[0].OffensiveRequestCount: 0
+00050220: Source[0].OutstandingBeforeFinalization: 0
+00050221: Source[0].CleanupObservedBeforeFinalization: 0
+00050222: Source[0].ActualGroupBeforeRepair: 5
+00050223: Source[0].RepairAttempted: 0
+00050224: Source[0].PhysicalCollisionChanged: 0
+00050225: PhysicalCollisionChanged: 0
+00050226: ===========================
+00050227: 
+00050228: ===== C1 LIFECYCLE START =====
+00050229: ElapsedMs: 367619.920
+00050230: Actor: PC_Hero
+00050231: Generation: 1581
+00050232: Status: CANDIDATE
+00050233: ReplacedGeneration: 0
+00050234: ReplacedOutstanding: 0
+00050235: TrackedSourceCount: 1
+00050236: Source[0].Address: C1FF8010
+00050237: Source[0].Side: RIGHT
+00050238: Source[0].ActualGroup: 5
+00050239: ==============================
+00050240: 
+00050241: ===== C1 SCRIPT BINDING =====
+00050242: ElapsedMs: 367619.932
+00050243: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050244: Actor: PC_Hero
+00050245: Generation: 1581
+00050246: Status: CANDIDATE
+00050247: Outstanding: 0
+00050248: ScriptFunction: _AI_Attack
+00050249: SourceAddress: 00000000
+00050250: =============================
+00050251: 
+00050252: ===== C1 LIFECYCLE STATUS =====
+00050253: ElapsedMs: 367620.095
+00050254: Event: PERSISTED
+00050255: Actor: PC_Hero
+00050256: Generation: 1581
+00050257: Status: PERSISTED
+00050258: Outstanding: 0
+00050259: ===============================
+00050260: 
+00050261: ===== MARKER OWNERSHIP DECISION =====
+00050262: ElapsedMs: 367620.155
+00050263: Actor: PC_Hero
+00050264: Family: NORMAL
+00050265: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050266: Action: 1
+00050267: AniPhase: 1
+00050268: MatchingMotionFound: 1
+00050269: MarkerScanValid: 1
+00050270: ContainsReservedSourceMarker: 1
+00050271: RequiredSourceMask: 1
+00050272: AuthoredRIGHTCount: 1
+00050273: FirstRIGHTFrame: 5
+00050274: AuthoredLEFTCount: 0
+00050275: FirstLEFTFrame: -1
+00050276: AuthoredBOTHCount: 0
+00050277: FirstBOTHFrame: -1
+00050278: AuthoredOFFCount: 0
+00050279: FirstOFFFrame: -1
+00050280: RightSourceResolved: 1
+00050281: RightSourceName: It_Spear_Combat
+00050282: RightSourceAddress: C1FF8010
+00050283: RightSourceUseType: 12
+00050284: RightSourceCollisionGroup: 5
+00050285: LeftSourceResolved: 0
+00050286: SuppressNativeCallback: 1
+00050287: =====================================
+00050288: 
+00050289: ===== RIGHT RECEIVED =====
+00050290: ElapsedMs: 367901.021
+00050291: Actor: PC_Hero
+00050292: Action: 1
+00050293: AniPhase: 1
+00050294: StateTime: 0.296009
+00050295: StatePositionBeforeMarker: 0
+00050296: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050297: ===== ENGINE SetCollisionGroup =====
+00050298: ElapsedMs: 367901.050
+00050299: Source: It_Spear_Combat
+00050300: SourceAddress: C1FF8010
+00050301: SlotAssociation: RIGHT
+00050302: PlayerAction: 1
+00050303: PlayerAniPhase: 1
+00050304: PlayerStateTime: 0.296009
+00050305: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050306: RequestedGroup: 7
+00050307: BeforeGroup: 5
+00050308: AfterGroup: 7
+00050309: RetiredMarkerSourceBitCount: 0
+00050310: ====================================
+00050311: 
+00050312: ===== C1 OFFENSE REQUEST =====
+00050313: ElapsedMs: 367901.079
+00050314: Actor: PC_Hero
+00050315: Generation: 1581
+00050316: Status: PERSISTED
+00050317: Source: It_Spear_Combat
+00050318: SourceAddress: C1FF8010
+00050319: Side: RIGHT
+00050320: OffensiveRequestCount: 1
+00050321: Outstanding: 1
+00050322: CleanupObserved: 0
+00050323: ActualGroup: 7
+00050324: ==============================
+00050325: 
+00050326: MarkerName: G3AB_COL_RIGHT
+00050327: MarkerOpcode: RIGHT
+00050328: StatePositionAfterMarker: 0
+00050329: C1GenerationValid: 1
+00050330: C1Generation: 1581
+00050331: MarkerAction: ACCEPTED
+00050332: AuthoredMarkerOccurrences: 1
+00050333: AcceptedMarkerOccurrencesBefore: 0
+00050334: AcceptedMarkerOccurrencesAfter: 1
+00050335: ExecutionBudgetReset: 1
+00050336: PreviousSourceMask: 0
+00050337: DesiredSourceMask: 1
+00050338: RetiredSourceMask: 0
+00050339: OwnedMaskAtOff: 0
+00050340: MarkerOwnedWeaponMask: 1
+00050341: ActivatedSourceCount: 1
+00050342: RetiredSourceCount: 0
+00050343: DeactivatedSourceCount: 0
+00050344: TriggeredListClearCount: 1
+00050345: RightGroupBefore: 5
+00050346: RightGroupAfter: 7
+00050347: RightUseType: 12
+00050348: RightGroupRequested: 1
+00050349: RightFistGroupSkip: 0
+00050350: RightTriggeredListCleared: 1
+00050351: ===========================
+00050352: 
+00050353: ===== ENGINE SetCollisionGroup =====
+00050354: ElapsedMs: 368201.488
+00050355: Source: It_Spear_Combat
+00050356: SourceAddress: C1FF8010
+00050357: SlotAssociation: RIGHT
+00050358: PlayerAction: 1
+00050359: PlayerAniPhase: 3
+00050360: PlayerStateTime: 0.583990
+00050361: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050362: RequestedGroup: 5
+00050363: BeforeGroup: 7
+00050364: AfterGroup: 5
+00050365: RetiredMarkerSourceBitCount: 1
+00050366: ====================================
+00050367: 
+00050368: ===== C1 CLEANUP FULFILLED =====
+00050369: ElapsedMs: 368201.527
+00050370: Actor: PC_Hero
+00050371: Generation: 1581
+00050372: Status: PERSISTED
+00050373: Source: It_Spear_Combat
+00050374: SourceAddress: C1FF8010
+00050375: Side: RIGHT
+00050376: OffensiveRequestCount: 1
+00050377: Outstanding: 0
+00050378: CleanupObserved: 1
+00050379: ActualGroup: 5
+00050380: ==============================
+00050381: 
+00050382: ===== C1 FINALIZATION =====
+00050383: ElapsedMs: 368201.551
+00050384: Reason: AISETSTATE_AFTER_ORIGINAL
+00050385: Actor: PC_Hero
+00050386: Generation: 1581
+00050387: Status: PERSISTED
+00050388: TrackedSourceCount: 1
+00050389: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00050390: Source[0].Address: C1FF8010
+00050391: Source[0].LivenessEstablished: 1
+00050392: Source[0].Name: It_Spear_Combat
+00050393: Source[0].OriginalSide: RIGHT
+00050394: Source[0].CurrentSideMask: 1
+00050395: Source[0].OffensiveRequestCount: 1
+00050396: Source[0].OutstandingBeforeFinalization: 0
+00050397: Source[0].CleanupObservedBeforeFinalization: 1
+00050398: Source[0].ActualGroupBeforeRepair: 5
+00050399: Source[0].RepairAttempted: 0
+00050400: Source[0].PhysicalCollisionChanged: 0
+00050401: PhysicalCollisionChanged: 0
+00050402: ===========================
+00050403: 
+00050404: ===== C1 LIFECYCLE START =====
+00050405: ElapsedMs: 368376.670
+00050406: Actor: PC_Hero
+00050407: Generation: 1584
+00050408: Status: CANDIDATE
+00050409: ReplacedGeneration: 0
+00050410: ReplacedOutstanding: 0
+00050411: TrackedSourceCount: 1
+00050412: Source[0].Address: C1FF8010
+00050413: Source[0].Side: RIGHT
+00050414: Source[0].ActualGroup: 5
+00050415: ==============================
+00050416: 
+00050417: ===== C1 SCRIPT BINDING =====
+00050418: ElapsedMs: 368376.683
+00050419: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050420: Actor: PC_Hero
+00050421: Generation: 1584
+00050422: Status: CANDIDATE
+00050423: Outstanding: 0
+00050424: ScriptFunction: _AI_PowerAttack
+00050425: SourceAddress: 00000000
+00050426: =============================
+00050427: 
+00050428: ===== C1 LIFECYCLE STATUS =====
+00050429: ElapsedMs: 368376.760
+00050430: Event: PERSISTED
+00050431: Actor: PC_Hero
+00050432: Generation: 1584
+00050433: Status: PERSISTED
+00050434: Outstanding: 0
+00050435: ===============================
+00050436: 
+00050437: ===== C1 SCRIPT BINDING =====
+00050438: ElapsedMs: 368914.007
+00050439: Event: COMBAT_MOVE_REUSED
+00050440: Actor: PC_Hero
+00050441: Generation: 1584
+00050442: Status: PERSISTED
+00050443: Outstanding: 0
+00050444: ScriptFunction: _AI_PowerAttack
+00050445: SourceAddress: 00000000
+00050446: =============================
+00050447: 
+00050448: ===== MARKER OWNERSHIP DECISION =====
+00050449: ElapsedMs: 368914.087
+00050450: Actor: PC_Hero
+00050451: Family: POWER
+00050452: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00050453: Action: 2
+00050454: AniPhase: 1
+00050455: MatchingMotionFound: 1
+00050456: MarkerScanValid: 1
+00050457: ContainsReservedSourceMarker: 1
+00050458: RequiredSourceMask: 1
+00050459: AuthoredRIGHTCount: 1
+00050460: FirstRIGHTFrame: 6
+00050461: AuthoredLEFTCount: 0
+00050462: FirstLEFTFrame: -1
+00050463: AuthoredBOTHCount: 0
+00050464: FirstBOTHFrame: -1
+00050465: AuthoredOFFCount: 0
+00050466: FirstOFFFrame: -1
+00050467: RightSourceResolved: 1
+00050468: RightSourceName: It_Spear_Combat
+00050469: RightSourceAddress: C1FF8010
+00050470: RightSourceUseType: 12
+00050471: RightSourceCollisionGroup: 5
+00050472: LeftSourceResolved: 0
+00050473: SuppressNativeCallback: 1
+00050474: =====================================
+00050475: 
+00050476: ===== C1 LIFECYCLE START =====
+00050477: ElapsedMs: 369134.248
+00050478: Actor: PC_Hero
+00050479: Generation: 1586
+00050480: Status: CANDIDATE
+00050481: ReplacedGeneration: 1584
+00050482: ReplacedOutstanding: 0
+00050483: TrackedSourceCount: 1
+00050484: Source[0].Address: C1FF8010
+00050485: Source[0].Side: RIGHT
+00050486: Source[0].ActualGroup: 5
+00050487: ==============================
+00050488: 
+00050489: ===== C1 SCRIPT BINDING =====
+00050490: ElapsedMs: 369134.260
+00050491: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050492: Actor: PC_Hero
+00050493: Generation: 1586
+00050494: Status: CANDIDATE
+00050495: Outstanding: 0
+00050496: ScriptFunction: _AI_Stumble
+00050497: SourceAddress: 00000000
+00050498: =============================
+00050499: 
+00050500: ===== C1 LIFECYCLE STATUS =====
+00050501: ElapsedMs: 369134.319
+00050502: Event: PERSISTED
+00050503: Actor: PC_Hero
+00050504: Generation: 1586
+00050505: Status: PERSISTED
+00050506: Outstanding: 0
+00050507: ===============================
+00050508: 
+00050509: ===== ENGINE SetCollisionGroup =====
+00050510: ElapsedMs: 369147.030
+00050511: Source: Fist
+00050512: SourceAddress: C1FFC410
+00050513: SlotAssociation: NONE
+00050514: PlayerAction: 26
+00050515: PlayerAniPhase: 1
+00050516: PlayerStateTime: 0.013990
+00050517: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+00050518: RequestedGroup: 7
+00050519: BeforeGroup: 0
+00050520: AfterGroup: 0
+00050521: RetiredMarkerSourceBitCount: 0
+00050522: ====================================
+00050523: 
+00050524: ===== C1 FINALIZATION =====
+00050525: ElapsedMs: 369450.901
+00050526: Reason: AISETSTATE_AFTER_ORIGINAL
+00050527: Actor: PC_Hero
+00050528: Generation: 1586
+00050529: Status: PERSISTED
+00050530: TrackedSourceCount: 1
+00050531: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00050532: Source[0].Address: C1FF8010
+00050533: Source[0].LivenessEstablished: 1
+00050534: Source[0].Name: It_Spear_Combat
+00050535: Source[0].OriginalSide: RIGHT
+00050536: Source[0].CurrentSideMask: 1
+00050537: Source[0].OffensiveRequestCount: 0
+00050538: Source[0].OutstandingBeforeFinalization: 0
+00050539: Source[0].CleanupObservedBeforeFinalization: 0
+00050540: Source[0].ActualGroupBeforeRepair: 5
+00050541: Source[0].RepairAttempted: 0
+00050542: Source[0].PhysicalCollisionChanged: 0
+00050543: PhysicalCollisionChanged: 0
+00050544: ===========================
+00050545: 
+00050546: ===== C1 LIFECYCLE START =====
+00050547: ElapsedMs: 370332.775
+00050548: Actor: PC_Hero
+00050549: Generation: 1587
+00050550: Status: CANDIDATE
+00050551: ReplacedGeneration: 0
+00050552: ReplacedOutstanding: 0
+00050553: TrackedSourceCount: 1
+00050554: Source[0].Address: C1FF8010
+00050555: Source[0].Side: RIGHT
+00050556: Source[0].ActualGroup: 5
+00050557: ==============================
+00050558: 
+00050559: ===== C1 SCRIPT BINDING =====
+00050560: ElapsedMs: 370332.787
+00050561: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050562: Actor: PC_Hero
+00050563: Generation: 1587
+00050564: Status: CANDIDATE
+00050565: Outstanding: 0
+00050566: ScriptFunction: _AI_Attack
+00050567: SourceAddress: 00000000
+00050568: =============================
+00050569: 
+00050570: ===== C1 LIFECYCLE STATUS =====
+00050571: ElapsedMs: 370332.856
+00050572: Event: PERSISTED
+00050573: Actor: PC_Hero
+00050574: Generation: 1587
+00050575: Status: PERSISTED
+00050576: Outstanding: 0
+00050577: ===============================
+00050578: 
+00050579: ===== MARKER OWNERSHIP DECISION =====
+00050580: ElapsedMs: 370332.879
+00050581: Actor: PC_Hero
+00050582: Family: NORMAL
+00050583: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050584: Action: 1
+00050585: AniPhase: 1
+00050586: MatchingMotionFound: 1
+00050587: MarkerScanValid: 1
+00050588: ContainsReservedSourceMarker: 1
+00050589: RequiredSourceMask: 1
+00050590: AuthoredRIGHTCount: 1
+00050591: FirstRIGHTFrame: 5
+00050592: AuthoredLEFTCount: 0
+00050593: FirstLEFTFrame: -1
+00050594: AuthoredBOTHCount: 0
+00050595: FirstBOTHFrame: -1
+00050596: AuthoredOFFCount: 0
+00050597: FirstOFFFrame: -1
+00050598: RightSourceResolved: 1
+00050599: RightSourceName: It_Spear_Combat
+00050600: RightSourceAddress: C1FF8010
+00050601: RightSourceUseType: 12
+00050602: RightSourceCollisionGroup: 5
+00050603: LeftSourceResolved: 0
+00050604: SuppressNativeCallback: 1
+00050605: =====================================
+00050606: 
+00050607: ===== RIGHT RECEIVED =====
+00050608: ElapsedMs: 370611.073
+00050609: Actor: PC_Hero
+00050610: Action: 1
+00050611: AniPhase: 1
+00050612: StateTime: 0.291993
+00050613: StatePositionBeforeMarker: 0
+00050614: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050615: ===== ENGINE SetCollisionGroup =====
+00050616: ElapsedMs: 370611.103
+00050617: Source: It_Spear_Combat
+00050618: SourceAddress: C1FF8010
+00050619: SlotAssociation: RIGHT
+00050620: PlayerAction: 1
+00050621: PlayerAniPhase: 1
+00050622: PlayerStateTime: 0.291993
+00050623: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050624: RequestedGroup: 7
+00050625: BeforeGroup: 5
+00050626: AfterGroup: 7
+00050627: RetiredMarkerSourceBitCount: 0
+00050628: ====================================
+00050629: 
+00050630: ===== C1 OFFENSE REQUEST =====
+00050631: ElapsedMs: 370611.132
+00050632: Actor: PC_Hero
+00050633: Generation: 1587
+00050634: Status: PERSISTED
+00050635: Source: It_Spear_Combat
+00050636: SourceAddress: C1FF8010
+00050637: Side: RIGHT
+00050638: OffensiveRequestCount: 1
+00050639: Outstanding: 1
+00050640: CleanupObserved: 0
+00050641: ActualGroup: 7
+00050642: ==============================
+00050643: 
+00050644: MarkerName: G3AB_COL_RIGHT
+00050645: MarkerOpcode: RIGHT
+00050646: StatePositionAfterMarker: 0
+00050647: C1GenerationValid: 1
+00050648: C1Generation: 1587
+00050649: MarkerAction: ACCEPTED
+00050650: AuthoredMarkerOccurrences: 1
+00050651: AcceptedMarkerOccurrencesBefore: 0
+00050652: AcceptedMarkerOccurrencesAfter: 1
+00050653: ExecutionBudgetReset: 1
+00050654: PreviousSourceMask: 0
+00050655: DesiredSourceMask: 1
+00050656: RetiredSourceMask: 0
+00050657: OwnedMaskAtOff: 0
+00050658: MarkerOwnedWeaponMask: 1
+00050659: ActivatedSourceCount: 1
+00050660: RetiredSourceCount: 0
+00050661: DeactivatedSourceCount: 0
+00050662: TriggeredListClearCount: 1
+00050663: RightGroupBefore: 5
+00050664: RightGroupAfter: 7
+00050665: RightUseType: 12
+00050666: RightGroupRequested: 1
+00050667: RightFistGroupSkip: 0
+00050668: RightTriggeredListCleared: 1
+00050669: ===========================
+00050670: 
+00050671: ===== ENGINE SetCollisionGroup =====
+00050672: ElapsedMs: 370907.398
+00050673: Source: It_Spear_Combat
+00050674: SourceAddress: C1FF8010
+00050675: SlotAssociation: RIGHT
+00050676: PlayerAction: 1
+00050677: PlayerAniPhase: 3
+00050678: PlayerStateTime: 0.574994
+00050679: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00050680: RequestedGroup: 5
+00050681: BeforeGroup: 7
+00050682: AfterGroup: 5
+00050683: RetiredMarkerSourceBitCount: 1
+00050684: ====================================
+00050685: 
+00050686: ===== C1 CLEANUP FULFILLED =====
+00050687: ElapsedMs: 370907.435
+00050688: Actor: PC_Hero
+00050689: Generation: 1587
+00050690: Status: PERSISTED
+00050691: Source: It_Spear_Combat
+00050692: SourceAddress: C1FF8010
+00050693: Side: RIGHT
+00050694: OffensiveRequestCount: 1
+00050695: Outstanding: 0
+00050696: CleanupObserved: 1
+00050697: ActualGroup: 5
+00050698: ==============================
+00050699: 
+00050700: ===== C1 FINALIZATION =====
+00050701: ElapsedMs: 370907.459
+00050702: Reason: AISETSTATE_AFTER_ORIGINAL
+00050703: Actor: PC_Hero
+00050704: Generation: 1587
+00050705: Status: PERSISTED
+00050706: TrackedSourceCount: 1
+00050707: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00050708: Source[0].Address: C1FF8010
+00050709: Source[0].LivenessEstablished: 1
+00050710: Source[0].Name: It_Spear_Combat
+00050711: Source[0].OriginalSide: RIGHT
+00050712: Source[0].CurrentSideMask: 1
+00050713: Source[0].OffensiveRequestCount: 1
+00050714: Source[0].OutstandingBeforeFinalization: 0
+00050715: Source[0].CleanupObservedBeforeFinalization: 1
+00050716: Source[0].ActualGroupBeforeRepair: 5
+00050717: Source[0].RepairAttempted: 0
+00050718: Source[0].PhysicalCollisionChanged: 0
+00050719: PhysicalCollisionChanged: 0
+00050720: ===========================
+00050721: 
+00050722: ===== C1 LIFECYCLE START =====
+00050723: ElapsedMs: 371026.256
+00050724: Actor: PC_Hero
+00050725: Generation: 1590
+00050726: Status: CANDIDATE
+00050727: ReplacedGeneration: 0
+00050728: ReplacedOutstanding: 0
+00050729: TrackedSourceCount: 1
+00050730: Source[0].Address: C1FF8010
+00050731: Source[0].Side: RIGHT
+00050732: Source[0].ActualGroup: 5
+00050733: ==============================
+00050734: 
+00050735: ===== C1 SCRIPT BINDING =====
+00050736: ElapsedMs: 371026.269
+00050737: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050738: Actor: PC_Hero
+00050739: Generation: 1590
+00050740: Status: CANDIDATE
+00050741: Outstanding: 0
+00050742: ScriptFunction: _AI_PowerAttack
+00050743: SourceAddress: 00000000
+00050744: =============================
+00050745: 
+00050746: ===== C1 LIFECYCLE STATUS =====
+00050747: ElapsedMs: 371026.342
+00050748: Event: PERSISTED
+00050749: Actor: PC_Hero
+00050750: Generation: 1590
+00050751: Status: PERSISTED
+00050752: Outstanding: 0
+00050753: ===============================
+00050754: 
+00050755: ===== C1 SCRIPT BINDING =====
+00050756: ElapsedMs: 371567.029
+00050757: Event: COMBAT_MOVE_REUSED
+00050758: Actor: PC_Hero
+00050759: Generation: 1590
+00050760: Status: PERSISTED
+00050761: Outstanding: 0
+00050762: ScriptFunction: _AI_PowerAttack
+00050763: SourceAddress: 00000000
+00050764: =============================
+00050765: 
+00050766: ===== MARKER OWNERSHIP DECISION =====
+00050767: ElapsedMs: 371567.110
+00050768: Actor: PC_Hero
+00050769: Family: POWER
+00050770: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00050771: Action: 2
+00050772: AniPhase: 1
+00050773: MatchingMotionFound: 1
+00050774: MarkerScanValid: 1
+00050775: ContainsReservedSourceMarker: 1
+00050776: RequiredSourceMask: 1
+00050777: AuthoredRIGHTCount: 1
+00050778: FirstRIGHTFrame: 6
+00050779: AuthoredLEFTCount: 0
+00050780: FirstLEFTFrame: -1
+00050781: AuthoredBOTHCount: 0
+00050782: FirstBOTHFrame: -1
+00050783: AuthoredOFFCount: 0
+00050784: FirstOFFFrame: -1
+00050785: RightSourceResolved: 1
+00050786: RightSourceName: It_Spear_Combat
+00050787: RightSourceAddress: C1FF8010
+00050788: RightSourceUseType: 12
+00050789: RightSourceCollisionGroup: 5
+00050790: LeftSourceResolved: 0
+00050791: SuppressNativeCallback: 1
+00050792: =====================================
+00050793: 
+00050794: ===== RIGHT RECEIVED =====
+00050795: ElapsedMs: 371798.861
+00050796: Actor: PC_Hero
+00050797: Action: 2
+00050798: AniPhase: 1
+00050799: StateTime: 0.784971
+00050800: StatePositionBeforeMarker: 0
+00050801: CurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00050802: ===== ENGINE SetCollisionGroup =====
+00050803: ElapsedMs: 371798.892
+00050804: Source: It_Spear_Combat
+00050805: SourceAddress: C1FF8010
+00050806: SlotAssociation: RIGHT
+00050807: PlayerAction: 2
+00050808: PlayerAniPhase: 1
+00050809: PlayerStateTime: 0.784971
+00050810: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00050811: RequestedGroup: 7
+00050812: BeforeGroup: 5
+00050813: AfterGroup: 7
+00050814: RetiredMarkerSourceBitCount: 0
+00050815: ====================================
+00050816: 
+00050817: ===== C1 OFFENSE REQUEST =====
+00050818: ElapsedMs: 371798.922
+00050819: Actor: PC_Hero
+00050820: Generation: 1590
+00050821: Status: PERSISTED
+00050822: Source: It_Spear_Combat
+00050823: SourceAddress: C1FF8010
+00050824: Side: RIGHT
+00050825: OffensiveRequestCount: 1
+00050826: Outstanding: 1
+00050827: CleanupObserved: 0
+00050828: ActualGroup: 7
+00050829: ==============================
+00050830: 
+00050831: MarkerName: G3AB_COL_RIGHT
+00050832: MarkerOpcode: RIGHT
+00050833: StatePositionAfterMarker: 1
+00050834: C1GenerationValid: 1
+00050835: C1Generation: 1590
+00050836: MarkerAction: ACCEPTED
+00050837: AuthoredMarkerOccurrences: 1
+00050838: AcceptedMarkerOccurrencesBefore: 0
+00050839: AcceptedMarkerOccurrencesAfter: 1
+00050840: ExecutionBudgetReset: 1
+00050841: PreviousSourceMask: 0
+00050842: DesiredSourceMask: 1
+00050843: RetiredSourceMask: 0
+00050844: OwnedMaskAtOff: 0
+00050845: MarkerOwnedWeaponMask: 1
+00050846: ActivatedSourceCount: 1
+00050847: RetiredSourceCount: 0
+00050848: DeactivatedSourceCount: 0
+00050849: TriggeredListClearCount: 1
+00050850: RightGroupBefore: 5
+00050851: RightGroupAfter: 7
+00050852: RightUseType: 12
+00050853: RightGroupRequested: 1
+00050854: RightFistGroupSkip: 0
+00050855: RightTriggeredListCleared: 1
+00050856: ===========================
+00050857: 
+00050858: ===== ENGINE SetCollisionGroup =====
+00050859: ElapsedMs: 372057.621
+00050860: Source: It_Spear_Combat
+00050861: SourceAddress: C1FF8010
+00050862: SlotAssociation: RIGHT
+00050863: PlayerAction: 2
+00050864: PlayerAniPhase: 3
+00050865: PlayerStateTime: 1.029961
+00050866: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot
+00050867: RequestedGroup: 5
+00050868: BeforeGroup: 7
+00050869: AfterGroup: 5
+00050870: RetiredMarkerSourceBitCount: 1
+00050871: ====================================
+00050872: 
+00050873: ===== C1 CLEANUP FULFILLED =====
+00050874: ElapsedMs: 372057.656
+00050875: Actor: PC_Hero
+00050876: Generation: 1590
+00050877: Status: PERSISTED
+00050878: Source: It_Spear_Combat
+00050879: SourceAddress: C1FF8010
+00050880: Side: RIGHT
+00050881: OffensiveRequestCount: 1
+00050882: Outstanding: 0
+00050883: CleanupObserved: 1
+00050884: ActualGroup: 5
+00050885: ==============================
+00050886: 
+00050887: ===== C1 FINALIZATION =====
+00050888: ElapsedMs: 372057.677
+00050889: Reason: AISETSTATE_AFTER_ORIGINAL
+00050890: Actor: PC_Hero
+00050891: Generation: 1590
+00050892: Status: PERSISTED
+00050893: TrackedSourceCount: 1
+00050894: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00050895: Source[0].Address: C1FF8010
+00050896: Source[0].LivenessEstablished: 1
+00050897: Source[0].Name: It_Spear_Combat
+00050898: Source[0].OriginalSide: RIGHT
+00050899: Source[0].CurrentSideMask: 1
+00050900: Source[0].OffensiveRequestCount: 1
+00050901: Source[0].OutstandingBeforeFinalization: 0
+00050902: Source[0].CleanupObservedBeforeFinalization: 1
+00050903: Source[0].ActualGroupBeforeRepair: 5
+00050904: Source[0].RepairAttempted: 0
+00050905: Source[0].PhysicalCollisionChanged: 0
+00050906: PhysicalCollisionChanged: 0
+00050907: ===========================
+00050908: 
+00050909: ===== C1 LIFECYCLE START =====
+00050910: ElapsedMs: 372473.644
+00050911: Actor: PC_Hero
+00050912: Generation: 1593
+00050913: Status: CANDIDATE
+00050914: ReplacedGeneration: 0
+00050915: ReplacedOutstanding: 0
+00050916: TrackedSourceCount: 1
+00050917: Source[0].Address: C1FF8010
+00050918: Source[0].Side: RIGHT
+00050919: Source[0].ActualGroup: 5
+00050920: ==============================
+00050921: 
+00050922: ===== C1 SCRIPT BINDING =====
+00050923: ElapsedMs: 372473.657
+00050924: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050925: Actor: PC_Hero
+00050926: Generation: 1593
+00050927: Status: CANDIDATE
+00050928: Outstanding: 0
+00050929: ScriptFunction: _AI_PowerAttack
+00050930: SourceAddress: 00000000
+00050931: =============================
+00050932: 
+00050933: ===== C1 LIFECYCLE STATUS =====
+00050934: ElapsedMs: 372473.733
+00050935: Event: PERSISTED
+00050936: Actor: PC_Hero
+00050937: Generation: 1593
+00050938: Status: PERSISTED
+00050939: Outstanding: 0
+00050940: ===============================
+00050941: 
+00050942: ===== C1 FINALIZATION =====
+00050943: ElapsedMs: 372866.035
+00050944: Reason: AISETSTATE_AFTER_ORIGINAL
+00050945: Actor: PC_Hero
+00050946: Generation: 1593
+00050947: Status: PERSISTED
+00050948: TrackedSourceCount: 1
+00050949: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00050950: Source[0].Address: C1FF8010
+00050951: Source[0].LivenessEstablished: 1
+00050952: Source[0].Name: It_Spear_Combat
+00050953: Source[0].OriginalSide: RIGHT
+00050954: Source[0].CurrentSideMask: 1
+00050955: Source[0].OffensiveRequestCount: 0
+00050956: Source[0].OutstandingBeforeFinalization: 0
+00050957: Source[0].CleanupObservedBeforeFinalization: 0
+00050958: Source[0].ActualGroupBeforeRepair: 5
+00050959: Source[0].RepairAttempted: 0
+00050960: Source[0].PhysicalCollisionChanged: 0
+00050961: PhysicalCollisionChanged: 0
+00050962: ===========================
+00050963: 
+00050964: ===== C1 LIFECYCLE START =====
+00050965: ElapsedMs: 372867.589
+00050966: Actor: PC_Hero
+00050967: Generation: 1594
+00050968: Status: CANDIDATE
+00050969: ReplacedGeneration: 0
+00050970: ReplacedOutstanding: 0
+00050971: TrackedSourceCount: 1
+00050972: Source[0].Address: C1FF8010
+00050973: Source[0].Side: RIGHT
+00050974: Source[0].ActualGroup: 5
+00050975: ==============================
+00050976: 
+00050977: ===== C1 SCRIPT BINDING =====
+00050978: ElapsedMs: 372867.599
+00050979: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00050980: Actor: PC_Hero
+00050981: Generation: 1594
+00050982: Status: CANDIDATE
+00050983: Outstanding: 0
+00050984: ScriptFunction: _AI_Attack
+00050985: SourceAddress: 00000000
+00050986: =============================
+00050987: 
+00050988: ===== C1 LIFECYCLE STATUS =====
+00050989: ElapsedMs: 372867.664
+00050990: Event: PERSISTED
+00050991: Actor: PC_Hero
+00050992: Generation: 1594
+00050993: Status: PERSISTED
+00050994: Outstanding: 0
+00050995: ===============================
+00050996: 
+00050997: ===== MARKER OWNERSHIP DECISION =====
+00050998: ElapsedMs: 372867.680
+00050999: Actor: PC_Hero
+00051000: Family: NORMAL
+00051001: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00051002: Action: 1
+00051003: AniPhase: 1
+00051004: MatchingMotionFound: 1
+00051005: MarkerScanValid: 1
+00051006: ContainsReservedSourceMarker: 1
+00051007: RequiredSourceMask: 1
+00051008: AuthoredRIGHTCount: 1
+00051009: FirstRIGHTFrame: 5
+00051010: AuthoredLEFTCount: 0
+00051011: FirstLEFTFrame: -1
+00051012: AuthoredBOTHCount: 0
+00051013: FirstBOTHFrame: -1
+00051014: AuthoredOFFCount: 0
+00051015: FirstOFFFrame: -1
+00051016: RightSourceResolved: 1
+00051017: RightSourceName: It_Spear_Combat
+00051018: RightSourceAddress: C1FF8010
+00051019: RightSourceUseType: 12
+00051020: RightSourceCollisionGroup: 5
+00051021: LeftSourceResolved: 0
+00051022: SuppressNativeCallback: 1
+00051023: =====================================
+00051024: 
+00051025: ===== C1 LIFECYCLE START =====
+00051026: ElapsedMs: 373121.801
+00051027: Actor: PC_Hero
+00051028: Generation: 1596
+00051029: Status: CANDIDATE
+00051030: ReplacedGeneration: 1594
+00051031: ReplacedOutstanding: 0
+00051032: TrackedSourceCount: 1
+00051033: Source[0].Address: C1FF8010
+00051034: Source[0].Side: RIGHT
+00051035: Source[0].ActualGroup: 5
+00051036: ==============================
+00051037: 
+00051038: ===== C1 SCRIPT BINDING =====
+00051039: ElapsedMs: 373121.814
+00051040: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00051041: Actor: PC_Hero
+00051042: Generation: 1596
+00051043: Status: CANDIDATE
+00051044: Outstanding: 0
+00051045: ScriptFunction: _AI_Stumble
+00051046: SourceAddress: 00000000
+00051047: =============================
+00051048: 
+00051049: ===== C1 LIFECYCLE STATUS =====
+00051050: ElapsedMs: 373121.875
+00051051: Event: PERSISTED
+00051052: Actor: PC_Hero
+00051053: Generation: 1596
+00051054: Status: PERSISTED
+00051055: Outstanding: 0
+00051056: ===============================
+00051057: 
+00051058: ===== ENGINE SetCollisionGroup =====
+00051059: ElapsedMs: 373134.791
+00051060: Source: Fist
+00051061: SourceAddress: C1FFC410
+00051062: SlotAssociation: NONE
+00051063: PlayerAction: 26
+00051064: PlayerAniPhase: 1
+00051065: PlayerStateTime: 0.012990
+00051066: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+00051067: RequestedGroup: 7
+00051068: BeforeGroup: 0
+00051069: AfterGroup: 0
+00051070: RetiredMarkerSourceBitCount: 0
+00051071: ====================================
+00051072: 
+00051073: ===== C1 FINALIZATION =====
+00051074: ElapsedMs: 373436.337
+00051075: Reason: AISETSTATE_AFTER_ORIGINAL
+00051076: Actor: PC_Hero
+00051077: Generation: 1596
+00051078: Status: PERSISTED
+00051079: TrackedSourceCount: 1
+00051080: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00051081: Source[0].Address: C1FF8010
+00051082: Source[0].LivenessEstablished: 1
+00051083: Source[0].Name: It_Spear_Combat
+00051084: Source[0].OriginalSide: RIGHT
+00051085: Source[0].CurrentSideMask: 1
+00051086: Source[0].OffensiveRequestCount: 0
+00051087: Source[0].OutstandingBeforeFinalization: 0
+00051088: Source[0].CleanupObservedBeforeFinalization: 0
+00051089: Source[0].ActualGroupBeforeRepair: 5
+00051090: Source[0].RepairAttempted: 0
+00051091: Source[0].PhysicalCollisionChanged: 0
+00051092: PhysicalCollisionChanged: 0
+00051093: ===========================
+00051094: 
+00051095: ===== C1 LIFECYCLE START =====
+00051096: ElapsedMs: 373907.778
+00051097: Actor: PC_Hero
+00051098: Generation: 1597
+00051099: Status: CANDIDATE
+00051100: ReplacedGeneration: 0
+00051101: ReplacedOutstanding: 0
+00051102: TrackedSourceCount: 1
+00051103: Source[0].Address: C1FF8010
+00051104: Source[0].Side: RIGHT
+00051105: Source[0].ActualGroup: 5
+00051106: ==============================
+00051107: 
+00051108: ===== C1 SCRIPT BINDING =====
+00051109: ElapsedMs: 373907.791
+00051110: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00051111: Actor: PC_Hero
+00051112: Generation: 1597
+00051113: Status: CANDIDATE
+00051114: Outstanding: 0
+00051115: ScriptFunction: _AI_PowerAttack
+00051116: SourceAddress: 00000000
+00051117: =============================
+00051118: 
+00051119: ===== C1 LIFECYCLE STATUS =====
+00051120: ElapsedMs: 373907.866
+00051121: Event: PERSISTED
+00051122: Actor: PC_Hero
+00051123: Generation: 1597
+00051124: Status: PERSISTED
+00051125: Outstanding: 0
+00051126: ===============================
+00051127: 
+00051128: ===== C1 SCRIPT BINDING =====
+00051129: ElapsedMs: 374452.729
+00051130: Event: COMBAT_MOVE_REUSED
+00051131: Actor: PC_Hero
+00051132: Generation: 1597
+00051133: Status: PERSISTED
+00051134: Outstanding: 0
+00051135: ScriptFunction: _AI_PowerAttack
+00051136: SourceAddress: 00000000
+00051137: =============================
+00051138: 
+00051139: ===== MARKER OWNERSHIP DECISION =====
+00051140: ElapsedMs: 374452.815
+00051141: Actor: PC_Hero
+00051142: Family: POWER
+00051143: CurrentMovementAni: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00051144: Action: 2
+00051145: AniPhase: 1
+00051146: MatchingMotionFound: 1
+00051147: MarkerScanValid: 1
+00051148: ContainsReservedSourceMarker: 0
+00051149: RequiredSourceMask: 0
+00051150: AuthoredRIGHTCount: 0
+00051151: FirstRIGHTFrame: -1
+00051152: AuthoredLEFTCount: 0
+00051153: FirstLEFTFrame: -1
+00051154: AuthoredBOTHCount: 0
+00051155: FirstBOTHFrame: -1
+00051156: AuthoredOFFCount: 0
+00051157: FirstOFFFrame: -1
+00051158: RightSourceResolved: 1
+00051159: RightSourceName: It_Spear_Combat
+00051160: RightSourceAddress: C1FF8010
+00051161: RightSourceUseType: 12
+00051162: RightSourceCollisionGroup: 5
+00051163: LeftSourceResolved: 0
+00051164: SuppressNativeCallback: 0
+00051165: =====================================
+00051166: 
+00051167: ===== ENGINE SetCollisionGroup =====
+00051168: ElapsedMs: 374452.896
+00051169: Source: It_Spear_Combat
+00051170: SourceAddress: C1FF8010
+00051171: SlotAssociation: RIGHT
+00051172: PlayerAction: 2
+00051173: PlayerAniPhase: 1
+00051174: PlayerStateTime: 0.546059
+00051175: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00051176: RequestedGroup: 7
+00051177: BeforeGroup: 5
+00051178: AfterGroup: 7
+00051179: RetiredMarkerSourceBitCount: 0
+00051180: ====================================
+00051181: 
+00051182: ===== C1 OFFENSE REQUEST =====
+00051183: ElapsedMs: 374452.913
+00051184: Actor: PC_Hero
+00051185: Generation: 1597
+00051186: Status: PERSISTED
+00051187: Source: It_Spear_Combat
+00051188: SourceAddress: C1FF8010
+00051189: Side: RIGHT
+00051190: OffensiveRequestCount: 1
+00051191: Outstanding: 1
+00051192: CleanupObserved: 0
+00051193: ActualGroup: 7
+00051194: ==============================
+00051195: 
+00051196: ===== ENGINE SetCollisionGroup =====
+00051197: ElapsedMs: 374940.274
+00051198: Source: It_Spear_Combat
+00051199: SourceAddress: C1FF8010
+00051200: SlotAssociation: RIGHT
+00051201: PlayerAction: 2
+00051202: PlayerAniPhase: 3
+00051203: PlayerStateTime: 1.033046
+00051204: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+00051205: RequestedGroup: 5
+00051206: BeforeGroup: 7
+00051207: AfterGroup: 5
+00051208: RetiredMarkerSourceBitCount: 0
+00051209: ====================================
+00051210: 
+00051211: ===== C1 CLEANUP FULFILLED =====
+00051212: ElapsedMs: 374940.311
+00051213: Actor: PC_Hero
+00051214: Generation: 1597
+00051215: Status: PERSISTED
+00051216: Source: It_Spear_Combat
+00051217: SourceAddress: C1FF8010
+00051218: Side: RIGHT
+00051219: OffensiveRequestCount: 1
+00051220: Outstanding: 0
+00051221: CleanupObserved: 1
+00051222: ActualGroup: 5
+00051223: ==============================
+00051224: 
+00051225: ===== C1 FINALIZATION =====
+00051226: ElapsedMs: 374940.336
+00051227: Reason: AISETSTATE_AFTER_ORIGINAL
+00051228: Actor: PC_Hero
+00051229: Generation: 1597
+00051230: Status: PERSISTED
+00051231: TrackedSourceCount: 1
+00051232: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00051233: Source[0].Address: C1FF8010
+00051234: Source[0].LivenessEstablished: 1
+00051235: Source[0].Name: It_Spear_Combat
+00051236: Source[0].OriginalSide: RIGHT
+00051237: Source[0].CurrentSideMask: 1
+00051238: Source[0].OffensiveRequestCount: 1
+00051239: Source[0].OutstandingBeforeFinalization: 0
+00051240: Source[0].CleanupObservedBeforeFinalization: 1
+00051241: Source[0].ActualGroupBeforeRepair: 5
+00051242: Source[0].RepairAttempted: 0
+00051243: Source[0].PhysicalCollisionChanged: 0
+00051244: PhysicalCollisionChanged: 0
+00051245: ===========================
+00051246: 
+00051247: ===== C1 LIFECYCLE START =====
+00051248: ElapsedMs: 375738.032
+00051249: Actor: PC_Hero
+00051250: Generation: 1599
+00051251: Status: CANDIDATE
+00051252: ReplacedGeneration: 0
+00051253: ReplacedOutstanding: 0
+00051254: TrackedSourceCount: 1
+00051255: Source[0].Address: C1FF8010
+00051256: Source[0].Side: RIGHT
+00051257: Source[0].ActualGroup: 5
+00051258: ==============================
+00051259: 
+00051260: ===== C1 SCRIPT BINDING =====
+00051261: ElapsedMs: 375738.044
+00051262: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00051263: Actor: PC_Hero
+00051264: Generation: 1599
+00051265: Status: CANDIDATE
+00051266: Outstanding: 0
+00051267: ScriptFunction: _AI_Attack
+00051268: SourceAddress: 00000000
+00051269: =============================
+00051270: 
+00051271: ===== C1 LIFECYCLE STATUS =====
+00051272: ElapsedMs: 375738.112
+00051273: Event: PERSISTED
+00051274: Actor: PC_Hero
+00051275: Generation: 1599
+00051276: Status: PERSISTED
+00051277: Outstanding: 0
+00051278: ===============================
+00051279: 
+00051280: ===== MARKER OWNERSHIP DECISION =====
+00051281: ElapsedMs: 375738.129
+00051282: Actor: PC_Hero
+00051283: Family: NORMAL
+00051284: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00051285: Action: 1
+00051286: AniPhase: 1
+00051287: MatchingMotionFound: 1
+00051288: MarkerScanValid: 1
+00051289: ContainsReservedSourceMarker: 1
+00051290: RequiredSourceMask: 1
+00051291: AuthoredRIGHTCount: 1
+00051292: FirstRIGHTFrame: 5
+00051293: AuthoredLEFTCount: 0
+00051294: FirstLEFTFrame: -1
+00051295: AuthoredBOTHCount: 0
+00051296: FirstBOTHFrame: -1
+00051297: AuthoredOFFCount: 0
+00051298: FirstOFFFrame: -1
+00051299: RightSourceResolved: 1
+00051300: RightSourceName: It_Spear_Combat
+00051301: RightSourceAddress: C1FF8010
+00051302: RightSourceUseType: 12
+00051303: RightSourceCollisionGroup: 5
+00051304: LeftSourceResolved: 0
+00051305: SuppressNativeCallback: 1
+00051306: =====================================
+00051307: 
+00051308: ===== RIGHT RECEIVED =====
+00051309: ElapsedMs: 376012.703
+00051310: Actor: PC_Hero
+00051311: Action: 1
+00051312: AniPhase: 1
+00051313: StateTime: 0.287993
+00051314: StatePositionBeforeMarker: 0
+00051315: CurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00051316: ===== ENGINE SetCollisionGroup =====
+00051317: ElapsedMs: 376012.733
+00051318: Source: It_Spear_Combat
+00051319: SourceAddress: C1FF8010
+00051320: SlotAssociation: RIGHT
+00051321: PlayerAction: 1
+00051322: PlayerAniPhase: 1
+00051323: PlayerStateTime: 0.287993
+00051324: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00051325: RequestedGroup: 7
+00051326: BeforeGroup: 5
+00051327: AfterGroup: 7
+00051328: RetiredMarkerSourceBitCount: 0
+00051329: ====================================
+00051330: 
+00051331: ===== C1 OFFENSE REQUEST =====
+00051332: ElapsedMs: 376012.763
+00051333: Actor: PC_Hero
+00051334: Generation: 1599
+00051335: Status: PERSISTED
+00051336: Source: It_Spear_Combat
+00051337: SourceAddress: C1FF8010
+00051338: Side: RIGHT
+00051339: OffensiveRequestCount: 1
+00051340: Outstanding: 1
+00051341: CleanupObserved: 0
+00051342: ActualGroup: 7
+00051343: ==============================
+00051344: 
+00051345: MarkerName: G3AB_COL_RIGHT
+00051346: MarkerOpcode: RIGHT
+00051347: StatePositionAfterMarker: 0
+00051348: C1GenerationValid: 1
+00051349: C1Generation: 1599
+00051350: MarkerAction: ACCEPTED
+00051351: AuthoredMarkerOccurrences: 1
+00051352: AcceptedMarkerOccurrencesBefore: 0
+00051353: AcceptedMarkerOccurrencesAfter: 1
+00051354: ExecutionBudgetReset: 1
+00051355: PreviousSourceMask: 0
+00051356: DesiredSourceMask: 1
+00051357: RetiredSourceMask: 0
+00051358: OwnedMaskAtOff: 0
+00051359: MarkerOwnedWeaponMask: 1
+00051360: ActivatedSourceCount: 1
+00051361: RetiredSourceCount: 0
+00051362: DeactivatedSourceCount: 0
+00051363: TriggeredListClearCount: 1
+00051364: RightGroupBefore: 5
+00051365: RightGroupAfter: 7
+00051366: RightUseType: 12
+00051367: RightGroupRequested: 1
+00051368: RightFistGroupSkip: 0
+00051369: RightTriggeredListCleared: 1
+00051370: ===========================
+00051371: 
+00051372: ===== ENGINE SetCollisionGroup =====
+00051373: ElapsedMs: 376320.588
+00051374: Source: It_Spear_Combat
+00051375: SourceAddress: C1FF8010
+00051376: SlotAssociation: RIGHT
+00051377: PlayerAction: 1
+00051378: PlayerAniPhase: 3
+00051379: PlayerStateTime: 0.583976
+00051380: PlayerCurrentMovementAni: Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+00051381: RequestedGroup: 5
+00051382: BeforeGroup: 7
+00051383: AfterGroup: 5
+00051384: RetiredMarkerSourceBitCount: 1
+00051385: ====================================
+00051386: 
+00051387: ===== C1 CLEANUP FULFILLED =====
+00051388: ElapsedMs: 376320.637
+00051389: Actor: PC_Hero
+00051390: Generation: 1599
+00051391: Status: PERSISTED
+00051392: Source: It_Spear_Combat
+00051393: SourceAddress: C1FF8010
+00051394: Side: RIGHT
+00051395: OffensiveRequestCount: 1
+00051396: Outstanding: 0
+00051397: CleanupObserved: 1
+00051398: ActualGroup: 5
+00051399: ==============================
+00051400: 
+00051401: ===== C1 FINALIZATION =====
+00051402: ElapsedMs: 376320.664
+00051403: Reason: AISETSTATE_AFTER_ORIGINAL
+00051404: Actor: PC_Hero
+00051405: Generation: 1599
+00051406: Status: PERSISTED
+00051407: TrackedSourceCount: 1
+00051408: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00051409: Source[0].Address: C1FF8010
+00051410: Source[0].LivenessEstablished: 1
+00051411: Source[0].Name: It_Spear_Combat
+00051412: Source[0].OriginalSide: RIGHT
+00051413: Source[0].CurrentSideMask: 1
+00051414: Source[0].OffensiveRequestCount: 1
+00051415: Source[0].OutstandingBeforeFinalization: 0
+00051416: Source[0].CleanupObservedBeforeFinalization: 1
+00051417: Source[0].ActualGroupBeforeRepair: 5
+00051418: Source[0].RepairAttempted: 0
+00051419: Source[0].PhysicalCollisionChanged: 0
+00051420: PhysicalCollisionChanged: 0
+00051421: ===========================
+00051422: 
+00051423: ===== MARKER OWNERSHIP DECISION =====
+00051424: ElapsedMs: 419681.450
+00051425: Actor: Golem
+00051426: Family: NORMAL
+00051427: CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00051428: Action: 1
+00051429: AniPhase: 1
+00051430: MatchingMotionFound: 1
+00051431: MarkerScanValid: 1
+00051432: ContainsReservedSourceMarker: 0
+00051433: RequiredSourceMask: 0
+00051434: AuthoredRIGHTCount: 0
+00051435: FirstRIGHTFrame: -1
+00051436: AuthoredLEFTCount: 0
+00051437: FirstLEFTFrame: -1
+00051438: AuthoredBOTHCount: 0
+00051439: FirstBOTHFrame: -1
+00051440: AuthoredOFFCount: 0
+00051441: FirstOFFFrame: -1
+00051442: RightSourceResolved: 1
+00051443: RightSourceName: Fist
+00051444: RightSourceAddress: C20B5610
+00051445: RightSourceUseType: 8
+00051446: RightSourceCollisionGroup: 0
+00051447: LeftSourceResolved: 0
+00051448: SuppressNativeCallback: 0
+00051449: =====================================
+00051450: 
+00051451: ===== C1 LIFECYCLE START =====
+00051452: ElapsedMs: 419937.831
+00051453: Actor: PC_Hero
+00051454: Generation: 1601
+00051455: Status: CANDIDATE
+00051456: ReplacedGeneration: 0
+00051457: ReplacedOutstanding: 0
+00051458: TrackedSourceCount: 1
+00051459: Source[0].Address: C1FF9010
+00051460: Source[0].Side: LEFT
+00051461: Source[0].ActualGroup: 5
+00051462: ==============================
+00051463: 
+00051464: ===== C1 SCRIPT BINDING =====
+00051465: ElapsedMs: 419937.844
+00051466: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00051467: Actor: PC_Hero
+00051468: Generation: 1601
+00051469: Status: CANDIDATE
+00051470: Outstanding: 0
+00051471: ScriptFunction: _AI_Stumble
+00051472: SourceAddress: 00000000
+00051473: =============================
+00051474: 
+00051475: ===== C1 LIFECYCLE STATUS =====
+00051476: ElapsedMs: 419941.352
+00051477: Event: PERSISTED
+00051478: Actor: PC_Hero
+00051479: Generation: 1601
+00051480: Status: PERSISTED
+00051481: Outstanding: 0
+00051482: ===============================
+00051483: 
+00051484: ===== ENGINE SetCollisionGroup =====
+00051485: ElapsedMs: 419957.478
+00051486: Source: Fist
+00051487: SourceAddress: C20B5610
+00051488: SlotAssociation: NONE
+00051489: PlayerAction: 26
+00051490: PlayerAniPhase: 1
+00051491: PlayerStateTime: 0.029938
+00051492: PlayerCurrentMovementAni: Hero_Stand_Staff_None_P0_StumbleR_Hit_N_Back_00_%_00_P2_90.xmot
+00051493: RequestedGroup: 7
+00051494: BeforeGroup: 0
+00051495: AfterGroup: 0
+00051496: RetiredMarkerSourceBitCount: 0
+00051497: ====================================
+00051498: 
+00051499: ===== MARKER OWNERSHIP DECISION =====
+00051500: ElapsedMs: 420210.988
+00051501: Actor: Golem
+00051502: Family: NORMAL
+00051503: CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+00051504: Action: 1
+00051505: AniPhase: 1
+00051506: MatchingMotionFound: 1
+00051507: MarkerScanValid: 1
+00051508: ContainsReservedSourceMarker: 0
+00051509: RequiredSourceMask: 0
+00051510: AuthoredRIGHTCount: 0
+00051511: FirstRIGHTFrame: -1
+00051512: AuthoredLEFTCount: 0
+00051513: FirstLEFTFrame: -1
+00051514: AuthoredBOTHCount: 0
+00051515: FirstBOTHFrame: -1
+00051516: AuthoredOFFCount: 0
+00051517: FirstOFFFrame: -1
+00051518: RightSourceResolved: 1
+00051519: RightSourceName: Fist
+00051520: RightSourceAddress: C20B9E10
+00051521: RightSourceUseType: 8
+00051522: RightSourceCollisionGroup: 0
+00051523: LeftSourceResolved: 0
+00051524: SuppressNativeCallback: 0
+00051525: =====================================
+00051526: 
+00051527: ===== C1 FINALIZATION =====
+00051528: ElapsedMs: 420254.879
+00051529: Reason: AISETSTATE_AFTER_ORIGINAL
+00051530: Actor: PC_Hero
+00051531: Generation: 1601
+00051532: Status: PERSISTED
+00051533: TrackedSourceCount: 1
+00051534: Source[0].Outcome: NO_OP_NO_OUTSTANDING
+00051535: Source[0].Address: C1FF9010
+00051536: Source[0].LivenessEstablished: 1
+00051537: Source[0].Name: It_Spear_Combat
+00051538: Source[0].OriginalSide: LEFT
+00051539: Source[0].CurrentSideMask: 2
+00051540: Source[0].OffensiveRequestCount: 0
+00051541: Source[0].OutstandingBeforeFinalization: 0
+00051542: Source[0].CleanupObservedBeforeFinalization: 0
+00051543: Source[0].ActualGroupBeforeRepair: 5
+00051544: Source[0].RepairAttempted: 0
+00051545: Source[0].PhysicalCollisionChanged: 0
+00051546: PhysicalCollisionChanged: 0
+00051547: ===========================
+00051548: 
+00051549: ===== C1 LIFECYCLE START =====
+00051550: ElapsedMs: 420468.832
+00051551: Actor: PC_Hero
+00051552: Generation: 1604
+00051553: Status: CANDIDATE
+00051554: ReplacedGeneration: 0
+00051555: ReplacedOutstanding: 0
+00051556: TrackedSourceCount: 1
+00051557: Source[0].Address: C1FF9010
+00051558: Source[0].Side: LEFT
+00051559: Source[0].ActualGroup: 5
+00051560: ==============================
+00051561: 
+00051562: ===== C1 SCRIPT BINDING =====
+00051563: ElapsedMs: 420468.844
+00051564: Event: COMBAT_MOVE_CANDIDATE_BOUND
+00051565: Actor: PC_Hero
+00051566: Generation: 1604
+00051567: Status: CANDIDATE
+00051568: Outstanding: 0
+00051569: ScriptFunction: _AI_Stumble
+00051570: SourceAddress: 00000000
+00051571: =============================
+00051572: 
+00051573: ===== C1 LIFECYCLE STATUS =====
+00051574: ElapsedMs: 420470.593
+00051575: Event: PERSISTED
+00051576: Actor: PC_Hero
+00051577: Generation: 1604
+00051578: Status: PERSISTED
+00051579: Outstanding: 0
+00051580: ===============================
+00051581: 
+00051582: ===== ENGINE SetCollisionGroup =====
+00051583: ElapsedMs: 421198.545
+00051584: Source: Fist
+00051585: SourceAddress: C20B9E10
+00051586: SlotAssociation: NONE
+00051587: PlayerAction: 26
+00051588: PlayerAniPhase: 1
+00051589: PlayerStateTime: 0.021311
+00051590: PlayerCurrentMovementAni: Hero_Stand_Staff_None_P2_StumbleR_Hit_N_Back_00_%_00_P20_90.xmot
+00051591: RequestedGroup: 7
+00051592: BeforeGroup: 0
+00051593: AfterGroup: 0
+00051594: RetiredMarkerSourceBitCount: 0
+00051595: ====================================
+00051596: 
+00051597: ===== C1 FINALIZATION =====
+00051598: ElapsedMs: 421502.324
