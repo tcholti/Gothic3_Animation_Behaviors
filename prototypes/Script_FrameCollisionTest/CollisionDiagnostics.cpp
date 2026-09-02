@@ -302,16 +302,22 @@ void LogMarkerContext(Entity &actor, MarkerOpcode opcode)
     std::fprintf(g_pLog, "AniPhase: %d\n",
                  static_cast<GEInt>(actor.GetCurrentAniPhase()));
     std::fprintf(g_pLog, "StateTime: %.6f\n", actor.Routine.GetStateTime());
+    std::fprintf(g_pLog, "StatePositionBeforeMarker: %d\n",
+                 static_cast<GEInt>(actor.Routine.GetProperty<
+                     PSRoutine::PropertyStatePosition>()));
     std::fprintf(g_pLog, "CurrentMovementAni: %s\n", ani.GetText());
 }
 
-void LogMarkerResult(Entity &, MarkerProcessResult const &r)
+void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
 {
     if (g_pLog == nullptr)
         return;
     std::fprintf(g_pLog, "MarkerName: %s\n", r.markerName.c_str());
     std::fprintf(g_pLog, "MarkerOpcode: %s\n",
                  FrameCollisionMarkers::GetMarkerOpcodeName(r.opcode));
+    std::fprintf(g_pLog, "StatePositionAfterMarker: %d\n",
+                 static_cast<GEInt>(actor.Routine.GetProperty<
+                     PSRoutine::PropertyStatePosition>()));
     std::fprintf(g_pLog, "C1GenerationValid: %d\n",
                  r.c1GenerationValid ? 1 : 0);
     std::fprintf(g_pLog, "C1Generation: %llu\n",
