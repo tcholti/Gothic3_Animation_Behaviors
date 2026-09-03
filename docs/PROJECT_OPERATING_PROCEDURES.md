@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.6  
-**Updated:** 2026-09-01
+**Version:** 1.7  
+**Updated:** 2026-09-03
 
 ## Purpose
 
@@ -124,7 +124,7 @@ The exact active branch is current project state owned by `SESSION_ENTRYPOINT.md
 Typical synchronization shape:
 
 ```powershell
-Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+Set-Location 'E:\\Mods\\1.Game Files\\Gothic 3\\Tools\\Gothic 3 making scripts\\Gothic3_Animation_Behaviors'
 
 $branch = '<active branch from SESSION_ENTRYPOINT.md>'
 git pull --rebase origin $branch
@@ -178,7 +178,7 @@ Script_FrameCollisionBehaviorTest
 Example diagnostic build:
 
 ```powershell
-Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+Set-Location 'E:\\Mods\\1.Game Files\\Gothic 3\\Tools\\Gothic 3 making scripts\\Gothic3_Animation_Behaviors'
 
 cmake --build build --config Release --target Script_FrameCollisionTest
 ```
@@ -210,7 +210,7 @@ Use after a successful build and before launching Gothic 3 for that build.
 Both collision research targets are emitted from the same prototype build directory:
 
 ```text
-E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\build\prototypes\Script_FrameCollisionTest\Release\
+E:\\Mods\\1.Game Files\\Gothic 3\\Tools\\Gothic 3 making scripts\\Gothic3_Animation_Behaviors\\build\\prototypes\\Script_FrameCollisionTest\\Release\\
 ```
 
 Current product files:
@@ -226,7 +226,7 @@ Script_FrameCollisionBehaviorTest.dll
 Live scripts directory:
 
 ```text
-E:\SteamLibrary\steamapps\common\Gothic 3\scripts
+E:\\SteamLibrary\\steamapps\\common\\Gothic 3\\scripts
 ```
 
 ### Pattern
@@ -248,7 +248,7 @@ Normal Chat should provide the concrete selected product paths rather than askin
 Conceptual check:
 
 ```powershell
-$liveDir = 'E:\SteamLibrary\steamapps\common\Gothic 3\scripts'
+$liveDir = 'E:\\SteamLibrary\\steamapps\\common\\Gothic 3\\scripts'
 
 Get-ChildItem -LiteralPath $liveDir |
     Where-Object {
@@ -290,7 +290,7 @@ launch Gothic 3 only far enough to exercise script loading
 For `Script_FrameCollisionTest`, loading is normally verified with both normal game startup and the exact expected diagnostic banner in:
 
 ```text
-E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log
+E:\\SteamLibrary\\steamapps\\common\\Gothic 3\\Script_FrameCollisionTest.log
 ```
 
 Normal Chat should provide the exact banner substring for the build being tested rather than expecting the User to remember it.
@@ -298,7 +298,7 @@ Normal Chat should provide the exact banner substring for the build being tested
 Typical diagnostic check:
 
 ```powershell
-$log = 'E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log'
+$log = 'E:\\SteamLibrary\\steamapps\\common\\Gothic 3\\Script_FrameCollisionTest.log'
 Select-String -Path $log -Pattern '<exact frozen startup banner substring>'
 ```
 
@@ -356,6 +356,8 @@ If a test crosses midnight or is delayed after the filename is frozen, keep the 
 
 Run the frozen test. When a canonical raw artifact is part of the test, copy the complete produced log to the exact frozen path.
 
+When the same matrix contains comparable no-target and target-dependent cases, run all no-target cases first and then the target-dependent cases unless the causal question requires another order. Freeze any required exception explicitly.
+
 Extra repetitions are acceptable and often useful. If the configuration/order materially differs from the frozen matrix, tell Normal Chat so interpretation can distinguish those sections.
 
 After copying a raw artifact, a short confirmation such as:
@@ -403,10 +405,10 @@ User confirms exact raw file exists
 Typical command pattern:
 
 ```powershell
-Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+Set-Location 'E:\\Mods\\1.Game Files\\Gothic 3\\Tools\\Gothic 3 making scripts\\Gothic3_Animation_Behaviors'
 
 $branch = '<active branch from SESSION_ENTRYPOINT.md>'
-$log = '.\research\raw\<frozen-log-name>.log'
+$log = '.\\research\\raw\\<frozen-log-name>.log'
 
 Get-Item -LiteralPath $log |
     Select-Object Name, Length, LastWriteTime
