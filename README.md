@@ -11,15 +11,19 @@ Do not assume `main` contains the newest working implementation merely because i
 
 ## Start Here
 
-- [Session entry point](docs/SESSION_ENTRYPOINT.md) — minimal current-state front door.
-- [Project charter and knowledge map](docs/README.md) — highest Gothic-specific authority beneath CAM for project purpose, long-term direction, authority topology, and Hot/Warm/Cold retrieval routes.
+For ordinary continuation, use one first hop:
+
+1. [Session entry point](docs/SESSION_ENTRYPOINT.md) — read this first for the active branch, current responsibility, recovery cue, and exact next route.
+
+Only broaden when the current responsibility requires it:
+
+- [Project charter and knowledge map](docs/README.md) — highest Gothic-specific authority beneath CAM; use for project purpose, long-term direction, authority topology, formal-audit preflight, or one-time subsystem orientation.
 - [Evidence index](docs/EVIDENCE_INDEX.md) — route engine/research questions to exact EV ranges and provenance.
 - [Animation knowledge index](docs/ANIMATION_INDEX.md) — route filename/UseType/action/pose/asset questions to exact sections/data.
-- [Knowledge maintenance protocol](docs/KNOWLEDGE_MAINTENANCE.md) — event-driven local documentation/evidence/archive updates; use when completing meaningful engineering events, not as routine pre-reading.
-- [Knowledge authority registry](docs/KNOWLEDGE_REGISTRY.md) — tells which specialist document owns each knowledge responsibility and what changes trigger an update.
-- [Project operating procedures](docs/PROJECT_OPERATING_PROCEDURES.md) — recurring local operations plus POP-10, the mandatory authority/intended-use preflight for formal project reviews/audits.
-- [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — bounded-implementation contract for Work/coding sessions.
-- [Gothic 3 project collaboration delta](docs/COLLABORATION_RULES.md) — project-specific operationalization of the CAM constitutional collaboration layer, including participant/tool allocation and the boundary that CAM itself is changed only in dedicated CAM work.
+- [Project operating procedures](docs/PROJECT_OPERATING_PROCEDURES.md) — retrieve the exact recurring Git/build/deploy/test/evidence/review/continuity procedure when that operation is active.
+- [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — retrieve for bounded Work/coding sessions.
+- [Knowledge maintenance protocol](docs/KNOWLEDGE_MAINTENANCE.md) and [authority registry](docs/KNOWLEDGE_REGISTRY.md) — maintenance/update routing tools, applied when meaningful project events or ownership questions require them.
+- [Gothic 3 project collaboration delta](docs/COLLABORATION_RULES.md) — project-specific participant/tool allocation and CAM operationalization; retrieve when the collaboration boundary itself matters.
 
 Do **not** load every document by default. The repository is designed as deep external memory: start with current state, then spot-search the exact technical knowledge needed for the current responsibility.
 

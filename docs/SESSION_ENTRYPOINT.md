@@ -68,6 +68,21 @@ exact immediate next step
 what remains deliberately outside the current responsibility
 ```
 
+### If the previous Normal Chat failed or hit maximum context
+
+Do **not** assume the current `NEXT` text below is still accurate merely because this file was the last maintained front door. Apply POP-11 interrupted-context recovery first.
+
+Emergency starter:
+
+```text
+RECOVERY START
+Read SESSION_ENTRYPOINT first, but treat its current responsibility as potentially stale.
+Apply PROJECT_OPERATING_PROCEDURES POP-11.
+Compare only the recent durability gap against the newest branch commits/raw evidence and any supplied previous-chat transcript.
+Complete any missed KNOWLEDGE_MAINTENANCE transaction and correct SESSION_ENTRYPOINT/BETWEEN_CHATS before resuming technical work.
+Do not scan the whole repository.
+```
+
 ---
 
 ## Closed Collision Architecture Boundary

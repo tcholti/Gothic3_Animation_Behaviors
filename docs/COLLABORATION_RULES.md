@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 2.2  
-**Updated:** 2026-09-01
+**Version:** 2.3  
+**Updated:** 2026-09-03
 
 ## Purpose
 
@@ -122,6 +122,7 @@ freeze bounded implementation/test responsibilities
 independent review of meaningful Work implementation
 knowledge-maintenance trigger/check
 repository documentation/evidence maintenance when appropriate
+planned-transition and interrupted-context continuity recovery
 interpret build/runtime results and choose the next responsibility
 ```
 
@@ -303,7 +304,11 @@ Do not ask the User to repeat technical state that can be reliably recovered fro
 
 Do not reread the entire repository simply because a new prompt or Chat arrived. Use the retrieval model in `README.md`.
 
-When the User announces a new Normal Chat, perform only the maintenance necessary to make `SESSION_ENTRYPOINT.md` and any genuinely needed `BETWEEN_CHATS.md` bridge current, then give the User a short starter instruction. The detailed current-state/maintenance rules are owned by `README.md` and `KNOWLEDGE_MAINTENANCE.md` rather than repeated here.
+Normal Chat owns both planned transition and interrupted-context recovery. The detailed recurring sequence is POP-11 in `PROJECT_OPERATING_PROCEDURES.md`.
+
+At a planned transition, finish the normal maintenance catch-up before handing off and make one final check for completed work that has not yet been recorded durably. If the product exposes a real context/usage warning and losing the current transient state would matter, create the smallest useful durable checkpoint rather than waiting for failure.
+
+After an abrupt failure, maximum-context stop, or unusable previous Chat, do **not** require the User to reconstruct the project manually. Treat `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` as potentially stale until POP-11 has compared them with the newest branch commits, active raw evidence, and any supplied transcript/recovery material and has completed any missed `KNOWLEDGE_MAINTENANCE.md` transaction.
 
 ---
 
@@ -360,4 +365,4 @@ Do not modify CAM from this project-maintenance transaction.
 
 ## Core Project Collaboration Rule
 
-> **Use CAM as the constitutional collaboration layer, the Gothic project charter as the highest project-specific statement of purpose/direction/authority topology, and the specialist Gothic authorities as its maintained operationalization: keep User + Normal Chat responsible for context-heavy interpretation/design, Work responsible for bounded execution when it materially helps, the authoritative home PC responsible for real build/game stages, and the repository responsible for durable memory; expose new interpretive responsibilities before executing them, minimize transfer burden, evolve the lowest correct Gothic authority from evidence, and reserve any CAM evolution for a separate deliberate upward-review responsibility.**
+> **Use CAM as the constitutional collaboration layer, the Gothic project charter as the highest project-specific statement of purpose/direction/authority topology, and the specialist Gothic authorities as its maintained operationalization: keep User + Normal Chat responsible for context-heavy interpretation/design, Work responsible for bounded execution when it materially helps, the authoritative home PC responsible for real build/game stages, and the repository responsible for durable memory; expose new interpretive responsibilities before executing them, minimize transfer burden, preserve continuity without making the User reconstruct a failed context, evolve the lowest correct Gothic authority from evidence, and reserve any CAM evolution for a separate deliberate upward-review responsibility.**

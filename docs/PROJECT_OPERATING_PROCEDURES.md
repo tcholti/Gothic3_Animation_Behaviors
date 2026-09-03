@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.8  
+**Version:** 1.9  
 **Updated:** 2026-09-03
 
 ## Purpose
@@ -19,15 +19,18 @@ It exists so a new Chat does not have to rediscover how we normally:
 - preserve and publish raw evidence;
 - reduce oversized logs for efficient analysis without altering the evidence;
 - work with large static binary/reference material;
-- preflight a formal project review/audit so it respects the project hierarchy and each target's intended use.
+- preflight a formal project review/audit so it respects the project hierarchy and each target's intended use;
+- preserve continuity across planned Chat transitions and recover safely after an abrupt/max-context failure.
 
 `docs/README.md` is the Gothic project charter and highest project-specific authority beneath CAM for project purpose, long-term direction, scope and authority topology.
 
 `PROJECT_PIPELINE.md` owns the stable naming, numbering, version/test ID, branch/state, product-identity, artifact-flow and validation-gate conventions used by these procedures. This file owns the **recurring sequences and their failure/stop behavior**, not independent alternative convention schemes.
 
+`LOCAL_WORKSTATION_PATHS.md` owns the User's current mutable Windows repository/build/runtime locations. Procedures may refer to those path roles, but they do not maintain a second canonical copy of workstation-specific path data.
+
 Participant/tool allocation is owned by `COLLABORATION_RULES.md`. Bounded Work implementation execution is owned by `WORK_IMPLEMENTATION_PROTOCOL.md`.
 
-These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law. Procedure maintenance/evolution is owned by §13 below; `KNOWLEDGE_REGISTRY.md` determines whether a discovered improvement belongs here or in another authority.
+These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law. Procedure maintenance/evolution is owned by §14 below; `KNOWLEDGE_REGISTRY.md` determines whether a discovered improvement belongs here or in another authority.
 
 ---
 
@@ -39,6 +42,8 @@ Read or spot-read this document when entering an active local-operation sequence
 - runtime evidence capture/publish;
 - Git handoff between connected GitHub writes and the User's local checkout;
 - large-log or large-reference retrieval;
+- planned Chat transition where transient work must be made durable;
+- recovery after an abrupt/max-context/unusable previous Chat;
 - a formal review/audit of project rules, procedures, architecture, documentation/knowledge structure, repository shape, or another cross-authority project surface.
 
 Do not reread it after every prompt or every attack/test repetition.
@@ -53,7 +58,8 @@ This document does not replace:
 - `WORK_IMPLEMENTATION_PROTOCOL.md` — bounded implementation/Work execution;
 - `KNOWLEDGE_MAINTENANCE.md` — what durable authorities change after a meaningful result;
 - `SESSION_ENTRYPOINT.md` — current technical responsibility;
-- `BETWEEN_CHATS.md` — transient exact handoff when needed.
+- `BETWEEN_CHATS.md` — transient exact handoff when needed;
+- `LOCAL_WORKSTATION_PATHS.md` — current workstation-specific repository/build/runtime locations.
 
 ---
 
@@ -119,18 +125,19 @@ Assistant pushes
 
 If the assistant has changed the remote branch since the User last synchronized, perform the pull/rebase before the User begins a new local artifact/commit window whenever practical.
 
-The exact active branch is current project state owned by `SESSION_ENTRYPOINT.md` / `PROJECT_PIPELINE.md`; this procedure must not maintain a competing branch identity.
+The exact active branch is current project state owned by `SESSION_ENTRYPOINT.md` / `PROJECT_PIPELINE.md`; this procedure must not maintain a competing branch identity. The current repository path is resolved from `LOCAL_WORKSTATION_PATHS.md` when concrete commands are produced.
 
 Typical synchronization shape:
 
 ```powershell
-Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+$repoRoot = '<G3 Animation Behaviors repository from LOCAL_WORKSTATION_PATHS.md>'
+Set-Location $repoRoot
 
 $branch = '<active branch from SESSION_ENTRYPOINT.md>'
 git pull --rebase origin $branch
 ```
 
-Normal Chat should normally provide the resolved exact branch in the concrete command rather than making the User look it up manually.
+Normal Chat should normally provide the resolved exact repository path and branch in the concrete command rather than making the User look them up manually.
 
 Do not run a blind pull/rebase across important uncommitted local work. The normal handoff rule should make that unnecessary; if local work already exists, inspect the concrete state first.
 
@@ -181,7 +188,8 @@ Script_FrameCollisionBehaviorTest
 Example diagnostic build:
 
 ```powershell
-Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+$repoRoot = '<G3 Animation Behaviors repository from LOCAL_WORKSTATION_PATHS.md>'
+Set-Location $repoRoot
 
 cmake --build build --config Release --target Script_FrameCollisionTest
 ```
@@ -208,12 +216,14 @@ If the build fails, request or use only the smallest relevant error excerpt firs
 
 Use after a successful build and before launching Gothic 3 for that build.
 
-### Current collision twin paths
+### Current collision twin locations
 
-Both collision research targets are emitted from the same repository-local prototype build directory:
+Resolve the current repository root and live Gothic 3 scripts directory from `LOCAL_WORKSTATION_PATHS.md`.
+
+Both collision research targets are emitted from the same repository-relative prototype build directory:
 
 ```text
-E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\build\prototypes\Script_FrameCollisionTest\Release\
+<repoRoot>\build\prototypes\Script_FrameCollisionTest\Release\
 ```
 
 Current product files:
@@ -226,10 +236,10 @@ Script_FrameCollisionBehaviorTest.dll
 = diagnostics-free behavior twin
 ```
 
-Live scripts directory:
+Live scripts directory role:
 
 ```text
-E:\SteamLibrary\steamapps\common\Gothic 3\scripts
+<runtime mod-script DLL directory from LOCAL_WORKSTATION_PATHS.md>
 ```
 
 ### Pattern
@@ -255,7 +265,7 @@ Normal Chat should provide the concrete selected product paths rather than askin
 Conceptual check:
 
 ```powershell
-$liveDir = 'E:\SteamLibrary\steamapps\common\Gothic 3\scripts'
+$liveDir = '<runtime mod-script DLL directory from LOCAL_WORKSTATION_PATHS.md>'
 
 Get-ChildItem -LiteralPath $liveDir |
     Where-Object {
@@ -295,18 +305,15 @@ launch Gothic 3 only far enough to exercise script loading
 
 ### Diagnostic collision twin
 
-For `Script_FrameCollisionTest`, loading is normally verified with both normal game startup and the exact expected diagnostic banner in:
-
-```text
-E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log
-```
+For `Script_FrameCollisionTest`, loading is normally verified with both normal game startup and the exact expected diagnostic banner in the runtime-root `Script_FrameCollisionTest.log`. Resolve the runtime root from `LOCAL_WORKSTATION_PATHS.md`.
 
 Normal Chat should provide the exact banner substring for the build being tested rather than expecting the User to remember it.
 
 Typical diagnostic check:
 
 ```powershell
-$log = 'E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log'
+$gameRoot = '<Gothic 3 runtime/game root from LOCAL_WORKSTATION_PATHS.md>'
+$log = Join-Path $gameRoot 'Script_FrameCollisionTest.log'
 Select-String -Path $log -Pattern '<exact frozen startup banner substring>'
 ```
 
@@ -413,7 +420,8 @@ User confirms exact raw file exists
 Typical command pattern:
 
 ```powershell
-Set-Location 'E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors'
+$repoRoot = '<G3 Animation Behaviors repository from LOCAL_WORKSTATION_PATHS.md>'
+Set-Location $repoRoot
 
 $branch = '<active branch from SESSION_ENTRYPOINT.md>'
 $log = '.\research\raw\<frozen-log-name>.log'
@@ -428,7 +436,7 @@ git push origin $branch
 git rev-parse HEAD
 ```
 
-Normal Chat should provide the resolved exact branch and exact frozen filename in the concrete command. The User should not have to substitute placeholders during an actual test transaction.
+Normal Chat should provide the resolved exact repository path, active branch and exact frozen filename in the concrete command. The User should not have to substitute placeholders during an actual test transaction.
 
 Normal Chat should normally ask only for the final SHA or a short success confirmation.
 
@@ -471,6 +479,32 @@ The tool README owns wrapper syntax, execution-policy handling, examples and imp
 A derived package must remain reproducibly tied to its canonical source, including source identity/hash and tool/extraction identity sufficient to verify how it was produced. Gate-specific extra signal patterns may be supplied when necessary; do not rewrite the canonical log because the built-in vocabulary is incomplete.
 
 Derived artifact naming/location conventions remain owned by `PROJECT_PIPELINE.md`. Derived material is a retrieval aid, not a replacement evidence authority.
+
+### Whole-run interpretation safeguards
+
+Large-log reduction is a retrieval method, not permission to reason from a convenient excerpt as though it represented the whole run.
+
+Normal analysis order is:
+
+```text
+verify manifest/source identity + hash
+→ inspect whole-run event counts to learn what occurred
+→ inspect chronological event timeline across the full run
+→ enumerate high-signal/invariant/failure matches
+→ read the source-context windows for those matches
+→ retrieve additional exact source ranges when the timeline exposes a relevant event outside the automatic windows
+→ only then correlate the final tail/crash/symptom with the complete run
+```
+
+Preserve these interpretation rules:
+
+- event/signal counts are navigation leads, not conclusions by themselves;
+- a signal match must be read in context before being classified as a defect;
+- a tail-only extract can help correlate a final symptom but cannot establish that earlier parts of the run were clean;
+- repeated earlier occurrences may be more causally useful than the final visible failure;
+- user visual observations remain valid evidence inputs and should be correlated with logging rather than discarded merely because a logger does not encode the visual consequence directly;
+- distinguish diagnostic/shadow outcomes from actual physical mutations;
+- if the derived package is insufficient, request/regenerate exact ranges from the canonical source rather than rerunning Gothic solely because Chat cannot directly retrieve the large raw file.
 
 Do not move extraction logic into production/runtime behavior merely for connector convenience.
 
@@ -625,7 +659,95 @@ Do not create another review-procedure document. This POP section is the reusabl
 
 ---
 
-## 13. Procedure Maintenance
+## 13. POP-11 — Normal Chat Continuity and Interrupted-Context Recovery
+
+### Trigger
+
+Use when:
+
+- a planned Normal Chat transition is approaching;
+- the product exposes a real context/usage warning and losing current transient work would matter;
+- the previous Chat stopped abruptly, reached maximum context, became unusable, or otherwise ended before normal maintenance/handoff completed.
+
+This is a recurring recovery sequence. It does not make `BETWEEN_CHATS.md` a second current-state authority and it does not turn Chat transcripts into canonical evidence.
+
+### Planned transition
+
+Before deliberately moving to a new Normal Chat:
+
+```text
+finish the current meaningful engineering step as far as it has actually completed
+→ run the normal KNOWLEDGE_MAINTENANCE transaction for completed results
+→ update SESSION_ENTRYPOINT if the immediate responsibility changed
+→ update BETWEEN_CHATS only when exact short-lived continuation detail is genuinely needed
+→ check once for completed work/results that have not yet been recorded durably
+→ verify a fresh Chat following SESSION_ENTRYPOINT would begin at the correct responsibility
+→ give the User a short starter instruction
+```
+
+Do not perform broad documentation cleanup merely because a Chat is ending.
+
+### Context/usage warning safeguard
+
+When the product exposes a real warning that the current context is approaching a limit, and losing the transient reasoning/result state would create material reconstruction work:
+
+> **Create the smallest useful durable checkpoint before continuing deep work. Do not wait for the context to fail.**
+
+Depending on what has actually completed, the checkpoint may be only:
+
+- a current-state/handoff update;
+- a committed raw artifact already produced;
+- a canonical evidence/interpretation maintenance transaction;
+- another existing authority update required by `KNOWLEDGE_MAINTENANCE.md`.
+
+Do not manufacture a checkpoint commit when nothing durable has changed. The safeguard exists to preserve real completed/transient work, not to create ceremony.
+
+### Abrupt / max-context recovery
+
+If the previous Chat ended before the planned sequence could run, the new Chat must assume that `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` **may be stale** until checked against newer durable facts.
+
+Recovery sequence:
+
+```text
+read SESSION_ENTRYPOINT first as the normal front door, but do not blindly execute its NEXT step yet
+→ confirm active branch and newest remote commits around the last known durable point
+→ inspect only the recent tail needed to determine what happened after the maintained state
+→ inspect newly committed/raw active artifacts relevant to that tail
+→ use a User-supplied previous-chat transcript/TXT when available to recover reasoning/observations that were not yet made durable
+→ classify which meaningful engineering events actually completed
+→ perform any missed KNOWLEDGE_MAINTENANCE transaction at the smallest owning authorities
+→ update canonical evidence only for claims the preserved source/runtime/user evidence supports
+→ correct stale SESSION_ENTRYPOINT / BETWEEN_CHATS pointers
+→ verify the recovered current responsibility against current source/branch state
+→ only then resume normal technical work
+```
+
+A supplied transcript is **recovery material**, not automatically canonical project authority. Its claims must be separated into source facts, runtime facts, User observations, interpretations, hypotheses and proposed next tests before promotion into the normal owners.
+
+Do not reconstruct the entire repository or reread every authority merely because one Chat failed. Start from the maintained front door and examine only the recent durability gap.
+
+### Recovery stop conditions
+
+Surface the contradiction instead of silently choosing a story when:
+
+- newest commits/raw artifacts contradict the remembered/transcript account;
+- it is unclear whether a test/result actually completed;
+- an interpretation would promote a hypothesis beyond what the preserved evidence supports;
+- branch state indicates another writer advanced the branch after the recovered point.
+
+The User should only be asked for information that cannot be recovered from repository state or supplied recovery material.
+
+### Final continuity check
+
+Before declaring recovery complete, ask:
+
+> **If a fresh Normal Chat followed `SESSION_ENTRYPOINT.md` literally now, would it begin with the correct immediate responsibility and be able to retrieve the evidence needed for it?**
+
+If no, the recovery transaction is not complete.
+
+---
+
+## 14. Procedure Maintenance
 
 The active procedure is the current best project-specific operationalization. Git history preserves old versions; the active document should not accumulate obsolete variants.
 
@@ -667,7 +789,8 @@ When a new recurring operation appears, first ask whether an existing POP sectio
 | large static Engine/Game/Script_Game material | POP-08 Static binary/reference retrieval |
 | routine command/procedure fails | POP-09 Routine failure/stop behavior |
 | formal project review/audit | POP-10 Authority-hierarchy + intended-use preflight |
+| planned Chat transition / context warning / previous Chat failed | POP-11 Continuity and interrupted-context recovery |
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, understand the project hierarchy and each target's intended use before formal review/audit, use stable project conventions rather than reinventing them, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
+> **Preserve causal certainty and canonical evidence, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, preserve Normal Chat continuity without making the User reconstruct failed context, understand the project hierarchy and each target's intended use before formal review/audit, use stable project conventions and the canonical workstation-path reference rather than reinventing them, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**

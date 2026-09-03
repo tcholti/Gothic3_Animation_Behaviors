@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-09-01
+**Updated:** 2026-09-03
 
 ## Purpose
 
@@ -26,7 +26,8 @@ This file owns authority/update routing. It does not repeat the project charter,
 | transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact short-lived implementation/test/continuation detail not already represented durably | ordinary project facts already live in durable authorities |
 | project-specific collaboration behavior / participant-tool allocation / Gothic↔CAM operationalization | `COLLABORATION_RULES.md` | a recurring Gothic-specific collaboration lesson materially changes participant allocation, authorization/interaction behavior, or project-local CAM operationalization | project purpose/topology change that belongs in the charter; one isolated annoyance already covered elsewhere; technical result with no collaboration consequence |
 | stable operating conventions: branch/state meanings, gate/test IDs, evidence/procedure IDs, raw/derived naming, build identity, document versioning, validation/artifact flow | `PROJECT_PIPELINE.md` | an accepted convention changes or a new convention responsibility/transition must be defined | routine use of an established convention |
-| recurring project-local operations: Git handoff/sync, build/deploy/load verification, runtime-artifact intake/publish, large-log reduction, static-reference retrieval, formal review/audit preflight | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistakes, one serious failure, a clearly better recurring method, a genuinely new recurring operation, or the review/audit preflight sequence changes | every routine use, one-off command variation, or a review finding whose actual owner is another authority |
+| recurring project-local operations: Git handoff/sync, build/deploy/load verification, runtime-artifact intake/publish, large-log reduction, static-reference retrieval, formal review/audit preflight, Normal Chat continuity/recovery | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistakes, one serious failure, a clearly better recurring method, a genuinely new recurring operation, or an owned procedure sequence changes | every routine use, one-off command variation, or a review finding whose actual owner is another authority |
+| workstation-specific repository/build/runtime paths and local executable/artifact locations | `LOCAL_WORKSTATION_PATHS.md` | an actual local path/location changes or another workstation-specific path becomes operationally necessary | portable procedure semantics, branch conventions, or build/deploy logic that should work regardless of where the workstation stores the files |
 | bounded Work execution contract | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work implementation authority, preflight, publication, stop conditions, review responsibility, or bounded-task execution model changes | participant allocation changes without changing Work execution itself; technical Gothic finding unrelated to Work behavior |
 | knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing rule, workaround-reevaluation rule, audit-health criteria, or bloat early-warning process changes | ordinary technical evidence/result handled by the existing process |
 | authority/update routing | `KNOWLEDGE_REGISTRY.md` | a responsibility gains/moves/loses an owner or its update-trigger logic changes | underlying knowledge grows inside an existing authority |
@@ -98,6 +99,8 @@ current-state pointer (only if active responsibility changes)
 These directions interact but are not identical: evidence can justify a change to a normative/technical authority, but evidence does not silently rewrite the charter, architecture or procedure by itself.
 
 Stable operating conventions are orthogonal specialist state; procedures and current-state documents route to `PROJECT_PIPELINE.md` rather than maintaining alternative naming/numbering/version schemes.
+
+Workstation-specific path data is another orthogonal specialist state. Procedures resolve it through `LOCAL_WORKSTATION_PATHS.md` rather than embedding a second authoritative copy of mutable local locations.
 
 Within the charter topology, participant/tool allocation is owned by `COLLABORATION_RULES.md`; the owning execution/procedure authority then defines how that allocated responsibility is performed.
 
