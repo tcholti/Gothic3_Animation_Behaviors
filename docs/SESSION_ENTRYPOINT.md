@@ -127,9 +127,9 @@ Do **not** create `feature/raise-attack-speed` early.
 
 ---
 
-## CURRENT RESPONSIBILITY — Complete Remaining Equipped-Melee Marker Validation
+## CURRENT RESPONSIBILITY — Resolve SimpleWhirl Character-Hit Semantics
 
-Implemented batch baseline:
+Implemented remaining-melee batch baseline:
 
 ```text
 f0d929c90fbe086f44f66f91a2523904d06c3903
@@ -141,28 +141,23 @@ Generic before/after-marker StatePosition diagnostics:
 7c31784c5ef86bc79b54d573144b8e40f33e5e6b
 ```
 
-Required marker expansion:
-
-```text
-PowerAttack
-PierceAttack
-SimpleWhirl
-HackAttack
-```
-
-Current status:
+Current family status:
 
 ```text
 PowerAttack   CLOSED/PASS for current marker-expansion stage
 PierceAttack  CLOSED/PASS for current marker-expansion stage
-SimpleWhirl   NEXT — isolated runtime validation
-HackAttack    implementation complete; isolated marker/routing validation pending
+SimpleWhirl   physical marker/source mechanics PASS
+SimpleWhirl   native character-hit eligibility semantics OPEN
+HackAttack    implementation complete; isolated marker/routing validation pending AFTER SimpleWhirl
 combined marker/lifecycle regression pending afterward
 ```
 
-Compact Power/Pierce evidence retrieval checkpoint:
+Compact retrieval checkpoints:
 
-`research/derived/2026-09-03_power_pierce_marker_validation_checkpoint.md`
+```text
+research/derived/2026-09-03_power_pierce_marker_validation_checkpoint.md
+research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md
+```
 
 Current bookkeeping classification:
 
@@ -177,6 +172,49 @@ Power Dual   → StatePosition 2
 EV-216 closes the Hack callback identity for the tested runtime build: `Script_Game +0x433D0` has one unique registration-table match, `OnAI_HackAttack`, from `.\Script\AI\AI_Commands\AI_HackAttack.cpp`.
 
 `GetUpAttack` is not part of the planned marker roadmap. `FinishingAttack` remains deliberately excluded/native. Fist/body remains a separate source-adapter responsibility.
+
+---
+
+## SimpleWhirl Current Result
+
+The current runtime evidence establishes the G3AB physical marker/source layer for SimpleWhirl:
+
+```text
+Action 6 / _AI_SimpleWhirl ownership works
+accepted native-slot marker -> exact source activation/rearm
+accepted BOTH -> both exact Dual sources 5 -> 7
+StatePosition 0 -> 1 and remains 1 through later markers
+BOTH -> single -> OFF -> BOTH exact-set behavior works
+natural exact-source cleanup returns live sources 7 -> 5
+no C1 terminal repair is required in healthy completion
+```
+
+However, User observation under matched animation content shows that SimpleWhirl does **not** have the same character-hit eligibility as true PowerAttack:
+
+```text
+same Power-derived Dual motion content
+same authored physical source program
+
+true PowerAttack -> broad actor contacts can damage actors touched by the swords
+SimpleWhirl      -> substantially more target-directed, though not strictly selected-target-only
+```
+
+Therefore the current architecture distinction is:
+
+```text
+G3AB markers
+= WHEN collision is offensive
++ WHICH equipped physical source set is offensive/rearmed
+
+native/action-specific character-hit semantics
+= which actor contacts are eligible to become character damage/effects
+```
+
+Do not claim `G3AB_COL_BOTH` currently guarantees uniform two-weapon character-hit eligibility across every action family. It guarantees the authored physical equipped-source set; the final framework-level actor-hit guarantee remains open.
+
+The initial swapped-motion observation that appeared to show two swords damaging two separate actors in one SimpleWhirl execution was not reproduced on deliberate repetition and is **not confirmed evidence**.
+
+The earlier SimpleWhirl crash is not the current causal gate. The crashing configuration had multiple collision twins/modules live; verified single-twin deployment did not reproduce it in the control run. Treat accidental co-loading as the strongest identified crash cause, but not a universally proven sole cause. Reopen only if a comparable crash recurs under verified single-twin deployment.
 
 ---
 
@@ -245,13 +283,33 @@ After Release 1, animation content is updated and released weapon family by weap
 
 ## Exact Immediate Next Step
 
+Temporary diagnostic causal control only:
+
 ```text
-NEXT SESSION:
-inspect only the exact existing SimpleWhirl fixture/source evidence needed
-→ freeze the isolated SimpleWhirl runtime test
-→ validate SimpleWhirl
-→ validate Hack
-→ combined marker/lifecycle regression
+keep Action 6 / SimpleWhirl
+keep OnAI_SimpleWhirl
+keep the same Power-derived Dual motion fixture
+keep the same BOTH -> single -> OFF -> BOTH markers
+keep the same source activation/rearm behavior
+keep the same target/group setup
+
+change only accepted SimpleWhirl marker bookkeeping:
+StatePosition 1 -> 2
 ```
 
-Do not reopen Power or Pierce merely to broaden already-passing evidence or investigate benign diagnostic cadence.
+Compare character-hit behavior against the already-observed true Dual Power / StatePosition-2 control.
+
+```text
+SimpleWhirl becomes Power-like
+→ StatePosition participates in deeper native actor-hit eligibility
+→ investigate the legitimate semantic rule from evidence
+
+SimpleWhirl stays substantially target-directed
+→ StatePosition is likely bookkeeping/suppression only
+→ revert temporary change
+→ trace Action 6 / SimpleWhirl-specific native eligibility instead
+```
+
+This is a falsification probe, **not** permission to redefine the permanent SimpleWhirl bookkeeping yet.
+
+Do not proceed to Hack isolated runtime validation until this SimpleWhirl causal question is resolved enough to define the intended framework guarantee. Do not reopen Power or Pierce.

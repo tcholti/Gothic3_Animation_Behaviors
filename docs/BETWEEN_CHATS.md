@@ -4,32 +4,29 @@
 
 **Updated:** 2026-09-03
 
-## Current bridge — remaining equipped-melee marker validation
+## Current bridge — SimpleWhirl character-hit semantics
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its bootstrap.
+Fresh Chat must read `docs/SESSION_ENTRYPOINT.md` first and follow its bootstrap. If the previous Chat failed or hit maximum context, use POP-11 before trusting stale `NEXT` wording.
 
 CAM is the constitutional collaboration layer; `docs/README.md` is the highest Gothic-specific project charter beneath CAM. Do not modify CAM from Gothic 3 work.
 
 ---
 
-## Closed boundary
+## Closed / protected boundary
 
 ```text
 collision architecture verification             COMPLETE — EV-206–EV-215
 Hack callback runtime identity                  CLOSED — EV-216
 Power marker adapter validation                 CLOSED/PASS
 Pierce marker adapter validation                CLOSED/PASS
+SimpleWhirl physical marker/source mechanics    PASS — current evidence
 ```
 
-Do not reopen the verified C1 lifecycle/generation architecture, Power, or Pierce without concrete contradicting evidence.
-
-Compact retrieval checkpoint for the completed Power/Pierce runtime evidence:
-
-`research/derived/2026-09-03_power_pierce_marker_validation_checkpoint.md`
+Do not reopen C1 lifecycle/generation architecture, Power, Pierce, or the SimpleWhirl physical source mechanics without contradicting evidence.
 
 Branch lifecycle remains:
 
@@ -49,22 +46,13 @@ Do not create `feature/raise-attack-speed` early.
 
 Implementation:
 
-`f0d929c90fbe086f44f66f91a2523904d06c3903` — remaining melee marker adapters + optional Hack routing
+`f0d929c90fbe086f44f66f91a2523904d06c3903`
 
-Generic marker StatePosition diagnostic correction:
+Generic marker StatePosition diagnostics:
 
 `7c31784c5ef86bc79b54d573144b8e40f33e5e6b`
 
-Implemented marker scope:
-
-```text
-PowerAttack
-PierceAttack
-SimpleWhirl
-HackAttack
-```
-
-Bookkeeping:
+Bookkeeping currently implemented:
 
 ```text
 Power ordinary/non-Dual -> StatePosition 1
@@ -78,194 +66,148 @@ Hack                     -> OnAI_HackAttack -> StatePosition 1
 
 ---
 
-## Power validation — CLOSED/PASS
+## SimpleWhirl evidence recovered after failed previous Chat
 
-Ordinary isolated evidence:
+Compact checkpoint:
 
-`research/raw/2026-09-02_power_marker_adapter_isolated_validation.log`  
-commit `369f3ad6626417e319518c915f63b601b07fc60b`
+`research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md`
 
-Legitimate-interruption evidence:
+Canonical raw evidence remains in `research/raw/` because the causal question is still open.
 
-`research/raw/2026-09-02_power_legitimate_interruption_cleanup_validation.log`  
-raw commit `2f602453ae38fea120bbf5ff78c2d9fc953c4d99`  
-derived package commit `a80162099f4248a446199b7f46ea981cc24a8de8`
+### Native adapter
 
-Validated ordinary 1H/2H/Staff, Dual exact-set multi-contact behavior, StatePosition policy, unmarked fallback, natural cleanup and qualifying post-marker legitimate interruption cleanup. C1-R1 remained a no-op fail-safe beneath Gothic's native cleanup.
+`research/raw/2026-09-03_simplewhirl_native_marker_adapter_isolated_validation.log`  
+commit `b11c2c8e7052e5bb2f9d09ce876395928df2ed1f`
+
+Validated action-6 / `_AI_SimpleWhirl` marker ownership, native-callback suppression, accepted exact-source marker behavior, StatePosition `0 -> 1`, C1 generation bookkeeping, rearm and natural exact-source `7 -> 5` cleanup.
+
+### BOTH physical source behavior
+
+`research/raw/2026-09-03_simplewhirl_authored_both_source_validation.log`  
+commit `1759083d55611b34185a66a835f118d3cfaa188c`
+
+An accepted SimpleWhirl `G3AB_COL_BOTH` directly activated both exact Dual equipped sources `5 -> 7`, created both C1 obligations, rearmed both lists, kept `StatePositionAfterMarker: 1`, and naturally cleaned both sources `7 -> 5` without C1 repair.
+
+Therefore the G3AB physical-source layer itself can make both weapons offensive in SimpleWhirl.
+
+### Single-twin crash control
+
+`research/raw/2026-09-03_simplewhirl_authored_both_single_twin_crash_control.log`  
+commit `b417ea353e00379c0be9a38c5ce01dcfd3e2fa29`
+
+The earlier crash run had more than one collision twin/module live, including a renamed `.dll.disabled` sibling. Correcting deployment to the intended single diagnostic twin preserved repeated healthy BOTH `5 -> 7 -> 5` behavior and did not reproduce the crash in the control run.
+
+Current qualification:
+
+> accidental co-loading is the strongest identified crash explanation and is strongly supported by the control, but is not claimed as a universally proven sole crash cause.
+
+Do not investigate further unless a comparable crash recurs under verified single-twin deployment.
+
+### Target-lock / swapped-motion probe
+
+`research/raw/2026-09-03_simplewhirl_target_lock_and_swapped_motion_contact_probe.log`  
+commit `b22eabd71c6dfffa45dee48e3a3b12c54569ef7f`
+
+User observations:
+
+- strict “selected target only” is false; unselected actors could sometimes be damaged;
+- one initial swapped-motion observation appeared to show the two swords damaging two different actors in one execution;
+- deliberate repetition did **not** reproduce that two-target result.
+
+Do not promote the non-reproduced two-target observation as confirmed evidence.
+
+### Same authored motion content: SimpleWhirl versus PowerAttack
+
+`research/raw/2026-09-03_simplewhirl_vs_power_same_motion_target_semantics_comparison.log`  
+commit `ee75fb8bcf8fe3e3aeb43e88d114b0ab3c221710`
+
+Strongest current comparison:
+
+```text
+SimpleWhirl
+Action 6 / _AI_SimpleWhirl
+same Power-derived Dual motion content
+same BOTH -> single -> OFF -> BOTH physical marker program
+StatePositionAfterMarker = 1
+both exact sources physically activated/rearmed as authored
+
+true Dual Power
+Action 2 / _AI_PowerAttack
+same authored motion content class
+same physical marker program behavior
+StatePositionAfterMarker = 2
+```
+
+User observation with the matched motion content:
+
+```text
+true Power -> broad actor contacts from the swords can damage actors touched
+SimpleWhirl -> substantially more target-directed; usually focused target, but not strictly focused-target-only
+```
+
+Safe current interpretation:
+
+> **SimpleWhirl has action-specific character-hit eligibility that is substantially more target-directed than PowerAttack.**
+
+The difference is not explained by animation geometry alone and not by failure of `G3AB_COL_BOTH` to activate both physical weapons. Exact native mechanism remains unknown.
 
 ---
 
-## Pierce validation — CLOSED/PASS
-
-### Native Pierce source correspondence
-
-Raw:
-
-`research/raw/2026-09-02_pierce_native_marker_adapter_isolated_validation.log`  
-commit `7accaaf9b254a9121ec111e02f65f9e8fca2d3a9`
-
-Validated:
+## Current architecture distinction
 
 ```text
-Dual P0 Pierce -> RIGHT
-Dual P1 Pierce -> LEFT
-accepted Pierce marker -> StatePosition 1
+G3AB markers
+= WHEN collision is offensive
++ WHICH equipped physical source set is offensive/rearmed
+
+native/action-specific character-hit semantics
+= which actor contacts are eligible to become character damage/effects for that action
 ```
 
-User visually confirmed target collision.
+SimpleWhirl physical source control is validated. Uniform actor-hit eligibility across action families is **not** yet established.
 
-### Power-motion / multi-marker Pierce
-
-Raw:
-
-`research/raw/2026-09-02_pierce_power_motion_multi_marker_validation.log`  
-commit `c4026282b9277738468a6caf99f49b8f484f72dd`
-
-Pierce action 11 successfully executed the copied Power motion marker programs:
+No release contract has been chosen yet between:
 
 ```text
-P0: BOTH -> LEFT  -> OFF -> BOTH
-P1: BOTH -> RIGHT -> OFF -> BOTH
+normalize eligibility safely across supported families
+OR preserve/document native family restrictions
+OR normalize only evidence-supported families while preserving intentional special semantics elsewhere
 ```
-
-The result proves the intended separation:
-
-```text
-native Pierce action/family -> Pierce bookkeeping / StatePosition 1
-authored markers            -> RIGHT / LEFT / BOTH / OFF physical source behavior
-```
-
-User visually confirmed all authored contacts could connect against the selected target.
-
-### Legitimate interruption cleanup
-
-Raw:
-
-`research/raw/2026-09-02_pierce_power_motion_interruption_cleanup_validation.log`  
-commit `327fb20247eedb443e57f4b7fe1d4c644a1e6655`
-
-Strong qualifying cases captured both:
-
-```text
-BOTH live -> interruption -> both exact sources clean 7 -> 5 -> Stumble
-BOTH -> LEFT -> interruption -> remaining LEFT cleans 7 -> 5 -> Stumble
-```
-
-No C1 repair was required.
-
-### Native Pierce target/reaction observation
-
-During multi-target combat the User observed that Pierce contacts affected the selected/focused target while another nearby target was not hit by the same swings. The exact internal mechanism is unproven and should not be conflated with Fist merely because the behavior looks similar.
-
-Humanoid targets which normally perform the distinctive long Pierce stumble continued to perform that same reaction when the Pierce action used copied Power motion content. This supports an action-level/native Pierce semantic boundary independent of animation content.
-
-Current bounded interpretation:
-
-```text
-G3AB markers control WHEN and WHICH physical weapon source is live.
-Pierce action 11 retains native target/reaction semantics.
-```
-
-This makes alternate authored stabbing patterns using RIGHT, LEFT or both weapons useful, while broad sweeping Pierce animations may not behave like generic multi-target attacks.
-
-### New Balance + Jackydima Script_AttackCollision control
-
-Raw:
-
-`research/raw/2026-09-03_pierce_native_marker_newbalance_badskip_control.log`  
-commit `fd91f90a255559923f2ada7e83355333177931f0`
-
-Configuration:
-
-```text
-New Balance bad-skip prevention active
-Jackydima Script_AttackCollision active
-no target
-```
-
-User performed four accepted Pierce executions in each configuration:
-
-```text
-1H                 x4
-Torch + 1H         x4
-Shield + 1H        x4
-Dual P0 / RIGHT    x4
-Dual P1 / LEFT     x4
-```
-
-All 20 accepted executions had valid C1 generation bookkeeping, `StatePositionAfterMarker: 1`, exact expected source `5 -> 7 -> 5`, no C1 repair/finalization physical change, and clean unload. Torch and Shield remained resolved-but-inactive LEFT partners under RIGHT-only Pierce markers.
-
-Conclusion:
-
-> Pierce marker handling is runtime-compatible with the tested New Balance + Jackydima Script_AttackCollision configuration for the tested Pierce equipment cases.
-
-This is Pierce-specific compatibility evidence, not blanket compatibility certification for every callback/family in Script_AttackCollision.
-
-### Benign diagnostic-cadence observation
-
-Across repeated Pierce executions, a fresh `MARKER OWNERSHIP DECISION` block appears once per distinct motion rather than once per execution, while later executions still create fresh C1 generations, reset execution budgets, accept markers correctly, mutate exact physical sources correctly, and clean naturally.
-
-The observation persists with New Balance bad-skip prevention active. Therefore bad skip is not required for it and should no longer be treated as its likely explanation.
-
-A relationship to native Pierce target/effect semantics is plausible but unproven. Because behavior and bookkeeping are correct, do not investigate this further unless a future behavioral contradiction makes it relevant.
 
 ---
 
-## HackAttack optional animation routing — implemented, runtime validation still pending
+## Exact immediate next test — temporary StatePosition control
 
-EV-216 closes the tested callback identity: `Script_Game +0x433D0` uniquely maps to `OnAI_HackAttack`.
+StatePosition is the smallest visible causal candidate because SimpleWhirl remains `1` while true Dual Power uses `2`.
 
-Implemented optional routing responsibility:
-
-```text
-runtime action == HackAttack (14)
-→ preserve final namespace/name produced by native or compatible resolver
-→ at CombatMove QueryMotionDataEntity callsite, derive only _HackAttack_ token variant
-→ matching Hack asset exists: use candidate resource
-→ candidate absent: preserve original FinishingAttack resource unchanged
-```
-
-True runtime `FinishingAttack` action 15 remains unchanged/native.
-
-Preferred authored fixtures:
+This is a **temporary diagnostic falsification**, not a design decision:
 
 ```text
-Hero_Parade_None_2H_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
-Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot
-Hero_Parade_None_2H_P0_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
+keep unchanged:
+  Action 6 / SimpleWhirl
+  OnAI_SimpleWhirl
+  same Power-derived Dual motion fixture
+  same BOTH -> single -> OFF -> BOTH markers
+  same source activation/rearm
+  same target/group setup
 
-Hero_Parade_None_Staff_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
-Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot
-Hero_Parade_None_Staff_P0_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
+change only:
+  accepted SimpleWhirl marker bookkeeping StatePosition 1 -> 2
 ```
 
-The `100` suffix remains animation-author metadata, not DLL logic.
-
----
-
-## AttackContinuationProtection — later, separate responsibility
-
-Frozen outcome:
+Interpretation:
 
 ```text
-prevent the known destructive continuation/bad-skip mechanism
-from terminating or advancing through a legitimately live Hit execution
+if actor-hit behavior becomes Power-like
+→ StatePosition participates in deeper native eligibility
+→ investigate legitimate semantic rule; do not generalize immediately
+
+if behavior stays substantially target-directed
+→ StatePosition is likely bookkeeping/suppression only
+→ revert temporary change
+→ trace Action 6 / SimpleWhirl-specific native hit-eligibility path
 ```
 
-The mechanism is not frozen. Keep it separate from `CollisionLifecycleGuard`; C1-R1 remains the general lost-cleanup fail-safe.
+Do not move to Hack runtime validation until this SimpleWhirl causal question is resolved enough to define the intended framework guarantee.
 
----
-
-## Immediate next step
-
-Do not perform more work tonight merely to broaden Power/Pierce evidence.
-
-Next session:
-
-```text
-SimpleWhirl isolated validation
-→ Hack isolated validation
-→ combined marker/lifecycle regression
-```
-
-For SimpleWhirl, first inspect only the exact existing SimpleWhirl fixtures/source evidence needed to freeze the isolated test. Do not guess assets or reopen Power/Pierce.
+Hack implementation remains present and pending isolated marker/routing validation afterward.

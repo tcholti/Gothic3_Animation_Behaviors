@@ -1,7 +1,7 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215  
-**Updated:** 2026-09-01
+**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; remaining equipped-melee expansion active  
+**Updated:** 2026-09-03
 
 ## Purpose
 
@@ -23,6 +23,7 @@ Exact proof: `EVIDENCE_INDEX.md` → canonical evidence ledgers.
 - Terminal repair may mutate only an already-owned exact outstanding source after native cleanup opportunity and established current-equipped liveness.
 - The monotonic C1 generation is the durable marker occurrence/dedupe execution identity.
 - C1 generation does not replace authored marker semantics, exact-set meaning, occurrence counts, replay suppression, OFF, repeated-contact rearm, supported-family ownership, physical marker-window state or terminal lifecycle repair.
+- RIGHT / LEFT / BOTH / OFF prove and control the desired **physical equipped-source set**. Do not infer uniform character-hit eligibility/effect semantics across Gothic action families merely because those physical sources are correctly active.
 - Keep diagnostics independent from behavior correctness.
 - Released behavior must not compile research diagnostics.
 - Do not deploy diagnostic and behavior-only twins together.
@@ -170,6 +171,8 @@ SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
 
 The behavior-only result is functional/release-purity evidence only. Internal generation, occurrence-budget, exact-set, replay/dedupe and terminal-repair proof remains in diagnostic evidence.
 
+The current SimpleWhirl StatePosition causal question in EV-220 is **not** an execution-identity question and does not reopen Gate 4. It asks only whether StatePosition also participates in Gothic's deeper action-specific character-hit eligibility.
+
 ---
 
 ## 5. Current Validation Posture
@@ -182,6 +185,7 @@ New collision testing begins only when one of these occurs:
 a concrete contradiction appears
 an existing behavior responsibility changes
 a new source/family/marker mechanism is intentionally added
+a newly exposed native family semantic affects the public marker contract
 AttackContinuationProtection is implemented
 a compatibility gate becomes active
 production migration changes hook/source/config architecture
@@ -206,7 +210,86 @@ reconstruct only the causal evidence route relevant to that responsibility
 
 Add one mechanism/family responsibility at a time. Preserve all closed Normal/Quick/full-Whirl marker and C1 lifecycle behavior as regression controls.
 
-Known deliberate source/authoring review item:
+Current family state:
+
+```text
+PowerAttack
+→ marker/source validation CLOSED/PASS
+
+PierceAttack
+→ marker/source validation CLOSED/PASS
+→ native target/reaction semantics remain distinct from physical marker-source control
+
+SimpleWhirl
+→ action-6 / _AI_SimpleWhirl adapter PASS
+→ RIGHT/LEFT/BOTH/OFF physical marker-source mechanics PASS for tested fixtures
+→ character-hit eligibility semantics OPEN
+
+HackAttack
+→ implementation present
+→ callback identity EV-216 CLOSED
+→ isolated marker/routing runtime validation pending after SimpleWhirl semantic question
+```
+
+#### SimpleWhirl character-hit eligibility boundary
+
+EV-217 proves that the SimpleWhirl adapter and physical source layer behave correctly. Accepted BOTH can place both exact Dual equipped sources into `Item_Attack`, rearm both, and later clean both naturally. Therefore a failure to damage every actor visibly crossed by a sword must not automatically be classified as a source-activation failure.
+
+User observations recovered in EV-219 reject a strict “selected target only” model because unselected actors could sometimes be damaged. One initial swapped-motion observation that appeared to show both swords damaging two separate actors in one SimpleWhirl execution did not reproduce and is not positive evidence for reliable two-target behavior.
+
+EV-220 provides the strongest current comparison: when Dual Power motion content is used under SimpleWhirl, SimpleWhirl remains substantially more target-directed than true PowerAttack using the same authored motion content. The logger simultaneously confirms the intended physical source program in both cases and shows the current bookkeeping contrast:
+
+```text
+SimpleWhirl -> StatePosition 1
+Dual Power  -> StatePosition 2
+```
+
+This supports an action-specific character-hit eligibility layer below/alongside the physical source layer, but does not identify its exact native mechanism.
+
+Next falsification is deliberately one-variable and temporary:
+
+```text
+KEEP:
+Action = 6 / SimpleWhirl
+OnAI_SimpleWhirl
+same Power-derived Dual motion fixture
+same BOTH -> single -> OFF -> BOTH markers
+same source activation/rearm
+same target/group setup
+
+CHANGE ONLY:
+accepted SimpleWhirl marker StatePosition bookkeeping 1 -> 2
+```
+
+Interpretation:
+
+```text
+SimpleWhirl becomes Power-like in broad actor-hit eligibility
+→ StatePosition participates in deeper native eligibility
+→ investigate the legitimate semantic rule from evidence
+→ do not immediately generalize "BOTH = StatePosition 2"
+
+SimpleWhirl remains substantially target-directed
+→ StatePosition is likely bookkeeping/suppression only
+→ revert the temporary change
+→ trace Action 6 / SimpleWhirl-specific native eligibility instead
+```
+
+This control is **not** permission to permanently change SimpleWhirl bookkeeping before runtime evidence.
+
+Before the collision framework is released, establish an animator-facing guarantee for each supported family. The eventual evidence-driven outcome may be:
+
+```text
+uniform eligibility normalization where safe
+OR
+physical-source marker guarantee + documented native family restrictions
+OR
+selective normalization for families where evidence supports it
+```
+
+Do not freeze that policy from the current evidence alone.
+
+Known older deliberate source/authoring review item remains separate:
 
 ```text
 Dual P1 Quick tested authored marker = RIGHT
@@ -298,20 +381,29 @@ Future raw→archive migrations must preserve bytes/provenance and update canoni
 
 `research/derived/` remains a deterministic navigation/analysis layer for oversized evidence; it does not replace canonical raw/archive artifacts.
 
+The five current SimpleWhirl logs remain in `research/raw/` because the character-hit eligibility causal gate is still unresolved. Their compact retrieval aid is:
+
+`research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md`
+
 ---
 
 ## 8. Current Project Sequence
 
-Architecture verification, evidence migration, stable promotion and temporary-branch retirement are complete.
-
-The current repository responsibility is project stabilization, not collision testing:
+The closed architecture foundation remains complete. Current collision expansion is now:
 
 ```text
-structural document/tool simplification
-→ Gothic rules/procedures consistency audit
-→ build/product/repository-shape audit
-→ final readiness check
-→ equipped-melee marker expansion planning
+Power marker/source validation CLOSED
+→ Pierce marker/source validation CLOSED
+→ SimpleWhirl physical marker/source validation PASS
+→ resolve SimpleWhirl character-hit eligibility enough to define the framework guarantee
+→ Hack isolated marker/routing validation
+→ combined remaining-melee marker/lifecycle regression
+→ separate Fist source-adapter decision
+→ full marker/lifecycle regression
+→ AttackContinuationProtection
+→ combined collision regression
+→ mature research compatibility gate
+→ production collision migration
 ```
 
-Exact current responsibility remains owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
+Exact immediate responsibility remains owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.

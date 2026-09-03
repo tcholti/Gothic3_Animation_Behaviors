@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-02
+**Updated:** 2026-09-03
 
 ## Purpose
 
@@ -42,6 +42,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | final RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` / `ANIMATION_RULES.md` |
 | Whirl callback/action/source separation | EV-145–EV-147 | `ANIMATION_RULES.md` / cleanup map |
 | Hack callback identity / remaining marker expansion | EV-216 | `DESIGN.md` §6.6 |
+| SimpleWhirl physical source validation / actor-hit eligibility / Power comparison / StatePosition causal probe | EV-217–EV-220 | `research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md`; `COLLISION_TEST_PLAN.md` §6 |
 | New Balance / AttackCollision Whirl compatibility | EV-035, EV-148–EV-150 | source-guide same-function caution |
 | Staff full-Whirl cleanup anomaly | EV-151–EV-156 | EV-180–EV-191, EV-206–EV-207 |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` |
@@ -51,7 +52,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | marker bookkeeping vs physical cleanup | EV-167 | EV-182–EV-196, EV-206–EV-207, EV-213–EV-214 |
 | generic script parents / ProcessScript | EV-169–EV-171, EV-195 | cleanup map / source guide |
 | rejected deferred replacement finalization | EV-172, EV-180 | historical only; do not revive without new evidence |
-| live `scripts` backup-DLL contamination | EV-173 | source-guide build/runtime cautions |
+| live `scripts` backup-DLL contamination | EV-173, EV-218 | source-guide/build procedure cautions; SimpleWhirl single-twin control |
 | CombatMove FullStop / SetState continuation loss | EV-182–EV-191 | `COLLISION_LIFECYCLE_PLAN.md` |
 | Alternative-AI held-Use2 trigger | EV-187, EV-197 | test trigger only, not production classifier |
 | C1 shadow execution/source obligation | EV-192–EV-193 | lifecycle plan |
@@ -123,7 +124,7 @@ playback synchronization
 Evidence: EV-012–EV-023.  
 Reference: `SOURCE_HOOK_GUIDE.md`; `ANIMATION_RULES.md`.
 
-### C. Physical source selection
+### C. Physical source selection and action-specific character-hit eligibility
 
 Search terms:
 
@@ -136,6 +137,10 @@ Torch
 Dual
 Pierce
 Power
+SimpleWhirl
+character-hit eligibility
+target-directed
+StatePosition
 QuickAttackR
 QuickAttackL
 Crossbow
@@ -153,7 +158,20 @@ EV-192–EV-194
 EV-206–EV-207
 EV-211
 EV-214
+EV-217–EV-220
 ```
+
+Current SimpleWhirl distinction:
+
+```text
+G3AB exact-set markers
+= physical equipped-source activation/rearm semantics
+
+native action-specific character-hit eligibility/effects
+= separate until evidence proves a uniform framework guarantee
+```
+
+EV-217 validates SimpleWhirl physical marker/source behavior. EV-219 rejects a strict selected-target-only model but does not establish reliable two-target/two-sword damage. EV-220 strongly supports a SimpleWhirl-vs-Power action-specific character-hit difference under matched motion content and leaves StatePosition as an unresolved causal candidate.
 
 Asset-level routing: `ANIMATION_INDEX.md`.
 
@@ -178,6 +196,8 @@ EV-033
 EV-106–EV-116
 EV-131–EV-144
 EV-213–EV-214
+EV-217
+EV-220
 ```
 
 Historical fixture details: `ANIMATION_CATALOG.md` and archived v0.10–v0.18 logs.
@@ -220,6 +240,8 @@ C1 monotonic generation = durable marker occurrence/dedupe execution identity
 
 The old source/motion/action/phase/state-time and controlled-callback rollback execution-boundary guesses were superseded by Gate 4. Independent marker invariants remain mandatory.
 
+EV-220 creates a **separate** StatePosition causal question about SimpleWhirl character-hit eligibility. It does not reopen C1-generation marker execution identity.
+
 ### F. Native collision cleanup lifecycle
 
 Search terms:
@@ -237,7 +259,7 @@ LivenessEstablished
 REPAIRED_TO_ITEM_EQUIPPED
 ```
 
-Evidence: EV-151–EV-215.  
+Evidence: EV-151–EV-215 plus SimpleWhirl healthy-cleanup confirmation EV-217.  
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 
@@ -271,10 +293,11 @@ same-function hook
 load order
 ResetOnUntouch
 backup DLL
+collision twin
 ```
 
-Evidence: EV-035, EV-045, EV-148–EV-150, EV-173.  
-Practical source route: `SOURCE_HOOK_GUIDE.md` compatibility/same-function sections.
+Evidence: EV-035, EV-045, EV-148–EV-150, EV-173, EV-218.  
+Practical source route: `SOURCE_HOOK_GUIDE.md` compatibility/same-function sections; deployment rule: POP-03.
 
 ### I. Architecture rewrite / diagnostics-free product separation
 
@@ -331,6 +354,8 @@ NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
 
 This index therefore must not route a fresh Chat into C1-O2, Gate 4 implementation, the literal EV-131 regression or final behavior-only smoke as pending work.
 
+The open SimpleWhirl character-hit eligibility question in EV-219–EV-220 is a **new family/framework semantic responsibility**, not a contradiction in the closed C1/Gate-4 architecture.
+
 ---
 
 ## 5. Future-Responsibility Cross-Routes
@@ -345,8 +370,15 @@ COLLISION_LIFECYCLE_PLAN.md §9
 EV-143–EV-147
 EV-206–EV-215
 EV-216 for the tested Hack callback identity
+EV-217–EV-220 for current SimpleWhirl physical-source / character-hit distinction
 ANIMATION_INDEX.md / ANIMATION_CATALOG.md for exact assets
 ```
+
+Current SimpleWhirl causal checkpoint:
+
+`research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md`
+
+Do not infer a uniform actor-hit guarantee merely from correct RIGHT/LEFT/BOTH/OFF physical source transitions. The current next falsification is the temporary SimpleWhirl StatePosition-2 control defined in `COLLISION_TEST_PLAN.md` / `SESSION_ENTRYPOINT.md`.
 
 ### Fist/body source adapter
 

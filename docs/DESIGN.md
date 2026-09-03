@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-02  
+**Updated:** 2026-09-03  
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -58,7 +58,7 @@ A future feature may intervene in one narrow animation-selection dimension only 
 
 ### DP-04 — Separate attack semantics from physical damage source
 
-Action/callback/phase identify the attack mechanism. The physical source that damages a target is a separate concern.
+Action/callback/phase identify the attack mechanism. The physical source that can produce a damaging contact is a separate concern.
 
 Possible sources include:
 
@@ -69,6 +69,8 @@ Possible sources include:
 - future monster/body/limb/head sources.
 
 Never infer the physical source from a generic `Hit`, final filename `R/L`, or QuickAttackR/L token alone.
+
+Conversely, proving that a physical source is correctly offensive does **not** prove that every Gothic action family applies identical character-hit eligibility, targeting or effect semantics to every actor contacted by that source. Current Pierce and SimpleWhirl evidence requires those layers to remain distinct unless a later controlled result proves a safe uniform rule.
 
 ### DP-05 — Separate responsibilities
 
@@ -247,6 +249,17 @@ OFF   -> {}
 
 RIGHT/LEFT mean Gothic 3 equipped slots, not animation-direction metadata.
 
+The exact-set contract is a **physical source contract**:
+
+```text
+marker
+→ desired equipped source set
+→ Item_Attack / Item_Equipped transitions as required
+→ ClearTriggeredList rearm on each authored contact
+```
+
+It does not, by itself, promise that every supported `gEAction` applies identical native character-hit eligibility or target/effect semantics to every actor intersected by those physical sources. EV-217 proves SimpleWhirl BOTH can correctly arm both physical weapons; EV-220 nevertheless shows that SimpleWhirl remains substantially more target-directed than true PowerAttack under matched motion content. The framework-level normalization policy is therefore intentionally open until the native cause and safety consequences are understood.
+
 Authoring rules:
 
 - at most one G3AB collision command on one authored frame;
@@ -254,7 +267,8 @@ Authoring rules:
 - keep OFF and a later activation on different frames;
 - a repeated source marker later in the same Hit is a new authored contact and rearms that source with `ClearTriggeredList()`;
 - marker timing is animation-specific, not a universal fixed offset;
-- do not create action-specific marker names such as Power/Quick/Whirl RIGHT variants; action-family support belongs in the ownership layer, not the marker vocabulary.
+- do not create action-specific marker names such as Power/Quick/Whirl RIGHT variants; action-family support belongs in the ownership layer, not the marker vocabulary;
+- until the SimpleWhirl/Pierce native eligibility boundary is resolved into a release contract, do not document BOTH as a universal guarantee that both weapons can damage every character they visibly cross in every action family.
 
 Body/Fist/monster marker vocabulary remains separate and must not be invented before its source model is understood.
 
@@ -280,7 +294,7 @@ CollisionSourceOperations
 
 `CollisionSources` does **not** own marker policy or mutation.
 
-`CollisionSourceOperations` does **not** decide attack family, marker ownership or desired source set.
+`CollisionSourceOperations` does **not** decide attack family, marker ownership, desired source set, or native character-hit eligibility.
 
 Fist/body contact is not assumed to use the same physical collision-group mechanism. Controlled Fist evidence shows logical rearm/contact can work while the logical Fist entity remains outside weapon-style `Item_Attack` group handling.
 
@@ -292,6 +306,8 @@ A weapon/entity visit list can suppress repeated damage to the same target. Repe
 
 `BOTH` rearms both selected sources at that authored moment; it is not a substitute for later repeated source markers.
 
+Successful rearm is evidence that the selected physical source was made eligible for a new authored contact under the source layer. It does not override a separate native action-family rule that may determine whether a particular actor contact becomes damage/effect.
+
 ### 6.5 Marker decision caching
 
 Only cache a marker/no-marker decision after the exact current motion is resolved and the frame-effect scan is valid enough to establish a factual result.
@@ -300,7 +316,7 @@ Do not permanently cache a transient unresolved-motion failure as a negative mar
 
 ### 6.6 Remaining equipped-melee expansion boundary
 
-The shared marker/source/generation core has been reviewed as suitable for broader ordinary equipped-weapon expansion. The remaining required marker families are:
+The shared marker/source/generation core has been reviewed as suitable for broader ordinary equipped-weapon expansion. The implemented expansion families are:
 
 ```text
 PowerAttack
@@ -309,13 +325,45 @@ SimpleWhirl
 HackAttack
 ```
 
+Current validation state:
+
+```text
+PowerAttack  marker/source validation CLOSED/PASS
+PierceAttack marker/source validation CLOSED/PASS
+SimpleWhirl  physical marker/source validation PASS; character-hit eligibility semantics OPEN
+HackAttack   implementation present; isolated marker/routing validation pending after SimpleWhirl
+```
+
 `GetUpAttack` is **not part of the planned development roadmap**. Current review found materially different behavior: legitimate offense can occur before later CombatMove, and its native callback also changes `AniState` to `Stand`. Do not spend further marker-engineering time on GetUp unless a future concrete requirement explicitly reopens it as a separate investigation.
 
 `FinishingAttack` is deliberately excluded. The true downed-enemy Finishing path is an execution mechanic whose observed kill timing is not dependent on ordinary weapon contact; preserve its native behavior and do not require collision markers for it.
 
 Fist/body contact remains a separate source-adapter responsibility after equipped-weapon coverage.
 
-The remaining compatible equipped-melee adapters may be implemented in **one bounded code change** after their family/callback bookkeeping and Hack routing are frozen. Validation remains family-specific: Power, Pierce, SimpleWhirl and Hack are tested independently before combined regression.
+The remaining validation is family-specific. Resolve the SimpleWhirl character-hit eligibility boundary enough to define the intended framework guarantee, then validate Hack independently before combined regression.
+
+#### SimpleWhirl native character-hit semantics
+
+Current evidence separates the validated G3AB source layer from an unresolved native eligibility layer:
+
+```text
+SimpleWhirl Action 6 / _AI_SimpleWhirl
++ Power-derived Dual motion content
++ authored BOTH -> single -> OFF -> BOTH source program
++ both exact equipped sources physically activated/rearmed
++ StatePosition 1
+→ substantially target-directed character-hit behavior
+
+true Dual Power Action 2 / _AI_PowerAttack
++ matched authored motion content/program
++ both exact equipped sources physically activated/rearmed
++ StatePosition 2
+→ broad character-hit behavior in the User's comparison
+```
+
+Strict “selected target only” is not supported because unselected actors can sometimes be damaged. Conversely, one apparent two-target/two-sword SimpleWhirl observation failed deliberate reproduction and is not a basis for a multi-target guarantee.
+
+The immediate one-variable falsification is temporary SimpleWhirl StatePosition `1 -> 2` while action/callback/motion/marker/source/target setup remains otherwise unchanged. This is diagnostic investigation only; permanent bookkeeping and any normalization policy remain unfrozen until evidence identifies the responsible native semantic.
 
 #### HackAttack optional animation routing
 
@@ -343,7 +391,7 @@ Compatibility facts:
 - New Balance performs known CombatMove animation-string work around `Game +0x16B065`.
 - G3AB therefore should not unnecessarily own/replace `GetAniName` and should not globally patch action 14's action-string table.
 
-The preferred architecture for the coming implementation responsibility is:
+The implemented preferred architecture is:
 
 ```text
 active native/installed resolver produces the final ordinary resource name
@@ -369,7 +417,7 @@ Dedicated Hack assets are optional overrides. Matching asset existence is the op
 
 Preserve every namespace, pose, direction, distance and variation field produced by Gothic or another active resolver. Do not parse or reimplement ordinary filename metadata. Do not release the returned candidate resource before returning it when it becomes the actual motion resource.
 
-True `FinishingAttack` remains native and unmarked. The narrow query-callsite direction is preferred/frozen for the coming implementation responsibility, but optional Hack routing and Hack marker behavior remain unvalidated until their later runtime tests.
+True `FinishingAttack` remains native and unmarked. Optional Hack routing and Hack marker behavior remain unvalidated until their later runtime tests.
 
 ---
 
@@ -434,7 +482,7 @@ Current lifecycle authority and constraints:
 - `COLLISION_LIFECYCLE_PLAN.md`
 - `COLLISION_TEST_PLAN.md`
 - `COLLISION_CLEANUP_CALLSITE_MAP.md`
-- `EVIDENCE_INDEX.md` → EV-151–EV-215
+- `EVIDENCE_INDEX.md` → EV-151–EV-220
 
 Do not implement family-specific cleanup matrices, timers, polling, held-Use2 classifiers, arbitrary group-7 adoption, or broad scans merely because native cleanup has several internal paths.
 
@@ -499,6 +547,8 @@ Preserve all independent marker invariants:
 - valid-motion-only marker caching.
 
 EV-131–EV-133 establish the historical interrupted-execution occurrence-budget defect. EV-167 separates marker bookkeeping from physical cleanup. EV-213 establishes the generation-scoped replacement, and EV-214 directly closes the literal historical same-motion interruption/restart regression under C1-generation identity. EV-215 completes behavior-only architecture verification.
+
+EV-220 asks whether StatePosition also participates in SimpleWhirl's native character-hit eligibility. That is a separate causal question and does not weaken the accepted C1-generation execution identity.
 
 Before any future marker-core consolidation/reimplementation:
 
@@ -566,7 +616,7 @@ Script_FrameCollisionTest / later Script_G3AnimationBehaviors
 ├─ FrameCollisionMarkers
 │    exact current-motion marker ownership
 │    current attack-family eligibility / callback ownership
-│    RIGHT / LEFT / BOTH / OFF semantics
+│    RIGHT / LEFT / BOTH / OFF physical source-set semantics
 │    C1-generation-scoped authored occurrence/replay/duplicate bookkeeping
 │    competing native activation suppression
 │    marker-owned physical source/window bookkeeping
@@ -641,13 +691,12 @@ project structural/governance stabilization  COMPLETE
 Current accepted sequence:
 
 ```text
-finish Power/Pierce/SimpleWhirl/Hack architecture
-→ one bounded implementation batch
-→ Power isolated validation
-→ Pierce isolated validation
-→ SimpleWhirl isolated validation
-→ Hack isolated validation
-→ combined marker/lifecycle regression
+Power marker/source validation CLOSED
+→ Pierce marker/source validation CLOSED
+→ SimpleWhirl physical marker/source validation PASS
+→ resolve SimpleWhirl native character-hit eligibility enough to define framework guarantee
+→ Hack isolated marker/routing validation
+→ combined remaining-melee marker/lifecycle regression
 → separate Fist investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
@@ -685,7 +734,7 @@ During that longer content period, climbing may be revisited sporadically or opp
 
 ## 12. Non-Goals for the Current Marker-Expansion Responsibility
 
-Do not combine the current remaining-equipped-melee architecture/implementation step with:
+Do not combine the current SimpleWhirl semantic investigation / remaining-equipped-melee validation with:
 
 - new marker vocabulary without a separately proven source model;
 - `GetUpAttack`, unless a future concrete requirement separately reopens it;
@@ -698,7 +747,8 @@ Do not combine the current remaining-equipped-melee architecture/implementation 
 - production collision migration;
 - creation of `feature/raise-attack-speed` before the completed collision checkpoint is on `main`;
 - unrelated systems, including target acquisition and climbing;
-- changing closed C1-R1 or Gate-4 behavior without contradicting evidence.
+- changing closed C1-R1 or Gate-4 behavior without contradicting evidence;
+- treating the temporary SimpleWhirl StatePosition-2 falsification as a permanent design decision before runtime evidence.
 
 ---
 
@@ -709,6 +759,7 @@ Do not combine the current remaining-equipped-melee architecture/implementation 
 | Current exact task / branch state | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
 | Completed second-pass structural proof | `EVIDENCE_INDEX.md` → EV-208–EV-212 + current source/build state |
 | Completed Gate-4 marker bookkeeping proof | `EVIDENCE_INDEX.md` → EV-213–EV-215 |
+| SimpleWhirl physical source / actor-hit semantics | `EVIDENCE_INDEX.md` → EV-217–EV-220 → `research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md` |
 | Current roadmap / overall architecture | this `DESIGN.md` §§10–11 |
 | Release vs diagnostic products | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
 | Collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
