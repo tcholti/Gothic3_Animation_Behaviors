@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.7  
+**Version:** 1.8  
 **Updated:** 2026-09-03
 
 ## Purpose
@@ -160,10 +160,13 @@ Use after the relevant source implementation has passed its required source-leve
 ```text
 correct branch/source state
 → choose the exact target required by the frozen question
-→ build only that target
+→ build only that target into the repository-local build tree
+→ leave the built artifact in the build tree
 → User reports success or smallest useful error excerpt
 → STOP build stage
 ```
+
+The build stage must not use the live Gothic 3 `scripts` directory as a build output, staging area, backup location or disabled-product store. Build products remain in the repository-local `build\...` tree until POP-03 explicitly deploys one selected product for a runtime test.
 
 Current collision research targets:
 
@@ -191,7 +194,7 @@ cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
 
 Do not build both merely because both exist; build the product selected by the current test responsibility.
 
-A successful build does not automatically deploy the DLL.
+A successful build does not automatically deploy the DLL. The User manually copies the exact selected built product during POP-03 when a runtime test requires deployment.
 
 For a normal success, the User only needs to report that it succeeded. Do not ask for the complete successful build output.
 
@@ -207,7 +210,7 @@ Use after a successful build and before launching Gothic 3 for that build.
 
 ### Current collision twin paths
 
-Both collision research targets are emitted from the same prototype build directory:
+Both collision research targets are emitted from the same repository-local prototype build directory:
 
 ```text
 E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\build\prototypes\Script_FrameCollisionTest\Release\
@@ -232,18 +235,22 @@ E:\SteamLibrary\steamapps\common\Gothic 3\scripts
 ### Pattern
 
 ```text
-resolve the exact selected built DLL
-→ remove/avoid the other mutually exclusive collision twin from the live directory
-→ copy selected DLL to its exact live name
-→ enumerate both collision twin names
-→ require exactly one selected twin live
+resolve the exact selected built DLL in the repository-local build tree
+→ ensure every mutually exclusive non-selected collision twin is physically absent from the live scripts directory
+→ manually copy only the selected DLL to its exact live name
+→ enumerate every Script_FrameCollision* file in the live scripts directory
+→ require exactly one selected collision twin live and no renamed/disabled sibling copies
 → SHA256 built == selected live DLL
 → only then launch
 ```
 
 For collision research, **do not co-load** `Script_FrameCollisionTest.dll` and `Script_FrameCollisionBehaviorTest.dll`.
 
-Normal Chat should provide the concrete selected product paths rather than asking the User to infer them. A guarded deployment should verify both twin names, not only a wildcard that happens to match one of them.
+The live Gothic 3 `scripts` directory is a deployment surface, not storage for alternative builds. A product that is not intended to load must be moved out of the live `scripts` directory or deleted from it. **Do not attempt to disable a script DLL by renaming it in place** (for example `Script_FrameCollisionBehaviorTest.dll.disabled`). Runtime evidence on 2026-09-03 showed Gothic mapping such a renamed file as a loaded module, so suffixing or extending the filename is not a safe disable mechanism.
+
+Keep alternate/currently inactive builds in their normal repository-local build output or another location outside the live Gothic 3 `scripts` directory. Deploy them manually only when they become the selected runtime product.
+
+Normal Chat should provide the concrete selected product paths rather than asking the User to infer them. A guarded deployment must enumerate the whole relevant product-name family so renamed siblings such as `.dll.disabled` cannot evade the check.
 
 Conceptual check:
 
@@ -252,18 +259,19 @@ $liveDir = 'E:\SteamLibrary\steamapps\common\Gothic 3\scripts'
 
 Get-ChildItem -LiteralPath $liveDir |
     Where-Object {
-        $_.Name -eq 'Script_FrameCollisionTest.dll' -or
-        $_.Name -eq 'Script_FrameCollisionBehaviorTest.dll'
+        $_.Name -like 'Script_FrameCollision*'
     } |
     Select-Object Name, Length, LastWriteTime
 ```
 
 Expected:
 
-- exactly one collision twin, and it is the product selected by the frozen test;
+- exactly one `Script_FrameCollision*` runtime product;
+- it is the exact product selected by the frozen test;
+- no renamed/disabled sibling copy remains in the live directory;
 - built/live SHA256 match.
 
-If both twins are present, the wrong twin is present, or the hash is false, stop before launching and resolve deployment first.
+If any additional collision twin/sibling is present, the wrong selected product is present, or the hash is false, stop before launching and resolve deployment first.
 
 For another future product, apply the same invariant using its defined mutually exclusive/loader set rather than mechanically reusing the collision names.
 
