@@ -127,7 +127,7 @@ Do **not** create `feature/raise-attack-speed` early.
 
 ---
 
-## CURRENT RESPONSIBILITY — Resolve SimpleWhirl Character-Hit Semantics
+## CURRENT RESPONSIBILITY — Runtime-Test SimpleWhirl StatePosition Causal Probe
 
 Implemented remaining-melee batch baseline:
 
@@ -141,6 +141,15 @@ Generic before/after-marker StatePosition diagnostics:
 7c31784c5ef86bc79b54d573144b8e40f33e5e6b
 ```
 
+Temporary SimpleWhirl causal probe:
+
+```text
+a48449fcd9e2514a6d1c1f9943eb04004a5778f3
+Add temporary SimpleWhirl StatePosition causal probe
+```
+
+Independent Normal Chat source review: **PASS**. Remote branch publication at `a48449f...` verified. No build/runtime result exists yet.
+
 Current family status:
 
 ```text
@@ -148,6 +157,7 @@ PowerAttack   CLOSED/PASS for current marker-expansion stage
 PierceAttack  CLOSED/PASS for current marker-expansion stage
 SimpleWhirl   physical marker/source mechanics PASS
 SimpleWhirl   native character-hit eligibility semantics OPEN
+SimpleWhirl   temporary StatePosition-2 probe IMPLEMENTED / source-review PASS / runtime pending
 HackAttack    implementation complete; isolated marker/routing validation pending AFTER SimpleWhirl
 combined marker/lifecycle regression pending afterward
 ```
@@ -159,7 +169,7 @@ research/derived/2026-09-03_power_pierce_marker_validation_checkpoint.md
 research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md
 ```
 
-Current bookkeeping classification:
+Accepted baseline bookkeeping before the temporary probe:
 
 ```text
 Pierce       → StatePosition 1
@@ -167,6 +177,12 @@ SimpleWhirl  → StatePosition 1
 Hack         → OnAI_HackAttack → StatePosition 1
 Power normal → StatePosition 1
 Power Dual   → StatePosition 2
+```
+
+Current branch test scaffolding at `a48449f...` changes **only**:
+
+```text
+SimpleWhirl  → StatePosition 2   [TEMPORARY CAUSAL PROBE]
 ```
 
 EV-216 closes the Hack callback identity for the tested runtime build: `Script_Game +0x433D0` has one unique registration-table match, `OnAI_HackAttack`, from `.\Script\AI\AI_Commands\AI_HackAttack.cpp`.
@@ -183,7 +199,7 @@ The current runtime evidence establishes the G3AB physical marker/source layer f
 Action 6 / _AI_SimpleWhirl ownership works
 accepted native-slot marker -> exact source activation/rearm
 accepted BOTH -> both exact Dual sources 5 -> 7
-StatePosition 0 -> 1 and remains 1 through later markers
+StatePosition 0 -> 1 and remains 1 through later markers in the accepted baseline
 BOTH -> single -> OFF -> BOTH exact-set behavior works
 natural exact-source cleanup returns live sources 7 -> 5
 no C1 terminal repair is required in healthy completion
@@ -248,7 +264,7 @@ True runtime `FinishingAttack` action 15 stays native/unmarked.
 
 Preserve namespaces created by native Gothic or compatible resolvers such as Jackydima `Script_Animation`; do not normalize Axe/other namespaces into G3AB guesses.
 
-Exact preferred authored fixtures and routing notes remain in `docs/BETWEEN_CHATS.md`.
+Exact current transient test/continuation detail lives in `docs/BETWEEN_CHATS.md`.
 
 ---
 
@@ -283,35 +299,54 @@ After Release 1, animation content is updated and released weapon family by weap
 
 ## Exact Immediate Next Step
 
-Temporary diagnostic causal control only:
+The temporary one-variable source change is complete and independently reviewed. The next step requires the authoritative local build/game environment.
+
+When back at the home PC:
 
 ```text
-keep Action 6 / SimpleWhirl
-keep OnAI_SimpleWhirl
-keep the same Power-derived Dual motion fixture
-keep the same BOTH -> single -> OFF -> BOTH markers
-keep the same source activation/rearm behavior
-keep the same target/group setup
-
-change only accepted SimpleWhirl marker bookkeeping:
-StatePosition 1 -> 2
+sync docs/collision-source-evidence to a48449fcd9e2514a6d1c1f9943eb04004a5778f3
+→ build the instrumented Script_FrameCollisionTest diagnostic twin
+→ deploy under the existing one-live-twin rule
+→ run the established SimpleWhirl StatePosition causal comparison
+→ preserve the raw log/artifact
+→ return the gameplay observation + diagnostic evidence for interpretation
 ```
 
-Compare character-hit behavior against the already-observed true Dual Power / StatePosition-2 control.
+Keep the causal fixture unchanged:
+
+```text
+Action 6 / SimpleWhirl
+OnAI_SimpleWhirl
+same Power-derived Dual motion fixture
+same BOTH -> single -> OFF -> BOTH markers
+same source activation/rearm behavior
+same target/group setup
+```
+
+Expected diagnostic implementation check:
+
+```text
+accepted SimpleWhirl marker
+→ StatePositionAfterMarker = 2
+```
+
+That confirms the test variable is active; it does **not** by itself establish actor-hit causality.
+
+Interpret the gameplay result as:
 
 ```text
 SimpleWhirl becomes Power-like
 → StatePosition participates in deeper native actor-hit eligibility
-→ investigate the legitimate semantic rule from evidence before adopting any permanent normalization
+→ consider a bounded investigation of the legitimate semantic rule before permanent normalization
 
 SimpleWhirl stays substantially target-directed
 → StatePosition is likely bookkeeping/suppression only
-→ revert temporary change
+→ revert temporary probe
 → apply the charter's deliberate-scope decision guide
-→ trace Action 6 / SimpleWhirl-specific native eligibility only if a bounded follow-up still looks worthwhile/promising
-→ otherwise define the animator-facing family contract as physical-source marker control plus the documented native eligibility restriction
+→ continue native eligibility research only if a bounded follow-up still looks worthwhile/promising
+→ otherwise close SimpleWhirl with physical-source marker control + documented native eligibility restriction
 ```
 
-This is a falsification probe, **not** permission to redefine the permanent SimpleWhirl bookkeeping yet. A documented native family restriction is a valid resolution of this responsibility; a deep native trace is not automatically required merely because the cheap causal probe fails.
+This is still a falsification probe, **not** permission to redefine permanent SimpleWhirl bookkeeping. A documented native family restriction is a valid resolution; a deep native trace is not automatic.
 
-Do not proceed to Hack isolated runtime validation until this SimpleWhirl causal question is resolved enough to define the intended framework guarantee. Do not reopen Power or Pierce.
+Do not proceed to Hack isolated runtime validation until the SimpleWhirl result is interpreted enough to define the intended family/framework guarantee. Do not reopen Power or Pierce.
