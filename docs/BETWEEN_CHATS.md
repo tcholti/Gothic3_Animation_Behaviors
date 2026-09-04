@@ -2,7 +2,7 @@
 
 **Purpose:** Exact short-lived continuation bridge. Replace rather than accumulate chronology.
 
-**Updated:** 2026-09-03
+**Updated:** 2026-09-04
 
 ## Current bridge — SimpleWhirl character-hit semantics
 
@@ -200,13 +200,17 @@ Interpretation:
 ```text
 if actor-hit behavior becomes Power-like
 → StatePosition participates in deeper native eligibility
-→ investigate legitimate semantic rule; do not generalize immediately
+→ investigate the legitimate semantic rule before any permanent normalization; do not generalize immediately
 
 if behavior stays substantially target-directed
 → StatePosition is likely bookkeeping/suppression only
 → revert temporary change
-→ trace Action 6 / SimpleWhirl-specific native hit-eligibility path
+→ apply the charter's deliberate-scope decision guide
+→ trace Action 6 / SimpleWhirl-specific native hit-eligibility only if a bounded follow-up still looks worthwhile/promising
+→ otherwise define the animator-facing family contract as physical-source marker control plus the documented native eligibility restriction
 ```
+
+A documented native family restriction is a valid resolution of this responsibility. A deep native trace is not automatically required merely because the StatePosition probe fails.
 
 Do not move to Hack runtime validation until this SimpleWhirl causal question is resolved enough to define the intended framework guarantee.
 
