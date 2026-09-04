@@ -458,8 +458,9 @@ static GEInt GetMarkerOwnedStatePosition(
             return IsOneHandedSource(sources.rightInstance)
                     && IsOneHandedSource(sources.leftInstance)
                 ? 2 : 1;
-        case AttackFamily_Quick:
         case AttackFamily_SimpleWhirl:
+            return 2;
+        case AttackFamily_Quick:
         case AttackFamily_Whirl:
         case AttackFamily_Pierce:
         case AttackFamily_Hack:
