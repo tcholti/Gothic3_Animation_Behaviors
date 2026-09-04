@@ -1,0 +1,1255 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 27180.963
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 27180.989
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 27201.160
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 27989.616
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 27995.373
+Actor: PC_Hero
+Family: HACK
+CurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+Action: 14
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_Sword_Flamberge
+RightSourceAddress: E70E8610
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 27995.422
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.807466
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 27995.438
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 28478.031
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.294889
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 28478.070
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 28478.091
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 28478.117
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 30665.774
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 30665.800
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 30665.867
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 31505.638
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31505.726
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.809709
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 31505.743
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 31958.546
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.292768
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 31958.583
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 31958.605
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 31958.633
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 33256.875
+Actor: PC_Hero
+Generation: 3
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 33256.888
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 3
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 33256.957
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34061.448
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34061.543
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.802955
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 34061.562
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34543.218
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.285938
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 34543.253
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34543.273
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 34543.299
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 3
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 35948.695
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 35948.708
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 35948.773
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 36753.074
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36753.180
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.804927
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 36753.203
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37236.897
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.288904
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 37236.934
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 37236.956
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 37236.985
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 38915.054
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 38915.067
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 38915.137
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 39719.901
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39720.031
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.805923
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 39720.064
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40204.941
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.289884
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 40205.029
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 40205.055
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 40205.082
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 41433.691
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 41433.704
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 41433.769
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 42240.575
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42240.671
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.807893
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 42240.690
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42728.420
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.293848
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 42728.457
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 42728.478
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 42728.505
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 52516.772
+Actor: PC_Hero
+Generation: 7
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 52516.785
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 7
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 52516.861
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 53315.011
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53315.112
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.800943
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 53315.130
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53800.284
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.284816
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 53800.320
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 53800.342
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 53800.372
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 72454.159
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 72454.171
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 72454.248
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 73260.828
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 73260.928
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.805952
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 73260.947
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 73747.574
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.290863
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 73747.613
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 73747.633
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 73747.664
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 76040.696
+Actor: PC_Hero
+Generation: 9
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E70E8610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 76040.709
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 9
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 76040.778
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 76849.497
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 76849.596
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.807969
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 76849.614
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 77337.287
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 1.292937
+PlayerCurrentMovementAni: Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_200.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 77337.327
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E70E8610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 77337.348
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 77337.373
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E70E8610
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.
