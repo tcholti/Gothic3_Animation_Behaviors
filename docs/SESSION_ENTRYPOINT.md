@@ -20,19 +20,17 @@ Local workstation/build/runtime paths: `docs/LOCAL_WORKSTATION_PATHS.md` (retrie
 
 ## Authority Boundary
 
-CAM is the constitutional collaboration layer above this project. `docs/README.md` is the **highest project-specific authority immediately beneath CAM**.
+CAM is the constitutional collaboration layer above this project. `docs/README.md` is the highest project-specific authority immediately beneath CAM.
 
 ```text
 CAM
-→ Gothic project charter (`docs/README.md`)
-→ specialist Gothic authorities within delegated domains
-→ procedures / bounded protocols
-→ exact task execution
+-> Gothic project charter
+-> specialist Gothic authorities
+-> procedures / bounded protocols
+-> exact task execution
 ```
 
-A formal project review/audit must apply POP-10 before judging content, contradiction, duplication or cleanup.
-
-> **Do not modify the Collaborative-Agency-Model repository from Gothic 3 project work.**
+Do not modify the Collaborative-Agency-Model repository from Gothic 3 project work.
 
 ---
 
@@ -40,24 +38,22 @@ A formal project review/audit must apply POP-10 before judging content, contradi
 
 > **Every released Gothic 3 behavior DLL contains behavior only. Research diagnostics are a separate build product and are not compiled into the release binary.**
 
-Never normally load behavior-only and diagnostic twins together.
+Never normally load behavior-only and diagnostic collision twins together.
 
-Release/product details live in `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
+Release/product details: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
 ---
 
 ## Fresh Normal Chat Bootstrap
 
 1. Read this file first.
-2. Read `docs/BETWEEN_CHATS.md` for the active transient responsibility.
-3. Treat CAM → project charter → specialist authority and release purity as standing constraints.
-4. For a formal review/audit, apply POP-10 before evaluating targets.
-5. If the active technical subsystem is not already oriented, use the one-time Subsystem Orientation Pass from `docs/README.md`.
-6. Reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority when substantial reasoning requires it.
-7. Retrieve `PROJECT_PIPELINE.md` before changing branch/test/evidence/procedure/version/artifact conventions.
-8. Do not scan the whole repository or reconstruct the project from old chat history.
-9. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
-10. Do not modify CAM from this project responsibility.
+2. Read `docs/BETWEEN_CHATS.md` for the exact active responsibility.
+3. Treat CAM -> project charter -> specialist authority and release purity as standing constraints.
+4. Reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority when substantial reasoning requires it.
+5. Retrieve `PROJECT_PIPELINE.md` before changing branch/test/evidence/procedure/version/artifact conventions.
+6. Do not scan the whole repository or reconstruct the project from old chat history.
+7. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
+8. If the previous Normal Chat failed or hit maximum context, apply POP-11 before trusting stale current-state wording.
 
 After bootstrap, report briefly:
 
@@ -65,22 +61,7 @@ After bootstrap, report briefly:
 current responsibility
 closed boundary relevant to it
 exact immediate next step
-what remains deliberately outside the current responsibility
-```
-
-### If the previous Normal Chat failed or hit maximum context
-
-Do **not** assume the current `NEXT` text below is still accurate merely because this file was the last maintained front door. Apply POP-11 interrupted-context recovery first.
-
-Emergency starter:
-
-```text
-RECOVERY START
-Read SESSION_ENTRYPOINT first, but treat its current responsibility as potentially stale.
-Apply PROJECT_OPERATING_PROCEDURES POP-11.
-Compare only the recent durability gap against the newest branch commits/raw evidence and any supplied previous-chat transcript.
-Complete any missed KNOWLEDGE_MAINTENANCE transaction and correct SESSION_ENTRYPOINT/BETWEEN_CHATS before resuming technical work.
-Do not scan the whole repository.
+what remains deliberately outside current responsibility
 ```
 
 ---
@@ -93,8 +74,8 @@ Gate 1 source/build separation             CLOSED/PASS — EV-208
 Gate 2 CORE diagnostic sufficiency         CLOSED/PASS — EV-209–EV-211
 Gate 3 behavior-only smoke                 CLOSED/PASS — EV-212
 Gate 4 generation-scoped bookkeeping       CLOSED/PASS — EV-213
-Literal historical EV-131 regression       CLOSED/PASS — EV-214
-Final behavior-only architecture smoke     CLOSED/PASS — EV-215
+literal historical EV-131 regression       CLOSED/PASS — EV-214
+final behavior-only architecture smoke     CLOSED/PASS — EV-215
 NEW COLLISION ARCHITECTURE VERIFICATION    COMPLETE
 ```
 
@@ -117,236 +98,186 @@ Accepted phase transition:
 
 ```text
 complete collision on docs/collision-source-evidence
-→ migrate mature collision behavior into Script_G3AnimationBehaviors
-→ validate diagnostics-free collision integration
-→ promote completed collision checkpoint to main
-→ create feature/raise-attack-speed from that updated main
+-> migrate mature collision behavior into Script_G3AnimationBehaviors
+-> validate diagnostics-free collision integration
+-> promote completed collision checkpoint to main
+-> create feature/raise-attack-speed from updated main
 ```
 
-Do **not** create `feature/raise-attack-speed` early.
+Do not create `feature/raise-attack-speed` early.
 
 ---
 
-## CURRENT RESPONSIBILITY — Runtime-Test SimpleWhirl StatePosition Causal Probe
+## Current Equipped-Melee Expansion State
 
-Implemented remaining-melee batch baseline:
+Remaining-melee implementation baseline:
 
-```text
-f0d929c90fbe086f44f66f91a2523904d06c3903
-```
+`f0d929c90fbe086f44f66f91a2523904d06c3903`
 
 Generic before/after-marker StatePosition diagnostics:
 
-```text
-7c31784c5ef86bc79b54d573144b8e40f33e5e6b
-```
-
-Temporary SimpleWhirl causal probe:
-
-```text
-a48449fcd9e2514a6d1c1f9943eb04004a5778f3
-Add temporary SimpleWhirl StatePosition causal probe
-```
-
-Independent Normal Chat source review: **PASS**. Remote branch publication at `a48449f...` verified. No build/runtime result exists yet.
+`7c31784c5ef86bc79b54d573144b8e40f33e5e6b`
 
 Current family status:
 
 ```text
 PowerAttack   CLOSED/PASS for current marker-expansion stage
 PierceAttack  CLOSED/PASS for current marker-expansion stage
-SimpleWhirl   physical marker/source mechanics PASS
-SimpleWhirl   native character-hit eligibility semantics OPEN
-SimpleWhirl   temporary StatePosition-2 probe IMPLEMENTED / source-review PASS / runtime pending
-HackAttack    implementation complete; isolated marker/routing validation pending AFTER SimpleWhirl
-combined marker/lifecycle regression pending afterward
+SimpleWhirl   CLOSED/PASS for current marker-expansion stage
+HackAttack    implementation present; callback identity CLOSED; isolated validation NEXT
 ```
 
-Compact retrieval checkpoints:
-
-```text
-research/derived/2026-09-03_power_pierce_marker_validation_checkpoint.md
-research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md
-```
-
-Accepted baseline bookkeeping before the temporary probe:
-
-```text
-Pierce       → StatePosition 1
-SimpleWhirl  → StatePosition 1
-Hack         → OnAI_HackAttack → StatePosition 1
-Power normal → StatePosition 1
-Power Dual   → StatePosition 2
-```
-
-Current branch test scaffolding at `a48449f...` changes **only**:
-
-```text
-SimpleWhirl  → StatePosition 2   [TEMPORARY CAUSAL PROBE]
-```
-
-EV-216 closes the Hack callback identity for the tested runtime build: `Script_Game +0x433D0` has one unique registration-table match, `OnAI_HackAttack`, from `.\Script\AI\AI_Commands\AI_HackAttack.cpp`.
-
-`GetUpAttack` is not part of the planned marker roadmap. `FinishingAttack` remains deliberately excluded/native. Fist/body remains a separate source-adapter responsibility.
+`GetUpAttack` is not part of the planned marker roadmap. True `FinishingAttack` action 15 remains deliberately native/unmarked. Fist/body remains a separate later source-adapter responsibility.
 
 ---
 
-## SimpleWhirl Current Result
+## SimpleWhirl Closure
 
-The current runtime evidence establishes the G3AB physical marker/source layer for SimpleWhirl:
+Closed retrieval checkpoint:
+
+`research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md`
+
+Established result:
 
 ```text
 Action 6 / _AI_SimpleWhirl ownership works
-accepted native-slot marker -> exact source activation/rearm
-accepted BOTH -> both exact Dual sources 5 -> 7
-StatePosition 0 -> 1 and remains 1 through later markers in the accepted baseline
-BOTH -> single -> OFF -> BOTH exact-set behavior works
-natural exact-source cleanup returns live sources 7 -> 5
-no C1 terminal repair is required in healthy completion
+RIGHT / LEFT / BOTH / OFF physical source mechanics work
+BOTH activates/rearms both exact Dual equipped weapon sources
+both swords can connect against the selected target
+native cleanup / C1 generation / occurrence protection remain healthy
 ```
 
-However, User observation under matched animation content shows that SimpleWhirl does **not** have the same character-hit eligibility as true PowerAttack:
+Matched-motion testing showed SimpleWhirl remains substantially more target-directed than true PowerAttack even when the physical source program succeeds.
+
+A temporary one-variable causal probe changed only:
 
 ```text
-same Power-derived Dual motion content
-same authored physical source program
-
-true PowerAttack -> broad actor contacts can damage actors touched by the swords
-SimpleWhirl      -> substantially more target-directed, though not strictly selected-target-only
+SimpleWhirl StatePosition 1 -> 2
 ```
 
-Therefore the current architecture distinction is:
+Implementation:
+
+`a48449fcd9e2514a6d1c1f9943eb04004a5778f3`
+
+Runtime result:
+
+`research/raw/2026-09-04_simplewhirl_stateposition2_causal_probe.log`  
+commit `ed40a6d901efc4bb30800e170bc850857d8f6dda`
+
+The logger confirmed StatePosition 2 was active, but gameplay remained substantially target-directed. Therefore StatePosition 2 is rejected as a sufficient explanation/normalization for the SimpleWhirl-vs-Power actor-hit difference.
+
+The temporary probe was reverted at:
+
+`9120ca32466b257722a4fe553f64063f331249b4`
+
+Final accepted bookkeeping:
 
 ```text
-G3AB markers
-= WHEN collision is offensive
-+ WHICH equipped physical source set is offensive/rearmed
-
-native/action-specific character-hit semantics
-= which actor contacts are eligible to become character damage/effects
+SimpleWhirl -> StatePosition 1
 ```
 
-Do not claim `G3AB_COL_BOTH` currently guarantees uniform two-weapon character-hit eligibility across every action family. It guarantees the authored physical equipped-source set; the final framework-level actor-hit guarantee remains open.
+Final native regression:
 
-The initial swapped-motion observation that appeared to show two swords damaging two separate actors in one SimpleWhirl execution was not reproduced on deliberate repetition and is **not confirmed evidence**.
+`research/raw/2026-09-04_simplewhirl_native_stateposition1_final_regression.log`  
+commit `003c4c5c4baaa72401f6743c408f14db476b8887`
 
-The earlier SimpleWhirl crash is not the current causal gate. The crashing configuration had multiple collision twins/modules live; verified single-twin deployment did not reproduce it in the control run. Treat accidental co-loading as the strongest identified crash cause, but not a universally proven sole cause. Reopen only if a comparable crash recurs under verified single-twin deployment.
+The User again confirmed both swords could connect against the selected target. Non-selected actors could also sometimes be damaged. The repeated observation was that those secondary actors were roughly beside/in front of the selected target or between Hero and the selected target. This is preserved only as a qualified spatial observation; no exact cone/corridor/native rule is claimed.
+
+Current framework decision:
+
+```text
+G3AB SimpleWhirl markers
+= authored physical source timing/set/rearm
+
+Gothic SimpleWhirl semantics
+= preserve the native substantially target-directed actor-hit eligibility
+```
+
+The cost/reward decision is to stop deeper Action-6 eligibility reverse engineering in the current collision scope. Future deliberate target-acquisition/action-specific-hit-semantics work may reopen the question from the closure checkpoint without reopening the proven physical marker/source layer.
 
 ---
 
-## Pierce Closure Note
+## Current Responsibility — HackAttack Isolated Marker / Optional Routing Validation
 
-Pierce validation established that marker-authored RIGHT / LEFT / BOTH / OFF source behavior can be changed independently of stock Pierce motion content while runtime action remains Pierce and bookkeeping remains `StatePosition 1`.
+EV-216 closes the callback identity for the tested runtime build:
 
-User runtime observation additionally indicates that Pierce retains native focused-target/reaction semantics: copied Power motion content still produced the distinctive humanoid Pierce stumble on successful selected-target contacts, while nearby non-selected targets were not hit by the same Pierce swings in the observed multi-target test.
+```text
+Script_Game +0x433D0
+= OnAI_HackAttack
+= .\Script\AI\AI_Commands\AI_HackAttack.cpp
+```
 
-A repeated diagnostic cadence where a fresh `MARKER OWNERSHIP DECISION` appears once per distinct Pierce motion rather than once per execution remains unexplained. It also persists with New Balance bad-skip prevention active while all execution generations, marker budgets, physical source transitions and cleanup remain correct. Do not investigate further absent a concrete behavioral contradiction. A relationship to native Pierce target/effect semantics is plausible but unproven.
+Hack bookkeeping currently implemented:
 
-The tested Pierce configuration also passed with New Balance + Jackydima `Script_AttackCollision` active across 1H, Torch+1H, Shield+1H and both Dual Pierce sides. This is Pierce-specific compatibility evidence, not blanket certification of every AttackCollision callback family.
+```text
+Hack -> StatePosition 1
+```
 
----
+Optional Hack animation routing is already implemented and must now be validated rather than redesigned.
 
-## HackAttack Optional Animation Routing
-
-Dedicated Hack animations are optional overrides, not a dependency.
-
-Implemented behavior:
+Accepted routing contract:
 
 ```text
 runtime action == HackAttack (14)
-→ preserve the serialized name/namespace produced by the active resolver
-→ at the narrow CombatMove motion-resource query callsite, derive only the matching _HackAttack_ token variant
-→ matching Hack asset exists: use it
-→ matching Hack asset absent: preserve original FinishingAttack resource/path unchanged
+-> preserve the resource name/namespace produced by the active resolver
+-> at the narrow CombatMove motion-resource query, derive only
+   _FinishingAttack_ -> _HackAttack_
+-> matching Hack asset exists: use it
+-> matching Hack asset absent: preserve untouched original FinishingAttack resource/path
+
+runtime action == FinishingAttack (15)
+-> untouched native path
 ```
 
-True runtime `FinishingAttack` action 15 stays native/unmarked.
+Preserve namespaces produced by native Gothic or compatible resolvers such as Jackydima `Script_Animation`; do not normalize Axe/other namespaces into G3AB guesses.
 
-Preserve namespaces created by native Gothic or compatible resolvers such as Jackydima `Script_Animation`; do not normalize Axe/other namespaces into G3AB guesses.
-
-Exact current transient test/continuation detail lives in `docs/BETWEEN_CHATS.md`.
-
----
-
-## AttackContinuationProtection Goal
-
-```text
-prevent the known destructive continuation/bad-skip mechanism
-from terminating or advancing through a legitimately live Hit execution
-```
-
-The required outcome is frozen; the exact mechanism is not. Keep this responsibility separate from `CollisionLifecycleGuard`; retain C1-R1 underneath as the general lost-cleanup fail-safe.
-
----
-
-## First Public Release Boundary
-
-The first public Animation Behaviors release is planned after the diagnostics-free framework contains and validates:
-
-```text
-general marker/collision framework
-+ AttackContinuationProtection / bad-skip prevention
-+ Raise framework
-+ general/action/profile attack-speed + configuration framework
-+ required assembled compatibility/regression
-```
-
-**Release 1 animation content is intentionally 2H only.** The framework does not wait for every weapon family to have finished replacement animations.
-
-After Release 1, animation content is updated and released weapon family by weapon family. Climbing may be revisited sporadically during that longer authoring period; target-acquisition changes remain independent future work.
+Exact current Hack test continuation: `docs/BETWEEN_CHATS.md`.
 
 ---
 
 ## Exact Immediate Next Step
 
-The temporary one-variable source change is complete and independently reviewed. The next step requires the authoritative local build/game environment.
-
-When back at the home PC:
+Run only the isolated Hack validation defined in `docs/BETWEEN_CHATS.md`:
 
 ```text
-sync docs/collision-source-evidence to a48449fcd9e2514a6d1c1f9943eb04004a5778f3
-→ build the instrumented Script_FrameCollisionTest diagnostic twin
-→ deploy under the existing one-live-twin rule
-→ run the established SimpleWhirl StatePosition causal comparison
-→ preserve the raw log/artifact
-→ return the gameplay observation + diagnostic evidence for interpretation
+fallback control
+-> dedicated Hack positive with one simple marked fixture
+-> true FinishingAttack negative
 ```
 
-Keep the causal fixture unchanged:
+The positive must establish:
 
 ```text
-Action 6 / SimpleWhirl
-OnAI_SimpleWhirl
-same Power-derived Dual motion fixture
-same BOTH -> single -> OFF -> BOTH markers
-same source activation/rearm behavior
-same target/group setup
+runtime Action 14 / OnAI_HackAttack remains Hack
+matching dedicated Hack resource is selected
+Family HACK owns the reserved marker in the exact Hit
+accepted source marker leaves StatePosition 1
+exact equipped source activation/rearm/cleanup remains healthy
 ```
 
-Expected diagnostic implementation check:
+Do not broaden into every weapon type or compatibility stack before this isolated result.
+
+After Hack closes:
 
 ```text
-accepted SimpleWhirl marker
-→ StatePositionAfterMarker = 2
+combined remaining-melee marker/lifecycle regression
 ```
 
-That confirms the test variable is active; it does **not** by itself establish actor-hit causality.
+Do not reopen Power, Pierce, SimpleWhirl, C1 lifecycle architecture or Gate-4 execution identity during Hack validation.
 
-Interpret the gameplay result as:
+---
 
-```text
-SimpleWhirl becomes Power-like
-→ StatePosition participates in deeper native actor-hit eligibility
-→ consider a bounded investigation of the legitimate semantic rule before permanent normalization
+## Later Separate Responsibilities
 
-SimpleWhirl stays substantially target-directed
-→ StatePosition is likely bookkeeping/suppression only
-→ revert temporary probe
-→ apply the charter's deliberate-scope decision guide
-→ continue native eligibility research only if a bounded follow-up still looks worthwhile/promising
-→ otherwise close SimpleWhirl with physical-source marker control + documented native eligibility restriction
-```
+Remain outside current Hack validation:
 
-This is still a falsification probe, **not** permission to redefine permanent SimpleWhirl bookkeeping. A documented native family restriction is a valid resolution; a deep native trace is not automatic.
+- Fist/body source adapter;
+- full marker/lifecycle regression after remaining equipped-melee closure;
+- AttackContinuationProtection / bad-skip prevention;
+- mature collision compatibility gate;
+- production collision migration into `Script_G3AnimationBehaviors`;
+- Raise / speed / configuration work on the later branch;
+- target acquisition;
+- climbing.
 
-Do not proceed to Hack isolated runtime validation until the SimpleWhirl result is interpreted enough to define the intended family/framework guarantee. Do not reopen Power or Pierce.
+First public release still requires the mature diagnostics-free framework with collision + AttackContinuationProtection + Raise + redesigned speed/config + required compatibility/regression. Release 1 animation content remains intentionally 2H only.
