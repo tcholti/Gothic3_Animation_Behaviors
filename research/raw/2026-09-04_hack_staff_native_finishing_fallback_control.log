@@ -1,0 +1,310 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 104709.839
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: C2D00610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 104709.865
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 104719.236
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 105471.425
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 105481.241
+Actor: PC_Hero
+Family: HACK
+CurrentMovementAni: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+Action: 14
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: Wrestling Staff_BBM
+RightSourceAddress: C2D00610
+RightSourceUseType: 12
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 105481.289
+Source: Wrestling Staff_BBM
+SourceAddress: C2D00610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.760890
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 105481.305
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: Wrestling Staff_BBM
+SourceAddress: C2D00610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 106084.002
+Source: Wrestling Staff_BBM
+SourceAddress: C2D00610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 3
+PlayerStateTime: 1.366070
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 106084.030
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Source: Wrestling Staff_BBM
+SourceAddress: C2D00610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 106084.051
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 108243.326
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: C2D00610
+Source[0].LivenessEstablished: 1
+Source[0].Name: Wrestling Staff_BBM
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 111596.530
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: C2D00610
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 111596.626
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 111596.741
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 112362.936
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 112363.066
+Source: Wrestling Staff_BBM
+SourceAddress: C2D00610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 1
+PlayerStateTime: 0.767967
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 112363.085
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: Wrestling Staff_BBM
+SourceAddress: C2D00610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 112965.507
+Source: Wrestling Staff_BBM
+SourceAddress: C2D00610
+SlotAssociation: RIGHT
+PlayerAction: 14
+PlayerAniPhase: 3
+PlayerStateTime: 1.370930
+PlayerCurrentMovementAni: Hero_Parade_None_Staff_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_50.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 112965.544
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: Wrestling Staff_BBM
+SourceAddress: C2D00610
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 112965.565
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_HackAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 115126.281
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: C2D00610
+Source[0].LivenessEstablished: 1
+Source[0].Name: Wrestling Staff_BBM
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.
