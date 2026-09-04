@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-03
+**Updated:** 2026-09-04
 
 Immediate transient handoff: `docs/BETWEEN_CHATS.md`  
 Project charter / highest Gothic-specific authority: `docs/README.md`  
@@ -302,14 +302,16 @@ Compare character-hit behavior against the already-observed true Dual Power / St
 ```text
 SimpleWhirl becomes Power-like
 → StatePosition participates in deeper native actor-hit eligibility
-→ investigate the legitimate semantic rule from evidence
+→ investigate the legitimate semantic rule from evidence before adopting any permanent normalization
 
 SimpleWhirl stays substantially target-directed
 → StatePosition is likely bookkeeping/suppression only
 → revert temporary change
-→ trace Action 6 / SimpleWhirl-specific native eligibility instead
+→ apply the charter's deliberate-scope decision guide
+→ trace Action 6 / SimpleWhirl-specific native eligibility only if a bounded follow-up still looks worthwhile/promising
+→ otherwise define the animator-facing family contract as physical-source marker control plus the documented native eligibility restriction
 ```
 
-This is a falsification probe, **not** permission to redefine the permanent SimpleWhirl bookkeeping yet.
+This is a falsification probe, **not** permission to redefine the permanent SimpleWhirl bookkeeping yet. A documented native family restriction is a valid resolution of this responsibility; a deep native trace is not automatically required merely because the cheap causal probe fails.
 
 Do not proceed to Hack isolated runtime validation until this SimpleWhirl causal question is resolved enough to define the intended framework guarantee. Do not reopen Power or Pierce.
