@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Project Charter and Knowledge Map
 
 **Purpose:** Highest project-specific authority beneath CAM for the Gothic 3 project's **purpose, long-term direction, scope, authority topology, and retrieval model**. Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.  
-**Updated:** 2026-09-01
+**Updated:** 2026-09-04
 
 > **Understand the project authority structure before judging lower-level documents. For ordinary engineering, do not load every document by default: find the current responsibility, recover a compact model of the relevant subsystem when needed, open the smallest relevant authority/index, and broaden only when the question requires it.**
 
@@ -47,6 +47,23 @@ Its durable aims are to:
 - preserve reusable Gothic 3 engine, animation, source/API, and testing knowledge so future work does not have to rediscover established facts.
 
 Research prototypes, evidence logs, reverse engineering and diagnostic tools are means to that end. They are not the final product by themselves.
+
+### Deliberate scope and native-constraint guide
+
+The project does **not** aim to erase every meaningful difference between Gothic 3 attack/action types merely to maximize arbitrary authoring freedom. Native actions may carry useful targeting, reaction, source, state, effect or other gameplay semantics beyond the authored motion itself.
+
+When a native constraint is discovered, pause before turning it into a new engineering responsibility:
+
+```text
+constraint observed
+→ would removing it materially improve the intended mod/framework?
+→ can it likely be changed narrowly without replacing meaningful native semantics or creating disproportionate complexity?
+→ is the question valuable or interesting enough to justify a bounded research detour even if no product change follows?
+```
+
+Prefer preserving and documenting a native constraint when the benefit of removal is small or the required replacement is deep/risky. Investigate when the constraint meaningfully blocks sensible animation design and there is evidence of a narrow path. Curiosity-driven investigation is also valid when chosen deliberately and kept bounded; it does not automatically become a release requirement.
+
+This is a **decision guide, not a hard lock**. The User may deliberately change or investigate native behavior whenever the expected benefit, learning value or curiosity justifies it. Its purpose is to make scope expansion conscious and prevent accidental drift, not to forbid exploration.
 
 ### Long-term goal
 
