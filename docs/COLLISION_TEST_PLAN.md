@@ -1,7 +1,7 @@
 # Collision Validation Plan
 
 **Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; remaining equipped-melee expansion active  
-**Updated:** 2026-09-03
+**Updated:** 2026-09-04
 
 ## Purpose
 
@@ -266,16 +266,18 @@ Interpretation:
 ```text
 SimpleWhirl becomes Power-like in broad actor-hit eligibility
 → StatePosition participates in deeper native eligibility
-→ investigate the legitimate semantic rule from evidence
+→ investigate the legitimate semantic rule from evidence before adopting permanent normalization
 → do not immediately generalize "BOTH = StatePosition 2"
 
 SimpleWhirl remains substantially target-directed
 → StatePosition is likely bookkeeping/suppression only
 → revert the temporary change
-→ trace Action 6 / SimpleWhirl-specific native eligibility instead
+→ apply the charter's deliberate-scope decision guide
+→ trace Action 6 / SimpleWhirl-specific native eligibility only if a bounded follow-up still looks worthwhile/promising
+→ otherwise define the animator-facing family contract as physical-source marker control plus the documented native eligibility restriction
 ```
 
-This control is **not** permission to permanently change SimpleWhirl bookkeeping before runtime evidence.
+This control is **not** permission to permanently change SimpleWhirl bookkeeping before runtime evidence. A documented native family restriction is a valid resolution of the SimpleWhirl responsibility; a deep native trace is not automatically required merely because the cheap causal probe fails.
 
 Before the collision framework is released, establish an animator-facing guarantee for each supported family. The eventual evidence-driven outcome may be:
 
