@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-03
+**Updated:** 2026-09-04
 
 ## Purpose
 
@@ -42,7 +42,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | final RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` / `ANIMATION_RULES.md` |
 | Whirl callback/action/source separation | EV-145–EV-147 | `ANIMATION_RULES.md` / cleanup map |
 | Hack callback identity / remaining marker expansion | EV-216 | `DESIGN.md` §6.6 |
-| SimpleWhirl physical source validation / actor-hit eligibility / Power comparison / StatePosition causal probe | EV-217–EV-220 | `research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md`; `COLLISION_TEST_PLAN.md` §6 |
+| SimpleWhirl physical source / target semantics / StatePosition closure | EV-217–EV-220 | `research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md` |
 | New Balance / AttackCollision Whirl compatibility | EV-035, EV-148–EV-150 | source-guide same-function caution |
 | Staff full-Whirl cleanup anomaly | EV-151–EV-156 | EV-180–EV-191, EV-206–EV-207 |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` |
@@ -161,17 +161,32 @@ EV-214
 EV-217–EV-220
 ```
 
-Current SimpleWhirl distinction:
+SimpleWhirl current distinction:
 
 ```text
 G3AB exact-set markers
 = physical equipped-source activation/rearm semantics
 
-native action-specific character-hit eligibility/effects
-= separate until evidence proves a uniform framework guarantee
+native SimpleWhirl character-hit eligibility
+= substantially target-directed, but not strictly selected-target-only
 ```
 
-EV-217 validates SimpleWhirl physical marker/source behavior. EV-219 rejects a strict selected-target-only model but does not establish reliable two-target/two-sword damage. EV-220 strongly supports a SimpleWhirl-vs-Power action-specific character-hit difference under matched motion content and leaves StatePosition as an unresolved causal candidate.
+EV-217 validates the physical marker/source layer. EV-219 rejects a strict selected-target-only model. EV-220 strongly supports a SimpleWhirl-vs-Power action-specific character-hit difference under matched motion content.
+
+The September 4 one-variable StatePosition-2 probe then confirmed `StatePositionAfterMarker: 2` while SimpleWhirl remained substantially target-directed; the temporary change was reverted and a final StatePosition-1 regression again showed healthy BOTH/single/OFF/BOTH behavior and both swords connecting against the selected target. The User additionally observed secondary hits on actors roughly near/in front of the selected target or between Hero and that target. That pattern is qualified observation only; no exact cone/corridor/native eligibility algorithm is claimed.
+
+Closed retrieval checkpoint:
+
+`research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md`
+
+Raw September 4 controls:
+
+```text
+research/raw/2026-09-04_simplewhirl_stateposition2_causal_probe.log
+research/raw/2026-09-04_simplewhirl_native_stateposition1_final_regression.log
+```
+
+Current scope decision: preserve/document SimpleWhirl's native eligibility restriction rather than continue deeper Action-6 reverse engineering. Future deliberate target-acquisition or action-specific hit-semantics work may reopen this route.
 
 Asset-level routing: `ANIMATION_INDEX.md`.
 
@@ -240,7 +255,7 @@ C1 monotonic generation = durable marker occurrence/dedupe execution identity
 
 The old source/motion/action/phase/state-time and controlled-callback rollback execution-boundary guesses were superseded by Gate 4. Independent marker invariants remain mandatory.
 
-EV-220 creates a **separate** StatePosition causal question about SimpleWhirl character-hit eligibility. It does not reopen C1-generation marker execution identity.
+The completed SimpleWhirl StatePosition causal probe was a separate character-hit eligibility question. It did not reopen or alter C1-generation marker execution identity.
 
 ### F. Native collision cleanup lifecycle
 
@@ -259,7 +274,7 @@ LivenessEstablished
 REPAIRED_TO_ITEM_EQUIPPED
 ```
 
-Evidence: EV-151–EV-215 plus SimpleWhirl healthy-cleanup confirmation EV-217.  
+Evidence: EV-151–EV-215 plus SimpleWhirl healthy-cleanup confirmation EV-217 and the September 4 closure checkpoint.  
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 
@@ -354,7 +369,7 @@ NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
 
 This index therefore must not route a fresh Chat into C1-O2, Gate 4 implementation, the literal EV-131 regression or final behavior-only smoke as pending work.
 
-The open SimpleWhirl character-hit eligibility question in EV-219–EV-220 is a **new family/framework semantic responsibility**, not a contradiction in the closed C1/Gate-4 architecture.
+The SimpleWhirl StatePosition/target-semantics investigation is closed for the current equipped-melee marker stage. Its native substantially target-directed eligibility remains a documented family restriction, not a contradiction in the closed C1/Gate-4 architecture.
 
 ---
 
@@ -370,15 +385,26 @@ COLLISION_LIFECYCLE_PLAN.md §9
 EV-143–EV-147
 EV-206–EV-215
 EV-216 for the tested Hack callback identity
-EV-217–EV-220 for current SimpleWhirl physical-source / character-hit distinction
+EV-217–EV-220 + the September 4 closure checkpoint for SimpleWhirl
 ANIMATION_INDEX.md / ANIMATION_CATALOG.md for exact assets
 ```
 
-Current SimpleWhirl causal checkpoint:
+Closed SimpleWhirl checkpoint:
 
-`research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md`
+`research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md`
 
-Do not infer a uniform actor-hit guarantee merely from correct RIGHT/LEFT/BOTH/OFF physical source transitions. The current next falsification is the temporary SimpleWhirl StatePosition-2 control defined in `COLLISION_TEST_PLAN.md` / `SESSION_ENTRYPOINT.md`.
+Do not infer a uniform actor-hit guarantee merely from correct RIGHT/LEFT/BOTH/OFF physical source transitions. SimpleWhirl now preserves/documents its native substantially target-directed eligibility for the current scope. Hack isolated marker/routing validation is the next equipped-melee responsibility.
+
+### Target acquisition / action-specific hit eligibility
+
+```text
+EV-219–EV-220
+research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md
+research/raw/2026-09-04_simplewhirl_stateposition2_causal_probe.log
+research/raw/2026-09-04_simplewhirl_native_stateposition1_final_regression.log
+```
+
+Retrieve this route if future work deliberately changes Gothic target acquisition or action-specific character-hit eligibility. Preserve the qualification that SimpleWhirl is not strictly selected-target-only and that the observed near/between-target spatial pattern is not a proven geometric classifier.
 
 ### Fist/body source adapter
 
