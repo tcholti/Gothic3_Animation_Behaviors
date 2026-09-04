@@ -52,6 +52,8 @@ Research prototypes, evidence logs, reverse engineering and diagnostic tools are
 
 The project does **not** aim to erase every meaningful difference between Gothic 3 attack/action types merely to maximize arbitrary authoring freedom. Native actions may carry useful targeting, reaction, source, state, effect or other gameplay semantics beyond the authored motion itself.
 
+Native behavior is neither automatically correct nor automatically a problem; it is the factual starting point from which project intent decides whether preservation or change is preferable.
+
 When a native constraint is discovered, pause before turning it into a new engineering responsibility:
 
 ```text
