@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-04
 
-## Current bridge — SimpleWhirl StatePosition causal probe awaiting runtime test
+## Current bridge — HackAttack isolated marker / optional routing validation
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -23,107 +23,144 @@ collision architecture verification             COMPLETE — EV-206–EV-215
 Hack callback runtime identity                  CLOSED — EV-216
 Power marker adapter validation                 CLOSED/PASS
 Pierce marker adapter validation                CLOSED/PASS
-SimpleWhirl physical marker/source mechanics    PASS — EV-217 plus current evidence
+SimpleWhirl current marker/semantic stage       CLOSED/PASS
 ```
 
-Do not reopen C1 lifecycle/generation architecture, Power, Pierce, or the SimpleWhirl physical source mechanics without contradicting evidence.
+Do not reopen C1 lifecycle/generation architecture, Power, Pierce, or the proven SimpleWhirl physical source layer without concrete contradicting evidence.
 
-Current semantic distinction remains:
+SimpleWhirl closure checkpoint:
+
+`research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md`
+
+Accepted SimpleWhirl result:
 
 ```text
-G3AB markers
-= WHEN collision is offensive
-+ WHICH equipped physical source set is offensive/rearmed
-
-native/action-specific character-hit semantics
-= which actor contacts are eligible to become character damage/effects for that action
+physical RIGHT / LEFT / BOTH / OFF marker-source control works
+both swords can connect against the selected target
+native actor-hit eligibility remains substantially target-directed
+strict selected-target-only is false
+StatePosition 2 did not make the action Power-like
+native SimpleWhirl StatePosition 1 is restored
 ```
 
-EV-220 currently shows SimpleWhirl as substantially more target-directed than true PowerAttack under matched Power-derived Dual motion content while the intended physical source program succeeds in both cases. Strict selected-target-only is not proven.
+The observed nearby/intervening-secondary-target pattern is deliberately qualified in the closure checkpoint; it is not a proven cone/corridor/native algorithm.
 
 ---
 
-## Temporary causal probe — IMPLEMENTED / SOURCE-REVIEW PASS
+## Hack implementation baseline
 
-Published implementation:
+Remaining-melee implementation:
 
-```text
-a48449fcd9e2514a6d1c1f9943eb04004a5778f3
-Add temporary SimpleWhirl StatePosition causal probe
-```
+`f0d929c90fbe086f44f66f91a2523904d06c3903`
 
-Parent / required pre-probe state:
+Generic marker StatePosition diagnostics:
 
-```text
-3067f4e7cf86d5702e2bd69ffb10507ed395c317
-```
+`7c31784c5ef86bc79b54d573144b8e40f33e5e6b`
 
-Changed file only:
+EV-216 tested callback identity:
 
 ```text
-prototypes/Script_FrameCollisionTest/FrameCollisionMarkers.cpp
+Script_Game +0x433D0
+= OnAI_HackAttack
+= .\Script\AI\AI_Commands\AI_HackAttack.cpp
 ```
 
-Exact temporary change in `GetMarkerOwnedStatePosition(...)`:
+Hack marker bookkeeping currently implemented:
 
 ```text
-AttackFamily_SimpleWhirl
-StatePosition 1 -> 2
+Hack -> StatePosition 1
 ```
 
-Independent Normal Chat review confirmed the remote diff contains only that one conceptual change. Power retains its existing Dual/non-Dual rule; Quick, Whirl, Pierce and Hack retain their previous values. No marker, source, hook, lifecycle, C1, diagnostic or Hack-routing behavior changed.
-
-The remote branch head was verified at `a48449fcd9e2514a6d1c1f9943eb04004a5778f3`.
-
-This is **temporary diagnostic causal scaffolding**, not a permanent SimpleWhirl semantic decision.
+`GetUpAttack` is not part of the planned marker roadmap. True runtime `FinishingAttack` action 15 remains deliberately native/unmarked. Fist/body remains a separate later source-adapter responsibility.
 
 ---
 
-## Exact next responsibility — authoritative local build/runtime falsification
+## Optional Hack animation-routing contract
 
-No build or runtime test has been performed for `a48449f...` yet.
-
-When back at the authoritative home PC:
+Known runtime distinction:
 
 ```text
-sync docs/collision-source-evidence to a48449fcd9e2514a6d1c1f9943eb04004a5778f3
-→ build the instrumented Script_FrameCollisionTest diagnostic twin
-→ deploy using the normal one-live-twin rule
-→ keep the established SimpleWhirl comparison fixture unchanged
-→ run the StatePosition causal test
-→ preserve the raw diagnostic artifact
-→ return the runtime observation/log for interpretation
+gEAction_HackAttack      = 14
+gEAction_FinishingAttack = 15
 ```
 
-Keep unchanged during the causal comparison:
+Implemented routing:
 
 ```text
-Action 6 / SimpleWhirl
-OnAI_SimpleWhirl
-same Power-derived Dual motion fixture
-same BOTH -> single -> OFF -> BOTH markers
-same source activation/rearm behavior
-same target/group setup
+active native/installed resolver produces the ordinary resource name
+-> CombatMove factual action is read from the existing SPU context
+-> at the narrow CombatMove motion-resource query callsite:
+
+   if factual action == HackAttack (14)
+   and the resource name contains the exact _FinishingAttack_ token:
+       derive one candidate by replacing only
+       _FinishingAttack_ -> _HackAttack_
+
+       candidate exists:
+           use the candidate resource
+
+       candidate absent:
+           use the untouched original FinishingAttack resource
+
+-> any non-Hack action, including true FinishingAttack (15):
+   untouched native path
 ```
 
-The diagnostic should confirm accepted SimpleWhirl markers now leave `StatePositionAfterMarker = 2`; that confirms the intended test variable was actually applied but does not by itself answer the actor-hit question.
+Dedicated Hack assets are optional overrides, not a dependency.
 
-Runtime interpretation:
+Preserve the namespace produced by Gothic or another active resolver such as Jackydima `Script_Animation`. Do not normalize `Axe`, `2H`, Staff or other namespaces into G3AB guesses, and do not globally replace `GetAniName` or action-string-table ownership.
+
+---
+
+## Preferred authored Hack fixtures
 
 ```text
-SimpleWhirl becomes Power-like in broad actor-hit eligibility
-→ StatePosition participates in deeper native eligibility
-→ investigate the legitimate semantic rule before any permanent normalization
-→ do not immediately generalize to other families
+Hero_Parade_None_2H_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
+Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot
+Hero_Parade_None_2H_P0_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
 
-SimpleWhirl remains substantially target-directed
-→ StatePosition is likely bookkeeping/suppression only
-→ revert the temporary probe
-→ apply the charter's deliberate-scope decision guide
-→ pursue only a bounded native eligibility trace if the result still makes that worthwhile/promising
-→ otherwise close SimpleWhirl with physical-source marker control + documented native eligibility restriction
+Hero_Parade_None_Staff_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
+Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot
+Hero_Parade_None_Staff_P0_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
 ```
 
-A documented native family restriction is a valid resolution. A deep trace is **not** automatically required if this cheap causal probe fails.
+`100` is animation-author metadata, not a DLL constant.
 
-Do not move to Hack isolated marker/routing runtime validation until the SimpleWhirl result is interpreted enough to define the family/framework guarantee.
+---
+
+## Exact next responsibility
+
+Validate Hack independently before the combined remaining-melee regression.
+
+Minimum causal sequence:
+
+```text
+1. fallback control
+   Action 14 / OnAI_HackAttack
+   no matching dedicated _HackAttack_ asset
+   -> untouched FinishingAttack resource remains usable
+   -> no routing failure/crash
+
+2. dedicated Hack positive
+   matching _HackAttack_ fixture exists
+   -> Action remains HackAttack
+   -> dedicated Hack resource is selected
+   -> reserved marker in the exact Hack Hit is owned as Family HACK
+   -> accepted source marker leaves StatePosition 1
+   -> exact equipped source activation/rearm/cleanup behaves normally
+
+3. true FinishingAttack negative
+   Action 15
+   -> no Hack routing
+   -> native/unmarked path remains intact
+```
+
+Keep the first positive fixture narrow. Do not broaden into every weapon type or compatibility stack before the basic routing + marker ownership result is known.
+
+After Hack closes:
+
+```text
+combined remaining-melee marker/lifecycle regression
+```
+
+Fist/body source adaptation and AttackContinuationProtection remain separate later responsibilities.
