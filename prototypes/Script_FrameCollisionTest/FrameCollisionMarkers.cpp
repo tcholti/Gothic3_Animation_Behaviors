@@ -21,6 +21,7 @@ struct CachedMarkerInfo
     GEInt firstMarkerFrames[MarkerOpcode_Count];
     GEInt markerCounts[MarkerOpcode_Count];
     unsigned int requiredSourceMask;
+    bool requiresFistSource;
 };
 
 struct LastAcceptedMarkerDispatch
@@ -68,6 +69,7 @@ struct FrameEffectScanResult
     GEInt firstMarkerFrames[MarkerOpcode_Count];
     GEInt markerCounts[MarkerOpcode_Count];
     unsigned int requiredSourceMask;
+    bool requiresFistSource;
 };
 
 static std::unordered_map<std::string, CachedMarkerInfo> g_MarkerCache;
@@ -96,6 +98,8 @@ MarkerOpcode GetMarkerOpcode(char const *effectName)
         return MarkerOpcode_Both;
     if (std::strcmp(effectName, CollisionOffMarker) == 0)
         return MarkerOpcode_Off;
+    if (std::strcmp(effectName, CollisionFistMarker) == 0)
+        return MarkerOpcode_Fist;
     return MarkerOpcode_Invalid;
 }
 
@@ -107,6 +111,7 @@ char const *GetMarkerOpcodeName(MarkerOpcode opcode)
         case MarkerOpcode_Left: return "LEFT";
         case MarkerOpcode_Both: return "BOTH";
         case MarkerOpcode_Off: return "OFF";
+        case MarkerOpcode_Fist: return "FIST";
         default: return "INVALID";
     }
 }
@@ -520,6 +525,11 @@ static FrameEffectScanResult ScanFrameEffects(
             result.foundMarker = true;
             result.requiredSourceMask |= GetMarkerDesiredSourceMask(opcode);
         }
+        else if (opcode == MarkerOpcode_Fist)
+        {
+            result.foundMarker = true;
+            result.requiresFistSource = true;
+        }
     }
     return result;
 }
@@ -558,6 +568,7 @@ static CurrentMotionMarkerResult ScanCurrentMotionForMarker(Entity &actor)
         result.frameEffectCount = scan.count;
         result.markerPresent = scan.layoutLookedValid && scan.foundMarker;
         result.requiredSourceMask = scan.requiredSourceMask;
+        result.requiresFistSource = scan.requiresFistSource;
         for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
         {
             result.firstMarkerFrames[opcode] = scan.firstMarkerFrames[opcode];
@@ -582,6 +593,7 @@ CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor)
         result.markerPresent = found->second.markerPresent;
         result.frameEffectCount = found->second.frameEffectCount;
         result.requiredSourceMask = found->second.requiredSourceMask;
+        result.requiresFistSource = found->second.requiresFistSource;
         for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
         {
             result.firstMarkerFrames[opcode] =
@@ -602,6 +614,7 @@ CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor)
     cached.markerPresent = scanned.markerPresent;
     cached.frameEffectCount = scanned.frameEffectCount;
     cached.requiredSourceMask = scanned.requiredSourceMask;
+    cached.requiresFistSource = scanned.requiresFistSource;
     for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
     {
         cached.firstMarkerFrames[opcode] = scanned.firstMarkerFrames[opcode];
@@ -621,12 +634,19 @@ AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
 
     result.decision = GetCurrentMarkerDecision(actor);
     result.sources = CollisionSources::GetEquippedCollisionSources(actor);
+    if (result.decision.requiresFistSource)
+    {
+        result.fistSourceInstance =
+            CollisionSources::ResolveFistCollisionSource(actor);
+    }
     result.suppressNativeCallback =
         result.decision.foundMatchingMotion
         && result.decision.scanValid
         && result.decision.markerPresent
         && CollisionSources::HasRequiredCollisionSources(
-            result.sources, result.decision.requiredSourceMask);
+            result.sources, result.decision.requiredSourceMask)
+        && (!result.decision.requiresFistSource
+            || result.fistSourceInstance != nullptr);
     return result;
 }
 
@@ -643,6 +663,9 @@ static MarkerProcessResult MakeMarkerResult(
     result.quickStatePositionAfterMarker = -1;
     result.whirlStatePositionBeforeMarker = -1;
     result.whirlStatePositionAfterMarker = -1;
+    result.fistSourceGroupBefore = -1;
+    result.fistSourceGroupAfter = -1;
+    result.fistSourceUseType = -1;
     for (GEInt i = 0; i < 2; ++i)
     {
         result.sourceGroupBefore[i] = -1;
@@ -681,6 +704,16 @@ MarkerProcessResult ProcessMarker(
     {
         result.code = MarkerResult_UnsupportedMissingSource;
         return result;
+    }
+    if (result.decision.requiresFistSource)
+    {
+        result.fistSourceInstance =
+            CollisionSources::ResolveFistCollisionSource(actor);
+        if (result.fistSourceInstance == nullptr)
+        {
+            result.code = MarkerResult_UnsupportedMissingSource;
+            return result;
+        }
     }
 
     bCString currentAnimation = actor.NPC.GetCurrentMovementAni();
@@ -783,97 +816,108 @@ MarkerProcessResult ProcessMarker(
         return result;
     }
 
-    result.desiredSourceMask = GetMarkerDesiredSourceMask(markerOpcode);
-    if (result.desiredSourceMask == SourceMask_None)
+    if (markerOpcode == MarkerOpcode_Fist)
     {
-        result.code = MarkerResult_RejectedEmptySourceSet;
-        return result;
-    }
-    for (GEInt i = 0; i < 2; ++i)
-    {
-        unsigned int sourceMask =
-            i == 0 ? SourceMask_Right : SourceMask_Left;
-        if ((result.desiredSourceMask & sourceMask) != 0
-            && GetSourceInstance(result.sources, sourceMask) == nullptr)
-        {
-            result.missingSourceMask = sourceMask;
-            result.code = MarkerResult_RejectedIncompleteActivation;
-            return result;
-        }
-    }
-
-    MarkerOwnedCollisionWindow *previousWindow =
-        FindMatchingMarkerOwnedWindow(
-            actor.GetInstance(), generation.generation, result.sources,
-            result.currentAnimation.c_str(),
-            result.markerAction, result.markerPhase);
-    result.previousSourceMask = previousWindow != nullptr
-        ? previousWindow->activeSourceMask : SourceMask_None;
-    result.retiredSourceMask =
-        result.previousSourceMask & ~result.desiredSourceMask;
-    RememberMarkerOwnedWindow(
-        actor.GetInstance(), generation.generation, result.sources,
-        result.desiredSourceMask,
-        result.currentAnimation.c_str(),
-        result.markerAction, result.markerPhase);
-
-    unsigned int sourceMasks[2] =
-        { SourceMask_Right, SourceMask_Left };
-    for (GEInt i = 0; i < 2; ++i)
-    {
-        unsigned int sourceMask = sourceMasks[i];
-        if ((result.retiredSourceMask & sourceMask) == 0)
-            continue;
-        eCEntity *sourceInstance =
-            GetSourceInstance(result.sources, sourceMask);
-        CollisionSourceOperations::SourceOperationResult operation =
-            CollisionSourceOperations::DeactivateOwnedAttackSource(
-                sourceInstance);
-        if (operation.groupRequested)
-            ++result.retiredSourceCount;
-    }
-
-    for (GEInt i = 0; i < 2; ++i)
-    {
-        unsigned int sourceMask = sourceMasks[i];
-        if ((result.desiredSourceMask & sourceMask) == 0)
-            continue;
-        eCEntity *sourceInstance =
-            GetSourceInstance(result.sources, sourceMask);
-        CollisionSourceOperations::SourceOperationResult operation =
-            CollisionSourceOperations::ActivateOrRearm(sourceInstance);
-        result.sourceGroupBefore[i] = operation.groupBefore;
-        result.sourceGroupAfter[i] = operation.groupAfter;
-        result.sourceUseTypes[i] = operation.useType;
-        result.sourceSkippedGroupForFist[i] =
-            operation.skippedGroupForFist;
-        result.sourceGroupRequested[i] = operation.groupRequested;
-        result.sourceListCleared[i] = operation.triggeredListCleared;
-        if (operation.groupRequested)
-            ++result.collisionGroupRequestCount;
-        if (operation.groupAfter
-            == static_cast<GEInt>(eECollisionGroup_Item_Attack))
-        {
-            result.markerOwnedWeaponMask |= sourceMask;
-        }
-        if (operation.skippedGroupForFist)
-            ++result.fistSourceCount;
+        CollisionSourceOperations::FistSourceOperationResult operation =
+            CollisionSourceOperations::RearmFistSource(
+                result.fistSourceInstance);
+        result.fistSourceGroupBefore = operation.groupBefore;
+        result.fistSourceGroupAfter = operation.groupAfter;
+        result.fistSourceUseType = operation.useType;
+        result.fistSourceListCleared = operation.triggeredListCleared;
         if (operation.triggeredListCleared)
             ++result.triggeredListClearCount;
-        ++result.activatedSourceCount;
-    }
-
-    if (result.markerOwnedWeaponMask != SourceMask_None)
-    {
-        RememberMarkerOwnedWindow(
-            actor.GetInstance(), generation.generation, result.sources,
-            result.markerOwnedWeaponMask,
-            result.currentAnimation.c_str(),
-            result.markerAction, result.markerPhase);
     }
     else
     {
-        ForgetMarkerOwnedWindowForActor(actor.GetInstance());
+        result.desiredSourceMask = GetMarkerDesiredSourceMask(markerOpcode);
+        if (result.desiredSourceMask == SourceMask_None)
+        {
+            result.code = MarkerResult_RejectedEmptySourceSet;
+            return result;
+        }
+        for (GEInt i = 0; i < 2; ++i)
+        {
+            unsigned int sourceMask =
+                i == 0 ? SourceMask_Right : SourceMask_Left;
+            if ((result.desiredSourceMask & sourceMask) != 0
+                && GetSourceInstance(result.sources, sourceMask) == nullptr)
+            {
+                result.missingSourceMask = sourceMask;
+                result.code = MarkerResult_RejectedIncompleteActivation;
+                return result;
+            }
+        }
+
+        MarkerOwnedCollisionWindow *previousWindow =
+            FindMatchingMarkerOwnedWindow(
+                actor.GetInstance(), generation.generation, result.sources,
+                result.currentAnimation.c_str(),
+                result.markerAction, result.markerPhase);
+        result.previousSourceMask = previousWindow != nullptr
+            ? previousWindow->activeSourceMask : SourceMask_None;
+        result.retiredSourceMask =
+            result.previousSourceMask & ~result.desiredSourceMask;
+        RememberMarkerOwnedWindow(
+            actor.GetInstance(), generation.generation, result.sources,
+            result.desiredSourceMask,
+            result.currentAnimation.c_str(),
+            result.markerAction, result.markerPhase);
+
+        unsigned int sourceMasks[2] =
+            { SourceMask_Right, SourceMask_Left };
+        for (GEInt i = 0; i < 2; ++i)
+        {
+            unsigned int sourceMask = sourceMasks[i];
+            if ((result.retiredSourceMask & sourceMask) == 0)
+                continue;
+            eCEntity *sourceInstance =
+                GetSourceInstance(result.sources, sourceMask);
+            CollisionSourceOperations::SourceOperationResult operation =
+                CollisionSourceOperations::DeactivateOwnedAttackSource(
+                    sourceInstance);
+            if (operation.groupRequested)
+                ++result.retiredSourceCount;
+        }
+
+        for (GEInt i = 0; i < 2; ++i)
+        {
+            unsigned int sourceMask = sourceMasks[i];
+            if ((result.desiredSourceMask & sourceMask) == 0)
+                continue;
+            eCEntity *sourceInstance =
+                GetSourceInstance(result.sources, sourceMask);
+            CollisionSourceOperations::SourceOperationResult operation =
+                CollisionSourceOperations::ActivateOrRearm(sourceInstance);
+            result.sourceGroupBefore[i] = operation.groupBefore;
+            result.sourceGroupAfter[i] = operation.groupAfter;
+            result.sourceUseTypes[i] = operation.useType;
+            result.sourceGroupRequested[i] = operation.groupRequested;
+            result.sourceListCleared[i] = operation.triggeredListCleared;
+            if (operation.groupRequested)
+                ++result.collisionGroupRequestCount;
+            if (operation.groupAfter
+                == static_cast<GEInt>(eECollisionGroup_Item_Attack))
+            {
+                result.markerOwnedWeaponMask |= sourceMask;
+            }
+            if (operation.triggeredListCleared)
+                ++result.triggeredListClearCount;
+            ++result.activatedSourceCount;
+        }
+
+        if (result.markerOwnedWeaponMask != SourceMask_None)
+        {
+            RememberMarkerOwnedWindow(
+                actor.GetInstance(), generation.generation, result.sources,
+                result.markerOwnedWeaponMask,
+                result.currentAnimation.c_str(),
+                result.markerAction, result.markerPhase);
+        }
+        else
+        {
+            ForgetMarkerOwnedWindowForActor(actor.GetInstance());
+        }
     }
 
     GEInt const markerOwnedStatePosition =

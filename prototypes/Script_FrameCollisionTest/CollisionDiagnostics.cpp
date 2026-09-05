@@ -183,7 +183,7 @@ void OpenLog()
     std::fprintf(g_pLog, "C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.\n");
     std::fprintf(g_pLog,
                  "MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack\n");
-    std::fprintf(g_pLog, "MarkerOpcodes: RIGHT LEFT BOTH OFF\n");
+    std::fprintf(g_pLog, "MarkerOpcodes: RIGHT LEFT BOTH OFF FIST\n");
     std::fflush(g_pLog);
 }
 
@@ -253,6 +253,8 @@ void LogAttackCallbackOwnership(
                      result.decision.markerPresent ? 1 : 0);
         std::fprintf(g_pLog, "RequiredSourceMask: %u\n",
                      result.decision.requiredSourceMask);
+        std::fprintf(g_pLog, "RequiresFistSource: %d\n",
+                     result.decision.requiresFistSource ? 1 : 0);
         for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
         {
             MarkerOpcode const markerOpcode =
@@ -266,6 +268,8 @@ void LogAttackCallbackOwnership(
         }
         LogResolvedSource("RightSource", result.sources.rightInstance);
         LogResolvedSource("LeftSource", result.sources.leftInstance);
+        if (result.decision.requiresFistSource)
+            LogResolvedSource("FistSource", result.fistSourceInstance);
         std::fprintf(g_pLog, "SuppressNativeCallback: %d\n",
                      result.suppressNativeCallback ? 1 : 0);
         std::fprintf(g_pLog, "=====================================\n\n");
@@ -392,6 +396,21 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                  r.deactivatedSourceCount);
     std::fprintf(g_pLog, "TriggeredListClearCount: %d\n",
                  r.triggeredListClearCount);
+    if (r.opcode == MarkerOpcode_Fist)
+    {
+        std::fprintf(g_pLog, "FistSourceResolved: %d\n",
+                     r.fistSourceInstance != nullptr ? 1 : 0);
+        std::fprintf(g_pLog, "FistSourceAddress: %p\n",
+                     static_cast<void *>(r.fistSourceInstance));
+        std::fprintf(g_pLog, "FistUseType: %d\n",
+                     r.fistSourceUseType);
+        std::fprintf(g_pLog, "FistGroupBefore: %d\n",
+                     r.fistSourceGroupBefore);
+        std::fprintf(g_pLog, "FistGroupAfter: %d\n",
+                     r.fistSourceGroupAfter);
+        std::fprintf(g_pLog, "FistTriggeredListCleared: %d\n",
+                     r.fistSourceListCleared ? 1 : 0);
+    }
     for (GEInt i = 0; i < 2; ++i)
     {
         unsigned int const mask = i == 0 ? SourceMask_Right : SourceMask_Left;
@@ -406,8 +425,6 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                      r.sourceUseTypes[i]);
         std::fprintf(g_pLog, "%sGroupRequested: %d\n", label,
                      r.sourceGroupRequested[i] ? 1 : 0);
-        std::fprintf(g_pLog, "%sFistGroupSkip: %d\n", label,
-                     r.sourceSkippedGroupForFist[i] ? 1 : 0);
         std::fprintf(g_pLog, "%sTriggeredListCleared: %d\n", label,
                      r.sourceListCleared[i] ? 1 : 0);
     }

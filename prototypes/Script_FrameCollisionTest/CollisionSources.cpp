@@ -12,6 +12,17 @@ EquippedCollisionSources GetEquippedCollisionSources(Entity &actor)
     return result;
 }
 
+eCEntity *ResolveFistCollisionSource(Entity &actor)
+{
+    Entity candidate = actor.Inventory.GetItemFromSlot(gESlot_RightHand);
+    if (candidate == None
+        || GetCollisionSourceUseType(candidate) != gEUseType_Fist)
+    {
+        return nullptr;
+    }
+    return candidate.GetInstance();
+}
+
 bool HasRequiredCollisionSources(
     EquippedCollisionSources const &sources, unsigned int requiredMask)
 {

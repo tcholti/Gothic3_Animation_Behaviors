@@ -11,6 +11,7 @@ char const *const CollisionRightMarker = "G3AB_COL_RIGHT";
 char const *const CollisionLeftMarker = "G3AB_COL_LEFT";
 char const *const CollisionBothMarker = "G3AB_COL_BOTH";
 char const *const CollisionOffMarker = "G3AB_COL_OFF";
+char const *const CollisionFistMarker = "G3AB_COL_FIST";
 
 enum MarkerOpcode
 {
@@ -18,7 +19,8 @@ enum MarkerOpcode
     MarkerOpcode_Left = 1,
     MarkerOpcode_Both = 2,
     MarkerOpcode_Off = 3,
-    MarkerOpcode_Count = 4,
+    MarkerOpcode_Fist = 4,
+    MarkerOpcode_Count = 5,
     MarkerOpcode_Invalid = -1
 };
 
@@ -53,6 +55,7 @@ struct CurrentMotionMarkerResult
     GEInt firstMarkerFrames[MarkerOpcode_Count];
     GEInt markerCounts[MarkerOpcode_Count];
     unsigned int requiredSourceMask;
+    bool requiresFistSource;
 };
 
 enum MarkerResultCode
@@ -102,14 +105,17 @@ struct MarkerProcessResult
     GEInt sourceGroupBefore[2];
     GEInt sourceGroupAfter[2];
     GEInt sourceUseTypes[2];
-    bool sourceSkippedGroupForFist[2];
     bool sourceGroupRequested[2];
     bool sourceListCleared[2];
     GEInt activatedSourceCount;
     GEInt collisionGroupRequestCount;
-    GEInt fistSourceCount;
     GEInt triggeredListClearCount;
     unsigned int markerOwnedWeaponMask;
+    eCEntity *fistSourceInstance;
+    GEInt fistSourceGroupBefore;
+    GEInt fistSourceGroupAfter;
+    GEInt fistSourceUseType;
+    bool fistSourceListCleared;
     GEInt quickStatePositionBeforeMarker;
     GEInt quickStatePositionAfterMarker;
     GEInt whirlStatePositionBeforeMarker;

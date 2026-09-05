@@ -10,6 +10,7 @@ struct AttackCallbackOwnershipResult
     bool suppressNativeCallback;
     CurrentMotionMarkerResult decision;
     EquippedCollisionSources sources;
+    eCEntity *fistSourceInstance;
 };
 
 MarkerOpcode GetMarkerOpcode(char const *effectName);
