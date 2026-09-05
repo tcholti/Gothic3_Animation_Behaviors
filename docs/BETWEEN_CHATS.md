@@ -2,9 +2,9 @@
 
 **Purpose:** Exact short-lived continuation bridge. Replace rather than accumulate chronology.
 
-**Updated:** 2026-09-05
+**Updated:** 2026-09-06
 
-## Current bridge — N2C identified direct combat-loop Fist damage dispatch; N2D latch intervention next
+## Current bridge — N2D causal suppression PASS; N2E same-process native reset proof next
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -29,6 +29,7 @@ Fist N1 native trigger-state observation        CLOSED/PASS AS OBSERVATION — E
 Fist N2A gate/TriggerTarget timing               CLOSED/INCONCLUSIVE
 Fist N2B hook observability discrimination      CLOSED/CASE A FOR BOTH HOOKS
 Fist N2C gCEntity::OnDamage caller trace         CLOSED/PASS AS PATH IDENTIFICATION
+Fist N2D SPU+0x164 causal suppression probe      CLOSED/PASS — CASE A
 ```
 
 Do not reopen those areas without concrete contradictory evidence.
@@ -37,50 +38,97 @@ Fist remains a logical human body-contact source adapter inside the closed colli
 
 ---
 
-## N2C implementation / runtime evidence
+## N2C path fact carried forward
 
-N2C implementation:
-
-```text
-3679d0dba0a049ad0a28bbe3755d09a500fbcd92
-Add N2C Fist OnDamage caller trace
-```
-
-Diagnostic-only hook:
+Authoritative tested binary reference:
 
 ```text
-Game + 0x668D0  gCEntity::OnDamage
+https://github.com/tcholti/Gothic3_Binary_Reference.git
+builds/current_tested
 ```
 
-Transport:
+N2C proved the damaging marked human-Fist path:
 
 ```text
-explicit gCEntity *this
-.ThisCall()
-_ReturnAddress() captured at entry
-native original exactly once, unchanged arguments/order
-64-entry diagnostic cap
-no behavior-only hook
+gCScriptProcessingUnit::sAICombatMoveItlLoop
+Game + 0x16DD00
+    -> indirect gCEntity::OnDamage call at Game + 0x16E346
+    -> return address observed as Game + 0x16E348
 ```
-
-Local diagnostic build: PASS.
-
-Validated deployed diagnostic:
-
-```text
-Script_FrameCollisionTest.dll
-SHA256 62C90DBD08763866FA6057431C2C7488ED41ABD2849068219E36C127374D94D9
-length 438272
-```
-
-Built/live SHA256 matched exactly. CORE startup PASS.
 
 Canonical N2C raw:
 
 ```text
 research/raw/2026-09-05_fist_n2c_ondamage_caller_trace.log
 raw evidence commit 30cb0aaba8b121d05ad7f2793cf27acea1e18bba
-length 9507
+```
+
+The correlated event was:
+
+```text
+ThisEntityName: Golem
+EntityArg1Name: Fist
+EntityArg1IsResolvedFistSource: 1
+EntityArg2Name: PC_Hero
+EntityArg2IsPlayer: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+```
+
+This explains the earlier N2A/N2B silence for the tested run: that confirmed damaging path did not need to enter the hooked `gCTouchDamage_PS::CanBeActivatedNow` / `TriggerTarget` entries.
+
+---
+
+## Native combat latch fact
+
+Within the tested normal combat-loop branch:
+
+```text
+Game + 0x16DFB9  cmp byte ptr [SPU+0x164], 0
+Game + 0x16DFC0  jne Game+0x16E352
+```
+
+A nonzero latch exits before the later Fist damage dispatch.
+
+Once native hit timing is reached, the same loop commits:
+
+```text
+Game + 0x16E1A3  mov byte ptr [SPU+0x164], 1
+```
+
+before continuing to the eventual `gCEntity::OnDamage` call.
+
+The SDK does not expose a named public member/accessor for this byte. Continue to call it only the factual/internal `SPU+0x164` combat latch.
+
+Tested binary also contains native writes of `0` to this same byte elsewhere in the combat/instruction machinery. Those static writes justify a reset test but do not by themselves prove the exact fresh-combat-move reset lifecycle.
+
+---
+
+## N2D implementation / runtime closure
+
+N2D implementation:
+
+```text
+33a55615315d7c90fd507cac86ff1205029785d0
+Add N2D Fist combat latch intervention
+```
+
+Validated diagnostic DLL:
+
+```text
+SHA256 3EE9B27C5BEB72643436D6289632E38A71B562106FDA0B2E974ECF9E5488BF39
+length 439296
+```
+
+Built/live SHA256 matched exactly. CORE startup PASS.
+
+Canonical N2D raw:
+
+```text
+research/raw/2026-09-06_fist_n2d_combat_latch_intervention.log
+raw evidence commit c0ac9429674a590705aa660a8a20c446afe63e8a
+length 6890
+SHA256 C153D05D4B6218C3E6972C7062EA20353BD41AFC42F265A6AB774C05994790E3
 ```
 
 Controlled case:
@@ -90,211 +138,114 @@ player PC_Hero
 known marked human Fist P0 Normal attack
 Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
 G3AB_COL_FIST at authored frame 3
-valid target Golem
-User visual damage observation: YES
+valid target
+User visual damage observation: NO
 ```
 
-The intended marker executed:
+The accepted marker retained exact Stage-A behavior:
 
 ```text
-FIST RECEIVED
-ElapsedMs: 39352.632
-Action: 1
-AniPhase: 1
-StateTime: 0.123945
 MarkerAction: ACCEPTED
-FistSourceAddress: E6AA5E10
 FistUseType: 8
 FistGroupBefore: 0
 FistGroupAfter: 0
 FistTriggeredListCleared: 1
 ```
 
-The complete raw contains exactly one `ENTITY_ON_DAMAGE_ENTRY`, during the same attack:
+The diagnostic intervention immediately after marker processing reported:
 
 ```text
-ElapsedMs: 39439.144
-HookEntryOrdinal: 1
-CallerModule: Game.dll
-CallerRVA: 0x0016E348
-ThisEntityName: Golem
-EntityArg1Name: Fist
-EntityArg1Address: E6AA5E10
-EntityArg2Name: PC_Hero
-EntityArg2IsPlayer: 1
-EntityArg1IsResolvedFistSource: 1
-IntArg1: 21
-IntArg2: 2
-PlayerAction: 1
-PlayerAniPhase: 1
-PlayerStateTime: 0.198956
+Boundary: FIST_COMBAT_LATCH_INTERVENTION
+Action: 1
+AniPhase: 1
+StateTime: 0.124997
+LatchOffset: 0x164
+LatchBefore: 0
+LatchAfter: 1
+WriteAttempted: 1
+WriteConfirmed: 1
+FistUseType: 8
+FistCollisionGroup: 0
 ```
 
-Marker-to-OnDamage delta in this run:
+The complete N2D raw contains **zero** `ENTITY_ON_DAMAGE_ENTRY` records.
+
+### N2D conclusion — CASE A / CAUSAL SUPPRESSION PASS
+
+For this tested marked human-Fist P0 Normal attack:
 
 ```text
-39439.144 - 39352.632 = 86.512 ms
+accepted FIST marker
+-> exact current-player SPU+0x164 observed 0
+-> diagnostic write 1 confirmed
+-> later sAICombatMoveItlLoop -> gCEntity::OnDamage Fist dispatch absent
+-> User observed visual damage NO
 ```
 
-Use neutral argument semantics. N2C proves factual identity/correlation, not semantic names for IntArg1/IntArg2.
+Therefore setting the native combat latch to `1` at the authored marker causally suppresses the confirmed native Fist damage path in this tested execution.
+
+This makes `SPU+0x164 = 1` a viable production `FIST_OFF` candidate, but production is still blocked until native rearming/reset across a later combat move is proven.
+
+Do not infer from N2D alone:
+
+- the complete semantic meaning of `SPU+0x164` outside this path;
+- interruption/terminal reset behavior;
+- that manual restoration is required;
+- that production `G3AB_COL_FIST_OFF` can be implemented yet;
+- how repeated ON/OFF windows inside one combat move should behave.
 
 ---
 
-## Tested-binary path identification after N2C
+## Exact next responsibility — N2E SAME-PROCESS NATIVE LATCH RESET PROOF
 
-Authoritative binary reference:
+N2E asks only:
 
-```text
-https://github.com/tcholti/Gothic3_Binary_Reference.git
-builds/current_tested
-```
+> After one marked human-Fist attack is suppressed by the proven `SPU+0x164 = 1` intervention, does Gothic 3 naturally return that same current-player latch to `0` for the next fresh marked human-Fist combat move in the same game process, such that the second attack can damage normally without any manual latch restoration?
 
-Exact tested export:
+This is a diagnostic lifecycle proof only. It is **not** production `FIST_OFF` implementation.
 
-```text
-Game + 0x16DD00  gCScriptProcessingUnit::sAICombatMoveItlLoop
-```
+### Required diagnostic sequence
 
-N2C's caller return address:
-
-```text
-Game + 0x16E348
-```
-
-lands immediately after the indirect call at:
-
-```text
-Game + 0x16E346
-```
-
-inside `sAICombatMoveItlLoop`.
-
-The surrounding tested instructions construct the five-argument `gCEntity::OnDamage` call and invoke it on the receiving game entity. Therefore the damaging N2C Fist event was dispatched directly by the native combat-move loop.
-
-This resolves the N2A/N2B silence:
-
-```text
-confirmed damaging human-Fist path
--> gCScriptProcessingUnit::sAICombatMoveItlLoop
--> gCEntity::OnDamage
-```
-
-The tested path did not need to enter the two hooked `gCTouchDamage_PS` methods:
-
-```text
-CanBeActivatedNow
-TriggerTarget
-```
-
-Do not infer that those methods are globally unused. The conclusion is specific to the confirmed N2C damaging run/path.
-
----
-
-## Native combat-move latch candidate
-
-Within the normal combat-move loop branch that leads to the observed damage dispatch, tested disassembly shows an internal byte at:
-
-```text
-gCScriptProcessingUnit + 0x164
-```
-
-At the top of the relevant normal branch:
-
-```text
-Game + 0x16DFB9  cmp byte ptr [SPU+0x164], 0
-Game + 0x16DFC0  jne Game+0x16E352
-```
-
-A nonzero value therefore exits the loop branch before the later hit-time threshold, DamageReceiver resolution and `gCEntity::OnDamage` dispatch.
-
-After the hit-time threshold is satisfied, but before the damage path is constructed, the same loop commits:
-
-```text
-Game + 0x16E1A3  mov byte ptr [SPU+0x164], 1
-```
-
-Only afterward does it continue through actor-side NPC / Inventory lookup and eventually call `gCEntity::OnDamage` at `Game + 0x16E346`.
-
-Tested property-set IDs encountered after the latch write include:
-
-```text
-0x1E = NPC
-0x1F = Inventory
-```
-
-The current SDK does not expose a named public member/accessor for `SPU+0x164`; the tail of `gCScriptProcessingUnit` remains partially unimplemented in the SDK. Treat this as an internal native combat-move latch candidate, not a named SDK property.
-
-Important qualification:
-
-- do not call it a proven production `FIST_OFF` mechanism yet;
-- do not assume its full meaning outside the tested combat path;
-- do not create persistent marker-owned state around it yet;
-- do not modify the production behavior-only product yet.
-
-The static ordering is sufficient to justify exactly one causal marker-time intervention test.
-
----
-
-## Exact next responsibility — N2D TEMPORARY MARKER-TIME COMBAT-LATCH INTERVENTION
-
-N2D asks only:
-
-> On the same known marked human-Fist P0 Normal attack, if the accepted existing `G3AB_COL_FIST` marker temporarily writes the current player's exact combat SPU byte at `+0x164` to `1` after preserving the existing Stage-A FIST operation, does the later native `sAICombatMoveItlLoop -> gCEntity::OnDamage` Fist damage dispatch disappear?
-
-This is a one-variable causal probe of the newly identified native latch candidate.
-
-It is **not** production `FIST_OFF` implementation.
-
-### Preserve Stage A, add exactly one temporary intervention
-
-The accepted existing FIST marker must continue to do its current Stage-A operation unchanged:
+Preserve exact Stage-A FIST marker behavior for every accepted marker:
 
 ```text
 resolve/validate exact human gEUseType_Fist raw 8
 -> TouchDamage.ClearTriggeredList()
--> group remains 0
+-> no collision-group mutation
 -> no DamageDisabled mutation
 -> no weapon source-mask semantics
 ```
 
-Then, for this N2D diagnostic experiment only, additionally:
+Replace the current N2D every-FIST diagnostic setter with one bounded process-local diagnostic sequence for accepted current-player exact-human-Fist markers:
 
 ```text
-resolve the current player's gCScriptProcessingUnit from the player's gCScriptRoutine_PS
-read byte at SPU + 0x164
-write that exact byte to 1
-read it back
+AcceptedFistSequenceOrdinal = 1
+    read current SPU+0x164
+    write exactly 1
+    volatile readback
+    no manual restore later
+
+AcceptedFistSequenceOrdinal = 2
+    read current SPU+0x164 only
+    DO NOT write the latch
+
+AcceptedFistSequenceOrdinal > 2
+    no latch mutation
+    bounded diagnostic indication only if needed
 ```
 
-Do not write any other SPU field.
+The process-local ordinal exists only to distinguish the two controlled N2E test attacks. It must not become gameplay/marker lifecycle state.
 
-Do not add a `G3AB_COL_FIST_OFF` opcode yet.
+Do not reset the ordinal from animation/action/phase/state-time guesses.
 
-Do not move the intervention to another marker or another timing boundary.
+### Required logging
 
-### Scope the temporary mutation tightly
-
-The temporary write must be restricted to the diagnostic test path:
+For both accepted sequence entries report at minimum:
 
 ```text
-FRAME_COLLISION_DIAGNOSTICS build only
-accepted existing G3AB_COL_FIST marker only
-actor is the current player
-existing exact human Fist source validation succeeds
-```
-
-The behavior-only product must remain exact Stage A and must not contain an active N2D latch mutation.
-
-Do not create persistent diagnostic/gameplay bookkeeping to remember the write.
-
-Do not add restore/terminal/interruption logic in N2D.
-
-### Required N2D logging
-
-At the accepted FIST marker, record enough factual data to prove the exact intervention:
-
-```text
-Boundary: FIST_COMBAT_LATCH_INTERVENTION
+Boundary: FIST_COMBAT_LATCH_RESET_PROBE
+AcceptedFistSequenceOrdinal
+ProbeMode: SUPPRESS_FIRST or OBSERVE_SECOND
 ElapsedMs
 Actor / ActorAddress
 Action
@@ -313,94 +264,102 @@ FistUseType
 FistCollisionGroup
 ```
 
-The existing N2C `gCEntity::OnDamage` hook must remain installed and unchanged so the same run independently reports whether a Fist-correlated damage dispatch still occurs.
-
-Keep the older N2A/N2B diagnostic hooks unchanged unless a compile-only adjustment is unavoidable.
-
-### Transport / implementation cautions
-
-Use the established factual route to the player's routine/SPU; do not invent a second player or Fist classifier.
-
-Use byte-wise access only for the exact tested offset:
+For ordinal 2:
 
 ```text
-reinterpret_cast<GEU8 *>(spu) + 0x164
+WriteAttempted: 0
+LatchAfter = same read-only observed value as LatchBefore, or otherwise clearly indicate no write
 ```
 
-or an equivalent minimal helper.
+Do not add a manual clear to `0` anywhere in N2E.
 
-Do not reinterpret the byte as a named SDK field in code/comments/docs.
+Keep the existing N2C `gCEntity::OnDamage` caller hook unchanged so the same run independently reports whether damage dispatch resumes on attack 2.
 
-Do not hook or patch `sAICombatMoveItlLoop` itself in N2D.
+### Scope
 
-Do not skip/replace `gCEntity::OnDamage` in the hook.
+Diagnostic-only:
 
-### N2D controlled runtime case
+```text
+FRAME_COLLISION_DIAGNOSTICS
+current player only
+accepted existing G3AB_COL_FIST marker only
+existing exact human Fist validation succeeds
+```
 
-Use exactly the same fixture and target class as N2C if practical:
+Behavior-only product must remain exact Stage A.
+
+Do not add `G3AB_COL_FIST_OFF` yet.
+
+### Controlled runtime case
+
+Run **two and only two** complete marked P0 Normal/Fist attacks in the same game process, preferably against the same valid target class:
 
 ```text
 Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
 G3AB_COL_FIST at frame 3
-one complete P0 Normal/Fist attack
-valid target
-no additional attack afterward
+```
+
+Attack 1:
+
+```text
+expected diagnostic suppression
 User records visual damage YES/NO
 ```
 
-Freeze the raw log after the single run.
+Allow the first attack to finish naturally and return to a state from which a fresh attack can be started. Do not reload the game, change DLL, manually restore the latch, or perform another intervening attack.
 
-### N2D interpretation
+Attack 2:
 
 ```text
-A. LatchBefore = 0, LatchAfter = 1, visual damage NO,
-   and no Fist-correlated ENTITY_ON_DAMAGE_ENTRY
-   -> PASS as causal suppression evidence for this tested path.
-      The native combat latch is a viable production FIST_OFF candidate.
-      Restore the temporary N2D setter to Stage A before production design.
-
-B. LatchBefore = 0, LatchAfter = 1, but visual damage YES and/or
-   Fist-correlated ENTITY_ON_DAMAGE_ENTRY still occurs
-   -> FAIL as marker-time suppression mechanism in this form.
-      Investigate whether native code resets the latch after the marker or
-      another damage path exists. Do not add production FIST_OFF.
-
-C. LatchBefore is already nonzero at the accepted marker
-   -> material contradiction with the assumed timing state for this run.
-      Do not interpret suppression; inspect lifecycle/timing before another mutation.
-
-D. write cannot be confirmed or exact SPU cannot be resolved
-   -> implementation/observability failure only.
-      Fix that bounded defect before causal interpretation.
+read-only latch observation
+User records visual damage YES/NO
 ```
 
-Do not infer full lifecycle/reset behavior from N2D even if suppression passes. Natural reset across a later combat move is a separate question to prove before production implementation.
+Exit normally after attack 2 and freeze the single full raw log.
 
----
+### N2E interpretation
 
-## N2D explicit non-goals
+```text
+A. Attack 1: ordinal1 latch 0 -> 1, write confirmed, damage NO,
+   no Fist-correlated OnDamage;
+   Attack 2: ordinal2 LatchBefore = 0 with no write, damage YES,
+   Fist-correlated OnDamage resumes from Game.dll + 0x16E348
+   -> PASS: native combat lifecycle naturally rearms the latch for a fresh move
+      after the authored suppression. Production FIST_OFF design may proceed.
+
+B. Attack 2 marker occurs but LatchBefore remains 1
+   -> native reset not established before the second authored marker.
+      Do not implement production FIST_OFF; map reset timing/lifecycle.
+
+C. Attack 2 LatchBefore = 0 but normal Fist damage/OnDamage does not resume
+   -> latch reset alone is insufficient to explain rearming; investigate before production.
+
+D. Attack 1 no longer reproduces N2D suppression
+   -> contradiction/regression; stop and inspect before interpreting reset.
+
+E. second accepted FIST marker cannot be reached in the same process after the first suppression
+   -> lifecycle contradiction; do not add manual restore as a shortcut.
+```
+
+### Explicit non-goals
 
 Do not implement or design:
 
 ```text
 G3AB_COL_FIST_OFF
 production FIST/FIST_OFF lifecycle
-production raw SPU mutation
-persistent Fist marker-owned latch state
-manual latch restoration
+behavior-only SPU mutation
+manual SPU+0x164 restoration
 terminal/interruption restoration
-DamageDisabled setter experiment
-SetIsEnabled / SetReactToTouch
-SetCollisionGroup changes
-extra ClearTriggeredList behavior beyond existing Stage A
+persistent marker-owned latch state
+DamageDisabled / IsEnabled / ReactToTouch / collision-group experiments
+extra ClearTriggeredList beyond existing Stage A
 hook/patch sAICombatMoveItlLoop
 skip/replace gCEntity::OnDamage
 PhysicalFist / monsters / generalized body collision
 per-limb Fist markers
 weapon source-mask changes
-attack-family or StatePosition redesign
-C1 or weapon-lifecycle redesign
-RIGHT/LEFT/BOTH/OFF redesign
+family / StatePosition / C1 redesign
 final mixed regressions
 Raise / playback-speed work
 ```
@@ -417,9 +376,9 @@ N1   — native trigger-state observation           CLOSED/PASS AS OBSERVATION
 N2A  — gate/TriggerTarget timing                  CLOSED/INCONCLUSIVE
 N2B  — hook observability discrimination          CLOSED/CASE A FOR BOTH HOOKS
 N2C  — gCEntity::OnDamage caller trace            CLOSED/PASS AS PATH IDENTIFICATION
-S3   — combat-loop static reconstruction          CLOSED FOR N2D SELECTION
-N2D  — temporary SPU+0x164 marker-time probe      CURRENT/NEXT
-C    — production FIST/FIST_OFF lifecycle         BLOCKED until suppression + reset are proven
+N2D  — SPU+0x164 marker-time intervention         CLOSED/PASS — CASE A
+N2E  — same-process native latch reset proof      CURRENT/NEXT
+C    — production FIST/FIST_OFF lifecycle         BLOCKED until N2E passes
 ```
 
 ---
