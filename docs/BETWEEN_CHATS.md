@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-05
 
-## Current bridge — N1 closed; N2A Fist gate/dispatch timing probe next
+## Current bridge — N2A damaging run produced zero gate/dispatch records; N2B observability probe next
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -34,104 +34,85 @@ Fist remains a logical human body-contact source adapter inside the closed colli
 
 ---
 
-## N1 result carried into N2
+## N2A implementation / deployment / runtime evidence
 
-Canonical N1 evidence:
-
-```text
-research/raw/2026-09-05_fist_n1_native_trigger_state_probe.log
-commit 1a475cd292abf526f2032262ac4300f18920e178
-SHA256 113857F71C3A14A548582B4B254E0CF6C1CBCB79C285B158302E5B5AB34F1972
-```
-
-Across four intended native unmarked Normal/Fist executions (2 x P0, 2 x P1), the exact resolved `gEUseType_Fist` / raw 8 source remained:
+N2A implementation:
 
 ```text
-FistCollisionGroup: 0
-IsEnabled:          1
-ReactToTouch:       1
-ResetOnUntouch:     0
-DamageDisabled:     0
+888f22fb02b0d6e524847dc28f4bbe3a5d9077a6
+Add N2A Fist gate dispatch timing probe
 ```
 
-No transition was observed across the N1 native OnAI_Attack or AISetState before/after boundaries. Each intended native execution still issued `RequestedGroup: 7` while the exact Fist source remained `0 -> 0`.
-
-N1 therefore did not identify a persistent property/group ON/OFF transition. It does not rule out a transient or another native control.
-
----
-
-## Stage B interpretation carried into N2
-
-Stage B runtime facts remain:
-
-```text
-DamageDisabled 0 -> 1 at first accepted authored FIST marker
-later accepted FIST: DamageDisabled 1 -> 1
-valid-target Fist damage still observed
-```
-
-The tested marker-time setter intervention therefore failed as the current production OFF mechanism.
-
-Later tested-binary analysis established:
-
-```text
-gCTouchDamage_PS::CanBeActivatedNow checks DamageDisabled as a genuine activation gate.
-inherited eCTrigger_PS touch/intersect activation reaches that virtual eligibility check.
-```
-
-Do not describe `DamageDisabled` as fake or globally ineffective.
-
-The unresolved causal question is timing/path:
-
-```text
-A — relevant eligibility/activation already passed the DamageDisabled gate before the authored FIST marker
-B — a later/native dispatch path remains after the marker and needs tracing
-```
-
-EV-223 owns that qualification.
-
----
-
-## Factual source/binary anchors for N2A
-
-Tested SDK declaration:
-
-```text
-gCTouchDamage_PS : eCTrigger_PS
-protected virtual GEBool CanBeActivatedNow(eCEntity *, eCContactIterator &)
-protected virtual void TriggerTarget(eCEntity *, eCEntity *, eCContactIterator &)
-```
-
-Tested `Game.dll` exports independently identify the exact entries:
+N2A added diagnostic-only explicit-this `.ThisCall()` hooks at:
 
 ```text
 Game + 0x692F0  gCTouchDamage_PS::CanBeActivatedNow
 Game + 0x693B0  gCTouchDamage_PS::TriggerTarget
 ```
 
-Static disassembly confirms `CanBeActivatedNow` begins by testing `gCTouchDamage_PS + 0xE9`, the SDK `DamageDisabled` property, and returns false through that gate when disabled.
+Independent Normal Chat source audit: PASS.
 
-Current `EngineBridge.cpp` already uses the recursion-safe explicit-this `.ThisCall()` hook transport for engine member functions. N2A must use that proven transport rather than legacy shared `GetSelf` transport.
+Local diagnostic build: PASS.
 
-The existing exact Fist source authority remains:
+Validated deployed diagnostic:
 
 ```text
-CollisionSources::ResolveFistCollisionSource(actor)
--> current right-slot candidate
--> accept only factual gEUseType_Fist / raw 8
+Script_FrameCollisionTest.dll
+SHA256 20101D10F3A074746B3E7A321F754CDA7A32FE0B3EC049E472185C1D4FCC6A93
+length 432640
 ```
 
-Do not create a second Fist source classifier.
+Built/live SHA256 matched exactly. CORE startup PASS:
 
----
+```text
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+Hooks installed.
+```
 
-## Exact next responsibility — N2A READ-ONLY FIST GATE/DISPATCH TIMING PROBE
+Canonical N2A raw evidence:
 
-Implement one bounded diagnostic-only, read-only timing probe.
+```text
+research/raw/2026-09-05_fist_n2a_gate_dispatch_timing_probe.log
+raw evidence commit 7060fc2f94be6d218e3c343225df076bced28cd2
+```
 
-### Objective
+Controlled case:
 
-Observe the exact logical human-Fist TouchDamage path at:
+```text
+player PC_Hero
+known marked human Fist P0 Normal attack
+Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+G3AB_COL_FIST at authored frame 3
+valid target
+User visual damage observation: YES
+```
+
+The marked execution was valid and accepted:
+
+```text
+Family: NORMAL
+Action: 1
+RequiresFistSource: 1
+FistSourceAddress: E6AB0210
+FistSourceUseType: 8
+FistSourceCollisionGroup: 0
+SuppressNativeCallback: 1
+
+FIST RECEIVED
+ElapsedMs: 43063.346
+StateTime: 0.127968
+MarkerAction: ACCEPTED
+TriggeredListClearCount: 1
+FistTriggeredListCleared: 1
+FistGroupBefore: 0
+FistGroupAfter: 0
+```
+
+The User confirmed that this exact attack damaged the target.
+
+However, the complete committed raw log contains zero records for all four intended N2A boundaries:
 
 ```text
 FIST_CAN_BE_ACTIVATED_BEFORE_ORIGINAL
@@ -140,130 +121,132 @@ FIST_TRIGGER_TARGET_BEFORE_ORIGINAL
 FIST_TRIGGER_TARGET_AFTER_ORIGINAL
 ```
 
-and correlate those records by ordinary log order / elapsed time with the already-existing `G3AB_COL_FIST` marker records.
+There is likewise no `FIST GATE/DISPATCH TIMING` record anywhere in the run.
 
-N2A asks only:
+### N2A conclusion — narrow scope
 
-> For the known marked human-Fist attack, does the genuine `CanBeActivatedNow` eligibility check occur before or after the authored FIST marker, and when does the exact `TriggerTarget` dispatch occur relative to both?
+N2A did **not** establish gate/marker/dispatch ordering.
 
-### Hook scope
+A damaging marked human-Fist execution occurred while the current exact-filtered hooks emitted no matching records. This falsifies the assumption that the relevant path would necessarily be observable through those two hooks **as currently hooked and filtered**.
 
-Add exactly two diagnostic-only hooks:
+Do not infer yet that:
+
+- `CanBeActivatedNow` is not called;
+- `TriggerTarget` is not called;
+- the tested RVAs are wrong;
+- the hooks failed to install;
+- the exact-Fist filter is wrong;
+- the damaging path bypasses these methods.
+
+N2A cannot distinguish those possibilities because it logged only after the exact-Fist filter accepted the hooked `this`.
+
+No production behavior conclusion follows from this negative diagnostic result.
+
+---
+
+## Exact next responsibility — N2B READ-ONLY HOOK OBSERVABILITY / FILTER DISCRIMINATION
+
+Implement one bounded diagnostic-only follow-up to distinguish exactly:
+
+```text
+1. hook entry never occurs during the damaging player Fist execution
+vs
+2. hook entry occurs but the existing exact-player-Fist filter rejects it
+```
+
+Do not investigate another gameplay control in N2B.
+
+### Preserve the N2A hooks and transport
+
+Keep the same two diagnostic-only hooks:
 
 ```text
 Game + 0x692F0  gCTouchDamage_PS::CanBeActivatedNow
 Game + 0x693B0  gCTouchDamage_PS::TriggerTarget
 ```
 
-Both hooks must:
+Preserve:
 
-- exist only in the diagnostic product (`FRAME_COLLISION_DIAGNOSTICS`);
-- use explicit per-invocation `gCTouchDamage_PS *this` with `.ThisCall()`;
-- call the original exactly once with unchanged arguments and ordering;
-- return the exact original result where applicable;
-- perform no property, collision, marker, lifecycle or target mutation.
+- explicit per-invocation `gCTouchDamage_PS *this`;
+- recursion-safe `.ThisCall()` transport;
+- original exactly once with unchanged arguments and ordering;
+- exact native return value for `CanBeActivatedNow`;
+- no behavior/property/collision/marker/lifecycle/target mutation;
+- no N2B code in the behavior-only product.
 
-The behavior-only product must contain neither N2A hook.
+### Add bounded pre-filter entry diagnostics
 
-### Exact Fist filtering
+Before `ResolveExactPlayerFistSource(...)` decides whether the existing detailed N2A record is emitted, record a bounded diagnostic entry for the hook invocation.
 
-Log only when the hooked `gCTouchDamage_PS *this` is the exact TouchDamage property set belonging to the player's source returned by the existing `CollisionSources::ResolveFistCollisionSource(player)`.
+The pre-filter trace must be small and deterministic. Use diagnostic-only counters/caps only as needed to prevent unbounded logging. Do not create gameplay/lifecycle state.
 
-Use that resolver and exact property-set identity. Do not generalize by class alone, entity name, slot assumption beyond the resolver, filename, monster/body semantics, or `PhysicalFist`.
-
-For all non-matching TouchDamage instances, forward original behavior exactly once without N2A logging.
-
-### Required factual records
-
-Each matching N2A record must include at minimum:
+For each of the two hook types, the bounded entry record must make it possible to determine at minimum:
 
 ```text
-Boundary
+HookKind: CAN_BE_ACTIVATED or TRIGGER_TARGET
 ElapsedMs
-Actor/player identity
-Action
-AniPhase
-StateTime
-CurrentMovementAni
-FistSourceAddress
-FistUseType
-FistCollisionGroup
-DamageDisabled
+HookEntryOrdinal
+ThisTouchDamageAddress
+ThisOwnerEntityAddress, using factual property-set ownership if available
+ThisOwnerEntityName, if safely available
+ThisOwnerUseType, if safely available
+PlayerEntityAddress
+ExistingResolverSourceAddress (or null)
+ExactTouchDamageIdentityMatch: 0/1
+PlayerAction
+PlayerAniPhase
+PlayerStateTime
+PlayerCurrentMovementAni
+DamageDisabled from hooked this, if safe
 ```
 
-For `CanBeActivatedNow` additionally report:
+For the existing resolver outcome, preserve the current authority:
 
 ```text
-argument entity address/identity without guessing its semantic role
-contact iterator address
-native result on AFTER_ORIGINAL
+CollisionSources::ResolveFistCollisionSource(player)
 ```
 
-For `TriggerTarget` additionally report:
+Do not create a second production Fist classifier.
+
+The purpose of factual `this` owner/use-type logging is diagnostic discrimination only. It must not replace the existing resolver as behavior/source authority.
+
+If direct owner access from `gCTouchDamage_PS` is not available or not safe in the tested SDK, record that field as unavailable rather than inventing a cast/path.
+
+Keep the existing detailed N2A exact-match BEFORE/AFTER records unchanged when the exact filter succeeds.
+
+### Boundedness
+
+The trace must not dump every TouchDamage call indefinitely.
+
+Prefer a small per-hook cap sufficient for one controlled attack. The log must explicitly report the ordinal so a cap is visible. If a suppression/cap indication is necessary, emit it once only.
+
+Do not use filename text as the sole gate for whether the hook-entry trace exists. Runtime action/phase/player context remains factual context, while motion name is only a selector/correlation field.
+
+### N2B interpretation
+
+One controlled damaging marked player-Fist run should answer:
 
 ```text
-first entity argument address/identity
-second entity argument address/identity
-contact iterator address
+A. zero pre-filter entries for a hook
+   -> that exact hook entry was not observed during the run;
+      current exact-filter logic is not the reason for its silence.
+
+B. pre-filter entries exist but ExactTouchDamageIdentityMatch = 0
+   -> hook is entered, but current exact-Fist matching/filter assumption rejects the observed this;
+      inspect factual owner/source identity next.
+
+C. exact-match pre-filter entry exists but detailed N2A record still does not
+   -> diagnostic implementation defect; fix only that defect before further causal work.
+
+D. exact-match detailed records appear
+   -> N2B restores observability; return their timing/order to Normal Chat.
 ```
 
-Do not invent Target/Inflictor labels unless the tested SDK/static evidence already establishes those parameter roles. Neutral names such as `EntityArg1` / `EntityArg2` are acceptable and preferred when role is not proven.
-
-The existing marker logger already emits `ElapsedMs`, Action, phase, StateTime and current motion when `G3AB_COL_FIST` is received. Do not change marker behavior merely to improve correlation.
-
-### N2A is read-only
-
-Do NOT reintroduce the Stage-B setter in N2A.
-
-Do NOT call:
-
-```text
-SetDamageDisabled(...)
-SetIsEnabled(...)
-SetReactToTouch(...)
-SetCollisionGroup(...)
-ClearTriggeredList() beyond the already-existing Stage-A marker behavior
-```
-
-No diagnostic event counter, persistent Fist execution state, cache, lifecycle state or new ownership model is required. Ordinary chronological log order plus `RuntimeClock` elapsed time is sufficient.
-
-### Marked FIST behavior remains exact Stage A
-
-`G3AB_COL_FIST` must remain:
-
-```text
-resolve/validate human gEUseType_Fist / raw 8
--> TouchDamage.ClearTriggeredList()
--> no DamageDisabled behavior
--> no collision-group mutation
--> no weapon source-mask semantics
-```
-
-Do not alter callback ownership/suppression, marker occurrence/dedupe, C1 generation, family, StatePosition, source resolution or lifecycle.
-
-### Expected source scope
-
-Expected changed prototype files:
-
-```text
-prototypes/Script_FrameCollisionTest/EngineBridge.cpp
-prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
-prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h
-```
-
-Do not modify CMake/build product separation unless a concrete compile dependency makes a minimal change unavoidable; report such a contradiction before broadening.
-
-### N2A interpretation boundary
-
-N2A may establish ordering only.
-
-If the genuine `CanBeActivatedNow` call has already occurred before the FIST marker and the relevant `TriggerTarget` follows, that supports the marker-time setter being too late for that activation.
-
-If the gate/dispatch ordering does not establish that explanation, do not improvise another setter or mechanism. Return the runtime result to Normal Chat for the next one-variable decision.
+Do not choose a production FIST_OFF mechanism from N2B.
 
 ---
 
-## N2A explicit non-goals
+## N2B explicit non-goals
 
 Do not implement or design:
 
@@ -272,6 +255,8 @@ G3AB_COL_FIST_OFF
 any production Fist disable mechanism
 any DamageDisabled setter experiment
 SetIsEnabled / SetReactToTouch
+SetCollisionGroup changes
+extra ClearTriggeredList behavior
 persistent Fist marker-owned lifecycle state
 baseline snapshot/restore
 terminal/interruption restoration
@@ -295,8 +280,8 @@ B   — marker-time DamageDisabled intervention    CLOSED/FAIL AS CURRENT OFF IN
 R   — exact restoration to Stage A behavior      CLOSED/PASS
 N1  — native trigger-state observation           CLOSED/PASS AS OBSERVATION
 D   — close N1 / correct docs / procedures       CLOSED
-N2A — read-only gate/TriggerTarget timing probe  CURRENT
-N2B — only if N2A cannot resolve timing/path     BLOCKED
+N2A — exact-filtered gate/TriggerTarget timing   CLOSED/INCONCLUSIVE: damaging run, zero matching records
+N2B — hook observability/filter discrimination   CURRENT/NEXT
 C   — production FIST/FIST_OFF lifecycle         BLOCKED until control mechanism is proven
 ```
 
