@@ -116,10 +116,6 @@ struct MarkerProcessResult
     GEInt fistSourceGroupAfter;
     GEInt fistSourceUseType;
     bool fistSourceListCleared;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    GEInt fistDamageDisabledBefore;
-    GEInt fistDamageDisabledAfter;
-#endif
     GEInt quickStatePositionBeforeMarker;
     GEInt quickStatePositionAfterMarker;
     GEInt whirlStatePositionBeforeMarker;

@@ -19,10 +19,6 @@ struct FistSourceOperationResult
     GEInt groupAfter;
     GEInt useType;
     bool triggeredListCleared;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    GEInt damageDisabledBefore;
-    GEInt damageDisabledAfter;
-#endif
 };
 
 SourceOperationResult ActivateOrRearm(eCEntity *sourceInstance);

@@ -666,10 +666,6 @@ static MarkerProcessResult MakeMarkerResult(
     result.fistSourceGroupBefore = -1;
     result.fistSourceGroupAfter = -1;
     result.fistSourceUseType = -1;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    result.fistDamageDisabledBefore = -1;
-    result.fistDamageDisabledAfter = -1;
-#endif
     for (GEInt i = 0; i < 2; ++i)
     {
         result.sourceGroupBefore[i] = -1;
@@ -829,10 +825,6 @@ MarkerProcessResult ProcessMarker(
         result.fistSourceGroupAfter = operation.groupAfter;
         result.fistSourceUseType = operation.useType;
         result.fistSourceListCleared = operation.triggeredListCleared;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-        result.fistDamageDisabledBefore = operation.damageDisabledBefore;
-        result.fistDamageDisabledAfter = operation.damageDisabledAfter;
-#endif
         if (operation.triggeredListCleared)
             ++result.triggeredListClearCount;
     }
