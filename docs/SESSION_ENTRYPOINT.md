@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-04
+**Updated:** 2026-09-05
 
 Immediate transient handoff: `docs/BETWEEN_CHATS.md`  
 Project charter / highest Gothic-specific authority: `docs/README.md`  
@@ -28,15 +28,16 @@ Never normally load behavior-only and diagnostic collision twins together.
 
 ---
 
-## Fresh Normal Chat Bootstrap
+## Fresh Normal Chat / Work Bootstrap
 
 1. Read this file first.
-2. Read `docs/BETWEEN_CHATS.md` for the exact active responsibility.
-3. Treat CAM -> project charter -> specialist authority and release purity as standing constraints.
-4. Reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority when substantial reasoning requires it.
-5. Retrieve `PROJECT_PIPELINE.md` before changing branch/test/evidence/procedure/version/artifact conventions.
-6. Do not scan the whole repository or reconstruct the project from old chat history.
-7. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
+2. Read `docs/BETWEEN_CHATS.md` for the exact active responsibility and frozen transient contract.
+3. Work also reads `docs/WORK_IMPLEMENTATION_PROTOCOL.md` before bounded implementation.
+4. Treat CAM -> project charter -> specialist authority and release purity as standing constraints.
+5. Reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority when substantial reasoning requires it.
+6. Retrieve `PROJECT_PIPELINE.md` before changing branch/test/evidence/procedure/version/artifact conventions.
+7. Do not scan the whole repository or reconstruct the project from old chat history.
+8. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
 
 After bootstrap, report briefly: current responsibility, relevant closed boundary, exact next step, and what remains deliberately outside scope.
 
@@ -57,12 +58,26 @@ NEW COLLISION ARCHITECTURE VERIFICATION    COMPLETE
 
 Do not reopen this architecture without concrete contradicting evidence.
 
+Current equipped-melee expansion state remains:
+
+```text
+PowerAttack   CLOSED/PASS
+PierceAttack  CLOSED/PASS
+SimpleWhirl   CLOSED/PASS
+HackAttack    isolated routing/source/marker validation PASS
+```
+
+Fist is a new source-adapter extension inside this closed architecture, not an architecture rewrite.
+
 ---
 
 ## Repository / Phase Boundary
 
 ```text
-complete collision on docs/collision-source-evidence
+finish human Fist collision support on docs/collision-source-evidence
+-> run final native mixed collision regression
+-> run final New Balance + Script_AttackCollision mixed regression
+-> complete collision knowledge/evidence closure
 -> migrate mature collision behavior into Script_G3AnimationBehaviors
 -> validate diagnostics-free collision integration
 -> promote completed collision checkpoint to main
@@ -73,142 +88,84 @@ Do not create `feature/raise-attack-speed` early.
 
 ---
 
-## Current Equipped-Melee Expansion State
+## Current Responsibility — Fist Work A
+
+The final collision regressions are temporarily postponed because human Fist support was identified as a missing collision feature that should be integrated before collision closure.
+
+The full frozen implementation contract lives **once** in:
+
+`docs/BETWEEN_CHATS.md`
+
+Current bounded implementation stage:
 
 ```text
-PowerAttack   CLOSED/PASS for current marker-expansion stage
-PierceAttack  CLOSED/PASS for current marker-expansion stage
-SimpleWhirl   CLOSED/PASS for current marker-expansion stage
-HackAttack    isolated routing/source/marker validation PASS; final compatibility regression remains
+Work A — dedicated G3AB_COL_FIST baseline
 ```
 
-`GetUpAttack` is not part of the planned marker roadmap. True `FinishingAttack` action 15 remains deliberately native/unmarked. Fist/body remains a separate later source-adapter responsibility.
+Purpose:
 
-SimpleWhirl target-semantics closure remains at:
+```text
+G3AB_COL_FIST
+-> resolve proven human logical Fist source (gEUseType_Fist / raw 8)
+-> dedicated Fist source operation
+-> TouchDamage.ClearTriggeredList()
+-> no weapon Item_Attack / Item_Equipped mutation
+-> no DamageDisabled behavior yet
+```
 
-`research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md`
+Important frozen separation:
 
-Do not reopen its proven physical source layer during final regression.
+```text
+RIGHT / LEFT / BOTH / OFF
+-> equipped-weapon source path
+-> preserve unchanged
+
+FIST
+-> dedicated logical human Fist/body-contact source path
+-> not SourceMask_Right/Left/Both
+-> no SourceMask_Fist
+```
+
+Fist source selection must remain independent from attack-family selection. Existing Normal/Power/Quick/SimpleWhirl/Whirl/Pierce/Hack family semantics and StatePosition policies remain authoritative and unchanged.
+
+The current branch source still contains the temporary `DamageDisabled=true` Fist causal probe from the earlier exploratory attempt. Work A must remove that probe and must contain **no DamageDisabled read/write behavior**.
+
+Do not add `G3AB_COL_FIST_OFF` yet.
 
 ---
 
-## HackAttack Accepted State
-
-Latest Hack runtime evidence is committed through:
-
-`ec36039df8cafa5f17658d4307fa1c109d82cce0` — `Record Hack Staff and marker validation`
-
-Established current behavior:
+## Frozen Fist sequence after Work A
 
 ```text
-Action 14 / _AI_HackAttack callback identity           PASS
-2H missing Hack asset -> FinishingAttack fallback      PASS
-Staff missing Hack asset -> FinishingAttack fallback   PASS
-2H dedicated Hack asset override                       PASS
-Staff dedicated Hack asset override                    PASS
-2H authored distance override                          PASS
-Hack marker StatePosition                              1
-RIGHT                                                   PASS
-OFF                                                     PASS
-RIGHT -> OFF -> RIGHT                                   PASS
-OFF before first RIGHT -> delayed RIGHT                PASS
-single RIGHT -> natural terminal cleanup               PASS
-2H right equipped source                               PASS
-Staff right equipped source                            PASS
+A — dedicated FIST baseline
+    prove the separated Fist route still damages using ClearTriggeredList only
+
+B — one-variable DamageDisabled causal probe
+    same proven FIST route + DamageDisabled=true
+
+C — production FIST/FIST_OFF + exact baseline snapshot/restore lifecycle
+    only after DamageDisabled is causally proven
 ```
 
-The routing implementation is intentionally action-gated and weapon-family agnostic. It preserves the animation namespace produced by the active Gothic/installed resolver and changes only the Hack-vs-Finishing action token at the narrow CombatMove motion-resource query. Do not add Hero/2H/Staff/Axe gates.
-
-Jackydima `Script_Animation` is an important reference for this contract: its `GetAniName` reconstruction builds the lookup identity only through the `_00_` prefix and can provide custom namespaces such as `Axe`; destination pose, distance and later suffix data belong to the resolved animation resource. The documentation/retrieval route for this fact must be repaired during final collision knowledge maintenance; do not redesign working Hack code because the older handoff wording was incomplete.
-
-### 2H Hack pose-chain caveat
-
-The tested complete 2H Hack sequence is:
-
-```text
-Hero_Parade_None_2H_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
-Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot
-Hero_Parade_None_2H_P1_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
-```
-
-The numeric Hit distance is author-controlled: a `...P0_200.xmot` dedicated Hack Hit was selected successfully. However, changing the 2H Hit destination from native-like `P1` to `P0` prevented the expected Recover continuation; restoring `P1` and the matching P1-source Recover restored the full sequence, including with New Balance present. Exact native reason is unknown and deliberately out of scope. Preserve the native 2H pose progression rather than creating a new engine-behavior responsibility.
-
-The tested Staff Hack sequence remains the native-like all-P0 family:
-
-```text
-Hero_Parade_None_Staff_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
-Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot
-Hero_Parade_None_Staff_P0_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot
-```
+After Work A publishes, Normal Chat independently reviews the diff against `BETWEEN_CHATS.md`. Then the authoritative home PC performs build/deploy/runtime validation.
 
 ---
 
-## Current Responsibility — Final Collision Regression / Compatibility Closure
+## Deliberately outside Work A
 
-Run **two final strong mixed regressions**, not new architecture research.
-
-### A. Native-control mixed regression
-
-Environment:
-
-```text
-current G3AB diagnostic collision DLL
-+ current authored test fixtures
-+ no New Balance
-+ no Script_AttackCollision
-```
-
-Exercise a practical mixture of:
-
-- different supported melee weapon families;
-- marked and unmarked attacks;
-- repeated attacks and ordinary transitions;
-- interruption attempts;
-- Hack dedicated override and Hack fallback where practical;
-- true FinishingAttack Action 15 if convenient as a negative/unmarked control.
-
-Goal: no crash, no stuck weapon collision, expected contacts, unmarked/native paths untouched, marker source/lifecycle behavior remains healthy.
-
-### B. New Balance + Script_AttackCollision compatibility regression
-
-Repeat a similarly strong mixed run with:
-
-```text
-current G3AB diagnostic collision DLL
-+ New Balance
-+ Script_AttackCollision
-```
-
-This is the final collision compatibility checkpoint. New Balance compatibility is an explicit project criterion. Existing earlier compatibility evidence remains relevant, but this final run should exercise the mature current collision implementation strongly enough that later Raise/speed work can treat collision compatibility as a closed baseline unless contradictory evidence appears.
-
-Do not confuse this with playback-speed compatibility: the current upstream speed-control hook is already known to conflict with New Balance and must be redesigned later on the Raise/speed branch.
-
----
-
-## After Both Final Runs Pass
-
-Perform one bounded collision knowledge-maintenance/closure transaction:
-
-```text
-interpret both final logs
--> record canonical evidence
--> repair Hack animation/fallback lookup ownership routes in docs/indexes
--> update current design/test status
--> archive fully processed Power/Pierce/SimpleWhirl/Hack raw evidence with paths updated
--> close equipped-weapon collision implementation
-```
-
-Then continue the existing phase transition toward production `Script_G3AnimationBehaviors` collision integration. Raise and playback-speed implementation remain later work after the collision checkpoint is mature/promoted as planned.
-
----
-
-## Deliberately Outside the Next Two Tests
-
-- new collision architecture changes without contradictory evidence;
-- deeper 2H Hack pose-chain reverse engineering;
-- Fist/body source adapter;
-- AttackContinuationProtection unless the final regression exposes a concrete contradiction;
+- `G3AB_COL_FIST_OFF`;
+- DamageDisabled reads/writes or diagnostics;
+- persistent Fist marker-owned lifecycle state;
+- Fist terminal/interruption restoration;
+- PhysicalFist / monsters / generalized body collision;
+- per-limb Fist markers;
+- new attack actions or Quick-selection logic;
+- attack-family / StatePosition redesign;
+- C1 or weapon-lifecycle redesign;
+- RIGHT/LEFT/BOTH/OFF behavior changes;
+- Hack or SimpleWhirl changes;
+- final mixed native/compatibility regression execution;
 - Raise implementation;
-- speed-hook redesign;
+- playback-speed redesign;
 - target acquisition;
 - climbing.
