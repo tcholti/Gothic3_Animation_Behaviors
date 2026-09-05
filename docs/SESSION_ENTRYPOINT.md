@@ -89,24 +89,18 @@ Do not create `feature/raise-attack-speed` early.
 
 ## Fist Stage A — CLOSED/PASS
 
-Work A source implementation is published as:
+Implementation:
 
 ```text
 5984738a41eca895900ae0929c3c930336c8ff53
 Add dedicated Fist marker baseline
 ```
 
-Stage A runtime evidence is published as:
+Runtime evidence:
 
 ```text
 91e6d4f81b5f8d549546686a6d308ddff3e3bd9f
 Add Fist Stage A baseline runtime evidence
-```
-
-Validated diagnostic DLL SHA256:
-
-```text
-C9C6474D7A3EE6ABA0D260457DC85A597F5A7B1F614C01AD1A2BA15DDE890033
 ```
 
 Validated fixture:
@@ -116,40 +110,64 @@ Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
 frame 3: G3AB_COL_FIST
 ```
 
-Stage A result:
-
-```text
-visual valid-target contact damage: YES
-FIST accepted on valid C1 generation
-logical Fist source resolved as gEUseType_Fist / raw 8
-Fist collision group remained 0 -> 0
-TouchDamage.ClearTriggeredList() occurred exactly once
-no equipped-weapon source mask was activated/retired
-no weapon collision-group request path was used by FIST
-native callback was suppressed for the marker-owned execution
-finalization had no outstanding weapon-style collision obligation
-```
-
-Therefore the separated dedicated FIST route reproduces the proven damaging human Fist contact using `ClearTriggeredList()` alone, without weapon Item_Attack / Item_Equipped mutation and without DamageDisabled behavior.
+Stage A proved the separated dedicated FIST route reproduces damaging human Fist contact using `TouchDamage.ClearTriggeredList()` alone while preserving group `0 -> 0`, using no equipped-weapon source mask and creating no weapon-style C1 obligation.
 
 ---
 
-## Current Responsibility — Fist Stage B one-variable causal probe
+## Fist Stage B — DAMAGE OBSERVED; MECHANISM NOT YET RESOLVED
 
-Stage B is now authorized because Stage A passed. Its conceptual variable is deliberately singular:
+Temporary Stage B implementation:
 
 ```text
-same proven dedicated FIST route
-+ DamageDisabled = true
+a8ce1487b53ff2f8e6b6b9d9e87ac36e2322c561
+Add temporary Fist DamageDisabled causal probe
 ```
 
-The question is only whether that otherwise-identical known-good Fist contact stops damaging.
+Validated diagnostic DLL SHA256:
 
-### Exact next step
+```text
+A734F3C95A1A36A8B0FB3A1768AE8EEDF459AB2E0957FC34BD4E73E3E4CE6E38
+```
 
-Freeze and execute a bounded Work B implementation that changes only the dedicated human FIST operation needed for this causal probe, then independently source-review it before local build/runtime validation.
+Raw Stage B evidence:
 
-Do not implement production `G3AB_COL_FIST_OFF` or persistent lifecycle ownership in Stage B.
+```text
+research/raw/2026-09-05_fist_stageb_damage_disabled_causal_probe.log
+626a6bca71469263a9da84959dfa203e4d0155ac
+```
+
+Observed result:
+
+```text
+visual valid-target contact damage: YES
+same known-good FIST fixture/timing
+FIST accepted on valid C1 generation
+logical Fist source resolved as gEUseType_Fist / raw 8
+Fist collision group remained 0 -> 0
+TouchDamage.ClearTriggeredList() occurred
+no equipped-weapon source mask was used
+```
+
+The source called `SetDamageDisabled(GETrue)`, but the current CORE logger records no DamageDisabled before/after value. Therefore the evidence does **not** yet establish either that the runtime property became true or that DamageDisabled is ineffective for Fist damage.
+
+Stage C is blocked.
+
+---
+
+## Current Responsibility — Stage B DamageDisabled readback probe
+
+Freeze and execute one bounded diagnostic/source probe that keeps the existing Stage B setter and all proven FIST behavior unchanged, but records the factual `DamageDisabled` value on the exact resolved Fist TouchDamage property set:
+
+```text
+immediately before SetDamageDisabled(GETrue)
+immediately after SetDamageDisabled(GETrue)
+```
+
+The next question is only:
+
+> Did the exact runtime property actually change to true on the same Fist source used by the accepted marker?
+
+Do not test another mechanism until this fact is known.
 
 ---
 
@@ -159,22 +177,23 @@ Do not implement production `G3AB_COL_FIST_OFF` or persistent lifecycle ownershi
 A — dedicated FIST baseline
     CLOSED/PASS
 
-B — one-variable DamageDisabled causal probe
+B — DamageDisabled causal investigation
     CURRENT
+    first contact probe still damaged
+    exact property readback required next
 
-C — production FIST/FIST_OFF + exact baseline snapshot/restore lifecycle
-    only after B causally proves the mechanism
+C — production FIST/FIST_OFF lifecycle
+    BLOCKED until B identifies a proven control mechanism
 ```
-
-The full short-lived continuation and exact Stage B boundary are in `docs/BETWEEN_CHATS.md`.
 
 ---
 
-## Deliberately outside the immediate Stage B responsibility
+## Deliberately outside the immediate readback responsibility
 
 - production `G3AB_COL_FIST_OFF`;
 - persistent Fist marker-owned lifecycle state;
 - Fist terminal/interruption restoration;
+- alternate Fist disable mechanisms before readback;
 - PhysicalFist / monsters / generalized body collision;
 - per-limb Fist markers;
 - new attack actions or Quick-selection logic;
