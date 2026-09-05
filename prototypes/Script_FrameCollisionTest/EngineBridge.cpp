@@ -119,7 +119,17 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
     INIT_SCRIPT_CALLBACK()
     if (EvaluateAttackCallback(SelfEntity, AttackFamily_Normal))
         return GETrue;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogFistTriggerStateSnapshot(
+        "NATIVE_ATTACK_BEFORE_ORIGINAL", SelfEntity);
+    GEBool const result = Hook_OnAI_Attack.GetOriginalFunction(
+        &OnAI_Attack_FrameCollisionTest)(a_pSPU);
+    CollisionDiagnostics::LogFistTriggerStateSnapshot(
+        "NATIVE_ATTACK_AFTER_ORIGINAL", SelfEntity);
+    return result;
+#else
     return Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
+#endif
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_PowerAttack_FrameCollisionTest)
@@ -615,8 +625,26 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     }
 #endif
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    if (IsPlayerEntity(ownerEntity))
+    {
+        Entity actor(ownerEntity);
+        CollisionDiagnostics::LogFistTriggerStateSnapshot(
+            "AISETSTATE_BEFORE_ORIGINAL", actor);
+    }
+#endif
+
     Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
         a_pThis, a_State);
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    if (IsPlayerEntity(ownerEntity))
+    {
+        Entity actor(ownerEntity);
+        CollisionDiagnostics::LogFistTriggerStateSnapshot(
+            "AISETSTATE_AFTER_ORIGINAL", actor);
+    }
+#endif
 
     CollisionLifecycleGuard::FinalizationResult const result =
         CollisionLifecycleGuard::FinalizeAfterAISetState(finalization);

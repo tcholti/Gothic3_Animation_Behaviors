@@ -15,6 +15,7 @@ FILE *GetLog();
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result);
+void LogFistTriggerStateSnapshot(char const *boundary, Entity &actor);
 void LogNullMarker(char const *markerName);
 void LogMarkerContext(Entity &actor, MarkerOpcode opcode);
 void LogMarkerResult(Entity &actor, MarkerProcessResult const &result);

@@ -217,6 +217,57 @@ static void LogResolvedSource(char const *label, eCEntity *sourceInstance)
                  static_cast<GEInt>(source.GetCollisionGroup()));
 }
 
+void LogFistTriggerStateSnapshot(char const *boundary, Entity &actor)
+{
+    if (g_pLog == nullptr || actor == None)
+        return;
+
+    eCEntity *fistSourceInstance =
+        CollisionSources::ResolveFistCollisionSource(actor);
+    if (fistSourceInstance == nullptr)
+        return;
+
+    Entity fistSource(fistSourceInstance);
+    if (fistSource == None)
+        return;
+
+    gCTouchDamage_PS *touchDamagePS = static_cast<gCTouchDamage_PS *>(
+        fistSource.TouchDamage.m_pEngineEntityPropertySet);
+    if (touchDamagePS == nullptr)
+        return;
+
+    bCString currentAni = actor.NPC.GetCurrentMovementAni();
+    std::fprintf(g_pLog, "===== FIST TRIGGER STATE SNAPSHOT =====\n");
+    std::fprintf(g_pLog, "Boundary: %s\n",
+                 boundary != nullptr ? boundary : "<null>");
+    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+    std::fprintf(g_pLog, "Action: %d\n",
+                 static_cast<GEInt>(
+                     actor.Routine.GetProperty<PSRoutine::PropertyAction>()));
+    std::fprintf(g_pLog, "AniPhase: %d\n",
+                 static_cast<GEInt>(actor.GetCurrentAniPhase()));
+    std::fprintf(g_pLog, "StateTime: %.6f\n", actor.Routine.GetStateTime());
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n", currentAni.GetText());
+    std::fprintf(g_pLog, "FistSourceResolved: 1\n");
+    std::fprintf(g_pLog, "FistSourceAddress: %p\n",
+                 static_cast<void *>(fistSourceInstance));
+    std::fprintf(g_pLog, "FistUseType: %d\n",
+                 static_cast<GEInt>(
+                     CollisionSources::GetCollisionSourceUseType(fistSource)));
+    std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
+                 static_cast<GEInt>(fistSource.GetCollisionGroup()));
+    std::fprintf(g_pLog, "IsEnabled: %d\n",
+                 static_cast<GEInt>(touchDamagePS->GetIsEnabled()));
+    std::fprintf(g_pLog, "ReactToTouch: %d\n",
+                 static_cast<GEInt>(touchDamagePS->GetReactToTouch()));
+    std::fprintf(g_pLog, "ResetOnUntouch: %d\n",
+                 static_cast<GEInt>(touchDamagePS->GetResetOnUntouch()));
+    std::fprintf(g_pLog, "DamageDisabled: %d\n",
+                 static_cast<GEInt>(touchDamagePS->GetDamageDisabled()));
+    std::fprintf(g_pLog, "=======================================\n\n");
+    std::fflush(g_pLog);
+}
+
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result)
