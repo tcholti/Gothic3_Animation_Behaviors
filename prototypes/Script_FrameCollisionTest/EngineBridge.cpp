@@ -316,7 +316,7 @@ static GELPVoid StartEffect_FrameCollisionTest(
         RuntimeClock::GetElapsedMilliseconds());
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::ApplyAndLogFistCombatLatchIntervention(
+    CollisionDiagnostics::ApplyAndLogFistCombatLatchResetProbe(
         actor, result);
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP

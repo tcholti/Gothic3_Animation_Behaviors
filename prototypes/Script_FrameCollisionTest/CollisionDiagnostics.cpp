@@ -601,7 +601,7 @@ void LogEntityOnDamageEntryCap(GEU32 cap)
     std::fflush(g_pLog);
 }
 
-void ApplyAndLogFistCombatLatchIntervention(
+void ApplyAndLogFistCombatLatchResetProbe(
     Entity &actor, MarkerProcessResult const &result)
 {
     if (g_pLog == nullptr || actor == None
@@ -614,26 +614,41 @@ void ApplyAndLogFistCombatLatchIntervention(
         return;
     }
 
+    static GEU32 acceptedFistSequenceOrdinal = 0;
+    ++acceptedFistSequenceOrdinal;
+    if (acceptedFistSequenceOrdinal > 2)
+        return;
+
+    char const *probeMode = acceptedFistSequenceOrdinal == 1
+        ? "SUPPRESS_FIRST" : "OBSERVE_SECOND";
     gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
         actor.Routine.m_pEngineEntityPropertySet);
     gCScriptProcessingUnit *spu =
         routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
     GEInt latchBefore = -1;
     GEInt latchAfter = -1;
-    bool const writeAttempted = spu != nullptr;
-    if (writeAttempted)
+    bool writeAttempted = false;
+    if (spu != nullptr)
     {
         volatile GEU8 *latchByte =
             reinterpret_cast<volatile GEU8 *>(spu) + 0x164;
         latchBefore = static_cast<GEInt>(*latchByte);
-        *latchByte = 1;
-        latchAfter = static_cast<GEInt>(*latchByte);
+        latchAfter = latchBefore;
+        if (acceptedFistSequenceOrdinal == 1)
+        {
+            writeAttempted = true;
+            *latchByte = 1;
+            latchAfter = static_cast<GEInt>(*latchByte);
+        }
     }
     bool const writeConfirmed = writeAttempted && latchAfter == 1;
 
-    std::fprintf(g_pLog, "===== FIST COMBAT LATCH INTERVENTION =====\n");
+    std::fprintf(g_pLog, "===== FIST COMBAT LATCH RESET PROBE =====\n");
     std::fprintf(g_pLog,
-                 "Boundary: FIST_COMBAT_LATCH_INTERVENTION\n");
+                 "Boundary: FIST_COMBAT_LATCH_RESET_PROBE\n");
+    std::fprintf(g_pLog, "AcceptedFistSequenceOrdinal: %u\n",
+                 static_cast<unsigned int>(acceptedFistSequenceOrdinal));
+    std::fprintf(g_pLog, "ProbeMode: %s\n", probeMode);
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
                  RuntimeClock::GetElapsedMilliseconds());
     std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
@@ -659,7 +674,7 @@ void ApplyAndLogFistCombatLatchIntervention(
     std::fprintf(g_pLog, "FistUseType: %d\n", result.fistSourceUseType);
     std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
                  result.fistSourceGroupAfter);
-    std::fprintf(g_pLog, "==========================================\n\n");
+    std::fprintf(g_pLog, "=========================================\n\n");
     std::fflush(g_pLog);
 }
 
