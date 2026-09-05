@@ -172,6 +172,8 @@ Chat-safe PowerShell rule must establish that commands whose output will be past
 
 For ordinary successful build/deploy steps, request only the compact success/hash/status values needed.
 
+7. Harden the normal Chat -> Work handoff procedure in `PROJECT_OPERATING_PROCEDURES.md`: substantive frozen task state belongs in repository authorities, especially `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`, and the Work launcher should normally remain short. A normal launcher should identify repository, branch, required base HEAD, required read order, bounded responsibility name, publication authorization when needed, and then tell Work to execute the frozen responsibility recorded in the repository docs. Do not duplicate a long design/evidence contract into the launcher when the repository handoff already carries it. A longer launcher is justified only when the needed responsibility cannot first be made durable in the repository or there is a concrete reason the repository handoff is unavailable.
+
 This maintenance transaction is documentation-only. Do not inspect/modify prototype source, raw evidence, or runtime behavior.
 
 ---
@@ -183,7 +185,7 @@ A  — dedicated FIST baseline                     CLOSED/PASS
 B  — marker-time DamageDisabled investigation    CLOSED/FAIL AS CURRENT OFF INTERVENTION
 R  — exact restoration to Stage A behavior       CLOSED/PASS
 N1 — native trigger-state observation            CLOSED/PASS AS OBSERVATION
-D  — close N1 / correct docs / PowerShell rule   NEXT
+D  — close N1 / correct docs / procedure rules   NEXT
 N2 — TriggerTarget/damage-dispatch timing probe  BLOCKED until D is complete
 C  — production FIST/FIST_OFF lifecycle          BLOCKED until control mechanism is proven
 ```
