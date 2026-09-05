@@ -410,6 +410,10 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                      r.fistSourceGroupAfter);
         std::fprintf(g_pLog, "FistTriggeredListCleared: %d\n",
                      r.fistSourceListCleared ? 1 : 0);
+        std::fprintf(g_pLog, "DamageDisabledBefore: %d\n",
+                     r.fistDamageDisabledBefore);
+        std::fprintf(g_pLog, "DamageDisabledAfter: %d\n",
+                     r.fistDamageDisabledAfter);
     }
     for (GEInt i = 0; i < 2; ++i)
     {
