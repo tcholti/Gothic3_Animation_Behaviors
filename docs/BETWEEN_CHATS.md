@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-05
 
-## Current bridge — Fist Stage B contact still damaged; exact DamageDisabled readback next
+## Current bridge — Fist Stage B closed/failed for DamageDisabled; restore Stage A FIST behavior next
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -23,6 +23,7 @@ Pierce marker adapter validation                CLOSED/PASS
 SimpleWhirl current marker/semantic stage       CLOSED/PASS
 Hack isolated routing/source/marker validation  PASS
 Fist Stage A dedicated baseline                 CLOSED/PASS — EV-221
+Fist Stage B DamageDisabled causal probe         CLOSED/FAIL AS OFF MECHANISM
 ```
 
 Do not reopen those areas without concrete contradictory evidence.
@@ -33,15 +34,15 @@ Fist remains a logical human body-contact source adapter inside the closed colli
 
 ---
 
-## Proven Fist baseline
+## Proven Stage A baseline
 
-Stage A implementation:
+Implementation:
 
 ```text
 5984738a41eca895900ae0929c3c930336c8ff53
 ```
 
-Stage A raw evidence:
+Raw evidence:
 
 ```text
 research/raw/2026-09-05_fist_stagea_human_dedicated_fist_baseline.log
@@ -69,125 +70,137 @@ valid C1 generation / accepted FIST marker
 
 ---
 
-## Stage B first causal probe — RESULT QUALIFIED / NOT CLOSED
+## Stage B — CLOSED/FAIL FOR DAMAGEDISABLED AS FIST_OFF MECHANISM
 
-Temporary implementation:
+Temporary setter implementation:
 
 ```text
 a8ce1487b53ff2f8e6b6b9d9e87ac36e2322c561
-Add temporary Fist DamageDisabled causal probe
 ```
 
-Only behavior change from Stage A source:
+Exact readback implementation:
 
 ```text
-same dedicated FIST route
-same gEUseType_Fist / raw 8 validation
-same ClearTriggeredList behavior
-+ SetDamageDisabled(GETrue)
+933e652c7ee66a45b9cd826f249c93019c6248da
 ```
 
-Validated diagnostic DLL:
+Readback raw evidence:
 
 ```text
-SHA256 A734F3C95A1A36A8B0FB3A1768AE8EEDF459AB2E0957FC34BD4E73E3E4CE6E38
+research/raw/2026-09-05_fist_stageb_damage_disabled_exact_readback.log
+commit 1f74a216b32008b968677af3d271694857e7aeba
+SHA256 08A8D3D54BA878606D7C4BE5D0A4D022F85C7C5ACF9969F74845C2FAF6180152
 ```
 
-Raw evidence:
+Validated readback diagnostic DLL:
 
 ```text
-research/raw/2026-09-05_fist_stageb_damage_disabled_causal_probe.log
-commit 626a6bca71469263a9da84959dfa203e4d0155ac
+SHA256 9D2BE5AC24F973F7EDEB2BD8183DB6D8CC458BF4BE9EC2F22776026D84172A09
 ```
 
-Runtime result:
+Causal result:
 
 ```text
+first accepted FIST:
+DamageDisabledBefore: 0
+DamageDisabledAfter:  1
 visual damage: YES
-FIST route still accepted and healthy
-human Fist UseType: 8
-collision group: 0 -> 0
-ClearTriggeredList: yes
-weapon source mask: none
+
+later accepted FIST executions:
+DamageDisabledBefore: 1
+DamageDisabledAfter:  1
+visual damage remained possible
 ```
 
-Important qualification:
+The same accepted FIST route still showed:
 
 ```text
-The logger does NOT record DamageDisabled before or after the setter.
+human gEUseType_Fist / raw 8
+collision group 0 -> 0
+ClearTriggeredList yes
+weapon source mask none
 ```
 
-Therefore do not conclude either:
+Conclusion:
 
 ```text
-DamageDisabled definitely became true but does not control Fist damage
+SetDamageDisabled(GETrue) DOES change the exact resolved Fist TouchDamage property.
+The true value persists across later attacks.
+DamageDisabled=true DOES NOT stop the tested human Fist damage path.
 ```
 
-or:
-
-```text
-SetDamageDisabled failed to change the runtime property
-```
-
-Neither is established yet.
+Therefore reject `DamageDisabled` as the production FIST_OFF mechanism for this path. Do not speculate yet about why the flag is ineffective.
 
 ---
 
-## Exact next responsibility — Stage B readback probe
+## Exact next responsibility — restore the Stage A source baseline
 
-Freeze one bounded Work task whose only purpose is to make the existing Stage B experiment factually observable.
+The repository source still contains the temporary Stage B mutation/readback experiment. The next Work task is restoration only.
+
+Restore the dedicated human FIST operation to:
+
+```text
+validate exact gEUseType_Fist / raw 8 source
+TouchDamage.ClearTriggeredList()
+no DamageDisabled setter
+no DamageDisabled getter/readback
+```
+
+Remove only the temporary Stage B `DamageDisabled` data/diagnostic plumbing introduced for the causal/readback probes.
 
 Keep unchanged:
 
 ```text
-same G3AB_COL_FIST route
-same human Fist source resolution
-same SetDamageDisabled(GETrue) call
-same ClearTriggeredList call
-same marker/C1/family bookkeeping
-same StatePosition behavior
-same collision-group behavior
-same weapon-mask behavior
-same hooks
-same lifecycle behavior
+G3AB_COL_FIST opcode and route
+human Fist source resolution
+ClearTriggeredList timing/behavior
+marker/C1/family bookkeeping
+StatePosition behavior
+collision-group behavior
+weapon source masks
+hooks
+lifecycle behavior
+RIGHT/LEFT/BOTH/OFF behavior
 ```
 
-Add only the smallest readback/diagnostic path necessary to report, for the exact resolved Fist TouchDamage property set used by `RearmFistSource()`:
+Do not add another candidate disable mechanism in the restoration task.
 
-```text
-DamageDisabledBefore
-DamageDisabledAfter
-```
-
-where `Before` is read immediately before the existing `SetDamageDisabled(GETrue)` call and `After` is read immediately after it.
-
-Work must inspect only the necessary SDK/API declaration to use the factual getter/readback supported by the tested SDK. Do not guess the accessor name or introduce an alternate property path if the existing property set already exposes the factual value.
-
-The resulting values must reach the existing CORE `FIST RECEIVED` diagnostic record without adding a new hook or changing behavior semantics.
-
-### Runtime question after that implementation
-
-> On the same known-good Fist marker execution, did the exact `DamageDisabled` runtime property change from its prior value to true?
-
-Only after this is answered may Normal Chat decide whether to:
-
-- investigate why true still allows damage, or
-- correct the setter/property-access path if the value did not change.
-
-Do not choose either branch in advance.
+After Work publishes the restoration, Normal Chat must independently review the diff and build the diagnostic target. Only then begin the next source/evidence investigation into the factual native Fist enable/disable mechanism.
 
 ---
 
-## Explicit non-goals
+## Frozen continuation
 
-Do **not** implement yet:
+```text
+A — dedicated FIST baseline
+    CLOSED/PASS
+
+B — DamageDisabled causal investigation
+    CLOSED/FAIL AS OFF MECHANISM
+
+R — exact restoration to Stage A FIST behavior
+    CURRENT
+
+N — identify factual native Fist enable/disable mechanism
+    NEXT AFTER RESTORATION
+    source/evidence investigation first; no mechanism implementation by assumption
+
+C — production FIST/FIST_OFF lifecycle
+    BLOCKED until N yields a causally validated control mechanism
+```
+
+---
+
+## Explicit restoration non-goals
+
+Do **not** implement during restoration:
 
 ```text
 G3AB_COL_FIST_OFF
+alternate Fist disable mechanisms
 persistent Fist marker-owned state
 baseline snapshot/restore
 terminal/interruption restoration
-alternate disable mechanisms
 PhysicalFist support
 monster/general body collision
 per-limb Fist markers
@@ -196,8 +209,6 @@ new hooks
 attack-family or StatePosition redesign
 C1 or weapon-lifecycle redesign
 ```
-
-Stage C remains blocked until Stage B identifies a proven control mechanism.
 
 ---
 
@@ -217,6 +228,7 @@ Do not delete, rename, stage, or overwrite it merely to obtain a clean working t
 
 ```text
 production G3AB_COL_FIST_OFF
+alternate Fist disable mechanism implementation before factual investigation
 persistent Fist marker-owned lifecycle state
 Fist terminal/interruption restoration
 PhysicalFist / monsters / generalized body collision
