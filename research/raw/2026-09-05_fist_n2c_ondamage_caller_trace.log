@@ -1,0 +1,362 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_BEFORE_ORIGINAL
+Actor: PC_Hero
+Action: 68
+AniPhase: 6
+StateTime: 0.771468
+CurrentMovementAni: Hero_Stand_None_Fist_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Action: 68
+AniPhase: 6
+StateTime: 0.000000
+CurrentMovementAni: Hero_Stand_None_Fist_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_BEFORE_ORIGINAL
+Actor: PC_Hero
+Action: 0
+AniPhase: 12
+StateTime: 6.518418
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Action: 0
+AniPhase: 12
+StateTime: 0.000000
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 39229.283
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E6AA5E10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 39229.295
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_PowerAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 39229.633
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_BEFORE_ORIGINAL
+Actor: PC_Hero
+Action: 2
+AniPhase: 0
+StateTime: 0.009000
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Action: 2
+AniPhase: 0
+StateTime: 0.000000
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 39239.399
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E6AA5E10
+Source[0].LivenessEstablished: 1
+Source[0].Name: Fist
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 0
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 39240.655
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E6AA5E10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 39240.666
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Attack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 39246.038
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 39246.092
+Actor: PC_Hero
+Family: NORMAL
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 0
+RequiresFistSource: 1
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 1
+FirstFISTFrame: 3
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6AA5E10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+FistSourceResolved: 1
+FistSourceName: Fist
+FistSourceAddress: E6AA5E10
+FistSourceUseType: 8
+FistSourceCollisionGroup: 0
+SuppressNativeCallback: 1
+=====================================
+
+===== FIST RECEIVED =====
+ElapsedMs: 39352.632
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.123945
+StatePositionBeforeMarker: 0
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+MarkerName: G3AB_COL_FIST
+MarkerOpcode: FIST
+StatePositionAfterMarker: 0
+C1GenerationValid: 1
+C1Generation: 2
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistGroupBefore: 0
+FistGroupAfter: 0
+FistTriggeredListCleared: 1
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 39439.144
+HookEntryOrdinal: 1
+CallerAddress: 00B7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: E6A8DC10
+ThisEntityName: Golem
+EntityArg1Address: E6AA5E10
+EntityArg1Name: Fist
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 21
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.198956
+PlayerCurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+ExistingResolverFistSourceAddress: E6AA5E10
+ExistingResolverFistUseType: 8
+ExistingResolverFistCollisionGroup: 0
+ThisIsPlayer: 0
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 1
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_BEFORE_ORIGINAL
+Actor: PC_Hero
+Action: 1
+AniPhase: 3
+StateTime: 0.329920
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Action: 1
+AniPhase: 3
+StateTime: 0.000000
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA5E10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 39577.740
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E6AA5E10
+Source[0].LivenessEstablished: 1
+Source[0].Name: Fist
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 0
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.
