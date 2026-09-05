@@ -39,7 +39,12 @@ SourceOperationResult ActivateOrRearm(eCEntity *sourceInstance)
     // TEMPORARY CAUSAL PROBE: isolate whether TouchDamage.DamageDisabled
     // suppresses logical Fist/body-contact damage without weapon-group mutation.
     if (result.skippedGroupForFist)
-        source.TouchDamage.SetDamageDisabled(GETrue);
+    {
+        gCTouchDamage_PS *touchDamagePS = static_cast<gCTouchDamage_PS *>(
+            source.TouchDamage.m_pEngineEntityPropertySet);
+        if (touchDamagePS != nullptr)
+            touchDamagePS->SetDamageDisabled(GETrue);
+    }
     result.groupAfter = static_cast<GEInt>(source.GetCollisionGroup());
     return result;
 }
