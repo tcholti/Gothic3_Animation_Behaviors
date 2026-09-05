@@ -24,11 +24,13 @@
 
 #include <string>
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+#include <intrin.h>
+#pragma intrinsic(_ReturnAddress)
+#endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include <cstdio>
-#include <intrin.h>
 #include <windows.h>
-#pragma intrinsic(_ReturnAddress)
 #endif
 
 using namespace FrameCollision;
@@ -52,9 +54,12 @@ static mCFunctionHook Hook_RunScriptFunction;
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 static mCFunctionHook Hook_FistCanBeActivatedNow;
 static mCFunctionHook Hook_FistTriggerTarget;
+static mCFunctionHook Hook_EntityOnDamage;
 static GEU32 const FistHookEntryLogCap = 64;
 static GEU32 g_FistCanBeActivatedEntryOrdinal = 0;
 static GEU32 g_FistTriggerTargetEntryOrdinal = 0;
+static GEU32 const EntityOnDamageEntryLogCap = 64;
+static GEU32 g_EntityOnDamageEntryOrdinal = 0;
 #endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -788,6 +793,31 @@ static void GE_STDCALL FistTriggerTarget_FrameCollisionTest(
             static_cast<void *>(&a_rContactIterator));
     }
 }
+
+static void GE_STDCALL EntityOnDamage_FrameCollisionTest(
+    gCEntity *a_pThis, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
+    GEInt a_iArg1, GEInt a_iArg2, eCContactIterator &a_rContactIterator)
+{
+    void *callerAddress = _ReturnAddress();
+    ++g_EntityOnDamageEntryOrdinal;
+    if (g_EntityOnDamageEntryOrdinal <= EntityOnDamageEntryLogCap)
+    {
+        CollisionDiagnostics::LogEntityOnDamageEntry(
+            g_EntityOnDamageEntryOrdinal, callerAddress, a_pThis,
+            a_pEntity1, a_pEntity2, a_iArg1, a_iArg2,
+            static_cast<void *>(&a_rContactIterator));
+    }
+    else if (g_EntityOnDamageEntryOrdinal == EntityOnDamageEntryLogCap + 1)
+    {
+        CollisionDiagnostics::LogEntityOnDamageEntryCap(
+            EntityOnDamageEntryLogCap);
+    }
+
+    Hook_EntityOnDamage.GetOriginalFunction(
+        &EntityOnDamage_FrameCollisionTest)(
+            a_pThis, a_pEntity1, a_pEntity2, a_iArg1, a_iArg2,
+            a_rContactIterator);
+}
 #endif
 
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
@@ -1021,6 +1051,10 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Hook();
     Hook_FistTriggerTarget
         .Prepare(RVA_Game(0x693B0), &FistTriggerTarget_FrameCollisionTest)
+        .ThisCall()
+        .Hook();
+    Hook_EntityOnDamage
+        .Prepare(RVA_Game(0x668D0), &EntityOnDamage_FrameCollisionTest)
         .ThisCall()
         .Hook();
 #endif

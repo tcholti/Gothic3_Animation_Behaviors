@@ -3,6 +3,7 @@
 #include "CollisionSources.h"
 #include "RuntimeClock.h"
 
+#include <cstdint>
 #include <cstring>
 #include <string>
 #include <unordered_map>
@@ -37,6 +38,48 @@ static char const *EntityName(eCEntity *instance)
         return "<null>";
     Entity entity(instance);
     return entity != None ? entity.GetName().GetText() : "<unavailable>";
+}
+
+static char const *BaseName(char const *path)
+{
+    if (path == nullptr)
+        return "";
+    char const *slash1 = std::strrchr(path, '\\');
+    char const *slash2 = std::strrchr(path, '/');
+    char const *last = slash1;
+    if (slash2 != nullptr && (last == nullptr || slash2 > last))
+        last = slash2;
+    return last != nullptr ? last + 1 : path;
+}
+
+static void LogCaller(void *callerAddress)
+{
+    HMODULE callerModule = nullptr;
+    char modulePath[MAX_PATH] = {};
+    bool const resolved = callerAddress != nullptr
+        && ::GetModuleHandleExA(
+            GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCSTR>(callerAddress),
+            &callerModule) != FALSE;
+    DWORD const pathLength = resolved
+        ? ::GetModuleFileNameA(callerModule, modulePath, MAX_PATH) : 0;
+    std::uintptr_t const callerValue =
+        reinterpret_cast<std::uintptr_t>(callerAddress);
+    std::uintptr_t const baseValue =
+        reinterpret_cast<std::uintptr_t>(callerModule);
+    unsigned long const rva = resolved
+        ? static_cast<unsigned long>(callerValue - baseValue) : 0;
+    std::fprintf(g_pLog, "CallerAddress: %p\n", callerAddress);
+    std::fprintf(g_pLog, "CallerModuleResolved: %d\n", resolved ? 1 : 0);
+    std::fprintf(g_pLog, "CallerModule: %s\n",
+                 pathLength > 0 ? BaseName(modulePath)
+                                : resolved ? "<path-unavailable>"
+                                           : "<unresolved>");
+    if (resolved)
+        std::fprintf(g_pLog, "CallerRVA: 0x%08lX\n", rva);
+    else
+        std::fprintf(g_pLog, "CallerRVA: <unresolved>\n");
 }
 
 static char const *AttackFamilyName(AttackFamily family)
@@ -443,6 +486,118 @@ void LogFistHookEntryCap(char const *hookKind, GEU32 cap)
                  static_cast<unsigned int>(cap));
     std::fprintf(g_pLog, "FurtherEntriesSuppressed: 1\n");
     std::fprintf(g_pLog, "===============================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogEntityOnDamageEntry(
+    GEU32 ordinal, void *callerAddress, gCEntity *thisEntity,
+    eCEntity *entityArgument1, eCEntity *entityArgument2,
+    GEInt integerArgument1, GEInt integerArgument2,
+    void *contactIteratorAddress)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    Entity player = Entity::GetPlayer();
+    eCEntity *playerInstance =
+        player != None ? player.GetInstance() : nullptr;
+    eCEntity *fistSourceInstance = player != None
+        ? CollisionSources::ResolveFistCollisionSource(player)
+        : nullptr;
+    Entity fistSource(fistSourceInstance);
+    GEInt const fistUseType = fistSource != None
+        ? static_cast<GEInt>(
+              CollisionSources::GetCollisionSourceUseType(fistSource))
+        : -1;
+    GEInt const fistCollisionGroup = fistSource != None
+        ? static_cast<GEInt>(fistSource.GetCollisionGroup())
+        : -1;
+
+    GEInt playerAction = -1;
+    GEInt playerAniPhase = -1;
+    GEFloat playerStateTime = -1.0f;
+    std::string playerCurrentMovementAni = "<unavailable>";
+    if (player != None)
+    {
+        playerAction = static_cast<GEInt>(
+            player.Routine.GetProperty<PSRoutine::PropertyAction>());
+        playerAniPhase = static_cast<GEInt>(player.GetCurrentAniPhase());
+        playerStateTime = player.Routine.GetStateTime();
+        bCString currentAni = player.NPC.GetCurrentMovementAni();
+        if (currentAni.GetText() != nullptr)
+            playerCurrentMovementAni = currentAni.GetText();
+    }
+
+    eCEntity *thisEntityInstance = thisEntity;
+    std::fprintf(g_pLog, "===== ENTITY ONDAMAGE ENTRY =====\n");
+    std::fprintf(g_pLog, "Boundary: ENTITY_ON_DAMAGE_ENTRY\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "HookEntryOrdinal: %u\n",
+                 static_cast<unsigned int>(ordinal));
+    LogCaller(callerAddress);
+    std::fprintf(g_pLog, "ThisEntityAddress: %p\n",
+                 static_cast<void *>(thisEntityInstance));
+    std::fprintf(g_pLog, "ThisEntityName: %s\n",
+                 EntityName(thisEntityInstance));
+    std::fprintf(g_pLog, "EntityArg1Address: %p\n",
+                 static_cast<void *>(entityArgument1));
+    std::fprintf(g_pLog, "EntityArg1Name: %s\n",
+                 EntityName(entityArgument1));
+    std::fprintf(g_pLog, "EntityArg2Address: %p\n",
+                 static_cast<void *>(entityArgument2));
+    std::fprintf(g_pLog, "EntityArg2Name: %s\n",
+                 EntityName(entityArgument2));
+    std::fprintf(g_pLog, "IntArg1: %d\n", integerArgument1);
+    std::fprintf(g_pLog, "IntArg2: %d\n", integerArgument2);
+    std::fprintf(g_pLog, "ContactIteratorAddress: %p\n",
+                 contactIteratorAddress);
+    std::fprintf(g_pLog, "PlayerEntityAddress: %p\n",
+                 static_cast<void *>(playerInstance));
+    std::fprintf(g_pLog, "PlayerAction: %d\n", playerAction);
+    std::fprintf(g_pLog, "PlayerAniPhase: %d\n", playerAniPhase);
+    std::fprintf(g_pLog, "PlayerStateTime: %.6f\n", playerStateTime);
+    std::fprintf(g_pLog, "PlayerCurrentMovementAni: %s\n",
+                 playerCurrentMovementAni.c_str());
+    std::fprintf(g_pLog, "ExistingResolverFistSourceAddress: %p\n",
+                 static_cast<void *>(fistSourceInstance));
+    std::fprintf(g_pLog, "ExistingResolverFistUseType: %d\n", fistUseType);
+    std::fprintf(g_pLog, "ExistingResolverFistCollisionGroup: %d\n",
+                 fistCollisionGroup);
+    std::fprintf(g_pLog, "ThisIsPlayer: %d\n",
+                 playerInstance != nullptr
+                     && thisEntityInstance == playerInstance ? 1 : 0);
+    std::fprintf(g_pLog, "EntityArg1IsPlayer: %d\n",
+                 playerInstance != nullptr
+                     && entityArgument1 == playerInstance ? 1 : 0);
+    std::fprintf(g_pLog, "EntityArg2IsPlayer: %d\n",
+                 playerInstance != nullptr
+                     && entityArgument2 == playerInstance ? 1 : 0);
+    std::fprintf(g_pLog, "ThisIsResolvedFistSource: %d\n",
+                 fistSourceInstance != nullptr
+                     && thisEntityInstance == fistSourceInstance ? 1 : 0);
+    std::fprintf(g_pLog, "EntityArg1IsResolvedFistSource: %d\n",
+                 fistSourceInstance != nullptr
+                     && entityArgument1 == fistSourceInstance ? 1 : 0);
+    std::fprintf(g_pLog, "EntityArg2IsResolvedFistSource: %d\n",
+                 fistSourceInstance != nullptr
+                     && entityArgument2 == fistSourceInstance ? 1 : 0);
+    std::fprintf(g_pLog, "=================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogEntityOnDamageEntryCap(GEU32 cap)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== ENTITY ONDAMAGE ENTRY CAP =====\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "LoggedEntryCap: %u\n",
+                 static_cast<unsigned int>(cap));
+    std::fprintf(g_pLog, "FurtherEntriesSuppressed: 1\n");
+    std::fprintf(g_pLog, "=====================================\n\n");
     std::fflush(g_pLog);
 }
 
