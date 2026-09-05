@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.9  
-**Updated:** 2026-09-03
+**Version:** 1.10
+**Updated:** 2026-09-05
 
 ## Purpose
 
@@ -19,8 +19,9 @@ It exists so a new Chat does not have to rediscover how we normally:
 - preserve and publish raw evidence;
 - reduce oversized logs for efficient analysis without altering the evidence;
 - work with large static binary/reference material;
+- request bounded Chat-safe PowerShell output for the next decision;
 - preflight a formal project review/audit so it respects the project hierarchy and each target's intended use;
-- preserve continuity across planned Chat transitions and recover safely after an abrupt/max-context failure.
+- preserve continuity across planned Chat transitions, launch bounded Work tasks from durable repository handoffs, and recover safely after an abrupt/max-context failure.
 
 `docs/README.md` is the Gothic project charter and highest project-specific authority beneath CAM for project purpose, long-term direction, scope and authority topology.
 
@@ -562,6 +563,21 @@ unexpected invariant warning in a diagnostic
 
 Do not ask the User for full successful outputs or entire logs merely because a command was run. Expand output only when the current failure cannot be diagnosed from the compact result.
 
+### Chat-safe PowerShell output
+
+When the User will paste command output back into Chat, every command should print only the bounded, explicit information needed for the next decision.
+
+Prefer:
+
+- scalar `Write-Host` lines with explicit labels;
+- exact `Select-String` filters;
+- hashes, counts and targeted status values;
+- deliberately small excerpts when surrounding context is necessary.
+
+Do not use width-dependent `Select-Object` / `Format-Table` output for required evidence values; terminal formatting can truncate or hide those values when pasted into Chat. Do not request full runtime logs, large diffs, recursive listings or similarly unbounded output. Preserve large evidence as files and use the established raw/derived repository workflow.
+
+For an ordinary successful build or deployment, request only the compact success, hash and status values needed to authorize the next step. Expand output only for a concrete failure that those values cannot diagnose.
+
 ---
 
 ## 12. POP-10 — Formal Project Review / Audit Preflight
@@ -687,6 +703,22 @@ finish the current meaningful engineering step as far as it has actually complet
 
 Do not perform broad documentation cleanup merely because a Chat is ending.
 
+### Normal Chat -> Work launcher
+
+Substantive frozen task state belongs in durable repository authorities, especially `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md`. A normal Work launcher should remain short and identify only:
+
+```text
+repository
+branch
+required base HEAD
+required repository read order
+bounded responsibility name
+publication authorization when needed
+instruction to execute the frozen responsibility recorded in the repository docs
+```
+
+Do not duplicate a long design/evidence contract into the launcher when the repository handoff already carries it. Use a longer launcher only when the needed responsibility cannot first be made durable in the repository or a concrete reason makes that handoff unavailable.
+
 ### Context/usage warning safeguard
 
 When the product exposes a real warning that the current context is approaching a limit, and losing the transient reasoning/result state would create material reconstruction work:
@@ -787,10 +819,10 @@ When a new recurring operation appears, first ask whether an existing POP sectio
 | runtime log copied locally | POP-06 Raw evidence integrity and publish |
 | raw/archive log too large to retrieve efficiently | POP-07 Large runtime log analysis |
 | large static Engine/Game/Script_Game material | POP-08 Static binary/reference retrieval |
-| routine command/procedure fails | POP-09 Routine failure/stop behavior |
+| routine command/procedure fails / PowerShell output will be pasted into Chat | POP-09 Routine failure/stop behavior + Chat-safe output |
 | formal project review/audit | POP-10 Authority-hierarchy + intended-use preflight |
-| planned Chat transition / context warning / previous Chat failed | POP-11 Continuity and interrupted-context recovery |
+| planned Chat transition / bounded Work launcher / context warning / previous Chat failed | POP-11 Continuity, Work launcher and interrupted-context recovery |
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, preserve Normal Chat continuity without making the User reconstruct failed context, understand the project hierarchy and each target's intended use before formal review/audit, use stable project conventions and the canonical workstation-path reference rather than reinventing them, keep routine outputs compact, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
+> **Preserve causal certainty and canonical evidence, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, keep Chat-bound command output bounded and explicit, launch Work from durable repository handoffs, preserve Normal Chat continuity without making the User reconstruct failed context, understand the project hierarchy and each target's intended use before formal review/audit, use stable project conventions and the canonical workstation-path reference rather than reinventing them, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**

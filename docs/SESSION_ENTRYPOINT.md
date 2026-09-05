@@ -114,7 +114,7 @@ Stage A proved the separated dedicated FIST route reproduces damaging human Fist
 
 ---
 
-## Fist Stage B — CLOSED/FAIL FOR DAMAGEDISABLED AS OFF MECHANISM
+## Fist Stage B — CLOSED/FAIL AS CURRENT MARKER-TIME OFF INTERVENTION
 
 Temporary setter implementation:
 
@@ -147,9 +147,9 @@ same collision group 0 -> 0
 same ClearTriggeredList behavior
 ```
 
-Therefore `SetDamageDisabled(GETrue)` factually changes and persistently holds the exact resolved Fist TouchDamage property at true, but that state does **not** stop the tested human Fist damage path. `DamageDisabled` is rejected as the production `FIST_OFF` control mechanism for this path.
+Therefore `SetDamageDisabled(GETrue)` factually changed and persistently held the exact resolved Fist TouchDamage property at true, but setting it at the authored `G3AB_COL_FIST` marker did **not** stop the tested human Fist damage. That marker-time intervention is rejected as the current production `FIST_OFF` mechanism.
 
-Do not infer the unresolved native reason.
+Later static analysis of the tested binary established that `gCTouchDamage_PS::CanBeActivatedNow` checks `DamageDisabled` as a genuine activation gate and that the inherited `eCTrigger_PS` touch/intersect activation path reaches that virtual eligibility check. Stage B therefore does **not** prove that `DamageDisabled` is not a real native gate or is globally ineffective. Whether the relevant activation/dispatch passed the gate before the authored marker, or a later/native damage dispatch still occurs after it, remains unresolved.
 
 ---
 
@@ -185,62 +185,39 @@ The live diagnostic is therefore back on the proven Stage A FIST behavior with n
 
 ---
 
-## Current Responsibility — factual native Fist control investigation
+## Fist N1 — CLOSED/PASS AS OBSERVATION
 
-Source/API review established these facts from the tested SDK:
-
-```text
-gCTouchDamage_PS derives from eCTrigger_PS.
-
-gCTouchDamage_PS owns:
-- ResetOnUntouch
-- DamageDisabled
-
-eCTrigger_PS owns inherited trigger gates including:
-- IsEnabled
-- ReactToTouch
-
-ClearTriggeredList() also belongs to the trigger path.
-```
-
-`DamageDisabled` has already been causally rejected. `IsEnabled` and `ReactToTouch` are only factual candidate gates exposed by the native property set; neither is yet proven to be the stock human-Fist attack control.
-
-The next bounded implementation must therefore be **diagnostic/read-only only**.
-
-Observe the exact resolved human `gEUseType_Fist` / raw 8 TouchDamage property set during a native **unmarked** Normal/Fist attack, using only already-installed hooks and without changing any property.
-
-At minimum capture the same exact source at these existing boundaries:
+Implementation and canonical runtime evidence:
 
 ```text
-native OnAI_Attack: immediately before original callback
-native OnAI_Attack: immediately after original callback
-AISetState: immediately before original
-AISetState: immediately after original
+c1e390782309af5e9e54703389775a163b85612c
+research/raw/2026-09-05_fist_n1_native_trigger_state_probe.log
+evidence commit 1a475cd292abf526f2032262ac4300f18920e178
+raw SHA256 113857F71C3A14A548582B4B254E0CF6C1CBCB79C285B158302E5B5AB34F1972
+validated DLL SHA256 D543EEAF90B98287F0C306446C0752FF5676BC3684568381A5F5F42E28F30C8E
 ```
 
-Report these factual values at each snapshot:
+Across four intended native unmarked Normal/Fist executions (two P0 and two P1), the exact resolved human `gEUseType_Fist` / raw 8 source remained:
 
 ```text
-IsEnabled
-ReactToTouch
-ResetOnUntouch
-DamageDisabled
-collision group
+FistCollisionGroup: 0
+IsEnabled:          1
+ReactToTouch:       1
+ResetOnUntouch:     0
+DamageDisabled:     0
 ```
 
-The question is only:
+No transition was observed at `NATIVE_ATTACK_BEFORE_ORIGINAL`, `NATIVE_ATTACK_AFTER_ORIGINAL`, `AISETSTATE_BEFORE_ORIGINAL`, or `AISETSTATE_AFTER_ORIGINAL`. Each intended execution still contained the native collision-group request `RequestedGroup: 7`, while the exact Fist source remained `0 -> 0`. Keep the separate short aborted `_AI_PowerAttack` generation outside the four-case Normal/Fist result.
 
-> Does stock native human-Fist execution visibly change either inherited trigger gate, or otherwise show a stable trigger-state transition across attack/finalization boundaries?
+N1 proves only that the tested native Normal/Fist cases did not expose their attack ON/OFF lifecycle through the logged collision-group or trigger-property state at those boundaries. It does not prove that no unobserved transient or other native control exists. See EV-222–EV-223.
 
-Do not mutate `IsEnabled`, `ReactToTouch`, or any other candidate before this observation exists.
+---
 
-A known unmarked player Fist motion already observed in prior evidence is:
+## Current Responsibility — N2 damage-dispatch timing/path investigation
 
-```text
-Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot
-```
+> **N2 — determine when the exact human Fist TouchDamage reaches its damage-dispatch / TriggerTarget path relative to the authored `G3AB_COL_FIST` marker and the previously tested `DamageDisabled` setter timing.**
 
-Use the runtime motion/log identity rather than filename assumptions if a different unmarked native Fist execution is selected during the controlled test.
+This is the next causal investigation only. Determine whether the relevant activation/dispatch had already passed the genuine `DamageDisabled` gate before the marker or whether a later/native dispatch path remains after it. Do not select or implement a production `FIST_OFF` mechanism from property names or from N1 alone.
 
 ---
 
@@ -257,10 +234,13 @@ R — restore exact Stage A FIST behavior
     CLOSED/PASS
 
 N1 — observe native Fist trigger gates without mutation
-    CURRENT
+    CLOSED/PASS AS OBSERVATION
 
-N2+ — refine only from N1 evidence if required
-    BLOCKED
+D — close N1 / qualify Stage B / maintain procedures
+    CLOSED
+
+N2 — determine TriggerTarget/damage-dispatch timing
+    CURRENT
 
 C — production FIST/FIST_OFF lifecycle
     BLOCKED until a factual control mechanism is causally validated
@@ -268,12 +248,13 @@ C — production FIST/FIST_OFF lifecycle
 
 ---
 
-## Deliberately outside the immediate N1 responsibility
+## Deliberately outside the immediate N2 responsibility
 
 - `G3AB_COL_FIST_OFF`;
 - setting `IsEnabled`, `ReactToTouch`, or another candidate;
-- another `DamageDisabled` experiment;
-- new hooks;
+- choosing or implementing another Fist disable mechanism before the N2 timing/path evidence;
+- mutating `IsEnabled`, `ReactToTouch`, `DamageDisabled`, or another candidate as a production decision;
+- new hooks unless a separately frozen bounded N2 diagnostic proves one necessary;
 - persistent Fist marker-owned lifecycle state;
 - Fist terminal/interruption restoration;
 - PhysicalFist / monsters / generalized body collision;

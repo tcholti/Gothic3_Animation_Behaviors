@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-05
 
-## Current bridge — N1 closed; documentation maintenance next
+## Current bridge — N1 documented; N2 timing/path investigation next
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -138,43 +138,17 @@ Do not choose between A and B yet.
 
 ---
 
-## Exact next responsibility — documentation maintenance only
+## Documentation maintenance — CLOSED
 
-Before implementing another probe, perform one bounded documentation-maintenance transaction.
+N1 is recorded as CLOSED/PASS AS OBSERVATION in the current-state and evidence authorities. EV-222 records the four-case runtime observation; EV-223 records the tested-binary qualification that `DamageDisabled` is a genuine activation gate even though the Stage-B marker-time intervention failed as the current OFF mechanism. Fist/body-contact routing and the recurring Chat-safe output / repository-backed Work-launcher procedures are updated.
 
-Allowed expected files:
+---
 
-```text
-docs/SESSION_ENTRYPOINT.md
-docs/BETWEEN_CHATS.md
-docs/EVIDENCE_LEDGER_199_ONWARD.md
-docs/EVIDENCE_INDEX.md
-docs/PROJECT_OPERATING_PROCEDURES.md
-```
+## Exact next responsibility — N2 timing/path investigation only
 
-Responsibilities:
+> **N2 — determine when the exact human Fist TouchDamage reaches its damage-dispatch / TriggerTarget path relative to the authored `G3AB_COL_FIST` marker and the previously tested `DamageDisabled` setter timing.**
 
-1. Record N1 as CLOSED/PASS AS OBSERVATION.
-2. Add the next monotonic evidence entry or entries after EV-221 for:
-   - the completed N1 runtime observation;
-   - the qualified static-binary correction to Stage-B interpretation.
-3. Update `EVIDENCE_INDEX.md` only enough to route future Fist/body-contact work to the new evidence.
-4. Correct Stage-B wording so the failed marker-time intervention is distinguished from the genuine native `DamageDisabled` activation gate.
-5. Freeze N2 as the next causal investigation only:
-
-```text
-N2 — determine when the exact human Fist TouchDamage reaches its damage-dispatch / TriggerTarget path relative to the authored G3AB_COL_FIST marker and the previously tested DamageDisabled setter timing.
-```
-
-6. Add a recurring Chat-safe PowerShell-output rule to `PROJECT_OPERATING_PROCEDURES.md`.
-
-Chat-safe PowerShell rule must establish that commands whose output will be pasted back into Chat should print only bounded, explicit information needed for the next decision. Prefer scalar `Write-Host` lines, exact `Select-String` filters, hashes, counts, targeted status and deliberately small excerpts. Avoid width-dependent table output (`Select-Object` / `Format-Table`) for required returned evidence values because it can truncate/hide them in Chat. Do not ask the User to paste full runtime logs, large diffs, recursive listings or similarly unbounded output; preserve large evidence as files and use the raw/derived repository workflow instead.
-
-For ordinary successful build/deploy steps, request only the compact success/hash/status values needed.
-
-7. Harden the normal Chat -> Work handoff procedure in `PROJECT_OPERATING_PROCEDURES.md`: substantive frozen task state belongs in repository authorities, especially `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`, and the Work launcher should normally remain short. A normal launcher should identify repository, branch, required base HEAD, required read order, bounded responsibility name, publication authorization when needed, and then tell Work to execute the frozen responsibility recorded in the repository docs. Do not duplicate a long design/evidence contract into the launcher when the repository handoff already carries it. A longer launcher is justified only when the needed responsibility cannot first be made durable in the repository or there is a concrete reason the repository handoff is unavailable.
-
-This maintenance transaction is documentation-only. Do not inspect/modify prototype source, raw evidence, or runtime behavior.
+N2 must distinguish whether the relevant activation/dispatch already passed the genuine native `DamageDisabled` gate before the authored marker or whether a later/native damage dispatch still occurs after it. Do not choose between those explanations from naming or from N1, and do not select or implement a production `FIST_OFF` mechanism before the timing/path evidence exists.
 
 ---
 
@@ -185,14 +159,14 @@ A  — dedicated FIST baseline                     CLOSED/PASS
 B  — marker-time DamageDisabled investigation    CLOSED/FAIL AS CURRENT OFF INTERVENTION
 R  — exact restoration to Stage A behavior       CLOSED/PASS
 N1 — native trigger-state observation            CLOSED/PASS AS OBSERVATION
-D  — close N1 / correct docs / procedure rules   NEXT
-N2 — TriggerTarget/damage-dispatch timing probe  BLOCKED until D is complete
+D  — close N1 / correct docs / procedure rules   CLOSED
+N2 — TriggerTarget/damage-dispatch timing        CURRENT/NEXT
 C  — production FIST/FIST_OFF lifecycle          BLOCKED until control mechanism is proven
 ```
 
 ---
 
-## Explicit non-goals for the documentation transaction
+## Explicit non-goals for N2
 
 Do not implement or design:
 
@@ -200,9 +174,9 @@ Do not implement or design:
 G3AB_COL_FIST_OFF
 SetIsEnabled(...)
 SetReactToTouch(...)
-another DamageDisabled mutation
-TriggerTarget diagnostic code
-new hooks
+choosing or implementing another Fist disable mechanism before N2 evidence
+production mutation of IsEnabled / ReactToTouch / DamageDisabled
+new hooks unless a separately frozen bounded N2 diagnostic proves one necessary
 persistent Fist marker-owned lifecycle state
 baseline snapshot/restore
 terminal/interruption restoration
