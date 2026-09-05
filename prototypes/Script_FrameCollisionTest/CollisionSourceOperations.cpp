@@ -36,6 +36,10 @@ SourceOperationResult ActivateOrRearm(eCEntity *sourceInstance)
     }
     source.TouchDamage.ClearTriggeredList();
     result.triggeredListCleared = true;
+    // TEMPORARY CAUSAL PROBE: isolate whether TouchDamage.DamageDisabled
+    // suppresses logical Fist/body-contact damage without weapon-group mutation.
+    if (result.skippedGroupForFist)
+        source.TouchDamage.SetDamageDisabled(GETrue);
     result.groupAfter = static_cast<GEInt>(source.GetCollisionGroup());
     return result;
 }
