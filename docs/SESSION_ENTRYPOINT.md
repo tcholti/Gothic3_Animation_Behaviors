@@ -28,16 +28,15 @@ Never normally load behavior-only and diagnostic collision twins together.
 
 ---
 
-## Fresh Normal Chat / Work Bootstrap
+## Fresh Normal Chat Bootstrap
 
 1. Read this file first.
-2. Read `docs/BETWEEN_CHATS.md` for the exact active responsibility and frozen transient contract.
-3. Work also reads `docs/WORK_IMPLEMENTATION_PROTOCOL.md` before bounded implementation.
-4. Treat CAM -> project charter -> specialist authority and release purity as standing constraints.
-5. Reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority when substantial reasoning requires it.
-6. Retrieve `PROJECT_PIPELINE.md` before changing branch/test/evidence/procedure/version/artifact conventions.
-7. Do not scan the whole repository or reconstruct the project from old chat history.
-8. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
+2. Read `docs/BETWEEN_CHATS.md` for the exact active continuation.
+3. Treat CAM -> project charter -> specialist authority and release purity as standing constraints.
+4. Reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority when substantial reasoning requires it.
+5. Retrieve `PROJECT_PIPELINE.md` before changing branch/test/evidence/procedure/version/artifact conventions.
+6. Do not scan the whole repository or reconstruct the project from old chat history.
+7. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
 
 After bootstrap, report briefly: current responsibility, relevant closed boundary, exact next step, and what remains deliberately outside scope.
 
@@ -58,7 +57,7 @@ NEW COLLISION ARCHITECTURE VERIFICATION    COMPLETE
 
 Do not reopen this architecture without concrete contradicting evidence.
 
-Current equipped-melee expansion state remains:
+Current equipped-melee expansion state:
 
 ```text
 PowerAttack   CLOSED/PASS
@@ -67,7 +66,7 @@ SimpleWhirl   CLOSED/PASS
 HackAttack    isolated routing/source/marker validation PASS
 ```
 
-Fist is a new source-adapter extension inside this closed architecture, not an architecture rewrite.
+Human Fist support is a source-adapter extension inside this closed architecture, not an architecture rewrite.
 
 ---
 
@@ -88,21 +87,18 @@ Do not create `feature/raise-attack-speed` early.
 
 ---
 
-## Current Responsibility — Fist Work A
+## Current Responsibility — Fist Stage A runtime validation
 
-The final collision regressions are temporarily postponed because human Fist support was identified as a missing collision feature that should be integrated before collision closure.
-
-The full frozen implementation contract lives **once** in:
-
-`docs/BETWEEN_CHATS.md`
-
-Current bounded implementation stage:
+Work A source implementation is published as:
 
 ```text
-Work A — dedicated G3AB_COL_FIST baseline
+5984738a41eca895900ae0929c3c930336c8ff53
+Add dedicated Fist marker baseline
 ```
 
-Purpose:
+Normal Chat has independently reviewed the Work A diff against the frozen contract and found no material source-level contradiction.
+
+Implemented Stage A contract:
 
 ```text
 G3AB_COL_FIST
@@ -110,15 +106,14 @@ G3AB_COL_FIST
 -> dedicated Fist source operation
 -> TouchDamage.ClearTriggeredList()
 -> no weapon Item_Attack / Item_Equipped mutation
--> no DamageDisabled behavior yet
+-> no DamageDisabled behavior
 ```
 
-Important frozen separation:
+Important separation:
 
 ```text
 RIGHT / LEFT / BOTH / OFF
 -> equipped-weapon source path
--> preserve unchanged
 
 FIST
 -> dedicated logical human Fist/body-contact source path
@@ -126,35 +121,59 @@ FIST
 -> no SourceMask_Fist
 ```
 
-Fist source selection must remain independent from attack-family selection. Existing Normal/Power/Quick/SimpleWhirl/Whirl/Pierce/Hack family semantics and StatePosition policies remain authoritative and unchanged.
+The temporary exploratory `DamageDisabled=true` mutation has been removed. `G3AB_COL_FIST_OFF` does not exist yet.
 
-The current branch source still contains the temporary `DamageDisabled=true` Fist causal probe from the earlier exploratory attempt. Work A must remove that probe and must contain **no DamageDisabled read/write behavior**.
+### Exact next step
 
-Do not add `G3AB_COL_FIST_OFF` yet.
+Complete the authoritative home-PC Stage A validation:
+
+```text
+sync branch
+-> build ONLY Script_FrameCollisionTest
+-> deploy only the diagnostic collision twin
+-> verify live SHA/startup
+-> mark one known-good human Fist Hit with G3AB_COL_FIST at the proven timing
+-> run one controlled valid-target contact test
+-> preserve exact raw diagnostic log
+-> interpret visual + logger evidence
+```
+
+Known historical fixture/timing for the first test:
+
+```text
+Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+frame 3: G3AB_COL_FIST
+```
+
+Do not use `G3AB_COL_RIGHT` for Fist.
+
+Stage A asks only whether the separated dedicated FIST route reproduces the already-proven damaging Fist behavior using `ClearTriggeredList()` alone.
 
 ---
 
-## Frozen Fist sequence after Work A
+## Frozen Fist sequence after Stage A
 
 ```text
 A — dedicated FIST baseline
-    prove the separated Fist route still damages using ClearTriggeredList only
+    current stage: local build/runtime validation
 
 B — one-variable DamageDisabled causal probe
-    same proven FIST route + DamageDisabled=true
+    only after A passes
 
 C — production FIST/FIST_OFF + exact baseline snapshot/restore lifecycle
-    only after DamageDisabled is causally proven
+    only after B causally proves the mechanism
 ```
 
-After Work A publishes, Normal Chat independently reviews the diff against `BETWEEN_CHATS.md`. Then the authoritative home PC performs build/deploy/runtime validation.
+Stage B and Stage C are not authorized yet.
+
+The full short-lived continuation, source-review facts, local-state caution and exact test boundary are in `docs/BETWEEN_CHATS.md`.
 
 ---
 
-## Deliberately outside Work A
+## Deliberately outside the immediate test
 
 - `G3AB_COL_FIST_OFF`;
-- DamageDisabled reads/writes or diagnostics;
+- DamageDisabled mutation until Stage A passes;
 - persistent Fist marker-owned lifecycle state;
 - Fist terminal/interruption restoration;
 - PhysicalFist / monsters / generalized body collision;
@@ -163,7 +182,7 @@ After Work A publishes, Normal Chat independently reviews the diff against `BETW
 - attack-family / StatePosition redesign;
 - C1 or weapon-lifecycle redesign;
 - RIGHT/LEFT/BOTH/OFF behavior changes;
-- Hack or SimpleWhirl changes;
+- Hack or SimpleWhirl redesign;
 - final mixed native/compatibility regression execution;
 - Raise implementation;
 - playback-speed redesign;
