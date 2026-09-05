@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-05
 
-## Current bridge — N2A damaging run produced zero gate/dispatch records; N2B observability probe next
+## Current bridge — N2B closed Case A; N2C game-entity OnDamage caller trace next
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -26,6 +26,8 @@ Fist Stage A dedicated baseline                 CLOSED/PASS — EV-221
 Fist Stage B marker-time DamageDisabled probe   CLOSED/FAIL AS CURRENT OFF INTERVENTION
 Fist Stage A restoration after Stage B          CLOSED/PASS
 Fist N1 native trigger-state observation        CLOSED/PASS AS OBSERVATION — EV-222–EV-223
+Fist N2A exact-filtered gate/dispatch timing     CLOSED/INCONCLUSIVE
+Fist N2B hook observability discrimination      CLOSED/CASE A FOR BOTH HOOKS
 ```
 
 Do not reopen those areas without concrete contradictory evidence.
@@ -34,7 +36,7 @@ Fist remains a logical human body-contact source adapter inside the closed colli
 
 ---
 
-## N2A implementation / deployment / runtime evidence
+## N2A / N2B runtime result carried forward
 
 N2A implementation:
 
@@ -43,39 +45,47 @@ N2A implementation:
 Add N2A Fist gate dispatch timing probe
 ```
 
-N2A added diagnostic-only explicit-this `.ThisCall()` hooks at:
+N2A used diagnostic-only explicit-this `.ThisCall()` hooks at:
 
 ```text
 Game + 0x692F0  gCTouchDamage_PS::CanBeActivatedNow
 Game + 0x693B0  gCTouchDamage_PS::TriggerTarget
 ```
 
-Independent Normal Chat source audit: PASS.
-
-Local diagnostic build: PASS.
-
-Validated deployed diagnostic:
-
-```text
-Script_FrameCollisionTest.dll
-SHA256 20101D10F3A074746B3E7A321F754CDA7A32FE0B3EC049E472185C1D4FCC6A93
-length 432640
-```
-
-Built/live SHA256 matched exactly. CORE startup PASS:
-
-```text
-Script_FrameCollisionTest diagnostic build loaded.
-DiagnosticProfile: CORE
-MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
-Hooks installed.
-```
-
-Canonical N2A raw evidence:
+Canonical N2A raw:
 
 ```text
 research/raw/2026-09-05_fist_n2a_gate_dispatch_timing_probe.log
 raw evidence commit 7060fc2f94be6d218e3c343225df076bced28cd2
+```
+
+A controlled marked human-Fist P0 attack damaged a valid target, but the complete raw contained zero exact-filtered gate/dispatch records.
+
+N2B implementation:
+
+```text
+196069ffa47637f57b54a7f7004a7f0fa2dd35b1
+Add bounded N2B Fist hook entry trace
+```
+
+N2B preserved the same two hooks and added bounded **pre-filter** entry logging before exact-player-Fist identity filtering.
+
+Validated N2B diagnostic:
+
+```text
+Script_FrameCollisionTest.dll
+SHA256 45A2E6C9A9DFB05F6C50037D400431F19741B6AED8C9B33CCEA427E1CF854BA6
+length 434176
+```
+
+Built/live SHA256 matched exactly and CORE startup passed.
+
+Canonical N2B raw:
+
+```text
+research/raw/2026-09-05_fist_n2b_hook_observability_probe.log
+raw evidence commit a23afce5659fb9c87535903573ec80a85f58a04d
+length 7220
 ```
 
 Controlled case:
@@ -89,164 +99,284 @@ valid target
 User visual damage observation: YES
 ```
 
-The marked execution was valid and accepted:
+The execution was accepted and damaging. The exact logical Fist source remained raw UseType 8 / collision group 0 and `G3AB_COL_FIST` performed exactly the existing Stage-A triggered-list clear.
+
+The complete N2B raw contained:
 
 ```text
-Family: NORMAL
-Action: 1
-RequiresFistSource: 1
-FistSourceAddress: E6AB0210
-FistSourceUseType: 8
-FistSourceCollisionGroup: 0
-SuppressNativeCallback: 1
-
-FIST RECEIVED
-ElapsedMs: 43063.346
-StateTime: 0.127968
-MarkerAction: ACCEPTED
-TriggeredListClearCount: 1
-FistTriggeredListCleared: 1
-FistGroupBefore: 0
-FistGroupAfter: 0
+zero FIST HOOK ENTRY records for CAN_BE_ACTIVATED
+zero FIST HOOK ENTRY records for TRIGGER_TARGET
+zero detailed N2A CanBeActivatedNow records
+zero detailed N2A TriggerTarget records
 ```
 
-The User confirmed that this exact attack damaged the target.
+### N2B conclusion — Case A for both hooks
 
-However, the complete committed raw log contains zero records for all four intended N2A boundaries:
+For this confirmed damaging marked player-Fist run, neither current N2A wrapper entry was observed even before exact-Fist filtering.
 
-```text
-FIST_CAN_BE_ACTIVATED_BEFORE_ORIGINAL
-FIST_CAN_BE_ACTIVATED_AFTER_ORIGINAL
-FIST_TRIGGER_TARGET_BEFORE_ORIGINAL
-FIST_TRIGGER_TARGET_AFTER_ORIGINAL
-```
+Therefore the N2A silence is **not explained by the exact-player-Fist filter rejecting the hooked `this`**.
 
-There is likewise no `FIST GATE/DISPATCH TIMING` record anywhere in the run.
+Do not overstate this result. It does not by itself prove that the tested methods are globally unused, that the RVAs are wrong, that hook installation globally failed, or that every Fist damage path bypasses those methods.
 
-### N2A conclusion — narrow scope
-
-N2A did **not** establish gate/marker/dispatch ordering.
-
-A damaging marked human-Fist execution occurred while the current exact-filtered hooks emitted no matching records. This falsifies the assumption that the relevant path would necessarily be observable through those two hooks **as currently hooked and filtered**.
-
-Do not infer yet that:
-
-- `CanBeActivatedNow` is not called;
-- `TriggerTarget` is not called;
-- the tested RVAs are wrong;
-- the hooks failed to install;
-- the exact-Fist filter is wrong;
-- the damaging path bypasses these methods.
-
-N2A cannot distinguish those possibilities because it logged only after the exact-Fist filter accepted the hooked `this`.
-
-No production behavior conclusion follows from this negative diagnostic result.
+It does establish that another gameplay-control mutation is not justified yet. Continue read-only path reconstruction.
 
 ---
 
-## Exact next responsibility — N2B READ-ONLY HOOK OBSERVABILITY / FILTER DISCRIMINATION
+## Tested-binary reconstruction after N2B
 
-Implement one bounded diagnostic-only follow-up to distinguish exactly:
+Authoritative binary reference:
 
 ```text
-1. hook entry never occurs during the damaging player Fist execution
-vs
-2. hook entry occurs but the existing exact-player-Fist filter rejects it
+https://github.com/tcholti/Gothic3_Binary_Reference.git
+builds/current_tested
 ```
 
-Do not investigate another gameplay control in N2B.
+Tested SDK remains `Georgeto/gothic3sdk`.
 
-### Preserve the N2A hooks and transport
+### Ordinary eCTrigger activation is not the next probe
 
-Keep the same two diagnostic-only hooks:
+Exact tested Engine exports:
 
 ```text
-Game + 0x692F0  gCTouchDamage_PS::CanBeActivatedNow
-Game + 0x693B0  gCTouchDamage_PS::TriggerTarget
+Engine + 0x7DA00  eCTrigger_PS::OnTrigger
+Engine + 0x7DA70  eCTrigger_PS::OnIntersect
+Engine + 0x7DA90  eCTrigger_PS::OnTouch
+Engine + 0x7DAD0  eCTrigger_PS::OnDamage
 ```
 
-Preserve:
-
-- explicit per-invocation `gCTouchDamage_PS *this`;
-- recursion-safe `.ThisCall()` transport;
-- original exactly once with unchanged arguments and ordering;
-- exact native return value for `CanBeActivatedNow`;
-- no behavior/property/collision/marker/lifecycle/target mutation;
-- no N2B code in the behavior-only product.
-
-### Add bounded pre-filter entry diagnostics
-
-Before `ResolveExactPlayerFistSource(...)` decides whether the existing detailed N2A record is emitted, record a bounded diagnostic entry for the hook invocation.
-
-The pre-filter trace must be small and deterministic. Use diagnostic-only counters/caps only as needed to prevent unbounded logging. Do not create gameplay/lifecycle state.
-
-For each of the two hook types, the bounded entry record must make it possible to determine at minimum:
+Tested disassembly shows all four converge on the same common activation routine at:
 
 ```text
-HookKind: CAN_BE_ACTIVATED or TRIGGER_TARGET
+Engine + 0x7D0F0
+```
+
+with event IDs:
+
+```text
+OnTrigger    -> 1
+OnTouch      -> 3
+OnIntersect  -> 5
+OnDamage     -> 6, after ReactToDamage / threshold checks
+```
+
+That common activation routine performs a virtual boolean eligibility call through the trigger object's vtable at `+0x168` before continuing. Existing static analysis identifies that eligibility slot as `CanBeActivatedNow`; for `gCTouchDamage_PS` the tested override is `Game + 0x692F0`, which begins by testing `DamageDisabled` at `+0xE9`.
+
+Therefore a normal inherited `eCTrigger_PS` activation on the relevant `gCTouchDamage_PS` would have to pass through the N2B-observed `CanBeActivatedNow` entry before continuing. N2B observed zero such entries during the damaging marked Fist run.
+
+Do **not** add `OnTouch`, `OnIntersect`, `OnTrigger`, or `eCTrigger_PS::OnDamage` hooks as the next experiment merely to restate the same path.
+
+### gCTouchDamage TriggerTarget downstream shape
+
+Tested `gCTouchDamage_PS::TriggerTarget` remains:
+
+```text
+Game + 0x693B0
+```
+
+Its tested disassembly queries property-set type `0x34` (`DamageReceiver`) from one entity argument and ends with a five-stack-argument virtual call on the receiving game entity. That call shape matches the SDK `gCEntity::OnDamage` signature:
+
+```text
+void gCEntity::OnDamage(
+    eCEntity *, eCEntity *, GEInt, GEInt, eCContactIterator &)
+```
+
+Exact tested Game export:
+
+```text
+Game + 0x668D0  gCEntity::OnDamage
+```
+
+The tested `gCEntity::OnDamage` implementation then forwards the five-argument damage event into the inherited Engine damage-event path after its game/player guard.
+
+Exact tested Engine export:
+
+```text
+Engine + 0x22A8C0  eCDynamicEntity::OnDamage
+```
+
+Tested Engine disassembly shows `eCDynamicEntity::OnDamage` iterating the entity's property sets and invoking each property set's five-argument `OnDamage` virtual. This is a factual event fan-out seam.
+
+Separately:
+
+```text
+Engine + 0x22A3E0  eCDynamicEntity::DoDamage
+```
+
+is only a `ret 0x14` no-op stub in the tested binary. Do not choose it from naming alone.
+
+The game class also exposes a distinct six-argument `gCEntity::DoDamage` at `Game + 0x666D0`, but N2C does **not** need to hook it yet. The closer tested seam to the TouchDamage downstream event shape is `gCEntity::OnDamage`.
+
+### Proven caller-address mechanism
+
+Current diagnostic code already uses `_ReturnAddress()` safely inside explicit-this `.ThisCall()` wrappers for the established `AIFullStop` and `AISetState` diagnostics. Deep diagnostics also already resolve that address to:
+
+```text
+CallerAddress
+CallerModuleResolved
+CallerModule
+CallerRVA
+```
+
+using `GetModuleHandleExA(...FROM_ADDRESS...)` and `GetModuleFileNameA(...)`.
+
+CORE `CollisionDiagnostics.cpp` already includes `windows.h`. `_ReturnAddress` is currently made available in `EngineBridge.cpp` only under `FRAME_COLLISION_DIAGNOSTICS_DEEP`; N2C may minimally make `<intrin.h>` / `#pragma intrinsic(_ReturnAddress)` available under `FRAME_COLLISION_DIAGNOSTICS` as well. Do not enable the historical deep diagnostic profile merely for caller resolution.
+
+---
+
+## Exact next responsibility — N2C READ-ONLY gCEntity::OnDamage CALLER TRACE
+
+Implement one bounded diagnostic-only hook at exactly:
+
+```text
+Game + 0x668D0  gCEntity::OnDamage
+```
+
+N2C asks only:
+
+> During the known damaging marked player-Fist execution, is `gCEntity::OnDamage` entered, and if so, what factual caller module/RVA and argument/context values identify the native path that reached it relative to the authored FIST marker?
+
+Do not test another Fist control in N2C.
+
+### Hook transport
+
+The hook must:
+
+- exist only under `FRAME_COLLISION_DIAGNOSTICS`;
+- use explicit per-invocation `gCEntity *this` with the already-proven `.ThisCall()` transport;
+- use the exact SDK signature/order:
+
+```text
+gCEntity *this
+eCEntity *EntityArg1
+eCEntity *EntityArg2
+GEInt IntArg1
+GEInt IntArg2
+eCContactIterator &ContactIterator
+```
+
+- capture `_ReturnAddress()` at hook entry before logging or native forwarding;
+- call the native original exactly once with all arguments unchanged and in the same order;
+- return normally (`void`);
+- perform no entity/property/collision/marker/lifecycle/target mutation.
+
+The behavior-only product must contain neither the N2C hook nor its diagnostics.
+
+### Bounded entry logging
+
+N2C is an observability probe, so do not add a semantic filter that could hide the path before it is understood.
+
+Use one small diagnostic-only ordinal/cap for `gCEntity::OnDamage` entries, sufficient for one controlled attack. A cap of 64 is acceptable and consistent with N2B. Emit one explicit suppression record if the cap is exceeded.
+
+Each logged entry must report at minimum:
+
+```text
+Boundary: ENTITY_ON_DAMAGE_ENTRY
 ElapsedMs
 HookEntryOrdinal
-ThisTouchDamageAddress
-ThisOwnerEntityAddress, using factual property-set ownership if available
-ThisOwnerEntityName, if safely available
-ThisOwnerUseType, if safely available
+CallerAddress
+CallerModuleResolved
+CallerModule
+CallerRVA
+ThisEntityAddress
+ThisEntityName
+EntityArg1Address
+EntityArg1Name
+EntityArg2Address
+EntityArg2Name
+IntArg1
+IntArg2
+ContactIteratorAddress
 PlayerEntityAddress
-ExistingResolverSourceAddress (or null)
-ExactTouchDamageIdentityMatch: 0/1
 PlayerAction
 PlayerAniPhase
 PlayerStateTime
 PlayerCurrentMovementAni
-DamageDisabled from hooked this, if safe
+ExistingResolverFistSourceAddress (or null)
+ExistingResolverFistUseType, if resolved
+ExistingResolverFistCollisionGroup, if resolved
+ThisIsPlayer: 0/1
+EntityArg1IsPlayer: 0/1
+EntityArg2IsPlayer: 0/1
+ThisIsResolvedFistSource: 0/1
+EntityArg1IsResolvedFistSource: 0/1
+EntityArg2IsResolvedFistSource: 0/1
 ```
 
-For the existing resolver outcome, preserve the current authority:
+Use neutral argument names. Do not label `this`, EntityArg1, EntityArg2, IntArg1, or IntArg2 as target, inflictor, damage type, amount, or any other semantic role unless later evidence proves that role.
+
+For Fist correlation, reuse only the existing authority:
 
 ```text
 CollisionSources::ResolveFistCollisionSource(player)
 ```
 
-Do not create a second production Fist classifier.
+Do not create another Fist classifier.
 
-The purpose of factual `this` owner/use-type logging is diagnostic discrimination only. It must not replace the existing resolver as behavior/source authority.
+### Caller resolution
 
-If direct owner access from `gCTouchDamage_PS` is not available or not safe in the tested SDK, record that field as unavailable rather than inventing a cast/path.
+Reuse the already-proven factual caller-address approach in concept:
 
-Keep the existing detailed N2A exact-match BEFORE/AFTER records unchanged when the exact filter succeeds.
+```text
+_ReturnAddress()
+-> GetModuleHandleExA(FROM_ADDRESS | UNCHANGED_REFCOUNT)
+-> GetModuleFileNameA
+-> caller RVA = caller address - module base
+```
 
-### Boundedness
+A tiny CORE-private equivalent helper in `CollisionDiagnostics.cpp` is acceptable. Do not refactor or broaden `CollisionDiagnosticsDeep` merely to share this helper.
 
-The trace must not dump every TouchDamage call indefinitely.
+### Preserve existing diagnostics and Stage A
 
-Prefer a small per-hook cap sufficient for one controlled attack. The log must explicitly report the ordinal so a cap is visible. If a suppression/cap indication is necessary, emit it once only.
+Leave the N2A/N2B hooks and logs unchanged unless a compile-only adjustment is strictly necessary. They remain diagnostic-only and their silence is part of the evidence chain.
 
-Do not use filename text as the sole gate for whether the hook-entry trace exists. Runtime action/phase/player context remains factual context, while motion name is only a selector/correlation field.
+`G3AB_COL_FIST` must remain exact Stage A:
 
-### N2B interpretation
+```text
+resolve/validate human gEUseType_Fist / raw 8
+-> TouchDamage.ClearTriggeredList()
+-> no DamageDisabled behavior
+-> no collision-group mutation
+-> no weapon source-mask semantics
+```
+
+Do not alter callback ownership/suppression, marker occurrence/dedupe, C1 generation, family, StatePosition, source resolution or lifecycle.
+
+### Expected source scope
+
+Expected changed prototype files:
+
+```text
+prototypes/Script_FrameCollisionTest/EngineBridge.cpp
+prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
+prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h
+```
+
+No CMake/build-product separation change is expected. A minimal include-guard widening for `_ReturnAddress` under `FRAME_COLLISION_DIAGNOSTICS` is within N2C scope.
+
+### N2C interpretation boundary
 
 One controlled damaging marked player-Fist run should answer:
 
 ```text
-A. zero pre-filter entries for a hook
-   -> that exact hook entry was not observed during the run;
-      current exact-filter logic is not the reason for its silence.
+A. gCEntity::OnDamage entry occurs during the marked Fist execution
+   -> use caller module/RVA + factual arguments/context to identify the real upstream native path;
+      map that caller statically before choosing any control mechanism.
 
-B. pre-filter entries exist but ExactTouchDamageIdentityMatch = 0
-   -> hook is entered, but current exact-Fist matching/filter assumption rejects the observed this;
-      inspect factual owner/source identity next.
+B. visual Fist damage occurs but no gCEntity::OnDamage entry is observed
+   -> this seam also did not observe the damaging path in that run;
+      do not mutate gameplay behavior; continue static path reconstruction.
 
-C. exact-match pre-filter entry exists but detailed N2A record still does not
-   -> diagnostic implementation defect; fix only that defect before further causal work.
-
-D. exact-match detailed records appear
-   -> N2B restores observability; return their timing/order to Normal Chat.
+C. multiple OnDamage entries occur
+   -> correlate only by chronological timing, player action/phase/state time,
+      resolved Fist source, neutral entity identities and caller RVA;
+      do not guess argument roles.
 ```
 
-Do not choose a production FIST_OFF mechanism from N2B.
+N2C does not select or validate a production `FIST_OFF` mechanism.
 
 ---
 
-## N2B explicit non-goals
+## N2C explicit non-goals
 
 Do not implement or design:
 
@@ -257,6 +387,9 @@ any DamageDisabled setter experiment
 SetIsEnabled / SetReactToTouch
 SetCollisionGroup changes
 extra ClearTriggeredList behavior
+hooks on eCTrigger_PS::OnTouch / OnIntersect / OnTrigger / OnDamage
+hook on eCDynamicEntity::DoDamage
+hook on gCEntity::DoDamage
 persistent Fist marker-owned lifecycle state
 baseline snapshot/restore
 terminal/interruption restoration
@@ -275,14 +408,16 @@ Raise / playback-speed work
 ## Frozen continuation
 
 ```text
-A   — dedicated FIST baseline                    CLOSED/PASS
-B   — marker-time DamageDisabled intervention    CLOSED/FAIL AS CURRENT OFF INTERVENTION
-R   — exact restoration to Stage A behavior      CLOSED/PASS
-N1  — native trigger-state observation           CLOSED/PASS AS OBSERVATION
-D   — close N1 / correct docs / procedures       CLOSED
-N2A — exact-filtered gate/TriggerTarget timing   CLOSED/INCONCLUSIVE: damaging run, zero matching records
-N2B — hook observability/filter discrimination   CURRENT/NEXT
-C   — production FIST/FIST_OFF lifecycle         BLOCKED until control mechanism is proven
+A    — dedicated FIST baseline                    CLOSED/PASS
+B    — marker-time DamageDisabled intervention    CLOSED/FAIL AS CURRENT OFF INTERVENTION
+R    — exact restoration to Stage A behavior      CLOSED/PASS
+N1   — native trigger-state observation           CLOSED/PASS AS OBSERVATION
+D    — close N1 / correct docs / procedures       CLOSED
+N2A  — exact-filtered gate/TriggerTarget timing   CLOSED/INCONCLUSIVE
+N2B  — hook observability/filter discrimination   CLOSED/CASE A FOR BOTH HOOKS
+S2   — tested-binary damage-path reconstruction   CLOSED FOR N2C SELECTION
+N2C  — gCEntity::OnDamage caller trace            CURRENT/NEXT
+C    — production FIST/FIST_OFF lifecycle         BLOCKED until control mechanism is proven
 ```
 
 ---
