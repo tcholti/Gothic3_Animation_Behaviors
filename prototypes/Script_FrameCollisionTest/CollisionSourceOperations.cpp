@@ -75,6 +75,11 @@ FistSourceOperationResult RearmFistSource(eCEntity *sourceInstance)
     result.useType = static_cast<GEInt>(useType);
     source.TouchDamage.ClearTriggeredList();
     result.triggeredListCleared = true;
+    // TEMPORARY CAUSAL PROBE: test DamageDisabled on the proven FIST route.
+    gCTouchDamage_PS *touchDamagePS = static_cast<gCTouchDamage_PS *>(
+        source.TouchDamage.m_pEngineEntityPropertySet);
+    if (touchDamagePS != nullptr)
+        touchDamagePS->SetDamageDisabled(GETrue);
     result.groupAfter = static_cast<GEInt>(source.GetCollisionGroup());
     return result;
 }
