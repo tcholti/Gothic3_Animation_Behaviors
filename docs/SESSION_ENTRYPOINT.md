@@ -87,7 +87,7 @@ Do not create `feature/raise-attack-speed` early.
 
 ---
 
-## Current Responsibility — Fist Stage A runtime validation
+## Fist Stage A — CLOSED/PASS
 
 Work A source implementation is published as:
 
@@ -96,84 +96,83 @@ Work A source implementation is published as:
 Add dedicated Fist marker baseline
 ```
 
-Normal Chat has independently reviewed the Work A diff against the frozen contract and found no material source-level contradiction.
-
-Implemented Stage A contract:
+Stage A runtime evidence is published as:
 
 ```text
-G3AB_COL_FIST
--> resolve proven human logical Fist source (gEUseType_Fist / raw 8)
--> dedicated Fist source operation
--> TouchDamage.ClearTriggeredList()
--> no weapon Item_Attack / Item_Equipped mutation
--> no DamageDisabled behavior
+91e6d4f81b5f8d549546686a6d308ddff3e3bd9f
+Add Fist Stage A baseline runtime evidence
 ```
 
-Important separation:
+Validated diagnostic DLL SHA256:
 
 ```text
-RIGHT / LEFT / BOTH / OFF
--> equipped-weapon source path
-
-FIST
--> dedicated logical human Fist/body-contact source path
--> not SourceMask_Right/Left/Both
--> no SourceMask_Fist
+C9C6474D7A3EE6ABA0D260457DC85A597F5A7B1F614C01AD1A2BA15DDE890033
 ```
 
-The temporary exploratory `DamageDisabled=true` mutation has been removed. `G3AB_COL_FIST_OFF` does not exist yet.
-
-### Exact next step
-
-Complete the authoritative home-PC Stage A validation:
-
-```text
-sync branch
--> build ONLY Script_FrameCollisionTest
--> deploy only the diagnostic collision twin
--> verify live SHA/startup
--> mark one known-good human Fist Hit with G3AB_COL_FIST at the proven timing
--> run one controlled valid-target contact test
--> preserve exact raw diagnostic log
--> interpret visual + logger evidence
-```
-
-Known historical fixture/timing for the first test:
+Validated fixture:
 
 ```text
 Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
 frame 3: G3AB_COL_FIST
 ```
 
-Do not use `G3AB_COL_RIGHT` for Fist.
+Stage A result:
 
-Stage A asks only whether the separated dedicated FIST route reproduces the already-proven damaging Fist behavior using `ClearTriggeredList()` alone.
+```text
+visual valid-target contact damage: YES
+FIST accepted on valid C1 generation
+logical Fist source resolved as gEUseType_Fist / raw 8
+Fist collision group remained 0 -> 0
+TouchDamage.ClearTriggeredList() occurred exactly once
+no equipped-weapon source mask was activated/retired
+no weapon collision-group request path was used by FIST
+native callback was suppressed for the marker-owned execution
+finalization had no outstanding weapon-style collision obligation
+```
+
+Therefore the separated dedicated FIST route reproduces the proven damaging human Fist contact using `ClearTriggeredList()` alone, without weapon Item_Attack / Item_Equipped mutation and without DamageDisabled behavior.
 
 ---
 
-## Frozen Fist sequence after Stage A
+## Current Responsibility — Fist Stage B one-variable causal probe
+
+Stage B is now authorized because Stage A passed. Its conceptual variable is deliberately singular:
+
+```text
+same proven dedicated FIST route
++ DamageDisabled = true
+```
+
+The question is only whether that otherwise-identical known-good Fist contact stops damaging.
+
+### Exact next step
+
+Freeze and execute a bounded Work B implementation that changes only the dedicated human FIST operation needed for this causal probe, then independently source-review it before local build/runtime validation.
+
+Do not implement production `G3AB_COL_FIST_OFF` or persistent lifecycle ownership in Stage B.
+
+---
+
+## Frozen Fist sequence
 
 ```text
 A — dedicated FIST baseline
-    current stage: local build/runtime validation
+    CLOSED/PASS
 
 B — one-variable DamageDisabled causal probe
-    only after A passes
+    CURRENT
 
 C — production FIST/FIST_OFF + exact baseline snapshot/restore lifecycle
     only after B causally proves the mechanism
 ```
 
-Stage B and Stage C are not authorized yet.
-
-The full short-lived continuation, source-review facts, local-state caution and exact test boundary are in `docs/BETWEEN_CHATS.md`.
+The full short-lived continuation and exact Stage B boundary are in `docs/BETWEEN_CHATS.md`.
 
 ---
 
-## Deliberately outside the immediate test
+## Deliberately outside the immediate Stage B responsibility
 
-- `G3AB_COL_FIST_OFF`;
-- DamageDisabled mutation until Stage A passes;
+- production `G3AB_COL_FIST_OFF`;
 - persistent Fist marker-owned lifecycle state;
 - Fist terminal/interruption restoration;
 - PhysicalFist / monsters / generalized body collision;
