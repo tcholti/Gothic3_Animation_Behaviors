@@ -25,6 +25,11 @@ void LogFistTriggerTarget(
     char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
     gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument1,
     eCEntity *entityArgument2, void *contactIteratorAddress);
+void LogFistHookEntry(
+    char const *hookKind, GEU32 ordinal, gCTouchDamage_PS *touchDamagePS,
+    Entity &player, eCEntity *resolverSourceInstance,
+    bool exactTouchDamageIdentityMatch);
+void LogFistHookEntryCap(char const *hookKind, GEU32 cap);
 void LogNullMarker(char const *markerName);
 void LogMarkerContext(Entity &actor, MarkerOpcode opcode);
 void LogMarkerResult(Entity &actor, MarkerProcessResult const &result);

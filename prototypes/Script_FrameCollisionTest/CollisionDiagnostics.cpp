@@ -363,6 +363,89 @@ void LogFistTriggerTarget(
     std::fflush(g_pLog);
 }
 
+void LogFistHookEntry(
+    char const *hookKind, GEU32 ordinal, gCTouchDamage_PS *touchDamagePS,
+    Entity &player, eCEntity *resolverSourceInstance,
+    bool exactTouchDamageIdentityMatch)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    eCEntity *ownerInstance =
+        touchDamagePS != nullptr ? touchDamagePS->GetEntity() : nullptr;
+    Entity owner(ownerInstance);
+    GEInt const ownerUseType = owner != None
+        ? static_cast<GEInt>(
+              CollisionSources::GetCollisionSourceUseType(owner))
+        : -1;
+
+    GEInt playerAction = -1;
+    GEInt playerAniPhase = -1;
+    GEFloat playerStateTime = -1.0f;
+    std::string playerCurrentMovementAni = "<unavailable>";
+    if (player != None)
+    {
+        playerAction = static_cast<GEInt>(
+            player.Routine.GetProperty<PSRoutine::PropertyAction>());
+        playerAniPhase = static_cast<GEInt>(player.GetCurrentAniPhase());
+        playerStateTime = player.Routine.GetStateTime();
+        bCString currentAni = player.NPC.GetCurrentMovementAni();
+        if (currentAni.GetText() != nullptr)
+            playerCurrentMovementAni = currentAni.GetText();
+    }
+
+    std::fprintf(g_pLog, "===== FIST HOOK ENTRY =====\n");
+    std::fprintf(g_pLog, "HookKind: %s\n",
+                 hookKind != nullptr ? hookKind : "<null>");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "HookEntryOrdinal: %u\n",
+                 static_cast<unsigned int>(ordinal));
+    std::fprintf(g_pLog, "ThisTouchDamageAddress: %p\n",
+                 static_cast<void *>(touchDamagePS));
+    std::fprintf(g_pLog, "ThisOwnerEntityAddress: %p\n",
+                 static_cast<void *>(ownerInstance));
+    std::fprintf(g_pLog, "ThisOwnerEntityName: %s\n",
+                 EntityName(ownerInstance));
+    std::fprintf(g_pLog, "ThisOwnerUseType: %d\n", ownerUseType);
+    std::fprintf(g_pLog, "PlayerEntityAddress: %p\n",
+                 player != None
+                     ? static_cast<void *>(player.GetInstance())
+                     : nullptr);
+    std::fprintf(g_pLog, "ExistingResolverSourceAddress: %p\n",
+                 static_cast<void *>(resolverSourceInstance));
+    std::fprintf(g_pLog, "ExactTouchDamageIdentityMatch: %d\n",
+                 exactTouchDamageIdentityMatch ? 1 : 0);
+    std::fprintf(g_pLog, "PlayerAction: %d\n", playerAction);
+    std::fprintf(g_pLog, "PlayerAniPhase: %d\n", playerAniPhase);
+    std::fprintf(g_pLog, "PlayerStateTime: %.6f\n", playerStateTime);
+    std::fprintf(g_pLog, "PlayerCurrentMovementAni: %s\n",
+                 playerCurrentMovementAni.c_str());
+    std::fprintf(g_pLog, "DamageDisabled: %d\n",
+                 touchDamagePS != nullptr
+                     ? static_cast<GEInt>(touchDamagePS->GetDamageDisabled())
+                     : -1);
+    std::fprintf(g_pLog, "===========================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogFistHookEntryCap(char const *hookKind, GEU32 cap)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== FIST HOOK ENTRY CAP =====\n");
+    std::fprintf(g_pLog, "HookKind: %s\n",
+                 hookKind != nullptr ? hookKind : "<null>");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "LoggedEntryCap: %u\n",
+                 static_cast<unsigned int>(cap));
+    std::fprintf(g_pLog, "FurtherEntriesSuppressed: 1\n");
+    std::fprintf(g_pLog, "===============================\n\n");
+    std::fflush(g_pLog);
+}
+
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result)

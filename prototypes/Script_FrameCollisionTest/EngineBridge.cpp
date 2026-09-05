@@ -52,6 +52,9 @@ static mCFunctionHook Hook_RunScriptFunction;
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 static mCFunctionHook Hook_FistCanBeActivatedNow;
 static mCFunctionHook Hook_FistTriggerTarget;
+static GEU32 const FistHookEntryLogCap = 64;
+static GEU32 g_FistCanBeActivatedEntryOrdinal = 0;
+static GEU32 g_FistTriggerTargetEntryOrdinal = 0;
 #endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -100,23 +103,44 @@ static bool IsPlayerEntity(eCEntity *instance)
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 static eCEntity *ResolveExactPlayerFistSource(
-    gCTouchDamage_PS *touchDamagePS, Entity &player)
+    gCTouchDamage_PS *touchDamagePS, Entity &player,
+    eCEntity *&resolverSourceInstance)
 {
-    if (touchDamagePS == nullptr || player == None)
+    resolverSourceInstance = nullptr;
+    if (player == None)
         return nullptr;
 
-    eCEntity *fistSourceInstance =
+    resolverSourceInstance =
         CollisionSources::ResolveFistCollisionSource(player);
-    if (fistSourceInstance == nullptr)
+    if (touchDamagePS == nullptr || resolverSourceInstance == nullptr)
         return nullptr;
 
-    Entity fistSource(fistSourceInstance);
+    Entity fistSource(resolverSourceInstance);
     if (fistSource == None
         || fistSource.TouchDamage.m_pEngineEntityPropertySet != touchDamagePS)
     {
         return nullptr;
     }
-    return fistSourceInstance;
+    return resolverSourceInstance;
+}
+
+static void LogBoundedFistHookEntry(
+    char const *hookKind, GEU32 &ordinal, gCTouchDamage_PS *touchDamagePS,
+    Entity &player, eCEntity *resolverSourceInstance,
+    bool exactTouchDamageIdentityMatch)
+{
+    ++ordinal;
+    if (ordinal <= FistHookEntryLogCap)
+    {
+        CollisionDiagnostics::LogFistHookEntry(
+            hookKind, ordinal, touchDamagePS, player,
+            resolverSourceInstance, exactTouchDamageIdentityMatch);
+    }
+    else if (ordinal == FistHookEntryLogCap + 1)
+    {
+        CollisionDiagnostics::LogFistHookEntryCap(
+            hookKind, FistHookEntryLogCap);
+    }
 }
 #endif
 
@@ -701,8 +725,14 @@ static GEBool GE_STDCALL FistCanBeActivatedNow_FrameCollisionTest(
     eCContactIterator &a_rContactIterator)
 {
     Entity player = Entity::GetPlayer();
+    eCEntity *resolverSourceInstance = nullptr;
     eCEntity *fistSourceInstance =
-        ResolveExactPlayerFistSource(a_pThis, player);
+        ResolveExactPlayerFistSource(
+            a_pThis, player, resolverSourceInstance);
+    LogBoundedFistHookEntry(
+        "CAN_BE_ACTIVATED", g_FistCanBeActivatedEntryOrdinal,
+        a_pThis, player, resolverSourceInstance,
+        fistSourceInstance != nullptr);
     if (fistSourceInstance != nullptr)
     {
         CollisionDiagnostics::LogFistCanBeActivatedNow(
@@ -730,8 +760,14 @@ static void GE_STDCALL FistTriggerTarget_FrameCollisionTest(
     eCEntity *a_pEntity2, eCContactIterator &a_rContactIterator)
 {
     Entity player = Entity::GetPlayer();
+    eCEntity *resolverSourceInstance = nullptr;
     eCEntity *fistSourceInstance =
-        ResolveExactPlayerFistSource(a_pThis, player);
+        ResolveExactPlayerFistSource(
+            a_pThis, player, resolverSourceInstance);
+    LogBoundedFistHookEntry(
+        "TRIGGER_TARGET", g_FistTriggerTargetEntryOrdinal,
+        a_pThis, player, resolverSourceInstance,
+        fistSourceInstance != nullptr);
     if (fistSourceInstance != nullptr)
     {
         CollisionDiagnostics::LogFistTriggerTarget(
