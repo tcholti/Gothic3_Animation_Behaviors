@@ -49,6 +49,11 @@ static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AISetState;
 static mCFunctionHook Hook_RunScriptFunction;
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+static mCFunctionHook Hook_FistCanBeActivatedNow;
+static mCFunctionHook Hook_FistTriggerTarget;
+#endif
+
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static mCFunctionHook Hook_OnTick;
 static mCFunctionHook Hook_PlayMotion;
@@ -92,6 +97,28 @@ static bool IsPlayerEntity(eCEntity *instance)
     Entity player = Entity::GetPlayer();
     return player != None && instance == player.GetInstance();
 }
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+static eCEntity *ResolveExactPlayerFistSource(
+    gCTouchDamage_PS *touchDamagePS, Entity &player)
+{
+    if (touchDamagePS == nullptr || player == None)
+        return nullptr;
+
+    eCEntity *fistSourceInstance =
+        CollisionSources::ResolveFistCollisionSource(player);
+    if (fistSourceInstance == nullptr)
+        return nullptr;
+
+    Entity fistSource(fistSourceInstance);
+    if (fistSource == None
+        || fistSource.TouchDamage.m_pEngineEntityPropertySet != touchDamagePS)
+    {
+        return nullptr;
+    }
+    return fistSourceInstance;
+}
+#endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static gCScriptProcessingUnit *GetActorSPU(Entity &actor)
@@ -668,6 +695,65 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
 #endif
 }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+static GEBool GE_STDCALL FistCanBeActivatedNow_FrameCollisionTest(
+    gCTouchDamage_PS *a_pThis, eCEntity *a_pEntity,
+    eCContactIterator &a_rContactIterator)
+{
+    Entity player = Entity::GetPlayer();
+    eCEntity *fistSourceInstance =
+        ResolveExactPlayerFistSource(a_pThis, player);
+    if (fistSourceInstance != nullptr)
+    {
+        CollisionDiagnostics::LogFistCanBeActivatedNow(
+            "FIST_CAN_BE_ACTIVATED_BEFORE_ORIGINAL", player,
+            fistSourceInstance, a_pThis, a_pEntity,
+            static_cast<void *>(&a_rContactIterator), false, GEFalse);
+    }
+
+    GEBool const result = Hook_FistCanBeActivatedNow.GetOriginalFunction(
+        &FistCanBeActivatedNow_FrameCollisionTest)(
+            a_pThis, a_pEntity, a_rContactIterator);
+
+    if (fistSourceInstance != nullptr)
+    {
+        CollisionDiagnostics::LogFistCanBeActivatedNow(
+            "FIST_CAN_BE_ACTIVATED_AFTER_ORIGINAL", player,
+            fistSourceInstance, a_pThis, a_pEntity,
+            static_cast<void *>(&a_rContactIterator), true, result);
+    }
+    return result;
+}
+
+static void GE_STDCALL FistTriggerTarget_FrameCollisionTest(
+    gCTouchDamage_PS *a_pThis, eCEntity *a_pEntity1,
+    eCEntity *a_pEntity2, eCContactIterator &a_rContactIterator)
+{
+    Entity player = Entity::GetPlayer();
+    eCEntity *fistSourceInstance =
+        ResolveExactPlayerFistSource(a_pThis, player);
+    if (fistSourceInstance != nullptr)
+    {
+        CollisionDiagnostics::LogFistTriggerTarget(
+            "FIST_TRIGGER_TARGET_BEFORE_ORIGINAL", player,
+            fistSourceInstance, a_pThis, a_pEntity1, a_pEntity2,
+            static_cast<void *>(&a_rContactIterator));
+    }
+
+    Hook_FistTriggerTarget.GetOriginalFunction(
+        &FistTriggerTarget_FrameCollisionTest)(
+            a_pThis, a_pEntity1, a_pEntity2, a_rContactIterator);
+
+    if (fistSourceInstance != nullptr)
+    {
+        CollisionDiagnostics::LogFistTriggerTarget(
+            "FIST_TRIGGER_TARGET_AFTER_ORIGINAL", player,
+            fistSourceInstance, a_pThis, a_pEntity1, a_pEntity2,
+            static_cast<void *>(&a_rContactIterator));
+    }
+}
+#endif
+
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
     eCEntity *a_pThis, eECollisionGroup a_Group)
 {
@@ -890,6 +976,18 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Prepare(RVA_Game(0x1604E0), &RunScriptFunction_FrameCollisionTest)
         .ThisCall()
         .Hook();
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    Hook_FistCanBeActivatedNow
+        .Prepare(RVA_Game(0x692F0),
+                 &FistCanBeActivatedNow_FrameCollisionTest)
+        .ThisCall()
+        .Hook();
+    Hook_FistTriggerTarget
+        .Prepare(RVA_Game(0x693B0), &FistTriggerTarget_FrameCollisionTest)
+        .ThisCall()
+        .Hook();
+#endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     gSScript const *onTickScript = GetScriptAdminExt().GetScript("OnTick");

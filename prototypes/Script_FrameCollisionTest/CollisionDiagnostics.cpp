@@ -268,6 +268,101 @@ void LogFistTriggerStateSnapshot(char const *boundary, Entity &actor)
     std::fflush(g_pLog);
 }
 
+static bool LogFistGateDispatchContext(
+    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
+    gCTouchDamage_PS *touchDamagePS)
+{
+    if (g_pLog == nullptr || actor == None || fistSourceInstance == nullptr
+        || touchDamagePS == nullptr)
+    {
+        return false;
+    }
+
+    Entity fistSource(fistSourceInstance);
+    if (fistSource == None)
+        return false;
+
+    bCString currentAni = actor.NPC.GetCurrentMovementAni();
+    std::fprintf(g_pLog, "===== FIST GATE/DISPATCH TIMING =====\n");
+    std::fprintf(g_pLog, "Boundary: %s\n",
+                 boundary != nullptr ? boundary : "<null>");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "Action: %d\n",
+                 static_cast<GEInt>(
+                     actor.Routine.GetProperty<PSRoutine::PropertyAction>()));
+    std::fprintf(g_pLog, "AniPhase: %d\n",
+                 static_cast<GEInt>(actor.GetCurrentAniPhase()));
+    std::fprintf(g_pLog, "StateTime: %.6f\n", actor.Routine.GetStateTime());
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n", currentAni.GetText());
+    std::fprintf(g_pLog, "FistSourceAddress: %p\n",
+                 static_cast<void *>(fistSourceInstance));
+    std::fprintf(g_pLog, "FistTouchDamageAddress: %p\n",
+                 static_cast<void *>(touchDamagePS));
+    std::fprintf(g_pLog, "FistUseType: %d\n",
+                 static_cast<GEInt>(
+                     CollisionSources::GetCollisionSourceUseType(fistSource)));
+    std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
+                 static_cast<GEInt>(fistSource.GetCollisionGroup()));
+    std::fprintf(g_pLog, "DamageDisabled: %d\n",
+                 static_cast<GEInt>(touchDamagePS->GetDamageDisabled()));
+    return true;
+}
+
+void LogFistCanBeActivatedNow(
+    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
+    gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument,
+    void *contactIteratorAddress, bool nativeResultAvailable,
+    GEBool nativeResult)
+{
+    if (!LogFistGateDispatchContext(
+            boundary, actor, fistSourceInstance, touchDamagePS))
+    {
+        return;
+    }
+
+    std::fprintf(g_pLog, "EntityArgAddress: %p\n",
+                 static_cast<void *>(entityArgument));
+    std::fprintf(g_pLog, "EntityArgName: %s\n", EntityName(entityArgument));
+    std::fprintf(g_pLog, "ContactIteratorAddress: %p\n",
+                 contactIteratorAddress);
+    if (nativeResultAvailable)
+    {
+        std::fprintf(g_pLog, "NativeResult: %d\n",
+                     static_cast<GEInt>(nativeResult));
+    }
+    std::fprintf(g_pLog, "=====================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogFistTriggerTarget(
+    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
+    gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument1,
+    eCEntity *entityArgument2, void *contactIteratorAddress)
+{
+    if (!LogFistGateDispatchContext(
+            boundary, actor, fistSourceInstance, touchDamagePS))
+    {
+        return;
+    }
+
+    std::fprintf(g_pLog, "EntityArg1Address: %p\n",
+                 static_cast<void *>(entityArgument1));
+    std::fprintf(g_pLog, "EntityArg1Name: %s\n",
+                 EntityName(entityArgument1));
+    std::fprintf(g_pLog, "EntityArg2Address: %p\n",
+                 static_cast<void *>(entityArgument2));
+    std::fprintf(g_pLog, "EntityArg2Name: %s\n",
+                 EntityName(entityArgument2));
+    std::fprintf(g_pLog, "ContactIteratorAddress: %p\n",
+                 contactIteratorAddress);
+    std::fprintf(g_pLog, "=====================================\n\n");
+    std::fflush(g_pLog);
+}
+
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result)

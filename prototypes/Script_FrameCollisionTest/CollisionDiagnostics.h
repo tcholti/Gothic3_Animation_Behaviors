@@ -16,6 +16,15 @@ void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result);
 void LogFistTriggerStateSnapshot(char const *boundary, Entity &actor);
+void LogFistCanBeActivatedNow(
+    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
+    gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument,
+    void *contactIteratorAddress, bool nativeResultAvailable,
+    GEBool nativeResult);
+void LogFistTriggerTarget(
+    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
+    gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument1,
+    eCEntity *entityArgument2, void *contactIteratorAddress);
 void LogNullMarker(char const *markerName);
 void LogMarkerContext(Entity &actor, MarkerOpcode opcode);
 void LogMarkerResult(Entity &actor, MarkerProcessResult const &result);
