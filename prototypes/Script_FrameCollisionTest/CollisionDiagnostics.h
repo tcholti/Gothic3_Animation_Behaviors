@@ -3,6 +3,7 @@
 #include "CollisionLifecycleGuard.h"
 #include "FrameCollisionMarkers.h"
 
+#include <cstdint>
 #include <cstdio>
 
 namespace FrameCollision::CollisionDiagnostics
@@ -38,6 +39,28 @@ void LogEntityOnDamageEntry(
 void LogEntityOnDamageEntryCap(GEU32 cap);
 void LogFistNativeTimingGateProbe(
     Entity &actor, MarkerProcessResult const &result);
+void LogFistTimingGateCausalArm(
+    Entity &actor, MarkerProcessResult const &result,
+    gCScriptProcessingUnit *spu, void *animationActorAddress,
+    GEInt latchAtArm, GEDouble realPlayTimeAtArm,
+    GEDouble maxTimeAtArm, GEDouble nativeThresholdConstant,
+    GEDouble computedThresholdAtArm, bool realBelowThresholdAtArm,
+    bool armAccepted);
+void LogFistTimingGateCausalOverride(
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
+    GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
+    GEDouble nativeThresholdConstant, GEDouble computedThreshold,
+    bool realBelowThreshold, GEDouble syntheticPlayTimeReturned,
+    bool syntheticAtOrAboveThreshold, bool overrideApplied,
+    GEU32 overrideOrdinalWithinGeneration, bool armConsumed);
+void LogFistTimingGateCausalRetirement(
+    char const *boundary, char const *reason, eCEntity *actorInstance,
+    std::uint64_t armedC1Generation, bool currentC1GenerationValid,
+    std::uint64_t currentC1Generation, gCScriptProcessingUnit *armedSPU,
+    void *armedAnimationActorAddress, GEInt motionType,
+    GEDouble realPlayTime, GEDouble computedThreshold,
+    bool armConsumed);
 void ApplyAndLogFistCombatLatchRearmProbe(
     Entity &actor, MarkerProcessResult const &result);
 void LogNullMarker(char const *markerName);

@@ -758,6 +758,138 @@ void LogFistNativeTimingGateProbe(
     std::fflush(g_pLog);
 }
 
+void LogFistTimingGateCausalArm(
+    Entity &actor, MarkerProcessResult const &result,
+    gCScriptProcessingUnit *spu, void *animationActorAddress,
+    GEInt latchAtArm, GEDouble realPlayTimeAtArm,
+    GEDouble maxTimeAtArm, GEDouble nativeThresholdConstant,
+    GEDouble computedThresholdAtArm, bool realBelowThresholdAtArm,
+    bool armAccepted)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== FIST TIMING GATE CAUSAL ARM =====\n");
+    std::fprintf(g_pLog, "Boundary: FIST_TIMING_GATE_CAUSAL_ARM\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                 result.currentAnimation.c_str());
+    std::fprintf(g_pLog, "C1Generation: %llu\n",
+                 static_cast<unsigned long long>(result.c1Generation));
+    std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
+    std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
+                 animationActorAddress);
+    std::fprintf(g_pLog, "AcceptedFistOccurrenceBefore: %d\n",
+                 result.acceptedMarkerCountBefore);
+    std::fprintf(g_pLog, "AcceptedFistOccurrenceAfter: %d\n",
+                 result.acceptedMarkerCountAfter);
+    std::fprintf(g_pLog, "LatchAtArm: %d\n", latchAtArm);
+    std::fprintf(g_pLog, "RealPlayTimeAtArm: %.17g\n",
+                 realPlayTimeAtArm);
+    std::fprintf(g_pLog, "MaxTimeAtArm: %.17g\n", maxTimeAtArm);
+    std::fprintf(g_pLog, "NativeThresholdConstant: %.17g\n",
+                 nativeThresholdConstant);
+    std::fprintf(g_pLog, "ComputedThresholdAtArm: %.17g\n",
+                 computedThresholdAtArm);
+    std::fprintf(g_pLog, "RealBelowThresholdAtArm: %d\n",
+                 realBelowThresholdAtArm ? 1 : 0);
+    std::fprintf(g_pLog, "ArmAccepted: %d\n", armAccepted ? 1 : 0);
+    std::fprintf(g_pLog, "=======================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogFistTimingGateCausalOverride(
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
+    GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
+    GEDouble nativeThresholdConstant, GEDouble computedThreshold,
+    bool realBelowThreshold, GEDouble syntheticPlayTimeReturned,
+    bool syntheticAtOrAboveThreshold, bool overrideApplied,
+    GEU32 overrideOrdinalWithinGeneration, bool armConsumed)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== FIST TIMING GATE CAUSAL OVERRIDE =====\n");
+    std::fprintf(g_pLog,
+                 "Boundary: FIST_TIMING_GATE_CAUSAL_OVERRIDE\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actorInstance));
+    std::fprintf(g_pLog, "C1Generation: %llu\n",
+                 static_cast<unsigned long long>(c1Generation));
+    std::fprintf(g_pLog, "HookSPUAddress: %p\n",
+                 static_cast<void *>(hookSPU));
+    std::fprintf(g_pLog, "HookAnimationActorAddress: %p\n",
+                 hookAnimationActorAddress);
+    std::fprintf(g_pLog, "MotionType: %d\n", motionType);
+    std::fprintf(g_pLog, "RealPlayTime: %.17g\n", realPlayTime);
+    std::fprintf(g_pLog, "MaxTime: %.17g\n", maxTime);
+    std::fprintf(g_pLog, "NativeThresholdConstant: %.17g\n",
+                 nativeThresholdConstant);
+    std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
+                 computedThreshold);
+    std::fprintf(g_pLog, "RealBelowThreshold: %d\n",
+                 realBelowThreshold ? 1 : 0);
+    std::fprintf(g_pLog, "SyntheticPlayTimeReturned: %.17g\n",
+                 syntheticPlayTimeReturned);
+    std::fprintf(g_pLog, "SyntheticAtOrAboveThreshold: %d\n",
+                 syntheticAtOrAboveThreshold ? 1 : 0);
+    std::fprintf(g_pLog, "OverrideApplied: %d\n",
+                 overrideApplied ? 1 : 0);
+    std::fprintf(g_pLog, "OverrideOrdinalWithinGeneration: %u\n",
+                 static_cast<unsigned int>(overrideOrdinalWithinGeneration));
+    std::fprintf(g_pLog, "ArmConsumed: %d\n", armConsumed ? 1 : 0);
+    std::fprintf(g_pLog, "============================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogFistTimingGateCausalRetirement(
+    char const *boundary, char const *reason, eCEntity *actorInstance,
+    std::uint64_t armedC1Generation, bool currentC1GenerationValid,
+    std::uint64_t currentC1Generation, gCScriptProcessingUnit *armedSPU,
+    void *armedAnimationActorAddress, GEInt motionType,
+    GEDouble realPlayTime, GEDouble computedThreshold,
+    bool armConsumed)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== FIST TIMING GATE CAUSAL RETIREMENT =====\n");
+    std::fprintf(g_pLog, "Boundary: %s\n",
+                 boundary != nullptr ? boundary : "<null>");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "Reason: %s\n",
+                 reason != nullptr ? reason : "<null>");
+    std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actorInstance));
+    std::fprintf(g_pLog, "ArmedC1Generation: %llu\n",
+                 static_cast<unsigned long long>(armedC1Generation));
+    std::fprintf(g_pLog, "CurrentC1GenerationValid: %d\n",
+                 currentC1GenerationValid ? 1 : 0);
+    std::fprintf(g_pLog, "CurrentC1Generation: %llu\n",
+                 static_cast<unsigned long long>(currentC1Generation));
+    std::fprintf(g_pLog, "ArmedSPUAddress: %p\n",
+                 static_cast<void *>(armedSPU));
+    std::fprintf(g_pLog, "ArmedAnimationActorAddress: %p\n",
+                 armedAnimationActorAddress);
+    std::fprintf(g_pLog, "MotionType: %d\n", motionType);
+    std::fprintf(g_pLog, "RealPlayTime: %.17g\n", realPlayTime);
+    std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
+                 computedThreshold);
+    std::fprintf(g_pLog, "ArmConsumed: %d\n", armConsumed ? 1 : 0);
+    std::fprintf(g_pLog, "==============================================\n\n");
+    std::fflush(g_pLog);
+}
+
 void ApplyAndLogFistCombatLatchRearmProbe(
     Entity &actor, MarkerProcessResult const &result)
 {
