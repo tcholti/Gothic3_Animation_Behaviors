@@ -213,11 +213,11 @@ N1 proves only that the tested native Normal/Fist cases did not expose their att
 
 ---
 
-## Current Responsibility — same-move native Fist rearm remains unresolved
+## Current Responsibility — N3 same-move native Fist rearm probe frozen
 
 > **Determine whether an accepted same-move `G3AB_COL_FIST` writing `SPU+0x164 = 0` can causally rearm native damage after `G3AB_COL_FIST_OFF`.**
 
-N2C identified the confirmed native path, N2D proved latch-1 suppression, N2E proved natural latch-0 reset on a fresh move, and Stage C validated production `FIST_OFF` for the tested human-Fist P0 Normal path. The newly committed same-move logs do not prove rearm: the ON -> ON damage entry preceded the second FIST marker, while current ON -> OFF -> ON leaves the latch at 1 and produced no correlated damage entry after OFF. No implementation or additional experiment is authorized by this entry point without a separately frozen bounded task.
+N2C identified the confirmed native path, N2D proved latch-1 suppression, N2E proved natural latch-0 reset on a fresh move, and Stage C validated production `FIST_OFF` for the tested human-Fist P0 Normal path. The committed same-move logs do not prove rearm: the ON -> ON damage entry preceded the second FIST marker, while current ON -> OFF -> ON leaves the latch at 1 and produced no correlated damage entry after OFF. The bounded diagnostic-only N3 intervention and runtime classification are now frozen in `docs/BETWEEN_CHATS.md`; this does not authorize production FIST latch-zero semantics.
 
 ---
 
@@ -254,8 +254,8 @@ N2E — fresh-move native latch reset to 0
 C — production FIST_OFF minimal latch integration/validation
     CLOSED/PASS
 
-same-move FIST latch-0 rearm after FIST_OFF
-    UNRESOLVED / NOT YET ASSIGNED
+N3 — same-move FIST latch-0 rearm after FIST_OFF
+    CURRENT/NEXT — FROZEN DIAGNOSTIC
 ```
 
 ---
@@ -263,7 +263,7 @@ same-move FIST latch-0 rearm after FIST_OFF
 ## Deliberately outside the current documented boundary
 
 - manual latch restoration or persistent Fist lifecycle state;
-- same-move OFF -> FIST re-enable implementation without a separately frozen causal probe;
+- production same-move OFF -> FIST re-enable semantics before N3 evidence permits promotion;
 - setting `IsEnabled`, `ReactToTouch`, `DamageDisabled`, or another candidate;
 - another Fist disable/collision-control mechanism;
 - new hooks without a separately frozen bounded diagnostic;

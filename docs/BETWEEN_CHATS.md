@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-06
 
-## Current bridge — Stage C FIST_OFF closed; same-move native Fist rearm unresolved
+## Current bridge — N3 same-move Fist latch-zero rearm probe frozen
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -33,6 +33,7 @@ Fist N2D SPU+0x164 causal suppression probe      CLOSED/PASS — EV-225
 Fist N2E same-process native latch reset proof   CLOSED/PASS — EV-226
 Stage C production FIST_OFF validation          CLOSED/PASS — EV-227
 same-move FIST/FIST_OFF timing observation       RECORDED — EV-228–EV-229
+N3 same-move latch-zero rearm probe              CURRENT/NEXT — FROZEN DIAGNOSTIC
 ```
 
 Do not reopen these findings without concrete contradictory evidence.
@@ -229,11 +230,176 @@ Production G3AB_COL_FIST_OFF
     causally proven to suppress the confirmed native damage path
 ```
 
-## Next unresolved question
+## Exact next responsibility — N3 FIST same-move latch-zero rearm probe
 
-Whether an accepted same-move `G3AB_COL_FIST` writing `SPU+0x164 = 0` can causally rearm native damage after `G3AB_COL_FIST_OFF`.
+### Frozen diagnostic question
 
-This handoff records the question only. It does not authorize implementation, manual latch restoration, persistent Fist lifecycle state, or another collision-control experiment without a separately frozen bounded task.
+During the existing two-punch human-Fist P0 Normal combat move, after production `G3AB_COL_FIST_OFF` has written `SPU+0x164` from 0 to 1, does a later accepted `G3AB_COL_FIST` writing that same byte from 1 back to 0 causally rearm the confirmed native `sAICombatMoveItlLoop -> gCEntity::OnDamage` damage path in the same combat move?
+
+This is a diagnostic causal probe only. It does not authorize production FIST latch-zero semantics.
+
+### Frozen diagnostic intervention
+
+For every accepted exact-human-Fist `G3AB_COL_FIST` in the diagnostic build only:
+
+1. Preserve the existing Stage-A FIST operation unchanged:
+   - resolve/validate exact human `gEUseType_Fist` / raw 8;
+   - call `TouchDamage.ClearTriggeredList()`;
+   - perform no collision-group mutation.
+2. Then:
+   - resolve the current marker actor's existing `gCScriptRoutine_PS` / SPU;
+   - read the exact byte `SPU+0x164`;
+   - write the exact byte `SPU+0x164 = 0`;
+   - perform volatile readback;
+   - log the factual before/after/write-confirmation result.
+
+Apply this intervention to every accepted exact-human-Fist FIST marker. Do not condition it on remembered marker history and do not add persistent state.
+
+The latch-zero write must exist only under `FRAME_COLLISION_DIAGNOSTICS` for N3. Behavior-only production `G3AB_COL_FIST` must remain exact current Stage A: exact raw-8 validation plus `ClearTriggeredList()`, with no latch-zero write.
+
+Production `G3AB_COL_FIST_OFF` must remain unchanged.
+
+Keep the existing N2C `gCEntity::OnDamage` diagnostic hook unchanged.
+
+### Controlled fixture
+
+Exact animation:
+
+```text
+Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+```
+
+Authored markers:
+
+```text
+frame 3:  G3AB_COL_FIST
+frame 9:  G3AB_COL_FIST_OFF
+frame 12: G3AB_COL_FIST
+```
+
+Expected factual intervention sequence if prior evidence reproduces:
+
+```text
+first FIST
+    latch 0 -> 0
+
+FIST_OFF
+    latch 0 -> 1
+
+second FIST
+    latch 1 -> 0
+```
+
+### Required N3 diagnostic logging
+
+For each accepted `G3AB_COL_FIST`, log:
+
+```text
+Boundary: FIST_COMBAT_LATCH_REARM_PROBE
+ElapsedMs
+Actor
+ActorAddress
+Action
+AniPhase
+StateTime
+CurrentMovementAni
+C1Generation
+SPUAddress
+LatchOffset: 0x164
+LatchBefore
+LatchAfter
+WriteAttempted
+WriteConfirmed
+FistSourceAddress
+FistUseType
+FistCollisionGroup
+```
+
+### Frozen runtime classification
+
+#### CASE A — SAME-MOVE REARM PASS
+
+Required observations:
+
+```text
+first FIST latch 0 -> 0 confirmed
+FIST_OFF latch 0 -> 1 confirmed
+second FIST latch 1 -> 0 confirmed
+Fist-correlated ENTITY_ON_DAMAGE_ENTRY occurs after second FIST
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+User second-strike damage observation: YES
+```
+
+Conclusion: explicit latch-zero FIST causally rearms the confirmed native damage path in the same combat move.
+
+#### CASE B — OFF STATE NOT PRESENT
+
+Condition:
+
+```text
+second FIST LatchBefore is not 1
+```
+
+Stop. Prior OFF persistence did not reproduce; do not interpret rearm.
+
+#### CASE C — LATCH ZERO INSUFFICIENT
+
+Required observations:
+
+```text
+second FIST latch 1 -> 0 write confirmed
+no later Fist-correlated ENTITY_ON_DAMAGE_ENTRY
+User second-strike damage observation: NO
+```
+
+Conclusion: latch zero alone is insufficient to rearm after OFF at this same-move timing.
+
+#### CASE D — NATIVE PATH RESUMES BUT VISUAL DAMAGE DOES NOT
+
+Required observations:
+
+```text
+second FIST latch 1 -> 0 confirmed
+Fist-correlated ENTITY_ON_DAMAGE_ENTRY resumes after second FIST
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+User second-strike damage observation: NO
+```
+
+Conclusion: native dispatch rearm is proven, but authored gameplay/contact timing remains unresolved.
+
+#### CASE E — EARLY NATIVE DAMAGE REGRESSION
+
+Condition:
+
+```text
+Fist-correlated OnDamage occurs before FIST_OFF in the controlled fixture
+```
+
+Stop and treat this as a contradiction/regression of the established timing fixture.
+
+### Promotion boundary
+
+The N3 freeze alone does not authorize production FIST latch-zero semantics. Production promotion requires runtime CASE A, or separate interpretation if runtime produces CASE D.
+
+### N3 implementation non-goals
+
+Do not add or change:
+
+- manual end-of-move restoration;
+- persistent Fist lifecycle state;
+- previous-marker tracking;
+- new marker opcodes;
+- collision-group behavior;
+- `DamageDisabled`, `IsEnabled`, or `ReactToTouch`;
+- hooks or patches to `sAICombatMoveItlLoop`;
+- `gCEntity::OnDamage` skipping or replacement;
+- `gEUseType_PhysicalFist` / raw 55;
+- monsters or generalized body collision;
+- per-limb semantics;
+- weapon source masks;
+- C1, StatePosition, or attack-family behavior.
 
 ---
 
@@ -245,7 +411,7 @@ This handoff records the question only. It does not authorize implementation, ma
 - whether `ClearTriggeredList()` matters on other TouchDamage paths;
 - manual latch restoration;
 - persistent marker-owned Fist lifecycle state;
-- same-move OFF -> FIST re-enable implementation;
+- production same-move OFF -> FIST re-enable semantics before N3 evidence permits promotion;
 - RIGHT/LEFT/BOTH/OFF weapon semantics, C1 lifecycle, attack-family/StatePosition redesign, Raise, playback-speed work, target acquisition, or climbing.
 
 Evidence authority: EV-224–EV-230 in `docs/EVIDENCE_LEDGER_199_ONWARD.md`.
