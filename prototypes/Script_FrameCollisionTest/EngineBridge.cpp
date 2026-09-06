@@ -315,10 +315,6 @@ static GELPVoid StartEffect_FrameCollisionTest(
         actor, markerOpcode, effectName,
         RuntimeClock::GetElapsedMilliseconds());
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::ApplyAndLogFistCombatLatchResetProbe(
-        actor, result);
-#endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (result.code == MarkerResult_Accepted)
     {

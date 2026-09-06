@@ -12,6 +12,7 @@ char const *const CollisionLeftMarker = "G3AB_COL_LEFT";
 char const *const CollisionBothMarker = "G3AB_COL_BOTH";
 char const *const CollisionOffMarker = "G3AB_COL_OFF";
 char const *const CollisionFistMarker = "G3AB_COL_FIST";
+char const *const CollisionFistOffMarker = "G3AB_COL_FIST_OFF";
 
 enum MarkerOpcode
 {
@@ -20,7 +21,8 @@ enum MarkerOpcode
     MarkerOpcode_Both = 2,
     MarkerOpcode_Off = 3,
     MarkerOpcode_Fist = 4,
-    MarkerOpcode_Count = 5,
+    MarkerOpcode_FistOff = 5,
+    MarkerOpcode_Count = 6,
     MarkerOpcode_Invalid = -1
 };
 
@@ -116,6 +118,11 @@ struct MarkerProcessResult
     GEInt fistSourceGroupAfter;
     GEInt fistSourceUseType;
     bool fistSourceListCleared;
+    gCScriptProcessingUnit *fistOffSPU;
+    GEInt fistOffLatchBefore;
+    GEInt fistOffLatchAfter;
+    bool fistOffLatchWriteAttempted;
+    bool fistOffLatchWriteConfirmed;
     GEInt quickStatePositionBeforeMarker;
     GEInt quickStatePositionAfterMarker;
     GEInt whirlStatePositionBeforeMarker;

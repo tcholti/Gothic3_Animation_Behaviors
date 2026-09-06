@@ -226,7 +226,8 @@ void OpenLog()
     std::fprintf(g_pLog, "C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.\n");
     std::fprintf(g_pLog,
                  "MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack\n");
-    std::fprintf(g_pLog, "MarkerOpcodes: RIGHT LEFT BOTH OFF FIST\n");
+    std::fprintf(g_pLog,
+                 "MarkerOpcodes: RIGHT LEFT BOTH OFF FIST FIST_OFF\n");
     std::fflush(g_pLog);
 }
 
@@ -601,83 +602,6 @@ void LogEntityOnDamageEntryCap(GEU32 cap)
     std::fflush(g_pLog);
 }
 
-void ApplyAndLogFistCombatLatchResetProbe(
-    Entity &actor, MarkerProcessResult const &result)
-{
-    if (g_pLog == nullptr || actor == None
-        || !IsPlayerActor(actor.GetInstance())
-        || result.code != MarkerResult_Accepted
-        || result.opcode != MarkerOpcode_Fist
-        || result.fistSourceInstance == nullptr
-        || result.fistSourceUseType != static_cast<GEInt>(gEUseType_Fist))
-    {
-        return;
-    }
-
-    static GEU32 acceptedFistSequenceOrdinal = 0;
-    ++acceptedFistSequenceOrdinal;
-    if (acceptedFistSequenceOrdinal > 2)
-        return;
-
-    char const *probeMode = acceptedFistSequenceOrdinal == 1
-        ? "SUPPRESS_FIRST" : "OBSERVE_SECOND";
-    gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
-        actor.Routine.m_pEngineEntityPropertySet);
-    gCScriptProcessingUnit *spu =
-        routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
-    GEInt latchBefore = -1;
-    GEInt latchAfter = -1;
-    bool writeAttempted = false;
-    if (spu != nullptr)
-    {
-        volatile GEU8 *latchByte =
-            reinterpret_cast<volatile GEU8 *>(spu) + 0x164;
-        latchBefore = static_cast<GEInt>(*latchByte);
-        latchAfter = latchBefore;
-        if (acceptedFistSequenceOrdinal == 1)
-        {
-            writeAttempted = true;
-            *latchByte = 1;
-            latchAfter = static_cast<GEInt>(*latchByte);
-        }
-    }
-    bool const writeConfirmed = writeAttempted && latchAfter == 1;
-
-    std::fprintf(g_pLog, "===== FIST COMBAT LATCH RESET PROBE =====\n");
-    std::fprintf(g_pLog,
-                 "Boundary: FIST_COMBAT_LATCH_RESET_PROBE\n");
-    std::fprintf(g_pLog, "AcceptedFistSequenceOrdinal: %u\n",
-                 static_cast<unsigned int>(acceptedFistSequenceOrdinal));
-    std::fprintf(g_pLog, "ProbeMode: %s\n", probeMode);
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-    std::fprintf(g_pLog, "ActorAddress: %p\n",
-                 static_cast<void *>(actor.GetInstance()));
-    std::fprintf(g_pLog, "Action: %d\n", result.markerAction);
-    std::fprintf(g_pLog, "AniPhase: %d\n", result.markerPhase);
-    std::fprintf(g_pLog, "StateTime: %.6f\n", result.markerStateTime);
-    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
-                 result.currentAnimation.c_str());
-    std::fprintf(g_pLog, "C1Generation: %llu\n",
-                 static_cast<unsigned long long>(result.c1Generation));
-    std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
-    std::fprintf(g_pLog, "LatchOffset: 0x164\n");
-    std::fprintf(g_pLog, "LatchBefore: %d\n", latchBefore);
-    std::fprintf(g_pLog, "LatchAfter: %d\n", latchAfter);
-    std::fprintf(g_pLog, "WriteAttempted: %d\n",
-                 writeAttempted ? 1 : 0);
-    std::fprintf(g_pLog, "WriteConfirmed: %d\n",
-                 writeConfirmed ? 1 : 0);
-    std::fprintf(g_pLog, "FistSourceAddress: %p\n",
-                 static_cast<void *>(result.fistSourceInstance));
-    std::fprintf(g_pLog, "FistUseType: %d\n", result.fistSourceUseType);
-    std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
-                 result.fistSourceGroupAfter);
-    std::fprintf(g_pLog, "=========================================\n\n");
-    std::fflush(g_pLog);
-}
-
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result)
@@ -857,7 +781,8 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                  r.deactivatedSourceCount);
     std::fprintf(g_pLog, "TriggeredListClearCount: %d\n",
                  r.triggeredListClearCount);
-    if (r.opcode == MarkerOpcode_Fist)
+    if (r.opcode == MarkerOpcode_Fist
+        || r.opcode == MarkerOpcode_FistOff)
     {
         std::fprintf(g_pLog, "FistSourceResolved: %d\n",
                      r.fistSourceInstance != nullptr ? 1 : 0);
@@ -904,6 +829,42 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                      r.whirlStatePositionAfterMarker);
     }
     std::fprintf(g_pLog, "===========================\n\n");
+    if (r.code == MarkerResult_Accepted
+        && r.opcode == MarkerOpcode_FistOff)
+    {
+        std::fprintf(g_pLog, "===== FIST OFF COMBAT LATCH =====\n");
+        std::fprintf(g_pLog, "Boundary: FIST_OFF_COMBAT_LATCH\n");
+        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                     RuntimeClock::GetElapsedMilliseconds());
+        std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+        std::fprintf(g_pLog, "ActorAddress: %p\n",
+                     static_cast<void *>(actor.GetInstance()));
+        std::fprintf(g_pLog, "Action: %d\n", r.markerAction);
+        std::fprintf(g_pLog, "AniPhase: %d\n", r.markerPhase);
+        std::fprintf(g_pLog, "StateTime: %.6f\n", r.markerStateTime);
+        std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                     r.currentAnimation.c_str());
+        std::fprintf(g_pLog, "C1Generation: %llu\n",
+                     static_cast<unsigned long long>(r.c1Generation));
+        std::fprintf(g_pLog, "SPUAddress: %p\n",
+                     static_cast<void *>(r.fistOffSPU));
+        std::fprintf(g_pLog, "LatchOffset: 0x164\n");
+        std::fprintf(g_pLog, "LatchBefore: %d\n",
+                     r.fistOffLatchBefore);
+        std::fprintf(g_pLog, "LatchAfter: %d\n",
+                     r.fistOffLatchAfter);
+        std::fprintf(g_pLog, "WriteAttempted: %d\n",
+                     r.fistOffLatchWriteAttempted ? 1 : 0);
+        std::fprintf(g_pLog, "WriteConfirmed: %d\n",
+                     r.fistOffLatchWriteConfirmed ? 1 : 0);
+        std::fprintf(g_pLog, "FistSourceAddress: %p\n",
+                     static_cast<void *>(r.fistSourceInstance));
+        std::fprintf(g_pLog, "FistUseType: %d\n",
+                     r.fistSourceUseType);
+        std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
+                     r.fistSourceGroupAfter);
+        std::fprintf(g_pLog, "=================================\n\n");
+    }
     std::fflush(g_pLog);
 }
 

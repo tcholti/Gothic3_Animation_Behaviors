@@ -98,6 +98,8 @@ MarkerOpcode GetMarkerOpcode(char const *effectName)
         return MarkerOpcode_Both;
     if (std::strcmp(effectName, CollisionOffMarker) == 0)
         return MarkerOpcode_Off;
+    if (std::strcmp(effectName, CollisionFistOffMarker) == 0)
+        return MarkerOpcode_FistOff;
     if (std::strcmp(effectName, CollisionFistMarker) == 0)
         return MarkerOpcode_Fist;
     return MarkerOpcode_Invalid;
@@ -112,6 +114,7 @@ char const *GetMarkerOpcodeName(MarkerOpcode opcode)
         case MarkerOpcode_Both: return "BOTH";
         case MarkerOpcode_Off: return "OFF";
         case MarkerOpcode_Fist: return "FIST";
+        case MarkerOpcode_FistOff: return "FIST_OFF";
         default: return "INVALID";
     }
 }
@@ -525,7 +528,8 @@ static FrameEffectScanResult ScanFrameEffects(
             result.foundMarker = true;
             result.requiredSourceMask |= GetMarkerDesiredSourceMask(opcode);
         }
-        else if (opcode == MarkerOpcode_Fist)
+        else if (opcode == MarkerOpcode_Fist
+                 || opcode == MarkerOpcode_FistOff)
         {
             result.foundMarker = true;
             result.requiresFistSource = true;
@@ -666,6 +670,8 @@ static MarkerProcessResult MakeMarkerResult(
     result.fistSourceGroupBefore = -1;
     result.fistSourceGroupAfter = -1;
     result.fistSourceUseType = -1;
+    result.fistOffLatchBefore = -1;
+    result.fistOffLatchAfter = -1;
     for (GEInt i = 0; i < 2; ++i)
     {
         result.sourceGroupBefore[i] = -1;
@@ -827,6 +833,32 @@ MarkerProcessResult ProcessMarker(
         result.fistSourceListCleared = operation.triggeredListCleared;
         if (operation.triggeredListCleared)
             ++result.triggeredListClearCount;
+    }
+    else if (markerOpcode == MarkerOpcode_FistOff)
+    {
+        Entity fistSource(result.fistSourceInstance);
+        result.fistSourceGroupBefore = static_cast<GEInt>(
+            fistSource.GetCollisionGroup());
+        result.fistSourceGroupAfter = result.fistSourceGroupBefore;
+        result.fistSourceUseType = static_cast<GEInt>(
+            CollisionSources::GetCollisionSourceUseType(fistSource));
+
+        gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
+            actor.Routine.m_pEngineEntityPropertySet);
+        result.fistOffSPU =
+            routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
+        if (result.fistOffSPU != nullptr)
+        {
+            volatile GEU8 *latchByte =
+                reinterpret_cast<volatile GEU8 *>(result.fistOffSPU)
+                + 0x164;
+            result.fistOffLatchBefore = static_cast<GEInt>(*latchByte);
+            result.fistOffLatchWriteAttempted = true;
+            *latchByte = 1;
+            result.fistOffLatchAfter = static_cast<GEInt>(*latchByte);
+            result.fistOffLatchWriteConfirmed =
+                result.fistOffLatchAfter == 1;
+        }
     }
     else
     {
