@@ -6,6 +6,8 @@
 **Stable branch:** `main`  
 **Updated:** 2026-09-06
 
+> **WORK BUILD RULE:** Unless the current frozen task explicitly says that Work is authorized to build, Work must not invoke or probe build tooling/environment at all. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat.
+
 Immediate transient handoff: `docs/BETWEEN_CHATS.md`  
 Project charter / highest Gothic-specific authority: `docs/README.md`  
 Project collaboration/CAM operationalization: `docs/COLLABORATION_RULES.md`  

@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active bounded-implementation protocol  
-**Version:** 1.4  
-**Updated:** 2026-09-01
+**Version:** 1.5
+**Updated:** 2026-09-06
 
 ## Purpose
 
@@ -51,6 +51,78 @@ read assigned/current-state material
 ```
 
 Do not broaden merely because more repository context, compute, or tooling is available.
+
+---
+
+## WORK BUILD EXECUTION POLICY
+
+Default rule:
+
+Work MUST NOT attempt, probe, configure, generate, invoke, troubleshoot, or prepare a build unless the CURRENT frozen task explicitly authorizes Work to perform a build.
+
+Absence of explicit build authorization means BUILD PROHIBITED, not optional.
+
+When build execution is not explicitly authorized, Work must NOT:
+
+- invoke `cmake`;
+- invoke `cmake --build`;
+- run `cmake --version` merely to test availability;
+- invoke MSBuild, Visual Studio build tools, Ninja, Make, compiler/linker commands, or equivalent build tooling;
+- configure or regenerate build directories;
+- initialize/populate SDK or other submodules for the purpose of building;
+- search for or install missing build dependencies;
+- troubleshoot missing CMake, SDK, compiler, generator, environment variables, or build configuration;
+- attempt an alternative build route;
+- spend task time investigating why a build cannot run.
+
+For ordinary bounded Work implementation tasks, validation inside Work is limited to the source/static checks authorized by the task, for example:
+
+- exact diff/scope inspection;
+- `git diff --check`;
+- targeted source audit;
+- protected-behavior audit;
+- exact file/change verification;
+- other non-build checks explicitly required by the frozen responsibility.
+
+The normal project workflow is:
+
+```text
+Work
+    bounded source edit
+    -> source/static audit
+    -> commit/publish
+    -> STOP
+
+Normal Chat + User local environment
+    -> independent source review
+    -> local build
+    -> deployment
+    -> runtime validation
+```
+
+Standard handoff wording when Work was not explicitly authorized to build:
+
+```text
+Build: NOT ATTEMPTED — Work build execution was not authorized for this task.
+```
+
+Do NOT report missing CMake, missing SDK submodules, missing compiler, or similar environment limitations when no build was authorized, because Work should not have probed those conditions.
+
+### Explicit build exception
+
+Work may perform a build only when the CURRENT task itself explicitly authorizes it.
+
+Historical tasks, repository documentation describing previous builds, the existence of a build directory, or a request to report "build status" do NOT constitute authorization.
+
+If a task explicitly authorizes a build, Work may execute only the bounded build operation authorized by that task.
+
+If that explicitly authorized build encounters an unavailable tool/environment, report the failure once and do not troubleshoot, install, reconfigure, populate dependencies, or seek alternative build paths unless the same task explicitly authorizes that additional work.
+
+### Usage-efficiency rationale
+
+This is an execution-budget rule as well as a workflow rule.
+
+The User has limited Work usage windows. Work must not consume that limited execution budget attempting environment operations already assigned to the User's local machine and Normal Chat workflow.
 
 ---
 
