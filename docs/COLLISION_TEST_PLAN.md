@@ -298,9 +298,9 @@ Dual P1 Quick tested authored marker = RIGHT
 older native-source evidence for tested Dual P1 Quick = LEFT
 ```
 
-### Fist/body source adapter
+### Human Fist/body-damage mechanism
 
-Fist/body semantics remain separate from equipped weapon `Item_Attack`/`Item_Equipped` handling. Do not use weapon-style assumptions until a dedicated source model is proven.
+Human Fist/body-damage semantics remain separate from equipped weapon `Item_Attack`/`Item_Equipped` handling. Do not use weapon-style assumptions; the dedicated native mechanism must be proven independently.
 
 ### AttackContinuationProtection
 
@@ -400,7 +400,7 @@ Power marker/source validation CLOSED
 → resolve SimpleWhirl character-hit eligibility enough to define the framework guarantee
 → Hack isolated marker/routing validation
 → combined remaining-melee marker/lifecycle regression
-→ separate Fist source-adapter decision
+→ separate human-Fist native-mechanism investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
 → combined collision regression

@@ -495,7 +495,7 @@ Current repository sequence:
 ```text
 project structural stabilization
 → equipped-melee marker expansion
-→ separate Fist source-adapter decision
+→ separate human-Fist native-mechanism investigation
 → full marker/lifecycle regression
 → AttackContinuationProtection
 → mature research compatibility gate

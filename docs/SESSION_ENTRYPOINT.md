@@ -68,7 +68,7 @@ SimpleWhirl   CLOSED/PASS
 HackAttack    isolated routing/source/marker validation PASS
 ```
 
-Human Fist support is a source-adapter extension inside this closed architecture, not an architecture rewrite.
+Human Fist shares the genuinely mechanism-neutral authored-marker infrastructure, but it is **not** a source-adapter extension inside the closed equipped-weapon collision mechanism. Equipped weapons and human Fist/body damage remain separate native behavior paths after generic marker ownership is established. This correction does not reopen the closed equipped-weapon architecture.
 
 ---
 
@@ -215,11 +215,25 @@ N1 proves only that the tested native Normal/Fist cases did not expose their att
 
 ---
 
-## Current Responsibility — N3 same-move native Fist rearm probe frozen
+## N3 same-move native Fist rearm — CLOSED/PASS, CASE A
 
-> **Determine whether an accepted same-move `G3AB_COL_FIST` writing `SPU+0x164 = 0` can causally rearm native damage after `G3AB_COL_FIST_OFF`.**
+Canonical runtime evidence:
 
-N2C identified the confirmed native path, N2D proved latch-1 suppression, N2E proved natural latch-0 reset on a fresh move, and Stage C validated production `FIST_OFF` for the tested human-Fist P0 Normal path. The committed same-move logs do not prove rearm: the ON -> ON damage entry preceded the second FIST marker, while current ON -> OFF -> ON leaves the latch at 1 and produced no correlated damage entry after OFF. The bounded diagnostic-only N3 intervention and runtime classification are now frozen in `docs/BETWEEN_CHATS.md`; this does not authorize production FIST latch-zero semantics.
+```text
+research/raw/2026-09-06_fist_on_off_on_test_2.log
+evidence commit 84d50b504befba0b201b1ce5e05137474bf960cc
+raw SHA256 73087DB3B1A168664F951CE3AAEA20BB126012342436CD1116105B876A3F6294
+```
+
+Across three controlled executions, accepted FIST wrote latch `0 -> 0`, accepted FIST_OFF wrote `0 -> 1`, and the later accepted FIST wrote `1 -> 0`; each write was confirmed. A Fist-correlated `gCEntity::OnDamage` entry from `Game.dll + 0x16E348` followed the second FIST, and the User repeatedly observed first-punch damage NO and second-punch damage YES. N3 therefore proves same-move rearm of the confirmed native dispatch path for the tested human-Fist P0 Normal case. See EV-231.
+
+This does **not** prove latch zero is a complete authored-frame FIST ON mechanism: the first marker found the latch already zero but produced no damage. Native timing/eligibility inside `sAICombatMoveItlLoop` remains separately unresolved, and N3 alone does not authorize production FIST latch-zero promotion.
+
+## Current Responsibility — N4 Fist callback-suppression necessity test frozen
+
+> **Determine whether exact-human-Fist marker ownership still behaves identically when it stops suppressing the original `OnAI_Attack` callback, with all Fist marker/latch behavior and the controlled N3 fixture otherwise unchanged.**
+
+The tested native Fist damage route continues through `sAICombatMoveItlLoop -> SPU+0x164 -> gCEntity::OnDamage`; weapon-style `OnAI_Attack` suppression did not suppress that path and is not a proven final Fist ownership mechanism. N4 is the next bounded causal cleanup test. Weapon marker callback suppression remains protected and untouched. See `docs/BETWEEN_CHATS.md`.
 
 ---
 
@@ -257,7 +271,10 @@ C — production FIST_OFF minimal latch integration/validation
     CLOSED/PASS
 
 N3 — same-move FIST latch-0 rearm after FIST_OFF
-    CURRENT/NEXT — FROZEN DIAGNOSTIC
+    CLOSED/PASS — CASE A — EV-231
+
+N4 — Fist callback-suppression necessity test
+    CURRENT/NEXT — FROZEN CAUSAL CLEANUP
 ```
 
 ---
@@ -265,12 +282,14 @@ N3 — same-move FIST latch-0 rearm after FIST_OFF
 ## Deliberately outside the current documented boundary
 
 - manual latch restoration or persistent Fist lifecycle state;
-- production same-move OFF -> FIST re-enable semantics before N3 evidence permits promotion;
+- production same-move OFF -> FIST re-enable semantics merely from N3 evidence;
+- treating latch zero as a complete early/authored FIST ON mechanism before native timing/eligibility is identified;
+- removing current Fist-specific `OnAI_Attack` suppression before N4 evidence;
 - setting `IsEnabled`, `ReactToTouch`, `DamageDisabled`, or another candidate;
 - another Fist disable/collision-control mechanism;
 - new hooks without a separately frozen bounded diagnostic;
 - global interpretation of `SPU+0x164` outside the tested human-Fist path;
-- treating `ClearTriggeredList()` as globally useless or resolving its role on other TouchDamage paths;
+- retaining `ClearTriggeredList()` in the intended final human-Fist architecture without new direct evidence, or treating it as globally useless on other TouchDamage paths;
 - Fist terminal/interruption restoration;
 - PhysicalFist / monsters / generalized body collision;
 - per-limb Fist markers;

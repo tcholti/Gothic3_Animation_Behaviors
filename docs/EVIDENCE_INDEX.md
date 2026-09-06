@@ -32,7 +32,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | frame effects / marker channel / frame-effect layout | EV-012–EV-018 | source guide Frame effects |
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
-| Fist/body-contact source semantics and native latch control | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-230 | `ANIMATION_CATALOG.md` Fist fixture; current handoff |
+| Fist/body-contact semantics, native latch control and N3 rearm | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-231 | `DESIGN.md` human Fist/body-damage mechanism; current handoff |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | marker exact-set/replay evidence |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075 | EV-182–EV-196 for lifecycle context |
@@ -386,7 +386,7 @@ EV-143–EV-147
 EV-206–EV-215
 EV-216 for the tested Hack callback identity
 EV-217–EV-220 + the September 4 closure checkpoint for SimpleWhirl
-EV-221–EV-230 for the dedicated human Fist baseline, causal reinterpretation, native path/latch proof, production FIST_OFF and same-move timing
+EV-221–EV-231 for the dedicated human Fist baseline, causal reinterpretation, native path/latch proof, production FIST_OFF, same-move timing and N3 rearm closure
 ANIMATION_INDEX.md / ANIMATION_CATALOG.md for exact assets
 ```
 
@@ -394,7 +394,7 @@ Closed SimpleWhirl checkpoint:
 
 `research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md`
 
-Do not infer a uniform actor-hit guarantee merely from correct RIGHT/LEFT/BOTH/OFF physical source transitions. SimpleWhirl preserves/documents its native substantially target-directed eligibility for the current scope. Hack isolated marker/routing validation is complete; Fist source-adapter work uses the dedicated Fist route below.
+Do not infer a uniform actor-hit guarantee merely from correct RIGHT/LEFT/BOTH/OFF physical source transitions. SimpleWhirl preserves/documents its native substantially target-directed eligibility for the current scope. Hack isolated marker/routing validation is complete. Human Fist shares generic marker infrastructure but uses the separate native body-damage route below, not the equipped-weapon source mechanism.
 
 ### Target acquisition / action-specific hit eligibility
 
@@ -407,18 +407,18 @@ research/raw/2026-09-04_simplewhirl_native_stateposition1_final_regression.log
 
 Retrieve this route if future work deliberately changes Gothic target acquisition or action-specific character-hit eligibility. Preserve the qualification that SimpleWhirl is not strictly selected-target-only and that the observed near/between-target spatial pattern is not a proven geometric classifier.
 
-### Fist/body source adapter
+### Human Fist/body-damage mechanism
 
 ```text
 EV-029–EV-032
 EV-080–EV-085
 EV-207
 EV-211
-EV-221–EV-230
-DESIGN.md physical source model
+EV-221–EV-231
+DESIGN.md shared marker infrastructure / human Fist body-damage mechanism
 ```
 
-Do not force weapon `Item_Attack` semantics onto Fist/body sources. EV-221 preserves the Stage-A marker/source/group observations, while EV-224 explicitly supersedes its old causal ON interpretation: Stage A does not prove that `ClearTriggeredList()` enabled the later native damage. EV-224–EV-226 identify the confirmed `sAICombatMoveItlLoop -> gCEntity::OnDamage` path, prove `SPU+0x164 = 1` suppresses it, and prove fresh-move native reset to 0. EV-227 closes production FIST_OFF for the tested human-Fist P0 Normal path. EV-228–EV-230 preserve the same-move timing evidence and the unresolved question of explicit latch-0 rearm after OFF.
+Do not force weapon `Item_Attack`, source-mask/window, weapon C1 lifecycle or repeated-contact semantics onto human Fist/body damage. EV-221 preserves the Stage-A marker/source/group observations, while EV-224 explicitly supersedes its old causal ON interpretation: Stage A does not prove that `ClearTriggeredList()` enabled the later native damage. EV-224–EV-227 identify and causally control the confirmed `sAICombatMoveItlLoop -> SPU+0x164 -> gCEntity::OnDamage` path. EV-228–EV-230 preserve the pre-N3 same-move timing/model. EV-231 closes N3 as CASE A: explicit same-move latch `1 -> 0` rearms the confirmed dispatch after FIST_OFF, but latch zero is not yet a complete early/authored FIST ON mechanism because native timing/eligibility remains unresolved. Route next to the frozen N4 Fist callback-suppression necessity test, then to direct investigation of native Fist timing/eligibility. `ClearTriggeredList()` is excluded from the intended final human-Fist architecture unless separately reproven; this does not generalize to other TouchDamage paths. Monsters/raw 55 remain future scope.
 
 ### AttackContinuationProtection
 

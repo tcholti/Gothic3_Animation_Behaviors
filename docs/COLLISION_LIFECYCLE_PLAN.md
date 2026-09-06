@@ -419,7 +419,7 @@ Current order:
 ```text
 project structural stabilization
 → equipped-melee marker expansion
-→ separate Fist source-adapter decision
+→ separate human-Fist native-mechanism investigation
 → full marker + lifecycle regression
 → separate AttackContinuationProtection investigation/implementation
 → guard + marker + continuation regression

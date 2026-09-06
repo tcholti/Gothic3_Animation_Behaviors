@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-03  
+**Updated:** 2026-09-06
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -270,13 +270,56 @@ Authoring rules:
 - do not create action-specific marker names such as Power/Quick/Whirl RIGHT variants; action-family support belongs in the ownership layer, not the marker vocabulary;
 - until the SimpleWhirl/Pierce native eligibility boundary is resolved into a release contract, do not document BOTH as a universal guarantee that both weapons can damage every character they visibly cross in every action family.
 
-Body/Fist/monster marker vocabulary remains separate and must not be invented before its source model is understood.
+Human Fist uses the separately defined `G3AB_COL_FIST` / `G3AB_COL_FIST_OFF` vocabulary and native body-damage path below. Monster/body vocabulary remains future scope and must not be inferred from the human mechanism.
 
-### 6.3 Physical source model
+### 6.3 Shared marker infrastructure; separate native behavior mechanisms
 
-Source identity/facts and source mutation are separate layers.
+The generic authored-marker layer may share only genuinely mechanism-neutral infrastructure:
 
-Conceptually:
+- exact animation/frame-effect scanning;
+- reserved marker recognition;
+- marker occurrence/dedupe bookkeeping;
+- C1-generation as factual execution identity;
+- exact current animation/action/phase context;
+- the decision that a marked execution opts into custom authored timing.
+
+After that generic ownership layer, equipped weapons and human Fist must remain separate conceptual and code paths:
+
+```text
+Generic authored-marker infrastructure
+        |
+        +--> Equipped-weapon collision mechanism
+        |       G3AB_COL_RIGHT
+        |       G3AB_COL_LEFT
+        |       G3AB_COL_BOTH
+        |       G3AB_COL_OFF
+        |
+        |       equipped RIGHT/LEFT source identity
+        |       Item_Attack / Item_Equipped
+        |       weapon ClearTriggeredList repeated-contact semantics
+        |       marker-owned weapon source masks/windows
+        |       C1 weapon lifecycle/cleanup
+        |
+        +--> Human Fist/body-damage mechanism
+                G3AB_COL_FIST
+                G3AB_COL_FIST_OFF
+
+                exact human gEUseType_Fist / raw 8 semantics
+                sAICombatMoveItlLoop native timing/eligibility
+                SPU+0x164 factual combat latch
+                gCEntity::OnDamage dispatch
+
+                no equipped weapon source-mask semantics
+                no Item_Attack ownership assumption
+                no weapon marker-owned source window
+                no weapon C1 lifecycle obligation
+```
+
+Weapon markers and Fist markers must not be mixed in native-mechanism code. Share genuinely generic marker infrastructure only. Equipped-weapon behavior code must not grow Fist special cases merely because both systems use frame-effect markers. Fist/body-damage behavior must not inherit weapon source masks, `Item_Attack` transitions, weapon C1 lifecycle or repeated-contact operations merely for architectural convenience. This is a design-for-separation rule, not a demand for premature module/class restructuring; exact final code organization remains an implementation decision after the native mechanism is understood.
+
+Within each mechanism, source identity/facts and source mutation remain separate layers. `CollisionSources` does not own marker policy or mutation, and physical-source operations do not decide attack family, marker ownership, desired source set or native character-hit eligibility.
+
+#### Equipped-weapon mechanism
 
 ```text
 FrameCollisionMarkers
@@ -284,23 +327,64 @@ FrameCollisionMarkers
 CollisionSources
     ↓ factual RIGHT/LEFT entity + UseType/source availability
 CollisionSourceOperations
-    ├─ equipped weapon operations
-    │    Item_Attack / Item_Equipped
-    │    repeated-contact ClearTriggeredList rearm
-    └─ current research Fist operation
-         no forced weapon Item_Attack mutation
-         preserve existing ClearTriggeredList behavior
+    ↓ Item_Attack / Item_Equipped
+    ↓ repeated-contact ClearTriggeredList rearm
+marker-owned weapon source windows + C1 lifecycle
 ```
 
-`CollisionSources` does **not** own marker policy or mutation.
+The closed equipped-weapon RIGHT/LEFT/BOTH/OFF architecture remains unchanged.
 
-`CollisionSourceOperations` does **not** decide attack family, marker ownership, desired source set, or native character-hit eligibility.
+#### Human Fist/body-damage mechanism
 
-Fist/body contact is not assumed to use the same physical collision-group mechanism. Controlled Fist evidence establishes damaging body contact while the logical Fist entity remains outside weapon-style `Item_Attack` group handling; it does not prove that the current Fist `ClearTriggeredList()` operation arms or rearms the confirmed native combat-loop damage path.
+Exact logical human `gEUseType_Fist` / raw 8 damage has body-contact semantics, not literal right-hand weapon collision. Controlled tests established damaging contact through at least the left hand, right hand, left leg, right leg and head. Current slot/source lookup therefore does not prove that a literal right-hand slot owns physical Fist damage.
 
-A generalized `FistSourceAdapter` remains a later separately proven responsibility.
+The tested native path is:
+
+```text
+gCScriptProcessingUnit::sAICombatMoveItlLoop
+    native timing / eligibility — unresolved
+    -> SPU+0x164 factual combat latch
+    -> gCEntity::OnDamage
+```
+
+N2D/N2E/N3 establish that latch `1` suppresses the confirmed dispatch, fresh combat-move lifecycle naturally returns it to `0`, and an explicit same-move `1 -> 0` write rearms the dispatch after FIST_OFF for the tested P0 Normal path. N3 does not establish latch zero as a complete authored-frame ON mechanism: the first FIST found `0`, yet the first punch did no damage, while the later FIST reopened the latch after native timing/eligibility had advanced and was followed by native OnDamage.
+
+The exact resolved raw-8 Fist entity has also received native `eCEntity::SetCollisionGroup(eECollisionGroup_Item_Attack / 7)` requests, including observed attack-time requests around StateTime ~0.25, while its observable group remained `BeforeGroup: 0`, `AfterGroup: 0`. `SetCollisionGroup` is void: `AfterGroup: 0` is an observed post-call group, not a return/error code and not proof of formal rejection. The group-7 request is not architectural evidence that human Fist damage should use weapon `Item_Attack` semantics; its exact role remains unresolved.
+
+Current Fist marker ownership can suppress the original Normal `OnAI_Attack` callback. That suppression is causally useful for established weapon marker paths, but it did not suppress the tested native Fist timer/dispatch path. Fist-specific participation in weapon-style `OnAI_Attack` suppression is therefore provisional and is not a proven final Fist ownership mechanism. N4 must test its necessity without changing weapon callback suppression.
+
+The historical Stage-A `G3AB_COL_FIST -> TouchDamage.ClearTriggeredList()` operation was real, but its causal role in the confirmed native combat-loop path remains unproven. `ClearTriggeredList()` is **not** part of the intended final human-Fist marker architecture unless new direct evidence separately proves it necessary. This does not imply that the operation is globally useless or irrelevant to other TouchDamage paths, and its eventual source removal must remain a separate causal change unless a later frozen task explicitly combines it.
+
+The intended final authored-Fist principle is:
+
+```text
+attack selects/resolves exact Hit animation
+-> inspect its reserved Fist markers
+
+if no Fist markers
+    preserve native Fist behavior
+
+if Fist markers exist
+    suppress the actual native Fist timing/dispatch mechanism
+    not weapon Item_Attack machinery
+
+G3AB_COL_FIST
+    create/release the native-equivalent Fist damage opportunity
+    at the authored marker
+
+G3AB_COL_FIST_OFF
+    suppress further Fist damage opportunity
+
+native unmarked timing must not leak through a marker-owned Fist execution
+```
+
+The central unresolved mechanism is the native timing/eligibility logic inside `sAICombatMoveItlLoop` that prevents damage at the first authored FIST marker even though `SPU+0x164` is already zero. Evidence must determine whether the eventual operation mutates a native field, calls a native Fist function, releases eligibility, invokes lower-level damage or uses another mechanism; this design does not decide that prematurely.
+
+This human architecture does not generalize to monsters or `gEUseType_PhysicalFist` / raw 55. User-observed monster armature slot locations are future comparison observations, not proof of engine damage routing or a fallback algorithm.
 
 ### 6.4 Repeated contacts
+
+This subsection defines equipped-weapon repeated-contact behavior, not human Fist behavior.
 
 A weapon/entity visit list can suppress repeated damage to the same target. Repeated authored contacts therefore rearm the selected logical source through `ClearTriggeredList()`.
 
@@ -338,7 +422,7 @@ HackAttack   implementation present; isolated marker/routing validation pending 
 
 `FinishingAttack` is deliberately excluded. The true downed-enemy Finishing path is an execution mechanic whose observed kill timing is not dependent on ordinary weapon contact; preserve its native behavior and do not require collision markers for it.
 
-Fist/body contact remains a separate source-adapter responsibility after equipped-weapon coverage.
+Human Fist/body damage remains a separate native behavior-mechanism responsibility after genuinely generic marker ownership; it is not an equipped-weapon source adapter.
 
 The remaining validation is family-specific. Resolve the SimpleWhirl character-hit eligibility boundary enough to define the intended framework guarantee, then validate Hack independently before combined regression.
 
@@ -697,7 +781,9 @@ Power marker/source validation CLOSED
 → resolve SimpleWhirl native character-hit eligibility enough to define framework guarantee
 → Hack isolated marker/routing validation
 → combined remaining-melee marker/lifecycle regression
-→ separate Fist investigation
+→ N4 Fist callback-suppression necessity test
+→ bounded removal/retest of obsolete Fist scaffolding when separately frozen
+→ identify native Fist timing/eligibility inside sAICombatMoveItlLoop
 → full marker/lifecycle regression
 → AttackContinuationProtection
 → combined collision regression
