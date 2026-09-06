@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-06
 
-## Current bridge — N6A static timing trace CLOSED; N6B runtime timing-gate observability IMPLEMENTATION FROZEN
+## Current bridge — N6B timing-gate observability CLOSED/PASS; N6C causal timing-gate probe IMPLEMENTATION FROZEN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -34,7 +34,8 @@ N3 same-move latch-zero rearm                    CLOSED/PASS — CASE A — EV-2
 N4 Fist OnAI_Attack suppression necessity        CLOSED/PASS
 N5 Fist TouchDamage.ClearTriggeredList necessity CLOSED/PASS
 N6A native Fist timing/eligibility static trace  CLOSED/PASS
-N6B native timing-gate runtime observability     CURRENT — IMPLEMENTATION CONTRACT FROZEN
+N6B native timing-gate runtime observability     CLOSED/PASS
+N6C first-FIST timing-gate causal intervention   CURRENT — IMPLEMENTATION CONTRACT FROZEN
 ```
 
 Do not reopen these findings without concrete contradictory evidence.
@@ -77,51 +78,27 @@ Exact logical human `gEUseType_Fist` / raw 8 is a body-contact source, not liter
 
 ---
 
-## N4/N5 causal cleanup closure
-
-N4:
-
-```text
-fdec0ce431e555d469597a5684ef2e9dd8d5aeaf  Add N4 Fist callback pass-through probe
-research/raw/2026-09-06_fist_n4_callback_passthrough.log
-7ffba2ae129cd31f17c26274b8cee10f1128ba60  evidence commit
-```
-
-Result: same N3 latch sequence and native `Game.dll + 0x0016E348` OnDamage path with `SuppressNativeCallback = 0`; repeated visual result first punch NO, second punch YES. Human Fist therefore does not require weapon-style `OnAI_Attack` suppression. Equipped-weapon callback suppression remains protected.
-
-N5:
-
-```text
-082029d86b900b647d3f8c157615a958bdbfd269  Add N5 Fist triggered-list necessity probe
-research/raw/2026-09-06_fist_n5_no_triggered_list_clear.log
-9ddece8698f2067927739d0c002ef114dab1fa33  evidence commit
-```
-
-Result: same latch sequence and native OnDamage path with every accepted FIST showing `TriggeredListClearCount = 0` / `FistTriggeredListCleared = 0`; repeated visual result first punch NO, second punch YES. Stage-A Fist `TouchDamage.ClearTriggeredList()` is not required for the tested human raw-8 combat-loop path. This does not weaken weapon repeated-contact ClearTriggeredList semantics or claim global uselessness on other TouchDamage paths.
-
----
-
 ## Confirmed native human-Fist path
 
 ```text
 gCScriptProcessingUnit::sAICombatMoveItlLoop
 Game.dll + 0x16DD00
 
-    generic tested arm
+    tested generic arm
     Game.dll + 0x16DFB9
         cmp byte ptr [SPU+0x164], 0
         nonzero -> exit before damage
 
-    timing gate isolated by N6A
+    native timing gate
         GetMaxTime(motion type 0)
-        * native double constant at Game.dll RVA 0x308308
+        * native double at Game.dll RVA 0x308308
         compared with GetPlayTime(motion type 0)
 
         GetPlayTime < threshold
             -> jump to common exit Game.dll + 0x16E352
 
         GetPlayTime >= threshold
-            -> continue into native damage preparation
+            -> continue directly into native damage preparation
             -> Game.dll + 0x16E1A3 writes SPU+0x164 = 1
 
     later confirmed gCEntity::OnDamage call
@@ -146,7 +123,7 @@ latch 0 by itself
 
 ---
 
-## N6A closure — native timing gate isolated statically
+## N6A closure — static timing gate isolated
 
 Binary authority:
 
@@ -157,30 +134,26 @@ builds/current_tested/modules/Game/disassembly/part_0094.txt
 builds/current_tested/modules/Game/imports.txt
 ```
 
-Static facts:
+Relevant static control flow:
 
 ```text
-Game + 0x16E14F
-    required native selector/motion match; failure -> common exit
-
 Game + 0x16E160
-    push motion type 0
-    call Engine import eCWrapper_emfx2Actor::GetMaxTime
+    GetMaxTime(motion 0)
 
 Game + 0x16E16E..0x16E17C
-    GetMaxTime result * qword [Game + 0x308308]
-    store native timing threshold
+    GetMaxTime * qword [Game + 0x308308]
+    -> timing threshold
 
 Game + 0x16E180
-    call Engine import eCWrapper_emfx2Actor::GetPlayTime for motion type 0
+    GetPlayTime(motion 0)
 
 Game + 0x16E186..0x16E190
-    compare GetPlayTime against threshold
-    GetPlayTime < threshold -> jb Game + 0x16E352 common exit
+    compare play time against threshold
+    below -> common exit +0x16E352
 
 Game + 0x16E196..0x16E1A3
-    passing threshold continues directly into damage preparation
-    Game + 0x16E1A3 writes SPU+0x164 = 1
+    passing comparison continues directly
+    +0x16E1A3 writes SPU+0x164 = 1
 ```
 
 Engine import mapping:
@@ -190,28 +163,121 @@ Game IAT 0x1024C5F8 -> eCWrapper_emfx2Actor::GetPlayTime
 Game IAT 0x1024C5FC -> eCWrapper_emfx2Actor::GetMaxTime
 ```
 
-N6A isolated one sufficiently narrow factual candidate: **motion-0 play time crossing a native fraction of motion-0 max time**. It does not yet prove that this comparison distinguishes the early first FIST from the later damaging opportunity in the controlled fixture. Do not infer the semantic meaning/value of the native double at RVA `0x308308` beyond its factual role in the threshold expression.
+SDK signatures are factual:
 
-The function also contains other selector/entity/target checks and a separate special arm when `[SPU+0x154] == 0x39`; N6B does not generalize those paths.
+```text
+GEDouble eCWrapper_emfx2Actor::GetPlayTime(eEMotionType) const
+GEDouble eCWrapper_emfx2Actor::GetMaxTime(eEMotionType) const
+```
 
 ---
 
-# N6B FULL WORK IMPLEMENTATION CONTRACT
+## N6B closure — timing gate correlated at runtime
 
-## Frozen research question
+Implementation:
 
 ```text
-In the same controlled frame-3 FIST / frame-9 FIST_OFF / frame-12 FIST
-human raw-8 P0 Normal fixture, is the first authored FIST still below the
-native motion-time threshold while the later second FIST has reached or
-passed it before the confirmed Game.dll + 0x16E348 OnDamage event?
+2c32d6bb6301801d259d69d9890356c34673c2cb
+Add N6B Fist native timing-gate probe
 ```
 
-N6B is **runtime observability only**. It must not alter the native timing condition or any production collision/body-damage behavior.
+Canonical raw evidence:
+
+```text
+research/raw/2026-09-06_fist_n6b_native_timing_gate.log
+01796a5b63d243430d0d1ede730dc0ac69c85159  evidence commit
+```
+
+Controlled fixture remained:
+
+```text
+same P0 Normal human raw-8 Fist animation
+same Golem target/setup
+frame 3  FIST
+frame 9  FIST_OFF
+frame 12 FIST
+```
+
+Repeated representative observations:
+
+```text
+PrimaryMaxTime                  ~0.680000007 s
+NativeThresholdConstant        ~0.600000024
+ComputedThreshold              ~0.408000021 s
+
+first FIST play time            ~0.112–0.116 s
+first FIST BelowThreshold       1
+first FIST AtOrAboveThreshold   0
+first FIST latch                0 -> 0
+visual first punch damage       NO
+
+FIST_OFF play time              ~0.353–0.356 s
+FIST_OFF BelowThreshold         1
+FistOffLatchBefore              0
+FistOffLatchAfter               1
+
+second FIST play time           ~0.477–0.480 s
+second FIST BelowThreshold      0
+second FIST AtOrAboveThreshold  1
+second FIST latch               1 -> 0
+visual second punch damage      YES
+
+later OnDamage caller           Game.dll + 0x0016E348
+second-FIST -> OnDamage delay   ~10–11 ms in representative executions
+```
+
+N6B conclusion:
+
+> In the controlled human raw-8 fixture, the native motion-time threshold cleanly distinguishes the early first FIST from the later damaging opportunity. Latch zero is necessary but not sufficient: the tested native path also requires motion play time to have reached the 60%-of-max-time threshold before it can advance into the native latch-write/damage-preparation arm.
+
+This is strong runtime correlation plus the N6A static control-flow relation. It is not yet causal proof that forcing only this timing comparison to pass is sufficient to advance the native path.
+
+---
+
+# N6C FULL WORK IMPLEMENTATION CONTRACT
+
+## Frozen causal question
+
+```text
+When the first accepted authored FIST occurs while the real motion-0 play time
+is still below the proven native threshold and SPU+0x164 is already 0, does
+making ONLY the next matching Game.dll + 0x16E180 GetPlayTime result appear
+just above that threshold cause the native sAICombatMoveItlLoop path to advance
+past the timing gate and perform its own SPU+0x164 = 1 write before frame-9
+FIST_OFF, while the actual animation play clock remains unchanged?
+```
+
+N6C changes exactly one causal variable: **the value returned to one native timing comparison after the first authored FIST**.
+
+### Primary causal endpoint — NOT visual damage
+
+Do **not** define N6C PASS as “first punch visually damages the Golem.” Frame 3 may precede physical target/contact eligibility, and downstream target/contact checks remain outside this experiment.
+
+The direct native consequence of passing the timing comparison is already known statically:
+
+```text
+comparison passes
+-> Game + 0x16E196
+-> Game + 0x16E1A3 writes SPU+0x164 = 1
+-> later target/contact/damage preparation continues
+```
+
+Therefore the primary runtime endpoint is:
+
+```text
+N6B baseline at frame-9 FIST_OFF:
+    FistOffLatchBefore = 0
+
+N6C causal expectation:
+    one first-FIST timing override consumed
+    + FistOffLatchBefore = 1
+```
+
+That difference directly tests whether the native path advanced through its own `+0x16E1A3` latch write. Early `Game + 0x16E348` OnDamage before FIST_OFF would be stronger additional evidence, but it is not required for N6C PASS.
 
 ## Required base state
 
-Work must begin from the exact branch HEAD that contains this contract. The invoking handoff supplies that SHA. If remote HEAD differs, STOP and report the mismatch rather than rebasing or broadening.
+Work must begin from the exact branch HEAD containing this contract. The invoking handoff supplies that SHA. If remote HEAD differs, STOP and report the mismatch rather than rebasing or broadening.
 
 ## Read first
 
@@ -219,11 +285,247 @@ Work must begin from the exact branch HEAD that contains this contract. The invo
 2. `docs/BETWEEN_CHATS.md`
 3. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
 
-Then inspect only the source/API material needed for this responsibility.
+Then inspect only the source/API material required for this exact causal probe.
+
+## Required binary/API transport
+
+### Exact native call site
+
+Target only:
+
+```text
+Game.dll + 0x16E180
+FF 15 ...    call Engine import eCWrapper_emfx2Actor::GetPlayTime
+```
+
+In this tested arm:
+
+```text
+ECX = eCWrapper_emfx2Actor* used as the GetPlayTime this pointer
+EDI = the same gCScriptProcessingUnit* whose [EDI+0x164] latch is checked/written
+original stack argument = motion type 0, already pushed by native code
+```
+
+Before implementing, Work must confirm these register/call-site facts against the tested binary reference. If they contradict the current binary reference, STOP and report the contradiction.
+
+### Use mCCallHook — do not patch the branch
+
+Use a diagnostics-only `mCCallHook` at `RVA_Game(0x16E180)`.
+
+The Gothic 3 SDK `mCCallHook` implementation factually:
+
+- decodes the instruction at the supplied call address;
+- verifies it is an `FC_CALL`;
+- records the actual instruction size;
+- supports call-site replacement/relocation rather than requiring a five-byte direct call;
+- therefore supports this six-byte indirect call-site shape without hand-patching the `jb` at `+0x16E190`.
+
+Do **not**:
+
+- NOP or rewrite the conditional branch at `+0x16E190`;
+- patch the threshold constant;
+- globally hook `eCWrapper_emfx2Actor::GetPlayTime`;
+- globally hook `GetMaxTime`;
+- change the animation clock.
+
+The intended call-hook shape is conceptually:
+
+```cpp
+static mCCallHook Hook_FistTimingGateGetPlayTime;
+
+static GEDouble GE_STDCALL FistTimingGateGetPlayTime_FrameCollisionTest(
+    gCScriptProcessingUnit *a_pSPU,
+    eCWrapper_emfx2Actor *a_pAnimationActor,
+    eCWrapper_emfx2Actor::eEMotionType a_MotionType);
+
+Hook_FistTimingGateGetPlayTime
+    .Prepare(RVA_Game(0x16E180),
+             &FistTimingGateGetPlayTime_FrameCollisionTest)
+    .AddRegArg(mERegisterType_Edi)
+    .AddThisArg()
+    .Hook();
+```
+
+The exact helper names are implementation detail, but the transport is frozen.
+
+Important: **do not add motion type with `AddImmArg(0)`**. The native `push 0` is already the original call’s stack argument and must remain the third argument seen by the replacement function. Only the SPU/EDI and this/ECX are added ahead of it.
+
+This hook exists only under `FRAME_COLLISION_DIAGNOSTICS`.
+
+## One-shot arming responsibility
+
+Arm the N6C override only from the first accepted exact-human-Fist `FIST` marker of a factual C1 generation.
+
+Required arming conditions:
+
+```text
+actor != None
+result.code == MarkerResult_Accepted
+result.opcode == MarkerOpcode_Fist
+result.fistSourceInstance != nullptr
+result.fistSourceUseType == gEUseType_Fist / raw 8
+result.c1GenerationValid == true
+result.acceptedMarkerCountBefore == 0
+result.acceptedMarkerCountAfter == 1
+current SPU exists
+current SPU+0x164 == 0
+motion type 0 timing is available
+real GetPlayTime(0) < computed native threshold
+```
+
+If any condition is false, do not arm and do not manufacture a causal test.
+
+The arming observation should occur in `StartEffect_FrameCollisionTest` after `ProcessMarker(...)` and after the existing N6B read-only timing snapshot, but before the unchanged `ApplyAndLogFistCombatLatchRearmProbe(...)` write. The existing FIST latch-zero probe remains authoritative and unchanged.
+
+Store only the bounded identity required to prevent leakage, including at least:
+
+```text
+armed flag
+actor instance
+SPU pointer
+animation-actor pointer
+C1 generation
+current animation identity or equivalent exact execution identity
+real play time at arm
+max time / constant / threshold at arm
+```
+
+A single `thread_local` diagnostics probe state is appropriate. Do not create production state or modify C1/marker bookkeeping.
+
+## Exact replacement-call behavior
+
+Every invocation of the `Game + 0x16E180` call-site wrapper must first obtain the **real** current value through the public SDK:
+
+```text
+a_pAnimationActor->GetPlayTime(a_MotionType)
+```
+
+Calling the public method from inside this call-site hook is not a recursive call-site hook: N6C hooks only the specific Game.dll call site, not the Engine function globally.
+
+### Unarmed or mismatched calls
+
+Return the real `GetPlayTime` result unchanged for every call that is not the exact armed first-FIST execution.
+
+Do not consume the arm for unrelated NPC/SPU/animation-actor calls.
+
+### Matching armed call
+
+Before applying the override, verify at minimum:
+
+```text
+a_pSPU == armed SPU
+animation actor == armed animation actor
+motion type == 0
+current player/actor identity == armed actor
+current C1 generation still equals armed generation
+real current play time is still below the computed native threshold
+```
+
+If the generation is no longer current, clear the stale arm and return real play time.
+
+If the matching call has already naturally reached/passed the threshold, do **not** fabricate an override; return the real value, log that the causal opportunity was missed/invalid, consume or expire the probe so the later second FIST is not affected, and let runtime interpretation stop on that invalid execution.
+
+### Synthetic value
+
+For the single valid matching call only, return a synthetic value that is clearly but minimally above the computed threshold while leaving the real animation state untouched.
+
+Use:
+
+```text
+syntheticPlayTime = computedThreshold + 0.001 seconds
+```
+
+for the tested binary/fixture, provided it remains below/equal to max time. If a defensive clamp is required, clamp only to max time and log the factual returned value.
+
+The override must be consumed exactly once. After returning the synthetic value, immediately mark the arm consumed/inactive so no later timing call—including the second FIST—receives a synthetic result.
+
+Do not call `SetPlayTime`, alter max time, alter play speed, alter the native constant, or mutate animation motion ownership.
+
+## Stale-arm retirement
+
+The one-shot arm must never leak into the second FIST or a future execution.
+
+Required retirement:
+
+- if the matching override is consumed: clear/inactivate immediately;
+- if the same-generation accepted `FIST_OFF` occurs while the arm is still pending: log expiration and clear it before the second FIST can use it;
+- if C1 generation changes before consumption: clear stale state;
+- if a new execution begins, do not carry old N6C state forward.
+
+Do not change C1 itself to implement this retirement.
+
+## Required N6C logging
+
+Preserve all N6B timing-gate logging and existing latch/OnDamage logs.
+
+Add clearly delimited causal-probe records sufficient to establish:
+
+### ARM record
+
+```text
+Boundary: FIST_TIMING_GATE_CAUSAL_ARM
+ElapsedMs
+Actor / ActorAddress
+CurrentMovementAni
+C1Generation
+SPUAddress
+AnimationActorAddress
+AcceptedFistOccurrenceBefore
+AcceptedFistOccurrenceAfter
+LatchAtArm
+RealPlayTimeAtArm
+MaxTimeAtArm
+NativeThresholdConstant
+ComputedThresholdAtArm
+RealBelowThresholdAtArm
+ArmAccepted
+```
+
+### OVERRIDE record
+
+```text
+Boundary: FIST_TIMING_GATE_CAUSAL_OVERRIDE
+ElapsedMs
+Actor / ActorAddress
+C1Generation
+HookSPUAddress
+HookAnimationActorAddress
+MotionType
+RealPlayTime
+MaxTime
+NativeThresholdConstant
+ComputedThreshold
+RealBelowThreshold
+SyntheticPlayTimeReturned
+SyntheticAtOrAboveThreshold
+OverrideApplied
+OverrideOrdinalWithinGeneration
+ArmConsumed
+```
+
+### EXPIRE/INVALID record when applicable
+
+If an armed probe expires at FIST_OFF/generation change or cannot validly intervene because real time already crossed the threshold, log the factual reason. Do not silently carry or rearm it.
+
+Do not add high-volume per-tick logging for unarmed calls.
+
+## Existing logs that remain authoritative
+
+Do not duplicate or replace:
+
+```text
+FIST_NATIVE_TIMING_GATE_PROBE
+FIST_COMBAT_LATCH_REARM_PROBE
+MarkerResult logging
+ENTITY_ON_DAMAGE_ENTRY caller logging
+FIST_OFF factual before/after latch transition
+```
+
+For the primary N6C endpoint, use the existing `FistOffLatchBefore` recorded by the FIST_OFF result/N6B timing block.
 
 ## Expected source scope
 
-The intended implementation should require only:
+The intended implementation should remain bounded to diagnostics/hook transport, normally:
 
 ```text
 prototypes/Script_FrameCollisionTest/CollisionDiagnostics.h
@@ -231,203 +533,62 @@ prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
 prototypes/Script_FrameCollisionTest/EngineBridge.cpp
 ```
 
-Do **not** edit `FrameCollisionMarkers.cpp`, `CollisionSourceOperations.cpp`, `CollisionSources.cpp`, `CollisionLifecycleGuard.cpp`, C1 logic, marker ownership logic, or equipped-weapon behavior for N6B.
-
-If a compile-time include/API requirement forces another purely diagnostic file change, keep it minimal and report it explicitly. Do not use that as permission to alter behavior.
-
-## Existing source/API facts to reuse
-
-Do not rediscover or replace these mechanisms:
-
-- `CollisionDiagnosticsDeep.cpp` already demonstrates the correct public SDK route from `Entity` to `eCVisualAnimation_PS`, then `GetActor()`, then motion type `0`, `HasMotionInstance()`, `GetPlayTime()`, and `GetMaxTime()`.
-- N6B belongs in normal `FRAME_COLLISION_DIAGNOSTICS`, not `FRAME_COLLISION_DIAGNOSTICS_DEEP`; do not make the test depend on deep diagnostics.
-- `EngineBridge.cpp::StartEffect_FrameCollisionTest` already calls `FrameCollisionMarkers::ProcessMarker(...)`, then existing diagnostics, including `ApplyAndLogFistCombatLatchRearmProbe(actor, result)`, and finally `LogMarkerResult(actor, result)`.
-- `ApplyAndLogFistCombatLatchRearmProbe(...)` is the established N3/N4/N5 FIST latch-zero diagnostic and must remain behaviorally unchanged.
-- FIST_OFF latch-one behavior is already performed inside `ProcessMarker(...)` and recorded in `MarkerProcessResult::fistOffLatchBefore/fistOffLatchAfter`.
-- `LogEntityOnDamageEntry(...)` already records caller module/RVA and must remain unchanged so `Game.dll + 0x0016E348` ordering stays comparable.
-
-## Exact N6B implementation responsibility
-
-Add one bounded diagnostic snapshot for accepted exact-human-Fist `FIST` and `FIST_OFF` markers.
-
-A suitable interface is conceptually:
-
-```cpp
-void LogFistNativeTimingGateProbe(
-    Entity &actor, MarkerProcessResult const &result);
-```
-
-The exact private helper names are implementation detail, but the observable behavior below is frozen.
-
-### Eligibility filter
-
-The new diagnostic must do nothing unless all of these are true:
+Do **not** edit:
 
 ```text
-actor != None
-result is an accepted marker result relevant to the authored Fist path
-opcode is FIST or FIST_OFF
-resolved Fist source exists
-resolved Fist UseType == gEUseType_Fist / raw 8
+FrameCollisionMarkers.cpp
+CollisionSourceOperations.cpp
+CollisionSources.cpp
+CollisionLifecycleGuard.cpp
+weapon marker adapters/source operations
+C1 marker bookkeeping/lifecycle
 ```
 
-For FIST, the accepted result is `MarkerResult_Accepted`.
-For FIST_OFF, use the actual accepted result code already produced by the current implementation; do not weaken marker validation just to make logging fire.
-
-Do not log raw55/PhysicalFist or monster paths as if they were covered by this experiment.
-
-### Animation API observation
-
-Use the public SDK animation path, equivalent to the already-proven deep-diagnostic helper:
-
-```text
-actor.Animation.IsValid()
--> eCVisualAnimation_PS
--> HasActor()
--> GetActor()
--> motion type 0
--> HasMotionInstance(0)
--> GetPlayTime(0)
--> GetMaxTime(0)
-```
-
-Do **not** hook `GetPlayTime` or `GetMaxTime`.
-Do **not** call those functions by raw Game/Engine addresses.
-Do **not** change play time, max time, play speed, motion state, or motion ownership.
-
-### Native constant observation
-
-Resolve the loaded `Game.dll` module at runtime and read the proven double at:
-
-```text
-Game.dll module base + RVA 0x00308308
-```
-
-Requirements:
-
-- read only;
-- use module-base + RVA so ASLR is respected;
-- interpret the qword as the same native double used by the N6A disassembly;
-- do not patch or temporarily modify it;
-- if `Game.dll` cannot be resolved, log that the constant is unavailable rather than guessing a value.
-
-### Derived values
-
-When the required inputs are available, compute diagnostically only:
-
-```text
-threshold = GetMaxTime(0) * nativeConstant
-belowThreshold = GetPlayTime(0) < threshold
-atOrAboveThreshold = !belowThreshold
-```
-
-Use double precision consistent with the native threshold expression. Do not round before comparing.
-
-### Required log payload
-
-Emit one clearly delimited N6B block per accepted FIST/FIST_OFF observation, containing at minimum:
-
-```text
-Boundary: FIST_NATIVE_TIMING_GATE_PROBE
-ElapsedMs
-Actor / ActorAddress
-MarkerOpcode / MarkerName
-Action
-AniPhase
-StateTime
-CurrentMovementAni
-C1Generation
-FistSourceAddress
-FistUseType
-MotionType: 0
-AnimationPSResolved
-AnimationActorResolved
-PrimaryHasMotionInstance
-PrimaryPlayTime
-PrimaryMaxTime
-GameModuleResolved
-NativeThresholdConstantRVA: 0x00308308
-NativeThresholdConstantAvailable
-NativeThresholdConstant
-ComputedThreshold
-BelowThreshold
-AtOrAboveThreshold
-CurrentSPUAddress
-CurrentLatchOffset: 0x164
-CurrentLatchValue
-```
-
-For FIST_OFF also include the already-recorded factual transition from the result:
-
-```text
-FistOffLatchBefore
-FistOffLatchAfter
-FistOffLatchWriteConfirmed
-```
-
-For FIST, do not invent a duplicate latch transition inside the timing-gate logger. The existing immediately following `FIST_COMBAT_LATCH_REARM_PROBE` remains the authoritative before/after record of the N3 latch-zero write.
-
-Unavailable values must be logged explicitly with availability flags/sentinel values rather than dereferencing null pointers or manufacturing data.
-
-## Required call ordering
-
-In `StartEffect_FrameCollisionTest`, after:
-
-```text
-FrameCollisionMarkers::ProcessMarker(...)
-```
-
-and **before**:
-
-```text
-CollisionDiagnostics::ApplyAndLogFistCombatLatchRearmProbe(actor, result)
-```
-
-call the new N6B timing-gate logger.
-
-This ordering is important:
-
-- accepted FIST is observed before the existing N3 latch-zero diagnostic mutation;
-- accepted FIST_OFF has already executed its existing marker-owned latch-one operation inside `ProcessMarker`, while its `result` still contains the factual before/after transition;
-- timing inputs themselves remain read-only;
-- the existing latch rearm probe, marker-result log, and OnDamage caller log keep their current ordering/semantics.
-
-Do not move existing diagnostics merely for prettier log grouping.
+If a purely diagnostic declaration/include requires another file, keep it minimal and report it explicitly. Do not broaden behavior.
 
 ## Protected behavior — MUST remain unchanged
 
-N6B must not:
+N6C must not:
 
-- change `GetPlayTime`, `GetMaxTime`, play speed, or the native threshold constant;
-- force or bypass the native `GetPlayTime < threshold` comparison;
-- add a production FIST ON mechanism;
+- change actual animation play time;
+- change max time or play speed;
+- patch the native threshold constant;
+- patch/skip the native comparison branch globally;
+- globally hook GetPlayTime/GetMaxTime;
 - change the existing FIST latch-zero write;
 - change FIST_OFF latch-one semantics;
-- restore human-Fist `OnAI_Attack` suppression;
-- restore Fist `TouchDamage.ClearTriggeredList()`;
+- restore human-Fist OnAI_Attack suppression;
+- restore Fist TouchDamage.ClearTriggeredList;
+- add production FIST ON behavior;
 - alter equipped-weapon callback suppression;
 - alter RIGHT/LEFT/BOTH/OFF source operations;
 - alter marker occurrence/dedupe/bookkeeping;
 - alter marker-owned weapon windows;
 - alter C1 generation/lifecycle/C1-R1 repair;
-- add new native hooks for the timing functions;
-- broaden into interruption/lifecycle testing;
+- broaden into interruption/lifecycle tests;
 - broaden into raw55/PhysicalFist, monsters, or per-limb logic.
 
-No production behavior should differ between an N6B diagnostic build and the current pre-N6B source except for additional logging/read-only observations.
+Outside the one armed exact-human-Fist first-FIST call, the call-site hook must be a factual pass-through returning the real play time.
 
 ## Source audit requirements
 
-Before publication, verify:
+Before publication verify:
 
-1. only the bounded diagnostic files changed, except a separately reported unavoidable diagnostic include/API adjustment;
-2. no mutation exists for play time, max time, threshold constant, animation state, or new Fist state;
-3. existing FIST latch-zero code is unchanged;
-4. existing FIST_OFF latch-one code is unchanged;
-5. equipped-weapon suppression/source operations are unchanged;
-6. C1 and marker bookkeeping are unchanged;
-7. the new logger is called after `ProcessMarker` and before `ApplyAndLogFistCombatLatchRearmProbe`;
-8. no new timing-function hook was added.
+1. hook target is exactly `RVA_Game(0x16E180)`;
+2. transport is diagnostics-only `mCCallHook`, not a branch/data patch or global function hook;
+3. only SPU/EDI and this/ECX are added; native motion-type stack arg remains intact;
+4. replacement return type is the factual SDK `GEDouble`;
+5. unarmed/mismatched calls return public-SDK real play time;
+6. exactly one first-FIST occurrence can arm per C1 generation;
+7. override consumes exactly once and cannot reach second FIST;
+8. pending state expires by FIST_OFF or generation change;
+9. no SetPlayTime/max-time/play-speed/constant mutation exists;
+10. existing FIST/FIST_OFF latch writes are byte-for-byte/semantically unchanged;
+11. N6B logger remains before the existing FIST latch-rearm probe;
+12. equipped weapons, marker bookkeeping and C1 are unchanged;
+13. `git diff --check` passes.
+
+If the SDK call hook cannot safely represent this six-byte indirect call site or the register facts differ from the tested binary, STOP and report the material contradiction instead of substituting a broader patch.
 
 ## Build execution
 
@@ -443,14 +604,14 @@ Build: NOT ATTEMPTED — Work build execution was not authorized for this task.
 
 ## Publication
 
-The invoking handoff explicitly authorizes publication of this bounded N6B implementation to:
+The invoking handoff explicitly authorizes publication of this bounded N6C implementation to:
 
 ```text
 Repository: tcholti/Gothic3_Animation_Behaviors
 Branch: docs/collision-source-evidence
 ```
 
-Publish one conceptual implementation commit. Do not append unrelated documentation consolidation or runtime interpretation to that commit.
+Publish one conceptual implementation commit. Do not mix runtime evidence or broad documentation consolidation into it.
 
 Report:
 
@@ -468,7 +629,7 @@ Then STOP.
 
 ## Required controlled runtime fixture AFTER Work implementation
 
-Runtime testing happens later, outside Work, using the same established fixture:
+Use the same established fixture:
 
 ```text
 same P0 Normal human raw-8 Fist animation
@@ -479,44 +640,88 @@ frame 12 FIST
 repeat enough executions to establish consistency
 ```
 
-The expected N6B factual comparison is:
+Record visual damage, but treat it as secondary:
 
 ```text
-first FIST consistently below threshold
-+ second FIST consistently at/above threshold
-+ later OnDamage still from Game.dll + 0x16E348
-    -> runtime supports the isolated motion-time threshold as the missing
-       eligibility condition separating early FIST from later opportunity
-    -> freeze a later one-variable causal intervention; do not mutate yet
-
-comparison does not distinguish early vs later state
-    -> N6A static gate is real but does not explain the observed authored-FIST
-       timing difference by itself
-    -> STOP and reassess the next native condition rather than mutating it
+First punch damage:  YES / NO
+Second punch damage: YES / NO
 ```
 
-Visual damage remains a secondary confirmation:
+### N6C PASS pattern
+
+Primary required evidence:
 
 ```text
-first punch damage  NO
-second punch damage YES
+first FIST real play time below threshold
+first FIST latch rearm remains 0 -> 0
+N6C arm accepted for first FIST
+exactly one matching GetPlayTime override consumed
+real GetPlayTime at override still below threshold
+synthetic return at/above threshold
+actual later animation timing remains natural/unmodified
+frame-9 FIST_OFF: FistOffLatchBefore == 1
 ```
 
-Do not require the exact historical millisecond delay between the second FIST and OnDamage; require correct causal ordering and the same native caller/path.
+The changed `FistOffLatchBefore` from N6B baseline `0` to N6C `1` is the direct causal result: the native combat loop must have advanced through its own `Game + 0x16E1A3` latch write before FIST_OFF.
+
+Protection/continuation evidence should also remain:
+
+```text
+FIST_OFF leaves/writes latch 1
+second FIST remains a real, non-synthetic timing observation at/above threshold
+second FIST rearm remains 1 -> 0
+later damaging event, when contact permits, still uses Game.dll + 0x16E348
+```
+
+Early OnDamage before FIST_OFF:
+
+```text
+if observed from Game.dll + 0x16E348
+    -> stronger evidence that timing-gate bypass released the full native
+       damage opportunity while contact/target conditions were also satisfied
+
+if not observed
+    -> NOT an N6C failure by itself; downstream physical contact/target
+       eligibility may simply not exist at frame 3
+```
+
+### N6C failure / stop conditions
+
+```text
+override consumed but FistOffLatchBefore remains 0
+    -> timing comparison alone did not produce the expected native latch write
+       or transport did not affect the intended comparison
+    -> STOP and characterize; do not build production FIST ON
+
+override never consumed before FIST_OFF
+    -> execution is invalid for the causal question
+    -> STOP and characterize hook/identity/timing mismatch
+
+real timing had already crossed threshold before override
+    -> causal opportunity invalid
+    -> STOP/repeat controlled fixture; do not interpret as pass
+
+second FIST accidentally receives synthetic timing
+    -> probe leakage / invalid experiment
+    -> STOP and fix probe containment before interpretation
+```
 
 ---
 
-## Direction after N6B
+## Direction after N6C
 
-Only if N6B positively correlates the isolated threshold with the early/later difference:
+Only if N6C produces the direct native latch-write consequence while preserving real animation timing:
 
 ```text
-freeze one causal timing intervention
--> change only that proven native timing condition
--> test whether authored FIST can create the native-equivalent damage opportunity
+N6C causal timing-gate PASS
+-> timing gate is proven causally sufficient to advance the tested native arm
+   from latch-zero eligibility into its own latch-write/damage-preparation path
+-> then separately decide the smallest production-quality authored-FIST ON
+   mechanism that releases native-equivalent timing without corrupting the
+   animation clock or globally weakening native timing
 ```
 
-Do not yet decide whether the final implementation should mutate play time, call a native function, alter a threshold/eligibility decision, or use another lower-level mechanism. That decision requires the N6B runtime result first.
+Do not decide that final production mechanism inside N6C. In particular, N6C synthetic `GetPlayTime` return is a causal probe, not automatically the production design.
 
 ---
 
