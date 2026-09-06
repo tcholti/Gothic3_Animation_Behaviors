@@ -446,6 +446,6 @@ The known held-Use2 / Alternative-AI skip remains a separate prevention responsi
 7. No family/cause/input cleanup classification.
 8. Preserve native/modded combat-rule choices.
 9. Use the proven C1 generation for marker execution identity while preserving independent authored-marker invariants.
-10. Keep Fist/body semantics behind a separate source adapter rather than forcing weapon collision-group behavior.
+10. After genuinely generic marker infrastructure, keep human Fist/body damage as a separate native mechanism rather than an equipped-weapon source adapter or weapon collision-group path.
 11. Keep bad-skip prevention separate from collision cleanup.
 12. Require compatibility evidence before production migration and again after the full production DLL is assembled.

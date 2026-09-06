@@ -1,7 +1,8 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; remaining equipped-melee expansion active  
-**Updated:** 2026-09-04
+**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; equipped-melee marker/semantic expansion CLOSED/PASS through Hack validation; human-Fist N4 current
+
+**Updated:** 2026-09-06
 
 ## Purpose
 
@@ -171,7 +172,7 @@ SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
 
 The behavior-only result is functional/release-purity evidence only. Internal generation, occurrence-budget, exact-set, replay/dedupe and terminal-repair proof remains in diagnostic evidence.
 
-The current SimpleWhirl StatePosition causal question in EV-220 is **not** an execution-identity question and does not reopen Gate 4. It asks only whether StatePosition also participates in Gothic's deeper action-specific character-hit eligibility.
+The SimpleWhirl StatePosition causal question recorded in EV-220 was **not** an execution-identity question and did not reopen Gate 4. The later SimpleWhirl marker/semantic stage is now CLOSED/PASS; this retained evidence boundary does not reopen it.
 
 ---
 
@@ -221,17 +222,16 @@ PierceAttack
 → native target/reaction semantics remain distinct from physical marker-source control
 
 SimpleWhirl
-→ action-6 / _AI_SimpleWhirl adapter PASS
-→ RIGHT/LEFT/BOTH/OFF physical marker-source mechanics PASS for tested fixtures
-→ character-hit eligibility semantics OPEN
+→ current marker/semantic stage CLOSED/PASS
+→ EV-217–EV-220 investigation evidence remains preserved below
 
 HackAttack
-→ implementation present
-→ callback identity EV-216 CLOSED
-→ isolated marker/routing runtime validation pending after SimpleWhirl semantic question
+→ isolated routing/source/marker validation PASS
 ```
 
-#### SimpleWhirl character-hit eligibility boundary
+#### Historical SimpleWhirl character-hit eligibility boundary
+
+The following section preserves the investigation boundary and evidence interpretation from that stage. It is historical provenance, not a live queue; the current SimpleWhirl marker/semantic stage is CLOSED/PASS.
 
 EV-217 proves that the SimpleWhirl adapter and physical source layer behave correctly. Accepted BOTH can place both exact Dual equipped sources into `Item_Attack`, rearm both, and later clean both naturally. Therefore a failure to damage every actor visibly crossed by a sword must not automatically be classified as a source-activation failure.
 
@@ -383,7 +383,7 @@ Future raw→archive migrations must preserve bytes/provenance and update canoni
 
 `research/derived/` remains a deterministic navigation/analysis layer for oversized evidence; it does not replace canonical raw/archive artifacts.
 
-The five current SimpleWhirl logs remain in `research/raw/` because the character-hit eligibility causal gate is still unresolved. Their compact retrieval aid is:
+The five SimpleWhirl logs remain in `research/raw/` as preserved evidence for the now-closed marker/semantic stage. Their compact retrieval aid is:
 
 `research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md`
 
@@ -396,11 +396,10 @@ The closed architecture foundation remains complete. Current collision expansion
 ```text
 Power marker/source validation CLOSED
 → Pierce marker/source validation CLOSED
-→ SimpleWhirl physical marker/source validation PASS
-→ resolve SimpleWhirl character-hit eligibility enough to define the framework guarantee
-→ Hack isolated marker/routing validation
+→ SimpleWhirl marker/semantic stage CLOSED/PASS
+→ Hack isolated routing/source/marker validation PASS
 → combined remaining-melee marker/lifecycle regression
-→ separate human-Fist native-mechanism investigation
+→ separate human-Fist native-mechanism investigation — CURRENT: N4 callback-suppression necessity test
 → full marker/lifecycle regression
 → AttackContinuationProtection
 → combined collision regression
