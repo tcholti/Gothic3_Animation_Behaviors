@@ -73,8 +73,6 @@ FistSourceOperationResult RearmFistSource(eCEntity *sourceInstance)
 
     result.groupBefore = static_cast<GEInt>(source.GetCollisionGroup());
     result.useType = static_cast<GEInt>(useType);
-    source.TouchDamage.ClearTriggeredList();
-    result.triggeredListCleared = true;
     result.groupAfter = static_cast<GEInt>(source.GetCollisionGroup());
     return result;
 }
