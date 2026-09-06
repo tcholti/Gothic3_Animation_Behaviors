@@ -13,15 +13,6 @@ struct SourceOperationResult
     bool triggeredListCleared;
 };
 
-struct FistSourceOperationResult
-{
-    GEInt groupBefore;
-    GEInt groupAfter;
-    GEInt useType;
-    bool triggeredListCleared;
-};
-
 SourceOperationResult ActivateOrRearm(eCEntity *sourceInstance);
 SourceOperationResult DeactivateOwnedAttackSource(eCEntity *sourceInstance);
-FistSourceOperationResult RearmFistSource(eCEntity *sourceInstance);
 }

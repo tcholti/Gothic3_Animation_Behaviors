@@ -53,27 +53,4 @@ SourceOperationResult DeactivateOwnedAttackSource(eCEntity *sourceInstance)
     return result;
 }
 
-FistSourceOperationResult RearmFistSource(eCEntity *sourceInstance)
-{
-    FistSourceOperationResult result = {};
-    result.groupBefore = -1;
-    result.groupAfter = -1;
-    result.useType = -1;
-    if (sourceInstance == nullptr)
-        return result;
-
-    Entity source(sourceInstance);
-    if (source == None)
-        return result;
-
-    gEUseType const useType =
-        CollisionSources::GetCollisionSourceUseType(source);
-    if (useType != gEUseType_Fist)
-        return result;
-
-    result.groupBefore = static_cast<GEInt>(source.GetCollisionGroup());
-    result.useType = static_cast<GEInt>(useType);
-    result.groupAfter = static_cast<GEInt>(source.GetCollisionGroup());
-    return result;
-}
 }

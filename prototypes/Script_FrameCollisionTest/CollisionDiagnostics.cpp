@@ -3,8 +3,6 @@
 #include "CollisionSources.h"
 #include "RuntimeClock.h"
 
-#include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
-
 #include <cstdint>
 #include <cstring>
 #include <string>
@@ -229,7 +227,7 @@ void OpenLog()
     std::fprintf(g_pLog,
                  "MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack\n");
     std::fprintf(g_pLog,
-                 "MarkerOpcodes: RIGHT LEFT BOTH OFF FIST FIST_OFF\n");
+                 "MarkerOpcodes: RIGHT LEFT BOTH OFF FIST\n");
     std::fflush(g_pLog);
 }
 
@@ -604,219 +602,105 @@ void LogEntityOnDamageEntryCap(GEU32 cap)
     std::fflush(g_pLog);
 }
 
-void LogFistNativeTimingGateProbe(
-    Entity &actor, MarkerProcessResult const &result)
-{
-    if (g_pLog == nullptr
-        || actor == None
-        || result.code != MarkerResult_Accepted
-        || (result.opcode != MarkerOpcode_Fist
-            && result.opcode != MarkerOpcode_FistOff)
-        || result.fistSourceInstance == nullptr
-        || result.fistSourceUseType != static_cast<GEInt>(gEUseType_Fist))
-    {
-        return;
-    }
-
-    bool animationPSResolved = false;
-    bool animationActorResolved = false;
-    GEInt primaryHasMotionInstance = -1;
-    bool primaryTimingAvailable = false;
-    GEDouble primaryPlayTime = -1.0;
-    GEDouble primaryMaxTime = -1.0;
-    if (actor.Animation.IsValid())
-    {
-        eCVisualAnimation_PS *animationPS =
-            static_cast<eCVisualAnimation_PS *>(
-                actor.Animation.m_pEngineEntityPropertySet);
-        animationPSResolved = animationPS != nullptr;
-        if (animationPS != nullptr && animationPS->HasActor())
-        {
-            eCWrapper_emfx2Actor *animationActor = animationPS->GetActor();
-            animationActorResolved = animationActor != nullptr;
-            if (animationActor != nullptr)
-            {
-                auto const primaryMotion =
-                    static_cast<eCWrapper_emfx2Actor::eEMotionType>(0);
-                bool const hasMotionInstance =
-                    animationActor->HasMotionInstance(primaryMotion);
-                primaryHasMotionInstance = hasMotionInstance ? 1 : 0;
-                if (hasMotionInstance)
-                {
-                    primaryPlayTime =
-                        animationActor->GetPlayTime(primaryMotion);
-                    primaryMaxTime =
-                        animationActor->GetMaxTime(primaryMotion);
-                    primaryTimingAvailable = true;
-                }
-            }
-        }
-    }
-
-    constexpr std::uintptr_t NativeThresholdConstantRVA = 0x00308308;
-    HMODULE gameModule = ::GetModuleHandleA("Game.dll");
-    bool const gameModuleResolved = gameModule != nullptr;
-    bool const nativeThresholdConstantAvailable = gameModuleResolved;
-    GEDouble nativeThresholdConstant = -1.0;
-    if (nativeThresholdConstantAvailable)
-    {
-        std::uintptr_t const constantAddress =
-            reinterpret_cast<std::uintptr_t>(gameModule)
-            + NativeThresholdConstantRVA;
-        std::memcpy(
-            &nativeThresholdConstant,
-            reinterpret_cast<void const *>(constantAddress),
-            sizeof(nativeThresholdConstant));
-    }
-
-    bool const computedThresholdAvailable =
-        primaryTimingAvailable && nativeThresholdConstantAvailable;
-    GEDouble computedThreshold = -1.0;
-    GEInt belowThreshold = -1;
-    GEInt atOrAboveThreshold = -1;
-    if (computedThresholdAvailable)
-    {
-        computedThreshold = primaryMaxTime * nativeThresholdConstant;
-        bool const isBelowThreshold = primaryPlayTime < computedThreshold;
-        belowThreshold = isBelowThreshold ? 1 : 0;
-        atOrAboveThreshold = isBelowThreshold ? 0 : 1;
-    }
-
-    gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
-        actor.Routine.m_pEngineEntityPropertySet);
-    gCScriptProcessingUnit *spu =
-        routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
-    GEInt currentLatchValue = -1;
-    if (spu != nullptr)
-    {
-        volatile GEU8 const *latchByte =
-            reinterpret_cast<volatile GEU8 const *>(spu) + 0x164;
-        currentLatchValue = static_cast<GEInt>(*latchByte);
-    }
-
-    std::fprintf(g_pLog, "===== FIST NATIVE TIMING GATE PROBE =====\n");
-    std::fprintf(g_pLog,
-                 "Boundary: FIST_NATIVE_TIMING_GATE_PROBE\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-    std::fprintf(g_pLog, "ActorAddress: %p\n",
-                 static_cast<void *>(actor.GetInstance()));
-    std::fprintf(g_pLog, "MarkerOpcode: %s\n",
-                 FrameCollisionMarkers::GetMarkerOpcodeName(result.opcode));
-    std::fprintf(g_pLog, "MarkerName: %s\n", result.markerName.c_str());
-    std::fprintf(g_pLog, "Action: %d\n", result.markerAction);
-    std::fprintf(g_pLog, "AniPhase: %d\n", result.markerPhase);
-    std::fprintf(g_pLog, "StateTime: %.6f\n", result.markerStateTime);
-    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
-                 result.currentAnimation.c_str());
-    std::fprintf(g_pLog, "C1Generation: %llu\n",
-                 static_cast<unsigned long long>(result.c1Generation));
-    std::fprintf(g_pLog, "FistSourceAddress: %p\n",
-                 static_cast<void *>(result.fistSourceInstance));
-    std::fprintf(g_pLog, "FistUseType: %d\n", result.fistSourceUseType);
-    std::fprintf(g_pLog, "MotionType: 0\n");
-    std::fprintf(g_pLog, "AnimationPSResolved: %d\n",
-                 animationPSResolved ? 1 : 0);
-    std::fprintf(g_pLog, "AnimationActorResolved: %d\n",
-                 animationActorResolved ? 1 : 0);
-    std::fprintf(g_pLog, "PrimaryHasMotionInstance: %d\n",
-                 primaryHasMotionInstance);
-    std::fprintf(g_pLog, "PrimaryTimingAvailable: %d\n",
-                 primaryTimingAvailable ? 1 : 0);
-    std::fprintf(g_pLog, "PrimaryPlayTime: %.17g\n", primaryPlayTime);
-    std::fprintf(g_pLog, "PrimaryMaxTime: %.17g\n", primaryMaxTime);
-    std::fprintf(g_pLog, "GameModuleResolved: %d\n",
-                 gameModuleResolved ? 1 : 0);
-    std::fprintf(g_pLog,
-                 "NativeThresholdConstantRVA: 0x00308308\n");
-    std::fprintf(g_pLog, "NativeThresholdConstantAvailable: %d\n",
-                 nativeThresholdConstantAvailable ? 1 : 0);
-    std::fprintf(g_pLog, "NativeThresholdConstant: %.17g\n",
-                 nativeThresholdConstant);
-    std::fprintf(g_pLog, "ComputedThresholdAvailable: %d\n",
-                 computedThresholdAvailable ? 1 : 0);
-    std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
-                 computedThreshold);
-    std::fprintf(g_pLog, "BelowThreshold: %d\n", belowThreshold);
-    std::fprintf(g_pLog, "AtOrAboveThreshold: %d\n",
-                 atOrAboveThreshold);
-    std::fprintf(g_pLog, "CurrentSPUAddress: %p\n",
-                 static_cast<void *>(spu));
-    std::fprintf(g_pLog, "CurrentLatchOffset: 0x164\n");
-    std::fprintf(g_pLog, "CurrentLatchValue: %d\n", currentLatchValue);
-    if (result.opcode == MarkerOpcode_FistOff)
-    {
-        std::fprintf(g_pLog, "FistOffLatchBefore: %d\n",
-                     result.fistOffLatchBefore);
-        std::fprintf(g_pLog, "FistOffLatchAfter: %d\n",
-                     result.fistOffLatchAfter);
-        std::fprintf(g_pLog, "FistOffLatchWriteConfirmed: %d\n",
-                     result.fistOffLatchWriteConfirmed ? 1 : 0);
-    }
-    std::fprintf(g_pLog, "=========================================\n\n");
-    std::fflush(g_pLog);
-}
-
-void LogFistTimingGateCausalArm(
-    Entity &actor, MarkerProcessResult const &result,
+void LogHumanFistMarkerOwnership(
+    Entity &actor, AttackFamily family, std::uint64_t c1Generation,
     gCScriptProcessingUnit *spu, void *animationActorAddress,
-    GEInt latchAtArm, GEDouble realPlayTimeAtArm,
-    GEDouble maxTimeAtArm, GEDouble nativeThresholdConstant,
-    GEDouble computedThresholdAtArm, bool realBelowThresholdAtArm,
-    bool armAccepted)
+    GEInt latchBefore, GEInt latchAfter, bool writeConfirmed)
 {
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(g_pLog, "===== FIST TIMING GATE CAUSAL ARM =====\n");
-    std::fprintf(g_pLog, "Boundary: FIST_TIMING_GATE_CAUSAL_ARM\n");
+    bCString const currentAnimation = actor.NPC.GetCurrentMovementAni();
+    std::fprintf(g_pLog, "===== HUMAN FIST MARKER OWNERSHIP =====\n");
+    std::fprintf(g_pLog, "Boundary: HUMAN_FIST_MARKER_OWNERSHIP\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
                  RuntimeClock::GetElapsedMilliseconds());
     std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
     std::fprintf(g_pLog, "ActorAddress: %p\n",
                  static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "Family: %s\n", AttackFamilyName(family));
     std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
-                 result.currentAnimation.c_str());
+                 currentAnimation.GetText());
     std::fprintf(g_pLog, "C1Generation: %llu\n",
-                 static_cast<unsigned long long>(result.c1Generation));
+                 static_cast<unsigned long long>(c1Generation));
     std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
     std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
                  animationActorAddress);
-    std::fprintf(g_pLog, "AcceptedFistOccurrenceBefore: %d\n",
-                 result.acceptedMarkerCountBefore);
-    std::fprintf(g_pLog, "AcceptedFistOccurrenceAfter: %d\n",
-                 result.acceptedMarkerCountAfter);
-    std::fprintf(g_pLog, "LatchAtArm: %d\n", latchAtArm);
-    std::fprintf(g_pLog, "RealPlayTimeAtArm: %.17g\n",
-                 realPlayTimeAtArm);
-    std::fprintf(g_pLog, "MaxTimeAtArm: %.17g\n", maxTimeAtArm);
-    std::fprintf(g_pLog, "NativeThresholdConstant: %.17g\n",
-                 nativeThresholdConstant);
-    std::fprintf(g_pLog, "ComputedThresholdAtArm: %.17g\n",
-                 computedThresholdAtArm);
-    std::fprintf(g_pLog, "RealBelowThresholdAtArm: %d\n",
-                 realBelowThresholdAtArm ? 1 : 0);
-    std::fprintf(g_pLog, "ArmAccepted: %d\n", armAccepted ? 1 : 0);
+    std::fprintf(g_pLog, "LatchOffset: 0x164\n");
+    std::fprintf(g_pLog, "LatchBefore: %d\n", latchBefore);
+    std::fprintf(g_pLog, "LatchAfter: %d\n", latchAfter);
+    std::fprintf(g_pLog, "WriteAttempted: 1\n");
+    std::fprintf(g_pLog, "WriteConfirmed: %d\n",
+                 writeConfirmed ? 1 : 0);
     std::fprintf(g_pLog, "=======================================\n\n");
     std::fflush(g_pLog);
 }
 
-void LogFistTimingGateCausalOverride(
-    eCEntity *actorInstance, std::uint64_t c1Generation,
-    gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
-    GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
+void LogHumanFistMarkerOpportunity(
+    Entity &actor, MarkerProcessResult const &result,
+    void *animationActorAddress, bool timingAvailable,
+    GEDouble realPlayTime, GEDouble maxTime,
     GEDouble nativeThresholdConstant, GEDouble computedThreshold,
-    bool realBelowThreshold, GEDouble syntheticPlayTimeReturned,
-    bool syntheticAtOrAboveThreshold, bool overrideApplied,
-    GEU32 overrideOrdinalWithinGeneration, bool armConsumed)
+    bool realBelowThreshold, bool ownershipMatched,
+    bool timingPermissionArmed)
 {
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(g_pLog, "===== FIST TIMING GATE CAUSAL OVERRIDE =====\n");
-    std::fprintf(g_pLog,
-                 "Boundary: FIST_TIMING_GATE_CAUSAL_OVERRIDE\n");
+    std::fprintf(g_pLog, "===== HUMAN FIST MARKER OPPORTUNITY =====\n");
+    std::fprintf(g_pLog, "Boundary: HUMAN_FIST_MARKER_OPPORTUNITY\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                 result.currentAnimation.c_str());
+    std::fprintf(g_pLog, "C1Generation: %llu\n",
+                 static_cast<unsigned long long>(result.c1Generation));
+    std::fprintf(g_pLog, "FistOccurrenceBefore: %d\n",
+                 result.acceptedMarkerCountBefore);
+    std::fprintf(g_pLog, "FistOccurrenceAfter: %d\n",
+                 result.acceptedMarkerCountAfter);
+    std::fprintf(g_pLog, "SPUAddress: %p\n",
+                 static_cast<void *>(result.fistSPU));
+    std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
+                 animationActorAddress);
+    std::fprintf(g_pLog, "LatchBefore: %d\n", result.fistLatchBefore);
+    std::fprintf(g_pLog, "LatchAfter: %d\n", result.fistLatchAfter);
+    std::fprintf(g_pLog, "LatchWriteConfirmed: %d\n",
+                 result.fistLatchWriteConfirmed ? 1 : 0);
+    std::fprintf(g_pLog, "TimingAvailable: %d\n",
+                 timingAvailable ? 1 : 0);
+    std::fprintf(g_pLog, "RealPlayTime: %.17g\n", realPlayTime);
+    std::fprintf(g_pLog, "MaxTime: %.17g\n", maxTime);
+    std::fprintf(g_pLog, "NativeThresholdConstant: %.17g\n",
+                 nativeThresholdConstant);
+    std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
+                 computedThreshold);
+    std::fprintf(g_pLog, "RealBelowThreshold: %d\n",
+                 realBelowThreshold ? 1 : 0);
+    std::fprintf(g_pLog, "OwnershipMatched: %d\n",
+                 ownershipMatched ? 1 : 0);
+    std::fprintf(g_pLog, "TimingPermissionArmed: %d\n",
+                 timingPermissionArmed ? 1 : 0);
+    std::fprintf(g_pLog, "=========================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogHumanFistTimingPermissionConsumed(
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
+    GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
+    GEDouble nativeThresholdConstant, GEDouble computedThreshold,
+    GEDouble returnedPlayTime, bool syntheticApplied)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== HUMAN FIST TIMING PERMISSION =====\n");
+    std::fprintf(
+        g_pLog, "Boundary: HUMAN_FIST_TIMING_PERMISSION_CONSUMED\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
                  RuntimeClock::GetElapsedMilliseconds());
     std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
@@ -835,125 +719,44 @@ void LogFistTimingGateCausalOverride(
                  nativeThresholdConstant);
     std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
                  computedThreshold);
-    std::fprintf(g_pLog, "RealBelowThreshold: %d\n",
-                 realBelowThreshold ? 1 : 0);
-    std::fprintf(g_pLog, "SyntheticPlayTimeReturned: %.17g\n",
-                 syntheticPlayTimeReturned);
-    std::fprintf(g_pLog, "SyntheticAtOrAboveThreshold: %d\n",
-                 syntheticAtOrAboveThreshold ? 1 : 0);
-    std::fprintf(g_pLog, "OverrideApplied: %d\n",
-                 overrideApplied ? 1 : 0);
-    std::fprintf(g_pLog, "OverrideOrdinalWithinGeneration: %u\n",
-                 static_cast<unsigned int>(overrideOrdinalWithinGeneration));
-    std::fprintf(g_pLog, "ArmConsumed: %d\n", armConsumed ? 1 : 0);
-    std::fprintf(g_pLog, "============================================\n\n");
+    std::fprintf(g_pLog, "ReturnedPlayTime: %.17g\n",
+                 returnedPlayTime);
+    std::fprintf(g_pLog, "ReturnedAtOrAboveThreshold: %d\n",
+                 returnedPlayTime < computedThreshold ? 0 : 1);
+    std::fprintf(g_pLog, "SyntheticApplied: %d\n",
+                 syntheticApplied ? 1 : 0);
+    std::fprintf(g_pLog, "PermissionConsumed: 1\n");
+    std::fprintf(g_pLog, "========================================\n\n");
     std::fflush(g_pLog);
 }
 
-void LogFistTimingGateCausalRetirement(
-    char const *boundary, char const *reason, eCEntity *actorInstance,
-    std::uint64_t armedC1Generation, bool currentC1GenerationValid,
-    std::uint64_t currentC1Generation, gCScriptProcessingUnit *armedSPU,
-    void *armedAnimationActorAddress, GEInt motionType,
-    GEDouble realPlayTime, GEDouble computedThreshold,
-    bool armConsumed)
+void LogHumanFistTimingPermissionRetired(
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    gCScriptProcessingUnit *spu, void *animationActorAddress,
+    char const *reason)
 {
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(g_pLog, "===== FIST TIMING GATE CAUSAL RETIREMENT =====\n");
-    std::fprintf(g_pLog, "Boundary: %s\n",
-                 boundary != nullptr ? boundary : "<null>");
+    std::fprintf(g_pLog, "===== HUMAN FIST TIMING PERMISSION =====\n");
+    std::fprintf(
+        g_pLog, "Boundary: HUMAN_FIST_TIMING_PERMISSION_RETIRED\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
                  RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Reason: %s\n",
-                 reason != nullptr ? reason : "<null>");
     std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
     std::fprintf(g_pLog, "ActorAddress: %p\n",
                  static_cast<void *>(actorInstance));
-    std::fprintf(g_pLog, "ArmedC1Generation: %llu\n",
-                 static_cast<unsigned long long>(armedC1Generation));
-    std::fprintf(g_pLog, "CurrentC1GenerationValid: %d\n",
-                 currentC1GenerationValid ? 1 : 0);
-    std::fprintf(g_pLog, "CurrentC1Generation: %llu\n",
-                 static_cast<unsigned long long>(currentC1Generation));
-    std::fprintf(g_pLog, "ArmedSPUAddress: %p\n",
-                 static_cast<void *>(armedSPU));
-    std::fprintf(g_pLog, "ArmedAnimationActorAddress: %p\n",
-                 armedAnimationActorAddress);
-    std::fprintf(g_pLog, "MotionType: %d\n", motionType);
-    std::fprintf(g_pLog, "RealPlayTime: %.17g\n", realPlayTime);
-    std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
-                 computedThreshold);
-    std::fprintf(g_pLog, "ArmConsumed: %d\n", armConsumed ? 1 : 0);
-    std::fprintf(g_pLog, "==============================================\n\n");
-    std::fflush(g_pLog);
-}
-
-void ApplyAndLogFistCombatLatchRearmProbe(
-    Entity &actor, MarkerProcessResult const &result)
-{
-    if (actor == None
-        || result.code != MarkerResult_Accepted
-        || result.opcode != MarkerOpcode_Fist
-        || result.fistSourceInstance == nullptr
-        || result.fistSourceUseType != static_cast<GEInt>(gEUseType_Fist))
-    {
-        return;
-    }
-
-    gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
-        actor.Routine.m_pEngineEntityPropertySet);
-    gCScriptProcessingUnit *spu =
-        routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
-    GEInt latchBefore = -1;
-    GEInt latchAfter = -1;
-    bool const writeAttempted = spu != nullptr;
-    if (writeAttempted)
-    {
-        volatile GEU8 *latchByte =
-            reinterpret_cast<volatile GEU8 *>(spu) + 0x164;
-        latchBefore = static_cast<GEInt>(*latchByte);
-        *latchByte = 0;
-        latchAfter = static_cast<GEInt>(*latchByte);
-    }
-    bool const writeConfirmed = writeAttempted && latchAfter == 0;
-
-    if (g_pLog == nullptr)
-        return;
-
-    std::fprintf(g_pLog, "===== FIST COMBAT LATCH REARM PROBE =====\n");
-    std::fprintf(g_pLog,
-                 "Boundary: FIST_COMBAT_LATCH_REARM_PROBE\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-    std::fprintf(g_pLog, "ActorAddress: %p\n",
-                 static_cast<void *>(actor.GetInstance()));
-    std::fprintf(g_pLog, "Action: %d\n", result.markerAction);
-    std::fprintf(g_pLog, "AniPhase: %d\n", result.markerPhase);
-    std::fprintf(g_pLog, "StateTime: %.6f\n", result.markerStateTime);
-    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
-                 result.currentAnimation.c_str());
     std::fprintf(g_pLog, "C1Generation: %llu\n",
-                 static_cast<unsigned long long>(result.c1Generation));
+                 static_cast<unsigned long long>(c1Generation));
     std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
-    std::fprintf(g_pLog, "LatchOffset: 0x164\n");
-    std::fprintf(g_pLog, "LatchBefore: %d\n", latchBefore);
-    std::fprintf(g_pLog, "LatchAfter: %d\n", latchAfter);
-    std::fprintf(g_pLog, "WriteAttempted: %d\n",
-                 writeAttempted ? 1 : 0);
-    std::fprintf(g_pLog, "WriteConfirmed: %d\n",
-                 writeConfirmed ? 1 : 0);
-    std::fprintf(g_pLog, "FistSourceAddress: %p\n",
-                 static_cast<void *>(result.fistSourceInstance));
-    std::fprintf(g_pLog, "FistUseType: %d\n", result.fistSourceUseType);
-    std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
-                 result.fistSourceGroupAfter);
-    std::fprintf(g_pLog, "=========================================\n\n");
+    std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
+                 animationActorAddress);
+    std::fprintf(g_pLog, "Reason: %s\n",
+                 reason != nullptr ? reason : "<null>");
+    std::fprintf(g_pLog, "PermissionRetired: 1\n");
+    std::fprintf(g_pLog, "========================================\n\n");
     std::fflush(g_pLog);
 }
-
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result)
@@ -986,12 +789,12 @@ void LogAttackCallbackOwnership(
                      result.decision.foundMatchingMotion ? 1 : 0);
         std::fprintf(g_pLog, "MarkerScanValid: %d\n",
                      result.decision.scanValid ? 1 : 0);
-        std::fprintf(g_pLog, "ContainsReservedSourceMarker: %d\n",
+        std::fprintf(g_pLog, "ContainsReservedMarker: %d\n",
                      result.decision.markerPresent ? 1 : 0);
         std::fprintf(g_pLog, "RequiredSourceMask: %u\n",
                      result.decision.requiredSourceMask);
-        std::fprintf(g_pLog, "RequiresFistSource: %d\n",
-                     result.decision.requiresFistSource ? 1 : 0);
+        std::fprintf(g_pLog, "HasFistMarkers: %d\n",
+                     result.decision.hasFistMarkers ? 1 : 0);
         for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
         {
             MarkerOpcode const markerOpcode =
@@ -1005,7 +808,7 @@ void LogAttackCallbackOwnership(
         }
         LogResolvedSource("RightSource", result.sources.rightInstance);
         LogResolvedSource("LeftSource", result.sources.leftInstance);
-        if (result.decision.requiresFistSource)
+        if (result.decision.hasFistMarkers)
             LogResolvedSource("FistSource", result.fistSourceInstance);
         std::fprintf(g_pLog, "SuppressNativeCallback: %d\n",
                      result.suppressNativeCallback ? 1 : 0);
@@ -1133,8 +936,7 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                  r.deactivatedSourceCount);
     std::fprintf(g_pLog, "TriggeredListClearCount: %d\n",
                  r.triggeredListClearCount);
-    if (r.opcode == MarkerOpcode_Fist
-        || r.opcode == MarkerOpcode_FistOff)
+    if (r.opcode == MarkerOpcode_Fist)
     {
         std::fprintf(g_pLog, "FistSourceResolved: %d\n",
                      r.fistSourceInstance != nullptr ? 1 : 0);
@@ -1146,8 +948,16 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                      r.fistSourceGroupBefore);
         std::fprintf(g_pLog, "FistGroupAfter: %d\n",
                      r.fistSourceGroupAfter);
-        std::fprintf(g_pLog, "FistTriggeredListCleared: %d\n",
-                     r.fistSourceListCleared ? 1 : 0);
+        std::fprintf(g_pLog, "FistSPUAddress: %p\n",
+                     static_cast<void *>(r.fistSPU));
+        std::fprintf(g_pLog, "FistLatchBefore: %d\n",
+                     r.fistLatchBefore);
+        std::fprintf(g_pLog, "FistLatchAfter: %d\n",
+                     r.fistLatchAfter);
+        std::fprintf(g_pLog, "FistLatchWriteAttempted: %d\n",
+                     r.fistLatchWriteAttempted ? 1 : 0);
+        std::fprintf(g_pLog, "FistLatchWriteConfirmed: %d\n",
+                     r.fistLatchWriteConfirmed ? 1 : 0);
     }
     for (GEInt i = 0; i < 2; ++i)
     {
@@ -1181,42 +991,6 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                      r.whirlStatePositionAfterMarker);
     }
     std::fprintf(g_pLog, "===========================\n\n");
-    if (r.code == MarkerResult_Accepted
-        && r.opcode == MarkerOpcode_FistOff)
-    {
-        std::fprintf(g_pLog, "===== FIST OFF COMBAT LATCH =====\n");
-        std::fprintf(g_pLog, "Boundary: FIST_OFF_COMBAT_LATCH\n");
-        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                     RuntimeClock::GetElapsedMilliseconds());
-        std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-        std::fprintf(g_pLog, "ActorAddress: %p\n",
-                     static_cast<void *>(actor.GetInstance()));
-        std::fprintf(g_pLog, "Action: %d\n", r.markerAction);
-        std::fprintf(g_pLog, "AniPhase: %d\n", r.markerPhase);
-        std::fprintf(g_pLog, "StateTime: %.6f\n", r.markerStateTime);
-        std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
-                     r.currentAnimation.c_str());
-        std::fprintf(g_pLog, "C1Generation: %llu\n",
-                     static_cast<unsigned long long>(r.c1Generation));
-        std::fprintf(g_pLog, "SPUAddress: %p\n",
-                     static_cast<void *>(r.fistOffSPU));
-        std::fprintf(g_pLog, "LatchOffset: 0x164\n");
-        std::fprintf(g_pLog, "LatchBefore: %d\n",
-                     r.fistOffLatchBefore);
-        std::fprintf(g_pLog, "LatchAfter: %d\n",
-                     r.fistOffLatchAfter);
-        std::fprintf(g_pLog, "WriteAttempted: %d\n",
-                     r.fistOffLatchWriteAttempted ? 1 : 0);
-        std::fprintf(g_pLog, "WriteConfirmed: %d\n",
-                     r.fistOffLatchWriteConfirmed ? 1 : 0);
-        std::fprintf(g_pLog, "FistSourceAddress: %p\n",
-                     static_cast<void *>(r.fistSourceInstance));
-        std::fprintf(g_pLog, "FistUseType: %d\n",
-                     r.fistSourceUseType);
-        std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
-                     r.fistSourceGroupAfter);
-        std::fprintf(g_pLog, "=================================\n\n");
-    }
     std::fflush(g_pLog);
 }
 

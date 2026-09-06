@@ -37,32 +37,27 @@ void LogEntityOnDamageEntry(
     GEInt integerArgument1, GEInt integerArgument2,
     void *contactIteratorAddress);
 void LogEntityOnDamageEntryCap(GEU32 cap);
-void LogFistNativeTimingGateProbe(
-    Entity &actor, MarkerProcessResult const &result);
-void LogFistTimingGateCausalArm(
-    Entity &actor, MarkerProcessResult const &result,
+void LogHumanFistMarkerOwnership(
+    Entity &actor, AttackFamily family, std::uint64_t c1Generation,
     gCScriptProcessingUnit *spu, void *animationActorAddress,
-    GEInt latchAtArm, GEDouble realPlayTimeAtArm,
-    GEDouble maxTimeAtArm, GEDouble nativeThresholdConstant,
-    GEDouble computedThresholdAtArm, bool realBelowThresholdAtArm,
-    bool armAccepted);
-void LogFistTimingGateCausalOverride(
+    GEInt latchBefore, GEInt latchAfter, bool writeConfirmed);
+void LogHumanFistMarkerOpportunity(
+    Entity &actor, MarkerProcessResult const &result,
+    void *animationActorAddress, bool timingAvailable,
+    GEDouble realPlayTime, GEDouble maxTime,
+    GEDouble nativeThresholdConstant, GEDouble computedThreshold,
+    bool realBelowThreshold, bool ownershipMatched,
+    bool timingPermissionArmed);
+void LogHumanFistTimingPermissionConsumed(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
     GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
     GEDouble nativeThresholdConstant, GEDouble computedThreshold,
-    bool realBelowThreshold, GEDouble syntheticPlayTimeReturned,
-    bool syntheticAtOrAboveThreshold, bool overrideApplied,
-    GEU32 overrideOrdinalWithinGeneration, bool armConsumed);
-void LogFistTimingGateCausalRetirement(
-    char const *boundary, char const *reason, eCEntity *actorInstance,
-    std::uint64_t armedC1Generation, bool currentC1GenerationValid,
-    std::uint64_t currentC1Generation, gCScriptProcessingUnit *armedSPU,
-    void *armedAnimationActorAddress, GEInt motionType,
-    GEDouble realPlayTime, GEDouble computedThreshold,
-    bool armConsumed);
-void ApplyAndLogFistCombatLatchRearmProbe(
-    Entity &actor, MarkerProcessResult const &result);
+    GEDouble returnedPlayTime, bool syntheticApplied);
+void LogHumanFistTimingPermissionRetired(
+    eCEntity *actorInstance, std::uint64_t c1Generation,
+    gCScriptProcessingUnit *spu, void *animationActorAddress,
+    char const *reason);
 void LogNullMarker(char const *markerName);
 void LogMarkerContext(Entity &actor, MarkerOpcode opcode);
 void LogMarkerResult(Entity &actor, MarkerProcessResult const &result);

@@ -21,7 +21,7 @@ struct CachedMarkerInfo
     GEInt firstMarkerFrames[MarkerOpcode_Count];
     GEInt markerCounts[MarkerOpcode_Count];
     unsigned int requiredSourceMask;
-    bool requiresFistSource;
+    bool hasFistMarkers;
 };
 
 struct LastAcceptedMarkerDispatch
@@ -69,7 +69,7 @@ struct FrameEffectScanResult
     GEInt firstMarkerFrames[MarkerOpcode_Count];
     GEInt markerCounts[MarkerOpcode_Count];
     unsigned int requiredSourceMask;
-    bool requiresFistSource;
+    bool hasFistMarkers;
 };
 
 static std::unordered_map<std::string, CachedMarkerInfo> g_MarkerCache;
@@ -98,8 +98,6 @@ MarkerOpcode GetMarkerOpcode(char const *effectName)
         return MarkerOpcode_Both;
     if (std::strcmp(effectName, CollisionOffMarker) == 0)
         return MarkerOpcode_Off;
-    if (std::strcmp(effectName, CollisionFistOffMarker) == 0)
-        return MarkerOpcode_FistOff;
     if (std::strcmp(effectName, CollisionFistMarker) == 0)
         return MarkerOpcode_Fist;
     return MarkerOpcode_Invalid;
@@ -114,7 +112,6 @@ char const *GetMarkerOpcodeName(MarkerOpcode opcode)
         case MarkerOpcode_Both: return "BOTH";
         case MarkerOpcode_Off: return "OFF";
         case MarkerOpcode_Fist: return "FIST";
-        case MarkerOpcode_FistOff: return "FIST_OFF";
         default: return "INVALID";
     }
 }
@@ -528,11 +525,10 @@ static FrameEffectScanResult ScanFrameEffects(
             result.foundMarker = true;
             result.requiredSourceMask |= GetMarkerDesiredSourceMask(opcode);
         }
-        else if (opcode == MarkerOpcode_Fist
-                 || opcode == MarkerOpcode_FistOff)
+        else if (opcode == MarkerOpcode_Fist)
         {
             result.foundMarker = true;
-            result.requiresFistSource = true;
+            result.hasFistMarkers = true;
         }
     }
     return result;
@@ -572,7 +568,7 @@ static CurrentMotionMarkerResult ScanCurrentMotionForMarker(Entity &actor)
         result.frameEffectCount = scan.count;
         result.markerPresent = scan.layoutLookedValid && scan.foundMarker;
         result.requiredSourceMask = scan.requiredSourceMask;
-        result.requiresFistSource = scan.requiresFistSource;
+        result.hasFistMarkers = scan.hasFistMarkers;
         for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
         {
             result.firstMarkerFrames[opcode] = scan.firstMarkerFrames[opcode];
@@ -597,7 +593,7 @@ CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor)
         result.markerPresent = found->second.markerPresent;
         result.frameEffectCount = found->second.frameEffectCount;
         result.requiredSourceMask = found->second.requiredSourceMask;
-        result.requiresFistSource = found->second.requiresFistSource;
+        result.hasFistMarkers = found->second.hasFistMarkers;
         for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
         {
             result.firstMarkerFrames[opcode] =
@@ -618,7 +614,7 @@ CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor)
     cached.markerPresent = scanned.markerPresent;
     cached.frameEffectCount = scanned.frameEffectCount;
     cached.requiredSourceMask = scanned.requiredSourceMask;
-    cached.requiresFistSource = scanned.requiresFistSource;
+    cached.hasFistMarkers = scanned.hasFistMarkers;
     for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
     {
         cached.firstMarkerFrames[opcode] = scanned.firstMarkerFrames[opcode];
@@ -638,24 +634,20 @@ AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
 
     result.decision = GetCurrentMarkerDecision(actor);
     result.sources = CollisionSources::GetEquippedCollisionSources(actor);
-    if (result.decision.requiresFistSource)
+    if (result.decision.hasFistMarkers)
     {
         result.fistSourceInstance =
             CollisionSources::ResolveFistCollisionSource(actor);
     }
     bool const ownsEquippedWeaponTiming =
         result.decision.requiredSourceMask != SourceMask_None;
-    // N4 causal probe: exact human-Fist marker ownership no longer suppresses
-    // the original OnAI_Attack callback. Equipped-weapon suppression remains.
     result.suppressNativeCallback =
         ownsEquippedWeaponTiming
         && result.decision.foundMatchingMotion
         && result.decision.scanValid
         && result.decision.markerPresent
         && CollisionSources::HasRequiredCollisionSources(
-            result.sources, result.decision.requiredSourceMask)
-        && (!result.decision.requiresFistSource
-            || result.fistSourceInstance != nullptr);
+            result.sources, result.decision.requiredSourceMask);
     return result;
 }
 
@@ -675,8 +667,8 @@ static MarkerProcessResult MakeMarkerResult(
     result.fistSourceGroupBefore = -1;
     result.fistSourceGroupAfter = -1;
     result.fistSourceUseType = -1;
-    result.fistOffLatchBefore = -1;
-    result.fistOffLatchAfter = -1;
+    result.fistLatchBefore = -1;
+    result.fistLatchAfter = -1;
     for (GEInt i = 0; i < 2; ++i)
     {
         result.sourceGroupBefore[i] = -1;
@@ -700,6 +692,13 @@ MarkerProcessResult ProcessMarker(
         result.code = MarkerResult_RejectedUnsupportedHit;
         return result;
     }
+    if (markerOpcode == MarkerOpcode_Fist
+        && family != AttackFamily_Normal
+        && family != AttackFamily_Power)
+    {
+        result.code = MarkerResult_RejectedUnsupportedHit;
+        return result;
+    }
 
     result.decision = GetCurrentMarkerDecision(actor);
     if (!result.decision.foundMatchingMotion
@@ -716,7 +715,7 @@ MarkerProcessResult ProcessMarker(
         result.code = MarkerResult_UnsupportedMissingSource;
         return result;
     }
-    if (result.decision.requiresFistSource)
+    if (markerOpcode == MarkerOpcode_Fist)
     {
         result.fistSourceInstance =
             CollisionSources::ResolveFistCollisionSource(actor);
@@ -829,18 +828,6 @@ MarkerProcessResult ProcessMarker(
 
     if (markerOpcode == MarkerOpcode_Fist)
     {
-        CollisionSourceOperations::FistSourceOperationResult operation =
-            CollisionSourceOperations::RearmFistSource(
-                result.fistSourceInstance);
-        result.fistSourceGroupBefore = operation.groupBefore;
-        result.fistSourceGroupAfter = operation.groupAfter;
-        result.fistSourceUseType = operation.useType;
-        result.fistSourceListCleared = operation.triggeredListCleared;
-        if (operation.triggeredListCleared)
-            ++result.triggeredListClearCount;
-    }
-    else if (markerOpcode == MarkerOpcode_FistOff)
-    {
         Entity fistSource(result.fistSourceInstance);
         result.fistSourceGroupBefore = static_cast<GEInt>(
             fistSource.GetCollisionGroup());
@@ -850,19 +837,18 @@ MarkerProcessResult ProcessMarker(
 
         gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
             actor.Routine.m_pEngineEntityPropertySet);
-        result.fistOffSPU =
+        result.fistSPU =
             routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
-        if (result.fistOffSPU != nullptr)
+        if (result.fistSPU != nullptr)
         {
             volatile GEU8 *latchByte =
-                reinterpret_cast<volatile GEU8 *>(result.fistOffSPU)
+                reinterpret_cast<volatile GEU8 *>(result.fistSPU)
                 + 0x164;
-            result.fistOffLatchBefore = static_cast<GEInt>(*latchByte);
-            result.fistOffLatchWriteAttempted = true;
-            *latchByte = 1;
-            result.fistOffLatchAfter = static_cast<GEInt>(*latchByte);
-            result.fistOffLatchWriteConfirmed =
-                result.fistOffLatchAfter == 1;
+            result.fistLatchBefore = static_cast<GEInt>(*latchByte);
+            result.fistLatchWriteAttempted = true;
+            *latchByte = 0;
+            result.fistLatchAfter = static_cast<GEInt>(*latchByte);
+            result.fistLatchWriteConfirmed = result.fistLatchAfter == 0;
         }
     }
     else
