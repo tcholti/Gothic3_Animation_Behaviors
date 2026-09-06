@@ -1,0 +1,1088 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST FIST_OFF
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_BEFORE_ORIGINAL
+Actor: PC_Hero
+Action: 68
+AniPhase: 6
+StateTime: 0.773998
+CurrentMovementAni: Hero_Stand_None_Fist_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Action: 68
+AniPhase: 6
+StateTime: 0.000000
+CurrentMovementAni: Hero_Stand_None_Fist_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_BEFORE_ORIGINAL
+Actor: PC_Hero
+Action: 0
+AniPhase: 12
+StateTime: 2.295786
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Action: 0
+AniPhase: 12
+StateTime: 0.000000
+CurrentMovementAni: Hero_Stand_None_Fist_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 38840.621
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E6A92210
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 38840.633
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_PowerAttack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 38840.965
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 39137.731
+Event: COMBAT_MOVE_REUSED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+ScriptFunction: _AI_PowerAttack
+SourceAddress: 00000000
+=============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 39143.099
+Actor: PC_Hero
+Family: POWER
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 1
+RequiredSourceMask: 0
+RequiresFistSource: 1
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 1
+FirstFISTFrame: 12
+AuthoredFIST_OFFCount: 0
+FirstFIST_OFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6A92210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+FistSourceResolved: 1
+FistSourceName: Fist
+FistSourceAddress: E6A92210
+FistSourceUseType: 8
+FistSourceCollisionGroup: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39143.261
+Source: Fist
+SourceAddress: E6A92210
+SlotAssociation: RIGHT
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerStateTime: 0.297970
+PlayerCurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 39558.482
+HookEntryOrdinal: 1
+CallerAddress: 00C0E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: E700F810
+ThisEntityName: Golem
+EntityArg1Address: E6A92210
+EntityArg1Name: Fist
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 42
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerStateTime: 0.715896
+PlayerCurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+ExistingResolverFistSourceAddress: E6A92210
+ExistingResolverFistUseType: 8
+ExistingResolverFistCollisionGroup: 0
+ThisIsPlayer: 0
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 1
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST RECEIVED =====
+ElapsedMs: 39608.331
+Actor: PC_Hero
+Action: 2
+AniPhase: 1
+StateTime: 0.779890
+StatePositionBeforeMarker: 1
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+===== FIST NATIVE TIMING GATE PROBE =====
+Boundary: FIST_NATIVE_TIMING_GATE_PROBE
+ElapsedMs: 39608.366
+Actor: PC_Hero
+ActorAddress: EBB66E10
+MarkerOpcode: FIST
+MarkerName: G3AB_COL_FIST
+Action: 2
+AniPhase: 1
+StateTime: 0.779890
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+C1Generation: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+MotionType: 0
+AnimationPSResolved: 1
+AnimationActorResolved: 1
+PrimaryHasMotionInstance: 1
+PrimaryTimingAvailable: 1
+PrimaryPlayTime: 0.46894267201423645
+PrimaryMaxTime: 0.68000000715255737
+GameModuleResolved: 1
+NativeThresholdConstantRVA: 0x00308308
+NativeThresholdConstantAvailable: 1
+NativeThresholdConstant: 0.60000002384185791
+ComputedThresholdAvailable: 1
+ComputedThreshold: 0.40800002050399797
+BelowThreshold: 0
+AtOrAboveThreshold: 1
+CurrentSPUAddress: EBB67074
+CurrentLatchOffset: 0x164
+CurrentLatchValue: 1
+=========================================
+
+===== FIST TIMING GATE CAUSAL ARM =====
+Boundary: FIST_TIMING_GATE_CAUSAL_ARM
+ElapsedMs: 39608.406
+Actor: PC_Hero
+ActorAddress: EBB66E10
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+C1Generation: 1
+SPUAddress: EBB67074
+AnimationActorAddress: DCD51010
+AcceptedFistOccurrenceBefore: 0
+AcceptedFistOccurrenceAfter: 1
+LatchAtArm: 1
+RealPlayTimeAtArm: 0.46894267201423645
+MaxTimeAtArm: 0.68000000715255737
+NativeThresholdConstant: 0.60000002384185791
+ComputedThresholdAtArm: 0.40800002050399797
+RealBelowThresholdAtArm: 0
+ArmAccepted: 0
+=======================================
+
+===== FIST COMBAT LATCH REARM PROBE =====
+Boundary: FIST_COMBAT_LATCH_REARM_PROBE
+ElapsedMs: 39608.424
+Actor: PC_Hero
+ActorAddress: EBB66E10
+Action: 2
+AniPhase: 1
+StateTime: 0.779890
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+C1Generation: 1
+SPUAddress: EBB67074
+LatchOffset: 0x164
+LatchBefore: 1
+LatchAfter: 0
+WriteAttempted: 1
+WriteConfirmed: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+FistCollisionGroup: 0
+=========================================
+
+MarkerName: G3AB_COL_FIST
+MarkerOpcode: FIST
+StatePositionAfterMarker: 1
+C1GenerationValid: 1
+C1Generation: 1
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 0
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 0
+ActivatedSourceCount: 0
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 0
+FistSourceResolved: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+FistGroupBefore: 0
+FistGroupAfter: 0
+FistTriggeredListCleared: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 39622.403
+HookEntryOrdinal: 2
+CallerAddress: 00C0E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: E700F810
+ThisEntityName: Golem
+EntityArg1Address: E6A92210
+EntityArg1Name: Fist
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 42
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 2
+PlayerAniPhase: 1
+PlayerStateTime: 0.779890
+PlayerCurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+ExistingResolverFistSourceAddress: E6A92210
+ExistingResolverFistUseType: 8
+ExistingResolverFistCollisionGroup: 0
+ThisIsPlayer: 0
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 1
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_BEFORE_ORIGINAL
+Actor: PC_Hero
+Action: 2
+AniPhase: 3
+StateTime: 0.987890
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Action: 2
+AniPhase: 3
+StateTime: 0.000000
+CurrentMovementAni: Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6A92210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 39828.111
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E6A92210
+Source[0].LivenessEstablished: 1
+Source[0].Name: Fist
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 0
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 41370.273
+Actor: Golem
+Family: NORMAL
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedSourceMarker: 0
+RequiredSourceMask: 0
+RequiresFistSource: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+AuthoredFIST_OFFCount: 0
+FirstFIST_OFFFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6AA6810
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.011000
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.011000
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.025955
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.025955
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.036988
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.036988
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.050954
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.050954
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.061981
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.061981
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.073970
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.073970
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.084980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.084980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.095980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.095980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.106980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.106980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.117980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.117980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.128980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.128980
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.140969
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.140969
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.151979
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.151979
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.163968
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.163968
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.174978
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.174978
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.189933
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.189933
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.201958
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.201958
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.212969
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Golem
+Action: 1
+AniPhase: 1
+StateTime: 0.212969
+CurrentMovementAni: Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6AA6810
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+Script_FrameCollisionTest unloading cleanly.
