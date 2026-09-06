@@ -602,6 +602,70 @@ void LogEntityOnDamageEntryCap(GEU32 cap)
     std::fflush(g_pLog);
 }
 
+void ApplyAndLogFistCombatLatchRearmProbe(
+    Entity &actor, MarkerProcessResult const &result)
+{
+    if (actor == None
+        || result.code != MarkerResult_Accepted
+        || result.opcode != MarkerOpcode_Fist
+        || result.fistSourceInstance == nullptr
+        || result.fistSourceUseType != static_cast<GEInt>(gEUseType_Fist))
+    {
+        return;
+    }
+
+    gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
+        actor.Routine.m_pEngineEntityPropertySet);
+    gCScriptProcessingUnit *spu =
+        routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
+    GEInt latchBefore = -1;
+    GEInt latchAfter = -1;
+    bool const writeAttempted = spu != nullptr;
+    if (writeAttempted)
+    {
+        volatile GEU8 *latchByte =
+            reinterpret_cast<volatile GEU8 *>(spu) + 0x164;
+        latchBefore = static_cast<GEInt>(*latchByte);
+        *latchByte = 0;
+        latchAfter = static_cast<GEInt>(*latchByte);
+    }
+    bool const writeConfirmed = writeAttempted && latchAfter == 0;
+
+    if (g_pLog == nullptr)
+        return;
+
+    std::fprintf(g_pLog, "===== FIST COMBAT LATCH REARM PROBE =====\n");
+    std::fprintf(g_pLog,
+                 "Boundary: FIST_COMBAT_LATCH_REARM_PROBE\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "Action: %d\n", result.markerAction);
+    std::fprintf(g_pLog, "AniPhase: %d\n", result.markerPhase);
+    std::fprintf(g_pLog, "StateTime: %.6f\n", result.markerStateTime);
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                 result.currentAnimation.c_str());
+    std::fprintf(g_pLog, "C1Generation: %llu\n",
+                 static_cast<unsigned long long>(result.c1Generation));
+    std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
+    std::fprintf(g_pLog, "LatchOffset: 0x164\n");
+    std::fprintf(g_pLog, "LatchBefore: %d\n", latchBefore);
+    std::fprintf(g_pLog, "LatchAfter: %d\n", latchAfter);
+    std::fprintf(g_pLog, "WriteAttempted: %d\n",
+                 writeAttempted ? 1 : 0);
+    std::fprintf(g_pLog, "WriteConfirmed: %d\n",
+                 writeConfirmed ? 1 : 0);
+    std::fprintf(g_pLog, "FistSourceAddress: %p\n",
+                 static_cast<void *>(result.fistSourceInstance));
+    std::fprintf(g_pLog, "FistUseType: %d\n", result.fistSourceUseType);
+    std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
+                 result.fistSourceGroupAfter);
+    std::fprintf(g_pLog, "=========================================\n\n");
+    std::fflush(g_pLog);
+}
+
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result)
