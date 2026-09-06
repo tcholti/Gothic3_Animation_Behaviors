@@ -296,7 +296,7 @@ CollisionSourceOperations
 
 `CollisionSourceOperations` does **not** decide attack family, marker ownership, desired source set, or native character-hit eligibility.
 
-Fist/body contact is not assumed to use the same physical collision-group mechanism. Controlled Fist evidence shows logical rearm/contact can work while the logical Fist entity remains outside weapon-style `Item_Attack` group handling.
+Fist/body contact is not assumed to use the same physical collision-group mechanism. Controlled Fist evidence establishes damaging body contact while the logical Fist entity remains outside weapon-style `Item_Attack` group handling; it does not prove that the current Fist `ClearTriggeredList()` operation arms or rearms the confirmed native combat-loop damage path.
 
 A generalized `FistSourceAdapter` remains a later separately proven responsibility.
 

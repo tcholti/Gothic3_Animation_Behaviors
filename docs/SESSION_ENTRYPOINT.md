@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-05
+**Updated:** 2026-09-06
 
 Immediate transient handoff: `docs/BETWEEN_CHATS.md`  
 Project charter / highest Gothic-specific authority: `docs/README.md`  
@@ -87,7 +87,7 @@ Do not create `feature/raise-attack-speed` early.
 
 ---
 
-## Fist Stage A — CLOSED/PASS
+## Fist Stage A — CLOSED/PASS AS MARKER/SOURCE PLUMBING; CAUSAL ON INTERPRETATION SUPERSEDED
 
 Implementation:
 
@@ -110,7 +110,7 @@ Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
 frame 3: G3AB_COL_FIST
 ```
 
-Stage A proved the separated dedicated FIST route reproduces damaging human Fist contact using `TouchDamage.ClearTriggeredList()` alone while preserving group `0 -> 0`, using no equipped-weapon source mask and creating no weapon-style C1 obligation.
+Stage A established that accepted `G3AB_COL_FIST` resolved the exact human `gEUseType_Fist` / raw 8 source, executed `TouchDamage.ClearTriggeredList()`, preserved group `0 -> 0`, used no equipped-weapon source mask, created no weapon-style C1 obligation, and was followed by observed damage. N2C later identified the tested damaging path as `gCScriptProcessingUnit::sAICombatMoveItlLoop -> gCEntity::OnDamage` at observed return `Game.dll + 0x16E348`. The old inference that the list clear enabled or created that native damage is therefore superseded: Stage A is not a causally proven native Fist ON mechanism. See EV-224.
 
 ---
 
@@ -181,7 +181,7 @@ MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
 Hooks installed.
 ```
 
-The live diagnostic is therefore back on the proven Stage A FIST behavior with no Stage B `DamageDisabled` mutation/readback code.
+The live diagnostic was therefore restored to the exact Stage A FIST operation, with no Stage B `DamageDisabled` mutation/readback code. “Proven” here applies to source/marker plumbing and the executed operation, not to `ClearTriggeredList()` as a native damage-arm mechanism.
 
 ---
 
@@ -213,11 +213,11 @@ N1 proves only that the tested native Normal/Fist cases did not expose their att
 
 ---
 
-## Current Responsibility — N2 damage-dispatch timing/path investigation
+## Current Responsibility — same-move native Fist rearm remains unresolved
 
-> **N2 — determine when the exact human Fist TouchDamage reaches its damage-dispatch / TriggerTarget path relative to the authored `G3AB_COL_FIST` marker and the previously tested `DamageDisabled` setter timing.**
+> **Determine whether an accepted same-move `G3AB_COL_FIST` writing `SPU+0x164 = 0` can causally rearm native damage after `G3AB_COL_FIST_OFF`.**
 
-This is the next causal investigation only. Determine whether the relevant activation/dispatch had already passed the genuine `DamageDisabled` gate before the marker or whether a later/native dispatch path remains after it. Do not select or implement a production `FIST_OFF` mechanism from property names or from N1 alone.
+N2C identified the confirmed native path, N2D proved latch-1 suppression, N2E proved natural latch-0 reset on a fresh move, and Stage C validated production `FIST_OFF` for the tested human-Fist P0 Normal path. The newly committed same-move logs do not prove rearm: the ON -> ON damage entry preceded the second FIST marker, while current ON -> OFF -> ON leaves the latch at 1 and produced no correlated damage entry after OFF. No implementation or additional experiment is authorized by this entry point without a separately frozen bounded task.
 
 ---
 
@@ -239,23 +239,36 @@ N1 — observe native Fist trigger gates without mutation
 D — close N1 / qualify Stage B / maintain procedures
     CLOSED
 
-N2 — determine TriggerTarget/damage-dispatch timing
-    CURRENT
+N2A/N2B — timing/hook observability
+    CLOSED
 
-C — production FIST/FIST_OFF lifecycle
-    BLOCKED until a factual control mechanism is causally validated
+N2C — identify sAICombatMoveItlLoop -> gCEntity::OnDamage
+    CLOSED/PASS
+
+N2D — SPU+0x164 = 1 causal suppression
+    CLOSED/PASS
+
+N2E — fresh-move native latch reset to 0
+    CLOSED/PASS
+
+C — production FIST_OFF minimal latch integration/validation
+    CLOSED/PASS
+
+same-move FIST latch-0 rearm after FIST_OFF
+    UNRESOLVED / NOT YET ASSIGNED
 ```
 
 ---
 
-## Deliberately outside the immediate N2 responsibility
+## Deliberately outside the current documented boundary
 
-- `G3AB_COL_FIST_OFF`;
-- setting `IsEnabled`, `ReactToTouch`, or another candidate;
-- choosing or implementing another Fist disable mechanism before the N2 timing/path evidence;
-- mutating `IsEnabled`, `ReactToTouch`, `DamageDisabled`, or another candidate as a production decision;
-- new hooks unless a separately frozen bounded N2 diagnostic proves one necessary;
-- persistent Fist marker-owned lifecycle state;
+- manual latch restoration or persistent Fist lifecycle state;
+- same-move OFF -> FIST re-enable implementation without a separately frozen causal probe;
+- setting `IsEnabled`, `ReactToTouch`, `DamageDisabled`, or another candidate;
+- another Fist disable/collision-control mechanism;
+- new hooks without a separately frozen bounded diagnostic;
+- global interpretation of `SPU+0x164` outside the tested human-Fist path;
+- treating `ClearTriggeredList()` as globally useless or resolving its role on other TouchDamage paths;
 - Fist terminal/interruption restoration;
 - PhysicalFist / monsters / generalized body collision;
 - per-limb Fist markers;

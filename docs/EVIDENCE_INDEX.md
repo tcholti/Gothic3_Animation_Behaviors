@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-05
+**Updated:** 2026-09-06
 
 ## Purpose
 
@@ -32,7 +32,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | frame effects / marker channel / frame-effect layout | EV-012–EV-018 | source guide Frame effects |
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
-| Fist/body-contact source semantics | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-223 | `ANIMATION_CATALOG.md` Fist fixture |
+| Fist/body-contact source semantics and native latch control | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-230 | `ANIMATION_CATALOG.md` Fist fixture; current handoff |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | marker exact-set/replay evidence |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075 | EV-182–EV-196 for lifecycle context |
@@ -386,7 +386,7 @@ EV-143–EV-147
 EV-206–EV-215
 EV-216 for the tested Hack callback identity
 EV-217–EV-220 + the September 4 closure checkpoint for SimpleWhirl
-EV-221–EV-223 for the dedicated human Fist baseline, N1 native-state observation and qualified DamageDisabled gate interpretation
+EV-221–EV-230 for the dedicated human Fist baseline, causal reinterpretation, native path/latch proof, production FIST_OFF and same-move timing
 ANIMATION_INDEX.md / ANIMATION_CATALOG.md for exact assets
 ```
 
@@ -414,11 +414,11 @@ EV-029–EV-032
 EV-080–EV-085
 EV-207
 EV-211
-EV-221–EV-223
+EV-221–EV-230
 DESIGN.md physical source model
 ```
 
-Do not force weapon `Item_Attack` semantics onto Fist/body sources. EV-221 is the dedicated human-Fist Stage A baseline proving damaging `G3AB_COL_FIST` contact with `ClearTriggeredList()` alone while the logical Fist remains collision group 0. EV-222 closes N1 as a four-case native trigger-state observation. EV-223 qualifies Stage B: its authored-marker setter timing failed as the current OFF intervention, while tested-binary control flow confirms `DamageDisabled` is a genuine activation gate whose relation to the Fist damage-dispatch / `TriggerTarget` path remains the N2 question.
+Do not force weapon `Item_Attack` semantics onto Fist/body sources. EV-221 preserves the Stage-A marker/source/group observations, while EV-224 explicitly supersedes its old causal ON interpretation: Stage A does not prove that `ClearTriggeredList()` enabled the later native damage. EV-224–EV-226 identify the confirmed `sAICombatMoveItlLoop -> gCEntity::OnDamage` path, prove `SPU+0x164 = 1` suppresses it, and prove fresh-move native reset to 0. EV-227 closes production FIST_OFF for the tested human-Fist P0 Normal path. EV-228–EV-230 preserve the same-move timing evidence and the unresolved question of explicit latch-0 rearm after OFF.
 
 ### AttackContinuationProtection
 
