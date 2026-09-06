@@ -643,8 +643,13 @@ AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
         result.fistSourceInstance =
             CollisionSources::ResolveFistCollisionSource(actor);
     }
+    bool const ownsEquippedWeaponTiming =
+        result.decision.requiredSourceMask != SourceMask_None;
+    // N4 causal probe: exact human-Fist marker ownership no longer suppresses
+    // the original OnAI_Attack callback. Equipped-weapon suppression remains.
     result.suppressNativeCallback =
-        result.decision.foundMatchingMotion
+        ownsEquippedWeaponTiming
+        && result.decision.foundMatchingMotion
         && result.decision.scanValid
         && result.decision.markerPresent
         && CollisionSources::HasRequiredCollisionSources(
