@@ -36,6 +36,8 @@ void LogEntityOnDamageEntry(
     GEInt integerArgument1, GEInt integerArgument2,
     void *contactIteratorAddress);
 void LogEntityOnDamageEntryCap(GEU32 cap);
+void LogFistNativeTimingGateProbe(
+    Entity &actor, MarkerProcessResult const &result);
 void ApplyAndLogFistCombatLatchRearmProbe(
     Entity &actor, MarkerProcessResult const &result);
 void LogNullMarker(char const *markerName);

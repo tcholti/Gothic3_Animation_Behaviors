@@ -3,6 +3,8 @@
 #include "CollisionSources.h"
 #include "RuntimeClock.h"
 
+#include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
+
 #include <cstdint>
 #include <cstring>
 #include <string>
@@ -599,6 +601,160 @@ void LogEntityOnDamageEntryCap(GEU32 cap)
                  static_cast<unsigned int>(cap));
     std::fprintf(g_pLog, "FurtherEntriesSuppressed: 1\n");
     std::fprintf(g_pLog, "=====================================\n\n");
+    std::fflush(g_pLog);
+}
+
+void LogFistNativeTimingGateProbe(
+    Entity &actor, MarkerProcessResult const &result)
+{
+    if (g_pLog == nullptr
+        || actor == None
+        || result.code != MarkerResult_Accepted
+        || (result.opcode != MarkerOpcode_Fist
+            && result.opcode != MarkerOpcode_FistOff)
+        || result.fistSourceInstance == nullptr
+        || result.fistSourceUseType != static_cast<GEInt>(gEUseType_Fist))
+    {
+        return;
+    }
+
+    bool animationPSResolved = false;
+    bool animationActorResolved = false;
+    GEInt primaryHasMotionInstance = -1;
+    bool primaryTimingAvailable = false;
+    GEDouble primaryPlayTime = -1.0;
+    GEDouble primaryMaxTime = -1.0;
+    if (actor.Animation.IsValid())
+    {
+        eCVisualAnimation_PS *animationPS =
+            static_cast<eCVisualAnimation_PS *>(
+                actor.Animation.m_pEngineEntityPropertySet);
+        animationPSResolved = animationPS != nullptr;
+        if (animationPS != nullptr && animationPS->HasActor())
+        {
+            eCWrapper_emfx2Actor *animationActor = animationPS->GetActor();
+            animationActorResolved = animationActor != nullptr;
+            if (animationActor != nullptr)
+            {
+                auto const primaryMotion =
+                    static_cast<eCWrapper_emfx2Actor::eEMotionType>(0);
+                bool const hasMotionInstance =
+                    animationActor->HasMotionInstance(primaryMotion);
+                primaryHasMotionInstance = hasMotionInstance ? 1 : 0;
+                if (hasMotionInstance)
+                {
+                    primaryPlayTime =
+                        animationActor->GetPlayTime(primaryMotion);
+                    primaryMaxTime =
+                        animationActor->GetMaxTime(primaryMotion);
+                    primaryTimingAvailable = true;
+                }
+            }
+        }
+    }
+
+    constexpr std::uintptr_t NativeThresholdConstantRVA = 0x00308308;
+    HMODULE gameModule = ::GetModuleHandleA("Game.dll");
+    bool const gameModuleResolved = gameModule != nullptr;
+    bool const nativeThresholdConstantAvailable = gameModuleResolved;
+    GEDouble nativeThresholdConstant = -1.0;
+    if (nativeThresholdConstantAvailable)
+    {
+        std::uintptr_t const constantAddress =
+            reinterpret_cast<std::uintptr_t>(gameModule)
+            + NativeThresholdConstantRVA;
+        std::memcpy(
+            &nativeThresholdConstant,
+            reinterpret_cast<void const *>(constantAddress),
+            sizeof(nativeThresholdConstant));
+    }
+
+    bool const computedThresholdAvailable =
+        primaryTimingAvailable && nativeThresholdConstantAvailable;
+    GEDouble computedThreshold = -1.0;
+    GEInt belowThreshold = -1;
+    GEInt atOrAboveThreshold = -1;
+    if (computedThresholdAvailable)
+    {
+        computedThreshold = primaryMaxTime * nativeThresholdConstant;
+        bool const isBelowThreshold = primaryPlayTime < computedThreshold;
+        belowThreshold = isBelowThreshold ? 1 : 0;
+        atOrAboveThreshold = isBelowThreshold ? 0 : 1;
+    }
+
+    gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
+        actor.Routine.m_pEngineEntityPropertySet);
+    gCScriptProcessingUnit *spu =
+        routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
+    GEInt currentLatchValue = -1;
+    if (spu != nullptr)
+    {
+        volatile GEU8 const *latchByte =
+            reinterpret_cast<volatile GEU8 const *>(spu) + 0x164;
+        currentLatchValue = static_cast<GEInt>(*latchByte);
+    }
+
+    std::fprintf(g_pLog, "===== FIST NATIVE TIMING GATE PROBE =====\n");
+    std::fprintf(g_pLog,
+                 "Boundary: FIST_NATIVE_TIMING_GATE_PROBE\n");
+    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                 RuntimeClock::GetElapsedMilliseconds());
+    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "MarkerOpcode: %s\n",
+                 FrameCollisionMarkers::GetMarkerOpcodeName(result.opcode));
+    std::fprintf(g_pLog, "MarkerName: %s\n", result.markerName.c_str());
+    std::fprintf(g_pLog, "Action: %d\n", result.markerAction);
+    std::fprintf(g_pLog, "AniPhase: %d\n", result.markerPhase);
+    std::fprintf(g_pLog, "StateTime: %.6f\n", result.markerStateTime);
+    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                 result.currentAnimation.c_str());
+    std::fprintf(g_pLog, "C1Generation: %llu\n",
+                 static_cast<unsigned long long>(result.c1Generation));
+    std::fprintf(g_pLog, "FistSourceAddress: %p\n",
+                 static_cast<void *>(result.fistSourceInstance));
+    std::fprintf(g_pLog, "FistUseType: %d\n", result.fistSourceUseType);
+    std::fprintf(g_pLog, "MotionType: 0\n");
+    std::fprintf(g_pLog, "AnimationPSResolved: %d\n",
+                 animationPSResolved ? 1 : 0);
+    std::fprintf(g_pLog, "AnimationActorResolved: %d\n",
+                 animationActorResolved ? 1 : 0);
+    std::fprintf(g_pLog, "PrimaryHasMotionInstance: %d\n",
+                 primaryHasMotionInstance);
+    std::fprintf(g_pLog, "PrimaryTimingAvailable: %d\n",
+                 primaryTimingAvailable ? 1 : 0);
+    std::fprintf(g_pLog, "PrimaryPlayTime: %.17g\n", primaryPlayTime);
+    std::fprintf(g_pLog, "PrimaryMaxTime: %.17g\n", primaryMaxTime);
+    std::fprintf(g_pLog, "GameModuleResolved: %d\n",
+                 gameModuleResolved ? 1 : 0);
+    std::fprintf(g_pLog,
+                 "NativeThresholdConstantRVA: 0x00308308\n");
+    std::fprintf(g_pLog, "NativeThresholdConstantAvailable: %d\n",
+                 nativeThresholdConstantAvailable ? 1 : 0);
+    std::fprintf(g_pLog, "NativeThresholdConstant: %.17g\n",
+                 nativeThresholdConstant);
+    std::fprintf(g_pLog, "ComputedThresholdAvailable: %d\n",
+                 computedThresholdAvailable ? 1 : 0);
+    std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
+                 computedThreshold);
+    std::fprintf(g_pLog, "BelowThreshold: %d\n", belowThreshold);
+    std::fprintf(g_pLog, "AtOrAboveThreshold: %d\n",
+                 atOrAboveThreshold);
+    std::fprintf(g_pLog, "CurrentSPUAddress: %p\n",
+                 static_cast<void *>(spu));
+    std::fprintf(g_pLog, "CurrentLatchOffset: 0x164\n");
+    std::fprintf(g_pLog, "CurrentLatchValue: %d\n", currentLatchValue);
+    if (result.opcode == MarkerOpcode_FistOff)
+    {
+        std::fprintf(g_pLog, "FistOffLatchBefore: %d\n",
+                     result.fistOffLatchBefore);
+        std::fprintf(g_pLog, "FistOffLatchAfter: %d\n",
+                     result.fistOffLatchAfter);
+        std::fprintf(g_pLog, "FistOffLatchWriteConfirmed: %d\n",
+                     result.fistOffLatchWriteConfirmed ? 1 : 0);
+    }
+    std::fprintf(g_pLog, "=========================================\n\n");
     std::fflush(g_pLog);
 }
 
