@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.10
-**Updated:** 2026-09-05
+**Version:** 1.11
+**Updated:** 2026-09-07
 
 ## Purpose
 
@@ -16,7 +16,7 @@ It exists so a new Chat does not have to rediscover how we normally:
 - deploy and verify a DLL before testing;
 - verify that the selected product actually loaded;
 - freeze runtime tests/logs;
-- preserve and publish raw evidence;
+- preserve, publish and close raw evidence transactions;
 - reduce oversized logs for efficient analysis without altering the evidence;
 - work with large static binary/reference material;
 - request bounded Chat-safe PowerShell output for the next decision;
@@ -40,7 +40,7 @@ These are reconstructable procedure patterns, not mandatory reading before every
 Read or spot-read this document when entering an active local-operation sequence such as:
 
 - source review → build → deploy → runtime test;
-- runtime evidence capture/publish;
+- runtime evidence capture/publish/closure;
 - Git handoff between connected GitHub writes and the User's local checkout;
 - large-log or large-reference retrieval;
 - planned Chat transition where transient work must be made durable;
@@ -85,7 +85,10 @@ design/evidence question frozen
 → raw artifact commit/push
 → Normal Chat analyzes committed evidence
 → derived package/extract only if retrieval requires it
-→ normal knowledge-maintenance transaction
+→ close the evidence transaction: explicit disposition + canonical evidence promotion when warranted
+→ archive processed source artifact when it is no longer an active comparison input
+→ only then advance to the next causal question or handoff
+→ normal knowledge-maintenance transaction for any affected technical/current-state owners
 ```
 
 This sequence conforms to the validation pipeline in `PROJECT_PIPELINE.md`. Do not collapse separate validation stages merely to save a message when the separation protects causal certainty. A successful build does not prove deployment; a matching deployment does not prove load; diagnostic banner presence proves neither the later behavioral result nor behavior-only loading.
@@ -386,7 +389,7 @@ is enough. Do not paste the full log into Chat by default.
 
 ---
 
-## 8. POP-06 — Raw Runtime Evidence Integrity and Publish
+## 8. POP-06 — Raw Runtime Evidence Integrity, Publish, and Closure
 
 ### Raw evidence rule
 
@@ -440,6 +443,96 @@ git rev-parse HEAD
 Normal Chat should provide the resolved exact repository path, active branch and exact frozen filename in the concrete command. The User should not have to substitute placeholders during an actual test transaction.
 
 Normal Chat should normally ask only for the final SHA or a short success confirmation.
+
+### Same-investigation evidence-closure invariant
+
+> **No completed runtime investigation may be handed off to a later Chat, or followed by a new causal question, while its reusable conclusion exists only in conversation, a derived artifact, an index, or an unprocessed file in `research/raw/`.**
+
+Once the committed artifact has been interpreted, Normal Chat automatically continues the evidence transaction without waiting for a separate User request:
+
+```text
+committed raw evidence read from GitHub
+→ correlate logger facts + User visual observations + frozen test contract
+→ decide the narrow factual result and epistemic status
+→ assign every produced artifact an explicit disposition
+→ when a reusable factual conclusion exists, append/update the canonical Evidence Ledger at the correct global EV number
+→ update EVIDENCE_INDEX only when retrieval/routing materially changes
+→ perform any required technical/current-state knowledge-maintenance at the smallest owning authorities
+→ if the source artifact is fully processed and not needed for an active comparison, move it unchanged to research/archive
+→ record path migration when historical raw paths would otherwise become ambiguous
+→ verify the represented repository state matches the actual tree
+→ ONLY THEN advance to the next causal question or planned Chat handoff
+```
+
+A derived checkpoint may aid retrieval and synthesis, but it is not a substitute for canonical evidence promotion. `EVIDENCE_INDEX.md` routes evidence; it must not become the only owner of a new factual result.
+
+### Required artifact disposition
+
+Every published runtime artifact must end the investigation in one of these states:
+
+```text
+NEW CANONICAL EVIDENCE
+= carries a reusable factual conclusion promoted to the Evidence Ledger
+
+SUPERSEDED / NEGATIVE PROVENANCE
+= useful as history of a rejected/eliminated path, but has no independent surviving engineering consequence beyond the later canonical chain
+
+ACTIVE COMPARISON — KEEP RAW
+= deliberately retained because the current investigation still needs direct comparison against it
+
+UNPROCESSED — KEEP RAW
+= published but not yet interpreted; this is a temporary incomplete state, not a normal handoff state
+
+ARCHIVED PROVENANCE
+= interpretation/disposition complete and source no longer needed as active intake
+```
+
+If a log supports both a reusable conclusion and an active comparison, promote the reusable conclusion immediately but keep the source in raw until the comparison closes.
+
+### Archive rule
+
+Move processed raw artifacts to `research/archive/` when:
+
+```text
+the frozen question has been interpreted
++ every reusable conclusion has a canonical evidence home
+  OR the artifact is explicitly classified as superseded/negative provenance
++ no active comparison still requires the raw intake location
+```
+
+Preserve original basename and Git blob/content identity whenever possible. Archive is durable provenance, not deletion or evidence demotion.
+
+Historical EV rows may retain the path that was correct when written; use `EVIDENCE_PATH_MIGRATIONS.md` when a forward-location map is needed instead of cosmetically rewriting historical evidence.
+
+### Completeness / automation check
+
+The **interpretation itself must remain evidence-driven and human/Normal-Chat reviewed**. Automation may enforce bookkeeping completeness, but it must not decide what a runtime result means.
+
+At the end of each evidence transaction, and again before a planned Chat transition or stable-subsystem checkpoint, Normal Chat should automatically check:
+
+```text
+all newly published raw artifacts have an explicit disposition
+completed reusable findings are present in the canonical Evidence Ledger
+EVIDENCE_INDEX does not claim a factual result that exists nowhere canonically
+processed artifacts are not left in raw without an active-comparison reason
+archive/current routes point to paths that actually exist
+no current-state document relies on an unpromoted chat-only result
+```
+
+A deterministic repository tool may later perform the mechanical parts of this check (raw inventory, path existence, EV/index reference consistency, stale processed-raw detection). Such tooling is an operational aid only: it may flag incompleteness but must not auto-author evidence conclusions or silently rewrite authorities.
+
+### Closure stop conditions
+
+Do not advance the investigation when:
+
+- the artifact cannot yet be interpreted reliably;
+- a User visual observation required by the frozen test is still missing;
+- the conclusion would outrun the logged/source evidence;
+- a new factual result is present only in a derived checkpoint/index and has no canonical EV;
+- a processed artifact is about to be archived while its reusable conclusion has no canonical owner;
+- docs claim a raw/archive move that the repository tree does not actually contain.
+
+In those cases, preserve the artifact in raw and state the exact unresolved disposition rather than allowing the next Chat to infer it later.
 
 ---
 
@@ -693,6 +786,7 @@ Before deliberately moving to a new Normal Chat:
 
 ```text
 finish the current meaningful engineering step as far as it has actually completed
+→ close every completed runtime evidence transaction under POP-06; leave only explicitly active/unprocessed raw inputs
 → run the normal KNOWLEDGE_MAINTENANCE transaction for completed results
 → update SESSION_ENTRYPOINT if the immediate responsibility changed
 → update BETWEEN_CHATS only when exact short-lived continuation detail is genuinely needed
@@ -747,6 +841,7 @@ read SESSION_ENTRYPOINT first as the normal front door, but do not blindly execu
 → inspect newly committed/raw active artifacts relevant to that tail
 → use a User-supplied previous-chat transcript/TXT when available to recover reasoning/observations that were not yet made durable
 → classify which meaningful engineering events actually completed
+→ perform any missed POP-06 evidence closure before starting a new causal question
 → perform any missed KNOWLEDGE_MAINTENANCE transaction at the smallest owning authorities
 → update canonical evidence only for claims the preserved source/runtime/user evidence supports
 → correct stale SESSION_ENTRYPOINT / BETWEEN_CHATS pointers
@@ -773,7 +868,7 @@ The User should only be asked for information that cannot be recovered from repo
 
 Before declaring recovery complete, ask:
 
-> **If a fresh Normal Chat followed `SESSION_ENTRYPOINT.md` literally now, would it begin with the correct immediate responsibility and be able to retrieve the evidence needed for it?**
+> **If a fresh Normal Chat followed `SESSION_ENTRYPOINT.md` literally now, would it begin with the correct immediate responsibility, see only intentionally active raw inputs, and be able to retrieve the evidence needed for it?**
 
 If no, the recovery transaction is not complete.
 
@@ -816,7 +911,7 @@ When a new recurring operation appears, first ask whether an existing POP sectio
 | build succeeded, need exact live product | POP-03 Deploy and binary-identity verification |
 | DLL copied, before full test | POP-04 Product-appropriate startup/load verification |
 | ready for controlled runtime evidence | POP-05 Freeze runtime test and raw filename when applicable |
-| runtime log copied locally | POP-06 Raw evidence integrity and publish |
+| runtime log copied/published; evidence result must be closed before advancing | POP-06 Raw evidence integrity, publish and closure |
 | raw/archive log too large to retrieve efficiently | POP-07 Large runtime log analysis |
 | large static Engine/Game/Script_Game material | POP-08 Static binary/reference retrieval |
 | routine command/procedure fails / PowerShell output will be pasted into Chat | POP-09 Routine failure/stop behavior + Chat-safe output |
@@ -825,4 +920,4 @@ When a new recurring operation appears, first ask whether an existing POP sectio
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, keep Chat-bound command output bounded and explicit, launch Work from durable repository handoffs, preserve Normal Chat continuity without making the User reconstruct failed context, understand the project hierarchy and each target's intended use before formal review/audit, use stable project conventions and the canonical workstation-path reference rather than reinventing them, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
+> **Preserve causal certainty and canonical evidence, close each published runtime evidence transaction before advancing, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, keep Chat-bound command output bounded and explicit, launch Work from durable repository handoffs, preserve Normal Chat continuity without making the User reconstruct failed context, understand the project hierarchy and each target's intended use before formal review/audit, use stable project conventions and the canonical workstation-path reference rather than reinventing them, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**

@@ -20,7 +20,7 @@ The EV-232 split is storage-only at the stable human-Fist checkpoint; numbering 
 
 This index does not restate or change evidence status. Open the exact EV entry when wording, qualification, provenance, build scope or engineering consequence matters.
 
-Processed September 2–7 runtime artifacts were moved unchanged from `research/raw/` to `research/archive/`. Historical rows written before that move may still spell the former raw intake path; `EVIDENCE_PATH_MIGRATIONS.md` records the path migration. Raw/archive logs are verification/provenance, not routine reading.
+Processed September 2–7 runtime artifacts were moved unchanged from `research/raw/` to `research/archive/` after evidence closure; the old `ge3log10.log` crash artifact was archived in the same maintenance transaction as historical provenance. Historical rows written before those moves may still spell the former raw intake path; `EVIDENCE_PATH_MIGRATIONS.md` records the path migrations. Raw/archive logs are verification/provenance, not routine reading.
 
 Current project responsibility is never owned by this historical index. Use `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` for current state.
 
@@ -35,7 +35,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | frame effects / marker channel / frame-effect layout | EV-012–EV-018 | source guide Frame effects |
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
-| human Fist/body contact — final production route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240 | `DESIGN.md` §6.3; `SOURCE_HOOK_GUIDE.md` human-Fist path |
+| human Fist/body contact — final production route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240 | `DESIGN.md` human-Fist architecture; `SOURCE_HOOK_GUIDE.md` human-Fist path |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | equipped marker exact-set/replay evidence |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075 | EV-182–EV-196 for lifecycle context |
@@ -44,8 +44,11 @@ Current project responsibility is never owned by this historical index. Use `SES
 | historical marker occurrence-budget leak | EV-131–EV-133 | EV-167; EV-213–EV-214 for generation replacement/closure |
 | final equipped RIGHT/LEFT/BOTH/OFF vocabulary | EV-143–EV-144 | `DESIGN.md` / `ANIMATION_RULES.md` |
 | Whirl callback/action/source separation | EV-145–EV-147 | `ANIMATION_RULES.md` / cleanup map |
-| Hack callback identity / isolated routing/source/marker validation | EV-216 | archived September 2–4 Hack evidence; `DESIGN.md` §6.6 |
-| SimpleWhirl physical source / target semantics / StatePosition closure | EV-217–EV-220 | `research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md` |
+| Hack callback identity | EV-216 | `SOURCE_HOOK_GUIDE.md`; actual runtime adapter behavior is EV-244 |
+| Power marker/source/lifecycle expansion | EV-241 | `research/derived/2026-09-03_power_pierce_marker_validation_checkpoint.md` |
+| Pierce marker/source/lifecycle expansion + bounded NB/Jackydima control | EV-242 | same Power/Pierce checkpoint; compatibility qualification in exact EV |
+| SimpleWhirl physical source / target semantics / StatePosition closure | EV-217–EV-220, EV-243 | `research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md` |
+| Hack equipped routing/source/marker validation | EV-244 | EV-216 for callback identity only; archived September 4 Hack evidence |
 | New Balance / AttackCollision Whirl compatibility | EV-035, EV-148–EV-150 | source-guide same-function caution |
 | Staff full-Whirl cleanup anomaly | EV-151–EV-156 | EV-180–EV-191, EV-206–EV-207 |
 | Recover asset vs lifecycle cleanup | EV-154, EV-160–EV-162 | `COLLISION_LIFECYCLE_PLAN.md` |
@@ -67,7 +70,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | second-pass source/build separation | EV-208 | `DESIGN.md` modular architecture / release architecture |
 | second-pass CORE diagnostic sufficiency | EV-209–EV-211 | `COLLISION_TEST_PLAN.md` |
 | first behavior-only architecture smoke | EV-212 | release architecture |
-| Gate 4 C1-generation marker bookkeeping | EV-213 | `COLLISION_LIFECYCLE_PLAN.md` / `DESIGN.md` §8 |
+| Gate 4 C1-generation marker bookkeeping | EV-213 | `COLLISION_LIFECYCLE_PLAN.md` / `DESIGN.md` marker identity |
 | literal EV-131 same-motion interruption/restart closure | EV-214 | restored fixture / Gate-4 route |
 | final diagnostics-free architecture verification | EV-215 | new architecture verification complete |
 | Fist callback suppression / ClearTriggeredList removal | EV-232–EV-233 | final human-Fist architecture |
@@ -77,7 +80,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | Fist Normal/Power interruption safety | EV-237 | generation-scoped timing permission |
 | late-first-marker native leak / initial-close requirement | EV-238 | pre-production frame-12 controls |
 | production Fist implementation / build smoke | EV-239 | commits `dba34c6...` / `17491d53...` |
-| final production Normal + Power FIST acceptance | EV-240 | archive acceptance log / commit `5de195c6...` |
+| final production Normal + Power FIST acceptance | EV-240 | archived acceptance log / commit `5de195c6...` |
 
 ---
 
@@ -133,8 +136,10 @@ EV-192–EV-194
 EV-206–EV-207
 EV-211
 EV-214
-EV-217–EV-240
+EV-217–EV-244
 ```
+
+Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only.
 
 SimpleWhirl current distinction:
 
@@ -146,7 +151,7 @@ native SimpleWhirl character-hit eligibility
 = substantially target-directed, but not strictly selected-target-only
 ```
 
-EV-217 validates the physical marker/source layer. EV-219 rejects a strict selected-target-only model. EV-220 strongly supports a SimpleWhirl-vs-Power action-specific character-hit difference under matched motion content. The September 4 StatePosition-2 probe did not make SimpleWhirl Power-like; the temporary change was reverted and the final StatePosition-1 regression preserved healthy marker behavior.
+EV-217 validates the physical marker/source layer. EV-219 rejects a strict selected-target-only model. EV-220 supports a SimpleWhirl-vs-Power action-specific character-hit difference under matched motion content. EV-243 records the September 4 causal closure: StatePosition `2` did not make SimpleWhirl Power-like, the temporary change was reverted, and final StatePosition `1` regression preserved healthy marker behavior.
 
 Closed checkpoint:
 `research/derived/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md`
@@ -169,6 +174,7 @@ EV-131–EV-144
 EV-213–EV-214
 EV-217
 EV-220
+EV-241–EV-244
 ```
 
 `ClearTriggeredList()` here belongs to equipped repeated-contact semantics. Human Fist explicitly does not use it in final production architecture; see EV-233.
@@ -188,7 +194,7 @@ EV-182–EV-196
 EV-206–EV-207
 EV-209–EV-214
 COLLISION_LIFECYCLE_PLAN.md
-DESIGN.md §8
+DESIGN.md marker identity
 ```
 
 Accepted result:
@@ -201,7 +207,7 @@ Fist timing permission also uses this factual generation identity; EV-237 confir
 
 ### F. Native collision cleanup lifecycle
 
-Evidence: EV-151–EV-215 plus SimpleWhirl healthy-cleanup evidence EV-217 and the September 4 closure checkpoint.  
+Evidence: EV-151–EV-215 plus equipped expansion cleanup evidence EV-217, EV-220 and EV-241–EV-244.  
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 
@@ -214,8 +220,10 @@ Main routing: `ANIMATION_INDEX.md`.
 
 ### H. Compatibility / hook ownership
 
-Evidence: EV-035, EV-045, EV-148–EV-150, EV-173, EV-218.  
+Evidence: EV-035, EV-045, EV-148–EV-150, EV-173, EV-218, plus the bounded Pierce-specific New Balance + Jackydima control in EV-242.  
 Practical route: `SOURCE_HOOK_GUIDE.md`; deployment rule: POP-03.
+
+Do not promote EV-242 into blanket compatibility certification; the mature subsystem compatibility gate remains separate.
 
 ### I. Architecture rewrite / diagnostics-free product separation
 
@@ -282,16 +290,20 @@ behavior-only product smoke                 CLOSED — EV-212
 C1-generation marker bookkeeping            CLOSED — EV-213
 literal EV-131 regression                   CLOSED — EV-214
 final behavior-only architecture smoke      CLOSED — EV-215
-SimpleWhirl current semantic checkpoint     CLOSED for current scope — EV-217–EV-220
+Power equipped marker expansion             CLOSED/PASS — EV-241
+Pierce equipped marker expansion            CLOSED/PASS — EV-242
+SimpleWhirl current semantic checkpoint     CLOSED for current scope — EV-217–EV-220, EV-243
+Hack equipped marker/source validation      CLOSED/PASS for tested 2H/Staff scope — EV-216, EV-244
 human raw-8 Fist production                 CLOSED/PASS — EV-221–EV-240
 ```
 
 ```text
 NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
 CURRENT HUMAN FIST NORMAL + POWER PRODUCTION SCOPE = COMPLETE
+EQUIPPED POWER / PIERCE / SIMPLEWHIRL / HACK EXPANSION CHECKPOINTS = CANONICALLY PROMOTED
 ```
 
-Do not route fresh work into N4/N5/N6 or another Fist causal probe absent contradicting evidence.
+Do not route fresh work into N4/N5/N6 or another human raw-8 Fist causal probe absent contradicting evidence.
 
 ---
 
@@ -305,8 +317,9 @@ Start from:
 DESIGN.md collision architecture
 COLLISION_TEST_PLAN.md current closure gate
 EV-206–EV-215 lifecycle/architecture proof
-EV-216–EV-220 equipped expansion semantic checkpoints
-EV-232–EV-240 final Fist production proof
+EV-216–EV-220 equipped expansion history
+EV-221–EV-240 final human-Fist production proof
+EV-241–EV-244 canonical equipped expansion closures
 ```
 
 This is regression confirmation, not source/lifecycle/Fist redesign.
@@ -327,11 +340,12 @@ Prevention remains separate from lifecycle repair and from the closed Fist produ
 ```text
 EV-035
 EV-148–EV-150
+EV-242 bounded Pierce-specific control
 SOURCE_HOOK_GUIDE.md same-function caution
 DESIGN.md compatibility section
 ```
 
-Compatibility is required after the native mixed regression on mature collision behavior and again on later assembled production behavior as defined by `DESIGN.md`.
+Compatibility is required on the mature collision behavior at the architecture-defined gate and again on later assembled production behavior. EV-242 does not replace that gate.
 
 ### Production collision migration / Raise / speed
 
