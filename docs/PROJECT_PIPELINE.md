@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active operating-convention authority  
-**Version:** 1.3  
-**Updated:** 2026-09-01
+**Version:** 1.4  
+**Updated:** 2026-09-07
 
 ## Purpose
 
@@ -134,8 +134,11 @@ Current storage boundaries:
 ```text
 EVIDENCE_LEDGER.md                EV-001–EV-157
 EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
-EVIDENCE_LEDGER_199_ONWARD.md     EV-199 onward
+EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
+EVIDENCE_LEDGER_232_ONWARD.md     EV-232 onward
 ```
+
+The 2026-09-07 split at EV-232 is a storage/retrieval checkpoint after the human-Fist N3 era. It does **not** restart or reinterpret the global EV namespace.
 
 The ledger files own the claims themselves.
 
@@ -338,6 +341,8 @@ research/derived/
 ```
 
 Raw/source provenance, interpreted evidence, and derived retrieval aids must remain distinguishable.
+
+When a processed artifact moves from raw to archive, preserve the exact blob/content and basename. If historical ledger paths would otherwise become ambiguous, record the repository path migration in `EVIDENCE_PATH_MIGRATIONS.md` rather than cosmetically rewriting historical evidence rows.
 
 ---
 
