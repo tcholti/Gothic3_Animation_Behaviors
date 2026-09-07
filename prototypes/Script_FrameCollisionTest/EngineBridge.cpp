@@ -453,7 +453,6 @@ static GEDouble GE_STDCALL HumanFistTimingGateGetPlayTime_FrameCollisionTest(
         syntheticApplied = true;
     }
 
-    eCEntity *const actorInstance = state.actorInstance;
     std::uint64_t const c1Generation = state.c1Generation;
     GEDouble const maxTime = state.maxTime;
     GEDouble const nativeThresholdConstant =
