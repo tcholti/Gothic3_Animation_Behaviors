@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-06
+**Updated:** 2026-09-07
 
 > **WORK BUILD RULE:** Unless the current frozen task explicitly says that Work is authorized to build, Work must not invoke or probe build tooling/environment at all. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat.
 
@@ -16,7 +16,7 @@ Recurring procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`
 Knowledge ownership: `docs/KNOWLEDGE_MAINTENANCE.md` / `docs/KNOWLEDGE_REGISTRY.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
 
-Local workstation/build/runtime paths: `docs/LOCAL_WORKSTATION_PATHS.md` (retrieve only when deployment paths matter)
+Local workstation/build/runtime paths: `docs/LOCAL_WORKSTATION_PATHS.md` (retrieve only when deployment paths matter).
 
 ---
 
@@ -64,21 +64,115 @@ Current equipped-melee expansion state:
 ```text
 PowerAttack   CLOSED/PASS
 PierceAttack  CLOSED/PASS
-SimpleWhirl   CLOSED/PASS
-HackAttack    isolated routing/source/marker validation PASS
+SimpleWhirl   CLOSED/PASS for current marker/semantic scope
+HackAttack    CLOSED/PASS for isolated routing/source/marker scope
 ```
 
-Human Fist shares the genuinely mechanism-neutral authored-marker infrastructure, but it is **not** a source-adapter extension inside the closed equipped-weapon collision mechanism. Equipped weapons and human Fist/body damage remain separate native behavior paths after generic marker ownership is established. This correction does not reopen the closed equipped-weapon architecture.
+Human Fist shares only genuinely mechanism-neutral authored-marker infrastructure. It is **not** an equipped-weapon source adapter.
 
 ---
 
-## Repository / Phase Boundary
+## Human raw-8 Fist — PRODUCTION CLOSED/PASS
+
+Production implementation:
 
 ```text
-finish human Fist collision support on docs/collision-source-evidence
--> run final native mixed collision regression
--> run final New Balance + Script_AttackCollision mixed regression
--> complete collision knowledge/evidence closure
+dba34c6fbf36b6354186d1884faee5501ee4f261  Add production human Fist marker mechanism
+17491d53d8a4209690fc2fa49a7b5c4c04b5b0cf  compile-only duplicate-local correction
+```
+
+Canonical production acceptance:
+
+```text
+research/raw/2026-09-07_fist_production_frame12_normal_power_acceptance.log
+5de195c6c4571237fef5d841a7a8fe1b75c9cf78  evidence commit
+```
+
+Validated scope:
+
+```text
+exact human gEUseType_Fist / raw 8
+Normal P0 marked Hit
+Power P0 marked Hit
+unmarked Fist remains native
+multiple authored FIST opportunities
+below-threshold authored timing permission
+generation-scoped interruption safety
+```
+
+Current production semantics:
+
+```text
+UNMARKED HUMAN FIST
+    -> completely native
+
+MARKED HUMAN FIST EXECUTION
+    -> exact marked execution becomes authored-Fist-owned
+    -> once per factual C1 generation, SPU+0x164 is closed to 1
+       before the first authored FIST opportunity
+
+EACH ACCEPTED FIST
+    -> SPU+0x164 = 0
+    -> if real motion-0 play time is below the native threshold,
+       arm one exact bounded Game+0x16E180 timing permission
+    -> otherwise use real native timing
+
+NATIVE GOTHIC PATH
+    -> downstream target/contact/damage remains native
+    -> successful opportunity writes SPU+0x164 = 1
+    -> observed damage dispatch remains Game+0x16E348
+```
+
+The final frame-12 acceptance repeated three Power and three Normal executions. In all six, marker ownership confirmed latch `0 -> 1`; frame-12 `FIST` confirmed `1 -> 0`; real play time was already above the native threshold so no synthetic timing permission was armed; exactly six Hero raw-8 Fist `Game+0x16E348` damage events occurred, each after its corresponding authored marker and none before it. User visual result was 6/6: first swing NO damage, second swing YES damage.
+
+Production human-Fist exclusions are now explicit:
+
+```text
+no authored FIST_OFF semantic
+no Fist ClearTriggeredList operation
+no Fist-specific weapon-style OnAI_Attack suppression
+no equipped Item_Attack/Item_Equipped source window
+no weapon C1 cleanup obligation
+no custom Fist damage dispatch
+no actual animation-clock mutation
+no monster/raw55 PhysicalFist generalization
+no dedicated Fist interruption repair
+no speculative current-H2H bad-skip fix
+```
+
+Historical N1/N2/N3/N4/N5/N6/FIST_OFF experiments remain evidence, not current architecture. Route through `EVIDENCE_INDEX.md` rather than treating their old next-step wording as active.
+
+---
+
+## Current Responsibility
+
+Human Fist research/production for the currently defined Normal + Power raw-8 scope is complete.
+
+The next collision responsibility is:
+
+> **Freeze and run the final native mixed collision regression against the mature current research behavior before the separate third-party compatibility gate.**
+
+The purpose is regression confirmation, not reopening closed source/lifecycle/Fist mechanisms.
+
+Protected during that regression:
+
+```text
+weapon RIGHT / LEFT / BOTH / OFF semantics
+weapon repeated-contact ClearTriggeredList behavior
+C1 generation-scoped marker identity
+C1-R1 exact-source terminal repair
+Power / Pierce / SimpleWhirl / Hack current closed behavior
+human raw-8 FIST production semantics above
+unmarked/native fallback
+one-live-collision-twin deployment invariant
+```
+
+After the native mixed regression, the accepted branch sequence remains:
+
+```text
+final native mixed collision regression
+-> final New Balance + Script_AttackCollision / relevant Jackydima mixed compatibility regression
+-> collision knowledge/evidence closure
 -> migrate mature collision behavior into Script_G3AnimationBehaviors
 -> validate diagnostics-free collision integration
 -> promote completed collision checkpoint to main
@@ -89,216 +183,19 @@ Do not create `feature/raise-attack-speed` early.
 
 ---
 
-## Fist Stage A — CLOSED/PASS AS MARKER/SOURCE PLUMBING; CAUSAL ON INTERPRETATION SUPERSEDED
+## Deliberately Outside the Current Responsibility
 
-Implementation:
-
-```text
-5984738a41eca895900ae0929c3c930336c8ff53
-Add dedicated Fist marker baseline
-```
-
-Runtime evidence:
-
-```text
-91e6d4f81b5f8d549546686a6d308ddff3e3bd9f
-research/raw/2026-09-05_fist_stagea_human_dedicated_fist_baseline.log
-```
-
-Validated fixture:
-
-```text
-Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot
-frame 3: G3AB_COL_FIST
-```
-
-Stage A established that accepted `G3AB_COL_FIST` resolved the exact human `gEUseType_Fist` / raw 8 source, executed `TouchDamage.ClearTriggeredList()`, preserved group `0 -> 0`, used no equipped-weapon source mask, created no weapon-style C1 obligation, and was followed by observed damage. N2C later identified the tested damaging path as `gCScriptProcessingUnit::sAICombatMoveItlLoop -> gCEntity::OnDamage` at observed return `Game.dll + 0x16E348`. The old inference that the list clear enabled or created that native damage is therefore superseded: Stage A is not a causally proven native Fist ON mechanism. See EV-224.
-
----
-
-## Fist Stage B — CLOSED/FAIL AS CURRENT MARKER-TIME OFF INTERVENTION
-
-Temporary setter implementation:
-
-```text
-a8ce1487b53ff2f8e6b6b9d9e87ac36e2322c561
-```
-
-Exact readback implementation:
-
-```text
-933e652c7ee66a45b9cd826f249c93019c6248da
-```
-
-Readback evidence:
-
-```text
-research/raw/2026-09-05_fist_stageb_damage_disabled_exact_readback.log
-commit 1f74a216b32008b968677af3d271694857e7aeba
-SHA256 08A8D3D54BA878606D7C4BE5D0A4D022F85C7C5ACF9969F74845C2FAF6180152
-```
-
-Stage B established:
-
-```text
-first accepted FIST: DamageDisabled 0 -> 1
-later accepted FIST executions: DamageDisabled 1 -> 1
-visual valid-target contact damage: YES
-same human gEUseType_Fist / raw 8 source
-same collision group 0 -> 0
-same ClearTriggeredList behavior
-```
-
-Therefore `SetDamageDisabled(GETrue)` factually changed and persistently held the exact resolved Fist TouchDamage property at true, but setting it at the authored `G3AB_COL_FIST` marker did **not** stop the tested human Fist damage. That marker-time intervention is rejected as the current production `FIST_OFF` mechanism.
-
-Later static analysis of the tested binary established that `gCTouchDamage_PS::CanBeActivatedNow` checks `DamageDisabled` as a genuine activation gate and that the inherited `eCTrigger_PS` touch/intersect activation path reaches that virtual eligibility check. Stage B therefore does **not** prove that `DamageDisabled` is not a real native gate or is globally ineffective. Whether the relevant activation/dispatch passed the gate before the authored marker, or a later/native damage dispatch still occurs after it, remains unresolved.
-
----
-
-## Fist restoration — CLOSED/PASS
-
-Restoration implementation:
-
-```text
-1910c999fef91f97baadb6e19a1f4f393c9c4d5b
-Restore proven Fist Stage A baseline
-```
-
-Independent source comparison from the proven Stage A implementation to the restored commit found no prototype/source differences; only later documentation/evidence artifacts differ.
-
-The authoritative restored diagnostic target built successfully on the Windows/game PC and was deployed as the only live collision twin with exact built/live identity:
-
-```text
-Script_FrameCollisionTest.dll
-SHA256 F31368142214B2F645F2D6B5EE67B6ADE939CB5DA9BE6F79908019E9A6B5C449
-length 428032
-```
-
-Startup verification passed:
-
-```text
-Script_FrameCollisionTest diagnostic build loaded.
-DiagnosticProfile: CORE
-MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
-Hooks installed.
-```
-
-The live diagnostic was therefore restored to the exact Stage A FIST operation, with no Stage B `DamageDisabled` mutation/readback code. “Proven” here applies to source/marker plumbing and the executed operation, not to `ClearTriggeredList()` as a native damage-arm mechanism.
-
----
-
-## Fist N1 — CLOSED/PASS AS OBSERVATION
-
-Implementation and canonical runtime evidence:
-
-```text
-c1e390782309af5e9e54703389775a163b85612c
-research/raw/2026-09-05_fist_n1_native_trigger_state_probe.log
-evidence commit 1a475cd292abf526f2032262ac4300f18920e178
-raw SHA256 113857F71C3A14A548582B4B254E0CF6C1CBCB79C285B158302E5B5AB34F1972
-validated DLL SHA256 D543EEAF90B98287F0C306446C0752FF5676BC3684568381A5F5F42E28F30C8E
-```
-
-Across four intended native unmarked Normal/Fist executions (two P0 and two P1), the exact resolved human `gEUseType_Fist` / raw 8 source remained:
-
-```text
-FistCollisionGroup: 0
-IsEnabled:          1
-ReactToTouch:       1
-ResetOnUntouch:     0
-DamageDisabled:     0
-```
-
-No transition was observed at `NATIVE_ATTACK_BEFORE_ORIGINAL`, `NATIVE_ATTACK_AFTER_ORIGINAL`, `AISETSTATE_BEFORE_ORIGINAL`, or `AISETSTATE_AFTER_ORIGINAL`. Each intended execution still contained the native collision-group request `RequestedGroup: 7`, while the exact Fist source remained `0 -> 0`. Keep the separate short aborted `_AI_PowerAttack` generation outside the four-case Normal/Fist result.
-
-N1 proves only that the tested native Normal/Fist cases did not expose their attack ON/OFF lifecycle through the logged collision-group or trigger-property state at those boundaries. It does not prove that no unobserved transient or other native control exists. See EV-222–EV-223.
-
----
-
-## N3 same-move native Fist rearm — CLOSED/PASS, CASE A
-
-Canonical runtime evidence:
-
-```text
-research/raw/2026-09-06_fist_on_off_on_test_2.log
-evidence commit 84d50b504befba0b201b1ce5e05137474bf960cc
-raw SHA256 73087DB3B1A168664F951CE3AAEA20BB126012342436CD1116105B876A3F6294
-```
-
-Across three controlled executions, accepted FIST wrote latch `0 -> 0`, accepted FIST_OFF wrote `0 -> 1`, and the later accepted FIST wrote `1 -> 0`; each write was confirmed. A Fist-correlated `gCEntity::OnDamage` entry from `Game.dll + 0x16E348` followed the second FIST, and the User repeatedly observed first-punch damage NO and second-punch damage YES. N3 therefore proves same-move rearm of the confirmed native dispatch path for the tested human-Fist P0 Normal case. See EV-231.
-
-This does **not** prove latch zero is a complete authored-frame FIST ON mechanism: the first marker found the latch already zero but produced no damage. Native timing/eligibility inside `sAICombatMoveItlLoop` remains separately unresolved, and N3 alone does not authorize production FIST latch-zero promotion.
-
-## Current Responsibility — N4 Fist callback-suppression necessity test frozen
-
-> **Determine whether exact-human-Fist marker ownership still behaves identically when it stops suppressing the original `OnAI_Attack` callback, with all Fist marker/latch behavior and the controlled N3 fixture otherwise unchanged.**
-
-The tested native Fist damage route continues through `sAICombatMoveItlLoop -> SPU+0x164 -> gCEntity::OnDamage`; weapon-style `OnAI_Attack` suppression did not suppress that path and is not a proven final Fist ownership mechanism. N4 is the next bounded causal cleanup test. Weapon marker callback suppression remains protected and untouched. See `docs/BETWEEN_CHATS.md`.
-
----
-
-## Frozen Fist sequence
-
-```text
-A — dedicated FIST baseline
-    CLOSED/PASS
-
-B — DamageDisabled causal investigation
-    CLOSED/FAIL AS OFF MECHANISM
-
-R — restore exact Stage A FIST behavior
-    CLOSED/PASS
-
-N1 — observe native Fist trigger gates without mutation
-    CLOSED/PASS AS OBSERVATION
-
-D — close N1 / qualify Stage B / maintain procedures
-    CLOSED
-
-N2A/N2B — timing/hook observability
-    CLOSED
-
-N2C — identify sAICombatMoveItlLoop -> gCEntity::OnDamage
-    CLOSED/PASS
-
-N2D — SPU+0x164 = 1 causal suppression
-    CLOSED/PASS
-
-N2E — fresh-move native latch reset to 0
-    CLOSED/PASS
-
-C — production FIST_OFF minimal latch integration/validation
-    CLOSED/PASS
-
-N3 — same-move FIST latch-0 rearm after FIST_OFF
-    CLOSED/PASS — CASE A — EV-231
-
-N4 — Fist callback-suppression necessity test
-    CURRENT/NEXT — FROZEN CAUSAL CLEANUP
-```
-
----
-
-## Deliberately outside the current documented boundary
-
-- manual latch restoration or persistent Fist lifecycle state;
-- production same-move OFF -> FIST re-enable semantics merely from N3 evidence;
-- treating latch zero as a complete early/authored FIST ON mechanism before native timing/eligibility is identified;
-- removing current Fist-specific `OnAI_Attack` suppression before N4 evidence;
-- setting `IsEnabled`, `ReactToTouch`, `DamageDisabled`, or another candidate;
-- another Fist disable/collision-control mechanism;
-- new hooks without a separately frozen bounded diagnostic;
-- global interpretation of `SPU+0x164` outside the tested human-Fist path;
-- retaining `ClearTriggeredList()` in the intended final human-Fist architecture without new direct evidence, or treating it as globally useless on other TouchDamage paths;
-- Fist terminal/interruption restoration;
-- PhysicalFist / monsters / generalized body collision;
-- per-limb Fist markers;
-- weapon source-mask changes;
-- attack-family / StatePosition redesign;
-- C1 or weapon-lifecycle redesign;
-- RIGHT/LEFT/BOTH/OFF behavior changes;
-- final mixed native/compatibility regression execution;
-- Raise implementation;
-- playback-speed redesign;
+- another human-Fist causal probe without contradicting evidence;
+- authored `FIST_OFF` resurrection;
+- human-Fist `ClearTriggeredList()` or weapon callback suppression;
+- `gEUseType_PhysicalFist` / raw 55, monsters, generalized body collision or per-limb markers;
+- a theoretical Fist bad-skip repair for moves the current H2H set cannot exercise;
+- changing Power's native contact sensitivity merely because some native Power executions miss;
+- equipped-weapon source/lifecycle redesign;
+- C1-R1 or Gate-4 redesign;
+- AttackContinuationProtection until its separate later responsibility becomes active;
+- Raise/playback-speed implementation before collision branch completion;
 - target acquisition;
 - climbing.
+
+Current exact continuation belongs in `docs/BETWEEN_CHATS.md`; exact proof belongs in `EVIDENCE_INDEX.md` and the canonical ledgers.
