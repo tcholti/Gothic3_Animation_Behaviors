@@ -35,7 +35,7 @@ Never normally load behavior-only and diagnostic collision twins together.
 1. Read this file first.
 2. Read `docs/BETWEEN_CHATS.md` for the exact active continuation.
 3. Treat CAM -> project charter -> specialist authority and release purity as standing constraints.
-4. Reconstruct only the active causal route from `docs/EVIDENCE_INDEX.md` plus the owning subsystem authority when substantial reasoning requires it.
+4. Reconstruct only the active route from `docs/EVIDENCE_INDEX.md` plus the owning specialist authority when substantial reasoning requires it.
 5. Retrieve `PROJECT_PIPELINE.md` before changing branch/test/evidence/procedure/version/artifact conventions.
 6. Do not scan the whole repository or reconstruct the project from old chat history.
 7. Within one continuing subsystem context, do not repeatedly reread unchanged authorities.
@@ -62,10 +62,10 @@ Do not reopen this architecture without concrete contradicting evidence.
 Current equipped-melee expansion state:
 
 ```text
-PowerAttack   CLOSED/PASS
-PierceAttack  CLOSED/PASS
-SimpleWhirl   CLOSED/PASS for current marker/semantic scope
-HackAttack    CLOSED/PASS for isolated routing/source/marker scope
+PowerAttack   CLOSED/PASS — EV-241
+PierceAttack  CLOSED/PASS — EV-242
+SimpleWhirl   CLOSED/PASS for current marker/semantic scope — EV-217–EV-220, EV-243
+HackAttack    CLOSED/PASS for tested 2H/Staff routing/source/marker scope — EV-216, EV-244
 ```
 
 Human Fist shares only genuinely mechanism-neutral authored-marker infrastructure. It is **not** an equipped-weapon source adapter.
@@ -84,7 +84,7 @@ dba34c6fbf36b6354186d1884faee5501ee4f261  Add production human Fist marker mecha
 Canonical production acceptance:
 
 ```text
-research/raw/2026-09-07_fist_production_frame12_normal_power_acceptance.log
+research/archive/2026-09-07_fist_production_frame12_normal_power_acceptance.log
 5de195c6c4571237fef5d841a7a8fe1b75c9cf78  evidence commit
 ```
 
@@ -123,9 +123,9 @@ NATIVE GOTHIC PATH
     -> observed damage dispatch remains Game+0x16E348
 ```
 
-The final frame-12 acceptance repeated three Power and three Normal executions. In all six, marker ownership confirmed latch `0 -> 1`; frame-12 `FIST` confirmed `1 -> 0`; real play time was already above the native threshold so no synthetic timing permission was armed; exactly six Hero raw-8 Fist `Game+0x16E348` damage events occurred, each after its corresponding authored marker and none before it. User visual result was 6/6: first swing NO damage, second swing YES damage.
+Final acceptance repeated three Power and three Normal executions. All six confirmed marked-execution initial close `0 -> 1`, frame-12 FIST `1 -> 0`, zero pre-marker damage dispatches, and exactly one post-marker Hero raw-8 Fist -> Golem `Game+0x16E348` event. User visual result was 6/6: first swing NO damage, second swing YES damage.
 
-Production human-Fist exclusions are now explicit:
+Production human-Fist exclusions:
 
 ```text
 no authored FIST_OFF semantic
@@ -144,42 +144,55 @@ Historical N1/N2/N3/N4/N5/N6/FIST_OFF experiments remain evidence, not current a
 
 ---
 
+## Evidence Closure Checkpoint
+
+Transaction 1 completed on 2026-09-07:
+
+```text
+239c076002c0dc47bb1464cfb995a68490432ae6
+Close September evidence transactions
+```
+
+It promoted EV-241–EV-244, strengthened POP-06/POP-11 evidence closure rules, and moved 50 processed artifacts unchanged from `research/raw/` to `research/archive/`. Active intake now contains only `research/raw/Keep.txt`.
+
+Use `docs/EVIDENCE_PATH_MIGRATIONS.md` for old raw-path provenance.
+
+---
+
 ## Current Responsibility
 
-Human Fist research/production for the currently defined Normal + Power raw-8 scope is complete.
+The immediate responsibility is now **Transaction 2 — technical-authority consolidation**.
 
-The next collision responsibility is:
+> Bring the maintained technical authorities into exact agreement with the proven current collision state and the intended future roadmap, without changing runtime behavior.
 
-> **Freeze and run the final native mixed collision regression against the mature current research behavior before the separate third-party compatibility gate.**
-
-The purpose is regression confirmation, not reopening closed source/lifecycle/Fist mechanisms.
-
-Protected during that regression:
+Transaction 2 should consolidate only the owners needed to make these points durable:
 
 ```text
-weapon RIGHT / LEFT / BOTH / OFF semantics
-weapon repeated-contact ClearTriggeredList behavior
-C1 generation-scoped marker identity
-C1-R1 exact-source terminal repair
-Power / Pierce / SimpleWhirl / Hack current closed behavior
-human raw-8 FIST production semantics above
-unmarked/native fallback
-one-live-collision-twin deployment invariant
+final production human raw-8 Fist architecture and exclusions
+separate bounded future raw55 / gEUseType_PhysicalFist discovery stage
+AttackContinuationProtection restored to the correct later roadmap position
+future AttackContinuationProtection must preserve New Balance compatibility
+stale collision / animation / source-hook text corrected to proven Power/Pierce/SimpleWhirl/Hack/Fist state
+promoted EV-241–EV-244 and archive routes used where current references require them
 ```
 
-After the native mixed regression, the accepted branch sequence remains:
+This is documentation/authority consolidation only.
+
+Do not turn Transaction 2 into:
 
 ```text
-final native mixed collision regression
--> final New Balance + Script_AttackCollision / relevant Jackydima mixed compatibility regression
--> collision knowledge/evidence closure
--> migrate mature collision behavior into Script_G3AnimationBehaviors
--> validate diagnostics-free collision integration
--> promote completed collision checkpoint to main
--> create feature/raise-attack-speed from updated main
+new C++ collision behavior
+build/deploy work
+new runtime tests
+new Fist research
+raw55 implementation/probe
+AttackContinuationProtection implementation
+new marker vocabulary
+equipped source/lifecycle redesign
+CAM changes
 ```
 
-Do not create `feature/raise-attack-speed` early.
+After Transaction 2, re-read the resulting current authorities and then freeze the next runtime/implementation step from that maintained state rather than resuming a stale historical NEXT pointer.
 
 ---
 
@@ -188,12 +201,11 @@ Do not create `feature/raise-attack-speed` early.
 - another human-Fist causal probe without contradicting evidence;
 - authored `FIST_OFF` resurrection;
 - human-Fist `ClearTriggeredList()` or weapon callback suppression;
-- `gEUseType_PhysicalFist` / raw 55, monsters, generalized body collision or per-limb markers;
-- a theoretical Fist bad-skip repair for moves the current H2H set cannot exercise;
+- implementing `gEUseType_PhysicalFist` / raw55 during Transaction 2;
+- implementing AttackContinuationProtection during Transaction 2;
 - changing Power's native contact sensitivity merely because some native Power executions miss;
 - equipped-weapon source/lifecycle redesign;
 - C1-R1 or Gate-4 redesign;
-- AttackContinuationProtection until its separate later responsibility becomes active;
 - Raise/playback-speed implementation before collision branch completion;
 - target acquisition;
 - climbing.
