@@ -1,9 +1,9 @@
-# Gothic 3 Animation Behaviors — Evidence Ledger: EV-199 Onward
+# Gothic 3 Animation Behaviors — Evidence Ledger: EV-199–EV-231
 
 **Status:** Canonical continuation after `EVIDENCE_LEDGER_STEP_B.md` EV-198  
 **Date:** 2026-09-06
 
-**ID range:** EV-199 onward
+**ID range:** EV-199–EV-231
 
 ## Purpose
 
