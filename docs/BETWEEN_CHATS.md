@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-08
 
-## Current bridge — Transaction 2 COMPLETE; Transaction 3 NEXT
+## Current bridge — Transaction 3 COMPLETE; Transaction 4 NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -14,7 +14,7 @@ Fresh Chat must read `SESSION_ENTRYPOINT.md` first, then this file. No Work impl
 
 ---
 
-## Durable maintenance checkpoints
+## Durable Maintenance Checkpoints
 
 Transaction 1 evidence/provenance closure:
 
@@ -30,11 +30,100 @@ b4dc4b0bcb40d2b39e2d4bd5b42b409791323d16
 Consolidate collision technical authorities
 ```
 
-Transaction 2 changed documentation/authority only. No C++ behavior, build configuration, evidence ledger, project charter, procedure, or CAM material changed.
+Transaction 2 handoff:
+
+```text
+c2125e8d58f2d44e768863697ab9dc9989f53e61
+Record Transaction 2 handoff
+```
+
+Transaction 3 retrieval/bootstrap/recovery-health commit:
+
+```text
+<filled with exact Transaction 3 technical commit before publication>
+```
+
+Transaction 3 changes documentation/retrieval/procedure only. No C++ behavior, build configuration, Evidence Ledger facts, specialist collision semantics, project purpose, or CAM material changes.
 
 ---
 
-## Closed / protected technical state
+## Transaction 3 Result
+
+### Evidence/retrieval topology
+
+Canonical EV storage is now explicitly:
+
+```text
+EVIDENCE_LEDGER.md                EV-001–EV-157
+EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
+EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
+EVIDENCE_LEDGER_232_ONWARD.md     EV-232 onward
+```
+
+`EVIDENCE_PATH_MIGRATIONS.md` is explicitly the provenance-path lookup for deliberate storage moves, not an evidence ledger or technical authority.
+
+`research/README.md` is now a lightweight research-layer usage/process map. The old per-log Processing Index is retired from active maintenance; historical rows remain recoverable through Git history, while current factual meaning routes through canonical EV/index owners.
+
+### Planned vs failed Chat transition
+
+POP-06/POP-11 now distinguish:
+
+```text
+PLANNED CHAT TRANSITION
+-> close completed evidence + required knowledge maintenance first
+
+UNAVOIDABLE FAILED CHAT
+-> closure obligation transfers to recovering Chat
+-> new technical/causal work is blocked by Recovery Lock until recovery completes
+```
+
+### Interrupted-context Recovery Lock
+
+A recovering Chat must not blindly follow an old NEXT pointer or begin implementation/runtime/Work.
+
+Before recovery documentation edits it must re-establish:
+
+```text
+README charter hierarchy
+-> KNOWLEDGE_REGISTRY ownership
+-> KNOWLEDGE_MAINTENANCE transaction rules
+-> relevant specialist owner
+-> recent durable facts
+```
+
+Then state compactly:
+
+```text
+governing hierarchy
+last trusted durable checkpoint
+recent durability gap
+owners that may legitimately need maintenance
+higher-level intent to preserve
+what recovery is not authorized to redefine
+```
+
+Recovery then reconstructs only the recent tail, closes missed POP-06/maintenance/current-state work, and verifies the fresh-Chat start state.
+
+### Contradiction gate
+
+Failed-Chat recovery is **not** an automatic full documentation audit.
+
+If local closure/stale pointers explain the gap, repair only those owners.
+
+If recovery exposes broad cross-authority contradiction, unclear ownership, broad evidence-processing drift, or structure/duplication questions:
+
+```text
+STOP ordinary recovery edits
+-> invoke POP-10 formal review/audit preflight
+-> explain hierarchy / target owners / scope / non-authorized changes
+-> only then perform broader review
+```
+
+This preserves CAM/project authority principles and prevents a recovering Chat from improvising the wrong cleanup.
+
+---
+
+## Closed / Protected Technical State
 
 ```text
 collision architecture verification                 COMPLETE — EV-206–EV-215
@@ -45,93 +134,39 @@ Hack tested 2H/Staff routing/source/marker scope    CLOSED/PASS — EV-216, EV-2
 production human raw-8 FIST                         CLOSED/PASS — EV-221–EV-240
 ```
 
-Production human-Fist acceptance:
-
-```text
-research/archive/2026-09-07_fist_production_frame12_normal_power_acceptance.log
-```
-
-Final visual result remains 6/6: first swing NO damage, second swing YES damage.
+Do not change these during Transaction 4 unless the audit finds a concrete same-owner documentation contradiction; no technical redesign is authorized.
 
 ---
 
-## Consolidated collision roadmap
+## Current Exact Next Responsibility — Transaction 4
 
-### PhysicalFist/raw55
+> Perform the full post-maintenance contradiction/retrieval audit under POP-10.
 
-`gEUseType_PhysicalFist` / raw 55 remains a separate bounded **discovery** responsibility. Its serialization to animation token `Fist` does not prove human raw-8 mechanism equivalence.
-
-Preferred first comparison:
+Required preflight before findings:
 
 ```text
-one reproducible transformed animal form
-+ one clearly different transformed monster form when practical
--> classify whether raw55 is same / related-distinct / materially family-specific
+confirm CAM -> Gothic charter -> specialist owner -> procedure/current-state hierarchy
+identify intended owner/use of each audit target
+state what higher-level intent must be preserved
+state what Transaction 4 is not authorized to redefine
 ```
 
-Do not reuse `G3AB_COL_FIST` for raw55 until semantic equivalence is proven.
-
-### AttackContinuationProtection
-
-Future responsibility remains a separate:
+Then audit:
 
 ```text
-AttackContinuationProtection.cpp
+README / Registry / POP / maintenance consistency
+four-ledger routing
+EVIDENCE_INDEX + path migrations + research storage routes
+raw/archive actual tree vs documented state
+bootstrap/current-state size and accuracy
+specialist collision authority consistency after Transaction 2
+stale historical current/next language
+FIST/FIST_OFF authoring boundaries
+PhysicalFist discovery boundary
+AttackContinuationProtection ordering + New Balance constraint
+remaining dead/stale cross-routes
 ```
 
-It comes after the final native mixed collision regression and before the mature compatibility gate.
+First output should be findings + smallest-owner recommendations. Do not begin a new technical task during the audit.
 
-Hard New Balance constraint:
-
-```text
-New Balance already prevents the factual native bad-skip timeout/consumer condition
--> our module performs no intervention
-```
-
-First locate the real native timeout/consumer decision. Do not begin with an independent plugin timer, polling loop, permanent watchdog, or resurrection after teardown. Pausing the timer is only one candidate; suppressing/defering the destructive consumer may be safer. C1-R1 remains the independent fail-safe.
-
-### Technical sequence after maintenance
-
-```text
-bounded PhysicalFist/raw55 discovery
--> implement/validate only tractable evidence-backed mechanism(s)
-   OR record deliberate unsupported/deferred boundary
--> final native mixed collision regression over supported scope
--> separate AttackContinuationProtection research/implementation
--> combined marker + lifecycle + continuation regression
--> mature New Balance + relevant Jackydima / Script_AttackCollision compatibility
--> collision evidence/knowledge closure
--> migrate collision into Script_G3AnimationBehaviors
--> diagnostics-free collision integration validation
--> promote collision checkpoint to main
--> later Raise/speed/configuration work
-```
-
----
-
-## Current exact next responsibility — Transaction 3
-
-> Repair retrieval/bootstrap health without changing the newly consolidated technical semantics.
-
-Targets from the formal audit:
-
-```text
-README retrieval topology for the EV-232-onward ledger split
-KNOWLEDGE_REGISTRY evidence-owner/routing entries
-research/README processing/index drift
-EVIDENCE_PATH_MIGRATIONS ownership/routing
-bootstrap fan-out / remaining stale cross-routes
-```
-
-Preserve:
-
-```text
-CAM unchanged
-newly consolidated specialist technical semantics unchanged
-no C++ behavior change
-no build/deploy/runtime work
-no raw55 probe yet
-no AttackContinuationProtection implementation yet
-```
-
-After Transaction 3, perform Transaction 4 — full post-maintenance contradiction/retrieval audit — before freezing new technical work.
+After approved/necessary smallest-owner corrections and post-change verification, close Transaction 4 and then begin the bounded PhysicalFist/raw55 discovery from the maintained collision roadmap.

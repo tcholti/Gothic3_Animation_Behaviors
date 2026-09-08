@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.11
-**Updated:** 2026-09-07
+**Version:** 1.12  
+**Updated:** 2026-09-08
 
 ## Purpose
 
@@ -25,73 +25,60 @@ It exists so a new Chat does not have to rediscover how we normally:
 
 `docs/README.md` is the Gothic project charter and highest project-specific authority beneath CAM for project purpose, long-term direction, scope and authority topology.
 
-`PROJECT_PIPELINE.md` owns the stable naming, numbering, version/test ID, branch/state, product-identity, artifact-flow and validation-gate conventions used by these procedures. This file owns the **recurring sequences and their failure/stop behavior**, not independent alternative convention schemes.
+`PROJECT_PIPELINE.md` owns stable naming, numbering, version/test ID, branch/state, product-identity, artifact-flow and validation-gate conventions. This file owns recurring sequences and their failure/stop behavior, not competing convention schemes.
 
-`LOCAL_WORKSTATION_PATHS.md` owns the User's current mutable Windows repository/build/runtime locations. Procedures may refer to those path roles, but they do not maintain a second canonical copy of workstation-specific path data.
+`LOCAL_WORKSTATION_PATHS.md` owns mutable workstation-specific repository/build/runtime locations. `COLLABORATION_RULES.md` owns participant/tool allocation. `WORK_IMPLEMENTATION_PROTOCOL.md` owns bounded Work implementation execution.
 
-Participant/tool allocation is owned by `COLLABORATION_RULES.md`. Bounded Work implementation execution is owned by `WORK_IMPLEMENTATION_PROTOCOL.md`.
-
-These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law. Procedure maintenance/evolution is owned by §14 below; `KNOWLEDGE_REGISTRY.md` determines whether a discovered improvement belongs here or in another authority.
+These are reconstructable procedure patterns, not mandatory reading before every prompt and not frozen law. Procedure evolution is owned by §14; `KNOWLEDGE_REGISTRY.md` determines whether a discovered improvement belongs here or somewhere else.
 
 ---
 
 ## 1. When to Read This Document
 
-Read or spot-read this document when entering an active local-operation sequence such as:
+Read or spot-read when entering:
 
-- source review → build → deploy → runtime test;
+- source review -> build -> deploy -> runtime test;
 - runtime evidence capture/publish/closure;
 - Git handoff between connected GitHub writes and the User's local checkout;
 - large-log or large-reference retrieval;
 - planned Chat transition where transient work must be made durable;
 - recovery after an abrupt/max-context/unusable previous Chat;
-- a formal review/audit of project rules, procedures, architecture, documentation/knowledge structure, repository shape, or another cross-authority project surface.
+- a formal review/audit of project rules, procedures, architecture, documentation/knowledge structure, repository/product shape, or another cross-authority surface.
 
-Do not reread it after every prompt or every attack/test repetition.
+Do not reread it after every prompt. A procedure name should normally be enough to reconstruct the sequence; open the exact section when the detailed sequence or failure branch matters.
 
-A procedure name should usually be enough to reconstruct the sequence from memory/context. Open the exact section only when the detailed sequence or failure branch matters.
-
-This document does not replace:
-
-- `README.md` — project charter, highest project-specific authority, authority topology and retrieval map;
-- `PROJECT_PIPELINE.md` — stable project naming/numbering/version/test/product/artifact conventions;
-- `COLLABORATION_RULES.md` — User/Normal Chat/Work/home-PC/repository responsibility allocation and Gothic CAM operationalization;
-- `WORK_IMPLEMENTATION_PROTOCOL.md` — bounded implementation/Work execution;
-- `KNOWLEDGE_MAINTENANCE.md` — what durable authorities change after a meaningful result;
-- `SESSION_ENTRYPOINT.md` — current technical responsibility;
-- `BETWEEN_CHATS.md` — transient exact handoff when needed;
-- `LOCAL_WORKSTATION_PATHS.md` — current workstation-specific repository/build/runtime locations.
+This document does not replace the charter, pipeline, collaboration rules, Work protocol, knowledge-maintenance protocol, current-state pointers, or workstation-path authority.
 
 ---
 
 ## 2. End-to-End Validation Cue
 
-For a normal engine-facing change, the broad sequence is:
+For a normal engine-facing change:
 
 ```text
 design/evidence question frozen
-→ bounded implementation when needed
-→ implementation commit/publish
-→ independent Normal Chat source review
-→ User/local branch synchronization
-→ select exact build product/target for the question
-→ build only
-→ deploy exact built DLL
-→ verify selected product is the only intended live twin + SHA match
-→ startup/load verification appropriate to that product
-→ freeze exact runtime matrix + raw filename when diagnostic evidence is expected
-→ User runs test
-→ raw log copied unchanged into research/raw when the selected product emits canonical evidence
-→ raw artifact commit/push
-→ Normal Chat analyzes committed evidence
-→ derived package/extract only if retrieval requires it
-→ close the evidence transaction: explicit disposition + canonical evidence promotion when warranted
-→ archive processed source artifact when it is no longer an active comparison input
-→ only then advance to the next causal question or handoff
-→ normal knowledge-maintenance transaction for any affected technical/current-state owners
+-> bounded implementation when needed
+-> implementation commit/publish
+-> independent Normal Chat source review
+-> User/local branch synchronization
+-> select exact build product/target
+-> build only
+-> deploy exact built DLL
+-> verify selected product is the only intended live twin + SHA match
+-> startup/load verification
+-> freeze exact runtime matrix + raw filename when diagnostic evidence is expected
+-> User runs test
+-> raw log copied unchanged into research/raw
+-> raw artifact commit/push
+-> Normal Chat analyzes committed evidence
+-> derived package/extract only if retrieval requires it
+-> close evidence transaction: explicit disposition + canonical evidence promotion when warranted
+-> archive processed source artifact when no longer an active comparison input
+-> only then advance to the next causal question or planned handoff
+-> normal knowledge-maintenance transaction for affected technical/current-state owners
 ```
 
-This sequence conforms to the validation pipeline in `PROJECT_PIPELINE.md`. Do not collapse separate validation stages merely to save a message when the separation protects causal certainty. A successful build does not prove deployment; a matching deployment does not prove load; diagnostic banner presence proves neither the later behavioral result nor behavior-only loading.
+Do not collapse stages merely to save messages when the separation protects causal certainty. Build != deployment; deployment != load; load != behavioral proof.
 
 ---
 
@@ -99,55 +86,35 @@ This sequence conforms to the validation pipeline in `PROJECT_PIPELINE.md`. Do n
 
 ### Trigger
 
-Use whenever connected GitHub/assistant writes and the User's local checkout both need to write to the same active branch.
+Use whenever Assistant-side GitHub writes and the User's local checkout both need to write the same active branch.
 
 ### Core rule — one branch writer window at a time
 
 ```text
-Assistant finishes any required remote GitHub writes
-→ Assistant identifies the resulting remote state
-→ User synchronizes local checkout if needed
-→ Assistant hands branch to User
-→ Assistant does not push/write that branch during the User window
-→ User performs local artifact/build-related commit and pushes
-→ User reports successful push/SHA
-→ branch returns to Assistant-side writes when needed
+Assistant finishes required remote writes
+-> Assistant identifies resulting remote state
+-> User synchronizes local checkout if needed
+-> Assistant hands branch to User
+-> Assistant does not write that branch during the User window
+-> User performs local artifact/build-related commit and pushes
+-> User reports successful push/SHA
+-> branch returns to Assistant-side writes when needed
 ```
 
-Once Normal Chat gives the User a local commit/push sequence, Normal Chat should not create another commit on that branch until the User reports that their push has completed or the handoff is explicitly cancelled.
+Once Normal Chat gives the User a local commit/push sequence, do not create another commit on that branch until the User reports the push completed or the handoff is explicitly cancelled.
 
-This avoids the repeated pattern:
+If the assistant changed the remote since the User last synchronized, pull/rebase before the User begins a new local write window whenever practical. Do not blindly pull/rebase across important uncommitted local work.
 
-```text
-Assistant pushes
-→ User commits locally from older head
-→ User push rejected: fetch first
-→ avoidable pull/rebase/push cycle
-```
-
-### Preferred synchronization point
-
-If the assistant has changed the remote branch since the User last synchronized, perform the pull/rebase before the User begins a new local artifact/commit window whenever practical.
-
-The exact active branch is current project state owned by `SESSION_ENTRYPOINT.md` / `PROJECT_PIPELINE.md`; this procedure must not maintain a competing branch identity. The current repository path is resolved from `LOCAL_WORKSTATION_PATHS.md` when concrete commands are produced.
-
-Typical synchronization shape:
+Typical shape:
 
 ```powershell
-$repoRoot = '<G3 Animation Behaviors repository from LOCAL_WORKSTATION_PATHS.md>'
+$repoRoot = '<repository from LOCAL_WORKSTATION_PATHS.md>'
 Set-Location $repoRoot
-
 $branch = '<active branch from SESSION_ENTRYPOINT.md>'
 git pull --rebase origin $branch
 ```
 
-Normal Chat should normally provide the resolved exact repository path and branch in the concrete command rather than making the User look them up manually.
-
-Do not run a blind pull/rebase across important uncommitted local work. The normal handoff rule should make that unnecessary; if local work already exists, inspect the concrete state first.
-
-### If a push is rejected with `fetch first`
-
-If the intended local commit already exists and the only problem is that the remote branch advanced:
+If push is rejected with `fetch first` and the intended local commit already exists:
 
 ```powershell
 $branch = '<active branch from SESSION_ENTRYPOINT.md>'
@@ -156,7 +123,7 @@ git push origin $branch
 git rev-parse HEAD
 ```
 
-If rebase reports a conflict, stop the routine procedure and inspect that conflict. Do not automatically choose one side.
+If rebase conflicts, stop and inspect; do not auto-pick a side.
 
 ---
 
@@ -164,22 +131,20 @@ If rebase reports a conflict, stop the routine procedure and inspect that confli
 
 ### Trigger
 
-Use after the relevant source implementation has passed its required source-level review and a local runtime binary is needed.
+Use after required source review when a local runtime binary is needed.
 
 ### Pattern
 
 ```text
 correct branch/source state
-→ choose the exact target required by the frozen question
-→ build only that target into the repository-local build tree
-→ leave the built artifact in the build tree
-→ User reports success or smallest useful error excerpt
-→ STOP build stage
+-> choose exact target required by frozen question
+-> build only that target into repository-local build tree
+-> leave artifact in build tree
+-> User reports success or smallest useful error excerpt
+-> STOP build stage
 ```
 
-The build stage must not use the live Gothic 3 `scripts` directory as a build output, staging area, backup location or disabled-product store. Build products remain in the repository-local `build\...` tree until POP-03 explicitly deploys one selected product for a runtime test.
-
-Current collision research targets:
+Do not use the live Gothic 3 `scripts` directory as build output/staging/backup. Current collision research products are mutually exclusive:
 
 ```text
 Script_FrameCollisionTest
@@ -189,28 +154,7 @@ Script_FrameCollisionBehaviorTest
 = diagnostics-free behavior twin
 ```
 
-Example diagnostic build:
-
-```powershell
-$repoRoot = '<G3 Animation Behaviors repository from LOCAL_WORKSTATION_PATHS.md>'
-Set-Location $repoRoot
-
-cmake --build build --config Release --target Script_FrameCollisionTest
-```
-
-Example behavior-only build:
-
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
-```
-
-Do not build both merely because both exist; build the product selected by the current test responsibility.
-
-A successful build does not automatically deploy the DLL. The User manually copies the exact selected built product during POP-03 when a runtime test requires deployment.
-
-For a normal success, the User only needs to report that it succeeded. Do not ask for the complete successful build output.
-
-If the build fails, request or use only the smallest relevant error excerpt first. Broaden only when needed.
+Build only the selected target. A successful build does not deploy it. Request only compact success or smallest useful failure output.
 
 ---
 
@@ -220,74 +164,21 @@ If the build fails, request or use only the smallest relevant error excerpt firs
 
 Use after a successful build and before launching Gothic 3 for that build.
 
-### Current collision twin locations
-
-Resolve the current repository root and live Gothic 3 scripts directory from `LOCAL_WORKSTATION_PATHS.md`.
-
-Both collision research targets are emitted from the same repository-relative prototype build directory:
+### Invariant
 
 ```text
-<repoRoot>\build\prototypes\Script_FrameCollisionTest\Release\
+resolve exact selected built DLL
+-> ensure every mutually exclusive non-selected collision twin is physically absent from live scripts
+-> manually copy only selected DLL
+-> enumerate Script_FrameCollision* files in live scripts
+-> require exactly one selected collision twin and no renamed/disabled sibling copies
+-> SHA256 built == selected live DLL
+-> only then launch
 ```
 
-Current product files:
+Do not co-load the diagnostic and behavior-only twins. The live scripts directory is deployment surface, not storage. Renaming a script DLL in place is not a safe disable mechanism; EV-173 showed a renamed backup can still participate in runtime loading.
 
-```text
-Script_FrameCollisionTest.dll
-= diagnostic twin
-
-Script_FrameCollisionBehaviorTest.dll
-= diagnostics-free behavior twin
-```
-
-Live scripts directory role:
-
-```text
-<runtime mod-script DLL directory from LOCAL_WORKSTATION_PATHS.md>
-```
-
-### Pattern
-
-```text
-resolve the exact selected built DLL in the repository-local build tree
-→ ensure every mutually exclusive non-selected collision twin is physically absent from the live scripts directory
-→ manually copy only the selected DLL to its exact live name
-→ enumerate every Script_FrameCollision* file in the live scripts directory
-→ require exactly one selected collision twin live and no renamed/disabled sibling copies
-→ SHA256 built == selected live DLL
-→ only then launch
-```
-
-For collision research, **do not co-load** `Script_FrameCollisionTest.dll` and `Script_FrameCollisionBehaviorTest.dll`.
-
-The live Gothic 3 `scripts` directory is a deployment surface, not storage for alternative builds. A product that is not intended to load must be moved out of the live `scripts` directory or deleted from it. **Do not attempt to disable a script DLL by renaming it in place** (for example `Script_FrameCollisionBehaviorTest.dll.disabled`). Runtime evidence on 2026-09-03 showed Gothic mapping such a renamed file as a loaded module, so suffixing or extending the filename is not a safe disable mechanism.
-
-Keep alternate/currently inactive builds in their normal repository-local build output or another location outside the live Gothic 3 `scripts` directory. Deploy them manually only when they become the selected runtime product.
-
-Normal Chat should provide the concrete selected product paths rather than asking the User to infer them. A guarded deployment must enumerate the whole relevant product-name family so renamed siblings such as `.dll.disabled` cannot evade the check.
-
-Conceptual check:
-
-```powershell
-$liveDir = '<runtime mod-script DLL directory from LOCAL_WORKSTATION_PATHS.md>'
-
-Get-ChildItem -LiteralPath $liveDir |
-    Where-Object {
-        $_.Name -like 'Script_FrameCollision*'
-    } |
-    Select-Object Name, Length, LastWriteTime
-```
-
-Expected:
-
-- exactly one `Script_FrameCollision*` runtime product;
-- it is the exact product selected by the frozen test;
-- no renamed/disabled sibling copy remains in the live directory;
-- built/live SHA256 match.
-
-If any additional collision twin/sibling is present, the wrong selected product is present, or the hash is false, stop before launching and resolve deployment first.
-
-For another future product, apply the same invariant using its defined mutually exclusive/loader set rather than mechanically reusing the collision names.
+If any sibling/wrong product is live or the hash differs, stop before launch.
 
 ---
 
@@ -300,44 +191,16 @@ Use after deploy/hash verification and before spending time on the full runtime 
 ### Common invariant
 
 ```text
-launch Gothic 3 only far enough to exercise script loading
-→ reach the agreed minimal load point
-→ exit normally unless the frozen test requires continuing directly
-→ verify loading using the evidence surface appropriate to the selected product
-→ only then run/spend time on the behavioral matrix
+launch only far enough to exercise script loading
+-> reach agreed minimal load point
+-> exit normally unless continuing directly is part of frozen test
+-> verify loading using evidence surface appropriate to selected product
+-> only then run behavioral matrix
 ```
 
-### Diagnostic collision twin
+For `Script_FrameCollisionTest`, verify expected diagnostic startup banner. Missing banner/wrong binary/load failure/crash is a stop condition.
 
-For `Script_FrameCollisionTest`, loading is normally verified with both normal game startup and the exact expected diagnostic banner in the runtime-root `Script_FrameCollisionTest.log`. Resolve the runtime root from `LOCAL_WORKSTATION_PATHS.md`.
-
-Normal Chat should provide the exact banner substring for the build being tested rather than expecting the User to remember it.
-
-Typical diagnostic check:
-
-```powershell
-$gameRoot = '<Gothic 3 runtime/game root from LOCAL_WORKSTATION_PATHS.md>'
-$log = Join-Path $gameRoot 'Script_FrameCollisionTest.log'
-Select-String -Path $log -Pattern '<exact frozen startup banner substring>'
-```
-
-A missing expected diagnostic banner, wrong binary, load failure or crash is a stop condition.
-
-### Diagnostics-free collision behavior twin
-
-For `Script_FrameCollisionBehaviorTest`, **no diagnostic startup banner/log is required or expected by design**.
-
-After sole-live-DLL + SHA verification, the load check is the agreed minimal behavior-only observation, normally:
-
-```text
-Gothic 3 reaches the main menu normally
-→ normal exit
-→ no crash/load error/obvious abnormal behavior
-```
-
-A later functional smoke provides the behavior evidence applicable to that diagnostics-free product.
-
-The product/build identity convention is owned by `PROJECT_PIPELINE.md`.
+For `Script_FrameCollisionBehaviorTest`, no diagnostic banner/log is expected by design. Sole-live-DLL + SHA followed by normal main-menu load/exit is the minimal load check; later functional smoke provides behavior evidence.
 
 ---
 
@@ -349,43 +212,21 @@ Use when a controlled runtime run is intended to answer an active causal/validat
 
 ### Normal Chat responsibility before the run
 
-Freeze in the same message whenever practical:
+Freeze whenever practical:
 
-1. the exact test purpose;
-2. the minimum fixture/configuration cases;
+1. exact test purpose;
+2. minimum fixture/configuration cases;
 3. important ordering/reset requirements;
-4. the outcomes or invariants to watch for;
-5. one exact raw filename **when the selected product/test is expected to emit canonical runtime evidence**.
+4. outcomes/invariants to watch;
+5. one exact raw filename when the selected product/test is expected to emit canonical runtime evidence.
 
-Do not invent a raw-log requirement for a diagnostics-free behavior-only smoke merely to make every validation step look identical.
+Do not invent raw-log requirements for diagnostics-free smokes merely to make all validation look identical. Do not change the meaning of the test after the run to fit the result.
 
-Do not change the meaning of the test after the run merely to fit the observed result.
+Naming authority remains `PROJECT_PIPELINE.md`.
 
-### Naming authority
+The User runs the frozen test and copies the complete produced log to the exact frozen path. Extra repetitions are fine; material deviations from the frozen matrix should be reported so interpretation can distinguish them.
 
-The canonical gate/test-ID and raw/derived filename conventions live in `PROJECT_PIPELINE.md` §§3, 6–7.
-
-POP-05 owns the act of freezing the test and filename when applicable; it does not define a separate naming scheme.
-
-Before inventing a new gate/test identifier or filename pattern, retrieve the relevant pipeline section and preserve the established convention.
-
-If a test crosses midnight or is delayed after the filename is frozen, keep the frozen filename unless there is a concrete reason to rename it; consistency with the recorded test contract matters more than cosmetic date perfection.
-
-### User responsibility
-
-Run the frozen test. When a canonical raw artifact is part of the test, copy the complete produced log to the exact frozen path.
-
-When the same matrix contains comparable no-target and target-dependent cases, run all no-target cases first and then the target-dependent cases unless the causal question requires another order. Freeze any required exception explicitly.
-
-Extra repetitions are acceptable and often useful. If the configuration/order materially differs from the frozen matrix, tell Normal Chat so interpretation can distinguish those sections.
-
-After copying a raw artifact, a short confirmation such as:
-
-```text
-file is in raw
-```
-
-is enough. Do not paste the full log into Chat by default.
+After copying, a short confirmation such as `file is in raw` is enough. Do not paste the full log into Chat by default.
 
 ---
 
@@ -393,283 +234,180 @@ is enough. Do not paste the full log into Chat by default.
 
 ### Raw evidence rule
 
-A file in `research/raw/` is canonical raw evidence.
-
-Preserve it byte/content-faithfully:
-
-- do not clean trailing whitespace;
-- do not reformat/rewrite it for readability;
-- do not remove noisy lines from the canonical raw artifact;
-- do not use `git diff --cached --check` as a pass/fail validator for raw logs, because logger-produced whitespace may be legitimate raw content.
-
-Editable source/docs may still use normal whitespace/diff checks.
+A file in `research/raw/` is canonical raw evidence. Preserve it byte/content-faithfully. Do not clean whitespace, reformat, remove noise, or use source-style whitespace checks as evidence validators.
 
 ### Publish pattern
 
-Use this section only when the frozen test actually produced a canonical raw artifact.
-
-The normal sequence is:
-
 ```text
 User confirms exact raw file exists
-→ branch handoff/sync already settled
-→ verify exact path/status
-→ stage only intended artifact(s)
-→ descriptive commit
-→ push active branch
-→ report resulting SHA
-→ Assistant reads committed artifact from GitHub
+-> branch handoff/sync settled
+-> verify exact path/status
+-> stage only intended artifact(s)
+-> descriptive commit
+-> push active branch
+-> report resulting SHA
+-> Assistant reads committed artifact from GitHub
 ```
 
-Typical command pattern:
-
-```powershell
-$repoRoot = '<G3 Animation Behaviors repository from LOCAL_WORKSTATION_PATHS.md>'
-Set-Location $repoRoot
-
-$branch = '<active branch from SESSION_ENTRYPOINT.md>'
-$log = '.\research\raw\<frozen-log-name>.log'
-
-Get-Item -LiteralPath $log |
-    Select-Object Name, Length, LastWriteTime
-
-git status --short -- $log
-git add -- $log
-git commit -m '<descriptive evidence commit message>'
-git push origin $branch
-git rev-parse HEAD
-```
-
-Normal Chat should provide the resolved exact repository path, active branch and exact frozen filename in the concrete command. The User should not have to substitute placeholders during an actual test transaction.
-
-Normal Chat should normally ask only for the final SHA or a short success confirmation.
+Normal Chat should provide resolved exact path/branch/filename in concrete commands and normally ask only for the final SHA or compact success confirmation.
 
 ### Same-investigation evidence-closure invariant
 
-> **No completed runtime investigation may be handed off to a later Chat, or followed by a new causal question, while its reusable conclusion exists only in conversation, a derived artifact, an index, or an unprocessed file in `research/raw/`.**
+> **No completed runtime investigation may be knowingly handed off to a later Chat, or followed by a new causal question, while its reusable conclusion exists only in conversation, a derived artifact, an index, or an unprocessed file in `research/raw/`.**
 
-Once the committed artifact has been interpreted, Normal Chat automatically continues the evidence transaction without waiting for a separate User request:
+Once committed evidence is interpreted, Normal Chat automatically continues:
 
 ```text
-committed raw evidence read from GitHub
-→ correlate logger facts + User visual observations + frozen test contract
-→ decide the narrow factual result and epistemic status
-→ assign every produced artifact an explicit disposition
-→ when a reusable factual conclusion exists, append/update the canonical Evidence Ledger at the correct global EV number
-→ update EVIDENCE_INDEX only when retrieval/routing materially changes
-→ perform any required technical/current-state knowledge-maintenance at the smallest owning authorities
-→ if the source artifact is fully processed and not needed for an active comparison, move it unchanged to research/archive
-→ record path migration when historical raw paths would otherwise become ambiguous
-→ verify the represented repository state matches the actual tree
-→ ONLY THEN advance to the next causal question or planned Chat handoff
+read committed evidence from GitHub
+-> correlate logger facts + User observations + frozen test contract
+-> decide narrow factual result and epistemic status
+-> assign every produced artifact an explicit disposition
+-> promote reusable factual conclusion to canonical Evidence Ledger at correct global EV number
+-> update EVIDENCE_INDEX only when routing materially changes
+-> perform required technical/current-state maintenance at smallest owners
+-> archive fully processed artifact when no active comparison needs raw intake
+-> record path migration when historical raw paths would otherwise become ambiguous
+-> verify represented repository state matches actual tree
+-> ONLY THEN advance to next causal question or planned handoff
 ```
 
-A derived checkpoint may aid retrieval and synthesis, but it is not a substitute for canonical evidence promotion. `EVIDENCE_INDEX.md` routes evidence; it must not become the only owner of a new factual result.
+A derived checkpoint aids retrieval; it is not canonical evidence. `EVIDENCE_INDEX.md` routes evidence; it must not become the only owner of a factual result.
 
 ### Required artifact disposition
 
-Every published runtime artifact must end the investigation in one of these states:
+Every published runtime artifact must end as one of:
 
 ```text
 NEW CANONICAL EVIDENCE
-= carries a reusable factual conclusion promoted to the Evidence Ledger
-
 SUPERSEDED / NEGATIVE PROVENANCE
-= useful as history of a rejected/eliminated path, but has no independent surviving engineering consequence beyond the later canonical chain
-
 ACTIVE COMPARISON — KEEP RAW
-= deliberately retained because the current investigation still needs direct comparison against it
-
 UNPROCESSED — KEEP RAW
-= published but not yet interpreted; this is a temporary incomplete state, not a normal handoff state
-
 ARCHIVED PROVENANCE
-= interpretation/disposition complete and source no longer needed as active intake
 ```
 
-If a log supports both a reusable conclusion and an active comparison, promote the reusable conclusion immediately but keep the source in raw until the comparison closes.
+If a log supports a reusable conclusion and remains an active comparison, promote the conclusion immediately but keep the source in raw until comparison closure.
 
 ### Archive rule
 
-Move processed raw artifacts to `research/archive/` when:
+Archive when:
 
 ```text
-the frozen question has been interpreted
-+ every reusable conclusion has a canonical evidence home
-  OR the artifact is explicitly classified as superseded/negative provenance
-+ no active comparison still requires the raw intake location
+frozen question interpreted
++ every reusable conclusion has canonical evidence home
+  OR artifact explicitly classified as superseded/negative provenance
++ no active comparison needs raw intake location
 ```
 
-Preserve original basename and Git blob/content identity whenever possible. Archive is durable provenance, not deletion or evidence demotion.
-
-Historical EV rows may retain the path that was correct when written; use `EVIDENCE_PATH_MIGRATIONS.md` when a forward-location map is needed instead of cosmetically rewriting historical evidence.
+Preserve basename and content identity whenever possible. Archive is durable provenance, not deletion/demotion. Historical EV rows may keep old paths; `EVIDENCE_PATH_MIGRATIONS.md` resolves deliberate later moves.
 
 ### Completeness / automation check
 
-The **interpretation itself must remain evidence-driven and human/Normal-Chat reviewed**. Automation may enforce bookkeeping completeness, but it must not decide what a runtime result means.
+Interpretation remains evidence-driven and Normal-Chat reviewed. Automation may check bookkeeping completeness but must not decide what evidence means.
 
-At the end of each evidence transaction, and again before a planned Chat transition or stable-subsystem checkpoint, Normal Chat should automatically check:
+At the end of each evidence transaction, and again before a planned Chat transition or stable-subsystem checkpoint, check:
 
 ```text
-all newly published raw artifacts have an explicit disposition
-completed reusable findings are present in the canonical Evidence Ledger
+all newly published raw artifacts have explicit disposition
+completed reusable findings are in canonical Evidence Ledger
 EVIDENCE_INDEX does not claim a factual result that exists nowhere canonically
-processed artifacts are not left in raw without an active-comparison reason
+processed artifacts are not left in raw without active-comparison reason
 archive/current routes point to paths that actually exist
 no current-state document relies on an unpromoted chat-only result
 ```
 
-A deterministic repository tool may later perform the mechanical parts of this check (raw inventory, path existence, EV/index reference consistency, stale processed-raw detection). Such tooling is an operational aid only: it may flag incompleteness but must not auto-author evidence conclusions or silently rewrite authorities.
+A deterministic repository tool may later flag raw inventory, path existence, EV/index inconsistency, or stale processed-raw state. It may not auto-author conclusions or silently rewrite authorities.
+
+### Planned vs failed Chat transition
+
+The invariant above is strict for a **planned** transition: do not knowingly move Chats while completed evidence remains unclosed.
+
+An abrupt/max-context/unusable Chat failure is different because the normal closure sequence may have become impossible. That failure does **not** invalidate the project or block a new Chat from opening. Instead:
+
+> **The uncompleted evidence/maintenance closure obligation transfers to the recovering Chat as its first responsibility under POP-11. New causal/implementation work remains blocked until that recovery closure is complete.**
+
+This exception exists only for unavoidable failed transitions; it is not permission to defer ordinary maintenance deliberately.
 
 ### Closure stop conditions
 
-Do not advance the investigation when:
+Do not advance when:
 
-- the artifact cannot yet be interpreted reliably;
-- a User visual observation required by the frozen test is still missing;
-- the conclusion would outrun the logged/source evidence;
-- a new factual result is present only in a derived checkpoint/index and has no canonical EV;
-- a processed artifact is about to be archived while its reusable conclusion has no canonical owner;
-- docs claim a raw/archive move that the repository tree does not actually contain.
+- artifact cannot yet be interpreted reliably;
+- a required User visual observation is missing;
+- conclusion would outrun logged/source evidence;
+- a factual result exists only in derived/index material and has no canonical EV;
+- a processed artifact is about to be archived while reusable conclusion lacks canonical owner;
+- docs claim an archive move the repository tree does not contain.
 
-In those cases, preserve the artifact in raw and state the exact unresolved disposition rather than allowing the next Chat to infer it later.
+Keep unresolved artifacts in raw with explicit disposition rather than making a later Chat infer their state.
 
 ---
 
 ## 9. POP-07 — Large Runtime Log Analysis Without Losing Evidence
 
-### Trigger
+### Trigger / invariant
 
-Use when a canonical runtime log is too large for efficient repository/connector retrieval or would create unnecessary Chat/tool context pressure.
-
-### Invariant
-
-The source log remains canonical evidence. Retrieval convenience must never cause it to be trimmed, rewritten or replaced by a summary.
+Use when a canonical runtime log is too large for efficient retrieval.
 
 ```text
 canonical raw/archive log
-→ deterministic local post-processing when needed
-→ derived retrieval package under research/derived/
-→ read the smallest useful derived signals/timeline first
-→ return to canonical source whenever exact verification is required
+-> deterministic local post-processing when needed
+-> derived retrieval package under research/derived/
+-> read smallest useful derived signals/timeline first
+-> return to canonical source for exact verification
 ```
 
-### Reusable tool
+Current deterministic tool: `tools/log_evidence/` with usage in its README.
 
-The current deterministic implementation lives under:
+A derived package must remain reproducibly tied to source identity/hash and extraction identity. It is a retrieval aid, not replacement evidence.
+
+Whole-run interpretation order:
 
 ```text
-tools/log_evidence/
+verify source identity/hash
+-> inspect whole-run event counts
+-> inspect chronological timeline
+-> enumerate high-signal/invariant/failure matches
+-> read source-context windows
+-> retrieve additional exact source ranges when needed
+-> correlate final symptom with complete run
 ```
 
-Use its normal Windows wrapper and exact usage documented in:
-
-```text
-tools/log_evidence/README.md
-```
-
-The tool README owns wrapper syntax, execution-policy handling, examples and implementation-specific invocation details. Do not duplicate that manual here.
-
-A derived package must remain reproducibly tied to its canonical source, including source identity/hash and tool/extraction identity sufficient to verify how it was produced. Gate-specific extra signal patterns may be supplied when necessary; do not rewrite the canonical log because the built-in vocabulary is incomplete.
-
-Derived artifact naming/location conventions remain owned by `PROJECT_PIPELINE.md`. Derived material is a retrieval aid, not a replacement evidence authority.
-
-### Whole-run interpretation safeguards
-
-Large-log reduction is a retrieval method, not permission to reason from a convenient excerpt as though it represented the whole run.
-
-Normal analysis order is:
-
-```text
-verify manifest/source identity + hash
-→ inspect whole-run event counts to learn what occurred
-→ inspect chronological event timeline across the full run
-→ enumerate high-signal/invariant/failure matches
-→ read the source-context windows for those matches
-→ retrieve additional exact source ranges when the timeline exposes a relevant event outside the automatic windows
-→ only then correlate the final tail/crash/symptom with the complete run
-```
-
-Preserve these interpretation rules:
-
-- event/signal counts are navigation leads, not conclusions by themselves;
-- a signal match must be read in context before being classified as a defect;
-- a tail-only extract can help correlate a final symptom but cannot establish that earlier parts of the run were clean;
-- repeated earlier occurrences may be more causally useful than the final visible failure;
-- user visual observations remain valid evidence inputs and should be correlated with logging rather than discarded merely because a logger does not encode the visual consequence directly;
-- distinguish diagnostic/shadow outcomes from actual physical mutations;
-- if the derived package is insufficient, request/regenerate exact ranges from the canonical source rather than rerunning Gothic solely because Chat cannot directly retrieve the large raw file.
-
-Do not move extraction logic into production/runtime behavior merely for connector convenience.
+Counts are navigation leads, not conclusions. Tail-only extracts cannot prove earlier cleanliness. User visual observations remain valid evidence inputs. Distinguish diagnostic/shadow outcomes from actual mutations. If derived material is insufficient, retrieve exact source ranges rather than rerunning Gothic solely for Chat convenience.
 
 ---
 
 ## 10. POP-08 — Large Static Binary / Reference Retrieval
 
-Runtime logs and static binary references should not use the same reduction strategy.
-
-For large extracted/disassembled `Game`, `Engine`, `Script_Game`, or similar static reference material:
+For large extracted/disassembled `Game`, `Engine`, `Script_Game`, or similar static references:
 
 ```text
 complete local/extracted provenance
-→ split/index into manageable stable chunks in Gothic3_Binary_Reference
-→ retrieve by module + RVA/symbol/import/search term
-→ open only the relevant chunk/region
+-> split/index into manageable stable chunks in Gothic3_Binary_Reference
+-> retrieve by module + RVA/symbol/import/search term
+-> open only relevant region
 ```
 
-The purpose of splitting static material is direct random access, not evidence summarization. Preserve enough indexing that an address such as `Script_Game +0x41D5A` can route directly to its surrounding static code without loading a monolithic dump.
-
-Do not repeatedly regenerate/reupload the whole reference merely because another static question arises. Extend or revise the reference structure only when retrieval actually fails or the source set changes.
-
-Exact static-engine findings that become project evidence still belong in the appropriate Gothic 3 evidence/source authority; the binary-reference repository is a retrieval/provenance surface, not the only interpretation authority.
+Static split is for random access, not evidence summarization. Exact findings that become project evidence still belong in Gothic evidence/source authorities.
 
 ---
 
 ## 11. POP-09 — Routine Failure / Stop Behavior
 
-Routine procedures should fail narrowly and visibly rather than accumulating compensating steps.
-
-Examples:
+Routine procedures fail narrowly and visibly.
 
 ```text
-build error
-→ inspect smallest useful error excerpt
-
-both mutually exclusive collision twins live / wrong selected product live
-→ stop before game launch
-
-built/live SHA mismatch
-→ stop before game launch
-
-diagnostic product: expected startup banner missing
-→ stop before runtime matrix
-
-behavior-only product: load crash / main-menu failure / abnormal exit
-→ stop before functional smoke
-
-Git rebase conflict
-→ stop automatic Git procedure and inspect conflict
-
-unexpected invariant warning in a diagnostic
-→ treat as evidence/design question, not something to filter out
+build error -> inspect smallest useful error excerpt
+wrong/multiple live twins -> stop before launch
+SHA mismatch -> stop before launch
+missing diagnostic banner -> stop before runtime matrix
+behavior-only load crash -> stop before functional smoke
+Git rebase conflict -> stop automatic Git procedure
+unexpected invariant warning -> treat as evidence/design question
 ```
-
-Do not ask the User for full successful outputs or entire logs merely because a command was run. Expand output only when the current failure cannot be diagnosed from the compact result.
 
 ### Chat-safe PowerShell output
 
-When the User will paste command output back into Chat, every command should print only the bounded, explicit information needed for the next decision.
-
-Prefer:
-
-- scalar `Write-Host` lines with explicit labels;
-- exact `Select-String` filters;
-- hashes, counts and targeted status values;
-- deliberately small excerpts when surrounding context is necessary.
-
-Do not use width-dependent `Select-Object` / `Format-Table` output for required evidence values; terminal formatting can truncate or hide those values when pasted into Chat. Do not request full runtime logs, large diffs, recursive listings or similarly unbounded output. Preserve large evidence as files and use the established raw/derived repository workflow.
-
-For an ordinary successful build or deployment, request only the compact success, hash and status values needed to authorize the next step. Expand output only for a concrete failure that those values cannot diagnose.
+When the User will paste output back into Chat, commands should print only bounded explicit information needed for the next decision. Prefer labeled scalar values, exact filters, hashes/counts, and deliberately small excerpts. Avoid width-dependent formatted tables for required values and avoid unbounded logs/listings.
 
 ---
 
@@ -677,94 +415,77 @@ For an ordinary successful build or deployment, request only the compact success
 
 ### Trigger
 
-Use **before every formal project review or audit** whose conclusions may evaluate or change project rules, procedures, architecture, authority/document structure, knowledge organization, repository/product shape, or another cross-authority project surface.
+Use **before every formal project review or audit** whose conclusions may evaluate or change project rules, procedures, architecture, authority/document structure, knowledge organization, repository/product shape, or another cross-authority surface.
 
-A narrow source review of an already-frozen implementation also inherits this principle. It does not need to reload the whole charter/authority system when the governing hierarchy and target responsibility are already explicit and fresh in the current context, but it must still know which higher authority defines the behavior being reviewed.
+A narrow source review of an already-frozen implementation inherits the principle but need not reload the whole hierarchy when the governing owner is already explicit and fresh.
 
 ### Hard gate
 
 > **A review/audit has not started until the reviewer can explain the governing authority hierarchy and the intended responsibility of the material being reviewed.**
 
-Do not begin by comparing files as if every document were a peer.
+Do not compare files as if every document were a peer.
 
 ### Required preflight sequence
 
 ```text
-identify the project and exact review/audit question
-→ read/confirm `docs/README.md` §0 Project Charter first
-→ state the relevant hierarchy from CAM → Gothic charter → specialist owner → procedure/task layer
-→ identify every target document/system's stated Purpose / Scope / Status
-→ use `KNOWLEDGE_REGISTRY.md` when ownership/update responsibility is not already obvious
-→ classify what each target is: charter / specialist authority / convention / procedure / evidence / current-state / historical / implementation
-→ state the review criteria that follow from those roles
-→ ONLY THEN evaluate content, duplication, contradiction, quality or cleanup
+identify project and exact review/audit question
+-> read/confirm docs/README.md §0 Project Charter first
+-> state relevant hierarchy from CAM -> Gothic charter -> specialist owner -> procedure/task layer
+-> identify each target's stated Purpose / Scope / Status
+-> use KNOWLEDGE_REGISTRY when ownership/update responsibility is not obvious
+-> classify target: charter / specialist authority / convention / procedure / evidence / current-state / historical / implementation
+-> state review criteria that follow from those roles
+-> ONLY THEN evaluate content, duplication, contradiction, quality or cleanup
 ```
 
-For a large audit, the preflight statement should be explicit and compact. It should normally identify:
+For a large audit, state compactly:
 
 ```text
 governing hierarchy
 review scope
 intended use/owner of each major target
-what higher-level intent must be preserved
+higher-level intent that must be preserved
 what the review is not authorized to redefine
 ```
 
 ### Review interpretation rules
 
-1. **Hierarchy comes before textual similarity.** Similar wording across a charter, specialist rule and procedure may be deliberate layered operationalization rather than duplication.
-2. **Intended use comes before cleanup.** Do not merge/delete documents until the review understands why each exists and whether it owns a distinct responsibility.
-3. **File size, age, detail and recency do not define authority.** Authority comes from the project charter and ownership structure.
-4. **Lower authorities specialize higher ones; they do not silently rewrite them.** A procedure cannot redefine a project goal; a current-state file cannot redefine architecture; an implementation cannot redefine the frozen semantic authority merely because the code is newer.
-5. **Specialist authorities may be parallel.** `DESIGN.md`, `COLLABORATION_RULES.md`, `PROJECT_PIPELINE.md`, evidence authorities and other owners govern different domains beneath the charter. Do not invent a false total ordering between them.
-6. **Evidence and normative authority are distinct.** New evidence may justify changing architecture/rules, but the evidence record itself does not silently become the project rule.
-7. **Historical/current separation remains mandatory.** Git history and historical EV wording can explain why an older decision existed, but they do not override maintained current authorities.
-8. **Resolve at the lowest correct owner.** When a problem can be fixed consistently within an existing lower authority, change that owner rather than unnecessarily rewriting a higher layer.
-9. **Escalate genuine higher-level conflict.** If a proposed review finding would change the project's why, long-term direction, scope or authority topology, expose it to the User and update the charter deliberately rather than hiding it in a lower edit.
-10. **CAM is constitutional but externally evolved.** A Gothic review may identify a possible CAM gap, but it must not modify CAM. Preserve the project lesson and route it to a separate User-authorized CAM-focused responsibility.
+1. Hierarchy comes before textual similarity.
+2. Intended use comes before cleanup.
+3. File size, age, detail and recency do not define authority.
+4. Lower authorities specialize higher ones; they do not silently rewrite them.
+5. Specialist authorities may be parallel.
+6. Evidence and normative authority are distinct.
+7. Historical/current separation remains mandatory.
+8. Resolve at the lowest correct owner.
+9. Escalate genuine charter-level conflict to the User.
+10. CAM is constitutional but externally evolved: Gothic review may identify a CAM gap but must not modify CAM.
 
-### Contradiction / duplication test
-
-Before labeling two statements contradictory or redundant, ask:
-
-```text
-Do they own the same responsibility?
-Are they at the same authority layer?
-Is one a principle and the other its operational procedure?
-Is one factual evidence and the other an engineering consequence?
-Is one current authority and the other historical explanation?
-Would removing one make its intended responsibility harder to reconstruct?
-```
-
-Only after those questions are answered should the review decide whether text is truly duplicated or conflicting.
+Before calling two statements contradictory/redundant, ask whether they own the same responsibility, sit at the same layer, are principle vs procedure, evidence vs consequence, or current vs historical.
 
 ### Stop / escalation conditions
 
-Stop the review's destructive or normative change path and surface the issue when:
+Stop destructive/normative changes when:
 
-- the reviewer cannot explain the relevant authority hierarchy;
-- a target's intended purpose/owner is unclear or two current documents claim the same primary responsibility;
-- the proposed cleanup may remove unique durable knowledge before a surviving owner is identified;
-- a lower-level fix would materially change the project charter's purpose/direction/scope;
-- the issue appears to require CAM evolution rather than Gothic operationalization;
-- a factual premise needed for the review is disputed and the relevant evidence has not been reconstructed.
-
-A review may continue gathering facts after such a stop condition, but it must not pretend the unresolved authority question is already settled.
+- reviewer cannot explain relevant hierarchy;
+- target purpose/owner is unclear or two current docs claim same primary responsibility;
+- cleanup may remove unique durable knowledge before a surviving owner is identified;
+- lower-level fix would materially change project purpose/direction/scope;
+- issue appears to require CAM evolution;
+- factual premise needed for review is disputed and evidence has not been reconstructed.
 
 ### Output discipline
 
-For a structural/rules/procedure audit, prefer:
-
 ```text
 preflight hierarchy + intended-use statement
-→ findings
-→ proposed smallest-owner corrections
-→ User discussion when higher-level intent is implicated
-→ implementation only after the review boundary is clear
-→ post-change contradiction/retrieval check
+-> findings
+-> proposed smallest-owner corrections
+-> User discussion when higher-level intent is implicated
+-> implementation only after review boundary is clear
+-> post-change contradiction/retrieval check
 ```
 
-Do not create another review-procedure document. This POP section is the reusable project procedure.
+Do not create another review-procedure document.
 
 ---
 
@@ -778,99 +499,173 @@ Use when:
 - the product exposes a real context/usage warning and losing current transient work would matter;
 - the previous Chat stopped abruptly, reached maximum context, became unusable, or otherwise ended before normal maintenance/handoff completed.
 
-This is a recurring recovery sequence. It does not make `BETWEEN_CHATS.md` a second current-state authority and it does not turn Chat transcripts into canonical evidence.
+This is a recurring continuity/recovery sequence. It does not make `BETWEEN_CHATS.md` a second current-state authority and does not turn transcripts into canonical evidence.
 
 ### Planned transition
 
 Before deliberately moving to a new Normal Chat:
 
 ```text
-finish the current meaningful engineering step as far as it has actually completed
-→ close every completed runtime evidence transaction under POP-06; leave only explicitly active/unprocessed raw inputs
-→ run the normal KNOWLEDGE_MAINTENANCE transaction for completed results
-→ update SESSION_ENTRYPOINT if the immediate responsibility changed
-→ update BETWEEN_CHATS only when exact short-lived continuation detail is genuinely needed
-→ check once for completed work/results that have not yet been recorded durably
-→ verify a fresh Chat following SESSION_ENTRYPOINT would begin at the correct responsibility
-→ give the User a short starter instruction
+finish current meaningful engineering step as far as actually completed
+-> close every completed runtime evidence transaction under POP-06; leave only explicitly active/unprocessed raw inputs
+-> run normal KNOWLEDGE_MAINTENANCE transaction for completed results
+-> update SESSION_ENTRYPOINT if immediate responsibility changed
+-> update BETWEEN_CHATS only when exact short-lived continuation detail is genuinely needed
+-> check once for completed work/results not yet durable
+-> verify a fresh Chat following SESSION_ENTRYPOINT would begin at correct responsibility
+-> give User a short starter instruction
 ```
 
 Do not perform broad documentation cleanup merely because a Chat is ending.
 
 ### Normal Chat -> Work launcher
 
-Substantive frozen task state belongs in durable repository authorities, especially `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md`. A normal Work launcher should remain short and identify only:
+Frozen substantive task state belongs in durable repository authorities, especially `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`. A normal Work launcher should identify repository, branch, base HEAD, required read order, bounded responsibility, publication authorization when needed, and instruction to execute the frozen durable contract.
 
-```text
-repository
-branch
-required base HEAD
-required repository read order
-bounded responsibility name
-publication authorization when needed
-instruction to execute the frozen responsibility recorded in the repository docs
-```
-
-Do not duplicate a long design/evidence contract into the launcher when the repository handoff already carries it. Use a longer launcher only when the needed responsibility cannot first be made durable in the repository or a concrete reason makes that handoff unavailable.
+Do not duplicate a long design/evidence contract into the launcher when repository handoff already carries it.
 
 ### Context/usage warning safeguard
 
-When the product exposes a real warning that the current context is approaching a limit, and losing the transient reasoning/result state would create material reconstruction work:
+When a real context/usage warning appears and losing transient reasoning would create material reconstruction work:
 
-> **Create the smallest useful durable checkpoint before continuing deep work. Do not wait for the context to fail.**
+> **Create the smallest useful durable checkpoint before continuing deep work. Do not wait for context failure.**
 
-Depending on what has actually completed, the checkpoint may be only:
+Checkpoint may be a current-state/handoff update, already-produced raw artifact, canonical evidence/interpretation maintenance, or another existing authority update required by knowledge maintenance. Do not manufacture a commit when nothing durable changed.
 
-- a current-state/handoff update;
-- a committed raw artifact already produced;
-- a canonical evidence/interpretation maintenance transaction;
-- another existing authority update required by `KNOWLEDGE_MAINTENANCE.md`.
+### Abrupt / max-context recovery — Recovery Lock
 
-Do not manufacture a checkpoint commit when nothing durable has changed. The safeguard exists to preserve real completed/transient work, not to create ceremony.
+If the previous Chat ended before the planned sequence could run, the new Chat must assume `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` **may be stale** until checked against newer durable facts.
 
-### Abrupt / max-context recovery
-
-If the previous Chat ended before the planned sequence could run, the new Chat must assume that `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` **may be stale** until checked against newer durable facts.
-
-Recovery sequence:
+Immediately enter **Recovery Lock**:
 
 ```text
-read SESSION_ENTRYPOINT first as the normal front door, but do not blindly execute its NEXT step yet
-→ confirm active branch and newest remote commits around the last known durable point
-→ inspect only the recent tail needed to determine what happened after the maintained state
-→ inspect newly committed/raw active artifacts relevant to that tail
-→ use a User-supplied previous-chat transcript/TXT when available to recover reasoning/observations that were not yet made durable
-→ classify which meaningful engineering events actually completed
-→ perform any missed POP-06 evidence closure before starting a new causal question
-→ perform any missed KNOWLEDGE_MAINTENANCE transaction at the smallest owning authorities
-→ update canonical evidence only for claims the preserved source/runtime/user evidence supports
-→ correct stale SESSION_ENTRYPOINT / BETWEEN_CHATS pointers
-→ verify the recovered current responsibility against current source/branch state
-→ only then resume normal technical work
+DO NOT start new implementation
+DO NOT freeze/run a new runtime experiment
+DO NOT launch a new Work task
+DO NOT blindly execute an old NEXT pointer
 ```
 
-A supplied transcript is **recovery material**, not automatically canonical project authority. Its claims must be separated into source facts, runtime facts, User observations, interpretations, hypotheses and proposed next tests before promotion into the normal owners.
+The first responsibility is to restore a trustworthy shared project state.
 
-Do not reconstruct the entire repository or reread every authority merely because one Chat failed. Start from the maintained front door and examine only the recent durability gap.
+### Authority-orientation gate before recovery edits
+
+Before the recovering Chat changes documentation/evidence/current-state, it must understand the ownership structure relevant to the recovery gap.
+
+Read/confirm only the smallest necessary authority chain:
+
+```text
+SESSION_ENTRYPOINT first as a clue, not unquestioned truth
+-> docs/README.md §0 Project Charter
+-> KNOWLEDGE_REGISTRY.md ownership/update routing
+-> KNOWLEDGE_MAINTENANCE.md maintenance rules
+-> relevant specialist authority for the subsystem that was active
+-> COLLABORATION_RULES.md only when participant/authorization/CAM operationalization is materially part of the recovery question
+```
+
+Then state a compact **recovery preflight**:
+
+```text
+governing authority hierarchy
+last trusted durable checkpoint
+what durability gap must be reconstructed
+which owners may legitimately need maintenance
+what higher-level intent must be preserved
+what recovery is NOT authorized to redefine
+```
+
+> **A recovering Chat may inspect recent facts before this statement is complete, but it must not start documentation cleanup/review edits until it can explain the relevant authority hierarchy and ownership.**
+
+This is an orientation gate, not automatically a formal project audit.
+
+### Durable-state reconstruction
+
+After orientation:
+
+```text
+confirm active branch and newest remote commits around last trusted durable point
+-> inspect only recent tail needed to determine what happened after maintained state
+-> inspect newly committed/raw active artifacts relevant to that tail
+-> use User-supplied previous-chat transcript/TXT when available for reasoning/observations not yet durable
+-> classify which meaningful engineering events actually completed
+```
+
+Classify recovered material explicitly where useful:
+
+```text
+completed + already durable
+completed but maintenance/evidence closure missed
+published evidence but unclosed
+partial/incomplete work
+conversation-only interpretation/hypothesis
+still-active responsibility
+```
+
+A supplied transcript is **recovery material, not authority**. Separate transcript claims into source facts, runtime facts, User observations, interpretations, hypotheses and proposed tests before promotion.
+
+### Recovery closure
+
+Once the recent durable state is understood:
+
+```text
+perform missed POP-06 evidence closure before any new causal question
+-> perform missed KNOWLEDGE_MAINTENANCE at smallest owning authorities
+-> update canonical evidence only for claims supported by preserved source/runtime/User evidence
+-> correct stale SESSION_ENTRYPOINT / BETWEEN_CHATS pointers
+-> verify recovered current responsibility against current branch/source state
+```
+
+Do **not** reconstruct the entire repository or reread every authority because one Chat failed. Default recovery is bounded to the durability gap.
+
+### Contradiction gate — bounded recovery vs formal audit
+
+Interrupted-context recovery is **not** permission for an improvised full documentation review.
+
+If bounded recovery finds only local missed closure/stale pointers, fix those owners and continue.
+
+If recovery instead exposes any of the following:
+
+```text
+multiple current authority layers materially contradict each other
+ownership of the needed correction is unclear
+several unrelated documents appear stale in ways not explained by the recent gap
+processed evidence has accumulated broadly without canonical promotion
+resolving the gap would require judging document structure/duplication across authorities
+project purpose/direction/authority topology appears implicated
+```
+
+then:
+
+```text
+STOP ordinary recovery edits
+-> invoke POP-10 formal review/audit preflight
+-> explain hierarchy / owners / scope / non-authorized changes
+-> obtain User agreement when the review boundary is broad or higher-level intent may be affected
+-> only then perform the formal review
+```
+
+This gate prevents a recovery Chat from misunderstanding layered authority and "cleaning up" the wrong documents.
 
 ### Recovery stop conditions
 
-Surface the contradiction instead of silently choosing a story when:
+Surface contradiction instead of choosing a story when:
 
-- newest commits/raw artifacts contradict the remembered/transcript account;
-- it is unclear whether a test/result actually completed;
-- an interpretation would promote a hypothesis beyond what the preserved evidence supports;
-- branch state indicates another writer advanced the branch after the recovered point.
+- newest commits/raw artifacts contradict remembered/transcript account;
+- unclear whether a test/result actually completed;
+- interpretation would promote hypothesis beyond preserved evidence;
+- branch state shows another writer advanced the branch after recovered point;
+- recovering Chat cannot explain the relevant authority hierarchy or owner for a proposed edit.
 
-The User should only be asked for information that cannot be recovered from repository state or supplied recovery material.
+Ask the User only for information that cannot be recovered from repository state or supplied recovery material.
 
 ### Final continuity check
 
-Before declaring recovery complete, ask:
+Before declaring recovery complete:
 
-> **If a fresh Normal Chat followed `SESSION_ENTRYPOINT.md` literally now, would it begin with the correct immediate responsibility, see only intentionally active raw inputs, and be able to retrieve the evidence needed for it?**
+> **If a fresh Normal Chat followed `SESSION_ENTRYPOINT.md` literally now, would it begin with the correct immediate responsibility, see only intentionally active raw inputs, and be able to retrieve the evidence and owning authorities needed for that responsibility?**
 
-If no, the recovery transaction is not complete.
+If no, recovery is not complete.
+
+Only after this check may Recovery Lock end and normal technical work resume.
 
 ---
 
@@ -878,46 +673,40 @@ If no, the recovery transaction is not complete.
 
 The active procedure is the current best project-specific operationalization. Git history preserves old versions; the active document should not accumulate obsolete variants.
 
-Use this maintenance trigger:
+Maintenance trigger:
 
 ```text
 use procedure normally
-→ no routine audit
-→ repeated friction/mistake OR one serious failure OR clearly better recurring method appears
-→ whichever participant notices first raises it
-→ diagnose actual cause
-→ revise the smallest owning procedure/rule
-→ continue using revised procedure
+-> no routine audit
+-> repeated friction/mistake OR one serious failure OR clearly better recurring method appears
+-> whichever participant notices first raises it
+-> diagnose actual cause
+-> revise smallest owning procedure/rule
+-> continue using revised procedure
 ```
 
-If the issue is actually a naming/numbering/version/state/product convention rather than a recurring sequence, update `PROJECT_PIPELINE.md` instead of silently embedding a new convention here.
+If the issue is naming/numbering/version/state/product convention, update `PROJECT_PIPELINE.md`. If participant/tool allocation or CAM operationalization, update `COLLABORATION_RULES.md`. If project purpose/long-term direction/scope/authority topology, update the charter rather than hiding it here.
 
-If the issue is participant/tool allocation or CAM operationalization rather than an operational sequence, update `COLLABORATION_RULES.md` instead.
-
-If the issue is project purpose, long-term direction, scope or authority topology, update the project charter in `README.md` rather than hiding that change in a procedure.
-
-When a procedure becomes too long, ask whether stable detail can be moved into a reusable script/tool while this document keeps only the trigger, invariant, and sequence cue.
-
-When a new recurring operation appears, first ask whether an existing POP section can absorb it. Create another procedure only when the responsibility is genuinely distinct and expected to recur.
+When a procedure becomes too long, ask whether stable detail can move into a reusable script/tool while this document keeps the trigger, invariant and sequence cue.
 
 ---
 
-## Quick Procedure Index
+## Procedure Routing Summary
 
-| Cue | Procedure |
+| Situation | Procedure |
 |---|---|
-| assistant/user both writing same branch | POP-01 Git branch handoff and synchronization |
-| source reviewed, need selected DLL | POP-02 Build only |
-| build succeeded, need exact live product | POP-03 Deploy and binary-identity verification |
-| DLL copied, before full test | POP-04 Product-appropriate startup/load verification |
-| ready for controlled runtime evidence | POP-05 Freeze runtime test and raw filename when applicable |
-| runtime log copied/published; evidence result must be closed before advancing | POP-06 Raw evidence integrity, publish and closure |
-| raw/archive log too large to retrieve efficiently | POP-07 Large runtime log analysis |
-| large static Engine/Game/Script_Game material | POP-08 Static binary/reference retrieval |
-| routine command/procedure fails / PowerShell output will be pasted into Chat | POP-09 Routine failure/stop behavior + Chat-safe output |
-| formal project review/audit | POP-10 Authority-hierarchy + intended-use preflight |
-| planned Chat transition / bounded Work launcher / context warning / previous Chat failed | POP-11 Continuity, Work launcher and interrupted-context recovery |
+| branch writer handoff / sync | POP-01 |
+| build only | POP-02 |
+| deploy + binary identity | POP-03 |
+| startup/load verification | POP-04 |
+| freeze runtime test/raw filename | POP-05 |
+| publish/interpret/close/archive runtime evidence | POP-06 |
+| large runtime log | POP-07 |
+| large static binary/reference material | POP-08 |
+| routine failure / Chat-safe output | POP-09 |
+| formal project review/audit | POP-10 |
+| planned Chat transition / context warning / previous Chat failed | POP-11 |
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence, close each published runtime evidence transaction before advancing, select and verify the exact product required by the question, never co-load mutually exclusive research twins, hand the active Git branch between writers deliberately, keep Chat-bound command output bounded and explicit, launch Work from durable repository handoffs, preserve Normal Chat continuity without making the User reconstruct failed context, understand the project hierarchy and each target's intended use before formal review/audit, use stable project conventions and the canonical workstation-path reference rather than reinventing them, and store reusable operational patterns externally so future Chats can reconstruct the workflow without repeatedly rediscovering it.**
+> **Preserve causal certainty and canonical evidence; close completed runtime evidence before planned handoff; when a Chat fails unavoidably, recover authority/ownership and close the durability gap before new work; select and verify the exact runtime product; hand the active branch deliberately; keep Chat-bound output bounded; launch Work from durable handoffs; understand hierarchy and intended use before formal reviews; and keep recurring operational knowledge in the smallest correct owner so future Chats can resume without rediscovery or accidental redesign.**

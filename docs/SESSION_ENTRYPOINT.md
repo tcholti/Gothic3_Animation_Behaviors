@@ -9,11 +9,11 @@
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat.
 
 Immediate transient handoff: `docs/BETWEEN_CHATS.md`  
-Project charter: `docs/README.md`  
+Project charter/retrieval model: `docs/README.md`  
 CAM operationalization: `docs/COLLABORATION_RULES.md`  
 Stable conventions: `docs/PROJECT_PIPELINE.md`  
-Recurring procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`  
-Knowledge ownership: `docs/KNOWLEDGE_MAINTENANCE.md` / `docs/KNOWLEDGE_REGISTRY.md`  
+Recurring procedures/recovery/review preflight: `docs/PROJECT_OPERATING_PROCEDURES.md`  
+Knowledge ownership/maintenance: `docs/KNOWLEDGE_REGISTRY.md` + `docs/KNOWLEDGE_MAINTENANCE.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
 
 ---
@@ -45,40 +45,77 @@ No authored FIST_OFF, no Fist ClearTriggeredList, no weapon source window/C1 phy
 
 ---
 
-## Evidence / Maintenance Checkpoint
+## Maintenance Checkpoints
 
-Transaction 1:
+Transaction 1 — evidence/provenance closure:
 
 ```text
 239c076002c0dc47bb1464cfb995a68490432ae6
 Close September evidence transactions
 ```
 
-EV-241–EV-244 were promoted; POP-06/POP-11 were strengthened; 50 processed artifacts were archived unchanged; `research/raw/` now contains only `Keep.txt`.
+Transaction 2 — specialist technical-authority consolidation:
 
-Transaction 2 consolidates the technical authorities around the proven state and roadmap. Exact resulting commit is recorded in `BETWEEN_CHATS.md` after publication.
+```text
+b4dc4b0bcb40d2b39e2d4bd5b42b409791323d16
+Consolidate collision technical authorities
+```
+
+Transaction 2 continuity handoff:
+
+```text
+c2125e8d58f2d44e768863697ab9dc9989f53e61
+Record Transaction 2 handoff
+```
+
+Transaction 3 repairs retrieval/bootstrap/recovery health. Exact published Transaction 3 commit is recorded in `BETWEEN_CHATS.md`.
+
+Key Transaction 3 rule:
+
+```text
+planned Chat transition
+-> completed evidence/maintenance must be closed before moving
+
+unavoidable failed Chat
+-> new Chat enters POP-11 Recovery Lock
+-> authority orientation first
+-> reconstruct only recent durability gap
+-> close missed evidence/maintenance
+-> invoke POP-10 only if contradiction gate exposes broad authority drift
+-> only then resume technical work
+```
 
 ---
 
 ## Current Responsibility
 
-After Transaction 2 publication, the next maintenance responsibility is **Transaction 3 — retrieval/bootstrap health**.
+After Transaction 3 publication, the next responsibility is:
 
-Transaction 3 should repair only retrieval/current-bootstrap surfaces identified by the audit, including:
+> **Transaction 4 — full post-maintenance contradiction/retrieval audit.**
+
+This is a formal audit and therefore must begin with POP-10 authority/intended-use preflight before judging or changing anything.
+
+Transaction 4 should verify at minimum:
 
 ```text
-README / KNOWLEDGE_REGISTRY routing for the EV-232 ledger split
-research/README processing/index drift
-ownership/routing of EVIDENCE_PATH_MIGRATIONS.md
-SESSION_ENTRYPOINT / BETWEEN_CHATS size and fresh-Chat retrieval health
-remaining dead/stale cross-routes discovered during the maintenance audit
+CAM boundary unchanged
+README / Registry / procedures agree on authority and recovery model
+four-ledger EV routing is coherent
+EVIDENCE_INDEX / ledger / path-migration routes resolve correctly
+research/raw contains only intentionally active inputs
+research/archive claims match actual tree
+SESSION_ENTRYPOINT / BETWEEN_CHATS are minimal and accurate
+specialist collision authorities remain mutually consistent after consolidation
+no stale N4/N6/SimpleWhirl-next wording
+no production FIST_OFF resurrection
+PhysicalFist/raw55 remains discovery-only
+AttackContinuationProtection remains separate and before mature compatibility
+no dead/stale cross-routes require broader reconstruction
 ```
 
-Do not change collision behavior, CAM, or specialist technical semantics during Transaction 3.
+Transaction 4 is review/audit only until findings are stated. If it finds a real defect, apply the smallest-owner correction and rerun the relevant post-change check.
 
-After Transaction 3 comes Transaction 4: post-maintenance contradiction/retrieval audit.
-
-Only after the maintenance transactions close should new technical work begin from the maintained roadmap:
+Only after Transaction 4 closes should new technical work begin from the maintained roadmap:
 
 ```text
 bounded PhysicalFist/raw55 discovery
@@ -86,18 +123,25 @@ bounded PhysicalFist/raw55 discovery
 -> final native mixed collision regression
 -> separate AttackContinuationProtection
 -> combined regression
--> mature New Balance + relevant Jackydima compatibility gate
+-> mature New Balance + relevant Jackydima compatibility
 -> production collision migration
 ```
 
 ---
 
-## Deliberately Outside Current Maintenance
+## Interrupted-Context Rule
+
+If a future previous Chat dies before a clean handoff, **do not blindly follow this file's NEXT pointer**. Enter POP-11 Recovery Lock first. This file becomes a starting clue until reconciled against the recent durable tail.
+
+Do not begin broad documentation cleanup during recovery unless POP-11's contradiction gate deliberately invokes POP-10.
+
+---
+
+## Deliberately Outside Current Transaction 4
 
 - C++ collision changes;
 - build/deploy/runtime tests;
-- new human raw-8 Fist experiments;
-- raw55 implementation/probe before maintenance closes;
-- AttackContinuationProtection implementation before maintenance closes;
+- raw55/PhysicalFist probes;
+- AttackContinuationProtection implementation;
 - Raise/speed work;
 - CAM changes.
