@@ -1,28 +1,27 @@
 # Collision Lifecycle Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
-**Updated:** 2026-09-01
+**Updated:** 2026-09-08
 
 ## Purpose
 
-Define the smallest observational instrumentation needed to validate collision behavior without turning diagnostics into a second behavior system or contaminating the public release binary.
+Define the smallest observational instrumentation needed to validate collision behavior without turning diagnostics into behavior or contaminating the release DLL.
 
-> **The logger measures the architecture. It does not define it.**
+> The logger measures the architecture. It does not define it.
 
-Release/build separation is governed by `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
-
-Current modular behavior architecture: `DESIGN.md`.  
-Current marker/lifecycle authority: `COLLISION_LIFECYCLE_PLAN.md`.  
-Exact evidence: `EVIDENCE_INDEX.md` → canonical evidence ledgers.  
-Historical probe detail: exact EV provenance → `research/archive/` / `research/derived/` / Git history only when needed.
+Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
+Behavior architecture: `DESIGN.md`.  
+Lifecycle authority: `COLLISION_LIFECYCLE_PLAN.md`.  
+Validation authority: `COLLISION_TEST_PLAN.md`.  
+Evidence: `EVIDENCE_INDEX.md`.
 
 ---
 
 ## 1. Product Roles
 
-### Public release behavior
+### Public release
 
-The public `Script_G3AnimationBehaviors.dll` contains **no research diagnostics at all**.
+`Script_G3AnimationBehaviors.dll` contains behavior only:
 
 ```text
 NO CollisionDiagnostics implementation
@@ -30,156 +29,118 @@ NO research log strings/banners
 NO diagnostic state
 NO diagnostic-only hooks
 NO stack/RVA capture
-NO motion-lifetime research probes
-NO hidden runtime diagnostic mode
+NO deep motion probes
 NO behavior dependency on diagnostics
 ```
 
-This is stronger than “logging disabled.” Diagnostic source is not compiled into the public release target.
+### Diagnostic twin
 
-### Instrumented diagnostic twin
+The diagnostic product uses the same behavior core plus compact CORE diagnostics and opt-in deep probes. It replaces the release twin during controlled testing; never normally load both.
 
-The diagnostic/research build uses the same behavior core plus instrumentation for controlled validation and future investigation.
-
-It contains:
-
-```text
-compact default/core evidence
-+ optional deep probes
-```
-
-It is used **in place of** the release DLL during testing. Do not load release and diagnostic twins together unless a future architecture explicitly proves safe coexistence.
-
-### General combat diagnostics
-
-`tools/Script_CombatMoveLogger` remains a separate general Gothic combat/speed research tool for facts that can be independently observed.
-
-Do not force internal Animation Behaviors state into that generic logger merely to avoid an instrumented twin.
+`tools/Script_CombatMoveLogger` remains a separate general combat/speed research tool and must not become an owner of Animation Behaviors internal state.
 
 ---
 
-## 2. Dependency Rule
+## 2. Dependency / Hook Ownership
 
 Correct direction:
 
 ```text
 EngineBridge / behavior modules / source adapters
-        ↓
-compact factual behavior result/state
-        ↓
-CollisionDiagnostics [diagnostic build only]
+-> compact factual synchronous results
+-> CollisionDiagnostics [diagnostic build only]
 ```
-
-Forbidden:
-
-```text
-behavior correctness
-→ requires logger open
-→ requires CollisionDiagnostics state
-→ requires diagnostic-only hook
-→ requires diagnostic polling
-```
-
-The behavior-only prototype target created by the completed second-pass rewrite mechanically enforces this separation and passed functional/release-purity verification through EV-215.
-
----
-
-## 3. One Hook Owner
 
 Each built DLL has one physical owner per Gothic hook: `EngineBridge`.
 
-Behavior-required current collision hooks:
+Established behavior hook surface includes the proven attack/collision/state/dispatch hooks already used by the collision core, including `StartEffect`, `SetCollisionGroup`, CombatMove/state/RunScriptFunction transport and the family callbacks required by supported marker adapters.
+
+Production human raw-8 Fist adds one important behavior-required transport:
 
 ```text
-OnAI_Attack
-OnAI_QuickAttack
-OnAI_WhirlAttack
-StartEffect
-SetCollisionGroup
-AICombatMoveInstr
-AISetState
-RunScriptFunction
+exact Game +0x16E180 GetPlayTime(motion 0) call-site hook
 ```
 
-Current diagnostic-only/deep hook candidates:
+This is an exact call-site permission transport, **not** a global `GetPlayTime` hook and not a diagnostic-only probe. Behavior may substitute threshold+epsilon only for one matching armed comparison. Diagnostics may observe the decision but cannot own it.
 
-```text
-PlayMotion
-StopMotion
-AICombatMoveStartRecover
-OnTick
-AIFullStop
-```
-
-`AIFullStop` is diagnostic-only for the current collision responsibility but remains a proven explicit-this transport point that may later become behavior-required for `AttackContinuationProtection`.
-
-Diagnostic-only hooks must never become production prerequisites merely because the historical research DLL always installed them.
+`AIFullStop` remains diagnostic/deep for current behavior and is a proven explicit-this transport point that may later become behavior-required only if the evidence-backed `AttackContinuationProtection` design actually needs it.
 
 ---
 
-## 4. Core Diagnostic Evidence — Default in Diagnostic Twin
+## 3. CORE Diagnostic Contract
 
-Ordinary diagnostic/regression runs keep compact evidence sufficient to prove the active behavior system.
-
-Preserve:
+Ordinary controlled runs should be able to establish:
 
 ### Build / lifetime
 
 ```text
 build identity
-diagnostic profile identity
+diagnostic profile
 clean startup / clean unload
 ```
 
-### Marker ownership
+### Equipped marker ownership
 
 ```text
 actor / exact current motion
 action / phase
 marker opcode
-required/resolved source set
-native callback suppression decision
-C1 generation used as marker execution identity
-accepted/rejected/duplicate/budget/OFF outcome
-exact source-set switch
+required/resolved equipped source set
+native callback suppression decision where applicable
+C1 generation
+accepted/rejected/duplicate/budget/OFF result
+source-set switch
 activation/deactivation/rearm
 StatePosition mutation where behaviorally used
 ```
 
-### Physical source transitions
+### Equipped physical transitions
 
 ```text
-exact changed source
-RIGHT/LEFT slot association where relevant
+exact source
+RIGHT/LEFT slot association
 requested group
-before group
-after group
-successful offense including 7 -> 7
-successful transition away from Item_Attack
-exact marker-owned physical source-bit retirement
+before / after group
+offense including 7 -> 7
+transition away from Item_Attack
+exact marker-owned source-bit retirement
 ```
 
 ### C1 lifecycle
 
 ```text
 generation start
-exact source offense request / obligation
+exact source obligation
 cleanup fulfilled
 finalization outcome
 repair attempted/result
 explicit invariant/failure signal
 ```
 
-### P2 bridge
+### Human Fist ownership/opportunity
 
-Preserve only enough routine signal to regress:
+CORE must preserve enough information to prove production Fist behavior without experiment-only noise:
 
 ```text
-PRECOMBAT_ACQUIRED
-PRECOMBAT_BRIDGE_CONSUMED
-relevant dispatch return when early offense occurred
-binding/generation/null-argument invariant failures
+HUMAN_FIST_MARKER_OWNERSHIP
+actor/SPU/C1 generation/animation identity
+LatchOffset 0x164
+LatchBefore / LatchAfter
+WriteAttempted / WriteConfirmed
+
+HUMAN_FIST_MARKER_OPPORTUNITY
+LatchBefore / LatchAfter / LatchWriteConfirmed
+TimingAvailable
+RealPlayTime
+NativeThreshold
+RealBelowThreshold
+TimingPermissionArmed
+identity/ownership match
 ```
+
+When causal verification requires damage entry, the diagnostic twin may correlate `gCEntity::OnDamage` caller module/RVA; current production evidence uses Game `+0x16E348` for the tested human path.
+
+Do not restore N4/N5/N6 experiment chronology to normal logs.
 
 ### C1-R1 outcomes
 
@@ -191,326 +152,120 @@ REPAIRED_TO_ITEM_EQUIPPED
 REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
 ```
 
-A repair result is meaningful only together with exact source ownership, liveness establishment, pre-repair group, requested group and post-repair group.
-
-**None of this diagnostic evidence belongs in the public release binary.**
+A repair result is meaningful only with exact source ownership/liveness and before/requested/after groups.
 
 ---
 
-## 5. Opt-In Deep Probes — Diagnostic Twin Only
+## 4. Deep Probes — Opt-In Only
 
-Retain for concrete investigations, disabled by default in ordinary diagnostic runs:
+Retain deep instrumentation for a concrete question, disabled by default:
 
 ```text
-PrimaryFirst PlayMotion / StopMotion snapshots
-hit replacement stacks
-empty-primary successor stacks
-StopMotion hit stacks
-AICombatMoveStartRecover begin/end + stacks
+PlayMotion / StopMotion lifetime snapshots
+replacement stacks
+StartRecover begin/end + stacks
 CombatMove FullStop stack/context
-AIFullStop callsite / input-duration / primary-motion / stack
-broad AISetState caller/state/primary-motion/stack context
-broad outer ScriptFunction/state-stack snapshots
-P1 detailed scope/SPU/runtime-stack pointer evidence
-full native cleanup caller module/RVA + stack
-OnTick marker-owned PrimaryFirst lifetime tracking
+AIFullStop callsite/input-duration/context
+broad AISetState callers/stacks
+outer ScriptFunction/state-stack detail
+full native cleanup caller/RVA/stack
+OnTick marker lifetime tracking
+OnDamage caller trace when CORE cannot answer a new mechanism question
 ```
 
-Use only when a concrete question requires them, such as:
+Likely future uses:
 
 ```text
-AttackContinuationProtection
-new cleanup contradiction
-new source-lifetime contradiction
-hook-order/calling-convention investigation
-animation replacement/lifetime question
+PhysicalFist/raw55 mechanism discovery
+AttackContinuationProtection native timeout/consumer trace
+new cleanup/source-lifetime contradiction
+calling-convention/hook-order investigation
 ```
 
-Deep capture should happen only after a profile/build check. Do not pay stack/module/motion-sampling cost merely because deep code exists in the diagnostic product.
+Deep capture must not become a production prerequisite.
 
 ---
 
-## 6. Obsolete Historical Noise
+## 5. PhysicalFist/raw55 Discovery Diagnostics
 
-Remove from normal diagnostic output when its question is already closed and canonical evidence preserves the conclusion.
-
-Examples:
+The first raw55 stage is discovery, not implementation. Prefer existing CORE facts and add only the smallest missing deep signals required to classify:
 
 ```text
-B1–B9 / O1 / P1 experiment chronology in startup banner
-stale statement that C1 is shadow-only / WOULD_REPAIR-only
-repeated CleanupBehaviorChanged: 0
-repeated LifecycleBehaviorChanged: 0
-repeated CollisionBehaviorChanged: 0
-TopEntryAddressIsExecutionIdentity: 0
-ArgumentsDereferencedOrClassified: 0
-TLSRestoredBeforeLog: 1
-ScopePersistedAfterReturn: 0
-constant collision-group value labels on every event
-large repeated player state/source blocks when compact exact-source facts suffice
+exact UseType/action/phase/current motion
+TouchDamage/collision-group state where relevant
+SPU+0x164 participation
+whether Game+0x16E180 timing comparison participates
+whether Game+0x16E1A3 native close participates
+OnDamage caller/target context
 ```
 
-Do not delete a useful future deep probe merely because it is verbose. Move it behind deep diagnostics instead.
-
-A probe may be removed entirely only when:
-
-```text
-1. its question is closed;
-2. durable conclusion/provenance exists in canonical evidence;
-3. no current/future plausible diagnostic question needs the signal;
-4. removing it cannot alter behavior, hook ordering or feature state.
-```
+Do not copy the human-Fist diagnostic state machine onto raw55 merely to make logs look symmetrical.
 
 ---
 
-## 7. RuntimeClock Is Not Diagnostics
+## 6. AttackContinuationProtection Diagnostics
 
-Second-pass review corrected the earlier classification of `HookBridgeRuntime`.
+The future protection must be conditioned on the **factual native bad-skip timeout/consumer**, not on a continuously running plugin timer.
 
-The elapsed-millisecond clock participates in actual marker duplicate acceptance:
-
-```text
-same actor/source/motion/marker/action/phase/state time
-+ elapsed delta <= 5 ms
-→ same-update duplicate rejection
-```
-
-The completed rewrite renamed:
+Diagnostics should be able to distinguish:
 
 ```text
-HookBridgeRuntime
-→ RuntimeClock
+native destructive condition never became due
+native condition became due outside a genuine attack
+native condition became due during a genuine attack and would destroy it
+New Balance prevented the route before our intervention point
+legitimate reaction/interrupt FullStop path
 ```
 
-`RuntimeClock` remains in the behavior core.
-
-Do not remove or diagnostic-gate this clock until a separate behavior change proves a replacement duplicate predicate.
+If New Balance prevents the relevant native condition, no protection intervention should be logged or performed.
 
 ---
 
-## 8. CollisionLifecycleGuard Diagnostic Boundary
+## 7. Diagnostic Restraint
 
-The completed second-pass rewrite removed direct diagnostic formatting/output responsibility from `CollisionLifecycleGuard`.
+Remove/avoid routine historical noise once a question is canonically closed. Preserve reusable deep probes only when plausible future questions still need them.
 
-Current boundary:
+Default diagnostics should avoid broad per-call ScriptFunction dumps, continuous state-stack logging, full stacks for ordinary cleanup, per-frame/world polling, and repeated large actor/source blocks.
 
-```text
-CollisionLifecycleGuard
-→ decides/updates C1 behavior
-→ returns compact factual synchronous result structures
-
-CollisionDiagnostics [diagnostic build]
-→ formats/logs those facts
-```
-
-Do not introduce a generic event bus, asynchronous queue, callback registry or second lifecycle model.
-
-The C1 finalizer remains two-phase and reentrancy-safe:
-
-```text
-1. classify/repair fixed max-two sources into stack-local results
-2. diagnostic formatting only after mutation/classification completes
-```
-
-No diagnostic block may remain half-written across reentrant `SetCollisionGroup` repair.
+If CORE compaction makes a required behavior fact ambiguous, the diagnostic contract is too weak; enable the smallest deep probe rather than inferring.
 
 ---
 
-## 9. Marker Diagnostics Remain Separate From Lifecycle
+## 8. RuntimeClock Is Behavior
 
-Marker occurrence/replay/source-set bookkeeping is behavior with its own regression history.
+The monotonic clock used by marker duplicate acceptance belongs in the behavior core, not diagnostics. Do not diagnostic-gate it unless a separate behavior change proves a replacement predicate.
 
-Preserve the distinction:
+---
+
+## 9. Lifecycle / Marker Separation
+
+Diagnostics must preserve the conceptual split:
 
 ```text
 marker occurrence/exact-set bookkeeping
-≠
-physical source cleanup obligation
+!=
+physical equipped-source cleanup obligation
 ```
 
-Gate 4 established:
+C1 generation is the shared factual execution identity; it does not collapse marker semantics into lifecycle repair.
 
-```text
-C1 monotonic generation
-= durable marker occurrence/dedupe execution identity
-```
-
-The older marker-local source/motion/action/phase/state-time and controlled-callback rollback guesses are no longer execution-boundary authority. Natural marker-source retirement is factual retirement of the exact physical source bit/window only.
-
-This does **not** collapse marker behavior into lifecycle repair. Preserve occurrence budgets, duplicate/replay protection, exact-set RIGHT/LEFT/BOTH/OFF semantics, OFF intra-Hit gaps, repeated-contact rearm, StatePosition handling, supported-family ownership, physical source/window state and dead/late rejection.
-
-C1-R1 repair intentionally passes through the normal SetCollisionGroup bridge so marker-owned physical source retirement and C1 source-obligation observation remain on the established path.
-
-Before any future marker-core change:
-
-```text
-EVIDENCE_INDEX.md
-→ marker execution lifetime/bookkeeping
-→ EV-131–EV-133 / EV-167 / EV-213–EV-214
-→ COLLISION_LIFECYCLE_PLAN.md §9
-```
-
-Do not use logger reduction as a reason to weaken marker behavior.
+C1-R1 mutation remains two-phase/reentrancy-safe: classify/repair fixed sources first, then format diagnostics after mutation completes.
 
 ---
 
-## 10. Diagnostic Sufficiency Contract
+## 10. Current Diagnostic Sequence
 
-The default diagnostic twin is sufficient only if controlled runs can establish without deep probes:
+There is no pending diagnostic regression merely to reconfirm EV-208–EV-215 or production human raw-8 Fist.
 
-```text
-1. exact marker ownership/suppression/result
-2. exact source offense/cleanup transition
-3. C1 generation for marker execution identity and source obligation
-4. pre-Combat acquisition/bridge consumption when present
-5. clean/reaction/no-offense finalization as non-mutating
-6. destructive outstanding live/equipped group-7 finalization as one exact 7 -> 5 repair
-7. Dual source independence
-8. marker-owned repair/physical-bit retirement without stale reopen
-9. unsupported/negative sources do not acquire inappropriate weapon-style repair
-10. invariant/failure divergence appears explicitly
-11. build identity + clean unload
-```
-
-If compacting the diagnostic product makes any required fact ambiguous, the reduction is too aggressive.
-
----
-
-## 11. Logging Restraint
-
-Generic script/collision paths execute far more often than active tests need.
-
-Therefore default diagnostics should avoid:
+Future diagnostic work is driven by the technical roadmap:
 
 ```text
-broad per-call ScriptFunction dumps
-continuous state-stack logging
-full stack capture for ordinary cleanup
-generic per-frame actor/world polling
-repeated large context blocks when compact generation/source facts answer the question
+bounded PhysicalFist/raw55 discovery
+-> any tractable extension validation
+-> final native mixed regression
+-> AttackContinuationProtection source/runtime investigation and validation
+-> combined regression
+-> mature compatibility gate
 ```
 
-Large logs may still legitimately occur during broad diagnostic compatibility tests. Preserve raw artifacts and use deterministic reduction tools rather than keeping avoidable default verbosity.
-
----
-
-## 12. Cleanup / Repair Observation Semantics
-
-Do not define cleanup as “group currently is not 7.”
-
-Current C1 model observes consequences:
-
-```text
-successful Item_Attack request
-→ exact source obligation outstanding
-
-successful later transition away from Item_Attack
-→ exact source obligation fulfilled
-```
-
-C1-R1 acts only after native AISetState and only when:
-
-```text
-obligation outstanding
-+ exact current equipped identity establishes liveness
-+ actual source still Item_Attack(7)
-```
-
-Then exactly:
-
-```text
-SetCollisionGroup(Item_Equipped)
-→ verify Item_Equipped(5)
-```
-
-Do not add cleanup because `RunScriptFunction` returned, CombatMove FullStopped, Recover appeared or AISetState was merely requested.
-
----
-
-## 13. Execution Identity
-
-```text
-C1 monotonic generation
-= durable plugin execution identity
-= durable marker occurrence/dedupe execution identity
-
-exact SPU + live ScriptFunction + non-null m_pArguments + same ScriptFunction name
-= temporary native correlator only where early acquisition needs it
-```
-
-Raw frame/argument addresses are not globally unique.
-
-Diagnostics may observe failures but must not invent identity fallbacks.
-
----
-
-## 14. Build / Release Extraction Rule
-
-Current prototype architecture mechanically produces:
-
-```text
-Script_FrameCollisionTest
-= diagnostic research target
-
-Script_FrameCollisionBehaviorTest
-= behavior-only target with no diagnostics compiled
-```
-
-Never deploy both together.
-
-This separation passed source/build verification and behavior-only runtime verification through EV-208–EV-215.
-
-Later production:
-
-```text
-Script_G3AnimationBehaviors release
-= mature behavior modules only
-= zero research diagnostics
-
-instrumented diagnostic twin
-= same behavior core + compact/deep diagnostics
-= used in place of release for controlled reproduction
-```
-
-Before public release verify explicitly:
-
-```text
-release target does not compile diagnostic sources
-release target does not install diagnostic-only hooks
-release binary contains no research log paths/banners/diagnostic state
-behavior passes runtime/compatibility tests without diagnostics
-separate diagnostic twin remains available for reproduction
-```
-
-Canonical release rule: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
-
----
-
-## 15. Current Sequence
-
-Architecture verification is complete through EV-215. There is no pending diagnostic regression merely to reconfirm the second-pass/Gate-4 architecture.
-
-Current repository sequence:
-
-```text
-project structural stabilization
-→ equipped-melee marker expansion
-→ separate human-Fist native-mechanism investigation
-→ full marker/lifecycle regression
-→ AttackContinuationProtection
-→ mature research compatibility gate
-→ production Raise/speed/config migration
-→ final diagnostics-free compatibility/regression
-```
-
-When future engineering creates a new diagnostic question:
-
-```text
-freeze the smallest falsifiable question
-→ use CORE diagnostics if sufficient
-→ enable deep probes only when CORE cannot establish the required fact
-→ test the diagnostic twin in place of behavior-only release product
-→ return to behavior-only verification when the changed behavior is ready
-```
-
-Structural behavior and observation changes remain causally separated.
+For each stage, use CORE if sufficient and enable deep diagnostics only for facts CORE cannot establish.

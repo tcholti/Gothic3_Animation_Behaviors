@@ -1,322 +1,154 @@
 # Collision Lifecycle Plan
 
-**Status:** Current collision-lifecycle architecture / research authority  
-**Updated:** 2026-09-01
+**Status:** Current collision-lifecycle architecture authority  
+**Updated:** 2026-09-08
 
 ## Purpose
 
-Define the smallest authoritative rule that guarantees offensive collision cleanup without creating one repair branch per attack family or interruption symptom.
+Define the smallest authoritative rule that guarantees equipped offensive collision cleanup without one repair branch per attack family or interruption symptom.
 
-Detailed proof history belongs in `EVIDENCE_INDEX.md` and the evidence ledgers. Build-specific cleanup/control-flow locations belong in `COLLISION_CLEANUP_CALLSITE_MAP.md` and `SOURCE_HOOK_GUIDE.md`. Current staged validation belongs in `COLLISION_TEST_PLAN.md`. Overall module boundaries and implementation order belong in `DESIGN.md`.
+Detailed proof belongs in `EVIDENCE_INDEX.md`; staged validation in `COLLISION_TEST_PLAN.md`; build-specific cleanup locations in `COLLISION_CLEANUP_CALLSITE_MAP.md` / `SOURCE_HOOK_GUIDE.md`; overall module/order in `DESIGN.md`.
 
 ---
 
 ## 1. Governing Invariant
 
-> **For every real attack-Hit execution that requests offensive collision, Gothic 3 gets its legitimate cleanup opportunity. When that exact execution ends or is destructively abandoned, if proper cleanup already occurred, do nothing; otherwise repair only that execution's remaining offensive collision using native cleanup semantics.**
+> For every real equipped attack-Hit execution that requests offensive collision, Gothic gets its legitimate cleanup opportunity. When that exact execution ends or is destructively abandoned, if proper cleanup already occurred, do nothing; otherwise repair only that execution's remaining exact offensive source using native cleanup semantics.
 
-How the Hit ended is not part of the production rule. Normal completion, reaction interruption, state replacement, skipped Recover bookkeeping, terrain interruption and direct replacement are test cases for one lifecycle invariant.
-
-The guard owns **collision safety**, not general combat-balance or state-machine policy.
+The guard owns collision safety, not input/combat policy.
 
 ---
 
 ## 2. Accepted Execution / Source Model
 
 ```text
-REAL ATTACK EXECUTION X
-        ↓
-Acquire C1 monotonic generation
-        ↓
-Did X actually request offensive collision on source S?
-   ├─ NO  → no obligation for S
-   └─ YES → exact source obligation for X/S
-        ↓
-Did S successfully transition away from Item_Attack?
-   ├─ YES → obligation fulfilled
-   └─ NO  → obligation remains outstanding
-        ↓
-Is X destructively finalized?
-        ↓
-Outstanding exact source obligation?
-   ├─ NO  → no-op
-   └─ YES → if source liveness/current offense is established,
-            repair only that source using native cleanup semantics
+real attack execution X
+-> acquire monotonic C1 generation
+-> successful exact-source Item_Attack request creates/refreshes X/S obligation
+-> successful later transition away from Item_Attack fulfills X/S obligation
+-> after native destructive finalization opportunity, inspect only outstanding obligations
 ```
 
-A successful request counts even when the physical source was already offensive (`7 -> 7`). A later legitimate execution must own its own request and later cleanup obligation rather than inheriting the earlier execution's ownership.
+A successful request counts even when the source was already offensive (`7 -> 7`). Dual source obligations are independent.
 
-Conceptual state:
+Durable identity:
 
 ```text
-Execution X
-    actor
-    monotonic C1 generation
-    temporary native ScriptFunction correlator only where acquisition needs it
-    exact physical source set
-    per-source offensive-request / outstanding-cleanup state
-    cleanup observation
-    terminal finalization status
+C1 monotonic generation
+= plugin execution identity
+= marker occurrence/dedupe execution identity
 ```
 
-The system is event-driven. No polling, wall-clock lifetime inference or global actor scan.
+The live ScriptFunction frame/SPU/arguments/name correlator is temporary native context only where pre-Combat acquisition requires it. Raw frame/argument addresses are not durable IDs.
+
+The system remains event-driven: no polling, wall-clock lifetime inference, or global actor scan.
 
 ---
 
-## 3. Three Established Ending Structures
+## 3. Ending Structures
 
-### A — ordinary completion
+### Ordinary completion
 
 ```text
-attack ScriptFunction / CombatMove
-→ native action-specific cleanup resets exact source away from Item_Attack
-→ later state transition/finalization sees no outstanding obligation
-→ no repair
+attack/CombatMove
+-> native action-specific cleanup resets exact source away from Item_Attack
+-> later finalization finds no outstanding obligation
+-> no repair
 ```
 
-### B — legitimate reaction interruption
+### Legitimate reaction interruption
 
 ```text
 attack active
-→ CombatMove may be FullStopped
-→ separate reaction-side native cleanup resets exact source
-→ later finalization sees fulfilled obligation
-→ no repair
+-> CombatMove may FullStop
+-> reaction-side native cleanup resets exact source
+-> finalization finds obligation fulfilled
+-> no repair
 ```
 
-FullStop is therefore instruction termination, not cleanup authority.
+FullStop is instruction termination, not cleanup authority.
 
-### C — destructive continuation loss
+### Destructive continuation loss
 
-Known stress case:
+Known stress class:
 
 ```text
 attack ScriptFunction suspended around CombatMove
-→ destructive path terminates instruction
-→ AISetState replaces state / clears old continuation
-→ no ordinary or reaction cleanup occurred
-→ exact source may remain Item_Attack(7)
-→ C1 finalization sees real outstanding source obligation
+-> destructive FullStop/state replacement
+-> old continuation discarded
+-> ordinary/reaction cleanup may never run
+-> exact equipped source may remain Item_Attack(7)
+-> C1 finalization sees a real outstanding obligation
 ```
 
-Held Use2 / ~2500 ms is a reliable test trigger for one known class, not production classification authority.
+Held Use2 / ~2500 ms is a reproducible trigger for one known class, not production collision classification authority.
 
 ---
 
-## 4. Execution Identity Authority
+## 4. C1 Acquisition / Finalization Authority
 
-C1-O1/P1/P2 establish the accepted split:
+Ordinary attacks may acquire generation through CombatMove. A proven pre-Combat equipped offense may lazily acquire through the live `RunScriptFunction` scope after exact SPU/state-stack/frame/source validation; matching CombatMove consumes/retires that temporary binding before wrapper return/suspension.
 
-```text
-live ScriptFunction frame
-= lifetime-bound native correlator only where early acquisition needs it
+Successful transition away from `Item_Attack` is cleanup. Do not infer cleanup from Recover, animation replacement, callback return, FullStop, or state request.
 
-C1 monotonic generation
-= durable plugin execution identity
-```
+For a generation captured before native `AISetState`, finalization runs only **after native AISetState returns**, giving native/reaction cleanup precedence.
 
-The proven temporary correlator requires:
-
-```text
-exact SPU
-+ live ScriptFunction frame
-+ non-null m_pArguments
-+ same ScriptFunction name
-```
-
-Raw frame/argument addresses can be reused after retirement and are not durable IDs.
-
-P2 proved that a legitimate pre-Combat GetUp offense can acquire the C1 generation inside the live lightweight RunScriptFunction scope, and matching CombatMove can consume/retire that native binding **before** the wrapper returns/suspends. Cross-suspension native-frame persistence is not required for the tested model.
-
-Do not restore the rejected eager dispatch vector/string machinery.
+Remembered raw source pointers may not be dereferenced after native state replacement without exact current-equipped RIGHT/LEFT identity establishing liveness.
 
 ---
 
-## 5. Ownership Authority by Responsibility
+## 5. Native Cleanup Semantics / C1-R1
 
-### Execution acquisition
-
-Ordinary attacks may acquire through the existing CombatMove-created generation path.
-
-When a real equipped-source offense occurs before CombatMove, C1 may lazily acquire from the proven live RunScriptFunction scope only after exact SPU/state-stack/frame/source validation.
-
-No GetUp/family/action/input classifier is part of ownership.
-
-### Collision obligation
-
-A successful `Item_Attack` request by execution X creates/refreshes the obligation for the exact physical source requested by X.
-
-### Native cleanup observation
-
-Successful transition away from `Item_Attack` fulfills that source obligation. Do not infer cleanup from Recover, animation replacement, callback return, FullStop or state request.
-
-### Terminal finalization
-
-For a generation captured before native AISetState, the existing finalizer runs only **after native AISetState has executed**. This gives native/reaction cleanup inside the original call precedence. If that cleanup occurred, the obligation is already fulfilled and repair is forbidden.
-
-### Source liveness
-
-Remembered raw source pointers may not be dereferenced merely because they were once owned. After native AISetState, exact current equipped RIGHT/LEFT pointer identity must establish the remembered source as live before group observation or mutation.
-
-### Dual/source specificity
-
-Each source obligation is independent. One outstanding side never authorizes mutation of the other side.
-
----
-
-## 6. Native Cleanup Semantics for Proven Weapon Sources
-
-The tested native cleanup matrix shows legitimate weapon cleanup as:
+For the proven equipped weapon-source domain, native-equivalent physical cleanup is:
 
 ```text
 Item_Attack(7)
-→ SetCollisionGroup(Item_Equipped)
-→ Item_Equipped(5)
+-> SetCollisionGroup(Item_Equipped)
+-> Item_Equipped(5)
 ```
 
-This exact reset was observed across the established ordinary melee action matrix and the tested legitimate reaction cleanup route.
+`ClearTriggeredList()` is activation/rearm behavior, not terminal cleanup.
 
-The current marker OFF/source-deactivation implementation likewise uses `SetCollisionGroup(Item_Equipped)` and does **not** call `ClearTriggeredList()`.
-
-Therefore:
-
-> For the currently proven equipped weapon-source domain, the minimum native-equivalent physical cleanup mutation is exactly one `SetCollisionGroup(Item_Equipped)` call on the owned source that is still live/equipped and still physically `Item_Attack`.
-
-`ClearTriggeredList()` remains activation/rearm behavior, not terminal cleanup.
-
-Fist/body-source semantics remain separate and are not forced into weapon-style Item_Attack cleanup.
-
----
-
-## 7. C1-O2-P2 — CLOSED
-
-Canonical result: EV-205 plus dedicated same-binary shutdown closure.
-
-P2 establishes:
+Closed C1-R1 decision:
 
 ```text
-pre-Combat exact offense
-→ lazy C1 generation acquisition
-→ matching CombatMove reuses same generation
-→ temporary native binding consumed before RunScriptFunction return
-→ durable source obligation continues on monotonic generation
-```
+outstanding == false
+-> NO_OP_NO_OUTSTANDING
 
-Broad P2-D runtime evidence accounted for 293 observed offensive source obligations exactly as:
-
-```text
-264 observed cleanup fulfillments
-+ 29 shadow WOULD_REPAIR outcomes
-= 293
-```
-
-No C1/P2 binding/invariant failure signal occurred in that broad run.
-
-Do not add:
-
-```text
-cross-suspension native-frame binding
-family/action/input ownership tables
-null-arguments fallback
-arbitrary adoption of unrelated group-7 state
-polling/timers/world scans
-```
-
----
-
-## 8. C1-R1 Controlled Physical Repair — CLOSED
-
-Canonical result: EV-206–EV-207.
-
-C1-R1 changes **only** the already-proven shadow `WOULD_REPAIR` branch.
-
-Exact decision:
-
-```text
-outstandingCleanup == false
-→ NO_OP_NO_OUTSTANDING
-
-outstandingCleanup == true
+outstanding == true
 + source not exact current equipped RIGHT/LEFT
-→ UNRESOLVED_NOT_EQUIPPED
-→ no dereference / no mutation
+-> UNRESOLVED_NOT_EQUIPPED
+-> no dereference / no mutation
 
-outstandingCleanup == true
+outstanding == true
 + liveness established
 + actual group != Item_Attack
-→ NO_OP_PHYSICALLY_CLEAN_RECONCILED
+-> NO_OP_PHYSICALLY_CLEAN_RECONCILED
 
-outstandingCleanup == true
+outstanding == true
 + liveness established
 + actual group == Item_Attack
-→ SetCollisionGroup(Item_Equipped) exactly once on that source
-→ no ClearTriggeredList()
-→ verify result exactly Item_Equipped(5)
+-> SetCollisionGroup(Item_Equipped) once
+-> verify exact Item_Equipped(5)
+-> REPAIRED_TO_ITEM_EQUIPPED
 ```
 
-Successful outcome:
+Any other setter result is divergence; do not retry or invent fallback mutation.
+
+C1-R1 validation is closed through EV-206–EV-207. Retained limits:
 
 ```text
-REPAIRED_TO_ITEM_EQUIPPED
+no positive outstanding UNRESOLVED_NOT_EQUIPPED runtime case
+no positive NPC destructive-abandonment physical-repair case claimed
 ```
 
-Any setter result other than exact group 5 remains a divergence/failure. C1-R1 does not retry or invent fallback mutation.
-
-### Validated meaning
-
-R1-A through R1-E established:
-
-```text
-exact positive stale-source 7 -> 5 repair
-ordinary / reaction / pre-activation no-op behavior
-P2 GetUp cleanup precedence
-GetUpParade defensive no-offense
-Dual RIGHT/LEFT source independence
-marked-source terminal repair and dead-execution callback rejection
-broad mixed player/NPC hook stability
-unsupported marker-bearing fallback
-Fist/body separation
-crossbow unsupported-source negative behavior
-supplemental bow/magic negative regression
-```
-
-The focused final R1-E run contains zero repair, divergence, unresolved-not-equipped or C1 invariant-warning records while exercising the remaining unsupported-source negatives. Therefore the controlled C1-R1 validation gate is closed; do not invent another broad R1 matrix.
-
-Two limits remain explicit and do not reopen the gate:
-
-```text
-- no positive runtime exercise of an outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED branch;
-- no positive NPC destructive-abandonment / physical-repair case is claimed.
-```
-
-### Repair passes through existing SetCollisionGroup observation
-
-Do not bypass the already-tested SetCollisionGroup path. The shared hook/engine bridge must continue to expose:
-
-- engine collision transition observation;
-- source-obligation transition observation;
-- existing marker-owned source retirement behavior.
-
-No second repair dispatcher or parallel cleanup API is needed.
-
-### Finalizer logging order
-
-A repair setter can synchronously enter the existing SetCollisionGroup bridge and emit diagnostics. Therefore the finalizer must not have an open half-written log block while mutation occurs.
-
-Use two phases only:
-
-```text
-1. classify / repair into fixed stack-local per-source results (max 2)
-2. emit the complete finalization diagnostic block afterward
-```
-
-This is diagnostic hygiene, not new lifecycle machinery.
+These are claim limits, not open gates.
 
 ---
 
-## 9. Marker Timing / Execution Bookkeeping Remain Separate from Physical Cleanup
+## 6. Marker Timing Is Separate From Lifecycle Repair
 
-Inside a live marked Hit:
+Inside a live marked equipped Hit:
 
 ```text
 RIGHT = {RIGHT}
@@ -325,127 +157,100 @@ BOTH  = {RIGHT, LEFT}
 OFF   = {}
 ```
 
-Each marker defines the complete desired offensive equipped-source set at that authored moment. Repeated source markers rearm through `ClearTriggeredList()`.
+Each marker defines the complete desired equipped offensive set at that authored moment. Repeated source markers rearm via `ClearTriggeredList()`.
 
-`G3AB_COL_OFF` is an authored inactive gap inside a still-live Hit. It is not terminal safety and must not retire the execution by itself.
+`OFF` is an intra-Hit inactive gap, not terminal finalization.
 
-C1-R1 does not replace marker occurrence budgets, duplicate/replay protection, StatePosition handling, exact-set switching, repeated-contact rearm or dead-execution rejection.
-
-Gate 4 completed the separate marker execution-identity simplification audit. Current accepted split:
+C1 generation supplies execution identity, but does not replace:
 
 ```text
-C1 monotonic generation
-= durable marker occurrence/dedupe execution identity
-
-marker-local source/motion/action/phase/state-time changes
-controlled-callback state-time rollback
-= NOT execution-boundary authority
-```
-
-The older marker-local guesses were removed/consolidated because C1 now supplies the stronger durable execution identity. `RetireMarkerOwnedSource()` natural handling is narrowed to factual retirement of the exact physical marker-owned source bit/window; it does not infer that the whole execution ended.
-
-Independent marker invariants remain mandatory:
-
-```text
-exact current-motion marker ownership
-supported Normal / Quick / full-Whirl family predicates
-required source preflight
-RIGHT / LEFT / BOTH / OFF exact-set semantics
+exact current-motion ownership
+supported family/action preflight
 authored occurrence budgets
 same-update duplicate/replay suppression
-repeated-contact ClearTriggeredList rearm
-physical marker-owned source/window mask
 exact-set switching
-OFF intra-Hit gaps
-Quick/full-Whirl StatePosition suppression
+physical marker-window state
+repeated-contact rearm
+StatePosition behavior
 late/dead/unsupported rejection
-unmarked/unsupported native fallback
-valid-motion-only marker caching
+native fallback
+valid-motion-only caching
 ```
 
-Authority/evidence:
-
-```text
-EVIDENCE_INDEX.md → marker execution lifetime / bookkeeping route
-EV-213 Gate-4 implementation/regression closure
-EV-214 literal historical EV-131 same-motion interruption/restart closure
-EV-215 final behavior-only architecture verification
-```
-
-Do not restore the older inferred execution-boundary machinery absent contradicting evidence.
+Gate 4 removed older marker-local guesses based on source/motion/action/phase/state-time changes or callback rollback. Natural `RetireMarkerOwnedSource()` handling retires only the exact physical marker-owned source bit/window.
 
 ---
 
-## 10. Production Restrictions / Regression Requirements
+## 7. Human Fist and Future PhysicalFist Separation
+
+Production human `gEUseType_Fist` / raw 8 does **not** create an equipped `Item_Attack` obligation and does not use C1-R1 physical repair. Its native permission/latch mechanism is owned by the Fist behavior described in `DESIGN.md` and evidenced through EV-221–EV-240.
+
+Future `gEUseType_PhysicalFist` / raw 55 remains unclassified. Do not assign weapon-style obligations or human-Fist lifecycle semantics until discovery proves the actual native mechanism.
+
+---
+
+## 8. AttackContinuationProtection Relationship
+
+Bad-skip prevention remains separate from collision cleanup:
+
+```text
+AttackContinuationProtection
+= prevent/defer the known destructive timeout consequence from killing a genuine active attack when that factual native condition becomes due
+
+CollisionLifecycleGuard / C1-R1
+= make an exact stale equipped source safe if cleanup is nevertheless lost
+```
+
+The future prevention module must be New Balance-compatible: if New Balance already prevents the destructive native condition, continuation protection should naturally do nothing.
+
+Do not classify cleanup from the held-Use2 timer itself and do not merge continuation prevention into C1 ownership.
+
+---
+
+## 9. Production Restrictions
 
 Do not default to:
 
 - one cleanup hook per attack family;
-- feature modules independently installing competing hooks on the same Gothic function;
-- held-Use2 / timeout cleanup classification;
-- unconditional cleanup on FullStop, AISetState or RunScriptFunction return;
-- polling, per-frame/world scans or wall-clock timers;
+- feature modules installing competing hooks on one Gothic function;
+- timeout/input classification as collision ownership;
+- unconditional cleanup on FullStop/AISetState/RunScriptFunction return;
+- polling, world scans, or wall-clock repair timers;
 - action/phase-only terminal authority;
 - persistent raw-pointer identity after native-frame retirement;
-- repair of every group-7 equipped item regardless of ownership;
+- repair of every group-7 item regardless of ownership;
 - `ClearTriggeredList()` as terminal cleanup;
-- rewriting external block/balance mechanics as a collision prerequisite.
+- forcing human/monster body damage into equipped-source cleanup.
 
-Protect through every refactor/expansion/migration:
+Protect through migration:
 
 ```text
 ordinary native completion
 legitimate reaction cleanup
-pre-activation/no-offense cases
-GetUpAttack P2 acquisition + native cleanup
+pre-activation/no-offense
+GetUpAttack pre-Combat acquisition + cleanup
 GetUpParade/defensive no-offense
-inherited 7 -> 7 attribution
-Dual exact RIGHT/LEFT obligations
-marked RIGHT/LEFT/BOTH/OFF behavior
-Fist/body separation
-bow/crossbow/magic negative regression
+7 -> 7 attribution
+Dual exact-source independence
+marked RIGHT/LEFT/BOTH/OFF
+human Fist separation
+unsupported bow/crossbow/magic negatives
 ```
-
-A central engine-bridge layer should own shared Gothic hooks and report authoritative events/facts to independent feature modules. `CollisionLifecycleGuard` should consume those events without becoming the owner of marker timing, bad-skip prevention, Raise, speed or diagnostics.
 
 ---
 
-## 11. Development Order After Architecture Verification
+## 10. Development Order
 
-The collision architecture through C1-R1, second-pass modularization/product separation and generation-scoped marker bookkeeping is verified complete through EV-215.
-
-Current order:
+Lifecycle architecture itself is closed. The surrounding collision roadmap is:
 
 ```text
-project structural stabilization
-→ equipped-melee marker expansion
-→ separate human-Fist native-mechanism investigation
-→ full marker + lifecycle regression
-→ separate AttackContinuationProtection investigation/implementation
-→ guard + marker + continuation regression
-→ mandatory New Balance/Jackydima compatibility on mature research DLL
-→ redesign/migrate into modular Script_G3AnimationBehaviors
-→ Raise/speed integration with speed-hook compatibility re-evaluated
-→ final production DLL + New Balance/Jackydima regression
+bounded PhysicalFist/raw55 discovery
+-> any deliberately accepted tractable extension
+-> final native mixed collision regression
+-> separate AttackContinuationProtection investigation/implementation
+-> guard + marker + continuation regression
+-> mandatory New Balance/Jackydima compatibility
+-> production collision migration
 ```
 
-This sequence keeps the validated collision guard in the research behavior core while marker/source behavior around it is matured. Production migration comes **after** the collision subsystem has reached the intended feature scope and passed the first third-party compatibility gate.
-
-The known held-Use2 / Alternative-AI skip remains a separate prevention responsibility, not production collision classification authority. Its future investigation and minimum controls are owned by `COLLISION_TEST_PLAN.md` §6. Even if prevention succeeds, it does not replace the C1-R1 collision-safety fail-safe.
-
----
-
-## 12. Preference Order
-
-1. One event-driven execution/source guard.
-2. Exact physical source ownership and per-source obligations.
-3. Native cleanup always gets first opportunity.
-4. Mutation only on the proven terminal outstanding-source predicate.
-5. Exact native-equivalent `7 -> 5` reset for proven weapon sources.
-6. Central ownership of shared Gothic hooks; feature modules consume bridge events rather than competing for the same hook.
-7. No family/cause/input cleanup classification.
-8. Preserve native/modded combat-rule choices.
-9. Use the proven C1 generation for marker execution identity while preserving independent authored-marker invariants.
-10. After genuinely generic marker infrastructure, keep human Fist/body damage as a separate native mechanism rather than an equipped-weapon source adapter or weapon collision-group path.
-11. Keep bad-skip prevention separate from collision cleanup.
-12. Require compatibility evidence before production migration and again after the full production DLL is assembled.
+Even if continuation prevention succeeds, C1-R1 remains the independent fail-safe.

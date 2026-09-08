@@ -1,102 +1,65 @@
 # Gothic 3 Animation Rules
 
-**Status:** Canonical engine-facing animation reference  
-**Date:** 2026-08-22
+**Status:** Canonical engine-facing animation/authoring reference  
+**Updated:** 2026-09-08
 
 ## 1. Purpose
 
-This document records Gothic 3 animation-state and filename rules relevant to scripting, animation authoring, and `Script_G3AnimationBehaviors`.
+Record generalized Gothic 3 animation-state, filename, UseType, and authored collision-marker rules relevant to `Script_G3AnimationBehaviors`.
 
-It separates verified rules from interpretations that are still hypotheses.
+Prefer native runtime enums/state when available. Filename fields are serialized asset contracts, not the sole behavior parser. Full enum declarations remain in the pinned Gothic 3 SDK `GameEnum.h`; this file preserves the project-specific normalization and authoring semantics that are not recoverable from the enum declarations alone.
 
-The preferred runtime architecture should use native enums/state directly where available. Filename fields are treated as a serialized representation/contract, not the only source of truth.
+---
 
-## 2. Canonical Filename Example
+## 2. Filename Structure
 
-Example:
+Canonical example:
 
-`Demon_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_150_L`
+```text
+Demon_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_150_L
+```
 
 Current field interpretation:
 
-1. animation actor/family: `Demon`
-2. `gEAniState`: `Stand`
-3. left animation UseType: `None`
-4. right animation UseType: `2H`
-5. current/source `gEPose`: `P1`
-6. `gEAction`: `Attack`
-7. `gEPhase`: `Hit`
-8. animation type: `N`
-9. `gEDirection`: `Fwd`
-10. separator/unknown metadata group: `00_%_00`
-11. next/destination pose: `P0`
-12. CombatMove distance/length value: `150`
-13. final side/attack-direction token: `L` — exact semantics not fully established
-
-## 3. Animation Actor / Family
-
-The first token identifies the animation actor/family/resource family.
-
-Examples include `Hero`, `Demon`, `Goblin`, and other creature families.
-
-`Hero` does not mean player-only. Compatible human NPCs also use Hero-family animations.
-
-## 4. `gEAniState`
-
-```cpp
-enum gEAniState
-{
-    gEAniState_Dummy0 = 0,
-    gEAniState_Dummy1 = 1,
-    gEAniState_Stand = 2,
-    gEAniState_Sneak = 3,
-    gEAniState_Parade = 4,
-    gEAniState_Kneel = 5,
-    gEAniState_SitGround = 6,
-    gEAniState_SitStool = 7,
-    gEAniState_SitBench = 8,
-    gEAniState_SitThrone = 9,
-    gEAniState_SleepBed = 10,
-    gEAniState_SleepGround = 11,
-    gEAniState_TiltOrcBoulder = 12,
-    gEAniState_HoldOrcBoulder = 13,
-    gEAniState_LiftOrcBoulder = 14,
-    gEAniState_SitKnockDown = 15,
-    gEAniState_LieKnockDown = 16,
-    gEAniState_LieKnockOut = 17,
-    gEAniState_LieStraightDead = 18,
-    gEAniState_LieDead = 19,
-    gEAniState_LiePiercedKO = 20,
-    gEAniState_LiePiercedDead = 21,
-    gEAniState_TalkStand = 22,
-    gEAniState_TalkSitGround = 23,
-    gEAniState_TalkSitStool = 24,
-    gEAniState_TalkSitBench = 25,
-    gEAniState_TalkSitThrone = 26,
-    gEAniState_Wade = 27,
-    gEAniState_Swim = 28,
-    gEAniState_Dive = 29,
-    gEAniState_Count = 30
-};
+```text
+AnimationFamily
+AniState
+LeftAnimationUseType
+RightAnimationUseType
+SourcePose
+gEAction serialization
+gEPhase serialization
+animation type N/O/I
+direction
+opaque 00_%_00 metadata group
+DestinationPose
+CombatMove distance/length value
+final side/hit-direction token when present
 ```
 
-The current state influences which animation family/state combination is eligible.
+Composite poses such as P10/P21/P30/P61 are meaningful and must not be simplified away.
 
-## 5. Left/Right Animation UseTypes
+---
+
+## 3. Animation Family / Actor
+
+The first token is the animation/resource family: `Hero`, `Demon`, `Goblin`, etc.
+
+`Hero` is not player-only. Compatible human NPCs use Hero-family resources.
+
+Behavior may use actor family where needed, but should prefer exact native action/phase/UseType/current motion over filename inference.
+
+---
+
+## 4. Raw gEUseType -> Animation Token Normalization
 
 Filename order is:
 
-`LeftAnimationUseType_RightAnimationUseType`
+```text
+LeftAnimationUseType_RightAnimationUseType
+```
 
-Example:
-
-`None_2H`
-
-means no left-hand animation UseType and a 2H animation UseType in the right-hand position.
-
-## 6. Raw `gEUseType` -> Animation Token Mapping
-
-Raw engine item UseType and animation filename UseType are not always 1:1.
+Raw engine UseType and serialized animation token are not always 1:1. Preserve the established project mapping:
 
 | Raw `gEUseType` | Animation token |
 |---|---|
@@ -218,389 +181,186 @@ Raw engine item UseType and animation filename UseType are not always 1:1.
 | Flee | Flee |
 | Talk | Talk |
 
-Implementation consequence:
+Use normalized animation categories for profile matching; do not blindly serialize raw enum spelling.
 
-configuration/profile matching should use **animation UseType categories**, not blindly serialize raw item UseType names.
+**Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but this does **not** prove that they use the same native damage mechanism. Current production `FIST` authoring is proven only for exact human `gEUseType_Fist` / raw 8. Raw 55 remains a separate discovery responsibility.
 
-## 7. Current / Source Pose
+---
 
-The pose token before the action is the entity's current/source pose.
+## 5. Combat Actions / Phases
 
-Examples:
-
-- `P0`
-- `P1`
-- `P2`
-- `P3`
-- composite labels such as `P10`, `P21`, etc.
-
-Do not simplify composite poses away in code.
-
-## 8. `gEAction`
-
-Combat-relevant values:
-
-```cpp
-enum gEAction
-{
-    gEAction_None = 0,
-    gEAction_Attack = 1,
-    gEAction_PowerAttack = 2,
-    gEAction_QuickAttack = 3,
-    gEAction_QuickAttackR = 4,
-    gEAction_QuickAttackL = 5,
-    gEAction_SimpleWhirl = 6,
-    gEAction_TurnLeft = 7,
-    gEAction_TurnRight = 8,
-    gEAction_SprintAttack = 9,
-    gEAction_WhirlAttack = 10,
-    gEAction_PierceAttack = 11,
-    gEAction_JumpAttack = 12,
-    gEAction_RamAttack = 13,
-    gEAction_HackAttack = 14,
-    gEAction_FinishingAttack = 15,
-    gEAction_Parade = 16,
-    gEAction_ParadeR = 17,
-    gEAction_ParadeL = 18,
-    gEAction_ExitParade = 19,
-    gEAction_QuickParadeStumble = 20,
-    gEAction_ParadeStumble = 21,
-    gEAction_ParadeStumbleR = 22,
-    gEAction_ParadeStumbleL = 23,
-    gEAction_HeavyParadeStumble = 24,
-    gEAction_QuickStumble = 25,
-    gEAction_Stumble = 26,
-    gEAction_StumbleR = 27,
-    gEAction_StumbleL = 28,
-    gEAction_SitKnockDown = 29,
-    gEAction_GetUpAttack = 30,
-    gEAction_GetUpParade = 31,
-    gEAction_LieKnockDown = 32,
-    gEAction_LieKnockOut = 33,
-    gEAction_PierceStumble = 34,
-    gEAction_Die = 35,
-    gEAction_LieDead = 36,
-    gEAction_LiePiercedKO = 37,
-    gEAction_LiePiercedDead = 38,
-    gEAction_AbortAttack = 39,
-    gEAction_Aim = 40,
-    gEAction_Shoot = 41,
-    gEAction_Reload = 42,
-    gEAction_Cock = 43,
-    gEAction_Cast = 44,
-    gEAction_PowerCast = 45,
-    gEAction_MagicParade = 46,
-    gEAction_QuickCast = 47,
-    gEAction_Summon = 48,
-    gEAction_Heal = 49,
-    gEAction_Wait = 50,
-    gEAction_JumpBack = 51,
-    gEAction_Fwd = 52,
-    gEAction_Back = 53,
-    gEAction_Left = 54,
-    gEAction_Right = 55,
-    gEAction_Move = 56,
-    gEAction_Jump = 57,
-    gEAction_Evade = 58,
-    gEAction_Slide = 59,
-    gEAction_Fall = 60,
-    gEAction_Dive = 61,
-    gEAction_COMBATACTIONS_END = 62
-};
-```
-
-The full enum continues through `gEAction_Count = 145`.
-
-Use the exact native action rather than collapsing QuickAttackR/L into a filename heuristic. In the current stateless marker prototype, exact Quick/QuickR/QuickL action values also let global `StartEffect` correlate the marker with the Quick callback family whose native timer was suppressed.
-
-Inventory caveat: serialized action tokens are not proven to map 1:1 to enum names in every family. Native filenames contain `LightStumble`, while the SDK exposes `gEAction_Stumble` but no separate `gEAction_LightStumble`. A mapping from `gEAction_Stumble` to the `LightStumble` resource token is plausible but remains unverified.
-
-### 8.1 Whirl-family naming and input coverage
-
-Do not equate a serialized `WhirlAttack` filename token with the full
-`gEAction_WhirlAttack` path without runtime action logging.
-
-Current human-melee observations:
-
-- Dual has SimpleWhirl only, but its exact Hit/Recover filenames use
-  `WhirlAttack`; input is an attack hold slightly shorter than PowerAttack.
-- 2H and Staff have full Whirl; input is Block + quick attack.
-- Block + held attack with 2H/Staff selects Finishing rather than Whirl.
-- ordinary 1H families have no Whirl.
-- hand-to-hand coverage remains unknown.
-
-This family mismatch is another reason to use native callback/action identity for
-behavior and filenames for exact asset selection/cataloging.
-
-## 9. `gEPhase`
-
-```cpp
-enum gEPhase
-{
-    gEPhase_Raise = 0,
-    gEPhase_Hit = 1,
-    gEPhase_Aim = 2,
-    gEPhase_Recover = 3,
-    gEPhase_Begin = 4,
-    gEPhase_Loop = 5,
-    gEPhase_End = 6,
-    gEPhase_Full = 7,
-    gEPhase_Walk = 8,
-    gEPhase_Run = 9,
-    gEPhase_Sprint = 10,
-    gEPhase_Far = 11,
-    gEPhase_Stand = 12,
-    gEPhase_StrafeL = 13,
-    gEPhase_StrafeR = 14,
-    gEPhase_Turn90 = 15,
-    gEPhase_Ambient = 16,
-    gEPhase_Proud = 17,
-    gEPhase_Approve = 18,
-    gEPhase_Thoughtful = 19,
-    gEPhase_Angry = 20,
-    gEPhase_Threaten = 21,
-    gEPhase_Nervous = 22,
-    gEPhase_Point = 23,
-    gEPhase_Preach = 24,
-    gEPhase_Beg = 25,
-    gEPhase_Sad = 26,
-    gEPhase_None = 27
-};
-```
-
-Current combat work primarily uses Raise, Hit, Recover, and Begin/Loop/End for other action families where relevant.
-
-## 10. Animation Type Token
-
-The supplied naming analysis identifies:
-
-- `N` — normal / non-overlay animation;
-- `O` — overlay animation;
-- `I` — interaction animation.
-
-Animation-author observation adds an important behavioral distinction:
-
-- known melee attacks use their own non-overlay action and take priority over
-  locomotion, even while a movement key remains held. They may contain authored
-  forward movement such as a short step, but the player does not continue
-  steering through the locomotion animation during the attack;
-- actions that genuinely remain controllable while moving have separate
-  `_O_` resources. These can animate only the required upper-body region and
-  layer over the continuing locomotion animation;
-- the same logical action can therefore have both standing/non-overlay and
-  moving/overlay resources. Native 2H `HoldRight` provides a direct example:
+Project-relevant `gEAction` values include:
 
 ```text
-Hero_Stand_None_2H_P0_HoldRight_Begin_N_Fwd_00_%_00_P0_0
-Hero_Stand_None_2H_P0_HoldRight_End_N_Fwd_00_%_00_P0_0
-Hero_Stand_None_2H_P0_HoldRight_Begin_O_Fwd_00_%_00_P0_0
-Hero_Stand_None_2H_P0_HoldRight_End_O_Fwd_00_%_00_P0_0
+Attack=1
+PowerAttack=2
+QuickAttack=3
+QuickAttackR=4
+QuickAttackL=5
+SimpleWhirl=6
+WhirlAttack=10
+PierceAttack=11
+HackAttack=14
+FinishingAttack=15
+GetUpAttack=30
+GetUpParade=31
+AbortAttack=39
 ```
 
-No separate moving melee-Quick family is currently known. A Quick request made
-while a movement key is held cancels locomotion and enters the normal Quick
-action; holding movement at request time does not make the selected asset a
-locomotion overlay.
+Use exact native action when behavior depends on family semantics. Do not treat serialized `WhirlAttack` as proof of runtime `gEAction_WhirlAttack`; Dual SimpleWhirl is a known mismatch. Hack and true Finishing likewise require runtime action distinction.
 
-This classification is useful for filename and authoring analysis.
+Project-relevant phases:
 
-Exact engine enum/internal representation should be source-verified before using these one-letter tokens as runtime authority.
-
-## 11. `gEDirection`
-
-```cpp
-enum gEDirection
-{
-    gEDirection_None = 0,
-    gEDirection_Fwd = 1,
-    gEDirection_Back = 2,
-    gEDirection_Left = 3,
-    gEDirection_Right = 4,
-    gEDirection_FwdLeft = 5,
-    gEDirection_FwdRight = 6,
-    gEDirection_BackLeft = 7,
-    gEDirection_BackRight = 8
-};
+```text
+Raise=0
+Hit=1
+Recover=3
+Begin=4
+Loop=5
+End=6
 ```
 
-The direction token is part of animation resolution and filename serialization.
+Authored collision markers belong to the exact Hit motion.
 
-## 12. Separator / Unknown Metadata Field
+---
 
-Example:
+## 6. Pose / Type / Direction / Distance
 
-`_00_%_00_`
+- source/current pose appears before the action;
+- destination pose appears after the opaque metadata group;
+- Raise often preserves pose while Hit performs the meaningful pose transition;
+- `N` = normal/non-overlay, `O` = overlay, `I` = interaction in the current asset interpretation;
+- direction tokens include Fwd/Back/Left/Right and diagonals;
+- the numeric suffix participates in CombatMove movement/reach logic;
+- final `L/R` strongly correlates with logical hit/attack direction, but **does not select physical collision hand/source**.
 
-Current source material treats this mainly as a separator/unknown metadata group.
+Known Torch+1H and Dual cases prove physical left/right source selection can differ from QuickAttackR/L or final filename R/L.
 
-**Status: UNKNOWN.**
+---
 
-Do not assign semantic meaning in production code without new evidence.
+## 7. Human Melee Pose / Family Notes
 
-## 13. Destination / Next Pose
+```text
+2H / Staff normals: mainly P0 <-> P1
+1H normals: P0/P1/P2/P3 chain
+Dual: mainly P0/P1 with action/source exceptions
+```
 
-The pose token after the separator indicates the destination/next pose used after the animation.
+Dual uses `gEAction_SimpleWhirl` while exact Hit assets serialize `WhirlAttack`.
 
-Example:
+Full Whirl exists for 2H/Staff; ordinary 1H has no equivalent full-Whirl path in current human melee coverage.
 
-`...P1_Attack_Hit...P0...`
+---
 
-means a P1-source attack Hit that resolves toward P0.
+## 8. Frame Indexing
 
-Repeated animation-modding tests strongly support that changing the final pose identifier can change the stance the actor ends in.
+Animations are authored from frame 0. Therefore:
 
-Raise commonly preserves source pose while Hit performs the meaningful pose transition.
+```text
+0–12 inclusive = 13 sampled frames
+0–4 inclusive  = 5 sampled frames
+0–8 inclusive  = 9 sampled frames
+```
 
-## 14. Composite Pose Labels
+Marker indices are literal authored frame indices.
 
-Observed labels include P10, P21, P30, P12, P22, P32, P11, P31, P60, and P61.
+---
 
-Strongly supported:
+## 9. Authoring Rule — Equipped Collision
 
-these are meaningful engine pose/state identifiers and must be preserved.
+For marker-controlled equipped attacks:
 
-Working interpretation from repeated observations:
+```text
+G3AB_COL_RIGHT -> exact active set {RIGHT}; RIGHT rearmed
+G3AB_COL_LEFT  -> exact active set {LEFT}; LEFT rearmed
+G3AB_COL_BOTH  -> exact active set {RIGHT, LEFT}; both rearmed
+G3AB_COL_OFF   -> exact active set {}
+```
 
-the second digit often correlates with a broader destination/main pose family while the first digit distinguishes a more specific transition/attack variant.
+Rules:
 
-This interpretation is not yet a fully reverse-engineered formal rule.
+- RIGHT/LEFT mean Gothic equipped slots, not filename R/L;
+- use at most one collision command on an authored frame;
+- use BOTH rather than same-frame RIGHT + LEFT;
+- keep OFF and a later activation on separate frames;
+- repeating a source marker later in the Hit authors a new contact and rearms it through `ClearTriggeredList()`;
+- OFF is an intra-Hit inactive gap and does not clear triggered lists;
+- marker timing is per animation;
+- do not invent action-specific RIGHT/LEFT/BOTH/OFF marker names.
 
-## 15. CombatMove Distance Field
+The animation author's general preference is often to place collision one authored frame before intended visual contact, but this is an authoring judgement, not an engine constant.
 
-Example:
+---
 
-`...P1_125_R`
+## 10. Authoring Rule — Production Human Fist
 
-The numeric field is used by CombatMove animation movement/reach logic.
+Production author-facing human Fist uses:
 
-Source material reports a game function `GetCombatMoveLength`, but for relevant Hit animations Gothic 3 uses the loaded animation filename convention rather than the returned scripted value.
+```text
+G3AB_COL_FIST
+```
 
-Important asset-replacement caveat from supplied research:
+Meaning:
 
-a renamed animation can be treated as a different animation resource rather than a true overwrite, and the engine may keep the first matching resource loaded from the lower archive hierarchy.
+> Rearm one native human raw-8 body-damage opportunity at this authored Hit frame.
 
-This can require archive/resource management when changing distance-encoded animation names.
+This is **not** an equipped source-set command.
 
-## 16. Final Side / Attack-Direction Token
+Production semantics relevant to the animator:
 
-Examples: `L`, `R`.
+```text
+unmarked exact human Fist Hit
+-> native behavior
 
-The native SDK exposes a separate two-valued `gEHitDirection` (`Left`, `Right`) on `gCScriptRoutine_PS`. The complete native filename inventory strongly correlates attack-side naming with the final token:
+marked exact human raw-8 Fist Hit
+-> custom ownership closes the native opportunity before first FIST
+-> each FIST rearms one native opportunity
+-> native target/contact/damage remains Gothic's responsibility
+```
 
-- every indexed Hero `QuickAttackR` Hit ends in `R`;
-- every indexed Hero `QuickAttackL` Hit ends in `L`;
-- every indexed Hero Normal `N_Left` Hit ends in `L`;
-- every indexed Hero Normal `N_Right` Hit ends in `R`;
-- forward Normal attacks use P0/P2 -> `R` and P1/P3 -> `L` across the indexed human equipment families.
+There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Gothic self-closes a successful human Fist opportunity; the next `FIST` marker rearms the next intended contact.
 
-Jackydima's commented Normal-Attack experiment assigns `PropertyHitDirection` using the same P0/P2 -> Right and P1/P3 -> Left pattern. Because that block is disabled reconstruction/reference code, it supports the correlation but does not prove the native assignment pipeline.
+Do not apply weapon semantics to FIST:
 
-**Status: STRONGLY SUPPORTED as logical attack/hit-direction metadata; exact causal pipeline remains UNKNOWN.**
+```text
+NO RIGHT/LEFT equipped mask
+NO Item_Attack / Item_Equipped window
+NO ClearTriggeredList authoring meaning
+NO weapon C1 cleanup obligation
+```
 
-This direction channel is not a physical collision-arm selector. Animation-author runtime evidence shows that changing the visible swing direction without changing animation identity does not change gameplay behavior, and known Torch+1H/Dual cases can use the left-hand source independently of QuickAttackR/QuickAttackL. Never use the final token or action-side letter alone to choose right-hand, left-hand, or both collision sources.
+Current proven authoring scope is exact human `gEUseType_Fist` / raw 8, including tested Normal/Power production behavior. Do **not** author `FIST` for `gEUseType_PhysicalFist` / raw 55 or monsters until separate discovery proves equivalence and the project deliberately extends the contract.
 
-## 17. Human Melee Pose Patterns
+---
 
-### 2H
+## 11. Supported Family Semantics
 
-Main normal attack poses: P0 and P1.
+Current equipped marker support includes the proven Normal/Quick/full-Whirl foundation plus Power, Pierce, SimpleWhirl, and tested 2H/Staff Hack scope.
 
-Normal attack alternation has been observed as P0 <-> P1.
+Important native restrictions remain part of the authoring contract:
 
-### Staff
+- physical source control does not guarantee identical character-hit eligibility across action families;
+- SimpleWhirl final StatePosition remains `1`; its native character-hit eligibility is substantially selected-target-centered but not strictly selected-target-only;
+- Power native contact sensitivity is preserved;
+- Pierce retains its native target/reaction semantics;
+- true FinishingAttack remains outside ordinary marker treatment.
 
-Melee Staff is structurally very close to 2H and commonly uses the same P0/P1 pattern.
+Exact current scope/proof: `EVIDENCE_INDEX.md`.
 
-### 1H
+---
 
-Main normal attack pose chain uses P0/P1/P2/P3.
+## 12. Filename vs Runtime Rule
 
-Forward normal attacks form a four-pose cycle.
+Use filenames for authoring, exact asset inspection, debugging, and serialized-state identification.
 
-### Dual / 1H1H
+Prefer runtime native values for behavior:
 
-Primarily P0/P1 but with attack/source-selection exceptions.
+```text
+exact gEAction
+exact gEPhase
+normalized left/right animation UseTypes
+current resolved motion and marker list
+actor animation family where needed
+```
 
-## 18. Movement Animation Set Rule
-
-Supplied Hero forward movement example:
-
-- `...Move_Sprint...P0_600.xmot`
-- `...Move_Run...P0_400.xmot`
-- `...Move_Walk...P0_160.xmot`
-- `...Move_Stand...P0_0.xmot`
-
-The source material states that multiple movement modes are needed for blending across movement speed.
-
-The interpretation that the numeric values are literal blending weights/dominance values is a **working hypothesis** and should not be promoted to confirmed without runtime/source verification.
-
-## 19. Frame Indexing and Duration Convention
-
-Gothic 3 animations are authored starting at frame 0. Therefore a Blender range
-from frame 0 through frame N inclusive contains N + 1 sampled frames.
-
-Canonical documentation should state both values when timing or rescaling matters:
-
-- `0–12 inclusive` = 13 sampled frames;
-- `0–4 inclusive` = 5 sampled frames;
-- `0–8 inclusive` = 9 sampled frames.
-
-A bare phrase such as "12-frame animation" is ambiguous in this project because
-the animation author has often used the ending frame number as shorthand. Ask
-whether the number means the inclusive ending index or the actual sampled-frame
-count before performing duration, speed, or rescaling calculations. Authored
-marker indices such as frame 2, 3, or 8 remain literal Blender frame indices.
-
-## 20. Authoring Rule for Frame Collision
-
-For marker-controlled attacks:
-
-- the collision marker belongs to the exact Hit animation motion;
-- marker timing is authored in animation frames;
-- marker presence declares that execution frame-controlled;
-- the current system must not infer ownership from source pose alone.
-
-The frozen equipped-slot command names are:
-
-- `G3AB_COL_RIGHT` — exact active set `{RIGHT}`, with RIGHT rearmed;
-- `G3AB_COL_LEFT` — exact active set `{LEFT}`, with LEFT rearmed;
-- `G3AB_COL_BOTH` — exact active set `{RIGHT, LEFT}`, with both rearmed;
-- `G3AB_COL_OFF` — close the marker-owned set without clearing hit lists.
-
-RIGHT and LEFT identify Gothic 3 equipped slots, not the final filename
-direction token. Use no more than one collision command on an authored frame.
-Use BOTH instead of same-frame RIGHT+LEFT, and keep OFF plus the next activation
-on different frames. Repeating a source command later in the Hit authors a new
-contact. The old `*_TEST` spellings are not supported aliases. Body, unarmed,
-Fist, and monster-source command terminology is not yet frozen.
-
-The animation author's general working preference is to place collision one
-authored frame before the intended visual contact. Exact-contact placement can
-look as though collision begins only after the weapon has entered the target.
-This is an authoring judgement, not a hardcoded engine delay; marker timing must
-remain per animation.
-
-For the earlier tested 2H normal attack authored from frame 0 through frame 12
-inclusive (13 sampled frames):
-
-- first plausible visual contact: frame 9;
-- marker at frame 8 felt best in controlled testing.
-
-The later double-contact fixture used markers and whooshes at frames 4 and 15,
-one authored frame before its intended visual contacts. These fixtures support
-the preference, but do not prove why the one-frame lead looks better or require
-other animators/animations to use the same offset.
-
-## 21. Filename Rule vs Runtime Rule
-
-Use filenames for authoring, asset inspection, debugging, identifying serialized state, and cases where no higher-level semantic API is available.
-
-Prefer runtime native values for behavior decisions:
-
-- exact `gEAction`;
-- exact `gEPhase`;
-- normalized left/right animation UseTypes;
-- current motion resource and marker list;
-- actor animation family where needed.
-
-This keeps code aligned with the engine rather than depending on fragile substring patterns.
+This keeps behavior aligned with Gothic rather than fragile substring parsing.

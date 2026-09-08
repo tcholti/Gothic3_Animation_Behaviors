@@ -1,39 +1,36 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; equipped-melee marker/semantic expansion CLOSED/PASS through Hack validation; human-Fist N4 current
-
-**Updated:** 2026-09-06
+**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; equipped marker expansion and production human raw-8 Fist CLOSED/PASS through EV-244  
+**Updated:** 2026-09-08
 
 ## Purpose
 
-Define standing collision-validation rules, preserve closed boundaries, and state the minimum validation responsibilities for future collision work without retaining completed test chronology as a live queue.
+Define the standing validation rules and the remaining collision-validation gates. This file owns **how future collision behavior is validated**, not implementation architecture, current transient state, or experiment chronology.
 
 Current state: `SESSION_ENTRYPOINT.md`.  
 Transient continuation: `BETWEEN_CHATS.md` when needed.  
+Overall architecture/order: `DESIGN.md`.  
 Lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.  
-Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
-Exact proof: `EVIDENCE_INDEX.md` → canonical evidence ledgers.
+Diagnostic architecture: `COLLISION_LOGGER_PLAN.md`.  
+Exact proof: `EVIDENCE_INDEX.md` -> canonical evidence ledgers.
 
 ---
 
 ## 1. Standing Validation Rules
 
-- Do not reopen closed C1-R1 or Gate-4 semantics without contradicting evidence.
+- Do not reopen closed C1-R1, Gate-4, equipped-family, or human raw-8 Fist conclusions without concrete contradictory evidence.
 - Native cleanup gets first opportunity.
-- Successful exact-source `Item_Attack` creates the lifecycle obligation; successful transition away fulfills it.
-- Terminal repair may mutate only an already-owned exact outstanding source after native cleanup opportunity and established current-equipped liveness.
-- The monotonic C1 generation is the durable marker occurrence/dedupe execution identity.
-- C1 generation does not replace authored marker semantics, exact-set meaning, occurrence counts, replay suppression, OFF, repeated-contact rearm, supported-family ownership, physical marker-window state or terminal lifecycle repair.
-- RIGHT / LEFT / BOTH / OFF prove and control the desired **physical equipped-source set**. Do not infer uniform character-hit eligibility/effect semantics across Gothic action families merely because those physical sources are correctly active.
-- Keep diagnostics independent from behavior correctness.
-- Released behavior must not compile research diagnostics.
-- Do not deploy diagnostic and behavior-only twins together.
-- Preserve raw runtime logs exactly as produced.
-- If compact diagnostics make a required fact ambiguous, treat that as diagnostic insufficiency rather than proof.
-- Freeze exact test purpose/cases/order/raw filename before controlled diagnostic runs according to `PROJECT_PIPELINE.md` and POP-05.
-- Do not invent a broader matrix after a gate is closed unless a concrete contradiction or intentionally new responsibility creates a new falsifiable question.
+- Equipped RIGHT / LEFT / BOTH / OFF control the desired **physical equipped-source set**; they do not prove uniform native target/contact/effect eligibility across action families.
+- Human `FIST` is a separate native body-damage opportunity mechanism, not an equipped source/window.
+- The C1 monotonic generation remains the durable execution identity for marker occurrence/dedupe and equipped-source obligations.
+- Terminal repair may mutate only an exact owned outstanding equipped source after native cleanup opportunity and current-equipped liveness are established.
+- Keep diagnostics independent from behavior correctness; release behavior must not compile research diagnostics.
+- Never deploy the diagnostic and behavior-only collision twins together.
+- Freeze one falsifiable question and the minimum positive/negative controls before each new runtime investigation.
+- Preserve/publish/interpret/promote/archive runtime evidence under POP-05/POP-06 before advancing to a new causal question.
+- Do not grow a matrix after a gate closes unless a new responsibility or contradiction requires it.
 
-Authoritative current prototype products:
+Authoritative research products remain:
 
 ```text
 Script_FrameCollisionTest
@@ -45,366 +42,293 @@ Script_FrameCollisionBehaviorTest
 
 ---
 
-## 2. Closed Lifecycle / C1 Foundation
+## 2. Closed Foundation
 
 ```text
-B6 replacement/deferred ProcessScript candidate      EV-174–EV-181
-B7/B7b termination / continuation loss               EV-182–EV-189
-B8 cross-family abandonment generality               EV-190
-B9 cleanup/finalization ordering                      EV-191
-C1 shadow execution/source obligation core           EV-192–EV-193
-C1 pre-Combat acquisition gap                        EV-194
-C1-O1 outer ScriptFunction lifetime/correlation      EV-195–EV-196
-hook/finalizer substrate stabilization               EV-199–EV-203
-C1-O2-P1 lightweight dispatch bridge                 EV-204
-C1-O2-P2 lazy pre-Combat acquisition/consumption     EV-205
-C1-R1 controlled native-equivalent physical repair   EV-206–EV-207
+C1-R1 exact-source lifecycle safety          CLOSED — EV-206–EV-207
+source/build separation                      CLOSED/PASS — EV-208
+CORE diagnostic sufficiency                  CLOSED/PASS — EV-209–EV-211
+behavior-only smoke                          CLOSED/PASS — EV-212
+C1-generation marker bookkeeping             CLOSED/PASS — EV-213
+literal EV-131 regression                    CLOSED/PASS — EV-214
+final behavior-only architecture smoke       CLOSED/PASS — EV-215
 ```
 
-Accepted terminal repair:
+Accepted terminal equipped-source repair remains exactly:
 
 ```text
-exact outstanding source
+outstanding exact source
 + exact current equipped RIGHT/LEFT identity establishes liveness
-+ actual source group == Item_Attack(7)
-→ exactly one SetCollisionGroup(Item_Equipped)
-→ no ClearTriggeredList()
-→ verify Item_Equipped(5)
++ actual group == Item_Attack(7)
+-> SetCollisionGroup(Item_Equipped) exactly once
+-> no ClearTriggeredList()
+-> verify Item_Equipped(5)
 ```
 
-Retained qualifications:
+Retained evidence limits do not reopen the gate:
 
 ```text
 no positive outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED runtime case
-no positive NPC destructive-abandonment / C1 physical-repair case claimed
-```
-
-These are limits on what is claimed, not open validation gates.
-
----
-
-## 3. Verified Modular Architecture / Product Boundary
-
-Second-pass architecture implementation:
-
-```text
-4eeb701725e8b77d8850116d408155653ff4ad36
-```
-
-```text
-Gate 1 source/build separation            CLOSED/PASS — EV-208
-Gate 2 CORE diagnostic sufficiency        CLOSED/PASS — EV-209–EV-211
-Gate 3 behavior-only smoke                CLOSED/PASS — EV-212
-Gate 4 generation-scoped bookkeeping      CLOSED/PASS — EV-213
-literal historical EV-131 regression      CLOSED/PASS — EV-214
-final behavior-only architecture smoke    CLOSED/PASS — EV-215
-```
-
-```text
-NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
-```
-
-CORE diagnostics already proved the required architecture controls, including:
-
-```text
-known positive stale-source repair
-ordinary native cleanup no-op
-legitimate reaction cleanup no-op
-Dual source independence
-marked-source regression
-Fist/unarmed negative
-crossbow negative
-clean shutdown
-```
-
-Historical product identities and exact run provenance remain in EV-208–EV-215 and archived evidence. They are not current deployment instructions.
-
----
-
-## 4. Accepted Generation-Scoped Marker Model
-
-Gate-4 implementation:
-
-```text
-7667c428a580d18f625317702ededb76aa5e8bb5
-```
-
-Core rule:
-
-```text
-valid C1 generation
-= durable marker occurrence/dedupe execution identity
-```
-
-Marker execution boundaries are no longer inferred from marker-local guesses based on source/motion/action/phase/state-time/authored-count changes or controlled-callback rollback.
-
-Preserve independently:
-
-```text
-exact current-motion ownership
-Normal / Quick / full-Whirl eligibility
-required source preflight
-RIGHT / LEFT / BOTH / OFF exact-set semantics
-authored occurrence budgets
-same-update duplicate/replay suppression
-repeated-contact ClearTriggeredList rearm
-marker-owned physical source/window mask
-exact-set switching
-natural retirement of exact physical source bits
-OFF intra-Hit gap
-Quick/full-Whirl StatePosition suppression
-current Fist/PhysicalFist research behavior
-late/dead/unsupported marker rejection
-unmarked/unsupported native fallback
-valid-motion-only marker caching
-C1 terminal repair contract and ordering
-```
-
-EV-213 proves the generation-scoped implementation; EV-214 directly closes the literal EV-131 same-motion interruption/restart defect; EV-215 closes the final diagnostics-free functional/release-purity smoke.
-
-Validated behavior-only identity used for EV-215:
-
-```text
-Script_FrameCollisionBehaviorTest.dll
-Length: 378880
-SHA256: 41424651B352EEA5009F9E93FA18B67AB1BF5BDBC55BDE2A721ACA0355D5CFB3
-```
-
-The behavior-only result is functional/release-purity evidence only. Internal generation, occurrence-budget, exact-set, replay/dedupe and terminal-repair proof remains in diagnostic evidence.
-
-The SimpleWhirl StatePosition causal question recorded in EV-220 was **not** an execution-identity question and did not reopen Gate 4. The later SimpleWhirl marker/semantic stage is now CLOSED/PASS; this retained evidence boundary does not reopen it.
-
----
-
-## 5. Current Validation Posture
-
-There is **no pending architecture-verification test**.
-
-New collision testing begins only when one of these occurs:
-
-```text
-a concrete contradiction appears
-an existing behavior responsibility changes
-a new source/family/marker mechanism is intentionally added
-a newly exposed native family semantic affects the public marker contract
-AttackContinuationProtection is implemented
-a compatibility gate becomes active
-production migration changes hook/source/config architecture
-```
-
-For each new responsibility:
-
-```text
-reconstruct only the causal evidence route relevant to that responsibility
-→ freeze one falsifiable question
-→ define the minimum positive + negative/regression controls
-→ build/deploy only the exact product required
-→ preserve one-product-at-a-time release/diagnostic separation
-→ record canonical evidence only after interpretation
+no positive NPC destructive-abandonment / physical-repair case claimed
 ```
 
 ---
 
-## 6. Future Required Collision Validation Boundaries
+## 3. Closed Supported Collision Scope
 
-### Equipped-melee marker expansion
-
-Add one mechanism/family responsibility at a time. Preserve all closed Normal/Quick/full-Whirl marker and C1 lifecycle behavior as regression controls.
-
-Current family state:
+Current proven equipped-family state:
 
 ```text
-PowerAttack
-→ marker/source validation CLOSED/PASS
-
-PierceAttack
-→ marker/source validation CLOSED/PASS
-→ native target/reaction semantics remain distinct from physical marker-source control
-
-SimpleWhirl
-→ current marker/semantic stage CLOSED/PASS
-→ EV-217–EV-220 investigation evidence remains preserved below
-
-HackAttack
-→ isolated routing/source/marker validation PASS
+Normal / Quick / full Whirl foundation       CLOSED/PASS
+PowerAttack                                  CLOSED/PASS — EV-241
+PierceAttack                                 CLOSED/PASS — EV-242
+SimpleWhirl                                  CLOSED/PASS — EV-217–EV-220, EV-243
+HackAttack tested 2H/Staff scope             CLOSED/PASS — EV-216, EV-244
 ```
 
-#### Historical SimpleWhirl character-hit eligibility boundary
+Important family qualifications:
 
-The following section preserves the investigation boundary and evidence interpretation from that stage. It is historical provenance, not a live queue; the current SimpleWhirl marker/semantic stage is CLOSED/PASS.
+- Power physical source control is closed; native Power contact/target sensitivity remains native behavior.
+- Pierce physical marker-source timing is separate from native Pierce target/reaction semantics.
+- SimpleWhirl StatePosition `2` was tested and rejected as a sufficient explanation/normalization. Final StatePosition remains `1`; its native character-hit eligibility is substantially selected-target-centered but not strictly selected-target-only.
+- Hack callback identity is EV-216; actual 2H/Staff routing/source/marker validation is EV-244.
 
-EV-217 proves that the SimpleWhirl adapter and physical source layer behave correctly. Accepted BOTH can place both exact Dual equipped sources into `Item_Attack`, rearm both, and later clean both naturally. Therefore a failure to damage every actor visibly crossed by a sword must not automatically be classified as a source-activation failure.
+No old SimpleWhirl StatePosition probe remains pending.
 
-User observations recovered in EV-219 reject a strict “selected target only” model because unselected actors could sometimes be damaged. One initial swapped-motion observation that appeared to show both swords damaging two separate actors in one SimpleWhirl execution did not reproduce and is not positive evidence for reliable two-target behavior.
+### Production human raw-8 Fist
 
-EV-220 provides the strongest current comparison: when Dual Power motion content is used under SimpleWhirl, SimpleWhirl remains substantially more target-directed than true PowerAttack using the same authored motion content. The logger simultaneously confirms the intended physical source program in both cases and shows the current bookkeeping contrast:
+Current human `gEUseType_Fist` / raw 8 production scope is CLOSED/PASS through EV-221–EV-240.
+
+Validated production contract:
 
 ```text
-SimpleWhirl -> StatePosition 1
-Dual Power  -> StatePosition 2
+unmarked human Fist
+-> completely native
+
+marked human Fist execution
+-> initial SPU+0x164 close to 1 once per factual C1 generation
+
+accepted FIST
+-> latch 1 -> 0
+-> if real motion-0 time is below the proven native threshold,
+   arm one exact bounded Game+0x16E180 timing permission
+-> otherwise use native timing directly
+
+native Gothic path
+-> owns target/contact/damage
+-> successful opportunity self-closes latch to 1
 ```
 
-This supports an action-specific character-hit eligibility layer below/alongside the physical source layer, but does not identify its exact native mechanism.
-
-Next falsification is deliberately one-variable and temporary:
+Production exclusions remain:
 
 ```text
-KEEP:
-Action = 6 / SimpleWhirl
-OnAI_SimpleWhirl
-same Power-derived Dual motion fixture
-same BOTH -> single -> OFF -> BOTH markers
-same source activation/rearm
-same target/group setup
-
-CHANGE ONLY:
-accepted SimpleWhirl marker StatePosition bookkeeping 1 -> 2
+NO authored FIST_OFF
+NO Fist ClearTriggeredList
+NO Fist-specific weapon callback suppression
+NO equipped Item_Attack/Item_Equipped window for Fist
+NO weapon C1 physical-cleanup obligation for Fist
+NO direct/custom Fist damage
+NO global animation-clock mutation
+NO generalization to gEUseType_PhysicalFist / raw55
 ```
 
-Interpretation:
+Final Normal + Power acceptance is EV-240.
+
+---
+
+## 4. Next New Collision Responsibility — Bounded PhysicalFist/raw55 Discovery
+
+`gEUseType_PhysicalFist` / raw 55 is **not** covered by the proven human raw-8 mechanism merely because animation-name normalization maps both to the serialized `Fist` token.
+
+The next collision research stage is therefore discovery only.
+
+### Goal
+
+Answer one bounded question:
+
+> Does transformed/non-human PhysicalFist reuse the proven human raw-8 native body-damage path, use a related but distinct branch, or use a materially different family-specific mechanism?
+
+### Preferred controlled fixtures
+
+When practical, use Hero transformation mechanics so the User controls the actor directly:
 
 ```text
-SimpleWhirl becomes Power-like in broad actor-hit eligibility
-→ StatePosition participates in deeper native eligibility
-→ investigate the legitimate semantic rule from evidence before adopting permanent normalization
-→ do not immediately generalize "BOTH = StatePosition 2"
-
-SimpleWhirl remains substantially target-directed
-→ StatePosition is likely bookkeeping/suppression only
-→ revert the temporary change
-→ apply the charter's deliberate-scope decision guide
-→ trace Action 6 / SimpleWhirl-specific native eligibility only if a bounded follow-up still looks worthwhile/promising
-→ otherwise define the animator-facing family contract as physical-source marker control plus the documented native eligibility restriction
+one animal form
++ one clearly different monster form
 ```
 
-This control is **not** permission to permanently change SimpleWhirl bookkeeping before runtime evidence. A documented native family restriction is a valid resolution of the SimpleWhirl responsibility; a deep native trace is not automatically required merely because the cheap causal probe fails.
+Use only forms that can be reproduced reliably. Do not invent a broad monster matrix before the first comparison is interpreted.
 
-Before the collision framework is released, establish an animator-facing guarantee for each supported family. The eventual evidence-driven outcome may be:
+### Minimum discovery facts
+
+Establish only what is necessary to classify the mechanism:
 
 ```text
-uniform eligibility normalization where safe
-OR
-physical-source marker guarantee + documented native family restrictions
-OR
-selective normalization for families where evidence supports it
+actor / animation family
+exact runtime gEUseType (including raw55 when present)
+exact gEAction / gEPhase / current Hit motion
+observable TouchDamage/collision-group state where relevant
+whether SPU+0x164 participates
+whether the generic-human +0x16E180 timing comparison participates
+whether +0x16E1A3 native latch close participates
+where gCEntity::OnDamage is dispatched from
+whether selected-target/contact behavior resembles human raw8
 ```
 
-Do not freeze that policy from the current evidence alone.
+The first discovery does **not** require a production marker implementation.
 
-Known older deliberate source/authoring review item remains separate:
+Do not reuse `G3AB_COL_FIST` for PhysicalFist until semantic equivalence is actually proven. No new monster/body marker name is frozen by this stage.
+
+### Decision after discovery
 
 ```text
-Dual P1 Quick tested authored marker = RIGHT
-older native-source evidence for tested Dual P1 Quick = LEFT
+A — essentially the same mechanism
+    -> consider the smallest evidence-backed extension
+
+B — same combat loop but a distinct branch/source contract
+    -> keep a separate mechanism/adapter and validate one family at a time
+
+C — materially different or family-specific mechanism
+    -> record the boundary and defer rather than building a speculative monster framework
 ```
 
-### Human Fist/body-damage mechanism
+If the work becomes disproportionately complex, deferral is an accepted result. Collision closure may then proceed for the deliberately supported scope.
 
-Human Fist/body-damage semantics remain separate from equipped weapon `Item_Attack`/`Item_Equipped` handling. Do not use weapon-style assumptions; the dedicated native mechanism must be proven independently.
+---
 
-### AttackContinuationProtection
+## 5. Final Native Mixed Collision Regression
 
-`AttackContinuationProtection` is a **prevention** responsibility for the known held-Use2 destructive continuation-loss route. It must remain separate from `CollisionLifecycleGuard`, which remains the general exact-source lost-cleanup fail-safe.
+After the PhysicalFist discovery decision (and any deliberately accepted tractable extension), run one native/no-third-party mixed regression over the **supported current scope**.
 
-Do not begin by resurrecting an attack after destructive teardown. First investigate whether the cleaner root fix is to prevent or defer only the destructive timeout consequence while a real attack CombatMove execution is active.
+The purpose is coexistence/regression confirmation, not source redesign.
 
-Preferred investigation model:
+Protect at minimum:
 
 ```text
-held-Use2 timer continues normally
-
-when its destructive consumer becomes due:
-    if a real attack CombatMove execution would be destroyed
-        suppress/defer only that destructive consequence
-    else
-        preserve native timeout behavior
+equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
+repeated-contact ClearTriggeredList semantics
+Power / Pierce / SimpleWhirl / Hack current behavior
+C1 generation-scoped occurrence/dedupe identity
+C1-R1 exact-source terminal repair
+production human raw-8 FIST
+any PhysicalFist behavior deliberately accepted before this gate
+unmarked/native fallback
+one-live-collision-twin deployment invariant
 ```
 
-Do not assume the timer itself should be reset/frozen; changing the timer may alter post-attack input semantics. Prefer the smallest native decision boundary supported by source/runtime evidence.
+Do not broaden this gate into Raise, speed, target acquisition, or a fresh family investigation.
+
+---
+
+## 6. AttackContinuationProtection — Separate Later Responsibility
+
+`AttackContinuationProtection` is prevention for the known held-Use2 destructive continuation-loss route. It remains separate from `CollisionLifecycleGuard`/C1-R1.
+
+Intended module boundary:
+
+```text
+AttackContinuationProtection.cpp
+= prevent the known destructive bad-skip route when its factual native timeout/decision becomes due during a real attack
+
+CollisionLifecycleGuard / C1-R1
+= exact-source fail-safe if collision cleanup is nevertheless lost
+```
+
+### New Balance compatibility constraint
+
+The User normally plays with New Balance, which already prevents the bad skip on most melee blocks but appears not to cover every case (known concern: left-held Staff; hand-to-hand/other forms not yet established).
+
+Therefore the future protection must be **event/condition-gated**, not continuously active:
+
+```text
+native bad-skip timeout/consumer does not become due
+-> module does nothing
+
+native destructive timeout/consumer becomes due
++ no genuine attack CombatMove would be destroyed
+-> native behavior unchanged
+
+native destructive timeout/consumer becomes due
++ genuine attack CombatMove would be destroyed
+-> suppress/defer only that destructive consequence
+```
+
+If New Balance has already prevented the native bad-skip route from reaching that factual condition, our module should naturally remain inactive.
+
+Do not begin by adding an independent timer, polling loop, permanent watchdog, or unconditional attack-state override.
+
+The preferred investigation is the smallest native decision boundary. Pausing/freezing the underlying timer remains only one possible implementation; if blocking/defering the destructive consumer is cleaner, prefer that. Evidence decides the exact intervention point.
 
 Before implementation prove:
 
-1. the exact timeout decision/call path leading to destructive AIFullStop/state replacement;
-2. whether that timeout has any legitimate responsibility while attack CombatMove is active;
-3. whether preventing/defering only the destructive decision lets the attack complete normally;
-4. whether the same timeout still behaves natively outside attacks;
-5. whether legitimate reaction/interruption FullStop and AISetState remain untouched;
-6. whether the module can consume shared execution facts without redefining C1 collision ownership.
+1. the exact timeout/decision path leading to destructive FullStop/state replacement;
+2. whether the destructive consequence has any legitimate responsibility while the real attack CombatMove is active;
+3. whether preventing/defering only that consequence lets the attack finish normally;
+4. whether outside-attack timeout behavior remains native;
+5. whether legitimate reaction/interruption FullStop/AISetState behavior remains untouched;
+6. whether New Balance-covered attacks naturally produce no intervention;
+7. whether C1-R1 remains an independent underlying fail-safe.
 
-Minimum first runtime falsification if source evidence supports the model:
-
-```text
-known bad-skip attack + held Use2 crossing threshold
-→ destructive skip does not occur
-→ attack continues through normal marker/native lifecycle
-→ collision windows and native cleanup remain normal
-→ C1-R1 remains available underneath but should not need to repair the prevented case
-
-outside-attack control
-→ same held-Use2 timeout preserves native behavior
-
-reaction control
-→ legitimate interruption/reaction cleanup and FullStop behavior still works
-```
-
-Even if prevention succeeds, keep C1-R1:
-
-```text
-AttackContinuationProtection
-= prevent the known destructive route
-
-CollisionLifecycleGuard / C1-R1
-= fail-safe if an exact offensive source nevertheless loses cleanup opportunity
-```
-
-### Compatibility Gate 1 — mature research collision DLL
-
-Before production collision migration, validate the mature marker/source/lifecycle/continuation assembly against New Balance and relevant Jackydima DLLs. Do not assume arbitrary same-function hook chaining or load-order safety.
-
-### Compatibility Gate 2 — final `Script_G3AnimationBehaviors`
-
-After collision migration plus Raise and redesigned speed control, repeat compatibility validation on the final production assembly before stable/release promotion.
+Minimum causal validation should include a known bad-skip case, an outside-attack control, a legitimate reaction control, and New Balance-enabled controls where the route is already prevented.
 
 ---
 
-## 7. Evidence and Artifact Boundary
+## 7. Compatibility Gates
+
+### Compatibility Gate 1 — mature collision research assembly
+
+After AttackContinuationProtection and the required combined regression, validate the mature marker/source/lifecycle/continuation assembly against:
 
 ```text
-controlled runtime/source investigation
-→ research/raw/ canonical intake
-→ commit/publish unchanged artifact
-→ interpretation
-→ canonical EV update
-→ EVIDENCE_INDEX route only when retrieval changes
-→ research/archive/ once processed provenance is deliberately migrated
+New Balance
++ relevant Jackydima collision DLLs, including Script_AttackCollision where applicable
 ```
 
-Future raw→archive migrations must preserve bytes/provenance and update canonical paths without leaving broken references.
+Do not assume arbitrary same-function hook chaining or load-order safety.
 
-`research/derived/` remains a deterministic navigation/analysis layer for oversized evidence; it does not replace canonical raw/archive artifacts.
+EV-242 contains a bounded Pierce-specific compatibility control only; it is not blanket certification of the mature subsystem.
 
-The five SimpleWhirl logs remain in `research/raw/` as preserved evidence for the now-closed marker/semantic stage. Their compact retrieval aid is:
+### Compatibility Gate 2 — final Script_G3AnimationBehaviors
 
-`research/derived/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md`
+After collision migration plus Raise and redesigned speed/configuration work, repeat compatibility/regression on the final production assembly before stable/release promotion.
 
 ---
 
-## 8. Current Project Sequence
+## 8. Evidence / Artifact Boundary
 
-The closed architecture foundation remains complete. Current collision expansion is now:
+Runtime evidence lifecycle is owned operationally by POP-05/POP-06:
 
 ```text
-Power marker/source validation CLOSED
-→ Pierce marker/source validation CLOSED
-→ SimpleWhirl marker/semantic stage CLOSED/PASS
-→ Hack isolated routing/source/marker validation PASS
-→ combined remaining-melee marker/lifecycle regression
-→ separate human-Fist native-mechanism investigation — CURRENT: N4 callback-suppression necessity test
-→ full marker/lifecycle regression
-→ AttackContinuationProtection
-→ combined collision regression
-→ mature research compatibility gate
-→ production collision migration
+freeze test + raw filename
+-> User runs locally
+-> publish unchanged raw artifact
+-> Normal Chat interprets
+-> promote reusable conclusion to canonical EV
+-> explicitly disposition every artifact
+-> archive when fully processed and no active comparison remains
+-> only then advance
 ```
 
-Exact immediate responsibility remains owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
+`research/raw/` is active intake. `research/archive/` is processed provenance. `research/derived/` is a retrieval aid, not canonical evidence.
+
+The September 2–7 collision/Fist artifacts are already processed and archived; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
+
+---
+
+## 9. Current Collision Validation Sequence
+
+```text
+production human raw-8 Fist                         CLOSED/PASS
+Power/Pierce/SimpleWhirl/Hack expansion             CLOSED/PASS for tested scope
+-> bounded PhysicalFist/raw55 discovery
+   -> if tractable, implement/validate only the evidence-backed family mechanism(s)
+   -> if not tractable, record deliberate unsupported/deferred boundary
+-> final native mixed collision regression over supported scope
+-> separate AttackContinuationProtection research/implementation
+-> combined marker + lifecycle + continuation regression
+-> mature New Balance + relevant Jackydima compatibility gate
+-> production collision migration
+-> diagnostics-free collision integration validation
+```
+
+Exact immediate task remains owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
