@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.12  
+**Version:** 1.13  
 **Updated:** 2026-09-08
 
 ## Purpose
@@ -11,7 +11,7 @@ This document stores recurring operational patterns that are useful during norma
 
 It exists so a new Chat does not have to rediscover how we normally:
 
-- synchronize and hand off the active Git branch;
+- synchronize and hand off the active Git branch, using GitHub Desktop for routine User-side Git where practical;
 - build the selected current product/target;
 - deploy and verify a DLL before testing;
 - verify that the selected product actually loaded;
@@ -97,15 +97,96 @@ Assistant finishes required remote writes
 -> Assistant hands branch to User
 -> Assistant does not write that branch during the User window
 -> User performs local artifact/build-related commit and pushes
--> User reports successful push/SHA
+-> User reports successful push/SHA or compact success confirmation
 -> branch returns to Assistant-side writes when needed
 ```
 
 Once Normal Chat gives the User a local commit/push sequence, do not create another commit on that branch until the User reports the push completed or the handoff is explicitly cancelled.
 
-If the assistant changed the remote since the User last synchronized, pull/rebase before the User begins a new local write window whenever practical. Do not blindly pull/rebase across important uncommitted local work.
+### Preferred routine User interface — GitHub Desktop
 
-Typical shape:
+As of 2026-09-08, GitHub Desktop is the preferred interface for ordinary User-side repository synchronization, branch switching, change review, local commits, pushes and history inspection.
+
+The User has only just begun using GitHub Desktop and must be treated as a **beginner**. Do not infer familiarity because one operation succeeded once. When asking the User to perform a GitHub Desktop action, normally provide the concrete steps again in one manageable sequence. Repetition is expected until the User explicitly indicates that the steps no longer need explaining. Avoid unexplained Git terminology when a screen/button description is clearer.
+
+Before a routine Desktop operation, verify visually:
+
+```text
+Current repository = Gothic3_Animation_Behaviors
+Current branch     = exact active branch from SESSION_ENTRYPOINT.md
+Changes            = understood before pull/switch/commit
+```
+
+Prefer branch switching when `Changes` shows `0 changed files`. If important uncommitted changes exist, do not assume they can safely follow a branch switch or pull; identify them first.
+
+Routine synchronization after Assistant-side remote writes:
+
+```text
+open Gothic3_Animation_Behaviors in GitHub Desktop
+-> verify Current branch
+-> click Fetch origin
+-> if remote commits are available and no important local changes block synchronization,
+   click Pull origin
+-> require the top action to return to Fetch origin
+-> verify no unexpected local Changes
+```
+
+Interpretation for the User:
+
+```text
+Fetch origin = check whether GitHub has newer remote state; does not itself change local files
+Pull origin  = bring newer remote commits into the local checkout
+```
+
+Do not use `Preview Pull Request` merely to synchronize the established working branch.
+
+Routine local publication:
+
+```text
+verify Current branch
+-> inspect Changes and select only intended files
+-> enter the agreed descriptive Summary
+-> Commit to <active branch>
+-> Push origin
+-> report compact success or commit SHA when the current procedure requires it
+```
+
+Important distinction:
+
+```text
+Commit = create local Git checkpoint
+Push   = publish local commit(s) to GitHub
+```
+
+A local Commit is not considered remotely published until Push succeeds. The History tab may be used to inspect recent commits and short SHAs.
+
+Do not commit to `main` merely because it is the default/stable branch. Branch selection remains deliberate and follows `SESSION_ENTRYPOINT.md` / `PROJECT_PIPELINE.md`.
+
+### Assistant remote writes and local synchronization
+
+If the Assistant changed the remote since the User last synchronized, the User should normally Fetch/Pull through GitHub Desktop before beginning a new local write window.
+
+If the User already has important local commits or uncommitted work when the remote has also advanced, do not improvise a merge/rebase sequence in the UI. Stop, report the visible state, and choose the smallest safe recovery deliberately.
+
+### PowerShell / command-line fallback
+
+GitHub Desktop is a convenience interface, not a ban on exact command-line work. Use PowerShell/Git when it is materially clearer or safer for the task, especially for:
+
+```text
+exact SHA/status diagnostics
+build/configure commands
+deployment and DLL/hash verification
+bounded log filtering/counts
+scripted or bulk repository operations
+conflict/rebase diagnosis
+operations GitHub Desktop cannot express precisely enough
+```
+
+Do not paste long Git command blocks into Chat when the same routine Fetch/Pull/Commit/Push action can be performed safely in GitHub Desktop.
+
+If a push is rejected, GitHub Desktop reports a conflict, or the visible local/remote state is unclear, stop and inspect; do not guess or auto-pick a side.
+
+Command-line fallback for a known clean synchronization remains available when needed:
 
 ```powershell
 $repoRoot = '<repository from LOCAL_WORKSTATION_PATHS.md>'
@@ -114,16 +195,7 @@ $branch = '<active branch from SESSION_ENTRYPOINT.md>'
 git pull --rebase origin $branch
 ```
 
-If push is rejected with `fetch first` and the intended local commit already exists:
-
-```powershell
-$branch = '<active branch from SESSION_ENTRYPOINT.md>'
-git pull --rebase origin $branch
-git push origin $branch
-git rev-parse HEAD
-```
-
-If rebase conflicts, stop and inspect; do not auto-pick a side.
+If a deliberate command-line rebase conflicts, stop and inspect; do not auto-pick a side.
 
 ---
 
@@ -238,18 +310,23 @@ A file in `research/raw/` is canonical raw evidence. Preserve it byte/content-fa
 
 ### Publish pattern
 
+Routine User-side publishing should normally use GitHub Desktop under POP-01:
+
 ```text
 User confirms exact raw file exists
 -> branch handoff/sync settled
--> verify exact path/status
--> stage only intended artifact(s)
--> descriptive commit
--> push active branch
--> report resulting SHA
+-> GitHub Desktop: verify repository + active branch
+-> inspect Changes and select only intended artifact(s)
+-> enter descriptive Summary
+-> Commit to active branch
+-> Push origin
+-> report compact success or SHA when requested
 -> Assistant reads committed artifact from GitHub
 ```
 
-Normal Chat should provide resolved exact path/branch/filename in concrete commands and normally ask only for the final SHA or compact success confirmation.
+If GitHub Desktop does not express the exact operation safely enough, use a bounded PowerShell/Git fallback instead.
+
+Normal Chat should provide the resolved exact path/branch/filename and the concrete Desktop steps or commands appropriate to the operation. Because the User is new to GitHub Desktop, repeat the relevant UI sequence when asking for it rather than assuming prior demonstrations were memorized. Ask only for the smallest useful confirmation/output; the Assistant can usually resolve the pushed remote SHA directly.
 
 ### Same-investigation evidence-closure invariant
 
@@ -401,7 +478,8 @@ wrong/multiple live twins -> stop before launch
 SHA mismatch -> stop before launch
 missing diagnostic banner -> stop before runtime matrix
 behavior-only load crash -> stop before functional smoke
-Git rebase conflict -> stop automatic Git procedure
+GitHub Desktop unexpected branch/changes/conflict/rejected push -> stop and inspect; do not guess
+Git command-line rebase conflict -> stop automatic Git procedure
 unexpected invariant warning -> treat as evidence/design question
 ```
 
@@ -687,6 +765,8 @@ use procedure normally
 
 If the issue is naming/numbering/version/state/product convention, update `PROJECT_PIPELINE.md`. If participant/tool allocation or CAM operationalization, update `COLLABORATION_RULES.md`. If project purpose/long-term direction/scope/authority topology, update the charter rather than hiding it here.
 
+The GitHub Desktop beginner guidance in POP-01 is intentionally operational and may be simplified later only when repeated use shows the User no longer needs step-by-step reminders. Do not remove it merely because setup succeeded once.
+
 When a procedure becomes too long, ask whether stable detail can move into a reusable script/tool while this document keeps the trigger, invariant and sequence cue.
 
 ---
@@ -695,7 +775,7 @@ When a procedure becomes too long, ask whether stable detail can move into a reu
 
 | Situation | Procedure |
 |---|---|
-| branch writer handoff / sync | POP-01 |
+| branch writer handoff / sync / routine GitHub Desktop workflow | POP-01 |
 | build only | POP-02 |
 | deploy + binary identity | POP-03 |
 | startup/load verification | POP-04 |
@@ -709,4 +789,4 @@ When a procedure becomes too long, ask whether stable detail can move into a reu
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence; close completed runtime evidence before planned handoff; when a Chat fails unavoidably, recover authority/ownership and close the durability gap before new work; select and verify the exact runtime product; hand the active branch deliberately; keep Chat-bound output bounded; launch Work from durable handoffs; understand hierarchy and intended use before formal reviews; and keep recurring operational knowledge in the smallest correct owner so future Chats can resume without rediscovery or accidental redesign.**
+> **Preserve causal certainty and canonical evidence; close completed runtime evidence before planned handoff; when a Chat fails unavoidably, recover authority/ownership and close the durability gap before new work; select and verify the exact runtime product; hand the active branch deliberately; use GitHub Desktop for routine User-side Git with repeated beginner guidance while preserving exact command-line fallbacks; keep Chat-bound output bounded; launch Work from durable handoffs; understand hierarchy and intended use before formal reviews; and keep recurring operational knowledge in the smallest correct owner so future Chats can resume without rediscovery or accidental redesign.**
