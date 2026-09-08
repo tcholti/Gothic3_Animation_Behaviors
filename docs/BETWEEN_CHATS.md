@@ -40,7 +40,8 @@ Record Transaction 2 handoff
 Transaction 3 retrieval/bootstrap/recovery-health commit:
 
 ```text
-<filled with exact Transaction 3 technical commit before publication>
+091f9d606c7464c801726ba90251576d27763c85
+Strengthen recovery and retrieval procedures
 ```
 
 Transaction 3 changes documentation/retrieval/procedure only. No C++ behavior, build configuration, Evidence Ledger facts, specialist collision semantics, project purpose, or CAM material changes.
