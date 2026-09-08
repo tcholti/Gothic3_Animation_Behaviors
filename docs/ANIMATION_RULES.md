@@ -183,7 +183,7 @@ Raw engine UseType and serialized animation token are not always 1:1. Preserve t
 
 Use normalized animation categories for profile matching; do not blindly serialize raw enum spelling.
 
-**Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but this does **not** prove that they use the same native damage mechanism. Current production `FIST` authoring is proven only for exact human `gEUseType_Fist` / raw 8. Raw 55 remains a separate discovery responsibility.
+**Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but the token does **not** identify the factual runtime source. EV-245–EV-246 found that tested Hero animal transformations and eight sampled native creature body attackers actually resolved `gEUseType_Fist` / raw 8; no raw55 source was observed. Raw55 is therefore unobserved/deferred for the current scope, not globally proven unused. Current production `FIST` authoring remains proven only for exact human raw 8.
 
 ---
 
@@ -329,7 +329,7 @@ NO ClearTriggeredList authoring meaning
 NO weapon C1 cleanup obligation
 ```
 
-Current proven authoring scope is exact human `gEUseType_Fist` / raw 8, including tested Normal/Power production behavior. Do **not** author `FIST` for `gEUseType_PhysicalFist` / raw 55 or monsters until separate discovery proves equivalence and the project deliberately extends the contract.
+Current proven authoring scope is exact human `gEUseType_Fist` / raw 8, including tested Normal/Power production behavior. EV-245–EV-246 show that some transformed/non-human attacks also resolve factual raw 8, but that native-source similarity is **not** authored-marker validation. Do not author `FIST` for monsters or `gEUseType_PhysicalFist` / raw 55 unless a separate evidence-backed authoring extension is deliberately validated. Raw55 specifically remains unsupported/deferred until factual runtime 55 evidence appears.
 
 ---
 

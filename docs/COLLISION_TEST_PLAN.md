@@ -1,6 +1,6 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; equipped marker expansion and production human raw-8 Fist CLOSED/PASS through EV-244  
+**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; equipped marker expansion and production human raw-8 Fist CLOSED/PASS through EV-244; bounded raw55 discovery CLOSED/DEFERRED through EV-246  
 **Updated:** 2026-09-08
 
 ## Purpose
@@ -18,7 +18,7 @@ Exact proof: `EVIDENCE_INDEX.md` -> canonical evidence ledgers.
 
 ## 1. Standing Validation Rules
 
-- Do not reopen closed C1-R1, Gate-4, equipped-family, or human raw-8 Fist conclusions without concrete contradictory evidence.
+- Do not reopen closed C1-R1, Gate-4, equipped-family, human raw-8 Fist, or bounded raw55 conclusions without concrete contradictory evidence.
 - Native cleanup gets first opportunity.
 - Equipped RIGHT / LEFT / BOTH / OFF control the desired **physical equipped-source set**; they do not prove uniform native target/contact/effect eligibility across action families.
 - Human `FIST` is a separate native body-damage opportunity mechanism, not an equipped source/window.
@@ -130,75 +130,63 @@ NO weapon C1 physical-cleanup obligation for Fist
 NO direct/custom Fist damage
 NO global animation-clock mutation
 NO generalization to gEUseType_PhysicalFist / raw55
+NO generalization to creature/monster raw-8 authoring without separate validation
 ```
 
 Final Normal + Power acceptance is EV-240.
 
 ---
 
-## 4. Next New Collision Responsibility — Bounded PhysicalFist/raw55 Discovery
+## 4. PhysicalFist/raw55 Bounded Discovery — CLOSED/DEFERRED
 
-`gEUseType_PhysicalFist` / raw 55 is **not** covered by the proven human raw-8 mechanism merely because animation-name normalization maps both to the serialized `Fist` token.
+`gEUseType_PhysicalFist` / raw 55 is not covered merely because animation-name normalization maps it and raw-8 `Fist` to the serialized `Fist` token.
 
-The next collision research stage is therefore discovery only.
+The bounded discovery stage completed through EV-245–EV-246 without observing raw55.
 
-### Goal
-
-Answer one bounded question:
-
-> Does transformed/non-human PhysicalFist reuse the proven human raw-8 native body-damage path, use a related but distinct branch, or use a materially different family-specific mechanism?
-
-### Preferred controlled fixtures
-
-When practical, use Hero transformation mechanics so the User controls the actor directly:
+### What the survey established
 
 ```text
-one animal form
-+ one clearly different monster form
+Hero Wolf transformation      -> factual Fist / raw 8
+Hero Sabertooth transformation -> factual Fist / raw 8
+
+native body attackers observed:
+Boar / Wolf / Sabertooth / Bloodfly / Golem / Snapper / Minecrawler / Bison
+-> factual Fist / raw 8 / group 0
+-> damaging gCEntity::OnDamage caller Game +0x16E348
+
+native equipped controls:
+Demon  -> 2H / raw 3
+Goblin -> 1H / raw 2
+Ogre   -> Axe / raw 52
+-> ordinary equipped/TouchDamage-style path including Game +0x69484 damage calls
+
+Dragon capture:
+Mis_Fireball / Cast raw 15 observed
+physical Dragon attack not captured
 ```
 
-Use only forms that can be reproduced reliably. Do not invent a broad monster matrix before the first comparison is interpreted.
+No raw55 occurred in the twelve native-NPC logs. The transformed fixtures were themselves raw8, so they were invalid as raw55 proxies.
 
-### Minimum discovery facts
+### Accepted boundary
 
-Establish only what is necessary to classify the mechanism:
+This result means:
 
 ```text
-actor / animation family
-exact runtime gEUseType (including raw55 when present)
-exact gEAction / gEPhase / current Hit motion
-observable TouchDamage/collision-group state where relevant
-whether SPU+0x164 participates
-whether the generic-human +0x16E180 timing comparison participates
-whether +0x16E1A3 native latch close participates
-where gCEntity::OnDamage is dispatched from
-whether selected-target/contact behavior resembles human raw8
+raw55 = UNOBSERVED in the bounded survey
+raw55 support = DEFERRED / currently unsupported
 ```
 
-The first discovery does **not** require a production marker implementation.
+It does **not** mean raw55 is proven globally unused in Gothic 3.
 
-Do not reuse `G3AB_COL_FIST` for PhysicalFist until semantic equivalence is actually proven. No new monster/body marker name is frozen by this stage.
+Do not create a raw55 implementation, new monster/body marker vocabulary, or additional raw55 diagnostic unless future runtime evidence first establishes a relevant factual source `UseType == 55`.
 
-### Decision after discovery
-
-```text
-A — essentially the same mechanism
-    -> consider the smallest evidence-backed extension
-
-B — same combat loop but a distinct branch/source contract
-    -> keep a separate mechanism/adapter and validate one family at a time
-
-C — materially different or family-specific mechanism
-    -> record the boundary and defer rather than building a speculative monster framework
-```
-
-If the work becomes disproportionately complex, deferral is an accepted result. Collision closure may then proceed for the deliberately supported scope.
+The non-human raw-8 observations establish source/group/damage-caller similarity only. They do not prove that every creature family traverses the exact proven human `SPU+0x164`, `Game+0x16E180`, or `Game+0x16E1A3` timing/latch internals. They also do not extend production `G3AB_COL_FIST` authoring beyond exact human raw-8.
 
 ---
 
-## 5. Final Native Mixed Collision Regression
+## 5. Final Native Mixed Collision Regression — NEXT
 
-After the PhysicalFist discovery decision (and any deliberately accepted tractable extension), run one native/no-third-party mixed regression over the **supported current scope**.
+Run one native/no-third-party mixed regression over the **supported current scope**.
 
 The purpose is coexistence/regression confirmation, not source redesign.
 
@@ -211,12 +199,13 @@ Power / Pierce / SimpleWhirl / Hack current behavior
 C1 generation-scoped occurrence/dedupe identity
 C1-R1 exact-source terminal repair
 production human raw-8 FIST
-any PhysicalFist behavior deliberately accepted before this gate
 unmarked/native fallback
 one-live-collision-twin deployment invariant
 ```
 
-Do not broaden this gate into Raise, speed, target acquisition, or a fresh family investigation.
+There is no accepted PhysicalFist behavior to add to this gate from EV-245–EV-246.
+
+Do not broaden this gate into raw55 discovery, creature FIST authoring, Raise, speed, target acquisition, or a fresh family investigation.
 
 ---
 
@@ -311,7 +300,7 @@ freeze test + raw filename
 
 `research/raw/` is active intake. `research/archive/` is processed provenance. `research/derived/` is a retrieval aid, not canonical evidence.
 
-The September 2–7 collision/Fist artifacts are already processed and archived; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
+The September 2–8 processed collision/Fist/raw55-survey artifacts are archived; path migrations for earlier already-canonical rows are recorded in `EVIDENCE_PATH_MIGRATIONS.md` where applicable.
 
 ---
 
@@ -320,9 +309,7 @@ The September 2–7 collision/Fist artifacts are already processed and archived;
 ```text
 production human raw-8 Fist                         CLOSED/PASS
 Power/Pierce/SimpleWhirl/Hack expansion             CLOSED/PASS for tested scope
--> bounded PhysicalFist/raw55 discovery
-   -> if tractable, implement/validate only the evidence-backed family mechanism(s)
-   -> if not tractable, record deliberate unsupported/deferred boundary
+PhysicalFist/raw55 bounded discovery                CLOSED/DEFERRED — no raw55 observed
 -> final native mixed collision regression over supported scope
 -> separate AttackContinuationProtection research/implementation
 -> combined marker + lifecycle + continuation regression

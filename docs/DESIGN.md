@@ -151,6 +151,7 @@ NO direct/custom damage
 NO global animation-clock mutation
 NO dedicated Fist interruption repair
 NO raw55/PhysicalFist generalization
+NO creature/monster authored-FIST generalization
 ```
 
 Final Normal + Power production acceptance: EV-240.
@@ -171,29 +172,25 @@ Hack optional asset routing remains narrow: only factual `HackAttack(14)` may su
 
 ---
 
-## 5. PhysicalFist/raw55 — Separate Future Discovery
+## 5. PhysicalFist/raw55 — Bounded Discovery Deferred
 
-`gEUseType_PhysicalFist` / raw 55 maps to the serialized animation token `Fist`, but that does **not** prove the human raw-8 native mechanism applies.
+`gEUseType_PhysicalFist` / raw 55 maps to the serialized animation token `Fist`, but EV-245–EV-246 showed why the serialized token cannot identify the native source mechanism.
 
-The next collision expansion stage is bounded discovery:
-
-```text
-one reproducible transformed animal form
-+ one clearly different transformed monster form when practical
--> establish exact UseType/action/phase/motion
--> determine whether SPU+0x164 and the generic-human timing/OnDamage path participate
--> classify mechanism before any production marker extension
-```
-
-Possible outcomes:
+The bounded discovery found:
 
 ```text
-A same mechanism -> smallest evidence-backed extension
-B related but distinct branch -> separate mechanism/adapter, one family at a time
-C materially different/family-specific -> record unsupported/deferred boundary and move on
+Hero Wolf/Sabertooth transformations -> factual Fist / raw 8
+native body attackers sampled         -> factual Fist / raw 8 / group 0 / Game+0x16E348 damage caller
+native weapon controls                -> factual 2H/1H/Axe UseTypes and equipped/TouchDamage path
+Dragon capture                        -> factual Cast/raw15 fireball; physical attack not captured
+raw55                                  -> not observed
 ```
 
-Do not freeze a monster marker vocabulary or reuse human `FIST` until semantic equivalence is proven.
+Therefore the current architecture deliberately carries **no raw55 implementation**. Raw55 is unobserved/deferred, not globally proven unused.
+
+Reopen this responsibility only if future runtime evidence establishes a relevant factual `UseType == 55`. At that point classify the actual mechanism before any marker extension.
+
+The native creature raw-8 survey does not establish the complete human timing/latch mechanism for those families and does not authorize `G3AB_COL_FIST` for monsters. Production authored `FIST` remains exact-human raw-8 only.
 
 ---
 
@@ -207,7 +204,7 @@ Item_Attack(7)
 -> verify Item_Equipped(5)
 ```
 
-No `ClearTriggeredList()` is part of terminal cleanup. Human Fist and future PhysicalFist mechanisms do not acquire weapon obligations unless separately proven to use equipped sources.
+No `ClearTriggeredList()` is part of terminal cleanup. Human Fist and any future reopened PhysicalFist mechanism do not acquire weapon obligations unless separately proven to use equipped sources.
 
 C1-R1 remains closed through EV-206–EV-207.
 
@@ -305,9 +302,7 @@ Diagnostic research product adds diagnostic modules; public release does not com
 collision architecture foundation                     CLOSED — EV-206–EV-215
 Power / Pierce / SimpleWhirl / Hack expansion          CLOSED for tested scope — EV-241–EV-244
 human raw-8 FIST production                            CLOSED/PASS — EV-221–EV-240
--> bounded PhysicalFist/raw55 discovery
-   -> implement/validate only if the mechanism is tractable and evidence-backed
-   -> otherwise record deliberate deferred boundary
+PhysicalFist/raw55 bounded discovery                   CLOSED/DEFERRED — EV-245–EV-246
 -> final native mixed collision regression over supported scope
 -> separate AttackContinuationProtection research/implementation
 -> combined marker + lifecycle + continuation regression
@@ -334,6 +329,8 @@ Do not combine the remaining collision work with:
 - new equipped marker vocabulary or source/lifecycle redesign;
 - `GetUpAttack` or true `FinishingAttack` redesign;
 - another human raw-8 Fist causal probe absent contradiction;
+- raw55/PhysicalFist work absent new factual runtime UseType 55 evidence;
+- creature/monster `G3AB_COL_FIST` generalization;
 - authored FIST_OFF resurrection;
 - speculative generalized monster/body framework;
 - Raise/speed/configuration implementation;

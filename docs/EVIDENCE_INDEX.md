@@ -20,7 +20,7 @@ The EV-232 split is storage-only at the stable human-Fist checkpoint; numbering 
 
 This index does not restate or change evidence status. Open the exact EV entry when wording, qualification, provenance, build scope or engineering consequence matters.
 
-Processed September 2–7 runtime artifacts were moved unchanged from `research/raw/` to `research/archive/` after evidence closure; the old `ge3log10.log` crash artifact was archived in the same maintenance transaction as historical provenance. Historical rows written before those moves may still spell the former raw intake path; `EVIDENCE_PATH_MIGRATIONS.md` records the path migrations. Raw/archive logs are verification/provenance, not routine reading.
+Processed September 2–8 runtime artifacts are moved unchanged from `research/raw/` to `research/archive/` after evidence closure. Historical rows written before an archive move may still spell the former raw intake path; `EVIDENCE_PATH_MIGRATIONS.md` records those path migrations where needed. Raw/archive logs are verification/provenance, not routine reading.
 
 Current project responsibility is never owned by this historical index. Use `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` for current state.
 
@@ -36,6 +36,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
 | human Fist/body contact — final production route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240 | `DESIGN.md` human-Fist architecture; `SOURCE_HOOK_GUIDE.md` human-Fist path |
+| PhysicalFist/raw55 bounded survey / creature native source classification | EV-245–EV-246 | `COLLISION_TEST_PLAN.md` §4; `SOURCE_HOOK_GUIDE.md` §5 |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | equipped marker exact-set/replay evidence |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075 | EV-182–EV-196 for lifecycle context |
@@ -136,10 +137,10 @@ EV-192–EV-194
 EV-206–EV-207
 EV-211
 EV-214
-EV-217–EV-244
+EV-217–EV-246
 ```
 
-Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only.
+Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 close the current bounded raw55 discovery as unobserved/deferred while recording that several non-human body attacks factually use raw8.
 
 SimpleWhirl current distinction:
 
@@ -215,7 +216,7 @@ Human Fist is not an equipped-source cleanup client; it creates no weapon C1 phy
 
 ### G. Animation semantics and naming
 
-Evidence: EV-036–EV-065.  
+Evidence: EV-036–EV-065, plus EV-245–EV-246 for the runtime distinction between serialized `Fist` and factual raw source UseType.  
 Main routing: `ANIMATION_INDEX.md`.
 
 ### H. Compatibility / hook ownership
@@ -273,10 +274,29 @@ native Gothic
     -> successful opportunity self-closes latch to 1
 ```
 
-No authored FIST_OFF, no Fist triggered-list clear, no Fist-specific weapon callback suppression, no custom damage, no raw55/monster generalization.
+No authored FIST_OFF, no Fist triggered-list clear, no Fist-specific weapon callback suppression, no custom damage, no raw55/monster authoring generalization.
 
 Final acceptance artifact:
 `research/archive/2026-09-07_fist_production_frame12_normal_power_acceptance.log`.
+
+### K. PhysicalFist/raw55 bounded survey
+
+```text
+EV-245 transformed Wolf/Sabertooth proxy rejected: both factual raw8
+EV-246 native-NPC source survey: no factual raw55 observed
+```
+
+Observed native body attackers Boar/Wolf/Sabertooth/Bloodfly/Golem/Snapper/Minecrawler/Bison resolved `Fist` / raw8 / group0 and damaged through `Game +0x16E348`. Weapon controls resolved 2H/1H/Axe factual UseTypes; the Dragon capture recorded Cast/raw15 fireball only and left Dragon physical attack inconclusive.
+
+Engineering status:
+
+```text
+raw55 = unobserved in bounded survey
+support = deferred / unsupported for current scope
+reopen = only on concrete factual runtime UseType 55 evidence
+```
+
+Do not infer complete human timing/latch equivalence for creature raw8 and do not extend `G3AB_COL_FIST` authoring to monsters from this survey.
 
 ---
 
@@ -295,36 +315,36 @@ Pierce equipped marker expansion            CLOSED/PASS — EV-242
 SimpleWhirl current semantic checkpoint     CLOSED for current scope — EV-217–EV-220, EV-243
 Hack equipped marker/source validation      CLOSED/PASS for tested 2H/Staff scope — EV-216, EV-244
 human raw-8 Fist production                 CLOSED/PASS — EV-221–EV-240
+PhysicalFist/raw55 bounded discovery        CLOSED/DEFERRED — EV-245–EV-246
 ```
 
 ```text
 NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
 CURRENT HUMAN FIST NORMAL + POWER PRODUCTION SCOPE = COMPLETE
 EQUIPPED POWER / PIERCE / SIMPLEWHIRL / HACK EXPANSION CHECKPOINTS = CANONICALLY PROMOTED
+RAW55 BOUNDED DISCOVERY = COMPLETE / UNOBSERVED / DEFERRED
 ```
 
-Do not route fresh work into N4/N5/N6 or another human raw-8 Fist causal probe absent contradicting evidence.
+Do not route fresh work into N4/N5/N6, another human raw-8 Fist causal probe, or another raw55 search absent contradicting factual evidence.
 
 ---
 
 ## 5. Future-Responsibility Cross-Routes
 
-### PhysicalFist/raw55 bounded discovery
+### PhysicalFist/raw55 deferred boundary
 
-Current evidence provides **human raw-8 comparison material only**; no current EV proves raw55/PhysicalFist native-mechanism equivalence.
+Current bounded evidence is EV-245–EV-246. It found no factual raw55 source and therefore justifies no raw55 implementation.
 
-Start from:
+If future runtime evidence establishes a relevant source `UseType == 55`, reopen from:
 
 ```text
-EV-029–EV-032     early human-Fist/body-contact evidence
-EV-080–EV-085     human-Fist source/body-contact evidence
-EV-221–EV-240     final human raw-8 mechanism and production proof
-ANIMATION_RULES.md raw UseType -> token distinction
-SOURCE_HOOK_GUIDE.md PhysicalFist/raw55 discovery route
-DESIGN.md + COLLISION_TEST_PLAN.md current discovery boundary
+EV-245–EV-246     current bounded raw55 disposition
+ANIMATION_RULES.md raw UseType -> serialized Fist distinction
+SOURCE_HOOK_GUIDE.md PhysicalFist/raw55 status
+DESIGN.md + COLLISION_TEST_PLAN.md deferred boundary
 ```
 
-Use these as comparison/probe routes only. Do not promote the human `FIST` authoring contract to raw55 until separate runtime evidence proves semantic equivalence and the project deliberately extends that contract.
+Then classify the actual observed native mechanism before changing production behavior. Do not use human raw8 or creature raw8 as a semantic substitute for factual raw55.
 
 ### Final native mixed collision regression
 
@@ -337,9 +357,10 @@ EV-206–EV-215 lifecycle/architecture proof
 EV-216–EV-220 equipped expansion history
 EV-221–EV-240 final human-Fist production proof
 EV-241–EV-244 canonical equipped expansion closures
+EV-245–EV-246 raw55 deferred boundary / native-source survey
 ```
 
-This is regression confirmation, not source/lifecycle/Fist redesign.
+This is the next immediate collision responsibility. It is regression confirmation, not source/lifecycle/Fist redesign.
 
 ### AttackContinuationProtection
 

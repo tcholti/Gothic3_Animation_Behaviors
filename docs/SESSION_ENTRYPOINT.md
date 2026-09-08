@@ -26,11 +26,14 @@ Pierce                                     CLOSED/PASS — EV-242
 SimpleWhirl                                CLOSED/PASS — EV-217–EV-220, EV-243
 Hack tested 2H/Staff scope                 CLOSED/PASS — EV-216, EV-244
 production human raw-8 FIST                CLOSED/PASS — EV-221–EV-240
+PhysicalFist/raw55 bounded discovery       CLOSED/DEFERRED — EV-245–EV-246
 ```
 
 Do not reopen these without concrete contradictory evidence.
 
 Human raw-8 production remains FIST-only: no authored FIST_OFF, no Fist ClearTriggeredList, no equipped weapon source window/C1 physical repair, and no direct/custom damage.
+
+The bounded raw55 investigation did not observe `gEUseType_PhysicalFist` / raw 55. Tested Hero Wolf/Sabertooth transformations and native body attackers resolved factual raw-8 `Fist`; weapon/magic controls resolved their own factual UseTypes. This is a bounded unobserved/deferred result, not proof that raw55 is globally unused by Gothic 3. Do not extend production `G3AB_COL_FIST` to monsters or raw55 from these observations, and do not infer that creature raw-8 attacks share every proven human timing/latch internal.
 
 The major post-human-Fist documentation/evidence/retrieval maintenance milestone is complete through Transactions 1–4. Do not begin another broad documentation audit absent a new POP-10 trigger.
 
@@ -38,51 +41,46 @@ The major post-human-Fist documentation/evidence/retrieval maintenance milestone
 
 ## Current Immediate Responsibility
 
-> **Bounded PhysicalFist/raw55 discovery.**
+> **Final native mixed collision regression over the deliberately supported current scope.**
 
-This begins in a fresh Normal Chat after the planned handoff. The first stage is research/discovery only, not implementation.
+This is regression/coexistence confirmation, not a new collision architecture or source-discovery stage.
 
-Primary question:
-
-> Does transformed/non-human `gEUseType_PhysicalFist` / raw 55 reuse the proven human raw-8 native body-damage path, use a related but distinct branch, or use a materially different family-specific mechanism?
-
-Start from the maintained owners rather than reconstructing human-Fist chronology:
+Primary authority:
 
 ```text
-COLLISION_TEST_PLAN.md §4
-SOURCE_HOOK_GUIDE.md §5
-DESIGN.md PhysicalFist/raw55 boundary
-ANIMATION_RULES.md raw UseType -> serialized Fist distinction
-EVIDENCE_INDEX.md PhysicalFist/raw55 future route
+COLLISION_TEST_PLAN.md §5
+DESIGN.md current implementation order
+EVIDENCE_INDEX.md current collision closure routes
 ```
 
-Preferred first fixtures when reproducible:
+Protect at minimum:
 
 ```text
-one transformed animal form
-+ one clearly different transformed monster form
+equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
+repeated-contact ClearTriggeredList semantics
+Power / Pierce / SimpleWhirl / Hack current behavior
+C1 generation-scoped occurrence/dedupe identity
+C1-R1 exact-source terminal repair
+production human raw-8 FIST
+unmarked/native fallback
+one-live-collision-twin deployment invariant
 ```
-
-Establish only enough facts to classify the mechanism. Do not invent a broad monster matrix before the first comparison is interpreted.
 
 Hard boundaries:
 
 ```text
-NO assumption raw55 == human raw8
-NO reuse/generalization of production G3AB_COL_FIST before evidence proves equivalence
-NO new monster/body marker vocabulary during discovery
+NO raw55/PhysicalFist implementation without new factual runtime UseType 55 evidence
+NO production G3AB_COL_FIST generalization to creature raw-8 or monsters
 NO reopening closed human raw-8 Fist semantics
-NO AttackContinuationProtection work yet
+NO AttackContinuationProtection work inside this regression
+NO Raise/speed work
+NO new family/source redesign
 ```
-
-If raw55 is essentially equivalent, consider the smallest evidence-backed extension. If it is related but distinct, keep the mechanism separate. If it is materially different or disproportionately complex, record the unsupported/deferred boundary and proceed with collision closure for the deliberately supported scope.
 
 Maintained roadmap afterward:
 
 ```text
-bounded PhysicalFist/raw55 discovery
--> any tractable evidence-backed extension
--> final native mixed collision regression
+final native mixed collision regression
 -> separate AttackContinuationProtection
 -> combined marker/lifecycle/continuation regression
 -> mature New Balance + relevant Jackydima compatibility

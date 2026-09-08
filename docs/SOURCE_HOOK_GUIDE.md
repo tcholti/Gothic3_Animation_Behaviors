@@ -229,23 +229,34 @@ Evidence route: EV-221–EV-240.
 
 ---
 
-## 5. PhysicalFist/raw55 Discovery Route
+## 5. PhysicalFist/raw55 Status
 
-`gEUseType_PhysicalFist` / raw 55 serializes through the animation category `Fist`, but native mechanism equivalence is unproven.
+`gEUseType_PhysicalFist` / raw 55 serializes through animation category `Fist`, but the bounded EV-245–EV-246 survey did not observe a factual raw55 attack source.
 
-Start discovery with native semantics, not marker generalization:
+Observed runtime source split:
 
 ```text
-controlled transformed form
--> exact raw UseType / animation family / action / phase / motion
--> inspect whether SPU+0x164 participates
--> inspect whether +0x16E180 timing path is reached
--> inspect whether +0x16E1A3 latch close is reached
--> trace gCEntity::OnDamage caller
--> inspect TouchDamage/collision-group state only if evidence points there
+Hero Wolf/Sabertooth transformations -> Fist / raw 8
+Boar/Wolf/Sabertooth/Bloodfly/Golem/Snapper/Minecrawler/Bison native body attacks
+                                  -> Fist / raw 8 / group 0 / Game+0x16E348 damage caller
+Demon                             -> 2H / raw 3
+Goblin                            -> 1H / raw 2
+Ogre                              -> Axe / raw 52
+Dragon capture                    -> Mis_Fireball / Cast raw 15
 ```
 
-Do not assume raw55 uses the generic-human arm, and do not reuse the production human `FIST` opcode until equivalence is proven.
+The Dragon run did not capture a physical Dragon attack, so that physical case is inconclusive. No raw55 appeared anywhere in the twelve-log native-NPC batch.
+
+Current engineering disposition:
+
+```text
+raw55 mechanism = UNOBSERVED
+raw55 support   = DEFERRED / unsupported for current scope
+```
+
+Do not add a raw55 hook, probe, adapter, or marker behavior unless future runtime evidence first establishes a relevant factual `UseType == 55`. If that happens, resume native-mechanism classification from the actual observed path rather than from filename token `Fist`.
+
+The creature raw-8 observations establish source/group/damage-caller similarity only. They do not prove participation in the exact human `SPU+0x164`, `Game+0x16E180`, or `Game+0x16E1A3` timing/latch internals and do not extend production `G3AB_COL_FIST` to monsters.
 
 ---
 

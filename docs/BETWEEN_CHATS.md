@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-08
 
-## Current Bridge — Fresh Chat Starts PhysicalFist/raw55 Discovery
+## Current Bridge — Raw55 Discovery Closed; Final Native Mixed Regression Next
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -16,7 +16,7 @@ Fresh Chat must read `SESSION_ENTRYPOINT.md` first, then this file. No Work impl
 
 ## Stable State
 
-The post-human-Fist maintenance milestone is complete:
+The post-human-Fist maintenance milestone remains complete:
 
 ```text
 Transaction 1 — evidence/provenance closure             COMPLETE
@@ -25,110 +25,94 @@ Transaction 3 — retrieval/bootstrap/recovery health     COMPLETE
 Transaction 4 — post-maintenance contradiction audit    COMPLETE
 ```
 
-No further broad documentation review is pending.
+Human raw-8 Fist production is CLOSED/PASS through EV-240. Equipped Power/Pierce/SimpleWhirl/Hack tested expansion scope is canonically closed through EV-244.
 
-Human raw-8 Fist production is CLOSED/PASS through EV-240. Equipped Power/Pierce/SimpleWhirl/Hack tested expansion scope is canonically closed through EV-244. Runtime September evidence is processed/archived and `research/raw/` contains only its placeholder.
+The bounded PhysicalFist/raw55 investigation is now CLOSED/DEFERRED through EV-245–EV-246:
 
-Do not reopen closed human raw-8 Fist or equipped collision conclusions without concrete contradictory evidence.
+```text
+Hero Wolf transformation      -> factual right source Fist / raw 8
+Hero Sabertooth transformation -> factual right source Fist / raw 8
+
+native body attackers observed:
+Boar / Wolf / Sabertooth / Bloodfly / Golem / Snapper / Minecrawler / Bison
+-> factual attack source Fist / raw 8 / group 0
+-> damaging gCEntity::OnDamage caller Game +0x16E348
+
+native equipped controls:
+Demon  -> 2H / raw 3
+Goblin -> 1H / raw 2
+Ogre   -> Axe / raw 52
+-> ordinary equipped/TouchDamage-style route, including Game +0x69484 damage calls
+
+Dragon capture:
+Mis_Fireball / Cast raw 15 observed
+physical Dragon attack not captured -> physical case inconclusive
+```
+
+No raw 55 was observed anywhere in the bounded twelve-NPC batch. This does **not** prove raw55 is globally unused; it means no raw55 implementation/probe is justified for the supported collision scope absent new factual runtime evidence.
+
+The creature raw-8 observations establish source/group/damage-caller signatures only. They do not prove the exact human `SPU+0x164` / `Game+0x16E180` / `Game+0x16E1A3` timing-latch internals for every creature family, and they do not extend the production authored `G3AB_COL_FIST` contract beyond exact human raw-8.
+
+All fourteen September 8 logs used for EV-245–EV-246 are processed and archived; `research/raw/` returns to its placeholder-only state.
+
+Do not reopen closed human raw-8 Fist, equipped collision conclusions, or raw55 discovery without concrete contradictory evidence.
 
 ---
 
-## GitHub Desktop Workflow — Newly Adopted
+## GitHub Desktop Workflow
 
-Procedure update:
+GitHub Desktop is the preferred routine local Git interface. The User is still a beginner, so repeat concrete UI steps whenever asking for Fetch/Pull, branch switching, reviewing Changes, Commit, Push, or History until the User explicitly says reminders are no longer needed.
 
-```text
-e370e895e9180d2f25fc99caf3e4814c1c9732f6
-Adopt GitHub Desktop routine workflow
-```
-
-GitHub Desktop is installed and the existing local `Gothic3_Animation_Behaviors` repository has been added successfully. The User has already successfully:
+Because this maintenance commit advances the remote branch beyond the User's local checkout, **before the next local build/write window** guide the User through:
 
 ```text
-recognized the active repository/branch
-Fetch/Pulled a remote backlog
-verified 0 local changes
-opened History
-switched branches and returned to docs/collision-source-evidence
+open GitHub Desktop
+-> select Gothic3_Animation_Behaviors
+-> confirm docs/collision-source-evidence
+-> Fetch origin
+-> if offered, Pull origin
+-> verify Changes shows 0 changed files
 ```
 
-However, the User has **never used GitHub Desktop before this setup and remains a beginner**. Do not assume these operations are memorized because they worked once. POP-01/POP-06 now require the Assistant to repeat concrete UI steps in a manageable sequence whenever asking the User to Fetch, Pull, switch branch, review Changes, Commit, Push, or inspect History, until the User explicitly says reminders are no longer needed.
-
-Routine local Git should prefer GitHub Desktop. PowerShell remains appropriate when exact Git diagnostics, build/deploy/hash work, bounded log processing, conflict diagnosis, or another precise operation makes it safer/better.
-
-Because this handoff/procedure update was published after the User's last local pull, **the next Chat must guide the User through one Fetch/Pull before the first local build/write window**. Do not interpret that normal remote-ahead state as a conflict.
+Do not interpret the expected remote-ahead state as a conflict.
 
 ---
 
-## Next Technical Responsibility — Discovery Only
+## Next Technical Responsibility — Regression Only
 
-> **Bounded `gEUseType_PhysicalFist` / raw 55 discovery.**
+> **Final native mixed collision regression over the supported current collision scope.**
 
-Primary question:
+Use `COLLISION_TEST_PLAN.md §5` as the validation authority. The goal is coexistence/regression confirmation across the mature supported collision assembly, not another source/lifecycle/Fist investigation.
 
-> Does transformed/non-human PhysicalFist reuse the proven human raw-8 body-damage path, use a related but distinct branch, or use a materially different family-specific mechanism?
-
-Read only the maintained starting authorities needed for this question:
+Protect at minimum:
 
 ```text
-COLLISION_TEST_PLAN.md §4
-SOURCE_HOOK_GUIDE.md §5
-DESIGN.md PhysicalFist/raw55 boundary
-ANIMATION_RULES.md raw PhysicalFist -> serialized Fist distinction
-EVIDENCE_INDEX.md PhysicalFist/raw55 future route
-```
-
-Preferred first controlled fixtures when practical:
-
-```text
-one Hero-transformed animal form
-+ one clearly different Hero-transformed monster form
-```
-
-The first stage is observation/classification only. Establish the smallest useful facts around:
-
-```text
-actor / animation family
-exact runtime UseType including raw55 when present
-action / phase / exact Hit motion
-whether SPU+0x164 participates
-whether the generic-human Game+0x16E180 timing comparison participates
-whether Game+0x16E1A3 latch close participates
-gCEntity::OnDamage caller
-TouchDamage/collision-group state only if evidence makes it relevant
+equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
+repeated-contact ClearTriggeredList behavior
+Power / Pierce / SimpleWhirl / Hack current supported behavior
+C1 generation-scoped occurrence/dedupe identity
+C1-R1 exact-source terminal repair
+production exact-human raw-8 FIST
+unmarked/native fallback
+one-live-collision-twin deployment invariant
 ```
 
 Hard exclusions:
 
 ```text
-NO assumption raw55 == human raw8
-NO production G3AB_COL_FIST reuse/generalization before proof
-NO new monster/body marker vocabulary during discovery
-NO broad monster matrix before first comparison is interpreted
-NO AttackContinuationProtection work yet
+NO raw55 implementation unless future runtime proves a relevant source UseType 55
+NO creature/monster G3AB_COL_FIST generalization from EV-245–EV-246
+NO new marker vocabulary
+NO fresh family/source redesign
+NO AttackContinuationProtection inside this gate
 NO Raise/speed work
 ```
 
-Possible discovery outcomes are intentionally bounded:
+After this gate:
 
 ```text
-A — essentially same mechanism
-    -> consider smallest evidence-backed extension
-
-B — related combat loop but distinct branch/source contract
-    -> keep separate and validate one family at a time
-
-C — materially different / family-specific / disproportionately complex
-    -> document deliberate unsupported/deferred boundary and move on
-```
-
-After the discovery decision:
-
-```text
-any accepted tractable PhysicalFist extension
--> final native mixed collision regression
--> separate AttackContinuationProtection
--> combined regression
+separate AttackContinuationProtection
+-> combined marker + lifecycle + continuation regression
 -> mature New Balance + relevant Jackydima compatibility
 -> production collision migration
 ```
