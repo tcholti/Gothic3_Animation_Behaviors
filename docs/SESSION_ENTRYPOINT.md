@@ -10,8 +10,6 @@
 
 Immediate transient handoff: `docs/BETWEEN_CHATS.md`  
 Project charter/retrieval model: `docs/README.md`  
-CAM operationalization: `docs/COLLABORATION_RULES.md`  
-Stable conventions: `docs/PROJECT_PIPELINE.md`  
 Recurring procedures/recovery/review preflight: `docs/PROJECT_OPERATING_PROCEDURES.md`  
 Knowledge ownership/maintenance: `docs/KNOWLEDGE_REGISTRY.md` + `docs/KNOWLEDGE_MAINTENANCE.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
@@ -22,7 +20,7 @@ Evidence routing: `docs/EVIDENCE_INDEX.md`
 
 ```text
 C1-R1 lifecycle safety                     CLOSED — EV-206–EV-207
-modular/source/build architecture          CLOSED/PASS — EV-208–EV-215
+collision architecture verification        CLOSED/PASS — EV-208–EV-215
 Power                                      CLOSED/PASS — EV-241
 Pierce                                     CLOSED/PASS — EV-242
 SimpleWhirl                                CLOSED/PASS — EV-217–EV-220, EV-243
@@ -32,90 +30,59 @@ production human raw-8 FIST                CLOSED/PASS — EV-221–EV-240
 
 Do not reopen these without concrete contradictory evidence.
 
-Human raw-8 production remains:
-
-```text
-unmarked Fist -> native
-marked execution start -> SPU+0x164 closed to 1 once per factual C1 generation
-accepted FIST -> latch 0 + exact one-shot +0x16E180 timing permission only when below threshold
-native Gothic -> target/contact/damage + self-close latch to 1
-```
-
-No authored FIST_OFF, no Fist ClearTriggeredList, no weapon source window/C1 physical repair, no direct damage.
+Human raw-8 production remains FIST-only: no authored FIST_OFF, no Fist ClearTriggeredList, no equipped weapon source window/C1 physical repair, and no direct/custom damage.
 
 ---
 
-## Maintenance Checkpoints
+## Maintenance Milestone
 
-Transaction 1 — evidence/provenance closure:
-
-```text
-239c076002c0dc47bb1464cfb995a68490432ae6
-Close September evidence transactions
-```
-
-Transaction 2 — specialist technical-authority consolidation:
+The major post-human-Fist repository review is complete:
 
 ```text
-b4dc4b0bcb40d2b39e2d4bd5b42b409791323d16
-Consolidate collision technical authorities
+Transaction 1 — evidence/provenance closure             COMPLETE
+Transaction 2 — technical-authority consolidation       COMPLETE
+Transaction 3 — retrieval/bootstrap/recovery health     COMPLETE
+Transaction 4 — post-maintenance contradiction audit    COMPLETE
 ```
 
-Transaction 2 continuity handoff:
+Transaction 4 smallest-owner corrections ended at:
 
 ```text
-c2125e8d58f2d44e768863697ab9dc9989f53e61
-Record Transaction 2 handoff
+478df73e896770e5ac2645a208f6b4b6d593fd84
+Fix EV-199 ledger range metadata
 ```
 
-Transaction 3 repairs retrieval/bootstrap/recovery health. Exact published Transaction 3 commit is recorded in `BETWEEN_CHATS.md`.
-
-Key Transaction 3 rule:
-
-```text
-planned Chat transition
--> completed evidence/maintenance must be closed before moving
-
-unavoidable failed Chat
--> new Chat enters POP-11 Recovery Lock
--> authority orientation first
--> reconstruct only recent durability gap
--> close missed evidence/maintenance
--> invoke POP-10 only if contradiction gate exposes broad authority drift
--> only then resume technical work
-```
+The audit found no remaining architecture/documentation-system contradiction requiring broader cleanup.
 
 ---
 
-## Current Responsibility
+## Current Immediate Responsibility
 
-After Transaction 3 publication, the next responsibility is:
+> **Set up the User's GitHub Desktop workflow for this existing repository.**
 
-> **Transaction 4 — full post-maintenance contradiction/retrieval audit.**
+This is workflow/tooling setup only. Do not begin new Gothic collision research during it.
 
-This is a formal audit and therefore must begin with POP-10 authority/intended-use preflight before judging or changing anything.
-
-Transaction 4 should verify at minimum:
+Goals:
 
 ```text
-CAM boundary unchanged
-README / Registry / procedures agree on authority and recovery model
-four-ledger EV routing is coherent
-EVIDENCE_INDEX / ledger / path-migration routes resolve correctly
-research/raw contains only intentionally active inputs
-research/archive claims match actual tree
-SESSION_ENTRYPOINT / BETWEEN_CHATS are minimal and accurate
-specialist collision authorities remain mutually consistent after consolidation
-no stale N4/N6/SimpleWhirl-next wording
-no production FIST_OFF resurrection
-PhysicalFist/raw55 remains discovery-only
-AttackContinuationProtection remains separate and before mature compatibility
-no dead/stale cross-routes require broader reconstruction
+open/add the existing local Gothic3_Animation_Behaviors repository
+verify the active branch and remote relationship
+learn Fetch/Pull, branch switching, Changes, History, commit and Push
+clarify which routine Git operations can move from pasted PowerShell to GitHub Desktop
+preserve exact command-line use where hashes/build/deploy/log filtering are still safer
 ```
 
-Transaction 4 is review/audit only until findings are stated. If it finds a real defect, apply the smallest-owner correction and rerun the relevant post-change check.
+After GitHub Desktop setup is complete:
 
-Only after Transaction 4 closes should new technical work begin from the maintained roadmap:
+```text
+perform normal continuity check
+-> replace BETWEEN_CHATS with a clean technical handoff
+-> verify remote branch state
+-> start a fresh Chat
+-> bounded PhysicalFist/raw55 discovery
+```
+
+Technical roadmap after the new-Chat handoff:
 
 ```text
 bounded PhysicalFist/raw55 discovery
@@ -131,17 +98,6 @@ bounded PhysicalFist/raw55 discovery
 
 ## Interrupted-Context Rule
 
-If a future previous Chat dies before a clean handoff, **do not blindly follow this file's NEXT pointer**. Enter POP-11 Recovery Lock first. This file becomes a starting clue until reconciled against the recent durable tail.
+If the previous Chat dies before the planned handoff, **do not blindly follow this file's NEXT pointer**. Enter POP-11 Recovery Lock first: authority orientation, recent durable-tail reconstruction, missed evidence/maintenance closure, current-state repair, and POP-10 only if the contradiction gate exposes broad drift.
 
-Do not begin broad documentation cleanup during recovery unless POP-11's contradiction gate deliberately invokes POP-10.
-
----
-
-## Deliberately Outside Current Transaction 4
-
-- C++ collision changes;
-- build/deploy/runtime tests;
-- raw55/PhysicalFist probes;
-- AttackContinuationProtection implementation;
-- Raise/speed work;
-- CAM changes.
+Do not begin broad documentation cleanup merely because a Chat failed.
