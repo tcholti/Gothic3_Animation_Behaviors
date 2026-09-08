@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-08
 
-## Current bridge — Transaction 2 technical-authority consolidation COMPLETE/PUBLISHED; Transaction 3 NEXT
+## Current bridge — Transaction 2 COMPLETE; Transaction 3 NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -14,7 +14,27 @@ Fresh Chat must read `SESSION_ENTRYPOINT.md` first, then this file. No Work impl
 
 ---
 
-## Durable closed technical state
+## Durable maintenance checkpoints
+
+Transaction 1 evidence/provenance closure:
+
+```text
+239c076002c0dc47bb1464cfb995a68490432ae6
+Close September evidence transactions
+```
+
+Transaction 2 technical-authority consolidation:
+
+```text
+b4dc4b0bcb40d2b39e2d4bd5b42b409791323d16
+Consolidate collision technical authorities
+```
+
+Transaction 2 changed documentation/authority only. No C++ behavior, build configuration, evidence ledger, project charter, procedure, or CAM material changed.
+
+---
+
+## Closed / protected technical state
 
 ```text
 collision architecture verification                 COMPLETE — EV-206–EV-215
@@ -25,63 +45,52 @@ Hack tested 2H/Staff routing/source/marker scope    CLOSED/PASS — EV-216, EV-2
 production human raw-8 FIST                         CLOSED/PASS — EV-221–EV-240
 ```
 
-Production human-Fist acceptance remains archived at:
+Production human-Fist acceptance:
 
 ```text
 research/archive/2026-09-07_fist_production_frame12_normal_power_acceptance.log
 ```
 
-Final visual result: 6/6 first swing NO damage, second swing YES damage.
+Final visual result remains 6/6: first swing NO damage, second swing YES damage.
 
 ---
 
-## Transaction 2 consolidated architecture
-
-The technical authorities now agree on these boundaries:
-
-### Human raw-8 Fist
-
-```text
-FIST only
-unmarked = native
-marked execution start closes SPU+0x164 to 1 once per C1 generation
-each FIST rearms latch to 0
-below-threshold FIST may use one exact Game+0x16E180 timing permission
-native Gothic owns target/contact/damage and self-closes success to latch 1
-```
-
-No FIST_OFF, no Fist ClearTriggeredList, no weapon source window/C1 physical cleanup, no direct damage.
+## Consolidated collision roadmap
 
 ### PhysicalFist/raw55
 
-Separate future discovery. `PhysicalFist -> Fist` animation-token normalization does not prove native-mechanism equivalence.
+`gEUseType_PhysicalFist` / raw 55 remains a separate bounded **discovery** responsibility. Its serialization to animation token `Fist` does not prove human raw-8 mechanism equivalence.
 
-Preferred bounded discovery:
+Preferred first comparison:
 
 ```text
-one controlled transformed animal form
+one reproducible transformed animal form
 + one clearly different transformed monster form when practical
--> classify raw55 mechanism before any production marker extension
+-> classify whether raw55 is same / related-distinct / materially family-specific
 ```
 
-Possible outcomes: same mechanism / related distinct branch / materially different-family-specific and deliberately deferred.
+Do not reuse `G3AB_COL_FIST` for raw55 until semantic equivalence is proven.
 
 ### AttackContinuationProtection
 
-Separate future `AttackContinuationProtection.cpp` responsibility after the final native mixed regression.
-
-Hard compatibility rule:
+Future responsibility remains a separate:
 
 ```text
-if New Balance already prevents the factual native bad-skip timeout/consumer condition
--> our module does nothing
+AttackContinuationProtection.cpp
 ```
 
-Do not start from an independent plugin timer or permanent watchdog. First locate the factual native timeout/consumer and suppress/defer only its destructive consequence during a genuine active attack if evidence supports that intervention. C1-R1 remains the independent fail-safe.
+It comes after the final native mixed collision regression and before the mature compatibility gate.
 
----
+Hard New Balance constraint:
 
-## Technical roadmap after maintenance
+```text
+New Balance already prevents the factual native bad-skip timeout/consumer condition
+-> our module performs no intervention
+```
+
+First locate the real native timeout/consumer decision. Do not begin with an independent plugin timer, polling loop, permanent watchdog, or resurrection after teardown. Pausing the timer is only one candidate; suppressing/defering the destructive consumer may be safer. C1-R1 remains the independent fail-safe.
+
+### Technical sequence after maintenance
 
 ```text
 bounded PhysicalFist/raw55 discovery
@@ -104,10 +113,10 @@ bounded PhysicalFist/raw55 discovery
 
 > Repair retrieval/bootstrap health without changing the newly consolidated technical semantics.
 
-Targets identified by the formal audit:
+Targets from the formal audit:
 
 ```text
-README retrieval topology for EV-232 onward split
+README retrieval topology for the EV-232-onward ledger split
 KNOWLEDGE_REGISTRY evidence-owner/routing entries
 research/README processing/index drift
 EVIDENCE_PATH_MIGRATIONS ownership/routing
@@ -118,7 +127,7 @@ Preserve:
 
 ```text
 CAM unchanged
-collision technical authorities unchanged except genuine retrieval-link correction
+newly consolidated specialist technical semantics unchanged
 no C++ behavior change
 no build/deploy/runtime work
 no raw55 probe yet
