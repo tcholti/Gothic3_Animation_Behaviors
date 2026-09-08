@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-07
+**Updated:** 2026-09-08
 
 ## Purpose
 
@@ -308,6 +308,23 @@ Do not route fresh work into N4/N5/N6 or another human raw-8 Fist causal probe a
 ---
 
 ## 5. Future-Responsibility Cross-Routes
+
+### PhysicalFist/raw55 bounded discovery
+
+Current evidence provides **human raw-8 comparison material only**; no current EV proves raw55/PhysicalFist native-mechanism equivalence.
+
+Start from:
+
+```text
+EV-029–EV-032     early human-Fist/body-contact evidence
+EV-080–EV-085     human-Fist source/body-contact evidence
+EV-221–EV-240     final human raw-8 mechanism and production proof
+ANIMATION_RULES.md raw UseType -> token distinction
+SOURCE_HOOK_GUIDE.md PhysicalFist/raw55 discovery route
+DESIGN.md + COLLISION_TEST_PLAN.md current discovery boundary
+```
+
+Use these as comparison/probe routes only. Do not promote the human `FIST` authoring contract to raw55 until separate runtime evidence proves semantic equivalence and the project deliberately extends that contract.
 
 ### Final native mixed collision regression
 
