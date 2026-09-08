@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-08
 
-## Current Bridge — Transaction 4 COMPLETE; GitHub Desktop Setup NEXT
+## Current Bridge — Fresh Chat Starts PhysicalFist/raw55 Discovery
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -14,94 +14,139 @@ Fresh Chat must read `SESSION_ENTRYPOINT.md` first, then this file. No Work impl
 
 ---
 
-## Durable Maintenance Checkpoints
+## Stable State
+
+The post-human-Fist maintenance milestone is complete:
 
 ```text
-Transaction 1 evidence/provenance closure
-239c076002c0dc47bb1464cfb995a68490432ae6
-
-Transaction 2 technical-authority consolidation
-b4dc4b0bcb40d2b39e2d4bd5b42b409791323d16
-
-Transaction 3 retrieval/bootstrap/recovery health
-091f9d606c7464c801726ba90251576d27763c85
-
-Transaction 4 final audited correction
-478df73e896770e5ac2645a208f6b4b6d593fd84
+Transaction 1 — evidence/provenance closure             COMPLETE
+Transaction 2 — technical-authority consolidation       COMPLETE
+Transaction 3 — retrieval/bootstrap/recovery health     COMPLETE
+Transaction 4 — post-maintenance contradiction audit    COMPLETE
 ```
 
-Transaction 4 corrected only:
+No further broad documentation review is pending.
 
-```text
-EVIDENCE_LEDGER_199_ONWARD.md
-    active metadata now says EV-199–EV-231
+Human raw-8 Fist production is CLOSED/PASS through EV-240. Equipped Power/Pierce/SimpleWhirl/Hack tested expansion scope is canonically closed through EV-244. Runtime September evidence is processed/archived and `research/raw/` contains only its placeholder.
 
-ANIMATION_INDEX.md
-    corrected two catalog section routes
-
-EVIDENCE_INDEX.md
-    added explicit PhysicalFist/raw55 future-evidence route
-    states no current EV proves raw55 mechanism equivalence
-```
-
-Post-change comparison confirmed no unintended changes. The broader post-maintenance audit found no remaining architecture/documentation-system contradiction requiring another cleanup pass.
+Do not reopen closed human raw-8 Fist or equipped collision conclusions without concrete contradictory evidence.
 
 ---
 
-## Current Immediate Responsibility
+## GitHub Desktop Workflow — Newly Adopted
 
-Set up GitHub Desktop with the User's existing local repository so routine Git interaction can move out of long pasted PowerShell blocks where practical.
-
-Cover only the useful normal workflow:
+Procedure update:
 
 ```text
-add/open existing local repository
-verify repository + branch
-Fetch / Pull
-Changes
-History
-commit
-Push
-switch branch safely
-understand when PowerShell remains preferable
+e370e895e9180d2f25fc99caf3e4814c1c9732f6
+Adopt GitHub Desktop routine workflow
 ```
 
-Do not start PhysicalFist/raw55 research before this setup and the planned new-Chat handoff are complete.
+GitHub Desktop is installed and the existing local `Gothic3_Animation_Behaviors` repository has been added successfully. The User has already successfully:
+
+```text
+recognized the active repository/branch
+Fetch/Pulled a remote backlog
+verified 0 local changes
+opened History
+switched branches and returned to docs/collision-source-evidence
+```
+
+However, the User has **never used GitHub Desktop before this setup and remains a beginner**. Do not assume these operations are memorized because they worked once. POP-01/POP-06 now require the Assistant to repeat concrete UI steps in a manageable sequence whenever asking the User to Fetch, Pull, switch branch, review Changes, Commit, Push, or inspect History, until the User explicitly says reminders are no longer needed.
+
+Routine local Git should prefer GitHub Desktop. PowerShell remains appropriate when exact Git diagnostics, build/deploy/hash work, bounded log processing, conflict diagnosis, or another precise operation makes it safer/better.
+
+Because this handoff/procedure update was published after the User's last local pull, **the next Chat must guide the User through one Fetch/Pull before the first local build/write window**. Do not interpret that normal remote-ahead state as a conflict.
 
 ---
 
-## After GitHub Desktop Setup
+## Next Technical Responsibility — Discovery Only
 
-Before leaving this Chat:
+> **Bounded `gEUseType_PhysicalFist` / raw 55 discovery.**
+
+Primary question:
+
+> Does transformed/non-human PhysicalFist reuse the proven human raw-8 body-damage path, use a related but distinct branch, or use a materially different family-specific mechanism?
+
+Read only the maintained starting authorities needed for this question:
 
 ```text
-check current remote/local state
-perform any workflow-document maintenance only if GitHub Desktop actually changes a recurring procedure
-replace this file with a clean technical handoff
-verify SESSION_ENTRYPOINT points to the correct next technical responsibility
-verify no evidence/maintenance transaction is left open
-start a fresh Chat
+COLLISION_TEST_PLAN.md §4
+SOURCE_HOOK_GUIDE.md §5
+DESIGN.md PhysicalFist/raw55 boundary
+ANIMATION_RULES.md raw PhysicalFist -> serialized Fist distinction
+EVIDENCE_INDEX.md PhysicalFist/raw55 future route
 ```
 
-The next technical responsibility in that fresh Chat is:
+Preferred first controlled fixtures when practical:
 
-> **Bounded PhysicalFist/raw55 discovery.**
+```text
+one Hero-transformed animal form
++ one clearly different Hero-transformed monster form
+```
 
-Discovery remains research-only initially. Do not assume `PhysicalFist -> Fist` animation-token normalization means native equivalence with human raw-8 Fist, and do not reuse production `G3AB_COL_FIST` for raw55 until runtime evidence proves equivalence and the project deliberately extends the authoring contract.
+The first stage is observation/classification only. Establish the smallest useful facts around:
 
-After the discovery decision, the maintained roadmap is:
+```text
+actor / animation family
+exact runtime UseType including raw55 when present
+action / phase / exact Hit motion
+whether SPU+0x164 participates
+whether the generic-human Game+0x16E180 timing comparison participates
+whether Game+0x16E1A3 latch close participates
+gCEntity::OnDamage caller
+TouchDamage/collision-group state only if evidence makes it relevant
+```
+
+Hard exclusions:
+
+```text
+NO assumption raw55 == human raw8
+NO production G3AB_COL_FIST reuse/generalization before proof
+NO new monster/body marker vocabulary during discovery
+NO broad monster matrix before first comparison is interpreted
+NO AttackContinuationProtection work yet
+NO Raise/speed work
+```
+
+Possible discovery outcomes are intentionally bounded:
+
+```text
+A — essentially same mechanism
+    -> consider smallest evidence-backed extension
+
+B — related combat loop but distinct branch/source contract
+    -> keep separate and validate one family at a time
+
+C — materially different / family-specific / disproportionately complex
+    -> document deliberate unsupported/deferred boundary and move on
+```
+
+After the discovery decision:
 
 ```text
 any accepted tractable PhysicalFist extension
 -> final native mixed collision regression
 -> separate AttackContinuationProtection
--> combined marker/lifecycle/continuation regression
+-> combined regression
 -> mature New Balance + relevant Jackydima compatibility
 -> production collision migration
 ```
 
 ---
 
-## Recovery Rule
+## Evidence / Continuity Rule
 
-If this Chat fails before the planned handoff, the next Chat enters POP-11 Recovery Lock. `SESSION_ENTRYPOINT.md` and this file become clues until reconciled against the recent durable tail. Recovery must orient to authority/ownership before making documentation changes and must not automatically become a full audit.
+Any new runtime evidence must follow POP-05/POP-06 in the same investigation:
+
+```text
+freeze test + filename
+-> User runs/copies unchanged log to research/raw
+-> publish
+-> interpret
+-> canonical EV promotion/disposition when warranted
+-> archive when processed
+-> only then advance
+```
+
+If the previous Chat failed rather than handing off cleanly, enter POP-11 Recovery Lock before new technical work. This file is a trustworthy planned handoff as of its commit; later remote facts still outrank it if the branch advances afterward.
