@@ -27,7 +27,7 @@ Runtime claims remain evidence-bounded; native action/phase/source semantics out
 | raw UseType -> animation category | `ANIMATION_RULES.md` §4 |
 | Fist vs PhysicalFist normalization | `ANIMATION_RULES.md` §4; collision mechanism distinction §§10–11 |
 | combat action / phase values | `ANIMATION_RULES.md` §5 |
-| Dual SimpleWhirl filename/action mismatch | `ANIMATION_RULES.md` §§5, 7; `ANIMATION_CATALOG.md` §7 |
+| Dual SimpleWhirl filename/action mismatch | `ANIMATION_RULES.md` §§5, 7; `ANIMATION_CATALOG.md` §6 |
 | frame 0–N sampled-frame convention | `ANIMATION_RULES.md` §8 |
 | equipped collision marker authoring | `ANIMATION_RULES.md` §9 |
 | human FIST marker authoring | `ANIMATION_RULES.md` §10 |
@@ -36,7 +36,7 @@ Runtime claims remain evidence-bounded; native action/phase/source semantics out
 | exact asset exists? | search `data/animation_names/all_animation_names.txt` |
 | author-curated exact notes | `data/animation_names/author_grouped_attacks_and_stumbles.txt` |
 | Raise availability / concrete human families | `ANIMATION_CATALOG.md` |
-| exact historical Fist body-contact fixture | `ANIMATION_CATALOG.md` §11; production result is EV-240 |
+| exact historical Fist body-contact fixture | `ANIMATION_CATALOG.md` §10; production result is EV-240 |
 
 ---
 
