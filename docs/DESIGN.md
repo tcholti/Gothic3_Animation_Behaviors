@@ -22,7 +22,7 @@ This file owns overall intended architecture and implementation order. Collision
 6. Preserve proven paths while expanding one meaningful responsibility at a time.
 7. Unconfigured/unmarked cases fall back to native behavior.
 8. Load configuration once into normalized in-memory rules.
-9. Require evidence before generalizing player/human/family behavior.
+9. Require evidence before generalizing actor/family/source-mechanism behavior.
 10. One DLL owns each physical Gothic hook; feature modules consume shared bridge facts rather than installing competing hooks.
 11. Public release behavior contains no research diagnostics.
 
@@ -74,7 +74,7 @@ exact action/phase/animation context
 marked-execution opt-in
 ```
 
-After that, equipped weapons and human Fist use different native mechanisms.
+After that, equipped weapons and raw-8 Fist use different native mechanisms.
 
 ### 4.2 Equipped weapon vocabulary
 
@@ -98,9 +98,11 @@ marker
 
 Repeated source markers later in the same Hit author new contacts. OFF is an intra-Hit physical-source gap, not terminal cleanup.
 
-### 4.3 Production human raw-8 Fist
+### 4.3 Production raw-8 Fist
 
-Human `gEUseType_Fist` / raw 8 is body-contact damage, not a literal right-hand weapon source. Controlled evidence established damage through left/right hands, left/right legs and head.
+`gEUseType_Fist` / raw 8 is body-contact damage, not a literal right-hand weapon source. The production mechanism was first proven on human Normal/Power attacks; EV-247 then showed that transformed Sabretooth Normal/Power enters the same existing FIST ownership/timing mechanism successfully.
+
+Marker applicability is therefore **not intended to be gated by human animation-family naming or species identity**. It is governed by factual raw-8 source identity plus a supported/proven native attack-family mechanism and exact current Hit/marker context. Native-NPC equivalence remains a separate validation question.
 
 Tested generic-human native path:
 
@@ -117,13 +119,13 @@ native threshold constant double             = Game +0x308308
 
 The special arm associated with `[SPU+0x154] == 0x39` is outside the proven generic-human model.
 
-Production semantics:
+Production semantics for a supported/proven raw-8 Fist attack family:
 
 ```text
-UNMARKED HUMAN FIST
+UNMARKED RAW-8 FIST
 -> completely native
 
-MARKED HUMAN FIST EXECUTION
+MARKED RAW-8 FIST EXECUTION
 -> once per factual C1 generation, close SPU+0x164 to 1 before first FIST
 
 EACH ACCEPTED FIST
@@ -151,10 +153,13 @@ NO direct/custom damage
 NO global animation-clock mutation
 NO dedicated Fist interruption repair
 NO raw55/PhysicalFist generalization
-NO creature/monster authored-FIST generalization
+NO species/name-based FIST special cases
+NO unproven attack-family extension merely because the source token is Fist
 ```
 
-Final Normal + Power production acceptance: EV-240.
+Human Normal + Power production acceptance: EV-240.  
+Transformed Sabretooth Normal + Power marker compatibility: EV-247.  
+Quick raw-8 FIST remains explicitly unsupported pending native-mechanism proof; EV-247 showed its current marker rejection is a software boundary, not evidence of source mismatch.
 
 ### 4.4 Current equipped-family boundary
 
@@ -163,7 +168,9 @@ PowerAttack   CLOSED/PASS — EV-241
 PierceAttack  CLOSED/PASS — EV-242
 SimpleWhirl   CLOSED/PASS — EV-217–EV-220, EV-243
 HackAttack    CLOSED/PASS for tested 2H/Staff scope — EV-216, EV-244
-Human raw8    CLOSED/PASS — EV-221–EV-240
+raw8 FIST     human Normal/Power CLOSED/PASS — EV-221–EV-240
+              transformed Sabretooth Normal/Power PASS — EV-247
+              Quick OPEN/UNSUPPORTED pending mechanism validation
 ```
 
 SimpleWhirl final StatePosition remains `1`; StatePosition `2` was tested and rejected as sufficient normalization. Native character-hit eligibility remains action-specific.
@@ -190,7 +197,7 @@ Therefore the current architecture deliberately carries **no raw55 implementatio
 
 Reopen this responsibility only if future runtime evidence establishes a relevant factual `UseType == 55`. At that point classify the actual mechanism before any marker extension.
 
-The native creature raw-8 survey does not establish the complete human timing/latch mechanism for those families and does not authorize `G3AB_COL_FIST` for monsters. Production authored `FIST` remains exact-human raw-8 only.
+The native creature raw-8 survey by itself does not prove the complete human timing/latch mechanism for those families. EV-247 now adds direct positive marker evidence for transformed Sabretooth Normal/Power, but native-NPC raw-8 marker equivalence remains unvalidated until the planned NPC control. Raw55 remains a separate unsupported source type regardless of serialized `Fist` naming.
 
 ---
 
@@ -204,7 +211,7 @@ Item_Attack(7)
 -> verify Item_Equipped(5)
 ```
 
-No `ClearTriggeredList()` is part of terminal cleanup. Human Fist and any future reopened PhysicalFist mechanism do not acquire weapon obligations unless separately proven to use equipped sources.
+No `ClearTriggeredList()` is part of terminal cleanup. Raw-8 Fist and any future reopened PhysicalFist mechanism do not acquire weapon obligations unless separately proven to use equipped sources.
 
 C1-R1 remains closed through EV-206–EV-207.
 
@@ -274,7 +281,7 @@ Script_G3AnimationBehaviors / research twin
 +-- FrameCollisionMarkers
 |    exact current-motion ownership
 |    equipped RIGHT/LEFT/BOTH/OFF
-|    human FIST opportunities
+|    raw-8 FIST opportunities for proven families
 |    C1-generation marker bookkeeping
 +-- CollisionSources
 |    factual source identities / UseTypes
@@ -303,6 +310,12 @@ collision architecture foundation                     CLOSED — EV-206–EV-215
 Power / Pierce / SimpleWhirl / Hack expansion          CLOSED for tested scope — EV-241–EV-244
 human raw-8 FIST production                            CLOSED/PASS — EV-221–EV-240
 PhysicalFist/raw55 bounded discovery                   CLOSED/DEFERRED — EV-245–EV-246
+transformed Sabretooth Normal/Power raw8 marker proof PASS — EV-247
+-> native Sabretooth NPC Normal/Power marker control
+-> raw8 Quick native-mechanism classification; bounded extension only if proven
+-> native equipped-NPC marker controls: Goblin 1H / Demon 2H / Ogre Axe
+-> separated 2H-vs-Axe mod marker compatibility
+-> separated 1H-vs-Rapier mod marker compatibility
 -> final native mixed collision regression over supported scope
 -> separate AttackContinuationProtection research/implementation
 -> combined marker + lifecycle + continuation regression
@@ -328,9 +341,9 @@ Do not combine the remaining collision work with:
 
 - new equipped marker vocabulary or source/lifecycle redesign;
 - `GetUpAttack` or true `FinishingAttack` redesign;
-- another human raw-8 Fist causal probe absent contradiction;
 - raw55/PhysicalFist work absent new factual runtime UseType 55 evidence;
-- creature/monster `G3AB_COL_FIST` generalization;
+- species-specific monster/body marker vocabulary or filename-based actor gating;
+- Quick FIST production code before the native Quick mechanism is classified;
 - authored FIST_OFF resurrection;
 - speculative generalized monster/body framework;
 - Raise/speed/configuration implementation;

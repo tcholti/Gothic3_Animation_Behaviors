@@ -1,6 +1,6 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; equipped marker expansion and production human raw-8 Fist CLOSED/PASS through EV-244; bounded raw55 discovery CLOSED/DEFERRED through EV-246  
+**Status:** Current collision validation authority — architecture verification COMPLETE through EV-215; equipped marker expansion and production human raw-8 Fist CLOSED/PASS through EV-244; bounded raw55 discovery CLOSED/DEFERRED through EV-246; transformed Sabretooth raw-8 Normal/Power marker compatibility PASS through EV-247  
 **Updated:** 2026-09-08
 
 ## Purpose
@@ -18,10 +18,11 @@ Exact proof: `EVIDENCE_INDEX.md` -> canonical evidence ledgers.
 
 ## 1. Standing Validation Rules
 
-- Do not reopen closed C1-R1, Gate-4, equipped-family, human raw-8 Fist, or bounded raw55 conclusions without concrete contradictory evidence.
+- Do not reopen closed C1-R1, Gate-4, equipped-family, human raw-8 Normal/Power production, or bounded raw55 conclusions without concrete contradictory evidence.
 - Native cleanup gets first opportunity.
 - Equipped RIGHT / LEFT / BOTH / OFF control the desired **physical equipped-source set**; they do not prove uniform native target/contact/effect eligibility across action families.
-- Human `FIST` is a separate native body-damage opportunity mechanism, not an equipped source/window.
+- Raw-8 `FIST` is a separate native body-damage opportunity mechanism, not an equipped source/window.
+- Do not gate marker applicability by actor species or animation-family name when factual source/mechanism evidence supports a broader scope.
 - The C1 monotonic generation remains the durable execution identity for marker occurrence/dedupe and equipped-source obligations.
 - Terminal repair may mutate only an exact owned outstanding equipped source after native cleanup opportunity and current-equipped liveness are established.
 - Keep diagnostics independent from behavior correctness; release behavior must not compile research diagnostics.
@@ -95,17 +96,17 @@ Important family qualifications:
 
 No old SimpleWhirl StatePosition probe remains pending.
 
-### Production human raw-8 Fist
+### Production raw-8 Fist
 
-Current human `gEUseType_Fist` / raw 8 production scope is CLOSED/PASS through EV-221–EV-240.
+Human `gEUseType_Fist` / raw 8 Normal + Power production scope is CLOSED/PASS through EV-221–EV-240.
 
-Validated production contract:
+Validated production contract for a supported/proven raw-8 Fist attack family:
 
 ```text
-unmarked human Fist
+unmarked raw-8 Fist
 -> completely native
 
-marked human Fist execution
+marked raw-8 Fist execution
 -> initial SPU+0x164 close to 1 once per factual C1 generation
 
 accepted FIST
@@ -130,10 +131,13 @@ NO weapon C1 physical-cleanup obligation for Fist
 NO direct/custom Fist damage
 NO global animation-clock mutation
 NO generalization to gEUseType_PhysicalFist / raw55
-NO generalization to creature/monster raw-8 authoring without separate validation
+NO species/name-specific marker rule
+NO unproven attack-family extension merely because the serialized token is Fist
 ```
 
-Final Normal + Power acceptance is EV-240.
+EV-247 adds direct positive evidence that transformed Sabretooth Normal + Power can use the existing raw-8 FIST mechanism. The same log shows transformed Quick-left/right remains **explicitly unsupported** by current code: each FIST marker is `REJECTED_UNSUPPORTED_HIT`, while physical damage still occurs natively through `Game +0x16E348`.
+
+This means the architecture is not human-animation-family-only, but native-NPC actor equivalence and raw-8 Quick mechanism equivalence remain separate open validation questions.
 
 ---
 
@@ -147,10 +151,10 @@ The bounded discovery stage completed through EV-245–EV-246 without observing 
 
 ```text
 Hero Wolf transformation      -> factual Fist / raw 8
-Hero Sabertooth transformation -> factual Fist / raw 8
+Hero Sabretooth transformation -> factual Fist / raw 8
 
 native body attackers observed:
-Boar / Wolf / Sabertooth / Bloodfly / Golem / Snapper / Minecrawler / Bison
+Boar / Wolf / Sabretooth / Bloodfly / Golem / Snapper / Minecrawler / Bison
 -> factual Fist / raw 8 / group 0
 -> damaging gCEntity::OnDamage caller Game +0x16E348
 
@@ -180,13 +184,109 @@ It does **not** mean raw55 is proven globally unused in Gothic 3.
 
 Do not create a raw55 implementation, new monster/body marker vocabulary, or additional raw55 diagnostic unless future runtime evidence first establishes a relevant factual source `UseType == 55`.
 
-The non-human raw-8 observations establish source/group/damage-caller similarity only. They do not prove that every creature family traverses the exact proven human `SPU+0x164`, `Game+0x16E180`, or `Game+0x16E1A3` timing/latch internals. They also do not extend production `G3AB_COL_FIST` authoring beyond exact human raw-8.
+EV-247 does not change the raw55 conclusion. It establishes transformed-actor raw8 Normal/Power marker compatibility only.
 
 ---
 
-## 5. Final Native Mixed Collision Regression — NEXT
+## 5. Pre-Regression Cross-Actor / Family Compatibility Gates — NEXT
 
-Run one native/no-third-party mixed regression over the **supported current scope**.
+These are bounded compatibility/coverage gates before the final mixed regression. They are not permission to redesign source ownership or create actor-specific marker vocabularies.
+
+### 5.1 Native Sabretooth NPC -> player Normal/Power marker control
+
+Use the same marked Sabretooth Normal/Power animations that passed under `Transform_Sabertooth_Potion`, but let a genuine native Sabretooth NPC attack the player.
+
+Purpose:
+
+```text
+determine whether the existing raw8 Normal/Power FIST mechanism
+also works when the attacker is a native NPC actor
+rather than the transformed Hero
+```
+
+Require:
+
+- factual raw8 `Fist` source;
+- marker ownership decision with `HasFistMarkers=1`;
+- accepted FIST opportunities for Normal/Power;
+- no native pre-marker leak for the marked executions;
+- damage, when contact occurs, after the authored opportunity through the native body-damage route;
+- no actor/species-specific code change before this control.
+
+`research/raw/2026.09.08_sabertooth_marked_attacks.log` is **ACTIVE COMPARISON — KEEP RAW** until this native-NPC comparison is closed.
+
+### 5.2 Raw-8 Quick mechanism classification
+
+EV-247 establishes:
+
+```text
+Quick-left/right source = factual raw8 Fist
+Quick physical damage   = native Game +0x16E348
+FIST marker             = currently REJECTED_UNSUPPORTED_HIT
+```
+
+The current rejection is an explicit implementation boundary because FIST was previously proven only for Normal + Power; humans did not provide a testable Quick-Fist fixture.
+
+Before any code change, determine whether raw-8 Quick traverses the same relevant latch/timing opportunity mechanism sufficiently to support the existing FIST contract.
+
+If proven:
+
+```text
+make the smallest bounded Quick-family extension
+-> rebuild/deploy normally
+-> validate marked Quick-left/right against the same native route
+```
+
+If not proven, keep Quick native/unsupported and do not invent a second marker mechanism without evidence.
+
+### 5.3 Native equipped-NPC marker controls
+
+Use separate logs for each actor:
+
+```text
+Goblin -> factual 1H / raw2
+Demon  -> factual 2H / raw3
+Ogre   -> factual Axe / raw52
+```
+
+Put ordinary equipped-source markers on selected native NPC attack animations and let each NPC attack the player.
+
+Purpose:
+
+```text
+confirm equipped marker ownership follows factual equipped source/action semantics
+for NPC attackers as well as the already-proven player-side cases
+```
+
+Keep each NPC as a separate evidence artifact so failures/qualifications remain attributable.
+
+### 5.4 Separated 2H vs Axe mod compatibility
+
+With the mod that separates 2H from Axe animation families:
+
+- mark at least one new 2H attack;
+- mark at least one new Axe attack;
+- include marker-free/native controls where practical.
+
+The question is whether collision behavior follows factual equipped source/action semantics after the animation-family split, not whether vanilla filename grouping is preserved.
+
+### 5.5 Separated 1H vs Rapier mod compatibility
+
+With the mod that separates ordinary 1H from Rapiers:
+
+- mark at least one ordinary 1H attack;
+- mark at least one Rapier attack;
+- include marker-free/native controls where practical.
+
+Again, factual source/action semantics outrank animation-family naming.
+
+Only after these bounded gates are dispositioned should the final mixed regression begin.
+
+---
+
+## 6. Final Native Mixed Collision Regression
+
+Run one native/no-third-party mixed regression over the **supported current scope after the pre-regression compatibility gates above are closed**.
 
 The purpose is coexistence/regression confirmation, not source redesign.
 
@@ -198,18 +298,18 @@ repeated-contact ClearTriggeredList semantics
 Power / Pierce / SimpleWhirl / Hack current behavior
 C1 generation-scoped occurrence/dedupe identity
 C1-R1 exact-source terminal repair
-production human raw-8 FIST
+supported raw-8 FIST behavior
 unmarked/native fallback
 one-live-collision-twin deployment invariant
 ```
 
 There is no accepted PhysicalFist behavior to add to this gate from EV-245–EV-246.
 
-Do not broaden this gate into raw55 discovery, creature FIST authoring, Raise, speed, target acquisition, or a fresh family investigation.
+Do not broaden this gate into raw55 discovery, Raise, speed, target acquisition, or a fresh family/source redesign.
 
 ---
 
-## 6. AttackContinuationProtection — Separate Later Responsibility
+## 7. AttackContinuationProtection — Separate Later Responsibility
 
 `AttackContinuationProtection` is prevention for the known held-Use2 destructive continuation-loss route. It remains separate from `CollisionLifecycleGuard`/C1-R1.
 
@@ -262,7 +362,7 @@ Minimum causal validation should include a known bad-skip case, an outside-attac
 
 ---
 
-## 7. Compatibility Gates
+## 8. Compatibility Gates
 
 ### Compatibility Gate 1 — mature collision research assembly
 
@@ -283,7 +383,7 @@ After collision migration plus Raise and redesigned speed/configuration work, re
 
 ---
 
-## 8. Evidence / Artifact Boundary
+## 9. Evidence / Artifact Boundary
 
 Runtime evidence lifecycle is owned operationally by POP-05/POP-06:
 
@@ -300,16 +400,22 @@ freeze test + raw filename
 
 `research/raw/` is active intake. `research/archive/` is processed provenance. `research/derived/` is a retrieval aid, not canonical evidence.
 
-The September 2–8 processed collision/Fist/raw55-survey artifacts are archived; path migrations for earlier already-canonical rows are recorded in `EVIDENCE_PATH_MIGRATIONS.md` where applicable.
+The September 2–8 processed collision/Fist/raw55-survey artifacts are archived; `research/raw/2026.09.08_sabertooth_marked_attacks.log` intentionally remains raw as an active comparison input for the planned native-Sabretooth control.
 
 ---
 
-## 9. Current Collision Validation Sequence
+## 10. Current Collision Validation Sequence
 
 ```text
 production human raw-8 Fist                         CLOSED/PASS
 Power/Pierce/SimpleWhirl/Hack expansion             CLOSED/PASS for tested scope
 PhysicalFist/raw55 bounded discovery                CLOSED/DEFERRED — no raw55 observed
+transformed Sabretooth Normal/Power raw8 marker     PASS — EV-247
+-> native Sabretooth NPC Normal/Power marker control
+-> raw8 Quick mechanism classification / bounded extension only if proven
+-> native equipped-NPC markers: Goblin 1H / Demon 2H / Ogre Axe
+-> separated 2H-vs-Axe mod marker compatibility
+-> separated 1H-vs-Rapier mod marker compatibility
 -> final native mixed collision regression over supported scope
 -> separate AttackContinuationProtection research/implementation
 -> combined marker + lifecycle + continuation regression

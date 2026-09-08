@@ -25,66 +25,71 @@ Power                                      CLOSED/PASS — EV-241
 Pierce                                     CLOSED/PASS — EV-242
 SimpleWhirl                                CLOSED/PASS — EV-217–EV-220, EV-243
 Hack tested 2H/Staff scope                 CLOSED/PASS — EV-216, EV-244
-production human raw-8 FIST                CLOSED/PASS — EV-221–EV-240
+human raw-8 FIST Normal/Power              CLOSED/PASS — EV-221–EV-240
 PhysicalFist/raw55 bounded discovery       CLOSED/DEFERRED — EV-245–EV-246
+transformed Sabretooth Normal/Power FIST   PASS — EV-247
 ```
 
-Do not reopen these without concrete contradictory evidence.
+Do not reopen these exact closed conclusions without concrete contradictory evidence.
 
-Human raw-8 production remains FIST-only: no authored FIST_OFF, no Fist ClearTriggeredList, no equipped weapon source window/C1 physical repair, and no direct/custom damage.
+Raw-8 FIST remains FIST-only: no authored FIST_OFF, no Fist ClearTriggeredList, no equipped weapon source window/C1 physical repair, and no direct/custom damage.
 
-The bounded raw55 investigation did not observe `gEUseType_PhysicalFist` / raw 55. Tested Hero Wolf/Sabertooth transformations and native body attackers resolved factual raw-8 `Fist`; weapon/magic controls resolved their own factual UseTypes. This is a bounded unobserved/deferred result, not proof that raw55 is globally unused by Gothic 3. Do not extend production `G3AB_COL_FIST` to monsters or raw55 from these observations, and do not infer that creature raw-8 attacks share every proven human timing/latch internal.
+The bounded raw55 investigation did not observe `gEUseType_PhysicalFist` / raw 55. Tested transformations and several native body attackers resolved factual raw-8 `Fist`; weapon/magic controls resolved their own factual UseTypes. Raw55 remains unobserved/deferred, not globally disproven.
 
-The major post-human-Fist documentation/evidence/retrieval maintenance milestone is complete through Transactions 1–4. Do not begin another broad documentation audit absent a new POP-10 trigger.
+EV-247 materially qualifies the earlier conservative actor-family boundary: transformed Sabretooth Normal and Power entered the existing raw-8 FIST ownership/timing mechanism successfully. The intended architecture is not human-animation-family- or species-gated; factual raw-8 source identity plus a supported/proven native attack-family mechanism governs applicability.
+
+EV-247 also establishes that transformed Quick-left/right is **not marker-controlled today**. The raw8 source and native `Game +0x16E348` damage route are present, but each FIST marker is explicitly `REJECTED_UNSUPPORTED_HIT` because current code permits FIST only for Normal + Power. Do not implement Quick until its native latch/timing mechanism is classified.
 
 ---
 
 ## Current Immediate Responsibility
 
-> **Final native mixed collision regression over the deliberately supported current scope.**
+> **Native Sabretooth NPC -> player marked Normal/Power compatibility control. No code change before this test.**
 
-This is regression/coexistence confirmation, not a new collision architecture or source-discovery stage.
+Use the same marked Sabretooth Normal/Power animations that passed under `Transform_Sabertooth_Potion`, but let a genuine native Sabretooth NPC attack the player.
 
 Primary authority:
 
 ```text
 COLLISION_TEST_PLAN.md §5
-DESIGN.md current implementation order
-EVIDENCE_INDEX.md current collision closure routes
+DESIGN.md raw-8 Fist architecture
+EV-247
+BETWEEN_CHATS.md exact continuation
 ```
 
-Protect at minimum:
+Purpose:
 
 ```text
-equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
-repeated-contact ClearTriggeredList semantics
-Power / Pierce / SimpleWhirl / Hack current behavior
-C1 generation-scoped occurrence/dedupe identity
-C1-R1 exact-source terminal repair
-production human raw-8 FIST
-unmarked/native fallback
-one-live-collision-twin deployment invariant
+separate transformed-player success
+from actual native-NPC actor compatibility
+without changing production code first
+```
+
+`research/raw/2026.09.08_sabertooth_marked_attacks.log` is **ACTIVE COMPARISON — KEEP RAW** until this native-NPC comparison is closed.
+
+After the native Sabretooth control, the planned bounded sequence is:
+
+```text
+raw8 Quick mechanism classification / bounded extension only if proven
+-> native equipped-NPC marker tests: Goblin 1H / Demon 2H / Ogre Axe
+-> separated 2H-vs-Axe mod marker compatibility
+-> separated 1H-vs-Rapier mod marker compatibility
+-> final native mixed collision regression
+-> separate AttackContinuationProtection
+-> combined marker/lifecycle/continuation regression
+-> mature New Balance + relevant Jackydima compatibility
+-> production collision migration
 ```
 
 Hard boundaries:
 
 ```text
 NO raw55/PhysicalFist implementation without new factual runtime UseType 55 evidence
-NO production G3AB_COL_FIST generalization to creature raw-8 or monsters
-NO reopening closed human raw-8 Fist semantics
-NO AttackContinuationProtection work inside this regression
+NO species/name-specific marker vocabulary or actor-family gating
+NO Quick FIST code before mechanism proof
+NO AttackContinuationProtection work inside the pre-regression compatibility sequence
 NO Raise/speed work
-NO new family/source redesign
-```
-
-Maintained roadmap afterward:
-
-```text
-final native mixed collision regression
--> separate AttackContinuationProtection
--> combined marker/lifecycle/continuation regression
--> mature New Balance + relevant Jackydima compatibility
--> production collision migration
+NO new source/lifecycle redesign
 ```
 
 ---
@@ -108,7 +113,7 @@ verify repository + current branch
 
 PowerShell remains appropriate for exact SHA/status diagnostics, build/deploy/hash verification, bounded log processing, conflict diagnosis, or other operations GitHub Desktop cannot express precisely enough.
 
-Before the next local build/write window, synchronize the local checkout if the Assistant has made newer remote handoff/procedure commits.
+Before the next local write/test window, synchronize the local checkout if the Assistant has made newer remote handoff/evidence-maintenance commits.
 
 ---
 
