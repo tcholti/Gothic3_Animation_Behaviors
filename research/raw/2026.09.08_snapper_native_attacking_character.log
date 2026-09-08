@@ -1,0 +1,6968 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 28593.164
+Actor: Snapper
+Family: QUICK
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+Action: 4
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F60210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 28698.327
+Source: Fist
+SourceAddress: E6F60210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 9.730989
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 28939.497
+HookEntryOrdinal: 1
+CallerAddress: 00C3E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F60210
+EntityArg1Name: Fist
+EntityArg2Address: E6EA4010
+EntityArg2Name: Snapper
+IntArg1: 27
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 28952.374
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 28952.383
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 28952.690
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 29260.173
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 30496.688
+Actor: Snapper
+Family: QUICK
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 5
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F60210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30596.336
+Source: Fist
+SourceAddress: E6F60210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.335914
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 30831.762
+HookEntryOrdinal: 2
+CallerAddress: 00C3E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F60210
+EntityArg1Name: Fist
+EntityArg2Address: E6EA4010
+EntityArg2Name: Snapper
+IntArg1: 27
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 30842.448
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 30842.457
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 30842.780
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 31154.487
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 32390.176
+Actor: Snapper
+Family: QUICK
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+Action: 4
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F60210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 32518.883
+Source: Fist
+SourceAddress: E6F60210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.361686
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 32723.573
+HookEntryOrdinal: 3
+CallerAddress: 00C3E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F60210
+EntityArg1Name: Fist
+EntityArg2Address: E6EA4010
+EntityArg2Name: Snapper
+IntArg1: 27
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 32734.169
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 32734.178
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 32734.243
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 33045.741
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 34292.508
+Actor: Snapper
+Family: NORMAL
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F60210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.009022
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.009022
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.021968
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.021968
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.032986
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.032986
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.042009
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.042009
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.051996
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.051996
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.061008
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.061008
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.071981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.071981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.081992
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.081992
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.091004
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.091004
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.100991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.100991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.110991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.110991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.120991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.120991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.130991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.130991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.140991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.140991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.150991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.150991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.160991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.160991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.173953
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.173953
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.183982
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.183982
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.193982
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.193982
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.202994
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.202994
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.212981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.212981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.221993
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.221993
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.231980
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.231980
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.240992
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.240992
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.250978
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34540.753
+Source: Fist
+SourceAddress: E6F60210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.494850
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.250978
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.260978
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.260978
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.270978
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.270978
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.279990
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.279990
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.288991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.288991
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.298977
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.298977
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.307989
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.307989
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.317976
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.317976
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.326988
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.326988
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.335988
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.335988
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.345974
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.345974
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.354987
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.354987
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 34653.736
+HookEntryOrdinal: 4
+CallerAddress: 00C3E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F60210
+EntityArg1Name: Fist
+EntityArg2Address: E6EA4010
+EntityArg2Name: Snapper
+IntArg1: 55
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.364973
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.364973
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 34664.679
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34664.689
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 34664.747
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.373985
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.373985
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.382985
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.382985
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.394944
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.394944
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.403975
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.403975
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.412975
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.412975
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.421975
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.421975
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.432948
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.432948
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.441970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.441970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.450970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.450970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.459970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.459970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.468970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.468970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.480929
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.480929
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.491939
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.491939
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.500962
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.500962
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.511935
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.511935
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.520957
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.520957
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.529957
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.529957
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.538957
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.538957
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.548944
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.548944
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.557956
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.557956
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.567942
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.567942
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.576955
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.576955
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.585955
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.585955
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.596927
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.596927
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 34977.316
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 36113.871
+Actor: Snapper
+Family: POWER
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_L.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F60210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36209.717
+Source: Fist
+SourceAddress: E6F60210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.232167
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 36476.204
+HookEntryOrdinal: 5
+CallerAddress: 00C3E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F60210
+EntityArg1Name: Fist
+EntityArg2Address: E6EA4010
+EntityArg2Name: Snapper
+IntArg1: 110
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 36486.935
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 36486.945
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 36487.004
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 36796.841
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 37929.214
+Actor: Snapper
+Family: NORMAL
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F60210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.008333
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.008333
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.019289
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.019289
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.029300
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.029300
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.038313
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.038313
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.048299
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.048299
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.057311
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.057311
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.068284
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.068284
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.077306
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.077306
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.087293
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.087293
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.096305
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.096305
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.106292
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.106292
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.116291
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.116291
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.126291
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.126291
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.136291
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.136291
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.145304
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.145304
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.156277
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.156277
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.165299
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.165299
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.174299
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.174299
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.184285
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.184285
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.194285
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.194285
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.204285
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.204285
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.214285
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.214285
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.223298
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.223298
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.233284
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.233284
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.242296
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.242296
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.252283
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38182.819
+Source: Fist
+SourceAddress: E6F60210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.379187
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.252283
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.262283
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.262283
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.272283
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.272283
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.281295
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.281295
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.291281
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.291281
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.300294
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.300294
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.310280
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.310280
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.320280
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.320280
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.329292
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.329292
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.339279
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.339279
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.350266
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.350266
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.359289
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.359289
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 38299.218
+HookEntryOrdinal: 6
+CallerAddress: 00C3E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F60210
+EntityArg1Name: Fist
+EntityArg2Address: E6EA4010
+EntityArg2Name: Snapper
+IntArg1: 55
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.369275
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.369275
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 38304.236
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 38304.244
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 38304.331
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.378287
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.378287
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.390247
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.390247
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.401257
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.401257
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.411268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.411268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.421268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.421268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.431268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.431268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.441268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.441268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.451268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.451268
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.464231
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.464231
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.474259
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.474259
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.484260
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.484260
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.496235
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.496235
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.507245
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.507245
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.517256
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.517256
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.529232
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.529232
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.543211
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.543211
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.553246
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.553246
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.564234
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.564234
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.574245
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.574245
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.584246
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.584246
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.594246
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.594246
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 38617.694
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.010973
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.010973
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.021973
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.021973
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.030995
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.030995
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.040982
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.040982
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.050981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.050981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.060981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.060981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.070981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.070981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.079994
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.079994
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.090967
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.090967
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.100978
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.100978
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.109990
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.109990
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.119977
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.119977
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.130964
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.130964
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.140975
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.140975
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.149988
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.149988
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.159974
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.159974
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.170962
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.170962
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.181961
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.181961
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.190984
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.190984
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.200971
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.200971
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.210970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.210970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.220970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.220970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.230970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.230970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.239983
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.239983
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.249969
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.249969
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.258981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40006.562
+Source: Fist
+SourceAddress: E6F60210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.381906
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.258981
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.268968
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.268968
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.277980
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.277980
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.287967
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.287967
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.300929
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.300929
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.311948
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.311948
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.321959
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.321959
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.332947
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.332947
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.341970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.341970
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.351956
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.351956
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 40113.216
+HookEntryOrdinal: 7
+CallerAddress: 00C3E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F60210
+EntityArg1Name: Fist
+EntityArg2Address: E6EA4010
+EntityArg2Name: Snapper
+IntArg1: 55
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.360968
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.360968
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 40117.454
+Actor: PC_Hero
+Generation: 14
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 40117.462
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 14
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 40117.517
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 14
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.374900
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.374900
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.385926
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.385926
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.394949
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.394949
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.404936
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.404936
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.415923
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.415923
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.425934
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.425934
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.434947
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.434947
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.449865
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.449865
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.461889
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.461889
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.471910
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.471910
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.481910
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.481910
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.492898
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.492898
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.502909
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.502909
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.512909
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.512909
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.523897
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.523897
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.533908
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.533908
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.543908
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.543908
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.554896
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.554896
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.564907
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.564907
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.574907
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.574907
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.584907
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.584907
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.593919
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Snapper
+Action: 1
+AniPhase: 1
+StateTime: 0.593919
+CurrentMovementAni: Snapper_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F60210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 40421.145
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 14
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.

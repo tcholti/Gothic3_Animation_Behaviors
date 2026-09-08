@@ -1,0 +1,483 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 30397.962
+Actor: Wolf
+Family: POWER
+CurrentMovementAni: Wolf_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_L.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6A91210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 30398.006
+Source: Fist
+SourceAddress: E6A91210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 12.153090
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 30640.176
+HookEntryOrdinal: 1
+CallerAddress: 00C5E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6A91210
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6C10
+EntityArg2Name: Wolf
+IntArg1: 66
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 30645.109
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 30645.117
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 30646.840
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 30960.483
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 32558.809
+Source: Fist
+SourceAddress: E6A91210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.592424
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 32801.099
+HookEntryOrdinal: 2
+CallerAddress: 00C5E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6A91210
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6C10
+EntityArg2Name: Wolf
+IntArg1: 66
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 32805.128
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 32805.136
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 32805.193
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 33119.831
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34707.639
+Source: Fist
+SourceAddress: E6A91210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.580863
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 34956.904
+HookEntryOrdinal: 3
+CallerAddress: 00C5E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6A91210
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6C10
+EntityArg2Name: Wolf
+IntArg1: 66
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 34960.982
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34960.990
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 34961.046
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 35275.542
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36848.276
+Source: Fist
+SourceAddress: E6A91210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.569898
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 37093.293
+HookEntryOrdinal: 4
+CallerAddress: 00C5E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6A91210
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6C10
+EntityArg2Name: Wolf
+IntArg1: 66
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 37104.473
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 37104.482
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 37104.539
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 37413.249
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38999.485
+Source: Fist
+SourceAddress: E6A91210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.585888
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 39243.823
+HookEntryOrdinal: 5
+CallerAddress: 00C5E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6A91210
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6C10
+EntityArg2Name: Wolf
+IntArg1: 66
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 39254.684
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 39254.694
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 39254.753
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 39563.610
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.

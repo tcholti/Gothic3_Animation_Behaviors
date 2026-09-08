@@ -1,0 +1,3030 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 34703.773
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E7012A10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 34704.149
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 34870.808
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 1
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E7012A10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34870.820
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Attack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 34871.270
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 34871.306
+Actor: PC_Hero
+Family: NORMAL
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 1
+RequiredSourceMask: 1
+HasFistMarkers: 0
+AuthoredRIGHTCount: 1
+FirstRIGHTFrame: 7
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_Sword_Flamberge
+RightSourceAddress: E7012A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 1
+=====================================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 35148.117
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.453976
+StatePositionBeforeMarker: 0
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 35148.154
+Source: It_2H_Sword_Flamberge
+SourceAddress: E7012A10
+SlotAssociation: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.453976
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 35148.185
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E7012A10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+StatePositionAfterMarker: 0
+C1GenerationValid: 1
+C1Generation: 2
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 3
+RightGroupRequested: 1
+RightTriggeredListCleared: 1
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35158.210
+HookEntryOrdinal: 1
+ThisTouchDamageAddress: C4E3EF10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.464964
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 35158.251
+HookEntryOrdinal: 1
+ThisTouchDamageAddress: C4E3EF10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.464964
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 35160.148
+HookEntryOrdinal: 1
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: E6ADFE10
+ThisEntityName: Demon
+EntityArg1Address: E6ADFE10
+EntityArg1Name: Demon
+EntityArg2Address: E6ADFE10
+EntityArg2Name: Demon
+IntArg1: 43
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.464964
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 0
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35184.657
+HookEntryOrdinal: 2
+ThisTouchDamageAddress: C4E3EF10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.489942
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35229.850
+HookEntryOrdinal: 3
+ThisTouchDamageAddress: C4E3EF10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.532930
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 35229.882
+HookEntryOrdinal: 2
+ThisTouchDamageAddress: C4E3EF10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.532930
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 35361.764
+Source: It_2H_Sword_Flamberge
+SourceAddress: E7012A10
+SlotAssociation: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerStateTime: 0.648966
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 35361.791
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E7012A10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 35361.821
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E7012A10
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 35677.864
+Actor: Demon
+Family: QUICK
+CurrentMovementAni: Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot
+Action: 4
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 35756.509
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.394834
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35787.248
+HookEntryOrdinal: 4
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.429814
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 35787.293
+HookEntryOrdinal: 3
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.429814
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35804.822
+HookEntryOrdinal: 5
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.441789
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35808.068
+HookEntryOrdinal: 6
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.451810
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35816.337
+HookEntryOrdinal: 7
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.451810
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35829.567
+HookEntryOrdinal: 8
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.474786
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35982.972
+HookEntryOrdinal: 9
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.627793
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 35983.012
+HookEntryOrdinal: 4
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.627793
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 35986.295
+HookEntryOrdinal: 2
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 54
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35986.381
+HookEntryOrdinal: 10
+ThisTouchDamageAddress: C4E3EF10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 35986.427
+HookEntryOrdinal: 5
+ThisTouchDamageAddress: C4E3EF10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 35986.554
+HookEntryOrdinal: 11
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 35986.576
+HookEntryOrdinal: 6
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot
+DamageDisabled: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 35999.025
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E7012A10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 35999.036
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 35999.331
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36180.043
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.189960
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 36312.187
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E7012A10
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 37660.946
+Actor: Demon
+Family: NORMAL
+CurrentMovementAni: Demon_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37912.332
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 68
+PlayerAniPhase: 4
+PlayerStateTime: 0.466930
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_HoldRight_Begin_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 38084.981
+HookEntryOrdinal: 12
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 68
+PlayerAniPhase: 4
+PlayerStateTime: 0.648876
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_HoldRight_Begin_N_Fwd_00_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 38085.021
+HookEntryOrdinal: 7
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 68
+PlayerAniPhase: 4
+PlayerStateTime: 0.648876
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_HoldRight_Begin_N_Fwd_00_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 38085.291
+HookEntryOrdinal: 3
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 108
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 68
+PlayerAniPhase: 4
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_HoldRight_Begin_N_Fwd_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 38092.991
+Actor: PC_Hero
+Generation: 7
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 38093.001
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 7
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 38093.354
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 38102.161
+HookEntryOrdinal: 13
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.009000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 38155.558
+HookEntryOrdinal: 14
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.069980
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 38155.594
+HookEntryOrdinal: 8
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.069980
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 38155.621
+HookEntryOrdinal: 15
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.069980
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 38155.641
+HookEntryOrdinal: 9
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.069980
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38405.128
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.309966
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 38408.588
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 40019.508
+Actor: Demon
+Family: NORMAL
+CurrentMovementAni: Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40273.543
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.863715
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 40349.126
+HookEntryOrdinal: 16
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.945032
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 40349.163
+HookEntryOrdinal: 10
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.945032
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 40349.442
+HookEntryOrdinal: 4
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 108
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 40356.855
+Actor: PC_Hero
+Generation: 9
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 40356.865
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 9
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 40357.179
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 40387.528
+HookEntryOrdinal: 17
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.038329
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 40387.564
+HookEntryOrdinal: 18
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.038329
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 40387.583
+HookEntryOrdinal: 11
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.038329
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 40667.821
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40766.230
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerStateTime: 0.088301
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Recover_N_Back_00_%_00_P0_0.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 42011.743
+Actor: Demon
+Family: NORMAL
+CurrentMovementAni: Demon_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42267.105
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.592066
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 42350.080
+HookEntryOrdinal: 19
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.682033
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 42350.118
+HookEntryOrdinal: 12
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.682033
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 42350.556
+HookEntryOrdinal: 5
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 108
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 42350.615
+HookEntryOrdinal: 20
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 42350.643
+HookEntryOrdinal: 21
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 42350.673
+HookEntryOrdinal: 13
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 42359.469
+Actor: PC_Hero
+Generation: 11
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 42359.479
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 11
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 42359.537
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 42672.566
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42757.030
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerStateTime: 0.077997
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Recover_N_Back_00_%_00_P0_0.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 44541.937
+Actor: Demon
+Family: POWER
+CurrentMovementAni: Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 44541.983
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.860470
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 44746.369
+HookEntryOrdinal: 22
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 2.073714
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 44746.409
+HookEntryOrdinal: 14
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 2.073714
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 44751.257
+HookEntryOrdinal: 6
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 216
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 44762.334
+Actor: PC_Hero
+Generation: 13
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 44762.343
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 13
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 44762.406
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 13
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 44783.939
+HookEntryOrdinal: 23
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.037964
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 44783.978
+HookEntryOrdinal: 24
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.037964
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 44783.998
+HookEntryOrdinal: 15
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.037964
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45063.502
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.308976
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 45067.326
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 13
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 46445.024
+Actor: Demon
+Family: NORMAL
+CurrentMovementAni: Demon_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 46696.525
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.627162
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 46784.608
+HookEntryOrdinal: 25
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.721167
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 46784.646
+HookEntryOrdinal: 16
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.721167
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 46787.103
+HookEntryOrdinal: 7
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 108
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 46797.784
+Actor: PC_Hero
+Generation: 15
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 46797.794
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 15
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 46797.853
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 15
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 46914.968
+HookEntryOrdinal: 26
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.130978
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 46915.007
+HookEntryOrdinal: 27
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.130978
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 46915.030
+HookEntryOrdinal: 17
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.130978
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 47108.773
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 15
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 47196.683
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerStateTime: 0.080990
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Recover_N_Back_00_%_00_P0_0.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 48457.107
+Actor: Demon
+Family: NORMAL
+CurrentMovementAni: Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48712.182
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.606783
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 48715.281
+HookEntryOrdinal: 28
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.606783
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 48715.311
+HookEntryOrdinal: 18
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.606783
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 48715.601
+HookEntryOrdinal: 8
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 108
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 48723.270
+Actor: PC_Hero
+Generation: 17
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 48723.280
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 17
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 48723.342
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 17
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 48787.957
+HookEntryOrdinal: 29
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.072004
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 48787.996
+HookEntryOrdinal: 30
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.072004
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 48788.017
+HookEntryOrdinal: 19
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.072004
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 49031.384
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 17
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49205.746
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerStateTime: 0.174007
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Recover_N_Back_00_%_00_P0_0.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 50994.012
+Actor: Demon
+Family: POWER
+CurrentMovementAni: Demon_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 50994.061
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.957861
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 51220.998
+HookEntryOrdinal: 31
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 2.185830
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 51221.036
+HookEntryOrdinal: 20
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 2.185830
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 51225.155
+HookEntryOrdinal: 9
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 216
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 51232.595
+Actor: PC_Hero
+Generation: 19
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 51232.604
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 19
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 51232.662
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 19
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 51245.810
+HookEntryOrdinal: 32
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.024977
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 51245.848
+HookEntryOrdinal: 33
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.024977
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 51245.871
+HookEntryOrdinal: 21
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.024977
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 51314.073
+HookEntryOrdinal: 34
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.093972
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 51314.110
+HookEntryOrdinal: 22
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.093972
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51516.910
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.297962
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 51537.281
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 19
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 52882.818
+Actor: Demon
+Family: NORMAL
+CurrentMovementAni: Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53137.941
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.600886
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 53151.432
+HookEntryOrdinal: 35
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.610886
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 53151.522
+HookEntryOrdinal: 23
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.610886
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 53151.809
+HookEntryOrdinal: 10
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 108
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 53159.734
+Actor: PC_Hero
+Generation: 21
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 53159.744
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 21
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 53159.802
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 21
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 53180.124
+HookEntryOrdinal: 36
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.031999
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 53190.740
+HookEntryOrdinal: 37
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.041999
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 53213.981
+HookEntryOrdinal: 38
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.062987
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 53214.021
+HookEntryOrdinal: 39
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.062987
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 53214.046
+HookEntryOrdinal: 24
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.062987
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 53469.363
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 21
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53629.145
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerStateTime: 0.159983
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Recover_N_Back_00_%_00_P0_0.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 54893.050
+Actor: Demon
+Family: QUICK
+CurrentMovementAni: Demon_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 5
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 54993.528
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.523898
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 55145.979
+HookEntryOrdinal: 40
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.672890
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 55146.017
+HookEntryOrdinal: 25
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.672890
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 55150.263
+HookEntryOrdinal: 11
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 54
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 55158.630
+Actor: PC_Hero
+Generation: 23
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 55158.639
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 23
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 55158.700
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 23
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 55220.868
+HookEntryOrdinal: 41
+ThisTouchDamageAddress: C4E46C10
+ThisOwnerEntityAddress: E2BFE610
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.074992
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 55220.905
+HookEntryOrdinal: 42
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.074992
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 55220.924
+HookEntryOrdinal: 26
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.074992
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 55415.123
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.270960
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 55466.382
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 23
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 56772.383
+Actor: Demon
+Family: QUICK
+CurrentMovementAni: Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot
+Action: 4
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_DemonSword_01
+RightSourceAddress: E6E35A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 56882.248
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.416174
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 56946.194
+HookEntryOrdinal: 43
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.476171
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 56946.233
+HookEntryOrdinal: 27
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.476171
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 56946.429
+HookEntryOrdinal: 12
+CallerAddress: 00B29484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: EBB66E10
+EntityArg1Name: PC_Hero
+EntityArg2Address: EBB66E10
+EntityArg2Name: PC_Hero
+IntArg1: 54
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 1
+EntityArg2IsPlayer: 1
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 56954.728
+Actor: PC_Hero
+Generation: 25
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 56954.738
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 25
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 56954.796
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 25
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 57018.544
+HookEntryOrdinal: 44
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.071996
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 57018.582
+HookEntryOrdinal: 28
+ThisTouchDamageAddress: C4E45B10
+ThisOwnerEntityAddress: E6E35A10
+ThisOwnerEntityName: It_2H_DemonSword_01
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.071996
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+DamageDisabled: 0
+===========================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 57265.760
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 25
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 57296.509
+Source: It_2H_DemonSword_01
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerStateTime: 0.030988
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Recover_N_Back_00_%_00_P0_0.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 0
+====================================
+
+Script_FrameCollisionTest unloading cleanly.

@@ -1,0 +1,7694 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 34853.058
+Actor: Bloodfly
+Family: POWER
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E4BE10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34853.101
+Source: Fist
+SourceAddress: E6E4BE10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 14.417959
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_03_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 35099.143
+HookEntryOrdinal: 1
+CallerAddress: 1016E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E4BE10
+EntityArg1Name: Fist
+EntityArg2Address: E6A8F210
+EntityArg2Name: Bloodfly
+IntArg1: 66
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_03_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 35109.076
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 35109.086
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 35109.535
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 35415.710
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 37474.228
+Source: Fist
+SourceAddress: E6E4BE10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 2.055854
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 37719.906
+HookEntryOrdinal: 2
+CallerAddress: 1016E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E4BE10
+EntityArg1Name: Fist
+EntityArg2Address: E6A8F210
+EntityArg2Name: Bloodfly
+IntArg1: 66
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 37727.915
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 37727.925
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 37728.000
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 38040.751
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 39198.061
+Actor: Bloodfly
+Family: NORMAL
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E4BE10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.022963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.022963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.032991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.032991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.043979
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.043979
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.053002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.053002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.062988
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.062988
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.072988
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.072988
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.082000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.082000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.091987
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.091987
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.102974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.102974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.112986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.112986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.122986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.122986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.135949
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.135949
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.145977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.145977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.155977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.155977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.166965
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.166965
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.180931
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.180931
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.192949
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.192949
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.202969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.202969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.211982
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.211982
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.221968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.221968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.231968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.231968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 39442.633
+HookEntryOrdinal: 3
+CallerAddress: 1016E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E4BE10
+EntityArg1Name: Fist
+EntityArg2Address: E6A8F210
+EntityArg2Name: Bloodfly
+IntArg1: 33
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.241968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.241968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 39451.674
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 39451.683
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 39451.743
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.254931
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39455.356
+Source: Fist
+SourceAddress: E6E4BE10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.011019
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.254931
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.265950
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.265950
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.277939
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.277939
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.286970
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.286970
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.296956
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.296956
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.305969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.305969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.315955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.315955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.324967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.324967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.333968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.333968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.343954
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.343954
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.353954
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.353954
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.364941
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.364941
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.373964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.373964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.383950
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.383950
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.393950
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.393950
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 39758.634
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.019012
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.019012
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.028013
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.028013
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.038985
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.038985
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.048007
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.048007
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.062926
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.062926
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.072967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.072967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.081979
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.081979
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.091966
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.091966
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.100978
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.100978
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.110964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.110964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.120964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.120964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.130964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.130964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.139977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.139977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.149963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.149963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.159963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.159963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.168975
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.168975
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.177976
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.177976
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.186976
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.186976
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.196962
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.196962
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.205974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.205974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.214974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.214974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.224960
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.224960
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.234960
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.234960
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 41635.090
+HookEntryOrdinal: 4
+CallerAddress: 1016E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E4BE10
+EntityArg1Name: Fist
+EntityArg2Address: E6A8F210
+EntityArg2Name: Bloodfly
+IntArg1: 33
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.243973
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.243973
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 41642.639
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 41642.649
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 41643.007
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.252973
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 41647.215
+Source: Fist
+SourceAddress: E6E4BE10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.009986
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Fwd_00_%_00_P0_100.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.252973
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.262959
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.262959
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.274934
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.274934
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.284955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.284955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.294955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.294955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.304955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.304955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.314955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.314955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.324955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.324955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.333967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.333967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.342967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.342967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.352954
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.352954
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.363941
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.363941
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.374941
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.374941
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.383963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.383963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.393950
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.393950
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 41957.459
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.020000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.020000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.030000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.030000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.039012
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.039012
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.048013
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.048013
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.057999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.057999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.067999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.067999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.077011
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.077011
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.086011
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.086011
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.095997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.095997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.105010
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.105010
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.114996
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.114996
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.124008
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.124008
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.133009
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.133009
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.142995
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.142995
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.152007
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.152007
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.161993
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.161993
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.171006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.171006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.180006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.180006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.189006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.189006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.198006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.198006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.207006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.207006
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.216992
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.216992
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.226992
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.226992
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.236004
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.236004
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 43840.269
+HookEntryOrdinal: 5
+CallerAddress: 1016E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E4BE10
+EntityArg1Name: Fist
+EntityArg2Address: E6A8F210
+EntityArg2Name: Bloodfly
+IntArg1: 33
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.245004
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.245004
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 43851.106
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 43851.115
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 43851.171
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.254004
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 43851.574
+Source: Fist
+SourceAddress: E6E4BE10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.009986
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Fwd_00_%_00_P0_100.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.254004
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.263991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.263991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.273991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.273991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.283003
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.283003
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.292003
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.292003
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.301989
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.301989
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.311002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.311002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.320002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.320002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.329002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.329002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.338002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.338002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.348974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.348974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.357308
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.357308
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.366293
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.366293
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.376280
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.376280
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.385292
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.385292
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.395278
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.395278
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 44162.801
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.009986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.009986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.019986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.019986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.029986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.029986
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.038999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.038999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.048985
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.048985
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.059973
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.059973
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.069984
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.069984
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.078996
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.078996
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.088983
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.088983
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.097995
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.097995
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.107981
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.107981
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.118969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.118969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.128980
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.128980
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.137992
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.137992
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.148965
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.148965
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.158976
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.158976
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.168976
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.168976
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.179964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.179964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.191953
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.191953
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.200983
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.200983
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.209984
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.209984
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.219970
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.219970
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.228982
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.228982
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.238969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.238969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 46084.885
+HookEntryOrdinal: 6
+CallerAddress: 1016E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E4BE10
+EntityArg1Name: Fist
+EntityArg2Address: E6A8F210
+EntityArg2Name: Bloodfly
+IntArg1: 33
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.248969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.248969
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 46095.851
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 46095.861
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 46095.918
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.257981
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 46096.354
+Source: Fist
+SourceAddress: E6E4BE10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.009986
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Fwd_00_%_00_P0_100.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.257981
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.267967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.267967
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.278955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.278955
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.290944
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.290944
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.300964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.300964
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.309977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.309977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.318977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.318977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.328963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.328963
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.337975
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.337975
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.347962
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.347962
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.356974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.356974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.365974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.365974
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.375960
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.375960
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.385960
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.385960
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.394973
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.394973
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 46408.914
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.019012
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.019012
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.028999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.028999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.038999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.038999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.048011
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.048011
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.057997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.057997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.067997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.067997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.077997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.077997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.087997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.087997
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.097010
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.097010
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.106010
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.106010
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.116982
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.116982
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.126005
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.126005
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.135991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.135991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.145991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.145991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.155991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.155991
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.165003
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.165003
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.174990
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.174990
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.184002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.184002
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.193989
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.193989
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.203001
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.203001
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.212987
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.212987
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.221999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.221999
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.232972
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.232972
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 48271.158
+HookEntryOrdinal: 7
+CallerAddress: 1016E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E4BE10
+EntityArg1Name: Fist
+EntityArg2Address: E6A8F210
+EntityArg2Name: Bloodfly
+IntArg1: 33
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_06_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.241995
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.241995
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 48281.575
+Actor: PC_Hero
+Generation: 14
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 48281.585
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 14
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 48281.645
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 14
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.250995
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48282.086
+Source: Fist
+SourceAddress: E6E4BE10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.009986
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Fwd_00_%_00_P0_100.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.250995
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.260981
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.260981
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.272956
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.272956
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.282977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.282977
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.291989
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.291989
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.300989
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.300989
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.311962
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.311962
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.320984
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.320984
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.329985
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.329985
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.340957
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.340957
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.350968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.350968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.360968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.360968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.370968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.370968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.380968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.380968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.390968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.390968
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.399981
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bloodfly
+Action: 1
+AniPhase: 1
+StateTime: 0.399981
+CurrentMovementAni: Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E4BE10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 48594.312
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 14
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.

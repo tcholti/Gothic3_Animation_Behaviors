@@ -1,0 +1,6158 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 34341.441
+Actor: Minecrawler
+Family: QUICK
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+Action: 4
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E35A10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34451.755
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 14.959343
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 34586.919
+HookEntryOrdinal: 1
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 31
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 34598.609
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34598.619
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 34598.911
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 34911.321
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 36393.215
+Actor: Minecrawler
+Family: QUICK
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 5
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E35A10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36498.319
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.579394
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 36633.973
+HookEntryOrdinal: 2
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 31
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 36640.733
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 36640.741
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 36641.090
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 36956.163
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 38516.937
+Actor: Minecrawler
+Family: POWER
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E35A10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38516.973
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.551759
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 38760.896
+HookEntryOrdinal: 3
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 126
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 38765.034
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 38765.042
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 38765.099
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 39079.703
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 40607.211
+Actor: Minecrawler
+Family: NORMAL
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E35A10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.011019
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.011019
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.021030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.021030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.031030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.031030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.041030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.041030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.051030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.051030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.061030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.061030
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.070043
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.070043
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.081015
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.081015
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.091026
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.091026
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.101027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.101027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.111027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.111027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.121027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.121027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.131027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.131027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.141027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.141027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.151027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.151027
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.162014
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.162014
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.172025
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.172025
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.182025
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.182025
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.192025
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.192025
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.203013
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.203013
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.213024
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.213024
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.223024
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.223024
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.232037
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.232037
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 40847.306
+HookEntryOrdinal: 4
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 63
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.242023
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.242023
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 40851.489
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 40851.496
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 40851.554
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.252023
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40859.012
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.010000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.252023
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.263011
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.263011
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.273022
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.273022
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.284997
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.284997
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.295018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.295018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.305018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.305018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.315018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.315018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.325018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.325018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.335018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.335018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.345018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.345018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.355018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.355018
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.366993
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.366993
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.377014
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.377014
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.387014
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.387014
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.397014
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.397014
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 41161.599
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.012000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.012000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.028948
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.028948
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.039992
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.039992
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.050004
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.050004
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.060991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.060991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.071991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.071991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.082991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.082991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.093991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.093991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.104991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.104991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.116980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.116980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.127001
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.127001
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.141939
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.141939
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.151980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.151980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.161981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.161981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.172968
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.172968
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.183968
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.183968
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.193980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.193980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.204967
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.204967
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.215967
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.215967
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.226967
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.226967
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.236978
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.236978
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 43275.387
+HookEntryOrdinal: 5
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 63
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.246979
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.246979
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 43279.386
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 43279.394
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 43279.445
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.257966
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 43286.493
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.010988
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.257966
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.269955
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.269955
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.279975
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.279975
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.290963
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.290963
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.300974
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.300974
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.311962
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.311962
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.321973
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.321973
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.331973
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.331973
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.342961
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.342961
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.352972
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.352972
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.361985
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.361985
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.372958
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.372958
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.382968
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.382968
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.392969
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.392969
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 43585.442
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.010000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.022963
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.022963
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.033982
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.033982
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.043993
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.043993
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.054981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.054981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.065981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.065981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.076981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.076981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.086992
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.086992
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.097980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.097980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.108980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.108980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.119980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.119980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.129991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.129991
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.141967
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.141967
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.151987
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.151987
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.161987
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.161987
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.175938
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.175938
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.186964
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.186964
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.196976
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.196976
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.209939
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.209939
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.222938
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.222938
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.233957
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.233957
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 44912.361
+HookEntryOrdinal: 6
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 63
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.244958
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.244958
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 44917.235
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 44917.243
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 44917.298
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.254969
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 44925.268
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.010011
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.254969
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.269907
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.269907
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.279948
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.279948
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.289949
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.289949
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.300936
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.300936
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.310948
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.310948
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.321935
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.321935
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.331946
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.331946
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.342934
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.342934
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.352945
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.352945
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.362945
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.362945
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.373933
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.373933
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.384933
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.384933
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.394944
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.394944
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 45223.794
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.010988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.010988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.021988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.021988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.032988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.032988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.043988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.043988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.054988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.054988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.065988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.065988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.076988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.076988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.087988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.087988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.098988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.098988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.109988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.109988
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.119999
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.119999
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.131975
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.131975
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.141995
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.141995
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.152983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.152983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.163983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.163983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.174983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.174983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.185983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.185983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.196983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.196983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.207983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.207983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.217994
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.217994
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.228982
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.228982
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.238993
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.238993
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 46563.238
+HookEntryOrdinal: 7
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 63
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.248005
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.248005
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 46567.366
+Actor: PC_Hero
+Generation: 14
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 46567.373
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 14
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 46567.432
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 14
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.259964
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 46575.413
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.011959
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleL_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.259964
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.271964
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.271964
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.281985
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.281985
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.292973
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.292973
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.303972
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.303972
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.313984
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.313984
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.324971
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.324971
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.335971
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.335971
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.345983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.345983
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.356970
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.356970
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.366981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.366981
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.377969
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.377969
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.388969
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.388969
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.398980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Minecrawler
+Action: 1
+AniPhase: 1
+StateTime: 0.398980
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6E35A10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 46883.132
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 14
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 48382.566
+Actor: Minecrawler
+Family: QUICK
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 5
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E35A10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48492.127
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerStateTime: 1.599852
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Walk_N_Right_00_%_00_P0_160.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 48633.438
+HookEntryOrdinal: 8
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 31
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Walk_N_Right_00_%_00_P0_160.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 48638.650
+Actor: PC_Hero
+Generation: 16
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 48638.659
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 16
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 48638.715
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 16
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 48953.849
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 16
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 50524.059
+Actor: Minecrawler
+Family: POWER
+CurrentMovementAni: Minecrawler_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150_L.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6E35A10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 50524.119
+Source: Fist
+SourceAddress: E6E35A10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.560194
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 50766.961
+HookEntryOrdinal: 9
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6E35A10
+EntityArg1Name: Fist
+EntityArg2Address: E6A91810
+EntityArg2Name: Minecrawler
+IntArg1: 126
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 50771.198
+Actor: PC_Hero
+Generation: 18
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 50771.206
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 18
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 50771.259
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 18
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 51083.349
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 18
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.

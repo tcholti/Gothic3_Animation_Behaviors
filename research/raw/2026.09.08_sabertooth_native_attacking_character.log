@@ -1,0 +1,4500 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 36774.084
+Actor: Sabertooth
+Family: QUICK
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+Action: 4
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36880.156
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 17.317282
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 37138.951
+HookEntryOrdinal: 1
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 39
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 37150.431
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 37150.441
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 37153.860
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 37467.691
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 38749.553
+Actor: Sabertooth
+Family: QUICK
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_200_L.xmot
+Action: 5
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38851.083
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.375448
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 39111.202
+HookEntryOrdinal: 2
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 39
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 39115.382
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 39115.390
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 39115.720
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 39428.406
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 40655.633
+Actor: Sabertooth
+Family: QUICK
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+Action: 4
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 40766.574
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.329839
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 41025.697
+HookEntryOrdinal: 3
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 39
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 41029.803
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 41029.811
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 41030.131
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 41346.580
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 42562.109
+Actor: Sabertooth
+Family: QUICK
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_200_L.xmot
+Action: 5
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 42663.156
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.307901
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 42927.495
+HookEntryOrdinal: 4
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 39
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 42931.765
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 42931.773
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 42931.827
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 43244.452
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 44489.123
+Actor: Sabertooth
+Family: QUICK
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_200_R.xmot
+Action: 4
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 44600.042
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.345903
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 44855.766
+HookEntryOrdinal: 5
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 39
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 44860.321
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 44860.329
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 44860.382
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 45171.490
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 46386.832
+Actor: Sabertooth
+Family: QUICK
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_200_L.xmot
+Action: 5
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 46496.627
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.316928
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 46750.146
+HookEntryOrdinal: 6
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 39
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 46754.437
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 46754.445
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 46754.501
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 47064.317
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 48294.042
+Actor: Sabertooth
+Family: NORMAL
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.011989
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.011989
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.023989
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.023989
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.035989
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.035989
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.046999
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.046999
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.058988
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.058988
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.071978
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.071978
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.083987
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.083987
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.095987
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.095987
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.108977
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.108977
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.120986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.120986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.132986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.132986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.145976
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.145976
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.157986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.157986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.169986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.169986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.180996
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.180996
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.193974
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.193974
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.205983
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.205983
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.217983
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.217983
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.230973
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.230973
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.242982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.242982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.254982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 48549.237
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.475917
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.254982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.266982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.266982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.278982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.278982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.290982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.290982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.302982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.302982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.314982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.314982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.326982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.326982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.338982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.338982
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.351972
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.351972
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 48657.731
+HookEntryOrdinal: 7
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 78
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.363981
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.363981
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 48662.667
+Actor: PC_Hero
+Generation: 14
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 48662.675
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 14
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 48662.731
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 14
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.375981
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.375981
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.390951
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.390951
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.402975
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.402975
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.413986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.413986
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.425975
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.425975
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.437974
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.437974
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.449974
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.449974
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.461974
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.461974
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.475954
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.475954
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.489954
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.489954
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.501971
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.501971
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.514961
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.514961
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.526971
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.526971
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.538971
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.538971
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.551960
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.551960
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.562979
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.562979
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.574968
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.574968
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.588948
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.588948
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 48974.471
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 14
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 50122.596
+Actor: Sabertooth
+Family: QUICK
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_200_L.xmot
+Action: 5
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 50231.091
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.246979
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 50488.221
+HookEntryOrdinal: 8
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 39
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 50492.443
+Actor: PC_Hero
+Generation: 16
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 50492.450
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 16
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 50492.506
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 16
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 50811.057
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 16
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 52037.986
+Actor: Sabertooth
+Family: NORMAL
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.014022
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.014022
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.030995
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.030995
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.043032
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.043032
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.056022
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.056022
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.068031
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.068031
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.080031
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.080031
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.093021
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.093021
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.105030
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.105030
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.117030
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.117030
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.130020
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.130020
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.142030
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.142030
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.155019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.155019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.168019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.168019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.181019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.181019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.193029
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.193029
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.206019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.206019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.218028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.218028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.230028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.230028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.242028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.242028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.254028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 52290.402
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.469931
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.254028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.266028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.266028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.278028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.278028
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.289038
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.289038
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.301027
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.301027
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.313027
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.313027
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.326017
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.326017
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.338026
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.338026
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.350026
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.350026
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 52400.306
+HookEntryOrdinal: 9
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 78
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.363016
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.363016
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 52404.371
+Actor: PC_Hero
+Generation: 18
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 52404.378
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 18
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 52404.432
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 18
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.376016
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.376016
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.390007
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.390007
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.402024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.402024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.415014
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.415014
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.427023
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.427023
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.439024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.439024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.451024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.451024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.463024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.463024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.475024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.475024
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.488013
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.488013
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.500023
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.500023
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.513012
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.513012
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.526012
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.526012
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.538022
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.538022
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.550022
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.550022
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.564001
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.564001
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.576019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.576019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.588019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Sabertooth
+Action: 1
+AniPhase: 1
+StateTime: 0.588019
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_250.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6ADF610
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 52713.993
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 18
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 53879.402
+Actor: Sabertooth
+Family: POWER
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_300.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6ADF610
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53973.662
+Source: Fist
+SourceAddress: E6ADF610
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.247926
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 54249.005
+HookEntryOrdinal: 10
+CallerAddress: 00DBE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6ADF610
+EntityArg1Name: Fist
+EntityArg2Address: E6AA6810
+EntityArg2Name: Sabertooth
+IntArg1: 156
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 54253.286
+Actor: PC_Hero
+Generation: 20
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 54253.294
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 20
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 54253.349
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 20
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 54566.402
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 20
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.

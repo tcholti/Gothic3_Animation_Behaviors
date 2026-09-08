@@ -1,0 +1,2404 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 46949.504
+Actor: Boar
+Family: POWER
+CurrentMovementAni: Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E7040C10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 47037.007
+Source: Fist
+SourceAddress: E7040C10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 8
+PlayerStateTime: 14.664486
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 47462.052
+HookEntryOrdinal: 1
+CallerAddress: 00DEE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E7040C10
+EntityArg1Name: Fist
+EntityArg2Address: E8B7E210
+EntityArg2Name: Boar
+IntArg1: 96
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 47470.346
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 47470.355
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 47470.799
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 47775.749
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49125.724
+Source: Fist
+SourceAddress: E7040C10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.370242
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 49547.402
+HookEntryOrdinal: 2
+CallerAddress: 00DEE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E7040C10
+EntityArg1Name: Fist
+EntityArg2Address: E8B7E210
+EntityArg2Name: Boar
+IntArg1: 96
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 49555.017
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 49555.026
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 4
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 49555.086
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 49851.278
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 4
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51176.229
+Source: Fist
+SourceAddress: E7040C10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.347850
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 51596.913
+HookEntryOrdinal: 3
+CallerAddress: 00DEE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E7040C10
+EntityArg1Name: Fist
+EntityArg2Address: E8B7E210
+EntityArg2Name: Boar
+IntArg1: 96
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 51601.428
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 51601.436
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 6
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 51601.494
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 51904.762
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 6
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 53226.667
+Source: Fist
+SourceAddress: E7040C10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.343862
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 53659.260
+HookEntryOrdinal: 4
+CallerAddress: 00DEE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E7040C10
+EntityArg1Name: Fist
+EntityArg2Address: E8B7E210
+EntityArg2Name: Boar
+IntArg1: 96
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 53666.680
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 53666.689
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 8
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 53666.746
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 53968.898
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 8
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 55285.939
+Source: Fist
+SourceAddress: E7040C10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.324124
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 55714.121
+HookEntryOrdinal: 5
+CallerAddress: 00DEE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E7040C10
+EntityArg1Name: Fist
+EntityArg2Address: E8B7E210
+EntityArg2Name: Boar
+IntArg1: 96
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 55718.718
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 55718.726
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 10
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 55718.782
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 56021.990
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 10
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 57247.407
+Actor: Boar
+Family: NORMAL
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E7040C10
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.009038
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.009038
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.020997
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.020997
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.030028
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.030028
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.039028
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.039028
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.047362
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.047362
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.056347
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.056347
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.064681
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.064681
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.073666
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.073666
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.081999
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.081999
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.090985
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.090985
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.099318
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.099318
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.107651
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.107651
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.116637
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.116637
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.125636
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.125636
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.134636
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.134636
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.142970
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.142970
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.151955
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.151955
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.160955
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.160955
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.169288
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.169288
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.178274
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.178274
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.187274
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.187274
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.196274
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.196274
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.206260
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.206260
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.215272
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.215272
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.230190
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.230190
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.239239
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.239239
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.247573
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.247573
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.262469
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 57503.796
+Source: Fist
+SourceAddress: E7040C10
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.495843
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.262469
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.271518
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.271518
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.280519
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.280519
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 57529.685
+HookEntryOrdinal: 6
+CallerAddress: 00DEE348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E7040C10
+EntityArg1Name: Fist
+EntityArg2Address: E8B7E210
+EntityArg2Name: Boar
+IntArg1: 48
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.288852
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.288852
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 57534.096
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 57534.104
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 12
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 57534.189
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.297838
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.297838
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.307824
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.307824
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.316836
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.316836
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.325836
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.325836
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.337795
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.337795
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.346826
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.346826
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.355826
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.355826
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.364160
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.364160
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.373145
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.373145
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.381478
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.381478
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.391449
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.391449
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.399782
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.399782
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.408768
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.408768
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.417768
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.417768
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.426101
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.426101
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.435086
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.435086
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.444086
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.444086
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.452420
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.452420
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.460753
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.460753
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.469738
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.469738
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.478738
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Boar
+Action: 1
+AniPhase: 1
+StateTime: 0.478738
+CurrentMovementAni: Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot
+FistSourceResolved: 1
+FistSourceAddress: E7040C10
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 57839.454
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 12
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.

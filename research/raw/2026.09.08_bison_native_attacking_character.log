@@ -1,0 +1,6739 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 33532.910
+Actor: PC_Hero
+Generation: 1
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E7012A10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 33533.267
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 1
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 33696.718
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+ReplacedGeneration: 1
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E7012A10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 33696.731
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 2
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Attack
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 33697.106
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 33697.141
+Actor: PC_Hero
+Family: NORMAL
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 1
+RequiredSourceMask: 1
+HasFistMarkers: 0
+AuthoredRIGHTCount: 1
+FirstRIGHTFrame: 7
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: It_2H_Sword_Flamberge
+RightSourceAddress: E7012A10
+RightSourceUseType: 3
+RightSourceCollisionGroup: 5
+LeftSourceResolved: 0
+SuppressNativeCallback: 1
+=====================================
+
+===== RIGHT RECEIVED =====
+ElapsedMs: 33971.387
+Actor: PC_Hero
+Action: 1
+AniPhase: 1
+StateTime: 0.448966
+StatePositionBeforeMarker: 0
+CurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 33971.426
+Source: It_2H_Sword_Flamberge
+SourceAddress: E7012A10
+SlotAssociation: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.448966
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RequestedGroup: 7
+BeforeGroup: 5
+AfterGroup: 7
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== C1 OFFENSE REQUEST =====
+ElapsedMs: 33971.456
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E7012A10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 1
+CleanupObserved: 0
+ActualGroup: 7
+==============================
+
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+StatePositionAfterMarker: 0
+C1GenerationValid: 1
+C1Generation: 2
+MarkerAction: ACCEPTED
+AuthoredMarkerOccurrences: 1
+AcceptedMarkerOccurrencesBefore: 0
+AcceptedMarkerOccurrencesAfter: 1
+ExecutionBudgetReset: 1
+PreviousSourceMask: 0
+DesiredSourceMask: 1
+RetiredSourceMask: 0
+OwnedMaskAtOff: 0
+MarkerOwnedWeaponMask: 1
+ActivatedSourceCount: 1
+RetiredSourceCount: 0
+DeactivatedSourceCount: 0
+TriggeredListClearCount: 1
+RightGroupBefore: 5
+RightGroupAfter: 7
+RightUseType: 3
+RightGroupRequested: 1
+RightTriggeredListCleared: 1
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 33971.836
+HookEntryOrdinal: 1
+ThisTouchDamageAddress: C4E39F10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.448966
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 33971.861
+HookEntryOrdinal: 1
+ThisTouchDamageAddress: C4E39F10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.448966
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 33974.459
+HookEntryOrdinal: 1
+CallerAddress: 00B79484
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x00069484
+ThisEntityAddress: E6AB0C10
+ThisEntityName: Bison
+EntityArg1Address: E6AB0C10
+EntityArg1Name: Bison
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 172
+IntArg2: 2
+ContactIteratorAddress: 0019E81C
+PlayerEntityAddress: EBB66E10
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.448966
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 0
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST HOOK ENTRY =====
+HookKind: CAN_BE_ACTIVATED
+ElapsedMs: 34139.752
+HookEntryOrdinal: 2
+ThisTouchDamageAddress: C4E39F10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.615280
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== FIST HOOK ENTRY =====
+HookKind: TRIGGER_TARGET
+ElapsedMs: 34139.781
+HookEntryOrdinal: 2
+ThisTouchDamageAddress: C4E39F10
+ThisOwnerEntityAddress: E7012A10
+ThisOwnerEntityName: It_2H_Sword_Flamberge
+ThisOwnerUseType: 3
+PlayerEntityAddress: EBB66E10
+ExistingResolverSourceAddress: 00000000
+ExactTouchDamageIdentityMatch: 0
+PlayerAction: 1
+PlayerAniPhase: 1
+PlayerStateTime: 0.615280
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+DamageDisabled: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34177.289
+Source: It_2H_Sword_Flamberge
+SourceAddress: E7012A10
+SlotAssociation: RIGHT
+PlayerAction: 1
+PlayerAniPhase: 3
+PlayerStateTime: 0.645253
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot
+RequestedGroup: 5
+BeforeGroup: 7
+AfterGroup: 5
+RetiredMarkerSourceBitCount: 1
+====================================
+
+===== C1 CLEANUP FULFILLED =====
+ElapsedMs: 34177.317
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+Source: It_2H_Sword_Flamberge
+SourceAddress: E7012A10
+Side: RIGHT
+OffensiveRequestCount: 1
+Outstanding: 0
+CleanupObserved: 1
+ActualGroup: 5
+==============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 34177.340
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 2
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E7012A10
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 1
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 1
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 34416.270
+Actor: Bison
+Family: NORMAL
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F93210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.010028
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.010028
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.024967
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.024967
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.035008
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.035008
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.045008
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.045008
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.055996
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.055996
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.065018
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.065018
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.074019
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.074019
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.084005
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.084005
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.094005
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.094005
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.104005
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.104005
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.113017
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.113017
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.122017
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.122017
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.132990
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.132990
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.142012
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.142012
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.151013
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.151013
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.160013
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.160013
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.171971
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.171971
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.181992
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.181992
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.190325
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.190325
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.199311
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.199311
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.209297
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.209297
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.219297
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.219297
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.228309
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.228309
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 34652.355
+HookEntryOrdinal: 2
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 63
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 3
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.240268
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.240268
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 34654.757
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 1
+Source[0].Address: E7012A10
+Source[0].Side: RIGHT
+Source[0].ActualGroup: 5
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 34654.766
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 5
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 34655.130
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.250288
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 34665.050
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.010020
+PlayerCurrentMovementAni: Hero_Stand_None_2H_P1_StumbleR_Hit_N_Back_00_%_00_P10_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.250288
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.263252
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.263252
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.273280
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.273280
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.283280
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.283280
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.293280
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.293280
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.303280
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.303280
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.312293
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.312293
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.322279
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.322279
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.332279
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.332279
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.341291
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.341291
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.351278
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.351278
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.364240
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.364240
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.379221
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.379221
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.389262
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.389262
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.399263
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.399263
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 34968.830
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 5
+Status: PERSISTED
+TrackedSourceCount: 1
+Source[0].Outcome: NO_OP_NO_OUTSTANDING
+Source[0].Address: E7012A10
+Source[0].LivenessEstablished: 1
+Source[0].Name: It_2H_Sword_Flamberge
+Source[0].OriginalSide: RIGHT
+Source[0].CurrentSideMask: 1
+Source[0].OffensiveRequestCount: 0
+Source[0].OutstandingBeforeFinalization: 0
+Source[0].CleanupObservedBeforeFinalization: 0
+Source[0].ActualGroupBeforeRepair: 5
+Source[0].RepairAttempted: 0
+Source[0].PhysicalCollisionChanged: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.009000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.009000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.024904
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.024904
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.033958
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.033958
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.043945
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.043945
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.052957
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.052957
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.063930
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.063930
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.073941
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.073941
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.082953
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.082953
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.091954
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.091954
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.101940
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.101940
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.112927
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.112927
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.121950
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.121950
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.131936
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.131936
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.141936
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.141936
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.151936
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.151936
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.160949
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.160949
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.169949
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.169949
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.179935
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.179935
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.188947
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.188947
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.197947
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.197947
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.207934
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.207934
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.217934
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.217934
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.226946
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.226946
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.236932
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.236932
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 36287.527
+HookEntryOrdinal: 3
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 63
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 68
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.245945
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.245945
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 36289.010
+Actor: PC_Hero
+Generation: 7
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 36289.018
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 7
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 36289.349
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.255931
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 36298.810
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.009986
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.255931
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.267906
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.267906
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.276937
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.276937
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.286924
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.286924
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.296924
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.296924
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.305936
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.305936
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.317895
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.317895
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.328905
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.328905
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.339905
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.339905
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.348927
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.348927
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.358914
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.358914
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.367926
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.367926
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.377913
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.377913
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.388900
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.388900
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.397923
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.397923
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 36604.156
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 7
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 38070.811
+Actor: Bison
+Family: POWER
+CurrentMovementAni: Bison_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F93210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 38070.847
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 1.457731
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 38318.039
+HookEntryOrdinal: 4
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 126
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 12
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 38319.465
+Actor: PC_Hero
+Generation: 9
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 38319.473
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 9
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 38319.530
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 38630.724
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 9
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 39676.788
+Actor: Bison
+Family: NORMAL
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F93210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.010011
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.010011
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.025937
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.025937
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.036976
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.036976
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.047976
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.047976
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.059965
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.059965
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.070975
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.070975
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.080986
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.080986
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.090987
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.090987
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.100987
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.100987
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.111974
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.111974
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.121985
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.121985
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.132973
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.132973
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.143973
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.143973
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.153984
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.153984
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.163984
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.163984
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.173984
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.173984
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.184972
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.184972
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.195972
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.195972
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.205983
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.205983
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.216971
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.216971
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.226982
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.226982
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.236982
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.236982
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 39925.530
+HookEntryOrdinal: 5
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 63
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.247970
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.247970
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 39926.959
+Actor: PC_Hero
+Generation: 11
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 39926.966
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 11
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 39927.020
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.257981
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 39937.735
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.010011
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.257981
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.270944
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.270944
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.281963
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.281963
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.291974
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.291974
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.302962
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.302962
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.313962
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.313962
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.323973
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.323973
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.333973
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.333973
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.345949
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.345949
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.355969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.355969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.365969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.365969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.375969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.375969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.385969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.385969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.396957
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.396957
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 40238.169
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 11
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 41638.051
+Actor: Bison
+Family: POWER
+CurrentMovementAni: Bison_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+Action: 2
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F93210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 41638.097
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.400872
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 41888.650
+HookEntryOrdinal: 6
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 126
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 41899.716
+Actor: PC_Hero
+Generation: 13
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 41899.726
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 13
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 41899.785
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 13
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 42209.602
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 13
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 43619.469
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.409936
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 43867.665
+HookEntryOrdinal: 7
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 126
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 43880.192
+Actor: PC_Hero
+Generation: 15
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 43880.202
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 15
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 43880.262
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 15
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 44190.400
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 15
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 45610.410
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.418896
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 45859.305
+HookEntryOrdinal: 8
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 126
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 45870.826
+Actor: PC_Hero
+Generation: 17
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 45870.836
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 17
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 45870.895
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 17
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 46189.587
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 17
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 47591.827
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.404910
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 47837.399
+HookEntryOrdinal: 9
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 126
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 47848.856
+Actor: PC_Hero
+Generation: 19
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 47848.865
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 19
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 47848.922
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 19
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 48161.943
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 19
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 49584.197
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 1.420930
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 49830.145
+HookEntryOrdinal: 10
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 126
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 49841.646
+Actor: PC_Hero
+Generation: 21
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 49841.656
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 21
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 49841.715
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 21
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 50148.407
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 21
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+===== MARKER OWNERSHIP DECISION =====
+ElapsedMs: 51182.950
+Actor: Bison
+Family: NORMAL
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+Action: 1
+AniPhase: 1
+MatchingMotionFound: 1
+MarkerScanValid: 1
+ContainsReservedMarker: 0
+RequiredSourceMask: 0
+HasFistMarkers: 0
+AuthoredRIGHTCount: 0
+FirstRIGHTFrame: -1
+AuthoredLEFTCount: 0
+FirstLEFTFrame: -1
+AuthoredBOTHCount: 0
+FirstBOTHFrame: -1
+AuthoredOFFCount: 0
+FirstOFFFrame: -1
+AuthoredFISTCount: 0
+FirstFISTFrame: -1
+RightSourceResolved: 1
+RightSourceName: Fist
+RightSourceAddress: E6F93210
+RightSourceUseType: 8
+RightSourceCollisionGroup: 0
+LeftSourceResolved: 0
+SuppressNativeCallback: 0
+=====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.000000
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.010988
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.010988
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.021988
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.021988
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.031010
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.031010
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.041983
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.041983
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.051994
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.051994
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.061994
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.061994
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.071994
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.071994
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.082982
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.082982
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.092993
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.092993
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.103981
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.103981
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.113992
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.113992
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.124980
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.124980
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.134002
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.134002
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.144975
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.144975
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.154986
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.154986
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.164986
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.164986
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.175974
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.175974
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.184996
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.184996
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.195969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.195969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.205980
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.205980
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.215980
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.215980
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.226968
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.226968
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.236979
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.236979
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENTITY ONDAMAGE ENTRY =====
+Boundary: ENTITY_ON_DAMAGE_ENTRY
+ElapsedMs: 51430.279
+HookEntryOrdinal: 11
+CallerAddress: 00C7E348
+CallerModuleResolved: 1
+CallerModule: Game.dll
+CallerRVA: 0x0016E348
+ThisEntityAddress: EBB66E10
+ThisEntityName: PC_Hero
+EntityArg1Address: E6F93210
+EntityArg1Name: Fist
+EntityArg2Address: E6AB0C10
+EntityArg2Name: Bison
+IntArg1: 63
+IntArg2: 2
+ContactIteratorAddress: 0019E884
+PlayerEntityAddress: EBB66E10
+PlayerAction: 0
+PlayerAniPhase: 5
+PlayerStateTime: 0.000000
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot
+ExistingResolverFistSourceAddress: 00000000
+ExistingResolverFistUseType: -1
+ExistingResolverFistCollisionGroup: -1
+ThisIsPlayer: 1
+EntityArg1IsPlayer: 0
+EntityArg2IsPlayer: 0
+ThisIsResolvedFistSource: 0
+EntityArg1IsResolvedFistSource: 0
+EntityArg2IsResolvedFistSource: 0
+=================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.247967
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.247967
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 LIFECYCLE START =====
+ElapsedMs: 51440.620
+Actor: PC_Hero
+Generation: 23
+Status: CANDIDATE
+ReplacedGeneration: 0
+ReplacedOutstanding: 0
+TrackedSourceCount: 0
+==============================
+
+===== C1 SCRIPT BINDING =====
+ElapsedMs: 51440.630
+Event: COMBAT_MOVE_CANDIDATE_BOUND
+Actor: PC_Hero
+Generation: 23
+Status: CANDIDATE
+Outstanding: 0
+ScriptFunction: _AI_Stumble
+SourceAddress: 00000000
+=============================
+
+===== C1 LIFECYCLE STATUS =====
+ElapsedMs: 51440.690
+Event: PERSISTED
+Actor: PC_Hero
+Generation: 23
+Status: PERSISTED
+Outstanding: 0
+===============================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.258967
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== ENGINE SetCollisionGroup =====
+ElapsedMs: 51441.099
+Source: Fist
+SourceAddress: E6F93210
+SlotAssociation: NONE
+PlayerAction: 26
+PlayerAniPhase: 1
+PlayerStateTime: 0.009022
+PlayerCurrentMovementAni: Hero_Stand_None_None_P0_StumbleR_Hit_N_Back_00_%_00_P0_90.xmot
+RequestedGroup: 7
+BeforeGroup: 0
+AfterGroup: 0
+RetiredMarkerSourceBitCount: 0
+====================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.258967
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.267989
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.267989
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.279948
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.279948
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.289969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.289969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.299969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.299969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.309969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.309969
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.320957
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.320957
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.330968
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.330968
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.340968
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.340968
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.350968
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.350968
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.361955
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.361955
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.371967
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.371967
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.382954
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.382954
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_BEFORE_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.391977
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== FIST TRIGGER STATE SNAPSHOT =====
+Boundary: NATIVE_ATTACK_AFTER_ORIGINAL
+Actor: Bison
+Action: 1
+AniPhase: 1
+StateTime: 0.391977
+CurrentMovementAni: Bison_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot
+FistSourceResolved: 1
+FistSourceAddress: E6F93210
+FistUseType: 8
+FistCollisionGroup: 0
+IsEnabled: 1
+ReactToTouch: 1
+ResetOnUntouch: 0
+DamageDisabled: 0
+=======================================
+
+===== C1 FINALIZATION =====
+ElapsedMs: 51752.731
+Reason: AISETSTATE_AFTER_ORIGINAL
+Actor: PC_Hero
+Generation: 23
+Status: PERSISTED
+TrackedSourceCount: 0
+PhysicalCollisionChanged: 0
+===========================
+
+Script_FrameCollisionTest unloading cleanly.
