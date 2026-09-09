@@ -4,17 +4,25 @@
 
 **Updated:** 2026-09-09
 
-## Current Bridge — Collision Architecture Audit Before Further Compatibility Testing
+## Current Bridge — Architecture + Diagnostic Redesign Before Sprint and Broad Testing
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Fresh Chat must read `SESSION_ENTRYPOINT.md` first, then this file.
+Fresh Chat must read:
+
+```text
+1. SESSION_ENTRYPOINT.md
+2. this file
+3. COLLISION_ARCHITECTURE_REDESIGN_PLAN.md
+```
+
+Do not resume Goblin/Demon/Ogre compatibility testing yet.
 
 ---
 
-## Newly Closed Result — Raw-8 Quick FIST
+## Closed Result — Raw-8 Quick FIST
 
 Implementation:
 
@@ -23,20 +31,12 @@ Implementation:
 Extend raw-8 FIST support to Quick attacks
 ```
 
-The implementation changed only the two pre-existing Normal/Power FIST family gates:
-
-```text
-EngineBridge.cpp              UpdateHumanFistMarkerOwnership
-FrameCollisionMarkers.cpp     ProcessMarker FIST supported-family gate
-```
-
-`AttackFamily_Quick` was admitted while every existing FIST mechanism and equipped-weapon behavior remained unchanged.
-
 Post-change validation raw:
 
 ```text
 research/raw/2026.09.09_sabertooth_npc_pc_marked_attacks.log
 source commit: 1a0416b10bed694d47eb4809b7367b507228962d
+canonical conclusion: EV-249
 ```
 
 Test shape:
@@ -47,76 +47,85 @@ then god mode
 Hero transformed to Sabretooth -> native Sabretooth, repeated attacks
 ```
 
-### Quick result
-
-Both native `Sabretooth` and `Transform_Sabertooth_Potion` exercised factual raw-8 Fist Quick-left/right (`Action 5` / `Action 4`). Representative executions in both directions show:
+Both directions proved factual raw8 Quick-left/right (`Action 5` / `Action 4`) entering the existing FIST mechanism:
 
 ```text
 Family = QUICK
 source = Fist / raw8 / group0
-initial marked-execution latch close = SPU+0x164 0 -> 1, confirmed
+initial marked-execution latch close = SPU+0x164 0 -> 1
 G3AB_COL_FIST = ACCEPTED
-marker latch rearm = 1 -> 0, confirmed
+marker latch rearm = 1 -> 0
 Quick StatePosition = 1 -> 1
 OwnershipMatched = 1
-RealBelowThreshold = 1
-TimingPermissionArmed = 1
-SyntheticApplied = 1
-PermissionConsumed = 1
+below-threshold timing permission armed/consumed when required
 native damage caller = Game +0x0016E348
 ```
 
-For transformed Hero Quick, the damage record identifies:
-
-```text
-target = native Sabertooth
-source = transformed Hero Fist / raw8
-attacker = Transform_Sabertooth_Potion
-caller = Game +0x0016E348
-```
-
-For native Sabretooth Quick, the corresponding damage record identifies `PC_Hero` as target, native Sabretooth `Fist` as source, and the same `Game +0x0016E348` caller.
-
-The log contains `REJECTED_UNSUPPORTED_HIT` records, but traced examples are `Actor: Sabertooth`, `Action: 9`, executing the PowerAttack-named motion. They are not Quick `Action 4/5` failures and do not contradict the bounded Quick extension.
-
-No `C1 INVARIANT WARNING`, `REPAIR_DIVERGED`, or `EXCEPTION` signal was found. The diagnostic DLL unloaded cleanly.
+No `C1 INVARIANT WARNING`, `REPAIR_DIVERGED`, or `EXCEPTION` signal was found. Diagnostic unloaded cleanly.
 
 Conclusion:
 
-> **Raw-8 FIST Quick is CLOSED/PASS for the tested native/transformed Sabretooth two-direction fixture.** The supported/proven raw-8 FIST attack-family set is now Normal + Power + Quick for this tested scope. No Quick-specific mechanism or species branch is justified.
-
-Raw55/PhysicalFist remains unobserved/deferred.
+> **Raw-8 FIST Quick is CLOSED/PASS for the tested native/transformed Sabretooth two-direction fixture.** Supported/proven raw8 FIST family scope is Normal + Power + Quick for this tested scope.
 
 ---
 
-## Artifact Disposition
+## Newly Identified SprintAttack Gap
 
-The post-change validation log is **NEW CANONICAL EVIDENCE** pending/recorded as the next evidence row.
-
-The earlier comparison raws have completed their Quick comparison responsibility:
+The same raw repeatedly contains:
 
 ```text
-research/raw/2026.09.08_sabertooth_marked_attacks.log
-research/raw/2026.09.09_sabertooth_npc_marked_attacks.log
+Actor: Sabertooth
+Action: 9
+AniPhase: Hit
+CurrentMovementAni: Sabertooth_Stand_None_Fist_P0_PowerAttack_Hit_...
+G3AB_COL_FIST = REJECTED_UNSUPPORTED_HIT
 ```
 
-They remain retained provenance, but are no longer an active open Quick comparison once the post-change result is canonically recorded.
+Gothic SDK identity:
+
+```text
+gEAction_SprintAttack = 9
+```
+
+Therefore these are **SprintAttack executions reusing a PowerAttack-named motion**.
+
+They are:
+
+```text
+NOT gEAction_PowerAttack failures
+NOT Quick failures
+NOT evidence that filename should define family
+```
+
+Current source has no `AttackFamily_Sprint` and no SprintAttack family adapter/hook plumbing.
+
+Accepted planning conclusion:
+
+> SprintAttack is a factual missing attack family that the finished collision framework should investigate and, where evidence supports it, implement as a first-class family.
+
+Current evidence only establishes Sprint on native Sabretooth with factual `Fist/raw8`. We have not yet observed Sprint in prior tests, with equipped sources, or with another factual source type.
+
+Therefore do not assume Sprint is Fist-only, creature-only, Power-equivalent, or equipped-capable. Do not add a Sabretooth exception.
+
+Full frozen planning authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.
 
 ---
 
-## NEXT — Normal Chat Architecture Responsibility
-
-Before running the larger NPC/mod-family compatibility matrix, perform a complete collision-framework architecture audit against the intended final modular design.
+## NEXT — Normal Chat Architecture + Diagnostic Audit
 
 This is **research/design first, not immediate code editing**.
 
-Reason for the ordering:
+Before any further large compatibility matrix:
 
-- collision is the mature foundation that later Raise/Speed/Config will join inside `Script_G3AnimationBehaviors`;
-- the remaining NPC/mod-family tests should certify the architecture intended to survive into production;
-- refactoring after those tests would leave avoidable uncertainty about whether the tested architecture still exists unchanged.
+1. audit the complete collision behavior structure for architectural drift;
+2. design the final collision module seams intended to survive into production;
+3. audit diagnostic output volume and redesign CORE/DEEP responsibilities;
+4. ensure the target architecture can cleanly accommodate future `AttackFamily_Sprint` without implementing Sprint speculatively;
+5. freeze bounded parity-preserving Work task(s);
+6. after refactor, run one compact equivalence sentinel;
+7. only then investigate Sprint and later resume broad compatibility testing.
 
-### Governing architecture
+### Governing architecture rule
 
 ```text
 EngineBridge
@@ -124,53 +133,104 @@ EngineBridge
   transports native facts/events
   delegates behavior
 
-FrameCollisionMarkers
-  exact motion/marker ownership and occurrence semantics
-
-CollisionSources
-  factual source identity / UseType
-
-CollisionSourceOperations
-  source-specific physical mutations
-
-CollisionLifecycleGuard
-  C1 execution/source obligations and terminal repair
-
-Raw8FistCollision [candidate dedicated module]
-  raw8 FIST execution state
-  latch ownership policy
-  timing permission state/identity
-  raw8-specific behavior decisions
-
-Diagnostics
-  diagnostic product only; absent from production compilation
+EngineBridge
+  does NOT own feature policy/state machines merely because a feature needs a hook
 ```
 
-### Audit questions
+Bridge-local state whose lifetime is inherently hook-invocation/transport-local may stay. Audit by responsibility/lifetime rather than blindly moving everything.
 
-Inspect the complete current collision behavior source for architectural drift, not only the already-obvious raw8 FIST concentration in `EngineBridge.cpp`.
+### Candidate final collision modules
 
-Determine:
+```text
+EngineBridge
+FrameCollisionMarkers
+CollisionSources
+CollisionSourceOperations
+CollisionLifecycleGuard
+Raw8FistCollision [candidate new feature module]
+RuntimeClock
+CollisionDiagnostics [diagnostic product only]
+CollisionDiagnosticsDeep [opt-in research only]
+AttackContinuationProtection [later]
+```
 
-1. Which code in `EngineBridge` is true hook ownership/transport and should stay there.
-2. Which feature policy/state has accumulated in `EngineBridge` and should move to a feature module.
-3. Whether raw8 FIST should become a dedicated `Raw8FistCollision` module while `EngineBridge` retains the sole `+0x16E180` physical hook and delegates through it.
-4. Whether any marker, source, source-operation, or lifecycle responsibility has crossed its intended module boundary.
-5. Whether `RunScriptFunctionScope` / pre-combat bridge pieces are legitimate hook-lifetime transport or actual lifecycle policy; do not classify them as drift merely because they live in `EngineBridge`.
-6. Whether dependency direction remains clean and avoids competing hook owners.
-7. Whether diagnostics remain mechanically excluded from the behavior-only build, not merely disabled at runtime.
-8. Whether historical `HumanFist*` names should become factual `Raw8Fist*` names now that human/species identity is disproven as the governing boundary.
-9. Whether any other structural drift exists that should be corrected before further compatibility testing.
+### Known drift to inspect
 
-Do not change behavior merely for aesthetics. Preserve all proven marker/source/lifecycle/FIST semantics exactly unless the audit exposes a concrete contradiction.
+Especially inspect current raw8 FIST state/policy inside `EngineBridge.cpp`, including stale `HumanFist*` naming. Also inspect marker/lifecycle/source-operation boundaries, persistent feature state ownership, CMake composition, dependency direction, hook ownership, and pre-combat `RunScriptFunctionScope` transport vs lifecycle-policy responsibility.
 
-After Normal Chat freezes the smallest justified architectural correction, give that bounded refactor to Work. After source review/build, run a small post-refactor equivalence sentinel before resuming the large compatibility matrix.
+The refactor is parity-preserving. No behavior redesign merely for aesthetics.
 
 ---
 
-## Planned Post-Refactor Equivalence Sentinel
+## Diagnostic Redesign Decision
 
-Keep this compact; it proves the refactor did not alter the architectural seams:
+Formal rule:
+
+> **Known successful behavior logs compactly. Unknown, unsupported, contradictory, repair, or invariant behavior logs richly.**
+
+The current CORE logger still records substantial research-era detail that was useful during FIST/C1 discovery but makes larger tests unnecessarily huge.
+
+Target products:
+
+```text
+PRODUCTION
+  zero diagnostics compiled
+
+CORE TEST
+  compact regression facts for healthy known paths
+  detailed records automatically for failures/anomalies/unknown families
+
+DEEP TEST
+  opt-in research instrumentation retaining historical low-level detail
+```
+
+CORE must remain sufficient to answer:
+
+```text
+what attack executed?
+what factual source(s) were involved?
+what marker existed?
+accepted/rejected and why?
+what physical state changed?
+did native damage occur when relevant?
+did C1/lifecycle finish correctly?
+did anything unknown or anomalous happen?
+```
+
+For unsupported/unknown families — Sprint included until implemented — CORE must retain at minimum:
+
+```text
+actor
+C1 generation if available
+numeric + resolved action
+phase / StatePosition
+current animation
+marker
+source identity / UseType / collision group
+equipped-side association if relevant
+rejection reason
+native damage target/source/attacker/caller correlation when it occurs
+```
+
+Potential default-noise reductions to audit:
+
+```text
+FIST trigger-state snapshots before/after every native callback
+FIST trigger-state snapshots around ordinary AISetState
+SetCollisionGroup records with no meaningful physical change
+full healthy C1 START -> BINDING -> STATUS -> FINALIZATION chronology
+full entity/contact addresses for every known successful damage
+full ownership-decision dump for every healthy execution
+full raw8 timing arithmetic for every already-proven early FIST
+```
+
+Do not simply delete reusable capability; move it to DEEP or make it anomaly/condition-driven where appropriate.
+
+---
+
+## Frozen Post-Refactor Sentinel
+
+Before Sprint investigation or broader compatibility testing:
 
 ```text
 raw8 FIST:
@@ -186,32 +246,46 @@ C1 safety:
   one established destructive bad-skip -> exact terminal repair
 ```
 
-Only after that passes resume:
+If this sentinel fails, stop and correct the refactor.
+
+---
+
+## Sequence After Sentinel
 
 ```text
-native equipped-NPC marker controls:
-  Goblin -> 1H / raw2
-  Demon  -> 2H / raw3
-  Ogre   -> Axe / raw52
-
--> additional prepared native/modded actor-family controls
+SprintAttack factual source/transport/mechanism investigation
+-> bounded first-class Sprint implementation only if evidence supports it
+-> focused Sprint validation
+-> native equipped-NPC marker controls: Goblin 1H / Demon 2H / Ogre Axe
+-> additional prepared native/modded family controls
 -> separated 2H vs Axe compatibility
 -> separated 1H vs Rapier compatibility
 -> final native mixed/stress collision regression
 -> separate AttackContinuationProtection
 -> combined mature collision regression
+-> mature New Balance + relevant Jackydima compatibility
 -> production migration into Script_G3AnimationBehaviors
 -> diagnostics-free production validation
 -> integrate Raise + Speed + Config
 ```
 
-If an intermediate family fails, stop and resolve that exact failure before continuing.
+If any intermediate family fails, stop and resolve that exact failure before continuing.
+
+---
+
+## Tomorrow / New Chat
+
+Do **not** give Work an open-ended architecture-design prompt.
+
+Normal Chat should first inspect only the source/CMake/diagnostic material necessary to answer the audit questions and produce a concrete final design. Then freeze bounded mechanical Work task(s).
+
+No more runtime testing is needed tonight.
 
 ---
 
 ## GitHub Desktop Handoff
 
-Assistant evidence/current-state maintenance may advance the remote branch beyond the User's local checkout.
+Assistant documentation maintenance has advanced the remote branch beyond the User's local checkout.
 
 Before the next local build/test window:
 
