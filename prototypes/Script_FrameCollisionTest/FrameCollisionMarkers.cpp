@@ -694,7 +694,8 @@ MarkerProcessResult ProcessMarker(
     }
     if (markerOpcode == MarkerOpcode_Fist
         && family != AttackFamily_Normal
-        && family != AttackFamily_Power)
+        && family != AttackFamily_Power
+        && family != AttackFamily_Quick)
     {
         result.code = MarkerResult_RejectedUnsupportedHit;
         return result;

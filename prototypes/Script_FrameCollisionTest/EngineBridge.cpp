@@ -270,7 +270,8 @@ static void UpdateHumanFistMarkerOwnership(
     bool const exactMarkedHumanFistExecution =
         ownership.attackHitEligible
         && (family == AttackFamily_Normal
-            || family == AttackFamily_Power)
+            || family == AttackFamily_Power
+            || family == AttackFamily_Quick)
         && ownership.decision.foundMatchingMotion
         && ownership.decision.scanValid
         && ownership.decision.markerPresent
