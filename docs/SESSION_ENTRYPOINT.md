@@ -9,6 +9,7 @@
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat.
 
 Immediate transient handoff: `docs/BETWEEN_CHATS.md`  
+Current redesign authority: `docs/COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`  
 Project charter/retrieval model: `docs/README.md`  
 Recurring Git/build/deploy/evidence/recovery procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`  
 Knowledge ownership/maintenance: `docs/KNOWLEDGE_REGISTRY.md` + `docs/KNOWLEDGE_MAINTENANCE.md`  
@@ -30,7 +31,7 @@ PhysicalFist/raw55 bounded discovery       CLOSED/DEFERRED — EV-245–EV-246
 transformed Sabretooth Normal/Power FIST   PASS — EV-247
 native Sabretooth Normal/Power FIST        PASS — EV-248
 raw-8 Quick relevant native mechanism      CLASSIFIED — EV-248
-raw-8 Quick FIST family extension          CLOSED/PASS — post-change Sabretooth two-direction validation
+raw-8 Quick FIST family extension          CLOSED/PASS — EV-249
 ```
 
 Do not reopen these exact closed conclusions without concrete contradictory evidence.
@@ -39,9 +40,9 @@ Raw-8 FIST remains FIST-only: no authored FIST_OFF, no Fist ClearTriggeredList, 
 
 The bounded raw55 investigation did not observe `gEUseType_PhysicalFist` / raw 55. Tested transformations and several native body attackers resolved factual raw-8 `Fist`; weapon/magic controls resolved their own factual UseTypes. Raw55 remains unobserved/deferred, not globally disproven.
 
-EV-247–EV-248 removed the earlier conservative human/species boundary for the tested raw-8 Normal/Power fixtures and classified Quick's native latch/timing mechanism. The bounded implementation `2c9f745106506fc6bdb009b35720a4bb7c81ea11` then admitted `AttackFamily_Quick` at the two existing FIST family gates only.
+EV-247–EV-248 removed the earlier conservative human/species boundary for the tested raw-8 Normal/Power fixtures and classified Quick's native latch/timing mechanism. The bounded implementation `2c9f745106506fc6bdb009b35720a4bb7c81ea11` admitted `AttackFamily_Quick` at the two existing FIST family gates only.
 
-Post-change two-direction Sabretooth validation (`research/raw/2026.09.09_sabertooth_npc_pc_marked_attacks.log`, source commit `1a0416b10bed694d47eb4809b7367b507228962d`) shows native and transformed Sabretooth Quick-left/right entering the existing FIST ownership path, accepting FIST, preserving Quick StatePosition 1, using the same latch/timing permission, and damaging through native `Game +0x16E348`. Traced `REJECTED_UNSUPPORTED_HIT` records belong to Action 9 using the PowerAttack-named motion, not Quick Action 4/5. No C1 invariant warning, repair divergence or exception was found; the diagnostic unloaded cleanly.
+EV-249 / `research/raw/2026.09.09_sabertooth_npc_pc_marked_attacks.log` then closed Quick in both native-Sabretooth -> player and transformed-Hero -> native-Sabretooth directions. Quick-left/right accepted FIST, preserved StatePosition 1, used the existing latch/timing permission, and damaged through native `Game +0x16E348`.
 
 The supported/proven raw-8 FIST family set for the tested scope is therefore:
 
@@ -51,29 +52,65 @@ Normal + Power + Quick
 
 ---
 
+## Newly Identified Missing Family — SprintAttack
+
+The EV-249 validation log repeatedly contains:
+
+```text
+Actor: Sabertooth
+Action: 9
+CurrentMovementAni: ...PowerAttack_Hit...
+G3AB_COL_FIST = REJECTED_UNSUPPORTED_HIT
+```
+
+Gothic action identity establishes:
+
+```text
+gEAction_SprintAttack = 9
+```
+
+These records are therefore **SprintAttack executions that reuse a PowerAttack-named motion**. They are not `gEAction_PowerAttack` failures and not Quick failures.
+
+Current collision source has no `AttackFamily_Sprint` and no SprintAttack family adapter/hook plumbing. SprintAttack is now a factual missing family that the finished framework should investigate and, where evidence supports it, implement as a first-class family.
+
+Current evidence limit:
+
+```text
+observed Sprint actor/source: native Sabretooth -> Fist/raw8
+other actors/source types: not yet established
+prior project tests: SprintAttack had not surfaced
+```
+
+Do not infer Sprint behavior from the `_PowerAttack_` filename, do not add a Sabretooth exception, and do not assume Sprint is Fist-only or equipped-capable before evidence.
+
+Canonical planning authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.
+
+---
+
 ## Current Immediate Responsibility
 
-> **Perform a complete collision-framework architecture audit before any larger NPC/mod-family compatibility test matrix.**
+> **Perform the complete collision-framework architecture AND diagnostic-volume audit before any larger NPC/mod-family compatibility matrix.**
 
-This is Normal Chat research/design first. Do not immediately refactor code.
+This is Normal Chat research/design first. Do not immediately refactor code and do not begin Sprint implementation yet.
 
 Reason:
 
 - collision is the mature foundation that later Raise/Speed/Config will join inside `Script_G3AnimationBehaviors`;
 - remaining compatibility/stress tests should certify the architecture intended to survive into production;
-- refactoring after those tests would leave avoidable uncertainty about whether the tested architecture still exists unchanged.
+- the current logger still carries research-era verbosity that makes larger tests unnecessarily difficult to process;
+- Sprint must be accommodated cleanly by the architecture rather than bolted onto current drift.
 
 Primary authority:
 
 ```text
+COLLISION_ARCHITECTURE_REDESIGN_PLAN.md
 DESIGN.md modular architecture
-BETWEEN_CHATS.md exact audit questions and next sequence
+COLLISION_LOGGER_PLAN.md diagnostic architecture
+BETWEEN_CHATS.md exact next-session handoff
 EV-208–EV-215 architecture foundation/verification
-EV-221–EV-249 raw8 FIST evolution and current behavior
+EV-221–EV-249 raw8 FIST evolution/current behavior
 current source under prototypes/Script_FrameCollisionTest
 ```
-
-Audit the full collision behavior structure for drift, especially but not only the raw8 FIST behavior/state accumulated in `EngineBridge.cpp`.
 
 Target separation remains:
 
@@ -100,8 +137,26 @@ Raw8FistCollision [candidate dedicated feature module]
   timing-permission behavior and identity
 
 Diagnostics
-  diagnostic product only; absent from behavior-only production compilation
+  production: not compiled
+  CORE: compact known-path regression evidence
+  DEEP: opt-in research instrumentation
+  unknown/anomalous behavior: automatically richer evidence
 ```
+
+Governing bridge rule:
+
+```text
+EngineBridge = physical hook ownership + transport + delegation
+EngineBridge != feature policy/state-machine ownership
+```
+
+Do not assume every bridge-local object is drift. State whose lifetime is inherently one hook invocation/transport scope may legitimately stay there. Classify by responsibility and lifetime.
+
+Diagnostic redesign rule:
+
+> **Known successful behavior logs compactly. Unknown, unsupported, contradictory, repair, or invariant behavior logs richly.**
+
+CORE must remain capable of discovering Sprint and other unknown families/source UseTypes while substantially reducing repeated healthy-path state dumps. Reusable detailed probes should move to DEEP or become condition/anomaly-driven rather than simply being deleted.
 
 Hard audit rules:
 
@@ -110,14 +165,13 @@ NO behavior change merely for aesthetics
 NO competing feature hook owners
 NO weakening diagnostics-free production separation
 NO marker/source/lifecycle semantic redesign without concrete contradiction
+NO Sprint behavior implementation during parity refactor
 NO AttackContinuationProtection implementation during this audit
 NO Raise/speed/config implementation during this audit
 NO new raw55 behavior
 ```
 
-Determine which bridge-resident state/policy is genuine architectural drift and which pieces are legitimately hook-lifetime transport. In particular, do not assume `RunScriptFunctionScope` / the pre-combat bridge must move merely because it resides in `EngineBridge`; classify by responsibility and lifetime.
-
-Once Normal Chat freezes the smallest justified correction, Work performs that bounded structural refactor. Then User + Normal Chat run one compact post-refactor equivalence sentinel before resuming compatibility testing.
+Once Normal Chat freezes the smallest justified correction, Work performs bounded structural/diagnostic refactor task(s). Then User + Normal Chat run one compact post-refactor equivalence sentinel before Sprint investigation or broader compatibility testing.
 
 Planned sentinel:
 
@@ -128,10 +182,13 @@ one established multi-marker / OFF / rearm fixture
 one established destructive bad-skip -> exact terminal repair
 ```
 
-After the refactor sentinel passes, continue:
+After sentinel PASS:
 
 ```text
-native equipped-NPC marker tests: Goblin 1H / Demon 2H / Ogre Axe
+SprintAttack factual source/transport/mechanism investigation
+-> bounded Sprint implementation only if evidence supports it
+-> focused Sprint validation
+-> native equipped-NPC marker tests: Goblin 1H / Demon 2H / Ogre Axe
 -> additional prepared native/modded actor-family controls
 -> separated 2H-vs-Axe mod marker compatibility
 -> separated 1H-vs-Rapier mod marker compatibility
