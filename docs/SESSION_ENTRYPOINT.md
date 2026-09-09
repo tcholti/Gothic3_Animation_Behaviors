@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-09
 
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat.
 
@@ -28,6 +28,8 @@ Hack tested 2H/Staff scope                 CLOSED/PASS — EV-216, EV-244
 human raw-8 FIST Normal/Power              CLOSED/PASS — EV-221–EV-240
 PhysicalFist/raw55 bounded discovery       CLOSED/DEFERRED — EV-245–EV-246
 transformed Sabretooth Normal/Power FIST   PASS — EV-247
+native Sabretooth Normal/Power FIST        PASS — EV-248
+raw-8 Quick relevant native mechanism      CLASSIFIED — EV-248
 ```
 
 Do not reopen these exact closed conclusions without concrete contradictory evidence.
@@ -36,61 +38,84 @@ Raw-8 FIST remains FIST-only: no authored FIST_OFF, no Fist ClearTriggeredList, 
 
 The bounded raw55 investigation did not observe `gEUseType_PhysicalFist` / raw 55. Tested transformations and several native body attackers resolved factual raw-8 `Fist`; weapon/magic controls resolved their own factual UseTypes. Raw55 remains unobserved/deferred, not globally disproven.
 
-EV-247 materially qualifies the earlier conservative actor-family boundary: transformed Sabretooth Normal and Power entered the existing raw-8 FIST ownership/timing mechanism successfully. The intended architecture is not human-animation-family- or species-gated; factual raw-8 source identity plus a supported/proven native attack-family mechanism governs applicability.
+EV-247–EV-248 remove the earlier conservative human/species boundary for the tested raw-8 Normal/Power fixtures. Both transformed and genuine native Sabretooth attacks entered the existing FIST ownership/timing mechanism. The intended architecture is governed by factual raw-8 source identity plus a supported/proven native attack-family mechanism, not actor species or animation-family naming.
 
-EV-247 also establishes that transformed Quick-left/right is **not marker-controlled today**. The raw8 source and native `Game +0x16E348` damage route are present, but each FIST marker is explicitly `REJECTED_UNSUPPORTED_HIT` because current code permits FIST only for Normal + Power. Do not implement Quick until its native latch/timing mechanism is classified.
+EV-248 also closes the prerequisite Quick mechanism question. Native Sabretooth Quick-left/right factually use raw-8 `Fist` and damage through `Game +0x16E348`. Tested Game.dll control flow establishes that this damaging route passes the generic `SPU+0x164` gate, the motion-0 `+0x16E180` timing comparison and the native `SPU+0x164 = 1` write at `+0x16E1A3`; the alternate sub-arm returns before the `+0x16E348` damage dispatch. Quick therefore has sufficient mechanism proof for bounded reuse of the existing raw-8 FIST contract.
 
 ---
 
 ## Current Immediate Responsibility
 
-> **Native Sabretooth NPC -> player marked Normal/Power compatibility control. No code change before this test.**
+> **Implement only the bounded raw-8 FIST Quick family-scope extension, then validate it on native Sabretooth Quick-left/right.**
 
-Use the same marked Sabretooth Normal/Power animations that passed under `Transform_Sabertooth_Potion`, but let a genuine native Sabretooth NPC attack the player.
+No new mechanism is required. Current source already:
+
+```text
+recognizes QuickAttack / QuickAttackR / QuickAttackL as AttackFamily_Quick
+uses StatePosition 1 for Quick marker bookkeeping
+routes OnAI_QuickAttack through EvaluateAttackCallback
+resolves the same factual raw-8 Fist source
+contains the existing exact FIST latch/timing machinery
+```
+
+Current deliberate blockers are the FIST family checks that admit only Normal + Power. The bounded implementation responsibility is therefore:
+
+```text
+admit AttackFamily_Quick at the existing FIST ownership/dispatch family gates
+preserve every other raw-8 FIST invariant exactly
+```
 
 Primary authority:
 
 ```text
-COLLISION_TEST_PLAN.md §5
+EV-248
 DESIGN.md raw-8 Fist architecture
-EV-247
-BETWEEN_CHATS.md exact continuation
+COLLISION_TEST_PLAN.md pre-regression compatibility gates
+BETWEEN_CHATS.md exact bounded continuation
 ```
 
-Purpose:
+Hard boundaries:
 
 ```text
-separate transformed-player success
-from actual native-NPC actor compatibility
-without changing production code first
+NO new hook
+NO new marker opcode/vocabulary
+NO species/name/animation-family branch
+NO raw55/PhysicalFist behavior
+NO new latch/timing mechanism
+NO direct/custom damage
+NO FIST_OFF resurrection
+NO Fist ClearTriggeredList
+NO equipped Item_Attack/Item_Equipped Fist window
+NO C1 weapon cleanup change
+NO AttackContinuationProtection work
+NO Raise/speed work
+NO unrelated equipped-family/source redesign
 ```
 
-`research/raw/2026.09.08_sabertooth_marked_attacks.log` is **ACTIVE COMPARISON — KEEP RAW** until this native-NPC comparison is closed.
+After implementation, User + Normal Chat build/deploy the diagnostic twin normally and run a bounded native-Sabretooth Quick validation. Require Quick markers to become accepted, initial ownership close and marker rearm/timing permission to follow the existing FIST contract, damage only after the authored opportunity, and unmarked/native fallback to remain native.
 
-After the native Sabretooth control, the planned bounded sequence is:
+Both current Sabretooth logs remain **ACTIVE COMPARISON — KEEP RAW** until this post-change Quick validation closes:
 
 ```text
-raw8 Quick mechanism classification / bounded extension only if proven
--> native equipped-NPC marker tests: Goblin 1H / Demon 2H / Ogre Axe
+research/raw/2026.09.08_sabertooth_marked_attacks.log
+research/raw/2026.09.09_sabertooth_npc_marked_attacks.log
+```
+
+After Quick closes, continue:
+
+```text
+native equipped-NPC marker tests: Goblin 1H / Demon 2H / Ogre Axe
+-> additional prepared native/modded actor-family marker controls, one log per actor/family
 -> separated 2H-vs-Axe mod marker compatibility
 -> separated 1H-vs-Rapier mod marker compatibility
--> final native mixed collision regression
+-> final native mixed/stress collision regression
 -> separate AttackContinuationProtection
 -> combined marker/lifecycle/continuation regression
 -> mature New Balance + relevant Jackydima compatibility
 -> production collision migration
 ```
 
-Hard boundaries:
-
-```text
-NO raw55/PhysicalFist implementation without new factual runtime UseType 55 evidence
-NO species/name-specific marker vocabulary or actor-family gating
-NO Quick FIST code before mechanism proof
-NO AttackContinuationProtection work inside the pre-regression compatibility sequence
-NO Raise/speed work
-NO new source/lifecycle redesign
-```
+If an intermediate actor/family fails, stop and resolve that exact failure before continuing the matrix.
 
 ---
 
