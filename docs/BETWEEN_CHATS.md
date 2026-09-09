@@ -2,230 +2,253 @@
 
 **Purpose:** Exact short-lived continuation bridge. Replace rather than accumulate chronology.
 
-**Updated:** 2026-09-08
+**Updated:** 2026-09-09
 
-## Current Bridge — Sabretooth Cross-Actor Compatibility Before Any New Code
+## Current Bridge — Raw-8 Quick FIST Bounded Extension Next
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Fresh Chat must read `SESSION_ENTRYPOINT.md` first, then this file. No Work implementation task is frozen.
+Fresh Chat must read `SESSION_ENTRYPOINT.md` first, then this file.
 
 ---
 
-## Stable State
+## Evidence State
 
-The mature collision foundation remains closed through the previous checkpoints:
+Stable collision foundation remains closed through EV-247. New EV-248 closes the native-Sabretooth actor control and the prerequisite raw-8 Quick mechanism classification.
+
+### Native Sabretooth NPC result
+
+Published raw:
 
 ```text
-C1-R1 lifecycle safety                     CLOSED — EV-206–EV-207
-architecture verification                  CLOSED/PASS — EV-208–EV-215
-Power                                      CLOSED/PASS — EV-241
-Pierce                                     CLOSED/PASS — EV-242
-SimpleWhirl                                CLOSED/PASS — EV-217–EV-220, EV-243
-Hack tested 2H/Staff scope                 CLOSED/PASS — EV-216, EV-244
-human raw-8 FIST Normal/Power              CLOSED/PASS — EV-221–EV-240
-PhysicalFist/raw55 bounded discovery       CLOSED/DEFERRED — EV-245–EV-246
+research/raw/2026.09.09_sabertooth_npc_marked_attacks.log
+source commit: 3f0661da44afed99544c139241f3b1ead5207254
 ```
 
-Raw55 remains unobserved/deferred. Do not create a raw55 implementation without future factual runtime `UseType == 55` evidence.
+A genuine `Actor: Sabertooth` repeatedly attacked `PC_Hero`.
 
-The September 8 native-source survey established several native body attackers as factual `Fist` / raw8 / group0 with damaging caller `Game +0x16E348`, while Demon/Goblin/Ogre resolved their factual equipped 2H/1H/Axe sources. That survey alone did not prove marker compatibility.
+Normal:
+
+```text
+5 observed marked executions
+factual source = Fist / raw8 / group0
+FIST ownership established
+initial SPU+0x164 0 -> 1
+G3AB_COL_FIST = ACCEPTED
+OwnershipMatched = 1
+below-threshold timing permission armed/consumed where required
+damage caller = Game +0x16E348
+```
+
+Power:
+
+```text
+2 observed marked executions
+same factual raw8 source
+same ownership/latch/timing mechanism
+FIST = ACCEPTED
+damage caller = Game +0x16E348
+```
+
+This closes the native-NPC Normal/Power actor-side control for the Sabretooth fixture. Together with EV-247, the tested raw-8 FIST mechanism is not human/species/animation-family gated.
+
+Quick-left/right:
+
+```text
+factual source = Fist / raw8 / group0
+Action = 4 / 5
+native damage caller = Game +0x16E348
+current G3AB_COL_FIST = REJECTED_UNSUPPORTED_HIT
+```
+
+The rejection is the existing software family boundary, not a source mismatch.
+
+### Quick mechanism classification
+
+Tested Game.dll binary reference:
+
+```text
+sAICombatMoveItlLoop                   Game +0x16DD00
+generic SPU+0x164 zero gate            Game +0x16DFB9
+GetMaxTime(0)                          Game +0x16E160
+GetPlayTime(0) timing call             Game +0x16E180
+threshold comparison                   Game +0x16E18C..+0x16E190
+native SPU+0x164 = 1 write             Game +0x16E1A3
+observed OnDamage caller return        Game +0x16E348
+```
+
+The alternate timing sub-arm writes the latch at `Game +0x16E13E` and returns before the later damage dispatch. Therefore an observed Quick damage call returning at `Game +0x16E348` cannot come from that alternate arm; it necessarily traverses the same relevant generic latch/timing route used by the existing raw-8 FIST contract.
+
+Canonical evidence: **EV-248**.
+
+Conclusion:
+
+> Raw-8 Quick has sufficient native-mechanism proof for bounded reuse of the existing FIST contract. No new Quick collision mechanism is justified.
 
 ---
 
-## New Evidence — EV-247
+## Current Source Audit
 
-Published source artifact:
+Existing source already provides the required generic Quick plumbing:
+
+```text
+TryGetCurrentAttackHitFamily:
+QuickAttack / QuickAttackR / QuickAttackL -> AttackFamily_Quick
+
+GetMarkerOwnedStatePosition:
+AttackFamily_Quick -> 1
+
+EngineBridge:
+OnAI_QuickAttack -> EvaluateAttackCallback(AttackFamily_Quick)
+
+FIST marker path:
+ResolveFistCollisionSource(actor)
+SPU+0x164 latch write
+existing exact timing-permission transport
+```
+
+The deliberate FIST blockers found are the Normal/Power-only family checks:
+
+```cpp
+family == AttackFamily_Normal || family == AttackFamily_Power
+```
+
+and:
+
+```cpp
+if (markerOpcode == MarkerOpcode_Fist
+    && family != AttackFamily_Normal
+    && family != AttackFamily_Power)
+    -> REJECTED_UNSUPPORTED_HIT
+```
+
+---
+
+## NEXT — Frozen Implementation Responsibility
+
+Implement ONLY the smallest raw-8 FIST Quick family-scope extension.
+
+Required semantic change:
+
+```text
+existing supported FIST family set:
+Normal + Power
+
+becomes:
+Normal + Power + Quick
+```
+
+Quick means the already-existing `AttackFamily_Quick`, covering the factual Quick/QuickR/QuickL actions already normalized by current source.
+
+Expected implementation shape:
+
+- admit `AttackFamily_Quick` in `UpdateHumanFistMarkerOwnership`'s existing exact marked raw-8 FIST family predicate;
+- admit `AttackFamily_Quick` in `FrameCollisionMarkers`' existing FIST supported-family gate;
+- preserve the existing Quick `StatePosition = 1` behavior;
+- reuse the exact existing raw-8 FIST source resolver, C1-generation ownership, initial latch close, accepted-marker latch rearm and exact one-shot timing permission.
+
+Do NOT add or change:
+
+```text
+new hooks
+new marker vocabulary
+species/name/animation-family checks
+raw55/PhysicalFist support
+another latch/timing mechanism
+direct/custom damage
+FIST_OFF
+Fist ClearTriggeredList
+equipped Item_Attack/Item_Equipped Fist windows
+C1 weapon cleanup semantics
+unmarked/native fallback
+Normal/Power semantics
+equipped weapon marker behavior
+AttackContinuationProtection
+Raise/speed/configuration
+```
+
+Before editing, inspect the exact surrounding functions and search for any additional FIST family restriction. If another material restriction or contradictory mechanism appears, stop and report it instead of broadening.
+
+Work source/static audit only. **BUILD EXECUTION IS PROHIBITED** unless a later frozen task explicitly changes that rule.
+
+After implementation/publish, Normal Chat independently reviews the diff. User then synchronizes, builds/deploys the diagnostic twin locally, and runs bounded native-Sabretooth Quick-left/right validation.
+
+---
+
+## Post-Change Quick Validation
+
+Use native Sabretooth -> player.
+
+Require at minimum:
+
+```text
+QuickR marked execution
+QuickL marked execution
+repeat enough for clear evidence
+```
+
+Expected:
+
+```text
+source = Fist / raw8
+Family = QUICK
+FIST ownership established on factual C1 generation
+initial latch close 0 -> 1 once per marked execution
+G3AB_COL_FIST = ACCEPTED
+marker latch rearm 1 -> 0
+below-threshold opportunity uses existing exact timing permission when needed
+native damage occurs only after authored FIST opportunity
+caller remains Game +0x16E348
+unmarked/native fallback remains native
+```
+
+If this validation passes, close raw-8 Quick and move to the prepared NPC/monster family compatibility logs.
+
+---
+
+## Active Comparison Artifacts
+
+Keep both in `research/raw/` until Quick validation closes:
 
 ```text
 research/raw/2026.09.08_sabertooth_marked_attacks.log
-source commit: bf1c59f15815cbac11b75ffcee9ebc6d424c7840
+research/raw/2026.09.09_sabertooth_npc_marked_attacks.log
 ```
 
-Test setup:
-
-- actor: `Transform_Sabertooth_Potion`;
-- target: Boar;
-- marked Normal, Quick-left/right and Power Sabretooth attacks;
-- User visual observation: all selected attacks physically connected.
-
-Interpretation:
-
-### Normal — PASS
-
-The marked Normal animation resolved factual `Fist` / raw8, entered the existing FIST ownership mechanism, accepted `G3AB_COL_FIST`, matched ownership/timing state and damaged the Boar through `Game +0x16E348` after the authored opportunity.
-
-### Power — PASS
-
-The marked Power animation likewise resolved factual raw8 `Fist`, entered ownership, accepted the FIST marker and damaged through the native `Game +0x16E348` body-damage route.
-
-### Quick-left/right — NOT MARKER-CONTROLLED
-
-Quick-left/right also resolved factual raw8 `Fist` and physically damaged through `Game +0x16E348`, but every authored FIST marker was:
-
-```text
-MarkerAction: REJECTED_UNSUPPORTED_HIT
-```
-
-Source review explains the result exactly: current marker processing rejects FIST unless the family is Normal or Power. Quick therefore remained native despite visually connecting.
-
-Canonical evidence: EV-247.
-
-Artifact disposition:
-
-```text
-research/raw/2026.09.08_sabertooth_marked_attacks.log
-= ACTIVE COMPARISON — KEEP RAW
-```
-
-Do not archive it yet. It is the transformed-player comparison input for the next native-Sabretooth run.
+Disposition: **ACTIVE COMPARISON — KEEP RAW**.
 
 ---
 
-## Architecture Clarification Frozen Today
-
-The desired architecture is **not human-animation-family-only** and should not grow species-specific marker rules.
-
-The earlier “human raw-8 Fist” wording came from two evidence limitations:
-
-1. raw8 vs raw55 was initially suspected to separate human and monster/body mechanisms;
-2. humans gave us testable FIST Normal/Power cases but no Quick-Fist fixture, so Quick was deliberately left unsupported rather than guessed.
-
-EV-245–EV-247 now clarify the intended model:
+## Planned Sequence After Quick
 
 ```text
-factual source = gEUseType_Fist / raw8
-+
-supported/proven native attack-family mechanism
-+
-Hit phase
-+
-exact current animation contains G3AB_COL_FIST
+native equipped-NPC marker controls:
+  Goblin -> 1H / raw2
+  Demon  -> 2H / raw3
+  Ogre   -> Axe / raw52
 
--> authored raw8 FIST opportunity
-```
-
-Do not add a Human_ filename check, Sabretooth-specific branch, species table or separate monster marker vocabulary.
-
-Raw55/PhysicalFist remains a separate unsupported source type unless future factual raw55 evidence appears.
-
----
-
-## NEXT — Native Sabretooth NPC -> Player Control
-
-**Do not write code first.**
-
-Use the same marked Sabretooth Normal/Power animations that already passed while transformed, then let a genuine native Sabretooth NPC attack the player.
-
-Question:
-
-> Does the existing raw8 Normal/Power FIST mechanism still own authored timing when the attacker is a native NPC rather than `Transform_Sabertooth_Potion`?
-
-Before the run, freeze one exact raw filename under POP-05.
-
-Minimum useful cases:
-
-```text
-marked Normal
-marked Power
-```
-
-Quick does not need to be part of this first actor-side control because current code already rejects it by design.
-
-What to require from the log:
-
-```text
-Actor = native Sabretooth NPC
-factual source = Fist / raw8
-HasFistMarkers = 1
-Normal/Power FIST marker = ACCEPTED
-ownership/timing identity matches
-no pre-marker native damage leak
-contact damage, when it occurs, follows through native Game +0x16E348
-```
-
-If native Sabretooth Normal/Power passes, the actor-family question is substantially closed for this fixture and the next responsibility is Quick mechanism classification.
-
-If it fails, stop and classify the exact actor-side difference before any broadening.
-
----
-
-## After Native Sabretooth — Planned Bounded Sequence
-
-### 1. Raw8 Quick mechanism classification
-
-Current facts from EV-247:
-
-```text
-Quick source = raw8 Fist
-Quick damage caller = Game +0x16E348
-FIST markers = explicit REJECTED_UNSUPPORTED_HIT
-```
-
-Before implementation, determine whether Quick uses the same relevant `SPU+0x164` / timing-opportunity mechanism sufficiently to reuse the existing FIST contract.
-
-Only if that is proven should the smallest family-gate extension be implemented and validated.
-
-### 2. Native equipped-NPC marker controls
-
-User plans separate logs for:
-
-```text
-Goblin -> 1H / raw2
-Demon  -> 2H / raw3
-Ogre   -> Axe / raw52
-```
-
-Put ordinary equipped collision markers on selected native NPC attack animations and let each NPC attack the player. Keep each NPC in a separate log.
-
-Purpose: confirm equipped marker behavior follows factual source/action semantics for NPC attackers rather than depending on player/human animation-family assumptions.
-
-### 3. Separated 2H vs Axe mod
-
-Install the mod that separates 2H from Axe animation families, mark selected new 2H and Axe animations, and validate collision ownership independently.
-
-### 4. Separated 1H vs Rapier mod
-
-Install the mod that separates ordinary 1H from Rapiers, mark selected animations from each side, and validate collision ownership independently.
-
-### 5. Final native mixed collision regression
-
-Only after the bounded compatibility gates above are closed.
-
-Then continue the established roadmap:
-
-```text
-final native mixed regression
+-> additional prepared native/modded animation-family controls
+   one actor/family per log
+-> separated 2H vs Axe compatibility
+-> separated 1H vs Rapier compatibility
+-> final native mixed/stress collision regression
 -> separate AttackContinuationProtection
--> combined marker/lifecycle/continuation regression
+-> combined regression
 -> mature New Balance + relevant Jackydima compatibility
 -> production collision migration
 ```
 
----
-
-## Hard Boundaries
-
-```text
-NO code before the native Sabretooth actor-side control
-NO raw55 implementation without factual UseType55 evidence
-NO species/name-specific marker branching
-NO separate monster marker vocabulary
-NO Quick FIST implementation before native-mechanism proof
-NO AttackContinuationProtection work inside these compatibility gates
-NO Raise/speed work
-NO broad source/lifecycle redesign
-```
+If one intermediate family fails, stop and resolve that exact failure before continuing.
 
 ---
 
 ## GitHub Desktop Handoff
 
-This planned maintenance commit will advance the remote branch beyond the User's local checkout.
+Assistant evidence/current-state maintenance advances the remote branch beyond the User's local checkout.
 
-Before the next local test/write window, guide the User through:
+Before the next local build/test window:
 
 ```text
 open GitHub Desktop
@@ -236,25 +259,4 @@ open GitHub Desktop
 -> verify Changes shows 0 changed files
 ```
 
-The User is still a GitHub Desktop beginner; repeat these concrete steps when next needed.
-
----
-
-## Evidence / Continuity Rule
-
-Continue POP-05/POP-06 for every new runtime artifact:
-
-```text
-freeze exact test + filename
--> User runs locally
--> copy unchanged log to research/raw
--> Commit + Push
--> Normal Chat interprets
--> promote reusable result to canonical EV
--> explicit artifact disposition
--> archive only when no active comparison still needs raw
--> update smallest affected authorities/current-state pointers
--> then advance
-```
-
-This is a trustworthy planned handoff once the accompanying maintenance commit is published.
+The User is still a GitHub Desktop beginner; repeat these steps when needed.
