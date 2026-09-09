@@ -1,14 +1,14 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-08  
+**Updated:** 2026-09-09  
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
 
 `Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. Active behavior domains are Raise-phase control, attack playback-speed control, and authored-frame collision control. Future independent domains may include target acquisition and climbing.
 
-This file owns overall intended architecture and implementation order. Collision lifecycle authority is `COLLISION_LIFECYCLE_PLAN.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_LOGGER_PLAN.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
+This file owns overall intended architecture and implementation order. Collision redesign detail is frozen in `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`; collision lifecycle authority is `COLLISION_LIFECYCLE_PLAN.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_LOGGER_PLAN.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
 
 ---
 
@@ -18,13 +18,15 @@ This file owns overall intended architecture and implementation order. Collision
 2. Preserve Gothic's own animation resolution whenever possible.
 3. Custom behavior is explicit opt-in: config for Raise/speed, exact reserved markers for collision.
 4. Separate attack family/phase from the physical damage source.
-5. Keep responsibilities separate: transport in `EngineBridge`, behavior in feature modules, factual source identity in `CollisionSources`, source mutations in `CollisionSourceOperations`, diagnostics in diagnostic-only code.
+5. Keep responsibilities separate: physical hook transport in `EngineBridge`, behavior in feature modules, factual source identity in `CollisionSources`, source mutations in `CollisionSourceOperations`, diagnostics in diagnostic-only code.
 6. Preserve proven paths while expanding one meaningful responsibility at a time.
 7. Unconfigured/unmarked cases fall back to native behavior.
 8. Load configuration once into normalized in-memory rules.
 9. Require evidence before generalizing actor/family/source-mechanism behavior.
 10. One DLL owns each physical Gothic hook; feature modules consume shared bridge facts rather than installing competing hooks.
 11. Public release behavior contains no research diagnostics.
+12. Known successful runtime behavior should log compactly in CORE; unknown, unsupported, contradictory, repair, or invariant behavior should become richer automatically. Detailed historical probes belong in opt-in DEEP diagnostics.
+13. A feature family is defined by factual Gothic action semantics, not by whatever animation filename happens to be playing.
 
 ---
 
@@ -100,11 +102,11 @@ Repeated source markers later in the same Hit author new contacts. OFF is an int
 
 ### 4.3 Production raw-8 Fist
 
-`gEUseType_Fist` / raw 8 is body-contact damage, not a literal right-hand weapon source. The production mechanism was first proven on human Normal/Power attacks; EV-247 then showed that transformed Sabretooth Normal/Power enters the same existing FIST ownership/timing mechanism successfully.
+`gEUseType_Fist` / raw 8 is body-contact damage, not a literal right-hand weapon source.
 
-Marker applicability is therefore **not intended to be gated by human animation-family naming or species identity**. It is governed by factual raw-8 source identity plus a supported/proven native attack-family mechanism and exact current Hit/marker context. Native-NPC equivalence remains a separate validation question.
+The governing boundary is now factual raw-8 source identity plus a supported/proven native attack-family mechanism and exact current Hit/marker context. Human/species identity and animation-family naming are not the governing applicability rules.
 
-Tested generic-human native path:
+Known relevant native route in the tested Game.dll:
 
 ```text
 gCScriptProcessingUnit::sAICombatMoveItlLoop = Game +0x16DD00
@@ -117,7 +119,7 @@ observed gCEntity::OnDamage caller return    = Game +0x16E348
 native threshold constant double             = Game +0x308308
 ```
 
-The special arm associated with `[SPU+0x154] == 0x39` is outside the proven generic-human model.
+The alternate timing sub-arm that writes the latch at `Game +0x16E13E` returns before the later `+0x16E348` damage dispatch and therefore cannot explain the tested damaging Quick route.
 
 Production semantics for a supported/proven raw-8 Fist attack family:
 
@@ -154,28 +156,71 @@ NO global animation-clock mutation
 NO dedicated Fist interruption repair
 NO raw55/PhysicalFist generalization
 NO species/name-based FIST special cases
-NO unproven attack-family extension merely because the source token is Fist
+NO unproven attack-family extension merely because source token is Fist
 ```
 
-Human Normal + Power production acceptance: EV-240.  
-Transformed Sabretooth Normal + Power marker compatibility: EV-247.  
-Quick raw-8 FIST remains explicitly unsupported pending native-mechanism proof; EV-247 showed its current marker rejection is a software boundary, not evidence of source mismatch.
-
-### 4.4 Current equipped-family boundary
+Evidence progression:
 
 ```text
-PowerAttack   CLOSED/PASS — EV-241
-PierceAttack  CLOSED/PASS — EV-242
-SimpleWhirl   CLOSED/PASS — EV-217–EV-220, EV-243
-HackAttack    CLOSED/PASS for tested 2H/Staff scope — EV-216, EV-244
-raw8 FIST     human Normal/Power CLOSED/PASS — EV-221–EV-240
-              transformed Sabretooth Normal/Power PASS — EV-247
-              Quick OPEN/UNSUPPORTED pending mechanism validation
+human Normal + Power production acceptance                 EV-240
+transformed Sabretooth Normal + Power compatibility        EV-247
+native Sabretooth Normal + Power + Quick mechanism proof   EV-248
+bounded Quick family extension + two-direction validation  EV-249
+```
+
+Supported/proven raw-8 FIST family set for the tested current scope:
+
+```text
+Normal + Power + Quick
+```
+
+### 4.4 Current supported family boundary
+
+```text
+Normal / Quick / Whirl foundation                 CLOSED/PASS
+PowerAttack                                       CLOSED/PASS — EV-241
+PierceAttack                                      CLOSED/PASS — EV-242
+SimpleWhirl                                      CLOSED/PASS — EV-217–EV-220, EV-243
+HackAttack tested 2H/Staff scope                  CLOSED/PASS — EV-216, EV-244
+raw8 FIST Normal + Power + Quick tested scope     CLOSED/PASS — EV-221–EV-249
+SprintAttack                                      MISSING FAMILY / investigation planned
 ```
 
 SimpleWhirl final StatePosition remains `1`; StatePosition `2` was tested and rejected as sufficient normalization. Native character-hit eligibility remains action-specific.
 
 Hack optional asset routing remains narrow: only factual `HackAttack(14)` may substitute `_FinishingAttack_` with `_HackAttack_` at the CombatMove motion-resource query when the candidate asset exists. True `FinishingAttack(15)` remains native.
+
+### 4.5 SprintAttack — factual missing family, not Power alias
+
+EV-249's Sabretooth fight exposed repeated:
+
+```text
+Action = 9
+motion name contains _PowerAttack_Hit_
+source = Fist/raw8
+FIST marker = REJECTED_UNSUPPORTED_HIT
+```
+
+Gothic action identity defines:
+
+```text
+gEAction_SprintAttack = 9
+```
+
+Therefore the current framework is missing SprintAttack support. The motion filename does not authorize treating Sprint as Power.
+
+Current evidence only establishes native Sabretooth Sprint using factual raw8 Fist. It does **not** establish that Sprint is Fist-only, creature-only, or absent from equipped attackers. Earlier test sets did not surface Sprint.
+
+Target design:
+
+```text
+first-class AttackFamily_Sprint if/when evidence-backed implementation begins
+NO Sabretooth-specific branch
+NO filename-based Power alias
+NO speculative source semantics
+```
+
+Sprint implementation is deliberately postponed until after the architecture/diagnostic refactor and compact equivalence sentinel. The later bounded Sprint investigation must establish source types, native callback/transport, StatePosition, and mechanism before behavior is added.
 
 ---
 
@@ -186,7 +231,7 @@ Hack optional asset routing remains narrow: only factual `HackAttack(14)` may su
 The bounded discovery found:
 
 ```text
-Hero Wolf/Sabertooth transformations -> factual Fist / raw 8
+Hero Wolf/Sabretooth transformations -> factual Fist / raw 8
 native body attackers sampled         -> factual Fist / raw 8 / group 0 / Game+0x16E348 damage caller
 native weapon controls                -> factual 2H/1H/Axe UseTypes and equipped/TouchDamage path
 Dragon capture                        -> factual Cast/raw15 fireball; physical attack not captured
@@ -196,8 +241,6 @@ raw55                                  -> not observed
 Therefore the current architecture deliberately carries **no raw55 implementation**. Raw55 is unobserved/deferred, not globally proven unused.
 
 Reopen this responsibility only if future runtime evidence establishes a relevant factual `UseType == 55`. At that point classify the actual mechanism before any marker extension.
-
-The native creature raw-8 survey by itself does not prove the complete human timing/latch mechanism for those families. EV-247 now adds direct positive marker evidence for transformed Sabretooth Normal/Power, but native-NPC raw-8 marker equivalence remains unvalidated until the planned NPC control. Raw55 remains a separate unsupported source type regardless of serialized `Fist` naming.
 
 ---
 
@@ -217,7 +260,73 @@ C1-R1 remains closed through EV-206–EV-207.
 
 ---
 
-## 7. AttackContinuationProtection
+## 7. Architecture Redesign Before Further Matrix Testing
+
+The collision framework is mature enough that remaining large compatibility/stress tests should certify the architecture intended to ship.
+
+Therefore a complete architecture audit/refactor happens **before** the remaining broad test matrix.
+
+Governing rule:
+
+```text
+EngineBridge
+=
+sole physical Gothic hook owner
+hook/call-site transport
+translation of native facts
+delegation
+
+EngineBridge
+!=
+feature behavior owner
+feature state-machine owner
+collision policy owner
+```
+
+State whose lifetime is inherently local to hook transport may legitimately remain in the bridge. Audit by responsibility and lifetime, not by filename.
+
+Known drift to inspect includes raw8 FIST state/policy currently inside `EngineBridge.cpp`. A likely target is a dedicated `Raw8FistCollision` module while `EngineBridge` remains sole owner of the physical `Game +0x16E180` timing hook and delegates through it.
+
+Also audit marker/lifecycle/source-operation boundaries, pre-combat `RunScriptFunctionScope` transport vs lifecycle policy, dependency direction, persistent feature state ownership, CMake composition, diagnostics separation, hook ownership, and stale `HumanFist*` naming.
+
+Full planning authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.
+
+---
+
+## 8. Diagnostic Architecture
+
+Production remains mechanically diagnostics-free.
+
+Default research/testing should use a compact CORE profile; opt-in DEEP retains detailed reverse-engineering probes.
+
+Governing rule:
+
+> **Known successful behavior logs compactly. Unknown, unsupported, contradictory, repair, or invariant behavior logs richly.**
+
+Target:
+
+```text
+PRODUCTION
+  diagnostics not compiled
+
+CORE
+  compact known-path regression facts
+  enough information to prove marker/source/damage/lifecycle outcomes
+  automatically richer records for unknown actions/families/source UseTypes and anomalies
+
+DEEP
+  detailed hook/SPU/timing/AISetState/C1/caller/stack instrumentation for a concrete research question
+```
+
+Do not simply delete reusable detailed probes. Move them to DEEP or condition them on anomaly/unknown-family cases where appropriate.
+
+CORE must remain capable of discovering SprintAttack and other future unexpected traffic without requiring full research-era verbosity for every healthy execution.
+
+Detailed authority: `COLLISION_LOGGER_PLAN.md` and `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.
+
+---
+
+## 9. AttackContinuationProtection
 
 The known held-Use2 destructive bad-skip route remains a **separate prevention module** from collision cleanup.
 
@@ -244,13 +353,13 @@ native destructive timeout/consumer becomes due
 
 New Balance compatibility is a hard constraint. New Balance already prevents the bad skip on most melee blocks; where it prevents the native destructive condition, our module should naturally never intervene. Known coverage concern is left-held Staff; hand-to-hand/other forms remain unproven.
 
-Do not begin with an independent timer, polling loop, permanent watchdog, unconditional attack-state override, or resurrection after teardown. Pausing the underlying timer is only one candidate; blocking/defering the destructive consumer may be safer. Evidence decides the exact native boundary.
+Do not begin with an independent timer, polling loop, permanent watchdog, unconditional attack-state override, or resurrection after teardown. Evidence decides the exact native boundary.
 
 `CollisionLifecycleGuard`/C1-R1 remains the independent fail-safe underneath.
 
 ---
 
-## 8. Compatibility
+## 10. Compatibility
 
 Do not rely on arbitrary DLL load order or assumed same-function hook chaining.
 
@@ -271,18 +380,19 @@ EV-242 is Pierce-specific compatibility evidence only, not blanket certification
 
 ---
 
-## 9. Target Modular DLL Architecture
+## 11. Target Modular DLL Architecture
 
 ```text
 Script_G3AnimationBehaviors / research twin
 |
 +-- EngineBridge
 |    sole shared-hook owner
+|    transport/delegation only
 +-- FrameCollisionMarkers
 |    exact current-motion ownership
 |    equipped RIGHT/LEFT/BOTH/OFF
-|    raw-8 FIST opportunities for proven families
-|    C1-generation marker bookkeeping
+|    marker occurrence bookkeeping
+|    FIST marker dispatch into raw8 feature behavior
 +-- CollisionSources
 |    factual source identities / UseTypes
 +-- CollisionSourceOperations
@@ -290,6 +400,8 @@ Script_G3AnimationBehaviors / research twin
 +-- CollisionLifecycleGuard
 |    C1 execution/source obligations
 |    terminal exact 7 -> 5 fail-safe
++-- Raw8FistCollision [candidate after audit]
+|    raw8 FIST execution/latch/timing policy and state
 +-- RuntimeClock
 +-- AttackContinuationProtection [later, separate cpp]
 +-- AttackRaise
@@ -299,63 +411,80 @@ Script_G3AnimationBehaviors / research twin
 +-- Climbing [future]
 ```
 
-Diagnostic research product adds diagnostic modules; public release does not compile them.
+Diagnostic research product adds compact CORE diagnostics and opt-in DEEP modules; public release does not compile them.
+
+The exact final module seams are frozen only after the source audit.
 
 ---
 
-## 10. Current Implementation Order
+## 12. Current Implementation Order
 
 ```text
 collision architecture foundation                     CLOSED — EV-206–EV-215
 Power / Pierce / SimpleWhirl / Hack expansion          CLOSED for tested scope — EV-241–EV-244
 human raw-8 FIST production                            CLOSED/PASS — EV-221–EV-240
 PhysicalFist/raw55 bounded discovery                   CLOSED/DEFERRED — EV-245–EV-246
-transformed Sabretooth Normal/Power raw8 marker proof PASS — EV-247
--> native Sabretooth NPC Normal/Power marker control
--> raw8 Quick native-mechanism classification; bounded extension only if proven
+transformed Sabretooth Normal/Power raw8 proof         PASS — EV-247
+native Sabretooth + Quick mechanism classification     PASS/CLASSIFIED — EV-248
+raw8 Quick family extension + validation               CLOSED/PASS — EV-249
+SprintAttack missing-family discovery                  IDENTIFIED
+-> complete collision architecture + diagnostic audit
+-> freeze parity-preserving refactor design
+-> Work performs bounded architecture/diagnostic refactor
+-> compact post-refactor equivalence sentinel
+-> SprintAttack source/transport/mechanism investigation
+-> bounded first-class Sprint implementation only if evidence supports it
+-> focused Sprint validation
 -> native equipped-NPC marker controls: Goblin 1H / Demon 2H / Ogre Axe
+-> additional prepared native/modded family controls
 -> separated 2H-vs-Axe mod marker compatibility
 -> separated 1H-vs-Rapier mod marker compatibility
--> final native mixed collision regression over supported scope
+-> final native mixed/stress collision regression over supported scope
 -> separate AttackContinuationProtection research/implementation
 -> combined marker + lifecycle + continuation regression
 -> mature New Balance + relevant Jackydima compatibility gate
--> collision knowledge/evidence closure
 -> migrate collision into Script_G3AnimationBehaviors
 -> diagnostics-free collision integration validation
--> promote collision checkpoint to main
--> create feature/raise-attack-speed from updated main
--> mature Raise + action/profile speed + configuration
+-> integrate Raise + action/profile Speed + Config
 -> final assembled compatibility/regression
--> promote mature Raise/speed checkpoint
--> first public framework release with 2H animation content
+```
+
+Post-refactor equivalence sentinel:
+
+```text
+Sabretooth raw8 Normal + Quick + Power
+one ordinary marked equipped attack
+one established multi-marker / OFF / rearm fixture
+one established destructive bad-skip -> exact terminal repair
 ```
 
 Do not create `feature/raise-attack-speed` early.
 
 ---
 
-## 11. Non-Goals During Collision Closure
+## 13. Non-Goals During Current Redesign Stage
 
-Do not combine the remaining collision work with:
+Do not combine the architecture/diagnostic redesign with:
 
-- new equipped marker vocabulary or source/lifecycle redesign;
-- `GetUpAttack` or true `FinishingAttack` redesign;
+- new collision behavior merely for aesthetics;
+- Sprint implementation before its post-refactor factual mechanism investigation;
+- new equipped marker vocabulary;
 - raw55/PhysicalFist work absent new factual runtime UseType 55 evidence;
 - species-specific monster/body marker vocabulary or filename-based actor gating;
-- Quick FIST production code before the native Quick mechanism is classified;
 - authored FIST_OFF resurrection;
 - speculative generalized monster/body framework;
+- AttackContinuationProtection implementation;
 - Raise/speed/configuration implementation;
 - target acquisition or climbing.
 
 ---
 
-## 12. Retrieval
+## 14. Retrieval
 
 | Need | Authority |
 |---|---|
 | Current exact task | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
+| Current architecture/diagnostic redesign | `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md` |
 | Overall architecture/order | this file |
 | Collision lifecycle | `COLLISION_LIFECYCLE_PLAN.md` |
 | Validation | `COLLISION_TEST_PLAN.md` |
