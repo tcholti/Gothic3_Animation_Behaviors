@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-09
 
-## Current Bridge — Raw-8 Quick FIST Bounded Extension Next
+## Current Bridge — Collision Architecture Audit Before Further Compatibility Testing
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -14,214 +14,179 @@ Fresh Chat must read `SESSION_ENTRYPOINT.md` first, then this file.
 
 ---
 
-## Evidence State
+## Newly Closed Result — Raw-8 Quick FIST
 
-Stable collision foundation remains closed through EV-247. New EV-248 closes the native-Sabretooth actor control and the prerequisite raw-8 Quick mechanism classification.
-
-### Native Sabretooth NPC result
-
-Published raw:
+Implementation:
 
 ```text
-research/raw/2026.09.09_sabertooth_npc_marked_attacks.log
-source commit: 3f0661da44afed99544c139241f3b1ead5207254
+2c9f745106506fc6bdb009b35720a4bb7c81ea11
+Extend raw-8 FIST support to Quick attacks
 ```
 
-A genuine `Actor: Sabertooth` repeatedly attacked `PC_Hero`.
-
-Normal:
+The implementation changed only the two pre-existing Normal/Power FIST family gates:
 
 ```text
-5 observed marked executions
-factual source = Fist / raw8 / group0
-FIST ownership established
-initial SPU+0x164 0 -> 1
+EngineBridge.cpp              UpdateHumanFistMarkerOwnership
+FrameCollisionMarkers.cpp     ProcessMarker FIST supported-family gate
+```
+
+`AttackFamily_Quick` was admitted while every existing FIST mechanism and equipped-weapon behavior remained unchanged.
+
+Post-change validation raw:
+
+```text
+research/raw/2026.09.09_sabertooth_npc_pc_marked_attacks.log
+source commit: 1a0416b10bed694d47eb4809b7367b507228962d
+```
+
+Test shape:
+
+```text
+native Sabretooth -> player, repeated attacks
+then god mode
+Hero transformed to Sabretooth -> native Sabretooth, repeated attacks
+```
+
+### Quick result
+
+Both native `Sabretooth` and `Transform_Sabertooth_Potion` exercised factual raw-8 Fist Quick-left/right (`Action 5` / `Action 4`). Representative executions in both directions show:
+
+```text
+Family = QUICK
+source = Fist / raw8 / group0
+initial marked-execution latch close = SPU+0x164 0 -> 1, confirmed
 G3AB_COL_FIST = ACCEPTED
+marker latch rearm = 1 -> 0, confirmed
+Quick StatePosition = 1 -> 1
 OwnershipMatched = 1
-below-threshold timing permission armed/consumed where required
-damage caller = Game +0x16E348
+RealBelowThreshold = 1
+TimingPermissionArmed = 1
+SyntheticApplied = 1
+PermissionConsumed = 1
+native damage caller = Game +0x0016E348
 ```
 
-Power:
+For transformed Hero Quick, the damage record identifies:
 
 ```text
-2 observed marked executions
-same factual raw8 source
-same ownership/latch/timing mechanism
-FIST = ACCEPTED
-damage caller = Game +0x16E348
+target = native Sabertooth
+source = transformed Hero Fist / raw8
+attacker = Transform_Sabertooth_Potion
+caller = Game +0x0016E348
 ```
 
-This closes the native-NPC Normal/Power actor-side control for the Sabretooth fixture. Together with EV-247, the tested raw-8 FIST mechanism is not human/species/animation-family gated.
+For native Sabretooth Quick, the corresponding damage record identifies `PC_Hero` as target, native Sabretooth `Fist` as source, and the same `Game +0x0016E348` caller.
 
-Quick-left/right:
+The log contains `REJECTED_UNSUPPORTED_HIT` records, but traced examples are `Actor: Sabertooth`, `Action: 9`, executing the PowerAttack-named motion. They are not Quick `Action 4/5` failures and do not contradict the bounded Quick extension.
 
-```text
-factual source = Fist / raw8 / group0
-Action = 4 / 5
-native damage caller = Game +0x16E348
-current G3AB_COL_FIST = REJECTED_UNSUPPORTED_HIT
-```
-
-The rejection is the existing software family boundary, not a source mismatch.
-
-### Quick mechanism classification
-
-Tested Game.dll binary reference:
-
-```text
-sAICombatMoveItlLoop                   Game +0x16DD00
-generic SPU+0x164 zero gate            Game +0x16DFB9
-GetMaxTime(0)                          Game +0x16E160
-GetPlayTime(0) timing call             Game +0x16E180
-threshold comparison                   Game +0x16E18C..+0x16E190
-native SPU+0x164 = 1 write             Game +0x16E1A3
-observed OnDamage caller return        Game +0x16E348
-```
-
-The alternate timing sub-arm writes the latch at `Game +0x16E13E` and returns before the later damage dispatch. Therefore an observed Quick damage call returning at `Game +0x16E348` cannot come from that alternate arm; it necessarily traverses the same relevant generic latch/timing route used by the existing raw-8 FIST contract.
-
-Canonical evidence: **EV-248**.
+No `C1 INVARIANT WARNING`, `REPAIR_DIVERGED`, or `EXCEPTION` signal was found. The diagnostic DLL unloaded cleanly.
 
 Conclusion:
 
-> Raw-8 Quick has sufficient native-mechanism proof for bounded reuse of the existing FIST contract. No new Quick collision mechanism is justified.
+> **Raw-8 FIST Quick is CLOSED/PASS for the tested native/transformed Sabretooth two-direction fixture.** The supported/proven raw-8 FIST attack-family set is now Normal + Power + Quick for this tested scope. No Quick-specific mechanism or species branch is justified.
+
+Raw55/PhysicalFist remains unobserved/deferred.
 
 ---
 
-## Current Source Audit
+## Artifact Disposition
 
-Existing source already provides the required generic Quick plumbing:
+The post-change validation log is **NEW CANONICAL EVIDENCE** pending/recorded as the next evidence row.
 
-```text
-TryGetCurrentAttackHitFamily:
-QuickAttack / QuickAttackR / QuickAttackL -> AttackFamily_Quick
-
-GetMarkerOwnedStatePosition:
-AttackFamily_Quick -> 1
-
-EngineBridge:
-OnAI_QuickAttack -> EvaluateAttackCallback(AttackFamily_Quick)
-
-FIST marker path:
-ResolveFistCollisionSource(actor)
-SPU+0x164 latch write
-existing exact timing-permission transport
-```
-
-The deliberate FIST blockers found are the Normal/Power-only family checks:
-
-```cpp
-family == AttackFamily_Normal || family == AttackFamily_Power
-```
-
-and:
-
-```cpp
-if (markerOpcode == MarkerOpcode_Fist
-    && family != AttackFamily_Normal
-    && family != AttackFamily_Power)
-    -> REJECTED_UNSUPPORTED_HIT
-```
-
----
-
-## NEXT — Frozen Implementation Responsibility
-
-Implement ONLY the smallest raw-8 FIST Quick family-scope extension.
-
-Required semantic change:
-
-```text
-existing supported FIST family set:
-Normal + Power
-
-becomes:
-Normal + Power + Quick
-```
-
-Quick means the already-existing `AttackFamily_Quick`, covering the factual Quick/QuickR/QuickL actions already normalized by current source.
-
-Expected implementation shape:
-
-- admit `AttackFamily_Quick` in `UpdateHumanFistMarkerOwnership`'s existing exact marked raw-8 FIST family predicate;
-- admit `AttackFamily_Quick` in `FrameCollisionMarkers`' existing FIST supported-family gate;
-- preserve the existing Quick `StatePosition = 1` behavior;
-- reuse the exact existing raw-8 FIST source resolver, C1-generation ownership, initial latch close, accepted-marker latch rearm and exact one-shot timing permission.
-
-Do NOT add or change:
-
-```text
-new hooks
-new marker vocabulary
-species/name/animation-family checks
-raw55/PhysicalFist support
-another latch/timing mechanism
-direct/custom damage
-FIST_OFF
-Fist ClearTriggeredList
-equipped Item_Attack/Item_Equipped Fist windows
-C1 weapon cleanup semantics
-unmarked/native fallback
-Normal/Power semantics
-equipped weapon marker behavior
-AttackContinuationProtection
-Raise/speed/configuration
-```
-
-Before editing, inspect the exact surrounding functions and search for any additional FIST family restriction. If another material restriction or contradictory mechanism appears, stop and report it instead of broadening.
-
-Work source/static audit only. **BUILD EXECUTION IS PROHIBITED** unless a later frozen task explicitly changes that rule.
-
-After implementation/publish, Normal Chat independently reviews the diff. User then synchronizes, builds/deploys the diagnostic twin locally, and runs bounded native-Sabretooth Quick-left/right validation.
-
----
-
-## Post-Change Quick Validation
-
-Use native Sabretooth -> player.
-
-Require at minimum:
-
-```text
-QuickR marked execution
-QuickL marked execution
-repeat enough for clear evidence
-```
-
-Expected:
-
-```text
-source = Fist / raw8
-Family = QUICK
-FIST ownership established on factual C1 generation
-initial latch close 0 -> 1 once per marked execution
-G3AB_COL_FIST = ACCEPTED
-marker latch rearm 1 -> 0
-below-threshold opportunity uses existing exact timing permission when needed
-native damage occurs only after authored FIST opportunity
-caller remains Game +0x16E348
-unmarked/native fallback remains native
-```
-
-If this validation passes, close raw-8 Quick and move to the prepared NPC/monster family compatibility logs.
-
----
-
-## Active Comparison Artifacts
-
-Keep both in `research/raw/` until Quick validation closes:
+The earlier comparison raws have completed their Quick comparison responsibility:
 
 ```text
 research/raw/2026.09.08_sabertooth_marked_attacks.log
 research/raw/2026.09.09_sabertooth_npc_marked_attacks.log
 ```
 
-Disposition: **ACTIVE COMPARISON — KEEP RAW**.
+They remain retained provenance, but are no longer an active open Quick comparison once the post-change result is canonically recorded.
 
 ---
 
-## Planned Sequence After Quick
+## NEXT — Normal Chat Architecture Responsibility
+
+Before running the larger NPC/mod-family compatibility matrix, perform a complete collision-framework architecture audit against the intended final modular design.
+
+This is **research/design first, not immediate code editing**.
+
+Reason for the ordering:
+
+- collision is the mature foundation that later Raise/Speed/Config will join inside `Script_G3AnimationBehaviors`;
+- the remaining NPC/mod-family tests should certify the architecture intended to survive into production;
+- refactoring after those tests would leave avoidable uncertainty about whether the tested architecture still exists unchanged.
+
+### Governing architecture
+
+```text
+EngineBridge
+  owns physical Gothic hooks
+  transports native facts/events
+  delegates behavior
+
+FrameCollisionMarkers
+  exact motion/marker ownership and occurrence semantics
+
+CollisionSources
+  factual source identity / UseType
+
+CollisionSourceOperations
+  source-specific physical mutations
+
+CollisionLifecycleGuard
+  C1 execution/source obligations and terminal repair
+
+Raw8FistCollision [candidate dedicated module]
+  raw8 FIST execution state
+  latch ownership policy
+  timing permission state/identity
+  raw8-specific behavior decisions
+
+Diagnostics
+  diagnostic product only; absent from production compilation
+```
+
+### Audit questions
+
+Inspect the complete current collision behavior source for architectural drift, not only the already-obvious raw8 FIST concentration in `EngineBridge.cpp`.
+
+Determine:
+
+1. Which code in `EngineBridge` is true hook ownership/transport and should stay there.
+2. Which feature policy/state has accumulated in `EngineBridge` and should move to a feature module.
+3. Whether raw8 FIST should become a dedicated `Raw8FistCollision` module while `EngineBridge` retains the sole `+0x16E180` physical hook and delegates through it.
+4. Whether any marker, source, source-operation, or lifecycle responsibility has crossed its intended module boundary.
+5. Whether `RunScriptFunctionScope` / pre-combat bridge pieces are legitimate hook-lifetime transport or actual lifecycle policy; do not classify them as drift merely because they live in `EngineBridge`.
+6. Whether dependency direction remains clean and avoids competing hook owners.
+7. Whether diagnostics remain mechanically excluded from the behavior-only build, not merely disabled at runtime.
+8. Whether historical `HumanFist*` names should become factual `Raw8Fist*` names now that human/species identity is disproven as the governing boundary.
+9. Whether any other structural drift exists that should be corrected before further compatibility testing.
+
+Do not change behavior merely for aesthetics. Preserve all proven marker/source/lifecycle/FIST semantics exactly unless the audit exposes a concrete contradiction.
+
+After Normal Chat freezes the smallest justified architectural correction, give that bounded refactor to Work. After source review/build, run a small post-refactor equivalence sentinel before resuming the large compatibility matrix.
+
+---
+
+## Planned Post-Refactor Equivalence Sentinel
+
+Keep this compact; it proves the refactor did not alter the architectural seams:
+
+```text
+raw8 FIST:
+  Sabretooth Normal + Quick + Power
+
+equipped marker:
+  one ordinary marked weapon attack
+
+marker lifecycle:
+  one established multi-marker / OFF / rearm fixture
+
+C1 safety:
+  one established destructive bad-skip -> exact terminal repair
+```
+
+Only after that passes resume:
 
 ```text
 native equipped-NPC marker controls:
@@ -229,24 +194,24 @@ native equipped-NPC marker controls:
   Demon  -> 2H / raw3
   Ogre   -> Axe / raw52
 
--> additional prepared native/modded animation-family controls
-   one actor/family per log
+-> additional prepared native/modded actor-family controls
 -> separated 2H vs Axe compatibility
 -> separated 1H vs Rapier compatibility
 -> final native mixed/stress collision regression
 -> separate AttackContinuationProtection
--> combined regression
--> mature New Balance + relevant Jackydima compatibility
--> production collision migration
+-> combined mature collision regression
+-> production migration into Script_G3AnimationBehaviors
+-> diagnostics-free production validation
+-> integrate Raise + Speed + Config
 ```
 
-If one intermediate family fails, stop and resolve that exact failure before continuing.
+If an intermediate family fails, stop and resolve that exact failure before continuing.
 
 ---
 
 ## GitHub Desktop Handoff
 
-Assistant evidence/current-state maintenance advances the remote branch beyond the User's local checkout.
+Assistant evidence/current-state maintenance may advance the remote branch beyond the User's local checkout.
 
 Before the next local build/test window:
 
