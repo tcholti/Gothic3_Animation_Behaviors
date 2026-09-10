@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-10
 
-## Current Bridge — Stage A CLOSED/PASS, Stage B NEXT
+## Current Bridge — Stage A CLOSED/PASS, Stage B FROZEN/NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -17,7 +17,8 @@ Fresh Chat / Work orientation:
 2. this file
 3. COLLISION_ARCHITECTURE_REDESIGN_PLAN.md
 4. COLLISION_LOGGER_PLAN.md
-5. WORK_IMPLEMENTATION_PROTOCOL.md when implementing
+5. COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
+6. WORK_IMPLEMENTATION_PROTOCOL.md when implementing
 ```
 
 Do not begin Sprint implementation or Goblin/Demon/Ogre matrix testing yet.
@@ -100,92 +101,78 @@ Therefore **Stage A compile/deploy/load/unload gate is CLOSED/PASS.**
 
 Non-fatal build warnings remain, including behavior-only unused values that are diagnostic-only after the raw8 move. These are not runtime failures.
 
-The startup `BehaviorCore:` line is stale because it does not list `Raw8FistCollision` or `AttackMotionRouting`; Stage B should correct it.
-
 ---
 
-## NEXT — Stage B Diagnostic Refactor
+## NEXT — Frozen Stage B Diagnostic Refactor
 
-Stage B changes diagnostic architecture/volume only. It must preserve behavior exactly.
+Exact Work authority:
+
+```text
+docs/COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
+```
+
+Stage B changes diagnostics only and must preserve behavior exactly.
 
 Governing rule:
 
 > **Known successful behavior logs compactly. Unknown, unsupported, contradictory, repair, or invariant behavior logs richly.**
 
-Target product split:
-
-```text
-PRODUCTION
-  diagnostic sources/definitions absent
-
-CORE
-  compact known-path regression events
-  enough source/action/marker/damage/lifecycle facts for validation
-  rich records automatically for unsupported/unknown/anomalous traffic
-  must support NPC as well as player-relevant evidence
-
-DEEP
-  retained opt-in historical reverse-engineering probes
-```
-
-### Stage B planned reductions
+Frozen responsibility summary:
 
 ```text
 Fist CanBeActivatedNow/TriggerTarget research hooks -> DEEP only
 routine Fist trigger-state snapshots -> DEEP only
-healthy C1 START/BINDING/STATUS chronology -> compact or DEEP
-SetCollisionGroup no-op/raw8 0->0 noise -> suppress from CORE
-known successful marker ownership/result -> compact events
-known successful raw8 ownership/opportunity/timing -> compact events
-OnDamage -> compact factual CORE event, detailed call internals in DEEP
-terminal repair/divergence/invariant -> rich CORE
-unsupported/unknown family/source -> rich CORE automatically
+OnDamage hook stays CORE; normal output compact, deep internals retained in DEEP
+marker context+result -> one post-result CORE event
+unsupported/unknown marker traffic -> automatic rich action/source/motion detail
+attack callback ownership -> compact routine event
+raw8 FIST diagnostic naming -> Raw8; healthy ownership/timing events compact
+SetCollisionGroup -> compact meaningful physical events; meaningful 7->7 retained
+healthy C1 chronology -> compact; repair/invariant/unresolved -> rich
+player-only C1 output filtering removed where it would hide NPC evidence
+RunScriptFunctionScopeReturn chronology -> DEEP
+startup BehaviorCore metadata corrected for Raw8FistCollision + AttackMotionRouting
+Stage-A diagnostic-only warning residue may be cleaned mechanically
 ```
 
-For unsupported traffic such as Sprint, CORE must preserve at minimum:
-
-```text
-actor
-numeric action
-phase
-StatePosition
-current motion
-marker opcode/result
-C1 generation when available
-resolved source identity / UseType / collision group
-rejection reason
-native damage caller/entity correlation when observed
-```
-
-Reusable deep research capability should be moved/retained in DEEP, not deleted merely to reduce log volume.
-
-### Hard behavior boundaries
+Hard behavior boundaries:
 
 ```text
 NO Sprint support or AttackFamily_Sprint
 NO new gameplay behavior
-NO hook RVA/calling-convention change
+NO behavior hook RVA/calling-convention change
 NO marker vocabulary change
 NO StatePosition change
 NO raw8 family/latch/timing semantic change
 NO equipped source semantic change
 NO C1 generation/repair semantic change
+NO Hack routing change
 NO AttackContinuationProtection
 NO Raise/speed/config
 NO raw55 behavior
 ```
 
-After Stage B Work publishes:
+Work BUILD EXECUTION / BUILD TOOLING PROBING remains PROHIBITED.
+
+If a material contradiction requires behavior changes beyond the diagnostic contract, STOP and report it.
+
+---
+
+## After Stage B Work Publishes
+
+Normal Chat independently reviews the exact diff.
+
+Then User + Normal Chat locally:
 
 ```text
-Normal Chat independently reviews exact diff
--> local build both twins
--> deploy/hash diagnostic DLL
--> load/unload smoke
--> compact equivalence sentinel
+sync local branch
+build both Release twins
+deploy diagnostic DLL
+verify built/live SHA256 equality
+load/unload smoke
 ```
 
-Sentinel:
+Only after that passes, run the compact equivalence sentinel:
 
 ```text
 raw8 FIST: Sabretooth Normal + Quick + Power
