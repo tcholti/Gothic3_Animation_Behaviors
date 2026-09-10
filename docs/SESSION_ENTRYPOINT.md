@@ -30,6 +30,7 @@ Hack tested 2H/Staff scope                 CLOSED/PASS — EV-216, EV-244
 PhysicalFist/raw55 bounded discovery       CLOSED/DEFERRED — EV-245–EV-246
 raw8 FIST Normal + Power + Quick scope     CLOSED/PASS — EV-221–EV-249
 Stage A architecture build/load gate       CLOSED/PASS — 2026-09-10
+Stage B diagnostic build/load gate         CLOSED/PASS — 2026-09-10
 ```
 
 Raw-8 FIST remains one shared native mechanism. No authored FIST_OFF, Fist ClearTriggeredList, equipped Fist window/C1 weapon obligation, direct/custom damage, species branch, or raw55 generalization.
@@ -68,7 +69,7 @@ Runtime smoke: CORE loaded, DEEP disabled, Hack callback identity `ExactlyOne=1`
 
 ---
 
-## Stage B Diagnostic Refactor — SOURCE IMPLEMENTED / STATIC REVIEW PASS
+## Stage B Diagnostic Refactor — CLOSED/PASS THROUGH LOCAL BUILD/LOAD
 
 Frozen authority:
 
@@ -114,26 +115,49 @@ raw8 diagnostics -> factual Raw8 naming, compact known path, rich anomaly/DEEP a
 SetCollisionGroup -> compact meaningful attack-source events, meaningful 7->7 preserved
 C1 player-only filtering removed; healthy lifecycle compact, repair/invariant rich
 RunScriptFunctionScopeReturn chronology -> DEEP
-behavior-only warning residue conditionalized mechanically
 NO Sprint support
 NO behavior/RVA/calling-convention/marker/raw8/equipped/C1/Hack change
 ```
 
-Work static audit: PASS. `git diff --check`: PASS. Build: NOT RUN / PROHIBITED. Material contradiction: None.
+Work static audit: PASS. `git diff --check`: PASS. Material contradiction: None.
 
-Runtime parity is **not yet claimed** for Stage B until local build/load passes.
+### Local Stage B build/load evidence — 2026-09-10
+
+Both Release twins compiled and linked successfully:
+
+```text
+Script_FrameCollisionBehaviorTest.dll  PASS
+Script_FrameCollisionTest.dll          PASS
+```
+
+Built/live diagnostic DLL SHA256 matched exactly:
+
+```text
+081CDF413EC623079B8E4F1934EA7F1C27A7FFC7307B3BA0B19EA000BDA108BD
+```
+
+Runtime smoke:
+
+```text
+Script_FrameCollisionTest diagnostic build loaded
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore includes Raw8FistCollision + AttackMotionRouting
+Hack callback identity ExactlyOne=1 / OnAI_HackAttack
+behavior hooks installed
+normal exit
+Script_FrameCollisionTest unloading cleanly
+```
+
+Result: **Stage B compile/deploy/load/unload gate CLOSED/PASS.**
 
 ---
 
-## Current Immediate Responsibility — STAGE B LOCAL BUILD/LOAD GATE
+## Current Immediate Responsibility — COMPACT EQUIVALENCE SENTINEL
 
-> **Sync local branch to current remote HEAD, build both Release twins, deploy/hash the diagnostic DLL, smoke-load, then exit cleanly.**
+> **Validate behavior parity and the new compact CORE logger before any Sprint implementation/research expansion.**
 
-If Stage B fails to compile/load, fix only the exact Stage B defect before any gameplay validation.
-
-Do not begin Sprint investigation or broad compatibility testing yet.
-
-After Stage B build/load PASS, run the compact equivalence sentinel:
+Run the established sentinel only:
 
 ```text
 raw8 FIST: Sabretooth Normal + Quick + Power
@@ -141,5 +165,14 @@ equipped: one ordinary marked weapon attack
 marker lifecycle: one established multi-marker / OFF / rearm fixture
 C1 safety: one established destructive bad-skip -> exact terminal repair
 ```
+
+The sentinel must establish both:
+
+```text
+behavior remains equivalent after Stage A/B refactors
+CORE logs are compact for healthy traffic while preserving rich anomaly/repair evidence
+```
+
+If any sentinel leg fails, stop and resolve that exact regression before Sprint.
 
 Only after sentinel PASS begin bounded SprintAttack source/transport/mechanism investigation.
