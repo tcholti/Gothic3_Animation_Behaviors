@@ -6,6 +6,8 @@ option(
 
 set(
     FRAME_COLLISION_BEHAVIOR_SOURCES
+    AttackMotionRouting.cpp
+    AttackMotionRouting.h
     CollisionLifecycleGuard.cpp
     CollisionLifecycleGuard.h
     CollisionSourceOperations.cpp
@@ -17,6 +19,8 @@ set(
     FrameCollisionMarkers.cpp
     FrameCollisionMarkers.h
     FrameCollisionShared.h
+    Raw8FistCollision.cpp
+    Raw8FistCollision.h
     RuntimeClock.cpp
     RuntimeClock.h
     Script_FrameCollisionTest.cpp

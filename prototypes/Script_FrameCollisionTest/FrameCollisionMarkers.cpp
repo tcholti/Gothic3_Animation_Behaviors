@@ -3,6 +3,7 @@
 #include "CollisionLifecycleGuard.h"
 #include "CollisionSourceOperations.h"
 #include "CollisionSources.h"
+#include "Raw8FistCollision.h"
 
 #include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
 #include <g3sdk/Engine/ge_resourceanimationmotion_ps.h>
@@ -693,9 +694,7 @@ MarkerProcessResult ProcessMarker(
         return result;
     }
     if (markerOpcode == MarkerOpcode_Fist
-        && family != AttackFamily_Normal
-        && family != AttackFamily_Power
-        && family != AttackFamily_Quick)
+        && !Raw8FistCollision::IsSupportedFamily(family))
     {
         result.code = MarkerResult_RejectedUnsupportedHit;
         return result;
@@ -829,28 +828,7 @@ MarkerProcessResult ProcessMarker(
 
     if (markerOpcode == MarkerOpcode_Fist)
     {
-        Entity fistSource(result.fistSourceInstance);
-        result.fistSourceGroupBefore = static_cast<GEInt>(
-            fistSource.GetCollisionGroup());
-        result.fistSourceGroupAfter = result.fistSourceGroupBefore;
-        result.fistSourceUseType = static_cast<GEInt>(
-            CollisionSources::GetCollisionSourceUseType(fistSource));
-
-        gCScriptRoutine_PS *routinePS = static_cast<gCScriptRoutine_PS *>(
-            actor.Routine.m_pEngineEntityPropertySet);
-        result.fistSPU =
-            routinePS != nullptr ? &routinePS->GetSPU() : nullptr;
-        if (result.fistSPU != nullptr)
-        {
-            volatile GEU8 *latchByte =
-                reinterpret_cast<volatile GEU8 *>(result.fistSPU)
-                + 0x164;
-            result.fistLatchBefore = static_cast<GEInt>(*latchByte);
-            result.fistLatchWriteAttempted = true;
-            *latchByte = 0;
-            result.fistLatchAfter = static_cast<GEInt>(*latchByte);
-            result.fistLatchWriteConfirmed = result.fistLatchAfter == 0;
-        }
+        Raw8FistCollision::ApplyAcceptedMarkerLatch(actor, result);
     }
     else
     {

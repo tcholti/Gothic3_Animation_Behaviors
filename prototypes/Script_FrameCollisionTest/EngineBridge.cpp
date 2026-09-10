@@ -1,8 +1,10 @@
 #include "EngineBridge.h"
 
+#include "AttackMotionRouting.h"
 #include "CollisionLifecycleGuard.h"
 #include "CollisionSources.h"
 #include "FrameCollisionMarkers.h"
+#include "Raw8FistCollision.h"
 #include "RuntimeClock.h"
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
@@ -19,12 +21,6 @@
 #include <g3sdk/util/Hook.h>
 #include <g3sdk/util/Memory.h>
 #include <g3sdk/util/ScriptUtil.h>
-
-#include <cstdint>
-#include <cstring>
-#include <string>
-#include <unordered_map>
-#include <windows.h>
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 #include <intrin.h>
@@ -51,7 +47,7 @@ static mCFunctionHook Hook_SetCollisionGroup;
 static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AISetState;
 static mCFunctionHook Hook_RunScriptFunction;
-static mCCallHook Hook_HumanFistTimingGateGetPlayTime;
+static mCCallHook Hook_Raw8FistTimingGateGetPlayTime;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 static mCFunctionHook Hook_FistCanBeActivatedNow;
@@ -63,23 +59,6 @@ static GEU32 g_FistTriggerTargetEntryOrdinal = 0;
 static GEU32 const EntityOnDamageEntryLogCap = 64;
 static GEU32 g_EntityOnDamageEntryOrdinal = 0;
 #endif
-
-struct HumanFistMarkerExecution
-{
-    eCEntity *actorInstance;
-    eCEntity *fistSourceInstance;
-    gCScriptProcessingUnit *spu;
-    eCWrapper_emfx2Actor *animationActor;
-    std::uint64_t c1Generation;
-    std::string animationName;
-    bool timingPermissionArmed;
-    GEDouble maxTime;
-    GEDouble nativeThresholdConstant;
-    GEDouble computedThreshold;
-};
-
-static thread_local std::unordered_map<eCEntity *, HumanFistMarkerExecution>
-    g_HumanFistMarkerExecutions;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static mCFunctionHook Hook_OnTick;
@@ -168,308 +147,15 @@ static void LogBoundedFistHookEntry(
 }
 #endif
 
-struct HumanFistPrimaryTiming
-{
-    eCWrapper_emfx2Actor *animationActor;
-    bool available;
-    GEDouble playTime;
-    GEDouble maxTime;
-};
-
-static HumanFistPrimaryTiming CaptureHumanFistPrimaryTiming(Entity &actor)
-{
-    HumanFistPrimaryTiming result = {};
-    result.playTime = -1.0;
-    result.maxTime = -1.0;
-    if (!actor.Animation.IsValid())
-        return result;
-
-    eCVisualAnimation_PS *animationPS =
-        static_cast<eCVisualAnimation_PS *>(
-            actor.Animation.m_pEngineEntityPropertySet);
-    if (animationPS == nullptr || !animationPS->HasActor())
-        return result;
-
-    result.animationActor = animationPS->GetActor();
-    if (result.animationActor == nullptr)
-        return result;
-
-    auto const primaryMotion =
-        static_cast<eCWrapper_emfx2Actor::eEMotionType>(0);
-    if (!result.animationActor->HasMotionInstance(primaryMotion))
-        return result;
-
-    result.playTime = result.animationActor->GetPlayTime(primaryMotion);
-    result.maxTime = result.animationActor->GetMaxTime(primaryMotion);
-    result.available = true;
-    return result;
-}
-
-static bool ReadHumanFistNativeTimingConstant(GEDouble &value)
-{
-    constexpr std::uintptr_t NativeThresholdConstantRVA = 0x00308308;
-    HMODULE const gameModule = ::GetModuleHandleA("Game.dll");
-    if (gameModule == nullptr)
-        return false;
-
-    std::uintptr_t const constantAddress =
-        reinterpret_cast<std::uintptr_t>(gameModule)
-        + NativeThresholdConstantRVA;
-    std::memcpy(
-        &value, reinterpret_cast<void const *>(constantAddress),
-        sizeof(value));
-    return true;
-}
-
-static bool IsExactHumanFistSource(eCEntity *sourceInstance)
-{
-    if (sourceInstance == nullptr)
-        return false;
-    Entity source(sourceInstance);
-    return source != None
-        && CollisionSources::GetCollisionSourceUseType(source)
-            == gEUseType_Fist;
-}
-
-static void RetireHumanFistTimingPermission(
-    HumanFistMarkerExecution &state, char const *reason)
-{
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    if (state.timingPermissionArmed)
-    {
-        CollisionDiagnostics::LogHumanFistTimingPermissionRetired(
-            state.actorInstance, state.c1Generation, state.spu,
-            static_cast<void *>(state.animationActor), reason);
-    }
-#endif
-    state.timingPermissionArmed = false;
-}
-
-static void UpdateHumanFistMarkerOwnership(
-    Entity &actor, AttackFamily family,
-    FrameCollisionMarkers::AttackCallbackOwnershipResult const &ownership,
-    gCScriptProcessingUnit *spu)
-{
-    if (actor == None)
-        return;
-
-    eCEntity *const actorInstance = actor.GetInstance();
-    CollisionLifecycleGuard::GenerationToken const generation =
-        CollisionLifecycleGuard::CaptureCurrentGenerationToken(actorInstance);
-    auto existing = g_HumanFistMarkerExecutions.find(actorInstance);
-    if (existing != g_HumanFistMarkerExecutions.end()
-        && (!generation.valid
-            || existing->second.c1Generation != generation.generation))
-    {
-        RetireHumanFistTimingPermission(
-            existing->second, "C1_GENERATION_CHANGED");
-        g_HumanFistMarkerExecutions.erase(existing);
-        existing = g_HumanFistMarkerExecutions.end();
-    }
-
-    bool const exactMarkedHumanFistExecution =
-        ownership.attackHitEligible
-        && (family == AttackFamily_Normal
-            || family == AttackFamily_Power
-            || family == AttackFamily_Quick)
-        && ownership.decision.foundMatchingMotion
-        && ownership.decision.scanValid
-        && ownership.decision.markerPresent
-        && ownership.decision.hasFistMarkers
-        && ownership.decision.markerCounts[MarkerOpcode_Fist] > 0
-        && IsExactHumanFistSource(ownership.fistSourceInstance)
-        && generation.valid
-        && spu != nullptr
-        && spu->GetSelfEntity() == actorInstance;
-    if (!exactMarkedHumanFistExecution)
-        return;
-
-    if (existing != g_HumanFistMarkerExecutions.end())
-    {
-        // The C1 generation is the factual execution identity. Never repeat
-        // the initial close inside the same generation.
-        return;
-    }
-
-    volatile GEU8 *const latchByte =
-        reinterpret_cast<volatile GEU8 *>(spu) + 0x164;
-    GEInt const latchBefore = static_cast<GEInt>(*latchByte);
-    *latchByte = 1;
-    GEInt const latchAfter = static_cast<GEInt>(*latchByte);
-    bool const writeConfirmed = latchAfter == 1;
-    HumanFistPrimaryTiming const timing =
-        CaptureHumanFistPrimaryTiming(actor);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogHumanFistMarkerOwnership(
-        actor, family, generation.generation, spu,
-        static_cast<void *>(timing.animationActor), latchBefore,
-        latchAfter, writeConfirmed);
-#endif
-    if (!writeConfirmed)
-        return;
-
-    bCString const animation = actor.NPC.GetCurrentMovementAni();
-    HumanFistMarkerExecution state = {};
-    state.actorInstance = actorInstance;
-    state.fistSourceInstance = ownership.fistSourceInstance;
-    state.spu = spu;
-    state.animationActor = timing.animationActor;
-    state.c1Generation = generation.generation;
-    state.animationName = animation.GetText() != nullptr
-        ? animation.GetText() : "";
-    g_HumanFistMarkerExecutions[actorInstance] = state;
-}
-
-static void UpdateHumanFistTimingPermissionFromMarker(
-    Entity &actor, MarkerProcessResult const &result)
-{
-    if (actor == None
-        || result.code != MarkerResult_Accepted
-        || result.opcode != MarkerOpcode_Fist
-        || result.fistSourceUseType != static_cast<GEInt>(gEUseType_Fist)
-        || !result.c1GenerationValid
-        || !result.fistLatchWriteConfirmed)
-    {
-        return;
-    }
-
-    HumanFistPrimaryTiming const timing =
-        CaptureHumanFistPrimaryTiming(actor);
-    GEDouble nativeThresholdConstant = -1.0;
-    bool const thresholdAvailable =
-        timing.available
-        && ReadHumanFistNativeTimingConstant(nativeThresholdConstant);
-    GEDouble computedThreshold = -1.0;
-    bool realBelowThreshold = false;
-    if (thresholdAvailable)
-    {
-        computedThreshold = timing.maxTime * nativeThresholdConstant;
-        realBelowThreshold = timing.playTime < computedThreshold;
-    }
-
-    eCEntity *const actorInstance = actor.GetInstance();
-    auto execution = g_HumanFistMarkerExecutions.find(actorInstance);
-    bool ownershipMatched = false;
-    if (execution != g_HumanFistMarkerExecutions.end())
-    {
-        HumanFistMarkerExecution &state = execution->second;
-        ownershipMatched =
-            state.c1Generation == result.c1Generation
-            && state.fistSourceInstance == result.fistSourceInstance
-            && state.spu == result.fistSPU
-            && state.animationActor == timing.animationActor
-            && state.animationName == result.currentAnimation;
-        RetireHumanFistTimingPermission(
-            state, "SUPERSEDED_BY_ACCEPTED_FIST");
-        if (ownershipMatched && thresholdAvailable && realBelowThreshold)
-        {
-            state.timingPermissionArmed = true;
-            state.maxTime = timing.maxTime;
-            state.nativeThresholdConstant = nativeThresholdConstant;
-            state.computedThreshold = computedThreshold;
-        }
-    }
-
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogHumanFistMarkerOpportunity(
-        actor, result, static_cast<void *>(timing.animationActor),
-        timing.available, timing.playTime, timing.maxTime,
-        nativeThresholdConstant, computedThreshold, realBelowThreshold,
-        ownershipMatched,
-        ownershipMatched && thresholdAvailable && realBelowThreshold);
-#endif
-}
-
-static GEDouble GE_STDCALL HumanFistTimingGateGetPlayTime_FrameCollisionTest(
+static GEDouble GE_STDCALL Raw8FistTimingGateGetPlayTime_FrameCollisionTest(
     gCScriptProcessingUnit *a_pSPU,
     eCWrapper_emfx2Actor *a_pAnimationActor,
     eCWrapper_emfx2Actor::eEMotionType a_MotionType)
 {
     GEDouble const realPlayTime =
         a_pAnimationActor->GetPlayTime(a_MotionType);
-
-    eCEntity *const actorInstance =
-        a_pSPU != nullptr ? a_pSPU->GetSelfEntity() : nullptr;
-    auto execution = g_HumanFistMarkerExecutions.find(actorInstance);
-    if (execution == g_HumanFistMarkerExecutions.end())
-        return realPlayTime;
-
-    HumanFistMarkerExecution &state = execution->second;
-    CollisionLifecycleGuard::GenerationToken const generation =
-        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
-            state.actorInstance);
-    if (!generation.valid || generation.generation != state.c1Generation)
-    {
-        RetireHumanFistTimingPermission(state, "C1_GENERATION_CHANGED");
-        g_HumanFistMarkerExecutions.erase(execution);
-        return realPlayTime;
-    }
-
-    if (!state.timingPermissionArmed)
-        return realPlayTime;
-
-    auto const primaryMotion =
-        static_cast<eCWrapper_emfx2Actor::eEMotionType>(0);
-    bool const exactArmedCall =
-        a_pSPU == state.spu
-        && a_pAnimationActor == state.animationActor
-        && a_MotionType == primaryMotion;
-    if (!exactArmedCall)
-    {
-        RetireHumanFistTimingPermission(state, "CALL_IDENTITY_CHANGED");
-        return realPlayTime;
-    }
-
-    Entity actor(state.actorInstance);
-    if (actor == None)
-    {
-        RetireHumanFistTimingPermission(state, "ACTOR_IDENTITY_INVALID");
-        return realPlayTime;
-    }
-    if (CollisionSources::ResolveFistCollisionSource(actor)
-        != state.fistSourceInstance)
-    {
-        RetireHumanFistTimingPermission(state, "FIST_SOURCE_CHANGED");
-        return realPlayTime;
-    }
-    bCString const currentAnimation = actor.NPC.GetCurrentMovementAni();
-    char const *currentAnimationText = currentAnimation.GetText();
-    if (currentAnimationText == nullptr
-        || state.animationName != currentAnimationText)
-    {
-        RetireHumanFistTimingPermission(
-            state, "ANIMATION_IDENTITY_CHANGED");
-        return realPlayTime;
-    }
-
-    bool const realBelowThreshold =
-        realPlayTime < state.computedThreshold;
-    GEDouble returnedPlayTime = realPlayTime;
-    bool syntheticApplied = false;
-    if (realBelowThreshold)
-    {
-        returnedPlayTime = state.computedThreshold + 0.001;
-        if (returnedPlayTime > state.maxTime)
-            returnedPlayTime = state.maxTime;
-        syntheticApplied = true;
-    }
-
-    std::uint64_t const c1Generation = state.c1Generation;
-    GEDouble const maxTime = state.maxTime;
-    GEDouble const nativeThresholdConstant =
-        state.nativeThresholdConstant;
-    GEDouble const computedThreshold = state.computedThreshold;
-    state.timingPermissionArmed = false;
-
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogHumanFistTimingPermissionConsumed(
-        actorInstance, c1Generation, a_pSPU,
-        static_cast<void *>(a_pAnimationActor),
-        static_cast<GEInt>(a_MotionType), realPlayTime, maxTime,
-        nativeThresholdConstant, computedThreshold, returnedPlayTime,
-        syntheticApplied);
-#endif
-    return returnedPlayTime;
+    return Raw8FistCollision::ApplyTimingPermission(
+        a_pSPU, a_pAnimationActor, a_MotionType, realPlayTime);
 }
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -488,7 +174,8 @@ static bool EvaluateAttackCallback(
 {
     FrameCollisionMarkers::AttackCallbackOwnershipResult const ownership =
         FrameCollisionMarkers::EvaluateAttackCallbackOwnership(actor, family);
-    UpdateHumanFistMarkerOwnership(actor, family, ownership, spu);
+    Raw8FistCollision::UpdateMarkerOwnership(
+        actor, family, ownership, spu);
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogAttackCallbackOwnership(actor, family, ownership);
 #endif
@@ -583,27 +270,12 @@ QueryCombatMoveMotionResource_FrameCollisionTest(
     bCString const &a_ResourceName,
     eEResourceCacheBehavior a_CacheBehavior)
 {
-    char const *const resourceName = a_ResourceName.GetText();
-    if (GetCombatMoveFactualAction(a_pSPU) == gEAction_HackAttack
-        && resourceName != nullptr)
-    {
-        static char const FinishingToken[] = "_FinishingAttack_";
-        static char const HackToken[] = "_HackAttack_";
-        std::string candidate(resourceName);
-        std::string::size_type const actionToken =
-            candidate.find(FinishingToken);
-        if (actionToken != std::string::npos)
-        {
-            candidate.replace(actionToken, sizeof(FinishingToken) - 1,
-                              HackToken);
-            bCString const candidateName(candidate.c_str());
-            eCResourceDataEntity *const candidateResource =
-                a_pAnimationAdmin->QueryMotionDataEntity(
-                    candidateName, a_CacheBehavior);
-            if (candidateResource != nullptr)
-                return candidateResource;
-        }
-    }
+    eCResourceDataEntity *const routedResource =
+        AttackMotionRouting::QueryOptionalSubstitution(
+            GetCombatMoveFactualAction(a_pSPU), a_pAnimationAdmin,
+            a_ResourceName, a_CacheBehavior);
+    if (routedResource != nullptr)
+        return routedResource;
 
     return a_pAnimationAdmin->QueryMotionDataEntity(
         a_ResourceName, a_CacheBehavior);
@@ -640,7 +312,7 @@ static GELPVoid StartEffect_FrameCollisionTest(
     MarkerProcessResult const result = FrameCollisionMarkers::ProcessMarker(
         actor, markerOpcode, effectName,
         RuntimeClock::GetElapsedMilliseconds());
-    UpdateHumanFistTimingPermissionFromMarker(actor, result);
+    Raw8FistCollision::UpdateTimingPermissionFromMarker(actor, result);
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (result.code == MarkerResult_Accepted)
@@ -1370,9 +1042,9 @@ void FrameCollision::EngineBridge::InstallHooks()
         .ThisCall()
         .Hook();
 
-    Hook_HumanFistTimingGateGetPlayTime
+    Hook_Raw8FistTimingGateGetPlayTime
         .Prepare(RVA_Game(0x16E180),
-                 &HumanFistTimingGateGetPlayTime_FrameCollisionTest)
+                 &Raw8FistTimingGateGetPlayTime_FrameCollisionTest)
         .AddRegArg(mERegisterType_Edi)
         .AddThisArg()
         .Hook();

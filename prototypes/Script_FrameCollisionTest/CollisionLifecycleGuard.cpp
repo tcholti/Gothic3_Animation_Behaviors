@@ -1,5 +1,6 @@
 #include "CollisionLifecycleGuard.h"
 
+#include "CollisionSourceOperations.h"
 #include "CollisionSources.h"
 
 #include <string>
@@ -833,11 +834,11 @@ FinalizationResult FinalizeAfterAISetState(
             sourceResult.repairAttempted = true;
             sourceResult.repairRequestedGroup =
                 eECollisionGroup_Item_Equipped;
-            Entity repairSource(source.sourceInstance);
-            repairSource.SetCollisionGroup(
-                eECollisionGroup_Item_Equipped);
+            CollisionSourceOperations::SourceOperationResult operation =
+                CollisionSourceOperations::DeactivateOwnedAttackSource(
+                    source.sourceInstance);
             sourceResult.actualGroupAfterRepair =
-                source.sourceInstance->GetCollisionGroup();
+                static_cast<eECollisionGroup>(operation.groupAfter);
             sourceResult.physicalCollisionChanged =
                 sourceResult.actualGroupAfterRepair
                 != sourceResult.actualGroupBeforeRepair;
