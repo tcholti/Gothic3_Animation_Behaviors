@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-10
 
-## Current Bridge — Stage B IMPLEMENTED/REVIEWED, LOCAL BUILD NEXT
+## Current Bridge — Stage A/B CLOSED/PASS, EQUIVALENCE SENTINEL NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -18,6 +18,7 @@ Fresh Chat orientation:
 3. COLLISION_ARCHITECTURE_REDESIGN_PLAN.md
 4. COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
 5. COLLISION_LOGGER_PLAN.md
+6. COLLISION_TEST_PLAN.md
 ```
 
 Do not begin Sprint implementation or Goblin/Demon/Ogre matrix testing yet.
@@ -60,7 +61,7 @@ CORE loaded, hooks installed, Hack callback identity `ExactlyOne=1`, and clean u
 
 ---
 
-## Stage B Diagnostic Refactor — SOURCE IMPLEMENTED / INDEPENDENT REVIEW PASS
+## Stage B Diagnostic Refactor — CLOSED/PASS
 
 Frozen contract:
 
@@ -115,37 +116,42 @@ NO Sprint support or new hooks
 NO collision behavior/RVA/calling-convention/marker/StatePosition/raw8/equipped/C1/Hack semantic change
 ```
 
-Work static audit: PASS. `git diff --check`: PASS. Build: NOT RUN / PROHIBITED. No material contradiction.
+Work static audit: PASS. `git diff --check`: PASS. No material contradiction.
+
+### Local Stage B build/load evidence — 2026-09-10
+
+Both Release twins compiled/linked successfully:
+
+```text
+Script_FrameCollisionBehaviorTest.dll  PASS
+Script_FrameCollisionTest.dll          PASS
+```
+
+Built/live diagnostic DLL SHA256 matched exactly:
+
+```text
+081CDF413EC623079B8E4F1934EA7F1C27A7FFC7307B3BA0B19EA000BDA108BD
+```
+
+Runtime smoke passed:
+
+```text
+CORE diagnostic build loaded
+DEEP disabled
+BehaviorCore lists Raw8FistCollision + AttackMotionRouting
+Hack callback identity ExactlyOne=1 / OnAI_HackAttack
+hooks installed
+normal process exit
+Script_FrameCollisionTest unloading cleanly
+```
+
+Therefore **Stage B compile/deploy/load/unload gate is CLOSED/PASS.**
 
 ---
 
-## NEXT — Local Stage B Build/Load Gate
+## NEXT — Compact Equivalence Sentinel
 
-Sync local `docs/collision-source-evidence` to current remote HEAD, then:
-
-```text
-build Script_FrameCollisionBehaviorTest Release
-build Script_FrameCollisionTest Release
-```
-
-If both build:
-
-```text
-deploy Script_FrameCollisionTest.dll
-verify built/live SHA256 equality
-remove old log
-launch Gothic 3 far enough to load scripts
-exit normally
-confirm compact CORE startup + hooks installed + clean unload
-```
-
-If build/load fails, fix only that exact Stage B defect before advancing.
-
----
-
-## After Stage B Build/Load PASS
-
-Run the compact equivalence sentinel:
+Run only the established four-part sentinel before Sprint:
 
 ```text
 raw8 FIST: Sabretooth Normal + Quick + Power
@@ -154,7 +160,14 @@ marker lifecycle: one established multi-marker / OFF / rearm fixture
 C1 safety: one established destructive bad-skip -> exact terminal repair
 ```
 
-The sentinel must establish both behavioral parity and that the new CORE logger is readable while retaining rich anomaly/discovery output.
+The goal is twofold:
+
+```text
+1. prove Stage A/B refactors preserved behavior
+2. prove CORE is compact for normal traffic but still rich for repair/anomaly/discovery
+```
+
+If any leg fails, stop and resolve that regression before Sprint.
 
 Only after sentinel PASS:
 
