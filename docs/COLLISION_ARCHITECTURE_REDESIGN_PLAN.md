@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Freeze the completed collision architecture audit after EV-249, record the implemented and locally validated Stage A structural refactor, and define Stage B diagnostics plus the later Sprint sequence before broad compatibility testing.
+Freeze the completed collision architecture audit after EV-249, record the implemented and locally validated Stage A structural refactor, record the implemented and locally validated Stage B diagnostic refactor, and define the remaining equivalence-sentinel/Sprint sequence before broad compatibility testing.
 
 Related authorities:
 
@@ -54,11 +54,11 @@ G3AB_COL_FIST: REJECTED_UNSUPPORTED_HIT
 
 These are SprintAttack executions reusing a PowerAttack-named motion. Factual action identity outranks filename naming.
 
-Current source has no `AttackFamily_Sprint` and no Sprint callback/adapter plumbing. Sprint is therefore a factual missing family to investigate after Stage B and the compact equivalence sentinel.
+Current source has no `AttackFamily_Sprint` and no Sprint callback/adapter plumbing. Sprint is therefore a factual missing family to investigate only after the compact equivalence sentinel.
 
 Current evidence does **not** establish Sprint as Fist-only, creature-only, Power-equivalent, or equipped-capable.
 
-Do not add a Sabretooth-specific exception and do not implement Sprint during Stage B.
+Do not add a Sabretooth-specific exception and do not implement Sprint before the sentinel passes.
 
 ---
 
@@ -106,7 +106,7 @@ Confirmed drift at audit time:
 4. research-era CORE diagnostic verbosity
 ```
 
-Stage A closed 1–3. Stage B addresses 4 only.
+Stage A closed 1–3. Stage B closed 4.
 
 ---
 
@@ -149,10 +149,6 @@ Built/live SHA256:
 ```
 
 Therefore the Stage A compile/deploy/load/unload gate is **CLOSED/PASS**.
-
-Non-fatal compiler warnings remain, including behavior-only unused variables whose uses are diagnostics-only. They do not invalidate Stage A and should only be cleaned within a bounded later responsibility.
-
-The startup `BehaviorCore:` text is stale and omits `Raw8FistCollision` and `AttackMotionRouting`; Stage B should correct it.
 
 ---
 
@@ -241,8 +237,6 @@ exact Game+0x16E180 one-shot timing decision/consumption
 
 `FrameCollisionMarkers` retains generic FIST marker ownership/occurrence processing and delegates only the accepted FIST latch operation.
 
-Stage A intentionally preserved historical diagnostic names such as `HumanFist...`; diagnostic naming/compaction is Stage B.
-
 ---
 
 ## 7. AttackMotionRouting Implemented Seam
@@ -286,92 +280,81 @@ same SetCollisionGroup-hook observation/reentrancy path
 
 ---
 
-## 9. Current Responsibility — Stage B Diagnostic Refactor
+## 9. Stage B Diagnostic Refactor — CLOSED/PASS THROUGH LOCAL BUILD/LOAD
 
-Stage B changes diagnostics only. It must not change collision behavior.
-
-Governing rule:
-
-> **Known successful behavior logs compactly. Unknown, unsupported, contradictory, repair, or invariant behavior logs richly.**
-
-Target product split:
+Frozen contract:
 
 ```text
-PRODUCTION
-  diagnostics not compiled
+docs/COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
+```
 
+Published source commit:
+
+```text
+5737db32e5eda76810989ddfb5659f8405c0c458
+Refactor Stage B collision diagnostics
+```
+
+Frozen base:
+
+```text
+f9a88316e107e6d1ace6509f26dfe9980ec2f404
+```
+
+Independent source review: **PASS**.  
+Work static audit: PASS.  
+`git diff --check`: PASS.  
+Material contradiction: None.
+
+Implemented diagnostic split:
+
+```text
 CORE
-  compact known-path regression facts
-  rich unsupported/unknown/anomaly/repair/invariant evidence
-  enough action/source/marker/damage/lifecycle information for larger tests
-  relevant NPC as well as player evidence
+  compact known-path marker/raw8/OnDamage/C1/source events
+  rich unsupported/unknown/anomaly/repair/invariant events
+  NPC as well as player lifecycle evidence
 
 DEEP
-  retained opt-in reverse-engineering probes
+  historical Fist gate/trigger hooks and snapshots
+  detailed raw8 timing arithmetic/addresses
+  detailed OnDamage contact/integer/address data
+  full ownership tables and routine dispatch chronology
 ```
 
-Planned CORE reductions:
+Behavior remained unchanged: no Sprint support, no behavior hook changes, no marker/StatePosition/raw8/equipped/C1/Hack semantic changes.
+
+Local validation on 2026-09-10:
 
 ```text
-Fist CanBeActivatedNow/TriggerTarget research hooks -> DEEP only
-routine Fist trigger-state snapshots -> DEEP only
-healthy C1 START/BINDING/STATUS chronology -> compact or DEEP
-SetCollisionGroup no-op/raw8 0->0 noise -> suppress from CORE
-known successful marker ownership/result -> compact events
-known successful raw8 timing -> compact ownership/opportunity/consumption events
-OnDamage -> compact factual event; detailed addresses/contact internals in DEEP
-terminal repair/divergence/invariant -> rich CORE
-unknown/unsupported action/family/source -> rich CORE automatically
+Script_FrameCollisionBehaviorTest Release build  PASS
+Script_FrameCollisionTest Release build          PASS
+built/live diagnostic SHA256                     MATCH
+runtime load                                     PASS
+hook installation                                PASS
+Hack callback identity                           PASS
+normal unload                                    PASS
 ```
 
-CORE must support NPC as well as player regression evidence; do not retain player-only filtering where that would hide relevant NPC equipped lifecycle behavior.
-
-For unsupported traffic such as Sprint, CORE must retain at minimum:
+Built/live SHA256:
 
 ```text
-actor
-numeric action
-phase / StatePosition
-current motion
-marker opcode/result
-C1 generation when available
-resolved source identity / UseType / collision group
-rejection reason
-native damage caller/entity correlation when observed
+081CDF413EC623079B8E4F1934EA7F1C27A7FFC7307B3BA0B19EA000BDA108BD
 ```
 
-Reusable research capability should be retained in DEEP, not simply deleted.
-
-Stage B should also correct stale startup metadata to list `Raw8FistCollision` and `AttackMotionRouting`.
-
-Behavior hard boundaries:
+Startup metadata now correctly lists:
 
 ```text
-NO Sprint support
-NO new gameplay behavior
-NO hook RVA/calling-convention semantic changes
-NO marker vocabulary/StatePosition changes
-NO raw8 family/latch/timing changes
-NO equipped source changes
-NO C1 generation/repair changes
-NO AttackContinuationProtection
-NO Raise/speed/config
-NO raw55 behavior
+Raw8FistCollision
+AttackMotionRouting
 ```
+
+Therefore the Stage B compile/deploy/load/unload gate is **CLOSED/PASS**.
 
 ---
 
-## 10. Post-Stage-B Gates
+## 10. Current Gate — Compact Equivalence Sentinel
 
-After Stage B source implementation and independent review:
-
-```text
-build both Release twins
-deploy/hash diagnostic DLL
-load/unload smoke
-```
-
-Then run the compact equivalence sentinel:
+Run the established compact sentinel before Sprint:
 
 ```text
 raw8 FIST: Sabretooth Normal + Quick + Power
@@ -380,13 +363,20 @@ marker lifecycle: one established multi-marker / OFF / rearm fixture
 C1 safety: one established destructive bad-skip -> exact terminal repair
 ```
 
+The sentinel has two purposes:
+
+```text
+behavior parity after Stage A/B refactors
+CORE readability + anomaly/repair evidence sufficiency
+```
+
 Failure stops the sequence and is resolved before Sprint work.
 
 ---
 
 ## 11. Sprint Investigation After Sentinel
 
-Sprint remains deliberately unsupported during Stage B.
+Sprint remains deliberately unsupported until the sentinel passes.
 
 The later bounded investigation must establish:
 
@@ -411,9 +401,9 @@ SprintAttack missing-family discovery               IDENTIFIED
 architecture + diagnostic audit                     DONE
 Stage A behavior architecture source refactor       DONE
 Stage A local build/load                            CLOSED/PASS
-Stage B diagnostic-volume refactor                  NEXT
-Stage B local build/load
-compact equivalence sentinel
+Stage B diagnostic-volume refactor                  DONE
+Stage B local build/load                            CLOSED/PASS
+compact equivalence sentinel                        NEXT
 SprintAttack source/transport/mechanism investigation
 bounded Sprint implementation if evidence supports it
 focused Sprint validation
