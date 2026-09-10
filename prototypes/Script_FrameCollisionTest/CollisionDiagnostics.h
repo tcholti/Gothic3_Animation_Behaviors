@@ -16,6 +16,7 @@ FILE *GetLog();
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result);
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 void LogFistTriggerStateSnapshot(char const *boundary, Entity &actor);
 void LogFistCanBeActivatedNow(
     char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
@@ -31,40 +32,42 @@ void LogFistHookEntry(
     Entity &player, eCEntity *resolverSourceInstance,
     bool exactTouchDamageIdentityMatch);
 void LogFistHookEntryCap(char const *hookKind, GEU32 cap);
+#endif
 void LogEntityOnDamageEntry(
     GEU32 ordinal, void *callerAddress, gCEntity *thisEntity,
     eCEntity *entityArgument1, eCEntity *entityArgument2,
     GEInt integerArgument1, GEInt integerArgument2,
     void *contactIteratorAddress);
 void LogEntityOnDamageEntryCap(GEU32 cap);
-void LogHumanFistMarkerOwnership(
+void LogRaw8FistMarkerOwnership(
     Entity &actor, AttackFamily family, std::uint64_t c1Generation,
-    gCScriptProcessingUnit *spu, void *animationActorAddress,
+    eCEntity *fistSourceInstance, gCScriptProcessingUnit *spu,
+    void *animationActorAddress,
     GEInt latchBefore, GEInt latchAfter, bool writeConfirmed);
-void LogHumanFistMarkerOpportunity(
+void LogRaw8FistMarkerOpportunity(
     Entity &actor, MarkerProcessResult const &result,
     void *animationActorAddress, bool timingAvailable,
     GEDouble realPlayTime, GEDouble maxTime,
     GEDouble nativeThresholdConstant, GEDouble computedThreshold,
     bool realBelowThreshold, bool ownershipMatched,
     bool timingPermissionArmed);
-void LogHumanFistTimingPermissionConsumed(
+void LogRaw8FistTimingPermissionConsumed(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
     GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
     GEDouble nativeThresholdConstant, GEDouble computedThreshold,
     GEDouble returnedPlayTime, bool syntheticApplied);
-void LogHumanFistTimingPermissionRetired(
+void LogRaw8FistTimingPermissionRetired(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *spu, void *animationActorAddress,
     char const *reason);
 void LogNullMarker(char const *markerName);
-void LogMarkerContext(Entity &actor, MarkerOpcode opcode);
 void LogMarkerResult(Entity &actor, MarkerProcessResult const &result);
 void LogSetCollisionGroup(
     eCEntity *changedEntity, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
-    GEInt retiredMarkerSourceBitCount);
+    GEInt retiredMarkerSourceBitCount,
+    CollisionLifecycleGuard::CollisionObservationResult const &observation);
 
 void LogBeginCombatMoveResult(
     CollisionLifecycleGuard::BeginCombatMoveResult const &result);
@@ -76,6 +79,8 @@ void LogBridgeRetirementResult(
     CollisionLifecycleGuard::BridgeRetirementResult const &result);
 void LogFinalizationResult(
     CollisionLifecycleGuard::FinalizationResult const &result);
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 void LogRunScriptFunctionScopeReturn(
     void *scopeAddress, bool parentScopeExists, GEBool nativeResult);
+#endif
 }

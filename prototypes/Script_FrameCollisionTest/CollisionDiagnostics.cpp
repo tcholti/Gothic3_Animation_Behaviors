@@ -26,12 +26,6 @@ static std::string GetGameDirectory()
     return result;
 }
 
-static bool IsPlayerActor(eCEntity *actorInstance)
-{
-    Entity player = Entity::GetPlayer();
-    return player != None && actorInstance == player.GetInstance();
-}
-
 static char const *EntityName(eCEntity *instance)
 {
     if (instance == nullptr)
@@ -52,6 +46,7 @@ static char const *BaseName(char const *path)
     return last != nullptr ? last + 1 : path;
 }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static void LogCaller(void *callerAddress)
 {
     HMODULE callerModule = nullptr;
@@ -81,6 +76,7 @@ static void LogCaller(void *callerAddress)
     else
         std::fprintf(g_pLog, "CallerRVA: <unresolved>\n");
 }
+#endif
 
 static char const *AttackFamilyName(AttackFamily family)
 {
@@ -96,6 +92,64 @@ static char const *AttackFamilyName(AttackFamily family)
         default: return "UNKNOWN";
     }
 }
+
+static char const *AttackFamilyNameForAction(GEInt action)
+{
+    switch (static_cast<gEAction>(action))
+    {
+        case gEAction_Attack: return "NORMAL";
+        case gEAction_PowerAttack: return "POWER";
+        case gEAction_QuickAttack:
+        case gEAction_QuickAttackR:
+        case gEAction_QuickAttackL: return "QUICK";
+        case gEAction_SimpleWhirl: return "SIMPLE_WHIRL";
+        case gEAction_WhirlAttack: return "WHIRL";
+        case gEAction_PierceAttack: return "PIERCE";
+        case gEAction_HackAttack: return "HACK";
+        default: return "UNKNOWN";
+    }
+}
+
+static char const *MarkerResultName(MarkerResultCode code)
+{
+    switch (code)
+    {
+        case MarkerResult_RejectedUnsupportedHit:
+            return "REJECTED_UNSUPPORTED_HIT";
+        case MarkerResult_RejectedMotionOwnership:
+            return "REJECTED_MOTION_OWNERSHIP";
+        case MarkerResult_UnsupportedMissingSource:
+            return "UNSUPPORTED_MISSING_SOURCE";
+        case MarkerResult_RejectedNoGeneration:
+            return "REJECTED_NO_C1_GENERATION";
+        case MarkerResult_DuplicateIgnored:
+            return "DUPLICATE_SAME_UPDATE_IGNORED";
+        case MarkerResult_RejectedGenerationInconsistency:
+            return "REJECTED_C1_GENERATION_INCONSISTENCY";
+        case MarkerResult_BudgetIgnored:
+            return "AUTHORED_OCCURRENCE_BUDGET_IGNORED";
+        case MarkerResult_OffAccepted: return "OFF_ACCEPTED";
+        case MarkerResult_OffNoWindow: return "OFF_NO_MARKER_OWNED_WINDOW";
+        case MarkerResult_RejectedEmptySourceSet:
+            return "REJECTED_EMPTY_SOURCE_SET";
+        case MarkerResult_RejectedIncompleteActivation:
+            return "REJECTED_INCOMPLETE_ACTIVATION";
+        case MarkerResult_Accepted: return "ACCEPTED";
+        default: return "UNKNOWN_RESULT";
+    }
+}
+
+static bool IsRoutineMarkerResult(MarkerResultCode code)
+{
+    return code == MarkerResult_Accepted
+        || code == MarkerResult_OffAccepted
+        || code == MarkerResult_OffNoWindow
+        || code == MarkerResult_DuplicateIgnored
+        || code == MarkerResult_BudgetIgnored;
+}
+
+static void LogMarkerDiscoverySource(
+    char const *label, char const *slot, eCEntity *sourceInstance);
 
 static char const *GenerationStatusName(
     CollisionLifecycleGuard::GenerationStatus status)
@@ -222,7 +276,7 @@ void OpenLog()
 #else
     std::fprintf(g_pLog, "DeepDiagnostics: DISABLED\n");
 #endif
-    std::fprintf(g_pLog, "BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + RuntimeClock\n");
+    std::fprintf(g_pLog, "BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + Raw8FistCollision + AttackMotionRouting + RuntimeClock\n");
     std::fprintf(g_pLog, "C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.\n");
     std::fprintf(g_pLog,
                  "MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack\n");
@@ -244,6 +298,7 @@ void CloseLog()
 bool IsLogOpen() { return g_pLog != nullptr; }
 FILE *GetLog() { return g_pLog; }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static void LogResolvedSource(char const *label, eCEntity *sourceInstance)
 {
     std::fprintf(g_pLog, "%sResolved: %d\n", label,
@@ -489,6 +544,7 @@ void LogFistHookEntryCap(char const *hookKind, GEU32 cap)
     std::fprintf(g_pLog, "===============================\n\n");
     std::fflush(g_pLog);
 }
+#endif
 
 void LogEntityOnDamageEntry(
     GEU32 ordinal, void *callerAddress, gCEntity *thisEntity,
@@ -500,8 +556,10 @@ void LogEntityOnDamageEntry(
         return;
 
     Entity player = Entity::GetPlayer();
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     eCEntity *playerInstance =
         player != None ? player.GetInstance() : nullptr;
+#endif
     eCEntity *fistSourceInstance = player != None
         ? CollisionSources::ResolveFistCollisionSource(player)
         : nullptr;
@@ -516,21 +574,59 @@ void LogEntityOnDamageEntry(
 
     GEInt playerAction = -1;
     GEInt playerAniPhase = -1;
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     GEFloat playerStateTime = -1.0f;
+#endif
     std::string playerCurrentMovementAni = "<unavailable>";
     if (player != None)
     {
         playerAction = static_cast<GEInt>(
             player.Routine.GetProperty<PSRoutine::PropertyAction>());
         playerAniPhase = static_cast<GEInt>(player.GetCurrentAniPhase());
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
         playerStateTime = player.Routine.GetStateTime();
+#endif
         bCString currentAni = player.NPC.GetCurrentMovementAni();
         if (currentAni.GetText() != nullptr)
             playerCurrentMovementAni = currentAni.GetText();
     }
 
+    HMODULE callerModule = nullptr;
+    char modulePath[MAX_PATH] = {};
+    bool const callerResolved = callerAddress != nullptr
+        && ::GetModuleHandleExA(
+            GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCSTR>(callerAddress), &callerModule) != FALSE;
+    DWORD const modulePathLength = callerResolved
+        ? ::GetModuleFileNameA(callerModule, modulePath, MAX_PATH) : 0;
+    unsigned long const callerRva = callerResolved
+        ? static_cast<unsigned long>(
+              reinterpret_cast<std::uintptr_t>(callerAddress)
+              - reinterpret_cast<std::uintptr_t>(callerModule))
+        : 0;
+    char const *const callerModuleName = modulePathLength > 0
+        ? BaseName(modulePath)
+        : callerResolved ? "<path-unavailable>" : "<unresolved>";
     eCEntity *thisEntityInstance = thisEntity;
-    std::fprintf(g_pLog, "===== ENTITY ONDAMAGE ENTRY =====\n");
+    std::fprintf(
+        g_pLog,
+        "CORE ONDAMAGE ElapsedMs=%.3f Ordinal=%u Target=%s Arg1=%s Arg2=%s Caller=%s",
+        RuntimeClock::GetElapsedMilliseconds(),
+        static_cast<unsigned int>(ordinal), EntityName(thisEntityInstance),
+        EntityName(entityArgument1), EntityName(entityArgument2),
+        callerModuleName);
+    if (callerResolved)
+        std::fprintf(g_pLog, "+0x%08lX", callerRva);
+    std::fprintf(
+        g_pLog,
+        " PlayerAction=%d PlayerPhase=%d PlayerMotion=%s Raw8Fist=%s Raw8UseType=%d Raw8Group=%d\n",
+        playerAction, playerAniPhase, playerCurrentMovementAni.c_str(),
+        fistSourceInstance != nullptr ? EntityName(fistSourceInstance) : "<none>",
+        fistUseType, fistCollisionGroup);
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP ENTITY ONDAMAGE ENTRY =====\n");
     std::fprintf(g_pLog, "Boundary: ENTITY_ON_DAMAGE_ENTRY\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
                  RuntimeClock::GetElapsedMilliseconds());
@@ -583,7 +679,12 @@ void LogEntityOnDamageEntry(
     std::fprintf(g_pLog, "EntityArg2IsResolvedFistSource: %d\n",
                  fistSourceInstance != nullptr
                      && entityArgument2 == fistSourceInstance ? 1 : 0);
-    std::fprintf(g_pLog, "=================================\n\n");
+    std::fprintf(g_pLog, "======================================\n\n");
+#else
+    (void) integerArgument1;
+    (void) integerArgument2;
+    (void) contactIteratorAddress;
+#endif
     std::fflush(g_pLog);
 }
 
@@ -592,37 +693,79 @@ void LogEntityOnDamageEntryCap(GEU32 cap)
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(g_pLog, "===== ENTITY ONDAMAGE ENTRY CAP =====\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "LoggedEntryCap: %u\n",
-                 static_cast<unsigned int>(cap));
-    std::fprintf(g_pLog, "FurtherEntriesSuppressed: 1\n");
-    std::fprintf(g_pLog, "=====================================\n\n");
+    std::fprintf(
+        g_pLog,
+        "CORE ONDAMAGE_CAP ElapsedMs=%.3f LoggedEntryCap=%u FurtherEntriesSuppressed=1\n",
+        RuntimeClock::GetElapsedMilliseconds(),
+        static_cast<unsigned int>(cap));
     std::fflush(g_pLog);
 }
 
-void LogHumanFistMarkerOwnership(
+void LogRaw8FistMarkerOwnership(
     Entity &actor, AttackFamily family, std::uint64_t c1Generation,
-    gCScriptProcessingUnit *spu, void *animationActorAddress,
+    eCEntity *fistSourceInstance, gCScriptProcessingUnit *spu,
+    void *animationActorAddress,
     GEInt latchBefore, GEInt latchAfter, bool writeConfirmed)
 {
     if (g_pLog == nullptr)
         return;
 
     bCString const currentAnimation = actor.NPC.GetCurrentMovementAni();
-    std::fprintf(g_pLog, "===== HUMAN FIST MARKER OWNERSHIP =====\n");
-    std::fprintf(g_pLog, "Boundary: HUMAN_FIST_MARKER_OWNERSHIP\n");
+    Entity fistSource(fistSourceInstance);
+    GEInt const fistUseType = fistSource != None
+        ? static_cast<GEInt>(
+              CollisionSources::GetCollisionSourceUseType(fistSource))
+        : -1;
+    GEInt const action = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    if (writeConfirmed)
+    {
+        std::fprintf(
+            g_pLog,
+            "CORE RAW8_FIST_OWNERSHIP ElapsedMs=%.3f Actor=%s Action=%d Family=%s Motion=%s C1=%llu Raw8Fist=%s Raw8UseType=%d InitialClose=%d->%d Result=CONFIRMED\n",
+            RuntimeClock::GetElapsedMilliseconds(),
+            actor.GetName().GetText(), action, AttackFamilyName(family),
+            currentAnimation.GetText(),
+            static_cast<unsigned long long>(c1Generation),
+            fistSource != None ? fistSource.GetName().GetText() : "<none>",
+            fistUseType, latchBefore, latchAfter);
+    }
+    else
+    {
+        std::fprintf(g_pLog, "===== CORE RAW8 FIST OWNERSHIP ANOMALY =====\n");
+        std::fprintf(g_pLog, "Classification: INITIAL_CLOSE_FAILED\n");
+        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                     RuntimeClock::GetElapsedMilliseconds());
+        std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+        std::fprintf(g_pLog, "Action: %d\n", action);
+        std::fprintf(g_pLog, "Family: %s\n", AttackFamilyName(family));
+        std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                     currentAnimation.GetText());
+        std::fprintf(g_pLog, "C1Generation: %llu\n",
+                     static_cast<unsigned long long>(c1Generation));
+        std::fprintf(g_pLog, "Raw8Fist: %s\n",
+                     fistSource != None
+                         ? fistSource.GetName().GetText() : "<none>");
+        std::fprintf(g_pLog, "Raw8UseType: %d\n", fistUseType);
+        std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
+        std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
+                     animationActorAddress);
+        std::fprintf(g_pLog, "LatchOffset: 0x164\n");
+        std::fprintf(g_pLog, "LatchBefore: %d\n", latchBefore);
+        std::fprintf(g_pLog, "LatchAfter: %d\n", latchAfter);
+        std::fprintf(g_pLog, "WriteConfirmed: 0\n");
+        std::fprintf(g_pLog, "===========================================\n\n");
+    }
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP RAW8 FIST MARKER OWNERSHIP =====\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
                  RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
     std::fprintf(g_pLog, "ActorAddress: %p\n",
                  static_cast<void *>(actor.GetInstance()));
-    std::fprintf(g_pLog, "Family: %s\n", AttackFamilyName(family));
-    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
-                 currentAnimation.GetText());
     std::fprintf(g_pLog, "C1Generation: %llu\n",
                  static_cast<unsigned long long>(c1Generation));
+    std::fprintf(g_pLog, "Raw8FistAddress: %p\n",
+                 static_cast<void *>(fistSourceInstance));
     std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
     std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
                  animationActorAddress);
@@ -632,11 +775,15 @@ void LogHumanFistMarkerOwnership(
     std::fprintf(g_pLog, "WriteAttempted: 1\n");
     std::fprintf(g_pLog, "WriteConfirmed: %d\n",
                  writeConfirmed ? 1 : 0);
-    std::fprintf(g_pLog, "=======================================\n\n");
+    std::fprintf(g_pLog, "==========================================\n\n");
+#else
+    (void) spu;
+    (void) animationActorAddress;
+#endif
     std::fflush(g_pLog);
 }
 
-void LogHumanFistMarkerOpportunity(
+void LogRaw8FistMarkerOpportunity(
     Entity &actor, MarkerProcessResult const &result,
     void *animationActorAddress, bool timingAvailable,
     GEDouble realPlayTime, GEDouble maxTime,
@@ -647,17 +794,86 @@ void LogHumanFistMarkerOpportunity(
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(g_pLog, "===== HUMAN FIST MARKER OPPORTUNITY =====\n");
-    std::fprintf(g_pLog, "Boundary: HUMAN_FIST_MARKER_OPPORTUNITY\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+    bool const thresholdAvailable = nativeThresholdConstant >= 0.0
+        && computedThreshold >= 0.0;
+    Entity fistSource(result.fistSourceInstance);
+    GEInt const raw8UseType = fistSource != None
+        ? static_cast<GEInt>(
+              CollisionSources::GetCollisionSourceUseType(fistSource))
+        : -1;
+    char const *classification = !ownershipMatched
+            || raw8UseType != static_cast<GEInt>(gEUseType_Fist)
+        ? "IDENTITY_MISMATCH"
+        : !result.fistLatchWriteConfirmed
+            ? "LATCH_REARM_FAILED"
+            : (!timingAvailable || !thresholdAvailable)
+                ? "TIMING_UNAVAILABLE"
+                : timingPermissionArmed
+                    ? "EARLY_PERMISSION_ARMED" : "NATIVE_TIMING";
+    bool const anomaly = !ownershipMatched || !timingAvailable
+        || !thresholdAvailable || !result.fistLatchWriteConfirmed
+        || raw8UseType != static_cast<GEInt>(gEUseType_Fist);
+    if (!anomaly)
+    {
+        std::fprintf(
+            g_pLog,
+            "CORE RAW8_FIST_TIMING ElapsedMs=%.3f Actor=%s Action=%d Family=%s Motion=%s C1=%llu Raw8Fist=%s Raw8UseType=%d AcceptedRearm=%d->%d OwnershipMatched=1 Classification=%s\n",
+            RuntimeClock::GetElapsedMilliseconds(),
+            actor.GetName().GetText(), result.markerAction,
+            AttackFamilyNameForAction(result.markerAction),
+            result.currentAnimation.c_str(),
+            static_cast<unsigned long long>(result.c1Generation),
+            fistSource.GetName().GetText(), raw8UseType,
+            result.fistLatchBefore, result.fistLatchAfter, classification);
+    }
+    else
+    {
+        std::fprintf(g_pLog, "===== CORE RAW8 FIST TIMING ANOMALY =====\n");
+        std::fprintf(g_pLog, "Classification: %s\n", classification);
+        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                     RuntimeClock::GetElapsedMilliseconds());
+        std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+        std::fprintf(g_pLog, "Action: %d\n", result.markerAction);
+        std::fprintf(g_pLog, "Family: %s\n",
+                     AttackFamilyNameForAction(result.markerAction));
+        std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
+                     result.currentAnimation.c_str());
+        std::fprintf(g_pLog, "C1Generation: %llu\n",
+                     static_cast<unsigned long long>(result.c1Generation));
+        std::fprintf(g_pLog, "Raw8Fist: %s\n",
+                     fistSource != None
+                         ? fistSource.GetName().GetText() : "<none>");
+        std::fprintf(g_pLog, "Raw8UseType: %d\n", raw8UseType);
+        std::fprintf(g_pLog, "AcceptedRearm: %d -> %d\n",
+                     result.fistLatchBefore, result.fistLatchAfter);
+        std::fprintf(g_pLog, "LatchWriteConfirmed: %d\n",
+                     result.fistLatchWriteConfirmed ? 1 : 0);
+        std::fprintf(g_pLog, "OwnershipMatched: %d\n",
+                     ownershipMatched ? 1 : 0);
+        std::fprintf(g_pLog, "TimingAvailable: %d\n",
+                     timingAvailable ? 1 : 0);
+        std::fprintf(g_pLog, "ThresholdAvailable: %d\n",
+                     thresholdAvailable ? 1 : 0);
+        std::fprintf(g_pLog, "SPUAddress: %p\n",
+                     static_cast<void *>(result.fistSPU));
+        std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
+                     animationActorAddress);
+        std::fprintf(g_pLog, "RealPlayTime: %.17g\n", realPlayTime);
+        std::fprintf(g_pLog, "MaxTime: %.17g\n", maxTime);
+        std::fprintf(g_pLog, "NativeThresholdConstant: %.17g\n",
+                     nativeThresholdConstant);
+        std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
+                     computedThreshold);
+        std::fprintf(g_pLog, "RealBelowThreshold: %d\n",
+                     realBelowThreshold ? 1 : 0);
+        std::fprintf(g_pLog, "TimingPermissionArmed: %d\n",
+                     timingPermissionArmed ? 1 : 0);
+        std::fprintf(g_pLog, "=========================================\n\n");
+    }
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP RAW8 FIST MARKER OPPORTUNITY =====\n");
     std::fprintf(g_pLog, "ActorAddress: %p\n",
                  static_cast<void *>(actor.GetInstance()));
-    std::fprintf(g_pLog, "CurrentMovementAni: %s\n",
-                 result.currentAnimation.c_str());
-    std::fprintf(g_pLog, "C1Generation: %llu\n",
-                 static_cast<unsigned long long>(result.c1Generation));
     std::fprintf(g_pLog, "FistOccurrenceBefore: %d\n",
                  result.acceptedMarkerCountBefore);
     std::fprintf(g_pLog, "FistOccurrenceAfter: %d\n",
@@ -666,10 +882,6 @@ void LogHumanFistMarkerOpportunity(
                  static_cast<void *>(result.fistSPU));
     std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
                  animationActorAddress);
-    std::fprintf(g_pLog, "LatchBefore: %d\n", result.fistLatchBefore);
-    std::fprintf(g_pLog, "LatchAfter: %d\n", result.fistLatchAfter);
-    std::fprintf(g_pLog, "LatchWriteConfirmed: %d\n",
-                 result.fistLatchWriteConfirmed ? 1 : 0);
     std::fprintf(g_pLog, "TimingAvailable: %d\n",
                  timingAvailable ? 1 : 0);
     std::fprintf(g_pLog, "RealPlayTime: %.17g\n", realPlayTime);
@@ -684,11 +896,17 @@ void LogHumanFistMarkerOpportunity(
                  ownershipMatched ? 1 : 0);
     std::fprintf(g_pLog, "TimingPermissionArmed: %d\n",
                  timingPermissionArmed ? 1 : 0);
-    std::fprintf(g_pLog, "=========================================\n\n");
+    std::fprintf(g_pLog, "============================================\n\n");
+#else
+    (void) animationActorAddress;
+    (void) realPlayTime;
+    (void) maxTime;
+    (void) realBelowThreshold;
+#endif
     std::fflush(g_pLog);
 }
 
-void LogHumanFistTimingPermissionConsumed(
+void LogRaw8FistTimingPermissionConsumed(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
     GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
@@ -698,16 +916,74 @@ void LogHumanFistTimingPermissionConsumed(
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(g_pLog, "===== HUMAN FIST TIMING PERMISSION =====\n");
-    std::fprintf(
-        g_pLog, "Boundary: HUMAN_FIST_TIMING_PERMISSION_CONSUMED\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
+    Entity actor(actorInstance);
+    eCEntity *const fistSourceInstance = actor != None
+        ? CollisionSources::ResolveFistCollisionSource(actor) : nullptr;
+    Entity fistSource(fistSourceInstance);
+    GEInt const raw8UseType = fistSource != None
+        ? static_cast<GEInt>(
+              CollisionSources::GetCollisionSourceUseType(fistSource))
+        : -1;
+    GEInt action = -1;
+    std::string motion = "<unavailable>";
+    if (actor != None)
+    {
+        action = static_cast<GEInt>(
+            actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+        bCString const movement = actor.NPC.GetCurrentMovementAni();
+        if (movement.GetText() != nullptr)
+            motion = movement.GetText();
+    }
+    char const *const classification = syntheticApplied
+        ? "EARLY_PERMISSION_USED" : "NATIVE_TIMING";
+    if (actor != None
+        && raw8UseType == static_cast<GEInt>(gEUseType_Fist))
+    {
+        std::fprintf(
+            g_pLog,
+            "CORE RAW8_FIST_TIMING ElapsedMs=%.3f Actor=%s Action=%d Family=%s Motion=%s C1=%llu Raw8Fist=%s Raw8UseType=%d PermissionConsumed=1 SyntheticApplied=%d Classification=%s\n",
+            RuntimeClock::GetElapsedMilliseconds(), EntityName(actorInstance),
+            action, AttackFamilyNameForAction(action), motion.c_str(),
+            static_cast<unsigned long long>(c1Generation),
+            EntityName(fistSourceInstance), raw8UseType,
+            syntheticApplied ? 1 : 0, classification);
+    }
+    else
+    {
+        std::fprintf(g_pLog, "===== CORE RAW8 FIST TIMING ANOMALY =====\n");
+        std::fprintf(g_pLog, "Classification: IDENTITY_MISMATCH\n");
+        std::fprintf(g_pLog, "Boundary: TIMING_PERMISSION_CONSUMED\n");
+        std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
+        std::fprintf(g_pLog, "Action: %d\n", action);
+        std::fprintf(g_pLog, "Family: %s\n",
+                     AttackFamilyNameForAction(action));
+        std::fprintf(g_pLog, "CurrentMovementAni: %s\n", motion.c_str());
+        std::fprintf(g_pLog, "C1Generation: %llu\n",
+                     static_cast<unsigned long long>(c1Generation));
+        std::fprintf(g_pLog, "Raw8Fist: %s\n",
+                     fistSourceInstance != nullptr
+                         ? EntityName(fistSourceInstance) : "<none>");
+        std::fprintf(g_pLog, "Raw8UseType: %d\n", raw8UseType);
+        std::fprintf(g_pLog, "HookSPUAddress: %p\n",
+                     static_cast<void *>(hookSPU));
+        std::fprintf(g_pLog, "HookAnimationActorAddress: %p\n",
+                     hookAnimationActorAddress);
+        std::fprintf(g_pLog, "MotionType: %d\n", motionType);
+        std::fprintf(g_pLog, "RealPlayTime: %.17g\n", realPlayTime);
+        std::fprintf(g_pLog, "MaxTime: %.17g\n", maxTime);
+        std::fprintf(g_pLog, "NativeThresholdConstant: %.17g\n",
+                     nativeThresholdConstant);
+        std::fprintf(g_pLog, "ComputedThreshold: %.17g\n",
+                     computedThreshold);
+        std::fprintf(g_pLog, "ReturnedPlayTime: %.17g\n",
+                     returnedPlayTime);
+        std::fprintf(g_pLog, "=========================================\n\n");
+    }
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP RAW8 FIST TIMING PERMISSION =====\n");
+    std::fprintf(g_pLog, "Boundary: RAW8_FIST_TIMING_PERMISSION_CONSUMED\n");
     std::fprintf(g_pLog, "ActorAddress: %p\n",
                  static_cast<void *>(actorInstance));
-    std::fprintf(g_pLog, "C1Generation: %llu\n",
-                 static_cast<unsigned long long>(c1Generation));
     std::fprintf(g_pLog, "HookSPUAddress: %p\n",
                  static_cast<void *>(hookSPU));
     std::fprintf(g_pLog, "HookAnimationActorAddress: %p\n",
@@ -723,14 +999,21 @@ void LogHumanFistTimingPermissionConsumed(
                  returnedPlayTime);
     std::fprintf(g_pLog, "ReturnedAtOrAboveThreshold: %d\n",
                  returnedPlayTime < computedThreshold ? 0 : 1);
-    std::fprintf(g_pLog, "SyntheticApplied: %d\n",
-                 syntheticApplied ? 1 : 0);
-    std::fprintf(g_pLog, "PermissionConsumed: 1\n");
-    std::fprintf(g_pLog, "========================================\n\n");
+    std::fprintf(g_pLog, "===========================================\n\n");
+#else
+    (void) hookSPU;
+    (void) hookAnimationActorAddress;
+    (void) motionType;
+    (void) realPlayTime;
+    (void) maxTime;
+    (void) nativeThresholdConstant;
+    (void) computedThreshold;
+    (void) returnedPlayTime;
+#endif
     std::fflush(g_pLog);
 }
 
-void LogHumanFistTimingPermissionRetired(
+void LogRaw8FistTimingPermissionRetired(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *spu, void *animationActorAddress,
     char const *reason)
@@ -738,9 +1021,29 @@ void LogHumanFistTimingPermissionRetired(
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(g_pLog, "===== HUMAN FIST TIMING PERMISSION =====\n");
-    std::fprintf(
-        g_pLog, "Boundary: HUMAN_FIST_TIMING_PERMISSION_RETIRED\n");
+    bool const routineRetirement = reason != nullptr
+        && (std::strcmp(reason, "SUPERSEDED_BY_ACCEPTED_FIST") == 0
+            || std::strcmp(reason, "C1_GENERATION_CHANGED") == 0);
+    if (!routineRetirement)
+    {
+        std::fprintf(g_pLog, "===== CORE RAW8 FIST TIMING ANOMALY =====\n");
+        std::fprintf(g_pLog, "Classification: IDENTITY_MISMATCH\n");
+        std::fprintf(g_pLog, "Boundary: TIMING_PERMISSION_RETIRED\n");
+        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                     RuntimeClock::GetElapsedMilliseconds());
+        std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
+        std::fprintf(g_pLog, "C1Generation: %llu\n",
+                     static_cast<unsigned long long>(c1Generation));
+        std::fprintf(g_pLog, "Reason: %s\n",
+                     reason != nullptr ? reason : "<null>");
+        std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
+        std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
+                     animationActorAddress);
+        std::fprintf(g_pLog, "=========================================\n\n");
+    }
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP RAW8 FIST TIMING PERMISSION =====\n");
+    std::fprintf(g_pLog, "Boundary: RAW8_FIST_TIMING_PERMISSION_RETIRED\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
                  RuntimeClock::GetElapsedMilliseconds());
     std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
@@ -754,7 +1057,11 @@ void LogHumanFistTimingPermissionRetired(
     std::fprintf(g_pLog, "Reason: %s\n",
                  reason != nullptr ? reason : "<null>");
     std::fprintf(g_pLog, "PermissionRetired: 1\n");
-    std::fprintf(g_pLog, "========================================\n\n");
+    std::fprintf(g_pLog, "===========================================\n\n");
+#else
+    (void) spu;
+    (void) animationActorAddress;
+#endif
     std::fflush(g_pLog);
 }
 void LogAttackCallbackOwnership(
@@ -774,27 +1081,58 @@ void LogAttackCallbackOwnership(
     if (!motionAlreadyLogged)
     {
         g_LastLoggedAni[actorInstance] = currentName;
-        std::fprintf(g_pLog, "===== MARKER OWNERSHIP DECISION =====\n");
-        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                     RuntimeClock::GetElapsedMilliseconds());
-        std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-        std::fprintf(g_pLog, "Family: %s\n", AttackFamilyName(family));
-        std::fprintf(g_pLog, "CurrentMovementAni: %s\n", currentName.c_str());
-        std::fprintf(g_pLog, "Action: %d\n",
-                     static_cast<GEInt>(
-                         actor.Routine.GetProperty<PSRoutine::PropertyAction>()));
-        std::fprintf(g_pLog, "AniPhase: %d\n",
-                     static_cast<GEInt>(actor.GetCurrentAniPhase()));
+        GEInt const action = static_cast<GEInt>(
+            actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+        GEInt const phase = static_cast<GEInt>(actor.GetCurrentAniPhase());
+        Entity fistSource(result.fistSourceInstance);
+        GEInt const fistUseType = fistSource != None
+            ? static_cast<GEInt>(
+                  CollisionSources::GetCollisionSourceUseType(fistSource))
+            : -1;
+        bool const requiredSourcesAvailable =
+            CollisionSources::HasRequiredCollisionSources(
+                result.sources, result.decision.requiredSourceMask);
+        bool const contradiction = !result.decision.foundMatchingMotion
+            || !result.decision.scanValid
+            || (result.decision.markerPresent
+                && result.decision.requiredSourceMask != SourceMask_None
+                && !requiredSourcesAvailable)
+            || (result.decision.hasFistMarkers
+                && fistUseType != static_cast<GEInt>(gEUseType_Fist));
+        std::fprintf(
+            g_pLog,
+            "CORE ATTACK_OWNERSHIP ElapsedMs=%.3f Actor=%s Family=%s Action=%d Phase=%d Motion=%s MarkerPresent=%d RequiredMask=%u FistMarkers=%d Raw8Fist=%s Raw8UseType=%d SuppressNative=%d Classification=%s\n",
+            RuntimeClock::GetElapsedMilliseconds(), actor.GetName().GetText(),
+            AttackFamilyName(family), action, phase, currentName.c_str(),
+            result.decision.markerPresent ? 1 : 0,
+            result.decision.requiredSourceMask,
+            result.decision.hasFistMarkers ? 1 : 0,
+            fistSource != None ? fistSource.GetName().GetText() : "<none>",
+            fistUseType, result.suppressNativeCallback ? 1 : 0,
+            contradiction ? "CONTRADICTION" : "ROUTINE");
+        if (contradiction)
+        {
+            std::fprintf(g_pLog, "===== CORE ATTACK OWNERSHIP ANOMALY =====\n");
+            std::fprintf(g_pLog, "MatchingMotionFound: %d\n",
+                         result.decision.foundMatchingMotion ? 1 : 0);
+            std::fprintf(g_pLog, "MarkerScanValid: %d\n",
+                         result.decision.scanValid ? 1 : 0);
+            std::fprintf(g_pLog, "RequiredSourcesAvailable: %d\n",
+                         requiredSourcesAvailable ? 1 : 0);
+            LogMarkerDiscoverySource(
+                "RightSource", "RIGHT", result.sources.rightInstance);
+            LogMarkerDiscoverySource(
+                "LeftSource", "LEFT", result.sources.leftInstance);
+            LogMarkerDiscoverySource(
+                "Raw8FistSource", nullptr, result.fistSourceInstance);
+            std::fprintf(g_pLog, "=========================================\n\n");
+        }
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+        std::fprintf(g_pLog, "===== DEEP MARKER OWNERSHIP DECISION =====\n");
         std::fprintf(g_pLog, "MatchingMotionFound: %d\n",
                      result.decision.foundMatchingMotion ? 1 : 0);
         std::fprintf(g_pLog, "MarkerScanValid: %d\n",
                      result.decision.scanValid ? 1 : 0);
-        std::fprintf(g_pLog, "ContainsReservedMarker: %d\n",
-                     result.decision.markerPresent ? 1 : 0);
-        std::fprintf(g_pLog, "RequiredSourceMask: %u\n",
-                     result.decision.requiredSourceMask);
-        std::fprintf(g_pLog, "HasFistMarkers: %d\n",
-                     result.decision.hasFistMarkers ? 1 : 0);
         for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
         {
             MarkerOpcode const markerOpcode =
@@ -812,7 +1150,8 @@ void LogAttackCallbackOwnership(
             LogResolvedSource("FistSource", result.fistSourceInstance);
         std::fprintf(g_pLog, "SuppressNativeCallback: %d\n",
                      result.suppressNativeCallback ? 1 : 0);
-        std::fprintf(g_pLog, "=====================================\n\n");
+        std::fprintf(g_pLog, "==========================================\n\n");
+#endif
     }
 
     std::fflush(g_pLog);
@@ -830,90 +1169,149 @@ void LogNullMarker(char const *markerName)
     std::fflush(g_pLog);
 }
 
-void LogMarkerContext(Entity &actor, MarkerOpcode opcode)
+static void LogMarkerDiscoverySource(
+    char const *label, char const *slot, eCEntity *sourceInstance)
 {
-    if (g_pLog == nullptr)
-        return;
-    bCString ani = actor.NPC.GetCurrentMovementAni();
-    std::fprintf(g_pLog, "===== %s RECEIVED =====\n",
-                 FrameCollisionMarkers::GetMarkerOpcodeName(opcode));
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-    std::fprintf(g_pLog, "Action: %d\n",
-                 static_cast<GEInt>(
-                     actor.Routine.GetProperty<PSRoutine::PropertyAction>()));
-    std::fprintf(g_pLog, "AniPhase: %d\n",
-                 static_cast<GEInt>(actor.GetCurrentAniPhase()));
-    std::fprintf(g_pLog, "StateTime: %.6f\n", actor.Routine.GetStateTime());
-    std::fprintf(g_pLog, "StatePositionBeforeMarker: %d\n",
-                 static_cast<GEInt>(actor.Routine.GetProperty<
-                     PSRoutine::PropertyStatePosition>()));
-    std::fprintf(g_pLog, "CurrentMovementAni: %s\n", ani.GetText());
+    Entity source(sourceInstance);
+    if (slot != nullptr)
+        std::fprintf(g_pLog, "%sSlot: %s\n", label, slot);
+    std::fprintf(g_pLog, "%sName: %s\n", label,
+                 source != None ? source.GetName().GetText() : "<none>");
+    std::fprintf(g_pLog, "%sUseType: %d\n", label,
+                 source != None
+                     ? static_cast<GEInt>(
+                           CollisionSources::GetCollisionSourceUseType(source))
+                     : -1);
+    std::fprintf(g_pLog, "%sCollisionGroup: %d\n", label,
+                 source != None
+                     ? static_cast<GEInt>(source.GetCollisionGroup()) : -1);
 }
 
 void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
 {
-    if (g_pLog == nullptr)
+    if (g_pLog == nullptr || actor == None)
         return;
-    std::fprintf(g_pLog, "MarkerName: %s\n", r.markerName.c_str());
-    std::fprintf(g_pLog, "MarkerOpcode: %s\n",
-                 FrameCollisionMarkers::GetMarkerOpcodeName(r.opcode));
-    std::fprintf(g_pLog, "StatePositionAfterMarker: %d\n",
-                 static_cast<GEInt>(actor.Routine.GetProperty<
-                     PSRoutine::PropertyStatePosition>()));
-    std::fprintf(g_pLog, "C1GenerationValid: %d\n",
-                 r.c1GenerationValid ? 1 : 0);
-    std::fprintf(g_pLog, "C1Generation: %llu\n",
-                 static_cast<unsigned long long>(r.c1Generation));
-    switch (r.code)
+
+    GEInt const action = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEInt const phase = static_cast<GEInt>(actor.GetCurrentAniPhase());
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    bCString const animation = actor.NPC.GetCurrentMovementAni();
+    char const *const motion = animation.GetText() != nullptr
+        ? animation.GetText() : "";
+    char const *const opcodeName =
+        FrameCollisionMarkers::GetMarkerOpcodeName(r.opcode);
+    unsigned int const participatingMask = r.previousSourceMask
+        | r.desiredSourceMask | r.retiredSourceMask | r.ownedMask
+        | r.markerOwnedWeaponMask;
+    Entity rightSource(r.sources.rightInstance);
+    Entity leftSource(r.sources.leftInstance);
+    GEInt const rightUseType = r.sourceUseTypes[0] >= 0
+        ? r.sourceUseTypes[0]
+        : rightSource != None
+            ? static_cast<GEInt>(
+                  CollisionSources::GetCollisionSourceUseType(rightSource))
+            : -1;
+    GEInt const leftUseType = r.sourceUseTypes[1] >= 0
+        ? r.sourceUseTypes[1]
+        : leftSource != None
+            ? static_cast<GEInt>(
+                  CollisionSources::GetCollisionSourceUseType(leftSource))
+            : -1;
+
+    if (IsRoutineMarkerResult(r.code))
     {
-        case MarkerResult_RejectedUnsupportedHit:
-            std::fprintf(g_pLog, "MarkerAction: REJECTED_UNSUPPORTED_HIT\n");
-            break;
-        case MarkerResult_RejectedMotionOwnership:
-            std::fprintf(g_pLog, "MarkerAction: REJECTED_MOTION_OWNERSHIP\n");
-            break;
-        case MarkerResult_UnsupportedMissingSource:
-            std::fprintf(g_pLog, "MarkerAction: UNSUPPORTED_MISSING_SOURCE\n");
-            std::fprintf(g_pLog, "RequiredSourceMask: %u\n",
-                         r.decision.requiredSourceMask);
-            break;
-        case MarkerResult_RejectedNoGeneration:
-            std::fprintf(g_pLog, "MarkerAction: REJECTED_NO_C1_GENERATION\n");
-            break;
-        case MarkerResult_DuplicateIgnored:
-            std::fprintf(g_pLog, "MarkerAction: DUPLICATE_SAME_UPDATE_IGNORED\n");
-            std::fprintf(g_pLog, "DuplicateStateTimeDelta: %.9f\n",
-                         r.duplicateStateTimeDelta);
-            std::fprintf(g_pLog, "DuplicateElapsedMsDelta: %.6f\n",
-                         r.duplicateElapsedMsDelta);
-            break;
-        case MarkerResult_RejectedGenerationInconsistency:
+        std::fprintf(
+            g_pLog,
+            "CORE MARKER ElapsedMs=%.3f Actor=%s Action=%d Family=%s Phase=%d Motion=%s Marker=%s Result=%s C1Valid=%d C1=%llu StatePosition=%d PreviousMask=%u DesiredMask=%u RetiredMask=%u OwnedMask=%u MarkerOwnedMask=%u Activated=%d Deactivated=%d Retired=%d RearmRequests=%d Clears=%d",
+            RuntimeClock::GetElapsedMilliseconds(), actor.GetName().GetText(),
+            action, AttackFamilyNameForAction(action), phase, motion,
+            opcodeName, MarkerResultName(r.code),
+            r.c1GenerationValid ? 1 : 0,
+            static_cast<unsigned long long>(r.c1Generation), statePosition,
+            r.previousSourceMask, r.desiredSourceMask, r.retiredSourceMask,
+            r.ownedMask, r.markerOwnedWeaponMask, r.activatedSourceCount,
+            r.deactivatedSourceCount, r.retiredSourceCount,
+            r.collisionGroupRequestCount, r.triggeredListClearCount);
+        if ((participatingMask & SourceMask_Right) != 0)
+            std::fprintf(g_pLog, " RightUseType=%d", rightUseType);
+        if ((participatingMask & SourceMask_Left) != 0)
+            std::fprintf(g_pLog, " LeftUseType=%d", leftUseType);
+        if (r.opcode == MarkerOpcode_Fist)
+        {
             std::fprintf(
                 g_pLog,
-                "MarkerAction: REJECTED_C1_GENERATION_INCONSISTENCY\n");
-            break;
-        case MarkerResult_BudgetIgnored:
-            std::fprintf(g_pLog, "MarkerAction: AUTHORED_OCCURRENCE_BUDGET_IGNORED\n");
-            break;
-        case MarkerResult_OffAccepted:
-            std::fprintf(g_pLog, "MarkerAction: OFF_ACCEPTED\n");
-            break;
-        case MarkerResult_OffNoWindow:
-            std::fprintf(g_pLog, "MarkerAction: OFF_NO_MARKER_OWNED_WINDOW\n");
-            break;
-        case MarkerResult_RejectedEmptySourceSet:
-            std::fprintf(g_pLog, "MarkerAction: REJECTED_EMPTY_SOURCE_SET\n");
-            break;
-        case MarkerResult_RejectedIncompleteActivation:
-            std::fprintf(g_pLog, "MarkerAction: REJECTED_INCOMPLETE_ACTIVATION\n");
-            std::fprintf(g_pLog, "MissingSourceMask: %u\n", r.missingSourceMask);
-            break;
-        case MarkerResult_Accepted:
-            std::fprintf(g_pLog, "MarkerAction: ACCEPTED\n");
-            break;
+                " Raw8Fist=%s Raw8UseType=%d Latch=%d->%d LatchConfirmed=%d",
+                EntityName(r.fistSourceInstance), r.fistSourceUseType,
+                r.fistLatchBefore, r.fistLatchAfter,
+                r.fistLatchWriteConfirmed ? 1 : 0);
+        }
+        if (r.code == MarkerResult_DuplicateIgnored)
+        {
+            std::fprintf(g_pLog, " DuplicateStateDelta=%.9f DuplicateMsDelta=%.6f",
+                         r.duplicateStateTimeDelta,
+                         r.duplicateElapsedMsDelta);
+        }
+        if (r.code == MarkerResult_BudgetIgnored)
+        {
+            std::fprintf(g_pLog, " Authored=%d AcceptedBefore=%d AcceptedAfter=%d",
+                         r.authoredMarkerCount, r.acceptedMarkerCountBefore,
+                         r.acceptedMarkerCountAfter);
+        }
+        std::fprintf(g_pLog, "\n");
     }
+    else
+    {
+        eCEntity *fistSourceInstance = r.fistSourceInstance;
+        if (fistSourceInstance == nullptr)
+            fistSourceInstance =
+                CollisionSources::ResolveFistCollisionSource(actor);
+        CollisionLifecycleGuard::GenerationToken const diagnosticGeneration =
+            CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+                actor.GetInstance());
+        bool const c1GenerationValid = r.c1GenerationValid
+            || diagnosticGeneration.valid;
+        std::uint64_t const c1Generation = r.c1GenerationValid
+            ? r.c1Generation : diagnosticGeneration.generation;
+        std::fprintf(g_pLog, "===== CORE MARKER ANOMALY / DISCOVERY =====\n");
+        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                     RuntimeClock::GetElapsedMilliseconds());
+        std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
+        std::fprintf(g_pLog, "Action: %d\n", action);
+        std::fprintf(g_pLog, "Family: %s\n",
+                     AttackFamilyNameForAction(action));
+        std::fprintf(g_pLog, "AniPhase: %d\n", phase);
+        std::fprintf(g_pLog, "StatePosition: %d\n", statePosition);
+        std::fprintf(g_pLog, "CurrentMovementAni: %s\n", motion);
+        std::fprintf(g_pLog, "MarkerName: %s\n", r.markerName.c_str());
+        std::fprintf(g_pLog, "MarkerOpcode: %s\n", opcodeName);
+        std::fprintf(g_pLog, "Result: %s\n", MarkerResultName(r.code));
+        std::fprintf(g_pLog, "C1GenerationValid: %d\n",
+                     c1GenerationValid ? 1 : 0);
+        std::fprintf(g_pLog, "C1Generation: %llu\n",
+                     static_cast<unsigned long long>(c1Generation));
+        std::fprintf(g_pLog, "RequiredSourceMask: %u\n",
+                     r.decision.requiredSourceMask);
+        std::fprintf(g_pLog, "MissingSourceMask: %u\n",
+                     r.missingSourceMask);
+        LogMarkerDiscoverySource(
+            "RightSource", "RIGHT", r.sources.rightInstance);
+        LogMarkerDiscoverySource(
+            "LeftSource", "LEFT", r.sources.leftInstance);
+        LogMarkerDiscoverySource(
+            "Raw8FistSource", nullptr, fistSourceInstance);
+        std::fprintf(g_pLog, "===========================================\n\n");
+    }
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP MARKER RESULT =====\n");
+    std::fprintf(g_pLog, "MarkerName: %s\n", r.markerName.c_str());
+    std::fprintf(g_pLog, "MarkerOpcode: %s\n", opcodeName);
+    std::fprintf(g_pLog, "Result: %s\n", MarkerResultName(r.code));
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(actor.GetInstance()));
+    std::fprintf(g_pLog, "MarkerStateTime: %.6f\n", r.markerStateTime);
     std::fprintf(g_pLog, "AuthoredMarkerOccurrences: %d\n",
                  r.authoredMarkerCount);
     std::fprintf(g_pLog, "AcceptedMarkerOccurrencesBefore: %d\n",
@@ -922,6 +1320,16 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                  r.acceptedMarkerCountAfter);
     std::fprintf(g_pLog, "ExecutionBudgetReset: %d\n",
                  r.executionBudgetReset ? 1 : 0);
+    for (GEInt opcode = 0; opcode < MarkerOpcode_Count; ++opcode)
+    {
+        MarkerOpcode const markerOpcode = static_cast<MarkerOpcode>(opcode);
+        std::fprintf(g_pLog, "Authored%sCount: %d\n",
+                     FrameCollisionMarkers::GetMarkerOpcodeName(markerOpcode),
+                     r.decision.markerCounts[opcode]);
+        std::fprintf(g_pLog, "First%sFrame: %d\n",
+                     FrameCollisionMarkers::GetMarkerOpcodeName(markerOpcode),
+                     r.decision.firstMarkerFrames[opcode]);
+    }
     std::fprintf(g_pLog, "PreviousSourceMask: %u\n", r.previousSourceMask);
     std::fprintf(g_pLog, "DesiredSourceMask: %u\n", r.desiredSourceMask);
     std::fprintf(g_pLog, "RetiredSourceMask: %u\n", r.retiredSourceMask);
@@ -934,37 +1342,15 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
                  r.retiredSourceCount);
     std::fprintf(g_pLog, "DeactivatedSourceCount: %d\n",
                  r.deactivatedSourceCount);
+    std::fprintf(g_pLog, "CollisionGroupRequestCount: %d\n",
+                 r.collisionGroupRequestCount);
     std::fprintf(g_pLog, "TriggeredListClearCount: %d\n",
                  r.triggeredListClearCount);
-    if (r.opcode == MarkerOpcode_Fist)
-    {
-        std::fprintf(g_pLog, "FistSourceResolved: %d\n",
-                     r.fistSourceInstance != nullptr ? 1 : 0);
-        std::fprintf(g_pLog, "FistSourceAddress: %p\n",
-                     static_cast<void *>(r.fistSourceInstance));
-        std::fprintf(g_pLog, "FistUseType: %d\n",
-                     r.fistSourceUseType);
-        std::fprintf(g_pLog, "FistGroupBefore: %d\n",
-                     r.fistSourceGroupBefore);
-        std::fprintf(g_pLog, "FistGroupAfter: %d\n",
-                     r.fistSourceGroupAfter);
-        std::fprintf(g_pLog, "FistSPUAddress: %p\n",
-                     static_cast<void *>(r.fistSPU));
-        std::fprintf(g_pLog, "FistLatchBefore: %d\n",
-                     r.fistLatchBefore);
-        std::fprintf(g_pLog, "FistLatchAfter: %d\n",
-                     r.fistLatchAfter);
-        std::fprintf(g_pLog, "FistLatchWriteAttempted: %d\n",
-                     r.fistLatchWriteAttempted ? 1 : 0);
-        std::fprintf(g_pLog, "FistLatchWriteConfirmed: %d\n",
-                     r.fistLatchWriteConfirmed ? 1 : 0);
-    }
+    LogResolvedSource("RightSource", r.sources.rightInstance);
+    LogResolvedSource("LeftSource", r.sources.leftInstance);
     for (GEInt i = 0; i < 2; ++i)
     {
-        unsigned int const mask = i == 0 ? SourceMask_Right : SourceMask_Left;
-        if ((r.desiredSourceMask & mask) == 0)
-            continue;
-        char const *label = i == 0 ? "Right" : "Left";
+        char const *const label = i == 0 ? "Right" : "Left";
         std::fprintf(g_pLog, "%sGroupBefore: %d\n", label,
                      r.sourceGroupBefore[i]);
         std::fprintf(g_pLog, "%sGroupAfter: %d\n", label,
@@ -976,48 +1362,36 @@ void LogMarkerResult(Entity &actor, MarkerProcessResult const &r)
         std::fprintf(g_pLog, "%sTriggeredListCleared: %d\n", label,
                      r.sourceListCleared[i] ? 1 : 0);
     }
-    if (r.quickStatePositionBeforeMarker >= 0)
+    if (r.opcode == MarkerOpcode_Fist)
     {
-        std::fprintf(g_pLog, "QuickStatePositionBefore: %d\n",
-                     r.quickStatePositionBeforeMarker);
-        std::fprintf(g_pLog, "QuickStatePositionAfter: %d\n",
-                     r.quickStatePositionAfterMarker);
+        LogResolvedSource("Raw8FistSource", r.fistSourceInstance);
+        std::fprintf(g_pLog, "FistSPUAddress: %p\n",
+                     static_cast<void *>(r.fistSPU));
+        std::fprintf(g_pLog, "FistLatchBefore: %d\n", r.fistLatchBefore);
+        std::fprintf(g_pLog, "FistLatchAfter: %d\n", r.fistLatchAfter);
+        std::fprintf(g_pLog, "FistLatchWriteAttempted: %d\n",
+                     r.fistLatchWriteAttempted ? 1 : 0);
+        std::fprintf(g_pLog, "FistLatchWriteConfirmed: %d\n",
+                     r.fistLatchWriteConfirmed ? 1 : 0);
     }
-    if (r.whirlStatePositionBeforeMarker >= 0)
-    {
-        std::fprintf(g_pLog, "WhirlStatePositionBefore: %d\n",
-                     r.whirlStatePositionBeforeMarker);
-        std::fprintf(g_pLog, "WhirlStatePositionAfter: %d\n",
-                     r.whirlStatePositionAfterMarker);
-    }
-    std::fprintf(g_pLog, "===========================\n\n");
+    std::fprintf(g_pLog, "QuickStatePositionBefore: %d\n",
+                 r.quickStatePositionBeforeMarker);
+    std::fprintf(g_pLog, "QuickStatePositionAfter: %d\n",
+                 r.quickStatePositionAfterMarker);
+    std::fprintf(g_pLog, "WhirlStatePositionBefore: %d\n",
+                 r.whirlStatePositionBeforeMarker);
+    std::fprintf(g_pLog, "WhirlStatePositionAfter: %d\n",
+                 r.whirlStatePositionAfterMarker);
+    std::fprintf(g_pLog, "==============================\n\n");
+#endif
     std::fflush(g_pLog);
-}
-
-static char const *PlayerSlotMatch(eCEntity *changedEntity)
-{
-    Entity player = Entity::GetPlayer();
-    if (player == None)
-        return "NO_PLAYER";
-    EquippedCollisionSources const sources =
-        CollisionSources::GetEquippedCollisionSources(player);
-    bool const right = changedEntity != nullptr
-        && changedEntity == sources.rightInstance;
-    bool const left = changedEntity != nullptr
-        && changedEntity == sources.leftInstance;
-    if (right && left)
-        return "BOTH";
-    if (right)
-        return "RIGHT";
-    if (left)
-        return "LEFT";
-    return "NONE";
 }
 
 void LogSetCollisionGroup(
     eCEntity *changedEntity, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup, eECollisionGroup afterGroup,
-    GEInt retiredMarkerSourceBitCount)
+    GEInt retiredMarkerSourceBitCount,
+    CollisionLifecycleGuard::CollisionObservationResult const &observation)
 {
     if (g_pLog == nullptr || changedEntity == nullptr)
         return;
@@ -1028,38 +1402,45 @@ void LogSetCollisionGroup(
     if (!involvesAttack)
         return;
 
-    std::fprintf(g_pLog, "===== ENGINE SetCollisionGroup =====\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Source: %s\n", EntityName(changedEntity));
-    std::fprintf(g_pLog, "SourceAddress: %p\n",
-                 static_cast<void *>(changedEntity));
-    std::fprintf(g_pLog, "SlotAssociation: %s\n",
-                 PlayerSlotMatch(changedEntity));
-    Entity player = Entity::GetPlayer();
-    if (player != None)
+    eCEntity *ownerInstance = nullptr;
+    unsigned int sideMask = SourceMask_None;
+    if (observation.sourceEvent.available
+        && observation.sourceEvent.sourceInstance == changedEntity)
     {
-        bCString currentAni = player.NPC.GetCurrentMovementAni();
-        std::fprintf(
-            g_pLog, "PlayerAction: %d\n",
-            static_cast<GEInt>(
-                player.Routine.GetProperty<PSRoutine::PropertyAction>()));
-        std::fprintf(g_pLog, "PlayerAniPhase: %d\n",
-                     static_cast<GEInt>(player.GetCurrentAniPhase()));
-        std::fprintf(g_pLog, "PlayerStateTime: %.6f\n",
-                     player.Routine.GetStateTime());
-        std::fprintf(g_pLog, "PlayerCurrentMovementAni: %s\n",
-                     currentAni.GetText());
+        ownerInstance = observation.sourceEvent.actorInstance;
+        sideMask = observation.sourceEvent.sideMask;
     }
-    std::fprintf(g_pLog, "RequestedGroup: %d\n",
-                 static_cast<GEInt>(requestedGroup));
-    std::fprintf(g_pLog, "BeforeGroup: %d\n",
-                 static_cast<GEInt>(beforeGroup));
-    std::fprintf(g_pLog, "AfterGroup: %d\n",
-                 static_cast<GEInt>(afterGroup));
-    std::fprintf(g_pLog, "RetiredMarkerSourceBitCount: %d\n",
-                 retiredMarkerSourceBitCount);
-    std::fprintf(g_pLog, "====================================\n\n");
+    else if (observation.start.available)
+    {
+        ownerInstance = observation.start.generation.actorInstance;
+        for (unsigned int i = 0;
+             i < observation.start.generation.trackedSourceCount; ++i)
+        {
+            if (observation.start.sources[i].sourceInstance == changedEntity)
+                sideMask |= observation.start.sources[i].sideMask;
+        }
+    }
+    else if (observation.binding.code
+             != CollisionLifecycleGuard::BindingEvent_None
+             && observation.binding.sourceInstance == changedEntity)
+    {
+        ownerInstance = observation.binding.generation.actorInstance;
+    }
+
+    Entity source(changedEntity);
+    GEInt const useType = source != None
+        ? static_cast<GEInt>(
+              CollisionSources::GetCollisionSourceUseType(source))
+        : -1;
+    std::fprintf(
+        g_pLog,
+        "CORE COLLISION_GROUP ElapsedMs=%.3f Source=%s UseType=%d Owner=%s Slot=%s Requested=%d Before=%d After=%d MarkerBitsRetired=%d\n",
+        RuntimeClock::GetElapsedMilliseconds(), EntityName(changedEntity),
+        useType,
+        ownerInstance != nullptr ? EntityName(ownerInstance) : "<unresolved>",
+        SideName(sideMask), static_cast<GEInt>(requestedGroup),
+        static_cast<GEInt>(beforeGroup), static_cast<GEInt>(afterGroup),
+        retiredMarkerSourceBitCount);
     std::fflush(g_pLog);
 }
 
@@ -1088,50 +1469,64 @@ static void LogBinding(
     using namespace CollisionLifecycleGuard;
     if (g_pLog == nullptr || binding.code == BindingEvent_None)
         return;
-    if (!IsPlayerActor(binding.generation.actorInstance))
-        return;
-    std::fprintf(g_pLog, "===== C1 SCRIPT BINDING =====\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Event: %s\n", BindingEventName(binding.code));
-    std::fprintf(g_pLog, "Actor: %s\n",
-                 EntityName(binding.generation.actorInstance));
-    std::fprintf(g_pLog, "Generation: %llu\n",
-                 static_cast<unsigned long long>(
-                     binding.generation.generation));
-    std::fprintf(g_pLog, "Status: %s\n",
-                 GenerationStatusName(binding.generation.status));
-    std::fprintf(g_pLog, "Outstanding: %d\n",
-                 binding.generation.outstanding ? 1 : 0);
-    std::fprintf(g_pLog, "ScriptFunction: %s\n",
-                 binding.scriptName.c_str());
+    std::fprintf(
+        g_pLog,
+        "CORE C1_BIND ElapsedMs=%.3f Event=%s Actor=%s Generation=%llu Status=%s Outstanding=%d Source=%s Script=%s\n",
+        RuntimeClock::GetElapsedMilliseconds(), BindingEventName(binding.code),
+        EntityName(binding.generation.actorInstance),
+        static_cast<unsigned long long>(binding.generation.generation),
+        GenerationStatusName(binding.generation.status),
+        binding.generation.outstanding ? 1 : 0,
+        EntityName(binding.sourceInstance), binding.scriptName.c_str());
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP C1 SCRIPT BINDING =====\n");
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(binding.generation.actorInstance));
+    std::fprintf(g_pLog, "SPUAddress: %p\n",
+                 static_cast<void *>(binding.spu));
+    std::fprintf(g_pLog, "ArgumentsAddress: %p\n",
+                 static_cast<void *>(binding.arguments));
     std::fprintf(g_pLog, "SourceAddress: %p\n",
                  static_cast<void *>(binding.sourceInstance));
-    std::fprintf(g_pLog, "=============================\n\n");
+    std::fprintf(g_pLog, "==================================\n\n");
+#endif
 }
 
 static void LogLifecycleStart(
     CollisionLifecycleGuard::LifecycleStartFacts const &start)
 {
-    if (g_pLog == nullptr || !start.available
-        || !IsPlayerActor(start.generation.actorInstance))
+    if (g_pLog == nullptr || !start.available)
         return;
-    std::fprintf(g_pLog, "===== C1 LIFECYCLE START =====\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n",
-                 EntityName(start.generation.actorInstance));
+    std::fprintf(
+        g_pLog,
+        "CORE C1_START ElapsedMs=%.3f Actor=%s Generation=%llu Status=%s Outstanding=%d TrackedSources=%u ReplacedGeneration=%llu ReplacedOutstanding=%d",
+        RuntimeClock::GetElapsedMilliseconds(),
+        EntityName(start.generation.actorInstance),
+        static_cast<unsigned long long>(start.generation.generation),
+        GenerationStatusName(start.generation.status),
+        start.generation.outstanding ? 1 : 0,
+        start.generation.trackedSourceCount,
+        static_cast<unsigned long long>(start.replacedGeneration),
+        start.replacedOutstanding ? 1 : 0);
+    for (unsigned int i = 0; i < start.generation.trackedSourceCount; ++i)
+    {
+        std::fprintf(g_pLog, " Source[%u]=%s Side=%s Group=%d", i,
+                     EntityName(start.sources[i].sourceInstance),
+                     SideName(start.sources[i].sideMask),
+                     static_cast<GEInt>(start.sources[i].actualGroup));
+    }
+    std::fprintf(g_pLog, "\n");
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP C1 LIFECYCLE START =====\n");
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(start.generation.actorInstance));
     std::fprintf(g_pLog, "Generation: %llu\n",
                  static_cast<unsigned long long>(
                      start.generation.generation));
     std::fprintf(g_pLog, "Status: %s\n",
                  GenerationStatusName(start.generation.status));
-    std::fprintf(g_pLog, "ReplacedGeneration: %llu\n",
-                 static_cast<unsigned long long>(start.replacedGeneration));
-    std::fprintf(g_pLog, "ReplacedOutstanding: %d\n",
-                 start.replacedOutstanding ? 1 : 0);
-    std::fprintf(g_pLog, "TrackedSourceCount: %u\n",
-                 start.generation.trackedSourceCount);
+    std::fprintf(g_pLog, "Outstanding: %d\n",
+                 start.generation.outstanding ? 1 : 0);
     for (unsigned int i = 0; i < start.generation.trackedSourceCount; ++i)
     {
         std::fprintf(g_pLog, "Source[%u].Address: %p\n", i,
@@ -1141,37 +1536,43 @@ static void LogLifecycleStart(
         std::fprintf(g_pLog, "Source[%u].ActualGroup: %d\n", i,
                      static_cast<GEInt>(start.sources[i].actualGroup));
     }
-    std::fprintf(g_pLog, "==============================\n\n");
+    std::fprintf(g_pLog, "===================================\n\n");
+#endif
 }
 
 static void LogSourceEvent(
     char const *heading,
     CollisionLifecycleGuard::SourceEventFacts const &event)
 {
-    if (g_pLog == nullptr || !event.available
-        || !IsPlayerActor(event.actorInstance))
+    if (g_pLog == nullptr || !event.available)
         return;
-    std::fprintf(g_pLog, "===== %s =====\n", heading);
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", EntityName(event.actorInstance));
-    std::fprintf(g_pLog, "Generation: %llu\n",
-                 static_cast<unsigned long long>(event.generation));
-    std::fprintf(g_pLog, "Status: %s\n",
-                 GenerationStatusName(event.status));
-    std::fprintf(g_pLog, "Source: %s\n", EntityName(event.sourceInstance));
+    std::fprintf(
+        g_pLog,
+        "CORE %s ElapsedMs=%.3f Actor=%s Generation=%llu Status=%s Source=%s Side=%s Requests=%u Outstanding=%d CleanupObserved=%d Group=%d\n",
+        heading, RuntimeClock::GetElapsedMilliseconds(),
+        EntityName(event.actorInstance),
+        static_cast<unsigned long long>(event.generation),
+        GenerationStatusName(event.status), EntityName(event.sourceInstance),
+        SideName(event.sideMask), event.offensiveRequestCount,
+        event.outstandingCleanup ? 1 : 0,
+        event.cleanupObserved ? 1 : 0,
+        static_cast<GEInt>(event.actualGroup));
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    std::fprintf(g_pLog, "===== DEEP %s =====\n", heading);
+    std::fprintf(g_pLog, "ActorAddress: %p\n",
+                 static_cast<void *>(event.actorInstance));
     std::fprintf(g_pLog, "SourceAddress: %p\n",
                  static_cast<void *>(event.sourceInstance));
-    std::fprintf(g_pLog, "Side: %s\n", SideName(event.sideMask));
+    std::fprintf(g_pLog, "Generation: %llu\n",
+                 static_cast<unsigned long long>(event.generation));
     std::fprintf(g_pLog, "OffensiveRequestCount: %u\n",
                  event.offensiveRequestCount);
     std::fprintf(g_pLog, "Outstanding: %d\n",
                  event.outstandingCleanup ? 1 : 0);
     std::fprintf(g_pLog, "CleanupObserved: %d\n",
                  event.cleanupObserved ? 1 : 0);
-    std::fprintf(g_pLog, "ActualGroup: %d\n",
-                 static_cast<GEInt>(event.actualGroup));
     std::fprintf(g_pLog, "==============================\n\n");
+#endif
 }
 
 void LogBeginCombatMoveResult(
@@ -1188,17 +1589,22 @@ void LogCompleteCombatMoveResult(
     CollisionLifecycleGuard::CompleteCombatMoveResult const &result)
 {
     using namespace CollisionLifecycleGuard;
-    if (g_pLog != nullptr && result.statusEvent != CandidateStatus_None
-        && IsPlayerActor(result.generation.actorInstance))
+    if (g_pLog != nullptr && result.statusEvent != CandidateStatus_None)
     {
-        std::fprintf(g_pLog, "===== C1 LIFECYCLE STATUS =====\n");
-        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                     RuntimeClock::GetElapsedMilliseconds());
-        std::fprintf(g_pLog, "Event: %s\n",
-                     result.statusEvent == CandidateStatus_Persisted
-                         ? "PERSISTED" : "CANCELLED_IMMEDIATE_RESULT");
-        std::fprintf(g_pLog, "Actor: %s\n",
-                     EntityName(result.generation.actorInstance));
+        std::fprintf(
+            g_pLog,
+            "CORE C1_STATUS ElapsedMs=%.3f Event=%s Actor=%s Generation=%llu Status=%s Outstanding=%d\n",
+            RuntimeClock::GetElapsedMilliseconds(),
+            result.statusEvent == CandidateStatus_Persisted
+                ? "PERSISTED" : "CANCELLED_IMMEDIATE_RESULT",
+            EntityName(result.generation.actorInstance),
+            static_cast<unsigned long long>(result.generation.generation),
+            GenerationStatusName(result.generation.status),
+            result.generation.outstanding ? 1 : 0);
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+        std::fprintf(g_pLog, "===== DEEP C1 LIFECYCLE STATUS =====\n");
+        std::fprintf(g_pLog, "ActorAddress: %p\n",
+                     static_cast<void *>(result.generation.actorInstance));
         std::fprintf(g_pLog, "Generation: %llu\n",
                      static_cast<unsigned long long>(
                          result.generation.generation));
@@ -1206,7 +1612,8 @@ void LogCompleteCombatMoveResult(
                      GenerationStatusName(result.generation.status));
         std::fprintf(g_pLog, "Outstanding: %d\n",
                      result.generation.outstanding ? 1 : 0);
-        std::fprintf(g_pLog, "===============================\n\n");
+        std::fprintf(g_pLog, "====================================\n\n");
+#endif
     }
     LogIssue(result.issue);
     if (g_pLog != nullptr)
@@ -1239,77 +1646,161 @@ void LogFinalizationResult(
     CollisionLifecycleGuard::FinalizationResult const &result)
 {
     LogIssue(result.issue);
-    if (g_pLog == nullptr || !result.available
-        || !IsPlayerActor(result.actorInstance))
+    if (g_pLog == nullptr || !result.available)
         return;
 
-    std::fprintf(g_pLog, "===== C1 FINALIZATION =====\n");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Reason: AISETSTATE_AFTER_ORIGINAL\n");
-    std::fprintf(g_pLog, "Actor: %s\n", EntityName(result.actorInstance));
-    std::fprintf(g_pLog, "Generation: %llu\n",
-                 static_cast<unsigned long long>(result.generation));
-    std::fprintf(g_pLog, "Status: %s\n",
-                 GenerationStatusName(result.status));
-    std::fprintf(g_pLog, "TrackedSourceCount: %u\n", result.sourceCount);
+    using namespace CollisionLifecycleGuard;
+    bool rich = false;
     for (unsigned int i = 0; i < result.sourceCount; ++i)
     {
-        auto const &source = result.sources[i];
-        std::fprintf(g_pLog, "Source[%u].Outcome: %s\n", i,
-                     FinalizationOutcomeName(source.outcome));
-        std::fprintf(g_pLog, "Source[%u].Address: %p\n", i,
-                     static_cast<void *>(source.sourceInstance));
-        std::fprintf(g_pLog, "Source[%u].LivenessEstablished: %d\n", i,
-                     source.livenessEstablished ? 1 : 0);
-        if (source.livenessEstablished)
+        FinalizationSourceResult const &source = result.sources[i];
+        if (source.outcome == FinalizationOutcome_UnresolvedNotEquipped
+            || source.outcome
+                == FinalizationOutcome_RepairDivergedFromItemEquipped
+            || source.repairAttempted)
         {
-            std::fprintf(g_pLog, "Source[%u].Name: %s\n", i,
-                         EntityName(source.sourceInstance));
+            rich = true;
         }
-        else
-        {
-            std::fprintf(g_pLog,
-                         "Source[%u].Name: <not-dereferenced>\n", i);
-        }
-        std::fprintf(g_pLog, "Source[%u].OriginalSide: %s\n", i,
-                     SideName(source.originalSideMask));
-        std::fprintf(g_pLog, "Source[%u].CurrentSideMask: %u\n", i,
-                     source.currentSideMask);
-        std::fprintf(g_pLog, "Source[%u].OffensiveRequestCount: %u\n", i,
-                     source.offensiveRequestCount);
-        std::fprintf(g_pLog,
-                     "Source[%u].OutstandingBeforeFinalization: %d\n", i,
-                     source.outstandingBeforeFinalization ? 1 : 0);
-        std::fprintf(g_pLog,
-                     "Source[%u].CleanupObservedBeforeFinalization: %d\n", i,
-                     source.cleanupObservedBeforeFinalization ? 1 : 0);
-        std::fprintf(g_pLog, "Source[%u].ActualGroupBeforeRepair: %d\n", i,
-                     static_cast<GEInt>(source.actualGroupBeforeRepair));
-        std::fprintf(g_pLog, "Source[%u].RepairAttempted: %d\n", i,
-                     source.repairAttempted ? 1 : 0);
-        if (source.repairAttempted)
-        {
-            std::fprintf(g_pLog, "Source[%u].RepairRequestedGroup: %d\n", i,
-                         static_cast<GEInt>(source.repairRequestedGroup));
-            std::fprintf(g_pLog, "Source[%u].ActualGroupAfterRepair: %d\n", i,
-                         static_cast<GEInt>(source.actualGroupAfterRepair));
-        }
-        std::fprintf(g_pLog, "Source[%u].PhysicalCollisionChanged: %d\n", i,
-                     source.physicalCollisionChanged ? 1 : 0);
     }
-    std::fprintf(g_pLog, "PhysicalCollisionChanged: %d\n",
-                 result.physicalCollisionChanged ? 1 : 0);
-    std::fprintf(g_pLog, "===========================\n\n");
+
+    if (!rich)
+    {
+        std::fprintf(
+            g_pLog,
+            "CORE C1_FINAL ElapsedMs=%.3f Actor=%s Generation=%llu Status=%s SourceCount=%u PhysicalChanged=%d",
+            RuntimeClock::GetElapsedMilliseconds(),
+            EntityName(result.actorInstance),
+            static_cast<unsigned long long>(result.generation),
+            GenerationStatusName(result.status), result.sourceCount,
+            result.physicalCollisionChanged ? 1 : 0);
+        for (unsigned int i = 0; i < result.sourceCount; ++i)
+        {
+            FinalizationSourceResult const &source = result.sources[i];
+            std::fprintf(
+                g_pLog,
+                " Source[%u]=%s Side=%s Outstanding=%d Cleanup=%d Outcome=%s",
+                i,
+                source.livenessEstablished
+                    ? EntityName(source.sourceInstance) : "<not-live>",
+                SideName(source.originalSideMask),
+                source.outstandingBeforeFinalization ? 1 : 0,
+                source.cleanupObservedBeforeFinalization ? 1 : 0,
+                FinalizationOutcomeName(source.outcome));
+        }
+        std::fprintf(g_pLog, "\n");
+    }
+    else
+    {
+        std::fprintf(g_pLog, "===== CORE C1 FINALIZATION ANOMALY / REPAIR =====\n");
+        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
+                     RuntimeClock::GetElapsedMilliseconds());
+        std::fprintf(g_pLog, "Reason: AISETSTATE_AFTER_ORIGINAL\n");
+        std::fprintf(g_pLog, "Actor: %s\n",
+                     EntityName(result.actorInstance));
+        std::fprintf(g_pLog, "Generation: %llu\n",
+                     static_cast<unsigned long long>(result.generation));
+        std::fprintf(g_pLog, "Status: %s\n",
+                     GenerationStatusName(result.status));
+        std::fprintf(g_pLog, "TrackedSourceCount: %u\n", result.sourceCount);
+        for (unsigned int i = 0; i < result.sourceCount; ++i)
+        {
+            FinalizationSourceResult const &source = result.sources[i];
+            std::fprintf(g_pLog, "Source[%u].Outcome: %s\n", i,
+                         FinalizationOutcomeName(source.outcome));
+            std::fprintf(g_pLog, "Source[%u].Address: %p\n", i,
+                         static_cast<void *>(source.sourceInstance));
+            std::fprintf(g_pLog, "Source[%u].LivenessEstablished: %d\n", i,
+                         source.livenessEstablished ? 1 : 0);
+            std::fprintf(g_pLog, "Source[%u].Name: %s\n", i,
+                         source.livenessEstablished
+                             ? EntityName(source.sourceInstance)
+                             : "<not-dereferenced>");
+            std::fprintf(g_pLog, "Source[%u].OriginalSide: %s\n", i,
+                         SideName(source.originalSideMask));
+            std::fprintf(g_pLog, "Source[%u].CurrentSideMask: %u\n", i,
+                         source.currentSideMask);
+            std::fprintf(g_pLog, "Source[%u].OffensiveRequestCount: %u\n", i,
+                         source.offensiveRequestCount);
+            std::fprintf(
+                g_pLog,
+                "Source[%u].OutstandingBeforeFinalization: %d\n", i,
+                source.outstandingBeforeFinalization ? 1 : 0);
+            std::fprintf(
+                g_pLog,
+                "Source[%u].CleanupObservedBeforeFinalization: %d\n", i,
+                source.cleanupObservedBeforeFinalization ? 1 : 0);
+            std::fprintf(g_pLog,
+                         "Source[%u].ActualGroupBeforeRepair: %d\n", i,
+                         static_cast<GEInt>(source.actualGroupBeforeRepair));
+            std::fprintf(g_pLog, "Source[%u].RepairAttempted: %d\n", i,
+                         source.repairAttempted ? 1 : 0);
+            if (source.repairAttempted)
+            {
+                std::fprintf(g_pLog,
+                             "Source[%u].RepairRequestedGroup: %d\n", i,
+                             static_cast<GEInt>(source.repairRequestedGroup));
+                std::fprintf(g_pLog,
+                             "Source[%u].ActualGroupAfterRepair: %d\n", i,
+                             static_cast<GEInt>(source.actualGroupAfterRepair));
+            }
+            std::fprintf(g_pLog,
+                         "Source[%u].PhysicalCollisionChanged: %d\n", i,
+                         source.physicalCollisionChanged ? 1 : 0);
+        }
+        std::fprintf(g_pLog, "PhysicalCollisionChanged: %d\n",
+                     result.physicalCollisionChanged ? 1 : 0);
+        std::fprintf(g_pLog, "===============================================\n\n");
+    }
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+    if (!rich)
+    {
+        std::fprintf(g_pLog, "===== DEEP C1 FINALIZATION =====\n");
+        std::fprintf(g_pLog, "ActorAddress: %p\n",
+                     static_cast<void *>(result.actorInstance));
+        std::fprintf(g_pLog, "Generation: %llu\n",
+                     static_cast<unsigned long long>(result.generation));
+        std::fprintf(g_pLog, "Status: %s\n",
+                     GenerationStatusName(result.status));
+        for (unsigned int i = 0; i < result.sourceCount; ++i)
+        {
+            FinalizationSourceResult const &source = result.sources[i];
+            std::fprintf(g_pLog, "Source[%u].Outcome: %s\n", i,
+                         FinalizationOutcomeName(source.outcome));
+            std::fprintf(g_pLog, "Source[%u].Address: %p\n", i,
+                         static_cast<void *>(source.sourceInstance));
+            std::fprintf(g_pLog, "Source[%u].OriginalSide: %s\n", i,
+                         SideName(source.originalSideMask));
+            std::fprintf(g_pLog, "Source[%u].CurrentSideMask: %u\n", i,
+                         source.currentSideMask);
+            std::fprintf(g_pLog, "Source[%u].OffensiveRequestCount: %u\n", i,
+                         source.offensiveRequestCount);
+            std::fprintf(
+                g_pLog,
+                "Source[%u].OutstandingBeforeFinalization: %d\n", i,
+                source.outstandingBeforeFinalization ? 1 : 0);
+            std::fprintf(
+                g_pLog,
+                "Source[%u].CleanupObservedBeforeFinalization: %d\n", i,
+                source.cleanupObservedBeforeFinalization ? 1 : 0);
+            std::fprintf(g_pLog,
+                         "Source[%u].ActualGroupBeforeRepair: %d\n", i,
+                         static_cast<GEInt>(source.actualGroupBeforeRepair));
+            std::fprintf(g_pLog, "Source[%u].LivenessEstablished: %d\n", i,
+                         source.livenessEstablished ? 1 : 0);
+        }
+        std::fprintf(g_pLog, "===============================\n\n");
+    }
+#endif
     std::fflush(g_pLog);
 }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 void LogRunScriptFunctionScopeReturn(
     void *scopeAddress, bool parentScopeExists, GEBool nativeResult)
 {
     if (g_pLog == nullptr)
         return;
-    std::fprintf(g_pLog, "===== C1 DISPATCH RETURN =====\n");
+    std::fprintf(g_pLog, "===== DEEP C1 DISPATCH RETURN =====\n");
     std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
                  RuntimeClock::GetElapsedMilliseconds());
     std::fprintf(g_pLog, "ScopeAddress: %p\n", scopeAddress);
@@ -1320,4 +1811,5 @@ void LogRunScriptFunctionScopeReturn(
     std::fprintf(g_pLog, "==============================\n\n");
     std::fflush(g_pLog);
 }
+#endif
 }

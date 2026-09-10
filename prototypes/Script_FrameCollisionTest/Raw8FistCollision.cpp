@@ -109,10 +109,12 @@ static void RetireRaw8FistTimingPermission(
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     if (state.timingPermissionArmed)
     {
-        CollisionDiagnostics::LogHumanFistTimingPermissionRetired(
+        CollisionDiagnostics::LogRaw8FistTimingPermissionRetired(
             state.actorInstance, state.c1Generation, state.spu,
             static_cast<void *>(state.animationActor), reason);
     }
+#else
+    (void) reason;
 #endif
     state.timingPermissionArmed = false;
 }
@@ -170,10 +172,13 @@ void UpdateMarkerOwnership(
     Raw8FistPrimaryTiming const timing =
         CaptureRaw8FistPrimaryTiming(actor);
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogHumanFistMarkerOwnership(
-        actor, family, generation.generation, spu,
+    CollisionDiagnostics::LogRaw8FistMarkerOwnership(
+        actor, family, generation.generation,
+        ownership.fistSourceInstance, spu,
         static_cast<void *>(timing.animationActor), latchBefore,
         latchAfter, writeConfirmed);
+#else
+    (void) latchBefore;
 #endif
     if (!writeConfirmed)
         return;
@@ -267,7 +272,7 @@ void UpdateTimingPermissionFromMarker(
     }
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogHumanFistMarkerOpportunity(
+    CollisionDiagnostics::LogRaw8FistMarkerOpportunity(
         actor, result, static_cast<void *>(timing.animationActor),
         timing.available, timing.playTime, timing.maxTime,
         nativeThresholdConstant, computedThreshold, realBelowThreshold,
@@ -348,15 +353,16 @@ GEDouble ApplyTimingPermission(
         syntheticApplied = true;
     }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     std::uint64_t const c1Generation = state.c1Generation;
     GEDouble const maxTime = state.maxTime;
-    GEDouble const nativeThresholdConstant =
-        state.nativeThresholdConstant;
+    GEDouble const nativeThresholdConstant = state.nativeThresholdConstant;
     GEDouble const computedThreshold = state.computedThreshold;
+#endif
     state.timingPermissionArmed = false;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogHumanFistTimingPermissionConsumed(
+    CollisionDiagnostics::LogRaw8FistTimingPermissionConsumed(
         actorInstance, c1Generation, spu,
         static_cast<void *>(animationActor),
         static_cast<GEInt>(motionType), realPlayTime, maxTime,

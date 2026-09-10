@@ -50,17 +50,17 @@ static mCFunctionHook Hook_RunScriptFunction;
 static mCCallHook Hook_Raw8FistTimingGateGetPlayTime;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-static mCFunctionHook Hook_FistCanBeActivatedNow;
-static mCFunctionHook Hook_FistTriggerTarget;
 static mCFunctionHook Hook_EntityOnDamage;
-static GEU32 const FistHookEntryLogCap = 64;
-static GEU32 g_FistCanBeActivatedEntryOrdinal = 0;
-static GEU32 g_FistTriggerTargetEntryOrdinal = 0;
 static GEU32 const EntityOnDamageEntryLogCap = 64;
 static GEU32 g_EntityOnDamageEntryOrdinal = 0;
 #endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+static mCFunctionHook Hook_FistCanBeActivatedNow;
+static mCFunctionHook Hook_FistTriggerTarget;
+static GEU32 const FistHookEntryLogCap = 64;
+static GEU32 g_FistCanBeActivatedEntryOrdinal = 0;
+static GEU32 g_FistTriggerTargetEntryOrdinal = 0;
 static mCFunctionHook Hook_OnTick;
 static mCFunctionHook Hook_PlayMotion;
 static mCFunctionHook Hook_StopMotion;
@@ -75,7 +75,7 @@ struct RunScriptFunctionScope
     bTObjStack<gScriptRunTimeSingleState> *runtimeStack;
     bCString const *scriptName;
     CollisionLifecycleGuard::PreCombatBridgeToken preCombatBridge;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     bool offenseObserved;
 #endif
 };
@@ -98,13 +98,15 @@ GetRunScriptFunctionScopeIdentity(RunScriptFunctionScope *scope)
 }
 #endif
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static bool IsPlayerEntity(eCEntity *instance)
 {
     Entity player = Entity::GetPlayer();
     return player != None && instance == player.GetInstance();
 }
+#endif
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static eCEntity *ResolveExactPlayerFistSource(
     gCTouchDamage_PS *touchDamagePS, Entity &player,
     eCEntity *&resolverSourceInstance)
@@ -187,7 +189,7 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
     INIT_SCRIPT_CALLBACK()
     if (EvaluateAttackCallback(SelfEntity, AttackFamily_Normal, a_pSPU))
         return GETrue;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     CollisionDiagnostics::LogFistTriggerStateSnapshot(
         "NATIVE_ATTACK_BEFORE_ORIGINAL", SelfEntity);
     GEBool const result = Hook_OnAI_Attack.GetOriginalFunction(
@@ -305,10 +307,6 @@ static GELPVoid StartEffect_FrameCollisionTest(
     }
 
     Entity actor(a_pEntity1);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogMarkerContext(actor, markerOpcode);
-#endif
-
     MarkerProcessResult const result = FrameCollisionMarkers::ProcessMarker(
         actor, markerOpcode, effectName,
         RuntimeClock::GetElapsedMilliseconds());
@@ -524,7 +522,7 @@ static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
 #endif
     }
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (scope.offenseObserved)
     {
         CollisionDiagnostics::LogRunScriptFunctionScopeReturn(
@@ -680,7 +678,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     }
 #endif
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (IsPlayerEntity(ownerEntity))
     {
         Entity actor(ownerEntity);
@@ -692,7 +690,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
         a_pThis, a_State);
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (IsPlayerEntity(ownerEntity))
     {
         Entity actor(ownerEntity);
@@ -723,7 +721,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
 #endif
 }
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static GEBool GE_STDCALL FistCanBeActivatedNow_FrameCollisionTest(
     gCTouchDamage_PS *a_pThis, eCEntity *a_pEntity,
     eCContactIterator &a_rContactIterator)
@@ -792,7 +790,9 @@ static void GE_STDCALL FistTriggerTarget_FrameCollisionTest(
             static_cast<void *>(&a_rContactIterator));
     }
 }
+#endif
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
 static void GE_STDCALL EntityOnDamage_FrameCollisionTest(
     gCEntity *a_pThis, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
     GEInt a_iArg1, GEInt a_iArg2, eCContactIterator &a_rContactIterator)
@@ -877,13 +877,15 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogSetCollisionGroup(
         a_pThis, a_Group, beforeGroup, afterGroup,
-        retiredMarkerSourceBitCount);
+        retiredMarkerSourceBitCount, observation);
     CollisionDiagnostics::LogCollisionObservationResult(observation);
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (observation.offenseRequestObserved
         && g_pCurrentRunScriptFunctionScope != nullptr)
     {
         g_pCurrentRunScriptFunctionScope->offenseObserved = true;
     }
+#endif
 #endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -1049,7 +1051,7 @@ void FrameCollision::EngineBridge::InstallHooks()
         .AddThisArg()
         .Hook();
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     Hook_FistCanBeActivatedNow
         .Prepare(RVA_Game(0x692F0),
                  &FistCanBeActivatedNow_FrameCollisionTest)
@@ -1059,6 +1061,9 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Prepare(RVA_Game(0x693B0), &FistTriggerTarget_FrameCollisionTest)
         .ThisCall()
         .Hook();
+#endif
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     Hook_EntityOnDamage
         .Prepare(RVA_Game(0x668D0), &EntityOnDamage_FrameCollisionTest)
         .ThisCall()
