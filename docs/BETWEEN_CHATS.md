@@ -60,7 +60,7 @@ docs/EVIDENCE_LEDGER_250_ONWARD.md
 Runtime artifacts:
 
 ```text
-research/raw/2026.09.10_different_attacks.log
+research/archive/2026.09.10_different_attacks.log
 research/raw/2026.09.10_sabertooth_npc_pc_marked_attacks_new.log
 ```
 
@@ -71,7 +71,14 @@ e963cf24db882a96cab1f16eef52b7951180cd7b
 2026.09.10_redesign test
 ```
 
-The first log is fully processed/archive-ready. The Sabretooth log remains ACTIVE because it directly feeds the next Sprint investigation.
+Archive move commit:
+
+```text
+f77bc18d82c4387dc5b4e59272b4f8aaff982b50
+move
+```
+
+The equipped sentinel log is fully processed and archived. The Sabretooth log remains ACTIVE because it directly feeds the next Sprint investigation.
 
 ### Equipped/marker/C1 sentinel result
 
