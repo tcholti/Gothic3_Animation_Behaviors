@@ -9,12 +9,11 @@
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Frozen redesign authority: `docs/COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`  
-Frozen Stage B task: `docs/COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md`  
+Architecture/redesign authority: `docs/COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`  
+Stage B contract: `docs/COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md`  
 Overall architecture: `docs/DESIGN.md`  
 Diagnostics: `docs/COLLISION_LOGGER_PLAN.md`  
 Validation: `docs/COLLISION_TEST_PLAN.md`  
-Recurring procedures: `docs/PROJECT_OPERATING_PROCEDURES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
 
 ---
@@ -35,41 +34,13 @@ Stage A architecture build/load gate       CLOSED/PASS — 2026-09-10
 
 Raw-8 FIST remains one shared native mechanism. No authored FIST_OFF, Fist ClearTriggeredList, equipped Fist window/C1 weapon obligation, direct/custom damage, species branch, or raw55 generalization.
 
----
-
-## SprintAttack Discovery
-
-EV-249 exposed native Sabretooth `Action 9`, factual `gEAction_SprintAttack`, while reusing a PowerAttack-named motion and factual `Fist/raw8` source. Current collision source has no Sprint family/adapter, so the marker remains unsupported today.
-
-Do not alias Sprint to Power from the filename and do not assume Sprint is Fist-only or creature-only. Sprint becomes a separate evidence-backed family investigation only after Stage B diagnostics and the compact equivalence sentinel.
+SprintAttack remains deliberately unsupported. EV-249 established `Action 9 = gEAction_SprintAttack` for native Sabretooth using factual Fist/raw8 while reusing a PowerAttack-named motion. Do not alias Sprint to Power or assume Sprint is Fist-only.
 
 ---
 
-## Architecture Audit — COMPLETE
+## Stage A Architecture Refactor — CLOSED/PASS
 
-The 2026-09-10 Normal Chat audit is frozen in `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.
-
-Confirmed healthy boundaries:
-
-```text
-CollisionSources              factual source identity / UseType
-CollisionSourceOperations     physical source mutation / ClearTriggeredList
-CollisionLifecycleGuard       C1 ownership, obligations, repair decision
-FrameCollisionMarkers         exact marker ownership/occurrence/equipped semantics
-RunScriptFunctionScope        legitimate EngineBridge hook-lifetime transport
-EngineBridge                  sole physical Gothic hook/call-site owner
-CMake                         behavior-only target excludes diagnostics mechanically
-```
-
-Stage A corrected the three behavior-architecture drifts: raw8 FIST feature ownership, Hack motion-routing ownership, and C1-R1 physical-mutation ownership. Research-era CORE diagnostic volume is the separate Stage B responsibility.
-
-No separate attack-family module is planned; current action/phase marker-family resolution belongs to `FrameCollisionMarkers`.
-
----
-
-## Stage A Behavior Architecture Refactor — CLOSED/PASS THROUGH BUILD/LOAD
-
-Published implementation:
+Implementation:
 
 ```text
 7c5874932cd6eafa5af3414c65a4442b3d74bb73
@@ -79,103 +50,90 @@ Refactor collision behavior ownership boundaries
 Implemented architecture:
 
 ```text
-Raw8FistCollision
-  owns existing Normal+Power+Quick raw8 FIST policy/state/latch/timing permission
-
-AttackMotionRouting
-  owns only factual Hack optional _FinishingAttack_ -> _HackAttack_ candidate policy
-
-EngineBridge
-  retains every physical hook/call-site and delegates feature behavior
-
-FrameCollisionMarkers
-  retains generic marker scan/ownership/occurrence/C1/equipped/StatePosition semantics
-
-CollisionLifecycleGuard
-  retains all C1-R1 repair criteria/classification
-  delegates physical 7 -> 5 mutation to CollisionSourceOperations
+Raw8FistCollision       raw8 Normal+Power+Quick policy/state/latch/timing
+AttackMotionRouting     factual Hack-only optional motion substitution
+EngineBridge            sole physical hook/call-site owner
+FrameCollisionMarkers   generic marker/C1/equipped/StatePosition semantics
+CollisionLifecycleGuard C1 policy/repair decision
+CollisionSourceOperations physical source mutation including terminal 7 -> 5
 ```
 
-Independent source review: **PASS**. Work static audit: PASS. `git diff --check`: PASS. Material contradiction: None.
-
-### Local build/load gate — 2026-09-10
-
-Both Release twins compiled and linked successfully:
+Independent source review: PASS. Both Release twins built/linked. Built/live diagnostic DLL SHA256 matched exactly:
 
 ```text
-Script_FrameCollisionBehaviorTest.dll  PASS
-Script_FrameCollisionTest.dll          PASS
+07F682C2F7AD6227D0EE81CD2DE053C9704B8E7EC4AFFB54793E91A55BD7D945
 ```
 
-The deployed diagnostic DLL matched the built DLL exactly:
-
-```text
-SHA256 07F682C2F7AD6227D0EE81CD2DE053C9704B8E7EC4AFFB54793E91A55BD7D945
-```
-
-Runtime smoke:
-
-```text
-diagnostic DLL loaded
-DiagnosticProfile: CORE
-DeepDiagnostics: DISABLED
-Hack callback identity: ExactlyOne=1 / OnAI_HackAttack
-behavior hooks installed
-normal exit
-Script_FrameCollisionTest unloading cleanly
-```
-
-Result: **Stage A compile/deploy/load/unload gate CLOSED/PASS.**
-
-The build emitted non-fatal warnings, including behavior-only unused diagnostic values introduced by the raw8 move. They are not runtime defects. Stage B may clean only diagnostic-only warning residue without changing behavior.
-
-The startup `BehaviorCore:` diagnostic text is stale because it omits `Raw8FistCollision` and `AttackMotionRouting`; Stage B must correct it.
+Runtime smoke: CORE loaded, DEEP disabled, Hack callback identity `ExactlyOne=1`, hooks installed, clean unload. Stage A build/load gate is CLOSED/PASS.
 
 ---
 
-## Current Immediate Responsibility — STAGE B DIAGNOSTIC REFACTOR
+## Stage B Diagnostic Refactor — SOURCE IMPLEMENTED / STATIC REVIEW PASS
 
-> **Implement only the frozen diagnostic-volume/parity refactor in `COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md`.**
-
-Governing policy:
-
-> **Known successful behavior logs compactly. Unknown, unsupported, contradictory, repair, or invariant behavior logs richly.**
-
-Frozen Stage B includes:
+Frozen authority:
 
 ```text
-Fist CanBeActivatedNow/TriggerTarget research hooks -> DEEP only
+docs/COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
+```
+
+Published implementation:
+
+```text
+5737db32e5eda76810989ddfb5659f8405c0c458
+Refactor Stage B collision diagnostics
+```
+
+Parent is exactly frozen base:
+
+```text
+f9a88316e107e6d1ace6509f26dfe9980ec2f404
+```
+
+Changed files only:
+
+```text
+CollisionDiagnostics.cpp
+CollisionDiagnostics.h
+EngineBridge.cpp
+Raw8FistCollision.cpp
+```
+
+Independent Normal Chat review: **PASS**.
+
+Verified Stage B boundaries:
+
+```text
+CORE startup BehaviorCore metadata includes Stage A modules
+FistCanBeActivatedNow / FistTriggerTarget hooks -> DEEP only, same RVAs/calling conventions/native calls
 routine Fist state snapshots -> DEEP only
-OnDamage hook remains CORE but routine output becomes compact
-marker context+result -> one post-result CORE event
-unsupported/unknown marker traffic -> automatic rich action/source/motion detail
-attack ownership -> compact known-path event
-raw8 FIST diagnostics -> factual Raw8 naming + compact known-path events
-SetCollisionGroup -> compact meaningful physical events, preserving meaningful 7->7
-healthy C1 chronology -> compact; repair/invariant -> rich
-remove player-only lifecycle filtering where it hides NPC evidence
+OnDamage remains CORE at Game+0x668D0, same wrapper/original call, compact routine output
+marker logging -> one post-result CORE path
+unsupported/unknown marker traffic -> automatic rich action/phase/StatePosition/motion/source detail
+attack ownership -> compact known-path CORE, richer contradiction detail
+raw8 diagnostics -> factual Raw8 naming, compact known path, rich anomaly/DEEP arithmetic
+SetCollisionGroup -> compact meaningful attack-source events, meaningful 7->7 preserved
+C1 player-only filtering removed; healthy lifecycle compact, repair/invariant rich
 RunScriptFunctionScopeReturn chronology -> DEEP
-stale startup metadata -> corrected
-mechanical diagnostic-only warning cleanup allowed
-```
-
-Hard behavior boundaries:
-
-```text
+behavior-only warning residue conditionalized mechanically
 NO Sprint support
-NO gameplay behavior change
-NO behavior hook RVA/calling-convention change
-NO marker vocabulary/StatePosition/raw8/equipped/C1 semantic change
-NO AttackContinuationProtection
-NO Raise/speed/config
-NO raw55 behavior
+NO behavior/RVA/calling-convention/marker/raw8/equipped/C1/Hack change
 ```
 
-Work build execution remains PROHIBITED.
+Work static audit: PASS. `git diff --check`: PASS. Build: NOT RUN / PROHIBITED. Material contradiction: None.
 
-After Stage B source publish, Normal Chat independently reviews the exact diff. Then User + Normal Chat locally build both twins, deploy/hash the diagnostic DLL and smoke-load it. Only after that PASS run the compact equivalence sentinel.
+Runtime parity is **not yet claimed** for Stage B until local build/load passes.
 
-Sentinel:
+---
+
+## Current Immediate Responsibility — STAGE B LOCAL BUILD/LOAD GATE
+
+> **Sync local branch to current remote HEAD, build both Release twins, deploy/hash the diagnostic DLL, smoke-load, then exit cleanly.**
+
+If Stage B fails to compile/load, fix only the exact Stage B defect before any gameplay validation.
+
+Do not begin Sprint investigation or broad compatibility testing yet.
+
+After Stage B build/load PASS, run the compact equivalence sentinel:
 
 ```text
 raw8 FIST: Sabretooth Normal + Quick + Power
@@ -184,4 +142,4 @@ marker lifecycle: one established multi-marker / OFF / rearm fixture
 C1 safety: one established destructive bad-skip -> exact terminal repair
 ```
 
-Only after sentinel PASS begin the bounded SprintAttack investigation.
+Only after sentinel PASS begin bounded SprintAttack source/transport/mechanism investigation.
