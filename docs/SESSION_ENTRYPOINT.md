@@ -84,11 +84,11 @@ Sprint remains deliberately unsupported.
 EV-249 first exposed the missing family. EV-250's new compact diagnostic run confirms the discovery path repeatedly and more cleanly:
 
 ```text
-actor: native Sabertooth
+actor: native Sabretooth
 action: 9 = gEAction_SprintAttack
 phase: 1
 StatePosition: 1
-motion: Sabertooth ... PowerAttack_Hit ...
+motion: Sabretooth ... PowerAttack_Hit ...
 marker: G3AB_COL_FIST
 result: REJECTED_UNSUPPORTED_HIT
 C1 generation: valid
@@ -129,12 +129,16 @@ Investigate only what is required to answer:
 
 Use compact CORE first. Add DEEP instrumentation only if a specific required fact cannot be established otherwise.
 
-The active raw for this investigation is:
+Active Sprint evidence:
 
 ```text
 research/raw/2026.09.10_sabertooth_npc_pc_marked_attacks_new.log
 ```
 
-`research/raw/2026.09.10_different_attacks.log` has completed its equivalence-sentinel responsibility and is archive-ready.
+Processed EV-250 equipped sentinel evidence is archived:
+
+```text
+research/archive/2026.09.10_different_attacks.log
+```
 
 Only after the Sprint evidence boundary is frozen should Work receive a bounded implementation task, if implementation is justified at all.
