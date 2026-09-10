@@ -1,7 +1,7 @@
 # Collision Lifecycle Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
-**Updated:** 2026-09-09
+**Updated:** 2026-09-10
 
 ## Purpose
 
@@ -14,6 +14,7 @@ Define the smallest observational instrumentation needed to validate collision b
 Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
 Behavior architecture: `DESIGN.md`.  
 Current redesign authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.  
+Frozen Stage B implementation contract: `COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md`.  
 Lifecycle authority: `COLLISION_LIFECYCLE_PLAN.md`.  
 Validation authority: `COLLISION_TEST_PLAN.md`.  
 Evidence: `EVIDENCE_INDEX.md`.
@@ -76,7 +77,7 @@ This is an exact call-site permission transport, **not** a global `GetPlayTime` 
 
 `AIFullStop` remains diagnostic/deep for current behavior and is a proven explicit-this transport point that may later become behavior-required only if the evidence-backed `AttackContinuationProtection` design actually needs it.
 
-The architecture audit may move raw8 feature state/policy out of `EngineBridge`, but `EngineBridge` remains sole owner of the physical timing hook and delegates to the owning feature module.
+Stage A moved raw8 feature state/policy into `Raw8FistCollision`; `EngineBridge` remains sole owner of the physical timing hook and delegates to that feature module.
 
 ---
 
@@ -137,7 +138,7 @@ transition away from Item_Attack
 exact marker-owned source-bit retirement
 ```
 
-Routine `SetCollisionGroup` calls that produce no meaningful physical change should be reviewed for compaction or DEEP-only detail unless they are needed to explain an anomaly.
+Routine `SetCollisionGroup` calls that produce no meaningful physical change should be compacted or suppressed when they carry no attack-source information. Do not suppress meaningful `7 -> 7` rearm/offense events.
 
 ### C1 lifecycle
 
@@ -154,13 +155,13 @@ repair attempted/result
 explicit invariant/failure signal
 ```
 
-Detailed START -> BINDING -> STATUS -> FINALIZATION chronology may move to DEEP except where an anomaly/repair requires it in CORE.
+Detailed START -> BINDING -> STATUS -> FINALIZATION chronology moves to DEEP or appears only when needed for an anomaly/repair.
 
 ### Raw-8 FIST
 
 Supported/proven raw8 FIST families currently include Normal + Power + Quick for the tested scope.
 
-For a healthy known FIST execution, CORE should preserve the behavioral facts without repeating all research-era arithmetic/addresses every time:
+For a healthy known FIST execution, CORE preserves the behavioral facts without repeating all research-era arithmetic/addresses every time:
 
 ```text
 actor / action-family / generation
@@ -172,7 +173,7 @@ identity/ownership match
 native damage correlation when required by the test
 ```
 
-Full SPU addresses, animation-actor addresses, threshold arithmetic, exact real/max/returned play times, and repeated before/after snapshots are DEEP candidates unless an anomaly or a new mechanism question requires them.
+Full SPU addresses, animation-actor addresses, threshold arithmetic, exact real/max/returned play times, and repeated before/after snapshots are DEEP unless an anomaly or a new mechanism question requires them.
 
 ### Damage correlation
 
@@ -187,7 +188,7 @@ action/family context
 generation when available
 ```
 
-For already-proven healthy routes, repeated full entity/contact-iterator address blocks should be compacted unless needed for ambiguity/anomaly resolution.
+For already-proven healthy routes, repeated full entity/contact-iterator address blocks are DEEP.
 
 ### C1-R1 outcomes
 
@@ -205,7 +206,7 @@ A repair result is meaningful only with exact source ownership/liveness and befo
 
 ## 4. Conditional CORE Verbosity
 
-CORE should automatically become richer when the event is not a routine healthy known path.
+CORE automatically becomes richer when the event is not a routine healthy known path.
 
 ```text
 KNOWN + SUCCESSFUL
@@ -276,29 +277,33 @@ This contract applies to future unknown families/source UseTypes as well, not on
 
 ---
 
-## 6. High-Value CORE Compaction Candidates
+## 6. Stage B Frozen Compaction Scope
 
-During the architecture/diagnostic audit, explicitly evaluate whether these current routine records can move to DEEP or become anomaly/condition-driven:
-
-```text
-FIST trigger-state snapshot before/after every native attack callback
-FIST trigger-state snapshot before/after ordinary AISetState
-SetCollisionGroup records where no meaningful physical state changed
-full healthy C1 START -> BINDING -> STATUS -> FINALIZATION chronology
-full entity addresses/contact iterator data for every known successful damage
-complete ownership-decision dump for every known successful attack
-complete raw8 timing arithmetic for every already-proven early FIST
-```
-
-Do **not** simply delete reusable capability. Prefer:
+The exact source-level responsibility is now frozen in:
 
 ```text
-CORE compact summary
-+ anomaly-triggered detail
-+ DEEP retained research probe
+COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
 ```
 
-The exact literal compact log syntax is not frozen yet; the information contract is.
+It specifically requires:
+
+```text
+Fist CanBeActivatedNow/TriggerTarget research hooks -> DEEP only
+routine Fist trigger-state snapshots -> DEEP only
+OnDamage physical diagnostic hook -> remains CORE, routine output compact
+marker context+result -> one post-result CORE event
+unsupported/unknown marker traffic -> automatic rich source/action/motion detail
+attack callback ownership -> compact routine event
+raw8 FIST ownership/opportunity/timing -> compact routine events, rich anomaly
+SetCollisionGroup -> compact meaningful physical events; retain meaningful 7->7
+healthy C1 chronology -> compact; repair/invariant -> rich
+player-only lifecycle filters -> removed where they hide relevant NPC evidence
+RunScriptFunctionScopeReturn chronology -> DEEP
+stale BehaviorCore startup metadata -> corrected
+Stage-A diagnostic-only unused-warning cleanup -> allowed mechanically only
+```
+
+The detailed information fields and hard behavior boundaries are authoritative in that Stage B contract.
 
 ---
 
@@ -319,7 +324,8 @@ outer ScriptFunction/state-stack detail
 full native cleanup caller/RVA/stack
 OnTick marker lifetime tracking
 full OnDamage caller/contact trace
-hook-entry identity probes
+Fist gate/trigger hook-entry identity probes
+full routine C1 dispatch chronology
 ```
 
 Likely future uses:
@@ -339,7 +345,7 @@ Deep capture must not become a production prerequisite.
 
 ## 8. SprintAttack Diagnostic Questions
 
-After the architecture refactor and compact equivalence sentinel, use CORE first and add only the smallest missing DEEP signal needed to establish:
+After Stage B and the compact equivalence sentinel, use CORE first and add only the smallest missing DEEP signal needed to establish:
 
 ```text
 which actors execute gEAction_SprintAttack
@@ -428,14 +434,14 @@ C1-R1 mutation remains two-phase/reentrancy-safe: classify/repair fixed sources 
 
 ## 14. Current Diagnostic Sequence
 
-There is no pending diagnostic regression merely to reconfirm EV-208–EV-215 or raw8 Normal/Power/Quick behavior.
-
-Next:
-
 ```text
-complete architecture + diagnostic-volume audit
--> freeze compact CORE / retained DEEP refactor
+architecture + diagnostic-volume audit             DONE
+Stage A behavior architecture source refactor      DONE
+Stage A local build/deploy/load/unload              CLOSED/PASS
+Stage B diagnostic contract                        FROZEN
 -> bounded Work implementation
+-> independent remote diff review
+-> build both twins + deploy/hash + load/unload
 -> compact post-refactor equivalence sentinel
 -> SprintAttack mechanism investigation
 -> focused Sprint validation if implemented
