@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-10
 
-## Current Bridge — Stage A/B CLOSED/PASS, EQUIVALENCE SENTINEL NEXT
+## Current Bridge — Stage A/B + Equivalence Sentinel CLOSED/PASS; Sprint Research NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -15,166 +15,172 @@ Fresh Chat orientation:
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. COLLISION_ARCHITECTURE_REDESIGN_PLAN.md
-4. COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
-5. COLLISION_LOGGER_PLAN.md
-6. COLLISION_TEST_PLAN.md
+3. COLLISION_TEST_PLAN.md
+4. COLLISION_LOGGER_PLAN.md
+5. EVIDENCE_LEDGER_250_ONWARD.md
+6. EV-249 in EVIDENCE_LEDGER_232_ONWARD.md when historical Quick/Sprint discovery context is needed
 ```
 
 Do not begin Sprint implementation or Goblin/Demon/Ogre matrix testing yet.
 
 ---
 
-## Closed Starting Point
+## Closed Refactor Boundary
 
-Raw8 FIST Normal + Power + Quick is CLOSED/PASS through EV-249.
-
-SprintAttack discovery remains:
-
-```text
-Action 9 = gEAction_SprintAttack
-observed actor = native Sabretooth
-observed source = Fist/raw8
-motion happens to be PowerAttack-named
-current behavior = unsupported
-```
-
-Sprint is a later first-class family investigation. Do not alias it to Power or assume it is Fist-only.
-
----
-
-## Stage A Architecture Refactor — CLOSED/PASS
-
-Implementation:
+Stage A behavior architecture implementation:
 
 ```text
 7c5874932cd6eafa5af3414c65a4442b3d74bb73
 ```
 
-Both Release twins compiled and linked. Built/live diagnostic DLL SHA256 matched:
-
-```text
-07F682C2F7AD6227D0EE81CD2DE053C9704B8E7EC4AFFB54793E91A55BD7D945
-```
-
-CORE loaded, hooks installed, Hack callback identity `ExactlyOne=1`, and clean unload occurred. Stage A build/load is CLOSED/PASS.
-
----
-
-## Stage B Diagnostic Refactor — CLOSED/PASS
-
-Frozen contract:
-
-```text
-docs/COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
-```
-
-Implementation:
+Stage B diagnostic implementation:
 
 ```text
 5737db32e5eda76810989ddfb5659f8405c0c458
-Refactor Stage B collision diagnostics
 ```
 
-Frozen base:
+Both passed independent source review and local build/deploy/load/unload gates.
 
-```text
-f9a88316e107e6d1ace6509f26dfe9980ec2f404
-```
-
-Exact comparison: implementation is one commit ahead of frozen base.
-
-Changed files only:
-
-```text
-CollisionDiagnostics.cpp
-CollisionDiagnostics.h
-EngineBridge.cpp
-Raw8FistCollision.cpp
-```
-
-Independent review: **PASS**.
-
-Verified:
-
-```text
-FistCanBeActivatedNow + FistTriggerTarget physical diagnostic hooks moved to DEEP only
-same hook RVAs/calling conventions/native forwarding retained
-routine Fist state snapshots moved to DEEP
-OnDamage remains CORE at Game+0x668D0 and keeps bounded logging/original call
-CORE OnDamage output compact; DEEP retains pointer/contact/integer detail
-CORE marker logging is one post-result event
-unsupported/unknown marker traffic is automatically rich enough for Sprint discovery
-CORE attack ownership is compact; contradiction path rich
-raw8 diagnostic interface renamed Raw8Fist and known-path output compact
-raw8 behavior state/latch/timing sequence unchanged
-SetCollisionGroup logging compact and source-centric; meaningful 7->7 retained
-C1 output no longer player-only; healthy chronology compact, repair/invariant rich
-RunScriptFunctionScopeReturn is DEEP-only
-startup BehaviorCore metadata includes Raw8FistCollision + AttackMotionRouting
-NO Sprint support or new hooks
-NO collision behavior/RVA/calling-convention/marker/StatePosition/raw8/equipped/C1/Hack semantic change
-```
-
-Work static audit: PASS. `git diff --check`: PASS. No material contradiction.
-
-### Local Stage B build/load evidence — 2026-09-10
-
-Both Release twins compiled/linked successfully:
-
-```text
-Script_FrameCollisionBehaviorTest.dll  PASS
-Script_FrameCollisionTest.dll          PASS
-```
-
-Built/live diagnostic DLL SHA256 matched exactly:
+Validated Stage-B diagnostic DLL SHA256:
 
 ```text
 081CDF413EC623079B8E4F1934EA7F1C27A7FFC7307B3BA0B19EA000BDA108BD
 ```
 
-Runtime smoke passed:
+---
+
+## EV-250 — Compact Equivalence Sentinel CLOSED/PASS
+
+Canonical evidence:
 
 ```text
-CORE diagnostic build loaded
-DEEP disabled
-BehaviorCore lists Raw8FistCollision + AttackMotionRouting
-Hack callback identity ExactlyOne=1 / OnAI_HackAttack
-hooks installed
-normal process exit
-Script_FrameCollisionTest unloading cleanly
+docs/EVIDENCE_LEDGER_250_ONWARD.md
 ```
 
-Therefore **Stage B compile/deploy/load/unload gate is CLOSED/PASS.**
+Runtime artifacts:
+
+```text
+research/raw/2026.09.10_different_attacks.log
+research/raw/2026.09.10_sabertooth_npc_pc_marked_attacks_new.log
+```
+
+Published runtime commit:
+
+```text
+e963cf24db882a96cab1f16eef52b7951180cd7b
+2026.09.10_redesign test
+```
+
+The first log is fully processed/archive-ready. The Sabretooth log remains ACTIVE because it directly feeds the next Sprint investigation.
+
+### Equipped/marker/C1 sentinel result
+
+`2026.09.10_different_attacks.log` confirms:
+
+```text
+ordinary marked 2H Normal / Quick / Power / Hack paths healthy
+2H Whirl RIGHT -> OFF -> RIGHT preserved within one C1 generation
+first RIGHT: 5 -> 7 + offense obligation
+OFF: 7 -> 5 + cleanup fulfillment
+later RIGHT: 5 -> 7 + fresh offense/rearm
+natural completion: 7 -> 5
+meaningful duplicate/budget suppression remains compact
+Dual 1H Power additionally exercised BOTH/LEFT/OFF/rearm and meaningful 7 -> 7
+```
+
+Deliberate destructive Whirl bad-skip generation 12:
+
+```text
+exact source = It_2H_Sword_Flamberge
+side = RIGHT
+outstanding before finalization = 1
+cleanup observed before finalization = 0
+live/equipped = yes
+actual group before repair = 7
+repair requested = 5
+actual group after repair = 5
+outcome = REPAIRED_TO_ITEM_EQUIPPED
+PhysicalCollisionChanged = 1
+```
+
+Late old-Whirl marker callbacks arrived after factual action ownership was gone (`Action 0`, no valid C1 generation) and were `REJECTED_UNSUPPORTED_HIT`; they did not reopen collision.
+
+No `C1 INVARIANT WARNING`, `REPAIR_DIVERGED` or `UNRESOLVED_NOT_EQUIPPED` was found. Clean unload present.
+
+### Raw8 sentinel result
+
+`2026.09.10_sabertooth_npc_pc_marked_attacks_new.log` confirms native Sabretooth and transformed-Hero Sabretooth marked raw8 executions across Normal, Quick and Power:
+
+```text
+Fist / raw8 / group0
+initial ownership close 0 -> 1 confirmed
+accepted FIST latch 1 -> 0 confirmed
+ownership matched
+early timing permission armed/used where required
+native OnDamage caller = Game.dll +0x0016E348
+```
+
+No `RAW8 FIST TIMING ANOMALY`, C1 invariant warning or repair divergence was found. Clean unload present.
+
+### Stage-B discovery logging also proved useful
+
+The Sabretooth run contains 42 rich unsupported marker-discovery records corresponding to:
+
+```text
+Actor = Sabertooth
+Action = 9
+Family = UNKNOWN
+AniPhase = 1
+StatePosition = 1
+motion = Sabertooth ... PowerAttack_Hit ...
+marker = G3AB_COL_FIST
+result = REJECTED_UNSUPPORTED_HIT
+C1 generation = valid
+RIGHT source = Fist / UseType 8 / group0
+```
+
+This is expected Sprint traffic, not a Quick/Power regression.
+
+Therefore the Stage A/B refactor parity gate and compact CORE sufficiency gate are CLOSED/PASS.
 
 ---
 
-## NEXT — Compact Equivalence Sentinel
+## NEXT — Bounded SprintAttack Research
 
-Run only the established four-part sentinel before Sprint:
+Sprint is not implemented yet.
+
+Known factual runtime boundary:
 
 ```text
-raw8 FIST: Sabretooth Normal + Quick + Power
-equipped: one ordinary marked weapon attack
-marker lifecycle: one established multi-marker / OFF / rearm fixture
-C1 safety: one established destructive bad-skip -> exact terminal repair
+gEAction_SprintAttack = 9
+observed actor = native Sabretooth
+observed source = Fist/raw8/group0
+observed phase = 1
+observed StatePosition = 1
+observed motion filename = PowerAttack-named
+current marker behavior = unsupported
 ```
 
-The goal is twofold:
+Do not infer Power semantics from the filename.
+
+Normal Chat should now determine only:
 
 ```text
-1. prove Stage A/B refactors preserved behavior
-2. prove CORE is compact for normal traffic but still rich for repair/anomaly/discovery
+1. actual script/native callback or transport ownership for Sprint
+2. bounded source UseType scope
+3. exact StatePosition/action-phase contract
+4. whether raw8 Sprint uses the same relevant latch/timing/native-damage mechanism
+5. whether equipped Sprint traffic is evidenced in source/API/runtime material
 ```
 
-If any leg fails, stop and resolve that regression before Sprint.
+Use existing source/API/current CORE evidence first. Add DEEP instrumentation only for a fact that cannot otherwise be established.
 
-Only after sentinel PASS:
+Do not give Work an implementation task until this boundary is frozen.
+
+After any evidence-backed Sprint implementation and focused Sprint validation:
 
 ```text
-SprintAttack factual source/transport/mechanism investigation
--> bounded first-class Sprint implementation if supported by evidence
--> focused Sprint validation
--> Goblin 1H / Demon 2H / Ogre Axe
+Goblin 1H / Demon 2H / Ogre Axe
 -> remaining compatibility/stress sequence
+-> AttackContinuationProtection
 ```
