@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Freeze the completed collision architecture audit after EV-249, record the implemented Stage A structural refactor, and define the remaining diagnostic/Sprint sequence before broad compatibility testing.
+Freeze the completed collision architecture audit after EV-249, record the implemented and locally validated Stage A structural refactor, and define Stage B diagnostics plus the later Sprint sequence before broad compatibility testing.
 
 Related authorities:
 
@@ -54,11 +54,11 @@ G3AB_COL_FIST: REJECTED_UNSUPPORTED_HIT
 
 These are SprintAttack executions reusing a PowerAttack-named motion. Factual action identity outranks filename naming.
 
-Current source has no `AttackFamily_Sprint` and no Sprint callback/adapter plumbing. Sprint is a factual missing family to investigate after the architecture/diagnostic refactor and sentinel.
+Current source has no `AttackFamily_Sprint` and no Sprint callback/adapter plumbing. Sprint is therefore a factual missing family to investigate after Stage B and the compact equivalence sentinel.
 
 Current evidence does **not** establish Sprint as Fist-only, creature-only, Power-equivalent, or equipped-capable.
 
-Do not add a Sabretooth-specific exception and do not implement Sprint during the parity refactor.
+Do not add a Sabretooth-specific exception and do not implement Sprint during Stage B.
 
 ---
 
@@ -66,7 +66,7 @@ Do not add a Sabretooth-specific exception and do not implement Sprint during th
 
 The audit found that most of the mature collision architecture was already correctly separated.
 
-### Healthy boundaries retained
+Healthy boundaries retained:
 
 ```text
 CollisionSources
@@ -97,7 +97,7 @@ FrameCollisionMarkers
 
 The current attack-family resolver remains in `FrameCollisionMarkers`; resolving whether the exact current action/phase is a supported marker Hit is part of marker ownership. No new `AttackFamilies` module is justified.
 
-### Confirmed drift
+Confirmed drift at audit time:
 
 ```text
 1. raw8 FIST feature state/policy split across EngineBridge + FrameCollisionMarkers
@@ -106,11 +106,11 @@ The current attack-family resolver remains in `FrameCollisionMarkers`; resolving
 4. research-era CORE diagnostic verbosity
 ```
 
-Stage A addressed 1–3. Stage B will address 4 only after Stage A builds/loads locally.
+Stage A closed 1–3. Stage B addresses 4 only.
 
 ---
 
-## 4. Stage A — IMPLEMENTED / STATIC REVIEW PASS / BUILD PENDING
+## 4. Stage A — CLOSED/PASS THROUGH LOCAL BUILD/LOAD
 
 Published source commit:
 
@@ -125,16 +125,34 @@ Frozen base:
 5f8101179de6417dbb20d310b00b378a3f36ad8a
 ```
 
-Independent comparison confirms the implementation is exactly one commit ahead of the frozen base.
-
+Independent source review: **PASS**.  
 Work static audit: PASS.  
 `git diff --check`: PASS.  
-Build: NOT RUN / PROHIBITED.  
 Material contradiction: None.
 
-Independent Normal Chat source review: **PASS**.
+Local validation on 2026-09-10:
 
-Runtime parity is not yet claimed because the source has not been locally built/loaded after Stage A.
+```text
+Script_FrameCollisionBehaviorTest Release build  PASS
+Script_FrameCollisionTest Release build          PASS
+built/live diagnostic SHA256                     MATCH
+runtime load                                     PASS
+hook installation                                PASS
+Hack callback identity                           PASS
+normal unload                                    PASS
+```
+
+Built/live SHA256:
+
+```text
+07F682C2F7AD6227D0EE81CD2DE053C9704B8E7EC4AFFB54793E91A55BD7D945
+```
+
+Therefore the Stage A compile/deploy/load/unload gate is **CLOSED/PASS**.
+
+Non-fatal compiler warnings remain, including behavior-only unused variables whose uses are diagnostics-only. They do not invalidate Stage A and should only be cleaned within a bounded later responsibility.
+
+The startup `BehaviorCore:` text is stale and omits `Raw8FistCollision` and `AttackMotionRouting`; Stage B should correct it.
 
 ---
 
@@ -204,11 +222,11 @@ FrameCollisionMarkers owns generic marker semantics; Raw8FistCollision owns raw8
 
 ## 6. Raw8FistCollision Implemented Seam
 
-`Raw8FistCollision.h/.cpp` now owns the existing behavior previously split across Bridge/Markers:
+`Raw8FistCollision.h/.cpp` owns:
 
 ```text
 Normal + Power + Quick supported-family predicate
-Raw8Fist marked-execution state
+raw8 marked-execution state
 primary motion timing capture
 Game+0x308308 native threshold read
 exact raw8 source validation
@@ -219,17 +237,17 @@ post-marker timing-permission arming
 exact Game+0x16E180 one-shot timing decision/consumption
 ```
 
-`EngineBridge` retains the physical `Game +0x16E180` hook. Its wrapper obtains the real native play time and delegates the existing permission decision to `Raw8FistCollision`.
+`EngineBridge` retains the physical `Game +0x16E180` hook and delegates only the existing permission decision.
 
-`FrameCollisionMarkers` retains generic FIST marker ownership/occurrence processing and delegates only the accepted FIST latch operation at the same semantic point.
+`FrameCollisionMarkers` retains generic FIST marker ownership/occurrence processing and delegates only the accepted FIST latch operation.
 
-Stage A intentionally preserved historical diagnostic function/output names such as `HumanFist...`; diagnostic naming/compaction is Stage B.
+Stage A intentionally preserved historical diagnostic names such as `HumanFist...`; diagnostic naming/compaction is Stage B.
 
 ---
 
 ## 7. AttackMotionRouting Implemented Seam
 
-`AttackMotionRouting.h/.cpp` now owns only the existing policy:
+`AttackMotionRouting.h/.cpp` owns only:
 
 ```text
 factual action == gEAction_HackAttack
@@ -239,13 +257,7 @@ factual action == gEAction_HackAttack
 -> otherwise original resource query remains native
 ```
 
-`EngineBridge` still owns:
-
-```text
-physical Game+0x16B10C query hook
-SPU+0x154 factual-action extraction
-original query fallback
-```
+`EngineBridge` still owns the physical `Game+0x16B10C` query hook, SPU+0x154 factual-action extraction, and original-query fallback.
 
 No other action routing was introduced.
 
@@ -255,7 +267,7 @@ No other action routing was introduced.
 
 `CollisionLifecycleGuard::FinalizeAfterAISetState` still owns every condition deciding whether terminal repair is justified.
 
-When the exact live current-equipped outstanding source is still `Item_Attack(7)`, the physical change now goes through:
+When the exact live current-equipped outstanding source remains `Item_Attack(7)`, the physical change goes through:
 
 ```text
 CollisionSourceOperations::DeactivateOwnedAttackSource(source)
@@ -274,47 +286,45 @@ same SetCollisionGroup-hook observation/reentrancy path
 
 ---
 
-## 9. Current Gate — Stage A Local Build/Load
+## 9. Current Responsibility — Stage B Diagnostic Refactor
 
-No further implementation should begin until Stage A has been locally compiled and smoke-loaded on the User's Gothic 3 PC.
+Stage B changes diagnostics only. It must not change collision behavior.
 
-Required next gate:
-
-```text
-sync local branch to current remote HEAD
-build diagnostic collision target
-fix only exact Stage A compile defects if any
-deploy diagnostic DLL
-launch Gothic 3 far enough to load scripts
-exit normally
-confirm clean load/unload
-```
-
-If Stage A fails to compile/load, stop and correct only that exact defect before Stage B.
-
----
-
-## 10. Stage B — Diagnostic Refactor After Stage A Build PASS
-
-Target policy:
+Governing rule:
 
 > **Known successful behavior logs compactly. Unknown, unsupported, contradictory, repair, or invariant behavior logs richly.**
+
+Target product split:
+
+```text
+PRODUCTION
+  diagnostics not compiled
+
+CORE
+  compact known-path regression facts
+  rich unsupported/unknown/anomaly/repair/invariant evidence
+  enough action/source/marker/damage/lifecycle information for larger tests
+  relevant NPC as well as player evidence
+
+DEEP
+  retained opt-in reverse-engineering probes
+```
 
 Planned CORE reductions:
 
 ```text
 Fist CanBeActivatedNow/TriggerTarget research hooks -> DEEP only
 routine Fist trigger-state snapshots -> DEEP only
-healthy C1 START/BINDING/STATUS chronology -> DEEP or compact event form
+healthy C1 START/BINDING/STATUS chronology -> compact or DEEP
 SetCollisionGroup no-op/raw8 0->0 noise -> suppress from CORE
-known successful marker ownership/result -> compact event records
-known successful raw8 timing -> compact ownership/opportunity/consumption records
+known successful marker ownership/result -> compact events
+known successful raw8 timing -> compact ownership/opportunity/consumption events
 OnDamage -> compact factual event; detailed addresses/contact internals in DEEP
-terminal repair/divergence/invariant -> remain rich in CORE
-unknown/unsupported action/family/source -> automatically rich in CORE
+terminal repair/divergence/invariant -> rich CORE
+unknown/unsupported action/family/source -> rich CORE automatically
 ```
 
-CORE must support NPC as well as player regression evidence; do not retain player-only filtering where that would hide NPC equipped lifecycle behavior.
+CORE must support NPC as well as player regression evidence; do not retain player-only filtering where that would hide relevant NPC equipped lifecycle behavior.
 
 For unsupported traffic such as Sprint, CORE must retain at minimum:
 
@@ -330,15 +340,38 @@ rejection reason
 native damage caller/entity correlation when observed
 ```
 
-Do not remove reusable research capability; retain it in DEEP where appropriate.
+Reusable research capability should be retained in DEEP, not simply deleted.
 
-Production continues to compile no diagnostic sources.
+Stage B should also correct stale startup metadata to list `Raw8FistCollision` and `AttackMotionRouting`.
+
+Behavior hard boundaries:
+
+```text
+NO Sprint support
+NO new gameplay behavior
+NO hook RVA/calling-convention semantic changes
+NO marker vocabulary/StatePosition changes
+NO raw8 family/latch/timing changes
+NO equipped source changes
+NO C1 generation/repair changes
+NO AttackContinuationProtection
+NO Raise/speed/config
+NO raw55 behavior
+```
 
 ---
 
-## 11. Post-Stage-B Equivalence Sentinel
+## 10. Post-Stage-B Gates
 
-After Stage A and Stage B both build/load cleanly, run:
+After Stage B source implementation and independent review:
+
+```text
+build both Release twins
+deploy/hash diagnostic DLL
+load/unload smoke
+```
+
+Then run the compact equivalence sentinel:
 
 ```text
 raw8 FIST: Sabretooth Normal + Quick + Power
@@ -351,9 +384,9 @@ Failure stops the sequence and is resolved before Sprint work.
 
 ---
 
-## 12. Sprint Investigation After Sentinel
+## 11. Sprint Investigation After Sentinel
 
-Sprint remains deliberately unsupported during Stage A/B.
+Sprint remains deliberately unsupported during Stage B.
 
 The later bounded investigation must establish:
 
@@ -370,15 +403,15 @@ If support is justified, prefer a first-class `AttackFamily_Sprint` adapter. Do 
 
 ---
 
-## 13. Frozen Sequence
+## 12. Frozen Sequence
 
 ```text
 Raw8 Quick FIST closure                              DONE — EV-249
 SprintAttack missing-family discovery               IDENTIFIED
-architecture + diagnostic audit                      DONE
-Stage A behavior architecture source refactor        IMPLEMENTED / STATIC REVIEW PASS
-Stage A local build/load                             NEXT
-Stage B diagnostic-volume refactor                   AFTER BUILD PASS
+architecture + diagnostic audit                     DONE
+Stage A behavior architecture source refactor       DONE
+Stage A local build/load                            CLOSED/PASS
+Stage B diagnostic-volume refactor                  NEXT
 Stage B local build/load
 compact equivalence sentinel
 SprintAttack source/transport/mechanism investigation
