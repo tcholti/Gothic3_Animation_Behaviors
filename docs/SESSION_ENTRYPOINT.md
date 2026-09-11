@@ -37,6 +37,8 @@ Sprint transport observability probe       CLOSED/PASS — 2026-09-11
 raw8 FIST Sprint production support        CLOSED/PASS — EV-251
 native NPC 1H/raw2 equipped control        CLOSED/PASS — EV-252
 native NPC 2H/raw3 equipped control        CLOSED/PASS — EV-253
+native NPC Axe/raw52 equipped control      CLOSED/PASS — EV-254
+native equipped-NPC §8.1 trio gate         CLOSED/PASS — EV-252–EV-254
 ```
 
 Raw-8 FIST remains one shared native mechanism across the proven Normal, Power, Quick and Sprint scope. No authored FIST_OFF, Fist ClearTriggeredList, equipped Fist window/C1 weapon obligation, direct/custom damage, species branch, or raw55 generalization.
@@ -44,11 +46,13 @@ Raw-8 FIST remains one shared native mechanism across the proven Normal, Power, 
 Stage A behavior architecture implementation: `7c5874932cd6eafa5af3414c65a4442b3d74bb73`.  
 Stage B diagnostic implementation: `5737db32e5eda76810989ddfb5659f8405c0c458`.  
 Sprint production implementation: `270d98f59fd7f83ab332d7cfbfc07d243273e0ca`.  
-Validated Sprint diagnostic built/live SHA256: `1A58C6CF4D98B02873A114A7AF6F1AA372B8A937B1EC60DDA3A221F52879F74F`.
+Validated diagnostic built/live SHA256: `1A58C6CF4D98B02873A114A7AF6F1AA372B8A937B1EC60DDA3A221F52879F74F`.
+
+No production behavior code changed after the Sprint implementation; subsequent commits are runtime evidence and documentation only.
 
 ---
 
-## Native equipped-NPC controls — IN PROGRESS
+## Native equipped-NPC §8.1 controls — CLOSED/PASS
 
 Authority:
 
@@ -61,34 +65,38 @@ Closed controls:
 ```text
 EV-252: Goblin / BlackGoblin -> factual 1H / raw2      CLOSED/PASS
 EV-253: Demon                -> factual 2H / raw3      CLOSED/PASS
+EV-254: Ogre                 -> factual Axe / raw52    CLOSED/PASS
 ```
 
-Demon EV-253 additionally captured a legitimate reaction interruption after marker activation: Demon Power armed the exact RIGHT source `5 -> 7`; a player Quick hit caused native cleanup `7 -> 5`; only then did `_AI_Stumble` replace the attack with `ReplacedOutstanding=0`. This is not the destructive continuation-loss path and required no repair.
+Across the three controls, factual RIGHT equipped sources followed the established contract: Item_Equipped group 5, accepted RIGHT marker, exact-source `5 -> 7`, one offense request / `Clears=1`, native contact where exercised, native cleanup `7 -> 5`, and clean C1 finalization. No control required C1-R1 repair or exposed an invariant/source-resolution failure.
+
+During the user's attempt to interrupt the Demon in the middle of attacks, one captured Power sequence additionally showed native cleanup `7 -> 5` completing before `_AI_Stumble` replaced the execution with `ReplacedOutstanding=0`. This was an ordinary mid-attack interruption attempt; the cleanup-before-reaction sequence was an incidental useful lifecycle observation, not the user's attempt to reproduce destructive continuation loss.
 
 Processed evidence:
 
 ```text
 research/archive/2026.09.11_goblin_1h_native_equipped_control.log
 research/archive/2026.09.11_demon_2h_native_equipped_control.log
+research/archive/2026.09.11_ogre_axe_native_equipped_control.log
 ```
 
 ---
 
-## Current Immediate Responsibility — OGRE AXE/RAW52 CONTROL
+## Current Immediate Responsibility — ORC MULTI-WEAPON NATIVE EXTENSION
 
-Run the final separate §8.1 native equipped-NPC control:
+The originally required §8.1 Goblin/Demon/Ogre gate is closed. The User has prepared marked Orc animations and wants to use Orcs as an intentional broader native-NPC validation because Orcs exercise more attack variety and multiple weapon types.
 
-```text
-Ogre -> factual Axe / raw52
-```
+Run several separate Orc logs, keeping each log attributable to one weapon/setup where practical.
 
-Question:
+Purpose:
 
 ```text
-does the established equipped marker ownership / exact-source activation / native cleanup / C1 contract
-hold for a native Ogre using factual Axe/raw52?
+broaden native-NPC evidence across Orc weapon/source and attack-family variety
+without turning one mixed log into an ambiguous aggregate result
 ```
 
-Use the existing compact CORE diagnostic product. Seek the smallest useful marked attack fixture; let attacks connect where practical. Preserve and commit the complete raw log unchanged before interpretation.
+For each log, record factual equipped source / UseType, observed attack families, accepted marker/source transitions, native cleanup, C1 finalization, and any anomaly. Player counterattacks are allowed and can be separated by actor identity.
 
-Do not broaden this gate into additional actor matrices, 2H-vs-Axe mod compatibility, final mixed regression, Sprint AI-selection research, raw55, Raise, speed, or AttackContinuationProtection.
+Do not treat the Orc extension as a prerequisite retroactively missing from §8.1. Do not modify behavior or diagnostics unless a concrete contradiction appears.
+
+After the Orc extension is dispositioned, resume the standing sequence in `COLLISION_TEST_PLAN.md` rather than inventing additional matrix growth without a concrete compatibility question.

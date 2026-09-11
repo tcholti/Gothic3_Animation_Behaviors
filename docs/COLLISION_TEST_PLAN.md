@@ -1,6 +1,6 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw55 bounded discovery CLOSED/DEFERRED through EV-246; raw8 Normal/Power/Quick CLOSED/PASS through EV-249; architecture/diagnostic refactor sentinel CLOSED/PASS through EV-250; raw8 Sprint FIST production support CLOSED/PASS through EV-251; remaining broad matrix resumes at native equipped-NPC controls  
+**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw55 bounded discovery CLOSED/DEFERRED through EV-246; raw8 Normal/Power/Quick CLOSED/PASS through EV-249; architecture/diagnostic refactor sentinel CLOSED/PASS through EV-250; raw8 Sprint FIST production support CLOSED/PASS through EV-251; native equipped-NPC Goblin/Demon/Ogre controls CLOSED/PASS through EV-254; current broader extension is prepared Orc multi-weapon validation under §8.2  
 **Updated:** 2026-09-11
 
 ## Purpose
@@ -276,28 +276,36 @@ This rule is intended to discover any new unplanned family/source during larger 
 
 Architecture sentinel and focused Sprint disposition are now closed. Resume here.
 
-### 8.1 Native equipped-NPC marker controls — NEXT
+### 8.1 Native equipped-NPC marker controls — CLOSED/PASS
 
-Separate logs:
-
-```text
-Goblin -> factual 1H / raw2
-Demon  -> factual 2H / raw3
-Ogre   -> factual Axe / raw52
-```
-
-Purpose:
+Separate controls completed:
 
 ```text
-confirm equipped marker ownership follows factual equipped source/action semantics
-for NPC attackers as well as already-proven player-side cases
+Goblin / BlackGoblin -> factual 1H / raw2    EV-252
+Demon                -> factual 2H / raw3    EV-253
+Ogre                 -> factual Axe / raw52  EV-254
 ```
 
-Keep each actor as separate evidence so failures remain attributable.
+Purpose proven for the tested scope:
 
-### 8.2 Additional prepared native/modded actor-family controls
+```text
+established equipped marker ownership follows factual equipped source/action semantics
+for native NPC attackers as well as already-proven player-side cases
+```
 
-Use one actor/family per log where practical. Grow only when a concrete compatibility question remains open.
+Across the three controls, accepted RIGHT markers armed the exact factual source from group 5 to 7, native cleanup returned it to group 5, and C1 finalized cleanly without invariant/source-resolution failures or required terminal repair.
+
+The Demon run also captured a user-attempted mid-attack interruption in which native cleanup completed before `_AI_Stumble` replaced the attack with `ReplacedOutstanding=0`; this is an incidental legitimate-reaction observation, not a destructive-interruption test objective.
+
+Do not reopen §8.1 merely for more routine variation.
+
+### 8.2 Additional prepared native/modded actor-family controls — IN PROGRESS
+
+The User has prepared marked Orc animations. Orcs have greater attack variety and use multiple weapon types, so use them as the current intentional broader native-NPC validation extension.
+
+Use one weapon/setup per log where practical. Different attack families for the same setup may remain together. For each log, retain factual source/UseType, observed families, accepted marker/source transitions, native cleanup, C1 finalization, and any unsupported/anomalous path. Player counterattacks are allowed and can be separated by actor identity.
+
+Do not reinterpret the Orc extension as a missing prerequisite for the already-closed §8.1 gate. Grow beyond the prepared Orc set only when a concrete compatibility question remains open.
 
 ### 8.3 Separated 2H vs Axe mod compatibility
 
@@ -418,7 +426,13 @@ freeze test + raw filename
 
 `research/raw/` is active intake. `research/archive/` is processed provenance. `research/derived/` is a retrieval aid, not canonical evidence.
 
-EV-251 is the current raw8 Sprint closure checkpoint. Its processed validation raw is archived as `research/archive/2026.09.11_sprint_raw8_production_validation.log`.
+EV-254 is the current native equipped-NPC trio closure checkpoint. Processed controls are archived as:
+
+```text
+research/archive/2026.09.11_goblin_1h_native_equipped_control.log
+research/archive/2026.09.11_demon_2h_native_equipped_control.log
+research/archive/2026.09.11_ogre_axe_native_equipped_control.log
+```
 
 ---
 
@@ -432,8 +446,9 @@ Sabretooth raw8 + Quick mechanism                    PASS/CLASSIFIED — EV-247�
 raw8 Quick extension + two-direction validation      CLOSED/PASS — EV-249
 architecture + diagnostic refactor/sentinel          CLOSED/PASS — EV-250
 raw8 Sprint source/transport/production support      CLOSED/PASS — EV-251
--> native equipped-NPC markers: Goblin 1H / Demon 2H / Ogre Axe
--> additional native/modded family controls
+native equipped-NPC Goblin/Demon/Ogre controls       CLOSED/PASS — EV-252–EV-254
+-> prepared Orc multi-weapon native extension
+-> additional bounded native/modded family controls only if concrete questions remain
 -> separated 2H-vs-Axe compatibility
 -> separated 1H-vs-Rapier compatibility
 -> final native mixed/stress regression
