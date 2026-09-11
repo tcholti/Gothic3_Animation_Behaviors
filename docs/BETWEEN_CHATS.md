@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-11
 
-## Current Bridge — GOBLIN 1H/RAW2 CLOSED; DEMON 2H/RAW3 NEXT
+## Current Bridge — GOBLIN + DEMON CONTROLS CLOSED; OGRE AXE/RAW52 NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -30,6 +30,7 @@ Stage B diagnostic refactor                   CLOSED/PASS
 Stage A/B compact equivalence sentinel        CLOSED/PASS — EV-250
 production raw8 Sprint FIST support           CLOSED/PASS — EV-251
 native NPC 1H/raw2 equipped control           CLOSED/PASS — EV-252
+native NPC 2H/raw3 equipped control           CLOSED/PASS — EV-253
 ```
 
 Sprint production implementation:
@@ -44,44 +45,14 @@ No code changed after that production binary; later commits are evidence/documen
 
 ## EV-252 native 1H/raw2 closure
 
-One unchanged CORE log exercised two separate native NPC attackers one at a time:
+One unchanged CORE log exercised two native NPC attackers one at a time:
 
 ```text
 Goblin      -> It_1H_Club_01       / UseType 2
 BlackGoblin -> It_1H_Sword_Rust_01 / UseType 2
 ```
 
-Observed marked attack families included Normal and Quick, with Quick Action 4 and Action 5 directions.
-
-Healthy equipped lifecycle repeated across both actors:
-
-```text
-RIGHT source begins group 5
-ATTACK_OWNERSHIP RequiredMask=1
-G3AB_COL_RIGHT Result=ACCEPTED
-exact factual source 5 -> 7
-one C1 offense request outstanding
-Clears=1
-native attack/contact exercised
-native cleanup exact source 7 -> 5
-C1 CLEANUP FULFILLED
-C1 final Outstanding=0 / NO_OP_NO_OUTSTANDING
-```
-
-Player counterattacks are separately attributed as `PC_Hero` and do not contaminate NPC source ownership.
-
-Whole-log targeted anomaly checks found none of:
-
-```text
-REJECTED_*
-C1 INVARIANT WARNING
-REPAIR_DIVERGED
-UNRESOLVED_NOT_EQUIPPED
-LIFECYCLE_ISSUE
-REPAIRED_TO_ITEM_EQUIPPED
-```
-
-The diagnostic DLL unloaded cleanly.
+Normal and Quick marked attacks followed the established RIGHT-source lifecycle: exact source `5 -> 7`, accepted marker, `Clears=1`, native contact, native cleanup `7 -> 5`, and clean C1 finalization. No anomaly or repair path was observed.
 
 Processed evidence:
 
@@ -89,11 +60,72 @@ Processed evidence:
 research/archive/2026.09.11_goblin_1h_native_equipped_control.log
 ```
 
-Do not expand Goblin testing merely for more routine variation.
+---
+
+## EV-253 native 2H/raw3 closure
+
+The unchanged Demon CORE log exercised:
+
+```text
+Demon -> It_2H_DemonSword_01 / UseType 3
+Normal
+Quick Action 4
+Quick Action 5
+Power
+```
+
+Healthy lifecycle repeated:
+
+```text
+RIGHT source group 5
+ATTACK_OWNERSHIP RequiredMask=1
+G3AB_COL_RIGHT Result=ACCEPTED
+exact source 5 -> 7
+one offense request outstanding
+Clears=1
+native contact/damage exercised
+native cleanup exact source 7 -> 5
+C1 CLEANUP FULFILLED
+C1 final Outstanding=0 / NO_OP_NO_OUTSTANDING
+```
+
+A deliberate player counterattack also captured a legitimate reaction interruption after Demon Power had armed collision:
+
+```text
+Demon generation 106 Power
+RIGHT accepted / It_2H_DemonSword_01 5 -> 7
+player Quick attack damages Demon
+native Demon source cleanup 7 -> 5
+C1 obligation fulfilled
+_AI_Stumble replaces execution as generation 108
+ReplacedGeneration=106
+ReplacedOutstanding=0
+```
+
+This is positive legitimate-reaction evidence. It did not reproduce destructive continuation loss and required no C1-R1 repair.
+
+Whole-log targeted checks found none of:
+
+```text
+ReplacedOutstanding=1
+REPAIRED_TO_ITEM_EQUIPPED
+C1 INVARIANT WARNING
+REPAIR_DIVERGED
+UNRESOLVED_NOT_EQUIPPED
+LIFECYCLE_ISSUE
+```
+
+The diagnostic DLL unloaded cleanly.
+
+Processed evidence:
+
+```text
+research/archive/2026.09.11_demon_2h_native_equipped_control.log
+```
 
 ---
 
-## Next validation responsibility — Demon 2H/raw3
+## Next validation responsibility — Ogre Axe/raw52
 
 Authority:
 
@@ -101,26 +133,20 @@ Authority:
 docs/COLLISION_TEST_PLAN.md §8.1
 ```
 
-Run one separate native Demon control:
+Run the remaining separate native equipped-NPC control:
 
 ```text
-Demon -> factual 2H / raw3
+Ogre -> factual Axe / raw52
 ```
 
 Question:
 
 ```text
-does established equipped marker ownership follow the exact factual 2H/raw3 source
-for a native Demon, including activation, native cleanup and clean C1 finalization?
+does established equipped marker ownership follow the exact factual Axe/raw52 source
+for a native Ogre, including activation, native cleanup and clean C1 finalization?
 ```
 
 Use the already-deployed compact CORE diagnostic DLL; no rebuild is required. Seek the smallest useful marked attack fixture and let attacks connect where practical. Preserve and commit the complete raw log unchanged before interpretation.
-
-If Demon passes, the remaining §8.1 control is:
-
-```text
-Ogre -> factual Axe / raw52
-```
 
 Do not yet begin:
 
