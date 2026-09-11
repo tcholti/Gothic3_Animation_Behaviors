@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-11
 
-## Current Bridge — EV-250 CLOSED/PASS; SPRINT TRANSPORT PROBE FROZEN
+## Current Bridge — SPRINT TRANSPORT CLOSED; RAW8 SPRINT FIST IMPLEMENTATION FROZEN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -15,12 +15,10 @@ Fresh Chat orientation:
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. COLLISION_SPRINT_TRANSPORT_PROBE.md
-4. EVIDENCE_LEDGER_250_ONWARD.md
-5. COLLISION_TEST_PLAN.md only when planning the runtime fixture
+3. COLLISION_SPRINT_RAW8_IMPLEMENTATION.md
+4. WORK_IMPLEMENTATION_PROTOCOL.md
+5. EVIDENCE_LEDGER_250_ONWARD.md only when promoting evidence
 ```
-
-Do not begin Sprint behavior implementation or the Goblin/Demon/Ogre matrix yet.
 
 ---
 
@@ -30,6 +28,7 @@ Do not begin Sprint behavior implementation or the Goblin/Demon/Ogre matrix yet.
 Stage A architecture refactor                 CLOSED/PASS
 Stage B diagnostic refactor                   CLOSED/PASS
 Stage A/B compact equivalence sentinel        CLOSED/PASS — EV-250
+Sprint transport observability probe          CLOSED/PASS — 2026-09-11
 ```
 
 Stage A implementation:
@@ -38,79 +37,65 @@ Stage A implementation:
 Stage B implementation:
 `5737db32e5eda76810989ddfb5659f8405c0c458`
 
-Validated Stage-B diagnostic DLL SHA256:
-`081CDF413EC623079B8E4F1934EA7F1C27A7FFC7307B3BA0B19EA000BDA108BD`
+Sprint transport probe implementation:
+`2d30eeb3242e9391e384d08c54b14bcd825a3b12`
 
-Active Sprint raw:
+Probe DLL deployed with matching built/live SHA256:
+`42EDF5E01748ACF016BBB58B83CBFB71EC97DE6343A344CEEF2214F1B82207B6`
+
+Decisive raw Sprint fixture:
 
 ```text
-research/raw/2026.09.10_sabertooth_npc_pc_marked_attacks_new.log
+research/raw/2026.09.11_sprint_transport_probe_4.log
 ```
 
 ---
 
-## Sprint static research result — 2026-09-11
+## Sprint transport result
 
-Known factual tested boundary:
+The probe is decisive for the tested native-Sabretooth Sprint case:
 
 ```text
-gEAction_SprintAttack = 9
-actor = native Sabretooth
-source = Fist/raw8/group0
+physical callback = existing OnAI_PowerAttack
+ENTRY:          SPUAction=2  ActorAction=9  Phase=1
+AFTER_ORIGINAL: SPUAction=2  ActorAction=9  Phase=1
+motion = Sabretooth ... PowerAttack_Hit ...
+```
+
+Therefore the existing Power callback transport is early enough to route Sprint without another hook.
+
+Do not interpret SPUAction 2 or the PowerAttack-named motion as Power-family semantics. Factual actor routine Action 9 is the Sprint identity.
+
+---
+
+## Sprint marker/source result
+
+The same run contains many consistent Sprint marker discovery executions:
+
+```text
+action = 9 = gEAction_SprintAttack
 phase = 1
 StatePosition = 1
-motion filename = PowerAttack-named
-marker = FIST
-current marker result = REJECTED_UNSUPPORTED_HIT
-C1 binding = _AI_PowerAttack
+marker = G3AB_COL_FIST
+C1 generation = valid
+source = Fist / raw8 / group0
+RequiredSourceMask = 0
+left source = none
+result = REJECTED_UNSUPPORTED_HIT
 ```
 
-Do not infer Power family semantics from the script/motion transport names.
+The rejection occurs because Sprint is not yet admitted as a supported first-class family/raw8 family.
 
-### Transport
+Current runtime evidence is raw8 FIST only. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unevidenced and must stay unsupported.
 
-Pinned SDK search exposes the Action-9 enum but no dedicated `OnAI_Sprint...` callback symbol. Runtime C1 binds the tested Action-9 executions to `_AI_PowerAttack`.
-
-Current `OnAI_PowerAttack` wrapper evaluates `AttackFamily_Power`. `EvaluateAttackCallbackOwnership()` requires factual family/action agreement, so factual Action 9 is not eligible as Power. This is intentional and explains why current Sprint does not receive raw8 ownership/initial-close.
-
-Stage-B `LogAttackCallbackOwnership()` does not emit for non-eligible callbacks. Therefore current logs do not reveal whether Action 9 is already present at physical `OnAI_PowerAttack` entry.
-
-That is the only remaining transport fact requiring a probe.
-
-### Source scope
-
-Current observed Sprint source scope is raw8 only:
+The exact AI/distance selection rule for SprintAttack is not required. The practical validation fixture is sufficiently repeatable:
 
 ```text
-Fist / gEUseType_Fist / 8 / group0
+god mode
+-> transform player to Sabretooth
+-> spawn native Sabretooth
+-> fight it, including Power attacks from range
 ```
-
-Existing archived native weapon controls contain no Action 9:
-
-```text
-Demon   -> 2H/raw3       no Action 9 observed
-Goblin  -> 1H/raw2       no Action 9 observed
-Ogre    -> Axe/raw52     no Action 9 observed
-```
-
-This means equipped Sprint is currently unevidenced, not impossible.
-
-### Native raw8 mechanism
-
-Tested Game static control flow strongly supports Action 9 using the existing generic raw8 native route:
-
-```text
-SPU+0x164 gate at Game+0x16DFB9
-GetMaxTime(0) at +0x16E160
-GetPlayTime(0) at +0x16E180
-threshold comparison through +0x16E190
-native latch close SPU+0x164=1 at +0x16E1A3
-later native Fist damage path returning at +0x16E348
-```
-
-The nearby action-specific special branch is action `0x39`, not Action 9.
-
-Do not yet promote this static mechanism result into Sprint production behavior until callback-entry transport is proven.
 
 ---
 
@@ -119,62 +104,49 @@ Do not yet promote this static mechanism result into Sprint production behavior 
 Authority:
 
 ```text
-docs/COLLISION_SPRINT_TRANSPORT_PROBE.md
+docs/COLLISION_SPRINT_RAW8_IMPLEMENTATION.md
 ```
 
-Work implements only a diagnostic CORE record in the already-existing physical `OnAI_PowerAttack` wrapper:
+Implement only:
 
 ```text
-ENTRY
-AFTER_ORIGINAL
+AttackFamily_Sprint
+gEAction_SprintAttack -> Sprint family
+existing OnAI_PowerAttack callback selects Sprint from factual actor Action 9
+Sprint admitted to the existing raw8 FIST mechanism
+Sprint marker-owned StatePosition = 1
+diagnostics name Sprint as SPRINT
+Sprint remains FIST/raw8-only; equipped Sprint stays unsupported
+temporary SPRINT_TRANSPORT probe logging retired
 ```
-
-Each record captures:
-
-```text
-elapsed time
-actor
-SPU+0x154 factual action
-actor routine action
-phase
-current movement animation
-```
-
-AFTER_ORIGINAL also captures native return.
 
 Hard prohibitions:
 
 ```text
-NO new hook
-NO Sprint family implementation
-NO marker acceptance
-NO SPU latch/timing mutation
-NO behavior/RVA/calling-convention change
-NO species/name special case
-NO broad refactor
+NO new hook/callback/RVA/calling convention
+NO Sprint -> Power semantic alias
+NO SPU+0x154 semantic classification
+NO equipped Sprint marker support
+NO marker vocabulary change
+NO raw8 resolver/timing redesign
+NO C1/equipped cleanup/Hack-routing changes
+NO raw55/custom damage/species special case
+NO AI-selection/distance research encoded into behavior
+NO unrelated refactor
 NO Work build execution or build-tool probing
 ```
 
-After Work publishes, Normal Chat independently reviews the source. Then STOP remote work at the local build/runtime gate.
+After Work publishes, Normal Chat independently reviews the source diff. If PASS, the User builds both Release twins locally, deploys the diagnostic DLL, and repeats the established Sprint fixture.
 
----
-
-## Runtime decision after local build
-
-One native-Sabretooth Action-9 occurrence is sufficient if transport records are clear:
+Expected marked Sprint validation pattern:
 
 ```text
-ENTRY already Action 9
-    -> existing OnAI_PowerAttack physical hook is early enough for first-class Sprint routing
-
-ENTRY Power/other, AFTER_ORIGINAL Action 9
-    -> callback entry is too early to identify Sprint; find next factual boundary before implementation
-
-SPU action vs actor action materially disagree
-    -> investigate disagreement before implementation
-
-no Action 9 captured
-    -> repeat same bounded fixture only
+Family=SPRINT
+RAW8_FIST_OWNERSHIP initial close once per C1
+G3AB_COL_FIST Result=ACCEPTED
+Action=9 Phase=1 StatePosition=1
+Latch=1->0
+existing timing permission when required
+native damage remains Game.dll+0x16E348
+no equipped Sprint behavior or lifecycle regression
 ```
-
-No Sprint behavior Work task exists yet.
