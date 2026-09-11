@@ -45,7 +45,8 @@ bool IsSupportedFamily(AttackFamily family)
 {
     return family == AttackFamily_Normal
         || family == AttackFamily_Power
-        || family == AttackFamily_Quick;
+        || family == AttackFamily_Quick
+        || family == AttackFamily_Sprint;
 }
 
 static Raw8FistPrimaryTiming CaptureRaw8FistPrimaryTiming(Entity &actor)

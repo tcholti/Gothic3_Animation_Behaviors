@@ -416,6 +416,9 @@ static bool TryGetCurrentAttackHitFamily(
         case gEAction_PowerAttack:
             family = AttackFamily_Power;
             return true;
+        case gEAction_SprintAttack:
+            family = AttackFamily_Sprint;
+            return true;
         case gEAction_QuickAttack:
         case gEAction_QuickAttackR:
         case gEAction_QuickAttackL:
@@ -464,6 +467,7 @@ static GEInt GetMarkerOwnedStatePosition(
             return IsOneHandedSource(sources.rightInstance)
                     && IsOneHandedSource(sources.leftInstance)
                 ? 2 : 1;
+        case AttackFamily_Sprint:
         case AttackFamily_Quick:
         case AttackFamily_SimpleWhirl:
         case AttackFamily_Whirl:
@@ -641,7 +645,8 @@ AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
             CollisionSources::ResolveFistCollisionSource(actor);
     }
     bool const ownsEquippedWeaponTiming =
-        result.decision.requiredSourceMask != SourceMask_None;
+        family != AttackFamily_Sprint
+        && result.decision.requiredSourceMask != SourceMask_None;
     result.suppressNativeCallback =
         ownsEquippedWeaponTiming
         && result.decision.foundMatchingMotion
@@ -689,6 +694,12 @@ MarkerProcessResult ProcessMarker(
         MakeMarkerResult(sources, markerOpcode, effectName, elapsedMs);
     AttackFamily family = AttackFamily_Normal;
     if (!TryGetCurrentAttackHitFamily(actor, family))
+    {
+        result.code = MarkerResult_RejectedUnsupportedHit;
+        return result;
+    }
+    if (family == AttackFamily_Sprint
+        && markerOpcode != MarkerOpcode_Fist)
     {
         result.code = MarkerResult_RejectedUnsupportedHit;
         return result;

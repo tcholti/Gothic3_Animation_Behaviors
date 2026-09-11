@@ -32,7 +32,8 @@ enum AttackFamily
     AttackFamily_SimpleWhirl,
     AttackFamily_Whirl,
     AttackFamily_Pierce,
-    AttackFamily_Hack
+    AttackFamily_Hack,
+    AttackFamily_Sprint
 };
 
 unsigned int const SourceMask_None = 0;
