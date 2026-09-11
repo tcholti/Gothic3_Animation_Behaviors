@@ -35,6 +35,7 @@ Stage B diagnostic build/load gate         CLOSED/PASS — 2026-09-10
 Stage A/B compact equivalence sentinel     CLOSED/PASS — EV-250
 Sprint transport observability probe       CLOSED/PASS — 2026-09-11
 raw8 FIST Sprint production support        CLOSED/PASS — EV-251
+native NPC 1H/raw2 equipped control        CLOSED/PASS — EV-252
 ```
 
 Raw-8 FIST remains one shared native mechanism across the proven Normal, Power, Quick and Sprint scope. No authored FIST_OFF, Fist ClearTriggeredList, equipped Fist window/C1 weapon obligation, direct/custom damage, species branch, or raw55 generalization.
@@ -46,48 +47,7 @@ Validated Sprint diagnostic built/live SHA256: `1A58C6CF4D98B02873A114A7AF6F1AA3
 
 ---
 
-## SprintAttack — CLOSED/PASS
-
-EV-251 closes the focused evidence-backed raw8 Sprint responsibility.
-
-Validated production facts for the tested native-Sabretooth case:
-
-```text
-factual action = 9 = gEAction_SprintAttack
-semantic family = SPRINT
-physical callback transport = existing OnAI_PowerAttack
-phase = 1
-marker-owned StatePosition = 1
-motion = Sabretooth ... PowerAttack_Hit ...
-marker = G3AB_COL_FIST
-C1 generation = valid
-source = Fist / gEUseType_Fist / raw8 / group0
-RequiredSourceMask = 0
-initial close = 0 -> 1
-accepted FIST rearm = 1 -> 0
-timing permission = existing raw8 mechanism
-Sprint C1 finalization = clean / no equipped obligation
-```
-
-The production implementation remains deliberately bounded:
-
-- Sprint is a first-class semantic family, not a Power alias;
-- no new physical hook exists;
-- factual actor routine Action 9 is the Sprint identity;
-- current supported Sprint scope is raw8 `G3AB_COL_FIST` only;
-- equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported and unevidenced;
-- no AI/distance rule is encoded or required;
-- no raw55 or custom damage behavior is added.
-
-Processed validation evidence:
-
-```text
-research/archive/2026.09.11_sprint_raw8_production_validation.log
-```
-
----
-
-## Current Immediate Responsibility — NATIVE EQUIPPED-NPC CONTROLS
+## Native equipped-NPC controls — IN PROGRESS
 
 Authority:
 
@@ -95,21 +55,52 @@ Authority:
 docs/COLLISION_TEST_PLAN.md §8.1
 ```
 
-Run separate evidence logs for:
+EV-252 closes the first control:
 
 ```text
-Goblin -> factual 1H / raw2
-Demon  -> factual 2H / raw3
-Ogre   -> factual Axe / raw52
+Goblin       -> It_1H_Club_01       / raw2
+BlackGoblin  -> It_1H_Sword_Rust_01 / raw2
+Normal + Quick
+RIGHT marker accepted
+exact source 5 -> 7
+one offense request / Clears=1
+native contact exercised
+native cleanup 7 -> 5
+C1 Outstanding=0 / NO_OP_NO_OUTSTANDING
+no anomaly or repair path
 ```
 
-Purpose:
+Processed evidence:
 
 ```text
-confirm equipped marker ownership follows factual equipped source/action semantics
-for native NPC attackers as well as the already-proven player-side cases
+research/archive/2026.09.11_goblin_1h_native_equipped_control.log
 ```
 
-Keep each actor in a separate log so any failure remains attributable. Use the existing compact CORE diagnostic product; do not add new behavior or diagnostics unless a concrete contradiction appears.
+Do not grow the Goblin fixture merely for more routine variation.
 
-Do not broaden this gate into Sprint AI-selection research, raw55, final mixed regression, Raise, speed, or AttackContinuationProtection.
+---
+
+## Current Immediate Responsibility — DEMON 2H/RAW3 CONTROL
+
+Run the second separate §8.1 native equipped-NPC control:
+
+```text
+Demon -> factual 2H / raw3
+```
+
+Question:
+
+```text
+does the established equipped marker ownership / exact-source activation / native cleanup / C1 contract
+hold for a native Demon using factual 2H/raw3?
+```
+
+Use the existing compact CORE diagnostic product. Seek the smallest useful marked attack fixture; let attacks connect where practical. Preserve and commit the complete raw log unchanged before interpretation.
+
+After Demon is dispositioned, the final §8.1 control is:
+
+```text
+Ogre -> factual Axe / raw52
+```
+
+Do not broaden this gate into additional actor matrices, 2H-vs-Axe mod compatibility, final mixed regression, Sprint AI-selection research, raw55, Raise, speed, or AttackContinuationProtection.
