@@ -4,13 +4,13 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-10
+**Updated:** 2026-09-11
 
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
+Sprint transport probe contract: `docs/COLLISION_SPRINT_TRANSPORT_PROBE.md`  
 Architecture/redesign authority: `docs/COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`  
-Stage B contract: `docs/COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md`  
 Overall architecture: `docs/DESIGN.md`  
 Diagnostics: `docs/COLLISION_LOGGER_PLAN.md`  
 Validation: `docs/COLLISION_TEST_PLAN.md`  
@@ -36,109 +36,95 @@ Stage A/B compact equivalence sentinel     CLOSED/PASS — EV-250
 
 Raw-8 FIST remains one shared native mechanism. No authored FIST_OFF, Fist ClearTriggeredList, equipped Fist window/C1 weapon obligation, direct/custom damage, species branch, or raw55 generalization.
 
----
-
-## Architecture + Diagnostic Refactor — CLOSED/PASS
-
-Stage A behavior architecture implementation:
-
-```text
-7c5874932cd6eafa5af3414c65a4442b3d74bb73
-Refactor collision behavior ownership boundaries
-```
-
-Stage B diagnostic implementation:
-
-```text
-5737db32e5eda76810989ddfb5659f8405c0c458
-Refactor Stage B collision diagnostics
-```
-
-Both stages passed independent source review, local Release builds, exact diagnostic-DLL deployment hash verification, load/hook-install/clean-unload smoke, and the post-refactor compact equivalence sentinel.
-
-Stage B validated diagnostic DLL SHA256:
-
-```text
-081CDF413EC623079B8E4F1934EA7F1C27A7FFC7307B3BA0B19EA000BDA108BD
-```
-
-EV-250 closes the refactor parity gate. The compact sentinel preserved:
-
-```text
-raw8 FIST Normal + Quick + Power on native/transformed Sabretooth
-ordinary equipped marked attacks
-equipped RIGHT -> OFF -> RIGHT rearm lifecycle
-exact C1-R1 bad-skip terminal repair 7 -> 5
-compact healthy CORE output
-rich unsupported/anomaly output
-```
-
-No C1 invariant warning, repair divergence or raw8 timing anomaly was found in the sentinel logs. Both runs unloaded cleanly.
+Stage A behavior architecture implementation: `7c5874932cd6eafa5af3414c65a4442b3d74bb73`.  
+Stage B diagnostic implementation: `5737db32e5eda76810989ddfb5659f8405c0c458`.  
+Validated Stage-B diagnostic SHA256: `081CDF413EC623079B8E4F1934EA7F1C27A7FFC7307B3BA0B19EA000BDA108BD`.
 
 ---
 
-## SprintAttack Discovery — CURRENT OPEN RESPONSIBILITY
+## SprintAttack Static Research — CURRENT BOUNDARY
 
 Sprint remains deliberately unsupported.
 
-EV-249 first exposed the missing family. EV-250's new compact diagnostic run confirms the discovery path repeatedly and more cleanly:
+EV-250 repeatedly establishes the tested runtime facts:
 
 ```text
-actor: native Sabretooth
-action: 9 = gEAction_SprintAttack
-phase: 1
-StatePosition: 1
-motion: Sabretooth ... PowerAttack_Hit ...
-marker: G3AB_COL_FIST
-result: REJECTED_UNSUPPORTED_HIT
-C1 generation: valid
-RIGHT source: Fist
-UseType: 8 / raw8
-collision group: 0
+actor = native Sabretooth
+action = 9 = gEAction_SprintAttack
+phase = 1
+StatePosition = 1
+motion = Sabretooth ... PowerAttack_Hit ...
+marker = G3AB_COL_FIST
+result = REJECTED_UNSUPPORTED_HIT
+C1 generation = valid
+RIGHT source = Fist / UseType 8 / raw8 / group0
+C1 script transport binding = _AI_PowerAttack
 ```
 
-The PowerAttack-named motion does not make this a PowerAttack. Factual action identity remains authoritative.
+The PowerAttack-named motion is not family authority. Factual action identity remains authoritative.
 
-Current evidence does **not** establish:
+Remote source/API/binary review on 2026-09-11 narrows the five Sprint questions as follows:
 
 ```text
-Sprint callback/transport ownership
-whether Sprint uses an existing callback under another script name
-whether raw8 Sprint traverses the exact same latch/timing route
-whether equipped Sprint exists
-whether Sprint occurs for actors other than the tested native Sabretooth
+1. transport:
+   _AI_PowerAttack is the observed script transport binding;
+   pinned SDK search exposes no dedicated OnAI_Sprint callback;
+   unresolved fact = whether Action 9 is already factual at physical OnAI_PowerAttack ENTRY
+                     or becomes factual during/after the original callback.
+
+2. bounded source scope:
+   factual observed Sprint source = Fist/raw8/group0 only.
+   Existing Demon 2H/raw3, Goblin 1H/raw2 and Ogre Axe/raw52 controls contain no Action 9.
+   Therefore equipped Sprint is not evidenced, but is not proven impossible.
+
+3. tested action/phase contract:
+   native Sabretooth Action 9 uses phase 1 and StatePosition 1.
+   Do not generalize beyond tested scope yet.
+
+4. raw8 native mechanism:
+   tested Game static control flow strongly supports the same generic latch/timing route:
+   SPU+0x164 gate -> Game+0x16E160..190 timing comparison -> +0x16E1A3 latch close
+   -> later native Fist damage path +0x16E348.
+   Nearby special action branch is 0x39, not Action 9.
+   Runtime Sprint transport timing still needs the bounded probe before implementation.
+
+5. equipped Sprint:
+   no current runtime evidence.
 ```
 
-Do not implement `AttackFamily_Sprint`, alias Sprint to Power, add a Sabretooth exception, or begin the broad Goblin/Demon/Ogre matrix yet.
+Current architecture also explains why Sprint is not accidentally treated as Power: `EvaluateAttackCallbackOwnership()` requires the factual action to match the supplied family. Action 9 therefore fails `AttackFamily_Power` eligibility by design. Stage-B callback logging suppresses non-eligible ownership records, so the existing runtime log cannot reveal the callback-entry action.
 
 ---
 
-## Current Immediate Responsibility — BOUNDED SPRINT RESEARCH / PLANNING
+## Current Immediate Responsibility — FROZEN SPRINT TRANSPORT PROBE
 
-> **Normal Chat first determines SprintAttack's factual source/transport/mechanism boundary from current source/API/runtime evidence. No repository behavior edit is authorized yet.**
-
-Investigate only what is required to answer:
+Exact authority:
 
 ```text
-1. What script/native transport actually owns gEAction_SprintAttack?
-2. Which factual source UseTypes are observed/possible in the bounded tested scope?
-3. What StatePosition/action-phase contract does Sprint use?
-4. Does raw8 Sprint traverse the same relevant SPU+0x164 / Game+0x16E180 / +0x16E1A3 / +0x16E348 mechanism?
-5. Is practical equipped Sprint traffic evidenced by source/API/runtime material?
+docs/COLLISION_SPRINT_TRANSPORT_PROBE.md
 ```
 
-Use compact CORE first. Add DEEP instrumentation only if a specific required fact cannot be established otherwise.
+The probe is diagnostic-only and read-only:
+
+```text
+existing OnAI_PowerAttack physical hook only
+CORE SPRINT_TRANSPORT at ENTRY and AFTER_ORIGINAL
+log SPU+0x154 factual action + actor factual action + phase + motion
+no AttackFamily_Sprint
+no marker acceptance
+no raw8 latch/timing behavior change
+no new hook/RVA/calling convention
+no species filter
+```
+
+Work may implement only that frozen probe. Work build execution remains prohibited.
+
+After independent source review, the remote-only phase stops. The next required step is the User's local build/deploy/run of the diagnostic DLL and one native-Sabretooth fixture that captures Action 9.
+
+Do not implement Sprint behavior, alias Sprint to Power, or begin Goblin/Demon/Ogre matrix testing before that runtime transport result is interpreted in Normal Chat.
 
 Active Sprint evidence:
 
 ```text
 research/raw/2026.09.10_sabertooth_npc_pc_marked_attacks_new.log
 ```
-
-Processed EV-250 equipped sentinel evidence is archived:
-
-```text
-research/archive/2026.09.10_different_attacks.log
-```
-
-Only after the Sprint evidence boundary is frozen should Work receive a bounded implementation task, if implementation is justified at all.
