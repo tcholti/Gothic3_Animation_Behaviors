@@ -1,0 +1,1034 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + Raw8FistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=36568.479 Actor=Goblin Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=36568.508 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=36576.352 Event=PERSISTED Actor=Goblin Generation=1 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=36576.395 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=36684.399 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=36684.455 Actor=Goblin Generation=1 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=36684.466 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=36694.098 Ordinal=1 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_04_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=36703.199 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=36703.222 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=36703.640 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=36986.274 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE COLLISION_GROUP ElapsedMs=37205.635 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=37205.654 Actor=Goblin Generation=1 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=37205.679 Actor=Goblin Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=38413.652 Actor=Goblin Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=38413.664 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=38419.795 Event=PERSISTED Actor=Goblin Generation=3 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=38419.851 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=38525.846 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=38525.878 Actor=Goblin Generation=3 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=38525.889 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=3 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=38632.011 Ordinal=2 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=6 PlayerMotion=Hero_Stand_None_1H_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=38640.023 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=38640.035 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=38645.428 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=38825.258 Actor=PC_Hero Generation=4 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=39027.204 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=39027.225 Actor=Goblin Generation=3 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=39027.249 Actor=Goblin Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=39479.314 Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=39479.326 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=39485.518 Event=PERSISTED Actor=PC_Hero Generation=5 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=39485.550 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=39495.264 Actor=Goblin Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=39495.276 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=39498.804 Event=PERSISTED Actor=Goblin Generation=6 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=39717.030 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=39717.061 Actor=PC_Hero Generation=5 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=39717.073 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=39750.054 Ordinal=3 Target=Goblin Arg1=Goblin Arg2=Goblin Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=39757.126 Actor=Goblin Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=6 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=39757.138 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=39757.836 Event=PERSISTED Actor=Goblin Generation=7 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=39969.411 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=39969.431 Actor=PC_Hero Generation=5 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=39969.453 Actor=PC_Hero Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=40041.321 Actor=Goblin Generation=7 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=40227.406 Actor=Goblin Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=40227.419 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=40227.483 Event=PERSISTED Actor=Goblin Generation=8 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=40227.500 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=40344.374 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=40344.404 Actor=Goblin Generation=8 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=40344.416 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=40408.340 Ordinal=4 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_1H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=40416.313 Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=40416.324 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=40422.672 Event=PERSISTED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=40603.470 Actor=PC_Hero Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=40837.279 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=40837.307 Actor=Goblin Generation=8 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=40837.329 Actor=Goblin Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=42041.062 Actor=Goblin Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=42041.075 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=42041.139 Event=PERSISTED Actor=Goblin Generation=10 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=42041.155 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=42149.966 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=42149.996 Actor=Goblin Generation=10 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=42150.008 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=10 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=42266.937 Ordinal=5 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_00_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=42275.687 Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=42275.700 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=42275.756 Event=PERSISTED Actor=PC_Hero Generation=11 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=42459.912 Actor=PC_Hero Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=42642.075 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=42642.105 Actor=Goblin Generation=10 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=42642.125 Actor=Goblin Generation=10 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=43663.872 Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43663.885 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=43669.111 Event=PERSISTED Actor=PC_Hero Generation=12 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=43669.145 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=43675.979 Actor=Goblin Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43675.990 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=43676.105 Event=PERSISTED Actor=Goblin Generation=13 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=43761.129 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=43761.157 Actor=PC_Hero Generation=12 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=43849.851 Ordinal=6 Target=Goblin Arg1=Goblin Arg2=Goblin Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=43856.980 Actor=Goblin Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=13 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43856.992 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=43857.492 Event=PERSISTED Actor=Goblin Generation=14 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=44037.619 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=44037.639 Actor=PC_Hero Generation=12 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=44129.896 Actor=PC_Hero Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=44138.556 Actor=Goblin Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=44153.023 Actor=Goblin Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44153.035 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=44153.097 Event=PERSISTED Actor=Goblin Generation=15 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=44153.113 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=44271.964 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=44272.040 Actor=Goblin Generation=15 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=44272.064 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=15 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=44357.242 Ordinal=7 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=44364.890 Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44364.902 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=44364.957 Event=PERSISTED Actor=PC_Hero Generation=16 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=44549.051 Actor=PC_Hero Generation=16 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=44757.198 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=44757.228 Actor=Goblin Generation=15 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=44757.248 Actor=Goblin Generation=15 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=45988.280 Actor=Goblin Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45988.292 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=45993.810 Event=PERSISTED Actor=Goblin Generation=17 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=45993.838 Actor=Goblin Family=QUICK Action=5 Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_50_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=46092.175 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=46092.204 Actor=Goblin Generation=17 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=46092.216 Actor=Goblin Action=5 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_50_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=17 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=46216.184 Ordinal=8 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_01_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=46224.195 Actor=PC_Hero Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=46224.206 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=46224.259 Event=PERSISTED Actor=PC_Hero Generation=18 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=46391.951 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=46391.971 Actor=Goblin Generation=17 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=46418.320 Actor=PC_Hero Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=46462.797 Actor=Goblin Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47624.077 Actor=Goblin Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=47624.089 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=47624.154 Event=PERSISTED Actor=Goblin Generation=19 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=47624.174 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=47741.624 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=47741.654 Actor=Goblin Generation=19 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=47741.666 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=19 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE C1_START ElapsedMs=47808.719 Actor=PC_Hero Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=47808.732 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=20 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=47814.519 Event=PERSISTED Actor=PC_Hero Generation=20 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=47814.552 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=47859.798 Ordinal=9 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=47869.633 Actor=PC_Hero Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=20 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=47869.645 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=21 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=47869.785 Event=PERSISTED Actor=PC_Hero Generation=21 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=48051.323 Actor=PC_Hero Generation=21 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=48234.245 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=48234.276 Actor=Goblin Generation=19 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=48234.297 Actor=Goblin Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49429.564 Actor=Goblin Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=49429.577 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=49429.645 Event=PERSISTED Actor=Goblin Generation=22 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=49429.662 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=49551.224 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=49551.260 Actor=Goblin Generation=22 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=49551.275 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=22 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=49737.558 Ordinal=10 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=49745.743 Actor=PC_Hero Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=49745.767 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=49745.823 Event=PERSISTED Actor=PC_Hero Generation=23 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=49920.904 Actor=PC_Hero Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=50031.737 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=50031.766 Actor=Goblin Generation=22 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=50031.786 Actor=Goblin Generation=22 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=51239.289 Actor=Goblin Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=51239.302 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=51239.370 Event=PERSISTED Actor=Goblin Generation=24 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=51239.387 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=51353.948 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=51353.976 Actor=Goblin Generation=24 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=51353.988 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=24 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=51439.218 Ordinal=11 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_00_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=51447.190 Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=51447.203 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=51447.313 Event=PERSISTED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=51636.773 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=51848.664 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=51848.695 Actor=Goblin Generation=24 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=51848.715 Actor=Goblin Generation=24 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=53045.711 Actor=Goblin Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=53045.723 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=53050.890 Event=PERSISTED Actor=Goblin Generation=26 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=53050.919 Actor=Goblin Family=QUICK Action=5 Phase=1 Motion=Goblin_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P10_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=53151.581 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=53151.609 Actor=Goblin Generation=26 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=53151.620 Actor=Goblin Action=5 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P10_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=26 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=53190.414 Ordinal=12 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_01_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=53195.374 Actor=PC_Hero Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=53195.384 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=53195.437 Event=PERSISTED Actor=PC_Hero Generation=27 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=53378.353 Actor=PC_Hero Generation=27 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=53411.621 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=53411.642 Actor=Goblin Generation=26 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=53504.358 Actor=Goblin Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=54687.762 Actor=Goblin Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=54687.774 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=54693.142 Event=PERSISTED Actor=Goblin Generation=28 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=54693.177 Actor=Goblin Family=QUICK Action=4 Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=54792.281 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=54792.309 Actor=Goblin Generation=28 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=54792.320 Actor=Goblin Action=4 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=28 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=54942.928 Ordinal=13 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=54951.120 Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=54951.131 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=54951.186 Event=PERSISTED Actor=PC_Hero Generation=29 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=55049.307 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=55049.329 Actor=Goblin Generation=28 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=55122.595 Actor=PC_Hero Generation=29 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=55133.241 Actor=Goblin Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=56548.968 Actor=Goblin Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56548.982 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=56549.043 Event=PERSISTED Actor=Goblin Generation=30 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=56549.113 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=56659.744 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=56659.773 Actor=Goblin Generation=30 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=56659.784 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=30 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=56782.008 Ordinal=14 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=56791.676 Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56791.689 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=56791.745 Event=PERSISTED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=56973.470 Actor=PC_Hero Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=57135.071 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=57135.170 Actor=Goblin Generation=30 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=57135.207 Actor=Goblin Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=59060.147 Actor=Goblin Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59060.160 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=59060.218 Event=PERSISTED Actor=Goblin Generation=32 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=59177.903 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=59177.932 Actor=Goblin Generation=32 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=59177.944 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=32 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=59321.807 Ordinal=15 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=10 PlayerMotion=Hero_Stand_None_1H_P0_Move_Sprint_N_Left_00_%_00_P0_400.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=59329.279 Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59329.293 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=59329.348 Event=PERSISTED Actor=PC_Hero Generation=33 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=59507.293 Actor=PC_Hero Generation=33 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=59660.750 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=59660.809 Actor=Goblin Generation=32 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=59660.829 Actor=Goblin Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=60875.557 Actor=Goblin Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=60875.638 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=60875.745 Event=PERSISTED Actor=Goblin Generation=34 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=60875.765 Actor=Goblin Family=QUICK Action=5 Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_50_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=60978.203 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=60978.233 Actor=Goblin Generation=34 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=60978.245 Actor=Goblin Action=5 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_50_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=34 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=61146.912 Ordinal=16 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=10 PlayerMotion=Hero_Stand_None_1H_P0_Move_Sprint_N_Right_00_%_00_P0_400.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=61156.123 Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=61156.135 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=61156.223 Event=PERSISTED Actor=PC_Hero Generation=35 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=61249.939 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=61249.969 Actor=Goblin Generation=34 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=61345.250 Actor=Goblin Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=61348.116 Actor=PC_Hero Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=62522.699 Actor=Goblin Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=62522.712 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=62522.778 Event=PERSISTED Actor=Goblin Generation=36 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=62522.795 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=62637.507 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=62637.535 Actor=Goblin Generation=36 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=62637.545 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=36 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE COLLISION_GROUP ElapsedMs=63102.493 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=63102.528 Actor=Goblin Generation=36 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=63102.550 Actor=Goblin Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=64346.342 Actor=Goblin Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=64346.354 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=64346.420 Event=PERSISTED Actor=Goblin Generation=37 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=64452.162 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=64452.190 Actor=Goblin Generation=37 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=64452.201 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=37 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=64544.975 Ordinal=17 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=64552.927 Actor=PC_Hero Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=64552.954 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=64553.020 Event=PERSISTED Actor=PC_Hero Generation=38 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=64728.687 Actor=PC_Hero Generation=38 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=64924.642 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=64924.671 Actor=Goblin Generation=37 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=64924.690 Actor=Goblin Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=66170.990 Actor=Goblin Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66171.004 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=66171.106 Event=PERSISTED Actor=Goblin Generation=39 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=66171.124 Actor=Goblin Family=QUICK Action=5 Phase=1 Motion=Goblin_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P10_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=66266.719 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=66266.748 Actor=Goblin Generation=39 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=66266.822 Actor=Goblin Action=5 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P10_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=39 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=66322.527 Ordinal=18 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_01_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=66331.076 Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66331.089 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=66331.145 Event=PERSISTED Actor=PC_Hero Generation=40 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=66509.306 Actor=PC_Hero Generation=40 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=66520.827 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=66520.856 Actor=Goblin Generation=39 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=66608.092 Actor=Goblin Generation=39 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=67827.776 Actor=Goblin Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67827.789 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=67827.858 Event=PERSISTED Actor=Goblin Generation=41 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=67827.875 Actor=Goblin Family=QUICK Action=4 Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=67866.953 Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67866.965 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=67867.024 Event=PERSISTED Actor=PC_Hero Generation=42 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=67867.038 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=67926.953 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=67926.981 Actor=Goblin Generation=41 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=67926.994 Actor=Goblin Action=4 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=41 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE COLLISION_GROUP ElapsedMs=67952.261 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=67952.293 Actor=PC_Hero Generation=42 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=67982.145 Ordinal=19 Target=Goblin Arg1=Goblin Arg2=Goblin Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE ONDAMAGE ElapsedMs=67982.277 Ordinal=20 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=67985.214 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=67985.239 Actor=Goblin Generation=41 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=67985.260 Actor=Goblin Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=41 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67985.266 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=67985.316 Event=PERSISTED Actor=Goblin Generation=43 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=67991.126 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=67991.149 Actor=PC_Hero Generation=42 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=67992.564 Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=42 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67992.572 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=67992.624 Event=PERSISTED Actor=PC_Hero Generation=44 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=68157.584 Actor=PC_Hero Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=68252.230 Actor=Goblin Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=68562.391 Actor=Goblin Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=68562.403 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=68562.460 Event=PERSISTED Actor=Goblin Generation=45 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=68562.475 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=68674.844 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=68674.873 Actor=Goblin Generation=45 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=68674.884 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=45 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=68779.350 Ordinal=21 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_00_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=68786.881 Actor=PC_Hero Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=68786.894 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=68786.948 Event=PERSISTED Actor=PC_Hero Generation=46 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=68960.622 Actor=PC_Hero Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=69131.826 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=69131.856 Actor=Goblin Generation=45 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=69131.877 Actor=Goblin Generation=45 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=70319.025 Actor=Goblin Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=70319.036 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=70319.121 Event=PERSISTED Actor=Goblin Generation=47 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=70319.150 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=70428.024 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=70428.052 Actor=Goblin Generation=47 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=70428.062 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=47 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=70555.855 Ordinal=22 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_01_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=70560.141 Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=70560.150 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=70560.202 Event=PERSISTED Actor=PC_Hero Generation=48 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=70738.624 Actor=PC_Hero Generation=48 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=70896.003 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=70896.086 Actor=Goblin Generation=47 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=70896.113 Actor=Goblin Generation=47 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=72137.987 Actor=Goblin Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72137.999 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=72138.063 Event=PERSISTED Actor=Goblin Generation=49 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=72138.079 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=72249.949 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=72249.979 Actor=Goblin Generation=49 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=72249.991 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=49 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=72341.247 Ordinal=23 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_01_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=72348.292 Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72348.304 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=72348.358 Event=PERSISTED Actor=PC_Hero Generation=50 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=72527.845 Actor=PC_Hero Generation=50 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=72721.102 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=72721.131 Actor=Goblin Generation=49 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=72721.151 Actor=Goblin Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=73955.844 Actor=Goblin Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=73955.856 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=51 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=73955.925 Event=PERSISTED Actor=Goblin Generation=51 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=73955.941 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=74067.541 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=74067.574 Actor=Goblin Generation=51 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=74067.588 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=51 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=74184.928 Ordinal=24 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_01_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=74189.377 Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=74189.387 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=74189.439 Event=PERSISTED Actor=PC_Hero Generation=52 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=74357.615 Actor=PC_Hero Generation=52 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=74529.904 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=74529.934 Actor=Goblin Generation=51 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=74529.953 Actor=Goblin Generation=51 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=75662.242 Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=75662.254 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=75662.316 Event=PERSISTED Actor=PC_Hero Generation=53 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=75662.332 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=75673.778 Actor=Goblin Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=75673.791 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=54 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=75673.857 Event=PERSISTED Actor=Goblin Generation=54 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=75749.742 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=75749.772 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=75884.681 Ordinal=25 Target=Goblin Arg1=Goblin Arg2=Goblin Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=75888.004 Actor=Goblin Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=54 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=75888.016 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=75888.082 Event=PERSISTED Actor=Goblin Generation=55 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=76020.103 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=76020.123 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=76106.482 Actor=PC_Hero Generation=53 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=76159.864 Actor=Goblin Generation=55 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=76174.667 Actor=Goblin Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76174.679 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=56 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=76174.746 Event=PERSISTED Actor=Goblin Generation=56 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=76174.763 Actor=Goblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=76282.989 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=76283.017 Actor=Goblin Generation=56 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=76283.029 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=56 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=76396.620 Ordinal=26 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=76405.920 Actor=PC_Hero Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76405.932 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=76405.987 Event=PERSISTED Actor=PC_Hero Generation=57 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=76587.504 Actor=PC_Hero Generation=57 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=76760.350 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=76760.379 Actor=Goblin Generation=56 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=76760.400 Actor=Goblin Generation=56 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=77900.996 Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77901.008 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=77901.073 Event=PERSISTED Actor=PC_Hero Generation=58 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=77901.092 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=77912.196 Actor=Goblin Generation=59 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77912.208 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=59 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=77914.158 Event=PERSISTED Actor=Goblin Generation=59 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=77989.554 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=77989.582 Actor=PC_Hero Generation=58 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=78245.941 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=78245.970 Actor=PC_Hero Generation=58 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=78260.220 Actor=Goblin Generation=59 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=78266.374 Actor=Goblin Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78266.386 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=60 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=78266.448 Event=PERSISTED Actor=Goblin Generation=60 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=78336.734 Actor=PC_Hero Generation=58 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=78379.022 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=78379.049 Actor=Goblin Generation=60 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=78379.061 Actor=Goblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=60 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=78489.734 Ordinal=27 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=78498.124 Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78498.137 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=78498.193 Event=PERSISTED Actor=PC_Hero Generation=61 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=78672.184 Actor=PC_Hero Generation=61 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=78846.570 Source=It_1H_Club_01 UseType=2 Owner=Goblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=78846.603 Actor=Goblin Generation=60 Status=PERSISTED Source=It_1H_Club_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=78846.624 Actor=Goblin Generation=60 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Club_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=79898.245 Actor=PC_Hero Generation=62 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=79898.259 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=62 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=79898.322 Event=PERSISTED Actor=PC_Hero Generation=62 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=79898.340 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=79909.116 Actor=Goblin Generation=63 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Club_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=79909.128 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Goblin Generation=63 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=79909.194 Event=PERSISTED Actor=Goblin Generation=63 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=79984.631 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=79984.660 Actor=PC_Hero Generation=62 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=79990.750 Ordinal=28 Target=Goblin Arg1=Goblin Arg2=Goblin Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_FINAL ElapsedMs=80002.571 Actor=Goblin Generation=63 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=<not-live> Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=80251.278 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=80251.309 Actor=PC_Hero Generation=62 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=80338.406 Actor=PC_Hero Generation=62 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=172737.740 Actor=BlackGoblin Generation=64 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=172737.753 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=64 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=172737.817 Event=PERSISTED Actor=BlackGoblin Generation=64 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=172737.834 Actor=BlackGoblin Family=QUICK Action=4 Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=172838.282 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=172838.308 Actor=BlackGoblin Generation=64 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=172838.328 Actor=BlackGoblin Action=4 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=64 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=172847.531 Ordinal=29 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_01_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=172856.586 Actor=PC_Hero Generation=65 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=172856.597 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=65 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=172856.653 Event=PERSISTED Actor=PC_Hero Generation=65 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=173037.946 Actor=PC_Hero Generation=65 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=173101.578 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=173101.603 Actor=BlackGoblin Generation=64 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=173190.002 Actor=BlackGoblin Generation=64 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=174419.693 Actor=BlackGoblin Generation=66 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=174419.706 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=66 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=174419.770 Event=PERSISTED Actor=BlackGoblin Generation=66 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=174419.787 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=174534.454 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=174534.483 Actor=BlackGoblin Generation=66 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=174534.495 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=66 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE COLLISION_GROUP ElapsedMs=175017.445 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=175017.470 Actor=BlackGoblin Generation=66 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=175017.504 Actor=BlackGoblin Generation=66 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=176237.127 Actor=BlackGoblin Generation=67 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=176237.147 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=67 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=176237.238 Event=PERSISTED Actor=BlackGoblin Generation=67 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=176362.184 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=176362.215 Actor=BlackGoblin Generation=67 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=176362.233 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=67 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=176389.000 Ordinal=30 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Ambient_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=176399.534 Actor=PC_Hero Generation=68 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=176399.552 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=68 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=176410.050 Event=PERSISTED Actor=PC_Hero Generation=68 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=176699.841 Actor=PC_Hero Generation=68 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=176888.917 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=176888.944 Actor=BlackGoblin Generation=67 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=176888.966 Actor=BlackGoblin Generation=67 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=178126.806 Actor=BlackGoblin Generation=69 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=178126.825 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=69 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=178126.911 Event=PERSISTED Actor=BlackGoblin Generation=69 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=178126.936 Actor=BlackGoblin Family=QUICK Action=5 Phase=1 Motion=Goblin_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P10_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=178174.213 Actor=PC_Hero Generation=70 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=178174.232 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=70 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=178182.453 Event=PERSISTED Actor=PC_Hero Generation=70 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=178194.294 Actor=PC_Hero Generation=70 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=178199.493 Actor=PC_Hero Generation=71 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=178199.510 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=71 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=178207.568 Event=PERSISTED Actor=PC_Hero Generation=71 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=178207.617 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=178237.636 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=178237.667 Actor=BlackGoblin Generation=69 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=178237.686 Actor=BlackGoblin Action=5 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P10_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=69 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=178268.331 Ordinal=31 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=178278.401 Actor=PC_Hero Generation=72 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=71 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=178278.420 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=72 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=178334.784 Event=PERSISTED Actor=PC_Hero Generation=72 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=178477.973 Actor=PC_Hero Generation=72 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=178515.997 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=178516.029 Actor=BlackGoblin Generation=69 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=178614.957 Actor=BlackGoblin Generation=69 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=179860.413 Actor=BlackGoblin Generation=73 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=179860.433 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=73 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=179860.509 Event=PERSISTED Actor=BlackGoblin Generation=73 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=179860.533 Actor=BlackGoblin Family=QUICK Action=4 Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=179970.538 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=179970.569 Actor=BlackGoblin Generation=73 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=179970.594 Actor=BlackGoblin Action=4 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=73 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=180089.747 Ordinal=32 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=180101.232 Actor=PC_Hero Generation=74 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=180101.248 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=74 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=180101.329 Event=PERSISTED Actor=PC_Hero Generation=74 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=180250.155 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=180250.188 Actor=BlackGoblin Generation=73 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=180299.059 Actor=PC_Hero Generation=74 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=180346.693 Actor=BlackGoblin Generation=73 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=181578.654 Actor=BlackGoblin Generation=75 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=181578.668 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=75 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=181578.734 Event=PERSISTED Actor=BlackGoblin Generation=75 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=181578.751 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=181687.551 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=181687.578 Actor=BlackGoblin Generation=75 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=181687.591 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=75 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=181783.669 Ordinal=33 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_00_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=181795.346 Actor=PC_Hero Generation=76 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=181795.365 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=76 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=181795.444 Event=PERSISTED Actor=PC_Hero Generation=76 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=182081.558 Actor=PC_Hero Generation=76 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=182174.005 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=182174.032 Actor=BlackGoblin Generation=75 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=182174.055 Actor=BlackGoblin Generation=75 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=183393.687 Actor=BlackGoblin Generation=77 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=183393.699 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=77 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=183393.762 Event=PERSISTED Actor=BlackGoblin Generation=77 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=183393.778 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=183436.161 Actor=PC_Hero Generation=78 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=183436.174 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=78 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=183436.232 Event=PERSISTED Actor=PC_Hero Generation=78 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=183453.221 Actor=PC_Hero Generation=78 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=183457.054 Actor=PC_Hero Generation=79 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=183457.067 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=79 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=183457.131 Event=PERSISTED Actor=PC_Hero Generation=79 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=183508.446 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=183508.472 Actor=BlackGoblin Generation=77 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=183508.484 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=77 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE COLLISION_GROUP ElapsedMs=183548.364 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=183548.389 Actor=PC_Hero Generation=79 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=183628.555 Ordinal=34 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=183634.781 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=183634.811 Actor=PC_Hero Generation=79 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=183636.123 Actor=PC_Hero Generation=80 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=79 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=183636.131 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=80 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=183644.418 Event=PERSISTED Actor=PC_Hero Generation=80 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=183922.980 Actor=PC_Hero Generation=80 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=183993.746 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=183993.771 Actor=BlackGoblin Generation=77 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=183993.791 Actor=BlackGoblin Generation=77 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=185217.251 Actor=BlackGoblin Generation=81 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=185217.265 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=81 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=185217.327 Event=PERSISTED Actor=BlackGoblin Generation=81 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=185217.344 Actor=BlackGoblin Family=QUICK Action=4 Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=185322.491 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=185322.518 Actor=BlackGoblin Generation=81 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=185322.530 Actor=BlackGoblin Action=4 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_50_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=81 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=185372.553 Ordinal=35 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P3_Ambient_Loop_N_Fwd_00_%_01_P3_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=185379.893 Actor=PC_Hero Generation=82 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=185379.906 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=82 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=185386.143 Event=PERSISTED Actor=PC_Hero Generation=82 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=185567.745 Actor=PC_Hero Generation=82 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=185579.993 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=185580.032 Actor=BlackGoblin Generation=81 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=185628.404 Actor=PC_Hero Generation=83 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=185628.417 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=83 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=185628.475 Event=PERSISTED Actor=PC_Hero Generation=83 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=185628.491 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_FINAL ElapsedMs=185678.575 Actor=BlackGoblin Generation=81 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=185685.909 Actor=BlackGoblin Generation=84 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=185685.922 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=84 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=185685.987 Event=PERSISTED Actor=BlackGoblin Generation=84 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=185719.395 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=185719.421 Actor=PC_Hero Generation=83 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=185821.285 Ordinal=36 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=185825.703 Actor=BlackGoblin Generation=85 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=84 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=185825.715 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=85 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=185825.786 Event=PERSISTED Actor=BlackGoblin Generation=85 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=185990.190 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=185990.217 Actor=PC_Hero Generation=83 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=186083.685 Actor=PC_Hero Generation=83 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=186101.589 Actor=BlackGoblin Generation=85 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=186864.585 Actor=BlackGoblin Generation=86 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=186864.597 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=86 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=186864.658 Event=PERSISTED Actor=BlackGoblin Generation=86 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=186864.674 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=186977.802 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=186977.831 Actor=BlackGoblin Generation=86 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=186977.843 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=86 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE C1_START ElapsedMs=187265.731 Actor=PC_Hero Generation=87 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=187265.744 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=87 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=187265.802 Event=PERSISTED Actor=PC_Hero Generation=87 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=187265.818 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=187356.945 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=187356.975 Actor=PC_Hero Generation=87 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=187459.672 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=187459.699 Actor=BlackGoblin Generation=86 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=187459.720 Actor=BlackGoblin Generation=86 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE ONDAMAGE ElapsedMs=187463.285 Ordinal=37 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=187467.602 Actor=BlackGoblin Generation=88 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=187467.614 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=88 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=187471.076 Event=PERSISTED Actor=BlackGoblin Generation=88 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=187622.157 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=187622.185 Actor=PC_Hero Generation=87 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=187710.581 Actor=PC_Hero Generation=87 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=187738.570 Actor=BlackGoblin Generation=88 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=188683.915 Actor=BlackGoblin Generation=89 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=188683.930 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=89 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=188684.010 Event=PERSISTED Actor=BlackGoblin Generation=89 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=188797.645 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=188797.673 Actor=BlackGoblin Generation=89 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=188797.684 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=89 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=188895.015 Ordinal=38 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=188904.953 Actor=PC_Hero Generation=90 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=188904.965 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=90 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=188905.021 Event=PERSISTED Actor=PC_Hero Generation=90 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=189176.087 Actor=PC_Hero Generation=90 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=189271.146 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=189271.177 Actor=BlackGoblin Generation=89 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=189271.201 Actor=BlackGoblin Generation=89 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=190501.935 Actor=BlackGoblin Generation=91 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=190501.947 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=91 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=190502.012 Event=PERSISTED Actor=BlackGoblin Generation=91 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=190502.027 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=190611.419 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=190611.447 Actor=BlackGoblin Generation=91 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=190611.459 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=91 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=190738.899 Ordinal=39 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P2_Ambient_Loop_N_Fwd_01_%_01_P2_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=190746.352 Actor=PC_Hero Generation=92 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=190746.364 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=92 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=190746.418 Event=PERSISTED Actor=PC_Hero Generation=92 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=191018.153 Actor=PC_Hero Generation=92 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=191079.499 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=191079.530 Actor=BlackGoblin Generation=91 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=191079.552 Actor=BlackGoblin Generation=91 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=192320.489 Actor=BlackGoblin Generation=93 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=192320.502 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=93 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=192320.567 Event=PERSISTED Actor=BlackGoblin Generation=93 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=192320.584 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=192430.108 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=192430.137 Actor=BlackGoblin Generation=93 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=192430.148 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=93 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE C1_START ElapsedMs=192524.477 Actor=PC_Hero Generation=94 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=192524.489 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=94 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=192529.660 Event=PERSISTED Actor=PC_Hero Generation=94 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=192533.153 Ordinal=40 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=16 PlayerPhase=4 PlayerMotion=Hero_Stand_None_1H_P3_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=192537.869 Actor=PC_Hero Generation=95 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=94 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=192537.881 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=95 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=192543.100 Event=PERSISTED Actor=PC_Hero Generation=95 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=192816.345 Actor=PC_Hero Generation=95 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=192905.416 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=192905.447 Actor=BlackGoblin Generation=93 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=192905.469 Actor=BlackGoblin Generation=93 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=193174.731 Actor=PC_Hero Generation=96 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=193174.743 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=96 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=193174.813 Event=PERSISTED Actor=PC_Hero Generation=96 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=193174.831 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=193189.720 Actor=BlackGoblin Generation=97 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=193189.733 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=97 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=193189.798 Event=PERSISTED Actor=BlackGoblin Generation=97 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=193262.595 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=193262.625 Actor=PC_Hero Generation=96 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=193367.108 Ordinal=41 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=193370.147 Actor=BlackGoblin Generation=98 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=97 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=193370.176 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=98 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=193370.278 Event=PERSISTED Actor=BlackGoblin Generation=98 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=193526.430 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=193526.461 Actor=PC_Hero Generation=96 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=193613.182 Actor=PC_Hero Generation=96 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=193635.413 Actor=BlackGoblin Generation=98 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=194300.900 Actor=BlackGoblin Generation=99 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=194300.913 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=99 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=194301.027 Event=PERSISTED Actor=BlackGoblin Generation=99 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=194406.902 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=194406.932 Actor=BlackGoblin Generation=99 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=194406.944 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=99 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=194511.784 Ordinal=42 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_00_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=194517.675 Actor=PC_Hero Generation=100 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=194517.687 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=100 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=194517.741 Event=PERSISTED Actor=PC_Hero Generation=100 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=194784.463 Actor=PC_Hero Generation=100 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=194877.642 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=194877.674 Actor=BlackGoblin Generation=99 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=194877.694 Actor=BlackGoblin Generation=99 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=196051.882 Actor=BlackGoblin Generation=101 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=196051.894 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=101 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=196051.962 Event=PERSISTED Actor=BlackGoblin Generation=101 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=196051.978 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=196160.769 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=196160.799 Actor=BlackGoblin Generation=101 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=196160.811 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=101 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=196293.885 Ordinal=43 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P2_Ambient_Loop_N_Fwd_01_%_01_P2_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=196295.214 Actor=PC_Hero Generation=102 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=196295.222 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=102 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=196295.272 Event=PERSISTED Actor=PC_Hero Generation=102 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=196565.148 Actor=PC_Hero Generation=102 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=196631.131 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=196631.160 Actor=BlackGoblin Generation=101 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=196631.183 Actor=BlackGoblin Generation=101 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=196937.706 Actor=PC_Hero Generation=103 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=196937.753 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=103 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=196937.871 Event=PERSISTED Actor=PC_Hero Generation=103 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=196958.173 Actor=PC_Hero Generation=103 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=196958.935 Actor=PC_Hero Generation=104 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=196958.945 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=104 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=196964.694 Event=PERSISTED Actor=PC_Hero Generation=104 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=196964.751 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P3_QuickAttackL_Hit_N_Fwd_00_%_00_P70_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=196978.497 Actor=BlackGoblin Generation=105 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=196978.510 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=105 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=196978.577 Event=PERSISTED Actor=BlackGoblin Generation=105 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=197051.183 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=197051.213 Actor=PC_Hero Generation=104 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=197318.707 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=197318.727 Actor=PC_Hero Generation=104 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=197334.116 Actor=BlackGoblin Generation=105 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=197348.158 Actor=BlackGoblin Generation=106 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=197348.171 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=106 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=197348.230 Event=PERSISTED Actor=BlackGoblin Generation=106 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=197405.875 Actor=PC_Hero Generation=104 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=197690.108 Actor=BlackGoblin Generation=106 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=197748.604 Actor=PC_Hero Generation=107 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=197748.617 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=107 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=197748.679 Event=PERSISTED Actor=PC_Hero Generation=107 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=197748.696 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=197835.292 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=197835.320 Actor=PC_Hero Generation=107 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=197961.028 Actor=BlackGoblin Generation=108 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=197961.041 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=108 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=197961.097 Event=PERSISTED Actor=BlackGoblin Generation=108 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=197961.112 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=198069.875 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=198069.904 Actor=BlackGoblin Generation=108 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=198069.915 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=108 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE COLLISION_GROUP ElapsedMs=198099.017 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=198099.046 Actor=PC_Hero Generation=107 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE ONDAMAGE ElapsedMs=198147.335 Ordinal=44 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=3 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackR_Recover_N_Fwd_00_%_00_P0_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=198151.841 Actor=PC_Hero Generation=109 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=107 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=198151.853 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=109 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=198151.910 Event=PERSISTED Actor=PC_Hero Generation=109 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=198423.592 Actor=PC_Hero Generation=109 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=198541.716 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=198541.747 Actor=BlackGoblin Generation=108 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=198541.768 Actor=BlackGoblin Generation=108 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=198595.240 Actor=PC_Hero Generation=110 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=198595.279 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=110 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=198595.356 Event=PERSISTED Actor=PC_Hero Generation=110 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=198631.094 Actor=PC_Hero Generation=110 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=198632.026 Actor=PC_Hero Generation=111 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=198632.036 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=111 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=198632.095 Event=PERSISTED Actor=PC_Hero Generation=111 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=198632.111 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=198646.690 Actor=BlackGoblin Generation=112 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=198646.703 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=112 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=198646.773 Event=PERSISTED Actor=BlackGoblin Generation=112 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=198720.403 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=198720.432 Actor=PC_Hero Generation=111 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=198840.627 Ordinal=45 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=198845.011 Actor=BlackGoblin Generation=113 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=112 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=198845.023 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=113 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=198845.101 Event=PERSISTED Actor=BlackGoblin Generation=113 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=198990.062 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=198990.082 Actor=PC_Hero Generation=111 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=199070.844 Actor=PC_Hero Generation=111 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=199114.768 Actor=BlackGoblin Generation=113 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=199694.775 Actor=PC_Hero Generation=114 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=199694.788 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=114 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=199694.848 Event=PERSISTED Actor=PC_Hero Generation=114 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=199694.864 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=199702.137 Actor=BlackGoblin Generation=115 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=199702.149 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=115 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=199734.704 Event=PERSISTED Actor=BlackGoblin Generation=115 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=199791.973 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=199792.107 Actor=PC_Hero Generation=114 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=199878.722 Ordinal=46 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=200042.811 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=200042.842 Actor=PC_Hero Generation=114 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=200131.429 Actor=PC_Hero Generation=114 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=200146.392 Event=COMBAT_MOVE_REUSED Actor=BlackGoblin Generation=115 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=200151.892 Actor=BlackGoblin Family=SPRINT Action=9 Phase=1 Motion=Goblin_Stand_None_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=200151.930 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=200151.941 Actor=BlackGoblin Generation=115 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=200203.893 Ordinal=47 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=200209.495 Actor=PC_Hero Generation=116 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=200216.016 Event=PERSISTED Actor=PC_Hero Generation=116 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=200221.924 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=200221.951 Actor=BlackGoblin Generation=115 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=200222.036 Actor=BlackGoblin Action=2 Family=POWER Phase=1 Motion=Goblin_Stand_None_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=115 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE COLLISION_GROUP ElapsedMs=200389.113 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=200389.134 Actor=BlackGoblin Generation=115 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=200389.159 Actor=BlackGoblin Generation=115 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=201593.434 Actor=BlackGoblin Generation=117 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=201593.447 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=117 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=201593.526 Event=PERSISTED Actor=BlackGoblin Generation=117 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=201593.556 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=201700.475 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=201700.503 Actor=BlackGoblin Generation=117 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=201700.514 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=117 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE C1_FINAL ElapsedMs=201936.032 Actor=PC_Hero Generation=116 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=202165.769 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=202165.798 Actor=BlackGoblin Generation=117 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=202165.823 Actor=BlackGoblin Generation=117 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=202171.550 Actor=BlackGoblin Generation=118 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=202171.562 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=118 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=202171.625 Event=PERSISTED Actor=BlackGoblin Generation=118 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=202232.548 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=202232.578 Actor=PC_Hero Generation=119 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=202232.587 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=119 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=202232.591 Actor=PC_Hero Generation=119 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=202232.624 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=119 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=202323.655 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=202323.684 Actor=PC_Hero Generation=119 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=202442.986 Ordinal=48 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_1H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=202445.908 Actor=BlackGoblin Generation=120 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=118 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=202445.920 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=120 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=202446.043 Event=PERSISTED Actor=BlackGoblin Generation=120 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=202583.688 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=202583.737 Actor=PC_Hero Generation=119 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=202583.770 Actor=PC_Hero Generation=119 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=202706.927 Actor=BlackGoblin Generation=120 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=203334.414 Actor=BlackGoblin Generation=121 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=203334.428 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=121 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=203334.495 Event=PERSISTED Actor=BlackGoblin Generation=121 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=203334.512 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=203444.370 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=203444.402 Actor=BlackGoblin Generation=121 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=203444.414 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=121 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=203529.247 Ordinal=49 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P1_Ambient_Ambient_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=203533.900 Actor=PC_Hero Generation=122 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=203533.912 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=122 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=203539.966 Event=PERSISTED Actor=PC_Hero Generation=122 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=203806.937 Actor=PC_Hero Generation=122 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=203914.357 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=203914.387 Actor=BlackGoblin Generation=121 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=203914.409 Actor=BlackGoblin Generation=121 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=204184.088 Actor=PC_Hero Generation=123 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=204184.102 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=123 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=204184.169 Event=PERSISTED Actor=PC_Hero Generation=123 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=204211.520 Actor=PC_Hero Generation=123 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=204212.473 Actor=PC_Hero Generation=124 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=204212.482 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=124 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=204212.543 Event=PERSISTED Actor=PC_Hero Generation=124 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=204212.558 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=204225.738 Actor=BlackGoblin Generation=125 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=204225.751 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=125 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=204225.823 Event=PERSISTED Actor=BlackGoblin Generation=125 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=204299.062 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=204299.092 Actor=PC_Hero Generation=124 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=204418.057 Ordinal=50 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=204423.654 Actor=BlackGoblin Generation=126 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=125 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=204423.666 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=126 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=204423.728 Event=PERSISTED Actor=BlackGoblin Generation=126 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=204564.315 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=204564.345 Actor=PC_Hero Generation=124 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=204651.621 Actor=PC_Hero Generation=124 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=204685.301 Actor=BlackGoblin Generation=126 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=205160.179 Actor=BlackGoblin Generation=127 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=205160.192 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=127 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=205160.250 Event=PERSISTED Actor=BlackGoblin Generation=127 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=205160.266 Actor=BlackGoblin Family=QUICK Action=5 Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_50_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=205264.111 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=205264.140 Actor=BlackGoblin Generation=127 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=205264.152 Actor=BlackGoblin Action=5 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_50_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=127 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=205361.157 Ordinal=51 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_00_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=205365.682 Actor=PC_Hero Generation=128 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=205365.705 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=128 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=205365.761 Event=PERSISTED Actor=PC_Hero Generation=128 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=205511.991 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=205512.021 Actor=BlackGoblin Generation=127 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=205540.249 Actor=PC_Hero Generation=128 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=205597.394 Actor=BlackGoblin Generation=127 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=206098.740 Actor=PC_Hero Generation=129 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=206098.753 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=129 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=206098.816 Event=PERSISTED Actor=PC_Hero Generation=129 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=206098.834 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=206113.940 Actor=BlackGoblin Generation=130 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=206113.952 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=130 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=206114.016 Event=PERSISTED Actor=BlackGoblin Generation=130 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=206189.234 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=206189.264 Actor=PC_Hero Generation=129 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=206309.804 Ordinal=52 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=206312.661 Actor=BlackGoblin Generation=131 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=130 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=206312.673 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=131 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=206312.735 Event=PERSISTED Actor=BlackGoblin Generation=131 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=206443.466 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=206443.495 Actor=PC_Hero Generation=129 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=206528.041 Actor=PC_Hero Generation=129 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=206580.061 Actor=BlackGoblin Generation=131 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=206813.485 Actor=BlackGoblin Generation=132 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=206813.498 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=132 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=206813.567 Event=PERSISTED Actor=BlackGoblin Generation=132 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=206813.584 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=206922.380 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=206922.408 Actor=BlackGoblin Generation=132 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=206922.419 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=132 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=207018.572 Ordinal=53 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Loop_N_Fwd_01_%_01_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=207024.602 Actor=PC_Hero Generation=133 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=207024.614 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=133 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=207024.669 Event=PERSISTED Actor=PC_Hero Generation=133 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=207295.745 Actor=PC_Hero Generation=133 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=207391.355 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=207391.385 Actor=BlackGoblin Generation=132 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=207391.405 Actor=BlackGoblin Generation=132 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=208638.444 Actor=BlackGoblin Generation=134 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=208638.458 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=134 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=208638.527 Event=PERSISTED Actor=BlackGoblin Generation=134 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=208638.544 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=208653.419 Actor=PC_Hero Generation=135 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=208653.431 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=135 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=208653.499 Event=PERSISTED Actor=PC_Hero Generation=135 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=208680.686 Actor=PC_Hero Generation=135 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=208681.428 Actor=PC_Hero Generation=136 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=208681.437 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=136 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=208681.500 Event=PERSISTED Actor=PC_Hero Generation=136 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=208681.514 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=208745.795 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=208745.864 Actor=BlackGoblin Generation=134 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=208745.876 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=134 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE COLLISION_GROUP ElapsedMs=208769.400 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=208769.429 Actor=PC_Hero Generation=136 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=208851.180 Ordinal=54 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=208854.307 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=208854.348 Actor=PC_Hero Generation=136 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=208855.824 Actor=PC_Hero Generation=137 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=136 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=208855.831 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=137 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=209016.967 Event=PERSISTED Actor=PC_Hero Generation=137 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=209215.276 Actor=PC_Hero Generation=137 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=209302.427 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=209302.458 Actor=BlackGoblin Generation=134 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=209302.479 Actor=BlackGoblin Generation=134 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=210546.390 Actor=BlackGoblin Generation=138 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=210546.402 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=138 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=210546.471 Event=PERSISTED Actor=BlackGoblin Generation=138 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=210546.488 Actor=BlackGoblin Family=NORMAL Action=1 Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=210652.134 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=210652.177 Actor=BlackGoblin Generation=138 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=210652.188 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=138 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=210655.545 Ordinal=55 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P1_Ambient_Loop_N_Fwd_00_%_01_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=210662.230 Actor=PC_Hero Generation=139 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=210662.242 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=139 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=210662.297 Event=PERSISTED Actor=PC_Hero Generation=139 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=210926.293 Actor=PC_Hero Generation=139 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=211124.880 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=211124.911 Actor=BlackGoblin Generation=138 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=211124.932 Actor=BlackGoblin Generation=138 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=211239.240 Actor=PC_Hero Generation=140 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=211239.253 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=140 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=211239.348 Event=PERSISTED Actor=PC_Hero Generation=140 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=211253.507 Actor=PC_Hero Generation=140 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=211254.448 Actor=PC_Hero Generation=141 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=211254.459 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=141 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=211254.522 Event=PERSISTED Actor=PC_Hero Generation=141 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=211268.146 Actor=BlackGoblin Generation=142 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=211268.158 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=142 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=211268.244 Event=PERSISTED Actor=BlackGoblin Generation=142 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=211340.948 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=211341.057 Actor=PC_Hero Generation=141 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=211446.430 Ordinal=56 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=211454.365 Actor=BlackGoblin Generation=143 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=142 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=211454.377 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=143 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=211454.441 Event=PERSISTED Actor=BlackGoblin Generation=143 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=211600.062 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=211600.118 Actor=PC_Hero Generation=141 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=211685.261 Actor=PC_Hero Generation=141 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=211721.177 Actor=BlackGoblin Generation=143 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=212362.204 Actor=BlackGoblin Generation=144 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=212362.216 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=144 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=212362.280 Event=PERSISTED Actor=BlackGoblin Generation=144 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=212471.684 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=212471.714 Actor=BlackGoblin Generation=144 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=212471.726 Actor=BlackGoblin Action=1 Family=NORMAL Phase=1 Motion=Goblin_Stand_None_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=144 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=212538.946 Ordinal=57 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_1H_P0_Ambient_Ambient_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=212543.674 Actor=PC_Hero Generation=145 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=212543.686 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=145 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=212543.746 Event=PERSISTED Actor=PC_Hero Generation=145 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=212814.681 Actor=PC_Hero Generation=145 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=212938.291 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=212938.322 Actor=BlackGoblin Generation=144 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=212938.344 Actor=BlackGoblin Generation=144 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=214186.072 Actor=BlackGoblin Generation=146 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=214186.083 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=146 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=214186.148 Event=PERSISTED Actor=BlackGoblin Generation=146 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=214186.164 Actor=BlackGoblin Family=QUICK Action=5 Phase=1 Motion=Goblin_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P10_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=214280.629 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=214280.657 Actor=BlackGoblin Generation=146 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=214280.669 Actor=BlackGoblin Action=5 Family=QUICK Phase=1 Motion=Goblin_Stand_None_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P10_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=146 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=214324.334 Ordinal=58 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_1H_P2_Ambient_Loop_N_Fwd_00_%_01_P2_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=214325.773 Actor=PC_Hero Generation=147 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=214325.782 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=147 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=214325.832 Event=PERSISTED Actor=PC_Hero Generation=147 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=214498.923 Actor=PC_Hero Generation=147 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=214533.600 Source=It_1H_Sword_Rust_01 UseType=2 Owner=BlackGoblin Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=214533.629 Actor=BlackGoblin Generation=146 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=214621.127 Actor=BlackGoblin Generation=146 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=214789.969 Actor=PC_Hero Generation=148 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=214789.982 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=148 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=214790.054 Event=PERSISTED Actor=PC_Hero Generation=148 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=214790.074 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=214800.828 Actor=BlackGoblin Generation=149 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=214800.841 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BlackGoblin Generation=149 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=214800.906 Event=PERSISTED Actor=BlackGoblin Generation=149 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=214878.818 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=214878.847 Actor=PC_Hero Generation=148 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=214988.241 Ordinal=59 Target=BlackGoblin Arg1=BlackGoblin Arg2=BlackGoblin Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_FINAL ElapsedMs=214993.575 Actor=BlackGoblin Generation=149 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=<not-live> Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=215141.429 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=215141.459 Actor=PC_Hero Generation=148 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=215228.028 Actor=PC_Hero Generation=148 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+Script_FrameCollisionTest unloading cleanly.
