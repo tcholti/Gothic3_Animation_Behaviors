@@ -1,7 +1,7 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw55 bounded discovery CLOSED/DEFERRED through EV-246; raw8 Sabretooth/Quick progression CLOSED/PASS through EV-249; architecture/diagnostic refactor and SprintAttack investigation precede the remaining broad matrix  
-**Updated:** 2026-09-09
+**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw55 bounded discovery CLOSED/DEFERRED through EV-246; raw8 Normal/Power/Quick CLOSED/PASS through EV-249; architecture/diagnostic refactor sentinel CLOSED/PASS through EV-250; raw8 Sprint FIST production support CLOSED/PASS through EV-251; remaining broad matrix resumes at native equipped-NPC controls  
+**Updated:** 2026-09-11
 
 ## Purpose
 
@@ -19,7 +19,7 @@ Exact proof: `EVIDENCE_INDEX.md` -> canonical evidence ledgers.
 
 ## 1. Standing Validation Rules
 
-- Do not reopen closed C1-R1, Gate-4, equipped-family, raw8 Normal/Power/Quick, or bounded raw55 conclusions without concrete contradictory evidence.
+- Do not reopen closed C1-R1, Gate-4, equipped-family, raw8 Normal/Power/Quick/Sprint, or bounded raw55 conclusions without concrete contradictory evidence.
 - Native cleanup gets first opportunity.
 - Equipped RIGHT / LEFT / BOTH / OFF control the desired **physical equipped-source set**; they do not prove uniform native target/contact/effect eligibility across action families.
 - Raw-8 `FIST` is a separate native body-damage opportunity mechanism, not an equipped source/window.
@@ -102,7 +102,7 @@ Important family qualifications:
 Current supported/proven raw8 FIST family scope for the tested fixtures is:
 
 ```text
-Normal + Power + Quick
+Normal + Power + Quick + Sprint
 ```
 
 Evidence progression:
@@ -112,6 +112,8 @@ human Normal/Power production                   EV-221–EV-240
 transformed Sabretooth Normal/Power             EV-247
 native Sabretooth + Quick mechanism proof       EV-248
 bounded Quick extension + two-direction PASS    EV-249
+Sprint transport/source/mechanism classification + production validation
+                                                 EV-250–EV-251
 ```
 
 Validated contract for a supported/proven raw-8 Fist family:
@@ -134,6 +136,18 @@ native Gothic path
 -> successful opportunity self-closes latch to 1
 ```
 
+Sprint qualification:
+
+```text
+factual gEAction_SprintAttack / Action 9
+-> first-class AttackFamily_Sprint
+-> existing OnAI_PowerAttack physical transport
+-> actor routine Action 9 is semantic identity
+-> FIST/raw8 only in current proven scope
+-> marker-owned StatePosition 1
+-> equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported
+```
+
 Production exclusions remain:
 
 ```text
@@ -147,6 +161,8 @@ NO global animation-clock mutation
 NO raw55 generalization
 NO species/name-specific marker rule
 NO unproven attack-family extension merely because source is Fist
+NO Sprint -> Power semantic alias
+NO Sprint equipped-marker support without factual equipped Sprint evidence
 ```
 
 ---
@@ -173,112 +189,66 @@ Raw55 remains unsupported/unobserved, not globally disproven. Do not create raw5
 
 ---
 
-## 5. Architecture/Diagnostic Refactor Gate — NEXT BEFORE BROAD TESTING
+## 5. Architecture/Diagnostic Refactor Gate — CLOSED/PASS
 
-The remaining broad compatibility tests must certify the architecture intended for production. Therefore no Goblin/Demon/Ogre or large mixed matrix is run before the planned parity-preserving architecture/diagnostic refactor.
+The parity-preserving architecture/diagnostic refactor and compact equivalence sentinel are complete through EV-250.
 
-Normal Chat first completes the audit/design defined in `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`, then Work performs bounded mechanical changes.
-
-The refactor itself must not intentionally change proven marker/source/lifecycle/raw8 semantics.
-
-### 5.1 Required post-refactor equivalence sentinel
-
-Use one compact test package covering the structural seams that may have moved:
+Closed requirements included:
 
 ```text
 raw8 FIST:
   Sabretooth Normal + Quick + Power
 
 equipped marker:
-  one ordinary marked weapon attack
+  ordinary marked weapon attack
 
 marker lifecycle:
-  one established multi-marker / OFF / rearm fixture
+  established multi-marker / OFF / rearm fixture
 
 C1 safety:
-  one established destructive bad-skip -> exact terminal repair
+  established destructive bad-skip -> exact terminal repair
 ```
 
-Require:
+The sentinel preserved accepted marker semantics, factual source identities and physical transitions, raw8 latch/timing/native-damage contract, C1 generation/cleanup/repair behavior, and compact CORE sufficiency with no new invariant/repair divergence.
 
-- same accepted marker semantics as pre-refactor;
-- same factual source identities and physical transitions;
-- same raw8 latch/timing/native-damage contract;
-- same C1 generation/cleanup/repair contract;
-- no new invariant/repair divergence;
-- compact CORE output remains sufficient to prove the result.
-
-If this sentinel fails, stop and correct the refactor before Sprint research or any broad matrix.
+Do not reopen Stage A/B merely for routine variation.
 
 ---
 
-## 6. SprintAttack Discovery / Support Gate — AFTER REFACTOR SENTINEL
+## 6. SprintAttack Discovery / Support Gate — CLOSED/PASS
 
-EV-249's Sabretooth fight exposed repeated:
+Sprint was discovered as factual `gEAction_SprintAttack = 9` with a PowerAttack-named motion and raw8 Fist source. Transport research established that tested Sprint enters through the existing physical `OnAI_PowerAttack` hook while actor routine Action 9 is already factual at callback entry; SPU action 2 and the animation filename are transport/motion facts, not Sprint semantic identity.
 
-```text
-Action: 9 = gEAction_SprintAttack
-motion: ...PowerAttack_Hit...
-source: Fist/raw8
-G3AB_COL_FIST: REJECTED_UNSUPPORTED_HIT
-```
+Production implementation uses first-class `AttackFamily_Sprint`, the existing Power callback transport, the proven raw8 FIST mechanism, and marker-owned StatePosition `1`.
 
-Current framework has no `AttackFamily_Sprint` and no Sprint family adapter/hook plumbing.
-
-The observed PowerAttack filename does not make this a PowerAttack. Sprint is a factual missing family.
-
-### 6.1 Current evidence limit
-
-Only native Sabretooth/raw8 Sprint is currently observed in this project. Earlier tests did not surface SprintAttack.
-
-Do not assume:
+Focused EV-251 validation repeatedly confirmed:
 
 ```text
-Sprint is Fist-only
-Sprint is creature-only
-Sprint is equivalent to Power
-Sprint has equipped marker semantics
+Action=9 Family=SPRINT Phase=1
+Raw8Fist=Fist Raw8UseType=8
+InitialClose=0->1
+Marker=FIST Result=ACCEPTED
+StatePosition=1
+Latch=1->0 LatchConfirmed=1
+OwnershipMatched=1
+bounded early timing permission armed/used when required
+clean C1 finalization with no equipped obligation
 ```
 
-### 6.2 Sprint discovery questions
+Whole-log targeted checks found no `REJECTED_UNSUPPORTED_HIT`, no `LIFECYCLE_ISSUE`, no surviving temporary `SPRINT_TRANSPORT` records, and clean unload.
 
-After the refactor sentinel passes, determine with compact CORE first and smallest missing DEEP probes only when required:
-
-1. Which actors execute `gEAction_SprintAttack`?
-2. Which factual source UseTypes occur?
-3. What native callback/hook transport owns SprintAttack?
-4. What StatePosition does Sprint use?
-5. Does practical equipped Sprint traffic exist?
-6. Does raw8 Sprint traverse the same relevant `SPU+0x164`, `Game+0x16E180`, `+0x16E1A3`, `+0x16E348` path?
-7. If equipped Sprint is observed, does it use the established equipped source mechanism or require distinct semantics?
-
-### 6.3 Implementation rule
-
-If evidence supports implementation, prefer:
+Current evidence-backed Sprint limit remains:
 
 ```text
-first-class AttackFamily_Sprint
+raw8 FIST supported
+native Sabretooth fixture positively validated
+equipped Sprint RIGHT/LEFT/BOTH/OFF unevidenced and unsupported
+AI/distance selection rule intentionally unresolved because it is not needed for marker behavior
 ```
 
-Do not implement a Sabretooth exception or Power filename alias.
+EV-251 did not independently add a positive `ONDAMAGE` sample with native Sabretooth Sprint as attacker; it added no contradictory damage-path evidence. Native target/contact/damage ownership remains outside the authored marker mechanism.
 
-Freeze the exact source/mechanism scope before Work edits code.
-
-### 6.4 Focused Sprint validation
-
-After any Sprint implementation, validate only the evidence-backed scope first. Require:
-
-```text
-factual action = SprintAttack
-factual source identity matches intended adapter
-marker accepted where supported
-StatePosition/native callback semantics preserved
-native target/contact/damage ownership preserved
-unmarked/native fallback preserved
-no cross-family regression
-```
-
-Only after focused Sprint closure resume the broad compatibility matrix.
+Focused Sprint closure permits the broad compatibility matrix to resume.
 
 ---
 
@@ -298,15 +268,15 @@ DEEP explicitly enabled -> full research detail
 
 Unknown-family records must retain enough to classify numeric/resolved action, phase, StatePosition, current motion, marker, source/UseType/group, side association, rejection reason, and damage correlation when relevant.
 
-This rule is specifically intended to discover Sprint or another unplanned family during larger tests without returning to huge research-era logs for every known execution.
+This rule is intended to discover any new unplanned family/source during larger tests without returning to huge research-era logs for every known execution.
 
 ---
 
 ## 8. Pre-Regression Cross-Actor / Family Compatibility Gates
 
-Only after architecture sentinel and Sprint disposition:
+Architecture sentinel and focused Sprint disposition are now closed. Resume here.
 
-### 8.1 Native equipped-NPC marker controls
+### 8.1 Native equipped-NPC marker controls — NEXT
 
 Separate logs:
 
@@ -363,7 +333,7 @@ Protect at minimum:
 equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
 repeated-contact ClearTriggeredList semantics
 Power / Pierce / SimpleWhirl / Hack behavior
-supported Sprint behavior if implemented
+supported Sprint behavior
 C1 generation-scoped occurrence/dedupe
 C1-R1 exact-source terminal repair
 supported raw8 FIST behavior
@@ -448,7 +418,7 @@ freeze test + raw filename
 
 `research/raw/` is active intake. `research/archive/` is processed provenance. `research/derived/` is a retrieval aid, not canonical evidence.
 
-EV-249 is the current raw8 Quick closure checkpoint. The Action-9/Sprint observation is now part of the durable redesign/validation plan and should be promoted/refined in canonical evidence maintenance when the Sprint investigation begins.
+EV-251 is the current raw8 Sprint closure checkpoint. Its processed validation raw is archived as `research/archive/2026.09.11_sprint_raw8_production_validation.log`.
 
 ---
 
@@ -460,13 +430,8 @@ Power/Pierce/SimpleWhirl/Hack expansion              CLOSED/PASS for tested scop
 PhysicalFist/raw55 bounded discovery                 CLOSED/DEFERRED
 Sabretooth raw8 + Quick mechanism                    PASS/CLASSIFIED — EV-247–EV-248
 raw8 Quick extension + two-direction validation      CLOSED/PASS — EV-249
-SprintAttack missing-family discovery                IDENTIFIED
--> complete architecture + diagnostic-volume audit
--> bounded parity-preserving refactor
--> compact post-refactor equivalence sentinel
--> Sprint source/transport/mechanism investigation
--> bounded Sprint implementation if evidence supports it
--> focused Sprint validation
+architecture + diagnostic refactor/sentinel          CLOSED/PASS — EV-250
+raw8 Sprint source/transport/production support      CLOSED/PASS — EV-251
 -> native equipped-NPC markers: Goblin 1H / Demon 2H / Ogre Axe
 -> additional native/modded family controls
 -> separated 2H-vs-Axe compatibility
