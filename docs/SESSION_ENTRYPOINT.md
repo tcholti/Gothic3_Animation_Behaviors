@@ -10,10 +10,8 @@
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Completed Sprint implementation contract: `docs/COLLISION_SPRINT_RAW8_IMPLEMENTATION.md`  
-Completed Sprint transport probe contract: `docs/COLLISION_SPRINT_TRANSPORT_PROBE.md`  
 Architecture/redesign authority: `docs/COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`  
 Overall architecture: `docs/DESIGN.md`  
-Diagnostics: `docs/COLLISION_LOGGER_PLAN.md`  
 Validation: `docs/COLLISION_TEST_PLAN.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`; latest continuation: `docs/EVIDENCE_LEDGER_250_ONWARD.md`
 
@@ -30,73 +28,111 @@ SimpleWhirl                                CLOSED/PASS — EV-217–EV-220, EV-2
 Hack tested 2H/Staff scope                 CLOSED/PASS — EV-216, EV-244
 PhysicalFist/raw55 bounded discovery       CLOSED/DEFERRED — EV-245–EV-246
 raw8 FIST Normal + Power + Quick scope     CLOSED/PASS — EV-221–EV-249
-Stage A architecture build/load gate       CLOSED/PASS — 2026-09-10
-Stage B diagnostic build/load gate         CLOSED/PASS — 2026-09-10
 Stage A/B compact equivalence sentinel     CLOSED/PASS — EV-250
-Sprint transport observability probe       CLOSED/PASS — 2026-09-11
 raw8 FIST Sprint production support        CLOSED/PASS — EV-251
-native NPC 1H/raw2 equipped control        CLOSED/PASS — EV-252
-native NPC 2H/raw3 equipped control        CLOSED/PASS — EV-253
-native NPC Axe/raw52 equipped control      CLOSED/PASS — EV-254
-native equipped-NPC §8.1 trio gate         CLOSED/PASS — EV-252–EV-254
+native NPC 1H/raw2 control                 CLOSED/PASS — EV-252
+native NPC 2H/raw3 control                 CLOSED/PASS — EV-253
+native NPC Axe/raw52 control               CLOSED/PASS — EV-254
+Orc broad raw52 native control             CLOSED/PASS — EV-255
+Orc Staff/raw51 native control             CLOSED/PASS — EV-256
+Orc raw8 Fist Normal/Power control         CLOSED/PASS — EV-257
+Orc Hack vs FinishingAttack separation     CLOSED/PASS — EV-258
 ```
 
-Raw-8 FIST remains one shared native mechanism across the proven Normal, Power, Quick and Sprint scope. No authored FIST_OFF, Fist ClearTriggeredList, equipped Fist window/C1 weapon obligation, direct/custom damage, species branch, or raw55 generalization.
+Raw8 FIST remains one shared native mechanism across the proven Normal, Power, Quick and Sprint family scope. Marker applicability is not species-gated. No authored FIST_OFF, Fist ClearTriggeredList, equipped Fist window/C1 weapon obligation, direct/custom damage, species branch, or raw55 generalization.
 
-Stage A behavior architecture implementation: `7c5874932cd6eafa5af3414c65a4442b3d74bb73`.  
-Stage B diagnostic implementation: `5737db32e5eda76810989ddfb5659f8405c0c458`.  
-Sprint production implementation: `270d98f59fd7f83ab332d7cfbfc07d243273e0ca`.  
-Validated diagnostic built/live SHA256: `1A58C6CF4D98B02873A114A7AF6F1AA372B8A937B1EC60DDA3A221F52879F74F`.
+Sprint production implementation remains `270d98f59fd7f83ab332d7cfbfc07d243273e0ca`. No production behavior code changed after that commit; later work is runtime evidence/documentation only.
 
-No production behavior code changed after the Sprint implementation; subsequent commits are runtime evidence and documentation only.
+Validated diagnostic built/live SHA256 remains:
+`1A58C6CF4D98B02873A114A7AF6F1AA372B8A937B1EC60DDA3A221F52879F74F`.
 
 ---
 
-## Native equipped-NPC §8.1 controls — CLOSED/PASS
+## Orc native extension — CLOSED/PASS
 
-Authority:
+The User has now exercised every prepared native Orc animation type needed for the present collision question.
 
-```text
-docs/COLLISION_TEST_PLAN.md §8.1
-```
-
-Closed controls:
+Evidence:
 
 ```text
-EV-252: Goblin / BlackGoblin -> factual 1H / raw2      CLOSED/PASS
-EV-253: Demon                -> factual 2H / raw3      CLOSED/PASS
-EV-254: Ogre                 -> factual Axe / raw52    CLOSED/PASS
+EV-255  Orc 2H animation-family / factual Axe raw52 broad control
+EV-256  Orc Staff / factual raw51 control
+EV-257  Orc raw8 Fist Normal + Power control
+EV-258  Orc actual HackAttack vs FinishingAttack separation
 ```
 
-Across the three controls, factual RIGHT equipped sources followed the established contract: Item_Equipped group 5, accepted RIGHT marker, exact-source `5 -> 7`, one offense request / `Clears=1`, native contact where exercised, native cleanup `7 -> 5`, and clean C1 finalization. No control required C1-R1 repair or exposed an invariant/source-resolution failure.
-
-During the user's attempt to interrupt the Demon in the middle of attacks, one captured Power sequence additionally showed native cleanup `7 -> 5` completing before `_AI_Stumble` replaced the execution with `ReplacedOutstanding=0`. This was an ordinary mid-attack interruption attempt; the cleanup-before-reaction sequence was an incidental useful lifecycle observation, not the user's attempt to reproduce destructive continuation loss.
-
-Processed evidence:
+Important native-animation interpretation:
 
 ```text
-research/archive/2026.09.11_goblin_1h_native_equipped_control.log
-research/archive/2026.09.11_demon_2h_native_equipped_control.log
-research/archive/2026.09.11_ogre_axe_native_equipped_control.log
+Gothic 3 may classify weapons more specifically by factual UseType
+while still selecting broad 1H / 2H animation families.
+Staff happens to have its own native animation set.
+Do not infer factual collision-source type from animation-family naming.
 ```
+
+The Orc 2H control crash occurred only after combat when the User tried to pick up the defeated cheat-spawned Orc's weapon. Collision state had already finalized cleanly; the crash address was in `SharedBase.dll`, not `Script_FrameCollisionTest.dll`, with no collision-DLL stack frame. Treat it as non-collision unless independently reproduced in ordinary play.
+
+Processed Orc evidence is archived under `research/archive/`.
 
 ---
 
-## Current Immediate Responsibility — ORC MULTI-WEAPON NATIVE EXTENSION
+## Current Immediate Responsibility — BROAD NATIVE FIST CREATURE SWEEP
 
-The originally required §8.1 Goblin/Demon/Ogre gate is closed. The User has prepared marked Orc animations and wants to use Orcs as an intentional broader native-NPC validation because Orcs exercise more attack variety and multiple weapon types.
+The next activity is a broad native-creature validation of the existing raw8 FIST marker mechanism.
 
-Run several separate Orc logs, keeping each log attributable to one weapon/setup where practical.
+The User has prepared marked animations for many, but not all, native creatures — estimated coverage roughly 70–80% of the creatures in the game. The purpose is not exhaustive species certification. It is to build broad cross-creature evidence that the same marker mechanism remains actor-general and to give CORE diagnostics a chance to expose previously unknown action/family behavior, as happened with SprintAttack.
 
-Purpose:
+Use the existing diagnostic binary; no rebuild is required unless a concrete contradiction appears.
+
+For each practical creature fixture, record:
 
 ```text
-broaden native-NPC evidence across Orc weapon/source and attack-family variety
-without turning one mixed log into an ambiguous aggregate result
+actor / animation family
+factual source + UseType
+factual action/family
+accepted FIST behavior when marked
+native damage path when contact occurs
+C1 finalization
+unknown/rejected/anomalous action-family traffic
 ```
 
-For each log, record factual equipped source / UseType, observed attack families, accepted marker/source transitions, native cleanup, C1 finalization, and any anomaly. Player counterattacks are allowed and can be separated by actor identity.
+Do not add species-specific behavior merely because a new creature family appears.
 
-Do not treat the Orc extension as a prerequisite retroactively missing from §8.1. Do not modify behavior or diagnostics unless a concrete contradiction appears.
+---
 
-After the Orc extension is dispositioned, resume the standing sequence in `COLLISION_TEST_PLAN.md` rather than inventing additional matrix growth without a concrete compatibility question.
+## After the native Fist sweep — exactly two bounded classification checks
+
+After the prepared native-creature sweep is finished, run only these two short discovery checks for the still-unresolved other Fist/PhysicalFist-style classification question:
+
+```text
+1. fall damage:
+   make Hero take meaningful damage from a high fall
+   inspect action/source/damage classification
+
+2. special blunt arrow:
+   hit an enemy with the special blunt arrow
+   inspect action/source/damage classification
+```
+
+These checks are observational only. If neither exposes the unresolved classification, leave it unresolved/deferred and do not expand the probe matrix.
+
+---
+
+## Later compatibility work already planned
+
+After native creature/Fist work and the two bounded checks:
+
+```text
+Axe animation-separation mod:
+  quick separate validation logs for Hero/humans, Orc, Demon, Ogre, Stalker
+  (the mod supplies unique Axe animations for all five families)
+
+Rapier animation-separation mod:
+  Hero/human family only
+
+Zombie animation mod:
+  validate the modded Zombie-specific animation family;
+  native Zombies otherwise reuse Hero-family animations
+```
+
+For the Axe mod, the stronger five-family pass is intentional compatibility coverage, not a claim that marker mechanics should become actor-specific.
