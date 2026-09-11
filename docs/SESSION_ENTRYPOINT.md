@@ -36,6 +36,7 @@ Stage A/B compact equivalence sentinel     CLOSED/PASS — EV-250
 Sprint transport observability probe       CLOSED/PASS — 2026-09-11
 raw8 FIST Sprint production support        CLOSED/PASS — EV-251
 native NPC 1H/raw2 equipped control        CLOSED/PASS — EV-252
+native NPC 2H/raw3 equipped control        CLOSED/PASS — EV-253
 ```
 
 Raw-8 FIST remains one shared native mechanism across the proven Normal, Power, Quick and Sprint scope. No authored FIST_OFF, Fist ClearTriggeredList, equipped Fist window/C1 weapon obligation, direct/custom damage, species branch, or raw55 generalization.
@@ -55,52 +56,39 @@ Authority:
 docs/COLLISION_TEST_PLAN.md §8.1
 ```
 
-EV-252 closes the first control:
+Closed controls:
 
 ```text
-Goblin       -> It_1H_Club_01       / raw2
-BlackGoblin  -> It_1H_Sword_Rust_01 / raw2
-Normal + Quick
-RIGHT marker accepted
-exact source 5 -> 7
-one offense request / Clears=1
-native contact exercised
-native cleanup 7 -> 5
-C1 Outstanding=0 / NO_OP_NO_OUTSTANDING
-no anomaly or repair path
+EV-252: Goblin / BlackGoblin -> factual 1H / raw2      CLOSED/PASS
+EV-253: Demon                -> factual 2H / raw3      CLOSED/PASS
 ```
+
+Demon EV-253 additionally captured a legitimate reaction interruption after marker activation: Demon Power armed the exact RIGHT source `5 -> 7`; a player Quick hit caused native cleanup `7 -> 5`; only then did `_AI_Stumble` replace the attack with `ReplacedOutstanding=0`. This is not the destructive continuation-loss path and required no repair.
 
 Processed evidence:
 
 ```text
 research/archive/2026.09.11_goblin_1h_native_equipped_control.log
+research/archive/2026.09.11_demon_2h_native_equipped_control.log
 ```
-
-Do not grow the Goblin fixture merely for more routine variation.
 
 ---
 
-## Current Immediate Responsibility — DEMON 2H/RAW3 CONTROL
+## Current Immediate Responsibility — OGRE AXE/RAW52 CONTROL
 
-Run the second separate §8.1 native equipped-NPC control:
+Run the final separate §8.1 native equipped-NPC control:
 
 ```text
-Demon -> factual 2H / raw3
+Ogre -> factual Axe / raw52
 ```
 
 Question:
 
 ```text
 does the established equipped marker ownership / exact-source activation / native cleanup / C1 contract
-hold for a native Demon using factual 2H/raw3?
+hold for a native Ogre using factual Axe/raw52?
 ```
 
 Use the existing compact CORE diagnostic product. Seek the smallest useful marked attack fixture; let attacks connect where practical. Preserve and commit the complete raw log unchanged before interpretation.
-
-After Demon is dispositioned, the final §8.1 control is:
-
-```text
-Ogre -> factual Axe / raw52
-```
 
 Do not broaden this gate into additional actor matrices, 2H-vs-Axe mod compatibility, final mixed regression, Sprint AI-selection research, raw55, Raise, speed, or AttackContinuationProtection.
