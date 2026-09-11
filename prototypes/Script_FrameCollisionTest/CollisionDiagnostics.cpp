@@ -298,6 +298,34 @@ void CloseLog()
 bool IsLogOpen() { return g_pLog != nullptr; }
 FILE *GetLog() { return g_pLog; }
 
+void LogSprintTransport(
+    char const *boundary, Entity &actor, GEInt spuAction,
+    bool nativeResultAvailable, GEBool nativeResult)
+{
+    if (g_pLog == nullptr || actor == None)
+        return;
+
+    GEInt const actorAction = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEInt const phase = static_cast<GEInt>(actor.GetCurrentAniPhase());
+    bCString const currentAnimation = actor.NPC.GetCurrentMovementAni();
+    std::fprintf(
+        g_pLog,
+        "CORE SPRINT_TRANSPORT ElapsedMs=%.3f Boundary=%s Actor=%s SPUAction=%d ActorAction=%d Phase=%d Motion=%s",
+        RuntimeClock::GetElapsedMilliseconds(),
+        boundary != nullptr ? boundary : "<null>",
+        actor.GetName().GetText(), spuAction, actorAction, phase,
+        currentAnimation.GetText() != nullptr
+            ? currentAnimation.GetText() : "<unavailable>");
+    if (nativeResultAvailable)
+    {
+        std::fprintf(g_pLog, " NativeResult=%d",
+                     nativeResult == GETrue ? 1 : 0);
+    }
+    std::fprintf(g_pLog, "\n");
+    std::fflush(g_pLog);
+}
+
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static void LogResolvedSource(char const *label, eCEntity *sourceInstance)
 {

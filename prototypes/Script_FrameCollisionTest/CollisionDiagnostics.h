@@ -16,6 +16,9 @@ FILE *GetLog();
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result);
+void LogSprintTransport(
+    char const *boundary, Entity &actor, GEInt spuAction,
+    bool nativeResultAvailable, GEBool nativeResult);
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 void LogFistTriggerStateSnapshot(char const *boundary, Entity &actor);
 void LogFistCanBeActivatedNow(

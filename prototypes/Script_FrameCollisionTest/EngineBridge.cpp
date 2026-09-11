@@ -184,6 +184,9 @@ static bool EvaluateAttackCallback(
     return ownership.suppressNativeCallback;
 }
 
+static gEAction GetCombatMoveFactualAction(
+    gCScriptProcessingUnit const *a_pSPU);
+
 DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
@@ -205,10 +208,23 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 DECLARE_SCRIPT_CALLBACK(OnAI_PowerAttack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogSprintTransport(
+        "ENTRY", SelfEntity,
+        static_cast<GEInt>(GetCombatMoveFactualAction(a_pSPU)),
+        false, GEFalse);
+#endif
     if (EvaluateAttackCallback(SelfEntity, AttackFamily_Power, a_pSPU))
         return GETrue;
-    return Hook_OnAI_PowerAttack.GetOriginalFunction(
+    GEBool const result = Hook_OnAI_PowerAttack.GetOriginalFunction(
         &OnAI_PowerAttack_FrameCollisionTest)(a_pSPU);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogSprintTransport(
+        "AFTER_ORIGINAL", SelfEntity,
+        static_cast<GEInt>(GetCombatMoveFactualAction(a_pSPU)),
+        true, result);
+#endif
+    return result;
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
