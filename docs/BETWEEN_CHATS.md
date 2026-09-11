@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-11
 
-## Current Bridge — RAW8 SPRINT CLOSED; NATIVE EQUIPPED-NPC CONTROLS NEXT
+## Current Bridge — GOBLIN 1H/RAW2 CLOSED; DEMON 2H/RAW3 NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -28,63 +28,72 @@ Fresh Chat orientation:
 Stage A architecture refactor                 CLOSED/PASS
 Stage B diagnostic refactor                   CLOSED/PASS
 Stage A/B compact equivalence sentinel        CLOSED/PASS — EV-250
-Sprint transport observability probe          CLOSED/PASS — 2026-09-11
 production raw8 Sprint FIST support           CLOSED/PASS — EV-251
+native NPC 1H/raw2 equipped control           CLOSED/PASS — EV-252
 ```
-
-Stage A implementation:
-`7c5874932cd6eafa5af3414c65a4442b3d74bb73`
-
-Stage B implementation:
-`5737db32e5eda76810989ddfb5659f8405c0c458`
 
 Sprint production implementation:
 `270d98f59fd7f83ab332d7cfbfc07d243273e0ca`
 
-Validated Sprint diagnostic built/live SHA256:
+Validated diagnostic built/live SHA256:
 `1A58C6CF4D98B02873A114A7AF6F1AA372B8A937B1EC60DDA3A221F52879F74F`
 
-Processed Sprint validation evidence:
-
-```text
-research/archive/2026.09.11_sprint_raw8_production_validation.log
-```
+No code changed after that production binary; later commits are evidence/documentation only.
 
 ---
 
-## EV-251 Sprint closure
+## EV-252 native 1H/raw2 closure
 
-The focused production validation repeatedly demonstrated:
+One unchanged CORE log exercised two separate native NPC attackers one at a time:
 
 ```text
-Actor=Sabertooth
-Action=9
-Family=SPRINT
-Phase=1
-Motion=...PowerAttack_Hit...
-C1 valid
-Raw8Fist=Fist
-Raw8UseType=8
-InitialClose=0->1
-Marker=FIST Result=ACCEPTED
-StatePosition=1
-Latch=1->0 LatchConfirmed=1
-OwnershipMatched=1
-EARLY_PERMISSION_ARMED / EARLY_PERMISSION_USED when required
-C1 final Outstanding=0 PhysicalChanged=0 NO_OP_NO_OUTSTANDING
+Goblin      -> It_1H_Club_01       / UseType 2
+BlackGoblin -> It_1H_Sword_Rust_01 / UseType 2
 ```
 
-Whole-log targeted checks found no `REJECTED_UNSUPPORTED_HIT`, no `LIFECYCLE_ISSUE`, no surviving `SPRINT_TRANSPORT` probe records, and the diagnostic DLL unloaded cleanly.
+Observed marked attack families included Normal and Quick, with Quick Action 4 and Action 5 directions.
 
-This run did not independently capture an `ONDAMAGE` record with native Sabretooth Sprint as attacker, so EV-251 does not claim a new positive Sprint-contact damage sample. It also produced no contradictory damage-path evidence.
+Healthy equipped lifecycle repeated across both actors:
 
-Sprint remains deliberately bounded to raw8 FIST. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported unless factual equipped Sprint traffic appears.
+```text
+RIGHT source begins group 5
+ATTACK_OWNERSHIP RequiredMask=1
+G3AB_COL_RIGHT Result=ACCEPTED
+exact factual source 5 -> 7
+one C1 offense request outstanding
+Clears=1
+native attack/contact exercised
+native cleanup exact source 7 -> 5
+C1 CLEANUP FULFILLED
+C1 final Outstanding=0 / NO_OP_NO_OUTSTANDING
+```
 
-Do not continue AI/distance-selection research merely to explain how Sprint is chosen.
+Player counterattacks are separately attributed as `PC_Hero` and do not contaminate NPC source ownership.
+
+Whole-log targeted anomaly checks found none of:
+
+```text
+REJECTED_*
+C1 INVARIANT WARNING
+REPAIR_DIVERGED
+UNRESOLVED_NOT_EQUIPPED
+LIFECYCLE_ISSUE
+REPAIRED_TO_ITEM_EQUIPPED
+```
+
+The diagnostic DLL unloaded cleanly.
+
+Processed evidence:
+
+```text
+research/archive/2026.09.11_goblin_1h_native_equipped_control.log
+```
+
+Do not expand Goblin testing merely for more routine variation.
 
 ---
 
-## Next validation responsibility — native equipped-NPC marker controls
+## Next validation responsibility — Demon 2H/raw3
 
 Authority:
 
@@ -92,24 +101,26 @@ Authority:
 docs/COLLISION_TEST_PLAN.md §8.1
 ```
 
-Run three separate logs:
+Run one separate native Demon control:
 
 ```text
-1. Goblin -> factual 1H / raw2
-2. Demon  -> factual 2H / raw3
-3. Ogre   -> factual Axe / raw52
+Demon -> factual 2H / raw3
 ```
 
 Question:
 
 ```text
-does established equipped marker ownership follow factual equipped source/action semantics
-for native NPC attackers as well as already-proven player-side cases?
+does established equipped marker ownership follow the exact factual 2H/raw3 source
+for a native Demon, including activation, native cleanup and clean C1 finalization?
 ```
 
-Keep one actor per log. Use the existing compact CORE diagnostic product. Do not add new probes unless a concrete failure or unsupported path makes existing CORE insufficient.
+Use the already-deployed compact CORE diagnostic DLL; no rebuild is required. Seek the smallest useful marked attack fixture and let attacks connect where practical. Preserve and commit the complete raw log unchanged before interpretation.
 
-For each actor, seek the smallest useful marked attack/control fixture rather than a broad combat matrix. Preserve and commit each complete raw log unchanged before interpretation.
+If Demon passes, the remaining §8.1 control is:
+
+```text
+Ogre -> factual Axe / raw52
+```
 
 Do not yet begin:
 
