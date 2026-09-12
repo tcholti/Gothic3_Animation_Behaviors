@@ -351,6 +351,7 @@ static GELPVoid StartEffect_FrameCollisionTest(
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogMarkerResult(actor, result);
+    PhysicalFistProbe::OnMarkerProcessed(actor, markerOpcode, result);
 #endif
     return nullptr;
 }

@@ -35,6 +35,10 @@ bool ShouldSuppressCollisionGroupRequest(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup);
 
+void OnMarkerProcessed(
+    Entity &actor, MarkerOpcode markerOpcode,
+    MarkerProcessResult const &result);
+
 void EndQuickCallbackObservation(
     Entity &actor, QuickCallbackObservation &observation,
     GEBool nativeResult);
