@@ -12,6 +12,7 @@
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Project-wide feature-development methodology: `docs/FEATURE_DEVELOPMENT_METHOD.md`  
+Frozen raw55 causal probe: `docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`  
 Bounded Work execution: `docs/WORK_IMPLEMENTATION_PROTOCOL.md`  
 Architecture/redesign authority: `docs/COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`  
 Overall architecture: `docs/DESIGN.md`  
@@ -77,59 +78,65 @@ No `Troll_Stand_None_Fist...` motion occurred in the tested Troll/BlackTroll run
 
 ---
 
-## Current Immediate Responsibility — RAW55 DESIGN / PROBE GATE
+## Current Immediate Responsibility — FROZEN RAW55 CALLBACK-SUPPRESSION PROBE
 
 **Pause the broader native-creature validation sequence here.** The Troll discovery changes the intended product scope enough that continuing final-style validation before raw55 disposition would weaken the later certification.
 
-Current question:
+Frozen authority:
 
-> Can factual `PhysicalFist/raw55` support the existing author-facing `G3AB_COL_FIST` cleanly and safely, while preserving native TouchDamage/target/damage semantics and keeping raw8 behavior untouched?
+`docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`
 
-Current architectural direction, not yet production authority:
+The probe asks exactly:
 
-```text
-same author-facing marker: G3AB_COL_FIST
+> Can an exact marked factual raw55 execution suppress the native attack callback's physical activation without breaking the attack's normal animation/state/recover/next-attack progression?
 
-raw8 Fist
--> existing Raw8FistCollision mechanism
-
-raw55 PhysicalFist
--> separate physical-source mechanism if proven
--> likely group5/group7 ownership using existing physical lifecycle infrastructure
--> NOT raw8 latch/timing logic
-```
-
-The main unresolved causal question is pre-marker native activation. In the Troll log, native raw55 can open its group7 collision window before a later authored FIST marker. Therefore a production implementation cannot simply activate raw55 at the marker; it must first prove that marked raw55 can safely take callback/timing ownership without breaking native attack progression.
-
-### Required research method
-
-Follow `FEATURE_DEVELOPMENT_METHOD.md`:
+Frozen structure:
 
 ```text
-create isolated diagnostic-only PhysicalFist probe module
--> EngineBridge remains hook transport/delegation only
--> do not put raw55 experiments into Raw8FistCollision
--> do not accumulate experiment state/policy in EngineBridge
--> test one causal variable at a time
--> if mechanism is proven, freeze production contract
--> implement permanent PhysicalFistCollision (or equivalent owner)
--> remove probe scaffolding
--> validate focused production candidate
--> only then resume broad creature/final validation
+PhysicalFistProbe.cpp/.h
+-> diagnostic-only temporary module
+-> owns exact raw55 eligibility / suppression decision / temporary probe logging
+
+EngineBridge
+-> existing hook owner
+-> diagnostic-only delegation seam only
+-> no raw55 policy/state machine
+
+Raw8FistCollision
+-> unchanged
 ```
 
-First intended causal probe:
+Frozen causal intervention:
 
 ```text
-exact marked factual raw55 execution
--> suppress its native attack-callback activation only
--> do NOT yet provide replacement marker activation
-
-Question:
-does pre-marker 5->7/native damage disappear while attack animation/state/recover/next attacks remain healthy?
+exact marked factual raw55 Normal/Quick/Sprint execution
+-> suppress native original attack callback only
+-> do NOT activate raw55 at FIST
+-> do NOT change marker processing
 ```
 
-No code task is frozen yet; Normal Chat should finish source/design review and freeze the bounded probe responsibility before Work implementation.
+Expected probe result if the hypothesis is correct:
+
+```text
+no pre-marker TrollFist 5 -> 7
+no pre-marker raw55 damage
+authored FIST still reached and remains unsupported in this probe
+attack/recover/next-attack progression remains healthy
+```
+
+A passing probe authorizes only a later Normal Chat production-design decision. It does **not** authorize raw55 production support in the same task.
+
+Next implementation task, when launched, must read:
+
+```text
+SESSION_ENTRYPOINT.md
+BETWEEN_CHATS.md
+COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md
+FEATURE_DEVELOPMENT_METHOD.md
+WORK_IMPLEMENTATION_PROTOCOL.md
+```
+
+Work build execution remains prohibited unless that exact launcher explicitly authorizes a build.
 
 ---
 
