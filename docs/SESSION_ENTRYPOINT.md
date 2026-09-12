@@ -16,7 +16,7 @@ Immediate handoff: `docs/BETWEEN_CHATS.md`
 Current frozen probe: `docs/COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md`  
 Prior raw55 probe contracts: `docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`; `docs/COLLISION_RAW55_QUICK_CALLBACK_BOUNDARY_PROBE.md`; `docs/COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`  
 Latest canonical evidence: `docs/EVIDENCE_LEDGER_265_ONWARD.md` EV-265; prior raw55 causal evidence EV-262–EV-264 is in `docs/EVIDENCE_LEDGER_250_ONWARD.md`  
-Evidence routing: `docs/EVIDENCE_INDEX.md` (historical raw55 routing there predates EV-262; for active raw55 work use this entry point + EV-262–EV-265 until the index is refreshed at the next stable raw55 checkpoint)  
+Evidence routing: `docs/EVIDENCE_INDEX.md` — refreshed through EV-265  
 Evidence path moves: `docs/EVIDENCE_PATH_MIGRATIONS.md`  
 Bounded Work execution: `docs/WORK_IMPLEMENTATION_PROTOCOL.md`  
 Feature method: `docs/FEATURE_DEVELOPMENT_METHOD.md`  
