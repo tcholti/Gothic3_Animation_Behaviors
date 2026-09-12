@@ -226,7 +226,19 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
     INIT_SCRIPT_CALLBACK()
     if (EvaluateAttackCallback(SelfEntity, AttackFamily_Quick, a_pSPU))
         return GETrue;
-    return Hook_OnAI_QuickAttack.GetOriginalFunction(&OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    PhysicalFistProbe::QuickCallbackObservation const observation =
+        PhysicalFistProbe::BeginQuickCallbackObservation(
+            SelfEntity, a_pSPU);
+    GEBool const result = Hook_OnAI_QuickAttack.GetOriginalFunction(
+        &OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
+    PhysicalFistProbe::EndQuickCallbackObservation(
+        SelfEntity, observation, result);
+    return result;
+#else
+    return Hook_OnAI_QuickAttack.GetOriginalFunction(
+        &OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
+#endif
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_SimpleWhirl_FrameCollisionTest)
