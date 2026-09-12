@@ -14,7 +14,8 @@ EVIDENCE_LEDGER.md                  EV-001–EV-157
 EVIDENCE_LEDGER_STEP_B.md           EV-158–EV-198
 EVIDENCE_LEDGER_199_ONWARD.md       EV-199–EV-231
 EVIDENCE_LEDGER_232_ONWARD.md       EV-232–EV-249
-EVIDENCE_LEDGER_250_ONWARD.md       EV-250 onward
+EVIDENCE_LEDGER_250_ONWARD.md       EV-250–EV-264
+EVIDENCE_LEDGER_265_ONWARD.md       EV-265 onward
 ```
 
 The ledger splits are storage-only; numbering remains one global monotonic namespace.
@@ -37,10 +38,10 @@ Current project responsibility is never owned by this historical index. Use `SES
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
 | raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263 | `DESIGN.md` raw-8 Fist architecture; `SOURCE_HOOK_GUIDE.md` proven timing path |
-| PhysicalFist/raw55 factual source + current causal route | EV-245–EV-246, EV-262, EV-264 | `COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`; prior suppression/boundary probe docs |
+| PhysicalFist/raw55 factual source + current causal route | EV-245–EV-246, EV-262, EV-264–EV-265 | `COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md`; prior raw55 probe docs |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | equipped marker exact-set/replay evidence |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
-| Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-264 | EV-182–EV-196 for lifecycle context; raw8 control EV-263; raw55 native mutation boundary EV-264 |
+| Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-265 | EV-182–EV-196 for lifecycle context; raw8 control EV-263; raw55 mutation/separability EV-264–EV-265 |
 | Dual native source map / source-explicit marker review | EV-090–EV-094 | EV-207, EV-211, EV-214 |
 | multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | EV-131–EV-144; archived fixture logs |
 | historical marker occurrence-budget leak | EV-131–EV-133 | EV-167; EV-213–EV-214 for generation replacement/closure |
@@ -139,10 +140,10 @@ EV-192–EV-194
 EV-206–EV-207
 EV-211
 EV-214
-EV-217–EV-264
+EV-217–EV-265
 ```
 
-Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 record the initial bounded raw55 survey that had not yet found a factual source. That boundary was later reopened correctly by concrete Troll/BlackTroll raw55 evidence: EV-262 establishes the callback-suppression causal result/failure, EV-264 establishes compound native Quick callback ownership, and EV-263 preserves the raw8 Quick comparison boundary.
+Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 record the initial bounded raw55 survey that had not yet found a factual source. That boundary was later reopened correctly by concrete Troll/BlackTroll raw55 evidence: EV-262 establishes the callback-suppression causal result/failure, EV-264 establishes compound native Quick callback ownership, EV-265 establishes selective early-group/state-progression separability, and EV-263 preserves the raw8 Quick comparison boundary.
 
 SimpleWhirl current distinction:
 
@@ -180,7 +181,7 @@ EV-220
 EV-241–EV-244
 ```
 
-`ClearTriggeredList()` here belongs to equipped repeated-contact semantics. Raw-8 Fist explicitly does not use it in final production architecture; see EV-233.
+`ClearTriggeredList()` here belongs to equipped repeated-contact semantics. Raw-8 Fist explicitly does not use it in final production architecture; see EV-233. EV-265 does not prove raw55 triggered-list semantics; the authored-FIST follow-up deliberately adds no probe-owned clear.
 
 ### E. Marker execution lifetime / bookkeeping
 
@@ -214,11 +215,11 @@ Evidence: EV-151–EV-215 plus equipped expansion cleanup evidence EV-217, EV-22
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 
-Raw-8 Fist is not an equipped-source cleanup client; it creates no weapon C1 physical repair obligation.
+Raw-8 Fist is not an equipped-source cleanup client; it creates no weapon C1 physical repair obligation. EV-265 creates no raw55 offense obligation because the physical Quick opening is suppressed; raw55 cleanup after authored-FIST activation remains an open causal question.
 
 ### G. Animation semantics and naming
 
-Evidence: EV-036–EV-065, plus EV-245–EV-264 for the distinction between serialized `Fist`, factual raw source UseType and actual marker-mechanism support.  
+Evidence: EV-036–EV-065, plus EV-245–EV-265 for the distinction between serialized `Fist`, factual raw source UseType and actual marker-mechanism support.  
 Main routing: `ANIMATION_INDEX.md`.
 
 ### H. Compatibility / hook ownership
@@ -310,6 +311,11 @@ EV-263 healthy raw8 Quick control retained as mechanism boundary;
 EV-264 unsuppressed marked raw55 Quick callback boundary proves the same
        original _AI_QuickAttack invocation contains both native StatePosition
        0 -> 1 and the early RIGHT raw55 group5 -> group7 opening
+
+EV-265 exact early RIGHT raw55 5 -> 7 suppression preserves the original
+       Quick callback's StatePosition 0 -> 1 progression, leaves RIGHT at group5,
+       produces no later TrollFist opening/damage, and finalizes without raw55
+       obligation/repair
 ```
 
 Current engineering status:
@@ -317,14 +323,15 @@ Current engineering status:
 ```text
 factual raw55 source              = CONFIRMED for Troll/BlackTroll TrollFist
 whole Quick callback suppression  = REJECTED; removes required native state progression too
+selective early Quick group gate  = CONFIRMED/PASS — EV-265
+authored-FIST activation/contact  = OPEN
 permanent raw55 marker mechanism  = NOT YET FROZEN
-next causal question               = selective suppression of only the exact nested RIGHT raw55 5 -> 7 request while native Quick continues
 ```
 
 Current frozen probe authority:
-`COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`.
+`COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md`.
 
-Do not substitute raw8 semantics for raw55, do not species-gate production policy, and do not create permanent `PhysicalFistCollision` until the separability probe is closed.
+Do not substitute raw8 semantics for raw55, do not species-gate production policy, and do not create permanent `PhysicalFistCollision` until the authored-FIST activation/contact/cleanup question closes.
 
 ---
 
@@ -342,10 +349,11 @@ Power equipped marker expansion             CLOSED/PASS — EV-241
 Pierce equipped marker expansion            CLOSED/PASS — EV-242
 SimpleWhirl current semantic checkpoint     CLOSED for current scope — EV-217–EV-220, EV-243
 Hack equipped marker/source validation      CLOSED/PASS for tested 2H/Staff scope — EV-216, EV-244
-human/raw8 Fist production mechanism         CLOSED/PASS; broadened controls through EV-263
+human/raw8 Fist production mechanism        CLOSED/PASS; broadened controls through EV-263
 initial PhysicalFist/raw55 bounded survey   CLOSED at EV-245–EV-246; REOPENED by factual EV-262 evidence
 raw55 whole-callback suppression gate       FAILED/REJECTED — EV-262
 raw55 Quick callback-boundary question      CLOSED — EV-264
+raw55 Quick selective group separability    CLOSED/PASS — EV-265
 ```
 
 ```text
@@ -354,10 +362,11 @@ RAW8 FIST SHARED MECHANISM = CLOSED/PASS FOR THE EVIDENCE-BACKED FAMILIES/CONTRO
 EQUIPPED POWER / PIERCE / SIMPLEWHIRL / HACK EXPANSION CHECKPOINTS = CANONICALLY PROMOTED
 RAW55 FACTUAL SOURCE = CONFIRMED FOR TROLL/BLACKTROLL
 RAW55 QUICK WHOLE-CALLBACK SUPPRESSION = REJECTED
-RAW55 QUICK SELECTIVE GROUP-SEPARABILITY PROBE = CURRENT FROZEN RESPONSIBILITY
+RAW55 QUICK SELECTIVE EARLY GROUP GATE = CONFIRMED/PASS
+RAW55 QUICK AUTHORED-FIST ACTIVATION PROBE = CURRENT FROZEN RESPONSIBILITY
 ```
 
-Do not route current work back into broad raw55 source search, N4/N5/N6, or permanent raw55 implementation. Follow the frozen selective group-suppression probe first.
+Do not route current work back into broad raw55 source search, N4/N5/N6, or permanent raw55 implementation. Follow the frozen Quick authored-FIST activation probe first.
 
 ---
 
@@ -372,12 +381,13 @@ EV-245–EV-246  initial bounded survey / raw8-vs-raw55 distinction
 EV-262         factual Troll/BlackTroll raw55 + whole-callback suppression causal result/failure
 EV-263         healthy raw8 Quick comparison boundary
 EV-264         native raw55 Quick compound callback ownership
-COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md
+EV-265         selective early group gate preserves Quick StatePosition progression
+COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md
 ```
 
-The immediate question is not whether raw55 exists and not whether `_AI_QuickAttack` matters; both are already established. The immediate question is whether the unwanted early raw55 `5 -> 7` side effect is separable from required native Quick StatePosition progression by intercepting only that exact nested group request through the already-owned SetCollisionGroup transport.
+The immediate question is now whether, in that preserved native Quick context, one exact RIGHT raw55 group5-to-group7 request at the authored FIST event restores native contact/damage at authored timing and receives clean native group7-to-group5 cleanup. The probe deliberately does not issue `ClearTriggeredList`; success would prove sufficiency only in the preserved Quick-callback context, not global triggered-list irrelevance.
 
-If separability passes cleanly, Normal Chat may then freeze a permanent raw55 owner/contract. If it fails, isolate the next single native coupling/activation path. Do not compensate by writing StatePosition manually and do not generalize raw8 behavior.
+Do not compensate with custom damage or manual StatePosition/cleanup writes, and do not generalize Quick evidence to Normal/Sprint.
 
 ### Pre-regression actor/family compatibility sequence
 
@@ -389,7 +399,7 @@ When raw55 is resolved or explicitly deferred again, resume from the current can
 raw8 native/transformed controls through EV-263
 native equipped-NPC controls EV-252–EV-258
 Stalker raw52 control EV-259
-raw55 causal route EV-262–EV-264 and subsequent closure
+raw55 causal route EV-262–EV-265 and subsequent closure
 -> separated 2H-vs-Axe mod compatibility
 -> separated 1H-vs-Rapier mod compatibility
 -> final native mixed collision regression
