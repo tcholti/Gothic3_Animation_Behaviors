@@ -227,9 +227,9 @@ DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
     if (EvaluateAttackCallback(SelfEntity, AttackFamily_Quick, a_pSPU))
         return GETrue;
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    PhysicalFistProbe::QuickCallbackObservation const observation =
-        PhysicalFistProbe::BeginQuickCallbackObservation(
-            SelfEntity, a_pSPU);
+    PhysicalFistProbe::QuickCallbackObservation observation = {};
+    PhysicalFistProbe::BeginQuickCallbackObservation(
+        SelfEntity, a_pSPU, observation);
     GEBool const result = Hook_OnAI_QuickAttack.GetOriginalFunction(
         &OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
     PhysicalFistProbe::EndQuickCallbackObservation(
@@ -847,6 +847,14 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
     eECollisionGroup const beforeGroup = a_pThis != nullptr
         ? a_pThis->GetCollisionGroup()
         : static_cast<eECollisionGroup>(-1);
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    if (PhysicalFistProbe::ShouldSuppressCollisionGroupRequest(
+            a_pThis, a_Group, beforeGroup))
+    {
+        return;
+    }
+#endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     void *callerAddress = _ReturnAddress();

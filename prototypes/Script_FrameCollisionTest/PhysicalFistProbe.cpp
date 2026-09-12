@@ -8,6 +8,9 @@
 
 namespace FrameCollision::PhysicalFistProbe
 {
+static thread_local QuickCallbackObservation *g_pCurrentQuickCallbackScope =
+    nullptr;
+
 static bool IsRaw55ProbeFamily(AttackFamily family)
 {
     return family == AttackFamily_Normal
@@ -142,10 +145,13 @@ bool ShouldSuppressNativeCallback(
     return true;
 }
 
-QuickCallbackObservation BeginQuickCallbackObservation(
-    Entity &actor, gCScriptProcessingUnit *spu)
+void BeginQuickCallbackObservation(
+    Entity &actor, gCScriptProcessingUnit *spu,
+    QuickCallbackObservation &observation)
 {
-    QuickCallbackObservation observation = {};
+    observation = {};
+    observation.previousScope = g_pCurrentQuickCallbackScope;
+    g_pCurrentQuickCallbackScope = &observation;
 
     FrameCollisionMarkers::AttackCallbackOwnershipResult const ownership =
         FrameCollisionMarkers::EvaluateAttackCallbackOwnership(
@@ -156,7 +162,7 @@ QuickCallbackObservation BeginQuickCallbackObservation(
             actor, AttackFamily_Quick, ownership, spu, false,
             generation, rightInstance))
     {
-        return observation;
+        return;
     }
 
     Entity rightSource(rightInstance);
@@ -175,13 +181,80 @@ QuickCallbackObservation BeginQuickCallbackObservation(
         rightSource.GetCollisionGroup());
     observation.motionBefore = motion.GetText() != nullptr
         ? motion.GetText() : "<unavailable>";
-    return observation;
+}
+
+bool ShouldSuppressCollisionGroupRequest(
+    eCEntity *sourceInstance, eECollisionGroup requestedGroup,
+    eECollisionGroup beforeGroup)
+{
+    QuickCallbackObservation *const scope =
+        g_pCurrentQuickCallbackScope;
+    if (scope == nullptr || !scope->active
+        || sourceInstance == nullptr
+        || sourceInstance != scope->rightSourceInstance
+        || requestedGroup != eECollisionGroup_Item_Attack
+        || beforeGroup != eECollisionGroup_Item_Equipped)
+    {
+        return false;
+    }
+
+    Entity actor(scope->actorInstance);
+    Entity rightSource(sourceInstance);
+    if (actor == None || actor.GetInstance() != scope->actorInstance
+        || rightSource == None
+        || rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Equipped
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist)
+    {
+        return false;
+    }
+
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    if (currentSources.rightInstance != sourceInstance)
+        return false;
+
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            scope->actorInstance);
+    if (!generation.valid
+        || generation.actorInstance != scope->actorInstance
+        || generation.generation != scope->c1Generation)
+    {
+        return false;
+    }
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        GEInt const statePosition = static_cast<GEInt>(
+            actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+        GEFloat const stateTime = actor.Routine.GetStateTime();
+        std::fprintf(
+            log,
+            "CORE RAW55_QUICK_GROUP_SUPPRESSION Actor=%s C1=%llu Right=%s RightUseType=%d RequestedGroup=%d BeforeGroup=%d StatePosition=%d StateTime=%.6f SUPPRESS_GROUP=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(scope->c1Generation),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(
+                CollisionSources::GetCollisionSourceUseType(rightSource)),
+            static_cast<GEInt>(requestedGroup),
+            static_cast<GEInt>(beforeGroup), statePosition,
+            static_cast<double>(stateTime));
+        std::fflush(log);
+    }
+
+    return true;
 }
 
 void EndQuickCallbackObservation(
-    Entity &actor, QuickCallbackObservation const &observation,
+    Entity &actor, QuickCallbackObservation &observation,
     GEBool nativeResult)
 {
+    if (g_pCurrentQuickCallbackScope == &observation)
+        g_pCurrentQuickCallbackScope = observation.previousScope;
+
     if (!observation.active || actor == None
         || actor.GetInstance() != observation.actorInstance)
     {
