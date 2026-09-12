@@ -19,10 +19,21 @@ struct QuickEarlySuppressionProof
     bool activationUsed;
 };
 
+struct QuickPreStateFistIntervention
+{
+    eCEntity *actorInstance;
+    eCEntity *rightSourceInstance;
+    std::uint64_t c1Generation;
+    bool interventionUsed;
+};
+
 static thread_local QuickCallbackObservation *g_pCurrentQuickCallbackScope =
     nullptr;
 static thread_local std::unordered_map<eCEntity *, QuickEarlySuppressionProof>
     g_QuickEarlySuppressionProofs;
+static thread_local
+    std::unordered_map<eCEntity *, QuickPreStateFistIntervention>
+        g_QuickPreStateFistInterventions;
 
 static bool IsRaw55ProbeFamily(AttackFamily family)
 {
@@ -280,11 +291,123 @@ bool ShouldSuppressCollisionGroupRequest(
     return true;
 }
 
+static bool WasPreStateFistInterventionUsed(
+    eCEntity *actorInstance, eCEntity *rightSourceInstance,
+    std::uint64_t c1Generation)
+{
+    auto const found =
+        g_QuickPreStateFistInterventions.find(actorInstance);
+    return found != g_QuickPreStateFistInterventions.end()
+        && found->second.actorInstance == actorInstance
+        && found->second.rightSourceInstance == rightSourceInstance
+        && found->second.c1Generation == c1Generation
+        && found->second.interventionUsed;
+}
+
+static bool TryApplyPreStateFistProbe(
+    Entity &actor, MarkerOpcode markerOpcode,
+    MarkerProcessResult const &result)
+{
+    if (actor == None || actor.GetInstance() == nullptr)
+        return false;
+
+    eCEntity *const actorInstance = actor.GetInstance();
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(actorInstance);
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    CurrentMotionMarkerResult const &decision = result.decision;
+    if (!generation.valid || generation.actorInstance != actorInstance
+        || markerOpcode != MarkerOpcode_Fist
+        || result.opcode != MarkerOpcode_Fist
+        || result.code != MarkerResult_UnsupportedMissingSource
+        || !FrameCollisionMarkers::IsAttackHit(actor, AttackFamily_Quick)
+        || !decision.foundMatchingMotion || !decision.scanValid
+        || !decision.markerPresent || !decision.hasFistMarkers
+        || decision.markerCounts[MarkerOpcode_Fist] <= 0
+        || decision.markerCounts[MarkerOpcode_Right] != 0
+        || decision.markerCounts[MarkerOpcode_Left] != 0
+        || decision.markerCounts[MarkerOpcode_Both] != 0
+        || decision.markerCounts[MarkerOpcode_Off] != 0
+        || decision.requiredSourceMask != SourceMask_None
+        || CollisionSources::ResolveFistCollisionSource(actor) != nullptr
+        || currentSources.rightInstance == nullptr
+        || result.sources.rightInstance != currentSources.rightInstance)
+    {
+        return false;
+    }
+
+    Entity rightSource(currentSources.rightInstance);
+    if (rightSource == None
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist
+        || rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Equipped)
+    {
+        return false;
+    }
+
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    if (statePosition != 0
+        || WasPreStateFistInterventionUsed(
+            actorInstance, currentSources.rightInstance,
+            generation.generation))
+    {
+        return false;
+    }
+
+    QuickPreStateFistIntervention intervention = {};
+    intervention.actorInstance = actorInstance;
+    intervention.rightSourceInstance = currentSources.rightInstance;
+    intervention.c1Generation = generation.generation;
+    intervention.interventionUsed = true;
+    g_QuickPreStateFistInterventions[actorInstance] = intervention;
+
+    gEAction const action =
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+    GEFloat const stateTime = actor.Routine.GetStateTime();
+    eECollisionGroup const groupBefore = rightSource.GetCollisionGroup();
+    rightSource.SetCollisionGroup(eECollisionGroup_Item_Attack);
+    eECollisionGroup const groupAfter = rightSource.GetCollisionGroup();
+    bool triggeredListCleared = false;
+    if (groupAfter == eECollisionGroup_Item_Attack)
+    {
+        rightSource.TouchDamage.ClearTriggeredList();
+        triggeredListCleared = true;
+    }
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        std::fprintf(
+            log,
+            "CORE RAW55_QUICK_PRESTATE_FIST_PROBE Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d GroupBefore=%d RequestedGroup=%d GroupAfter=%d ClearTriggeredList=%d PRESTATE_FIST=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(generation.generation),
+            static_cast<GEInt>(action), statePosition,
+            static_cast<double>(stateTime),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(
+                CollisionSources::GetCollisionSourceUseType(rightSource)),
+            static_cast<GEInt>(groupBefore),
+            static_cast<GEInt>(eECollisionGroup_Item_Attack),
+            static_cast<GEInt>(groupAfter),
+            triggeredListCleared ? 1 : 0);
+        std::fflush(log);
+    }
+
+    return true;
+}
+
 void OnMarkerProcessed(
     Entity &actor, MarkerOpcode markerOpcode,
     MarkerProcessResult const &result)
 {
     if (actor == None || actor.GetInstance() == nullptr)
+        return;
+
+    if (TryApplyPreStateFistProbe(actor, markerOpcode, result))
         return;
 
     eCEntity *const actorInstance = actor.GetInstance();
@@ -303,6 +426,13 @@ void OnMarkerProcessed(
         || currentSources.rightInstance != proof.rightSourceInstance)
     {
         g_QuickEarlySuppressionProofs.erase(proofIt);
+        return;
+    }
+
+    if (WasPreStateFistInterventionUsed(
+            actorInstance, proof.rightSourceInstance,
+            proof.c1Generation))
+    {
         return;
     }
 
