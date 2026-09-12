@@ -13,10 +13,10 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe: `docs/COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md`  
-Prior raw55 probe contracts: `docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`; `docs/COLLISION_RAW55_QUICK_CALLBACK_BOUNDARY_PROBE.md`; `docs/COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_265_ONWARD.md` EV-265; prior raw55 causal evidence EV-262–EV-264 is in `docs/EVIDENCE_LEDGER_250_ONWARD.md`  
-Evidence routing: `docs/EVIDENCE_INDEX.md` — refreshed through EV-265  
+Current frozen probe: `docs/COLLISION_RAW55_QUICK_FIST_REARM_PROBE.md`  
+Prior raw55 probe contracts: `docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`; `docs/COLLISION_RAW55_QUICK_CALLBACK_BOUNDARY_PROBE.md`; `docs/COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`; `docs/COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md`  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_265_ONWARD.md` through **EV-266**; prior raw55 causal evidence EV-262–EV-264 is in `docs/EVIDENCE_LEDGER_250_ONWARD.md`  
+Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Evidence path moves: `docs/EVIDENCE_PATH_MIGRATIONS.md`  
 Bounded Work execution: `docs/WORK_IMPLEMENTATION_PROTOCOL.md`  
 Feature method: `docs/FEATURE_DEVELOPMENT_METHOD.md`  
@@ -41,9 +41,12 @@ raw55 early callback causal ownership           CONFIRMED — EV-262
 raw55 whole-callback suppression gate           FAILED/REJECTED — EV-262
 raw55 Quick callback compound ownership         CONFIRMED/CLOSED — EV-264
 raw55 Quick early-group/state separability      CONFIRMED/PASS — EV-265
+raw55 Quick authored-FIST group activation      CONFIRMED/PASS — EV-266
+raw55 Quick native cleanup after FIST opening   CONFIRMED/PASS — EV-266
+raw55 Quick damage from group opening alone     FAILED/INSUFFICIENT — EV-266
 ```
 
-Raw8 FIST remains a separate proven mechanism. Do not generalize it to raw55.
+Raw8 FIST remains a separate proven mechanism. Do not generalize raw55 findings onto raw8.
 
 ---
 
@@ -57,29 +60,32 @@ gEUseType_PhysicalFist / raw55
 resting collision group5
 ```
 
-EV-264 proved that one original native marked-raw55 Quick callback invocation contains both:
+Current Quick causal chain:
 
 ```text
-StatePosition 0 -> 1
-RIGHT raw55 group5 -> group7
+EV-264:
+    native _AI_QuickAttack invocation contains both
+    StatePosition 0 -> 1
+    and early raw55 5 -> 7
+
+EV-265:
+    suppress only the early 5 -> 7
+    StatePosition 0 -> 1 survives
+    source stays group5
+
+EV-266:
+    at authored FIST (~StateTime 0.48–0.49), request exact RIGHT raw55 5 -> 7
+    physical transition succeeds
+    real C1 offense obligation is created
+    source stays group7 through late Quick window
+    Gothic cleans 7 -> 5 normally
+    C1 closes cleanly
+    BUT no Troll/BlackTroll damage to PC_Hero occurs
 ```
 
-EV-265 then proved those responsibilities are separable at the existing `SetCollisionGroup` boundary. Across 20 Troll + 9 BlackTroll marked Quick executions:
+Therefore early gating, authored source activation, and native cleanup are individually demonstrated for the tested Quick path. The remaining unresolved responsibility is native contact/rearm eligibility after delayed authored activation.
 
-```text
-exact early RIGHT raw55 5 -> 7 request suppressed
-original _AI_QuickAttack still runs
-StatePosition 0 -> 1 preserved
-RIGHT stays group5
-FIST later arrives at native StatePosition 1
-no later physical TrollFist group opening
-no OnDamage to PC_Hero
-no raw55 outstanding/repair/lifecycle issue
-```
-
-This closes the early-gating question for Quick. It does **not** yet prove authored FIST activation/contact/cleanup semantics.
-
-The current `DESIGN.md` raw55 deferred text predates this reopened factual raw55 research. Do not use that historical paragraph as the active raw55 mechanism authority. Current authority is EV-262–EV-265 plus the frozen probe/handoff named above. Permanent design remains intentionally unfrozen.
+The current `DESIGN.md` raw55 deferred paragraph predates this reopened factual research and is not the active raw55 mechanism authority. Current authority is EV-262–EV-266 plus the frozen probe/handoff named above. Permanent design remains intentionally unfrozen.
 
 ---
 
@@ -88,7 +94,7 @@ The current `DESIGN.md` raw55 deferred text predates this reopened factual raw55
 The next diagnostic contract is frozen in:
 
 ```text
-docs/COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md
+docs/COLLISION_RAW55_QUICK_FIST_REARM_PROBE.md
 ```
 
 The exact bounded Work task is in:
@@ -99,7 +105,7 @@ docs/BETWEEN_CHATS.md
 
 Single question:
 
-> With the EV-265 early Quick raw55 group5-to-group7 request still selectively suppressed, can one exact RIGHT raw55 group5-to-group7 request at the authored FIST event restore Gothic's native contact/damage at authored timing and then receive clean native group7-to-group5 cleanup?
+> Keeping EV-265 early suppression and EV-266 authored-FIST `5 -> 7` activation unchanged, does exactly one `TouchDamage.ClearTriggeredList()` on the exact RIGHT raw55 source immediately after verified successful FIST-time activation restore Gothic's native contact/damage while preserving native cleanup?
 
 Required architecture:
 
@@ -107,20 +113,24 @@ Required architecture:
 PhysicalFistProbe
     owns prior-suppression proof state
     owns exact Quick/FIST eligibility
-    owns one-shot temporary FIST-time raw55 activation policy
+    owns one-shot FIST-time raw55 activation
+    owns one exact post-activation triggered-list clear for this probe
 
 EngineBridge
-    remains sole hook transport owner
-    only delegates after stable ProcessMarker result exists
+    remains sole hook/marker transport owner
+    no raw55 policy added
 
 FrameCollisionMarkers
-    unchanged; raw55 FIST remains UNSUPPORTED_MISSING_SOURCE in stable code
+    unchanged; raw55 FIST remains UNSUPPORTED_MISSING_SOURCE
 
 Raw8FistCollision
     unchanged
+
+CollisionSourceOperations
+    unchanged; do not use its combined ActivateOrRearm helper for this probe
 ```
 
-The probe must not issue `ClearTriggeredList`, custom damage, StatePosition writes, manual cleanup, species/name gates, or Normal/Sprint FIST activation.
+The causal delta from EV-266 must be exactly the direct triggered-list clear after successful group7 activation. No custom damage, manual TriggerTarget/OnDamage, StatePosition writes, SPU writes, or cleanup changes.
 
 Build execution is **not** authorized for Work. Normal Chat reviews source first; User + Normal Chat build only after review passes.
 
@@ -128,9 +138,11 @@ Build execution is **not** authorized for Work. Normal Chat reviews source first
 
 ## Active Comparison Evidence
 
-Keep in `research/raw/` while authored-FIST activation remains open:
+Keep in `research/raw/` while the Quick contact/rearm question remains open:
 
 ```text
+research/raw/2026.09.12_troll_raw55_quick_fist_activation.log
+research/raw/2026.09.12_black_troll_raw55_quick_fist_activation.log
 research/raw/2026.09.12_troll_marked_attacks_2.log
 research/raw/2026.09.12_black_troll_marked_attacks_2.log
 research/raw/2026.09.12_troll_marked_quick_attacks.log
@@ -140,7 +152,7 @@ research/raw/2026.09.12_troll_collision_test.log
 research/raw/2026.09.12_troll_and_other_marker_test.log
 ```
 
-The first two are canonically represented by EV-265. Earlier logs are closed prior-step comparison inputs, not unprocessed evidence.
+The first two are canonically represented by EV-266; the next two by EV-265. Earlier logs are closed comparison evidence, not unprocessed evidence.
 
 ---
 
@@ -150,23 +162,27 @@ The first two are canonically represented by EV-265. Earlier logs are closed pri
 Raw8FistCollision unchanged
 FrameCollisionMarkers semantics unchanged
 CollisionLifecycleGuard semantics unchanged
-CollisionSources semantics unchanged
+CollisionSources unchanged
 CollisionSourceOperations unchanged
 equipped RIGHT/LEFT/BOTH/OFF unchanged
 EngineBridge remains transport-only
 PhysicalFistProbe remains temporary diagnostics-only
 no species/name policy
 no permanent PhysicalFistCollision yet
-no custom damage
-no probe-owned ClearTriggeredList
+no custom/direct damage
+no manual TriggerTarget / OnDamage
+no StatePosition or SPU writes
+no manual cleanup
 no new hooks/timers/polling
 ```
+
+The only newly authorized intervention is one exact `TouchDamage.ClearTriggeredList()` after verified successful authored-FIST raw55 group7 activation in the exact proven Quick C1.
 
 ---
 
 ## Still Paused
 
-Until the Quick authored-FIST activation/contact/cleanup question closes and raw55 design is either sufficiently proven for a permanent owner or explicitly deferred:
+Until the Quick contact/rearm question closes and raw55 design is either sufficiently proven for a permanent owner or explicitly deferred:
 
 ```text
 NO permanent raw55 implementation
