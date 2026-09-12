@@ -9,6 +9,7 @@
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 #include "CollisionDiagnostics.h"
+#include "PhysicalFistProbe.h"
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include "CollisionDiagnosticsDeep.h"
@@ -180,8 +181,13 @@ static bool EvaluateAttackCallback(
         actor, family, ownership, spu);
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogAttackCallbackOwnership(actor, family, ownership);
-#endif
+    bool const probeSuppress =
+        PhysicalFistProbe::ShouldSuppressNativeCallback(
+            actor, family, ownership, spu);
+    return ownership.suppressNativeCallback || probeSuppress;
+#else
     return ownership.suppressNativeCallback;
+#endif
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
