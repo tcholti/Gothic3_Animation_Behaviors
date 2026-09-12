@@ -13,17 +13,29 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe: `docs/COLLISION_RAW55_QUICK_PRESTATE_FIST_PROBE.md`  
+Current probe authority: `docs/COLLISION_RAW55_QUICK_PRESTATE_FIST_PROBE.md`  
 Superseded unimplemented probe: `docs/COLLISION_RAW55_QUICK_EARLY_WINDOW_CONTROL_PROBE.md`  
-Prior raw55 probe contracts: `docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`; `docs/COLLISION_RAW55_QUICK_CALLBACK_BOUNDARY_PROBE.md`; `docs/COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`; `docs/COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md`; `docs/COLLISION_RAW55_QUICK_FIST_REARM_PROBE.md`  
 Latest canonical evidence: `docs/EVIDENCE_LEDGER_265_ONWARD.md` through **EV-268**; prior raw55 causal evidence EV-262–EV-264 is in `docs/EVIDENCE_LEDGER_250_ONWARD.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
-Evidence path moves: `docs/EVIDENCE_PATH_MIGRATIONS.md`  
-Bounded Work execution: `docs/WORK_IMPLEMENTATION_PROTOCOL.md`  
-Feature method: `docs/FEATURE_DEVELOPMENT_METHOD.md`  
-Architecture: `docs/DESIGN.md`; `docs/COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`  
-Validation: `docs/COLLISION_TEST_PLAN.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
+
+---
+
+## Current Checkpoint
+
+Raw55 Quick pre-StatePosition FIST diagnostic implementation:
+
+```text
+commit: 0bfb2ba13ba91488570a41592504ac84428def2a
+source review: PASS
+local Release Script_FrameCollisionTest build: PASS
+runtime diagnostic DLL: copied by User to Gothic 3/scripts
+runtime test: NOT YET RUN
+```
+
+Canonical evidence therefore still stops at **EV-268**. Do not create EV-269 until the new runtime log is analyzed.
+
+No Work implementation task is currently active. The immediate next action is local runtime validation.
 
 ---
 
@@ -48,14 +60,14 @@ raw55 Quick group opening without rearm         INSUFFICIENT — EV-266
 raw55 Quick FIST-time triggered-list rearm      CONFIRMED/PASS FOR CONTACT — EV-267
 raw55 close-range timing cause                  CONFIRMED — EV-268
 raw55 frame-1 marker transport                  CONFIRMED; arrives pre-StatePosition — EV-268
-raw55 pre-state authored activation             OPEN — current probe
+raw55 pre-state authored activation             IMPLEMENTED/BUILT; RUNTIME OPEN
 ```
 
 Raw8 FIST remains a separate proven mechanism. Raw55 findings must not be generalized back onto raw8.
 
 ---
 
-## Current Raw55 State
+## Current Raw55 Quick Causal Chain
 
 Factual Troll/BlackTroll source:
 
@@ -65,100 +77,73 @@ gEUseType_PhysicalFist / raw55
 resting collision group5
 ```
 
-Current Quick causal chain:
-
 ```text
 EV-264:
-    native Quick callback contains both StatePosition 0 -> 1 and early raw55 5 -> 7
+    native Quick contains both StatePosition 0 -> 1 and early raw55 5 -> 7
 
 EV-265:
     early 5 -> 7 can be suppressed while StatePosition 0 -> 1 survives
 
 EV-266:
-    post-state authored FIST can open raw55 and native cleanup works
-    group opening alone does not restore damage
+    later authored FIST can open 5 -> 7 and native cleanup works
+    opening alone does not restore damage
 
 EV-267:
-    one exact ClearTriggeredList after FIST-time 5 -> 7 restores damage when contact occurs
+    one ClearTriggeredList after successful delayed FIST opening restores damage on contact
 
 EV-268:
-    moving FIST to frame 4 moves activation to ~StateTime 0.16 and produces native-like early/later damage
-    moving FIST to frame 1 proves marker transport occurs earlier, while StatePosition is still 0
-    current temporary probe ignores that frame-1 FIST because no EV-265 suppression proof exists yet and it requires StatePosition 1
+    frame-4 FIST works because it arrives after native StatePosition reaches 1
+    frame-1 FIST is transported correctly but arrives at StatePosition 0 before the EV-265 proof exists
+    prior frame-1 failure is therefore a temporary probe-ordering limitation
 ```
 
-Therefore the earlier close-range marked/native difference is timing-window-driven, not evidence of a different native source. The logs still do not identify exact damage geometry, so do not promote "fist-only" versus "whole limb/body" as a proven engine fact.
-
-Frame 1 is now the active ordering boundary. Frame 0 remains untested and may have a distinct C1-ordering issue.
+Frame 0 remains unproven and must not be assumed equivalent to frame 1.
 
 Permanent raw55 design remains intentionally unfrozen.
 
 ---
 
-## CURRENT IMMEDIATE RESPONSIBILITY — WORK IMPLEMENTATION
+## CURRENT IMMEDIATE RESPONSIBILITY — LOCAL RUNTIME VALIDATION
 
-The next diagnostic contract is frozen in:
-
-```text
-docs/COLLISION_RAW55_QUICK_PRESTATE_FIST_PROBE.md
-```
-
-The exact bounded Work task is in:
+Use the already-built/deployed diagnostic implementation at:
 
 ```text
-docs/BETWEEN_CHATS.md
+0bfb2ba13ba91488570a41592504ac84428def2a
 ```
 
-Single question:
+Keep Quick `G3AB_COL_FIST` markers at **frame 1**.
 
-> Can exact frame-1 raw55 Quick FIST, arriving with valid C1/source while StatePosition is still 0 and before native Quick's own raw55 request, immediately perform one RIGHT `5 -> 7` activation plus one `TouchDamage.ClearTriggeredList()` while preserving the later native StatePosition transition and native cleanup?
+One Troll run is sufficient initially. Test several marked Quick attacks at very close range and ordinary fist-contact distance.
 
-Required architecture:
+Expected successful shape:
 
 ```text
-PhysicalFistProbe
-    owns a separate exact pre-state FIST path
-    does not require EV-265 suppression proof for that path
-    owns actor/source/C1 one-shot identity
-    performs one explicit 5 -> 7 request
-    performs one clear only after verified group7
-    observes later native Quick behavior without hiding it
-
-EngineBridge
-    unchanged transport owner; existing seams are sufficient
-
-FrameCollisionMarkers
-    unchanged; raw55 FIST remains stable UNSUPPORTED_MISSING_SOURCE
-
-Raw8FistCollision / lifecycle / sources / source operations
-    unchanged
+FIST observed at StatePosition 0
+RIGHT TrollFist raw55 5 -> 7
+ClearTriggeredList=1
+later original Quick callback still advances StatePosition 0 -> 1
+later native group7 request may appear as 7 -> 7
+OnDamage occurs on contact
+native cleanup returns 7 -> 5
+C1 closes without repair/lifecycle issue
 ```
 
-Do not add suppression for the later native `7 -> 7` request. Do not modify lifecycle bookkeeping to hide that request. No custom damage, state writes, manual cleanup, geometry changes, or new hooks are authorized.
+A later native `7 -> 7` can legitimately make lifecycle `Requests=2`; that does not indicate two probe-owned activations.
 
-Build execution is **not** authorized for Work. Normal Chat reviews source first; User + Normal Chat build only after review passes.
-
----
-
-## Active Comparison Evidence
-
-Keep in `research/raw/` while pre-state FIST ordering remains open:
+Commit the complete log to `research/raw/` and return to Normal Chat with only:
 
 ```text
-research/raw/2026.09.12_troll_quick_fist_activation_frame_1.log
-research/raw/2026.09.12_troll_quick_fist_activation_frame_4.log
-research/raw/2026.09.12_troll_quick_fist_activation_3.log
-research/raw/2026.09.12_black_troll_quick_fist_activation_3.log
-research/raw/2026.09.12_troll_native_collision_3.log
-research/raw/2026.09.12_troll_raw55_quick_fist_activation.log
-research/raw/2026.09.12_black_troll_raw55_quick_fist_activation.log
+log filename
+visual observation
 ```
 
-The first two are EV-268; the next three are EV-267; the last two are EV-266.
+Normal Chat analyzes the GitHub log directly using POP-07 rather than asking for a large paste.
 
 ---
 
 ## Protected Boundaries
+
+Until the runtime result is analyzed:
 
 ```text
 Raw8FistCollision unchanged
@@ -166,18 +151,17 @@ FrameCollisionMarkers semantics unchanged
 CollisionLifecycleGuard semantics unchanged
 CollisionSources unchanged
 CollisionSourceOperations unchanged
-equipped RIGHT/LEFT/BOTH/OFF unchanged
-EngineBridge remains transport-only
-PhysicalFistProbe remains temporary diagnostics-only
+EngineBridge hook ownership unchanged
+Normal/Sprint raw55 behavior unchanged
+native cleanup unchanged
 no species/name policy
-no permanent PhysicalFistCollision yet
+no permanent PhysicalFistCollision
 no custom/direct damage
 no TriggerTarget / OnDamage
 no StatePosition or SPU writes
 no manual cleanup
-no new suppression for native 7 -> 7
+no new native 7 -> 7 suppression
 no contact-geometry/body-physics changes
-no animation asset/marker placement changes in code
 no new hooks/timers/polling
 ```
 
@@ -185,7 +169,7 @@ no new hooks/timers/polling
 
 ## Still Paused
 
-Until the Quick pre-state FIST question closes and raw55 design is sufficiently proven or explicitly deferred:
+Until the frame-1 pre-state result closes and raw55 design is sufficiently proven or explicitly deferred:
 
 ```text
 NO permanent raw55 implementation
