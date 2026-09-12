@@ -1,0 +1,45 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + Raw8FistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE COLLISION_GROUP ElapsedMs=50076.915 Source=BluntBolt UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=50226.555 Ordinal=1 Target=Boar Arg1=Boar Arg2=Boar Caller=Game.dll+0x00069484 PlayerAction=41 PlayerPhase=5 PlayerMotion=Hero_Stand_CrossBow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=50226.601 Source=BluntBolt UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=50235.043 Actor=Boar Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=50235.055 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=50236.862 Event=PERSISTED Actor=Boar Generation=1 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=50606.719 Actor=Boar Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52442.266 Actor=Boar Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=52442.279 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=52445.660 Event=PERSISTED Actor=Boar Generation=2 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=52456.744 Event=COMBAT_MOVE_REUSED Actor=Boar Generation=2 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=52457.566 Actor=Boar Family=POWER Action=2 Phase=1 Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=52554.023 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=53339.741 Actor=Boar Generation=2 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=54544.936 Actor=Boar Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=54544.962 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=54545.037 Event=PERSISTED Actor=Boar Generation=3 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=54554.548 Event=COMBAT_MOVE_REUSED Actor=Boar Generation=3 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=54646.459 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=55435.306 Actor=Boar Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=56331.510 Source=BluntBolt UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=56348.574 Ordinal=2 Target=Boar Arg1=Boar Arg2=Boar Caller=Game.dll+0x00069484 PlayerAction=41 PlayerPhase=5 PlayerMotion= Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=56348.619 Source=BluntBolt UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+CORE COLLISION_GROUP ElapsedMs=85768.707 Source=BluntArrow UseType=4 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=85922.405 Ordinal=3 Target=Wolf Arg1=Wolf Arg2=Wolf Caller=Game.dll+0x00069484 PlayerAction=41 PlayerPhase=5 PlayerMotion=Hero_Stand_Bow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=85922.452 Source=BluntArrow UseType=4 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=85929.254 Actor=Wolf Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=85929.264 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=85929.875 Event=PERSISTED Actor=Wolf Generation=4 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=86242.135 Actor=Wolf Generation=4 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE COLLISION_GROUP ElapsedMs=88850.349 Source=BluntArrow UseType=4 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=88930.183 Ordinal=4 Target=Wolf Arg1=Wolf Arg2=Wolf Caller=Game.dll+0x00069484 PlayerAction=41 PlayerPhase=5 PlayerMotion=Hero_Stand_Bow_None_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=88930.235 Source=BluntArrow UseType=4 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+Script_FrameCollisionTest unloading cleanly.
