@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-12
 
-## Current Bridge — RAW55 QUICK SELECTIVE GROUP-SUPPRESSION WORK TASK
+## Current Bridge — RAW55 QUICK AUTHORED-FIST ACTIVATION WORK TASK
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical evidence now reaches **EV-264**.
+Recovery Lock remains **CLOSED**. Canonical evidence now reaches **EV-265**.
 
 No permanent raw55 implementation is authorized.
 
@@ -21,124 +21,155 @@ No permanent raw55 implementation is authorized.
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md
-4. EVIDENCE_LEDGER_250_ONWARD.md EV-262 through EV-264
-5. FEATURE_DEVELOPMENT_METHOD.md
-6. WORK_IMPLEMENTATION_PROTOCOL.md
-7. only the exact source/API files needed for this bounded implementation
+3. COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md
+4. EVIDENCE_LEDGER_265_ONWARD.md EV-265
+5. EVIDENCE_LEDGER_250_ONWARD.md EV-262 through EV-264 only as prior causal context
+6. FEATURE_DEVELOPMENT_METHOD.md
+7. WORK_IMPLEMENTATION_PROTOCOL.md
+8. only exact source/API files required for this bounded implementation
 ```
 
-The prior `COLLISION_RAW55_QUICK_CALLBACK_BOUNDARY_PROBE.md` is closed evidence context, not the current implementation contract.
+The earlier callback-suppression, callback-boundary and selective-group probe contracts are closed evidence context. Preserve their current diagnostic behavior only where this task explicitly depends on it.
 
 ---
 
-## Closed Evidence
+## Closed Raw55 Evidence
 
 ### EV-262 — whole-callback suppression
 
-```text
-old pre-FIST raw55 5 -> 7 removed             causal ownership supported
-Normal/Sprint temporary suppression           clean in tested scope
-Quick whole-callback suppression              failed
-Quick rejected FIST under suppression         StatePosition 0
-later Quick raw55 reactivation/repair          observed
-```
+Whole marked-raw55 callback suppression removes the premature opening, but Quick fails because required native state progression is also removed. Whole `_AI_QuickAttack` suppression is rejected.
 
-Whole `_AI_QuickAttack` suppression is rejected as a production mechanism.
+### EV-264 — Quick callback compound ownership
 
-### EV-263 — raw8 Quick control
-
-Native-NPC and transformed-player Sabretooth Quick remain healthy through factual raw8 `Fist`. Accepted-marker `StatePosition=1` is not pre-marker proof because accepted Quick marker processing itself writes marker-owned StatePosition before the compact marker line is emitted.
-
-### EV-264 — raw55 Quick callback boundary
-
-Repeated Troll/BlackTroll marked raw55 Quick executions prove that the same original `_AI_QuickAttack` invocation contains both net transitions:
+Repeated Troll/BlackTroll Quick Action 4/5 executions prove the same original `_AI_QuickAttack` invocation contains:
 
 ```text
 StatePosition 0 -> 1
-RIGHT TrollFist raw55 group5 -> group7
+RIGHT PhysicalFist/raw55 group5 -> group7
 ```
 
-This repeats for Quick Action 4 and Action 5. Damage can follow shortly after the early raw55 opening and well before authored FIST.
+### EV-265 — Quick responsibilities are separable
 
-Therefore whole-callback suppression broke Quick because it removed required native state progression together with the unwanted early raw55 activation.
-
-Active comparison artifacts:
+Runtime artifacts:
 
 ```text
-research/raw/2026.09.12_troll_collision_test.log
-research/raw/2026.09.12_troll_and_other_marker_test.log
-research/raw/2026.09.12_sabertooth_marked_quick.log
-research/raw/2026.09.12_troll_marked_quick_attacks.log
-research/raw/2026.09.12_one_troll_marked_quick_attacks.log
-research/raw/2026.09.12_one_troll_native_attacks.log
+research/raw/2026.09.12_troll_marked_attacks_2.log
+research/raw/2026.09.12_black_troll_marked_attacks_2.log
 ```
+
+Results across 20 Troll + 9 BlackTroll marked Quick executions:
+
+```text
+exact early RIGHT raw55 5 -> 7 request suppressed
+original Quick callback still executes
+StatePosition 0 -> 1 preserved
+RIGHT remains group5
+FIST later arrives at StatePosition 1
+no later physical TrollFist opening
+no OnDamage against PC_Hero
+no outstanding raw55 obligation / repair / lifecycle issue
+```
+
+Therefore the early physical opening and native Quick state progression are independently gateable at the existing `SetCollisionGroup` boundary.
+
+The two EV-265 logs remain **ACTIVE COMPARISON** for the authored-FIST activation follow-up. Earlier raw55 baseline/suppression/callback-boundary logs may also remain in raw until the raw55 design closes.
 
 ---
 
 ## Frozen Work Responsibility
 
-Authority: `docs/COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`.
+Authority:
 
-Implement **only** the diagnostics-only selective raw55 Quick group-suppression causal probe frozen there.
+```text
+docs/COLLISION_RAW55_QUICK_FIST_ACTIVATION_PROBE.md
+```
+
+Implement **only** the temporary diagnostics-only Quick authored-FIST activation causal probe frozen there.
 
 Single causal question:
 
-> While the original marked factual raw55 `_AI_QuickAttack` callback runs normally, can only its exact nested RIGHT raw55 `Item_Equipped/group5 -> Item_Attack/group7` request be suppressed while native StatePosition still advances `0 -> 1`, with no later physical raw55 reactivation or lifecycle repair?
+> With the proven EV-265 early Quick raw55 5-to-7 gate still active and the original native Quick callback otherwise unchanged, is one exact RIGHT PhysicalFist/raw55 group5-to-group7 request at the authored `G3AB_COL_FIST` event sufficient to restore Gothic's native contact/damage at authored timing and then receive clean native 7-to-5 cleanup?
 
-### Required source behavior
+### Required behavior
 
-Keep current Quick callback observation and let the original Quick callback execute exactly once.
-
-`PhysicalFistProbe` must own the temporary per-invocation Quick scope and selective decision. Scope identity is the exact factual actor + RIGHT raw55 source + C1 generation established by the existing marked raw55 Quick fixture eligibility.
-
-The scope must be per-invocation/reentrancy-safe; do not use a bare unscoped global boolean.
-
-Inside the **existing** `SetCollisionGroup` hook, `EngineBridge` may add only the smallest diagnostics-only delegation before calling the original:
+Preserve the EV-265 early gate exactly:
 
 ```text
-ask PhysicalFistProbe whether this exact SetCollisionGroup request is suppressed
-if yes -> return without calling original SetCollisionGroup
-if no  -> existing SetCollisionGroup path unchanged
+marked factual raw55 Quick callback
+-> original _AI_QuickAttack executes exactly once
+-> exact scoped early RIGHT raw55 5 -> 7 request suppressed
+-> native StatePosition progression remains
 ```
 
-Suppression is allowed only when all frozen conditions match, including:
+When that exact early suppression actually occurs, `PhysicalFistProbe` records a bounded per-actor proof keyed to:
 
 ```text
-active exact marked raw55 Quick callback scope
-source == scoped factual RIGHT source
-source factual UseType == PhysicalFist/raw55
-before/current group == Item_Equipped / 5
-requested group == Item_Attack / 7
-current C1 == scoped C1
-actor/context still matches
+actor instance
+C1 generation
+exact RIGHT source instance
+raw55 identity
+activation-used state
 ```
 
-A suppressed request did not physically become offensive. It must therefore **not** be passed to `CollisionLifecycleGuard::ObserveCollisionGroupResult` as a real offense and must not create a fabricated outstanding C1 obligation.
-
-Add compact diagnostic tag:
+At the later reserved FIST frame effect, after stable `FrameCollisionMarkers::ProcessMarker()` has returned its unchanged result, the probe may intervene only if the full frozen contract matches, including:
 
 ```text
-CORE RAW55_QUICK_GROUP_SUPPRESSION
+marker == FIST
+stable result == UNSUPPORTED_MISSING_SOURCE
+current family == Quick Hit
+matching motion / marker scan valid
+FIST authored; no RIGHT/LEFT/BOTH/OFF
+requiredSourceMask == none
+raw8 resolver absent
+exact RIGHT source == PhysicalFist/raw55
+RIGHT current group == 5
+StatePosition == 1
+same actor + RIGHT source + C1 as recorded early-suppression proof
+activation not already used for this C1
 ```
 
-with Actor, C1, source, UseType, requested group, before group, StatePosition, StateTime, `SUPPRESS_GROUP=1`.
-
-Keep existing:
+Then, exactly once:
 
 ```text
-CORE RAW55_QUICK_CALLBACK_BOUNDARY
+mark activation-used
+request exact RIGHT source SetCollisionGroup(Item_Attack / 7)
 ```
 
-The decisive hoped-for probe shape is:
+Use the ordinary setter path so existing `EngineBridge` SetCollisionGroup transport and `CollisionLifecycleGuard` observe the real mutation and real offense obligation.
+
+Do **not** use `CollisionSourceOperations::ActivateOrRearm()` because it also calls `ClearTriggeredList()`.
+
+Do **not** issue probe-owned `ClearTriggeredList()`.
+
+Add compact diagnostic:
 
 ```text
-exact raw55 5 -> 7 request suppressed
-StatePosition 0 -> 1
-RightGroup 5 -> 5
+CORE RAW55_QUICK_FIST_ACTIVATION_PROBE
 ```
 
-Repeated exact native 5 -> 7 attempts in one C1 are valid observations and may each be suppressed/logged.
+with the exact fields frozen in the probe contract.
+
+---
+
+## Stable Marker Boundary Must Stay Untouched
+
+Current stable raw55 FIST remains unsupported because `FrameCollisionMarkers` routes FIST through the proven raw8 resolver. That behavior is intentional at this research stage.
+
+Do not:
+
+```text
+change FrameCollisionMarkers semantics
+replace/generalize the raw8 FIST resolver
+change MarkerProcessResult to accepted
+consume stable marker occurrence budget for raw55
+change Raw8FistCollision
+write Quick StatePosition
+write SPU+0x164
+```
+
+`EngineBridge` remains hook transport owner. Its only new responsibility is a diagnostics-only delegation after the existing stable marker result exists.
+
+All raw55 probe policy/state stays in `PhysicalFistProbe`.
 
 ---
 
@@ -147,53 +178,50 @@ Repeated exact native 5 -> 7 attempts in one C1 are valid observations and may e
 ```text
 marked raw55 Normal -> prior temporary whole-callback suppression unchanged
 marked raw55 Sprint -> prior temporary whole-callback suppression unchanged
-marked raw55 Quick  -> original callback runs; only exact scoped raw55 5 -> 7 requests intercepted
+marked raw55 Quick  -> EV-265 selective early 5 -> 7 suppression unchanged
+raw8 FIST            -> unchanged
+normal equipped markers -> unchanged
 ```
 
-All nonmatching SetCollisionGroup requests must follow the existing path unchanged.
+The new authored-FIST activation intervention is **Quick only**.
 
 ---
 
 ## Protected Boundaries
 
-Do **not** change:
+Do not change:
 
 ```text
 Raw8FistCollision
 FrameCollisionMarkers behavior/semantics
 CollisionLifecycleGuard behavior/semantics
 CollisionSources behavior/semantics
+CollisionSourceOperations
 CMake target/source separation
-hook RVAs or hook ownership
-raw8 FIST behavior
-normal equipped RIGHT/LEFT/BOTH/OFF behavior
-marker acceptance
-StatePosition directly
-SPU+0x164
-ClearTriggeredList
-contact/damage logic
-species/name policy
+hook RVAs/ownership
+raw8 behavior
+equipped RIGHT/LEFT/BOTH/OFF behavior
+contact/target/damage implementation
 ```
 
 Do not add:
 
 ```text
-new hook
-new RVA
-timer
-polling
-per-frame scan
+new hook/RVA
+timer/polling/per-frame scan
+custom damage
+manual cleanup
+ClearTriggeredList
+species/name policy
 permanent PhysicalFistCollision
-compensating Quick StatePosition write
+Normal/Sprint authored-FIST activation
 ```
-
-`EngineBridge` remains transport-only. Probe state/policy belongs in `PhysicalFistProbe` and must remain compiled only into `Script_FrameCollisionTest`.
 
 ---
 
 ## Expected Changed Files
 
-The bounded implementation should normally require only:
+Normally only:
 
 ```text
 prototypes/Script_FrameCollisionTest/PhysicalFistProbe.h
@@ -201,13 +229,13 @@ prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
 prototypes/Script_FrameCollisionTest/EngineBridge.cpp
 ```
 
-No CMake change is expected. If the frozen task cannot be implemented within these architecture boundaries because of a real source/API contradiction, stop and report the contradiction rather than broadening scope.
+No CMake change is expected. If the frozen task cannot be implemented within these boundaries because of a real source/API contradiction, stop and report it instead of broadening scope.
 
 ---
 
 ## Work Stop / Report
 
-Follow `WORK_IMPLEMENTATION_PROTOCOL.md`.
+Follow `WORK_IMPLEMENTATION_PROTOCOL.md`:
 
 ```text
 read frozen authorities
@@ -215,34 +243,34 @@ read frozen authorities
 -> implement bounded diagnostic probe
 -> static/source audit
 -> commit + push to docs/collision-source-evidence
--> report remote commit SHA, changed files, concise implementation result,
-   build status, and any material contradiction
+-> report final remote SHA, changed files, concise result,
+   build status, material contradiction if any
 -> STOP
 ```
 
-**Build execution is NOT authorized.** User + Normal Chat build after independent Normal Chat source review.
+**Build execution is NOT authorized.**
 
-Do not update evidence conclusions or design a permanent raw55 mechanism in this Work task.
+Normal Chat reviews the source first. Only after review passes does User + Normal Chat build/deploy/test locally.
 
 ---
 
-## After Work
+## Expected Runtime After Review/Build
 
-Normal Chat will independently review the published diff against the frozen probe contract.
-
-Only after review passes:
+A successful causal shape would be:
 
 ```text
-User + Normal Chat build/deploy Script_FrameCollisionTest
--> focused marked Troll/BlackTroll Quick run
--> commit complete raw log to GitHub
--> Normal Chat analyzes and promotes evidence
+early callback 5 -> 7 suppressed
+callback preserves StatePosition 0 -> 1 / group5
+stable FIST remains unsupported
+probe FIST intervention requests real RIGHT raw55 5 -> 7
+physical source becomes group7 at authored timing
+contact/damage, when contact occurs, happens only after that opening
+native cleanup 7 -> 5
+C1 obligation fulfilled without repair
 ```
 
-Preferred focused runtime filename after review/build:
+If group7 opens but damage does not return, investigate native contact/rearm state rather than adding custom damage.
 
-```text
-research/raw/2026.09.12_raw55_quick_group_suppression_probe.log
-```
+If cleanup fails, isolate cleanup rather than treating C1 repair as feature behavior.
 
-Broader native-creature certification, compatibility work and AttackContinuationProtection remain paused until raw55 is resolved or explicitly deferred.
+Broader raw55 family design remains paused until this Quick-only causal question closes.
