@@ -10,9 +10,13 @@
 
 > **MANDATORY FEATURE-DEVELOPMENT RULE:** Unknown behavior is researched in an isolated probe, not accumulated in `EngineBridge` or another stable module. Proven behavior is promoted into the permanent module that actually owns the responsibility. Hooks remain transport-only, temporary probe scaffolding is removed, and broad/final validation waits until known scope-changing design decisions are resolved. Full authority: `docs/FEATURE_DEVELOPMENT_METHOD.md`.
 
+> **MAX-CONTEXT / FAILED-CHAT RULE:** If the previous Normal Chat reached its context limit, became unusable, or ended before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` **§13 POP-11 — Normal Chat Continuity and Interrupted-Context Recovery**. Enter **Recovery Lock** before starting any new implementation, runtime experiment, or Work task. Oversized runtime logs are handled by **§9 POP-07**.
+
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
+Operating procedures / failed-Chat recovery: `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11  
+Large runtime-log procedure: `docs/PROJECT_OPERATING_PROCEDURES.md` §9 POP-07  
 Project-wide feature-development methodology: `docs/FEATURE_DEVELOPMENT_METHOD.md`  
-Frozen raw55 causal probe: `docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`  
+Raw55 causal-probe authority: `docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`  
 Bounded Work execution: `docs/WORK_IMPLEMENTATION_PROTOCOL.md`  
 Architecture/redesign authority: `docs/COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`  
 Overall architecture: `docs/DESIGN.md`  
@@ -46,124 +50,122 @@ Raw8 FIST remains one shared native mechanism across the proven Normal, Power, Q
 
 Sprint production implementation remains `270d98f59fd7f83ab332d7cfbfc07d243273e0ca`.
 
-Validated diagnostic built/live SHA256 remains:
-`1A58C6CF4D98B02873A114A7AF6F1AA372B8A937B1EC60DDA3A221F52879F74F`.
-
 ---
 
-## New factual discovery — PhysicalFist/raw55 REOPENED
+## Raw55 / PhysicalFist Discovery and Probe State
 
-The prior EV-245–EV-246 raw55 status was **deferred because no factual runtime UseType55 had been observed**. That prerequisite is now satisfied by the active Troll/BlackTroll runtime log:
+The earlier Troll/BlackTroll baseline established factual `gEUseType_PhysicalFist / raw55`:
 
 `research/raw/2026.09.12_troll_collision_test.log`
 
-Observed facts:
+Baseline facts already frozen by the probe contract:
 
 ```text
 Troll / BlackTroll
-right source: TrollFist / gEUseType_PhysicalFist / raw55 / group5
-left source:  TrollFist / gEUseType_PhysicalFist / raw55 / group5
+right source: TrollFist / raw55 / group5
+left source:  TrollFist / raw55 / group5
 native tested offense request: RIGHT source 5 -> 7
 native cleanup: 7 -> 5
-native damage caller: Game.dll +0x00069484
+native damage caller observed: Game.dll +0x00069484
 raw8 resolver: <none>
-current authored G3AB_COL_FIST: unsupported for raw55 by design
+current authored G3AB_COL_FIST: unsupported for raw55 by production design
 ```
 
-The physical RIGHT source is a bookkeeping/source fact only. **Do not infer damaging limb from RIGHT**, and do not infer source side from animation-name `L/R`; prior Fist experiments show body contact can involve multiple limbs and prior weapon research did not establish attack-name `L/R` as physical source identity.
+Do not infer damaging limb from RIGHT and do not infer physical source side from animation-name `L/R`.
 
-Troll `...PowerAttack...` motion also factually executes as `gEAction_SprintAttack / Action 9 / Family SPRINT`, strengthening the existing rule that native action identity outranks animation filename.
+The frozen diagnostic callback-suppression probe was implemented at:
 
-No `Troll_Stand_None_Fist...` motion occurred in the tested Troll/BlackTroll run. Treat those assets as unexercised; do not invent behavior for them.
+`b1cea4904ca2ecb14d26c1e0d23cdab6e0a07e25` — `Add raw55 callback suppression diagnostic probe`
+
+The probe remains temporary diagnostic-only `PhysicalFistProbe.cpp/.h`; `EngineBridge` remains hook owner; production `Raw8FistCollision` is unchanged.
+
+A deployment/load log was committed at:
+
+`70334d2642148c6d17f9683d800ab2bbe8cea492`
+
+The current runtime artifact was then committed at:
+
+`caaaa2ea00eae3954aa92f0ce567c5ea140a8b64`
+
+Artifact:
+
+`research/raw/2026.09.12_troll_and_other_marker_test.log`  
+blob `6f8c58f5049382ef6d6c595c16b3ecb32a835b6e`  
+size `2,410,630` bytes
+
+User visual/runtime observation from that run:
+
+```text
+marked Troll attacks: could not hit/damage Player
+marked BlackTroll attacks: could not hit/damage Player
+marked Sabretooth control after Trolls: worked as before
+marked Golem control after Trolls: worked as before
+```
+
+**Important epistemic status:** this observation plus the committed raw artifact is highly encouraging for the causal hypothesis, but the oversized log has **not yet completed POP-07 targeted analysis and canonical Evidence Ledger promotion**. Therefore do not yet label the raw55 suppression probe formally CLOSED/PASS in canonical evidence.
 
 ---
 
-## Current Immediate Responsibility — FROZEN RAW55 CALLBACK-SUPPRESSION PROBE
+## CURRENT IMMEDIATE RESPONSIBILITY — RECOVERY LOCK + LARGE-LOG INTERPRETATION
 
-**Pause the broader native-creature validation sequence here.** The Troll discovery changes the intended product scope enough that continuing final-style validation before raw55 disposition would weaken the later certification.
+Because the previous Chat reached its context limit during the first pass over the 2.4 MB runtime artifact, the next fresh Normal Chat must begin under POP-11 Recovery Lock.
 
-Frozen authority:
+Do **not** start another implementation, Work task, or creature test first.
 
-`docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`
-
-The probe asks exactly:
-
-> Can an exact marked factual raw55 execution suppress the native attack callback's physical activation without breaking the attack's normal animation/state/recover/next-attack progression?
-
-Frozen structure:
+Read in this order:
 
 ```text
-PhysicalFistProbe.cpp/.h
--> diagnostic-only temporary module
--> owns exact raw55 eligibility / suppression decision / temporary probe logging
-
-EngineBridge
--> existing hook owner
--> diagnostic-only delegation seam only
--> no raw55 policy/state machine
-
-Raw8FistCollision
--> unchanged
+1. SESSION_ENTRYPOINT.md
+2. BETWEEN_CHATS.md
+3. PROJECT_OPERATING_PROCEDURES.md §13 POP-11
+4. PROJECT_OPERATING_PROCEDURES.md §9 POP-07
+5. COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md
+6. only the exact raw/derived evidence needed for the targeted analysis
 ```
 
-Frozen causal intervention:
+First responsibility:
 
 ```text
-exact marked factual raw55 Normal/Quick/Sprint execution
--> suppress native original attack callback only
--> do NOT activate raw55 at FIST
--> do NOT change marker processing
+analyze research/raw/2026.09.12_troll_and_other_marker_test.log by POP-07
+-> correlate probe suppression records with Troll/BlackTroll generations
+-> verify absence/presence of raw55 5 -> 7 activation and raw55 damage in suppressed marked executions
+-> verify FIST frame still occurs with expected current raw55 unsupported result
+-> verify attack/recover/next-generation progression remains healthy
+-> verify Sabretooth/raw8 and Golem marked controls stayed unchanged
+-> check C1/lifecycle anomaly signals
+-> decide exact causal disposition
+-> promote reusable result to canonical Evidence Ledger if supported
+-> archive or retain artifacts according to POP-06
 ```
 
-Expected probe result if the hypothesis is correct:
+Only after that evidence transaction is closed may Normal Chat decide whether to freeze a permanent `PhysicalFistCollision` production contract. A passing probe still does **not** authorize production implementation by itself; production remains a separate frozen Work task and must remove the temporary probe.
 
-```text
-no pre-marker TrollFist 5 -> 7
-no pre-marker raw55 damage
-authored FIST still reached and remains unsupported in this probe
-attack/recover/next-attack progression remains healthy
-```
-
-A passing probe authorizes only a later Normal Chat production-design decision. It does **not** authorize raw55 production support in the same task.
-
-Next implementation task, when launched, must read:
-
-```text
-SESSION_ENTRYPOINT.md
-BETWEEN_CHATS.md
-COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md
-FEATURE_DEVELOPMENT_METHOD.md
-WORK_IMPLEMENTATION_PROTOCOL.md
-```
-
-Work build execution remains prohibited unless that exact launcher explicitly authorizes a build.
+The broader native-creature certification remains paused until raw55 is either explicitly deferred/rejected or implemented and focused-valid.
 
 ---
 
-## Recent bounded observations already completed
+## Other September 12 Evidence-Maintenance Debt to Check During Recovery Lock
+
+These artifacts were already interpreted in the prior Normal Chat, but the fresh Chat must verify whether their canonical EV promotion/archive transaction was completed before starting new causal work:
 
 ```text
-Stalker native baseline:
-  factual It_Axe_SpikedClub_01 / raw52
-  marked Normal + Power healthy 5 -> 7 -> 5
-  useful future Axe-separation baseline
+research/raw/2026.09.12_stalker_native_markers_test.log
+  interpreted result: native Stalker factual Axe/raw52, marked Normal + Power healthy
 
-fall damage:
-  did not expose the unresolved Fist/PhysicalFist source classification
+research/raw/2026.09.12_fall_down_damage.log
+  interpreted result: no unresolved Fist/PhysicalFist source classification exposed
 
-special blunt projectile test:
-  BluntArrow = UseType4
-  BluntBolt  = UseType7
-  neither identifies raw55
+research/raw/2026.09.12_blunt_arrow_bolt_test.log
+  interpreted result: BluntArrow = UseType4; BluntBolt = UseType7; neither raw55
 ```
 
-The previously planned two bounded unresolved-Fist checks are therefore complete. Do not expand them further.
+If `EVIDENCE_LEDGER_250_ONWARD.md` still ends at EV-258, treat these as an outstanding POP-06 maintenance closure, not as permission to redo the tests.
 
 ---
 
-## Later validation / compatibility work
+## Later Validation / Compatibility Work
 
-After raw55 is either explicitly deferred/rejected or implemented and focused-valid:
+After raw55 disposition and evidence closure:
 
 ```text
 resume prepared native Fist creature sweep
