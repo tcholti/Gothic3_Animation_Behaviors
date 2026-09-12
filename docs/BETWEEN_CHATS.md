@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-12
 
-## Current Bridge — RAW55 PHYSICALFIST DESIGN / PROBE GATE
+## Current Bridge — FROZEN RAW55 CALLBACK-SUPPRESSION PROBE
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -15,10 +15,10 @@ Fresh Chat orientation:
 ```text
 1. SESSION_ENTRYPOINT.md
 2. FEATURE_DEVELOPMENT_METHOD.md
-3. this file
-4. troll raw log only as needed for exact runtime facts
-5. DESIGN.md / COLLISION_TEST_PLAN.md only for deeper architecture/validation context
-6. WORK_IMPLEMENTATION_PROTOCOL.md only after a bounded probe/production task is frozen
+3. COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md
+4. this file
+5. troll raw log only as needed for exact runtime facts
+6. WORK_IMPLEMENTATION_PROTOCOL.md only for the bounded implementation task
 ```
 
 Project-wide rule:
@@ -94,9 +94,9 @@ Therefore:
 ```text
 STOP broad creature certification
 -> classify raw55
--> decide defer/reject vs implement
--> if implementing, prove mechanism with isolated probe
--> implement clean permanent module
+-> prove suppression mechanism with isolated probe
+-> decide defer/reject vs production implementation
+-> if implementing, build clean permanent module
 -> focused acceptance
 -> resume broad validation on the intended final candidate
 ```
@@ -105,69 +105,96 @@ Continuing the full sweep first and then materially changing FIST behavior would
 
 ---
 
-## Current design direction
+## Frozen causal probe
 
-Preferred author-facing contract if feasible:
+Authority:
 
-```text
-G3AB_COL_FIST
-    raw8 source  -> Raw8FistCollision
-    raw55 source -> separate PhysicalFist mechanism
-```
+`docs/COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md`
 
-Do not add `BIG_FIST` / `GROUP_FIST` merely to mirror an internal engine implementation unless evidence proves animators need a distinct authoring semantic.
-
-Raw55 is currently expected to be physically closer to equipped group-based collision than to raw8:
-
-```text
-raw55 starts group5
-native offense requests group7
-native cleanup returns group5
-existing C1 already tracks exact source obligation/cleanup
-```
-
-Do not reuse raw8 latch/timing logic for raw55.
-
----
-
-## First causal question to freeze
-
-Before production implementation, answer only:
+Question:
 
 > Can an exact marked factual raw55 execution suppress the native attack callback's physical activation without breaking the attack's normal animation/state/recover/next-attack progression?
 
-Preferred temporary structure:
+Frozen temporary structure:
 
 ```text
 PhysicalFistProbe.cpp/.h
-    diagnostic-only build responsibility
-    identifies exact marked raw55 fixture
-    owns temporary suppression decision/state/logging
+    diagnostic-only
+    exact raw55 eligibility
+    temporary suppression decision
+    temporary probe logging
 
 EngineBridge
     existing hook owner
-    smallest delegation seam only
+    minimal diagnostic-only delegation seam
     no raw55 policy/state machine
 
 Raw8FistCollision
     unchanged
 ```
 
-Probe behavior should suppress only the native marked raw55 callback activation. **Do not yet activate raw55 at FIST in the same causal step.**
-
-Expected positive result:
+Eligible scope is deliberately bounded to factual marked raw55:
 
 ```text
-marked raw55 attack
-native callback activation suppressed
-no native pre-marker TrollFist 5->7
-no pre-marker raw55 damage
-attack progression/recover/next attacks remain healthy
+Normal
+Quick
+Sprint / Action9 through OnAI_PowerAttack
 ```
 
-If this fails, return to design rather than accumulating compensating code.
+No Power/Action2 raw55 behavior is inferred.
 
-If it passes, freeze a production contract for a dedicated permanent `PhysicalFistCollision` (or equivalent) module, implement only proven behavior, remove the temporary probe, then run focused acceptance before resuming broad tests.
+The exact intervention is only:
+
+```text
+eligible marked raw55 callback
+-> suppress original native OnAI_* callback
+```
+
+The probe explicitly does NOT:
+
+```text
+activate raw55 at FIST
+set group7/group5 itself
+ClearTriggeredList
+write raw8 latch/timing state
+change StatePosition
+change marker processing
+add damage/target logic
+add a new hook/RVA
+```
+
+The later authored FIST should still be reached and should still report raw55 unsupported/missing-source in this probe.
+
+Expected PASS:
+
+```text
+probe suppression logged
+no pre-marker TrollFist 5->7
+no pre-marker raw55 damage
+attack animation/state continues
+recover/transition healthy
+later attack generations continue
+non-raw55 behavior unchanged
+```
+
+If suppression breaks progression or exposes a missing native side effect, return to Normal Chat. Do not add compensating behavior inside the probe or EngineBridge.
+
+Even a perfect PASS does not authorize production raw55 support. Normal Chat must first freeze the permanent `PhysicalFistCollision` production contract; a separate Work task then implements it and removes the temporary probe.
+
+---
+
+## Expected Work scope for this probe
+
+```text
+NEW  prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+NEW  prototypes/Script_FrameCollisionTest/PhysicalFistProbe.h
+EDIT prototypes/Script_FrameCollisionTest/EngineBridge.cpp
+EDIT prototypes/Script_FrameCollisionTest/CMakeLists.txt
+```
+
+Probe files must compile only into `Script_FrameCollisionTest`, never into `Script_FrameCollisionBehaviorTest`.
+
+Work source/static audit only unless the launcher explicitly authorizes build execution.
 
 ---
 
