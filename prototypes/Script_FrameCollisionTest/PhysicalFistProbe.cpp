@@ -349,13 +349,19 @@ void OnMarkerProcessed(
     proof.activationUsed = true;
     rightSource.SetCollisionGroup(eECollisionGroup_Item_Attack);
     eECollisionGroup const groupAfter = rightSource.GetCollisionGroup();
+    bool triggeredListCleared = false;
+    if (groupAfter == eECollisionGroup_Item_Attack)
+    {
+        rightSource.TouchDamage.ClearTriggeredList();
+        triggeredListCleared = true;
+    }
 
     FILE *const log = CollisionDiagnostics::GetLog();
     if (log != nullptr)
     {
         std::fprintf(
             log,
-            "CORE RAW55_QUICK_FIST_ACTIVATION_PROBE Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d GroupBefore=%d RequestedGroup=%d GroupAfter=%d EarlySuppressionProof=1 ClearTriggeredList=0 ACTIVATE_FIST=1\n",
+            "CORE RAW55_QUICK_FIST_REARM_PROBE Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d GroupBefore=%d RequestedGroup=%d GroupAfter=%d EarlySuppressionProof=1 ClearTriggeredList=%d REARM_PROBE=1\n",
             actor.GetName().GetText(),
             static_cast<unsigned long long>(proof.c1Generation),
             static_cast<GEInt>(action), statePosition,
@@ -365,7 +371,8 @@ void OnMarkerProcessed(
                 CollisionSources::GetCollisionSourceUseType(rightSource)),
             static_cast<GEInt>(groupBefore),
             static_cast<GEInt>(eECollisionGroup_Item_Attack),
-            static_cast<GEInt>(groupAfter));
+            static_cast<GEInt>(groupAfter),
+            triggeredListCleared ? 1 : 0);
         std::fflush(log);
     }
 }
