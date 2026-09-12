@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-12
 
-## Current Bridge — RAW55 QUICK EARLY-WINDOW CONTROL WORK TASK
+## Current Bridge — RAW55 QUICK PRE-STATE FIST WORK TASK
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical evidence now reaches **EV-267**.
+Recovery Lock remains **CLOSED**. Canonical evidence now reaches **EV-268**.
 
 No permanent raw55 implementation is authorized.
 
@@ -21,82 +21,69 @@ No permanent raw55 implementation is authorized.
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. COLLISION_RAW55_QUICK_EARLY_WINDOW_CONTROL_PROBE.md
-4. EVIDENCE_LEDGER_265_ONWARD.md EV-265–EV-267
+3. COLLISION_RAW55_QUICK_PRESTATE_FIST_PROBE.md
+4. EVIDENCE_LEDGER_265_ONWARD.md EV-267–EV-268
 5. FEATURE_DEVELOPMENT_METHOD.md
 6. WORK_IMPLEMENTATION_PROTOCOL.md
 7. only exact source/API files required for this bounded implementation
 ```
 
-Prior raw55 probe contracts are closed causal context. Preserve their behavior except where this exact control intentionally replaces EV-265/EV-267 Quick timing ownership.
+`COLLISION_RAW55_QUICK_EARLY_WINDOW_CONTROL_PROBE.md` is **SUPERSEDED BEFORE IMPLEMENTATION** by EV-268. Do not implement it.
 
 ---
 
-## Closed Raw55 Evidence
+## Closed Raw55 Evidence Relevant Here
 
-### EV-265 — early Quick group activation and StatePosition progression are separable
-
-```text
-exact early RIGHT raw55 5 -> 7 request suppressed
-original _AI_QuickAttack still executes
-StatePosition 0 -> 1 preserved
-RIGHT stays group5
-```
-
-### EV-266 — authored FIST group opening and native cleanup work
+### EV-267 — delayed authored FIST + rearm restores Quick damage
 
 ```text
-FIST at StatePosition 1 / StateTime ~0.48–0.49
-exact RIGHT raw55 5 -> 7 succeeds
-real C1 offense obligation created
-native 7 -> 5 cleanup succeeds
-no damage without rearm
+post-state FIST at ~StateTime 0.48–0.49
+exact RIGHT raw55 5 -> 7
+one TouchDamage.ClearTriggeredList()
+OnDamage returns when contact occurs
+native cleanup remains healthy
 ```
 
-### EV-267 — one exact triggered-list clear restores raw55 Quick damage when contact occurs
+### EV-268 — frame timing closes the prior close-range question and exposes a pre-state gap
 
 Runtime artifacts:
 
 ```text
-research/raw/2026.09.12_troll_quick_fist_activation_3.log
-research/raw/2026.09.12_black_troll_quick_fist_activation_3.log
-research/raw/2026.09.12_troll_native_collision_3.log
+research/raw/2026.09.12_troll_quick_fist_activation_frame_4.log
+research/raw/2026.09.12_troll_quick_fist_activation_frame_1.log
 ```
 
-Results:
+Frame 4:
 
 ```text
-11 marked Troll + 9 marked BlackTroll FIST-time activations reached group7
-all logged ClearTriggeredList=1
-marked Troll: 5 OnDamage events to PC_Hero during Quick group7 windows
-marked BlackTroll: 4 OnDamage events to PC_Hero during Quick group7 windows
-native cleanup remains healthy
-no terminal repair/lifecycle issue
+native early raw55 request around StateTime ~0.10 is suppressed
+native StatePosition advances 0 -> 1
+FIST arrives later around StateTime ~0.16 at StatePosition 1
+existing EV-267 activation/rearm executes
+8 OnDamage events to PC_Hero in the run
+User observes native-like early damage and later re-entry damage
 ```
 
-User runtime observation adds a range-dependent difference:
+Frame 1:
 
 ```text
-marked Quick:
-    very close -> no damage when the fist has already passed beyond the player
-    farther back -> Quick can damage when the fist reaches the player
-
-native/unmarked Troll:
-    damage can occur even very close
-    visually, a broader part of the attacking limb appears damaging
-
-ordinary blocking/body collision:
-    present in both marked and native cases
+FIST itself is observed correctly
+valid C1
+factual RIGHT TrollFist / PhysicalFist/raw55
+StatePosition still 0
+FIST occurs before native early raw55 request / suppression proof
+current probe does not intervene
+later native 5 -> 7 is suppressed and StatePosition advances 0 -> 1
+no second FIST opportunity
+no RAW55_QUICK_FIST_REARM_PROBE
+no OnDamage
 ```
 
-The logs identify the same factual RIGHT `TrollFist` / raw55 source in native and marked Quick. They do **not** identify its geometric extent, so do not promote "fist-only" vs "whole limb/body" as a proven engine fact.
+Source inspection explains the frame-1 failure: current `PhysicalFistProbe::OnMarkerProcessed()` requires an already-existing EV-265 suppression proof and later requires `StatePosition == 1`.
 
-The strongest open variable is timing:
+Therefore frame-1 marker transport works; the temporary raw55 proof/state gate is the limitation.
 
-```text
-native Quick raw55 opening = very early
-marked EV-267 opening      = authored FIST around StateTime ~0.47–0.49
-```
+Frame-0 ordering remains unproven.
 
 ---
 
@@ -105,83 +92,103 @@ marked EV-267 opening      = authored FIST around StateTime ~0.47–0.49
 Authority:
 
 ```text
-docs/COLLISION_RAW55_QUICK_EARLY_WINDOW_CONTROL_PROBE.md
+docs/COLLISION_RAW55_QUICK_PRESTATE_FIST_PROBE.md
 ```
 
-Implement **only** the temporary diagnostics-only early-window control frozen there.
+Implement **only** the temporary diagnostics-only pre-StatePosition FIST causal probe frozen there.
 
 Single question:
 
-> On the same marked factual raw55 Quick animation, if the exact original native early RIGHT raw55 `5 -> 7` request is allowed instead of suppressed, while the later diagnostic FIST activation/rearm is disabled for that execution, does very-close-range damage return?
+> When exact marked raw55 Quick FIST arrives with a valid C1/source while StatePosition is still 0 and before the native early raw55 request exists, can that authored FIST immediately perform one exact RIGHT raw55 `5 -> 7` activation plus one exact `TouchDamage.ClearTriggeredList()`, while the later original Quick callback still preserves native StatePosition progression and native cleanup?
 
-### Required behavior
+### Exact new path
 
-For the exact marked raw55 Quick fixture already proven by EV-264–EV-267:
-
-```text
-original _AI_QuickAttack executes exactly once
-same marker scan / raw55 source eligibility
-exact nested RIGHT raw55 5 -> 7 request is recognized
-```
-
-But for this control:
+At `PhysicalFistProbe::OnMarkerProcessed()`, add a separate one-shot pre-state path requiring the exact frozen fixture:
 
 ```text
-DO NOT suppress that exact early request
-DO NOT create an early-suppression proof record for the execution
-allow normal SetCollisionGroup transport/original/lifecycle observation
-retain Quick callback-boundary observation
+FIST / stable UNSUPPORTED_MISSING_SOURCE
+Quick Hit
+valid matching marker scan
+FIST present; no RIGHT/LEFT/BOTH/OFF
+requiredSourceMask none
+raw8 resolver absent
+valid current C1
+factual current RIGHT source matches result RIGHT
+RIGHT PhysicalFist/raw55
+RIGHT group5
+StatePosition == 0
+no pre-state intervention already used for actor/source/C1
 ```
 
-Because no valid suppression proof exists for that C1, the later `PhysicalFistProbe::OnMarkerProcessed()` path must not perform EV-267 FIST-time `5 -> 7` activation or `ClearTriggeredList()`.
+Do **not** require an EV-265 early-suppression proof for this pre-state path.
 
-Add compact:
+Exactly once:
 
 ```text
-CORE RAW55_QUICK_EARLY_WINDOW_CONTROL
+request RIGHT SetCollisionGroup(Item_Attack / 7)
+read groupAfter
+if groupAfter == 7:
+    RIGHT TouchDamage.ClearTriggeredList()
 ```
 
-with the fields frozen in the probe contract, including:
+Use the ordinary setter path so the real mutation/lifecycle facts are observed.
+
+### Later native Quick request
+
+The original `_AI_QuickAttack` callback remains untouched and executes normally.
+
+If pre-state FIST already put RIGHT in group7, the later native request may naturally be `7 -> 7`.
+
+Do **not** add a suppression rule for that `7 -> 7` in this task.
+Do **not** change `CollisionLifecycleGuard` to hide it.
+Observe the existing callback boundary and lifecycle facts.
+
+The decisive required facts are:
 
 ```text
-ALLOW_EARLY=1
-FIST_INTERVENTION=0
+pre-state FIST physically opens 5 -> 7
+clear executes once
+native StatePosition still advances 0 -> 1
+contact/damage can occur while the authored window is open
+native cleanup later returns 7 -> 5
+C1 closes without repair
 ```
 
-Stale proof state must not leak into the control C1.
+If the later native request unexpectedly sees group5 again, or StatePosition/cleanup diverges, stop and report the contradiction rather than compensating.
 
 ---
 
-## Protected Boundaries
+## Stable Boundaries
 
 Do not change:
 
 ```text
-FrameCollisionMarkers semantics
+FrameCollisionMarkers semantics or acceptance
 Raw8FistCollision
 CollisionLifecycleGuard semantics
-CollisionSources semantics
+CollisionSources
 CollisionSourceOperations
-CMake separation
+CMake target/source separation
 hook RVAs/ownership
 raw8 behavior
 equipped RIGHT/LEFT/BOTH/OFF
 Normal/Sprint raw55 diagnostic behavior
 native cleanup
 contact geometry / body physics
-animation assets / marker placement
+animation assets / marker placement in code
 ```
 
 Do not add:
 
 ```text
-ClearTriggeredList for this control
 custom/direct damage
-manual TriggerTarget / OnDamage
+TriggerTarget / OnDamage
 StatePosition write
 SPU+0x164 write
 manual cleanup
-second group7 request
+new native 7 -> 7 suppression
+second probe-owned group7 request in same C1
+second triggered-list clear in same C1
 species/name policy
 new hook/RVA/timer/polling/per-frame scan
 permanent PhysicalFistCollision
@@ -195,11 +202,12 @@ Normally only:
 
 ```text
 prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+prototypes/Script_FrameCollisionTest/PhysicalFistProbe.h
 ```
 
-`PhysicalFistProbe.h` may change only if directly necessary for clean temporary control state. No stable behavior module or CMake change is expected. `EngineBridge.cpp` should not need policy changes.
+`EngineBridge.cpp` should not need a new seam. No CMake change is expected.
 
-If the task cannot be implemented within those boundaries because of a real source/API contradiction, stop and report instead of broadening scope.
+If the task cannot be implemented within these boundaries because of a real source/API contradiction, stop and report instead of broadening scope.
 
 ---
 
@@ -210,7 +218,7 @@ Follow `WORK_IMPLEMENTATION_PROTOCOL.md`:
 ```text
 read frozen authorities
 -> inspect only necessary source/API
--> implement bounded diagnostic control
+-> implement bounded diagnostic probe
 -> static/source audit
 -> commit + push to docs/collision-source-evidence
 -> report final remote SHA, changed files, concise result,
@@ -226,25 +234,26 @@ Normal Chat reviews source first. Only after review passes does User + Normal Ch
 
 ## Expected Runtime Classification
 
-### A — timing explains close-range divergence
+### A — pre-state FIST works
 
 ```text
-marked Quick marker still present
-exact early raw55 5 -> 7 allowed
-StatePosition native progression preserved
-no later FIST probe intervention
-very-close-range OnDamage returns
-native 7 -> 5 cleanup remains healthy
+frame-1 FIST observed at StatePosition 0
+5 -> 7 succeeds
+one ClearTriggeredList executes
+later original Quick callback advances StatePosition 0 -> 1 while RIGHT remains group7
+OnDamage can occur when contact exists
+native 7 -> 5 cleanup
+no repair
 ```
 
-Then do not infer a geometry/source difference. The authored FIST timing in the tested Troll animation is simply too late to cover the earlier proximal-limb overlap at very close range.
+Then the prior frame-1 failure is closed as a temporary probe ordering limitation.
 
-### B — timing does not explain it
+### B — activation/rearm works but damage remains state-gated
 
-Exact early marked raw55 path occurs but very-close-range damage still does not return. Then isolate geometry/contact state next; do not compensate in this task.
+Return to Normal Chat and isolate the remaining native damage-eligibility state.
 
-### C — state/lifecycle contradiction
+### C — state/lifecycle/cleanup divergence
 
-Stop and analyze before any further intervention.
+Stop and analyze before further intervention.
 
-Broader raw55 production design and Normal/Sprint generalization remain paused.
+Frame 0 is a separate follow-up ordering question after frame 1 closes.
