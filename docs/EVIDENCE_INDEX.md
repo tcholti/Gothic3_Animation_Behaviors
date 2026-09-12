@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-12
 
 ## Purpose
 
@@ -13,10 +13,11 @@ Canonical evidence remains one global monotonic namespace split only for storage
 EVIDENCE_LEDGER.md                  EV-001–EV-157
 EVIDENCE_LEDGER_STEP_B.md           EV-158–EV-198
 EVIDENCE_LEDGER_199_ONWARD.md       EV-199–EV-231
-EVIDENCE_LEDGER_232_ONWARD.md       EV-232 onward
+EVIDENCE_LEDGER_232_ONWARD.md       EV-232–EV-249
+EVIDENCE_LEDGER_250_ONWARD.md       EV-250 onward
 ```
 
-The EV-232 split is storage-only at the stable human-Fist checkpoint; numbering remains one global monotonic namespace.
+The ledger splits are storage-only; numbering remains one global monotonic namespace.
 
 This index does not restate or change evidence status. Open the exact EV entry when wording, qualification, provenance, build scope or engineering consequence matters.
 
@@ -35,11 +36,11 @@ Current project responsibility is never owned by this historical index. Use `SES
 | frame effects / marker channel / frame-effect layout | EV-012–EV-018 | source guide Frame effects |
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
-| raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247 | `DESIGN.md` raw-8 Fist architecture; `SOURCE_HOOK_GUIDE.md` proven timing path |
-| PhysicalFist/raw55 bounded survey / creature native source classification | EV-245–EV-246 | `COLLISION_TEST_PLAN.md` §4; `SOURCE_HOOK_GUIDE.md` §5 |
+| raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263 | `DESIGN.md` raw-8 Fist architecture; `SOURCE_HOOK_GUIDE.md` proven timing path |
+| PhysicalFist/raw55 factual source + current causal route | EV-245–EV-246, EV-262, EV-264 | `COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`; prior suppression/boundary probe docs |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116 | equipped marker exact-set/replay evidence |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
-| Quick marker ownership / StatePosition | EV-066–EV-075 | EV-182–EV-196 for lifecycle context; raw-8 FIST Quick boundary EV-247 |
+| Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-264 | EV-182–EV-196 for lifecycle context; raw8 control EV-263; raw55 native mutation boundary EV-264 |
 | Dual native source map / source-explicit marker review | EV-090–EV-094 | EV-207, EV-211, EV-214 |
 | multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | EV-131–EV-144; archived fixture logs |
 | historical marker occurrence-budget leak | EV-131–EV-133 | EV-167; EV-213–EV-214 for generation replacement/closure |
@@ -82,7 +83,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | late-first-marker native leak / initial-close requirement | EV-238 | pre-production frame-12 controls |
 | production Fist implementation / build smoke | EV-239 | commits `dba34c6...` / `17491d53...` |
 | final human Normal + Power FIST acceptance | EV-240 | archived acceptance log / commit `5de195c6...` |
-| transformed Sabretooth raw-8 marker compatibility / Quick unsupported boundary | EV-247 | active raw comparison; native-NPC control and Quick mechanism classification next |
+| transformed/native Sabretooth raw8 compatibility + Quick control | EV-247, EV-250–EV-251, EV-263 | use EV-263 for the accepted-marker StatePosition interpretation boundary |
 
 ---
 
@@ -138,10 +139,10 @@ EV-192–EV-194
 EV-206–EV-207
 EV-211
 EV-214
-EV-217–EV-247
+EV-217–EV-264
 ```
 
-Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 close the current bounded raw55 discovery as unobserved/deferred while recording that several non-human body attacks factually use raw8. EV-247 separately proves that transformed Sabretooth Normal/Power can use the existing raw8 FIST marker mechanism and that Quick remains explicitly rejected by the current family gate.
+Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 record the initial bounded raw55 survey that had not yet found a factual source. That boundary was later reopened correctly by concrete Troll/BlackTroll raw55 evidence: EV-262 establishes the callback-suppression causal result/failure, EV-264 establishes compound native Quick callback ownership, and EV-263 preserves the raw8 Quick comparison boundary.
 
 SimpleWhirl current distinction:
 
@@ -217,7 +218,7 @@ Raw-8 Fist is not an equipped-source cleanup client; it creates no weapon C1 phy
 
 ### G. Animation semantics and naming
 
-Evidence: EV-036–EV-065, plus EV-245–EV-247 for the distinction between serialized `Fist`, factual raw source UseType and actual marker-mechanism support.  
+Evidence: EV-036–EV-065, plus EV-245–EV-264 for the distinction between serialized `Fist`, factual raw source UseType and actual marker-mechanism support.  
 Main routing: `ANIMATION_INDEX.md`.
 
 ### H. Compatibility / hook ownership
@@ -255,7 +256,10 @@ EV-237         Normal/Power interruption and multiple-opportunity safety
 EV-238         late-first-marker native leak -> initial ownership close
 EV-239         production implementation + compile/load smoke
 EV-240         final human 3x Normal + 3x Power frame-12 acceptance
-EV-247         transformed Sabretooth Normal/Power marker PASS; Quick markers rejected by explicit family boundary
+EV-247         transformed Sabretooth Normal/Power marker PASS at that checkpoint
+EV-250–EV-251  broader native/transformed raw8 family controls including Quick/Sprint
+EV-257         Orc raw8 native control
+EV-263         focused healthy raw8 Quick ownership-direction control + StatePosition interpretation boundary
 ```
 
 Current architecture for a supported/proven raw8 family:
@@ -276,32 +280,51 @@ native Gothic
     -> successful opportunity self-closes latch to 1
 ```
 
-No authored FIST_OFF, no Fist triggered-list clear, no Fist-specific weapon callback suppression, no custom damage and no raw55 generalization. Marker applicability is not intended to be species- or animation-family-name-gated; native-NPC equivalence and Quick mechanism support still require their own evidence.
+No authored FIST_OFF, no Fist triggered-list clear, no Fist-specific weapon callback suppression, no custom damage and no raw55 generalization. Marker applicability is not species- or animation-family-name-gated. Later native/transformed controls extend the shared raw8 mechanism without changing its ownership model.
 
 Human final acceptance artifact:
 `research/archive/2026-09-07_fist_production_frame12_normal_power_acceptance.log`.
 
-Active transformed-vs-native comparison artifact:
-`research/raw/2026.09.08_sabertooth_marked_attacks.log`.
+Current raw8 comparison artifact for the raw55 Quick investigation:
+`research/raw/2026.09.12_sabertooth_marked_quick.log`.
 
-### K. PhysicalFist/raw55 bounded survey
+### K. PhysicalFist/raw55 current causal route
+
+Initial discovery boundary:
 
 ```text
 EV-245 transformed Wolf/Sabertooth proxy rejected: both factual raw8
-EV-246 native-NPC source survey: no factual raw55 observed
+EV-246 bounded native-NPC survey: no factual raw55 observed in that survey
 ```
 
-Observed native body attackers Boar/Wolf/Sabertooth/Bloodfly/Golem/Snapper/Minecrawler/Bison resolved `Fist` / raw8 / group0 and damaged through `Game +0x16E348`. Weapon controls resolved 2H/1H/Axe factual UseTypes; the Dragon capture recorded Cast/raw15 fireball only and left Dragon physical attack inconclusive.
-
-Engineering status:
+Concrete later evidence correctly reopened the boundary:
 
 ```text
-raw55 = unobserved in bounded survey
-support = deferred / unsupported for current scope
-reopen = only on concrete factual runtime UseType 55 evidence
+EV-262 Troll/BlackTroll factual TrollFist / raw55 confirmed;
+       whole marked-callback suppression removes the old early opening,
+       but the uniform production gate fails because Quick diverges
+
+EV-263 healthy raw8 Quick control retained as mechanism boundary;
+       accepted-marker SP1 is not pre-marker native proof
+
+EV-264 unsuppressed marked raw55 Quick callback boundary proves the same
+       original _AI_QuickAttack invocation contains both native StatePosition
+       0 -> 1 and the early RIGHT raw55 group5 -> group7 opening
 ```
 
-EV-247 is raw8 evidence and does not alter this raw55 boundary.
+Current engineering status:
+
+```text
+factual raw55 source              = CONFIRMED for Troll/BlackTroll TrollFist
+whole Quick callback suppression  = REJECTED; removes required native state progression too
+permanent raw55 marker mechanism  = NOT YET FROZEN
+next causal question               = selective suppression of only the exact nested RIGHT raw55 5 -> 7 request while native Quick continues
+```
+
+Current frozen probe authority:
+`COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md`.
+
+Do not substitute raw8 semantics for raw55, do not species-gate production policy, and do not create permanent `PhysicalFistCollision` until the separability probe is closed.
 
 ---
 
@@ -319,59 +342,54 @@ Power equipped marker expansion             CLOSED/PASS — EV-241
 Pierce equipped marker expansion            CLOSED/PASS — EV-242
 SimpleWhirl current semantic checkpoint     CLOSED for current scope — EV-217–EV-220, EV-243
 Hack equipped marker/source validation      CLOSED/PASS for tested 2H/Staff scope — EV-216, EV-244
-human raw-8 Fist Normal/Power production    CLOSED/PASS — EV-221–EV-240
-PhysicalFist/raw55 bounded discovery        CLOSED/DEFERRED — EV-245–EV-246
-transformed Sabretooth Normal/Power markers PASS — EV-247
+human/raw8 Fist production mechanism         CLOSED/PASS; broadened controls through EV-263
+initial PhysicalFist/raw55 bounded survey   CLOSED at EV-245–EV-246; REOPENED by factual EV-262 evidence
+raw55 whole-callback suppression gate       FAILED/REJECTED — EV-262
+raw55 Quick callback-boundary question      CLOSED — EV-264
 ```
 
 ```text
 NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
-CURRENT HUMAN FIST NORMAL + POWER PRODUCTION SCOPE = COMPLETE
-TRANSFORMED SABRETOOTH NORMAL + POWER RAW8 MARKER COMPATIBILITY = PASS
-RAW8 QUICK FIST SUPPORT = OPEN / CURRENTLY EXPLICITLY UNSUPPORTED
-NATIVE-NPC RAW8 MARKER EQUIVALENCE = OPEN
+RAW8 FIST SHARED MECHANISM = CLOSED/PASS FOR THE EVIDENCE-BACKED FAMILIES/CONTROLS
 EQUIPPED POWER / PIERCE / SIMPLEWHIRL / HACK EXPANSION CHECKPOINTS = CANONICALLY PROMOTED
-RAW55 BOUNDED DISCOVERY = COMPLETE / UNOBSERVED / DEFERRED
+RAW55 FACTUAL SOURCE = CONFIRMED FOR TROLL/BLACKTROLL
+RAW55 QUICK WHOLE-CALLBACK SUPPRESSION = REJECTED
+RAW55 QUICK SELECTIVE GROUP-SEPARABILITY PROBE = CURRENT FROZEN RESPONSIBILITY
 ```
 
-Do not route fresh work into N4/N5/N6 or another raw55 search absent contradicting factual evidence.
+Do not route current work back into broad raw55 source search, N4/N5/N6, or permanent raw55 implementation. Follow the frozen selective group-suppression probe first.
 
 ---
 
 ## 5. Future-Responsibility Cross-Routes
 
-### PhysicalFist/raw55 deferred boundary
+### PhysicalFist/raw55 active design route
 
-Current bounded evidence is EV-245–EV-246. It found no factual raw55 source and therefore justifies no raw55 implementation.
-
-If future runtime evidence establishes a relevant source `UseType == 55`, reopen from:
+Current causal route is:
 
 ```text
-EV-245–EV-246     current bounded raw55 disposition
-ANIMATION_RULES.md raw UseType -> serialized Fist distinction
-SOURCE_HOOK_GUIDE.md PhysicalFist/raw55 status
-DESIGN.md + COLLISION_TEST_PLAN.md deferred boundary
+EV-245–EV-246  initial bounded survey / raw8-vs-raw55 distinction
+EV-262         factual Troll/BlackTroll raw55 + whole-callback suppression causal result/failure
+EV-263         healthy raw8 Quick comparison boundary
+EV-264         native raw55 Quick compound callback ownership
+COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md
 ```
 
-Then classify the actual observed native mechanism before changing production behavior. Do not use raw8 as a semantic substitute for factual raw55.
+The immediate question is not whether raw55 exists and not whether `_AI_QuickAttack` matters; both are already established. The immediate question is whether the unwanted early raw55 `5 -> 7` side effect is separable from required native Quick StatePosition progression by intercepting only that exact nested group request through the already-owned SetCollisionGroup transport.
+
+If separability passes cleanly, Normal Chat may then freeze a permanent raw55 owner/contract. If it fails, isolate the next single native coupling/activation path. Do not compensate by writing StatePosition manually and do not generalize raw8 behavior.
 
 ### Pre-regression actor/family compatibility sequence
 
-Start from:
+The broader compatibility sequence remains paused while raw55 mechanism design is still scope-changing.
+
+When raw55 is resolved or explicitly deferred again, resume from the current canonical evidence rather than the older EV-247-only route:
 
 ```text
-EV-247 transformed Sabretooth Normal/Power marker PASS + Quick explicit rejection
-EV-245–EV-246 raw8/raw55 source classification
-DESIGN.md raw8 source/mechanism-based FIST applicability
-COLLISION_TEST_PLAN.md §5
-```
-
-Current order:
-
-```text
-native Sabretooth NPC Normal/Power marker control
--> raw8 Quick mechanism classification / bounded extension only if proven
--> native equipped-NPC marker controls: Goblin 1H / Demon 2H / Ogre Axe
+raw8 native/transformed controls through EV-263
+native equipped-NPC controls EV-252–EV-258
+Stalker raw52 control EV-259
+raw55 causal route EV-262–EV-264 and subsequent closure
 -> separated 2H-vs-Axe mod compatibility
 -> separated 1H-vs-Rapier mod compatibility
 -> final native mixed collision regression
@@ -388,8 +406,7 @@ EV-206–EV-215 lifecycle/architecture proof
 EV-216–EV-220 equipped expansion history
 EV-221–EV-240 human raw8 production proof
 EV-241–EV-244 canonical equipped expansion closures
-EV-245–EV-246 raw55 deferred boundary / native-source survey
-EV-247 and subsequent pre-regression compatibility evidence
+EV-245 onward source/mechanism/compatibility evidence
 ```
 
 This is regression confirmation, not source/lifecycle redesign.
