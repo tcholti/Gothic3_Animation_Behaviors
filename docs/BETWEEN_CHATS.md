@@ -4,15 +4,15 @@
 
 **Updated:** 2026-09-12
 
-## Current Bridge — RAW55 CALLBACK OWNERSHIP PROVEN; QUICK RETURN-TO-DESIGN
+## Current Bridge — RAW55 QUICK CALLBACK-BOUNDARY PROBE PUBLISHED
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock from the interrupted large-log analysis is **CLOSED**. Canonical evidence now reaches EV-262.
+Recovery Lock remains **CLOSED**. Canonical evidence currently reaches EV-262.
 
-No production raw55 implementation is authorized yet.
+No production raw55 implementation is authorized.
 
 ---
 
@@ -21,89 +21,132 @@ No production raw55 implementation is authorized yet.
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. EVIDENCE_LEDGER_250_ONWARD.md EV-262
-4. COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md
-5. FEATURE_DEVELOPMENT_METHOD.md
-6. PROJECT_OPERATING_PROCEDURES.md only as needed
-7. exact Troll raw/source material required for the Quick causal question
+3. COLLISION_RAW55_QUICK_CALLBACK_BOUNDARY_PROBE.md
+4. EVIDENCE_LEDGER_250_ONWARD.md EV-262
+5. COLLISION_RAW55_CALLBACK_SUPPRESSION_PROBE.md only for the prior causal step
+6. FEATURE_DEVELOPMENT_METHOD.md
+7. exact Troll raw/source material required for the Quick callback-boundary result
 ```
 
 Do not reread broad project history unless a concrete contradiction requires it.
 
 ---
 
-## Closed September 12 Recovery Transaction
+## Closed September 12 Suppression Result
 
-The oversized suppression run `research/raw/2026.09.12_troll_and_other_marker_test.log` has been targeted against the frozen probe contract and the native baseline `research/raw/2026.09.12_troll_collision_test.log`.
-
-The ten Recovery-Lock checks disposition as follows:
+EV-262 remains the governing prior result:
 
 ```text
-1  Troll/BlackTroll suppression records located                         PASS
-2  actor/family/action/motion/C1 correlation available                  PASS
-3  factual RIGHT raw55 is group5 at suppression eligibility            PASS
-4  old pre-marker TrollFist 5 -> 7 is removed                          PASS
-5  no marked Troll/BlackTroll raw55 damage contradicts suppression      PASS
-6  authored FIST remains reached with raw55 unsupported/missing source  PASS
-7  attack/recover/next-generation progression continues                 PASS
-8  Sabretooth raw8 marked control remains healthy                       PASS
-9  Golem marked control remains healthy                                 PASS
-10 lifecycle/anomaly check                                              FAIL — Quick-specific divergence
+old pre-FIST raw55 5 -> 7 removed             causal hypothesis SUPPORTED
+Normal suppression path                        clean in tested scope
+Sprint suppression path                        clean in tested scope
+Quick suppression path                         NOT clean
 ```
 
-Formal disposition: **causal success; uniform callback-suppression production gate failed / return to design**.
+Quick-specific contradiction: after whole-callback suppression, rejected raw55 FIST arrives at StatePosition 0 instead of native baseline StatePosition 1; later raw55 can reopen `5 -> 7`; an apparent cleanup can be followed by C1 finalization still seeing RIGHT raw55 group7/outstanding and repairing it to group5.
 
-The causal finding is reusable: suppressing the intercepted marked raw55 attack-family callback removes the native pre-marker raw55 offensive opening. Normal and Sprint remain clean in the tested run.
-
-Quick is the contradiction. Troll and BlackTroll Quick reach FIST after the old early opening has been suppressed, then a later raw55 `5 -> 7` appears. An apparent `7 -> 5` cleanup follows, but C1 finalization repeatedly sees an outstanding RIGHT raw55 source physically at group7 and repairs it to group5. Clean representative native Quick baseline generations show the ordinary single pre-FIST `5 -> 7`, damage-capable window, native `7 -> 5`, and clean finalization instead.
-
-Do not explain the Quick mechanism beyond that evidence yet.
+Do not convert the prior suppression mechanism into production.
 
 ---
 
-## Canonical Evidence / Storage Closure
+## September 12 Sabretooth Quick Control
+
+`research/raw/2026.09.12_sabertooth_marked_quick.log` contains both native-NPC Sabretooth attacks against the Hero and transformed-player Sabretooth Quick attacks against the native Sabretooth.
+
+The log confirms healthy raw8 Quick behavior in both ownership directions:
 
 ```text
-EV-259  Stalker factual Axe/raw52 marked Normal+Power control
-EV-260  fall-down negative/logger-boundary evidence
-EV-261  BluntArrow raw4 + BluntBolt raw7 projectile lifecycle
-EV-262  raw55 callback-suppression causal result + Quick gate failure
+_AI_QuickAttack transport
+-> factual raw8 Fist ownership
+-> native/pre-marker Fist activation opportunity
+-> authored FIST accepted
+-> native damage where contact occurs
+-> clean C1 finalization / no outstanding repair
 ```
 
-The three auxiliary September 12 debt logs were processed and archived unchanged:
+Important interpretation boundary: compact accepted Quick `CORE MARKER StatePosition=1` is logged after marker processing, and accepted Quick marker handling itself writes marker-owned StatePosition 1. Therefore this Sabretooth control does **not** independently prove pre-marker native SP1.
+
+The stronger raw55 comparison remains:
 
 ```text
-research/archive/2026.09.12_stalker_native_markers_test.log
-research/archive/2026.09.12_fall_down_damage.log
-research/archive/2026.09.12_blunt_arrow_bolt_test.log
+native raw55 Troll Quick rejected FIST      -> StatePosition 1
+suppressed raw55 Troll Quick rejected FIST  -> StatePosition 0
 ```
 
-The two Troll logs remain deliberately in `research/raw/` as **ACTIVE COMPARISON** inputs for the unresolved Quick question.
+Older equipped Quick evidence also shows native Quick can be StatePosition 0 during Hit and StatePosition 1 by Recover even without an accepted marker, so a real native progression exists; its exact mutation point is the unresolved fact.
 
 ---
 
-## Current Normal Chat Responsibility
+## Frozen Follow-Up Probe
 
-Return to design before any new Work task.
+Authority: `docs/COLLISION_RAW55_QUICK_CALLBACK_BOUNDARY_PROBE.md`.
 
 Single causal question:
 
-> What native side effect or second path causes marked raw55 Quick to reopen TrollFist from group5 to group7 after FIST when the early `_AI_QuickAttack` callback invocation has been suppressed, and why does C1 finalization still observe raw55 group7/outstanding after the apparent Quick cleanup?
+> During a normal, unsuppressed marked factual raw55 Quick execution, what changes across each original `_AI_QuickAttack` invocation: StatePosition, TrollFist collision group, or both?
 
-Start with source/API and existing evidence comparison. Do not create another probe until existing evidence/source has been exhausted enough to freeze one bounded diagnostic responsibility.
+Diagnostic source behavior:
 
-Protected boundaries:
+```text
+Normal raw55 marked fixture -> previous suppression experiment unchanged
+Sprint raw55 marked fixture -> previous suppression experiment unchanged
+Quick raw55 marked fixture  -> suppression disabled; native callback observed
+```
+
+For each exact marked raw55 Quick callback invocation, the probe records:
+
+```text
+C1 generation
+Action before -> after
+AniPhase before -> after
+StateTime before -> after
+StatePosition before -> after
+motion before -> after
+RIGHT raw55 group before -> after
+native callback return value
+```
+
+Observation eligibility intentionally does not require group5 after the execution has been identified, so later callback invocations remain visible after native raw55 has already become group7.
+
+`EngineBridge` remains the sole hook owner. It contains only the diagnostic begin/original/end seam. `PhysicalFistProbe` owns eligibility/snapshots/logging. No new hook/RVA/timer/polling path was added.
+
+---
+
+## Current Runtime Responsibility
+
+No more source changes before runtime evidence.
+
+User + Normal Chat:
+
+```text
+1. build Script_FrameCollisionTest locally
+2. deploy diagnostic DLL
+3. run several marked Troll/BlackTroll Quick attacks
+4. capture log containing CORE RAW55_QUICK_CALLBACK_BOUNDARY
+5. compare those records with CORE COLLISION_GROUP, rejected FIST and C1 finalization
+6. classify result against the four cases frozen in COLLISION_RAW55_QUICK_CALLBACK_BOUNDARY_PROBE.md
+7. promote result to canonical evidence
+8. return to design
+```
+
+Build execution was not performed by Work/source implementation.
+
+---
+
+## Protected Boundaries
 
 ```text
 Raw8FistCollision unchanged
+FrameCollisionMarkers unchanged
+CollisionLifecycleGuard unchanged
 all raw8 FIST behavior unchanged
 all equipped marker behavior unchanged
 EngineBridge remains hook transport owner
 PhysicalFistProbe remains temporary diagnostics-only
 no species/name policy
-no production PhysicalFistCollision contract yet
+no permanent PhysicalFistCollision contract yet
 no compensating Quick patch
-no new hooks/timers/polling without evidence
+no new hooks/timers/polling
 ```
 
 ---
