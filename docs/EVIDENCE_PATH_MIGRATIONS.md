@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-12
 
 ## Purpose
 
@@ -88,6 +88,33 @@ research/raw/Keep.txt
 ```
 
 Local-only backup files outside the repository are not part of this migration.
+
+---
+
+## 2026-09-12 — Completed auxiliary collision evidence
+
+The September 12 Recovery Lock closed three already-interpreted auxiliary runtime artifacts after their reusable conclusions were promoted as EV-259–EV-261. Each artifact moved byte-identically with its existing Git blob identity and unchanged basename:
+
+```text
+research/raw/2026.09.12_stalker_native_markers_test.log
+    -> research/archive/2026.09.12_stalker_native_markers_test.log
+    blob d6348c8d7e2158ff41c9deb5bba507c9c72041d2
+
+research/raw/2026.09.12_fall_down_damage.log
+    -> research/archive/2026.09.12_fall_down_damage.log
+    blob c3c1662cb2110018fe7b14f7db631479a0d08c33
+
+research/raw/2026.09.12_blunt_arrow_bolt_test.log
+    -> research/archive/2026.09.12_blunt_arrow_bolt_test.log
+    blob c36a18f6e3b29a1a3d3b266e2a077cca5e91b4a3
+```
+
+The raw55 baseline and callback-suppression logs were intentionally **not** archived at this boundary. EV-262 closes their current evidence interpretation, but both remain active comparison inputs for the unresolved Quick-specific causal question:
+
+```text
+research/raw/2026.09.12_troll_collision_test.log
+research/raw/2026.09.12_troll_and_other_marker_test.log
+```
 
 ---
 
