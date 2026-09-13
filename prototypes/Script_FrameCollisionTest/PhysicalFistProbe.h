@@ -22,6 +22,22 @@ struct QuickCallbackObservation
     std::string motionBefore;
 };
 
+struct PowerCallbackObservation
+{
+    bool active;
+    eCEntity *actorInstance;
+    eCEntity *rightSourceInstance;
+    std::uint64_t c1Generation;
+    GEInt actionBefore;
+    GEInt phaseBefore;
+    GEFloat stateTimeBefore;
+    GEInt statePositionBefore;
+    GEInt rightUseTypeBefore;
+    GEInt rightGroupBefore;
+    std::string motionBefore;
+    std::string rightNameBefore;
+};
+
 bool ShouldSuppressNativeCallback(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &ownership,
@@ -30,6 +46,10 @@ bool ShouldSuppressNativeCallback(
 void BeginQuickCallbackObservation(
     Entity &actor, gCScriptProcessingUnit *spu,
     QuickCallbackObservation &observation);
+
+void BeginPowerCallbackObservation(
+    Entity &actor, gCScriptProcessingUnit *spu,
+    PowerCallbackObservation &observation);
 
 bool ShouldSuppressCollisionGroupRequest(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
@@ -41,5 +61,9 @@ void OnMarkerProcessed(
 
 void EndQuickCallbackObservation(
     Entity &actor, QuickCallbackObservation &observation,
+    GEBool nativeResult);
+
+void EndPowerCallbackObservation(
+    Entity &actor, PowerCallbackObservation &observation,
     GEBool nativeResult);
 }
