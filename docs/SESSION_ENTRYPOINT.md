@@ -15,7 +15,7 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe: `docs/COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md`  
+Current frozen probe authority: `docs/COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md`  
 Latest canonical evidence: `docs/EVIDENCE_LEDGER_274_ONWARD.md` through **EV-279**; EV-269–EV-273 remain in `docs/EVIDENCE_LEDGER_269_ONWARD.md`; earlier evidence remains in preceding ledgers  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
@@ -65,6 +65,20 @@ Canonical runtime evidence is through **EV-279**. Recovery Lock remains **CLOSED
 
 No permanent raw55 implementation is authorized yet.
 
+The raw55 Sprint callback-boundary observer has now been implemented and independently reviewed, but it has **not** been built or runtime-tested yet.
+
+Reviewed Sprint observer implementation:
+
+```text
+frozen base: 332cf840d641e0756ba90e1d9269cb396915e751
+implementation: 5c9e40c53162c4f16099107a44892e8c03f2bdaf
+Normal Chat source review: PASS
+build: NOT RUN
+runtime: NOT YET TESTED
+```
+
+No new Work/source task is authorized before the Sprint runtime evidence transaction is closed.
+
 ---
 
 ## Closed / Current Collision Boundary
@@ -84,53 +98,69 @@ raw55 uniform whole-callback production gate    FAILED/REJECTED — EV-262
 raw55 Quick mechanism                           CLOSED/PASS through EV-273
 raw55 true Power mechanism                      CLOSED/PASS through EV-276
 raw55 Normal mechanism                          CLOSED/PASS through EV-279
-raw55 Sprint callback ownership                 CURRENT RESEARCH
+raw55 Sprint callback observer                  IMPLEMENTED/REVIEWED; RUNTIME PENDING
 ```
 
 Raw8 FIST remains a separate proven mechanism. Raw55 findings must not be generalized back onto raw8 or across raw55 attack families without evidence.
 
 ---
 
-## Current Frozen Responsibility — Raw55 Sprint Callback Ownership
+## Current Responsibility — Local Raw55 Sprint Callback Runtime
 
-Authority:
+Frozen authority:
 
 ```text
 docs/COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md
 ```
 
-Established facts entering this probe:
+Implementation:
 
 ```text
-factual Sprint = Action9 / Family SPRINT
-Sprint is already factual at existing _AI_PowerAttack callback entry
-raw8 Sprint is independently supported and must remain unchanged
-raw55 Sprint is the only remaining family still under temporary whole-callback suppression
-Power also uses _AI_PowerAttack, but Power's raw55 causal result must not be generalized to Sprint
+5c9e40c53162c4f16099107a44892e8c03f2bdaf
 ```
 
-Single question:
-
-> When exact eligible marked raw55 Sprint is allowed to run its original `_AI_PowerAttack` exactly once, does that same invocation own native `StatePosition 0 -> 1` and the exact RIGHT PhysicalFist/raw55 `5 -> 7` transition, or does Sprint divide those responsibilities differently?
-
-Frozen diagnostic shape:
+Independent review confirms:
 
 ```text
-disable only temporary whole-callback raw55 Sprint suppression
-add reentrancy-safe SprintCallbackObservation in PhysicalFistProbe
-bracket the existing one original _AI_PowerAttack invocation
-log CORE RAW55_SPRINT_CALLBACK_BOUNDARY
-observe ordinary CORE COLLISION_GROUP independently
-NO Sprint group suppression yet
-NO Sprint FIST activation/rearm
-NO ClearTriggeredList
-NO StatePosition/SPU writes
-NO custom damage or cleanup
-Quick/Power/Normal closed research behavior unchanged
-raw8 Sprint unchanged
+Sprint temporary whole-callback suppression disabled
+Action9 still resolves Family SPRINT at existing _AI_PowerAttack entry
+dedicated reentrancy-safe SprintCallbackObservation added in PhysicalFistProbe
+exact raw55 Sprint fixture required
+observation does NOT require RIGHT to remain group5 after opening
+EngineBridge remains sole _AI_PowerAttack hook owner
+Power and Sprint use separate observer objects
+original _AI_PowerAttack is called exactly once
+native return is preserved
+CORE RAW55_SPRINT_CALLBACK_BOUNDARY emitted only from diagnostic probe path
+no Sprint group suppression/activation/rearm added
+no new hook/RVA/CMake/release change
 ```
 
-Expected compound comparison shape if Sprint independently matches true Power/Normal:
+Single runtime question:
+
+> When exact eligible marked raw55 Sprint runs its original `_AI_PowerAttack` exactly once, does that same invocation own native `StatePosition 0 -> 1` and exact RIGHT PhysicalFist/raw55 `5 -> 7`, or does Sprint divide those responsibilities differently?
+
+Next session starts with User + Normal Chat, not Work:
+
+```text
+sync local branch
+verify HEAD
+build Script_FrameCollisionTest
+manually deploy diagnostic DLL
+verify built/live SHA256 equality
+run Troll until factual Action9 / Family SPRINT is captured
+preserve raw log unchanged
+commit/push raw evidence
+close POP-06 evidence transaction before any new source task
+```
+
+Preferred next runtime artifact:
+
+```text
+research/raw/2026.09.14_troll_raw55_sprint_callback_boundary.log
+```
+
+Possible compound result to test, not assume:
 
 ```text
 CORE COLLISION_GROUP ... TrollFist ... Requested=7 Before=5 After=7
@@ -143,15 +173,13 @@ CORE RAW55_SPRINT_CALLBACK_BOUNDARY ...
     NativeResult=1
 ```
 
-This shape is not assumed. Any factual different result decides the next question.
-
-Build execution is **not authorized for Work**.
+Any different factual result determines the next causal question. Do not add compensation during this observation run.
 
 ---
 
 ## Current Runtime Artifact
 
-EV-279:
+Latest canonical runtime evidence remains EV-279:
 
 ```text
 research/raw/2026.09.13_troll_raw55_normal_fist_activation.log
