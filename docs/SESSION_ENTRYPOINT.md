@@ -13,8 +13,8 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe: `docs/COLLISION_RAW55_POWER_GROUP_SUPPRESSION_PROBE.md`  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_274_ONWARD.md` through **EV-274**; EV-269–EV-273 remain in `docs/EVIDENCE_LEDGER_269_ONWARD.md`; earlier raw55 causal evidence is in the preceding ledgers  
+Current frozen probe: `docs/COLLISION_RAW55_POWER_FIST_ACTIVATION_PROBE.md`  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_274_ONWARD.md` through **EV-275**; EV-269–EV-273 remain in `docs/EVIDENCE_LEDGER_269_ONWARD.md`; earlier raw55 causal evidence is in preceding ledgers  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
@@ -35,25 +35,27 @@ a second damaging contact can occur in the same Quick execution
 native cleanup returns exact RIGHT 7 -> 5
 ```
 
-EV-274 now closes the true-Power callback-boundary question:
+True raw55 Power is now closed through EV-275 for callback ownership and early-group/state separability:
 
 ```text
 factual true Power = Action=2 / Family=POWER
-same original _AI_PowerAttack invocation:
+EV-274:
+    same original _AI_PowerAttack invocation owns
     StatePosition 0 -> 1
-    exact RIGHT PhysicalFist/raw55 5 -> 7
-SameC1=1
-SameRight=1
-NativeResult=1
-later FIST is delivered while RIGHT remains group7
-native damage can occur
-native cleanup returns RIGHT 7 -> 5
-C1 finalizes cleanly
+    exact RIGHT raw55 5 -> 7
+EV-275:
+    suppress only exact scoped native RIGHT raw55 5 -> 7
+    original callback still returns StatePosition 0 -> 1
+    RIGHT remains 5 -> 5
+    no later raw55 opening
+    FIST still arrives at StatePosition=1 with RIGHT group5
+    no Power damage
+    C1 finalizes with no offense obligation or repair
 ```
 
-Therefore true Power has **compound callback ownership** at this boundary. Whole `_AI_PowerAttack` suppression is not a valid true-Power production mechanism because it would remove required native state progression together with the premature raw55 opening.
+Therefore true Power's required state progression and premature physical opening are **separable**. Whole `_AI_PowerAttack` suppression remains rejected.
 
-Canonical evidence is through **EV-274**. Recovery Lock remains **CLOSED**.
+Canonical evidence is through **EV-275**. Recovery Lock remains **CLOSED**.
 
 No permanent raw55 implementation is authorized.
 
@@ -82,35 +84,36 @@ raw55 later FIST transport                      CONFIRMED — EV-270
 equipped + raw8 frame-0/frame-1 marker support  CONFIRMED — EV-271
 raw55 repeated-FIST eligibility/rearm            CONFIRMED/PASS — EV-273
 raw55 true Power callback compound ownership    CONFIRMED/CLOSED — EV-274
-raw55 true Power group/state separability       CURRENT RESEARCH
+raw55 true Power group/state separability       CONFIRMED/PASS — EV-275
+raw55 true Power authored-FIST activation       CURRENT RESEARCH
 ```
 
 Raw8 FIST remains a separate proven mechanism. Raw55 findings must not be generalized back onto raw8.
 
 ---
 
-## Current Frozen Responsibility — True Power Selective Group Suppression
+## Current Frozen Responsibility — True Power Authored-FIST Activation
 
 Authority:
 
 ```text
-docs/COLLISION_RAW55_POWER_GROUP_SUPPRESSION_PROBE.md
+docs/COLLISION_RAW55_POWER_FIST_ACTIVATION_PROBE.md
 ```
 
 Single question:
 
-> While the original factual true-Power `_AI_PowerAttack` callback executes normally, can only its exact nested RIGHT raw55 `Item_Equipped (5) -> Item_Attack (7)` request be suppressed while native StatePosition still advances `0 -> 1`, with no later raw55 opening or lifecycle divergence?
+> After the proven EV-275 selective early-group suppression preserves native Power `StatePosition 0 -> 1` while RIGHT remains raw55 group5, can the authored `G3AB_COL_FIST` event itself request the exact RIGHT PhysicalFist/raw55 source `5 -> 7` at marker time while Gothic retains ownership of contact/damage/cleanup?
 
-Expected decisive shape if separable:
+Important isolation rule:
 
 ```text
-CORE RAW55_POWER_GROUP_SUPPRESSION ... SUPPRESS_GROUP=1
-CORE RAW55_POWER_CALLBACK_BOUNDARY ... StatePosition=0->1 ... RightGroup=5->5
+activate exact RIGHT raw55 5 -> 7 at FIST time only
+NO ClearTriggeredList in this probe
 ```
 
-`PhysicalFistProbe` owns Power scope, identity, suppression policy and logging. `EngineBridge` remains the sole hook owner and transport layer; its existing diagnostic SetCollisionGroup delegation should be reused rather than expanded with feature policy.
+This keeps physical activation separate from contact/rearm. If group7 appears but damage does not return, the next causal question is rearm, not custom damage.
 
-No authored Power FIST activation/rearm is part of this task.
+`PhysicalFistProbe` owns the EV-275 suppression proof, same actor/source/C1 validation, exact Power/FIST eligibility, one-shot activation decision, and logging. `EngineBridge` already provides the marker delegation seam and should remain unchanged.
 
 Build execution is **not authorized for Work**.
 
@@ -119,34 +122,28 @@ Build execution is **not authorized for Work**.
 ## Power / Normal / Sprint Boundary
 
 ```text
-true Power: Action=2 / Family=POWER / callback compound ownership proven / selective group separability current
+true Power: Action=2 / Family=POWER / compound ownership + group/state separability proven / authored FIST activation current
 Normal:     Family=NORMAL / temporary whole-callback suppression remains active
 Sprint:     Action=9 / Family=SPRINT / temporary whole-callback suppression remains active
 ```
 
 Do not infer family from the `PowerAttack` motion filename. `_AI_PowerAttack` transports both true Power and Sprint; factual action selects the family.
 
-Do not generalize EV-274 to Sprint merely because the transport callback is shared.
+Do not generalize EV-274/EV-275 to Sprint merely because the transport callback is shared.
 
 ---
 
-## Current Runtime Artifacts
+## Current Runtime Artifact
 
-Correct EV-274 build/runtime transaction:
-
-```text
-research/raw/2026.09.13_build log.txt
-research/raw/2026.09.13_troll_raw55_power_callback_boundary_2.log
-upload commit ab2522ae9d451e8663da95e324dd3621f051fd91
-```
-
-Earlier artifact:
+EV-275:
 
 ```text
-research/raw/2026.09.13_troll_raw55_power_callback_boundary.log
+research/raw/2026.09.13_troll_raw55_power_group_suppression.log
+upload commit edc71a113381c0551ce72cfe3f38a1f22c363bb7
+implementation 9fdea8a857faf23eefa873b3792bb8da37bf8288
 ```
 
-was generated from stale pre-probe local source and is retained only as provenance; it is not evidence about Power observer eligibility or callback ownership.
+Two factual true-Power C1s independently show the decisive PASS shape.
 
 ---
 
@@ -156,7 +153,6 @@ Until the remaining raw55 family/ownership decisions are sufficiently proven or 
 
 ```text
 NO permanent raw55 implementation
-NO authored Power FIST replacement yet
 NO Normal/Sprint production redesign yet
 NO broad native-creature certification continuation
 NO Axe-separation compatibility sequence
