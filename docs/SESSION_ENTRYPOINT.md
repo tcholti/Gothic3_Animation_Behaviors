@@ -24,7 +24,7 @@ Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
 
 ## Current Checkpoint
 
-Raw55 Quick first-FIST mechanism is now strongly bounded:
+Raw55 Quick first-FIST mechanism is strongly bounded:
 
 ```text
 EV-269 first frame-1 pre-state FIST:
@@ -43,7 +43,35 @@ EV-271 confirms frame 0 and frame 1 are valid for the tested established marker 
 
 Canonical evidence remains through **EV-271**.
 
-A frozen Work implementation task is now active for the exact repeated-FIST causal probe. No permanent raw55 implementation is authorized.
+### Repeated-FIST Work attempt 1 — source contradiction
+
+Work correctly stopped without modifying source.
+
+Current remote at that stop:
+
+```text
+ec2cb73cebb91b4e92db8d4e49441acf40d08fe2
+```
+
+Reason:
+
+```text
+raw55 FIST returns UNSUPPORTED_MISSING_SOURCE
+before stable generic occurrence consumption
+```
+
+Therefore these fields are unavailable for raw55 FIST:
+
+```text
+authoredMarkerCount
+acceptedMarkerCountBefore
+acceptedMarkerCountAfter
+executionBudgetReset
+```
+
+The repeated-FIST contract has been revised. Do not modify/reorder stable `FrameCollisionMarkers` for this diagnostic.
+
+A revised frozen Work task is active. No permanent raw55 implementation is authorized.
 
 ---
 
@@ -68,7 +96,7 @@ raw55 Quick triggered-list rearm                CONFIRMED/PASS — EV-267
 raw55 close-range timing cause                  CONFIRMED — EV-268
 raw55 Quick frame-1 pre-state activation        CONFIRMED/PASS — EV-269
 raw55 later FIST transport                      CONFIRMED — EV-270
-raw55 repeated-FIST second rearm                 FROZEN PROBE / IMPLEMENTATION NEXT
+raw55 repeated-FIST second rearm                REVISED FROZEN PROBE / IMPLEMENTATION NEXT
 equipped + raw8 frame-0/frame-1 marker support  CONFIRMED — EV-271
 ```
 
@@ -117,7 +145,7 @@ Permanent raw55 design remains intentionally unfrozen until repeated-marker sema
 
 ---
 
-## Current Immediate Responsibility — Work Implementation
+## Current Immediate Responsibility — Revised Work Implementation
 
 Frozen authority:
 
@@ -125,28 +153,29 @@ Frozen authority:
 docs/COLLISION_RAW55_QUICK_REPEAT_FIST_REARM_PROBE.md
 ```
 
-Implement only the diagnostics-only exact second-FIST rearm path.
+The stable marker engine cannot provide generic accepted-occurrence counters to raw55 because raw55 FIST returns before that bookkeeping.
 
-The causal delta is:
+For this diagnostics-only causal probe, `PhysicalFistProbe` may use only the smallest temporary sequence observation:
+
+```text
+first proven EV-269 pre-state FIST
++
+first later eligible FIST dispatch in the same actor/source/C1
+```
+
+The controlled animation decision must contain exactly two FIST markers.
+
+Causal delta:
 
 ```text
 first FIST remains EV-269 unchanged
 source remains group7
-exact second accepted FIST in same actor/source/C1
+first later eligible FIST in same controlled two-FIST C1
     -> NO SetCollisionGroup
     -> one TouchDamage.ClearTriggeredList()
 ```
 
-Use existing `MarkerProcessResult` occurrence identity:
-
-```text
-authoredMarkerCount == 2
-acceptedMarkerCountBefore == 1
-acceptedMarkerCountAfter == 2
-executionBudgetReset == false
-```
-
-Do not invent a new raw55-local frame/time duplicate heuristic.
+No frame/time/source-name/species/motion/action/phase/callback-rollback heuristic may be added.
 
 Expected source scope:
 
@@ -160,6 +189,21 @@ Normal Chat must review the exact diff before User build/runtime.
 
 ---
 
+## Production Architecture Consequence — Later
+
+The source contradiction reveals a real production-design requirement:
+
+```text
+raw55 repeated-marker support needs factual generic occurrence identity
+before/perhaps independent of raw8-specific FIST source acceptance
+```
+
+Do not solve that by permanently duplicating counters in `PhysicalFistCollision`. The eventual production architecture must reconcile raw55 with the generic marker occurrence system without regressing raw8/equipped behavior.
+
+This is not part of the current causal probe.
+
+---
+
 ## Separate Later Raw55 Responsibilities
 
 Not part of the current Work task:
@@ -167,6 +211,7 @@ Not part of the current Work task:
 ```text
 Power family ownership — marked raw55 Power currently leaks native collision
 Normal/Sprint — still carry earlier whole-callback temporary experiments
+production generic occurrence integration
 permanent PhysicalFistCollision design/promotion
 ```
 
@@ -178,8 +223,7 @@ For the current repeated-FIST probe:
 
 ```text
 Raw8FistCollision unchanged
-stable equipped FrameCollisionMarkers semantics unchanged
-existing generic occurrence/dedupe bookkeeping unchanged
+stable FrameCollisionMarkers unchanged
 CollisionLifecycleGuard semantics unchanged
 CollisionSources unchanged
 CollisionSourceOperations unchanged
