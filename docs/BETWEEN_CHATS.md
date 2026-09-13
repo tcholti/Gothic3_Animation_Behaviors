@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-13
 
-## Current Bridge — NORMAL CLOSED EV-279; RAW55 SPRINT CALLBACK OWNERSHIP FROZEN
+## Current Bridge — NORMAL CLOSED EV-279; RAW55 SPRINT OBSERVER REVIEWED; RUNTIME PENDING
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -13,6 +13,8 @@ Stable branch: `main`
 Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-279**.
 
 No permanent raw55 implementation is authorized yet.
+
+No new Work/source task is authorized. The next responsibility belongs to User + Normal Chat: local build/deploy/runtime validation of the already-reviewed Sprint callback observer.
 
 ---
 
@@ -24,7 +26,7 @@ No permanent raw55 implementation is authorized yet.
 3. COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md
 4. EVIDENCE_LEDGER_274_ONWARD.md EV-274–EV-279 as needed
 5. EVIDENCE_LEDGER_250_ONWARD.md EV-251 only for established raw8 Sprint transport/support
-6. exact PhysicalFistProbe / existing _AI_PowerAttack bridge source needed for the bounded task
+6. exact PhysicalFistProbe / existing _AI_PowerAttack bridge source only if runtime interpretation requires it
 ```
 
 ---
@@ -70,15 +72,6 @@ then Gothic owns:
     Outcome=NO_OP_NO_OUTSTANDING
 ```
 
-Activation times in the four samples are approximately:
-
-```text
-C1=8   0.761141
-C1=10  0.761412
-C1=14  0.766803
-C1=36  0.762906
-```
-
 Conclusion:
 
 ```text
@@ -92,92 +85,130 @@ Do not generalize this no-rearm result to Quick; Quick's tested mechanism indepe
 
 ---
 
-## Current Frozen Work Responsibility — Raw55 Sprint Callback Boundary
+## Reviewed Sprint Observer Implementation
 
-Authority:
+Frozen authority:
 
 ```text
 docs/COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md
 ```
 
-Why Sprint is next:
+Frozen implementation base:
 
 ```text
-Quick raw55 closed through EV-273
-true Power raw55 closed through EV-276
-Normal raw55 closed through EV-279
-Sprint / Action9 is the only remaining raw55 family under temporary whole-callback suppression
+332cf840d641e0756ba90e1d9269cb396915e751
 ```
 
-Established Sprint transport fact:
+Work implementation:
 
 ```text
-factual Action9 is already visible at the existing _AI_PowerAttack callback entry
-EngineBridge already resolves Action9 -> AttackFamily_Sprint
-raw8 Sprint is independently closed/supported through EV-251
+5c9e40c53162c4f16099107a44892e8c03f2bdaf
+message: Observe raw55 Sprint callback boundary
 ```
 
-Therefore no new hook or Sprint-family discovery is needed.
+Independent Normal Chat review: **PASS**.
 
-Single question:
+Commit comparison proves:
 
-> When the eligible marked raw55 Sprint callback is no longer temporarily whole-suppressed and the original `_AI_PowerAttack` runs exactly once, does that same native invocation advance `StatePosition 0 -> 1` and perform the exact RIGHT PhysicalFist/raw55 `5 -> 7`, or does Sprint divide those responsibilities differently?
+```text
+exactly one commit ahead of frozen base
+only authorized files changed:
+    prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+    prototypes/Script_FrameCollisionTest/PhysicalFistProbe.h
+    prototypes/Script_FrameCollisionTest/EngineBridge.cpp
+no CMake change
+no unrelated behavior-module change
+```
 
-Exact intended diagnostic mechanism:
+Reviewed implementation shape:
 
 ```text
 PhysicalFistProbe:
-    remove Sprint from temporary whole-callback suppression
-    add dedicated reentrancy-safe SprintCallbackObservation
-    resolve only exact marked raw55 Sprint fixture
-    capture actor + exact RIGHT source + C1 + before facts
-    compare after facts
-    emit CORE RAW55_SPRINT_CALLBACK_BOUNDARY
+    temporary whole-callback raw55 Sprint suppression disabled
+    all current raw55 probe families now keep native callbacks enabled
+    dedicated thread_local SprintCallbackObservation scope added
+    BeginSprintCallbackObservation shadows prior scope before eligibility checks
+    exact factual Action9 / Family SPRINT required
+    existing TryResolveRaw55ProbeFixture reused with requireEquippedGroup=false
+    captures exact actor + RIGHT source + C1 + before facts
+    EndSprintCallbackObservation restores previous scope first
+    compares current C1 / exact RIGHT identity and after facts
+    emits CORE RAW55_SPRINT_CALLBACK_BOUNDARY
 
 EngineBridge:
-    remain sole _AI_PowerAttack hook owner
-    existing Action9 -> Family SPRINT selection unchanged
-    for Family POWER: existing Power Begin/End unchanged
-    for Family SPRINT: smallest Begin/End observation delegation
-    call original _AI_PowerAttack exactly once
-    return original result unchanged
+    remains sole _AI_PowerAttack hook owner
+    existing Action9 -> AttackFamily_Sprint resolution unchanged
+    Family POWER still uses existing Power observer
+    Family SPRINT now uses smallest Sprint Begin/End observer delegation
+    original _AI_PowerAttack called exactly once
+    original native result returned unchanged
 ```
 
-No intervention belongs in this task:
+No Sprint intervention was added:
 
 ```text
 NO Sprint SetCollisionGroup suppression
-NO Sprint FIST activation
+NO Sprint authored-FIST activation
 NO Sprint ClearTriggeredList
-NO StatePosition/SPU writes
-NO custom damage
+NO StatePosition/SPU write
+NO custom/direct damage
 NO cleanup compensation
-NO lifecycle policy change
 NO new hook/RVA/timer/polling
+NO lifecycle-policy change
 ```
 
-Expected compact record:
+Work static/source audit reported PASS including `git diff --check`; Normal Chat source review found no material contradiction.
+
+Build status: **NOT RUN per task boundary**.
+
+Runtime status: **NOT YET TESTED**.
+
+---
+
+## Tomorrow — Exact Next Step
+
+Do not start another Work/source task.
+
+User + Normal Chat:
 
 ```text
-CORE RAW55_SPRINT_CALLBACK_BOUNDARY
-Actor=...
-C1=...
-SameC1=...
-SameRight=...
-Action=9->9
-Phase=...->...
-StateTime=...->...
-StatePosition=...->...
-MotionBefore=...
-MotionAfter=...
-Right=...
-RightUseType=55
-RightGroup=...->...
-NativeResult=...
-OBSERVE_NATIVE=1
+1. sync local branch to current remote HEAD
+2. verify local HEAD
+3. build Script_FrameCollisionTest locally
+4. manually replace live Script_FrameCollisionTest.dll
+5. verify built/live SHA256 equality
+6. launch Gothic 3 and exercise Troll until factual Action9 / Family SPRINT occurs
+7. preserve the raw diagnostic log unchanged
+8. commit/push the raw artifact
+9. Normal Chat closes the evidence transaction before any next source task
 ```
 
-A decisive compound result would show the nested ordinary `CORE COLLISION_GROUP` raw55 `5 -> 7` inside the same original invocation that returns `StatePosition=0->1 / RightGroup=5->7`. Do not assume that result in implementation.
+Preferred runtime artifact for the next-day test:
+
+```text
+research/raw/2026.09.14_troll_raw55_sprint_callback_boundary.log
+```
+
+Single runtime question:
+
+> With exact eligible marked raw55 Sprint no longer whole-callback suppressed, what responsibilities occur inside the original `_AI_PowerAttack` invocation?
+
+Decisive compound result, if factual, would look like:
+
+```text
+CORE COLLISION_GROUP ... Source=TrollFist UseType=55 ... Requested=7 Before=5 After=7
+CORE RAW55_SPRINT_CALLBACK_BOUNDARY
+    SameC1=1
+    SameRight=1
+    Action=9->9
+    StatePosition=0->1
+    RightGroup=5->7
+    NativeResult=1
+```
+
+Do **not** assume Sprint matches Power/Normal. A different factual boundary result decides the next causal question.
+
+Also inspect surrounding authored FIST, OnDamage, cleanup and C1-final records, but do not add compensation during this observation run.
 
 ---
 
@@ -200,26 +231,3 @@ release target / release purity
 ```
 
 Do not create permanent raw55 architecture yet.
-
----
-
-## After Work
-
-After Work publishes the bounded Sprint observer:
-
-```text
-Normal Chat independently reviews source
-User + Normal Chat build/deploy locally
-verify live DLL provenance
-run focused Troll fixture until factual Action9/Sprint captured
-commit raw log unchanged
-Normal Chat closes evidence before any next source task
-```
-
-Preferred future runtime artifact:
-
-```text
-research/raw/2026.09.13_troll_raw55_sprint_callback_boundary.log
-```
-
-Build execution is **NOT authorized for Work**.
