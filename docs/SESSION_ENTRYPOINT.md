@@ -13,9 +13,8 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe: `docs/COLLISION_RAW55_QUICK_REPEAT_FIST_REARM_PROBE.md`  
-Current raw55 diagnostic implementation baseline: `0bfb2ba13ba91488570a41592504ac84428def2a`  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_269_ONWARD.md` through **EV-271**; prior raw55 causal evidence EV-262–EV-268 is in the preceding ledgers  
+Current frozen probe: `docs/COLLISION_RAW55_QUICK_REPEAT_FIST_ELIGIBILITY_OBSERVABILITY_PROBE.md`  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_269_ONWARD.md` through **EV-272**; prior raw55 causal evidence EV-262–EV-268 is in the preceding ledgers  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
@@ -24,54 +23,48 @@ Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
 
 ## Current Checkpoint
 
-Raw55 Quick first-FIST mechanism is strongly bounded:
+Raw55 Quick first-FIST behavior remains proven:
 
 ```text
-EV-269 first frame-1 pre-state FIST:
+EV-269
+    frame-1 FIST at StatePosition 0
     exact RIGHT PhysicalFist/raw55 5 -> 7
     one ClearTriggeredList
     later native Quick 7 -> 7
     StatePosition 0 -> 1
     damage on contact
     native 7 -> 5 cleanup
-    clean C1 finalization
 ```
 
-EV-270 proves a later FIST is delivered in the same Quick execution, but the current temporary `PhysicalFistProbe` blocks a second intervention by policy.
-
-EV-271 confirms frame 0 and frame 1 are valid for the tested established marker mechanisms. User clarification: the extra raw8 frame-0 misses were only on spawned-NPC Sabretooth attacks against `PC_Hero`; transformed-player frame-0 Quick attacks hit the spawned Sabretooth consistently. Treat that difference as contact/timing variation, not marker unreliability.
-
-Canonical evidence remains through **EV-271**.
-
-### Repeated-FIST Work attempt 1 — source contradiction
-
-Work correctly stopped without modifying source.
-
-Current remote at that stop:
+Repeated-FIST implementation exists at:
 
 ```text
-ec2cb73cebb91b4e92db8d4e49441acf40d08fe2
+a68361a48662f4236e2d742057aa64bde2d03346
 ```
 
-Reason:
+Runtime artifact:
 
 ```text
-raw55 FIST returns UNSUPPORTED_MISSING_SOURCE
-before stable generic occurrence consumption
+research/raw/2026.09.13_troll_quick_fist_activation_frame_1_frame_15_test_2.log
+upload commit 1d9b11a375bbc760dfd9b70ed977af19765228e5
 ```
 
-Therefore these fields are unavailable for raw55 FIST:
+EV-272 establishes:
 
 ```text
-authoredMarkerCount
-acceptedMarkerCountBefore
-acceptedMarkerCountAfter
-executionBudgetReset
+later frame-15 FIST is delivered
+same Quick C1
+StatePosition=1
+RIGHT raw55 remains group7
+BUT repeat-rearm CORE intervention log never appears
+therefore second ClearTriggeredList never executes
 ```
 
-The repeated-FIST contract has been revised. Do not modify/reorder stable `FrameCollisionMarkers` for this diagnostic.
+User observes one damaging contact per Quick. This does NOT prove repeated `ClearTriggeredList()` failure because the intervention was never reached.
 
-A revised frozen Work task is active. No permanent raw55 implementation is authorized.
+Canonical evidence is through **EV-272**.
+
+A frozen diagnostics-only eligibility observability Work task is now active. No permanent raw55 implementation is authorized.
 
 ---
 
@@ -96,86 +89,40 @@ raw55 Quick triggered-list rearm                CONFIRMED/PASS — EV-267
 raw55 close-range timing cause                  CONFIRMED — EV-268
 raw55 Quick frame-1 pre-state activation        CONFIRMED/PASS — EV-269
 raw55 later FIST transport                      CONFIRMED — EV-270
-raw55 repeated-FIST second rearm                REVISED FROZEN PROBE / IMPLEMENTATION NEXT
 equipped + raw8 frame-0/frame-1 marker support  CONFIRMED — EV-271
+raw55 repeated-FIST intervention eligibility    OPEN — EV-272
+raw55 repeated-FIST rearm primitive             STILL UNTESTED
 ```
 
 Raw8 FIST remains a separate proven mechanism. Raw55 findings must not be generalized back onto raw8.
 
 ---
 
-## Current Raw55 Quick Causal Chain
-
-Factual Troll/BlackTroll source:
-
-```text
-TrollFist
-gEUseType_PhysicalFist / raw55
-resting collision group5
-```
-
-```text
-EV-264:
-    native Quick contains both StatePosition 0 -> 1 and early raw55 5 -> 7
-
-EV-265:
-    early 5 -> 7 can be suppressed while StatePosition 0 -> 1 survives
-
-EV-266:
-    authored FIST can open 5 -> 7 and native cleanup works
-    opening alone does not restore damage
-
-EV-267:
-    ClearTriggeredList after FIST opening restores damage on contact
-
-EV-268:
-    prior close-range divergence was marker timing, not proven geometry
-
-EV-269:
-    frame-1 FIST at StatePosition 0 can itself open/rearm raw55
-    later native Quick still advances 0 -> 1 through natural 7 -> 7
-    damage and native 7 -> 5 cleanup remain healthy
-
-EV-270:
-    later FIST delivery in the same Quick execution is visible
-    current diagnostic one-shot bookkeeping prevents a second raw55 rearm
-```
-
-Permanent raw55 design remains intentionally unfrozen until repeated-marker semantics and remaining raw55 family ownership are resolved.
-
----
-
-## Current Immediate Responsibility — Revised Work Implementation
+## Current Immediate Responsibility — Eligibility Observability
 
 Frozen authority:
 
 ```text
-docs/COLLISION_RAW55_QUICK_REPEAT_FIST_REARM_PROBE.md
+docs/COLLISION_RAW55_QUICK_REPEAT_FIST_ELIGIBILITY_OBSERVABILITY_PROBE.md
 ```
 
-The stable marker engine cannot provide generic accepted-occurrence counters to raw55 because raw55 FIST returns before that bookkeeping.
-
-For this diagnostics-only causal probe, `PhysicalFistProbe` may use only the smallest temporary sequence observation:
+Question:
 
 ```text
-first proven EV-269 pre-state FIST
-+
-first later eligible FIST dispatch in the same actor/source/C1
+Which exact eligibility predicate rejects the delivered later raw55 Quick FIST?
 ```
 
-The controlled animation decision must contain exactly two FIST markers.
+The next Work task is observability-only inside `PhysicalFistProbe.cpp`.
 
-Causal delta:
+Add one bounded marker-dispatch record:
 
 ```text
-first FIST remains EV-269 unchanged
-source remains group7
-first later eligible FIST in same controlled two-FIST C1
-    -> NO SetCollisionGroup
-    -> one TouchDamage.ClearTriggeredList()
+CORE RAW55_QUICK_REPEAT_FIST_ELIGIBILITY
 ```
 
-No frame/time/source-name/species/motion/action/phase/callback-rollback heuristic may be added.
+Expose factual current/stored C1 and source identity, proof flags, marker scan counts, raw8 absence, Quick/state/group/use-type facts, plus `Eligible` and one stable `FirstFailedGate` token.
+
+Do not mutate any behavior and do not add another collision/damage intervention.
 
 Expected source scope:
 
@@ -185,60 +132,70 @@ prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
 
 Build execution is NOT authorized for Work.
 
-Normal Chat must review the exact diff before User build/runtime.
+Normal Chat reviews the exact diff before User build/runtime.
 
 ---
 
-## Production Architecture Consequence — Later
+## Power / Sprint Clarification
 
-The source contradiction reveals a real production-design requirement:
+The EV-272 run's non-damaging animation named `...PowerAttack...` is factual:
 
 ```text
-raw55 repeated-marker support needs factual generic occurrence identity
-before/perhaps independent of raw8-specific FIST source acceptance
+Action=9
+Family=SPRINT
 ```
 
-Do not solve that by permanently duplicating counters in `PhysicalFistCollision`. The eventual production architecture must reconcile raw55 with the generic marker occurrence system without regressing raw8/equipped behavior.
+and the old temporary Sprint raw55 whole-callback suppression logs `SUPPRESS_NATIVE=1`.
 
-This is not part of the current causal probe.
+Earlier damaging true Power evidence was:
+
+```text
+Action=2
+Family=POWER
+SuppressNative=0
+```
+
+Do not infer family from the animation filename alone. True raw55 Power ownership remains an unfinished later responsibility.
 
 ---
 
-## Separate Later Raw55 Responsibilities
+## Date Provenance Note
 
-Not part of the current Work task:
-
-```text
-Power family ownership — marked raw55 Power currently leaks native collision
-Normal/Sprint — still carry earlier whole-callback temporary experiments
-production generic occurrence integration
-permanent PhysicalFistCollision design/promotion
-```
+Several September 13 controls were accidentally named with `2026.09.12` filenames. Do not rename already-cited artifacts; the evidence ledger records their actual runtime date as September 13 while preserving filenames for provenance.
 
 ---
 
 ## Protected Boundaries
 
-For the current repeated-FIST probe:
+For the current eligibility observability probe:
 
 ```text
+first EV-269 FIST behavior unchanged
+current repeated-FIST intervention unchanged
+ClearTriggeredList calls unchanged
+SetCollisionGroup behavior unchanged
+FrameCollisionMarkers unchanged
 Raw8FistCollision unchanged
-stable FrameCollisionMarkers unchanged
-CollisionLifecycleGuard semantics unchanged
+CollisionLifecycleGuard unchanged
 CollisionSources unchanged
 CollisionSourceOperations unchanged
-EngineBridge hook ownership unchanged
-native cleanup unchanged
-first EV-269 FIST behavior unchanged
-later native Quick 7 -> 7 unchanged
-no species/name policy
-no permanent PhysicalFistCollision yet
-no custom/direct damage
-no TriggerTarget / OnDamage
-no StatePosition or SPU writes
-no manual cleanup
-no second-FIST collision-group request
-no new hooks/timers/polling
+EngineBridge unchanged
+CMake unchanged
+native Quick callback / 7 -> 7 / StatePosition progression / 7 -> 5 cleanup unchanged
+Normal/Sprint/Power temporary raw55 behavior unchanged
+```
+
+Do not add:
+
+```text
+new ClearTriggeredList
+new collision-group request
+custom damage
+state write
+manual cleanup
+new occurrence bookkeeping
+frame/time heuristics
+new hook/RVA/timer/polling
 ```
 
 ---
