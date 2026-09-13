@@ -404,6 +404,155 @@ static bool TryApplyPreStateFistProbe(
     return true;
 }
 
+static void LogRepeatFistEligibility(
+    Entity &actor, MarkerOpcode markerOpcode,
+    MarkerProcessResult const &result)
+{
+    if (actor == None || actor.GetInstance() == nullptr)
+        return;
+
+    eCEntity *const actorInstance = actor.GetInstance();
+    auto interventionIt =
+        g_QuickPreStateFistInterventions.find(actorInstance);
+    if (interventionIt == g_QuickPreStateFistInterventions.end())
+        return;
+
+    // Keep this diagnostic bounded to authored FIST marker dispatches. The
+    // existing intervention record is the factual first-FIST sequence anchor.
+    if (markerOpcode != MarkerOpcode_Fist)
+        return;
+
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(actorInstance);
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    QuickPreStateFistIntervention const &intervention =
+        interventionIt->second;
+    CurrentMotionMarkerResult const &decision = result.decision;
+    bool const currentC1Valid = generation.valid;
+    bool const currentC1ActorMatches =
+        generation.actorInstance == actorInstance;
+    bool const sameC1 = currentC1Valid && currentC1ActorMatches
+        && generation.generation == intervention.c1Generation;
+    bool const storedActorMatches =
+        intervention.actorInstance == actorInstance;
+    bool const sameRight =
+        currentSources.rightInstance == intervention.rightSourceInstance;
+    bool const resultRightMatchesStored =
+        result.sources.rightInstance == intervention.rightSourceInstance;
+    bool const quickHit =
+        FrameCollisionMarkers::IsAttackHit(actor, AttackFamily_Quick);
+    bool const raw8ResolverAbsent =
+        CollisionSources::ResolveFistCollisionSource(actor) == nullptr;
+    Entity rightSource(currentSources.rightInstance);
+    bool const rightValid = rightSource != None;
+    GEInt const rightUseType = rightValid
+        ? static_cast<GEInt>(
+              CollisionSources::GetCollisionSourceUseType(rightSource))
+        : -1;
+    GEInt const rightGroup = rightValid
+        ? static_cast<GEInt>(rightSource.GetCollisionGroup()) : -1;
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    GEInt const action = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEFloat const stateTime = actor.Routine.GetStateTime();
+    bool const mixedMarkers =
+        decision.markerCounts[MarkerOpcode_Right] != 0
+        || decision.markerCounts[MarkerOpcode_Left] != 0
+        || decision.markerCounts[MarkerOpcode_Both] != 0
+        || decision.markerCounts[MarkerOpcode_Off] != 0;
+
+    char const *firstFailedGate = "NONE";
+    bool eligible = false;
+    if (!currentC1Valid)
+        firstFailedGate = "NO_CURRENT_C1";
+    else if (!currentC1ActorMatches)
+        firstFailedGate = "CURRENT_C1_ACTOR_MISMATCH";
+    else if (!sameC1)
+        firstFailedGate = "C1_MISMATCH";
+    else if (!storedActorMatches)
+        firstFailedGate = "STORED_ACTOR_MISMATCH";
+    else if (!sameRight)
+        firstFailedGate = "SOURCE_MISMATCH";
+    else if (!intervention.interventionUsed)
+        firstFailedGate = "FIRST_INTERVENTION_UNUSED";
+    else if (!intervention.preStateFistProven)
+        firstFailedGate = "FIRST_PROOF_MISSING";
+    else if (intervention.laterFistRearmUsed)
+        firstFailedGate = "LATER_ALREADY_USED";
+    else if (result.opcode != MarkerOpcode_Fist)
+        firstFailedGate = "WRONG_OPCODE";
+    else if (result.code != MarkerResult_UnsupportedMissingSource)
+        firstFailedGate = "WRONG_RESULT";
+    else if (!quickHit)
+        firstFailedGate = "NOT_QUICK_HIT";
+    else if (!decision.foundMatchingMotion)
+        firstFailedGate = "MOTION_NOT_FOUND";
+    else if (!decision.scanValid)
+        firstFailedGate = "SCAN_INVALID";
+    else if (!decision.markerPresent)
+        firstFailedGate = "MARKER_NOT_PRESENT";
+    else if (!decision.hasFistMarkers)
+        firstFailedGate = "NO_FIST";
+    else if (decision.markerCounts[MarkerOpcode_Fist] != 2)
+        firstFailedGate = "FIST_COUNT_NOT_TWO";
+    else if (mixedMarkers)
+        firstFailedGate = "MIXED_MARKERS";
+    else if (decision.requiredSourceMask != SourceMask_None)
+        firstFailedGate = "REQUIRED_MASK_NONZERO";
+    else if (!raw8ResolverAbsent)
+        firstFailedGate = "RAW8_PRESENT";
+    else if (!resultRightMatchesStored)
+        firstFailedGate = "RESULT_RIGHT_MISMATCH";
+    else if (!rightValid)
+        firstFailedGate = "RIGHT_INVALID";
+    else if (rightUseType != static_cast<GEInt>(gEUseType_PhysicalFist))
+        firstFailedGate = "RIGHT_NOT_RAW55";
+    else if (rightGroup != static_cast<GEInt>(eECollisionGroup_Item_Attack))
+        firstFailedGate = "RIGHT_NOT_GROUP7";
+    else if (statePosition != 1)
+        firstFailedGate = "STATEPOSITION_NOT_ONE";
+    else
+        eligible = true;
+
+    FILE *const eligibilityLog = CollisionDiagnostics::GetLog();
+    if (eligibilityLog != nullptr)
+    {
+        std::fprintf(
+            eligibilityLog,
+            "CORE RAW55_QUICK_REPEAT_FIST_ELIGIBILITY Actor=%s Action=%d StatePosition=%d StateTime=%.6f MarkerOpcode=%d ResultOpcode=%d ResultCode=%d CurrentC1Valid=%d CurrentC1=%llu StoredC1=%llu SameC1=%d CurrentRight=%p StoredRight=%p SameRight=%d ResultRightMatchesStored=%d RightUseType=%d RightGroup=%d InterventionUsed=%d PreStateFistProven=%d LaterFistRearmUsed=%d DecisionFoundMotion=%d DecisionScanValid=%d DecisionMarkerPresent=%d DecisionHasFist=%d DecisionFistCount=%d DecisionRightCount=%d DecisionLeftCount=%d DecisionBothCount=%d DecisionOffCount=%d RequiredSourceMask=%u Raw8ResolverAbsent=%d QuickHit=%d Eligible=%d FirstFailedGate=%s\n",
+            actor.GetName().GetText(), action, statePosition,
+            static_cast<double>(stateTime),
+            static_cast<GEInt>(markerOpcode),
+            static_cast<GEInt>(result.opcode),
+            static_cast<GEInt>(result.code), currentC1Valid ? 1 : 0,
+            static_cast<unsigned long long>(generation.generation),
+            static_cast<unsigned long long>(intervention.c1Generation),
+            sameC1 ? 1 : 0,
+            static_cast<void *>(currentSources.rightInstance),
+            static_cast<void *>(intervention.rightSourceInstance),
+            sameRight ? 1 : 0, resultRightMatchesStored ? 1 : 0,
+            rightUseType, rightGroup,
+            intervention.interventionUsed ? 1 : 0,
+            intervention.preStateFistProven ? 1 : 0,
+            intervention.laterFistRearmUsed ? 1 : 0,
+            decision.foundMatchingMotion ? 1 : 0,
+            decision.scanValid ? 1 : 0,
+            decision.markerPresent ? 1 : 0,
+            decision.hasFistMarkers ? 1 : 0,
+            decision.markerCounts[MarkerOpcode_Fist],
+            decision.markerCounts[MarkerOpcode_Right],
+            decision.markerCounts[MarkerOpcode_Left],
+            decision.markerCounts[MarkerOpcode_Both],
+            decision.markerCounts[MarkerOpcode_Off],
+            static_cast<unsigned int>(decision.requiredSourceMask),
+            raw8ResolverAbsent ? 1 : 0, quickHit ? 1 : 0,
+            eligible ? 1 : 0, firstFailedGate);
+        std::fflush(eligibilityLog);
+    }
+}
+
 static bool TryApplyRepeatFistRearmProbe(
     Entity &actor, MarkerOpcode markerOpcode,
     MarkerProcessResult const &result)
@@ -500,6 +649,8 @@ void OnMarkerProcessed(
 
     if (TryApplyPreStateFistProbe(actor, markerOpcode, result))
         return;
+
+    LogRepeatFistEligibility(actor, markerOpcode, result);
 
     if (TryApplyRepeatFistRearmProbe(actor, markerOpcode, result))
         return;
