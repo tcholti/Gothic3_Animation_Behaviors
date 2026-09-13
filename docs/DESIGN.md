@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-10  
+**Updated:** 2026-09-13  
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -27,6 +27,7 @@ This file owns overall intended architecture and implementation order. Collision
 11. Public release behavior contains no research diagnostics.
 12. Known successful runtime behavior should log compactly in CORE; unknown, unsupported, contradictory, repair, or invariant behavior should become richer automatically. Detailed historical probes belong in opt-in DEEP diagnostics.
 13. A feature family is defined by factual Gothic action semantics, not by whatever animation filename happens to be playing.
+14. Unknown feature behavior is researched in a dedicated temporary probe/research module, not accumulated in `EngineBridge` or another stable owner. When the mechanism is proven, re-express only the proven responsibilities in their proper permanent modules and remove the research scaffolding.
 
 ---
 
@@ -76,7 +77,7 @@ exact action/phase/animation context
 marked-execution opt-in
 ```
 
-After that, equipped weapons and raw-8 Fist use different native mechanisms.
+After that, equipped weapons and raw-8 Fist use different proven production mechanisms. PhysicalFist/raw55 is currently a third, separately researched mechanism and must not be folded into either production path until its own family/ownership contract is complete.
 
 ### 4.2 Equipped weapon vocabulary
 
@@ -224,23 +225,83 @@ Sprint implementation is deliberately postponed until after the architecture/dia
 
 ---
 
-## 5. PhysicalFist/raw55 — Bounded Discovery Deferred
+## 5. PhysicalFist/raw55 — Active Bounded Research, No Permanent Implementation
 
-`gEUseType_PhysicalFist` / raw 55 maps to the serialized animation token `Fist`, but EV-245–EV-246 showed why the serialized token cannot identify the native source mechanism.
+`gEUseType_PhysicalFist` / raw 55 maps to the serialized animation token `Fist`, but the token itself does not identify the native source mechanism. EV-245–EV-246 correctly recorded the initial survey in which raw55 had not yet been observed. Later concrete Troll/BlackTroll evidence reopened the boundary and superseded only that old factual premise, not the methodological caution.
 
-The bounded discovery found:
+Current raw55 evidence through EV-273 establishes, for the tested Troll Quick scope:
 
 ```text
-Hero Wolf/Sabretooth transformations -> factual Fist / raw 8
-native body attackers sampled         -> factual Fist / raw 8 / group 0 / Game+0x16E348 damage caller
-native weapon controls                -> factual 2H/1H/Axe UseTypes and equipped/TouchDamage path
-Dragon capture                        -> factual Cast/raw15 fireball; physical attack not captured
-raw55                                  -> not observed
+factual RIGHT/LEFT TrollFist sources use PhysicalFist/raw55
+native/resting source group is Item_Equipped(5)
+whole Quick callback suppression is not a valid ownership model
+Quick native callback has compound responsibilities
+an authored FIST can activate exact RIGHT raw55 5 -> 7 before StatePosition progression
+native Quick can later request 7 -> 7 and advance StatePosition 0 -> 1
+ClearTriggeredList rearms raw55 contact damage
+later FIST is transported in the same C1
+later FIST can ClearTriggeredList again while source remains group7
+second damaging contact can occur in the same Quick execution
+native cleanup returns the exact source 7 -> 5
 ```
 
-Therefore the current architecture deliberately carries **no raw55 implementation**. Raw55 is unobserved/deferred, not globally proven unused.
+This is **not** a permanent raw55 design yet. Raw55 remains separate from production raw8 Fist, and the proven Quick mechanism must not be generalized to other raw55 families without evidence. In particular, true `Action=2 / Family=POWER` ownership is still open, while Normal and Sprint still contain temporary research-era whole-callback behavior that must not survive into final architecture merely because it currently produces a useful test condition.
 
-Reopen this responsibility only if future runtime evidence establishes a relevant factual `UseType == 55`. At that point classify the actual mechanism before any marker extension.
+### 5.1 Research architecture boundary
+
+Current raw55 intervention/research belongs in the dedicated diagnostic-only `PhysicalFistProbe` responsibility.
+
+```text
+EngineBridge
+=
+sole low-level hook owner
+native fact capture / transport
+delegation through the smallest necessary seam
+
+PhysicalFistProbe
+=
+raw55 research eligibility
+research-only intervention/state
+causal diagnostics
+bounded experimental policy
+
+EngineBridge
+!=
+raw55 feature policy
+raw55 research state machine
+raw55 family special cases
+raw55 causal-probe logic
+```
+
+Do not research by accumulating branches, state, classifiers, or temporary policy in `EngineBridge`. Shared-hook ownership is a reason to delegate through the bridge, not a reason to make the bridge own the feature. The probe must remain removable without redesigning the stable bridge or existing production features.
+
+### 5.2 Promotion boundary
+
+When the remaining raw55 family/ownership questions are sufficiently proven, production promotion must be a design step, not a wholesale copy of the probe.
+
+The intended split is:
+
+```text
+EngineBridge
+-> transport/delegation only
+
+FrameCollisionMarkers
+-> generic marker recognition/occurrence/current-motion ownership only
+
+CollisionSources
+-> factual raw55 source identity / UseType facts where generally applicable
+
+CollisionSourceOperations
+-> proven physical source mutations that genuinely belong to generic source operations
+
+PhysicalFistCollision [expected dedicated permanent owner if final responsibility remains distinct]
+-> only the proven raw55 behavior/policy/state that production actually requires
+
+PhysicalFistProbe
+-> deleted/excluded after promotion
+```
+
+The exact permanent split is frozen only after research closes. Do not force raw55 into `Raw8FistCollision`, and do not create a permanent `PhysicalFistCollision` merely because the temporary probe exists. Evidence decides which responsibilities are actually shared and which remain distinct.
 
 ---
 
@@ -255,9 +316,9 @@ Item_Attack(7)
 -> verify Item_Equipped(5)
 ```
 
-`CollisionLifecycleGuard` decides whether exact terminal repair is justified; `CollisionSourceOperations` performs the physical mutation. No `ClearTriggeredList()` is part of terminal cleanup. Raw-8 Fist and any future reopened PhysicalFist mechanism do not acquire weapon obligations unless separately proven to use equipped sources.
+`CollisionLifecycleGuard` decides whether exact terminal repair is justified; `CollisionSourceOperations` performs the physical mutation. No `ClearTriggeredList()` is part of terminal cleanup. Raw-8 Fist does not acquire weapon obligations. Current raw55 research has factual TrollFist sources that participate in `5 -> 7`, `7 -> 7`, and native `7 -> 5` transitions, but the permanent raw55 lifecycle ownership model must be frozen from evidence rather than inherited automatically from either raw8 Fist or equipped-weapon naming.
 
-C1-R1 remains closed through EV-206–EV-207; the Stage A ownership refactor is source-reviewed but still awaiting local build/load parity confirmation.
+C1-R1 remains closed through EV-206–EV-207.
 
 ---
 
@@ -270,7 +331,7 @@ The 2026-09-10 architecture audit is complete. Stage A implemented the three jus
 Refactor collision behavior ownership boundaries
 ```
 
-Independent Normal Chat static review: PASS. Runtime parity remains pending local build/load.
+Independent Normal Chat static review: PASS.
 
 Governing rule:
 
@@ -287,6 +348,7 @@ EngineBridge
 feature behavior owner
 feature state-machine owner
 collision policy owner
+research/probe policy owner
 ```
 
 Implemented ownership:
@@ -309,6 +371,8 @@ CollisionSourceOperations
 ```
 
 `RunScriptFunctionScope` remains in `EngineBridge` because its lifetime is hook-invocation transport, not feature policy. Current action/phase family resolution remains in `FrameCollisionMarkers` because it is part of marker ownership; no separate family module is planned.
+
+Unknown/new mechanisms follow `FEATURE_DEVELOPMENT_METHOD.md`: dedicated temporary probe first, then the smallest proven permanent owner after research closure.
 
 Full authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.
 
@@ -339,11 +403,11 @@ DEEP
   detailed hook/SPU/timing/AISetState/C1/caller/stack instrumentation for a concrete research question
 ```
 
-Stage B diagnostic compaction is deliberately postponed until Stage A compiles and smoke-loads locally. Do not simply delete reusable detailed probes; move them to DEEP or condition them on anomaly/unknown-family cases where appropriate.
+Temporary behavior probes such as `PhysicalFistProbe` are separate from both stable behavior modules and generic diagnostics: they may intervene for a bounded causal experiment, compile only into the research target, and must be removable when the mechanism is promoted or rejected.
 
 CORE must remain capable of discovering SprintAttack and other future unexpected traffic without requiring full research-era verbosity for every healthy execution.
 
-Detailed authority: `COLLISION_LOGGER_PLAN.md` and `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.
+Detailed authority: `COLLISION_LOGGER_PLAN.md`, `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`, and `FEATURE_DEVELOPMENT_METHOD.md`.
 
 ---
 
@@ -414,7 +478,7 @@ Script_G3AnimationBehaviors / research twin
 |    action/phase marker-family resolution
 |    equipped RIGHT/LEFT/BOTH/OFF
 |    marker occurrence bookkeeping
-|    FIST dispatch into Raw8FistCollision
+|    production FIST dispatch into proven feature owner(s)
 +-- CollisionSources
 |    factual source identities / UseTypes
 +-- CollisionSourceOperations
@@ -436,9 +500,7 @@ Script_G3AnimationBehaviors / research twin
 +-- Climbing [future]
 ```
 
-Diagnostic research product adds compact CORE diagnostics and opt-in DEEP modules; public release does not compile them.
-
-The Stage A source structure above is implemented and static-reviewed; local build/load confirmation remains pending.
+Diagnostic research product may add dedicated removable feature probes such as `PhysicalFistProbe`; those probes are not permanent children of `EngineBridge` and public release does not compile them.
 
 ---
 
@@ -446,24 +508,22 @@ The Stage A source structure above is implemented and static-reviewed; local bui
 
 ```text
 collision architecture foundation                     CLOSED — EV-206–EV-215
-Power / Pierce / SimpleWhirl / Hack expansion          CLOSED for tested scope — EV-241–EV-244
-human raw-8 FIST production                            CLOSED/PASS — EV-221–EV-240
-PhysicalFist/raw55 bounded discovery                   CLOSED/DEFERRED — EV-245–EV-246
-transformed Sabretooth Normal/Power raw8 proof         PASS — EV-247
-native Sabretooth + Quick mechanism classification     PASS/CLASSIFIED — EV-248
-raw8 Quick family extension + validation               CLOSED/PASS — EV-249
-SprintAttack missing-family discovery                  IDENTIFIED
-collision architecture + diagnostic audit              DONE
-Stage A behavior architecture source refactor          IMPLEMENTED / STATIC REVIEW PASS
--> Stage A local build/load
--> Stage B compact CORE / rich anomaly / opt-in DEEP diagnostic refactor
--> Stage B local build/load
--> compact post-refactor equivalence sentinel
--> SprintAttack source/transport/mechanism investigation
--> bounded first-class Sprint implementation only if evidence supports it
--> focused Sprint validation
--> native equipped-NPC marker controls: Goblin 1H / Demon 2H / Ogre Axe
--> additional prepared native/modded family controls
+Power / Pierce / SimpleWhirl / Hack equipped scope    CLOSED — EV-216–EV-244
+production raw8 FIST Normal+Power+Quick                CLOSED/PASS — EV-221–EV-249
+native/equipped compatibility controls                 CLOSED/PASS through EV-261
+raw55 factual source + Quick causal research           CLOSED/PASS through EV-273
+
+CURRENT
+-> true raw55 Power-family ownership
+-> replace/retire old temporary raw55 Normal/Sprint whole-callback research behavior from the final design
+-> close any remaining raw55 family/occurrence questions required for production
+-> freeze permanent raw55 responsibility split
+-> implement minimum production PhysicalFist behavior in the proper owner module(s)
+-> remove/exclude PhysicalFistProbe research scaffolding
+-> focused production raw55 acceptance
+
+THEN RESUME DEFERRED SEQUENCES
+-> native-creature certification continuation where still relevant
 -> separated 2H-vs-Axe mod marker compatibility
 -> separated 1H-vs-Rapier mod marker compatibility
 -> final native mixed/stress collision regression over supported scope
@@ -476,30 +536,21 @@ Stage A behavior architecture source refactor          IMPLEMENTED / STATIC REVI
 -> final assembled compatibility/regression
 ```
 
-Post-refactor equivalence sentinel:
-
-```text
-Sabretooth raw8 Normal + Quick + Power
-one ordinary marked equipped attack
-one established multi-marker / OFF / rearm fixture
-one established destructive bad-skip -> exact terminal repair
-```
-
 Do not create `feature/raise-attack-speed` early.
 
 ---
 
-## 13. Non-Goals During Current Redesign Stage
+## 13. Non-Goals During Current Raw55 Research Stage
 
-Do not combine the architecture/diagnostic redesign with:
+Do not combine the current raw55 causal work with:
 
-- new collision behavior merely for aesthetics;
-- Sprint implementation before its post-refactor factual mechanism investigation;
-- new equipped marker vocabulary;
-- raw55/PhysicalFist work absent new factual runtime UseType 55 evidence;
+- permanent raw55 promotion before remaining family/ownership questions are closed;
+- moving temporary raw55 research policy/state into `EngineBridge` or another stable module;
+- raw8 Fist redesign merely because both mechanisms use a `FIST` marker name;
 - species-specific monster/body marker vocabulary or filename-based actor gating;
 - authored FIST_OFF resurrection;
 - speculative generalized monster/body framework;
+- unrelated equipped-marker vocabulary changes;
 - AttackContinuationProtection implementation;
 - Raise/speed/configuration implementation;
 - target acquisition or climbing.
@@ -511,6 +562,7 @@ Do not combine the architecture/diagnostic redesign with:
 | Need | Authority |
 |---|---|
 | Current exact task | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
+| Feature research -> production method | `FEATURE_DEVELOPMENT_METHOD.md` |
 | Current architecture/diagnostic redesign | `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md` |
 | Overall architecture/order | this file |
 | Collision lifecycle | `COLLISION_LIFECYCLE_PLAN.md` |
