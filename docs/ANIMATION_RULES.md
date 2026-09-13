@@ -1,7 +1,7 @@
 # Gothic 3 Animation Rules
 
 **Status:** Canonical engine-facing animation/authoring reference  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-13
 
 ## 1. Purpose
 
@@ -183,7 +183,7 @@ Raw engine UseType and serialized animation token are not always 1:1. Preserve t
 
 Use normalized animation categories for profile matching; do not blindly serialize raw enum spelling.
 
-**Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but the token does **not** identify the factual runtime source. EV-245–EV-246 found that tested Hero animal transformations and eight sampled native creature body attackers actually resolved `gEUseType_Fist` / raw 8; no raw55 source was observed. Raw55 is therefore unobserved/deferred for the current scope, not globally proven unused. Current production `FIST` authoring remains proven only for exact human raw 8.
+**Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but the token does **not** identify the factual runtime source. EV-245–EV-246 found that tested Hero animal transformations and eight sampled native creature body attackers actually resolved `gEUseType_Fist` / raw 8; no raw55 source was observed in that initial survey. Later Troll/BlackTroll evidence EV-262 onward establishes factual `PhysicalFist` / raw55 and reopens it as a separate mechanism. Production `FIST` authoring remains governed by the exact evidence-backed source mechanism; do not infer raw8 vs raw55 from the serialized token alone.
 
 ---
 
@@ -264,6 +264,24 @@ Animations are authored from frame 0. Therefore:
 
 Marker indices are literal authored frame indices.
 
+EV-271 positively validates both **frame 0 and frame 1** marker delivery/acceptance for tested equipped 2H Normal `RIGHT` and raw8 Sabretooth Quick `FIST`. There is no global "frame 1 minimum" rule.
+
+The behavioral meaning of an early marker is mechanism-specific:
+
+```text
+EQUIPPED RIGHT / LEFT / BOTH
+-> opens/rearms the selected physical source window at that authored frame
+-> window remains active until OFF, source replacement, or native/terminal cleanup
+
+RAW8 FIST
+-> rearms one native body-damage opportunity at that authored frame
+-> it is not a persistent equipped collision window
+```
+
+Therefore frame 0 is a valid authored index, but it is not automatically the best timing. In the EV-271 Sabretooth Quick control, frame-0 FIST was accepted and its timing permission was armed/consumed correctly, yet the User observed more misses than with frame 1. This is consistent with rearming a one-shot native opportunity before useful physical contact, not with marker transport failure.
+
+Author markers according to the desired physical contact timing, not simply at the earliest legal frame.
+
 ---
 
 ## 9. Authoring Rule — Equipped Collision
@@ -286,15 +304,16 @@ Rules:
 - repeating a source marker later in the Hit authors a new contact and rearms it through `ClearTriggeredList()`;
 - OFF is an intra-Hit inactive gap and does not clear triggered lists;
 - marker timing is per animation;
+- frame 0 is valid when the intended equipped collision window should begin immediately; EV-271 validates frame-0 2H Normal RIGHT activation, damage and cleanup;
 - do not invent action-specific RIGHT/LEFT/BOTH/OFF marker names.
 
 The animation author's general preference is often to place collision one authored frame before intended visual contact, but this is an authoring judgement, not an engine constant.
 
 ---
 
-## 10. Authoring Rule — Production Human Fist
+## 10. Authoring Rule — Production Raw8 Fist
 
-Production author-facing human Fist uses:
+Production author-facing raw8 Fist uses:
 
 ```text
 G3AB_COL_FIST
@@ -302,23 +321,23 @@ G3AB_COL_FIST
 
 Meaning:
 
-> Rearm one native human raw-8 body-damage opportunity at this authored Hit frame.
+> Rearm one native raw-8 body-damage opportunity at this authored Hit frame.
 
 This is **not** an equipped source-set command.
 
 Production semantics relevant to the animator:
 
 ```text
-unmarked exact human Fist Hit
+unmarked exact raw8 Fist Hit
 -> native behavior
 
-marked exact human raw-8 Fist Hit
+marked exact supported raw8 Fist Hit
 -> custom ownership closes the native opportunity before first FIST
--> each FIST rearms one native opportunity
+-> each accepted FIST rearms one native opportunity
 -> native target/contact/damage remains Gothic's responsibility
 ```
 
-There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Gothic self-closes a successful human Fist opportunity; the next `FIST` marker rearms the next intended contact.
+There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Gothic self-closes a successful raw8 Fist opportunity; the next `FIST` marker rearms the next intended contact.
 
 Do not apply weapon semantics to FIST:
 
@@ -329,7 +348,9 @@ NO ClearTriggeredList authoring meaning
 NO weapon C1 cleanup obligation
 ```
 
-Current proven authoring scope is exact human `gEUseType_Fist` / raw 8, including tested Normal/Power production behavior. EV-245–EV-246 show that some transformed/non-human attacks also resolve factual raw 8, but that native-source similarity is **not** authored-marker validation. Do not author `FIST` for monsters or `gEUseType_PhysicalFist` / raw 55 unless a separate evidence-backed authoring extension is deliberately validated. Raw55 specifically remains unsupported/deferred until factual runtime 55 evidence appears.
+Frame 0 is a valid raw8 FIST frame in the tested Sabretooth Quick mechanism, but it rearms the opportunity immediately. EV-271 observed more frame-0 misses than frame 1 despite correct marker acceptance/timing-permission use. For practical authoring, place FIST near the intended physical contact rather than at frame 0 merely because frame 0 is legal.
+
+Current proven raw8 family scope is tracked in `EVIDENCE_INDEX.md` / `COLLISION_TEST_PLAN.md`. Raw55/PhysicalFist is a separate reopened research mechanism and must not inherit raw8 behavior merely because both serialize as `Fist`.
 
 ---
 
