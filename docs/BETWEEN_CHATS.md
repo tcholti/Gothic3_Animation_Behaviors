@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-13
 
-## Current Bridge — RAW55 QUICK REPEATED-FIST CLOSED; NEXT FAMILY QUESTION NOT YET FROZEN
+## Current Bridge — RAW55 TRUE POWER CALLBACK-BOUNDARY OBSERVATION FROZEN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -21,109 +21,150 @@ No permanent raw55 implementation is authorized yet.
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. EVIDENCE_LEDGER_269_ONWARD.md EV-269–EV-273
-4. COLLISION_RAW55_QUICK_REPEAT_FIST_ELIGIBILITY_OBSERVABILITY_PROBE.md only if the completed diagnostic contract is needed
-5. retrieve deeper raw55 evidence/source only after the next exact causal question is chosen
+3. COLLISION_RAW55_POWER_CALLBACK_BOUNDARY_PROBE.md
+4. EVIDENCE_LEDGER_269_ONWARD.md EV-269–EV-273
+5. EVIDENCE_LEDGER_250_ONWARD.md EV-262–EV-264 only if the older raw55 callback route is needed
+6. only exact PhysicalFistProbe / EngineBridge source required for this probe
 ```
 
 ---
 
 ## Closed Result — EV-273
 
-Runtime artifacts:
+Raw55 Quick repeated-FIST semantics are closed for the tested scope:
 
 ```text
-research/raw/2026.09.13_deployment_test.log
-research/raw/2026.09.13_troll_quick_fist_frame_1_frame_15_repeat_fist_eligibility.log
-upload commit 6cc1159c8f302ff600b96dc4eabc8f76167bc058
+first authored FIST can activate/rearm raw55
+native Quick progression remains intact
+later authored FIST is delivered in same C1
+second ClearTriggeredList executes
+second damaging contact can occur
+native cleanup returns exact RIGHT 7 -> 5
 ```
 
-Observability implementation:
-
-```text
-3d9a659e6ac66b13d287ec91c80a04278a65cb17
-```
-
-For repeated Troll Quick executions, the later frame-15 FIST reports all repeated-FIST eligibility facts true, including matching C1/source identity, PhysicalFist/raw55 group7, first intervention/proof present, `DecisionFistCount=2`, no mixed source markers, `RequiredSourceMask=0`, raw8 resolver absent, `QuickHit=1`, `Eligible=1`, and `FirstFailedGate=NONE`.
-
-The unchanged repeat helper then immediately logs:
-
-```text
-CORE RAW55_QUICK_REPEAT_FIST_REARM_PROBE
-ClearTriggeredList=1
-REPEAT_FIST_REARM=1
-```
-
-Multiple Quick executions contain an `OnDamage` before the later marker and another `OnDamage` after the repeated rearm while the same Quick C1 remains active. The User observed Quick attacks damaging twice, once per authored FIST marker.
-
-Therefore:
-
-```text
-raw55 Quick later-FIST transport      CONFIRMED
-raw55 Quick repeat eligibility        CONFIRMED/PASS in current run
-second ClearTriggeredList execution   CONFIRMED
-repeated raw55 Quick damage rearm     CONFIRMED/PASS
-```
-
-EV-272 remains valid provenance for the earlier run where the intervention was not reached. Because the only source change since then was observability-only logging, its exact rejection did not reproduce and was not identified. Do not reinterpret EV-272 as a failed `ClearTriggeredList()` primitive.
+Do not reopen Quick during the current Power task.
 
 ---
 
-## Current Family Controls
+## Current Factual Power Baseline
 
-Latest runtime preserves:
+The latest runtime contains a real true-Power execution, not Sprint disguised by a PowerAttack motion name:
 
 ```text
-true Power: Action=2 / Family=POWER / SuppressNative=0 / can damage
-Normal:     Family=NORMAL / temporary whole-callback suppression remains active
+Actor=Troll
+Script=_AI_PowerAttack
+Action=2
+Family=POWER
+SuppressNative=0
+RIGHT TrollFist / UseType=55 starts group5
+native RIGHT 5 -> 7 occurs before FIST
+FIST later arrives at StatePosition=1 with RIGHT group7
+native OnDamage occurs
+native cleanup 7 -> 5
+C1 finalizes cleanly
 ```
 
-The EV-272 animation visually identified as Power but not damaging was `Action=9 / Family=SPRINT`; the old temporary Sprint suppression explained that result. Filename alone is not family identity.
+Current `PhysicalFistProbe` suppression families are Normal + Sprint only. True Power remains native.
+
+`_AI_PowerAttack` also transports factual Sprint/Action9. Factual action/family is authoritative; motion filename is not.
 
 ---
 
-## Current Exact Responsibility
+## Current Frozen Work Responsibility
 
-There is **no frozen Work implementation task** now.
+Authority:
 
-Normal Chat + User should decide the next smallest causal question before any source change. The strongest next candidate is true raw55 Power-family ownership, because repeated Quick authoring is now proven while Power still uses native damage and Normal/Sprint still rely on temporary research behavior.
+```text
+docs/COLLISION_RAW55_POWER_CALLBACK_BOUNDARY_PROBE.md
+```
 
-Do not start implementation until that question and its protected boundary are explicitly frozen.
+Single question:
+
+> During factual marked raw55 `Action=2 / Family=POWER`, what changes across the original native `_AI_PowerAttack` invocation that opens RIGHT `5 -> 7`: StatePosition, collision group, or both?
+
+This is **observation only**.
+
+Expected source scope:
+
+```text
+prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+prototypes/Script_FrameCollisionTest/PhysicalFistProbe.h
+prototypes/Script_FrameCollisionTest/EngineBridge.cpp
+```
+
+Ownership:
+
+```text
+EngineBridge
+= existing hook owner + smallest diagnostic begin/end delegation only
+
+PhysicalFistProbe
+= Power observation eligibility + before/after snapshots + logging
+```
+
+Target record:
+
+```text
+CORE RAW55_POWER_CALLBACK_BOUNDARY
+```
+
+Preserve the native Power callback exactly once. Do not suppress it and do not mutate collision/state/damage.
+
+Build execution is **not authorized for Work**.
 
 ---
 
 ## Protected Boundary
 
-Preserve the closed Quick facts:
+Do not change:
 
 ```text
-frame-1 pre-state raw55 activation/rearm
-later native Quick 7 -> 7
-StatePosition progression
-later authored FIST delivery
-second triggered-list rearm
-native cleanup 7 -> 5
-raw8 FIST separation
+true Power SuppressNative=0 behavior
+Normal/Sprint temporary suppression behavior
+closed Quick behavior or Quick research state
+raw8 FIST
+FrameCollisionMarkers
+CollisionSources semantics
+CollisionSourceOperations
+CollisionLifecycleGuard/C1-R1
+AttackMotionRouting
+native target/contact/damage/cleanup
 ```
 
-Do not use EV-273 to authorize:
+Do not add:
 
 ```text
-permanent generic raw55 implementation
-raw55 behavior generalization to Power/Normal/Sprint
-raw8 mechanism changes
-new damage intervention
-new lifecycle ownership
-frame/time occurrence heuristics
+Power callback suppression
+Power nested group suppression
+SetCollisionGroup intervention
+ClearTriggeredList
+StatePosition write
+custom damage
+new hook/RVA/timer/polling
+species/name or filename policy
+permanent PhysicalFistCollision
 ```
 
 ---
 
-## Later Raw55 Responsibilities
+## After Runtime
+
+Normal Chat must interpret the exact callback-boundary evidence before the next causal step.
+
+Likely branches:
 
 ```text
-true Power-family ownership
-replace old Normal/Sprint whole-callback temporary behavior
-production generic occurrence integration
-permanent PhysicalFistCollision design/promotion
+StatePosition 0 -> 1 + RightGroup 5 -> 7
+-> compound Power callback ownership; next isolate physical-request separability
+
+RightGroup 5 -> 7 only
+-> activation belongs to callback; identify any other required callback responsibility before intervention
+
+StatePosition changes only
+-> collision activation occurs elsewhere; follow that path
+
+neither changes
+-> stop and inspect actual downstream/alternate context
 ```
+
+Do not combine this probe with authored Power FIST implementation or Normal/Sprint redesign.
