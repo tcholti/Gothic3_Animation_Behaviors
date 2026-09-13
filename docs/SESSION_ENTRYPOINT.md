@@ -49,7 +49,7 @@ native damage returns
 native cleanup returns exact RIGHT 7 -> 5
 ```
 
-Raw55 Normal callback ownership is now closed through EV-277:
+Raw55 Normal callback ownership is closed through EV-277:
 
 ```text
 factual marked Normal = Action1 / Family NORMAL / _AI_Attack
@@ -62,7 +62,18 @@ native cleanup returns exact RIGHT 7 -> 5
 whole-callback Normal suppression is rejected
 ```
 
-Canonical evidence is through **EV-277**. Recovery Lock remains **CLOSED**.
+The selective Normal group-suppression implementation is now landed and independently reviewed:
+
+```text
+implementation cf89f5ef55dcf89e322672babfee2bc30f3074ab
+Normal Chat source review PASS
+only PhysicalFistProbe.cpp/.h changed
+EngineBridge unchanged
+build NOT RUN yet
+runtime evidence NOT YET CAPTURED
+```
+
+Canonical runtime evidence remains through **EV-277**. Recovery Lock remains **CLOSED**.
 
 No permanent raw55 implementation is authorized yet.
 
@@ -86,7 +97,7 @@ raw55 true Power callback compound ownership    CONFIRMED/CLOSED — EV-274
 raw55 true Power group/state separability       CONFIRMED/PASS — EV-275
 raw55 true Power authored-FIST activation       CONFIRMED/PASS — EV-276
 raw55 Normal callback compound ownership        CONFIRMED/CLOSED — EV-277
-raw55 Normal group/state separability           CURRENT RESEARCH
+raw55 Normal group/state separability           IMPLEMENTED / REVIEWED / RUNTIME PENDING
 raw55 Sprint callback ownership                 DEFERRED UNTIL NORMAL BOUNDARY CLOSES
 ```
 
@@ -102,25 +113,55 @@ Authority:
 docs/COLLISION_RAW55_NORMAL_GROUP_SUPPRESSION_PROBE.md
 ```
 
-Single question:
+Implementation already reviewed PASS:
+
+```text
+cf89f5ef55dcf89e322672babfee2bc30f3074ab
+```
+
+Single runtime question:
 
 > With the original marked raw55 Normal `_AI_Attack` callback still executing exactly once, can only its exact scoped RIGHT PhysicalFist/raw55 `5 -> 7` request be suppressed while native `StatePosition 0 -> 1` still occurs, with no later raw55 activation or lifecycle divergence?
 
-For this diagnostic probe:
+Implemented diagnostic shape:
 
 ```text
 original Normal callback remains enabled
-establish exact actor + RIGHT source + C1 scoped Normal observation
+reentrancy-safe exact actor + RIGHT source + C1 Normal scope
 suppress only exact scoped raw55 group5 -> requested group7
 keep existing Normal callback-boundary logging
 NO authored-FIST activation yet
 NO ClearTriggeredList for Normal
 NO StatePosition/SPU writes
-Sprint temporary whole-callback suppression remains unchanged
-Quick and Power precise research behavior remain unchanged
+Sprint temporary whole-callback suppression unchanged
+Quick and Power precise research behavior unchanged
 ```
 
-Build execution is **not authorized for Work**.
+Next action is local build/deploy/runtime by User + Normal Chat. Do not launch another Work task before this runtime evidence transaction closes.
+
+Because the immediately preceding Normal test had one stale-live-DLL incident, verify the newly built `Script_FrameCollisionTest.dll` is actually copied into the game before interpreting runtime.
+
+Preferred artifact:
+
+```text
+research/raw/2026.09.13_troll_raw55_normal_group_suppression.log
+```
+
+Expected decisive PASS shape:
+
+```text
+CORE RAW55_NORMAL_GROUP_SUPPRESSION
+BeforeGroup=5
+RequestedGroup=7
+SUPPRESS_GROUP=1
+
+CORE RAW55_NORMAL_CALLBACK_BOUNDARY
+SameC1=1
+SameRight=1
+StatePosition=0->1
+RightGroup=5->5
+NativeResult=1
+```
 
 ---
 
@@ -128,7 +169,7 @@ Build execution is **not authorized for Work**.
 
 ```text
 true Power: Action=2 / Family=POWER / tested mechanism closed through EV-276
-Normal:     Action=1 / Family=NORMAL in tested fixture / callback compound ownership EV-277 / selective separability current
+Normal:     Action=1 / Family=NORMAL / EV-277 compound ownership closed / selective separability implementation awaiting runtime
 Sprint:     Action=9 / Family=SPRINT / temporary whole-callback suppression remains active pending independent boundary research
 ```
 
@@ -148,13 +189,7 @@ upload commit 031d2be6ea6b0ef0972cbed7d66d3a5b045a89e6
 implementation 7d6fb67dd60937a64b68d571a5cd4dbc7eafe7bd
 ```
 
-The earlier artifact:
-
-```text
-research/raw/2026.09.13_troll_raw55_normal_callback_boundary.log
-```
-
-is stale-deployment provenance evidence only. The User confirmed the newly built DLL had not been copied before that run; the stale live DLL still whole-suppressed Normal and therefore cannot answer the callback-boundary question.
+The earlier `research/raw/2026.09.13_troll_raw55_normal_callback_boundary.log` is stale-deployment provenance evidence only.
 
 ---
 
