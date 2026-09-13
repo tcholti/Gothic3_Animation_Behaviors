@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-13
 
-## Current Bridge — NORMAL SEPARABILITY CLOSED EV-278; AUTHORED-FIST ACTIVATION FROZEN
+## Current Bridge — NORMAL CLOSED EV-279; RAW55 SPRINT CALLBACK OWNERSHIP FROZEN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-278**.
+Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-279**.
 
 No permanent raw55 implementation is authorized yet.
 
@@ -21,174 +21,163 @@ No permanent raw55 implementation is authorized yet.
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. COLLISION_RAW55_NORMAL_FIST_ACTIVATION_PROBE.md
-4. EVIDENCE_LEDGER_274_ONWARD.md EV-277–EV-278
-5. COLLISION_RAW55_NORMAL_GROUP_SUPPRESSION_PROBE.md only if the completed EV-278 gate is needed
-6. COLLISION_RAW55_POWER_FIST_ACTIVATION_PROBE.md only as prior activation-isolation pattern reference
-7. only exact PhysicalFistProbe / marker-delegation source needed for the frozen Normal activation task
+3. COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md
+4. EVIDENCE_LEDGER_274_ONWARD.md EV-274–EV-279 as needed
+5. EVIDENCE_LEDGER_250_ONWARD.md EV-251 only for established raw8 Sprint transport/support
+6. exact PhysicalFistProbe / existing _AI_PowerAttack bridge source needed for the bounded task
 ```
 
 ---
 
-## Closed Result — EV-278
+## Closed Result — EV-279 Normal Authored-FIST Activation
 
 Runtime artifact:
 
 ```text
-research/raw/2026.09.13_troll_raw55_normal_group_suppression.log
-upload commit 3bf12e61e0d5045c72b61849f0d0742869c538f0
-implementation cf89f5ef55dcf89e322672babfee2bc30f3074ab
+research/raw/2026.09.13_troll_raw55_normal_fist_activation.log
+runtime upload commit e01eae6482b0d106d6825a2fc879cca184e7bcc8
+implementation d1c9d6f39ece5b5b4f4228d3d46ded976e6ae21a
 ```
 
-Seven independent factual marked Normal Troll C1s prove the same separability result:
+Four independent factual Normal Troll executions — C1=8, 10, 14 and 36 — repeat the full proven mechanism:
 
 ```text
-C1=18, 21, 22, 37, 38, 45, 46
 Action=1 / Family=NORMAL
 exact RIGHT TrollFist / PhysicalFist raw55
-CORE RAW55_NORMAL_GROUP_SUPPRESSION:
-    BeforeGroup=5
-    RequestedGroup=7
-    StatePosition=0
-    SUPPRESS_GROUP=1
 
-immediately enclosing original _AI_Attack:
+early original _AI_Attack:
+    exact premature RIGHT 5 -> requested7 suppressed at StatePosition0
+    same callback still returns StatePosition 0 -> 1
     SameC1=1
     SameRight=1
-    StatePosition=0->1
     RightGroup=5->5
     NativeResult=1
+
+later authored G3AB_COL_FIST at StatePosition1:
+    ordinary exact RIGHT raw55 request 5 -> 7
+    GroupAfter=7
+    EarlySuppressionProof=1
+    ClearTriggeredList=0
+    ACTIVATE_FIST=1
+
+then Gothic owns:
+    native OnDamage against PC_Hero
+    native exact RIGHT cleanup 7 -> 5
+    C1 cleanup fulfilled
+    Outstanding=0
+    Cleanup=1
+    PhysicalChanged=0
+    Outcome=NO_OP_NO_OUTSTANDING
 ```
 
-C1=18 is then interrupted because the User damages the Troll; it is replaced with `ReplacedOutstanding=0`. It is valid immediate separability evidence but is not used as a complete post-FIST sample.
-
-Completed factual Normal C1s including 21, 22, 37, 38, 45 and 46 show:
+Activation times in the four samples are approximately:
 
 ```text
-RIGHT remains group5 through later authored G3AB_COL_FIST
-FIST arrives at StatePosition=1
-stable marker result = UNSUPPORTED_MISSING_SOURCE
-no alternate raw55 5 -> 7 appears
-no Normal damage from the suppressed physical source
+C1=8   0.761141
+C1=10  0.761412
+C1=14  0.766803
+C1=36  0.762906
 ```
-
-Representative completed C1s 21, 22, 37 and 38 finalize:
-
-```text
-Outstanding=0
-Cleanup=0
-PhysicalChanged=0
-Outcome=NO_OP_NO_OUTSTANDING
-```
-
-The `OnDamage Target=PC_Hero` records in the mixed runtime correlate with incidental Quick/Power C1s, not the suppressed Normal executions, matching the User observation that Normal attacks did not damage.
 
 Conclusion:
 
 ```text
-raw55 Normal early-group / StatePosition separability CONFIRMED/PASS
-preserve original _AI_Attack and native StatePosition progression
-suppress only the exact premature scoped RIGHT raw55 5 -> 7
-RIGHT can remain group5 cleanly through authored FIST
-no fabricated offense/cleanup obligation is created by suppression
+raw55 Normal tested mechanism CLOSED/PASS
+Normal authored-FIST activation alone is sufficient for tested first contact
+NO Normal-specific ClearTriggeredList is required
+preserve native damage and cleanup ownership
 ```
+
+Do not generalize this no-rearm result to Quick; Quick's tested mechanism independently requires contact rearm.
 
 ---
 
-## Current Frozen Work Responsibility
+## Current Frozen Work Responsibility — Raw55 Sprint Callback Boundary
 
 Authority:
 
 ```text
-docs/COLLISION_RAW55_NORMAL_FIST_ACTIVATION_PROBE.md
+docs/COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md
 ```
+
+Why Sprint is next:
+
+```text
+Quick raw55 closed through EV-273
+true Power raw55 closed through EV-276
+Normal raw55 closed through EV-279
+Sprint / Action9 is the only remaining raw55 family under temporary whole-callback suppression
+```
+
+Established Sprint transport fact:
+
+```text
+factual Action9 is already visible at the existing _AI_PowerAttack callback entry
+EngineBridge already resolves Action9 -> AttackFamily_Sprint
+raw8 Sprint is independently closed/supported through EV-251
+```
+
+Therefore no new hook or Sprint-family discovery is needed.
 
 Single question:
 
-> With EV-278 early Normal raw55 `5 -> 7` suppression preserved and native `StatePosition 0 -> 1` intact, can the authored `G3AB_COL_FIST` event itself open the exact RIGHT PhysicalFist/raw55 source `5 -> 7` at authored timing, with Gothic retaining native contact/damage/cleanup ownership?
+> When the eligible marked raw55 Sprint callback is no longer temporarily whole-suppressed and the original `_AI_PowerAttack` runs exactly once, does that same native invocation advance `StatePosition 0 -> 1` and perform the exact RIGHT PhysicalFist/raw55 `5 -> 7`, or does Sprint divide those responsibilities differently?
 
-Exact intended research mechanism:
+Exact intended diagnostic mechanism:
 
 ```text
-when exact EV-278 Normal suppression occurs:
-    record bounded proof = actor + exact RIGHT source + C1
+PhysicalFistProbe:
+    remove Sprint from temporary whole-callback suppression
+    add dedicated reentrancy-safe SprintCallbackObservation
+    resolve only exact marked raw55 Sprint fixture
+    capture actor + exact RIGHT source + C1 + before facts
+    compare after facts
+    emit CORE RAW55_SPRINT_CALLBACK_BOUNDARY
 
-later reserved FIST path:
-    stable marker result already exists and remains UNSUPPORTED_MISSING_SOURCE
-    require same actor + source + C1 proof
-    require factual Action1 / Family NORMAL Hit
-    require StatePosition=1
-    require exact RIGHT PhysicalFist/raw55 still group5
-    require activation unused for this proof/C1
-
-then:
-    request exact RIGHT raw55 group7 once through ordinary native/setter path
-    let existing SetCollisionGroup + CollisionLifecycleGuard observe the real opening
+EngineBridge:
+    remain sole _AI_PowerAttack hook owner
+    existing Action9 -> Family SPRINT selection unchanged
+    for Family POWER: existing Power Begin/End unchanged
+    for Family SPRINT: smallest Begin/End observation delegation
+    call original _AI_PowerAttack exactly once
+    return original result unchanged
 ```
 
-This probe must issue **no `ClearTriggeredList()`**. Activation and contact rearm remain separate causal responsibilities.
-
-Expected activation record:
+No intervention belongs in this task:
 
 ```text
-CORE RAW55_NORMAL_FIST_ACTIVATION_PROBE
+NO Sprint SetCollisionGroup suppression
+NO Sprint FIST activation
+NO Sprint ClearTriggeredList
+NO StatePosition/SPU writes
+NO custom damage
+NO cleanup compensation
+NO lifecycle policy change
+NO new hook/RVA/timer/polling
+```
+
+Expected compact record:
+
+```text
+CORE RAW55_SPRINT_CALLBACK_BOUNDARY
 Actor=...
 C1=...
-Action=1
-StatePosition=1
+SameC1=...
+SameRight=...
+Action=9->9
+Phase=...->...
+StateTime=...->...
+StatePosition=...->...
+MotionBefore=...
+MotionAfter=...
 Right=...
 RightUseType=55
-GroupBefore=5
-RequestedGroup=7
-GroupAfter=7
-EarlySuppressionProof=1
-ClearTriggeredList=0
-ACTIVATE_FIST=1
+RightGroup=...->...
+NativeResult=...
+OBSERVE_NATIVE=1
 ```
 
-Then runtime determines whether native `OnDamage` returns and whether ordinary native cleanup returns exact RIGHT `7 -> 5`.
-
----
-
-## Why No ClearTriggeredList Yet
-
-The established raw55 families differ:
-
-```text
-Quick:
-    authored activation + ClearTriggeredList was required in the tested mechanism
-
-Power:
-    authored activation alone restored tested first-contact damage
-    ClearTriggeredList=0
-
-Normal:
-    UNKNOWN
-```
-
-Do not import either Quick or Power contact/rearm behavior by analogy. Test Normal physical activation alone first.
-
-If group7 opens but Normal still cannot damage, the next smallest question becomes one exact Normal FIST-time `ClearTriggeredList()` after successful opening. Do not combine it now.
-
----
-
-## Modular Ownership
-
-```text
-EngineBridge
-= sole hook/transport owner
-= existing reserved-marker delegation already calls PhysicalFistProbe::OnMarkerProcessed
-= no new Normal policy/state expected
-
-PhysicalFistProbe
-= EV-278 Normal suppression proof
-= same actor/source/C1 validation
-= exact Normal authored-FIST activation eligibility
-= one-shot exact RIGHT raw55 5 -> 7 request
-= compact activation logging
-```
-
-Stable `FrameCollisionMarkers::ProcessMarker()` semantics remain unchanged; raw55 FIST remains unsupported by the stable raw8 path.
+A decisive compound result would show the nested ordinary `CORE COLLISION_GROUP` raw55 `5 -> 7` inside the same original invocation that returns `StatePosition=0->1 / RightGroup=5->7`. Do not assume that result in implementation.
 
 ---
 
@@ -197,11 +186,10 @@ Stable `FrameCollisionMarkers::ProcessMarker()` semantics remain unchanged; raw5
 Preserve unchanged:
 
 ```text
-EV-278 Normal selective early group suppression
-closed Quick behavior/research state
-closed true-Power EV-275/EV-276 behavior/research state
-Sprint/Action9 temporary whole-callback suppression
-raw8 FIST
+closed Quick raw55 behavior/research state
+closed true-Power EV-274–EV-276 behavior/research state
+closed Normal EV-277–EV-279 behavior/research state
+raw8 FIST including production Sprint
 FrameCollisionMarkers semantics
 CollisionSources semantics
 CollisionSourceOperations semantics
@@ -211,40 +199,27 @@ CMake target/source separation
 release target / release purity
 ```
 
-Do not add:
-
-```text
-whole Normal callback suppression
-Normal ClearTriggeredList in this probe
-custom/direct damage
-StatePosition/SPU writes
-manual cleanup compensation
-new hook/RVA/timer/polling
-species/name/filename policy
-permanent PhysicalFistCollision
-Sprint redesign
-release-module promotion
-```
-
-Build execution is **not authorized for Work**.
+Do not create permanent raw55 architecture yet.
 
 ---
 
-## After Work / Runtime
+## After Work
 
-After Work publishes the bounded implementation:
+After Work publishes the bounded Sprint observer:
 
 ```text
 Normal Chat independently reviews source
 User + Normal Chat build/deploy locally
 verify live DLL provenance
-run focused Troll fixture
+run focused Troll fixture until factual Action9/Sprint captured
 commit raw log unchanged
-Normal Chat closes evidence before any new source task
+Normal Chat closes evidence before any next source task
 ```
 
 Preferred future runtime artifact:
 
 ```text
-research/raw/2026.09.13_troll_raw55_normal_fist_activation.log
+research/raw/2026.09.13_troll_raw55_sprint_callback_boundary.log
 ```
+
+Build execution is **NOT authorized for Work**.
