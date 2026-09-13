@@ -15,8 +15,8 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe: `docs/COLLISION_RAW55_NORMAL_CALLBACK_BOUNDARY_PROBE.md`  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_274_ONWARD.md` through **EV-276**; EV-269–EV-273 remain in `docs/EVIDENCE_LEDGER_269_ONWARD.md`; earlier raw55 causal evidence is in preceding ledgers  
+Current frozen probe: `docs/COLLISION_RAW55_NORMAL_GROUP_SUPPRESSION_PROBE.md`  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_274_ONWARD.md` through **EV-277**; EV-269–EV-273 remain in `docs/EVIDENCE_LEDGER_269_ONWARD.md`; earlier raw55 causal evidence is in preceding ledgers  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
@@ -37,32 +37,32 @@ a second damaging contact can occur in the same Quick execution
 native cleanup returns exact RIGHT 7 -> 5
 ```
 
-True raw55 Power is closed through EV-276 for the tested scope:
+True raw55 Power remains closed through EV-276 for the tested scope:
 
 ```text
-EV-274:
-    same original factual Action2 / Family POWER _AI_PowerAttack invocation owns
-    StatePosition 0 -> 1
-    exact RIGHT raw55 5 -> 7
-
-EV-275:
-    suppress only the exact scoped premature RIGHT raw55 5 -> 7
-    original callback still advances StatePosition 0 -> 1
-    RIGHT remains group5
-    no later native raw55 opening
-
-EV-276:
-    authored G3AB_COL_FIST at StatePosition1 requests exact RIGHT raw55 5 -> 7
-    ordinary collision/lifecycle path observes the real offense request
-    ClearTriggeredList=0
-    native OnDamage returns
-    native cleanup returns exact RIGHT 7 -> 5
-    C1 finalizes cleanly without repair
+preserve original factual Action2 / Family POWER callback
+suppress only premature exact RIGHT raw55 5 -> 7
+native StatePosition 0 -> 1 survives
+authored FIST later activates exact RIGHT raw55 5 -> 7
+ClearTriggeredList=0
+native damage returns
+native cleanup returns exact RIGHT 7 -> 5
 ```
 
-Therefore tested true Power requires preservation of native callback/state progression plus delayed authored-frame physical activation; no Power-specific probe `ClearTriggeredList` is required for the tested first FIST contact.
+Raw55 Normal callback ownership is now closed through EV-277:
 
-Canonical evidence is through **EV-276**. Recovery Lock remains **CLOSED**.
+```text
+factual marked Normal = Action1 / Family NORMAL / _AI_Attack
+same original callback invocation owns both:
+    StatePosition 0 -> 1
+    exact RIGHT raw55 5 -> 7
+repeated independently in C1=33, 40, 42, 46
+native damage occurs while offensive
+native cleanup returns exact RIGHT 7 -> 5
+whole-callback Normal suppression is rejected
+```
+
+Canonical evidence is through **EV-277**. Recovery Lock remains **CLOSED**.
 
 No permanent raw55 implementation is authorized yet.
 
@@ -85,7 +85,8 @@ raw55 Quick mechanism                           CLOSED/PASS through EV-273
 raw55 true Power callback compound ownership    CONFIRMED/CLOSED — EV-274
 raw55 true Power group/state separability       CONFIRMED/PASS — EV-275
 raw55 true Power authored-FIST activation       CONFIRMED/PASS — EV-276
-raw55 Normal callback ownership                 CURRENT RESEARCH
+raw55 Normal callback compound ownership        CONFIRMED/CLOSED — EV-277
+raw55 Normal group/state separability           CURRENT RESEARCH
 raw55 Sprint callback ownership                 DEFERRED UNTIL NORMAL BOUNDARY CLOSES
 ```
 
@@ -93,29 +94,28 @@ Raw8 FIST remains a separate proven mechanism. Raw55 findings must not be genera
 
 ---
 
-## Current Frozen Responsibility — Raw55 Normal Callback Boundary
+## Current Frozen Responsibility — Raw55 Normal Group/State Separability
 
 Authority:
 
 ```text
-docs/COLLISION_RAW55_NORMAL_CALLBACK_BOUNDARY_PROBE.md
+docs/COLLISION_RAW55_NORMAL_GROUP_SUPPRESSION_PROBE.md
 ```
 
 Single question:
 
-> During an exact marked raw55 `Family=NORMAL` Hit, what changes across the original native `_AI_Attack` invocation that owns the old early RIGHT PhysicalFist/raw55 opening: StatePosition, collision group, or both?
+> With the original marked raw55 Normal `_AI_Attack` callback still executing exactly once, can only its exact scoped RIGHT PhysicalFist/raw55 `5 -> 7` request be suppressed while native `StatePosition 0 -> 1` still occurs, with no later raw55 activation or lifecycle divergence?
 
-EV-262 proved that temporary whole-callback suppression removes Normal's old pre-marker raw55 opening and observed damage, but it never proved what required native state work that callback may also perform. Quick and true Power later demonstrated exactly that kind of compound callback ownership. Normal must now be measured independently.
-
-For this diagnostic observation:
+For this diagnostic probe:
 
 ```text
-Normal temporary whole-callback suppression is disabled
-original marked raw55 Normal _AI_Attack executes exactly once
-PhysicalFistProbe brackets eligible native Normal invocation
-NO selective group suppression yet
-NO authored-FIST raw55 activation yet
+original Normal callback remains enabled
+establish exact actor + RIGHT source + C1 scoped Normal observation
+suppress only exact scoped raw55 group5 -> requested group7
+keep existing Normal callback-boundary logging
+NO authored-FIST activation yet
 NO ClearTriggeredList for Normal
+NO StatePosition/SPU writes
 Sprint temporary whole-callback suppression remains unchanged
 Quick and Power precise research behavior remain unchanged
 ```
@@ -128,8 +128,8 @@ Build execution is **not authorized for Work**.
 
 ```text
 true Power: Action=2 / Family=POWER / tested mechanism closed through EV-276
-Normal:     Family=NORMAL / prior whole-callback suppression is temporary research scaffolding; native callback-boundary observation current
-Sprint:     Action=9 / Family=SPRINT / temporary whole-callback suppression remains active pending its own independent boundary research
+Normal:     Action=1 / Family=NORMAL in tested fixture / callback compound ownership EV-277 / selective separability current
+Sprint:     Action=9 / Family=SPRINT / temporary whole-callback suppression remains active pending independent boundary research
 ```
 
 Do not infer family from motion filename. `_AI_PowerAttack` transports both true Power and Sprint; factual action selects that family boundary.
@@ -140,15 +140,21 @@ Do not generalize Quick or Power activation/rearm details onto Normal or Sprint.
 
 ## Current Runtime Artifact
 
-EV-276:
+EV-277 valid runtime:
 
 ```text
-research/raw/2026.09.13_troll_raw55_power_fist_activation.log
-upload commit 83d2150defd967e379d3ae602f6a2936e941d1bd
-implementation 0131f7a04d548f186ed9c8581e59e84a7b24b1f7
+research/raw/2026.09.13_troll_raw55_normal_callback_boundary_2.log
+upload commit 031d2be6ea6b0ef0972cbed7d66d3a5b045a89e6
+implementation 7d6fb67dd60937a64b68d571a5cd4dbc7eafe7bd
 ```
 
-Two factual true-Power C1s independently show authored-frame `5 -> 7`, native damage, native `7 -> 5` cleanup, and clean finalization with `ClearTriggeredList=0` in the Power activation probe.
+The earlier artifact:
+
+```text
+research/raw/2026.09.13_troll_raw55_normal_callback_boundary.log
+```
+
+is stale-deployment provenance evidence only. The User confirmed the newly built DLL had not been copied before that run; the stale live DLL still whole-suppressed Normal and therefore cannot answer the callback-boundary question.
 
 ---
 
