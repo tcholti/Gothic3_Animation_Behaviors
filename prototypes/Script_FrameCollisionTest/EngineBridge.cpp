@@ -217,8 +217,25 @@ DECLARE_SCRIPT_CALLBACK(OnAI_PowerAttack_FrameCollisionTest)
         ? AttackFamily_Sprint : AttackFamily_Power;
     if (EvaluateAttackCallback(SelfEntity, family, a_pSPU))
         return GETrue;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    PhysicalFistProbe::PowerCallbackObservation observation = {};
+    if (family == AttackFamily_Power)
+    {
+        PhysicalFistProbe::BeginPowerCallbackObservation(
+            SelfEntity, a_pSPU, observation);
+    }
+    GEBool const result = Hook_OnAI_PowerAttack.GetOriginalFunction(
+        &OnAI_PowerAttack_FrameCollisionTest)(a_pSPU);
+    if (family == AttackFamily_Power)
+    {
+        PhysicalFistProbe::EndPowerCallbackObservation(
+            SelfEntity, observation, result);
+    }
+    return result;
+#else
     return Hook_OnAI_PowerAttack.GetOriginalFunction(
         &OnAI_PowerAttack_FrameCollisionTest)(a_pSPU);
+#endif
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
