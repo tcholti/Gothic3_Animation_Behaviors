@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-13
 
-## Current Bridge — RAW55 TRUE POWER CLOSED THROUGH EV-276; NORMAL CALLBACK OWNERSHIP FROZEN
+## Current Bridge — RAW55 NORMAL CALLBACK OWNERSHIP CLOSED; SELECTIVE GROUP SUPPRESSION FROZEN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-276**.
+Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-277**.
 
 No permanent raw55 implementation is authorized yet.
 
@@ -21,116 +21,98 @@ No permanent raw55 implementation is authorized yet.
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. COLLISION_RAW55_NORMAL_CALLBACK_BOUNDARY_PROBE.md
-4. EVIDENCE_LEDGER_274_ONWARD.md EV-274–EV-276
-5. EVIDENCE_LEDGER_250_ONWARD.md EV-262 only if the old Normal/Sprint suppression evidence boundary is needed
-6. COLLISION_RAW55_POWER_CALLBACK_BOUNDARY_PROBE.md only as prior observation-pattern reference
-7. only exact PhysicalFistProbe / EngineBridge source required for the frozen Normal observation task
+3. COLLISION_RAW55_NORMAL_GROUP_SUPPRESSION_PROBE.md
+4. EVIDENCE_LEDGER_274_ONWARD.md EV-277
+5. COLLISION_RAW55_NORMAL_CALLBACK_BOUNDARY_PROBE.md only if the completed observation contract is needed
+6. COLLISION_RAW55_POWER_GROUP_SUPPRESSION_PROBE.md only as prior separability-pattern reference
+7. only exact PhysicalFistProbe / EngineBridge source required for the frozen Normal separability task
 ```
 
 ---
 
-## Closed Result — EV-276
+## Closed Result — EV-277
 
-Runtime artifact:
+Valid runtime artifact:
 
 ```text
-research/raw/2026.09.13_troll_raw55_power_fist_activation.log
-upload commit 83d2150defd967e379d3ae602f6a2936e941d1bd
-implementation 0131f7a04d548f186ed9c8581e59e84a7b24b1f7
+research/raw/2026.09.13_troll_raw55_normal_callback_boundary_2.log
+upload commit 031d2be6ea6b0ef0972cbed7d66d3a5b045a89e6
+implementation 7d6fb67dd60937a64b68d571a5cd4dbc7eafe7bd
 ```
 
-Two factual true-Power executions, C1=6 and C1=11, independently show the complete tested mechanism.
+Multiple independent factual marked Normal executions repeat the same decisive callback shape.
 
-Early native boundary in both:
+C1=33:
 
 ```text
-Action=2 / Family=POWER
-exact RIGHT TrollFist / PhysicalFist raw55
-premature native request 5 -> 7 suppressed at StatePosition=0
-original _AI_PowerAttack still executes exactly once
-StatePosition 0 -> 1
-RightGroup 5 -> 5
-SameC1=1
-SameRight=1
-NativeResult=1
+Action=1 / Family=NORMAL
+RIGHT TrollFist / PhysicalFist raw55
+before decisive callback:
+    StatePosition=0
+    RightGroup=5
+inside native callback:
+    ordinary SetCollisionGroup request 5 -> 7
+after same original _AI_Attack invocation:
+    SameC1=1
+    SameRight=1
+    Action=1->1
+    Phase=1->1
+    StatePosition=0->1
+    RightGroup=5->7
+    NativeResult=1
 ```
 
-At authored FIST in both:
+The same compound transition repeats in:
 
 ```text
-stable marker result remains UNSUPPORTED_MISSING_SOURCE
-StatePosition=1
-same actor/source/C1 suppression proof
-RIGHT group5 -> group7 through ordinary setter
-real C1 offense obligation observed
-CORE RAW55_POWER_FIST_ACTIVATION_PROBE
-EarlySuppressionProof=1
-ClearTriggeredList=0
-ACTIVATE_FIST=1
+C1=40 at StateTime=0.250812
+C1=42 at StateTime=0.254114
+C1=46 at StateTime=0.251851
 ```
 
-Then in both:
+Later in representative Normal C1s:
 
 ```text
+authored FIST is delivered at StatePosition=1 while RIGHT is already group7
+stable raw55 marker path remains unsupported
 native OnDamage against PC_Hero occurs
-User visually observes damage
+User visually observes Normal damage
 native cleanup returns exact RIGHT 7 -> 5
 C1 cleanup fulfilled
-C1 finalizes Outstanding=0 / Cleanup=1 / PhysicalChanged=0 / NO_OP_NO_OUTSTANDING
+finalization requires no repair
 ```
 
 Conclusion:
 
 ```text
-true Power tested mechanism CLOSED/PASS through EV-276
-marker-time physical activation is sufficient for tested first Power FIST contact
-NO probe-issued Power ClearTriggeredList is required
-native damage and cleanup ownership remain intact
+raw55 Normal callback compound ownership CONFIRMED
+whole _AI_Attack suppression REJECTED as a Normal production mechanism
+required native StatePosition progression must be preserved
+premature physical raw55 opening must be separated rather than suppressing the whole callback
 ```
 
-Do not generalize the Power no-rearm result to Quick, Normal, or Sprint.
+Do not compensate with StatePosition writes.
 
 ---
 
-## Release / Behavior-Only Boundary
+## Stale First Runtime Disposition
 
-The development target split remains intact:
-
-```text
-Script_FrameCollisionTest
-= diagnostic research target
-= behavior sources + CollisionDiagnostics + PhysicalFistProbe
-
-Script_FrameCollisionBehaviorTest
-= diagnostics-free behavior twin
-= behavior sources only
-
-Script_G3AnimationBehaviors
-= eventual shipped plugin target
-= proven collision responsibilities must be deliberately promoted here after research closure
-```
-
-If a local `--clean-first` build is followed by building only `Script_FrameCollisionTest`, an older `Script_FrameCollisionBehaviorTest.dll` may disappear from the Release output until that target is explicitly rebuilt. That is a build-output consequence, not removal of the behavior target from CMake.
-
-Do not ship `Script_FrameCollisionTest` or promote `PhysicalFistProbe` as production code.
-
----
-
-## Why Normal Is Next
-
-EV-262 established that temporary whole-callback suppression for marked raw55 Normal:
+Artifact:
 
 ```text
-removes the old early/pre-marker 5 -> 7
-removes observed Normal damage in the tested fixture
-still lets the authored FIST later be reached as UNSUPPORTED_MISSING_SOURCE
-remains lifecycle-clean in sampled Normal executions
+research/raw/2026.09.13_troll_raw55_normal_callback_boundary.log
+upload commit 8a031cfab9b6d1321181d0d5efa4f8e70dc67110
 ```
 
-But EV-262 did **not** bracket the native `_AI_Attack` callback and prove what else whole-callback suppression removes.
+The User confirmed the newly built DLL had not been copied into the game before that run. The stale live DLL still emitted:
 
-Quick later proved its native callback jointly owns `StatePosition 0 -> 1` and early raw55 `5 -> 7` (EV-264). True Power independently proved the same compound pattern (EV-274). Therefore the old temporary Normal whole-callback suppression must not be promoted merely because animations looked healthy.
+```text
+CORE RAW55_CALLBACK_SUPPRESSION_PROBE
+Family=NORMAL
+SUPPRESS_NATIVE=1
+```
+
+Therefore that artifact is deployment/provenance evidence only and is excluded from Normal causal interpretation.
 
 ---
 
@@ -139,47 +121,76 @@ Quick later proved its native callback jointly owns `StatePosition 0 -> 1` and e
 Authority:
 
 ```text
-docs/COLLISION_RAW55_NORMAL_CALLBACK_BOUNDARY_PROBE.md
+docs/COLLISION_RAW55_NORMAL_GROUP_SUPPRESSION_PROBE.md
 ```
 
 Single question:
 
-> During an exact marked raw55 `Family=NORMAL` Hit, what changes across the original native `_AI_Attack` invocation that owns the old early RIGHT PhysicalFist/raw55 opening: StatePosition, collision group, or both?
+> While the original eligible marked raw55 Normal `_AI_Attack` executes exactly once, can only its exact scoped RIGHT PhysicalFist/raw55 `Item_Equipped (5) -> Item_Attack (7)` request be suppressed while native StatePosition still advances `0 -> 1`, with RIGHT remaining group5 and lifecycle staying clean?
 
-For this diagnostic observation:
+Exact intended intervention:
 
 ```text
-remove Normal from the temporary whole-callback suppression family set
-keep Sprint temporary whole-callback suppression unchanged
-keep Quick precise research behavior unchanged
-keep Power precise EV-275/EV-276 behavior unchanged
-for eligible marked raw55 Normal only:
-    snapshot before original _AI_Attack
-    call original exactly once
-    snapshot after
-    emit CORE RAW55_NORMAL_CALLBACK_BOUNDARY
+eligible marked raw55 Normal callback begins
+store factual actor + exact RIGHT source + current C1 as per-invocation scope
+call original _AI_Attack exactly once
+inside existing SetCollisionGroup hook transport:
+    if current source == scoped RIGHT raw55 source
+    and before group == 5
+    and requested group == 7
+    and same actor/C1 remains current
+    -> suppress only this exact group mutation
+all other native callback work continues
 ```
 
-No Normal selective group suppression, authored-FIST activation, or ClearTriggeredList is part of this task.
+Expected decisive PASS shape:
+
+```text
+CORE RAW55_NORMAL_GROUP_SUPPRESSION
+    BeforeGroup=5
+    RequestedGroup=7
+    SUPPRESS_GROUP=1
+
+CORE RAW55_NORMAL_CALLBACK_BOUNDARY
+    SameC1=1
+    SameRight=1
+    StatePosition=0->1
+    RightGroup=5->5
+    NativeResult=1
+```
+
+Then verify:
+
+```text
+no alternate raw55 5 -> 7 later before/after FIST
+FIST still arrives
+no Normal OnDamage from the suppressed physical source
+no fabricated C1 offense obligation
+no terminal repair/lifecycle divergence
+```
+
+No authored-FIST activation/rearm belongs in this probe.
 
 ---
 
-## Expected Decisive Shape
-
-If Normal matches the Quick/Power compound pattern:
+## Modular Ownership
 
 ```text
-CORE RAW55_NORMAL_CALLBACK_BOUNDARY
-SameC1=1
-SameRight=1
-StatePosition=0->1
-RightGroup=5->7
-NativeResult=1
+EngineBridge
+= sole hook/transport owner
+= existing Normal begin/end observation delegation
+= existing SetCollisionGroup diagnostic delegation
+= no Normal policy/state
+
+PhysicalFistProbe
+= exact Normal callback-scope eligibility
+= reentrancy-safe per-invocation actor/source/C1 scope
+= exact selective group5 -> requested7 suppression decision
+= suppression logging
+= existing Normal callback-boundary observation
 ```
 
-then whole `_AI_Attack` suppression is rejected as a Normal production mechanism and the next smallest Normal question is selective exact `5 -> 7` suppression while preserving native progression.
-
-If the boundary differs, follow the factual result rather than importing the Quick/Power mechanism by analogy.
+Prefer zero new `EngineBridge` semantic changes. If the existing delegation is directly insufficient, Work must return the smallest transport-only contradiction rather than moving research policy into the bridge.
 
 ---
 
@@ -197,14 +208,14 @@ CollisionSources semantics
 CollisionSourceOperations semantics
 CollisionLifecycleGuard / C1-R1
 AttackMotionRouting
-native target/contact/damage/cleanup outside the intentional restoration of native Normal
 CMake target/source separation
+release target / release purity
 ```
 
 Do not add:
 
 ```text
-Normal selective group suppression yet
+whole Normal callback suppression
 Normal authored-FIST activation/rearm
 ClearTriggeredList for Normal
 StatePosition/SPU writes
@@ -222,19 +233,17 @@ Build execution is **not authorized for Work**.
 
 ## After Runtime
 
-Normal Chat must classify factual Normal from logs; the User does not need to identify the animation visually.
-
 Preferred artifact:
 
 ```text
-research/raw/2026.09.13_troll_raw55_normal_callback_boundary.log
+research/raw/2026.09.13_troll_raw55_normal_group_suppression.log
 ```
 
-After one adequate factual Normal capture:
+After one adequate factual Normal capture, preferably two independent C1s when convenient:
 
 ```text
 commit raw unchanged
-Normal Chat analyzes exact callback boundary
+Normal Chat analyzes exact separability result
 promote next canonical EV
-freeze only the next smallest Normal causal question
+freeze only the next smallest Normal authored-FIST question if separability passes
 ```
