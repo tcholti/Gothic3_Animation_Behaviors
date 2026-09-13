@@ -41,6 +41,8 @@ struct PowerEarlySuppressionProof
 
 static thread_local QuickCallbackObservation *g_pCurrentQuickCallbackScope =
     nullptr;
+static thread_local NormalCallbackObservation *g_pCurrentNormalCallbackScope =
+    nullptr;
 static thread_local PowerCallbackObservation *g_pCurrentPowerCallbackScope =
     nullptr;
 static thread_local std::unordered_map<eCEntity *, QuickEarlySuppressionProof>
@@ -138,8 +140,8 @@ bool ShouldSuppressNativeCallback(
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &ownership,
     gCScriptProcessingUnit *spu)
 {
-    // Normal and Quick are deliberately observation-only in their current
-    // probes. Their native callbacks must run so the probes can bracket them.
+    // Normal and Quick keep their native callbacks enabled so their scoped
+    // probes can bracket them and intercept only authorized nested work.
     if (!IsSuppressionFamily(family))
         return false;
 
@@ -228,6 +230,8 @@ void BeginNormalCallbackObservation(
     NormalCallbackObservation &observation)
 {
     observation = {};
+    observation.previousScope = g_pCurrentNormalCallbackScope;
+    g_pCurrentNormalCallbackScope = &observation;
 
     FrameCollisionMarkers::AttackCallbackOwnershipResult const ownership =
         FrameCollisionMarkers::EvaluateAttackCallbackOwnership(
@@ -308,6 +312,81 @@ void BeginPowerCallbackObservation(
     observation.motionBefore = motion.GetText() != nullptr
         ? motion.GetText() : "<unavailable>";
     observation.rightNameBefore = rightSource.GetName().GetText();
+}
+
+static bool ShouldSuppressNormalCollisionGroupRequest(
+    eCEntity *sourceInstance, eECollisionGroup requestedGroup,
+    eECollisionGroup beforeGroup)
+{
+    NormalCallbackObservation *const scope =
+        g_pCurrentNormalCallbackScope;
+    if (scope == nullptr || !scope->active
+        || scope->actionBefore != static_cast<GEInt>(gEAction_Attack)
+        || sourceInstance == nullptr
+        || sourceInstance != scope->rightSourceInstance
+        || requestedGroup != eECollisionGroup_Item_Attack
+        || beforeGroup != eECollisionGroup_Item_Equipped)
+    {
+        return false;
+    }
+
+    Entity actor(scope->actorInstance);
+    Entity rightSource(sourceInstance);
+    if (actor == None || actor.GetInstance() != scope->actorInstance)
+        return false;
+
+    gEAction const action =
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+    if (action != gEAction_Attack
+        || static_cast<GEInt>(action) != scope->actionBefore
+        || !FrameCollisionMarkers::IsAttackHit(
+            actor, AttackFamily_Normal)
+        || rightSource == None
+        || rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Equipped
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist)
+    {
+        return false;
+    }
+
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    if (currentSources.rightInstance != sourceInstance)
+        return false;
+
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            scope->actorInstance);
+    if (!generation.valid
+        || generation.actorInstance != scope->actorInstance
+        || generation.generation != scope->c1Generation)
+    {
+        return false;
+    }
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        GEInt const statePosition = static_cast<GEInt>(
+            actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+        GEFloat const stateTime = actor.Routine.GetStateTime();
+        std::fprintf(
+            log,
+            "CORE RAW55_NORMAL_GROUP_SUPPRESSION Actor=%s C1=%llu Action=%d Right=%s RightUseType=%d RequestedGroup=%d BeforeGroup=%d StatePosition=%d StateTime=%.6f SUPPRESS_GROUP=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(scope->c1Generation),
+            static_cast<GEInt>(action),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(
+                CollisionSources::GetCollisionSourceUseType(rightSource)),
+            static_cast<GEInt>(requestedGroup),
+            static_cast<GEInt>(beforeGroup), statePosition,
+            static_cast<double>(stateTime));
+        std::fflush(log);
+    }
+
+    return true;
 }
 
 static bool ShouldSuppressPowerCollisionGroupRequest(
@@ -403,6 +482,12 @@ bool ShouldSuppressCollisionGroupRequest(
     eECollisionGroup beforeGroup)
 {
     if (ShouldSuppressPowerCollisionGroupRequest(
+            sourceInstance, requestedGroup, beforeGroup))
+    {
+        return true;
+    }
+
+    if (ShouldSuppressNormalCollisionGroupRequest(
             sourceInstance, requestedGroup, beforeGroup))
     {
         return true;
@@ -1101,6 +1186,9 @@ void EndNormalCallbackObservation(
     Entity &actor, NormalCallbackObservation &observation,
     GEBool nativeResult)
 {
+    if (g_pCurrentNormalCallbackScope == &observation)
+        g_pCurrentNormalCallbackScope = observation.previousScope;
+
     if (!observation.active || actor == None
         || actor.GetInstance() != observation.actorInstance)
     {
