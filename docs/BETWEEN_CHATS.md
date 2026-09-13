@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-13
 
-## Current Bridge — RAW55 QUICK REPEATED-FIST ELIGIBILITY OBSERVABILITY
+## Current Bridge — RAW55 QUICK REPEATED-FIST CLOSED; NEXT FAMILY QUESTION NOT YET FROZEN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-272**.
+Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-273**.
 
 No permanent raw55 implementation is authorized yet.
 
@@ -21,199 +21,108 @@ No permanent raw55 implementation is authorized yet.
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. COLLISION_RAW55_QUICK_REPEAT_FIST_ELIGIBILITY_OBSERVABILITY_PROBE.md
-4. EVIDENCE_LEDGER_269_ONWARD.md EV-269–EV-272
-5. WORK_IMPLEMENTATION_PROTOCOL.md
-6. only exact PhysicalFistProbe source needed for the bounded diagnostic
-```
-
-The repeated-FIST rearm implementation exists at:
-
-```text
-a68361a48662f4236e2d742057aa64bde2d03346
-```
-
-The runtime log was uploaded on top at:
-
-```text
-1d9b11a375bbc760dfd9b70ed977af19765228e5
+3. EVIDENCE_LEDGER_269_ONWARD.md EV-269–EV-273
+4. COLLISION_RAW55_QUICK_REPEAT_FIST_ELIGIBILITY_OBSERVABILITY_PROBE.md only if the completed diagnostic contract is needed
+5. retrieve deeper raw55 evidence/source only after the next exact causal question is chosen
 ```
 
 ---
 
-## Closed Evidence
+## Closed Result — EV-273
 
-### EV-269 — first early raw55 Quick FIST PASS
+Runtime artifacts:
 
 ```text
-frame-1 FIST at StatePosition 0
-RIGHT raw55 5 -> 7
-one ClearTriggeredList
-later native 7 -> 7
-StatePosition 0 -> 1
-OnDamage on contact
-native cleanup 7 -> 5
+research/raw/2026.09.13_deployment_test.log
+research/raw/2026.09.13_troll_quick_fist_frame_1_frame_15_repeat_fist_eligibility.log
+upload commit 6cc1159c8f302ff600b96dc4eabc8f76167bc058
 ```
 
-### EV-270 — later FIST transport exists
-
-A later FIST reaches the same Quick C1.
-
-### EV-271 — early frame authoring closure
-
-Frame 0 and frame 1 are valid for tested equipped and raw8 mechanisms. The September 13 control logs accidentally carry `2026.09.12` filenames; retain those names for provenance.
-
-### EV-272 — revised repeated-FIST intervention NOT reached
-
-Runtime artifact:
+Observability implementation:
 
 ```text
-research/raw/2026.09.13_troll_quick_fist_activation_frame_1_frame_15_test_2.log
+3d9a659e6ac66b13d287ec91c80a04278a65cb17
 ```
 
-Observed Quick shape:
+For repeated Troll Quick executions, the later frame-15 FIST reports all repeated-FIST eligibility facts true, including matching C1/source identity, PhysicalFist/raw55 group7, first intervention/proof present, `DecisionFistCount=2`, no mixed source markers, `RequiredSourceMask=0`, raw8 resolver absent, `QuickHit=1`, `Eligible=1`, and `FirstFailedGate=NONE`.
+
+The unchanged repeat helper then immediately logs:
 
 ```text
-first FIST arrives at StatePosition 0
-RIGHT TrollFist/raw55 5 -> 7
+CORE RAW55_QUICK_REPEAT_FIST_REARM_PROBE
 ClearTriggeredList=1
-later native Quick 7 -> 7
-StatePosition 0 -> 1
-one OnDamage can occur
-later FIST is delivered in same C1 at StatePosition 1
-RIGHT TrollFist/raw55 is still group7
-BUT no CORE RAW55_QUICK_REPEAT_FIST_REARM_PROBE record appears
+REPEAT_FIST_REARM=1
 ```
 
-User observation:
+Multiple Quick executions contain an `OnDamage` before the later marker and another `OnDamage` after the repeated rearm while the same Quick C1 remains active. The User observed Quick attacks damaging twice, once per authored FIST marker.
+
+Therefore:
 
 ```text
-each Quick could damage once
-no visible second rearm
+raw55 Quick later-FIST transport      CONFIRMED
+raw55 Quick repeat eligibility        CONFIRMED/PASS in current run
+second ClearTriggeredList execution   CONFIRMED
+repeated raw55 Quick damage rearm     CONFIRMED/PASS
 ```
 
-Interpretation:
-
-```text
-second ClearTriggeredList never executed
-therefore repeated ClearTriggeredList rearm is STILL UNTESTED
-```
-
-Do not classify this as `ClearTriggeredList` failure.
+EV-272 remains valid provenance for the earlier run where the intervention was not reached. Because the only source change since then was observability-only logging, its exact rejection did not reproduce and was not identified. Do not reinterpret EV-272 as a failed `ClearTriggeredList()` primitive.
 
 ---
 
-## Power / Sprint Clarification
+## Current Family Controls
 
-The User also observed that attacks visually recognized as Power did not damage in the EV-272 run.
-
-The log shows those executions use:
+Latest runtime preserves:
 
 ```text
-Action=9
-Family=SPRINT
-Motion=Troll_Stand_Fist_Fist_P0_PowerAttack_Hit_...
+true Power: Action=2 / Family=POWER / SuppressNative=0 / can damage
+Normal:     Family=NORMAL / temporary whole-callback suppression remains active
 ```
 
-The old temporary raw55 Sprint whole-callback suppression remains active and repeatedly logs `SUPPRESS_NATIVE=1`.
-
-Earlier damaging attacks using the same/similar `PowerAttack` motion name were factual:
-
-```text
-Action=2
-Family=POWER
-SuppressNative=0
-```
-
-Therefore there is no contradiction: motion naming alone does not identify the attack family. True raw55 Power family ownership remains a separate unfinished responsibility.
+The EV-272 animation visually identified as Power but not damaging was `Action=9 / Family=SPRINT`; the old temporary Sprint suppression explained that result. Filename alone is not family identity.
 
 ---
 
 ## Current Exact Responsibility
 
-Frozen authority:
+There is **no frozen Work implementation task** now.
 
-```text
-docs/COLLISION_RAW55_QUICK_REPEAT_FIST_ELIGIBILITY_OBSERVABILITY_PROBE.md
-```
+Normal Chat + User should decide the next smallest causal question before any source change. The strongest next candidate is true raw55 Power-family ownership, because repeated Quick authoring is now proven while Power still uses native damage and Normal/Sprint still rely on temporary research behavior.
 
-Question:
-
-> Which exact predicate prevents the delivered later raw55 Quick FIST from entering the repeated-FIST rearm intervention?
-
-This is OBSERVABILITY ONLY.
-
-Add one bounded marker-dispatch CORE diagnostic inside `PhysicalFistProbe`:
-
-```text
-CORE RAW55_QUICK_REPEAT_FIST_ELIGIBILITY
-```
-
-It must expose the factual eligibility inputs and one `FirstFailedGate` token, including:
-
-```text
-current/stored C1 + SameC1
-current/stored RIGHT + SameRight
-result RIGHT match
-RIGHT UseType/group
-first intervention/proof/later-used flags
-Quick Hit
-result code/opcode
-motion/scan/marker facts
-DecisionFistCount and other marker counts
-required mask
-raw8 resolver absence
-StatePosition
-Eligible
-FirstFailedGate
-```
-
-Do not change behavior.
+Do not start implementation until that question and its protected boundary are explicitly frozen.
 
 ---
 
-## Protected Boundaries
+## Protected Boundary
 
-Do not change:
-
-```text
-first EV-269 FIST behavior
-current repeated-FIST intervention behavior
-ClearTriggeredList call count
-SetCollisionGroup behavior
-FrameCollisionMarkers
-Raw8FistCollision
-CollisionLifecycleGuard
-CollisionSources
-CollisionSourceOperations
-EngineBridge
-CMake
-native Quick callback / 7 -> 7 / StatePosition progression / 7 -> 5 cleanup
-Normal/Sprint/Power temporary raw55 behavior
-```
-
-Do not add:
+Preserve the closed Quick facts:
 
 ```text
-new ClearTriggeredList
-new collision-group request
-custom damage
-state write
-manual cleanup
-new occurrence bookkeeping
-frame/time heuristics
-new hook/RVA/timer/polling
+frame-1 pre-state raw55 activation/rearm
+later native Quick 7 -> 7
+StatePosition progression
+later authored FIST delivery
+second triggered-list rearm
+native cleanup 7 -> 5
+raw8 FIST separation
 ```
 
-Build execution is NOT authorized for Work.
+Do not use EV-273 to authorize:
+
+```text
+permanent generic raw55 implementation
+raw55 behavior generalization to Power/Normal/Sprint
+raw8 mechanism changes
+new damage intervention
+new lifecycle ownership
+frame/time occurrence heuristics
+```
 
 ---
 
-## Later Raw55 Responsibilities — NOT THIS TASK
+## Later Raw55 Responsibilities
 
 ```text
-prove actual repeated Quick rearm primitive after eligibility is understood
-true Power family ownership
+true Power-family ownership
 replace old Normal/Sprint whole-callback temporary behavior
 production generic occurrence integration
 permanent PhysicalFistCollision design/promotion
