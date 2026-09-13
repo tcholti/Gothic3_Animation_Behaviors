@@ -93,11 +93,7 @@ Do not invent raw55-local frame/time dedupe rules.
 
 ## Exact Work Responsibility
 
-Starting remote HEAD for Work:
-
-```text
-93245c8a7545804e8780615213ee076277c026e7
-```
+Before editing, Work must verify that its local HEAD exactly matches the **Required starting remote HEAD supplied in the handoff prompt** and the current remote branch HEAD.
 
 Implement only the diagnostics-only second-FIST path in `PhysicalFistProbe.cpp`.
 
