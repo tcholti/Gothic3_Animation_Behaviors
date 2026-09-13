@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-13
 
-## Current Bridge — RAW55 TRUE POWER CALLBACK-BOUNDARY OBSERVATION FROZEN
+## Current Bridge — RAW55 TRUE POWER CALLBACK OWNERSHIP CLOSED; GROUP/STATE SEPARABILITY FROZEN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-273**.
+Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-274**.
 
 No permanent raw55 implementation is authorized yet.
 
@@ -21,52 +21,59 @@ No permanent raw55 implementation is authorized yet.
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. COLLISION_RAW55_POWER_CALLBACK_BOUNDARY_PROBE.md
-4. EVIDENCE_LEDGER_269_ONWARD.md EV-269–EV-273
-5. EVIDENCE_LEDGER_250_ONWARD.md EV-262–EV-264 only if the older raw55 callback route is needed
-6. only exact PhysicalFistProbe / EngineBridge source required for this probe
+3. COLLISION_RAW55_POWER_GROUP_SUPPRESSION_PROBE.md
+4. EVIDENCE_LEDGER_274_ONWARD.md EV-274
+5. COLLISION_RAW55_POWER_CALLBACK_BOUNDARY_PROBE.md only if the completed observation contract is needed
+6. COLLISION_RAW55_QUICK_GROUP_SUPPRESSION_PROBE.md only as prior proven research-pattern reference
+7. only exact PhysicalFistProbe / EngineBridge source required for the frozen Power separability task
 ```
 
 ---
 
-## Closed Result — EV-273
+## Closed Result — EV-274
 
-Raw55 Quick repeated-FIST semantics are closed for the tested scope:
-
-```text
-first authored FIST can activate/rearm raw55
-native Quick progression remains intact
-later authored FIST is delivered in same C1
-second ClearTriggeredList executes
-second damaging contact can occur
-native cleanup returns exact RIGHT 7 -> 5
-```
-
-Do not reopen Quick during the current Power task.
-
----
-
-## Current Factual Power Baseline
-
-The latest runtime contains a real true-Power execution, not Sprint disguised by a PowerAttack motion name:
+The clean local build recompiled `PhysicalFistProbe.cpp` and linked the diagnostic DLL. The focused runtime then captured factual true Power:
 
 ```text
 Actor=Troll
+C1=6
 Script=_AI_PowerAttack
 Action=2
 Family=POWER
-SuppressNative=0
-RIGHT TrollFist / UseType=55 starts group5
-native RIGHT 5 -> 7 occurs before FIST
-FIST later arrives at StatePosition=1 with RIGHT group7
-native OnDamage occurs
-native cleanup 7 -> 5
-C1 finalizes cleanly
+RIGHT TrollFist / UseType=55
 ```
 
-Current `PhysicalFistProbe` suppression families are Normal + Sprint only. True Power remains native.
+The decisive original native callback invocation is:
 
-`_AI_PowerAttack` also transports factual Sprint/Action9. Factual action/family is authoritative; motion filename is not.
+```text
+SameC1=1
+SameRight=1
+Action=2->2
+Phase=1->1
+StatePosition=0->1
+RightGroup=5->7
+NativeResult=1
+```
+
+Therefore the same original true-Power callback invocation owns both:
+
+```text
+required native StatePosition progression 0 -> 1
+premature raw55 physical opening 5 -> 7
+```
+
+Later Power callback invocations remain StatePosition1/group7. Authored FIST is delivered, native `OnDamage` can occur, native cleanup returns the exact RIGHT source `7 -> 5`, and C1 finalizes cleanly.
+
+Conclusion:
+
+```text
+raw55 true Power callback compound ownership CONFIRMED/CLOSED
+whole true-Power callback suppression          REJECTED AS PRODUCTION SHAPE
+```
+
+Do **not** generalize this result to Sprint/Action9 simply because `_AI_PowerAttack` transports both families.
+
+The earlier same-day log without `RAW55_POWER_CALLBACK_BOUNDARY` was generated before the Work implementation had been pulled into the User's local repository. It is stale-build provenance, not negative probe evidence.
 
 ---
 
@@ -75,96 +82,104 @@ Current `PhysicalFistProbe` suppression families are Normal + Sprint only. True 
 Authority:
 
 ```text
-docs/COLLISION_RAW55_POWER_CALLBACK_BOUNDARY_PROBE.md
+docs/COLLISION_RAW55_POWER_GROUP_SUPPRESSION_PROBE.md
 ```
 
 Single question:
 
-> During factual marked raw55 `Action=2 / Family=POWER`, what changes across the original native `_AI_PowerAttack` invocation that opens RIGHT `5 -> 7`: StatePosition, collision group, or both?
+> While the original factual `Action=2 / Family=POWER` `_AI_PowerAttack` callback executes normally, can only its exact nested RIGHT raw55 group5-to-group7 request be suppressed while StatePosition still advances `0 -> 1`, with the source remaining group5 and without later reactivation or lifecycle divergence?
 
-This is **observation only**.
-
-Expected source scope:
+Expected decisive PASS shape:
 
 ```text
-prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
-prototypes/Script_FrameCollisionTest/PhysicalFistProbe.h
-prototypes/Script_FrameCollisionTest/EngineBridge.cpp
+CORE RAW55_POWER_GROUP_SUPPRESSION ... SUPPRESS_GROUP=1
+CORE RAW55_POWER_CALLBACK_BOUNDARY ... StatePosition=0->1 ... RightGroup=5->5
 ```
 
-Ownership:
+This is a **diagnostic-only selective intervention**. It is not authored Power FIST implementation.
+
+---
+
+## Modular Ownership
 
 ```text
 EngineBridge
-= existing hook owner + smallest diagnostic begin/end delegation only
+= sole _AI_PowerAttack + SetCollisionGroup hook owner
+= transport/delegation only
 
 PhysicalFistProbe
-= Power observation eligibility + before/after snapshots + logging
+= true-Power callback-scope eligibility
+= reentrancy-safe temporary scope
+= exact actor/source/C1 identity
+= selective raw55 5 -> 7 suppression decision
+= probe logging
 ```
 
-Target record:
+The existing SetCollisionGroup bridge seam already calls `PhysicalFistProbe::ShouldSuppressCollisionGroupRequest(...)`; prefer extending the probe-side policy rather than adding bridge policy.
 
-```text
-CORE RAW55_POWER_CALLBACK_BOUNDARY
-```
-
-Preserve the native Power callback exactly once. Do not suppress it and do not mutate collision/state/damage.
-
-Build execution is **not authorized for Work**.
+A suppressed request must not reach original SetCollisionGroup and must not be reported to CollisionLifecycleGuard as a real offense request.
 
 ---
 
 ## Protected Boundary
 
-Do not change:
+Preserve unchanged:
 
 ```text
-true Power SuppressNative=0 behavior
-Normal/Sprint temporary suppression behavior
-closed Quick behavior or Quick research state
+closed raw55 Quick behavior and Quick research state
+Normal temporary whole-callback suppression
+Sprint/Action9 temporary whole-callback suppression
 raw8 FIST
-FrameCollisionMarkers
+FrameCollisionMarkers semantics
 CollisionSources semantics
 CollisionSourceOperations
-CollisionLifecycleGuard/C1-R1
+CollisionLifecycleGuard / C1-R1
 AttackMotionRouting
-native target/contact/damage/cleanup
+native target/contact/damage/cleanup outside the exact intervention
 ```
 
 Do not add:
 
 ```text
-Power callback suppression
-Power nested group suppression
-SetCollisionGroup intervention
+whole true-Power callback suppression
+authored Power FIST activation/rearm
+StatePosition writes
+SPU+0x164 writes
+manual raw55 group7/group5 compensation
 ClearTriggeredList
-StatePosition write
-custom damage
 new hook/RVA/timer/polling
-species/name or filename policy
+species/name/filename policy
 permanent PhysicalFistCollision
 ```
 
 ---
 
-## After Runtime
+## Evidence Transaction
 
-Normal Chat must interpret the exact callback-boundary evidence before the next causal step.
-
-Likely branches:
+EV-274 runtime artifacts:
 
 ```text
-StatePosition 0 -> 1 + RightGroup 5 -> 7
--> compound Power callback ownership; next isolate physical-request separability
-
-RightGroup 5 -> 7 only
--> activation belongs to callback; identify any other required callback responsibility before intervention
-
-StatePosition changes only
--> collision activation occurs elsewhere; follow that path
-
-neither changes
--> stop and inspect actual downstream/alternate context
+research/raw/2026.09.13_build log.txt
+research/raw/2026.09.13_troll_raw55_power_callback_boundary_2.log
+upload commit ab2522ae9d451e8663da95e324dd3621f051fd91
 ```
 
-Do not combine this probe with authored Power FIST implementation or Normal/Sprint redesign.
+Observation implementation:
+
+```text
+2a4e4c8bc96823af0f8db8710a8c56e8f890339a
+```
+
+Canonical promotion:
+
+```text
+docs/EVIDENCE_LEDGER_274_ONWARD.md EV-274
+```
+
+---
+
+## After Next Runtime
+
+Normal Chat must inspect factual Action/family; the User does not need to identify Power visually.
+
+If selective suppression yields `StatePosition 0 -> 1` while RIGHT remains group5 and no later activation/lifecycle anomaly occurs, the next smallest question is authored Power FIST activation/rearm. If state progression fails, another activation path appears, or lifecycle diverges, return to causal research instead of compensating in stable modules.
