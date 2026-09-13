@@ -198,14 +198,23 @@ DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     CollisionDiagnostics::LogFistTriggerStateSnapshot(
         "NATIVE_ATTACK_BEFORE_ORIGINAL", SelfEntity);
+#endif
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    PhysicalFistProbe::NormalCallbackObservation observation = {};
+    PhysicalFistProbe::BeginNormalCallbackObservation(
+        SelfEntity, a_pSPU, observation);
+#endif
     GEBool const result = Hook_OnAI_Attack.GetOriginalFunction(
         &OnAI_Attack_FrameCollisionTest)(a_pSPU);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    PhysicalFistProbe::EndNormalCallbackObservation(
+        SelfEntity, observation, result);
+#endif
+#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     CollisionDiagnostics::LogFistTriggerStateSnapshot(
         "NATIVE_ATTACK_AFTER_ORIGINAL", SelfEntity);
-    return result;
-#else
-    return Hook_OnAI_Attack.GetOriginalFunction(&OnAI_Attack_FrameCollisionTest)(a_pSPU);
 #endif
+    return result;
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_PowerAttack_FrameCollisionTest)

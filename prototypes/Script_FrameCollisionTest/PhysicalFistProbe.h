@@ -22,6 +22,22 @@ struct QuickCallbackObservation
     std::string motionBefore;
 };
 
+struct NormalCallbackObservation
+{
+    bool active;
+    eCEntity *actorInstance;
+    eCEntity *rightSourceInstance;
+    std::uint64_t c1Generation;
+    GEInt actionBefore;
+    GEInt phaseBefore;
+    GEFloat stateTimeBefore;
+    GEInt statePositionBefore;
+    GEInt rightUseTypeBefore;
+    GEInt rightGroupBefore;
+    std::string motionBefore;
+    std::string rightNameBefore;
+};
+
 struct PowerCallbackObservation
 {
     bool active;
@@ -48,6 +64,10 @@ void BeginQuickCallbackObservation(
     Entity &actor, gCScriptProcessingUnit *spu,
     QuickCallbackObservation &observation);
 
+void BeginNormalCallbackObservation(
+    Entity &actor, gCScriptProcessingUnit *spu,
+    NormalCallbackObservation &observation);
+
 void BeginPowerCallbackObservation(
     Entity &actor, gCScriptProcessingUnit *spu,
     PowerCallbackObservation &observation);
@@ -62,6 +82,10 @@ void OnMarkerProcessed(
 
 void EndQuickCallbackObservation(
     Entity &actor, QuickCallbackObservation &observation,
+    GEBool nativeResult);
+
+void EndNormalCallbackObservation(
+    Entity &actor, NormalCallbackObservation &observation,
     GEBool nativeResult);
 
 void EndPowerCallbackObservation(
