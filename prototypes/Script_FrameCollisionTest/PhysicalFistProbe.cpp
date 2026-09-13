@@ -55,6 +55,8 @@ static thread_local NormalCallbackObservation *g_pCurrentNormalCallbackScope =
     nullptr;
 static thread_local PowerCallbackObservation *g_pCurrentPowerCallbackScope =
     nullptr;
+static thread_local SprintCallbackObservation *g_pCurrentSprintCallbackScope =
+    nullptr;
 static thread_local std::unordered_map<eCEntity *, QuickEarlySuppressionProof>
     g_QuickEarlySuppressionProofs;
 static thread_local std::unordered_map<eCEntity *, PowerEarlySuppressionProof>
@@ -73,9 +75,9 @@ static bool IsRaw55ProbeFamily(AttackFamily family)
         || family == AttackFamily_Sprint;
 }
 
-static bool IsSuppressionFamily(AttackFamily family)
+static bool IsSuppressionFamily(AttackFamily)
 {
-    return family == AttackFamily_Sprint;
+    return false;
 }
 
 static char const *ProbeFamilyName(AttackFamily family)
@@ -152,8 +154,7 @@ bool ShouldSuppressNativeCallback(
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &ownership,
     gCScriptProcessingUnit *spu)
 {
-    // Normal and Quick keep their native callbacks enabled so their scoped
-    // probes can bracket them and intercept only authorized nested work.
+    // All current raw55 family probes keep their native callbacks enabled.
     if (!IsSuppressionFamily(family))
         return false;
 
@@ -300,6 +301,54 @@ void BeginPowerCallbackObservation(
     eCEntity *rightInstance = nullptr;
     if (!TryResolveRaw55ProbeFixture(
             actor, AttackFamily_Power, ownership, spu, false,
+            generation, rightInstance))
+    {
+        return;
+    }
+
+    Entity rightSource(rightInstance);
+    bCString const motion = actor.NPC.GetCurrentMovementAni();
+    observation.active = true;
+    observation.actorInstance = actor.GetInstance();
+    observation.rightSourceInstance = rightInstance;
+    observation.c1Generation = generation.generation;
+    observation.actionBefore = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    observation.phaseBefore = static_cast<GEInt>(actor.GetCurrentAniPhase());
+    observation.stateTimeBefore = actor.Routine.GetStateTime();
+    observation.statePositionBefore = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    observation.rightUseTypeBefore = static_cast<GEInt>(
+        CollisionSources::GetCollisionSourceUseType(rightSource));
+    observation.rightGroupBefore = static_cast<GEInt>(
+        rightSource.GetCollisionGroup());
+    observation.motionBefore = motion.GetText() != nullptr
+        ? motion.GetText() : "<unavailable>";
+    observation.rightNameBefore = rightSource.GetName().GetText();
+}
+
+void BeginSprintCallbackObservation(
+    Entity &actor, gCScriptProcessingUnit *spu,
+    SprintCallbackObservation &observation)
+{
+    observation = {};
+    observation.previousScope = g_pCurrentSprintCallbackScope;
+    g_pCurrentSprintCallbackScope = &observation;
+
+    if (actor == None || actor.GetInstance() == nullptr
+        || actor.Routine.GetProperty<PSRoutine::PropertyAction>()
+            != gEAction_SprintAttack)
+    {
+        return;
+    }
+
+    FrameCollisionMarkers::AttackCallbackOwnershipResult const ownership =
+        FrameCollisionMarkers::EvaluateAttackCallbackOwnership(
+            actor, AttackFamily_Sprint);
+    CollisionLifecycleGuard::GenerationToken generation = {};
+    eCEntity *rightInstance = nullptr;
+    if (!TryResolveRaw55ProbeFixture(
+            actor, AttackFamily_Sprint, ownership, spu, false,
             generation, rightInstance))
     {
         return;
@@ -1404,6 +1453,65 @@ void EndPowerCallbackObservation(
     std::fprintf(
         log,
         "CORE RAW55_POWER_CALLBACK_BOUNDARY Actor=%s C1=%llu SameC1=%d SameRight=%d Action=%d->%d Phase=%d->%d StateTime=%.6f->%.6f StatePosition=%d->%d MotionBefore=%s MotionAfter=%s Right=%s RightUseType=%d RightGroup=%d->%d NativeResult=%d OBSERVE_NATIVE=1\n",
+        actor.GetName().GetText(),
+        static_cast<unsigned long long>(observation.c1Generation),
+        sameGeneration ? 1 : 0, sameRight ? 1 : 0,
+        observation.actionBefore, actionAfter,
+        observation.phaseBefore, phaseAfter,
+        static_cast<double>(observation.stateTimeBefore),
+        static_cast<double>(stateTimeAfter),
+        observation.statePositionBefore, statePositionAfter,
+        observation.motionBefore.c_str(),
+        motionAfter.GetText() != nullptr
+            ? motionAfter.GetText() : "<unavailable>",
+        observation.rightNameBefore.c_str(),
+        observation.rightUseTypeBefore,
+        observation.rightGroupBefore, rightGroupAfter,
+        static_cast<GEInt>(nativeResult));
+    std::fflush(log);
+}
+
+void EndSprintCallbackObservation(
+    Entity &actor, SprintCallbackObservation &observation,
+    GEBool nativeResult)
+{
+    if (g_pCurrentSprintCallbackScope == &observation)
+        g_pCurrentSprintCallbackScope = observation.previousScope;
+
+    if (!observation.active || actor == None
+        || actor.GetInstance() != observation.actorInstance)
+    {
+        return;
+    }
+
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    bool const sameRight = currentSources.rightInstance
+        == observation.rightSourceInstance;
+    Entity rightSource(observation.rightSourceInstance);
+    GEInt const rightGroupAfter = rightSource != None
+        ? static_cast<GEInt>(rightSource.GetCollisionGroup()) : -1;
+    GEInt const actionAfter = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEInt const phaseAfter = static_cast<GEInt>(actor.GetCurrentAniPhase());
+    GEFloat const stateTimeAfter = actor.Routine.GetStateTime();
+    GEInt const statePositionAfter = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    bCString const motionAfter = actor.NPC.GetCurrentMovementAni();
+
+    CollisionLifecycleGuard::GenerationToken const generationAfter =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            actor.GetInstance());
+    bool const sameGeneration = generationAfter.valid
+        && generationAfter.generation == observation.c1Generation;
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log == nullptr)
+        return;
+
+    std::fprintf(
+        log,
+        "CORE RAW55_SPRINT_CALLBACK_BOUNDARY Actor=%s C1=%llu SameC1=%d SameRight=%d Action=%d->%d Phase=%d->%d StateTime=%.6f->%.6f StatePosition=%d->%d MotionBefore=%s MotionAfter=%s Right=%s RightUseType=%d RightGroup=%d->%d NativeResult=%d OBSERVE_NATIVE=1\n",
         actor.GetName().GetText(),
         static_cast<unsigned long long>(observation.c1Generation),
         sameGeneration ? 1 : 0, sameRight ? 1 : 0,

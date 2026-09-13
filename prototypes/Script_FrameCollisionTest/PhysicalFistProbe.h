@@ -56,6 +56,23 @@ struct PowerCallbackObservation
     std::string rightNameBefore;
 };
 
+struct SprintCallbackObservation
+{
+    bool active;
+    SprintCallbackObservation *previousScope;
+    eCEntity *actorInstance;
+    eCEntity *rightSourceInstance;
+    std::uint64_t c1Generation;
+    GEInt actionBefore;
+    GEInt phaseBefore;
+    GEFloat stateTimeBefore;
+    GEInt statePositionBefore;
+    GEInt rightUseTypeBefore;
+    GEInt rightGroupBefore;
+    std::string motionBefore;
+    std::string rightNameBefore;
+};
+
 bool ShouldSuppressNativeCallback(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &ownership,
@@ -72,6 +89,10 @@ void BeginNormalCallbackObservation(
 void BeginPowerCallbackObservation(
     Entity &actor, gCScriptProcessingUnit *spu,
     PowerCallbackObservation &observation);
+
+void BeginSprintCallbackObservation(
+    Entity &actor, gCScriptProcessingUnit *spu,
+    SprintCallbackObservation &observation);
 
 bool ShouldSuppressCollisionGroupRequest(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
@@ -91,5 +112,9 @@ void EndNormalCallbackObservation(
 
 void EndPowerCallbackObservation(
     Entity &actor, PowerCallbackObservation &observation,
+    GEBool nativeResult);
+
+void EndSprintCallbackObservation(
+    Entity &actor, SprintCallbackObservation &observation,
     GEBool nativeResult);
 }
