@@ -13,7 +13,8 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current raw55 diagnostic implementation: `0bfb2ba13ba91488570a41592504ac84428def2a`  
+Current frozen probe: `docs/COLLISION_RAW55_QUICK_REPEAT_FIST_REARM_PROBE.md`  
+Current raw55 diagnostic implementation baseline: `0bfb2ba13ba91488570a41592504ac84428def2a`  
 Latest canonical evidence: `docs/EVIDENCE_LEDGER_269_ONWARD.md` through **EV-271**; prior raw55 causal evidence EV-262–EV-268 is in the preceding ledgers  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
@@ -23,18 +24,26 @@ Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
 
 ## Current Checkpoint
 
-Raw55 Quick pre-StatePosition FIST diagnostic implementation:
+Raw55 Quick first-FIST mechanism is now strongly bounded:
 
 ```text
-commit: 0bfb2ba13ba91488570a41592504ac84428def2a
-source review: PASS
-local Release Script_FrameCollisionTest build: PASS
-runtime validation: PASS for first frame-1 FIST
+EV-269 first frame-1 pre-state FIST:
+    exact RIGHT PhysicalFist/raw55 5 -> 7
+    one ClearTriggeredList
+    later native Quick 7 -> 7
+    StatePosition 0 -> 1
+    damage on contact
+    native 7 -> 5 cleanup
+    clean C1 finalization
 ```
 
-Canonical evidence is now through **EV-271**.
+EV-270 proves a later FIST is delivered in the same Quick execution, but the current temporary `PhysicalFistProbe` blocks a second intervention by policy.
 
-No Work implementation task is currently active. The next raw55 responsibility is to reconcile repeated-FIST semantics and remaining family ownership before any permanent `PhysicalFistCollision` promotion.
+EV-271 confirms frame 0 and frame 1 are valid for the tested established marker mechanisms. User clarification: the extra raw8 frame-0 misses were only on spawned-NPC Sabretooth attacks against `PC_Hero`; transformed-player frame-0 Quick attacks hit the spawned Sabretooth consistently. Treat that difference as contact/timing variation, not marker unreliability.
+
+Canonical evidence remains through **EV-271**.
+
+A frozen Work implementation task is now active for the exact repeated-FIST causal probe. No permanent raw55 implementation is authorized.
 
 ---
 
@@ -58,7 +67,8 @@ raw55 Quick group opening without rearm         INSUFFICIENT — EV-266
 raw55 Quick triggered-list rearm                CONFIRMED/PASS — EV-267
 raw55 close-range timing cause                  CONFIRMED — EV-268
 raw55 Quick frame-1 pre-state activation        CONFIRMED/PASS — EV-269
-raw55 repeated-FIST temporary one-shot limit    CONFIRMED OPEN DESIGN GAP — EV-270
+raw55 later FIST transport                      CONFIRMED — EV-270
+raw55 repeated-FIST second rearm                 FROZEN PROBE / IMPLEMENTATION NEXT
 equipped + raw8 frame-0/frame-1 marker support  CONFIRMED — EV-271
 ```
 
@@ -92,7 +102,6 @@ EV-267:
 
 EV-268:
     prior close-range divergence was marker timing, not proven geometry
-    frame-1 FIST transport was already healthy
 
 EV-269:
     frame-1 FIST at StatePosition 0 can itself open/rearm raw55
@@ -102,86 +111,89 @@ EV-269:
 EV-270:
     later FIST delivery in the same Quick execution is visible
     current diagnostic one-shot bookkeeping prevents a second raw55 rearm
-    this is not acceptable as final authored semantics
 ```
 
 Permanent raw55 design remains intentionally unfrozen until repeated-marker semantics and remaining raw55 family ownership are resolved.
 
 ---
 
-## Early Marker Authoring Boundary — EV-271
+## Current Immediate Responsibility — Work Implementation
 
-Frame indices are literal. There is **no global frame-1 minimum**.
-
-Validated controls:
+Frozen authority:
 
 ```text
-2H Normal RIGHT, frame 0 -> accepted 5 -> 7 + clear + damage + native cleanup
-2H Normal RIGHT, frame 1 -> same healthy result
-
-raw8 Sabretooth Quick FIST, frame 0
--> ownership close + accepted FIST + latch rearm + timing permission + positive damage
-
-raw8 Sabretooth Quick FIST, frame 1
--> same healthy mechanism and positive damage
+docs/COLLISION_RAW55_QUICK_REPEAT_FIST_REARM_PROBE.md
 ```
 
-User observed more Sabretooth misses at frame 0. The logs contain no marker rejection; frame-0 FIST is accepted and its timing permission is consumed. Interpret this as mechanism/contact timing sensitivity, not a transport failure.
+Implement only the diagnostics-only exact second-FIST rearm path.
 
-Authoring authority is `ANIMATION_RULES.md`:
+The causal delta is:
 
 ```text
-equipped source marker = physical collision window
-raw8 FIST = one native damage opportunity
+first FIST remains EV-269 unchanged
+source remains group7
+exact second accepted FIST in same actor/source/C1
+    -> NO SetCollisionGroup
+    -> one TouchDamage.ClearTriggeredList()
 ```
 
-Frame 0 is legal for both tested mechanisms, but markers should be placed for intended contact timing rather than merely as early as possible.
+Use existing `MarkerProcessResult` occurrence identity:
+
+```text
+authoredMarkerCount == 2
+acceptedMarkerCountBefore == 1
+acceptedMarkerCountAfter == 2
+executionBudgetReset == false
+```
+
+Do not invent a new raw55-local frame/time duplicate heuristic.
+
+Expected source scope:
+
+```text
+prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+```
+
+Build execution is NOT authorized for Work.
+
+Normal Chat must review the exact diff before User build/runtime.
 
 ---
 
-## Current Immediate Responsibility
+## Separate Later Raw55 Responsibilities
 
-Return to Normal Chat design before another Work implementation.
-
-The next raw55 causal/design gap is:
+Not part of the current Work task:
 
 ```text
-REPEATED QUICK FIST REARM
+Power family ownership — marked raw55 Power currently leaks native collision
+Normal/Sprint — still carry earlier whole-callback temporary experiments
+permanent PhysicalFistCollision design/promotion
 ```
-
-The existing frame-1 + later-FIST run proves later FIST transport reaches the raw55 diagnostic boundary, but `PhysicalFistProbe` deliberately blocks a second intervention after the first pre-state FIST.
-
-Before permanent raw55 promotion, determine the smallest diagnostic proof that one later legitimate FIST in the same Quick C1 can rearm the already-open group7 source without another group request, custom damage, state write, or cleanup mutation.
-
-Separate later responsibility:
-
-```text
-raw55 Power currently has no custom ownership in PhysicalFistProbe and can leak native damage despite markers.
-Normal/Sprint still reflect older temporary suppression experiments.
-```
-
-Do not treat those temporary family behaviors as the production design.
 
 ---
 
 ## Protected Boundaries
 
-Until the next raw55 probe is explicitly frozen:
+For the current repeated-FIST probe:
 
 ```text
 Raw8FistCollision unchanged
 stable equipped FrameCollisionMarkers semantics unchanged
+existing generic occurrence/dedupe bookkeeping unchanged
 CollisionLifecycleGuard semantics unchanged
 CollisionSources unchanged
 CollisionSourceOperations unchanged
 EngineBridge hook ownership unchanged
 native cleanup unchanged
+first EV-269 FIST behavior unchanged
+later native Quick 7 -> 7 unchanged
 no species/name policy
 no permanent PhysicalFistCollision yet
 no custom/direct damage
 no TriggerTarget / OnDamage
-no arbitrary StatePosition or SPU writes
+no StatePosition or SPU writes
 no manual cleanup
+no second-FIST collision-group request
 no new hooks/timers/polling
 ```
 
