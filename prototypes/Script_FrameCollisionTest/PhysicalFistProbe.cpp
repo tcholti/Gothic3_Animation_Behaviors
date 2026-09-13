@@ -31,6 +31,8 @@ struct QuickPreStateFistIntervention
 
 static thread_local QuickCallbackObservation *g_pCurrentQuickCallbackScope =
     nullptr;
+static thread_local PowerCallbackObservation *g_pCurrentPowerCallbackScope =
+    nullptr;
 static thread_local std::unordered_map<eCEntity *, QuickEarlySuppressionProof>
     g_QuickEarlySuppressionProofs;
 static thread_local
@@ -215,6 +217,8 @@ void BeginPowerCallbackObservation(
     PowerCallbackObservation &observation)
 {
     observation = {};
+    observation.previousScope = g_pCurrentPowerCallbackScope;
+    g_pCurrentPowerCallbackScope = &observation;
 
     if (actor == None || actor.GetInstance() == nullptr
         || actor.Routine.GetProperty<PSRoutine::PropertyAction>()
@@ -256,10 +260,85 @@ void BeginPowerCallbackObservation(
     observation.rightNameBefore = rightSource.GetName().GetText();
 }
 
+static bool ShouldSuppressPowerCollisionGroupRequest(
+    eCEntity *sourceInstance, eECollisionGroup requestedGroup,
+    eECollisionGroup beforeGroup)
+{
+    PowerCallbackObservation *const scope =
+        g_pCurrentPowerCallbackScope;
+    if (scope == nullptr || !scope->active
+        || scope->actionBefore != static_cast<GEInt>(gEAction_PowerAttack)
+        || sourceInstance == nullptr
+        || sourceInstance != scope->rightSourceInstance
+        || requestedGroup != eECollisionGroup_Item_Attack
+        || beforeGroup != eECollisionGroup_Item_Equipped)
+    {
+        return false;
+    }
+
+    Entity actor(scope->actorInstance);
+    Entity rightSource(sourceInstance);
+    if (actor == None || actor.GetInstance() != scope->actorInstance
+        || actor.Routine.GetProperty<PSRoutine::PropertyAction>()
+            != gEAction_PowerAttack
+        || rightSource == None
+        || rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Equipped
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist)
+    {
+        return false;
+    }
+
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    if (currentSources.rightInstance != sourceInstance)
+        return false;
+
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            scope->actorInstance);
+    if (!generation.valid
+        || generation.actorInstance != scope->actorInstance
+        || generation.generation != scope->c1Generation)
+    {
+        return false;
+    }
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        GEInt const statePosition = static_cast<GEInt>(
+            actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+        GEFloat const stateTime = actor.Routine.GetStateTime();
+        std::fprintf(
+            log,
+            "CORE RAW55_POWER_GROUP_SUPPRESSION Actor=%s C1=%llu Action=%d Right=%s RightUseType=%d RequestedGroup=%d BeforeGroup=%d StatePosition=%d StateTime=%.6f SUPPRESS_GROUP=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(scope->c1Generation),
+            static_cast<GEInt>(gEAction_PowerAttack),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(
+                CollisionSources::GetCollisionSourceUseType(rightSource)),
+            static_cast<GEInt>(requestedGroup),
+            static_cast<GEInt>(beforeGroup), statePosition,
+            static_cast<double>(stateTime));
+        std::fflush(log);
+    }
+
+    return true;
+}
+
 bool ShouldSuppressCollisionGroupRequest(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup)
 {
+    if (ShouldSuppressPowerCollisionGroupRequest(
+            sourceInstance, requestedGroup, beforeGroup))
+    {
+        return true;
+    }
+
     QuickCallbackObservation *const scope =
         g_pCurrentQuickCallbackScope;
     if (scope == nullptr || !scope->active
@@ -861,6 +940,9 @@ void EndPowerCallbackObservation(
     Entity &actor, PowerCallbackObservation &observation,
     GEBool nativeResult)
 {
+    if (g_pCurrentPowerCallbackScope == &observation)
+        g_pCurrentPowerCallbackScope = observation.previousScope;
+
     if (!observation.active || actor == None
         || actor.GetInstance() != observation.actorInstance)
     {

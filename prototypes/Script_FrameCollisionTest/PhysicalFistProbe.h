@@ -25,6 +25,7 @@ struct QuickCallbackObservation
 struct PowerCallbackObservation
 {
     bool active;
+    PowerCallbackObservation *previousScope;
     eCEntity *actorInstance;
     eCEntity *rightSourceInstance;
     std::uint64_t c1Generation;
