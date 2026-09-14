@@ -15,8 +15,8 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe authority: `docs/COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md`  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_280_ONWARD.md` through **EV-281**  
+Current frozen probe authority: **none — Normal Chat architecture synthesis is current**  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_280_ONWARD.md` through **EV-282**  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
@@ -31,188 +31,142 @@ raw55 true Power  CLOSED/PASS through EV-276
 raw55 Normal      CLOSED/PASS through EV-279
 raw55 Sprint callback ownership CLOSED/PASS — EV-280
 raw55 Sprint selective group suppression CLOSED/PASS — EV-281
-raw55 Sprint authored-FIST activation IMPLEMENTED + INDEPENDENTLY REVIEWED; RUNTIME PENDING
+raw55 Sprint authored-FIST activation CLOSED/PASS — EV-282
+
+raw55 family causal research: COMPLETE ENOUGH FOR PERMANENT ARCHITECTURE SYNTHESIS
 ```
 
-Raw8 FIST and raw8 Sprint remain separate proven mechanisms and must not be altered by raw55 research.
+Raw8 FIST and raw8 Sprint remain separate proven mechanisms and must not be altered by raw55 architecture work.
 
-No permanent raw55 implementation is authorized yet.
+No permanent raw55 implementation is authorized yet.  
+No Work/source task is currently frozen.  
 Recovery Lock remains **CLOSED**.
 
 ---
 
-## EV-280 — Sprint Callback Ownership
+## Closed Raw55 Mechanism Summary
+
+### Quick
+
+Quick is the proven special case:
+
+```text
+preserve native Quick callback/state progression
+suppress premature exact RIGHT PhysicalFist/raw55 opening
+authored FIST controls delayed physical opening
+pre-StatePosition FIST ordering can occur
+ClearTriggeredList/rearm is required for contact behavior
+later FIST can rearm repeated contact within the same C1
+native cleanup remains Gothic-owned
+```
+
+### True Power and Normal
+
+Both prove the simpler first-contact pattern:
+
+```text
+preserve native callback
+suppress only premature exact RIGHT raw55 5 -> 7
+native StatePosition 0 -> 1 survives
+authored FIST at StatePosition1 opens exact RIGHT 5 -> 7
+ClearTriggeredList=0
+native damage
+native cleanup 7 -> 5
+```
+
+### Sprint — EV-280 through EV-282
 
 Factual Sprint is `Action=9 / Family=SPRINT` at the existing `_AI_PowerAttack` transport.
 
-Repeated runtime samples prove the same original Action9 callback invocation owns both:
+EV-280 proves the same original Action9 callback owns both native `StatePosition 0 -> 1` and the premature exact RIGHT PhysicalFist/raw55 `5 -> 7`, so whole-callback suppression is invalid.
+
+EV-281 proves that exact nested opening is selectively suppressible while the callback still advances StatePosition and RIGHT remains group5 through authored FIST.
+
+EV-282 closes activation. Three independent Sprint C1s — 16, 57 and 81 — repeat:
 
 ```text
-StatePosition 0 -> 1
-exact RIGHT PhysicalFist/raw55 5 -> 7
+Action9/SP0 exact RIGHT 5 -> 7 suppressed
+StatePosition 0 -> 1 survives
+RIGHT remains group5
+
+authored FIST at factual Action9 / SPRINT / SP1
+exact RIGHT raw55 5 -> 7
+ClearTriggeredList=0
+native damage to PC_Hero
+native exact RIGHT 7 -> 5 cleanup
+clean C1 fulfillment/finalization
 ```
 
-Whole-callback Sprint suppression is therefore rejected. Authored FIST is later delivered while Action9 / SPRINT remains factual.
-
----
-
-## EV-281 — Sprint Selective Group Suppression
-
-Implementation:
+Canonical EV-282 runtime:
 
 ```text
-86656776e3856d00cbf684418cabd3714b7fff74
+research/raw/2026.09.14_troll_raw55_sprint_fist_activation_2.log
+SHA256 5CB3DCF52A68669C24C44279B69DC84ED404E78C61029DF76499B79088B0361C
 ```
 
-Runtime:
-
-```text
-research/raw/2026.09.14_troll_raw55_sprint_group_suppression.log
-raw upload commit 78fc110c5d58a890b9be8fe100fb99a533502c76
-SHA256 D0A61ADB25E8F348C06B22E078F165D644680CDE31B3D3FC23B758FAA8B4FB8D
-```
-
-Repeated factual Sprint C1s prove:
-
-```text
-RAW55_SPRINT_GROUP_SUPPRESSION
-    Action=9
-    BeforeGroup=5
-    RequestedGroup=7
-    StatePosition=0
-    SUPPRESS_GROUP=1
-
-RAW55_SPRINT_CALLBACK_BOUNDARY
-    SameC1=1
-    SameRight=1
-    Action=9->9
-    StatePosition=0->1
-    RightGroup=5->5
-    NativeResult=1
-```
-
-Authored `G3AB_COL_FIST` then arrives at factual Action9/Sprint/StatePosition1 while RIGHT remains group5. Completed Sprint C1s finalize `Outstanding=0`, `Cleanup=0`, `NO_OP_NO_OUTSTANDING`; therefore suppressed opening creates no false offense obligation or repair.
-
----
-
-## Current Reviewed Implementation — Sprint Authored-FIST Activation
-
-Frozen authority:
-
-```text
-docs/COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md
-```
-
-Frozen base:
-
-```text
-c09c5bdac60d30b02ec10f2fa51f59da1b816109
-```
-
-Work implementation:
+Probe implementation:
 
 ```text
 545863c0c522b2cd2d2748f6823a23662bf0ffbf
 ```
 
-Normal Chat independent source review: **PASS**.
-
-Remote comparison:
+User-local build/deploy identity:
 
 ```text
-exactly one commit ahead of frozen base
-only changed source:
-    prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
-+103 / -0
+SHA256 783747CC5E6627A1AC0092BB05C7F110813C940B940B208A835C0B2D28A5C597
 ```
 
-Reviewed behavior:
+Later callbacks in the same PowerAttack-named motion may become factual Action2 after Sprint contact. Keep that factually separate; family authority is current engine action/ownership, not animation filename.
 
-```text
-SprintEarlySuppressionProof now carries activationUsed
-same-C1/same-source repeated suppression preserves activationUsed
-TryApplySprintFistActivationProbe() runs on existing OnMarkerProcessed seam
-requires current factual Action9 + Family SPRINT Hit
-requires exact same actor/current equipped RIGHT/C1 as prior EV-281 proof
-requires exact FIST / stable UNSUPPORTED_MISSING_SOURCE marker shape
-requires raw8 resolver absent
-requires exact RIGHT PhysicalFist/raw55 still group5
-requires StatePosition=1
-one-shot marks activationUsed then requests exact RIGHT group7 through ordinary setter
-logs CORE RAW55_SPRINT_FIST_ACTIVATION_PROBE
-ClearTriggeredList=0
-```
-
-Marker-dispatch ordering is safe: preceding Normal/Power activation probes reject factual Action9; Sprint acts before Quick-specific pre-state/rearm logic.
-
-No EngineBridge/CMake/release change. No ClearTriggeredList, custom damage, StatePosition/SPU write, cleanup compensation, new hook/RVA/timer/polling, or family generalization.
-
-Build: **NOT RUN per Work boundary**.  
-Runtime: **NOT YET TESTED**.
-
-No new Work/source task is authorized until this runtime evidence transaction closes.
+No Sprint `ClearTriggeredList`/rearm step is currently justified.
 
 ---
 
-## Current Responsibility — User + Normal Chat
+## Current Responsibility — Normal Chat Architecture Synthesis
+
+Do **not** launch Work yet.
+
+The task is to synthesize a permanent raw55 design from the now-closed family evidence, preserving responsibility separation.
+
+The design must distinguish:
 
 ```text
-sync local branch to current remote HEAD
-build Script_FrameCollisionTest
-manually deploy diagnostic DLL
-verify built/live SHA256 equality
-run Troll until factual Action9 / Family SPRINT
-preserve raw log unchanged
-copy raw log into research/raw with final filename
-drag raw log onto Prepare-Log shortcut
-commit/push raw + generated derived package
-Normal Chat closes POP-06 transaction
+COMMON Power/Normal/Sprint responsibility
+    preserve original callback/state progression
+    suppress only premature exact RIGHT PhysicalFist/raw55 group5 -> group7
+    authored FIST opens the exact current RIGHT raw55 source
+    no ClearTriggeredList for first contact
+    Gothic owns damage and native cleanup
+
+QUICK specialization
+    same delayed authored-opening intent
+    supports proven pre-StatePosition marker ordering
+    owns the proven triggered-list clear/rearm requirement
 ```
 
-Preferred artifact:
+Standing boundaries:
 
 ```text
-research/raw/2026.09.14_troll_raw55_sprint_fist_activation.log
+EngineBridge = hook/transport only
+FrameCollisionMarkers = stable author-marker semantics
+CollisionLifecycleGuard = offense-obligation/native-cleanup/repair lifecycle owner
+Raw8FistCollision = separate raw8 mechanism
+PhysicalFistProbe = temporary diagnostics/research only
+permanent raw55 behavior must live in an appropriately named responsibility-owned permanent module
 ```
 
-Primary expected causal chain:
+Do not copy diagnostic maps, observer scopes, probe logs or experimental scaffolding wholesale into production. Promote only proven behavioral responsibilities and the minimum state needed to express them.
 
-```text
-RAW55_SPRINT_GROUP_SUPPRESSION
-    Action=9
-    BeforeGroup=5
-    RequestedGroup=7
-    StatePosition=0
-    SUPPRESS_GROUP=1
-
-RAW55_SPRINT_CALLBACK_BOUNDARY
-    StatePosition=0->1
-    RightGroup=5->5
-    NativeResult=1
-
-authored FIST at Action9 / SPRINT / StatePosition1
-
-RAW55_SPRINT_FIST_ACTIVATION_PROBE
-    GroupBefore=5
-    RequestedGroup=7
-    GroupAfter=7
-    EarlySuppressionProof=1
-    ClearTriggeredList=0
-    ACTIVATE_FIST=1
-```
-
-Then determine whether native damage follows and whether Gothic later performs exact RIGHT `7 -> 5` cleanup with clean C1 fulfillment/finalization.
-
-If group7 opens but damage does not return despite contact, the next question is Sprint-specific contact/rearm. Do not infer `ClearTriggeredList` from Quick without a dedicated probe.
+Normal Chat and User must agree on this module/responsibility shape before a bounded Work implementation contract is frozen.
 
 ---
 
 ## Still Paused
 
 ```text
-NO permanent raw55 architecture
-NO promotion/copy of PhysicalFistProbe into release code
-NO Sprint ClearTriggeredList/rearm assumption
+NO permanent raw55 implementation yet
+NO automatic copy/promotion of PhysicalFistProbe
+NO new family probe unless architecture synthesis exposes a real unresolved causal question
 NO broad native-creature certification continuation
 NO Axe-separation compatibility sequence
 NO Rapier/Zombie compatibility sequence
