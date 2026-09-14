@@ -49,6 +49,15 @@ struct NormalEarlySuppressionProof
     bool activationUsed;
 };
 
+struct SprintEarlySuppressionProof
+{
+    eCEntity *actorInstance;
+    eCEntity *rightSourceInstance;
+    std::uint64_t c1Generation;
+    gEUseType rightUseType;
+    bool earlySuppressionProven;
+};
+
 static thread_local QuickCallbackObservation *g_pCurrentQuickCallbackScope =
     nullptr;
 static thread_local NormalCallbackObservation *g_pCurrentNormalCallbackScope =
@@ -63,6 +72,8 @@ static thread_local std::unordered_map<eCEntity *, PowerEarlySuppressionProof>
     g_PowerEarlySuppressionProofs;
 static thread_local std::unordered_map<eCEntity *, NormalEarlySuppressionProof>
     g_NormalEarlySuppressionProofs;
+static thread_local std::unordered_map<eCEntity *, SprintEarlySuppressionProof>
+    g_SprintEarlySuppressionProofs;
 static thread_local
     std::unordered_map<eCEntity *, QuickPreStateFistIntervention>
         g_QuickPreStateFistInterventions;
@@ -375,6 +386,89 @@ void BeginSprintCallbackObservation(
     observation.rightNameBefore = rightSource.GetName().GetText();
 }
 
+static bool ShouldSuppressSprintCollisionGroupRequest(
+    eCEntity *sourceInstance, eECollisionGroup requestedGroup,
+    eECollisionGroup beforeGroup)
+{
+    SprintCallbackObservation *const scope =
+        g_pCurrentSprintCallbackScope;
+    if (scope == nullptr || !scope->active
+        || scope->actionBefore != static_cast<GEInt>(gEAction_SprintAttack)
+        || sourceInstance == nullptr
+        || sourceInstance != scope->rightSourceInstance
+        || requestedGroup != eECollisionGroup_Item_Attack
+        || beforeGroup != eECollisionGroup_Item_Equipped)
+    {
+        return false;
+    }
+
+    Entity actor(scope->actorInstance);
+    Entity rightSource(sourceInstance);
+    if (actor == None || actor.GetInstance() != scope->actorInstance)
+        return false;
+
+    gEAction const action =
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+    if (action != gEAction_SprintAttack
+        || static_cast<GEInt>(action) != scope->actionBefore
+        || !FrameCollisionMarkers::IsAttackHit(
+            actor, AttackFamily_Sprint)
+        || rightSource == None
+        || rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Equipped
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist)
+    {
+        return false;
+    }
+
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    if (currentSources.rightInstance != sourceInstance)
+        return false;
+
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            scope->actorInstance);
+    if (!generation.valid
+        || generation.actorInstance != scope->actorInstance
+        || generation.generation != scope->c1Generation)
+    {
+        return false;
+    }
+
+    SprintEarlySuppressionProof proof = {};
+    proof.actorInstance = scope->actorInstance;
+    proof.rightSourceInstance = sourceInstance;
+    proof.c1Generation = scope->c1Generation;
+    proof.rightUseType = gEUseType_PhysicalFist;
+    proof.earlySuppressionProven = true;
+    g_SprintEarlySuppressionProofs[scope->actorInstance] = proof;
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        GEInt const statePosition = static_cast<GEInt>(
+            actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+        GEFloat const stateTime = actor.Routine.GetStateTime();
+        std::fprintf(
+            log,
+            "CORE RAW55_SPRINT_GROUP_SUPPRESSION Actor=%s C1=%llu Action=%d Right=%s RightUseType=%d RequestedGroup=%d BeforeGroup=%d StatePosition=%d StateTime=%.6f SUPPRESS_GROUP=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(scope->c1Generation),
+            static_cast<GEInt>(action),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(
+                CollisionSources::GetCollisionSourceUseType(rightSource)),
+            static_cast<GEInt>(requestedGroup),
+            static_cast<GEInt>(beforeGroup), statePosition,
+            static_cast<double>(stateTime));
+        std::fflush(log);
+    }
+
+    return true;
+}
+
 static bool ShouldSuppressNormalCollisionGroupRequest(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup)
@@ -562,6 +656,12 @@ bool ShouldSuppressCollisionGroupRequest(
     eECollisionGroup beforeGroup)
 {
     if (ShouldSuppressPowerCollisionGroupRequest(
+            sourceInstance, requestedGroup, beforeGroup))
+    {
+        return true;
+    }
+
+    if (ShouldSuppressSprintCollisionGroupRequest(
             sourceInstance, requestedGroup, beforeGroup))
     {
         return true;
