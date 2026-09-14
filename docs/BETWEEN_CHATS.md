@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-14
 
-## Current Bridge — EV-281 CLOSED; SPRINT AUTHORED-FIST ACTIVATION PROBE FROZEN
+## Current Bridge — EV-281 CLOSED; SPRINT FIST ACTIVATION IMPLEMENTATION REVIEWED; RUNTIME PENDING
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -13,12 +13,7 @@ Stable branch: `main`
 Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-281**.
 
 No permanent raw55 implementation is authorized yet.
-
-The next bounded Work responsibility is frozen in:
-
-```text
-docs/COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md
-```
+No new Work/source task is authorized before the Sprint authored-FIST activation runtime transaction is closed.
 
 ---
 
@@ -30,8 +25,7 @@ docs/COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md
 3. COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md
 4. EVIDENCE_LEDGER_280_ONWARD.md — EV-280 and EV-281
 5. EVIDENCE_LEDGER_274_ONWARD.md — EV-274 through EV-279 only as needed for Power/Normal comparison
-6. FEATURE_DEVELOPMENT_METHOD.md
-7. WORK_IMPLEMENTATION_PROTOCOL.md
+6. exact PhysicalFistProbe source only if runtime interpretation requires it
 ```
 
 ---
@@ -115,7 +109,7 @@ User visually observed repeated Power-animation attacks did not damage the chara
 
 ---
 
-## Frozen Next Probe — Sprint Authored-FIST Activation
+## Reviewed Sprint Authored-FIST Activation Implementation
 
 Frozen authority:
 
@@ -123,57 +117,138 @@ Frozen authority:
 docs/COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md
 ```
 
-Single causal question:
+Frozen base:
 
 ```text
-after the proven early Action9 5 -> 7 suppression,
-when authored G3AB_COL_FIST arrives at factual Sprint StatePosition=1,
-can that exact marker open only the exact current equipped RIGHT raw55 source 5 -> 7,
-with ClearTriggeredList=0,
-and then allow Gothic to own contact/damage/cleanup?
+c09c5bdac60d30b02ec10f2fa51f59da1b816109
 ```
 
-Required shape:
+Work implementation:
 
 ```text
-preserve EV-281 Sprint selective suppression unchanged
-preserve original Sprint callback exactly once
-extend SprintEarlySuppressionProof only as needed for one-shot activationUsed state
-reuse existing PhysicalFistProbe::OnMarkerProcessed seam
-require stable marker result UNSUPPORTED_MISSING_SOURCE
-require exact current Action9 / Family SPRINT / Hit
-require StatePosition=1
-require same actor + RIGHT source + C1 as suppression proof
-require exact RIGHT PhysicalFist/raw55 group5
-request exact RIGHT group7 once
-log CORE RAW55_SPRINT_FIST_ACTIVATION_PROBE
+545863c0c522b2cd2d2748f6823a23662bf0ffbf
+message: Add raw55 Sprint FIST activation probe
+```
+
+Independent Normal Chat source review: **PASS**.
+
+Remote comparison proves:
+
+```text
+exactly one commit ahead of frozen base
+only changed file:
+    prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
++103 / -0
+no EngineBridge change
+no CMake change
+```
+
+Reviewed implementation shape:
+
+```text
+extends SprintEarlySuppressionProof with activationUsed
+preserves activationUsed across repeated same-C1/same-source suppression callbacks
+adds TryApplySprintFistActivationProbe()
+reuses existing PhysicalFistProbe::OnMarkerProcessed seam
+requires:
+    valid current C1 == stored Sprint suppression-proof C1
+    same actor
+    exact current equipped RIGHT == stored proof source
+    prior Sprint early suppression proof
+    activation not already used
+    exact FIST marker / stable UNSUPPORTED_MISSING_SOURCE result
+    factual current Action9
+    Family SPRINT Hit eligibility
+    valid matching marked motion with only FIST source semantics
+    raw8 resolver absent
+    exact RIGHT PhysicalFist/raw55
+    RIGHT current group5
+    StatePosition=1
+matching event sets activationUsed and requests exact RIGHT group7 once
+emits CORE RAW55_SPRINT_FIST_ACTIVATION_PROBE
 ClearTriggeredList=0
 ```
 
-No `EngineBridge` change is expected or desired because the reserved-marker path already delegates to `PhysicalFistProbe::OnMarkerProcessed()`.
+Marker dispatch order is safe: Normal and Power branches precede Sprint but reject Action9 by their own family/action gates; Sprint executes before Quick-specific pre-state/rearm logic.
 
-Explicitly forbidden:
+No Sprint `ClearTriggeredList`, no custom damage, no StatePosition/SPU write, no cleanup compensation, no new hook/RVA/CMake/release change. Quick/Power/Normal/raw8 behavior is unchanged.
+
+Work static/source audit reported PASS including `git diff --check`. Normal Chat found no material contradiction.
+
+Build status: **NOT RUN per task boundary**.
+Runtime status: **NOT YET TESTED**.
+
+---
+
+## Exact Next Step — User + Normal Chat Runtime
+
+Do not start another Work/source task.
 
 ```text
-NO whole-callback suppression
-NO ClearTriggeredList
-NO custom damage
-NO StatePosition/SPU write
-NO cleanup compensation
-NO new hook/RVA/timer/polling
-NO species/name/motion-filename policy
-NO Quick/Power/Normal/raw8 behavior change
-NO permanent/release raw55 implementation
+1. sync local branch to current remote HEAD
+2. build Script_FrameCollisionTest
+3. manually deploy Script_FrameCollisionTest.dll
+4. verify built/live SHA256 equality
+5. run Troll until factual Action9 / Family SPRINT occurs
+6. preserve raw diagnostic log unchanged
+7. copy raw log into research/raw with final filename
+8. drag the raw log onto Prepare-Log shortcut to generate POP-07 package
+9. commit/push raw + derived package
+10. Normal Chat closes the evidence transaction
 ```
 
-Build execution is not authorized in Work. Work responsibility is source/static audit -> publish -> STOP.
-
-After independent Normal Chat source review, User + Normal Chat build/deploy and run the causal test.
-
-Preferred future runtime artifact:
+Preferred runtime artifact:
 
 ```text
 research/raw/2026.09.14_troll_raw55_sprint_fist_activation.log
+```
+
+Primary expected positive chain:
+
+```text
+CORE RAW55_SPRINT_GROUP_SUPPRESSION
+    Action=9
+    RequestedGroup=7
+    BeforeGroup=5
+    StatePosition=0
+    SUPPRESS_GROUP=1
+
+CORE RAW55_SPRINT_CALLBACK_BOUNDARY
+    SameC1=1
+    SameRight=1
+    Action=9->9
+    StatePosition=0->1
+    RightGroup=5->5
+    NativeResult=1
+
+authored FIST at factual Action9 / Family SPRINT / StatePosition1
+
+CORE RAW55_SPRINT_FIST_ACTIVATION_PROBE
+    GroupBefore=5
+    RequestedGroup=7
+    GroupAfter=7
+    EarlySuppressionProof=1
+    ClearTriggeredList=0
+    ACTIVATE_FIST=1
+```
+
+Then determine causally:
+
+```text
+does native contact/damage against PC_Hero occur after authored opening?
+does Gothic later clean exact RIGHT 7 -> 5?
+does C1 obligation fulfill and finalize cleanly?
+```
+
+Interpretation boundary:
+
+```text
+if authored FIST opens group7 and damage occurs:
+    Sprint activation alone is sufficient, matching tested Power/Normal first-contact behavior
+
+if authored FIST opens group7 but damage does not occur despite contact:
+    activation is proven but contact/rearm remains a separate Sprint question
+    do NOT infer or add ClearTriggeredList from Quick without a dedicated probe
 ```
 
 ---
