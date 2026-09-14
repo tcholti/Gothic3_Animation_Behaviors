@@ -33,7 +33,8 @@ raw55 Sprint callback ownership CLOSED/PASS — EV-280
 raw55 Sprint selective group suppression CLOSED/PASS — EV-281
 raw55 Sprint authored-FIST activation CLOSED/PASS — EV-282
 
-raw55 family causal research: COMPLETE ENOUGH FOR PERMANENT ARCHITECTURE SYNTHESIS
+raw55 causal mechanism knowledge = sufficient for permanent architecture synthesis
+raw55 final conclusion = still requires post-implementation one-marker + two-marker cross-family validation
 ```
 
 Raw8 FIST and raw8 Sprint remain separate proven mechanisms and must not be altered by raw55 architecture work.
@@ -82,7 +83,7 @@ EV-280 proves the same original Action9 callback owns both native `StatePosition
 
 EV-281 proves that exact nested opening is selectively suppressible while the callback still advances StatePosition and RIGHT remains group5 through authored FIST.
 
-EV-282 closes activation. Three independent Sprint C1s — 16, 57 and 81 — repeat:
+EV-282 closes first authored activation. Three independent Sprint C1s — 16, 57 and 81 — repeat:
 
 ```text
 Action9/SP0 exact RIGHT 5 -> 7 suppressed
@@ -118,7 +119,7 @@ SHA256 783747CC5E6627A1AC0092BB05C7F110813C940B940B208A835C0B2D28A5C597
 
 Later callbacks in the same PowerAttack-named motion may become factual Action2 after Sprint contact. Keep that factually separate; family authority is current engine action/ownership, not animation filename.
 
-No Sprint `ClearTriggeredList`/rearm step is currently justified.
+No Sprint `ClearTriggeredList`/rearm step is currently justified for the first authored contact.
 
 ---
 
@@ -161,12 +162,44 @@ Normal Chat and User must agree on this module/responsibility shape before a bou
 
 ---
 
+## Required Raw55 Closing Validation After Implementation
+
+Raw55 is **not finally concluded** merely because the permanent/candidate implementation builds or passes one family.
+
+Validation order is fixed:
+
+```text
+GATE 1 — one authored FIST marker
+    Quick
+    Normal
+    Power
+    Sprint
+
+GATE 2 — two authored FIST markers + two physically possible player contacts
+    Quick
+    Normal
+    Power
+    Sprint
+```
+
+Gate 1 is the first regression of the final implementation: each family must still activate at the authored marker, produce Gothic-owned contact/damage, and retain healthy native cleanup/finalization.
+
+Only after Gate 1 passes, use Troll animations in which two hits on the player are physically possible during one attack. Give each attack two authored FIST opportunities and determine whether the second authored contact works correctly for Quick, Normal, Power and Sprint.
+
+This second test is specifically meant to avoid assuming Quick's repeated-contact behavior applies universally. Quick already proves triggered-list clear/rearm for repeated contact; Normal, Power and Sprint must be tested rather than assigned that behavior in advance.
+
+The two-marker test must also confirm that repeated authored contact does not break native cleanup/C1 finalization.
+
+Exact test/implementation responsibility for Gate 2 is frozen only after Gate 1 passes and Normal Chat has reviewed the permanent implementation.
+
+---
+
 ## Still Paused
 
 ```text
 NO permanent raw55 implementation yet
 NO automatic copy/promotion of PhysicalFistProbe
-NO new family probe unless architecture synthesis exposes a real unresolved causal question
+NO new family probe before architecture synthesis
 NO broad native-creature certification continuation
 NO Axe-separation compatibility sequence
 NO Rapier/Zombie compatibility sequence
