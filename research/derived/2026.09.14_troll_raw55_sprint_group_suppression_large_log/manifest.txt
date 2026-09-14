@@ -1,0 +1,47 @@
+LARGE LOG EVIDENCE PACKAGE
+ToolVersion: 1
+SourceInput: .\research\raw\2026.09.14_troll_raw55_sprint_group_suppression.log
+SourceFileName: 2026.09.14_troll_raw55_sprint_group_suppression.log
+SourceSHA256: D0A61ADB25E8F348C06B22E078F165D644680CDE31B3D3FC23B758FAA8B4FB8D
+SourceBytes: 1671444
+SourceLineCount: 6882
+EventBlockCount: 88
+DistinctEventTypes: 2
+SignalMatchCount: 560
+DistinctSignalLines: 560
+SignalContextBefore: 5
+SignalContextAfter: 25
+MergedSignalContextRanges: 74
+MaxOutputPartBytes: 120000
+EventTimelineParts: 1
+SignalIndexParts: 2
+SignalContextParts: 8
+RequestedRangeCount: 0
+RequestedRangeParts: 0
+
+SignalPatterns:
+- C1_INVARIANT_WARNING = C1 INVARIANT WARNING
+- WOULD_REPAIR = WOULD_REPAIR
+- WARNING = (?i)\bWARNING\b
+- ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
+- FAILED_OR_FAILURE = (?i)\b(FAILED|FAILURE)\b
+- MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
+- STALE = (?i)\bSTALE\b
+- UNRESOLVED_OR_ORPHAN = (?i)\b(UNRESOLVED|ORPHAN)\b
+- BAD_OR_UNSAFE_SKIP = (?i)(BAD|UNSAFE|FAILED|STALE|MISMATCH).*(SKIP|SKIPPED)|(SKIP|SKIPPED).*(BAD|UNSAFE|FAILED|STALE|MISMATCH)
+- OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
+- EXTRA_01 = RAW55_SPRINT_GROUP_SUPPRESSION|RAW55_SPRINT_CALLBACK_BOUNDARY|RAW55_POWER_GROUP_SUPPRESSION|RAW55_POWER_CALLBACK_BOUNDARY|ACTIVATE_FIST=1|CORE ONDAMAGE|C1 CLEANUP FULFILLED|CORE C1_FINAL
+
+Files:
+- event_counts.tsv
+- event_timeline_part_001.tsv
+- signals_part_001.tsv
+- signals_part_002.tsv
+- signal_context_part_001.txt
+- signal_context_part_002.txt
+- signal_context_part_003.txt
+- signal_context_part_004.txt
+- signal_context_part_005.txt
+- signal_context_part_006.txt
+- signal_context_part_007.txt
+- signal_context_part_008.txt
