@@ -1,20 +1,39 @@
 # Raw55 PhysicalFist Sprint Authored-FIST Activation Probe
 
 **Project:** Gothic3_Animation_Behaviors  
-**Status:** FROZEN diagnostic causal probe  
+**Status:** CLOSED/PASS historical diagnostic causal probe — EV-282  
 **Updated:** 2026-09-14
 
 ## Purpose
 
-Answer one causal question after EV-281 and before any permanent raw55 implementation is designed:
+This document froze the causal question answered by EV-282:
 
 > With factual marked raw55 Sprint (`Action=9 / Family=SPRINT`) early `Item_Equipped/group5 -> Item_Attack/group7` still selectively suppressed and the original `_AI_PowerAttack` callback otherwise running normally, can the authored `G3AB_COL_FIST` event itself open the exact RIGHT PhysicalFist/raw55 source `5 -> 7` at authored timing, with Gothic retaining ownership of contact/damage/cleanup?
 
-This is a temporary diagnostics-only intervention. It does not make raw55 FIST a production-supported marker path.
+This was a temporary diagnostics-only intervention. It did not make raw55 FIST a production-supported marker path.
 
 Project-wide method: `FEATURE_DEVELOPMENT_METHOD.md`.  
 Bounded execution: `WORK_IMPLEMENTATION_PROTOCOL.md`.  
-Governing evidence: `EVIDENCE_LEDGER_280_ONWARD.md` EV-280 through EV-281.
+Governing evidence: `EVIDENCE_LEDGER_280_ONWARD.md` EV-280 through EV-282.
+
+### Closure outcome
+
+EV-282 answers the probe **YES**. In factual Sprint C1=16, 57 and 81, the EV-281 early exact RIGHT raw55 `5 -> 7` suppression preserves native `StatePosition 0 -> 1`; authored FIST at factual Action9/Sprint/SP1 then opens exact RIGHT `5 -> 7` with `ClearTriggeredList=0`; native damage to `PC_Hero` follows; and Gothic later performs native exact RIGHT `7 -> 5` cleanup with clean C1 fulfillment/finalization. No Sprint rearm probe is required by the current evidence.
+
+Canonical runtime:
+
+```text
+research/raw/2026.09.14_troll_raw55_sprint_fist_activation_2.log
+SHA256 5CB3DCF52A68669C24C44279B69DC84ED404E78C61029DF76499B79088B0361C
+```
+
+Implementation under test:
+
+```text
+545863c0c522b2cd2d2748f6823a23662bf0ffbf
+```
+
+The remainder of this document preserves the exact frozen probe responsibility for historical provenance.
 
 ---
 
@@ -44,7 +63,7 @@ Representative C1=41 then receives authored `G3AB_COL_FIST` at `Action=9 / Famil
 
 The EV-281 causal run contains no `RAW55_POWER_CALLBACK_BOUNDARY` and no `RAW55_POWER_GROUP_SUPPRESSION` record. The PowerAttack-named motions exercised there were factual Sprint/Action9, so animation filename remains non-authoritative.
 
-Therefore early gating is no longer the open question. The next unknown is whether the exact raw55 source can be opened at authored Sprint FIST time while preserving native Sprint progression and cleanup.
+Therefore early gating is no longer the open question. The next unknown was whether the exact raw55 source could be opened at authored Sprint FIST time while preserving native Sprint progression and cleanup.
 
 ---
 
