@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-14
 
-## Current Bridge — EV-282 CLOSED; RAW55 FAMILY CAUSAL RESEARCH READY FOR ARCHITECTURE SYNTHESIS
+## Current Bridge — EV-282 CLOSED; RAW55 ARCHITECTURE SYNTHESIS NEXT; FINAL VALIDATION SEQUENCE SAVED
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -16,6 +16,8 @@ No permanent raw55 implementation is authorized yet.
 No new Work/source task is currently frozen.
 
 The current responsibility returns to **Normal Chat architecture synthesis**: convert only the proven raw55 family responsibilities into a clean permanent design before any production implementation task is authorized.
+
+Important stopping-point addition from the User: raw55 must **not** be considered finally concluded after the first permanent/candidate implementation alone. A final one-marker cross-family validation must come first, followed by a dedicated two-marker/double-contact validation across Quick, Normal, Power and Sprint.
 
 ---
 
@@ -177,11 +179,60 @@ Do not freeze Work until Normal Chat and User agree on the permanent module/resp
 
 ---
 
+## Planned Final Raw55 Validation Sequence
+
+This is a **future validation gate**, not an active implementation task yet.
+
+After Normal Chat and User agree on the permanent raw55 architecture and the bounded implementation has been completed/reviewed, validate in this order:
+
+### Gate 1 — one authored FIST marker across all four raw55 families
+
+Use Troll test animations/fixtures for:
+
+```text
+Quick
+Normal
+Power
+Sprint
+```
+
+Each should use the ordinary single authored FIST path first. Confirm the final implementation preserves the already-proven family behavior: authored activation occurs at the intended marker, native damage/contact remains Gothic-owned, and native cleanup/finalization stays healthy.
+
+Do not move to the two-marker test until this single-marker cross-family regression passes.
+
+### Gate 2 — two authored FIST markers / two possible player contacts
+
+Then use Troll animations deliberately authored so **two distinct hits on the player are physically possible** in the same attack execution, for:
+
+```text
+Quick
+Normal
+Power
+Sprint
+```
+
+Author/use two FIST marker opportunities corresponding to the two intended contacts and determine whether a second authored activation/contact can occur correctly in each family.
+
+Purpose:
+
+```text
+verify repeated authored activation/contact semantics rather than assuming Quick's proven rearm behavior is universal
+confirm whether Normal, Power and Sprint also support two authored hit opportunities correctly
+compare those results against Quick's already-proven repeated-contact/rearm specialization
+verify both contacts still leave ordinary native cleanup and clean C1 finalization
+```
+
+The exact two-marker implementation/test contract must be frozen only after Gate 1 passes and after Normal Chat inspects the permanent implementation shape. Do not pre-assign `ClearTriggeredList` behavior to Normal/Power/Sprint; let this test establish what repeated-contact semantics actually require.
+
+Raw55 is **not finally concluded** until these two validation gates are complete or explicitly deferred by User + Normal Chat.
+
+---
+
 ## Still Paused
 
 ```text
 NO automatic copy/promotion of PhysicalFistProbe
-NO new raw55 family probe without a newly identified causal unknown
+NO new raw55 family probe before architecture synthesis
 NO broad native-creature certification continuation
 NO Axe-separation compatibility sequence
 NO Rapier/Zombie compatibility sequence
