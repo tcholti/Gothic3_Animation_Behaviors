@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-12
+**Updated:** 2026-09-14
 
 ## Purpose
 
@@ -15,7 +15,9 @@ EVIDENCE_LEDGER_STEP_B.md           EV-158–EV-198
 EVIDENCE_LEDGER_199_ONWARD.md       EV-199–EV-231
 EVIDENCE_LEDGER_232_ONWARD.md       EV-232–EV-249
 EVIDENCE_LEDGER_250_ONWARD.md       EV-250–EV-264
-EVIDENCE_LEDGER_265_ONWARD.md       EV-265 onward
+EVIDENCE_LEDGER_265_ONWARD.md       EV-265–EV-273
+EVIDENCE_LEDGER_274_ONWARD.md       EV-274–EV-279
+EVIDENCE_LEDGER_280_ONWARD.md       EV-280 onward
 ```
 
 The ledger splits are storage-only; numbering remains one global monotonic namespace.
@@ -38,10 +40,10 @@ Current project responsibility is never owned by this historical index. Use `SES
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
 | raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263 | `DESIGN.md` raw-8 Fist architecture; `SOURCE_HOOK_GUIDE.md` proven timing path |
-| PhysicalFist/raw55 factual source + current causal route | EV-245–EV-246, EV-262, EV-264–EV-268 | `COLLISION_RAW55_QUICK_PRESTATE_FIST_PROBE.md`; prior raw55 probe docs |
-| repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-268 | equipped marker exact-set/replay evidence; EV-267 proves raw55 Quick delayed-FIST rearm, EV-268 exposes pre-state marker ordering |
+| PhysicalFist/raw55 factual source + complete family causal route | EV-245–EV-246, EV-262–EV-282 | §3K below; Quick EV-264–EV-273; Power EV-274–EV-276; Normal EV-277–EV-279; Sprint EV-280–EV-282 |
+| repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-273 | equipped exact-set/replay evidence; raw55 Quick rearm is family-specific and must not be generalized to Power/Normal/Sprint |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
-| Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-268 | EV-182–EV-196 for lifecycle context; raw8 control EV-263; raw55 mutation/separability/activation/rearm/order EV-264–EV-268 |
+| Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-273 | EV-182–EV-196 lifecycle context; EV-264–EV-273 raw55 Quick ownership/separability/activation/rearm/pre-state closure |
 | Dual native source map / source-explicit marker review | EV-090–EV-094 | EV-207, EV-211, EV-214 |
 | multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | EV-131–EV-144; archived fixture logs |
 | historical marker occurrence-budget leak | EV-131–EV-133 | EV-167; EV-213–EV-214 for generation replacement/closure |
@@ -140,10 +142,10 @@ EV-192–EV-194
 EV-206–EV-207
 EV-211
 EV-214
-EV-217–EV-268
+EV-217–EV-282
 ```
 
-Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 record the initial bounded raw55 survey that had not yet found a factual source. Later concrete Troll/BlackTroll evidence correctly reopened the boundary: EV-262 establishes factual raw55 and the whole-callback suppression failure; EV-264 establishes compound native Quick callback ownership; EV-265 establishes early-group/state-progression separability; EV-266 establishes successful authored-FIST raw55 group activation plus clean native cleanup but no damage; EV-267 establishes that one exact post-opening triggered-list clear restores Quick damage when contact occurs; EV-268 proves the prior close-range marked/native difference was timing-window-driven and identifies the current temporary probe's pre-StatePosition / pre-proof ordering gap for frame-1 FIST. EV-263 remains the raw8 Quick comparison boundary.
+Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 record the initial bounded raw55 survey that had not yet found a factual source. Later Troll/BlackTroll evidence correctly reopened and then closed the required family-level causal path: EV-262 confirms factual raw55; EV-264–EV-273 close Quick ownership, selective gating, authored activation, contact rearm and pre-StatePosition timing; EV-274–EV-276 close true Power; EV-277–EV-279 close Normal; EV-280–EV-282 close Sprint. EV-263 remains the focused healthy raw8 Quick comparison boundary.
 
 SimpleWhirl current distinction:
 
@@ -179,12 +181,13 @@ EV-213–EV-214
 EV-217
 EV-220
 EV-241–EV-244
-EV-266–EV-268
+EV-266–EV-273
+EV-276
+EV-279
+EV-282
 ```
 
-`ClearTriggeredList()` is established for equipped repeated-contact semantics. Raw-8 Fist explicitly does not require it in final production architecture; see EV-233. EV-266 shows that delayed authored raw55 Quick group activation alone is not sufficient for damage despite a sustained group7 window and clean native cleanup. EV-267 then proves that one exact triggered-list clear after successful authored-FIST raw55 `5 -> 7` activation restores actual Quick damage when contact occurs. This is a raw55 Quick result only; do not generalize it back onto raw8 or onto untested raw55 families.
-
-EV-268 closes the prior close-range timing question: moving FIST from the late EV-267 timing to frame 4 produces much earlier activation and repeated damage. It also proves frame-1 FIST is transported before native StatePosition progression, where the current temporary probe cannot act because its proof/state gates have not yet been satisfied. The current pre-state FIST probe isolates that ordering boundary.
+`ClearTriggeredList()` is established for equipped repeated-contact semantics, but raw55 family behavior is not uniform. Raw-8 Fist explicitly does not require it in final production architecture; see EV-233. Raw55 Quick is the proven special case: EV-266 shows delayed authored group opening alone can remain contact-insufficient, EV-267 restores Quick damage with one exact triggered-list clear, and EV-268–EV-273 close the timing/pre-state behavior and repeated-contact path. By contrast, true Power EV-276, Normal EV-279 and Sprint EV-282 each demonstrate native first-contact damage after authored raw55 opening with `ClearTriggeredList=0`. Do not generalize Quick's rearm requirement to those families.
 
 ### E. Marker execution lifetime / bookkeeping
 
@@ -214,16 +217,18 @@ Fist timing permission also uses this factual generation identity; EV-237 confir
 
 ### F. Native collision cleanup lifecycle
 
-Evidence: EV-151–EV-215 plus equipped expansion cleanup evidence EV-217, EV-220 and EV-241–EV-244, and raw55 Quick authored-FIST cleanup EV-266–EV-268.  
+Evidence: EV-151–EV-215 plus equipped expansion cleanup evidence EV-217, EV-220 and EV-241–EV-244, and raw55 authored-FIST cleanup evidence EV-266–EV-282.  
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 
-Raw-8 Fist is not an equipped-source cleanup client; it creates no weapon C1 physical repair obligation. EV-266 positively confirms that a marker-time raw55 Quick `5 -> 7` request creates a real C1 offense obligation and that Gothic's later native `7 -> 5` transition fulfills it cleanly without terminal repair. EV-267 preserves that cleanup while adding the exact rearm operation needed for delayed raw55 Quick damage. EV-268 changes authored marker timing only and leaves the current open question at the pre-state activation boundary, not cleanup.
+Raw-8 Fist is not an equipped-source cleanup client; it creates no weapon C1 physical repair obligation. Raw55 authored opening creates a real C1 offense obligation when the source actually becomes group7. Quick, true Power, Normal and Sprint all have positive native exact RIGHT `7 -> 5` cleanup evidence after their proven authored-opening paths. Suppressed `5 -> 7` requests that never physically open do not fabricate an offense obligation; Sprint EV-281 provides a particularly direct control.
 
 ### G. Animation semantics and naming
 
-Evidence: EV-036–EV-065, plus EV-245–EV-268 for the distinction between serialized `Fist`, factual raw source UseType, actual marker-mechanism support and timing/contact behavior.  
+Evidence: EV-036–EV-065, plus EV-245–EV-282 for the distinction between serialized `Fist`, factual raw source UseType, actual marker-mechanism support, factual engine family/action and timing/contact behavior.  
 Main routing: `ANIMATION_INDEX.md`.
+
+Sprint EV-280–EV-282 is an explicit caution: the PowerAttack-named motion can be factual Action9/Sprint and later become factual Action2/Power. Animation filename is not family authority.
 
 ### H. Compatibility / hook ownership
 
@@ -292,72 +297,66 @@ Human final acceptance artifact:
 Current raw8 comparison artifact for the raw55 Quick investigation:
 `research/raw/2026.09.12_sabertooth_marked_quick.log`.
 
-### K. PhysicalFist/raw55 current causal route
+### K. PhysicalFist/raw55 complete causal route
 
 Initial discovery boundary:
 
 ```text
-EV-245 transformed Wolf/Sabertooth proxy rejected: both factual raw8
+EV-245 transformed Wolf/Sabretooth proxy rejected: both factual raw8
 EV-246 bounded native-NPC survey: no factual raw55 observed in that survey
+EV-262 Troll/BlackTroll factual TrollFist/raw55 confirmed; whole marked-callback suppression is not a uniform solution
+EV-263 healthy raw8 Quick control retained as mechanism boundary
 ```
 
-Concrete later evidence correctly reopened the boundary:
+Quick closure:
 
 ```text
-EV-262 Troll/BlackTroll factual TrollFist / raw55 confirmed;
-       whole marked-callback suppression removes the old early opening,
-       but the uniform production gate fails because Quick diverges
+EV-264 same original Quick callback owns native StatePosition progression + premature RIGHT raw55 opening
+EV-265 selective exact RIGHT early 5 -> 7 suppression preserves Quick StatePosition progression
+EV-266 authored FIST opens exact RIGHT raw55 and native cleanup succeeds, but activation alone does not restore Quick damage
+EV-267 one exact post-opening triggered-list clear restores Quick damage on contact
+EV-268 timing controls prove frame-1 FIST can arrive pre-StatePosition
+EV-269–EV-273 close the pre-state/repeat-contact Quick path and its bounded behavior
+```
 
-EV-263 healthy raw8 Quick control retained as mechanism boundary;
-       accepted-marker SP1 is not pre-marker native proof
+True Power closure:
 
-EV-264 unsuppressed marked raw55 Quick callback boundary proves the same
-       original _AI_QuickAttack invocation contains both native StatePosition
-       0 -> 1 and the early RIGHT raw55 group5 -> group7 opening
+```text
+EV-274 compound native callback ownership
+EV-275 selective exact RIGHT early-group suppression preserves native progression
+EV-276 authored FIST exact RIGHT activation with ClearTriggeredList=0 restores native damage and native cleanup
+```
 
-EV-265 exact early RIGHT raw55 5 -> 7 suppression preserves the original
-       Quick callback's StatePosition 0 -> 1 progression, leaves RIGHT at group5,
-       produces no later TrollFist opening/damage, and finalizes without raw55
-       obligation/repair
+Normal closure:
 
-EV-266 authored FIST-time exact RIGHT raw55 5 -> 7 activation succeeds,
-       creates a real C1 offense obligation, stays group7 through the late Quick
-       window, and receives clean native 7 -> 5 cleanup, but still produces no
-       Troll/BlackTroll damage to PC_Hero
+```text
+EV-277 compound native callback ownership
+EV-278 selective exact RIGHT early-group suppression preserves native progression
+EV-279 authored FIST exact RIGHT activation with ClearTriggeredList=0 restores native damage and native cleanup
+```
 
-EV-267 one exact TouchDamage.ClearTriggeredList after that delayed FIST-time
-       opening restores Troll/BlackTroll Quick damage when contact occurs;
-       native cleanup remains healthy
+Sprint closure:
 
-EV-268 user-authored timing controls move FIST to frame 4 and restore much
-       earlier damage, confirming the prior close-range difference was timing-
-       window-driven. FIST at frame 1 is itself transported correctly with valid
-       C1/raw55 source while StatePosition is still 0, but the current temporary
-       probe cannot act because its suppression-proof and StatePosition-1 gates
-       have not yet been satisfied.
+```text
+EV-280 factual Action9/Sprint compound ownership inside existing _AI_PowerAttack transport; whole-callback suppression rejected
+EV-281 selective exact RIGHT Action9 early-group suppression preserves native StatePosition 0 -> 1 and holds RIGHT group5 through FIST
+EV-282 authored FIST at factual Action9/SP1 opens exact RIGHT raw55 5 -> 7 with ClearTriggeredList=0; native damage + native 7 -> 5 cleanup repeat across C1=16/57/81
 ```
 
 Current engineering status:
 
 ```text
 factual raw55 source                  = CONFIRMED for Troll/BlackTroll TrollFist
-whole Quick callback suppression      = REJECTED; removes required native state progression too
-selective early Quick group gate      = CONFIRMED/PASS — EV-265
-authored-FIST raw55 group activation  = CONFIRMED/PASS — EV-266
-native cleanup after authored opening = CONFIRMED/PASS — EV-266–EV-267
-group opening alone restores damage   = NO / INSUFFICIENT — EV-266
-post-opening triggered-list rearm      = CONFIRMED/PASS FOR QUICK CONTACT — EV-267
-prior close-range coverage difference = TIMING-WINDOW-DRIVEN — EV-268
-frame-1 FIST transport                = CONFIRMED PRE-STATE — EV-268
-pre-state FIST activation/rearm        = OPEN / CURRENT PROBE
-frame-0 ordering                       = UNTESTED
-permanent raw55 marker mechanism      = NOT YET FROZEN
+raw55 Quick                           = CLOSED/PASS through EV-273; special rearm/pre-state behavior
+raw55 true Power                      = CLOSED/PASS through EV-276; no first-contact clear required
+raw55 Normal                          = CLOSED/PASS through EV-279; no first-contact clear required
+raw55 Sprint                          = CLOSED/PASS through EV-282; no first-contact clear required
+permanent raw55 marker architecture   = NOT YET IMPLEMENTED; NORMAL CHAT SYNTHESIS CURRENT
 ```
 
-Current frozen probe authority:
-`COLLISION_RAW55_QUICK_PRESTATE_FIST_PROBE.md`.
+The evidence-backed common Power/Normal/Sprint pattern is: preserve the native callback/state path, selectively block only the premature exact RIGHT PhysicalFist/raw55 opening, then let authored FIST open that exact source with no triggered-list clear and let Gothic own damage/cleanup. Quick shares the delayed-authored-opening goal but has proven family-specific pre-StatePosition and triggered-list rearm behavior.
 
-`COLLISION_RAW55_QUICK_EARLY_WINDOW_CONTROL_PROBE.md` was superseded before implementation by EV-268.
+No current raw55 probe is frozen. `PhysicalFistProbe` remains diagnostic research scaffolding; do not promote it wholesale. Current-state authority is `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
 Do not substitute raw8 semantics for raw55, do not species-gate production policy, and do not infer exact whole-limb/body damage geometry from the `TrollFist` name or current OnDamage logger.
 
@@ -379,15 +378,11 @@ SimpleWhirl current semantic checkpoint     CLOSED for current scope — EV-217�
 Hack equipped marker/source validation      CLOSED/PASS for tested 2H/Staff scope — EV-216, EV-244
 human/raw8 Fist production mechanism        CLOSED/PASS; broadened controls through EV-263
 initial PhysicalFist/raw55 bounded survey   CLOSED at EV-245–EV-246; REOPENED by factual EV-262 evidence
-raw55 whole-callback suppression gate       FAILED/REJECTED — EV-262
-raw55 Quick callback-boundary question      CLOSED — EV-264
-raw55 Quick selective group separability    CLOSED/PASS — EV-265
-raw55 Quick authored group activation       CLOSED/PASS — EV-266
-raw55 Quick authored-opening cleanup        CLOSED/PASS — EV-266
-raw55 Quick group-only damage sufficiency   FAILED/INSUFFICIENT — EV-266
-raw55 Quick delayed-FIST rearm sufficiency  CLOSED/PASS FOR CONTACT — EV-267
-raw55 close-range timing cause              CLOSED — EV-268
-raw55 frame-1 marker transport              CLOSED/CONFIRMED PRE-STATE — EV-268
+raw55 factual source boundary               CONFIRMED — EV-262
+raw55 Quick causal mechanism                CLOSED/PASS through EV-273
+raw55 true Power causal mechanism           CLOSED/PASS through EV-276
+raw55 Normal causal mechanism               CLOSED/PASS through EV-279
+raw55 Sprint causal mechanism               CLOSED/PASS through EV-282
 ```
 
 ```text
@@ -395,51 +390,45 @@ NEW COLLISION ARCHITECTURE VERIFICATION = COMPLETE
 RAW8 FIST SHARED MECHANISM = CLOSED/PASS FOR THE EVIDENCE-BACKED FAMILIES/CONTROLS
 EQUIPPED POWER / PIERCE / SIMPLEWHIRL / HACK EXPANSION CHECKPOINTS = CANONICALLY PROMOTED
 RAW55 FACTUAL SOURCE = CONFIRMED FOR TROLL/BLACKTROLL
-RAW55 QUICK WHOLE-CALLBACK SUPPRESSION = REJECTED
-RAW55 QUICK SELECTIVE EARLY GROUP GATE = CONFIRMED/PASS
-RAW55 QUICK AUTHORED GROUP ACTIVATION + NATIVE CLEANUP = CONFIRMED/PASS
-RAW55 QUICK DELAYED-FIST TRIGGERED-LIST REARM = CONFIRMED/PASS FOR CONTACT
-RAW55 QUICK FRAME-1 PRE-STATE FIST ACTIVATION = CURRENT FROZEN RESPONSIBILITY
+RAW55 QUICK = CLOSED/PASS WITH PROVEN QUICK-SPECIFIC REARM/PRE-STATE BEHAVIOR
+RAW55 TRUE POWER / NORMAL / SPRINT = CLOSED/PASS WITH AUTHORED OPENING + NO FIRST-CONTACT CLEAR
+RAW55 PERMANENT RESPONSIBILITY DESIGN = CURRENT NORMAL CHAT ARCHITECTURE-SYNTHESIS TASK
 ```
 
-Do not route current work back into broad raw55 source search, N4/N5/N6, geometry redesign, or permanent raw55 implementation. Follow the frozen Quick pre-state FIST probe first.
+Do not route current work back into broad raw55 source search or another family probe. Synthesize the permanent responsibility boundary first; only a concrete architecture-exposed unknown may justify renewed causal probing.
 
 ---
 
 ## 5. Future-Responsibility Cross-Routes
 
-### PhysicalFist/raw55 active design route
+### PhysicalFist/raw55 architecture-synthesis route
 
 Current causal route is:
 
 ```text
 EV-245–EV-246  initial bounded survey / raw8-vs-raw55 distinction
-EV-262         factual Troll/BlackTroll raw55 + whole-callback suppression causal result/failure
-EV-263         healthy raw8 Quick comparison boundary
-EV-264         native raw55 Quick compound callback ownership
-EV-265         selective early group gate preserves Quick StatePosition progression
-EV-266         authored FIST group activation + native cleanup succeed but damage remains absent
-EV-267         one exact delayed-FIST triggered-list clear restores Quick damage on contact
-EV-268         frame-4/frame-1 authored timing controls close the prior range question and expose
-               the pre-StatePosition FIST ordering gap
-COLLISION_RAW55_QUICK_PRESTATE_FIST_PROBE.md
+EV-262–EV-263  factual raw55 discovery + raw8 comparison boundary
+EV-264–EV-273  complete Quick causal closure
+EV-274–EV-276  true Power closure
+EV-277–EV-279  Normal closure
+EV-280–EV-282  Sprint closure
+FEATURE_DEVELOPMENT_METHOD.md
+SESSION_ENTRYPOINT.md / BETWEEN_CHATS.md
 ```
 
-The immediate question is whether an exact frame-1 FIST that arrives with valid C1/raw55 source while StatePosition is still 0 can directly own the one `5 -> 7` activation + triggered-list clear, while the later original Quick callback still advances native StatePosition and Gothic cleans the source normally.
-
-Do not add a suppression rule for the later native `7 -> 7` request and do not alter lifecycle bookkeeping to hide it. Frame 0 remains a separate ordering question after frame 1 closes.
+The current question is no longer whether each family can work. It is how to express the proven behavior as a minimal permanent raw55 module without importing diagnostic observer maps, logging scaffolding or temporary causal-probe structure. Preserve `EngineBridge` as transport-only, stable marker semantics as marker-owned, and `CollisionLifecycleGuard` as lifecycle owner.
 
 ### Pre-regression actor/family compatibility sequence
 
-The broader compatibility sequence remains paused while raw55 mechanism design is still scope-changing.
+The broader compatibility sequence remains paused while raw55 permanent architecture is still scope-changing.
 
-When raw55 is resolved or explicitly deferred again, resume from the current canonical evidence rather than the older EV-247-only route:
+When raw55 architecture is implemented or explicitly deferred, resume from the current canonical evidence rather than the older EV-247-only route:
 
 ```text
 raw8 native/transformed controls through EV-263
 native equipped-NPC controls EV-252–EV-258
 Stalker raw52 control EV-259
-raw55 causal route EV-262–EV-268 and subsequent closure
+raw55 causal route EV-262–EV-282
 -> separated 2H-vs-Axe mod compatibility
 -> separated 1H-vs-Rapier mod compatibility
 -> final native mixed collision regression
