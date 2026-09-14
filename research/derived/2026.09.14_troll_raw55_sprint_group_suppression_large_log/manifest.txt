@@ -1,47 +1,96 @@
-LARGE LOG EVIDENCE PACKAGE
+CHAT-FRIENDLY LARGE LOG PACKAGE
 ToolVersion: 1
-SourceInput: .\research\raw\2026.09.14_troll_raw55_sprint_group_suppression.log
+SourceInput: E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\research\raw\2026.09.14_troll_raw55_sprint_group_suppression.log
 SourceFileName: 2026.09.14_troll_raw55_sprint_group_suppression.log
 SourceSHA256: D0A61ADB25E8F348C06B22E078F165D644680CDE31B3D3FC23B758FAA8B4FB8D
 SourceBytes: 1671444
 SourceLineCount: 6882
-EventBlockCount: 88
 DistinctEventTypes: 2
-SignalMatchCount: 560
-DistinctSignalLines: 560
-SignalContextBefore: 5
-SignalContextAfter: 25
-MergedSignalContextRanges: 74
-MaxOutputPartBytes: 120000
+EventTimelineRows: 88
+SignalMatches: 4247
+MaxOutputPartBytes: 60000
+FullSourceParts: 30
 EventTimelineParts: 1
-SignalIndexParts: 2
-SignalContextParts: 8
-RequestedRangeCount: 0
-RequestedRangeParts: 0
+SignalParts: 28
 
 SignalPatterns:
 - C1_INVARIANT_WARNING = C1 INVARIANT WARNING
 - WOULD_REPAIR = WOULD_REPAIR
 - WARNING = (?i)\bWARNING\b
 - ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
-- FAILED_OR_FAILURE = (?i)\b(FAILED|FAILURE)\b
 - MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
-- STALE = (?i)\bSTALE\b
-- UNRESOLVED_OR_ORPHAN = (?i)\b(UNRESOLVED|ORPHAN)\b
-- BAD_OR_UNSAFE_SKIP = (?i)(BAD|UNSAFE|FAILED|STALE|MISMATCH).*(SKIP|SKIPPED)|(SKIP|SKIPPED).*(BAD|UNSAFE|FAILED|STALE|MISMATCH)
 - OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
-- EXTRA_01 = RAW55_SPRINT_GROUP_SUPPRESSION|RAW55_SPRINT_CALLBACK_BOUNDARY|RAW55_POWER_GROUP_SUPPRESSION|RAW55_POWER_CALLBACK_BOUNDARY|ACTIVATE_FIST=1|CORE ONDAMAGE|C1 CLEANUP FULFILLED|CORE C1_FINAL
+- RAW55_CALLBACK_BOUNDARY = RAW55_[A-Z0-9_]*CALLBACK_BOUNDARY
+- RAW55_GROUP_SUPPRESSION = RAW55_[A-Z0-9_]*GROUP_SUPPRESSION
+- FIST_ACTIVATION = (?i)ACTIVATE_FIST\s*[:=]\s*1
+- AUTHORED_FIST_MARKER = G3AB_COL_FIST
+- CLEAR_TRIGGERED_LIST = (?i)CLEARTRIGGEREDLIST|ClearTriggeredList
+- ON_DAMAGE = (?i)\bONDAMAGE\b|OnDamage
+- COLLISION_GROUP = CORE COLLISION_GROUP
+- C1_CLEANUP_FULFILLED = C1 CLEANUP FULFILLED
+- C1_FINAL = C1_FINAL|C1 FINAL
+- REPAIRED_TO_ITEM_EQUIPPED = REPAIRED_TO_ITEM_EQUIPPED
+- REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
 
 Files:
 - event_counts.tsv
+- full_source_index.tsv
 - event_timeline_part_001.tsv
 - signals_part_001.tsv
 - signals_part_002.tsv
-- signal_context_part_001.txt
-- signal_context_part_002.txt
-- signal_context_part_003.txt
-- signal_context_part_004.txt
-- signal_context_part_005.txt
-- signal_context_part_006.txt
-- signal_context_part_007.txt
-- signal_context_part_008.txt
+- signals_part_003.tsv
+- signals_part_004.tsv
+- signals_part_005.tsv
+- signals_part_006.tsv
+- signals_part_007.tsv
+- signals_part_008.tsv
+- signals_part_009.tsv
+- signals_part_010.tsv
+- signals_part_011.tsv
+- signals_part_012.tsv
+- signals_part_013.tsv
+- signals_part_014.tsv
+- signals_part_015.tsv
+- signals_part_016.tsv
+- signals_part_017.tsv
+- signals_part_018.tsv
+- signals_part_019.tsv
+- signals_part_020.tsv
+- signals_part_021.tsv
+- signals_part_022.tsv
+- signals_part_023.tsv
+- signals_part_024.tsv
+- signals_part_025.tsv
+- signals_part_026.tsv
+- signals_part_027.tsv
+- signals_part_028.tsv
+- full_source_part_001.txt
+- full_source_part_002.txt
+- full_source_part_003.txt
+- full_source_part_004.txt
+- full_source_part_005.txt
+- full_source_part_006.txt
+- full_source_part_007.txt
+- full_source_part_008.txt
+- full_source_part_009.txt
+- full_source_part_010.txt
+- full_source_part_011.txt
+- full_source_part_012.txt
+- full_source_part_013.txt
+- full_source_part_014.txt
+- full_source_part_015.txt
+- full_source_part_016.txt
+- full_source_part_017.txt
+- full_source_part_018.txt
+- full_source_part_019.txt
+- full_source_part_020.txt
+- full_source_part_021.txt
+- full_source_part_022.txt
+- full_source_part_023.txt
+- full_source_part_024.txt
+- full_source_part_025.txt
+- full_source_part_026.txt
+- full_source_part_027.txt
+- full_source_part_028.txt
+- full_source_part_029.txt
+- full_source_part_030.txt
