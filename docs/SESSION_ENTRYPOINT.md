@@ -15,7 +15,7 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe authority: none — next Sprint probe is under Normal Chat/User design review  
+Current frozen probe authority: `docs/COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md`  
 Latest canonical evidence: `docs/EVIDENCE_LEDGER_280_ONWARD.md` through **EV-281**  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
@@ -31,7 +31,7 @@ raw55 true Power  CLOSED/PASS through EV-276
 raw55 Normal      CLOSED/PASS through EV-279
 raw55 Sprint callback ownership CLOSED/PASS — EV-280
 raw55 Sprint selective group suppression CLOSED/PASS — EV-281
-raw55 Sprint authored-FIST activation NEXT DESIGN QUESTION — NOT YET FROZEN
+raw55 Sprint authored-FIST activation FROZEN NEXT PROBE
 ```
 
 Raw8 FIST and raw8 Sprint remain separate proven mechanisms and must not be altered by raw55 research.
@@ -51,8 +51,6 @@ Repeated runtime samples prove the same original Action9 callback invocation own
 StatePosition 0 -> 1
 exact RIGHT PhysicalFist/raw55 5 -> 7
 ```
-
-with `SameC1=1`, `SameRight=1`, `Action=9->9`, `NativeResult=1`.
 
 Whole-callback Sprint suppression is therefore rejected. Authored FIST is later delivered while Action9 / SPRINT remains factual.
 
@@ -119,23 +117,50 @@ The package includes event/signal indexes plus complete line-numbered source chu
 
 ---
 
-## Current Responsibility — Normal Chat + User Design Review
+## Current Frozen Responsibility — Work Sprint Authored-FIST Activation Probe
 
-No Work/source task is frozen.
+Frozen authority:
 
-The next smallest causal question is:
+```text
+docs/COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md
+```
+
+Single causal question:
 
 ```text
 after proven early Action9 5 -> 7 suppression,
 can authored G3AB_COL_FIST at factual Sprint StatePosition=1
 activate only the exact current equipped RIGHT PhysicalFist/raw55 source 5 -> 7,
-with ClearTriggeredList=0 initially,
-then obtain native damage/contact and native cleanup?
+with ClearTriggeredList=0,
+then allow native contact/damage and native cleanup?
 ```
 
-Do not assume Quick's rearm requirement or Power/Normal's tested no-rearm result applies to Sprint. Test Sprint directly.
+Implementation boundary:
 
-Any next implementation should remain diagnostic-only in `PhysicalFistProbe`, preserve the proven Sprint suppression gate unchanged, and add only the smallest activation responsibility required by the frozen question.
+```text
+PhysicalFistProbe owns Sprint research state/policy
+preserve EV-281 selective suppression unchanged
+preserve original Sprint callback exactly once
+extend SprintEarlySuppressionProof only as needed for activationUsed
+reuse existing OnMarkerProcessed delegation
+require Action9 / Family SPRINT / Hit / StatePosition1
+require same actor + exact RIGHT source + C1 suppression proof
+request exact RIGHT group7 once
+log CORE RAW55_SPRINT_FIST_ACTIVATION_PROBE
+ClearTriggeredList=0
+```
+
+`EngineBridge` should remain unchanged. Stable marker semantics remain unchanged. No custom damage, cleanup compensation, StatePosition/SPU write, new hook/RVA, timer, polling or family generalization is authorized.
+
+Work must not build. Source/static audit -> publish -> STOP.
+
+After independent Normal Chat source review, User + Normal Chat own build/deploy/runtime evidence.
+
+Preferred future runtime artifact:
+
+```text
+research/raw/2026.09.14_troll_raw55_sprint_fist_activation.log
+```
 
 ---
 
