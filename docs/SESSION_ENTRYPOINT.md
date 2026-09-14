@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-13
+**Updated:** 2026-09-14
 
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat after independent source review.
 
@@ -15,8 +15,8 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If a Normal Chat ends before evidence closure, immediately use `docs/PROJECT_OPERATING_PROCEDURES.md` §13 POP-11 and enter Recovery Lock before new implementation/runtime/Work. Oversized runtime logs use §9 POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe authority: `docs/COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md`  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_274_ONWARD.md` through **EV-279**; EV-269–EV-273 remain in `docs/EVIDENCE_LEDGER_269_ONWARD.md`; earlier evidence remains in preceding ledgers  
+Current frozen probe authority: `docs/COLLISION_RAW55_SPRINT_GROUP_SUPPRESSION_PROBE.md`  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_280_ONWARD.md` through **EV-280**; EV-274–EV-279 remain in `docs/EVIDENCE_LEDGER_274_ONWARD.md`; EV-269–EV-273 remain in `docs/EVIDENCE_LEDGER_269_ONWARD.md`; earlier evidence remains in preceding ledgers  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
@@ -50,34 +50,34 @@ native cleanup returns exact RIGHT 7 -> 5
 Raw55 Normal is closed through EV-279:
 
 ```text
-EV-277: same original _AI_Attack invocation owns StatePosition 0 -> 1 + RIGHT raw55 5 -> 7
-EV-278: exact premature 5 -> 7 can be suppressed while StatePosition 0 -> 1 survives
-EV-279: authored FIST then opens exact RIGHT raw55 5 -> 7 at StatePosition1
-        ClearTriggeredList=0
-        native OnDamage returns
-        native cleanup returns 7 -> 5
-        C1 finalizes cleanly
+same original _AI_Attack invocation owns StatePosition 0 -> 1 + RIGHT raw55 5 -> 7
+exact premature 5 -> 7 can be suppressed while StatePosition 0 -> 1 survives
+authored FIST then opens exact RIGHT raw55 5 -> 7 at StatePosition1
+ClearTriggeredList=0
+native OnDamage returns
+native cleanup returns 7 -> 5
+C1 finalizes cleanly
 ```
 
-Normal therefore needs no separate contact-rearm probe for the tested first authored-FIST contact. Do not generalize this no-rearm result to Quick.
-
-Canonical runtime evidence is through **EV-279**. Recovery Lock remains **CLOSED**.
-
-No permanent raw55 implementation is authorized yet.
-
-The raw55 Sprint callback-boundary observer has now been implemented and independently reviewed, but it has **not** been built or runtime-tested yet.
-
-Reviewed Sprint observer implementation:
+Raw55 Sprint callback ownership is now closed through EV-280:
 
 ```text
-frozen base: 332cf840d641e0756ba90e1d9269cb396915e751
-implementation: 5c9e40c53162c4f16099107a44892e8c03f2bdaf
-Normal Chat source review: PASS
-build: NOT RUN
-runtime: NOT YET TESTED
+factual Sprint = Action9 / Family SPRINT
+existing _AI_PowerAttack transport remains authoritative
+same original Action9 callback invocation owns:
+    StatePosition 0 -> 1
+    exact RIGHT PhysicalFist/raw55 5 -> 7
+same C1 later reaches authored FIST while Action9 / SPRINT is still factual
+native damage occurs in exercised Sprint executions
+native exact RIGHT cleanup 7 -> 5 fulfills the obligation
+whole-callback Sprint suppression is rejected
 ```
 
-No new Work/source task is authorized before the Sprint runtime evidence transaction is closed.
+Later callbacks in the same PowerAttack-named motion may become factual Action2 / Family POWER after contact. Animation filename is therefore not Sprint authority; current and future Sprint policy must key to factual Action9 / exact Sprint callback scope.
+
+Canonical runtime evidence is through **EV-280**. Recovery Lock remains **CLOSED**.
+
+No permanent raw55 implementation is authorized yet.
 
 ---
 
@@ -98,72 +98,35 @@ raw55 uniform whole-callback production gate    FAILED/REJECTED — EV-262
 raw55 Quick mechanism                           CLOSED/PASS through EV-273
 raw55 true Power mechanism                      CLOSED/PASS through EV-276
 raw55 Normal mechanism                          CLOSED/PASS through EV-279
-raw55 Sprint callback observer                  IMPLEMENTED/REVIEWED; RUNTIME PENDING
+raw55 Sprint callback ownership                 CLOSED/PASS — EV-280
+raw55 Sprint selective group suppression        CURRENT RESEARCH
 ```
 
-Raw8 FIST remains a separate proven mechanism. Raw55 findings must not be generalized back onto raw8 or across raw55 attack families without evidence.
+Raw8 FIST remains a separate proven mechanism. Raw55 findings must not be generalized back onto raw8 or across raw55 families without evidence.
 
 ---
 
-## Current Responsibility — Local Raw55 Sprint Callback Runtime
+## EV-280 Runtime Result
 
-Frozen authority:
-
-```text
-docs/COLLISION_RAW55_SPRINT_CALLBACK_BOUNDARY_PROBE.md
-```
-
-Implementation:
+Implementation under test:
 
 ```text
 5c9e40c53162c4f16099107a44892e8c03f2bdaf
 ```
 
-Independent review confirms:
+Runtime artifact:
 
 ```text
-Sprint temporary whole-callback suppression disabled
-Action9 still resolves Family SPRINT at existing _AI_PowerAttack entry
-dedicated reentrancy-safe SprintCallbackObservation added in PhysicalFistProbe
-exact raw55 Sprint fixture required
-observation does NOT require RIGHT to remain group5 after opening
-EngineBridge remains sole _AI_PowerAttack hook owner
-Power and Sprint use separate observer objects
-original _AI_PowerAttack is called exactly once
-native return is preserved
-CORE RAW55_SPRINT_CALLBACK_BOUNDARY emitted only from diagnostic probe path
-no Sprint group suppression/activation/rearm added
-no new hook/RVA/CMake/release change
+research/raw/2026.09.14_troll_raw55_sprint_fist_activation.log
+runtime upload commit 077aeea6943fddb82d001031d95e40af968fd459
 ```
 
-Single runtime question:
+The artifact filename says `fist_activation`, but the binary contained only the Sprint callback-boundary observer; no Sprint authored-FIST intervention existed.
 
-> When exact eligible marked raw55 Sprint runs its original `_AI_PowerAttack` exactly once, does that same invocation own native `StatePosition 0 -> 1` and exact RIGHT PhysicalFist/raw55 `5 -> 7`, or does Sprint divide those responsibilities differently?
-
-Next session starts with User + Normal Chat, not Work:
+Repeated factual Sprint C1s include 8, 34, 45, 58, 73, 85, 96, 107 and 118. Their decisive Action9 callback has the repeated shape:
 
 ```text
-sync local branch
-verify HEAD
-build Script_FrameCollisionTest
-manually deploy diagnostic DLL
-verify built/live SHA256 equality
-run Troll until factual Action9 / Family SPRINT is captured
-preserve raw log unchanged
-commit/push raw evidence
-close POP-06 evidence transaction before any new source task
-```
-
-Preferred next runtime artifact:
-
-```text
-research/raw/2026.09.14_troll_raw55_sprint_callback_boundary.log
-```
-
-Possible compound result to test, not assume:
-
-```text
-CORE COLLISION_GROUP ... TrollFist ... Requested=7 Before=5 After=7
+CORE COLLISION_GROUP ... TrollFist UseType=55 Requested=7 Before=5 After=7
 CORE RAW55_SPRINT_CALLBACK_BOUNDARY ...
     SameC1=1
     SameRight=1
@@ -173,27 +136,74 @@ CORE RAW55_SPRINT_CALLBACK_BOUNDARY ...
     NativeResult=1
 ```
 
-Any different factual result determines the next causal question. Do not add compensation during this observation run.
+Authored FIST is then delivered at StatePosition1 while Action9 / Family SPRINT remains factual. Native damage and later exact RIGHT `7 -> 5` cleanup occur in exercised executions. Representative C1s finalize with `Outstanding=0`, `Cleanup=1`, `PhysicalChanged=0`, `NO_OP_NO_OUTSTANDING`.
+
+### Supporting interruption result
+
+The same mixed run includes many User-induced Troll hit reactions. Targeted checks found:
+
+```text
+ReplacedOutstanding=1      -> none
+REPAIRED_TO_ITEM_EQUIPPED  -> none
+```
+
+Representative interrupted attacks perform native `TrollFist 7 -> 5`, log `C1 CLEANUP FULFILLED`, and only then enter a new `_AI_Stumble` generation with `ReplacedOutstanding=0`.
+
+This supports the existing legitimate-reaction rule: normal hit reaction can interrupt the attack while native cleanup fulfills the exact-source obligation before replacement. It is not the destructive-continuation-loss / C1-R1 repair case.
 
 ---
 
-## Current Runtime Artifact
+## Current Frozen Responsibility — Raw55 Sprint Selective Group Suppression
 
-Latest canonical runtime evidence remains EV-279:
+Authority:
 
 ```text
-research/raw/2026.09.13_troll_raw55_normal_fist_activation.log
-runtime upload commit e01eae6482b0d106d6825a2fc879cca184e7bcc8
-implementation d1c9d6f39ece5b5b4f4228d3d46ded976e6ae21a
+docs/COLLISION_RAW55_SPRINT_GROUP_SUPPRESSION_PROBE.md
 ```
 
-Four factual Normal C1s (8, 10, 14, 36) independently reproduce early suppression -> native StatePosition progression -> authored 5 -> 7 activation without clear -> native damage -> native 7 -> 5 cleanup -> clean finalization.
+Single question:
+
+> While the exact marked factual raw55 Sprint / Action9 `_AI_PowerAttack` callback executes normally, can only its exact nested RIGHT PhysicalFist/raw55 `5 -> 7` request be suppressed while native `StatePosition 0 -> 1` survives?
+
+Frozen diagnostic mechanism:
+
+```text
+reuse existing reentrancy-safe SprintCallbackObservation
+require exact factual Action9 / Family SPRINT scope
+inside existing SetCollisionGroup delegation:
+    exact scoped actor + RIGHT source + C1
+    PhysicalFist/raw55
+    current factual Action9
+    before/current group5
+    requested group7
+-> suppress only that physical mutation
+-> emit CORE RAW55_SPRINT_GROUP_SUPPRESSION
+```
+
+Expected positive separability shape:
+
+```text
+CORE RAW55_SPRINT_GROUP_SUPPRESSION ... SUPPRESS_GROUP=1
+CORE RAW55_SPRINT_CALLBACK_BOUNDARY ...
+    SameC1=1
+    SameRight=1
+    Action=9->9
+    StatePosition=0->1
+    RightGroup=5->5
+    NativeResult=1
+```
+
+A suppressed request must not call original SetCollisionGroup and must not fabricate an offense obligation.
+
+Important control: if factual Action later becomes 2 in the same Sprint-origin motion and another `5 -> 7` is attempted, existing true-Power suppression/logging may expose it. That is a real second activation path and must be investigated rather than hidden.
+
+No Sprint authored-FIST activation or `ClearTriggeredList` belongs in this task.
 
 ---
 
 ## Still Paused
 
-Until Sprint raw55 ownership is sufficiently proven or explicitly deferred:
+Until Sprint raw55 mechanism is sufficiently proven or explicitly deferred:
 
 ```text
 NO permanent raw55 implementation
