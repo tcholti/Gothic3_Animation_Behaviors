@@ -1289,13 +1289,19 @@ static bool TryApplyNormalPreStateFistProbe(
     eECollisionGroup const groupBefore = rightSource.GetCollisionGroup();
     rightSource.SetCollisionGroup(eECollisionGroup_Item_Attack);
     eECollisionGroup const groupAfter = rightSource.GetCollisionGroup();
+    bool triggeredListCleared = false;
+    if (groupAfter == eECollisionGroup_Item_Attack)
+    {
+        rightSource.TouchDamage.ClearTriggeredList();
+        triggeredListCleared = true;
+    }
 
     FILE *const log = CollisionDiagnostics::GetLog();
     if (log != nullptr)
     {
         std::fprintf(
             log,
-            "CORE RAW55_NORMAL_PRESTATE_FIST_PROBE Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d GroupBefore=%d RequestedGroup=%d GroupAfter=%d ClearTriggeredList=0 PRESTATE_FIST=1\n",
+            "CORE RAW55_NORMAL_PRESTATE_FIST_PROBE Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d GroupBefore=%d RequestedGroup=%d GroupAfter=%d ClearTriggeredList=%d PRESTATE_FIST=1 PRESTATE_REARM=%d\n",
             actor.GetName().GetText(),
             static_cast<unsigned long long>(generation.generation),
             static_cast<GEInt>(action), statePosition,
@@ -1305,7 +1311,9 @@ static bool TryApplyNormalPreStateFistProbe(
                 CollisionSources::GetCollisionSourceUseType(rightSource)),
             static_cast<GEInt>(groupBefore),
             static_cast<GEInt>(eECollisionGroup_Item_Attack),
-            static_cast<GEInt>(groupAfter));
+            static_cast<GEInt>(groupAfter),
+            triggeredListCleared ? 1 : 0,
+            triggeredListCleared ? 1 : 0);
         std::fflush(log);
     }
 
