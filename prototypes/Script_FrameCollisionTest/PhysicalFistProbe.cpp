@@ -54,6 +54,8 @@ struct NormalPreStateFistIntervention
     eCEntity *actorInstance;
     eCEntity *rightSourceInstance;
     std::uint64_t c1Generation;
+    bool preStateRearmProven;
+    bool nativeRearmSuppressionUsed;
 };
 
 struct SprintEarlySuppressionProof
@@ -585,6 +587,101 @@ static bool ShouldSuppressNormalCollisionGroupRequest(
     return true;
 }
 
+static bool ShouldSuppressNormalNativeRearmRequest(
+    eCEntity *sourceInstance, eECollisionGroup requestedGroup,
+    eECollisionGroup beforeGroup)
+{
+    NormalCallbackObservation *const scope =
+        g_pCurrentNormalCallbackScope;
+    if (scope == nullptr || !scope->active
+        || scope->actionBefore != static_cast<GEInt>(gEAction_Attack)
+        || sourceInstance == nullptr
+        || sourceInstance != scope->rightSourceInstance
+        || requestedGroup != eECollisionGroup_Item_Attack
+        || beforeGroup != eECollisionGroup_Item_Attack)
+    {
+        return false;
+    }
+
+    Entity actor(scope->actorInstance);
+    Entity rightSource(sourceInstance);
+    if (actor == None || actor.GetInstance() != scope->actorInstance)
+        return false;
+
+    gEAction const action =
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+    if (action != gEAction_Attack
+        || static_cast<GEInt>(action) != scope->actionBefore
+        || !FrameCollisionMarkers::IsAttackHit(
+            actor, AttackFamily_Normal)
+        || rightSource == None
+        || rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Attack
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist)
+    {
+        return false;
+    }
+
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    if (currentSources.rightInstance != sourceInstance)
+        return false;
+
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            scope->actorInstance);
+    if (!generation.valid
+        || generation.actorInstance != scope->actorInstance
+        || generation.generation != scope->c1Generation)
+    {
+        return false;
+    }
+
+    auto interventionIt =
+        g_NormalPreStateFistInterventions.find(scope->actorInstance);
+    if (interventionIt == g_NormalPreStateFistInterventions.end())
+        return false;
+
+    NormalPreStateFistIntervention &intervention = interventionIt->second;
+    if (intervention.actorInstance != scope->actorInstance
+        || intervention.rightSourceInstance != sourceInstance
+        || intervention.c1Generation != scope->c1Generation
+        || !intervention.preStateRearmProven
+        || intervention.nativeRearmSuppressionUsed)
+    {
+        return false;
+    }
+
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    if (statePosition != 0)
+        return false;
+
+    intervention.nativeRearmSuppressionUsed = true;
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        GEFloat const stateTime = actor.Routine.GetStateTime();
+        std::fprintf(
+            log,
+            "CORE RAW55_NORMAL_NATIVE_REARM_SUPPRESSION_PROBE Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RequestedGroup=%d BeforeGroup=%d PreStateRearmProven=1 NATIVE_7TO7_SUPPRESS=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(scope->c1Generation),
+            static_cast<GEInt>(action), statePosition,
+            static_cast<double>(stateTime),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(
+                CollisionSources::GetCollisionSourceUseType(rightSource)),
+            static_cast<GEInt>(requestedGroup),
+            static_cast<GEInt>(beforeGroup));
+        std::fflush(log);
+    }
+
+    return true;
+}
+
 static bool ShouldSuppressPowerCollisionGroupRequest(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup)
@@ -690,6 +787,12 @@ bool ShouldSuppressCollisionGroupRequest(
     }
 
     if (ShouldSuppressNormalCollisionGroupRequest(
+            sourceInstance, requestedGroup, beforeGroup))
+    {
+        return true;
+    }
+
+    if (ShouldSuppressNormalNativeRearmRequest(
             sourceInstance, requestedGroup, beforeGroup))
     {
         return true;
@@ -1294,6 +1397,8 @@ static bool TryApplyNormalPreStateFistProbe(
     {
         rightSource.TouchDamage.ClearTriggeredList();
         triggeredListCleared = true;
+        g_NormalPreStateFistInterventions[actorInstance]
+            .preStateRearmProven = true;
     }
 
     FILE *const log = CollisionDiagnostics::GetLog();
