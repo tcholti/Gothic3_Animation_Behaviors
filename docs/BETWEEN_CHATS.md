@@ -4,18 +4,18 @@
 
 **Updated:** 2026-09-15
 
-## Current Bridge — EV-284 CLOSED; RAW55 ARCHITECTURE SYNTHESIS PAUSED FOR TWO CAUSAL CLOSURES + NEW BALANCE 0.7.0 RUNTIME COEXISTENCE
+## Current Bridge — EV-285 CLOSED; RAW55 ARCHITECTURE SYNTHESIS PAUSED FOR TWO CAUSAL CLOSURES + NEW BALANCE 0.7.0 RUNTIME COEXISTENCE
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical evidence is through **EV-284**.
+Recovery Lock remains **CLOSED**. Canonical evidence is through **EV-285**.
 
 No permanent raw55 implementation is authorized yet.  
 No new Work/source task is currently frozen.
 
-The two-FIST runtime supplied architecture-relevant evidence before permanent promotion, so the prior architecture-synthesis step is temporarily paused. Normal Chat must first close the newly exposed Normal pre-state and non-Quick repeated-FIST boundaries. New Balance 0.7.0 source-level compatibility now passes EV-284; one runtime coexistence validation remains before final product compatibility is certified.
+The two-FIST runtime supplied architecture-relevant evidence before permanent promotion, so architecture synthesis remains paused until the newly exposed Normal pre-state and non-Quick repeated-FIST boundaries are closed. New Balance 0.7.0 source-level compatibility passes EV-284. EV-285 establishes that `Script_AttackCollision.dll` is a separate, mutually exclusive collision controller and must be absent when this project's marker system is active. One runtime coexistence validation with New Balance 0.7.0 (without AttackCollision) remains before final product compatibility is certified.
 
 ---
 
@@ -24,7 +24,7 @@ The two-FIST runtime supplied architecture-relevant evidence before permanent pr
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. EVIDENCE_LEDGER_283_ONWARD.md — EV-283 and EV-284
+3. EVIDENCE_LEDGER_283_ONWARD.md — EV-283 through EV-285
 4. EVIDENCE_LEDGER_269_ONWARD.md — EV-269, EV-270 and EV-273
 5. EVIDENCE_LEDGER_274_ONWARD.md — EV-274 through EV-279 only as needed
 6. EVIDENCE_LEDGER_280_ONWARD.md — EV-280 through EV-282 only as needed
@@ -184,40 +184,13 @@ Human Fist PowerAttack = 0.80
 
 Commit `1d09f8d177f7d18789dd55433be69703564bb0be` raised those values from `0.54` and `0.60` respectively.
 
-The former Fist friendly/current-target patch at:
-
-```text
-Script_Game +0xAA5E6..+0xAA5EB
-```
-
-is commented out in current `CodePatch.cpp` and is not active in 0.7.0.
+The former Fist friendly/current-target patch at `Script_Game +0xAA5E6..+0xAA5EB` is commented out in current `CodePatch.cpp` and is not active in 0.7.0.
 
 New Balance does call `TouchDamage.ClearTriggeredList()` at `Script_Game +0x482E7`, but only inside its dual-1H PowerAttack correction after verifying both hands are 1H. This is not the PhysicalFist/raw55 path.
 
-New Balance also inserts combat-move scaling at:
+New Balance also inserts combat-move scaling at `Game +0x16B8A9`, while our project owns the enclosing `AICombatMoveInstr` entry at `Game +0x1696E0` and calls the original function. These are distinct sites and the New Balance movement adjustment can execute inside the original path.
 
-```text
-Game +0x16B8A9
-```
-
-Our project owns the enclosing `AICombatMoveInstr` entry at:
-
-```text
-Game +0x1696E0
-```
-
-and calls the original function. These are distinct sites and the New Balance movement adjustment can execute inside the original path.
-
-Targeted current-source audit identifies no New Balance hook/patch ownership of:
-
-```text
-_AI_Attack
-_AI_PowerAttack
-_AI_QuickAttack
-Engine +0x225660 SetCollisionGroup
-Game +0x60850 marker StartEffect transport
-Game +0x1696E0 AICombatMoveInstr entry
-```
+Targeted current-source audit identifies no New Balance hook/patch ownership of `_AI_Attack`, `_AI_PowerAttack`, `_AI_QuickAttack`, `Engine +0x225660 SetCollisionGroup`, or `Game +0x60850` marker StartEffect transport.
 
 Status:
 
@@ -228,7 +201,78 @@ ACTIVE FIST CHANGE = ANIMATION SPEED, NOT COLLISION-WINDOW OWNERSHIP
 RUNTIME COEXISTENCE CERTIFICATION = STILL REQUIRED
 ```
 
-New Balance's speed and movement policy are external gameplay behavior that this mod should preserve, not replace. Because faster playback/movement can affect practical contact timing despite clean hook ownership, perform one coexistence runtime with New Balance 0.7.0 active before final product compatibility is certified. That runtime should verify marker delivery, raw55 opening/rearm, native damage and native cleanup.
+---
+
+## EV-285 — Script_AttackCollision Compatibility Boundary
+
+Current source:
+
+```text
+https://github.com/Jackydima/gothic3sdk/tree/master/scripts/Script_AttackCollision
+latest Script_AttackCollision.cpp commit = da61a791a97704ecebf166768c30564b6332d82d
+```
+
+`Script_AttackCollision` is a separate shared-library target from `Script_NewBalance`. The New Balance target does not link it and New Balance does not load it as a dependency.
+
+AttackCollision hooks the same callback ownership surfaces used by this project's marker system:
+
+```text
+OnAI_Attack
+OnAI_PowerAttack
+OnAI_QuickAttack
+OnAI_PierceAttack
+OnAI_SimpleWhirl
+OnAI_WhirlAttack
+```
+
+and additionally owns `OnAI_GetUpAttack`.
+
+Its callbacks implement fixed-time collision control rather than delegating to Gothic's original callback:
+
+```text
+SetCollisionGroup(Item_Attack)
+TouchDamage.ClearTriggeredList()
+StatePosition writes
+```
+
+Default timing values:
+
+```text
+Normal        0.25 s
+GetUp         0.10 s
+Pierce        0.80 s
+Power         0.10 s
+Dual Power repeat clear 1.00 s
+Quick         0.10 s
+SimpleWhirl   0.25 s
+Whirl         0.25 s
+```
+
+Its physical source policy is hard-coded by pose/loadout. Examples:
+
+```text
+Dual Normal P0            -> LEFT
+Dual Pierce P1            -> LEFT
+Dual SimpleWhirl P1       -> LEFT
+Dual/Torch+1H Quick P1    -> LEFT
+Power                     -> RIGHT + LEFT when dual 1H
+Whirl                     -> RIGHT + ResetOnUntouch
+```
+
+This conflicts directly with this project's animation-authored `RIGHT/LEFT/BOTH/OFF`, repeated-marker rearm and exact-source lifecycle ownership. The Torch+1H Quick rule is especially incompatible because LEFT is the torch slot, whereas this project deliberately gives authored exact-slot control.
+
+Status:
+
+```text
+SCRIPT_NEWBALANCE + G3 ANIMATION BEHAVIORS = SOURCE-LEVEL COMPATIBLE (EV-284)
+SCRIPT_ATTACKCOLLISION + G3 ANIMATION BEHAVIORS = INCOMPATIBLE / MUTUALLY EXCLUSIVE (EV-285)
+```
+
+Do not attempt to support simultaneous collision ownership through DLL load order. `Script_AttackCollision.dll` must be absent/disabled when this project's marker collision system is active. `attacks.ini` belongs to AttackCollision's timer configuration and has no role in marker semantics.
+
+Before release, add an installation/runtime warning or guard for `Script_AttackCollision.dll` so users do not accidentally install two collision controllers.
+
+New Balance runtime coexistence validation must be performed with New Balance 0.7.0 active and AttackCollision absent.
 
 ---
 
@@ -241,6 +285,7 @@ NO promotion/copy of PhysicalFistProbe scaffolding
 NO assumption that non-Quick repeat FIST needs or does not need ClearTriggeredList
 NO ignoring Normal SP0 marker delivery
 NO blanket runtime compatibility claim before New Balance 0.7.0 coexistence test
+NO simultaneous Script_AttackCollision collision ownership
 NO broad native-creature certification continuation
 NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
