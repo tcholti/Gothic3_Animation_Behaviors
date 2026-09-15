@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-15
 
-## Current Bridge — EV-287 CLOSED; RAW55 NORMAL NATIVE REARM-SOURCE PROBE FROZEN
+## Current Bridge — EV-287 CLOSED; RAW55 NORMAL NATIVE REARM-SOURCE IMPLEMENTED + SOURCE-REVIEW PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -16,18 +16,25 @@ Current frozen diagnostic authority:
 
 `docs/COLLISION_RAW55_NORMAL_NATIVE_REARM_SOURCE_PROBE.md`
 
-Read in order:
+Current diagnostic implementation:
 
-1. `SESSION_ENTRYPOINT.md`
-2. this file
-3. `COLLISION_RAW55_NORMAL_NATIVE_REARM_SOURCE_PROBE.md`
-4. `EVIDENCE_LEDGER_286_ONWARD.md` — EV-286 and EV-287
-5. EV-268 through EV-273 only as Quick precedent
-6. EV-274 through EV-282 only as Power/Normal/Sprint first-contact precedent
-7. `FEATURE_DEVELOPMENT_METHOD.md`
-8. `WORK_IMPLEMENTATION_PROTOCOL.md`
+`6ca48c84e9fdf370ffdb824f9142e8ef0e267a7c`
 
-## EV-287 — What is now proven
+Required implementation base:
+
+`0aec52f2464c245f62d70077783ab78597952a11`
+
+Normal Chat independently reviewed the Work commit and marked **SOURCE REVIEW PASS**.
+
+The commit is exactly one commit ahead of the frozen base and changes exactly:
+
+`prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp`
+
+with 105 additions and no other source/build changes.
+
+Build status remains **NOT ATTEMPTED**. Local build/deploy/runtime validation belongs to User + Normal Chat next session.
+
+## EV-287 — What is already proven
 
 Canonical runtime:
 
@@ -41,11 +48,11 @@ Upload commit:
 
 `06a9fb5875a3c78edc596638f3d019e3e3d87852`
 
-Diagnostic implementation:
+Prior diagnostic implementation:
 
 `50db909b414eb821b536cd68baa75efbf5589c1b`
 
-Local build/live DLL SHA256:
+Prior local build/live DLL SHA256:
 
 `627BADF62B1B4DA62781DFEF2625D760D83C63DC95E4F17FEE87264F456B5068`
 
@@ -73,7 +80,7 @@ native exact RIGHT 7 -> 5 cleanup
 clean C1 finalization
 ```
 
-The User ran the fixture twice and visibly observed Normal damaging twice in both runs, although the positioning/timing was much harder than Quick.
+The User ran the fixture twice and visibly observed Normal damaging twice in both runs, although positioning/timing was substantially harder than Quick.
 
 Therefore:
 
@@ -89,36 +96,87 @@ native cleanup                                     PASS
 
 Do not claim that Normal marker 2 already owns the second hit. Current Normal code does nothing at marker 2.
 
-## Current frozen causal question
+## Current implementation under validation
 
-The strongest remaining candidate for the second opportunity is Gothic's native exact RIGHT `7 -> 7` setter request, because it occurs **after the first contact** and before marker 2.
+The Work commit implements exactly the frozen one-variable probe.
 
-Test one variable only:
+Temporary `NormalPreStateFistIntervention` research state now records:
 
 ```text
-proven Normal SP0 marker path remains unchanged:
-    frame-1 FIST -> 5 -> 7 -> ClearTriggeredList -> first hit
-
-then, inside the same factual Normal C1:
-    native exact RIGHT request 7 -> 7 at SP0
-    -> suppress ONLY that setter request once
-    -> original _AI_Attack callback continues
-    -> StatePosition must still advance 0 -> 1
-
-frame-15 FIST:
-    observational only
-    no marker-2 clear/rearm yet
+preStateRearmProven
+nativeRearmSuppressionUsed
 ```
 
-Interpretation:
+`preStateRearmProven` is set only after the already-proven SP0 path has:
 
-- first hit remains, native `7 -> 7` is suppressed, SP0->1 survives, second hit disappears -> native setter is the current implicit second rearm source;
-- second hit still occurs -> native setter itself is not the rearm source; isolate another native callback/state/contact mechanism;
-- callback/state/cleanup divergence -> stop and analyze, do not compensate.
+```text
+opened exact RIGHT raw55 5 -> 7
+verified groupAfter == 7
+executed exact RIGHT TouchDamage.ClearTriggeredList()
+```
+
+The new suppression applies only to one factual nested Normal request satisfying all required ownership facts:
+
+```text
+active Normal callback scope
+Action1 / NORMAL / Hit
+same exact current RIGHT PhysicalFist/raw55
+valid same actor + same C1 generation
+matching proven Normal SP0 intervention
+preStateRearmProven == true
+requested group7
+before/current group7
+StatePosition == 0
+nativeRearmSuppressionUsed == false
+```
+
+For that one request only, `PhysicalFistProbe` returns suppression before the underlying native `SetCollisionGroup(7)` call executes, then records the one-shot as used.
+
+The original `_AI_Attack` callback remains enabled. No StatePosition write, marker-2 clear/rearm, damage call, cleanup intervention, EngineBridge change, header change or CMake change was added.
+
+Diagnostic added:
+
+`CORE RAW55_NORMAL_NATIVE_REARM_SUPPRESSION_PROBE`
+
+with factual actor/C1/action/SP/time/RIGHT/use-type/requested/before/proof/suppression fields.
+
+## Immediate next session — local validation only
+
+1. User syncs branch through GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin.
+2. Confirm Changes is empty.
+3. Build only `Script_FrameCollisionTest` Release.
+4. STOP on the short build result.
+5. If build passes, perform POP-03 deployment/hash/twin verification.
+6. Perform POP-04 startup-banner verification.
+7. Run the same Normal two-FIST Troll fixture.
+8. Preserve the untouched raw log and close via POP-07/POP-06 if large.
+
+Preferred raw artifact:
+
+`research/raw/2026.09.16_troll_raw55_normal_native_rearm_source.log`
+
+Decisive interpretation remains:
+
+```text
+first hit remains
++ native exact RIGHT 7 -> 7 suppression fires
++ original callback still advances SP0 -> 1
++ frame-15 FIST remains observational
++ second damage disappears
+    => native 7 -> 7 setter request is causally required for the current implicit second-contact opportunity
+
+second damage still occurs under the same conditions
+    => native group setter itself is not the rearm source; isolate another callback/state/contact mechanism
+
+first hit, SP progression, cleanup or lifecycle diverges
+    => stop and analyze; do not compensate
+```
+
+No EV-288 exists yet. Do not promote an evidence conclusion until runtime closes the probe.
 
 ## Power observation from the same User test session
 
-The User reports that prepared Power two-swing animations visibly damage on the first authored marker but do not rearm for a second hit. Treat this as useful behavioral guidance, not as a new standalone causal proof from the Normal log.
+The User reports that prepared Power two-swing animations visibly damage on the first authored marker but do not rearm for a second hit. Treat this as useful behavioral guidance, not as a standalone causal EV from the Normal log.
 
 It is consistent with the current evidence model:
 
