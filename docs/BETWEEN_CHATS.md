@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-15
 
-## Current Bridge — RAW55 NORMAL PRE-STATE FIST PROBE FROZEN
+## Current Bridge — RAW55 NORMAL PRE-STATE FIST IMPLEMENTED + REVIEWED; LOCAL BUILD/RUNTIME PENDING
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -12,48 +12,46 @@ Stable branch: `main`
 
 Recovery Lock is **CLOSED**. Canonical evidence is through **EV-285**. No permanent raw55 implementation is authorized.
 
-Current frozen diagnostic authority:
+Frozen diagnostic authority:
 
 `docs/COLLISION_RAW55_NORMAL_PRESTATE_FIST_PROBE.md`
 
-Read in order:
+Diagnostic implementation under validation:
 
-1. `SESSION_ENTRYPOINT.md`
-2. this file
-3. `COLLISION_RAW55_NORMAL_PRESTATE_FIST_PROBE.md`
-4. EV-283
-5. EV-268 through EV-270, especially EV-269
-6. EV-277 through EV-279
-7. `FEATURE_DEVELOPMENT_METHOD.md`
-8. `WORK_IMPLEMENTATION_PROTOCOL.md`
+`a99f4aa616c905c4eb66c72bdaa27709c9b75c77`
 
-## Frozen causal question
+Normal Chat independently reviewed the implementation against required base `7de832f17188a2c622bc35f5c7cfa7a8450345ec` and marked **SOURCE REVIEW PASS**.
 
-EV-283 shows factual Normal attacks where the first authored FIST arrives at `StatePosition=0`, with the exact RIGHT PhysicalFist/raw55 source still group5 and before the existing Normal suppression proof exists.
+Exactly one source file changed:
 
-Test only this:
+`prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp`
 
-> Can that exact SP0 Normal FIST open the exact current RIGHT raw55 source `5 -> 7`, with no `ClearTriggeredList()`, while the original Normal callback remains untouched and later preserves its native StatePosition progression and cleanup?
+The implementation adds one C1/source-scoped Normal SP0 intervention. It requires factual Action1/Normal Hit, valid current C1, exact current RIGHT PhysicalFist/raw55 group5, the stable unsupported FIST result, and StatePosition 0. It requests only that exact RIGHT source to group7 through the ordinary setter and logs `CORE RAW55_NORMAL_PRESTATE_FIST_PROBE` with `ClearTriggeredList=0`.
 
-The probe may only request the exact current RIGHT raw55 source to `Item_Attack/group7`. It must not write StatePosition, call damage, clear triggered contacts, or perform cleanup.
+Important review result: after the SP0 marker opens RIGHT to group7, the existing Normal selective suppression cannot suppress the later native request because its gate requires `beforeGroup == Item_Equipped/group5`. Therefore a later native `7 -> 7` remains visible and no Normal early-suppression proof is manufactured. The existing SP1 Normal activation path consequently cannot double-activate this execution because it requires that proof plus group5/SP1. Quick/Power/Sprint/raw8 paths remain unchanged.
 
-Normal post-state first-contact evidence already passed with `ClearTriggeredList=0`; therefore Quick's rearm requirement must not be copied into this experiment.
+## Local validation sequence
 
-Expected source scope is `PhysicalFistProbe.cpp` and, only if necessary, `PhysicalFistProbe.h`. `EngineBridge`, stable marker semantics, lifecycle semantics, raw8, Quick, Power, Sprint, and equipped marker behavior remain unchanged. Work must not build.
+1. User syncs branch through GitHub Desktop and confirms Changes empty.
+2. Build only `Script_FrameCollisionTest` Release.
+3. Stop on build result.
+4. If build passes, perform POP-03 deployment hash/twin verification.
+5. Perform POP-04 startup banner check.
+6. Run one adequate Troll fixture and preserve the untouched raw log.
 
-After independent source review, User + Normal Chat will build/deploy locally and use the current two-FIST Troll fixture. Preferred raw artifact:
+Preferred raw artifact:
 
 `research/raw/2026.09.15_troll_raw55_normal_prestate_fist.log`
 
-PASS shape:
+Decisive PASS shape:
 
-`SP0 FIST -> exact RIGHT 5->7 -> ClearTriggeredList=0 -> later native Normal SP0->1 -> native damage on contact -> native 7->5 cleanup -> clean C1 finalization.`
+`SP0 FIST -> exact RIGHT 5->7 -> ClearTriggeredList=0 -> later original Normal callback advances SP0->1 with source remaining 7 -> native damage on contact -> native 7->5 cleanup -> clean C1 finalization.`
 
-If opening succeeds but damage does not, stop and make contact/rearm a separate later question.
+If group7 opens but damage does not occur, do not add anything in the same transaction; the next causal question becomes Normal contact/rearm. If StatePosition/lifecycle/cleanup diverges, isolate that before any feature design.
 
 ## Remaining order
 
-After this transaction closes:
+After this evidence transaction closes:
 
 1. non-Quick repeated-FIST semantics;
 2. Sprint same-C1 Action9 -> Action2 continuity within that repeated-marker design;
