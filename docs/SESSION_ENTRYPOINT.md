@@ -28,41 +28,55 @@ raw55 true Power  first-contact CLOSED/PASS through EV-276
 raw55 Normal      first-contact CLOSED/PASS through EV-279
 raw55 Sprint      first-contact CLOSED/PASS through EV-282
 raw55 two-FIST cross-family runtime CLOSED as evidence — EV-283
+
+Normal pre-StatePosition FIST probe:
+    implementation a99f4aa616c905c4eb66c72bdaa27709c9b75c77
+    independent Normal Chat source review PASS
+    local build/deploy/runtime PENDING
 ```
 
-Current source task is the **Normal pre-StatePosition FIST probe** only.
-
-EV-283 shows factual Normal FIST at:
+The current diagnostic changes only `PhysicalFistProbe.cpp` and adds the exact Normal SP0 intervention frozen in the probe contract:
 
 ```text
-Action1 / Family NORMAL / Hit
+factual Action1 / Family NORMAL / Hit
+valid current C1
+exact current RIGHT PhysicalFist/raw55 group5
+stable FIST result = UNSUPPORTED_MISSING_SOURCE
 StatePosition=0
-RIGHT PhysicalFist/raw55 group5
-valid C1
-no Normal early-suppression proof yet
+-> exact RIGHT SetCollisionGroup(Item_Attack / 7)
+-> ClearTriggeredList=0
 ```
 
-Frozen intervention:
+No StatePosition write, damage call, cleanup intervention, new hook, or permanent feature code was added.
+
+Independent review confirmed the later native Normal request is not hidden after the marker-owned opening: existing selective suppression requires before-group 5, so a later native `7 -> 7` remains observable. The existing SP1 activation path cannot double-activate because it still requires the old suppression proof plus group5/SP1.
+
+## Immediate next step
+
+User + Normal Chat now perform local validation only:
 
 ```text
-that exact SP0 authored FIST
--> exact current RIGHT raw55 SetCollisionGroup(Item_Attack / 7)
--> ClearTriggeredList=0
--> no StatePosition write
--> no damage call
--> no cleanup intervention
+sync branch
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+-> POP-03 deploy/hash verification if build passes
+-> POP-04 startup banner
+-> Troll runtime
+-> POP-07/POP-06 evidence closure
 ```
 
-Then preserve and observe the original Normal callback. The intended PASS result is later native `StatePosition 0 -> 1`, native damage when contact occurs, native `7 -> 5` cleanup, and clean C1 finalization.
+Preferred runtime artifact:
 
-Do not copy Quick's triggered-list clear into this probe. Normal first contact already passed at SP1 with `ClearTriggeredList=0`.
+`research/raw/2026.09.15_troll_raw55_normal_prestate_fist.log`
 
-No permanent raw55 implementation is authorized. Work must not build. Normal Chat reviews the source before User + Normal Chat build/deploy/runtime testing.
+Desired causal result:
+
+`SP0 FIST 5->7 / ClearTriggeredList=0 -> untouched native Normal SP0->1 -> native damage when contact occurs -> native 7->5 cleanup -> clean C1 finalization.`
 
 ## Remaining collision sequence
 
 ```text
-Normal pre-state causal closure
+Normal pre-state evidence closure
 -> non-Quick repeated-FIST causal closure
 -> preserve Sprint same-C1 Action9 -> Action2 continuity
 -> permanent raw55 architecture / implementation
@@ -79,7 +93,7 @@ New Balance 0.7 is not a current blocker. Source-level preflight is EV-284; corr
 ```text
 NO permanent PhysicalFistCollision
 NO promotion/copy of PhysicalFistProbe scaffolding
-NO non-Quick repeat-FIST intervention in this task
+NO non-Quick repeat-FIST intervention until this transaction closes
 NO New Balance final regression before permanent collision structure
 NO Raise / speed-control work before collision module closes
 NO AttackContinuationProtection work
