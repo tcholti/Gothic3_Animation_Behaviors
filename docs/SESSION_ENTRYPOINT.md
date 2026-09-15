@@ -30,6 +30,12 @@ raw55 Sprint      first-contact CLOSED/PASS through EV-282
 raw55 two-FIST cross-family runtime CLOSED as evidence — EV-283
 raw55 Normal SP0 physical opening CLOSED/PASS — EV-286
 raw55 Normal SP0 contact rearm / early first damage CLOSED/PASS — EV-287
+
+Normal native rearm-source probe:
+    implementation 6ca48c84e9fdf370ffdb824f9142e8ef0e267a7c
+    required base 0aec52f2464c245f62d70077783ab78597952a11
+    independent Normal Chat source review PASS
+    local build/deploy/runtime PENDING
 ```
 
 EV-287 proves the exact Normal frame-1 path:
@@ -56,43 +62,76 @@ clean finalization
 
 Therefore the Normal first-contact primitive is closed, but the second-contact **ownership** is not. Do not credit marker 2 with the second hit yet.
 
-## Current frozen causal question
+## Current diagnostic implementation under local validation
 
-Test whether Gothic's intervening native exact RIGHT `7 -> 7` setter request is what implicitly rearms Normal after the first marker-owned contact.
+The frozen probe now has a source-reviewed implementation in:
 
-Frozen intervention:
+`6ca48c84e9fdf370ffdb824f9142e8ef0e267a7c`
+
+Exactly one file changed:
+
+`prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp`
+
+It preserves the proven frame-1 SP0 `5 -> 7 + ClearTriggeredList()` path and records factual `preStateRearmProven` only after the clear actually occurs.
+
+Then, during the same factual Normal execution, it suppresses exactly one nested native exact RIGHT PhysicalFist/raw55:
 
 ```text
-preserve frame-1 SP0 5 -> 7 + ClearTriggeredList path unchanged
-preserve first early damage opportunity
-
-when the same factual Normal C1 later makes its native exact RIGHT 7 -> 7 request at SP0:
-    suppress ONLY that one setter request
-    leave the original _AI_Attack callback running
-    StatePosition must still progress 0 -> 1
-
-frame-15 FIST remains observational only
-no marker-2 rearm yet
+Item_Attack/group7 -> Item_Attack/group7
 ```
 
-The decision stays in temporary `PhysicalFistProbe`. `EngineBridge` remains unchanged and transport-only.
+request at `StatePosition == 0`, but only when the same actor + C1 generation + exact RIGHT source matches the proven pre-state rearm intervention.
+
+The original `_AI_Attack` callback remains enabled and must still be allowed to advance:
+
+```text
+StatePosition 0 -> 1
+```
+
+The frame-15 FIST remains observational only. No marker-2 clear/rearm is implemented.
+
+No EngineBridge, header, CMake, StatePosition-write, direct-damage, cleanup or permanent-architecture change is present.
+
+## Immediate next step
+
+User + Normal Chat perform local validation only:
+
+```text
+sync branch in GitHub Desktop
+-> confirm Changes empty
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+-> POP-03 deploy/hash verification if build passes
+-> POP-04 startup banner
+-> same Normal two-FIST Troll runtime
+-> POP-07/POP-06 evidence closure
+```
+
+Preferred runtime artifact:
+
+`research/raw/2026.09.16_troll_raw55_normal_native_rearm_source.log`
 
 Interpretation:
 
 ```text
-first hit survives + native 7->7 suppressed + SP0->1 survives + second hit disappears
-    => native setter is the implicit second rearm source
+first hit survives
++ native 7 -> 7 suppression fires
++ SP0 -> 1 survives
++ second hit disappears
+    => native setter is causally required for the current implicit second-contact opportunity
 
 second hit still occurs
     => another native callback/state/contact mechanism owns that rearm
 
-state/callback/cleanup divergence
+first hit/state progression/cleanup diverges
     => stop and analyze
 ```
 
+No EV-288 exists yet. Current canonical evidence remains EV-287 until runtime closure.
+
 ## Power observation
 
-The User reports from the same test session that prepared Power two-swing animations visibly damage on marker 1 but do not rearm for marker 2. This is useful behavioral guidance and is consistent with current Power evidence, but it is not yet promoted as a separate new causal EV. Finish the Normal native-rearm-source question first.
+The User reports from the same test session that prepared Power two-swing animations visibly damage on marker 1 but do not rearm for marker 2. This remains behavioral guidance, not a separate causal EV. Finish the Normal native-rearm-source question first.
 
 ## Remaining collision sequence
 
