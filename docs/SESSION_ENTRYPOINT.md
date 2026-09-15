@@ -15,7 +15,7 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If Normal Chat ends before evidence closure, use POP-11 Recovery Lock. Oversized runtime logs use POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe authority: `docs/COLLISION_RAW55_NORMAL_PRESTATE_REARM_PROBE.md`  
+Current diagnostic authority: `docs/COLLISION_RAW55_NORMAL_PRESTATE_REARM_PROBE.md`  
 Latest canonical evidence: through **EV-286** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
@@ -29,25 +29,16 @@ raw55 Normal      SP1 first-contact CLOSED/PASS through EV-279
 raw55 Sprint      first-contact CLOSED/PASS through EV-282
 raw55 two-FIST cross-family runtime CLOSED as evidence — EV-283
 raw55 Normal SP0 physical opening CLOSED/PASS — EV-286
+
+Normal SP0 contact-rearm probe:
+    implementation 50db909b414eb821b536cd68baa75efbf5589c1b
+    independent Normal Chat source review PASS
+    local build/deploy/runtime PENDING
 ```
 
-EV-286 proves:
+EV-286 proves the frame-1 Normal FIST is transported and opens exact current RIGHT PhysicalFist/raw55 `5 -> 7` at StatePosition 0. With `ClearTriggeredList=0`, no damage occurs before Gothic's later native `7 -> 7 / StatePosition 0 -> 1` transition; one later damage event occurs and native cleanup remains healthy.
 
-```text
-frame-1 Normal FIST at StatePosition 0 is transported
--> exact current RIGHT PhysicalFist/raw55 opens 5 -> 7
--> ClearTriggeredList=0
--> source remains group7
--> later native Normal 7 -> 7 occurs around StateTime ~= 0.25
--> native StatePosition advances 0 -> 1
--> later frame-15 FIST is delivered but receives no Normal repeat intervention
--> one later damage event occurs
--> native 7 -> 5 cleanup and clean C1 finalization
-```
-
-Therefore the first marker is **not rejected** and does not wait for the native timer to open the physical source. The remaining first-contact question is whether one exact triggered-list clear is required for an early damaging opportunity before Gothic's native Normal transition.
-
-## Current frozen intervention
+## Current diagnostic intervention
 
 For the already-proven exact Normal SP0 path only:
 
@@ -58,13 +49,29 @@ SP0 authored FIST
 -> exact RIGHT TouchDamage.ClearTriggeredList() once
 ```
 
-Change nothing else.
+Implementation `50db909b414eb821b536cd68baa75efbf5589c1b` changes only `PhysicalFistProbe.cpp`. The actor + C1 generation + exact RIGHT source one-shot identity is recorded before the opening/rearm operation. Logging reports `ClearTriggeredList` and `PRESTATE_REARM` truthfully.
 
-The original `_AI_Attack` callback must continue untouched. Preserve Gothic's later native `7 -> 7 / StatePosition 0 -> 1` transition. Do not suppress it, write StatePosition, call damage, or modify cleanup.
+The original `_AI_Attack` callback remains untouched. Preserve Gothic's later native `7 -> 7 / StatePosition 0 -> 1` transition. The frame-15 FIST remains observational only for Normal; no Normal repeated-FIST rearm is authorized yet.
 
-The frame-15 FIST remains observational only for Normal in this probe. No Normal repeated-FIST rearm is authorized yet.
+## Immediate next step
 
-## Interpretation
+User + Normal Chat perform local validation only:
+
+```text
+sync branch
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+-> POP-03 deploy/hash verification if build passes
+-> POP-04 startup banner
+-> same Troll two-FIST runtime
+-> POP-07/POP-06 evidence closure
+```
+
+Preferred runtime artifact:
+
+`research/raw/2026.09.15_troll_raw55_normal_prestate_rearm.log`
+
+Interpretation:
 
 ```text
 early ONDAMAGE before native 7 -> 7 / SP0 -> 1
