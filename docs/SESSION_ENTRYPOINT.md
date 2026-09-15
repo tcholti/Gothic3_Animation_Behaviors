@@ -15,8 +15,8 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If Normal Chat ends before evidence closure, use POP-11 Recovery Lock. Oversized runtime logs use POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe authority: `docs/COLLISION_RAW55_NORMAL_PRESTATE_FIST_PROBE.md`  
-Latest canonical evidence: through corrected **EV-285**  
+Current frozen probe authority: `docs/COLLISION_RAW55_NORMAL_PRESTATE_REARM_PROBE.md`  
+Latest canonical evidence: through **EV-286** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
 
@@ -25,58 +25,63 @@ Evidence routing: `docs/EVIDENCE_INDEX.md`
 ```text
 raw55 Quick       CLOSED/PASS through EV-273
 raw55 true Power  first-contact CLOSED/PASS through EV-276
-raw55 Normal      first-contact CLOSED/PASS through EV-279
+raw55 Normal      SP1 first-contact CLOSED/PASS through EV-279
 raw55 Sprint      first-contact CLOSED/PASS through EV-282
 raw55 two-FIST cross-family runtime CLOSED as evidence — EV-283
-
-Normal pre-StatePosition FIST probe:
-    implementation a99f4aa616c905c4eb66c72bdaa27709c9b75c77
-    independent Normal Chat source review PASS
-    local build/deploy/runtime PENDING
+raw55 Normal SP0 physical opening CLOSED/PASS — EV-286
 ```
 
-The current diagnostic changes only `PhysicalFistProbe.cpp` and adds the exact Normal SP0 intervention frozen in the probe contract:
+EV-286 proves:
 
 ```text
-factual Action1 / Family NORMAL / Hit
-valid current C1
-exact current RIGHT PhysicalFist/raw55 group5
-stable FIST result = UNSUPPORTED_MISSING_SOURCE
-StatePosition=0
--> exact RIGHT SetCollisionGroup(Item_Attack / 7)
+frame-1 Normal FIST at StatePosition 0 is transported
+-> exact current RIGHT PhysicalFist/raw55 opens 5 -> 7
 -> ClearTriggeredList=0
+-> source remains group7
+-> later native Normal 7 -> 7 occurs around StateTime ~= 0.25
+-> native StatePosition advances 0 -> 1
+-> later frame-15 FIST is delivered but receives no Normal repeat intervention
+-> one later damage event occurs
+-> native 7 -> 5 cleanup and clean C1 finalization
 ```
 
-No StatePosition write, damage call, cleanup intervention, new hook, or permanent feature code was added.
+Therefore the first marker is **not rejected** and does not wait for the native timer to open the physical source. The remaining first-contact question is whether one exact triggered-list clear is required for an early damaging opportunity before Gothic's native Normal transition.
 
-Independent review confirmed the later native Normal request is not hidden after the marker-owned opening: existing selective suppression requires before-group 5, so a later native `7 -> 7` remains observable. The existing SP1 activation path cannot double-activate because it still requires the old suppression proof plus group5/SP1.
+## Current frozen intervention
 
-## Immediate next step
-
-User + Normal Chat now perform local validation only:
+For the already-proven exact Normal SP0 path only:
 
 ```text
-sync branch
--> build Script_FrameCollisionTest Release only
--> STOP on build result
--> POP-03 deploy/hash verification if build passes
--> POP-04 startup banner
--> Troll runtime
--> POP-07/POP-06 evidence closure
+SP0 authored FIST
+-> exact RIGHT SetCollisionGroup(Item_Attack / 7)
+-> verify groupAfter == 7
+-> exact RIGHT TouchDamage.ClearTriggeredList() once
 ```
 
-Preferred runtime artifact:
+Change nothing else.
 
-`research/raw/2026.09.15_troll_raw55_normal_prestate_fist.log`
+The original `_AI_Attack` callback must continue untouched. Preserve Gothic's later native `7 -> 7 / StatePosition 0 -> 1` transition. Do not suppress it, write StatePosition, call damage, or modify cleanup.
 
-Desired causal result:
+The frame-15 FIST remains observational only for Normal in this probe. No Normal repeated-FIST rearm is authorized yet.
 
-`SP0 FIST 5->7 / ClearTriggeredList=0 -> untouched native Normal SP0->1 -> native damage when contact occurs -> native 7->5 cleanup -> clean C1 finalization.`
+## Interpretation
+
+```text
+early ONDAMAGE before native 7 -> 7 / SP0 -> 1
+    => triggered-list rearm is the missing early-contact primitive
+
+no early damage even with clear; damage only after native transition
+    => additional native Normal state/timing eligibility gate exists
+
+callback/lifecycle/cleanup divergence
+    => stop and analyze before further intervention
+```
 
 ## Remaining collision sequence
 
 ```text
-Normal pre-state evidence closure
+Normal SP0 contact-rearm causal closure
+-> if needed, isolate remaining native Normal timing/state gate
 -> non-Quick repeated-FIST causal closure
 -> preserve Sprint same-C1 Action9 -> Action2 continuity
 -> permanent raw55 architecture / implementation
@@ -93,7 +98,8 @@ New Balance 0.7 is not a current blocker. Source-level preflight is EV-284; corr
 ```text
 NO permanent PhysicalFistCollision
 NO promotion/copy of PhysicalFistProbe scaffolding
-NO non-Quick repeat-FIST intervention until this transaction closes
+NO Normal second-marker rearm in the current probe
+NO Power/Sprint repeat-FIST intervention
 NO New Balance final regression before permanent collision structure
 NO Raise / speed-control work before collision module closes
 NO AttackContinuationProtection work
