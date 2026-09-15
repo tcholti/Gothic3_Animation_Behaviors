@@ -2,22 +2,20 @@
 
 **Purpose:** Exact short-lived continuation bridge. Replace rather than accumulate chronology.
 
-**Updated:** 2026-09-14
+**Updated:** 2026-09-15
 
-## Current Bridge — EV-282 CLOSED; RAW55 ARCHITECTURE SYNTHESIS NEXT; FINAL VALIDATION SEQUENCE SAVED
+## Current Bridge — EV-283 CLOSED; RAW55 ARCHITECTURE SYNTHESIS PAUSED FOR TWO CAUSAL CLOSURES + NEW BALANCE COMPATIBILITY
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-282**.
+Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-283**.
 
 No permanent raw55 implementation is authorized yet.  
 No new Work/source task is currently frozen.
 
-The current responsibility returns to **Normal Chat architecture synthesis**: convert only the proven raw55 family responsibilities into a clean permanent design before any production implementation task is authorized.
-
-Important stopping-point addition from the User: raw55 must **not** be considered finally concluded after the first permanent/candidate implementation alone. A final one-marker cross-family validation must come first, followed by a dedicated two-marker/double-contact validation across Quick, Normal, Power and Sprint.
+The two-FIST runtime supplied architecture-relevant evidence before permanent promotion, so the prior architecture-synthesis step is temporarily paused. Normal Chat must first close the newly exposed Normal pre-state and non-Quick repeated-FIST boundaries, and separately verify compatibility with the User's actual current New Balance release.
 
 ---
 
@@ -26,215 +24,195 @@ Important stopping-point addition from the User: raw55 must **not** be considere
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. EVIDENCE_LEDGER_274_ONWARD.md — EV-274 through EV-279
-4. EVIDENCE_LEDGER_280_ONWARD.md — EV-280 through EV-282
-5. prior Quick raw55 evidence EV-264 through EV-273 only as needed
-6. FEATURE_DEVELOPMENT_METHOD.md when permanent module boundaries are being designed
+3. EVIDENCE_LEDGER_283_ONWARD.md — EV-283
+4. EVIDENCE_LEDGER_269_ONWARD.md — EV-269, EV-270 and EV-273
+5. EVIDENCE_LEDGER_274_ONWARD.md — EV-274 through EV-279 only as needed
+6. EVIDENCE_LEDGER_280_ONWARD.md — EV-280 through EV-282 only as needed
+7. FEATURE_DEVELOPMENT_METHOD.md before freezing a new probe or permanent module
 ```
-
-Historical Sprint probe authority remains:
-
-```text
-docs/COLLISION_RAW55_SPRINT_FIST_ACTIVATION_PROBE.md
-```
-
-It is closed evidence/provenance, not an active Work responsibility.
 
 ---
 
-## Closed Raw55 Family Results
-
-### Quick — CLOSED/PASS through EV-273
-
-Proven shape:
+## Closed Family Baseline Before EV-283
 
 ```text
-preserve original native Quick callback/state progression
-suppress premature exact RIGHT PhysicalFist/raw55 group5 -> group7
-support authored FIST activation at the factual marker boundary
-Quick contact requires triggered-list clearing/rearm
-later authored FIST can rearm repeated contact in the same C1
-pre-StatePosition marker ordering is a real Quick-specific boundary
-native cleanup returns exact RIGHT 7 -> 5
+Quick       CLOSED/PASS through EV-273
+true Power  CLOSED/PASS through EV-276
+Normal      CLOSED/PASS through EV-279
+Sprint      first-contact path CLOSED/PASS through EV-282
 ```
 
-Do not generalize Quick's `ClearTriggeredList` requirement onto other families.
-
-### True Power — CLOSED/PASS through EV-276
-
-```text
-factual Action2 / Family POWER
-preserve original _AI_PowerAttack
-suppress premature exact RIGHT raw55 5 -> 7
-native StatePosition 0 -> 1 survives
-FIST at StatePosition1 opens exact RIGHT 5 -> 7
-ClearTriggeredList=0
-native damage
-native cleanup 7 -> 5
-```
-
-### Normal — CLOSED/PASS through EV-279
-
-```text
-factual Action1 / Family NORMAL
-preserve original _AI_Attack
-suppress premature exact RIGHT raw55 5 -> 7
-native StatePosition 0 -> 1 survives
-FIST at StatePosition1 opens exact RIGHT 5 -> 7
-ClearTriggeredList=0
-native damage
-native cleanup 7 -> 5
-```
-
-### Sprint — CLOSED/PASS through EV-282
-
-EV-280 proves factual Sprint is `Action=9 / Family=SPRINT` inside the existing `_AI_PowerAttack` transport and that the same original callback owns native `StatePosition 0 -> 1` plus the premature exact RIGHT raw55 `5 -> 7`. Whole-callback suppression is rejected.
-
-EV-281 proves the exact Action9 nested RIGHT raw55 opening can be suppressed while native callback/state progression survives and RIGHT remains group5 through authored FIST.
-
-EV-282 proves authored Sprint FIST activation itself is sufficient. Three independent Sprint C1s — 16, 57 and 81 — repeat:
-
-```text
-Action9/SP0 exact RIGHT raw55 5 -> 7 suppressed
-native StatePosition 0 -> 1 survives
-RIGHT remains group5
-
-authored G3AB_COL_FIST at factual Action9 / SPRINT / SP1
-exact RIGHT TrollFist/raw55 group5 -> group7
-ClearTriggeredList=0
-native ONDAMAGE Target=PC_Hero
-native exact RIGHT cleanup 7 -> 5
-C1 CLEANUP FULFILLED
-C1_FINAL Outstanding=0 Cleanup=1 PhysicalChanged=0
-```
-
-Later callbacks in the same PowerAttack-named motion may become factual Action2 after contact. That later factual transition is separate and does not change the Action9 activation proof. Animation filename remains non-authoritative.
-
-Canonical runtime:
-
-```text
-research/raw/2026.09.14_troll_raw55_sprint_fist_activation_2.log
-SHA256 5CB3DCF52A68669C24C44279B69DC84ED404E78C61029DF76499B79088B0361C
-```
-
-Derived retrieval package:
-
-```text
-research/derived/2026.09.14_troll_raw55_sprint_fist_activation_2_large_log/
-```
-
-Implementation under test:
-
-```text
-545863c0c522b2cd2d2748f6823a23662bf0ffbf
-```
-
-User-local diagnostic DLL identity:
-
-```text
-SHA256 783747CC5E6627A1AC0092BB05C7F110813C940B940B208A835C0B2D28A5C597
-```
-
-User observation: the exercised Power-looking Troll attacks damaged the player; provoking factual Sprint required attacking the Troll, suggesting a counter-like trigger in this fixture.
-
----
-
-## Current Architecture-Synthesis Boundary
-
-The permanent design must express proven responsibilities, not transplant diagnostic scaffolding.
-
-Common proven Power/Normal/Sprint shape:
+Common first-contact Power/Normal/Sprint evidence remains valid:
 
 ```text
 preserve native callback/state progression
-selectively suppress only the premature exact RIGHT PhysicalFist/raw55 5 -> 7
-at authored FIST, open the exact current RIGHT PhysicalFist/raw55 5 -> 7
-no ClearTriggeredList for first contact
-let Gothic own contact/damage
-let native cleanup own 7 -> 5
+suppress only premature exact RIGHT PhysicalFist/raw55 5 -> 7
+authored FIST opens exact RIGHT raw55 source
+ClearTriggeredList=0 for the tested first contact
+native damage
+native 7 -> 5 cleanup
 ```
 
-Quick is the proven special case:
-
-```text
-same general delayed authored-opening goal
-but marker ordering may be pre-StatePosition
-and triggered-list clear/rearm is required for contact/repeated contact
-```
-
-Architecture constraints that remain standing:
-
-```text
-EngineBridge remains hook/transport-only
-FrameCollisionMarkers stable semantics remain separate
-CollisionLifecycleGuard remains lifecycle/repair owner
-raw8 FIST remains a separate proven mechanism
-PhysicalFistProbe remains diagnostic research code
-permanent raw55 policy/state belongs in an appropriate permanent responsibility-owned module
-no species/name/motion-filename policy
-no timer/polling/per-frame workaround
-```
-
-Do not freeze Work until Normal Chat and User agree on the permanent module/responsibility shape.
+Quick remains the proven special contact/rearm case and has already proven pre-state FIST plus repeated FIST rearm/double damage.
 
 ---
 
-## Planned Final Raw55 Validation Sequence
+## EV-283 — Two-FIST Cross-Family Runtime
 
-This is a **future validation gate**, not an active implementation task yet.
-
-After Normal Chat and User agree on the permanent raw55 architecture and the bounded implementation has been completed/reviewed, validate in this order:
-
-### Gate 1 — one authored FIST marker across all four raw55 families
-
-Use Troll test animations/fixtures for:
+Canonical raw:
 
 ```text
-Quick
-Normal
-Power
-Sprint
+research/raw/2026.09.15_troll_raw55_double_fist_activation.log
+SHA256 3771B3A9601D5CF3A715B6B15DF39DA5B55B0881CF8A127D1E9CFE436E898E43
+upload commit be2db3e8f2f8f1aa09ed02cf8aad918ae0e6a1a4
 ```
 
-Each should use the ordinary single authored FIST path first. Confirm the final implementation preserves the already-proven family behavior: authored activation occurs at the intended marker, native damage/contact remains Gothic-owned, and native cleanup/finalization stays healthy.
-
-Do not move to the two-marker test until this single-marker cross-family regression passes.
-
-### Gate 2 — two authored FIST markers / two possible player contacts
-
-Then use Troll animations deliberately authored so **two distinct hits on the player are physically possible** in the same attack execution, for:
+Derived package:
 
 ```text
-Quick
-Normal
-Power
-Sprint
+research/derived/2026.09.15_troll_raw55_double_fist_activation_large_log/
 ```
 
-Author/use two FIST marker opportunities corresponding to the two intended contacts and determine whether a second authored activation/contact can occur correctly in each family.
+### Quick
 
-Purpose:
+Positive repeated-contact proof remains healthy. Representative C1=3:
 
 ```text
-verify repeated authored activation/contact semantics rather than assuming Quick's proven rearm behavior is universal
-confirm whether Normal, Power and Sprint also support two authored hit opportunities correctly
-compare those results against Quick's already-proven repeated-contact/rearm specialization
-verify both contacts still leave ordinary native cleanup and clean C1 finalization
+FIST #1 -> raw55 opening/rearm -> native damage
+FIST #2 same C1 -> DecisionFistCount=2
+                     ClearTriggeredList=1
+                     REPEAT_FIST_REARM=1
+                  -> second native damage same C1
 ```
 
-The exact two-marker implementation/test contract must be frozen only after Gate 1 passes and after Normal Chat inspects the permanent implementation shape. Do not pre-assign `ClearTriggeredList` behavior to Normal/Power/Sprint; let this test establish what repeated-contact semantics actually require.
+A second marker is a second contact opportunity, not guaranteed damage if geometry does not contact.
 
-Raw55 is **not finally concluded** until these two validation gates are complete or explicitly deferred by User + Normal Chat.
+This agrees with EV-270/EV-273: the diagnostic one-shot rule is not final authoring semantics; each legitimate Quick FIST occurrence can be its own rearm opportunity.
+
+### Normal
+
+The new run exposes a real pre-state boundary. Repeated examples including C1=18, 99 and 101 receive FIST #1 while:
+
+```text
+StatePosition=0
+RIGHT raw55 group5
+no Normal early-suppression proof yet
+```
+
+The current Normal probe ignores that marker. FIST #2 later at SP1 becomes the first/only probe-owned 5 -> 7 activation and can damage.
+
+Therefore the run does **not** prove Normal is one-hit-only. It proves Normal pre-state authored-FIST ownership is unresolved and must be closed before permanent design.
+
+### Power
+
+FIST #1 at SP1 opens/damages normally. FIST #2 is visibly delivered in the same C1 while RIGHT remains group7, but the temporary Power proof is one-shot (`activationUsed`), so it attempts no second rearm.
+
+Therefore repeated Power hit semantics remain untested; absence of a second hit is not a negative causal result.
+
+### Sprint-origin execution
+
+C1=87 and C1=109 repeat:
+
+```text
+Action9 / SPRINT
+FIST #1 -> exact RIGHT 5 -> 7 -> native damage
+same C1 then becomes factual Action2 / POWER after contact
+FIST #2 arrives while same C1/source is still active and RIGHT remains group7
+no second intervention because Sprint proof is already used and no Power proof owns this C1
+native 7 -> 5 cleanup later
+```
+
+The Action9 -> Action2 transition does not create a new attack execution. Repeated-marker ownership therefore cannot be modeled as a one-shot permission attached only to the current family label.
+
+### Engineering boundary from EV-283
+
+Do not promote the family probes' `activationUsed` bookkeeping into production.
+
+Permanent raw55 design eventually needs C1/source/marker-occurrence semantics capable of surviving factual family-state changes inside the same execution. However the exact non-Quick repeated-contact primitive is not yet proven and must not be guessed from Quick.
+
+---
+
+## Current Causal Responsibilities — Normal Chat
+
+Do not launch permanent raw55 Work yet.
+
+Close separately:
+
+```text
+A. Normal pre-StatePosition FIST
+   Can a legitimate Normal FIST arriving at SP0 own the initial exact RIGHT raw55 activation
+   while the untouched native Normal callback later advances StatePosition and cleanup remains healthy?
+   Determine contact/rearm requirements causally; do not copy Quick automatically.
+
+B. Non-Quick repeat FIST
+   Once exact RIGHT raw55 is already group7 after FIST #1, what does FIST #2 need to create a second
+   native contact opportunity for Normal/Power/Sprint-origin executions?
+   Test the smallest primitive; do not assume ClearTriggeredList until proven.
+
+C. Sprint-origin Action9 -> Action2 continuity
+   Any repeat-FIST design must key to the same factual C1/source execution and must not mistake the
+   post-contact Action2 state for a new Power attack.
+```
+
+Freeze only one causal responsibility at a time.
+
+---
+
+## New Balance Compatibility — Current Static Preflight
+
+Compatibility with New Balance remains a product requirement.
+
+Public repository inspected:
+
+```text
+https://github.com/Jackydima/G3Script_NewBalance
+public master = 6f527c103d08708e89a80fc4fc8954546e1b93b1
+public master date = 2024-11-27
+```
+
+The public Fist-specific patch was introduced by:
+
+```text
+2a82f9cb604262ee6ce24aceeffc81e674224e8c
+codepatch for fixing transformed attacks on friendly NPCs
+```
+
+It patches `Script_Game +0xAA5E6..+0xAA5EB` to remove a current/friendly-target limitation for Fist attacks, especially transformed `PC_Hero`.
+
+Current raw55/marker surfaces used by this project are physically separate, including:
+
+```text
+Script_Game attack callback hooks such as _AI_Attack/_AI_QuickAttack/_AI_PowerAttack
+Game UpdateFrameEffects transport
+Game raw8 timing path
+Engine SetCollisionGroup transport
+```
+
+No direct static address/function collision has been identified in the linked public source. Static overlap risk is therefore currently **LOW**, not zero.
+
+Important limitation: the linked public GitHub `master` is old relative to the User's report of a newly released New Balance version where Fists were touched. Public Nexus material currently exposes 0.6.0 from 2026-03-24, but this does not establish the exact code in the User's newly released package.
+
+Therefore:
+
+```text
+PUBLIC-SOURCE STATIC PREFLIGHT = NO IDENTIFIED DIRECT OVERLAP / LOW RISK
+ACTUAL NEW RELEASE COMPATIBILITY = NOT YET CERTIFIED
+```
+
+Before final raw55 promotion, test the User's exact installed New Balance release together with our behavior. Compatibility validation must include actual runtime behavior, not merely successful load or non-overlapping RVAs.
 
 ---
 
 ## Still Paused
 
 ```text
-NO automatic copy/promotion of PhysicalFistProbe
-NO new raw55 family probe before architecture synthesis
+NO permanent raw55 architecture freeze yet
+NO production PhysicalFistCollision implementation
+NO promotion/copy of PhysicalFistProbe scaffolding
+NO assumption that non-Quick repeat FIST needs or does not need ClearTriggeredList
+NO assumption that Normal SP0 can be ignored
+NO blanket New Balance compatibility claim from the old public source
 NO broad native-creature certification continuation
-NO Axe-separation compatibility sequence
-NO Rapier/Zombie compatibility sequence
+NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
 ```
