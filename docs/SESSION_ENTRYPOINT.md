@@ -16,7 +16,7 @@
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Current frozen probe authority: **none — Normal Chat causal planning is current**  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_283_ONWARD.md` through **EV-283**  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_283_ONWARD.md` through **EV-284**  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
@@ -37,12 +37,15 @@ NEW OPEN BOUNDARIES FROM EV-283:
     non-Quick repeated-FIST contact/rearm semantics
     Sprint-origin same-C1 Action9 -> Action2 repeated-marker continuity
 
-New Balance 0.7.0 released 2026-09-14:
-    stale public GitHub source shows no identified direct old-code overlap
-    exact 0.7.0 source not represented by linked GitHub master
-    runtime compatibility certification REQUIRED
+New Balance 0.7.0 current source:
+    Jackydima/gothic3sdk/scripts/Script_NewBalance
+    version authority = 0.7.0.0
+    source-level compatibility preflight PASS — EV-284
+    no direct raw55/marker hook/address collision identified
+    active Fist change = animation-speed policy
+    runtime coexistence certification still REQUIRED
 
-permanent raw55 architecture synthesis = PAUSED until causal + compatibility gates are closed
+permanent raw55 architecture synthesis = PAUSED until causal + runtime compatibility gates are closed
 ```
 
 Raw8 FIST remains a separate proven mechanism and must not be altered by raw55 research.
@@ -64,7 +67,7 @@ SHA256 3771B3A9601D5CF3A715B6B15DF39DA5B55B0881CF8A127D1E9CFE436E898E43
 
 ### Quick
 
-Quick positively repeats the already-closed EV-273 semantics: two authored FIST occurrences can create two native damage events in the same C1 when the later occurrence performs the proven triggered-list rearm. A second marker is an opportunity, not guaranteed damage if contact geometry misses.
+Quick positively repeats the already-closed EV-273 semantics: two authored FIST occurrences can create two native damage events in the same C1 when the later occurrence performs the proven triggered-list rearm. The User also observed the Quick attacks visibly damaging twice. A second marker is an opportunity, not guaranteed damage if contact geometry misses.
 
 ### Normal
 
@@ -94,6 +97,38 @@ Do not copy `activationUsed` one-shot diagnostic bookkeeping into production. EV
 
 ---
 
+## EV-284 — New Balance 0.7.0 Source Compatibility
+
+Current source authority:
+
+```text
+https://github.com/Jackydima/gothic3sdk/tree/master/scripts/Script_NewBalance
+master = a9f736603bb42c40b6e1556619051b57f9f525b6
+Script_NewBalance.rc = 0.7.0.0
+```
+
+The source-level compatibility preflight is PASS.
+
+Active Fist-specific behavior in 0.7.0 is animation speed:
+
+```text
+Script_Game +0x42A0 GetAnimationSpeedModifier
+Human Fist Attack = 0.70
+Human Fist PowerAttack = 0.80
+```
+
+The older Fist friendly/current-target patch at `Script_Game +0xAA5E6..+0xAA5EB` is commented out and inactive.
+
+New Balance's dual-1H `ClearTriggeredList()` fix at `Script_Game +0x482E7` is gated to two 1H weapons and is not the PhysicalFist/raw55 path.
+
+New Balance combat-move scaling at `Game +0x16B8A9` is distinct from this project's `AICombatMoveInstr` entry hook at `Game +0x1696E0`; our wrapper calls the original path, so the New Balance scaling remains reachable.
+
+No direct New Balance ownership of the current `_AI_Attack`, `_AI_PowerAttack`, `_AI_QuickAttack`, `Engine +0x225660 SetCollisionGroup`, or `Game +0x60850` marker transport surfaces has been identified.
+
+Therefore source-level compatibility is established, but one runtime coexistence test with New Balance 0.7.0 active is still required because its faster playback/movement can alter practical contact timing without creating a hook collision.
+
+---
+
 ## Current Responsibility — Normal Chat Causal Closure Before Architecture
 
 Do **not** launch permanent implementation Work.
@@ -120,41 +155,6 @@ Freeze only one causal intervention at a time.
 
 ---
 
-## New Balance 0.7.0 Compatibility Requirement
-
-Compatibility with Jackydima's New Balance is mandatory for this mod.
-
-Current release evidence:
-
-```text
-New Balance version = 0.7.0
-last updated on Nexus = 2026-09-14
-```
-
-Linked public source:
-
-```text
-Jackydima/G3Script_NewBalance
-master = 6f527c103d08708e89a80fc4fc8954546e1b93b1
-master date = 2024-11-27
-```
-
-The linked GitHub source therefore predates 0.7.0 and cannot certify the current release.
-
-Historical public Fist patch:
-
-```text
-commit 2a82f9cb604262ee6ce24aceeffc81e674224e8c
-Script_Game +0xAA5E6..+0xAA5EB
-removes a current/friendly-target limitation for Fist attacks, especially transformed PC_Hero
-```
-
-No direct address/function collision with this project's known marker/raw55 transport surfaces has been identified in that historical source, so old-source static overlap risk is LOW.
-
-This is not a 0.7.0 compatibility result. Final raw55 closure requires runtime coexistence validation against New Balance 0.7.0, including actual Fist/raw55 behavior rather than load-only smoke.
-
----
-
 ## Still Paused
 
 ```text
@@ -163,7 +163,7 @@ NO production PhysicalFistCollision
 NO copying PhysicalFistProbe scaffolding
 NO assumption about non-Quick repeated ClearTriggeredList
 NO ignoring Normal SP0 marker delivery
-NO blanket New Balance 0.7.0 compatibility claim from stale GitHub source
+NO blanket runtime compatibility claim before New Balance 0.7.0 coexistence test
 NO broad native-creature certification continuation
 NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
