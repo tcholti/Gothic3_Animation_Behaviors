@@ -16,7 +16,7 @@
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Current frozen probe authority: **none — Normal Chat causal planning is current**  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_283_ONWARD.md` through **EV-284**  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_283_ONWARD.md` through **EV-285**  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
@@ -44,6 +44,12 @@ New Balance 0.7.0 current source:
     no direct raw55/marker hook/address collision identified
     active Fist change = animation-speed policy
     runtime coexistence certification still REQUIRED
+
+Script_AttackCollision current source:
+    separate optional DLL, not a New Balance dependency
+    hooks same attack callbacks and owns timed SetCollisionGroup/ClearTriggeredList/StatePosition
+    incompatible with this project's authored marker collision ownership — EV-285
+    MUST be absent/disabled when this project's marker system is active
 
 permanent raw55 architecture synthesis = PAUSED until causal + runtime compatibility gates are closed
 ```
@@ -129,6 +135,44 @@ Therefore source-level compatibility is established, but one runtime coexistence
 
 ---
 
+## EV-285 — AttackCollision Is a Separate Incompatible Collision Controller
+
+Current source authority:
+
+```text
+https://github.com/Jackydima/gothic3sdk/tree/master/scripts/Script_AttackCollision
+```
+
+`Script_AttackCollision` is built as its own shared library. `Script_NewBalance` is also its own shared library and neither links nor loads AttackCollision as a dependency.
+
+AttackCollision hooks the same callback family used by this project's authored collision ownership:
+
+```text
+OnAI_Attack
+OnAI_PowerAttack
+OnAI_QuickAttack
+OnAI_PierceAttack
+OnAI_SimpleWhirl
+OnAI_WhirlAttack
+```
+
+plus `OnAI_GetUpAttack`.
+
+It then implements its own fixed-time source activation by calling `SetCollisionGroup(Item_Attack)`, `ClearTriggeredList()` and writing `StatePosition`. It hard-codes hand choice from pose/loadout, including selecting LEFT for dual/Torch+1H Quick P1, rather than respecting per-animation RIGHT/LEFT/BOTH/OFF markers.
+
+That is the same responsibility this project's marker system owns, so simultaneous installation is not a supported composition. Hook load order must not be used as a compatibility mechanism.
+
+Product rule:
+
+```text
+Script_NewBalance + Gothic3_Animation_Behaviors = supported target combination
+Script_AttackCollision + Gothic3_Animation_Behaviors = NOT supported; mutually exclusive collision authorities
+```
+
+Before release, add a clear compatibility warning/guard if `Script_AttackCollision.dll` is loaded. `attacks.ini` belongs to AttackCollision's timer system and is irrelevant to this project's authored markers.
+
+---
+
 ## Current Responsibility — Normal Chat Causal Closure Before Architecture
 
 Do **not** launch permanent implementation Work.
@@ -164,6 +208,7 @@ NO copying PhysicalFistProbe scaffolding
 NO assumption about non-Quick repeated ClearTriggeredList
 NO ignoring Normal SP0 marker delivery
 NO blanket runtime compatibility claim before New Balance 0.7.0 coexistence test
+NO simultaneous Script_AttackCollision collision ownership
 NO broad native-creature certification continuation
 NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
