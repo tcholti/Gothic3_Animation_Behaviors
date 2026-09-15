@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-15
 
-## Current Bridge — EV-285 CORRECTED; RAW55 ARCHITECTURE SYNTHESIS PAUSED FOR TWO CAUSAL CLOSURES + NEW BALANCE 0.7.0 BUNDLE RUNTIME COEXISTENCE
+## Current Bridge — RAW55 CAUSAL CLOSURE CONTINUES; NEW BALANCE 0.7 BUNDLE TEST DEFERRED TO FINAL COLLISION GATE
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -13,9 +13,11 @@ Stable branch: `main`
 Recovery Lock remains **CLOSED**. Canonical evidence is through **EV-285**.
 
 No permanent raw55 implementation is authorized yet.  
-No new Work/source task is currently frozen.
+No new Work/source task is frozen yet.
 
-The two-FIST runtime supplied architecture-relevant evidence before permanent promotion, so architecture synthesis remains paused until the newly exposed Normal pre-state and non-Quick repeated-FIST boundaries are closed. New Balance 0.7.0 source-level compatibility passes EV-284. EV-285 has been corrected against the already-canonical EV-035/EV-150/EV-242 runtime evidence: bundled `Script_AttackCollision` overlaps our callback responsibility but has demonstrably coexisted with marked Whirl and Pierce in the tested installation/load order. Final New Balance 0.7.0 compatibility validation must therefore use the bundle as actually shipped, with AttackCollision active when bundled.
+The current responsibility is still the raw55 causal work exposed by EV-283. New Balance 0.7 compatibility is **not** a blocker on that work and is **not** a prerequisite for freezing the permanent collision architecture.
+
+The User downloaded the current New Balance 0.7 distribution and confirmed that it is packaged with `Script_AttackCollision`. This agrees with the product configuration we must eventually validate. Existing combined evidence EV-035/EV-150/EV-242 already proves real coexistence for marked Whirl and Pierce fixtures, including Torch+1H. The final compatibility test must therefore use New Balance 0.7 exactly as users receive it, with AttackCollision active.
 
 ---
 
@@ -24,215 +26,120 @@ The two-FIST runtime supplied architecture-relevant evidence before permanent pr
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. EVIDENCE_LEDGER_283_ONWARD.md — EV-283 through corrected EV-285
-4. EVIDENCE_LEDGER.md — EV-035, EV-047–EV-055, EV-148–EV-150
-5. EVIDENCE_LEDGER_232_ONWARD.md — EV-242
-6. EVIDENCE_LEDGER_269_ONWARD.md — EV-269, EV-270 and EV-273
-7. EVIDENCE_LEDGER_274_ONWARD.md — EV-274 through EV-279 only as needed
-8. EVIDENCE_LEDGER_280_ONWARD.md — EV-280 through EV-282 only as needed
-9. FEATURE_DEVELOPMENT_METHOD.md before freezing a new probe or permanent module
+3. EVIDENCE_LEDGER_283_ONWARD.md — EV-283 through EV-285
+4. EVIDENCE_LEDGER_269_ONWARD.md — EV-269, EV-270, EV-273
+5. EVIDENCE_LEDGER_274_ONWARD.md — EV-274 through EV-279 only as needed
+6. EVIDENCE_LEDGER_280_ONWARD.md — EV-280 through EV-282 only as needed
+7. FEATURE_DEVELOPMENT_METHOD.md before freezing a probe or permanent module
 ```
 
 ---
 
-## Closed Family Baseline Before EV-283
+## Closed Baseline
 
 ```text
-Quick       CLOSED/PASS through EV-273
-true Power  CLOSED/PASS through EV-276
-Normal      CLOSED/PASS through EV-279
-Sprint      first-contact path CLOSED/PASS through EV-282
+raw55 Quick       CLOSED/PASS through EV-273
+raw55 true Power  first-contact CLOSED/PASS through EV-276
+raw55 Normal      first-contact CLOSED/PASS through EV-279
+raw55 Sprint      first-contact CLOSED/PASS through EV-282
+raw55 two-FIST cross-family runtime CLOSED as evidence — EV-283
 ```
 
-Common first-contact Power/Normal/Sprint evidence remains valid:
+Quick has proven:
+
+```text
+pre-StatePosition FIST can own raw55 activation/rearm
+later native Quick progression survives
+repeated authored FIST can rearm again in the same C1
+native damage and native 7 -> 5 cleanup remain healthy
+```
+
+Power/Normal/Sprint first-contact evidence remains:
 
 ```text
 preserve native callback/state progression
 suppress only premature exact RIGHT PhysicalFist/raw55 5 -> 7
-authored FIST opens exact RIGHT raw55 source
-ClearTriggeredList=0 for the tested first contact
+authored FIST opens exact RIGHT raw55
+ClearTriggeredList=0 for tested first contact
 native damage
 native 7 -> 5 cleanup
 ```
 
-Quick remains the proven special contact/rearm case and has already proven pre-state FIST plus repeated FIST rearm/double damage.
-
 ---
 
-## EV-283 — Two-FIST Cross-Family Runtime
+## EV-283 — Remaining Raw55 Boundaries
 
-Canonical raw:
+### A. Normal pre-StatePosition FIST
 
-```text
-research/raw/2026.09.15_troll_raw55_double_fist_activation.log
-SHA256 3771B3A9601D5CF3A715B6B15DF39DA5B55B0881CF8A127D1E9CFE436E898E43
-upload commit be2db3e8f2f8f1aa09ed02cf8aad918ae0e6a1a4
-```
-
-Derived package:
-
-```text
-research/derived/2026.09.15_troll_raw55_double_fist_activation_large_log/
-```
-
-### Quick
-
-Positive repeated-contact proof remains healthy. Representative C1=3:
-
-```text
-FIST #1 -> raw55 opening/rearm -> native damage
-FIST #2 same C1 -> DecisionFistCount=2
-                     ClearTriggeredList=1
-                     REPEAT_FIST_REARM=1
-                  -> second native damage same C1
-```
-
-The User independently observed the Quick attacks visibly damaging twice. A second marker is a second contact opportunity, not guaranteed damage if geometry does not contact.
-
-This agrees with EV-270/EV-273: the diagnostic one-shot rule is not final authoring semantics; each legitimate Quick FIST occurrence can be its own rearm opportunity.
-
-### Normal
-
-The new run exposes a real pre-state boundary. Repeated examples including C1=18, 99 and 101 receive FIST #1 while:
+EV-283 shows legitimate Normal FIST can arrive while:
 
 ```text
 StatePosition=0
 RIGHT raw55 group5
-no Normal early-suppression proof yet
+no Normal early-suppression proof exists yet
 ```
 
-The current Normal probe ignores that marker. FIST #2 later at SP1 becomes the first/only probe-owned 5 -> 7 activation and can damage.
+The temporary Normal probe ignores that occurrence because its activation path requires the later suppression proof and `StatePosition == 1`.
 
-Therefore the run does **not** prove Normal is one-hit-only. It proves Normal pre-state authored-FIST ownership is unresolved and must be closed before permanent design.
+The next causal question should be:
 
-### Power
+> Can an exact legitimate Normal FIST at StatePosition 0 directly own the initial exact RIGHT PhysicalFist/raw55 activation while the untouched native Normal callback later advances its own StatePosition and native cleanup remains healthy?
 
-FIST #1 at SP1 opens/damages normally. FIST #2 is visibly delivered in the same C1 while RIGHT remains group7, but the temporary Power proof is one-shot (`activationUsed`), so it attempts no second rearm.
+Use EV-269 as the structural precedent only. Do **not** copy Quick's `ClearTriggeredList()` requirement automatically; Normal first contact already succeeded with `ClearTriggeredList=0` at SP1.
 
-Therefore repeated Power hit semantics remain untested; absence of a second hit is not a negative causal result.
+### B. Non-Quick repeated FIST
 
-### Sprint-origin execution
+After the Normal pre-state boundary is closed, determine what FIST #2 needs when the exact raw55 source is already group7 for Normal/Power/Sprint-origin executions. Test the smallest primitive; do not infer `ClearTriggeredList()` from Quick.
 
-C1=87 and C1=109 repeat:
+### C. Sprint-origin Action9 -> Action2 continuity
 
-```text
-Action9 / SPRINT
-FIST #1 -> exact RIGHT 5 -> 7 -> native damage
-same C1 then becomes factual Action2 / POWER after contact
-FIST #2 arrives while same C1/source is still active and RIGHT remains group7
-no second intervention because Sprint proof is already used and no Power proof owns this C1
-native 7 -> 5 cleanup later
-```
+Any repeated-FIST design must remain keyed to the same factual C1/source execution. A post-contact Action9 -> Action2 transition is not a new attack execution.
 
-The Action9 -> Action2 transition does not create a new attack execution. Repeated-marker ownership therefore cannot be modeled as a one-shot permission attached only to the current family label.
-
-### Engineering boundary from EV-283
-
-Do not promote the family probes' `activationUsed` bookkeeping into production.
-
-Permanent raw55 design eventually needs C1/source/marker-occurrence semantics capable of surviving factual family-state changes inside the same execution. However the exact non-Quick repeated-contact primitive is not yet proven and must not be guessed from Quick.
+Freeze only one causal responsibility at a time.
 
 ---
 
-## Current Causal Responsibilities — Normal Chat
+## New Balance / AttackCollision — Deferred Final Integration Gate
 
-Do not launch permanent raw55 Work yet.
-
-Close separately:
+Current source review:
 
 ```text
-A. Normal pre-StatePosition FIST
-   Can a legitimate Normal FIST arriving at SP0 own the initial exact RIGHT raw55 activation
-   while the untouched native Normal callback later advances StatePosition and cleanup remains healthy?
-   Determine contact/rearm requirements causally; do not copy Quick automatically.
-
-B. Non-Quick repeat FIST
-   Once exact RIGHT raw55 is already group7 after FIST #1, what does FIST #2 need to create a second
-   native contact opportunity for Normal/Power/Sprint-origin executions?
-   Test the smallest primitive; do not assume ClearTriggeredList until proven.
-
-C. Sprint-origin Action9 -> Action2 continuity
-   Any repeat-FIST design must key to the same factual C1/source execution and must not mistake the
-   post-contact Action2 state for a new Power attack.
+New Balance 0.7 source-level preflight PASS — EV-284
+active Fist-specific change = animation speed policy
+no new raw55 collision-window mechanism identified in New Balance itself
 ```
 
-Freeze only one causal intervention at a time.
-
----
-
-## EV-284 — New Balance 0.7.0 Compatibility Preflight
-
-Current source authority:
+AttackCollision:
 
 ```text
-https://github.com/Jackydima/gothic3sdk/tree/master/scripts/Script_NewBalance
-master = a9f736603bb42c40b6e1556619051b57f9f525b6
-master date = 2026-09-14
-Script_NewBalance.rc = 0.7.0.0
+bundled with current New Balance 0.7 distribution per User download
+real callback/collision responsibility overlap
+combined runtime already PASS for marked 2H Whirl — EV-035/EV-150
+combined 20-execution Pierce matrix PASS across 1H/Torch+1H/Shield+1H/Dual — EV-242
+mutual-exclusion interpretation superseded — EV-285
 ```
 
-Active Fist-specific 0.7.0 behavior is animation-speed policy at `Script_Game +0x42A0`: Human Fist Attack `0.70`, Human Fist PowerAttack `0.80`. The former Fist friendly/current-target byte patch is commented out. New Balance's dual-1H triggered-list fix and combat-move scaling are separate from raw55 marker ownership. Source-level compatibility is PASS.
-
----
-
-## EV-285 — Corrected AttackCollision Compatibility Boundary
-
-`Script_AttackCollision` is a separate DLL target but, per the User's distribution knowledge, is bundled with New Balance. Separate build target does **not** mean absent from the shipped bundle.
-
-Its source genuinely overlaps this project's equipped collision callbacks and uses fixed timers, direct `SetCollisionGroup(Item_Attack)`, `ClearTriggeredList()` and `StatePosition` writes. That overlap requires compatibility validation, but the earlier conclusion that the systems are mutually exclusive was wrong because controlled combined runtime already exists.
-
-Historical combined evidence:
+Compatibility sequence is now explicitly:
 
 ```text
-EV-035 / EV-150
-New Balance + AttackCollision + FrameCollision v0.19
-marked player 2H Whirl
-RIGHT -> OFF -> RIGHT remained authoritative
-no extra timer-owned activation
-interruptions cleaned safely
-
-EV-242
-New Balance bad-skip prevention + AttackCollision loaded
-20 Pierce executions
-1H / Torch+1H / Shield+1H / Dual P0/P1
-expected marker activation/cleanup and generation bookkeeping PASS
+1. finish remaining collision causal research
+2. synthesize and implement permanent collision architecture
+3. run clean standalone collision regression
+4. install New Balance 0.7 exactly as packaged, including AttackCollision
+5. run final broad collision-module integration regression
+6. only after collision module passes, move to Raise / speed-control work
 ```
 
-Therefore current status is:
+The final bundle regression should cover representative marked Normal/Quick/Power/Pierce/SimpleWhirl/Whirl/Hack paths and applicable 1H/Torch+1H/Dual/2H/Staff plus raw8/raw55 Fist cases. Watch specifically for premature timer-owned opening, extra rearm, wrong source, missed marker ownership, or cleanup divergence.
+
+Torch+1H remains intentional exact-slot behavior:
 
 ```text
-ATTACKCOLLISION SOURCE RESPONSIBILITY OVERLAP = YES
-COEXISTENCE IN TESTED BUNDLE/LOAD ORDER = CONFIRMED
-ARBITRARY LOAD ORDER / EVERY FAMILY / EVERY MARKER TIMING = NOT YET CERTIFIED
-MUTUAL-EXCLUSION CLAIM = SUPERSEDED
-```
-
-### Torch+1H correction
-
-LEFT is not inherently wrong for Torch+1H. Gothic has real torch strikes.
-
-Canonical source evidence:
-
-```text
-EV-051  Torch+1H P1/P3 Quick attacks genuinely use LEFT torch collision
-EV-052  some P0 Normal native left-torch activations are unintended for those animations
-EV-053  AttackCollision regular Torch+1H Normal routes to RIGHT weapon
-```
-
-This project's authored slot markers are deliberately exact:
-
-```text
-LEFT  = exact equipped left source (including torch when the torch really strikes)
+LEFT  = exact equipped left source, including a torch when the torch really attacks
 RIGHT = exact equipped right source
 BOTH  = both
 OFF   = neither
 ```
-
-Current resolver takes the factual left/right equipped entities without a weapon-type prohibition, so authored LEFT supports a torch strike directly.
-
-### Final compatibility posture
-
-Do **not** remove AttackCollision from the New Balance bundle for final validation. Test the bundle as users actually receive it. The representative matrix should cover marked Normal/Quick/Power/Pierce/SimpleWhirl/Whirl/Hack across applicable 1H, Torch+1H, Dual, 2H and Staff fixtures, plus raw8/raw55 Fist. The critical failure signals are premature AttackCollision timer opening before a marker, extra triggered-list clears, wrong-source activation, or cleanup divergence.
 
 ---
 
@@ -241,11 +148,11 @@ Do **not** remove AttackCollision from the New Balance bundle for final validati
 ```text
 NO permanent raw55 architecture freeze yet
 NO production PhysicalFistCollision implementation
-NO promotion/copy of PhysicalFistProbe scaffolding
+NO copying PhysicalFistProbe scaffolding into production
 NO assumption that non-Quick repeat FIST needs or does not need ClearTriggeredList
 NO ignoring Normal SP0 marker delivery
-NO blanket New Balance 0.7.0 full-family runtime compatibility claim yet
-NO assumption that AttackCollision must be removed from bundled New Balance
+NO New Balance 0.7 final regression until permanent collision structure exists
+NO Raise / speed-control implementation until collision module final gate passes
 NO broad native-creature certification continuation
 NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
