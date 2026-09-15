@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-15
 
-## Current Bridge — EV-283 CLOSED; RAW55 ARCHITECTURE SYNTHESIS PAUSED FOR TWO CAUSAL CLOSURES + NEW BALANCE COMPATIBILITY
+## Current Bridge — EV-283 CLOSED; RAW55 ARCHITECTURE SYNTHESIS PAUSED FOR TWO CAUSAL CLOSURES + NEW BALANCE 0.7.0 COMPATIBILITY
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -15,7 +15,7 @@ Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-283
 No permanent raw55 implementation is authorized yet.  
 No new Work/source task is currently frozen.
 
-The two-FIST runtime supplied architecture-relevant evidence before permanent promotion, so the prior architecture-synthesis step is temporarily paused. Normal Chat must first close the newly exposed Normal pre-state and non-Quick repeated-FIST boundaries, and separately verify compatibility with the User's actual current New Balance release.
+The two-FIST runtime supplied architecture-relevant evidence before permanent promotion, so the prior architecture-synthesis step is temporarily paused. Normal Chat must first close the newly exposed Normal pre-state and non-Quick repeated-FIST boundaries, and separately verify compatibility with New Balance 0.7.0.
 
 ---
 
@@ -158,11 +158,18 @@ Freeze only one causal responsibility at a time.
 
 ---
 
-## New Balance Compatibility — Current Static Preflight
+## New Balance 0.7.0 Compatibility — Current Preflight
 
 Compatibility with New Balance remains a product requirement.
 
-Public repository inspected:
+Current public release evidence:
+
+```text
+Nexus version = 0.7.0
+Nexus last updated = 2026-09-14
+```
+
+Public source repository inspected:
 
 ```text
 https://github.com/Jackydima/G3Script_NewBalance
@@ -170,7 +177,9 @@ public master = 6f527c103d08708e89a80fc4fc8954546e1b93b1
 public master date = 2024-11-27
 ```
 
-The public Fist-specific patch was introduced by:
+Therefore the linked GitHub source is **not the source of the current 0.7.0 release** and cannot by itself certify 0.7.0 compatibility.
+
+The public repository's Fist-specific patch was introduced by:
 
 ```text
 2a82f9cb604262ee6ce24aceeffc81e674224e8c
@@ -188,18 +197,17 @@ Game raw8 timing path
 Engine SetCollisionGroup transport
 ```
 
-No direct static address/function collision has been identified in the linked public source. Static overlap risk is therefore currently **LOW**, not zero.
+No direct static address/function collision has been identified in the old linked source. That makes historical/public-source static overlap risk **LOW**, but says nothing conclusive about unpublished 0.7.0 code changes.
 
-Important limitation: the linked public GitHub `master` is old relative to the User's report of a newly released New Balance version where Fists were touched. Public Nexus material currently exposes 0.6.0 from 2026-03-24, but this does not establish the exact code in the User's newly released package.
-
-Therefore:
+Required status:
 
 ```text
-PUBLIC-SOURCE STATIC PREFLIGHT = NO IDENTIFIED DIRECT OVERLAP / LOW RISK
-ACTUAL NEW RELEASE COMPATIBILITY = NOT YET CERTIFIED
+OLD PUBLIC SOURCE STATIC PREFLIGHT = NO IDENTIFIED DIRECT OVERLAP / LOW RISK
+NEW BALANCE 0.7.0 STATIC CODE CERTIFICATION = UNAVAILABLE FROM LINKED GITHUB SOURCE
+NEW BALANCE 0.7.0 RUNTIME COMPATIBILITY = REQUIRED / NOT YET CERTIFIED
 ```
 
-Before final raw55 promotion, test the User's exact installed New Balance release together with our behavior. Compatibility validation must include actual runtime behavior, not merely successful load or non-overlapping RVAs.
+Before final raw55 promotion, test New Balance 0.7.0 together with our behavior. Compatibility validation must include actual Fist/raw55 behavior and not merely successful DLL load.
 
 ---
 
@@ -211,7 +219,7 @@ NO production PhysicalFistCollision implementation
 NO promotion/copy of PhysicalFistProbe scaffolding
 NO assumption that non-Quick repeat FIST needs or does not need ClearTriggeredList
 NO assumption that Normal SP0 can be ignored
-NO blanket New Balance compatibility claim from the old public source
+NO blanket New Balance 0.7.0 compatibility claim from stale GitHub source
 NO broad native-creature certification continuation
 NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
