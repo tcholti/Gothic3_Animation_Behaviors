@@ -16,7 +16,7 @@
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Current frozen probe authority: **none — Normal Chat causal planning is current**  
-Latest canonical evidence: `docs/EVIDENCE_LEDGER_283_ONWARD.md` through **EV-285**  
+Latest canonical evidence: `docs/EVIDENCE_LEDGER_283_ONWARD.md` through **corrected EV-285**  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`  
 Local paths: `docs/LOCAL_WORKSTATION_PATHS.md`
@@ -41,15 +41,19 @@ New Balance 0.7.0 current source:
     Jackydima/gothic3sdk/scripts/Script_NewBalance
     version authority = 0.7.0.0
     source-level compatibility preflight PASS — EV-284
-    no direct raw55/marker hook/address collision identified
     active Fist change = animation-speed policy
-    runtime coexistence certification still REQUIRED
 
-Script_AttackCollision current source:
-    separate optional DLL, not a New Balance dependency
-    hooks same attack callbacks and owns timed SetCollisionGroup/ClearTriggeredList/StatePosition
-    incompatible with this project's authored marker collision ownership — EV-285
-    MUST be absent/disabled when this project's marker system is active
+Bundled Script_AttackCollision:
+    overlaps equipped-collision callback responsibility
+    BUT coexistence already runtime-PASS for marked 2H Whirl (EV-035/EV-150)
+    AND a 20-execution Pierce matrix with 1H/Torch+1H/Shield+1H/Dual (EV-242)
+    prior mutual-exclusion interpretation is SUPERSEDED — corrected EV-285
+    full current 0.7 bundle/family regression remains REQUIRED
+
+Torch+1H authored markers:
+    LEFT genuinely supports real torch-strike animations
+    RIGHT supports right-hand weapon strikes
+    exact slot must follow intended physical contact, not action R/L naming
 
 permanent raw55 architecture synthesis = PAUSED until causal + runtime compatibility gates are closed
 ```
@@ -62,7 +66,7 @@ Recovery Lock remains **CLOSED**.
 
 ---
 
-## EV-283 — What Changed
+## EV-283 — Current Raw55 Open Questions
 
 Runtime:
 
@@ -71,35 +75,11 @@ research/raw/2026.09.15_troll_raw55_double_fist_activation.log
 SHA256 3771B3A9601D5CF3A715B6B15DF39DA5B55B0881CF8A127D1E9CFE436E898E43
 ```
 
-### Quick
+Quick positively repeats the already-closed EV-273 semantics: two authored FIST occurrences can create two native damage events in the same C1 when the later occurrence performs the proven triggered-list rearm. The User also observed the Quick attacks visibly damaging twice.
 
-Quick positively repeats the already-closed EV-273 semantics: two authored FIST occurrences can create two native damage events in the same C1 when the later occurrence performs the proven triggered-list rearm. The User also observed the Quick attacks visibly damaging twice. A second marker is an opportunity, not guaranteed damage if contact geometry misses.
+Normal exposed a pre-StatePosition first-marker boundary; Power and Sprint-origin repeat-FIST semantics remain untested because the current diagnostic proofs are one-shot. Sprint-origin executions additionally show same-C1 Action9 -> Action2 continuity after first contact.
 
-### Normal
-
-The first FIST can arrive at `StatePosition=0` before the Normal suppression proof exists. The current diagnostic Normal probe ignores that first occurrence; a later SP1 FIST becomes the first activation. This is a genuine pre-state ownership gap, not proof that Normal can only hit once.
-
-### Power
-
-A second FIST is delivered in the same C1 after first-contact opening/damage, but the current diagnostic Power proof is one-shot and does not attempt repeat rearm. Therefore repeated Power semantics remain untested.
-
-### Sprint-origin execution
-
-Repeated C1s show:
-
-```text
-FIST #1 while factual Action9 / SPRINT -> 5 -> 7 -> native damage
-same C1 then changes to factual Action2 / POWER
-FIST #2 arrives under Action2 while the same source remains group7
-current family-specific one-shot proofs do nothing
-native cleanup later returns 7 -> 5
-```
-
-The post-contact Action2 state is not a new C1 or new attack execution. Permanent marker-occurrence ownership must eventually respect that continuity.
-
-### Prohibited inference
-
-Do not copy `activationUsed` one-shot diagnostic bookkeeping into production. EV-270 already rejected that as final authoring semantics; EV-273 proves each legitimate Quick FIST occurrence can be its own rearm opportunity.
+Do not copy `activationUsed` diagnostic bookkeeping into production.
 
 ---
 
@@ -113,63 +93,38 @@ master = a9f736603bb42c40b6e1556619051b57f9f525b6
 Script_NewBalance.rc = 0.7.0.0
 ```
 
-The source-level compatibility preflight is PASS.
-
-Active Fist-specific behavior in 0.7.0 is animation speed:
-
-```text
-Script_Game +0x42A0 GetAnimationSpeedModifier
-Human Fist Attack = 0.70
-Human Fist PowerAttack = 0.80
-```
-
-The older Fist friendly/current-target patch at `Script_Game +0xAA5E6..+0xAA5EB` is commented out and inactive.
-
-New Balance's dual-1H `ClearTriggeredList()` fix at `Script_Game +0x482E7` is gated to two 1H weapons and is not the PhysicalFist/raw55 path.
-
-New Balance combat-move scaling at `Game +0x16B8A9` is distinct from this project's `AICombatMoveInstr` entry hook at `Game +0x1696E0`; our wrapper calls the original path, so the New Balance scaling remains reachable.
-
-No direct New Balance ownership of the current `_AI_Attack`, `_AI_PowerAttack`, `_AI_QuickAttack`, `Engine +0x225660 SetCollisionGroup`, or `Game +0x60850` marker transport surfaces has been identified.
-
-Therefore source-level compatibility is established, but one runtime coexistence test with New Balance 0.7.0 active is still required because its faster playback/movement can alter practical contact timing without creating a hook collision.
+Source-level compatibility preflight is PASS. Active Fist-specific behavior is animation speed (`Attack=0.70`, `PowerAttack=0.80`); the older Fist friendly/current-target patch is inactive. New Balance's dual-1H triggered-list fix and combat-move scaling are separate from raw55 marker ownership.
 
 ---
 
-## EV-285 — AttackCollision Is a Separate Incompatible Collision Controller
+## Corrected EV-285 — Bundled AttackCollision Coexistence
 
-Current source authority:
+`Script_AttackCollision` is a separate DLL target but is bundled with New Balance according to the User's current package knowledge. Its source overlaps the same equipped-collision callbacks and uses fixed timer-based collision operations, so it is a real compatibility surface.
 
-```text
-https://github.com/Jackydima/gothic3sdk/tree/master/scripts/Script_AttackCollision
-```
-
-`Script_AttackCollision` is built as its own shared library. `Script_NewBalance` is also its own shared library and neither links nor loads AttackCollision as a dependency.
-
-AttackCollision hooks the same callback family used by this project's authored collision ownership:
+Existing controlled evidence nevertheless proves coexistence in the tested installation/load order:
 
 ```text
-OnAI_Attack
-OnAI_PowerAttack
-OnAI_QuickAttack
-OnAI_PierceAttack
-OnAI_SimpleWhirl
-OnAI_WhirlAttack
+EV-035 / EV-150
+New Balance + AttackCollision + FrameCollision v0.19
+marked 2H Whirl PASS
+no duplicate/timer-owned activation
+
+EV-242
+New Balance bad-skip prevention + AttackCollision loaded
+20 Pierce executions across 1H / Torch+1H / Shield+1H / Dual P0/P1 PASS
 ```
 
-plus `OnAI_GetUpAttack`.
+Therefore AttackCollision is **not** currently classified as mutually exclusive. The final New Balance 0.7.0 regression must use the bundle as actually shipped, with AttackCollision active when bundled, and broaden coverage to the mature marker families.
 
-It then implements its own fixed-time source activation by calling `SetCollisionGroup(Item_Attack)`, `ClearTriggeredList()` and writing `StatePosition`. It hard-codes hand choice from pose/loadout, including selecting LEFT for dual/Torch+1H Quick P1, rather than respecting per-animation RIGHT/LEFT/BOTH/OFF markers.
-
-That is the same responsibility this project's marker system owns, so simultaneous installation is not a supported composition. Hook load order must not be used as a compatibility mechanism.
-
-Product rule:
+Torch+1H correction:
 
 ```text
-Script_NewBalance + Gothic3_Animation_Behaviors = supported target combination
-Script_AttackCollision + Gothic3_Animation_Behaviors = NOT supported; mutually exclusive collision authorities
+EV-051  P1/P3 Quick can genuinely strike with the LEFT torch
+EV-052  some P0 Normal native left-torch openings are unintended for those animations
+EV-053  AttackCollision regular Torch+1H Normal routes RIGHT
 ```
 
-Before release, add a clear compatibility warning/guard if `Script_AttackCollision.dll` is loaded. `attacks.ini` belongs to AttackCollision's timer system and is irrelevant to this project's authored markers.
+Our marker API intentionally resolves factual equipped slots, so `LEFT` supports a torch strike and `RIGHT` supports the right-hand weapon. Do not infer source from QuickAttackR/L or filename direction tokens.
 
 ---
 
@@ -183,12 +138,10 @@ Choose and freeze the smallest next causal responsibility from:
 1. Normal pre-state FIST
    Establish whether a legitimate Normal FIST at SP0 can own the initial exact RIGHT raw55 opening
    while native StatePosition progression and native cleanup survive.
-   Do not assume Quick's ClearTriggeredList requirement applies.
 
 2. Non-Quick repeated FIST
    Establish what exact operation, if any, FIST #2 needs while the raw55 source is already group7
    to create another native contact opportunity for Normal/Power/Sprint-origin executions.
-   Test rather than infer ClearTriggeredList.
 
 3. Sprint-origin Action9 -> Action2 continuity
    Repeated-FIST permission must be scoped to the same factual C1/source execution rather than treating
@@ -207,8 +160,8 @@ NO production PhysicalFistCollision
 NO copying PhysicalFistProbe scaffolding
 NO assumption about non-Quick repeated ClearTriggeredList
 NO ignoring Normal SP0 marker delivery
-NO blanket runtime compatibility claim before New Balance 0.7.0 coexistence test
-NO simultaneous Script_AttackCollision collision ownership
+NO blanket New Balance 0.7.0 full-family runtime compatibility claim yet
+NO assumption that bundled AttackCollision must be removed
 NO broad native-creature certification continuation
 NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
