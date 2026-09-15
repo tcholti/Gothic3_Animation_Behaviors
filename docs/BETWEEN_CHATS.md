@@ -4,18 +4,18 @@
 
 **Updated:** 2026-09-15
 
-## Current Bridge — EV-283 CLOSED; RAW55 ARCHITECTURE SYNTHESIS PAUSED FOR TWO CAUSAL CLOSURES + NEW BALANCE 0.7.0 COMPATIBILITY
+## Current Bridge — EV-284 CLOSED; RAW55 ARCHITECTURE SYNTHESIS PAUSED FOR TWO CAUSAL CLOSURES + NEW BALANCE 0.7.0 RUNTIME COEXISTENCE
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock remains **CLOSED**. Canonical runtime evidence is through **EV-283**.
+Recovery Lock remains **CLOSED**. Canonical evidence is through **EV-284**.
 
 No permanent raw55 implementation is authorized yet.  
 No new Work/source task is currently frozen.
 
-The two-FIST runtime supplied architecture-relevant evidence before permanent promotion, so the prior architecture-synthesis step is temporarily paused. Normal Chat must first close the newly exposed Normal pre-state and non-Quick repeated-FIST boundaries, and separately verify compatibility with New Balance 0.7.0.
+The two-FIST runtime supplied architecture-relevant evidence before permanent promotion, so the prior architecture-synthesis step is temporarily paused. Normal Chat must first close the newly exposed Normal pre-state and non-Quick repeated-FIST boundaries. New Balance 0.7.0 source-level compatibility now passes EV-284; one runtime coexistence validation remains before final product compatibility is certified.
 
 ---
 
@@ -24,7 +24,7 @@ The two-FIST runtime supplied architecture-relevant evidence before permanent pr
 ```text
 1. SESSION_ENTRYPOINT.md
 2. this file
-3. EVIDENCE_LEDGER_283_ONWARD.md — EV-283
+3. EVIDENCE_LEDGER_283_ONWARD.md — EV-283 and EV-284
 4. EVIDENCE_LEDGER_269_ONWARD.md — EV-269, EV-270 and EV-273
 5. EVIDENCE_LEDGER_274_ONWARD.md — EV-274 through EV-279 only as needed
 6. EVIDENCE_LEDGER_280_ONWARD.md — EV-280 through EV-282 only as needed
@@ -85,7 +85,7 @@ FIST #2 same C1 -> DecisionFistCount=2
                   -> second native damage same C1
 ```
 
-A second marker is a second contact opportunity, not guaranteed damage if geometry does not contact.
+The User independently observed the Quick attacks visibly damaging twice. A second marker is a second contact opportunity, not guaranteed damage if geometry does not contact.
 
 This agrees with EV-270/EV-273: the diagnostic one-shot rule is not final authoring semantics; each legitimate Quick FIST occurrence can be its own rearm opportunity.
 
@@ -158,56 +158,77 @@ Freeze only one causal responsibility at a time.
 
 ---
 
-## New Balance 0.7.0 Compatibility — Current Preflight
+## EV-284 — New Balance 0.7.0 Compatibility Preflight
 
 Compatibility with New Balance remains a product requirement.
 
-Current public release evidence:
+Current source authority:
 
 ```text
-Nexus version = 0.7.0
-Nexus last updated = 2026-09-14
+https://github.com/Jackydima/gothic3sdk/tree/master/scripts/Script_NewBalance
+master = a9f736603bb42c40b6e1556619051b57f9f525b6
+master date = 2026-09-14
+Script_NewBalance.rc = 0.7.0.0
 ```
 
-Public source repository inspected:
+Therefore this repository **does represent the current New Balance 0.7.0 source**.
+
+Active Fist-specific 0.7.0 behavior:
 
 ```text
-https://github.com/Jackydima/G3Script_NewBalance
-public master = 6f527c103d08708e89a80fc4fc8954546e1b93b1
-public master date = 2024-11-27
+GetAnimationSpeedModifier
+Script_Game +0x42A0
+Human Fist Normal/Attack = 0.70
+Human Fist PowerAttack = 0.80
 ```
 
-Therefore the linked GitHub source is **not the source of the current 0.7.0 release** and cannot by itself certify 0.7.0 compatibility.
+Commit `1d09f8d177f7d18789dd55433be69703564bb0be` raised those values from `0.54` and `0.60` respectively.
 
-The public repository's Fist-specific patch was introduced by:
+The former Fist friendly/current-target patch at:
 
 ```text
-2a82f9cb604262ee6ce24aceeffc81e674224e8c
-codepatch for fixing transformed attacks on friendly NPCs
+Script_Game +0xAA5E6..+0xAA5EB
 ```
 
-It patches `Script_Game +0xAA5E6..+0xAA5EB` to remove a current/friendly-target limitation for Fist attacks, especially transformed `PC_Hero`.
+is commented out in current `CodePatch.cpp` and is not active in 0.7.0.
 
-Current raw55/marker surfaces used by this project are physically separate, including:
+New Balance does call `TouchDamage.ClearTriggeredList()` at `Script_Game +0x482E7`, but only inside its dual-1H PowerAttack correction after verifying both hands are 1H. This is not the PhysicalFist/raw55 path.
+
+New Balance also inserts combat-move scaling at:
 
 ```text
-Script_Game attack callback hooks such as _AI_Attack/_AI_QuickAttack/_AI_PowerAttack
-Game UpdateFrameEffects transport
-Game raw8 timing path
-Engine SetCollisionGroup transport
+Game +0x16B8A9
 ```
 
-No direct static address/function collision has been identified in the old linked source. That makes historical/public-source static overlap risk **LOW**, but says nothing conclusive about unpublished 0.7.0 code changes.
-
-Required status:
+Our project owns the enclosing `AICombatMoveInstr` entry at:
 
 ```text
-OLD PUBLIC SOURCE STATIC PREFLIGHT = NO IDENTIFIED DIRECT OVERLAP / LOW RISK
-NEW BALANCE 0.7.0 STATIC CODE CERTIFICATION = UNAVAILABLE FROM LINKED GITHUB SOURCE
-NEW BALANCE 0.7.0 RUNTIME COMPATIBILITY = REQUIRED / NOT YET CERTIFIED
+Game +0x1696E0
 ```
 
-Before final raw55 promotion, test New Balance 0.7.0 together with our behavior. Compatibility validation must include actual Fist/raw55 behavior and not merely successful DLL load.
+and calls the original function. These are distinct sites and the New Balance movement adjustment can execute inside the original path.
+
+Targeted current-source audit identifies no New Balance hook/patch ownership of:
+
+```text
+_AI_Attack
+_AI_PowerAttack
+_AI_QuickAttack
+Engine +0x225660 SetCollisionGroup
+Game +0x60850 marker StartEffect transport
+Game +0x1696E0 AICombatMoveInstr entry
+```
+
+Status:
+
+```text
+NEW BALANCE 0.7.0 SOURCE-LEVEL COMPATIBILITY = PASS
+DIRECT HOOK/ADDRESS COLLISION WITH CURRENT RAW55/MARKER MECHANISM = NONE IDENTIFIED
+ACTIVE FIST CHANGE = ANIMATION SPEED, NOT COLLISION-WINDOW OWNERSHIP
+RUNTIME COEXISTENCE CERTIFICATION = STILL REQUIRED
+```
+
+New Balance's speed and movement policy are external gameplay behavior that this mod should preserve, not replace. Because faster playback/movement can affect practical contact timing despite clean hook ownership, perform one coexistence runtime with New Balance 0.7.0 active before final product compatibility is certified. That runtime should verify marker delivery, raw55 opening/rearm, native damage and native cleanup.
 
 ---
 
@@ -218,8 +239,8 @@ NO permanent raw55 architecture freeze yet
 NO production PhysicalFistCollision implementation
 NO promotion/copy of PhysicalFistProbe scaffolding
 NO assumption that non-Quick repeat FIST needs or does not need ClearTriggeredList
-NO assumption that Normal SP0 can be ignored
-NO blanket New Balance 0.7.0 compatibility claim from stale GitHub source
+NO ignoring Normal SP0 marker delivery
+NO blanket runtime compatibility claim before New Balance 0.7.0 coexistence test
 NO broad native-creature certification continuation
 NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
