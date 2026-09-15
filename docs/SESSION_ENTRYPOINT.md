@@ -37,7 +37,12 @@ NEW OPEN BOUNDARIES FROM EV-283:
     non-Quick repeated-FIST contact/rearm semantics
     Sprint-origin same-C1 Action9 -> Action2 repeated-marker continuity
 
-permanent raw55 architecture synthesis = PAUSED until those causal boundaries are closed
+New Balance 0.7.0 released 2026-09-14:
+    stale public GitHub source shows no identified direct old-code overlap
+    exact 0.7.0 source not represented by linked GitHub master
+    runtime compatibility certification REQUIRED
+
+permanent raw55 architecture synthesis = PAUSED until causal + compatibility gates are closed
 ```
 
 Raw8 FIST remains a separate proven mechanism and must not be altered by raw55 research.
@@ -115,25 +120,38 @@ Freeze only one causal intervention at a time.
 
 ---
 
-## New Balance Compatibility Requirement
+## New Balance 0.7.0 Compatibility Requirement
 
-Compatibility with Jackydima's New Balance remains mandatory for this mod.
+Compatibility with Jackydima's New Balance is mandatory for this mod.
 
-Static public-source preflight:
+Current release evidence:
 
 ```text
-repository: Jackydima/G3Script_NewBalance
-public master: 6f527c103d08708e89a80fc4fc8954546e1b93b1 (2024-11-27)
-Fist-specific public patch commit: 2a82f9cb604262ee6ce24aceeffc81e674224e8c
-patch surface: Script_Game +0xAA5E6..+0xAA5EB
-purpose: remove current/friendly-target limitation for Fist attacks, especially transformed PC_Hero
+New Balance version = 0.7.0
+last updated on Nexus = 2026-09-14
 ```
 
-No direct address/function collision with this project's known raw55/marker transport surfaces has been identified in the linked public source. Static overlap risk is currently LOW.
+Linked public source:
 
-This is **not** final compatibility certification. The linked GitHub master predates the User's reported newly released New Balance version where Fists were touched. Public Nexus material currently exposes version 0.6.0 from 2026-03-24, which still does not establish the exact code in that new package.
+```text
+Jackydima/G3Script_NewBalance
+master = 6f527c103d08708e89a80fc4fc8954546e1b93b1
+master date = 2024-11-27
+```
 
-The User's exact current New Balance release must receive runtime coexistence validation before raw55 is finally concluded.
+The linked GitHub source therefore predates 0.7.0 and cannot certify the current release.
+
+Historical public Fist patch:
+
+```text
+commit 2a82f9cb604262ee6ce24aceeffc81e674224e8c
+Script_Game +0xAA5E6..+0xAA5EB
+removes a current/friendly-target limitation for Fist attacks, especially transformed PC_Hero
+```
+
+No direct address/function collision with this project's known marker/raw55 transport surfaces has been identified in that historical source, so old-source static overlap risk is LOW.
+
+This is not a 0.7.0 compatibility result. Final raw55 closure requires runtime coexistence validation against New Balance 0.7.0, including actual Fist/raw55 behavior rather than load-only smoke.
 
 ---
 
@@ -145,7 +163,7 @@ NO production PhysicalFistCollision
 NO copying PhysicalFistProbe scaffolding
 NO assumption about non-Quick repeated ClearTriggeredList
 NO ignoring Normal SP0 marker delivery
-NO blanket New Balance compatibility claim from old public source
+NO blanket New Balance 0.7.0 compatibility claim from stale GitHub source
 NO broad native-creature certification continuation
 NO Axe/Rapier compatibility sequence
 NO AttackContinuationProtection work
