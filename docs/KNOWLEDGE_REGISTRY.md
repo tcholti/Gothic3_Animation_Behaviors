@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-16
 
 ## Purpose
 
@@ -36,7 +36,7 @@ This file owns authority/update routing. It does not repeat the project charter,
 | collision execution/cleanup lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` | ownership/lifetime/cleanup invariant or causal architecture changes | test confirms model without changing it |
 | collision diagnostic architecture | `COLLISION_LOGGER_PLAN.md` | hook ownership, diagnostic event model, CORE/deep boundary, or active probe responsibility changes | log adds evidence without changing diagnostic design |
 | current/future collision validation boundaries | `COLLISION_TEST_PLAN.md` | gate, acceptance criteria, control matrix, interpretation rule, or future required validation boundary changes | historical completed-test detail preserved by evidence |
-| exact evidence status/provenance | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` + `EVIDENCE_LEDGER_199_ONWARD.md` + `EVIDENCE_LEDGER_232_ONWARD.md` | controlled/source fact established, qualified, contradicted, or materially reinterpreted | pure design preference without factual claim |
+| exact evidence status/provenance | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` + `EVIDENCE_LEDGER_199_ONWARD.md` + `EVIDENCE_LEDGER_232_ONWARD.md` + later numbered continuation ledgers through `EVIDENCE_LEDGER_286_ONWARD.md` | controlled/source fact established, qualified, contradicted, or materially reinterpreted | pure design preference without factual claim |
 | evidence topic / future-responsibility routing | `EVIDENCE_INDEX.md` | new evidence domain/range/search route is useful, existing route materially changes, or proven knowledge becomes materially relevant to another future responsibility | every new EV already covered by existing route |
 | deliberate canonical evidence storage-path migration lookup | `EVIDENCE_PATH_MIGRATIONS.md` | processed canonical evidence moves between repository storage layers and historical/current paths would otherwise be ambiguous | every evidence result; ordinary archive entry whose historical route remains unambiguous |
 | generalized animation semantics / authoring rules | `ANIMATION_RULES.md` | generalized filename/UseType/action/phase/pose/authoring semantic changes | one concrete asset/test that does not generalize |
@@ -61,8 +61,16 @@ Canonical evidence remains one global monotonic namespace:
 EVIDENCE_LEDGER.md                EV-001–EV-157
 EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
 EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
-EVIDENCE_LEDGER_232_ONWARD.md     EV-232 onward
+EVIDENCE_LEDGER_232_ONWARD.md     EV-232–EV-249
+EVIDENCE_LEDGER_250_ONWARD.md     EV-250–EV-264
+EVIDENCE_LEDGER_265_ONWARD.md     EV-265–EV-273
+EVIDENCE_LEDGER_274_ONWARD.md     EV-274–EV-279
+EVIDENCE_LEDGER_280_ONWARD.md     EV-280–EV-282
+EVIDENCE_LEDGER_283_ONWARD.md     EV-283–EV-285
+EVIDENCE_LEDGER_286_ONWARD.md     EV-286 onward
 ```
+
+Each continuation header is the final authority for its actual end boundary when another split is later added. The split files are storage/retrieval boundaries only; the EV namespace remains global and monotonic.
 
 ---
 
