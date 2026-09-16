@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-16
 
-## Current Bridge — EV-289 CLOSED; RAW55 NORMAL NATIVE TRIGGER-CLEAR OBSERVATION FROZEN
+## Current Bridge — EV-289 CLOSED; RAW55 NORMAL NATIVE TRIGGER-CLEAR OBSERVATION IMPLEMENTED + SOURCE-REVIEW PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -12,9 +12,43 @@ Stable branch: `main`
 
 Recovery Lock is **CLOSED**. Canonical evidence is through **EV-289**. No permanent raw55 implementation is authorized.
 
-Current frozen diagnostic authority:
+Current diagnostic authority:
 
 `docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_OBSERVATION_PROBE.md`
+
+Current diagnostic implementation:
+
+`6ef27121c5fcd1d4993b914e0f6a9a9123a2b0b7`
+
+Required implementation base:
+
+`1e411056a586b71217a1f5941774b44e16e6588e`
+
+Normal Chat independently reviewed the Work commit and marked **SOURCE REVIEW PASS**.
+
+The implementation is exactly one commit ahead of the frozen base and changes only:
+
+```text
+prototypes/Script_FrameCollisionTest/EngineBridge.cpp        +47 / -0
+prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp   +180 / -0
+prototypes/Script_FrameCollisionTest/PhysicalFistProbe.h     +17 / -0
+```
+
+No CMake or production module changed.
+
+The source review confirmed:
+
+- both new hooks exist only under `FRAME_COLLISION_DIAGNOSTICS`;
+- hook ownership remains in `EngineBridge`;
+- exact eligibility/interpretation remains in `PhysicalFistProbe`;
+- exact Engine anchors are `0x7DDA0` and `0x7DDF0`;
+- both use the project's explicit `.ThisCall()` transport pattern;
+- each hook records PRE, calls the original function exactly once, then records POST;
+- caller address is captured before entering probe logic;
+- the known marker-1 clear can be observed factually before `preStateRearmProven` becomes true because the intervention identity already exists, while actor/C1/exact-RIGHT/PhysicalFist eligibility remains enforced;
+- no new clear, suppression, collision-group mutation, StatePosition write, damage dispatch, cleanup/repair change, polling or production behavior was added.
+
+Build status remains **NOT ATTEMPTED**. Local build/deploy/runtime validation belongs to User + Normal Chat next.
 
 Read in order:
 
@@ -47,155 +81,103 @@ Local build/live DLL SHA256:
 
 `D336619855E4812EA950797057D57BC44D41F141DA244D209880793C0ED69367`
 
-User runtime observation:
-
-```text
-both Normal swings damaged the player
-no abnormal/stuck behavior reported
-```
-
 Representative factual Normal C1=11:
 
 ```text
-frame-1 FIST at SP0 / StateTime ~= 0.058
+marker 1 at SP0
 -> exact RIGHT raw55 5 -> 7
 -> marker-owned ClearTriggeredList
--> POST_PRESTATE_REARM:
-     ResetOnUntouch=0
-     VisitedSize=0
-     PlayerPresent=0
+-> visited state empty
 
-first ONDAMAGE around ~= 0.204
+hit 1
+-> PC_Hero enters visited state / count1
 
-change-only snapshot around ~= 0.213:
--> VisitedSize=1
--> VisitedCountSize=1
--> PlayerPresent=1
--> PlayerVisitCount=1
-
-NATIVE_7TO7_SUPPRESS_PRE around ~= 0.259:
--> player still present/count1
+immediately before native 7 -> 7 suppression
+-> PC_Hero still visited
 -> ResetOnUntouch=0
 
-existing EV-288 native 7 -> 7 setter suppression fires
+native 7 -> 7 setter suppressed
+-> original _AI_Attack continues
+-> SP0 -> 1 survives
+-> visited state becomes empty during that callback
 
-same original _AI_Attack invocation:
--> StatePosition 0 -> 1 survives
--> RIGHT remains group7
--> SP0_TO1_POST_CALLBACK:
-     ResetOnUntouch=0
-     VisitedSize=0
-     VisitedCountSize=0
-     PlayerPresent=0
-
-later callback can contain another visited entity while player remains absent
-
-frame-15 FIST around ~= 0.600
--> LATER_FIST
--> RIGHT group7
--> PlayerPresent=0
+marker 2 later
+-> PC_Hero already absent
 -> no Normal marker-2 intervention
 
-second ONDAMAGE around ~= 0.737
-
-subsequent snapshot:
--> PlayerPresent=1
--> PlayerVisitCount=1
+hit 2
+-> PC_Hero enters visited state again
 
 native exact RIGHT 7 -> 5 cleanup
 clean C1 finalization
 ```
 
-Therefore:
+The User observed both Normal swings damaging the player.
 
-```text
-hit 1 inserts PC_Hero into exact RIGHT trigger bookkeeping       PASS
-player still visited immediately before native 7->7 suppression PASS
-native 7->7 setter suppressed                                    PASS
-visited bookkeeping resets during same native SP0->1 callback    PASS
-ResetOnUntouch is enabled                                        NO — factual value is 0
-reset occurs before marker 2                                     PASS
-marker 2 owns reset                                              NO
-hit 2 re-inserts PC_Hero                                         PASS
-native cleanup / clean C1                                        PASS
-```
+Therefore Gothic supplies an implicit trigger-bookkeeping reset before marker 2. The exact native operation remains unknown. Do not attribute that reset to marker 2, the suppressed `7 -> 7` setter, `ResetOnUntouch`, or StatePosition itself.
 
-The factual conclusion is narrow:
+## Current implemented probe under local validation
 
-> Gothic performs another trigger-bookkeeping reset during the native Normal `SP0 -> 1` callback transition. That reset creates the current implicit second-contact opportunity before marker 2. The exact native operation is not yet identified.
-
-Do **not** claim:
-
-```text
-StatePosition itself clears the trigger
-ResetOnUntouch causes the reset
-marker 2 causes the reset
-native 7 -> 7 SetCollisionGroup causes the reset
-```
-
-Those explanations are either rejected or unproven.
-
-## Static follow-up — exact clear API anchors
-
-The tested binaries provide a direct next observation route:
-
-```text
-Script_Game.dll imports PSTouchDamage::ClearTriggeredList()
-
-Script.dll:
-PSTouchDamage::ClearTriggeredList() = +0x13720
-```
-
-Disassembly of that Script wrapper shows it resolves the underlying engine property set and tail-jumps to the engine clear API.
-
-Tested Engine exports:
+The probe observes the two exact public Engine clear APIs:
 
 ```text
 eCTrigger_PS::ClearTriggeredList()          Engine + 0x7DDA0
 eCTrigger_PS::ClearTriggeredList(eCEntity*) Engine + 0x7DDF0
 ```
 
-The next probe observes both exact public engine clear functions for the exact RIGHT raw55 trigger. It logs PRE/POST visited state plus caller module/RVA and never suppresses or adds a clear.
-
-## Current frozen question
-
-During the proven EV-289 Normal C1, does either exact public `eCTrigger_PS::ClearTriggeredList` overload perform the post-hit-1 visited-state reset?
-
-Decisive routes:
+For exact current Normal actor + C1 + RIGHT PhysicalFist/raw55 identity it records:
 
 ```text
-public clear observed after hit1
+Boundary=PRE|POST
+ClearKind=ALL|ENTITY
+ResetOnUntouch
+VisitedSize / VisitedCountSize
+PlayerResolved / PlayerPresent / PlayerEntryCount / PlayerVisitCount
+CountsAligned
+argument entity + ArgumentIsPlayer for ENTITY form
+CallerResolved / CallerModule / CallerRVA / CallerAddress
+PreStateRearmProven
+Native7To7SuppressionUsed
+```
+
+The original clear always executes exactly once. The probe never suppresses or adds a clear.
+
+### Decisive runtime interpretations
+
+```text
+later public clear observed after hit 1
 + PRE player present
 + POST player absent/reset
-    => factual reset operation/caller identified
+    => factual public reset operation and caller identified
 
-entity-specific clear(PC_Hero) observed
-+ player entry removed
-    => factual player-reset operation identified
+ENTITY clear with PC_Hero observed
++ player removed
+    => factual player-specific reset operation identified
 
-known marker-owned initial clear observed
-+ NO later exact public clear
-+ EV-289 visited reset still occurs
-    => public clear APIs ruled out; continue into lower/private trigger internals
+known marker-1 clear observed
++ no later public clear
++ EV-289 reset still occurs
+    => public clear APIs ruled out; inspect lower/private trigger internals
 ```
 
-This next task is still diagnostics-only observation. No clear suppression, marker-2 rearm or StatePosition intervention is authorized.
+## Immediate next step — local validation only
 
-## Deployment-path correction
+1. User syncs the branch in GitHub Desktop: **Fetch origin -> Pull origin -> Fetch origin**.
+2. Confirm **Changes is empty**.
+3. Build only `Script_FrameCollisionTest` Release.
+4. STOP on the short build result.
+5. If build passes, perform POP-03 deployment/hash/twin verification.
+6. Deploy the DLL only to:
+   `E:\SteamLibrary\steamapps\common\Gothic 3\scripts`
+7. Perform POP-04 startup-banner verification.
+8. Run the same Normal two-FIST Troll fixture.
+9. Preserve the untouched diagnostic log from the game root and close through POP-07/POP-06 if large.
 
-Canonical workstation authority is `LOCAL_WORKSTATION_PATHS.md`.
+Preferred raw artifact:
 
-Use:
+`research/raw/2026.09.16_troll_raw55_normal_trigger_clear_observation.log`
 
-```text
-live collision DLL directory:
-E:\SteamLibrary\steamapps\common\Gothic 3\scripts
-
-runtime diagnostic log directory:
-E:\SteamLibrary\steamapps\common\Gothic 3
-```
-
-On 2026-09-16 Normal Chat accidentally supplied a deployment command that copied the DLL to the game root. The User corrected it manually before the EV-289 runtime test, so EV-289 is valid. The workstation path authority now explicitly says collision DLLs must never be deployed to the game root.
+No EV-290 exists yet. Do not promote a conclusion until runtime closure.
 
 ## Power observation
 
