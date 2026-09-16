@@ -15,8 +15,8 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If Normal Chat ends before evidence closure, use POP-11 Recovery Lock. Oversized runtime logs use POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current probe authority: `docs/COLLISION_RAW55_NORMAL_TRIGGER_STATE_OBSERVATION_PROBE.md`  
-Latest canonical evidence: through **EV-288** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`  
+Current probe authority: `docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_OBSERVATION_PROBE.md`  
+Latest canonical evidence: through **EV-289** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
 
@@ -31,109 +31,128 @@ raw55 two-FIST cross-family runtime CLOSED as evidence — EV-283
 raw55 Normal SP0 physical opening CLOSED/PASS — EV-286
 raw55 Normal SP0 contact rearm / early first damage CLOSED/PASS — EV-287
 raw55 Normal native 7->7 setter as second-rearm source REJECTED — EV-288
-
-Normal trigger-state observation probe:
-    implementation ec20e769a347bd206577427bfd28a85bd51a79b3
-    required base 9ad32fa078dfc4d64ad732317eacae17e10d9161
-    independent Normal Chat source review PASS
-    local build/deploy/runtime PENDING
+raw55 Normal native trigger-bookkeeping reset before marker2 CONFIRMED — EV-289
 ```
 
-EV-288 proves:
+EV-289 establishes the current Normal two-contact sequence:
 
 ```text
-frame-1 SP0 FIST -> exact RIGHT 5 -> 7 + ClearTriggeredList
--> first damage while SP0
+marker 1 at SP0
+-> exact RIGHT 5 -> 7 + ClearTriggeredList
+-> trigger visited state empty
 
-later exact native Normal RIGHT 7 -> 7 setter request
--> suppressed once
--> original _AI_Attack callback still advances SP0 -> 1
+hit 1
+-> PC_Hero enters exact RIGHT visited state / count1
 
-frame-15 FIST
--> delivered at SP1
+immediately before native 7 -> 7 suppression
+-> PC_Hero still visited
+-> ResetOnUntouch=0
+
+native exact RIGHT 7 -> 7 setter suppressed
+-> original _AI_Attack still advances SP0 -> 1
+-> exact RIGHT visited state becomes empty during that callback
+-> ResetOnUntouch remains 0
+
+marker 2 later at SP1
+-> PC_Hero already absent
 -> no Normal marker-2 intervention
 
-second damage still occurs
-native final 7 -> 5 cleanup remains healthy
+hit 2
+-> PC_Hero enters visited state again
+
+native 7 -> 5 cleanup
 clean C1 finalization
 ```
 
-Therefore the native collision-group setter itself is **not** required for the second Normal damage opportunity. Do not infer that StatePosition itself causes rearm; that has not been isolated.
+Therefore Gothic supplies an **implicit trigger-bookkeeping reset before marker 2**. The exact native operation remains unknown. Do not attribute the reset to marker 2, the suppressed collision-group setter, `ResetOnUntouch`, or StatePosition itself.
 
-Canonical EV-288 artifact:
+Canonical EV-289 artifact:
 
-`research/raw/2026.09.16_troll_raw55_normal_native_rearm_source.log`
+`research/raw/2026.09.16_troll_raw55_normal_trigger_state_observation.log`
 
 SHA256:
 
-`AB8E7B8B300F08CD61B01E7338FC672E6A09DE7D57F055F4FFAFD68514628C6E`
+`978817C03EE01EA3098D265CFE85544F4D3DE06019279AD04C337C4ADBE00D08`
 
-## Current implementation under local validation
-
-Source-reviewed implementation:
+Diagnostic implementation:
 
 `ec20e769a347bd206577427bfd28a85bd51a79b3`
 
-Exactly one source file changed from the frozen base:
+Local build/live DLL SHA256:
 
-`prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp`
+`D336619855E4812EA950797057D57BC44D41F141DA244D209880793C0ED69367`
 
-The change is additions-only (`+339 / -0`) and preserves the EV-288 behavior. It adds read-only exact-source trigger-state observation using the official SDK's:
+## Current frozen question
 
-```text
-eCTrigger_PS::EntitiesVisited
-eCTrigger_PS::EntitiesVisitedCount
-gCTouchDamage_PS::ResetOnUntouch
-eCEntityProxy::GetEntity() const
-```
+Identify whether one of Gothic's exact public trigger-clear APIs performs that reset.
 
-Snapshots are scoped to the proven same actor + same C1 + exact current RIGHT PhysicalFist/raw55 intervention and are logged at:
+Static anchors from the tested binaries:
 
 ```text
-POST_PRESTATE_REARM
-CALLBACK_CHANGE (change-only)
-NATIVE_7TO7_SUPPRESS_PRE
-SP0_TO1_POST_CALLBACK
-LATER_FIST
+Script_Game.dll imports PSTouchDamage::ClearTriggeredList()
+
+Script.dll:
+PSTouchDamage::ClearTriggeredList() = Script + 0x13720
+-> thin property-set wrapper / tail-jump
+
+Engine.dll:
+eCTrigger_PS::ClearTriggeredList()          = Engine + 0x7DDA0
+eCTrigger_PS::ClearTriggeredList(eCEntity*) = Engine + 0x7DDF0
 ```
 
-The key question is whether `PC_Hero` enters the visited state after hit 1 and later disappears/resets before hit 2 without an explicit marker-2 clear.
+Current authority:
 
-This remains observation-only:
+`docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_OBSERVATION_PROBE.md`
+
+The next diagnostics-only probe adds two exact Engine clear-function observation hooks under `FRAME_COLLISION_DIAGNOSTICS`. `EngineBridge` owns only hook transport. `PhysicalFistProbe` owns exact Normal actor/C1/RIGHT/raw55 eligibility and factual logging.
+
+For relevant exact RIGHT calls, observe PRE and POST trigger state plus caller module/RVA. Preserve every original clear call exactly once.
+
+The task must not:
 
 ```text
-NO new ClearTriggeredList
-NO new SetCollisionGroup intervention
-NO mutation of EntitiesVisited / EntitiesVisitedCount
-NO ResetOnUntouch write
-NO marker-2 rearm
-NO StatePosition write
-NO new hook/RVA
-NO EngineBridge change
-NO direct damage
-NO cleanup/repair change
+suppress a clear
+add a clear
+change the existing marker-1 clear
+change the existing native 7->7 suppression
+add marker-2 rearm
+write StatePosition
+change collision cleanup/repair
+change Quick/Power/Sprint/raw8 behavior
+enter production architecture
 ```
 
-## Immediate next step
-
-User + Normal Chat perform local validation only:
+Decisive interpretation:
 
 ```text
-sync branch in GitHub Desktop
--> confirm Changes empty
--> build Script_FrameCollisionTest Release only
--> STOP on build result
--> POP-03 deploy/hash verification if build passes
--> POP-04 startup banner
--> same Normal two-FIST Troll runtime
--> POP-07/POP-06 evidence closure
+post-hit1 public clear observed
++ PRE player visited
++ POST player absent/reset
+    => factual public reset operation/caller identified
+
+entity-specific clear(PC_Hero) observed
++ player removed
+    => factual player reset operation identified
+
+known marker-owned initial clear observed
++ no later public clear
++ EV-289 reset still occurs
+    => public clear APIs ruled out; inspect lower/private trigger internals
 ```
 
-Preferred runtime artifact:
+## Deployment authority
 
-`research/raw/2026.09.16_troll_raw55_normal_trigger_state.log`
+Use `docs/LOCAL_WORKSTATION_PATHS.md`.
 
-No EV-289 exists yet.
+```text
+live collision DLLs:
+E:\SteamLibrary\steamapps\common\Gothic 3\scripts
+
+runtime diagnostic logs:
+E:\SteamLibrary\steamapps\common\Gothic 3
+```
+
+Never deploy `Script_FrameCollisionTest.dll` or `Script_FrameCollisionBehaviorTest.dll` to the game root.
 
 ## Power observation
 
@@ -142,8 +161,8 @@ The User reports that prepared Power two-swing animations visibly damage on mark
 ## Remaining collision sequence
 
 ```text
-Normal trigger-state observation
--> isolate natural reset mechanism only if evidence requires it
+Normal exact native trigger-clear observation
+-> if a public clear is identified, isolate/causally test it only if needed
 -> establish authored Normal marker-2 ownership
 -> Power repeated-FIST rearm
 -> Sprint repeated-FIST rearm preserving same-C1 Action9 -> Action2 continuity
