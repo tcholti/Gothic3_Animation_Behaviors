@@ -8,17 +8,15 @@
 
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat after independent source review.
 
-> **MANDATORY FEATURE-DEVELOPMENT RULE:** Unknown behavior is researched in an isolated probe. Proven behavior is promoted into the permanent module that owns it. Hooks remain transport-only; temporary probe scaffolding is removed rather than promoted wholesale. Full authority: `docs/FEATURE_DEVELOPMENT_METHOD.md`.
+> **MANDATORY FEATURE-DEVELOPMENT RULE:** Unknown behavior is researched in an isolated probe. Proven behavior is promoted into the permanent module that owns it. Hooks remain transport-only; temporary probe scaffolding is removed rather than promoted wholesale.
 
 > **RELEASE-PURITY RULE:** `Script_FrameCollisionTest` is diagnostic research only. The eventual shipped plugin remains `Script_G3AnimationBehaviors`; `PhysicalFistProbe` is not production architecture.
 
-> **MAX-CONTEXT / FAILED-CHAT RULE:** If Normal Chat ends before evidence closure, use POP-11 Recovery Lock. Oversized runtime logs use POP-07. Routine oversized-log preparation is drag-and-drop onto `tools\log_evidence\Prepare-Log.cmd`; preserve/commit both the untouched raw log and generated derived package.
+> **LARGE-LOG RULE:** Do not orient by scanning `research/raw/`. Routine oversized-log preparation is drag-and-drop onto `tools\log_evidence\Prepare-Log.cmd`; preserve/commit both the untouched raw log and generated derived package.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Current probe authority: `docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md`  
-Latest canonical evidence: through **EV-290** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`  
-Authoring semantics: `docs/ANIMATION_RULES.md`  
-Evidence routing: `docs/EVIDENCE_INDEX.md`
+Latest canonical evidence: through **EV-290** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`
 
 ## Current checkpoint
 
@@ -27,116 +25,129 @@ raw55 Quick       CLOSED/PASS through EV-273
 raw55 true Power  first-contact CLOSED/PASS through EV-276
 raw55 Normal      SP1 first-contact CLOSED/PASS through EV-279
 raw55 Sprint      first-contact CLOSED/PASS through EV-282
-raw55 two-FIST cross-family runtime CLOSED as evidence — EV-283
+raw55 two-FIST cross-family runtime CLOSED — EV-283
 raw55 Normal SP0 physical opening CLOSED/PASS — EV-286
 raw55 Normal SP0 contact rearm / early first damage CLOSED/PASS — EV-287
 raw55 Normal native 7->7 setter as second-rearm source REJECTED — EV-288
 raw55 Normal native trigger-bookkeeping reset before marker2 CONFIRMED — EV-289
-raw55 Normal exact native public ALL clear reset operation IDENTIFIED — EV-290
+raw55 Normal exact native public ALL-clear reset operation IDENTIFIED — EV-290
 ```
 
-## EV-290 current factual model
+Current diagnostic implementation:
 
-Representative Normal C1=3:
+`2839c8c271fa240b81ce5ccd203c34058870a5bb`
+
+Required base:
+
+`23400f2b5b3afdbe8c03088be01aa4bc969849db`
+
+Independent Normal Chat source review:
+
+**PASS**
+
+Build status:
+
+**NOT ATTEMPTED** after the new implementation.
+
+## Current factual model
+
+EV-290 established:
 
 ```text
 marker1 at SP0
--> exact RIGHT raw55 5 -> 7
--> existing marker-owned ClearTriggeredList()
+-> exact RIGHT raw55 5 -> 7 + marker-owned ClearTriggeredList
 -> first damage
 -> PC_Hero becomes visited/count1
 
-later native transition at SP0
--> existing EV-288 exact RIGHT 7 -> 7 setter request suppressed
--> PC_Hero still visited immediately before native trigger clear
--> Gothic calls exact current RIGHT eCTrigger_PS::ClearTriggeredList() ALL
-   caller = Script_Game.dll + 0x386C6
-   PRE  = player present/count1
-   POST = visited arrays empty/player absent
+later native transition
+-> existing native 7 -> 7 setter suppression fires
+-> PC_Hero still visited
+-> Gothic calls eCTrigger_PS::ClearTriggeredList() ALL
+   caller Script_Game.dll + 0x386C6
+   PRE player present/count1
+   POST arrays empty/player absent
 -> original _AI_Attack completes SP0 -> 1
--> RIGHT remains group7
 
-marker2 later at SP1
+marker2 later
 -> observational only
--> player already absent due to native clear
-
-second damage
--> player inserted again
-
-native 7 -> 5 cleanup
-clean C1 finalization
+-> second damage occurs
+-> native 7 -> 5 cleanup / clean C1
 ```
 
-Therefore the EV-289 hidden reset operation is factually identified as the public no-argument `eCTrigger_PS::ClearTriggeredList()` call from `Script_Game.dll+0x386C6`.
+EV-290 identifies the reset operation but does **not** yet prove that it is causally required for hit2.
 
-Do **not** yet claim that this clear is required for the second hit. EV-290 identifies the operation; causal necessity is the current question.
+## Current causal probe
 
-Canonical EV-290 artifact:
-
-`research/raw/2026.09.16_troll_raw55_normal_native_trigger_clear_observation.log`
-
-SHA256:
-
-`E699B807059189289D4CAB6B243F966F49947C9083656EE693B8FDD21676693F`
-
-Upload commit:
-
-`8b483b48636deeec4fa6863533da4a7db4fe2e15`
-
-Derived POP-07 package:
-
-`research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/`
-
-Diagnostic implementation:
-
-`6ef27121c5fcd1d4993b914e0f6a9a9123a2b0b7`
-
-Local build/live DLL SHA256:
-
-`A2E3C1B463AF804B4ABE9DA83F261009B3780995DAEEB1CB4E4D58A44EDFCB77`
-
-## Current frozen question
-
-Authority:
-
-`docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md`
-
-Suppress only the exact post-hit1 native ALL clear in the proven Normal C1:
+The source-reviewed probe suppresses exactly once the native no-argument ALL clear from:
 
 ```text
-eCTrigger_PS::ClearTriggeredList()
 Engine + 0x7DDA0
 CallerModule = Script_Game.dll
 CallerRVA    = 0x386C6
 ```
 
-Required factual gating includes exact Normal actor/C1/current RIGHT PhysicalFist/raw55 identity, group7, proven frame-1 rearm, existing EV-288 native `7 -> 7` suppression already used, StatePosition 0, player factually present exactly once in aligned visited/count arrays, and one-shot use for the C1.
+only for the exact proven Normal actor/C1/current RIGHT raw55 trigger after hit1 has factually inserted `PC_Hero`.
 
-Preserve:
-
-```text
-marker1 clear unchanged and executed normally
-entity-specific clear unchanged
-all unrelated ALL-clear callers unchanged
-existing native 7 -> 7 setter suppression
-original _AI_Attack callback
-marker2 observational only
-native final cleanup
-```
-
-If suppression keeps the player visited and makes hit2 disappear while hit1/progression/cleanup remain healthy, the native clear is causally required. The next one-variable test may then add the authored marker2 clear as replacement. If hit2 persists, another trigger/contact mechanism remains.
-
-## Still paused
+Protected controls remain unchanged:
 
 ```text
-NO permanent PhysicalFistCollision
-NO promotion/copy of PhysicalFistProbe scaffolding
-NO Normal marker-2 rearm until native-clear necessity is closed
-NO Power/Sprint repeat-FIST intervention yet
-NO New Balance final regression before permanent collision structure
-NO Raise / speed-control work before collision module closes
-NO AttackContinuationProtection work
+marker1 authored clear executes normally
+entity-specific clear executes normally
+unrelated ALL clears execute normally
+existing native 7 -> 7 setter suppression remains
+marker2 remains observational
+no direct visited-array mutation
+no new clear
+no StatePosition write
+no direct damage
+native cleanup unchanged
 ```
+
+## Immediate next step — new Normal Chat
+
+This is now **local validation only**. Do not launch another Work task.
+
+```text
+GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
+-> confirm Changes empty
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+-> if PASS: deploy/hash/twin verification
+-> DLL only to E:\SteamLibrary\steamapps\common\Gothic 3\scripts
+-> startup-banner verification
+-> same Normal two-FIST Troll runtime
+-> note first-hit / second-hit / abnormal behavior
+-> preserve new runtime log under a newly frozen filename
+-> if large: drag raw log onto tools\log_evidence\Prepare-Log.cmd
+-> commit/push raw + derived package
+-> close next EV before advancing
+```
+
+## Retrieval discipline
+
+Do **not** list or scan `research/raw/` to recover context. Older processed logs are provenance, not orientation material.
+
+Use in this order:
+
+1. this file;
+2. `BETWEEN_CHATS.md`;
+3. current suppression-probe contract;
+4. EV-290 in `EVIDENCE_LEDGER_286_ONWARD.md`;
+5. exact derived/raw evidence only if a concrete fact needs verification.
+
+EV-290 active comparison material:
+
+```text
+research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/
+```
+
+The corresponding raw log remains canonical but should not be opened by default.
+
+## Known documentation-maintenance debt
+
+`EVIDENCE_INDEX.md` is a cold routing index and contains some stale ledger-split/range wording from before `EVIDENCE_LEDGER_286_ONWARD.md`. This does not override the current entrypoint or canonical ledger. Repair it later in a bounded documentation-maintenance pass; do not let it derail the current causal runtime test.
+
+Physical archival of older multi-megabyte raw logs was not performed during the planned transition because the connected GitHub writer cannot guarantee a byte-faithful move without reconstructing file contents. Evidence integrity takes priority. The active docs therefore explicitly prevent raw-folder scanning.
 
 ## Deployment authority
 
@@ -150,16 +161,14 @@ E:\SteamLibrary\steamapps\common\Gothic 3
 
 Never deploy a collision DLL to the game root.
 
-## Remaining collision sequence
+## Still paused
 
 ```text
-Normal exact native clear necessity probe
--> if required, authored Normal marker-2 replacement/rearm proof
--> Power repeated-FIST rearm
--> Sprint repeated-FIST rearm preserving same-C1 Action9 -> Action2 continuity
--> permanent raw55 architecture / implementation
--> standalone collision regression
--> New Balance 0.7 bundle regression exactly as distributed, AttackCollision included
--> collision module complete
--> Raise / speed-control work
+NO permanent PhysicalFistCollision
+NO promotion/copy of PhysicalFistProbe scaffolding
+NO Normal marker2 rearm until native-clear necessity closes
+NO Power/Sprint repeated-FIST intervention yet
+NO New Balance final regression before permanent collision structure
+NO Raise / speed-control work before collision module closes
+NO AttackContinuationProtection work
 ```
