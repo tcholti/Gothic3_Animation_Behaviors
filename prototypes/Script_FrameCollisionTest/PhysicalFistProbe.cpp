@@ -5,7 +5,10 @@
 #include "CollisionSources.h"
 
 #include <cstdio>
+#include <cstring>
 #include <unordered_map>
+
+#include <windows.h>
 
 namespace FrameCollision::PhysicalFistProbe
 {
@@ -295,6 +298,183 @@ static bool TryCaptureNormalTriggerState(
     }
 
     return true;
+}
+
+static bool TryResolveNormalTriggerClearIntervention(
+    eCTrigger_PS *trigger,
+    NormalPreStateFistIntervention *&intervention)
+{
+    intervention = nullptr;
+    if (trigger == nullptr)
+        return false;
+
+    for (auto &entry : g_NormalPreStateFistInterventions)
+    {
+        NormalPreStateFistIntervention &candidate = entry.second;
+        if (candidate.actorInstance == nullptr
+            || entry.first != candidate.actorInstance
+            || candidate.rightSourceInstance == nullptr)
+        {
+            continue;
+        }
+
+        Entity actor(candidate.actorInstance);
+        Entity rightSource(candidate.rightSourceInstance);
+        if (actor == None || rightSource == None
+            || actor.Routine.GetProperty<PSRoutine::PropertyAction>()
+                != gEAction_Attack
+            || !FrameCollisionMarkers::IsAttackHit(
+                actor, AttackFamily_Normal)
+            || CollisionSources::GetCollisionSourceUseType(rightSource)
+                != gEUseType_PhysicalFist
+            || static_cast<eCTrigger_PS *>(
+                rightSource.TouchDamage.m_pEngineEntityPropertySet)
+                != trigger)
+        {
+            continue;
+        }
+
+        CollisionLifecycleGuard::GenerationToken const generation =
+            CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+                candidate.actorInstance);
+        EquippedCollisionSources const currentSources =
+            CollisionSources::GetEquippedCollisionSources(actor);
+        if (!generation.valid
+            || generation.actorInstance != candidate.actorInstance
+            || generation.generation != candidate.c1Generation
+            || currentSources.rightInstance
+                != candidate.rightSourceInstance)
+        {
+            continue;
+        }
+
+        intervention = &candidate;
+        return true;
+    }
+
+    return false;
+}
+
+static char const *TriggerClearBaseName(char const *path)
+{
+    if (path == nullptr)
+        return "";
+    char const *const backslash = std::strrchr(path, '\\');
+    char const *const slash = std::strrchr(path, '/');
+    char const *last = backslash;
+    if (slash != nullptr && (last == nullptr || slash > last))
+        last = slash;
+    return last != nullptr ? last + 1 : path;
+}
+
+static char const *TriggerClearKindName(TriggerClearKind clearKind)
+{
+    return clearKind == TriggerClearKind_Entity ? "ENTITY" : "ALL";
+}
+
+static char const *TriggerClearBoundaryName(
+    TriggerClearBoundary boundary)
+{
+    return boundary == TriggerClearBoundary_Post ? "POST" : "PRE";
+}
+
+void ObserveTriggerClear(
+    eCTrigger_PS *trigger, eCEntity *argumentEntity,
+    TriggerClearKind clearKind, TriggerClearBoundary boundary,
+    void *callerAddress)
+{
+    NormalPreStateFistIntervention *intervention = nullptr;
+    if (!TryResolveNormalTriggerClearIntervention(
+            trigger, intervention))
+    {
+        return;
+    }
+
+    NormalTriggerStateSnapshot snapshot = {};
+    if (!TryCaptureNormalTriggerState(*intervention, snapshot))
+        return;
+
+    Entity actor(intervention->actorInstance);
+    Entity rightSource(intervention->rightSourceInstance);
+    if (actor == None || rightSource == None)
+        return;
+
+    Entity player = Entity::GetPlayer();
+    eCEntity *const playerInstance =
+        player != None ? player.GetInstance() : nullptr;
+    GEInt const argumentIsPlayer = argumentEntity != nullptr
+        && argumentEntity == playerInstance ? 1 : 0;
+    Entity argument(argumentEntity);
+    std::string argumentName = "<none>";
+    if (clearKind == TriggerClearKind_Entity)
+    {
+        argumentName = argumentEntity == nullptr
+            ? "<null>"
+            : argument != None
+                ? argument.GetName().GetText()
+                : "<unavailable>";
+    }
+
+    HMODULE callerModule = nullptr;
+    char modulePath[MAX_PATH] = {};
+    bool const callerResolved = callerAddress != nullptr
+        && ::GetModuleHandleExA(
+            GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCSTR>(callerAddress),
+            &callerModule) != FALSE;
+    DWORD const pathLength = callerResolved
+        ? ::GetModuleFileNameA(callerModule, modulePath, MAX_PATH) : 0;
+    char callerRva[32] = {};
+    if (callerResolved)
+    {
+        std::uintptr_t const callerValue =
+            reinterpret_cast<std::uintptr_t>(callerAddress);
+        std::uintptr_t const baseValue =
+            reinterpret_cast<std::uintptr_t>(callerModule);
+        std::snprintf(
+            callerRva, sizeof(callerRva), "0x%08lX",
+            static_cast<unsigned long>(callerValue - baseValue));
+    }
+    else
+    {
+        std::snprintf(
+            callerRva, sizeof(callerRva), "<unresolved>");
+    }
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log == nullptr)
+        return;
+
+    GEInt const action = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    GEFloat const stateTime = actor.Routine.GetStateTime();
+    std::fprintf(
+        log,
+        "CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=%s ClearKind=%s Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d PreStateRearmProven=%d Native7To7SuppressionUsed=%d TriggerIdentityMatch=1 ResetOnUntouch=%d VisitedSize=%d VisitedCountSize=%d PlayerResolved=%d PlayerPresent=%d PlayerEntryCount=%d PlayerVisitCount=%d CountsAligned=%d Argument=%s ArgumentAddress=%p ArgumentIsPlayer=%d CallerResolved=%d CallerModule=%s CallerRVA=%s CallerAddress=%p\n",
+        TriggerClearBoundaryName(boundary),
+        TriggerClearKindName(clearKind),
+        actor.GetName().GetText(),
+        static_cast<unsigned long long>(intervention->c1Generation),
+        action, statePosition, static_cast<double>(stateTime),
+        rightSource.GetName().GetText(),
+        static_cast<GEInt>(
+            CollisionSources::GetCollisionSourceUseType(rightSource)),
+        static_cast<GEInt>(rightSource.GetCollisionGroup()),
+        intervention->preStateRearmProven ? 1 : 0,
+        intervention->nativeRearmSuppressionUsed ? 1 : 0,
+        snapshot.resetOnUntouch, snapshot.visitedSize,
+        snapshot.visitedCountSize, snapshot.playerResolved,
+        snapshot.playerPresent, snapshot.playerEntryCount,
+        snapshot.playerVisitCount, snapshot.countsAligned,
+        argumentName.c_str(), static_cast<void *>(argumentEntity),
+        argumentIsPlayer, callerResolved ? 1 : 0,
+        pathLength > 0 ? TriggerClearBaseName(modulePath)
+            : callerResolved ? "<path-unavailable>" : "<unresolved>",
+        callerRva, callerAddress);
+    std::fflush(log);
 }
 
 static bool TriggerStateFingerprintChanged(

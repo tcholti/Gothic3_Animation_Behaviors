@@ -7,6 +7,18 @@
 
 namespace FrameCollision::PhysicalFistProbe
 {
+enum TriggerClearKind
+{
+    TriggerClearKind_All,
+    TriggerClearKind_Entity
+};
+
+enum TriggerClearBoundary
+{
+    TriggerClearBoundary_Pre,
+    TriggerClearBoundary_Post
+};
+
 struct QuickCallbackObservation
 {
     bool active;
@@ -97,6 +109,11 @@ void BeginSprintCallbackObservation(
 bool ShouldSuppressCollisionGroupRequest(
     eCEntity *sourceInstance, eECollisionGroup requestedGroup,
     eECollisionGroup beforeGroup);
+
+void ObserveTriggerClear(
+    eCTrigger_PS *trigger, eCEntity *argumentEntity,
+    TriggerClearKind clearKind, TriggerClearBoundary boundary,
+    void *callerAddress);
 
 void OnMarkerProcessed(
     Entity &actor, MarkerOpcode markerOpcode,

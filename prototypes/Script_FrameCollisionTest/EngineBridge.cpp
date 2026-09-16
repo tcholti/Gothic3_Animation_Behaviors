@@ -52,6 +52,8 @@ static mCCallHook Hook_Raw8FistTimingGateGetPlayTime;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 static mCFunctionHook Hook_EntityOnDamage;
+static mCFunctionHook Hook_ClearTriggeredListAll;
+static mCFunctionHook Hook_ClearTriggeredListEntity;
 static GEU32 const EntityOnDamageEntryLogCap = 64;
 static GEU32 g_EntityOnDamageEntryOrdinal = 0;
 #endif
@@ -853,6 +855,41 @@ static void GE_STDCALL FistTriggerTarget_FrameCollisionTest(
 #endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
+static void GE_STDCALL ClearTriggeredListAll_FrameCollisionTest(
+    eCTrigger_PS *a_pThis)
+{
+    void *const callerAddress = _ReturnAddress();
+    PhysicalFistProbe::ObserveTriggerClear(
+        a_pThis, nullptr, PhysicalFistProbe::TriggerClearKind_All,
+        PhysicalFistProbe::TriggerClearBoundary_Pre, callerAddress);
+
+    Hook_ClearTriggeredListAll.GetOriginalFunction(
+        &ClearTriggeredListAll_FrameCollisionTest)(a_pThis);
+
+    PhysicalFistProbe::ObserveTriggerClear(
+        a_pThis, nullptr, PhysicalFistProbe::TriggerClearKind_All,
+        PhysicalFistProbe::TriggerClearBoundary_Post, callerAddress);
+}
+
+static void GE_STDCALL ClearTriggeredListEntity_FrameCollisionTest(
+    eCTrigger_PS *a_pThis, eCEntity *a_pEntity)
+{
+    void *const callerAddress = _ReturnAddress();
+    PhysicalFistProbe::ObserveTriggerClear(
+        a_pThis, a_pEntity,
+        PhysicalFistProbe::TriggerClearKind_Entity,
+        PhysicalFistProbe::TriggerClearBoundary_Pre, callerAddress);
+
+    Hook_ClearTriggeredListEntity.GetOriginalFunction(
+        &ClearTriggeredListEntity_FrameCollisionTest)(
+            a_pThis, a_pEntity);
+
+    PhysicalFistProbe::ObserveTriggerClear(
+        a_pThis, a_pEntity,
+        PhysicalFistProbe::TriggerClearKind_Entity,
+        PhysicalFistProbe::TriggerClearBoundary_Post, callerAddress);
+}
+
 static void GE_STDCALL EntityOnDamage_FrameCollisionTest(
     gCEntity *a_pThis, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
     GEInt a_iArg1, GEInt a_iArg2, eCContactIterator &a_rContactIterator)
@@ -1132,6 +1169,16 @@ void FrameCollision::EngineBridge::InstallHooks()
 #endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
+    Hook_ClearTriggeredListAll
+        .Prepare(RVA_Engine(0x7DDA0),
+                 &ClearTriggeredListAll_FrameCollisionTest)
+        .ThisCall()
+        .Hook();
+    Hook_ClearTriggeredListEntity
+        .Prepare(RVA_Engine(0x7DDF0),
+                 &ClearTriggeredListEntity_FrameCollisionTest)
+        .ThisCall()
+        .Hook();
     Hook_EntityOnDamage
         .Prepare(RVA_Game(0x668D0), &EntityOnDamage_FrameCollisionTest)
         .ThisCall()
