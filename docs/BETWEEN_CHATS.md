@@ -76,18 +76,20 @@ later marker2
 Canonical EV-290 evidence:
 
 ```text
-raw:
-research/raw/2026.09.16_troll_raw55_normal_native_trigger_clear_observation.log
+source provenance:
+research/archive/2026.09.16_troll_raw55_normal_native_trigger_clear_observation.log
 
 SHA256:
 E699B807059189289D4CAB6B243F966F49947C9083656EE693B8FDD21676693F
 
-upload commit:
+original upload commit:
 8b483b48636deeec4fa6863533da4a7db4fe2e15
 
 derived POP-07 package:
 research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/
 ```
+
+The source artifact was later moved byte-identically from raw intake to archive as part of the 2026-09-16 processed-evidence cleanup. Historical EV wording remains valid and resolves through `EVIDENCE_PATH_MIGRATIONS.md`.
 
 Do **not** infer from EV-290 alone that the native clear is required for hit2. EV-290 identifies the operation; the current probe tests necessity.
 
@@ -144,24 +146,27 @@ Do not launch another Work task.
 11. For a large log, use the routine drag-and-drop workflow: drag the untouched raw `.log` onto `tools\log_evidence\Prepare-Log.cmd`, then commit/push both raw + generated derived package.
 12. Close the new runtime as the next EV before advancing.
 
-## Raw/derived retrieval discipline for the next Chat
+## Evidence retrieval discipline
 
-**Do not enumerate or scan `research/raw/` during orientation.** The raw folder contains many processed historical logs, including multi-megabyte files.
+**Do not scan raw/archive evidence directories during orientation.** At this maintenance boundary, `research/raw/` contains only `Keep.txt`; processed evidence is in `research/archive/`.
 
 For current work:
 
 - start from EV-290 in `docs/EVIDENCE_LEDGER_286_ONWARD.md`;
 - use the EV-290 derived package above if exact runtime verification is needed;
-- open the full raw log only for a precise unresolved fact that the EV/derived package cannot answer;
-- older EV-286–EV-289 raw logs are processed historical provenance and are not active orientation inputs.
+- open the archived full EV-290 source only for a precise unresolved fact that the EV/derived package cannot answer;
+- older EV-286–EV-289 source logs are processed historical provenance and are not active orientation inputs;
+- historical ledger rows that still contain former raw paths resolve through `docs/EVIDENCE_PATH_MIGRATIONS.md`.
 
-Physical archive cleanup of older large raw files was **not performed in this Chat** because the connected GitHub write surface cannot guarantee a byte-faithful multi-megabyte move without reconstructing file content. Canonical evidence integrity takes priority over cosmetic cleanup. This is not a blocker for continuation.
+The September 8–16 archive cleanup is complete. Fifty-one processed artifacts were moved by reusing their existing Git blob identities, so no multi-megabyte log was reconstructed or rewritten.
 
-## Small continuity review findings
+## Documentation review findings
 
-- `SESSION_ENTRYPOINT.md` and this handoff must be the only current-state front door.
+- `SESSION_ENTRYPOINT.md` and this handoff remain the only current-state front door.
 - `EVIDENCE_LEDGER_286_ONWARD.md` canonically owns EV-286–EV-290.
-- `EVIDENCE_INDEX.md` is a cold routing index and currently has some stale ledger-split/range wording from before `EVIDENCE_LEDGER_286_ONWARD.md`; do not use that stale range wording as current-state authority. It should be repaired in a later bounded documentation-maintenance pass, not during the active causal test.
+- `EVIDENCE_PATH_MIGRATIONS.md` owns the raw-to-archive path resolution; historical EV rows need not be cosmetically rewritten.
+- `research/README.md` again describes the actual intake state and large-log retrieval rule.
+- Some older cold/convention documents contain ledger-split examples that predate `EVIDENCE_LEDGER_283_ONWARD.md` and `EVIDENCE_LEDGER_286_ONWARD.md`. Treat those as stale storage-range examples only; they do not override the actual ledger continuation headers or current state.
 - No architecture contradiction was found in the active Normal route.
 - No permanent `PhysicalFistCollision` is authorized yet.
 
