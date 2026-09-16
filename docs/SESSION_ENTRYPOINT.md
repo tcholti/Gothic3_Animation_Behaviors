@@ -15,7 +15,7 @@
 > **MAX-CONTEXT / FAILED-CHAT RULE:** If Normal Chat ends before evidence closure, use POP-11 Recovery Lock. Oversized runtime logs use POP-07.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe authority: `docs/COLLISION_RAW55_NORMAL_TRIGGER_STATE_OBSERVATION_PROBE.md`  
+Current probe authority: `docs/COLLISION_RAW55_NORMAL_TRIGGER_STATE_OBSERVATION_PROBE.md`  
 Latest canonical evidence: through **EV-288** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
@@ -31,6 +31,12 @@ raw55 two-FIST cross-family runtime CLOSED as evidence — EV-283
 raw55 Normal SP0 physical opening CLOSED/PASS — EV-286
 raw55 Normal SP0 contact rearm / early first damage CLOSED/PASS — EV-287
 raw55 Normal native 7->7 setter as second-rearm source REJECTED — EV-288
+
+Normal trigger-state observation probe:
+    implementation ec20e769a347bd206577427bfd28a85bd51a79b3
+    required base 9ad32fa078dfc4d64ad732317eacae17e10d9161
+    independent Normal Chat source review PASS
+    local build/deploy/runtime PENDING
 ```
 
 EV-288 proves:
@@ -62,29 +68,30 @@ SHA256:
 
 `AB8E7B8B300F08CD61B01E7338FC672E6A09DE7D57F055F4FFAFD68514628C6E`
 
-## Current frozen question
+## Current implementation under local validation
 
-Observe the exact RIGHT raw55 trigger bookkeeping without adding another behavioral mutation.
+Source-reviewed implementation:
 
-The official SDK exposes:
+`ec20e769a347bd206577427bfd28a85bd51a79b3`
+
+Exactly one source file changed from the frozen base:
+
+`prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp`
+
+The change is additions-only (`+339 / -0`) and preserves the EV-288 behavior. It adds read-only exact-source trigger-state observation using the official SDK's:
 
 ```text
 eCTrigger_PS::EntitiesVisited
 eCTrigger_PS::EntitiesVisitedCount
 gCTouchDamage_PS::ResetOnUntouch
+eCEntityProxy::GetEntity() const
 ```
 
-Current authority:
-
-`docs/COLLISION_RAW55_NORMAL_TRIGGER_STATE_OBSERVATION_PROBE.md`
-
-Preserve the EV-288 diagnostic environment, including the existing one-shot native `7 -> 7` setter suppression.
-
-Observe exact actor + C1 + RIGHT raw55 state at:
+Snapshots are scoped to the proven same actor + same C1 + exact current RIGHT PhysicalFist/raw55 intervention and are logged at:
 
 ```text
 POST_PRESTATE_REARM
-change-only Normal callback trigger-state changes
+CALLBACK_CHANGE (change-only)
 NATIVE_7TO7_SUPPRESS_PRE
 SP0_TO1_POST_CALLBACK
 LATER_FIST
@@ -92,10 +99,11 @@ LATER_FIST
 
 The key question is whether `PC_Hero` enters the visited state after hit 1 and later disappears/resets before hit 2 without an explicit marker-2 clear.
 
-This is observation-only:
+This remains observation-only:
 
 ```text
 NO new ClearTriggeredList
+NO new SetCollisionGroup intervention
 NO mutation of EntitiesVisited / EntitiesVisitedCount
 NO ResetOnUntouch write
 NO marker-2 rearm
@@ -105,6 +113,27 @@ NO EngineBridge change
 NO direct damage
 NO cleanup/repair change
 ```
+
+## Immediate next step
+
+User + Normal Chat perform local validation only:
+
+```text
+sync branch in GitHub Desktop
+-> confirm Changes empty
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+-> POP-03 deploy/hash verification if build passes
+-> POP-04 startup banner
+-> same Normal two-FIST Troll runtime
+-> POP-07/POP-06 evidence closure
+```
+
+Preferred runtime artifact:
+
+`research/raw/2026.09.16_troll_raw55_normal_trigger_state.log`
+
+No EV-289 exists yet.
 
 ## Power observation
 
