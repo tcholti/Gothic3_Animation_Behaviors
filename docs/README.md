@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Project Charter and Knowledge Map
 
 **Purpose:** Highest project-specific authority beneath CAM for the Gothic 3 project's **purpose, long-term direction, scope, authority topology, and retrieval model**. Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-16
 
 > **Understand the project authority structure before judging lower-level documents. For ordinary engineering, do not load every document by default: find the current responsibility, recover a compact model of the relevant subsystem when needed, open the smallest relevant authority/index, and broaden only when the question requires it.**
 
@@ -261,10 +261,16 @@ Evidence ledgers share one global monotonic namespace:
 EVIDENCE_LEDGER.md                EV-001–EV-157
 EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
 EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
-EVIDENCE_LEDGER_232_ONWARD.md     EV-232 onward
+EVIDENCE_LEDGER_232_ONWARD.md     EV-232–EV-249
+EVIDENCE_LEDGER_250_ONWARD.md     EV-250–EV-264
+EVIDENCE_LEDGER_265_ONWARD.md     EV-265–EV-273
+EVIDENCE_LEDGER_274_ONWARD.md     EV-274–EV-279
+EVIDENCE_LEDGER_280_ONWARD.md     EV-280–EV-282
+EVIDENCE_LEDGER_283_ONWARD.md     EV-283–EV-285
+EVIDENCE_LEDGER_286_ONWARD.md     EV-286 onward
 ```
 
-File splits are retrieval/storage boundaries only.
+File splits are retrieval/storage boundaries only; evidence numbering remains one global monotonic namespace.
 
 Other deep references:
 
@@ -284,7 +290,7 @@ Other deep references:
 - `research/README.md` — research-layer usage/processing map.
 - `EVIDENCE_PATH_MIGRATIONS.md` — deliberate raw/archive path-migration lookup when historical paths differ from current storage.
 
-Prefer EV first. Open raw/archive when verifying wording, challenging interpretation, or extracting a fact not represented canonically. For oversized logs, use POP-07.
+Prefer EV first. Open raw/archive when verifying wording, challenging interpretation, or extracting a fact not represented canonically. For oversized logs, use POP-07 and prefer a committed derived package for routine retrieval.
 
 Ordinary documentation history belongs in Git; historical Git content never overrides maintained current authorities.
 
@@ -406,7 +412,7 @@ Work should not reconstruct the whole project by default.
 | diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
 | collision validation boundaries | `COLLISION_TEST_PLAN.md` |
 | release/diagnostic product architecture | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
-| exact evidence status/provenance | four canonical evidence ledgers listed above |
+| exact evidence status/provenance | canonical evidence ledgers listed in §2 |
 | evidence/history lookup | `EVIDENCE_INDEX.md` |
 | evidence storage migration lookup | `EVIDENCE_PATH_MIGRATIONS.md` |
 | animation generalized semantics | `ANIMATION_RULES.md` |
