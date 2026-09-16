@@ -12,7 +12,7 @@
 
 > **RELEASE-PURITY RULE:** `Script_FrameCollisionTest` is diagnostic research only. The eventual shipped plugin remains `Script_G3AnimationBehaviors`; `PhysicalFistProbe` is not production architecture.
 
-> **LARGE-LOG RULE:** Do not orient by scanning `research/raw/`. Routine oversized-log preparation is drag-and-drop onto `tools\log_evidence\Prepare-Log.cmd`; preserve/commit both the untouched raw log and generated derived package.
+> **LARGE-LOG RULE:** Do not orient by scanning raw/archive logs. Routine oversized-log preparation is drag-and-drop onto `tools\log_evidence\Prepare-Log.cmd`; preserve/commit the untouched source artifact and generated derived package. After evidence closure, processed source artifacts move unchanged from `research/raw/` to `research/archive/`.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Current probe authority: `docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md`  
@@ -37,7 +37,7 @@ Current diagnostic implementation:
 
 `2839c8c271fa240b81ce5ccd203c34058870a5bb`
 
-Required base:
+Required implementation base:
 
 `23400f2b5b3afdbe8c03088be01aa4bc969849db`
 
@@ -103,9 +103,9 @@ no direct damage
 native cleanup unchanged
 ```
 
-## Immediate next step — new Normal Chat
+## Immediate next step — local validation only
 
-This is now **local validation only**. Do not launch another Work task.
+Do not launch another Work task.
 
 ```text
 GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
@@ -125,7 +125,7 @@ GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
 
 ## Retrieval discipline
 
-Do **not** list or scan `research/raw/` to recover context. Older processed logs are provenance, not orientation material.
+Do **not** enumerate or scan large evidence directories to recover context. `research/raw/` is active intake, not project history; at the EV-290 maintenance boundary it contains only `Keep.txt`.
 
 Use in this order:
 
@@ -133,21 +133,27 @@ Use in this order:
 2. `BETWEEN_CHATS.md`;
 3. current suppression-probe contract;
 4. EV-290 in `EVIDENCE_LEDGER_286_ONWARD.md`;
-5. exact derived/raw evidence only if a concrete fact needs verification.
+5. exact derived/archive evidence only if a concrete fact needs verification.
 
-EV-290 active comparison material:
+EV-290 preferred exact-runtime retrieval:
 
 ```text
 research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/
 ```
 
-The corresponding raw log remains canonical but should not be opened by default.
+Canonical full source provenance is now archived unchanged:
 
-## Known documentation-maintenance debt
+```text
+research/archive/2026.09.16_troll_raw55_normal_native_trigger_clear_observation.log
+```
 
-`EVIDENCE_INDEX.md` is a cold routing index and contains some stale ledger-split/range wording from before `EVIDENCE_LEDGER_286_ONWARD.md`. This does not override the current entrypoint or canonical ledger. Repair it later in a bounded documentation-maintenance pass; do not let it derail the current causal runtime test.
+Historical EV rows that still spell the former `research/raw/<basename>` location resolve through `EVIDENCE_PATH_MIGRATIONS.md`; storage migration does not change evidence meaning.
 
-Physical archival of older multi-megabyte raw logs was not performed during the planned transition because the connected GitHub writer cannot guarantee a byte-faithful move without reconstructing file contents. Evidence integrity takes priority. The active docs therefore explicitly prevent raw-folder scanning.
+## Documentation-maintenance state
+
+The September 8–16 processed collision evidence backlog has been archived byte-identically. `research/raw/` is again intake-only.
+
+A repository documentation audit also found older cold/convention documents whose ledger-split examples predate `EVIDENCE_LEDGER_283_ONWARD.md` and `EVIDENCE_LEDGER_286_ONWARD.md`. Those stale storage-range examples do **not** override the actual continuation headers, this entrypoint, or canonical evidence. Keep current-state reasoning on the authorities named above until those cold routing examples are normalized.
 
 ## Deployment authority
 
