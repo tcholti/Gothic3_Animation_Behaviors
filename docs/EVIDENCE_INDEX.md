@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-14
+**Updated:** 2026-09-16
 
 ## Purpose
 
@@ -17,14 +17,16 @@ EVIDENCE_LEDGER_232_ONWARD.md       EV-232–EV-249
 EVIDENCE_LEDGER_250_ONWARD.md       EV-250–EV-264
 EVIDENCE_LEDGER_265_ONWARD.md       EV-265–EV-273
 EVIDENCE_LEDGER_274_ONWARD.md       EV-274–EV-279
-EVIDENCE_LEDGER_280_ONWARD.md       EV-280 onward
+EVIDENCE_LEDGER_280_ONWARD.md       EV-280–EV-282
+EVIDENCE_LEDGER_283_ONWARD.md       EV-283–EV-285
+EVIDENCE_LEDGER_286_ONWARD.md       EV-286 onward
 ```
 
 The ledger splits are storage-only; numbering remains one global monotonic namespace.
 
 This index does not restate or change evidence status. Open the exact EV entry when wording, qualification, provenance, build scope or engineering consequence matters.
 
-Processed September 2–8 runtime artifacts are moved unchanged from `research/raw/` to `research/archive/` after evidence closure. Historical rows written before an archive move may still spell the former raw intake path; `EVIDENCE_PATH_MIGRATIONS.md` records those path migrations where needed. Raw/archive logs are verification/provenance, not routine reading.
+Processed September 2–16 runtime artifacts are moved unchanged from `research/raw/` to `research/archive/` after evidence closure. Historical rows written before an archive move may still spell the former raw intake path; `EVIDENCE_PATH_MIGRATIONS.md` records those path migrations where needed. Raw/archive logs are verification/provenance, not routine reading. For large logs, prefer the committed `research/derived/` package for routine retrieval and return to the archived source only for an exact unresolved fact.
 
 Current project responsibility is never owned by this historical index. Use `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` for current state.
 
@@ -40,8 +42,8 @@ Current project responsibility is never owned by this historical index. Use `SES
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
 | raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263 | `DESIGN.md` raw-8 Fist architecture; `SOURCE_HOOK_GUIDE.md` proven timing path |
-| PhysicalFist/raw55 factual source + complete family causal route | EV-245–EV-246, EV-262–EV-282 | §3K below; Quick EV-264–EV-273; Power EV-274–EV-276; Normal EV-277–EV-279; Sprint EV-280–EV-282 |
-| repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-273 | equipped exact-set/replay evidence; raw55 Quick rearm is family-specific and must not be generalized to Power/Normal/Sprint |
+| PhysicalFist/raw55 factual source + family/repeated-contact causal route | EV-245–EV-246, EV-262–EV-290 | §3K below; Quick EV-264–EV-273; Power EV-274–EV-276; Normal first-contact EV-277–EV-279; Sprint EV-280–EV-282; cross-family repeated-FIST/Normal reset EV-283–EV-290 |
+| repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-273, EV-283–EV-290 | equipped exact-set/replay evidence; raw55 Quick and Normal have family/timing-specific rearm behavior—do not generalize one family's mechanism to another |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-273 | EV-182–EV-196 lifecycle context; EV-264–EV-273 raw55 Quick ownership/separability/activation/rearm/pre-state closure |
 | Dual native source map / source-explicit marker review | EV-090–EV-094 | EV-207, EV-211, EV-214 |
@@ -142,10 +144,10 @@ EV-192–EV-194
 EV-206–EV-207
 EV-211
 EV-214
-EV-217–EV-282
+EV-217–EV-290
 ```
 
-Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 record the initial bounded raw55 survey that had not yet found a factual source. Later Troll/BlackTroll evidence correctly reopened and then closed the required family-level causal path: EV-262 confirms factual raw55; EV-264–EV-273 close Quick ownership, selective gating, authored activation, contact rearm and pre-StatePosition timing; EV-274–EV-276 close true Power; EV-277–EV-279 close Normal; EV-280–EV-282 close Sprint. EV-263 remains the focused healthy raw8 Quick comparison boundary.
+Power, Pierce, SimpleWhirl and Hack equipped expansion conclusions are canonically closed in EV-241–EV-244. EV-216 remains Hack callback identity only. EV-245–EV-246 record the initial bounded raw55 survey that had not yet found a factual source. Later Troll/BlackTroll evidence correctly reopened and then closed the required family-level first-contact path: EV-262 confirms factual raw55; EV-264–EV-273 close Quick ownership, selective gating, authored activation, contact rearm and pre-StatePosition timing; EV-274–EV-276 close true Power; EV-277–EV-279 close Normal first contact; EV-280–EV-282 close Sprint first contact. EV-283 then demonstrates two authored FIST occurrences across the raw55 families and exposes family-specific repeated-contact behavior; EV-286–EV-290 isolate Normal's pre-state opening, first-contact rearm and native between-contact reset mechanism. EV-263 remains the focused healthy raw8 Quick comparison boundary.
 
 SimpleWhirl current distinction:
 
@@ -185,9 +187,12 @@ EV-266–EV-273
 EV-276
 EV-279
 EV-282
+EV-283–EV-290
 ```
 
-`ClearTriggeredList()` is established for equipped repeated-contact semantics, but raw55 family behavior is not uniform. Raw-8 Fist explicitly does not require it in final production architecture; see EV-233. Raw55 Quick is the proven special case: EV-266 shows delayed authored group opening alone can remain contact-insufficient, EV-267 restores Quick damage with one exact triggered-list clear, and EV-268–EV-273 close the timing/pre-state behavior and repeated-contact path. By contrast, true Power EV-276, Normal EV-279 and Sprint EV-282 each demonstrate native first-contact damage after authored raw55 opening with `ClearTriggeredList=0`. Do not generalize Quick's rearm requirement to those families.
+`ClearTriggeredList()` is established for equipped repeated-contact semantics, but raw55 family behavior is not uniform. Raw-8 Fist explicitly does not require it in final production architecture; see EV-233. Raw55 Quick is a proven special case: EV-266 shows delayed authored group opening alone can remain contact-insufficient, EV-267 restores Quick damage with one exact triggered-list clear, and EV-268–EV-273 close the timing/pre-state behavior and repeated-contact path.
+
+The earlier first-contact checkpoints for true Power EV-276, Normal EV-279 and Sprint EV-282 each show damage after authored raw55 opening with `ClearTriggeredList=0` in those tested native timing states. Do not generalize that result to every marker timing. EV-286–EV-287 later prove that an earlier Normal marker at SP0 can physically open raw55 yet fail to create early contact until one exact marker-owned `ClearTriggeredList()` is performed. EV-288 rejects the later native `7 -> 7` setter as the second-contact owner. EV-289 proves the player visit bookkeeping is naturally cleared during the native SP0 -> 1 callback transition before marker2, and EV-290 identifies the exact public native ALL `eCTrigger_PS::ClearTriggeredList()` call from `Script_Game.dll + 0x386C6` that performs that reset. EV-290 identifies the operation; it does **not** yet prove the clear is causally required for hit2.
 
 ### E. Marker execution lifetime / bookkeeping
 
@@ -217,15 +222,15 @@ Fist timing permission also uses this factual generation identity; EV-237 confir
 
 ### F. Native collision cleanup lifecycle
 
-Evidence: EV-151–EV-215 plus equipped expansion cleanup evidence EV-217, EV-220 and EV-241–EV-244, and raw55 authored-FIST cleanup evidence EV-266–EV-282.  
+Evidence: EV-151–EV-215 plus equipped expansion cleanup evidence EV-217, EV-220 and EV-241–EV-244, raw55 authored-FIST cleanup evidence EV-266–EV-282, and the Normal repeated-contact/reset-source evidence EV-283–EV-290.  
 Exact native RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.  
 Architecture: `COLLISION_LIFECYCLE_PLAN.md`.
 
-Raw-8 Fist is not an equipped-source cleanup client; it creates no weapon C1 physical repair obligation. Raw55 authored opening creates a real C1 offense obligation when the source actually becomes group7. Quick, true Power, Normal and Sprint all have positive native exact RIGHT `7 -> 5` cleanup evidence after their proven authored-opening paths. Suppressed `5 -> 7` requests that never physically open do not fabricate an offense obligation; Sprint EV-281 provides a particularly direct control.
+Raw-8 Fist is not an equipped-source cleanup client; it creates no weapon C1 physical repair obligation. Raw55 authored opening creates a real C1 offense obligation when the source actually becomes group7. Quick, true Power, Normal and Sprint all have positive native exact RIGHT `7 -> 5` cleanup evidence after their proven authored-opening paths. The EV-286–EV-290 Normal probes also preserve native exact RIGHT `7 -> 5` cleanup while isolating contact bookkeeping. Suppressed `5 -> 7` requests that never physically open do not fabricate an offense obligation; Sprint EV-281 provides a particularly direct control.
 
 ### G. Animation semantics and naming
 
-Evidence: EV-036–EV-065, plus EV-245–EV-282 for the distinction between serialized `Fist`, factual raw source UseType, actual marker-mechanism support, factual engine family/action and timing/contact behavior.  
+Evidence: EV-036–EV-065, plus EV-245–EV-290 for the distinction between serialized `Fist`, factual raw source UseType, actual marker-mechanism support, factual engine family/action and timing/contact behavior.  
 Main routing: `ANIMATION_INDEX.md`.
 
 Sprint EV-280–EV-282 is an explicit caution: the PowerAttack-named motion can be factual Action9/Sprint and later become factual Action2/Power. Animation filename is not family authority.
@@ -294,8 +299,8 @@ No authored FIST_OFF, no Fist triggered-list clear, no Fist-specific weapon call
 Human final acceptance artifact:
 `research/archive/2026-09-07_fist_production_frame12_normal_power_acceptance.log`.
 
-Current raw8 comparison artifact for the raw55 Quick investigation:
-`research/raw/2026.09.12_sabertooth_marked_quick.log`.
+Raw8 Quick comparison provenance used during the raw55 investigation is now archived:
+`research/archive/2026.09.12_sabertooth_marked_quick.log`.
 
 ### K. PhysicalFist/raw55 complete causal route
 
@@ -319,7 +324,7 @@ EV-268 timing controls prove frame-1 FIST can arrive pre-StatePosition
 EV-269–EV-273 close the pre-state/repeat-contact Quick path and its bounded behavior
 ```
 
-True Power closure:
+True Power first-contact closure:
 
 ```text
 EV-274 compound native callback ownership
@@ -327,15 +332,15 @@ EV-275 selective exact RIGHT early-group suppression preserves native progressio
 EV-276 authored FIST exact RIGHT activation with ClearTriggeredList=0 restores native damage and native cleanup
 ```
 
-Normal closure:
+Normal first-contact closure:
 
 ```text
 EV-277 compound native callback ownership
 EV-278 selective exact RIGHT early-group suppression preserves native progression
-EV-279 authored FIST exact RIGHT activation with ClearTriggeredList=0 restores native damage and native cleanup
+EV-279 authored FIST exact RIGHT activation with ClearTriggeredList=0 restores native damage and native cleanup at the tested SP1 marker timing
 ```
 
-Sprint closure:
+Sprint first-contact closure:
 
 ```text
 EV-280 factual Action9/Sprint compound ownership inside existing _AI_PowerAttack transport; whole-callback suppression rejected
@@ -343,20 +348,50 @@ EV-281 selective exact RIGHT Action9 early-group suppression preserves native St
 EV-282 authored FIST at factual Action9/SP1 opens exact RIGHT raw55 5 -> 7 with ClearTriggeredList=0; native damage + native 7 -> 5 cleanup repeat across C1=16/57/81
 ```
 
+Cross-family repeated-FIST checkpoint:
+
+```text
+EV-283 two authored FIST occurrences are transported in Quick, Power, Normal and Sprint fixtures; repeated-contact behavior is not uniform across families
+EV-284–EV-285 narrow the Normal repeated-FIST question and prepare the pre-state route
+```
+
+Normal repeated-contact causal route:
+
+```text
+EV-286 frame-1/SP0 FIST is accepted and physically opens exact RIGHT raw55 5 -> 7; with ClearTriggeredList=0 no early first-swing damage occurs
+EV-287 one exact marker-owned ClearTriggeredList after verified SP0 opening creates first damage before native SP0 -> 1; second same-C1 damage also occurs later without marker2 intervention
+EV-288 suppressing the native exact RIGHT 7 -> 7 setter preserves SP0 -> 1 and both damages, rejecting that setter as the second-contact owner
+EV-289 read-only trigger state proves PC_Hero is visited after hit1, then removed during the same native SP0 -> 1 callback transition before marker2
+EV-290 exact public eCTrigger_PS::ClearTriggeredList() ALL from Script_Game.dll +0x386C6 is the operation that empties the visited arrays; hit2 later re-inserts PC_Hero
+```
+
 Current engineering status:
 
 ```text
 factual raw55 source                  = CONFIRMED for Troll/BlackTroll TrollFist
 raw55 Quick                           = CLOSED/PASS through EV-273; special rearm/pre-state behavior
-raw55 true Power                      = CLOSED/PASS through EV-276; no first-contact clear required
-raw55 Normal                          = CLOSED/PASS through EV-279; no first-contact clear required
-raw55 Sprint                          = CLOSED/PASS through EV-282; no first-contact clear required
-permanent raw55 marker architecture   = NOT YET IMPLEMENTED; NORMAL CHAT SYNTHESIS CURRENT
+raw55 true Power                      = first-contact CLOSED/PASS through EV-276
+raw55 Normal                          = first-contact CLOSED/PASS through EV-279; repeated-contact mechanism under active causal closure through EV-290
+raw55 Sprint                          = first-contact CLOSED/PASS through EV-282
+cross-family two-FIST transport       = CONFIRMED — EV-283
+Normal native between-contact reset   = EXACT ALL-clear operation/caller IDENTIFIED — EV-290
+Normal native clear causal necessity  = NOT YET PROVEN
+permanent raw55 marker architecture   = PAUSED until repeated-contact ownership is closed
 ```
 
-The evidence-backed common Power/Normal/Sprint pattern is: preserve the native callback/state path, selectively block only the premature exact RIGHT PhysicalFist/raw55 opening, then let authored FIST open that exact source with no triggered-list clear and let Gothic own damage/cleanup. Quick shares the delayed-authored-opening goal but has proven family-specific pre-StatePosition and triggered-list rearm behavior.
+The source-reviewed current diagnostic suppresses exactly once the EV-290 native ALL clear from `Engine + 0x7DDA0`, caller `Script_Game.dll + 0x386C6`, only when the factual Normal actor/C1/current RIGHT raw55/contact gates match and PC_Hero is still visited after hit1. Marker1 remains unchanged, marker2 remains observational, the EV-288 `7 -> 7` suppression remains, and native cleanup is not modified.
 
-No current raw55 probe is frozen. `PhysicalFistProbe` remains diagnostic research scaffolding; do not promote it wholesale. Current-state authority is `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
+Current probe authority:
+`COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md`.
+
+Current diagnostic implementation:
+`2839c8c271fa240b81ce5ccd203c34058870a5bb` — source review PASS; build not yet attempted at the EV-290 maintenance boundary.
+
+Preferred EV-290 runtime retrieval:
+`research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/`.
+
+Canonical full source provenance:
+`research/archive/2026.09.16_troll_raw55_normal_native_trigger_clear_observation.log`.
 
 Do not substitute raw8 semantics for raw55, do not species-gate production policy, and do not infer exact whole-limb/body damage geometry from the `TrollFist` name or current OnDamage logger.
 
@@ -380,9 +415,14 @@ human/raw8 Fist production mechanism        CLOSED/PASS; broadened controls thro
 initial PhysicalFist/raw55 bounded survey   CLOSED at EV-245–EV-246; REOPENED by factual EV-262 evidence
 raw55 factual source boundary               CONFIRMED — EV-262
 raw55 Quick causal mechanism                CLOSED/PASS through EV-273
-raw55 true Power causal mechanism           CLOSED/PASS through EV-276
-raw55 Normal causal mechanism               CLOSED/PASS through EV-279
-raw55 Sprint causal mechanism               CLOSED/PASS through EV-282
+raw55 true Power first-contact mechanism    CLOSED/PASS through EV-276
+raw55 Normal first-contact mechanism        CLOSED/PASS through EV-279
+raw55 Sprint first-contact mechanism        CLOSED/PASS through EV-282
+raw55 two-FIST transport checkpoint         CONFIRMED — EV-283
+Normal SP0 opening/first-contact rearm       CLOSED/PASS — EV-286–EV-287
+Normal native 7 -> 7 second-rearm hypothesis REJECTED — EV-288
+Normal between-contact bookkeeping reset    CONFIRMED — EV-289
+Normal exact native ALL-clear reset source  IDENTIFIED — EV-290
 ```
 
 ```text
@@ -391,17 +431,18 @@ RAW8 FIST SHARED MECHANISM = CLOSED/PASS FOR THE EVIDENCE-BACKED FAMILIES/CONTRO
 EQUIPPED POWER / PIERCE / SIMPLEWHIRL / HACK EXPANSION CHECKPOINTS = CANONICALLY PROMOTED
 RAW55 FACTUAL SOURCE = CONFIRMED FOR TROLL/BLACKTROLL
 RAW55 QUICK = CLOSED/PASS WITH PROVEN QUICK-SPECIFIC REARM/PRE-STATE BEHAVIOR
-RAW55 TRUE POWER / NORMAL / SPRINT = CLOSED/PASS WITH AUTHORED OPENING + NO FIRST-CONTACT CLEAR
-RAW55 PERMANENT RESPONSIBILITY DESIGN = CURRENT NORMAL CHAT ARCHITECTURE-SYNTHESIS TASK
+RAW55 TRUE POWER / NORMAL / SPRINT FIRST-CONTACT ROUTES = CLOSED/PASS FOR THEIR TESTED TIMINGS
+RAW55 NORMAL REPEATED-CONTACT NATIVE RESET = IDENTIFIED THROUGH EV-290; CAUSAL NECESSITY TEST IS CURRENT
+RAW55 PERMANENT RESPONSIBILITY DESIGN = PAUSED UNTIL REPEATED-CONTACT OWNERSHIP CLOSES
 ```
 
-Do not route current work back into broad raw55 source search or another family probe. Synthesize the permanent responsibility boundary first; only a concrete architecture-exposed unknown may justify renewed causal probing.
+Do not route current work back into broad raw55 source search, permanent architecture, Power/Sprint repeated-FIST intervention, or marker2 ownership yet. The current one-variable gate is the EV-290 native ALL-clear necessity test. If suppression removes hit2 while preserving hit1/progression/cleanup and PC_Hero stays visited, the native clear is causally required and a later marker2 replacement-clear probe becomes justified. If hit2 survives, another native contact mechanism remains. If progression/source/cleanup diverges, preserve that contradiction first.
 
 ---
 
 ## 5. Future-Responsibility Cross-Routes
 
-### PhysicalFist/raw55 architecture-synthesis route
+### PhysicalFist/raw55 repeated-contact closure route
 
 Current causal route is:
 
@@ -409,18 +450,23 @@ Current causal route is:
 EV-245–EV-246  initial bounded survey / raw8-vs-raw55 distinction
 EV-262–EV-263  factual raw55 discovery + raw8 comparison boundary
 EV-264–EV-273  complete Quick causal closure
-EV-274–EV-276  true Power closure
-EV-277–EV-279  Normal closure
-EV-280–EV-282  Sprint closure
-FEATURE_DEVELOPMENT_METHOD.md
+EV-274–EV-276  true Power first-contact closure
+EV-277–EV-279  Normal first-contact closure
+EV-280–EV-282  Sprint first-contact closure
+EV-283–EV-285  cross-family two-FIST / Normal repeated-contact narrowing
+EV-286–EV-287  Normal SP0 opening + first-contact rearm
+EV-288         native 7 -> 7 setter rejected as second-contact owner
+EV-289         native visited-state reset during SP0 -> 1 confirmed
+EV-290         exact public ALL clear + Script_Game.dll +0x386C6 caller identified
+COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md
 SESSION_ENTRYPOINT.md / BETWEEN_CHATS.md
 ```
 
-The current question is no longer whether each family can work. It is how to express the proven behavior as a minimal permanent raw55 module without importing diagnostic observer maps, logging scaffolding or temporary causal-probe structure. Preserve `EngineBridge` as transport-only, stable marker semantics as marker-owned, and `CollisionLifecycleGuard` as lifecycle owner.
+The immediate question is whether the EV-290 native ALL clear is **causally required** for the implicit second same-C1 Normal damage opportunity. Do not give marker2 replacement-clear ownership before that necessity test closes. After Normal closes, Power and Sprint repeated-FIST behavior remain separate bounded responsibilities before permanent raw55 architecture is frozen.
 
 ### Pre-regression actor/family compatibility sequence
 
-The broader compatibility sequence remains paused while raw55 permanent architecture is still scope-changing.
+The broader compatibility sequence remains paused while raw55 repeated-contact ownership and permanent architecture are still scope-changing.
 
 When raw55 architecture is implemented or explicitly deferred, resume from the current canonical evidence rather than the older EV-247-only route:
 
@@ -428,7 +474,7 @@ When raw55 architecture is implemented or explicitly deferred, resume from the c
 raw8 native/transformed controls through EV-263
 native equipped-NPC controls EV-252–EV-258
 Stalker raw52 control EV-259
-raw55 causal route EV-262–EV-282
+raw55 causal route EV-262 onward
 -> separated 2H-vs-Axe mod compatibility
 -> separated 1H-vs-Rapier mod compatibility
 -> final native mixed collision regression
@@ -459,7 +505,7 @@ COLLISION_TEST_PLAN.md
 COLLISION_LIFECYCLE_PLAN.md
 ```
 
-Prevention remains separate from lifecycle repair and from the raw8 Fist mechanism.
+Prevention remains separate from lifecycle repair and from the raw8/raw55 marker mechanisms.
 
 ### New Balance / Jackydima compatibility
 
