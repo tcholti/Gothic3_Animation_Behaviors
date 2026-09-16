@@ -863,8 +863,15 @@ static void GE_STDCALL ClearTriggeredListAll_FrameCollisionTest(
         a_pThis, nullptr, PhysicalFistProbe::TriggerClearKind_All,
         PhysicalFistProbe::TriggerClearBoundary_Pre, callerAddress);
 
-    Hook_ClearTriggeredListAll.GetOriginalFunction(
-        &ClearTriggeredListAll_FrameCollisionTest)(a_pThis);
+    bool const suppressClear =
+        PhysicalFistProbe::ShouldSuppressTriggerClear(
+            a_pThis, PhysicalFistProbe::TriggerClearKind_All,
+            callerAddress);
+    if (!suppressClear)
+    {
+        Hook_ClearTriggeredListAll.GetOriginalFunction(
+            &ClearTriggeredListAll_FrameCollisionTest)(a_pThis);
+    }
 
     PhysicalFistProbe::ObserveTriggerClear(
         a_pThis, nullptr, PhysicalFistProbe::TriggerClearKind_All,

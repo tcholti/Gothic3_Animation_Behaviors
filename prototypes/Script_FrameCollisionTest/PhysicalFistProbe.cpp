@@ -71,6 +71,7 @@ struct NormalPreStateFistIntervention
     std::uint64_t c1Generation;
     bool preStateRearmProven;
     bool nativeRearmSuppressionUsed;
+    bool nativeTriggerClearSuppressionUsed;
     bool triggerStateInitialized;
     bool laterFistObserved;
     NormalTriggerStateSnapshot lastTriggerState;
@@ -378,6 +379,36 @@ static char const *TriggerClearBoundaryName(
     return boundary == TriggerClearBoundary_Post ? "POST" : "PRE";
 }
 
+struct TriggerClearCallerIdentity
+{
+    bool resolved;
+    HMODULE module;
+    char modulePath[MAX_PATH];
+    DWORD pathLength;
+    std::uintptr_t rva;
+};
+
+static TriggerClearCallerIdentity ResolveTriggerClearCaller(
+    void *callerAddress)
+{
+    TriggerClearCallerIdentity identity = {};
+    identity.resolved = callerAddress != nullptr
+        && ::GetModuleHandleExA(
+            GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+                | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCSTR>(callerAddress),
+            &identity.module) != FALSE;
+    identity.pathLength = identity.resolved
+        ? ::GetModuleFileNameA(
+            identity.module, identity.modulePath, MAX_PATH) : 0;
+    if (identity.resolved)
+    {
+        identity.rva = reinterpret_cast<std::uintptr_t>(callerAddress)
+            - reinterpret_cast<std::uintptr_t>(identity.module);
+    }
+    return identity;
+}
+
 void ObserveTriggerClear(
     eCTrigger_PS *trigger, eCEntity *argumentEntity,
     TriggerClearKind clearKind, TriggerClearBoundary boundary,
@@ -415,26 +446,14 @@ void ObserveTriggerClear(
                 : "<unavailable>";
     }
 
-    HMODULE callerModule = nullptr;
-    char modulePath[MAX_PATH] = {};
-    bool const callerResolved = callerAddress != nullptr
-        && ::GetModuleHandleExA(
-            GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
-                | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-            reinterpret_cast<LPCSTR>(callerAddress),
-            &callerModule) != FALSE;
-    DWORD const pathLength = callerResolved
-        ? ::GetModuleFileNameA(callerModule, modulePath, MAX_PATH) : 0;
+    TriggerClearCallerIdentity const caller =
+        ResolveTriggerClearCaller(callerAddress);
     char callerRva[32] = {};
-    if (callerResolved)
+    if (caller.resolved)
     {
-        std::uintptr_t const callerValue =
-            reinterpret_cast<std::uintptr_t>(callerAddress);
-        std::uintptr_t const baseValue =
-            reinterpret_cast<std::uintptr_t>(callerModule);
         std::snprintf(
             callerRva, sizeof(callerRva), "0x%08lX",
-            static_cast<unsigned long>(callerValue - baseValue));
+            static_cast<unsigned long>(caller.rva));
     }
     else
     {
@@ -453,7 +472,7 @@ void ObserveTriggerClear(
     GEFloat const stateTime = actor.Routine.GetStateTime();
     std::fprintf(
         log,
-        "CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=%s ClearKind=%s Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d PreStateRearmProven=%d Native7To7SuppressionUsed=%d TriggerIdentityMatch=1 ResetOnUntouch=%d VisitedSize=%d VisitedCountSize=%d PlayerResolved=%d PlayerPresent=%d PlayerEntryCount=%d PlayerVisitCount=%d CountsAligned=%d Argument=%s ArgumentAddress=%p ArgumentIsPlayer=%d CallerResolved=%d CallerModule=%s CallerRVA=%s CallerAddress=%p\n",
+        "CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=%s ClearKind=%s Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d PreStateRearmProven=%d Native7To7SuppressionUsed=%d NativeClearSuppressionUsed=%d TriggerIdentityMatch=1 ResetOnUntouch=%d VisitedSize=%d VisitedCountSize=%d PlayerResolved=%d PlayerPresent=%d PlayerEntryCount=%d PlayerVisitCount=%d CountsAligned=%d Argument=%s ArgumentAddress=%p ArgumentIsPlayer=%d CallerResolved=%d CallerModule=%s CallerRVA=%s CallerAddress=%p\n",
         TriggerClearBoundaryName(boundary),
         TriggerClearKindName(clearKind),
         actor.GetName().GetText(),
@@ -465,16 +484,101 @@ void ObserveTriggerClear(
         static_cast<GEInt>(rightSource.GetCollisionGroup()),
         intervention->preStateRearmProven ? 1 : 0,
         intervention->nativeRearmSuppressionUsed ? 1 : 0,
+        intervention->nativeTriggerClearSuppressionUsed ? 1 : 0,
         snapshot.resetOnUntouch, snapshot.visitedSize,
         snapshot.visitedCountSize, snapshot.playerResolved,
         snapshot.playerPresent, snapshot.playerEntryCount,
         snapshot.playerVisitCount, snapshot.countsAligned,
         argumentName.c_str(), static_cast<void *>(argumentEntity),
-        argumentIsPlayer, callerResolved ? 1 : 0,
-        pathLength > 0 ? TriggerClearBaseName(modulePath)
-            : callerResolved ? "<path-unavailable>" : "<unresolved>",
+        argumentIsPlayer, caller.resolved ? 1 : 0,
+        caller.pathLength > 0
+            ? TriggerClearBaseName(caller.modulePath)
+            : caller.resolved ? "<path-unavailable>" : "<unresolved>",
         callerRva, callerAddress);
     std::fflush(log);
+}
+
+bool ShouldSuppressTriggerClear(
+    eCTrigger_PS *trigger, TriggerClearKind clearKind,
+    void *callerAddress)
+{
+    if (clearKind != TriggerClearKind_All)
+        return false;
+
+    NormalPreStateFistIntervention *intervention = nullptr;
+    if (!TryResolveNormalTriggerClearIntervention(
+            trigger, intervention)
+        || !intervention->preStateRearmProven
+        || !intervention->nativeRearmSuppressionUsed
+        || intervention->nativeTriggerClearSuppressionUsed)
+    {
+        return false;
+    }
+
+    Entity actor(intervention->actorInstance);
+    Entity rightSource(intervention->rightSourceInstance);
+    if (actor == None || rightSource == None)
+        return false;
+
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    if (rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Attack
+        || statePosition != 0)
+    {
+        return false;
+    }
+
+    NormalTriggerStateSnapshot snapshot = {};
+    if (!TryCaptureNormalTriggerState(*intervention, snapshot)
+        || snapshot.countsAligned != 1
+        || snapshot.playerResolved != 1
+        || snapshot.playerPresent != 1
+        || snapshot.playerEntryCount != 1
+        || snapshot.playerVisitCount < 1)
+    {
+        return false;
+    }
+
+    TriggerClearCallerIdentity const caller =
+        ResolveTriggerClearCaller(callerAddress);
+    HMODULE const scriptGameModule =
+        ::GetModuleHandleA("Script_Game.dll");
+    if (!caller.resolved || scriptGameModule == nullptr
+        || caller.module != scriptGameModule
+        || caller.rva != 0x000386C6)
+    {
+        return false;
+    }
+
+    intervention->nativeTriggerClearSuppressionUsed = true;
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        gEAction const action =
+            actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+        GEFloat const stateTime = actor.Routine.GetStateTime();
+        std::fprintf(
+            log,
+            "CORE RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d PreStateRearmProven=1 Native7To7SuppressionUsed=1 PlayerPresent=%d PlayerEntryCount=%d PlayerVisitCount=%d CountsAligned=%d CallerModule=%s CallerRVA=0x%08lX SUPPRESS_CLEAR=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(
+                intervention->c1Generation),
+            static_cast<GEInt>(action), statePosition,
+            static_cast<double>(stateTime),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(
+                CollisionSources::GetCollisionSourceUseType(rightSource)),
+            static_cast<GEInt>(rightSource.GetCollisionGroup()),
+            snapshot.playerPresent, snapshot.playerEntryCount,
+            snapshot.playerVisitCount, snapshot.countsAligned,
+            "Script_Game.dll",
+            static_cast<unsigned long>(caller.rva));
+        std::fflush(log);
+    }
+
+    return true;
 }
 
 static bool TriggerStateFingerprintChanged(

@@ -115,6 +115,10 @@ void ObserveTriggerClear(
     TriggerClearKind clearKind, TriggerClearBoundary boundary,
     void *callerAddress);
 
+bool ShouldSuppressTriggerClear(
+    eCTrigger_PS *trigger, TriggerClearKind clearKind,
+    void *callerAddress);
+
 void OnMarkerProcessed(
     Entity &actor, MarkerOpcode markerOpcode,
     MarkerProcessResult const &result);
