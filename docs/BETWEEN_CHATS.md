@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-16
 
-## Current Bridge — EV-288 CLOSED; RAW55 NORMAL TRIGGER-STATE OBSERVATION PROBE FROZEN
+## Current Bridge — EV-288 CLOSED; RAW55 NORMAL TRIGGER-STATE OBSERVATION IMPLEMENTED + SOURCE-REVIEW PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -12,9 +12,27 @@ Stable branch: `main`
 
 Recovery Lock is **CLOSED**. Canonical evidence is through **EV-288**. No permanent raw55 implementation is authorized.
 
-Current frozen diagnostic authority:
+Current diagnostic authority:
 
 `docs/COLLISION_RAW55_NORMAL_TRIGGER_STATE_OBSERVATION_PROBE.md`
+
+Current diagnostic implementation:
+
+`ec20e769a347bd206577427bfd28a85bd51a79b3`
+
+Required implementation base:
+
+`9ad32fa078dfc4d64ad732317eacae17e10d9161`
+
+Normal Chat independently reviewed the Work commit and marked **SOURCE REVIEW PASS**.
+
+The implementation is exactly one commit ahead of the frozen base and changes exactly:
+
+`prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp`
+
+with 339 additions and no deletions. The added code is observation-only with respect to Gothic state: it reads the exact RIGHT raw55 `TouchDamage` visited arrays and `ResetOnUntouch`, stores only diagnostic snapshot bookkeeping, and logs frozen boundaries/change-only state. No new `ClearTriggeredList()`, `SetCollisionGroup()`, StatePosition write, damage dispatch, hook/RVA, EngineBridge, CMake, cleanup or protected-module change was added.
+
+Build status remains **NOT ATTEMPTED**. Local build/deploy/runtime validation belongs to User + Normal Chat next.
 
 Read in order:
 
@@ -91,36 +109,52 @@ native cleanup / C1 finalization                            = PASS
 
 Do **not** infer that StatePosition itself rearms the source. The state transition survived but was not independently manipulated.
 
-## Current question
+## Current implementation under local validation
 
-The remaining second-contact mechanism may be ordinary trigger/touch bookkeeping.
-
-The official SDK exposes read-only trigger state on `eCTrigger_PS`:
-
-```text
-EntitiesVisited
-EntitiesVisitedCount
-```
-
-and `gCTouchDamage_PS` exposes:
-
-```text
-ResetOnUntouch
-```
-
-The next probe is observation-only. Preserve the EV-288 environment, including the exact one-shot native `7 -> 7` setter suppression, and observe the exact RIGHT raw55 trigger state across:
+The source-reviewed probe preserves the EV-288 behavioral environment unchanged and adds read-only trigger-state snapshots at:
 
 ```text
 POST_PRESTATE_REARM
-change-only Normal callback observations
+CALLBACK_CHANGE (change-only)
 NATIVE_7TO7_SUPPRESS_PRE
 SP0_TO1_POST_CALLBACK
 LATER_FIST
 ```
 
-The key question is whether `PC_Hero` enters the visited state after hit 1 and is naturally removed/reset before hit 2 without any explicit marker-2 clear.
+Each factual log record is scoped to the proven same actor + same C1 generation + exact current RIGHT PhysicalFist/raw55 source. It records:
 
-No new hook is authorized. No StatePosition write, marker-2 rearm, trigger-state mutation, direct damage, cleanup change, or permanent architecture change is authorized.
+```text
+ResetOnUntouch
+VisitedSize
+VisitedCountSize
+PlayerResolved
+PlayerPresent
+PlayerEntryCount
+PlayerVisitCount
+CountsAligned
+ChangeReason
+```
+
+Array-size mismatches and multiple player entries are explicitly reported rather than guessed through index association.
+
+The key runtime question is whether `PC_Hero` enters the visited state after hit 1 and is naturally removed/reset before hit 2 without an explicit marker-2 clear.
+
+## Immediate next step — local validation only
+
+1. User syncs branch through GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin.
+2. Confirm Changes is empty.
+3. Build only `Script_FrameCollisionTest` Release.
+4. STOP on the short build result.
+5. If build passes, perform POP-03 deployment/hash/twin verification.
+6. Perform POP-04 startup-banner verification.
+7. Run the same Normal two-FIST Troll fixture.
+8. Preserve the untouched raw log and close via POP-07/POP-06 if large.
+
+Preferred raw artifact:
+
+`research/raw/2026.09.16_troll_raw55_normal_trigger_state.log`
+
+No EV-289 exists yet. Do not promote a conclusion until runtime closure.
 
 ## Power observation
 
