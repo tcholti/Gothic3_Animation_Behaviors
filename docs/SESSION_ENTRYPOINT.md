@@ -15,8 +15,7 @@
 > **LARGE-LOG RULE:** Do not orient by scanning raw/archive logs. Routine oversized-log preparation is drag-and-drop onto `tools\log_evidence\Prepare-Log.cmd`; preserve/commit the untouched source artifact and generated derived package. After evidence closure, processed source artifacts move unchanged from `research/raw/` to `research/archive/`.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current probe authority: `docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md`  
-Latest canonical evidence: through **EV-290** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`
+Latest canonical evidence: **EV-291** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
@@ -31,129 +30,102 @@ raw55 Normal SP0 contact rearm / early first damage CLOSED/PASS — EV-287
 raw55 Normal native 7->7 setter as second-rearm source REJECTED — EV-288
 raw55 Normal native trigger-bookkeeping reset before marker2 CONFIRMED — EV-289
 raw55 Normal exact native public ALL-clear reset operation IDENTIFIED — EV-290
+raw55 Normal native ALL-clear causal necessity CLOSED/PASS — EV-291
 ```
 
-Current diagnostic implementation:
+## EV-291 factual result
 
-`2839c8c271fa240b81ce5ccd203c34058870a5bb`
+The User-local build/deploy/load/runtime sequence passed for diagnostic implementation:
 
-Required implementation base:
+```text
+2839c8c271fa240b81ce5ccd203c34058870a5bb
+DLL SHA256 = 0F2CBF35199D111C405E03E5AE824B0AC76BF47B06C1BF13A47098BCFFF6F830
+```
 
-`23400f2b5b3afdbe8c03088be01aa4bc969849db`
-
-Independent Normal Chat source review:
-
-**PASS**
-
-Build status:
-
-**NOT ATTEMPTED** after the new implementation.
-
-## Current factual model
-
-EV-290 established:
+EV-291 proves Route A:
 
 ```text
 marker1 at SP0
--> exact RIGHT raw55 5 -> 7 + marker-owned ClearTriggeredList
+-> exact RIGHT raw55 5 -> 7
+-> marker-owned ClearTriggeredList executes normally
 -> first damage
 -> PC_Hero becomes visited/count1
 
 later native transition
--> existing native 7 -> 7 setter suppression fires
+-> existing exact native 7 -> 7 setter suppression fires
 -> PC_Hero still visited
--> Gothic calls eCTrigger_PS::ClearTriggeredList() ALL
-   caller Script_Game.dll + 0x386C6
-   PRE player present/count1
-   POST arrays empty/player absent
--> original _AI_Attack completes SP0 -> 1
+-> exact native ALL clear from Script_Game.dll + 0x386C6 is eligible
+-> SUPPRESS_CLEAR=1
+-> original clear is skipped
+-> PC_Hero remains visited/count1
+-> original _AI_Attack still completes SP0 -> 1
 
 marker2 later
 -> observational only
--> second damage occurs
--> native 7 -> 5 cleanup / clean C1
+-> PC_Hero still visited/count1
+-> second damage disappears
+
+native RIGHT 7 -> 5 cleanup
+-> clean C1 finalization
 ```
 
-EV-290 identifies the reset operation but does **not** yet prove that it is causally required for hit2.
+User visual result: **only the first swing damaged**.
 
-## Current causal probe
+Conclusion:
 
-The source-reviewed probe suppresses exactly once the native no-argument ALL clear from:
+> The exact native public ALL clear from `Script_Game.dll + 0x386C6` is causally required for Normal's implicit second same-C1 damage opportunity in the tested route.
+
+## Immediate next responsibility — NORMAL CHAT DESIGN/FREEZE ONLY
+
+Do not launch another Work task automatically and do not modify production architecture yet.
+
+The next smallest one-variable causal probe may:
 
 ```text
-Engine + 0x7DDA0
-CallerModule = Script_Game.dll
-CallerRVA    = 0x386C6
+preserve EV-291 exact native ALL-clear suppression
++ keep marker1 unchanged
++ let marker2 perform exactly one replacement ClearTriggeredList()
++ preserve all other controls/cleanup
 ```
 
-only for the exact proven Normal actor/C1/current RIGHT raw55 trigger after hit1 has factually inserted `PC_Hero`.
-
-Protected controls remain unchanged:
+Question:
 
 ```text
-marker1 authored clear executes normally
-entity-specific clear executes normally
-unrelated ALL clears execute normally
-existing native 7 -> 7 setter suppression remains
-marker2 remains observational
-no direct visited-array mutation
-no new clear
-no StatePosition write
-no direct damage
-native cleanup unchanged
+Does authored marker2 replacement clear restore hit2?
 ```
 
-## Immediate next step — local validation only
+If yes, Normal marker2 triggered-list rearm ownership is proven. If no, preserve the contradiction and continue causal isolation.
 
-Do not launch another Work task.
+Freeze that exact probe contract in Normal Chat before any Work implementation.
 
-```text
-GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
--> confirm Changes empty
--> build Script_FrameCollisionTest Release only
--> STOP on build result
--> if PASS: deploy/hash/twin verification
--> DLL only to E:\SteamLibrary\steamapps\common\Gothic 3\scripts
--> startup-banner verification
--> same Normal two-FIST Troll runtime
--> note first-hit / second-hit / abnormal behavior
--> preserve new runtime log under a newly frozen filename
--> if large: drag raw log onto tools\log_evidence\Prepare-Log.cmd
--> commit/push raw + derived package
--> close next EV before advancing
-```
+## Evidence retrieval discipline
 
-## Retrieval discipline
-
-Do **not** enumerate or scan large evidence directories to recover context. `research/raw/` is active intake, not project history; at the EV-290 maintenance boundary it contains only `Keep.txt`.
+Do **not** scan raw/archive evidence directories during orientation.
 
 Use in this order:
 
 1. this file;
 2. `BETWEEN_CHATS.md`;
-3. current suppression-probe contract;
-4. EV-290 in `EVIDENCE_LEDGER_286_ONWARD.md`;
-5. exact derived/archive evidence only if a concrete fact needs verification.
+3. EV-291 in `EVIDENCE_LEDGER_291_ONWARD.md`;
+4. the EV-291 derived package only if exact runtime verification is needed.
 
-EV-290 preferred exact-runtime retrieval:
-
-```text
-research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/
-```
-
-Canonical full source provenance is now archived unchanged:
+EV-291 derived package:
 
 ```text
-research/archive/2026.09.16_troll_raw55_normal_native_trigger_clear_observation.log
+research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_suppression_large_log/
 ```
 
-Historical EV rows that still spell the former `research/raw/<basename>` location resolve through `EVIDENCE_PATH_MIGRATIONS.md`; storage migration does not change evidence meaning.
+Canonical source provenance was uploaded in commit:
 
-## Documentation-maintenance state
+```text
+056951242b549c0de690ef80714b0806c688ef28
+```
 
-The September 8–16 processed collision evidence backlog has been archived byte-identically. `research/raw/` is again intake-only.
+Source SHA256:
 
-A repository documentation audit also found older cold/convention documents whose ledger-split examples predate `EVIDENCE_LEDGER_283_ONWARD.md` and `EVIDENCE_LEDGER_286_ONWARD.md`. Those stale storage-range examples do **not** override the actual continuation headers, this entrypoint, or canonical evidence. Keep current-state reasoning on the authorities named above until those cold routing examples are normalized.
+```text
+33C2B2F3E7732B3AB9BEB42C4ED6528D91E0F08F5782F498AF9F1F1A231D9D98
+```
 
 ## Deployment authority
 
@@ -172,7 +144,7 @@ Never deploy a collision DLL to the game root.
 ```text
 NO permanent PhysicalFistCollision
 NO promotion/copy of PhysicalFistProbe scaffolding
-NO Normal marker2 rearm until native-clear necessity closes
+NO production Normal marker2 behavior until replacement-clear causal proof closes
 NO Power/Sprint repeated-FIST intervention yet
 NO New Balance final regression before permanent collision structure
 NO Raise / speed-control work before collision module closes
