@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-09-12
+**Updated:** 2026-09-16
 
 ## Purpose
 
@@ -109,12 +109,74 @@ research/raw/2026.09.12_blunt_arrow_bolt_test.log
     blob c36a18f6e3b29a1a3d3b266e2a077cca5e91b4a3
 ```
 
-The raw55 baseline and callback-suppression logs were intentionally **not** archived at this boundary. EV-262 closes their current evidence interpretation, but both remain active comparison inputs for the unresolved Quick-specific causal question:
+The raw55 baseline and callback-suppression logs were intentionally **not** archived at this boundary. EV-262 closed their then-current evidence interpretation, but both remained active comparison inputs for the unresolved Quick-specific causal question at that time.
+
+That temporary retention reason was later superseded by the completed Quick/raw55 causal chain through EV-273 and the subsequent family work. Those files are included in the 2026-09-16 archive transaction below.
+
+---
+
+## 2026-09-16 — Processed September 8–16 collision evidence archive
+
+After canonical collision evidence reached EV-290, the remaining dated September 8–16 runtime/build artifacts in `research/raw/` were reviewed against the later evidence chain and current causal responsibility.
+
+The retained files no longer owned an unresolved comparison obligation:
 
 ```text
-research/raw/2026.09.12_troll_collision_test.log
-research/raw/2026.09.12_troll_and_other_marker_test.log
+September 8–9 transformed/Sabretooth comparison
+    -> closed by the later compatibility/StatePosition evidence chain, including EV-249 and EV-263
+
+September 10–11 transport-probe artifacts
+    -> superseded by the later factual raw55 family/source causal chain
+
+September 12 Quick/raw55 and auxiliary Troll controls
+    -> Quick repeated-FIST route closed through EV-273
+
+September 13–14 Normal/Power/Sprint first-contact family probes
+    -> family first-contact route closed through EV-282
+
+September 15–16 Normal repeated-FIST/reset-source probes
+    -> current reusable conclusions canonically recorded through EV-290
 ```
+
+Migration rule for the **51 processed artifacts** then remaining in `research/raw/`:
+
+```text
+research/raw/<same September 8–16 basename>
+    -> research/archive/<same basename>
+```
+
+Migration properties:
+
+- every move reused the file's existing Git blob SHA in a single Git tree transaction;
+- no large file was downloaded, reconstructed, re-encoded, normalized, trimmed or regenerated;
+- basename stayed unchanged;
+- the move is therefore byte-identical by Git object identity;
+- evidence meaning/status stayed unchanged;
+- historical commits and historical EV rows remain valid provenance;
+- current retrieval resolves the same basename under `research/archive/`;
+- large-log `research/derived/` packages remain the preferred routine retrieval surface where they exist.
+
+Archive commit:
+
+```text
+b19ac5db0fdf233ed2a502dc53cf947ce0a91564
+```
+
+Verified post-migration intake state:
+
+```text
+research/raw/Keep.txt
+```
+
+No new EV was created for this storage transaction because it establishes no new runtime/source fact. EV-290 remains the latest canonical collision evidence at this boundary.
+
+For EV-286–EV-290 and other historical rows that still spell `research/raw/<basename>`, resolve the canonical source artifact as:
+
+```text
+research/archive/<same basename>
+```
+
+The derived packages referenced by those EVs are unchanged.
 
 ---
 
