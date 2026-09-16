@@ -1,7 +1,7 @@
 # Collision Lifecycle Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
-**Updated:** 2026-09-10
+**Updated:** 2026-09-16
 
 ## Purpose
 
@@ -14,7 +14,6 @@ Define the smallest observational instrumentation needed to validate collision b
 Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
 Behavior architecture: `DESIGN.md`.  
 Current redesign authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.  
-Frozen Stage B implementation contract: `COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md`.  
 Lifecycle authority: `COLLISION_LIFECYCLE_PLAN.md`.  
 Validation authority: `COLLISION_TEST_PLAN.md`.  
 Evidence: `EVIDENCE_INDEX.md`.
@@ -45,9 +44,9 @@ The ordinary diagnostic product uses the same behavior core plus **compact CORE 
 
 CORE is the default for broad regression/compatibility testing.
 
-### DEEP diagnostic profile
+### DEEP / bounded causal diagnostics
 
-DEEP retains opt-in reverse-engineering probes for a specific unresolved causal question. It must not be required for ordinary regression proof and must never become a production prerequisite.
+DEEP retains opt-in reverse-engineering probes for a specific unresolved causal question. Dedicated temporary probe modules may also own a narrowly frozen causal intervention when observation alone cannot answer the question. Neither may be required for ordinary regression proof and neither may become a production prerequisite by accident.
 
 `tools/Script_CombatMoveLogger` remains a separate general combat/speed research tool and must not become an owner of Animation Behaviors internal state.
 
@@ -58,7 +57,7 @@ DEEP retains opt-in reverse-engineering probes for a specific unresolved causal 
 Correct direction:
 
 ```text
-EngineBridge / behavior modules / source adapters
+EngineBridge / behavior modules / source adapters / bounded probes
 -> compact factual synchronous results
 -> CollisionDiagnostics [diagnostic build only]
 ```
@@ -78,6 +77,8 @@ This is an exact call-site permission transport, **not** a global `GetPlayTime` 
 `AIFullStop` remains diagnostic/deep for current behavior and is a proven explicit-this transport point that may later become behavior-required only if the evidence-backed `AttackContinuationProtection` design actually needs it.
 
 Stage A moved raw8 feature state/policy into `Raw8FistCollision`; `EngineBridge` remains sole owner of the physical timing hook and delegates to that feature module.
+
+Current PhysicalFist/raw55 research follows the same ownership rule: `EngineBridge` owns shared low-level hooks such as `SetCollisionGroup` and the tested `eCTrigger_PS::ClearTriggeredList()` transport; `PhysicalFistProbe` owns raw55 research eligibility/state/decision/logging. A diagnostic intervention does not become permanent hook policy merely because the bridge physically enacts it.
 
 ---
 
@@ -124,21 +125,21 @@ activation/deactivation/rearm when physically performed
 
 A healthy known execution should not require a repeated full ownership-decision dump unless needed to disambiguate the result.
 
-### Equipped physical transitions
+### Physical transitions
 
 Preserve meaningful transitions:
 
 ```text
 exact source
-RIGHT/LEFT slot association
+RIGHT/LEFT association where meaningful
 requested group
 before / after group
 offense including 7 -> 7 when behaviorally relevant
 transition away from Item_Attack
-exact marker-owned source-bit retirement
+exact marker-owned source-bit retirement where applicable
 ```
 
-Routine `SetCollisionGroup` calls that produce no meaningful physical change should be compacted or suppressed when they carry no attack-source information. Do not suppress meaningful `7 -> 7` rearm/offense events.
+Routine `SetCollisionGroup` calls that produce no meaningful physical change should be compacted or suppressed when they carry no attack-source information. Do not suppress meaningful `7 -> 7` offense/rearm facts when they are part of the active causal question.
 
 ### C1 lifecycle
 
@@ -159,7 +160,7 @@ Detailed START -> BINDING -> STATUS -> FINALIZATION chronology moves to DEEP or 
 
 ### Raw-8 FIST
 
-Supported/proven raw8 FIST families currently include Normal + Power + Quick for the tested scope.
+Supported/proven raw8 FIST families currently include Normal + Power + Quick + Sprint for the tested scope.
 
 For a healthy known FIST execution, CORE preserves the behavioral facts without repeating all research-era arithmetic/addresses every time:
 
@@ -174,6 +175,23 @@ native damage correlation when required by the test
 ```
 
 Full SPU addresses, animation-actor addresses, threshold arithmetic, exact real/max/returned play times, and repeated before/after snapshots are DEEP unless an anomaly or a new mechanism question requires them.
+
+### PhysicalFist/raw55
+
+Raw55 is no longer an unknown-source discovery problem. For the tested Troll/BlackTroll domain CORE/targeted diagnostics must be able to establish:
+
+```text
+actor / factual family / C1 generation
+exact current RIGHT/LEFT TrollFist source
+PhysicalFist/raw55 identity
+before/requested/after collision group
+marker occurrence and StatePosition
+whether a marker-owned triggered-list clear was performed
+native damage correlation when required
+native exact 7 -> 5 cleanup
+```
+
+Repeated-contact research may additionally require current trigger bookkeeping (`EntitiesVisited`, `EntitiesVisitedCount`, player presence/count) and exact clear-call caller identity. Those are question-specific deep/probe facts, not permanent CORE noise.
 
 ### Damage correlation
 
@@ -230,6 +248,9 @@ C1 repair / repair divergence
 raw8 identity mismatch / stale timing permission / unexpected native route
 -> detailed
 
+raw55 unexpected source/family/contact/reset behavior
+-> detailed
+
 DEEP explicitly enabled
 -> full requested research detail
 ```
@@ -238,11 +259,9 @@ This conditional rule is central to making larger tests manageable without losin
 
 ---
 
-## 5. Unknown-Family / Sprint Discovery Contract
+## 5. Unknown-Family / Source Discovery Contract
 
-The post-EV-249 Sabretooth test revealed factual `gEAction_SprintAttack = 9` traffic that the current framework does not support. Current observed Sprint source is `Fist/raw8`; other source types remain unknown.
-
-Until Sprint is implemented, CORE must ensure unsupported Sprint cannot disappear into a generic rejection line.
+Sprint is no longer an unsupported-family example; raw8 Sprint production support is closed. The generic discovery contract remains necessary for any future unknown action/family/source.
 
 For unsupported/unknown attack traffic retain at minimum:
 
@@ -273,37 +292,25 @@ action context
 generation when available
 ```
 
-This contract applies to future unknown families/source UseTypes as well, not only Sprint.
+Do not hard-code the discovery contract around one previously unknown family.
 
 ---
 
-## 6. Stage B Frozen Compaction Scope
+## 6. Stage B Compaction Boundary
 
-The exact source-level responsibility is now frozen in:
+The Stage B diagnostic refactor was frozen and implemented from `COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md`; its historical contract remains useful for what belongs in CORE versus DEEP.
 
-```text
-COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md
-```
-
-It specifically requires:
+The durable boundary is:
 
 ```text
-Fist CanBeActivatedNow/TriggerTarget research hooks -> DEEP only
-routine Fist trigger-state snapshots -> DEEP only
-OnDamage physical diagnostic hook -> remains CORE, routine output compact
-marker context+result -> one post-result CORE event
-unsupported/unknown marker traffic -> automatic rich source/action/motion detail
-attack callback ownership -> compact routine event
-raw8 FIST ownership/opportunity/timing -> compact routine events, rich anomaly
-SetCollisionGroup -> compact meaningful physical events; retain meaningful 7->7
-healthy C1 chronology -> compact; repair/invariant -> rich
-player-only lifecycle filters -> removed where they hide relevant NPC evidence
-RunScriptFunctionScopeReturn chronology -> DEEP
-stale BehaviorCore startup metadata -> corrected
-Stage-A diagnostic-only unused-warning cleanup -> allowed mechanically only
+routine healthy behavior -> compact CORE
+unknown/unsupported/anomalous behavior -> richer CORE
+historical exploratory snapshots/stacks -> DEEP
+bounded causal interventions -> dedicated probe ownership
+production correctness -> never depends on diagnostics
 ```
 
-The detailed information fields and hard behavior boundaries are authoritative in that Stage B contract.
+Do not reopen Stage B merely because a later research question temporarily needs richer data.
 
 ---
 
@@ -324,16 +331,15 @@ outer ScriptFunction/state-stack detail
 full native cleanup caller/RVA/stack
 OnTick marker lifetime tracking
 full OnDamage caller/contact trace
-Fist gate/trigger hook-entry identity probes
+raw55 trigger visited-list/readback/caller probes
 full routine C1 dispatch chronology
 ```
 
 Likely future uses:
 
 ```text
-SprintAttack callback/native mechanism classification
 future unexpected source/family discovery
-PhysicalFist/raw55 mechanism discovery if factual raw55 appears
+remaining PhysicalFist/raw55 repeated-contact causality
 AttackContinuationProtection native timeout/consumer trace
 new cleanup/source-lifetime contradiction
 calling-convention/hook-order investigation
@@ -343,40 +349,53 @@ Deep capture must not become a production prerequisite.
 
 ---
 
-## 8. SprintAttack Diagnostic Questions
+## 8. Closed Sprint Diagnostic Questions
 
-After Stage B and the compact equivalence sentinel, use CORE first and add only the smallest missing DEEP signal needed to establish:
+The earlier Sprint discovery questions are closed for the current proven raw8 scope. Evidence established factual Action9/Sprint semantic identity, transport through the existing Power callback path, raw8 source/mechanism support and production validation.
+
+Retained limit:
 
 ```text
-which actors execute gEAction_SprintAttack
-which factual source UseTypes occur
-what callback/hook transport owns Sprint
-what StatePosition Sprint uses
-whether equipped Sprint exists
-whether raw8 Sprint traverses the same SPU+0x164 / +0x16E180 / +0x16E1A3 / +0x16E348 mechanism
-whether any equipped Sprint uses the established equipped physical source path
+equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported without factual evidence
 ```
 
-Do not copy the raw8 FIST diagnostic state machine onto another source type merely for symmetry.
+If a future equipped Sprint source appears, reopen only that new source/mechanism question rather than the closed raw8 Sprint route.
 
 ---
 
-## 9. PhysicalFist/raw55 Discovery Diagnostics
+## 9. PhysicalFist/raw55 Repeated-Contact Diagnostics
 
-Raw55 remains unobserved/deferred. No new raw55 instrumentation is justified unless factual `UseType == 55` appears.
+Raw55 factual source discovery and first-contact family classification are closed through EV-282. Current unresolved work is narrower: family-specific repeated-contact ownership.
 
-If reopened, prefer existing CORE facts and add only the smallest missing deep signals required to classify:
+Normal evidence through EV-290 establishes:
 
 ```text
-exact UseType/action/phase/current motion
-TouchDamage/collision-group state where relevant
-SPU+0x164 participation
-whether Game+0x16E180 timing comparison participates
-whether Game+0x16E1A3 native close participates
-OnDamage caller/target context
+frame-1/SP0 authored raw55 opening
+marker-owned ClearTriggeredList enables early first contact
+native exact 7 -> 7 setter is not second-contact owner
+PC_Hero becomes visited after hit1
+visited bookkeeping is reset during native SP0 -> 1 callback
+exact reset operation = eCTrigger_PS::ClearTriggeredList() ALL
+Engine RVA = +0x7DDA0
+caller = Script_Game.dll +0x386C6
 ```
 
-Do not copy raw8 FIST behavior/diagnostics onto raw55 merely to make logs look symmetrical.
+The current diagnostic-only causal probe suppresses only that exact post-hit1 native ALL clear when all factual Normal actor/C1/current-RIGHT/raw55/contact/caller gates match. Required observations include:
+
+```text
+suppression decision/fired state
+PRE/POST player presence and visited/count alignment
+SP0 -> 1 progression
+marker2 remains observational
+first damage survives or not
+second damage survives or not
+native exact 7 -> 5 cleanup
+clean C1 finalization / any contradiction
+```
+
+Do not directly mutate visited arrays, add a replacement clear, write StatePosition, dispatch damage or alter native cleanup in the same test.
+
+If the native clear is proven necessary, a later one-variable marker2 replacement-clear probe may be justified. If hit2 survives suppression, continue causal isolation instead of giving marker2 ownership.
 
 ---
 
@@ -404,9 +423,11 @@ Remove/avoid routine historical noise once a question is canonically closed.
 
 Default diagnostics should avoid broad per-call ScriptFunction dumps, continuous state-stack logging, full stacks for ordinary cleanup, per-frame/world polling, repeated large actor/source blocks, and repeated complete FIST timing dumps for already-proven healthy paths.
 
-If CORE compaction makes a required behavior fact ambiguous, the diagnostic contract is too weak; enable the smallest deep probe rather than inferring.
+If CORE compaction makes a required behavior fact ambiguous, enable the smallest deep signal or bounded probe rather than inferring.
 
 Unknown/unsupported events are an exception to aggressive compaction: enough detail must remain to classify them later.
+
+For oversized logs, use POP-07 derived packages for retrieval instead of making routine orientation depend on reading multi-megabyte source logs.
 
 ---
 
@@ -423,10 +444,12 @@ Diagnostics must preserve the conceptual split:
 ```text
 marker occurrence/exact-set bookkeeping
 !=
-physical equipped-source cleanup obligation
+physical source cleanup obligation
+!=
+contact/trigger visited-list bookkeeping
 ```
 
-C1 generation is the shared factual execution identity; it does not collapse marker semantics into lifecycle repair.
+C1 generation is the shared factual execution identity; it does not collapse marker semantics, lifecycle repair and trigger-contact semantics into one state machine.
 
 C1-R1 mutation remains two-phase/reentrancy-safe: classify/repair fixed sources first, then format diagnostics after mutation completes.
 
@@ -436,20 +459,22 @@ C1-R1 mutation remains two-phase/reentrancy-safe: classify/repair fixed sources 
 
 ```text
 architecture + diagnostic-volume audit             DONE
-Stage A behavior architecture source refactor      DONE
-Stage A local build/deploy/load/unload              CLOSED/PASS
-Stage B diagnostic contract                        FROZEN
--> bounded Work implementation
--> independent remote diff review
--> build both twins + deploy/hash + load/unload
--> compact post-refactor equivalence sentinel
--> SprintAttack mechanism investigation
--> focused Sprint validation if implemented
--> broad native/modded compatibility matrix using compact CORE
--> final native mixed/stress regression
--> AttackContinuationProtection source/runtime investigation
--> combined regression
--> mature compatibility gate
+Stage A behavior architecture refactor              DONE/PASS
+Stage B diagnostic refactor + compact sentinel      DONE/PASS
+raw8 Sprint discovery/production validation         DONE/PASS
+native equipped-NPC / raw8 compatibility controls  DONE/PASS through later evidence
+raw55 factual source + first-contact family routes  DONE/PASS through EV-282
+raw55 cross-family two-FIST checkpoint              DONE — EV-283
+Normal repeated-contact reset-source isolation      DONE through EV-290
+-> local build/runtime of exact native ALL-clear suppression causal probe
+-> close Normal native-clear necessity
+-> if required, one-variable marker2 replacement-clear proof
+-> Power repeated-FIST closure
+-> Sprint repeated-FIST closure
+-> permanent raw55 architecture
+-> standalone collision regression
+-> mature New Balance/Jackydima compatibility gate
+-> AttackContinuationProtection later, separately
 ```
 
-For each new causal question, use CORE if sufficient and enable DEEP only for facts CORE cannot establish.
+For each new causal question, use CORE if sufficient and enable only the smallest DEEP/probe surface needed for facts CORE cannot establish.
