@@ -1,0 +1,97 @@
+CHAT-FRIENDLY LARGE LOG PACKAGE
+ToolVersion: 1
+SourceInput: E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\research\raw\2026.09.16_troll_raw55_normal_native_rearm_source.log
+SourceFileName: 2026.09.16_troll_raw55_normal_native_rearm_source.log
+SourceSHA256: AB8E7B8B300F08CD61B01E7338FC672E6A09DE7D57F055F4FFAFD68514628C6E
+SourceBytes: 1747647
+SourceLineCount: 8274
+DistinctEventTypes: 2
+EventTimelineRows: 135
+SignalMatches: 4359
+MaxOutputPartBytes: 60000
+FullSourceParts: 31
+EventTimelineParts: 1
+SignalParts: 28
+
+SignalPatterns:
+- C1_INVARIANT_WARNING = C1 INVARIANT WARNING
+- WOULD_REPAIR = WOULD_REPAIR
+- WARNING = (?i)\bWARNING\b
+- ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
+- MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
+- OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
+- RAW55_CALLBACK_BOUNDARY = RAW55_[A-Z0-9_]*CALLBACK_BOUNDARY
+- RAW55_GROUP_SUPPRESSION = RAW55_[A-Z0-9_]*GROUP_SUPPRESSION
+- FIST_ACTIVATION = (?i)ACTIVATE_FIST\s*[:=]\s*1
+- AUTHORED_FIST_MARKER = G3AB_COL_FIST
+- CLEAR_TRIGGERED_LIST = (?i)CLEARTRIGGEREDLIST|ClearTriggeredList
+- ON_DAMAGE = (?i)\bONDAMAGE\b|OnDamage
+- COLLISION_GROUP = CORE COLLISION_GROUP
+- C1_CLEANUP_FULFILLED = C1 CLEANUP FULFILLED
+- C1_FINAL = C1_FINAL|C1 FINAL
+- REPAIRED_TO_ITEM_EQUIPPED = REPAIRED_TO_ITEM_EQUIPPED
+- REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
+
+Files:
+- event_counts.tsv
+- full_source_index.tsv
+- event_timeline_part_001.tsv
+- signals_part_001.tsv
+- signals_part_002.tsv
+- signals_part_003.tsv
+- signals_part_004.tsv
+- signals_part_005.tsv
+- signals_part_006.tsv
+- signals_part_007.tsv
+- signals_part_008.tsv
+- signals_part_009.tsv
+- signals_part_010.tsv
+- signals_part_011.tsv
+- signals_part_012.tsv
+- signals_part_013.tsv
+- signals_part_014.tsv
+- signals_part_015.tsv
+- signals_part_016.tsv
+- signals_part_017.tsv
+- signals_part_018.tsv
+- signals_part_019.tsv
+- signals_part_020.tsv
+- signals_part_021.tsv
+- signals_part_022.tsv
+- signals_part_023.tsv
+- signals_part_024.tsv
+- signals_part_025.tsv
+- signals_part_026.tsv
+- signals_part_027.tsv
+- signals_part_028.tsv
+- full_source_part_001.txt
+- full_source_part_002.txt
+- full_source_part_003.txt
+- full_source_part_004.txt
+- full_source_part_005.txt
+- full_source_part_006.txt
+- full_source_part_007.txt
+- full_source_part_008.txt
+- full_source_part_009.txt
+- full_source_part_010.txt
+- full_source_part_011.txt
+- full_source_part_012.txt
+- full_source_part_013.txt
+- full_source_part_014.txt
+- full_source_part_015.txt
+- full_source_part_016.txt
+- full_source_part_017.txt
+- full_source_part_018.txt
+- full_source_part_019.txt
+- full_source_part_020.txt
+- full_source_part_021.txt
+- full_source_part_022.txt
+- full_source_part_023.txt
+- full_source_part_024.txt
+- full_source_part_025.txt
+- full_source_part_026.txt
+- full_source_part_027.txt
+- full_source_part_028.txt
+- full_source_part_029.txt
+- full_source_part_030.txt
+- full_source_part_031.txt
