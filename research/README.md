@@ -1,7 +1,7 @@
 # Research Source Intake and Provenance Map
 
 **Status:** Current research-layer usage map  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-16
 
 ## Purpose
 
@@ -28,6 +28,8 @@ research/derived/
 ```
 
 `research/raw/Keep.txt` preserves the intake directory when no active artifact is present.
+
+Do not use `research/raw/` as a project-history folder. Once an artifact is processed and no longer needed for an active comparison, POP-06 disposition applies and the unchanged source belongs in `research/archive/`.
 
 ---
 
@@ -60,7 +62,7 @@ Use these instead of maintaining a per-log historical table here:
 | Need | Authority |
 |---|---|
 | exact factual conclusion / evidence status | `docs/EVIDENCE_INDEX.md` → canonical Evidence Ledger |
-| evidence-ledger storage ranges | `docs/README.md` / `docs/KNOWLEDGE_REGISTRY.md` |
+| evidence-ledger storage ranges | `docs/EVIDENCE_INDEX.md` plus the ledger continuation header |
 | deliberate raw/archive path move | `docs/EVIDENCE_PATH_MIGRATIONS.md` |
 | evidence closure / archive procedure | POP-06 in `docs/PROJECT_OPERATING_PROCEDURES.md` |
 | knowledge owner/update trigger after a result | `docs/KNOWLEDGE_MAINTENANCE.md` + `docs/KNOWLEDGE_REGISTRY.md` |
@@ -75,9 +77,9 @@ This avoids creating another independently stale chronology that fresh Chats mus
 
 ## 4. Current Intake State
 
-At the 2026-09-07 human-Fist stable-subsystem checkpoint, the processed September 2–7 collision/Fist artifacts plus the old `ge3log10.log` crash artifact were moved unchanged to `research/archive/` after evidence closure.
+The latest cleanup boundary is the 2026-09-16 EV-290 checkpoint. All processed September 8–16 collision artifacts that no longer owned an active comparison obligation were moved unchanged to `research/archive/` using their existing Git blob identities.
 
-Current expected active-intake baseline after that transaction:
+Current expected active-intake baseline:
 
 ```text
 research/raw/Keep.txt
@@ -85,11 +87,19 @@ research/raw/Keep.txt
 
 A future artifact belongs in raw only while it is genuinely unprocessed or intentionally active for comparison.
 
-Migration details/provenance:
+Migration details/provenance, including the earlier September 2–7 and September 12 archive boundaries:
 
 ```text
 docs/EVIDENCE_PATH_MIGRATIONS.md
 ```
+
+For the active raw55 Normal question at the EV-290 checkpoint, routine exact-runtime retrieval should begin with canonical EV-290 and its deterministic derived package rather than reopening the archived multi-megabyte source log:
+
+```text
+research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/
+```
+
+Use the archived full source only when a precise fact is not already represented canonically or by the derived package.
 
 ---
 
@@ -105,6 +115,8 @@ Open archived sources when:
 - a contradiction requires reconstructing the original run/source material.
 
 Do not read the archive as normal project chronology and do not treat archive age/path as evidence rank.
+
+Historical ledger rows may still spell the raw intake path that was correct when the EV was written. Resolve deliberate storage moves through `docs/EVIDENCE_PATH_MIGRATIONS.md` rather than treating the old path as evidence loss.
 
 ---
 
@@ -123,6 +135,8 @@ derived package identifies canonical source
 ```
 
 A hand-written summary must not replace the canonical Evidence Ledger or the underlying raw/archive artifact.
+
+For large logs, prefer the derived package for routine orientation and targeted retrieval. Do not scan a directory of full archived logs merely to reconstruct current state.
 
 ---
 
