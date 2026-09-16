@@ -3,7 +3,7 @@
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active operating-convention authority  
 **Version:** 1.4  
-**Updated:** 2026-09-07
+**Updated:** 2026-09-16
 
 ## Purpose
 
@@ -135,10 +135,16 @@ Current storage boundaries:
 EVIDENCE_LEDGER.md                EV-001–EV-157
 EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
 EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
-EVIDENCE_LEDGER_232_ONWARD.md     EV-232 onward
+EVIDENCE_LEDGER_232_ONWARD.md     EV-232–EV-249
+EVIDENCE_LEDGER_250_ONWARD.md     EV-250–EV-264
+EVIDENCE_LEDGER_265_ONWARD.md     EV-265–EV-273
+EVIDENCE_LEDGER_274_ONWARD.md     EV-274–EV-279
+EVIDENCE_LEDGER_280_ONWARD.md     EV-280–EV-282
+EVIDENCE_LEDGER_283_ONWARD.md     EV-283–EV-285
+EVIDENCE_LEDGER_286_ONWARD.md     EV-286 onward
 ```
 
-The 2026-09-07 split at EV-232 is a storage/retrieval checkpoint after the human-Fist N3 era. It does **not** restart or reinterpret the global EV namespace.
+These splits are storage/retrieval checkpoints only. They do **not** restart or reinterpret the global EV namespace. When a new continuation file is added, the preceding continuation's end boundary becomes the EV immediately before the new file's first ID.
 
 The ledger files own the claims themselves.
 
@@ -185,7 +191,7 @@ Rules:
 4. Once the filename is frozen as part of the test contract, keep it unless there is a concrete reason to change it.
 5. If a test runs after midnight or later than planned, preserve the frozen filename unless the date itself would materially misidentify the evidence.
 6. Do not rename historical raw logs merely to normalize older naming styles.
-7. Canonical raw evidence stays unchanged in `research/raw/` until normal processing/archival rules apply.
+7. Canonical source evidence stays unchanged in `research/raw/` while it is active intake, then moves unchanged to `research/archive/` when normal processing/archival rules apply.
 
 The exact test-freezing sequence is POP-05 in `PROJECT_OPERATING_PROCEDURES.md`.
 
@@ -358,8 +364,6 @@ A material convention change should record, proportionately:
 - which procedures/indexes/entrypoint routes are affected.
 
 Prefer forward continuity over cosmetic rewriting of history.
-
-A convention change discovered during ordinary technical work should update this file only when the convention itself changes; ordinary use should not trigger edits here.
 
 ---
 
