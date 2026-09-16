@@ -32,9 +32,15 @@ raw55 Normal SP0 physical opening CLOSED/PASS — EV-286
 raw55 Normal SP0 contact rearm / early first damage CLOSED/PASS — EV-287
 raw55 Normal native 7->7 setter as second-rearm source REJECTED — EV-288
 raw55 Normal native trigger-bookkeeping reset before marker2 CONFIRMED — EV-289
+
+Normal native trigger-clear observation probe:
+    implementation 6ef27121c5fcd1d4993b914e0f6a9a9123a2b0b7
+    required base 1e411056a586b71217a1f5941774b44e16e6588e
+    independent Normal Chat source review PASS
+    local build/deploy/runtime PENDING
 ```
 
-EV-289 establishes the current Normal two-contact sequence:
+EV-289 establishes:
 
 ```text
 marker 1 at SP0
@@ -51,9 +57,8 @@ immediately before native 7 -> 7 suppression
 native exact RIGHT 7 -> 7 setter suppressed
 -> original _AI_Attack still advances SP0 -> 1
 -> exact RIGHT visited state becomes empty during that callback
--> ResetOnUntouch remains 0
 
-marker 2 later at SP1
+marker 2 later
 -> PC_Hero already absent
 -> no Normal marker-2 intervention
 
@@ -64,7 +69,7 @@ native 7 -> 5 cleanup
 clean C1 finalization
 ```
 
-Therefore Gothic supplies an **implicit trigger-bookkeeping reset before marker 2**. The exact native operation remains unknown. Do not attribute the reset to marker 2, the suppressed collision-group setter, `ResetOnUntouch`, or StatePosition itself.
+Therefore Gothic supplies an implicit trigger-bookkeeping reset before marker 2. The exact native operation remains unknown. Do not attribute the reset to marker 2, the suppressed collision-group setter, `ResetOnUntouch`, or StatePosition itself.
 
 Canonical EV-289 artifact:
 
@@ -74,67 +79,83 @@ SHA256:
 
 `978817C03EE01EA3098D265CFE85544F4D3DE06019279AD04C337C4ADBE00D08`
 
-Diagnostic implementation:
+## Current implementation under local validation
 
-`ec20e769a347bd206577427bfd28a85bd51a79b3`
+Source-reviewed implementation:
 
-Local build/live DLL SHA256:
+`6ef27121c5fcd1d4993b914e0f6a9a9123a2b0b7`
 
-`D336619855E4812EA950797057D57BC44D41F141DA244D209880793C0ED69367`
-
-## Current frozen question
-
-Identify whether one of Gothic's exact public trigger-clear APIs performs that reset.
-
-Static anchors from the tested binaries:
+Exactly three diagnostics-source files changed from the frozen base:
 
 ```text
-Script_Game.dll imports PSTouchDamage::ClearTriggeredList()
-
-Script.dll:
-PSTouchDamage::ClearTriggeredList() = Script + 0x13720
--> thin property-set wrapper / tail-jump
-
-Engine.dll:
-eCTrigger_PS::ClearTriggeredList()          = Engine + 0x7DDA0
-eCTrigger_PS::ClearTriggeredList(eCEntity*) = Engine + 0x7DDF0
+EngineBridge.cpp       +47 / -0
+PhysicalFistProbe.cpp  +180 / -0
+PhysicalFistProbe.h    +17 / -0
 ```
 
-Current authority:
-
-`docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_OBSERVATION_PROBE.md`
-
-The next diagnostics-only probe adds two exact Engine clear-function observation hooks under `FRAME_COLLISION_DIAGNOSTICS`. `EngineBridge` owns only hook transport. `PhysicalFistProbe` owns exact Normal actor/C1/RIGHT/raw55 eligibility and factual logging.
-
-For relevant exact RIGHT calls, observe PRE and POST trigger state plus caller module/RVA. Preserve every original clear call exactly once.
-
-The task must not:
+The probe adds diagnostics-only hooks for:
 
 ```text
-suppress a clear
-add a clear
-change the existing marker-1 clear
-change the existing native 7->7 suppression
-add marker-2 rearm
-write StatePosition
-change collision cleanup/repair
-change Quick/Power/Sprint/raw8 behavior
-enter production architecture
+eCTrigger_PS::ClearTriggeredList()          Engine + 0x7DDA0
+eCTrigger_PS::ClearTriggeredList(eCEntity*) Engine + 0x7DDF0
 ```
 
-Decisive interpretation:
+Both hooks use explicit `.ThisCall()` transport, capture caller identity, record PRE state, execute the original exactly once, then record POST state. `EngineBridge` owns hook transport only. `PhysicalFistProbe` owns exact Normal actor/C1/current-RIGHT/PhysicalFist eligibility and all interpretation/logging.
+
+The marker-1 clear remains a useful control: the intervention identity exists before that clear, while `preStateRearmProven` is set only after it returns. The hook can therefore record the control call with factual `PreStateRearmProven=0` without broadening eligibility.
+
+This remains observation-only:
 
 ```text
-post-hit1 public clear observed
-+ PRE player visited
+NO clear suppression
+NO new clear
+NO change to marker-1 clear
+NO change to native 7->7 suppression
+NO marker-2 rearm
+NO collision-group mutation
+NO StatePosition write
+NO direct damage
+NO cleanup/repair change
+NO polling
+NO production-module change
+```
+
+## Immediate next step
+
+User + Normal Chat perform local validation only:
+
+```text
+GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
+-> confirm Changes empty
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+-> POP-03 deploy/hash/twin verification if build passes
+-> deploy only to E:\SteamLibrary\steamapps\common\Gothic 3\scripts
+-> POP-04 startup banner
+-> same Normal two-FIST Troll runtime
+-> preserve log from E:\SteamLibrary\steamapps\common\Gothic 3
+-> POP-07/POP-06 evidence closure
+```
+
+Preferred runtime artifact:
+
+`research/raw/2026.09.16_troll_raw55_normal_trigger_clear_observation.log`
+
+No EV-290 exists yet.
+
+## Decisive interpretation
+
+```text
+later public clear after hit 1
++ PRE player present
 + POST player absent/reset
     => factual public reset operation/caller identified
 
-entity-specific clear(PC_Hero) observed
+ENTITY clear with PC_Hero
 + player removed
-    => factual player reset operation identified
+    => factual player-specific reset operation identified
 
-known marker-owned initial clear observed
+known marker-1 clear observed
 + no later public clear
 + EV-289 reset still occurs
     => public clear APIs ruled out; inspect lower/private trigger internals
