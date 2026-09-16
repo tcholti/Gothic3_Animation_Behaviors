@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Source & Hook Guide
 
 **Status:** Canonical practical source/hook lookup guide  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-16
 
 ## Purpose
 
@@ -84,6 +84,8 @@ OnAI_HackAttack
 SetCollisionGroup
 ClearTriggeredList
 eCTrigger_PS / TouchDamage
+EntitiesVisited / EntitiesVisitedCount
+ResetOnUntouch
 gESlot_LeftHand / gESlot_RightHand
 gCEntity::OnDamage
 ```
@@ -137,10 +139,21 @@ Search for `GetAnimationSpeedModifier`, `AniSpeedScale`, `GetMaxTime`, `GetPlayT
 | `AIStopCombatMove` | `Game +0x1644D0` | full-stops only current CombatMove callback |
 | `sAICombatMoveInstr` | `Game +0x1696E0` | persisted async CombatMove instruction |
 | `sAICombatMoveStart` | `Game +0x16ABB0` | CombatMove start |
-| `sAICombatMoveItlLoop` | `Game +0x16DD00` | iterative loop; also contains proven human-Fist path |
+| `sAICombatMoveItlLoop` | `Game +0x16DD00` | iterative loop; also contains proven raw8 Fist path |
 | `sAICombatMoveStartRecover` | `Game +0x16E360` | Recover start; not universal weapon cleanup authority |
 | `ProcessScript` | `Game +0x16F120` | generic dispatcher, not attack ownership |
 | `AISetState` | `Game +0x164320` | destructive state replacement; C1 finalizes after original returns |
+
+### Trigger / TouchDamage
+
+| Purpose | Module + RVA | Meaning |
+|---|---:|---|
+| `eCTrigger_PS::ClearTriggeredList()` ALL | `Engine +0x7DDA0` | public no-argument clear of trigger visited bookkeeping; factual Normal between-contact reset API in EV-290 |
+| `eCTrigger_PS::ClearTriggeredList(eCEntity*)` | `Engine +0x7DDF0` | entity-specific overload; distinct from EV-290 ALL clear |
+| `PSTouchDamage::ClearTriggeredList()` wrapper | `Script +0x13720` | tested wrapper tail-jumps to engine trigger clear |
+| Normal native ALL-clear caller | `Script_Game +0x386C6` | factual caller RVA for the EV-290 exact RIGHT raw55 between-contact clear |
+
+EV-290 observed the exact current RIGHT TrollFist/raw55 trigger with `PC_Hero` still present/count1 before the native ALL clear and absent/empty afterward. This identifies the reset operation and caller; it does not by itself prove that the clear is causally required for the later second damage opportunity.
 
 ### Script dispatch / known bad-skip path
 
@@ -173,9 +186,9 @@ Held Use2 / ~2500 ms is a test trigger, not collision ownership.
 
 ---
 
-## 4. Production Human raw-8 Fist Lookup
+## 4. Production raw-8 Fist Lookup
 
-Human raw-8 Fist is a native body-damage mechanism, separate from equipped `Item_Attack` collision.
+Raw-8 Fist is a native body-damage mechanism, separate from equipped `Item_Attack` collision and from raw55 PhysicalFist.
 
 ### Generic-human static/runtime path
 
@@ -225,38 +238,67 @@ direct damage dispatch
 
 Marked-execution start closes `SPU+0x164 = 1`; each accepted FIST rearms `=0`; native success writes `=1` at `+0x16E1A3`.
 
-Evidence route: EV-221–EV-240.
+Evidence route: EV-221–EV-240 for human production, with later raw8 actor/family controls through EV-263. Raw8 production semantics must not be generalized to raw55 merely because both serialize through a `Fist` animation category.
 
 ---
 
 ## 5. PhysicalFist/raw55 Status
 
-`gEUseType_PhysicalFist` / raw 55 serializes through animation category `Fist`, but the bounded EV-245–EV-246 survey did not observe a factual raw55 attack source.
+`gEUseType_PhysicalFist` / raw 55 serializes through animation category `Fist`, but factual Troll/BlackTroll runtime evidence has now established a distinct physical source mechanism.
 
-Observed runtime source split:
-
-```text
-Hero Wolf/Sabertooth transformations -> Fist / raw 8
-Boar/Wolf/Sabertooth/Bloodfly/Golem/Snapper/Minecrawler/Bison native body attacks
-                                  -> Fist / raw 8 / group 0 / Game+0x16E348 damage caller
-Demon                             -> 2H / raw 3
-Goblin                            -> 1H / raw 2
-Ogre                              -> Axe / raw 52
-Dragon capture                    -> Mis_Fireball / Cast raw 15
-```
-
-The Dragon run did not capture a physical Dragon attack, so that physical case is inconclusive. No raw55 appeared anywhere in the twelve-log native-NPC batch.
-
-Current engineering disposition:
+Current tested factual source boundary:
 
 ```text
-raw55 mechanism = UNOBSERVED
-raw55 support   = DEFERRED / unsupported for current scope
+source identity        = exact RIGHT/LEFT TrollFist entities
+UseType                = PhysicalFist / raw55
+resting collision group = Item_Equipped(5)
+offensive group         = Item_Attack(7)
+native exact cleanup    = 7 -> 5
 ```
 
-Do not add a raw55 hook, probe, adapter, or marker behavior unless future runtime evidence first establishes a relevant factual `UseType == 55`. If that happens, resume native-mechanism classification from the actual observed path rather than from filename token `Fist`.
+Evidence route:
 
-The creature raw-8 observations establish source/group/damage-caller similarity only. They do not prove participation in the exact human `SPU+0x164`, `Game+0x16E180`, or `Game+0x16E1A3` timing/latch internals and do not extend production `G3AB_COL_FIST` to monsters.
+```text
+EV-245–EV-246  initial bounded survey did not observe raw55
+EV-262         later Troll/BlackTroll evidence factually establishes raw55
+EV-264–EV-273  Quick causal closure, including Quick-specific rearm/pre-state behavior
+EV-274–EV-276  true Power first-contact closure
+EV-277–EV-279  Normal first-contact closure
+EV-280–EV-282  Sprint first-contact closure
+EV-283         cross-family two-FIST checkpoint
+EV-286–EV-290  Normal SP0/rearm/native-between-contact reset causal route
+```
+
+Current Normal reset facts through EV-290:
+
+```text
+frame-1 FIST at SP0 can open exact RIGHT 5 -> 7
+one exact marker-owned ALL clear after opening enables first damage before SP0 -> 1
+native exact RIGHT 7 -> 7 setter is not required for second damage
+PC_Hero is still visited after hit1
+Gothic later calls exact eCTrigger_PS::ClearTriggeredList() ALL
+caller = Script_Game.dll +0x386C6
+PRE  = PC_Hero present/count1
+POST = visited arrays empty / PC_Hero absent
+original _AI_Attack then completes SP0 -> 1
+later marker2 remains observational in the EV-290 run
+second damage later re-inserts PC_Hero
+native exact 7 -> 5 cleanup remains healthy
+```
+
+The exact native ALL clear is identified but its **causal necessity** for hit2 is not yet proven. The source-reviewed current diagnostic suppresses only that exact proven clear under factual Normal actor/C1/current-RIGHT/raw55/contact/caller gates. `PhysicalFistProbe` remains diagnostic research scaffolding and must not be promoted wholesale.
+
+Do not:
+
+```text
+copy raw8 SPU+0x164 timing/latch policy onto raw55
+species-gate production behavior
+infer all raw55 families share Quick's triggered-list semantics
+assign marker2 replacement-clear ownership before the native-clear necessity test closes
+create permanent PhysicalFistCollision merely because the probe exists
+```
+
+Current task authority: `COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md` plus `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
 ---
 
@@ -282,8 +324,9 @@ Pausing the timer is only a candidate; consumer-level prevention may be safer.
 - Preserve exact calling convention and per-invocation object identity.
 - Use the proven explicit-per-invocation `.ThisCall()` transport where shared implicit-this transport was shown recursion-unsafe.
 - A call-site hook must be tied to the exact call/argument/context it was designed for; do not turn it into a global API override.
-- Shared Gothic functions have one physical owner in `EngineBridge`; feature modules consume bridge facts.
+- Shared Gothic functions have one physical owner in `EngineBridge`; feature/probe modules consume bridge facts and own their policy.
 - Reverify RVAs against another binary build before reuse.
+- A diagnostic hook that identifies or suppresses one factual causal operation does not automatically become production architecture.
 
 ---
 
