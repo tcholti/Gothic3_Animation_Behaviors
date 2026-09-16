@@ -1,11 +1,11 @@
 # Collision Lifecycle Plan
 
 **Status:** Current collision-lifecycle architecture authority  
-**Updated:** 2026-09-08
+**Updated:** 2026-09-16
 
 ## Purpose
 
-Define the smallest authoritative rule that guarantees equipped offensive collision cleanup without one repair branch per attack family or interruption symptom.
+Define the smallest authoritative rule that guarantees offensive collision cleanup without one repair branch per attack family or interruption symptom.
 
 Detailed proof belongs in `EVIDENCE_INDEX.md`; staged validation in `COLLISION_TEST_PLAN.md`; build-specific cleanup locations in `COLLISION_CLEANUP_CALLSITE_MAP.md` / `SOURCE_HOOK_GUIDE.md`; overall module/order in `DESIGN.md`.
 
@@ -13,13 +13,15 @@ Detailed proof belongs in `EVIDENCE_INDEX.md`; staged validation in `COLLISION_T
 
 ## 1. Governing Invariant
 
-> For every real equipped attack-Hit execution that requests offensive collision, Gothic gets its legitimate cleanup opportunity. When that exact execution ends or is destructively abandoned, if proper cleanup already occurred, do nothing; otherwise repair only that execution's remaining exact offensive source using native cleanup semantics.
+> For every real physical attack-Hit execution that creates a source-specific offensive-collision obligation, Gothic gets its legitimate cleanup opportunity. When that exact execution ends or is destructively abandoned, if proper cleanup already occurred, do nothing; otherwise repair only an evidence-backed exact outstanding source using its proven native cleanup semantics.
 
 The guard owns collision safety, not input/combat policy.
 
 ---
 
 ## 2. Accepted Execution / Source Model
+
+For the proven equipped-source domain:
 
 ```text
 real attack execution X
@@ -43,6 +45,8 @@ The live ScriptFunction frame/SPU/arguments/name correlator is temporary native 
 
 The system remains event-driven: no polling, wall-clock lifetime inference, or global actor scan.
 
+Raw8 Fist and PhysicalFist/raw55 have separate source semantics; neither may be forced into the equipped-source model by name alone. Their proven lifecycle consequences are stated explicitly below.
+
 ---
 
 ## 3. Ending Structures
@@ -51,7 +55,7 @@ The system remains event-driven: no polling, wall-clock lifetime inference, or g
 
 ```text
 attack/CombatMove
--> native action-specific cleanup resets exact source away from Item_Attack
+-> native action-specific cleanup resets exact source away from offensive state
 -> later finalization finds no outstanding obligation
 -> no repair
 ```
@@ -89,11 +93,11 @@ Held Use2 / ~2500 ms is a reproducible trigger for one known class, not producti
 
 Ordinary attacks may acquire generation through CombatMove. A proven pre-Combat equipped offense may lazily acquire through the live `RunScriptFunction` scope after exact SPU/state-stack/frame/source validation; matching CombatMove consumes/retires that temporary binding before wrapper return/suspension.
 
-Successful transition away from `Item_Attack` is cleanup. Do not infer cleanup from Recover, animation replacement, callback return, FullStop, or state request.
+Successful transition away from an evidence-backed offensive group is cleanup. Do not infer cleanup from Recover, animation replacement, callback return, FullStop, or state request.
 
 For a generation captured before native `AISetState`, finalization runs only **after native AISetState returns**, giving native/reaction cleanup precedence.
 
-Remembered raw source pointers may not be dereferenced after native state replacement without exact current-equipped RIGHT/LEFT identity establishing liveness.
+Remembered raw source pointers may not be dereferenced after native state replacement without exact current-source identity establishing liveness under the source's proven rules.
 
 ---
 
@@ -109,7 +113,7 @@ Item_Attack(7)
 
 `ClearTriggeredList()` is activation/rearm behavior, not terminal cleanup.
 
-Closed C1-R1 decision:
+Closed C1-R1 decision for equipped sources:
 
 ```text
 outstanding == false
@@ -143,6 +147,8 @@ no positive NPC destructive-abandonment physical-repair case claimed
 ```
 
 These are claim limits, not open gates.
+
+PhysicalFist/raw55 has now been proven to use a real exact physical source in the tested Troll/BlackTroll domain: `TrollFist`/raw55 can transition `Item_Equipped(5) -> Item_Attack(7)` and later receive native exact `7 -> 5` cleanup. The current diagnostic route records a real C1 offense obligation when authored opening actually reaches group7. That factual lifecycle participation does **not** yet authorize copying equipped terminal-repair policy wholesale into a permanent raw55 module; the final raw55 production ownership boundary remains paused until repeated-contact behavior is closed.
 
 ---
 
@@ -179,13 +185,28 @@ valid-motion-only caching
 
 Gate 4 removed older marker-local guesses based on source/motion/action/phase/state-time changes or callback rollback. Natural `RetireMarkerOwnedSource()` handling retires only the exact physical marker-owned source bit/window.
 
+Raw55 repeated-contact timing is family-specific. Quick's proven rearm path must not be generalized to Normal/Power/Sprint. Normal EV-286–EV-290 proves that marker timing can change whether an authored opening itself needs a clear and that Gothic may perform a separate native trigger-bookkeeping reset between contacts. This is contact semantics, not terminal lifecycle cleanup.
+
 ---
 
-## 7. Human Fist and Future PhysicalFist Separation
+## 7. Raw8 Fist and PhysicalFist/raw55 Separation
 
-Production human `gEUseType_Fist` / raw 8 does **not** create an equipped `Item_Attack` obligation and does not use C1-R1 physical repair. Its native permission/latch mechanism is owned by the Fist behavior described in `DESIGN.md` and evidenced through EV-221–EV-240.
+Production `gEUseType_Fist` / raw 8 does **not** create an equipped `Item_Attack` obligation and does not use C1-R1 physical repair. Its native permission/latch mechanism is owned by the Fist behavior described in `DESIGN.md` and evidenced through the raw8 production chain.
 
-Future `gEUseType_PhysicalFist` / raw 55 remains unclassified. Do not assign weapon-style obligations or human-Fist lifecycle semantics until discovery proves the actual native mechanism.
+`gEUseType_PhysicalFist` / raw 55 is now factually classified for tested Troll/BlackTroll attacks, but it remains a distinct mechanism:
+
+```text
+factual source          = exact TrollFist PhysicalFist/raw55
+resting group           = Item_Equipped(5)
+offensive group         = Item_Attack(7)
+marker-authored opening = proven
+native exact 7 -> 5     = proven cleanup
+family contact/rearm    = not uniform
+```
+
+Quick repeated-contact behavior is closed through EV-273. True Power, Normal and Sprint first-contact paths are closed through EV-282. The cross-family two-FIST checkpoint is EV-283. Normal's between-contact native visited-list reset is isolated through EV-290, with the exact public ALL clear identified but its causal necessity for hit2 still under validation.
+
+Do not assign raw8 latch semantics to raw55. Do not freeze a permanent raw55 terminal-repair or marker2 ownership policy until the remaining repeated-contact causal gates close.
 
 ---
 
@@ -220,7 +241,8 @@ Do not default to:
 - persistent raw-pointer identity after native-frame retirement;
 - repair of every group-7 item regardless of ownership;
 - `ClearTriggeredList()` as terminal cleanup;
-- forcing human/monster body damage into equipped-source cleanup.
+- forcing raw8/body-damage semantics onto PhysicalFist/raw55 or equipped sources;
+- assuming all PhysicalFist/raw55 families share one rearm/contact rule.
 
 Protect through migration:
 
@@ -233,7 +255,8 @@ GetUpParade/defensive no-offense
 7 -> 7 attribution
 Dual exact-source independence
 marked RIGHT/LEFT/BOTH/OFF
-human Fist separation
+raw8 Fist separation
+raw55 exact-source/native-cleanup facts
 unsupported bow/crossbow/magic negatives
 ```
 
@@ -244,13 +267,16 @@ unsupported bow/crossbow/magic negatives
 Lifecycle architecture itself is closed. The surrounding collision roadmap is:
 
 ```text
-bounded PhysicalFist/raw55 discovery
--> any deliberately accepted tractable extension
--> final native mixed collision regression
+Normal native ALL-clear causal-necessity validation
+-> if required, one-variable Normal marker2 replacement-clear proof
+-> Power repeated-FIST closure
+-> Sprint repeated-FIST closure preserving same-C1 Action9 -> Action2 continuity
+-> freeze permanent raw55 responsibility/lifecycle ownership
+-> standalone collision regression
+-> New Balance 0.7 bundle regression exactly as distributed, AttackCollision included
 -> separate AttackContinuationProtection investigation/implementation
--> guard + marker + continuation regression
--> mandatory New Balance/Jackydima compatibility
+-> combined regression
 -> production collision migration
 ```
 
-Even if continuation prevention succeeds, C1-R1 remains the independent fail-safe.
+Even if continuation prevention succeeds, C1-R1 remains the independent equipped-source fail-safe.
