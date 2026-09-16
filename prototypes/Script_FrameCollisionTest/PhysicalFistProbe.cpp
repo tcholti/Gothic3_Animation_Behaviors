@@ -49,6 +49,18 @@ struct NormalEarlySuppressionProof
     bool activationUsed;
 };
 
+struct NormalTriggerStateSnapshot
+{
+    GEInt resetOnUntouch;
+    GEInt visitedSize;
+    GEInt visitedCountSize;
+    GEInt playerResolved;
+    GEInt playerPresent;
+    GEInt playerEntryCount;
+    GEInt playerVisitCount;
+    GEInt countsAligned;
+};
+
 struct NormalPreStateFistIntervention
 {
     eCEntity *actorInstance;
@@ -56,6 +68,9 @@ struct NormalPreStateFistIntervention
     std::uint64_t c1Generation;
     bool preStateRearmProven;
     bool nativeRearmSuppressionUsed;
+    bool triggerStateInitialized;
+    bool laterFistObserved;
+    NormalTriggerStateSnapshot lastTriggerState;
 };
 
 struct SprintEarlySuppressionProof
@@ -170,6 +185,233 @@ static bool TryResolveRaw55ProbeFixture(
         return false;
     }
 
+    return true;
+}
+
+static bool TryResolveProvenNormalPreStateIntervention(
+    Entity &actor, eCEntity *rightSourceInstance,
+    std::uint64_t c1Generation,
+    NormalPreStateFistIntervention *&intervention)
+{
+    intervention = nullptr;
+    if (actor == None || actor.GetInstance() == nullptr
+        || rightSourceInstance == nullptr
+        || actor.Routine.GetProperty<PSRoutine::PropertyAction>()
+            != gEAction_Attack
+        || !FrameCollisionMarkers::IsAttackHit(
+            actor, AttackFamily_Normal))
+    {
+        return false;
+    }
+
+    eCEntity *const actorInstance = actor.GetInstance();
+    auto interventionIt =
+        g_NormalPreStateFistInterventions.find(actorInstance);
+    if (interventionIt == g_NormalPreStateFistInterventions.end())
+        return false;
+
+    NormalPreStateFistIntervention &candidate = interventionIt->second;
+    if (candidate.actorInstance != actorInstance
+        || candidate.rightSourceInstance != rightSourceInstance
+        || candidate.c1Generation != c1Generation
+        || !candidate.preStateRearmProven)
+    {
+        return false;
+    }
+
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            actorInstance);
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    Entity rightSource(rightSourceInstance);
+    if (!generation.valid || generation.actorInstance != actorInstance
+        || generation.generation != c1Generation
+        || currentSources.rightInstance != rightSourceInstance
+        || rightSource == None
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist)
+    {
+        return false;
+    }
+
+    intervention = &candidate;
+    return true;
+}
+
+static bool TryCaptureNormalTriggerState(
+    NormalPreStateFistIntervention const &intervention,
+    NormalTriggerStateSnapshot &snapshot)
+{
+    snapshot = {};
+    snapshot.playerVisitCount = -1;
+
+    Entity rightSource(intervention.rightSourceInstance);
+    if (rightSource == None)
+        return false;
+
+    gCTouchDamage_PS const *const touchDamage =
+        static_cast<gCTouchDamage_PS const *>(
+            rightSource.TouchDamage.m_pEngineEntityPropertySet);
+    if (touchDamage == nullptr)
+        return false;
+
+    bTObjArray<eCEntityProxy> const &visited =
+        touchDamage->GetEntitiesVisited();
+    bTValArray<GEU16> const &visitedCounts =
+        touchDamage->GetEntitiesVisitedCount();
+    snapshot.resetOnUntouch = static_cast<GEInt>(
+        touchDamage->GetResetOnUntouch());
+    snapshot.visitedSize = visited.GetCount();
+    snapshot.visitedCountSize = visitedCounts.GetCount();
+    snapshot.countsAligned =
+        snapshot.visitedSize == snapshot.visitedCountSize ? 1 : 0;
+
+    Entity player = Entity::GetPlayer();
+    eCEntity *const playerInstance =
+        player != None ? player.GetInstance() : nullptr;
+    snapshot.playerResolved = playerInstance != nullptr ? 1 : 0;
+    GEInt playerIndex = -1;
+    if (playerInstance != nullptr)
+    {
+        for (GEInt i = 0; i < snapshot.visitedSize; ++i)
+        {
+            eCEntity const *const visitedEntity =
+                visited.GetAt(i).GetEntity();
+            if (visitedEntity == playerInstance)
+            {
+                ++snapshot.playerEntryCount;
+                playerIndex = i;
+            }
+        }
+    }
+
+    snapshot.playerPresent = snapshot.playerEntryCount > 0 ? 1 : 0;
+    if (snapshot.countsAligned && snapshot.playerEntryCount == 1
+        && playerIndex >= 0)
+    {
+        snapshot.playerVisitCount = static_cast<GEInt>(
+            visitedCounts.GetAt(playerIndex));
+    }
+
+    return true;
+}
+
+static bool TriggerStateFingerprintChanged(
+    NormalTriggerStateSnapshot const &before,
+    NormalTriggerStateSnapshot const &after)
+{
+    return before.resetOnUntouch != after.resetOnUntouch
+        || before.visitedSize != after.visitedSize
+        || before.visitedCountSize != after.visitedCountSize
+        || before.playerResolved != after.playerResolved
+        || before.playerPresent != after.playerPresent
+        || before.playerEntryCount != after.playerEntryCount
+        || before.playerVisitCount != after.playerVisitCount
+        || before.countsAligned != after.countsAligned;
+}
+
+static void AppendTriggerStateChangeReason(
+    std::string &reason, char const *component)
+{
+    if (!reason.empty())
+        reason += '|';
+    reason += component;
+}
+
+static std::string BuildTriggerStateChangeReason(
+    NormalTriggerStateSnapshot const &before,
+    NormalTriggerStateSnapshot const &after)
+{
+    std::string reason;
+    if (before.resetOnUntouch != after.resetOnUntouch)
+        AppendTriggerStateChangeReason(reason, "RESET_ON_UNTOUCH");
+    if (before.visitedSize != after.visitedSize)
+        AppendTriggerStateChangeReason(reason, "VISITED_SIZE");
+    if (before.visitedCountSize != after.visitedCountSize)
+        AppendTriggerStateChangeReason(reason, "VISITED_COUNT_SIZE");
+    if (before.playerResolved != after.playerResolved)
+        AppendTriggerStateChangeReason(reason, "PLAYER_RESOLVED");
+    if (before.playerPresent != after.playerPresent)
+        AppendTriggerStateChangeReason(reason, "PLAYER_PRESENT");
+    if (before.playerEntryCount != after.playerEntryCount)
+        AppendTriggerStateChangeReason(reason, "PLAYER_ENTRY_COUNT");
+    if (before.playerVisitCount != after.playerVisitCount)
+        AppendTriggerStateChangeReason(reason, "PLAYER_VISIT_COUNT");
+    if (before.countsAligned != after.countsAligned)
+        AppendTriggerStateChangeReason(reason, "ARRAY_ALIGNMENT");
+    return reason;
+}
+
+static bool ObserveNormalTriggerState(
+    char const *boundary, Entity &actor, eCEntity *rightSourceInstance,
+    std::uint64_t c1Generation, bool changeOnly)
+{
+    NormalPreStateFistIntervention *intervention = nullptr;
+    if (!TryResolveProvenNormalPreStateIntervention(
+            actor, rightSourceInstance, c1Generation, intervention))
+    {
+        return false;
+    }
+
+    NormalTriggerStateSnapshot snapshot = {};
+    if (!TryCaptureNormalTriggerState(*intervention, snapshot))
+        return false;
+
+    if (changeOnly && (!intervention->triggerStateInitialized
+        || !TriggerStateFingerprintChanged(
+            intervention->lastTriggerState, snapshot)))
+    {
+        intervention->lastTriggerState = snapshot;
+        intervention->triggerStateInitialized = true;
+        return false;
+    }
+
+    std::string changeReason;
+    if (changeOnly)
+    {
+        changeReason = BuildTriggerStateChangeReason(
+            intervention->lastTriggerState, snapshot);
+    }
+    if (!snapshot.countsAligned)
+        AppendTriggerStateChangeReason(
+            changeReason, "ARRAY_SIZE_MISMATCH");
+    if (snapshot.playerEntryCount > 1)
+        AppendTriggerStateChangeReason(
+            changeReason, "MULTIPLE_PLAYER_ENTRIES");
+    if (changeReason.empty())
+        changeReason = "NONE";
+
+    intervention->lastTriggerState = snapshot;
+    intervention->triggerStateInitialized = true;
+
+    Entity rightSource(rightSourceInstance);
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log == nullptr)
+        return false;
+
+    GEInt const action = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    GEFloat const stateTime = actor.Routine.GetStateTime();
+    std::fprintf(
+        log,
+        "CORE RAW55_NORMAL_TRIGGER_STATE_OBSERVATION Boundary=%s Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d ResetOnUntouch=%d VisitedSize=%d VisitedCountSize=%d PlayerResolved=%d PlayerPresent=%d PlayerEntryCount=%d PlayerVisitCount=%d CountsAligned=%d ChangeReason=%s\n",
+        boundary != nullptr ? boundary : "<null>",
+        actor.GetName().GetText(),
+        static_cast<unsigned long long>(c1Generation), action,
+        statePosition, static_cast<double>(stateTime),
+        rightSource.GetName().GetText(),
+        static_cast<GEInt>(
+            CollisionSources::GetCollisionSourceUseType(rightSource)),
+        static_cast<GEInt>(rightSource.GetCollisionGroup()),
+        snapshot.resetOnUntouch, snapshot.visitedSize,
+        snapshot.visitedCountSize, snapshot.playerResolved,
+        snapshot.playerPresent, snapshot.playerEntryCount,
+        snapshot.playerVisitCount, snapshot.countsAligned,
+        changeReason.c_str());
+    std::fflush(log);
     return true;
 }
 
@@ -301,6 +543,10 @@ void BeginNormalCallbackObservation(
     observation.motionBefore = motion.GetText() != nullptr
         ? motion.GetText() : "<unavailable>";
     observation.rightNameBefore = rightSource.GetName().GetText();
+
+    ObserveNormalTriggerState(
+        "CALLBACK_CHANGE", actor, rightInstance,
+        generation.generation, true);
 }
 
 void BeginPowerCallbackObservation(
@@ -657,6 +903,10 @@ static bool ShouldSuppressNormalNativeRearmRequest(
         actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
     if (statePosition != 0)
         return false;
+
+    ObserveNormalTriggerState(
+        "NATIVE_7TO7_SUPPRESS_PRE", actor, sourceInstance,
+        scope->c1Generation, false);
 
     intervention.nativeRearmSuppressionUsed = true;
 
@@ -1399,6 +1649,9 @@ static bool TryApplyNormalPreStateFistProbe(
         triggeredListCleared = true;
         g_NormalPreStateFistInterventions[actorInstance]
             .preStateRearmProven = true;
+        ObserveNormalTriggerState(
+            "POST_PRESTATE_REARM", actor,
+            currentSources.rightInstance, generation.generation, false);
     }
 
     FILE *const log = CollisionDiagnostics::GetLog();
@@ -1602,12 +1855,79 @@ static bool TryApplySprintFistActivationProbe(
     return true;
 }
 
+static void ObserveNormalLaterFist(
+    Entity &actor, MarkerOpcode markerOpcode,
+    MarkerProcessResult const &result)
+{
+    if (actor == None || actor.GetInstance() == nullptr)
+        return;
+
+    eCEntity *const actorInstance = actor.GetInstance();
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(actorInstance);
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    CurrentMotionMarkerResult const &decision = result.decision;
+    if (!generation.valid || generation.actorInstance != actorInstance
+        || markerOpcode != MarkerOpcode_Fist
+        || result.opcode != MarkerOpcode_Fist
+        || result.code != MarkerResult_UnsupportedMissingSource
+        || actor.Routine.GetProperty<PSRoutine::PropertyAction>()
+            != gEAction_Attack
+        || !FrameCollisionMarkers::IsAttackHit(actor, AttackFamily_Normal)
+        || !decision.foundMatchingMotion || !decision.scanValid
+        || !decision.markerPresent || !decision.hasFistMarkers
+        || decision.markerCounts[MarkerOpcode_Fist] <= 0
+        || decision.markerCounts[MarkerOpcode_Right] != 0
+        || decision.markerCounts[MarkerOpcode_Left] != 0
+        || decision.markerCounts[MarkerOpcode_Both] != 0
+        || decision.markerCounts[MarkerOpcode_Off] != 0
+        || decision.requiredSourceMask != SourceMask_None
+        || CollisionSources::ResolveFistCollisionSource(actor) != nullptr
+        || currentSources.rightInstance == nullptr
+        || result.sources.rightInstance != currentSources.rightInstance)
+    {
+        return;
+    }
+
+    Entity rightSource(currentSources.rightInstance);
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    if (rightSource == None
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist
+        || rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Attack
+        || statePosition != 1)
+    {
+        return;
+    }
+
+    NormalPreStateFistIntervention *intervention = nullptr;
+    if (!TryResolveProvenNormalPreStateIntervention(
+            actor, currentSources.rightInstance, generation.generation,
+            intervention)
+        || intervention->laterFistObserved)
+    {
+        return;
+    }
+
+    if (ObserveNormalTriggerState(
+            "LATER_FIST", actor, currentSources.rightInstance,
+            generation.generation, false))
+    {
+        intervention->laterFistObserved = true;
+    }
+}
+
 void OnMarkerProcessed(
     Entity &actor, MarkerOpcode markerOpcode,
     MarkerProcessResult const &result)
 {
     if (actor == None || actor.GetInstance() == nullptr)
         return;
+
+    ObserveNormalLaterFist(actor, markerOpcode, result);
 
     if (TryApplyNormalFistActivationProbe(actor, markerOpcode, result))
         return;
@@ -1817,6 +2137,25 @@ void EndNormalCallbackObservation(
             actor.GetInstance());
     bool const sameGeneration = generationAfter.valid
         && generationAfter.generation == observation.c1Generation;
+
+    if (sameGeneration && sameRight)
+    {
+        if (observation.statePositionBefore == 0
+            && statePositionAfter == 1)
+        {
+            ObserveNormalTriggerState(
+                "SP0_TO1_POST_CALLBACK", actor,
+                observation.rightSourceInstance,
+                observation.c1Generation, false);
+        }
+        else
+        {
+            ObserveNormalTriggerState(
+                "CALLBACK_CHANGE", actor,
+                observation.rightSourceInstance,
+                observation.c1Generation, true);
+        }
+    }
 
     FILE *const log = CollisionDiagnostics::GetLog();
     if (log == nullptr)
