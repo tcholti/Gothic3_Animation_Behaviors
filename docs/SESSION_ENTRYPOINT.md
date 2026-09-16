@@ -12,11 +12,11 @@
 
 > **RELEASE-PURITY RULE:** `Script_FrameCollisionTest` is diagnostic research only. The eventual shipped plugin remains `Script_G3AnimationBehaviors`; `PhysicalFistProbe` is not production architecture.
 
-> **MAX-CONTEXT / FAILED-CHAT RULE:** If Normal Chat ends before evidence closure, use POP-11 Recovery Lock. Oversized runtime logs use POP-07.
+> **MAX-CONTEXT / FAILED-CHAT RULE:** If Normal Chat ends before evidence closure, use POP-11 Recovery Lock. Oversized runtime logs use POP-07. Routine oversized-log preparation is drag-and-drop onto `tools\log_evidence\Prepare-Log.cmd`; preserve/commit both the untouched raw log and generated derived package.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current probe authority: `docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_OBSERVATION_PROBE.md`  
-Latest canonical evidence: through **EV-289** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`  
+Current probe authority: `docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md`  
+Latest canonical evidence: through **EV-290** in `docs/EVIDENCE_LEDGER_286_ONWARD.md`  
 Authoring semantics: `docs/ANIMATION_RULES.md`  
 Evidence routing: `docs/EVIDENCE_INDEX.md`
 
@@ -32,138 +32,113 @@ raw55 Normal SP0 physical opening CLOSED/PASS — EV-286
 raw55 Normal SP0 contact rearm / early first damage CLOSED/PASS — EV-287
 raw55 Normal native 7->7 setter as second-rearm source REJECTED — EV-288
 raw55 Normal native trigger-bookkeeping reset before marker2 CONFIRMED — EV-289
-
-Normal native trigger-clear observation probe:
-    implementation 6ef27121c5fcd1d4993b914e0f6a9a9123a2b0b7
-    required base 1e411056a586b71217a1f5941774b44e16e6588e
-    independent Normal Chat source review PASS
-    local build/deploy/runtime PENDING
+raw55 Normal exact native public ALL clear reset operation IDENTIFIED — EV-290
 ```
 
-EV-289 establishes:
+## EV-290 current factual model
+
+Representative Normal C1=3:
 
 ```text
-marker 1 at SP0
--> exact RIGHT 5 -> 7 + ClearTriggeredList
--> trigger visited state empty
+marker1 at SP0
+-> exact RIGHT raw55 5 -> 7
+-> existing marker-owned ClearTriggeredList()
+-> first damage
+-> PC_Hero becomes visited/count1
 
-hit 1
--> PC_Hero enters exact RIGHT visited state / count1
+later native transition at SP0
+-> existing EV-288 exact RIGHT 7 -> 7 setter request suppressed
+-> PC_Hero still visited immediately before native trigger clear
+-> Gothic calls exact current RIGHT eCTrigger_PS::ClearTriggeredList() ALL
+   caller = Script_Game.dll + 0x386C6
+   PRE  = player present/count1
+   POST = visited arrays empty/player absent
+-> original _AI_Attack completes SP0 -> 1
+-> RIGHT remains group7
 
-immediately before native 7 -> 7 suppression
--> PC_Hero still visited
--> ResetOnUntouch=0
+marker2 later at SP1
+-> observational only
+-> player already absent due to native clear
 
-native exact RIGHT 7 -> 7 setter suppressed
--> original _AI_Attack still advances SP0 -> 1
--> exact RIGHT visited state becomes empty during that callback
-
-marker 2 later
--> PC_Hero already absent
--> no Normal marker-2 intervention
-
-hit 2
--> PC_Hero enters visited state again
+second damage
+-> player inserted again
 
 native 7 -> 5 cleanup
 clean C1 finalization
 ```
 
-Therefore Gothic supplies an implicit trigger-bookkeeping reset before marker 2. The exact native operation remains unknown. Do not attribute the reset to marker 2, the suppressed collision-group setter, `ResetOnUntouch`, or StatePosition itself.
+Therefore the EV-289 hidden reset operation is factually identified as the public no-argument `eCTrigger_PS::ClearTriggeredList()` call from `Script_Game.dll+0x386C6`.
 
-Canonical EV-289 artifact:
+Do **not** yet claim that this clear is required for the second hit. EV-290 identifies the operation; causal necessity is the current question.
 
-`research/raw/2026.09.16_troll_raw55_normal_trigger_state_observation.log`
+Canonical EV-290 artifact:
+
+`research/raw/2026.09.16_troll_raw55_normal_native_trigger_clear_observation.log`
 
 SHA256:
 
-`978817C03EE01EA3098D265CFE85544F4D3DE06019279AD04C337C4ADBE00D08`
+`E699B807059189289D4CAB6B243F966F49947C9083656EE693B8FDD21676693F`
 
-## Current implementation under local validation
+Upload commit:
 
-Source-reviewed implementation:
+`8b483b48636deeec4fa6863533da4a7db4fe2e15`
+
+Derived POP-07 package:
+
+`research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/`
+
+Diagnostic implementation:
 
 `6ef27121c5fcd1d4993b914e0f6a9a9123a2b0b7`
 
-Exactly three diagnostics-source files changed from the frozen base:
+Local build/live DLL SHA256:
+
+`A2E3C1B463AF804B4ABE9DA83F261009B3780995DAEEB1CB4E4D58A44EDFCB77`
+
+## Current frozen question
+
+Authority:
+
+`docs/COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md`
+
+Suppress only the exact post-hit1 native ALL clear in the proven Normal C1:
 
 ```text
-EngineBridge.cpp       +47 / -0
-PhysicalFistProbe.cpp  +180 / -0
-PhysicalFistProbe.h    +17 / -0
+eCTrigger_PS::ClearTriggeredList()
+Engine + 0x7DDA0
+CallerModule = Script_Game.dll
+CallerRVA    = 0x386C6
 ```
 
-The probe adds diagnostics-only hooks for:
+Required factual gating includes exact Normal actor/C1/current RIGHT PhysicalFist/raw55 identity, group7, proven frame-1 rearm, existing EV-288 native `7 -> 7` suppression already used, StatePosition 0, player factually present exactly once in aligned visited/count arrays, and one-shot use for the C1.
+
+Preserve:
 
 ```text
-eCTrigger_PS::ClearTriggeredList()          Engine + 0x7DDA0
-eCTrigger_PS::ClearTriggeredList(eCEntity*) Engine + 0x7DDF0
+marker1 clear unchanged and executed normally
+entity-specific clear unchanged
+all unrelated ALL-clear callers unchanged
+existing native 7 -> 7 setter suppression
+original _AI_Attack callback
+marker2 observational only
+native final cleanup
 ```
 
-Both hooks use explicit `.ThisCall()` transport, capture caller identity, record PRE state, execute the original exactly once, then record POST state. `EngineBridge` owns hook transport only. `PhysicalFistProbe` owns exact Normal actor/C1/current-RIGHT/PhysicalFist eligibility and all interpretation/logging.
+If suppression keeps the player visited and makes hit2 disappear while hit1/progression/cleanup remain healthy, the native clear is causally required. The next one-variable test may then add the authored marker2 clear as replacement. If hit2 persists, another trigger/contact mechanism remains.
 
-The marker-1 clear remains a useful control: the intervention identity exists before that clear, while `preStateRearmProven` is set only after it returns. The hook can therefore record the control call with factual `PreStateRearmProven=0` without broadening eligibility.
-
-This remains observation-only:
+## Still paused
 
 ```text
-NO clear suppression
-NO new clear
-NO change to marker-1 clear
-NO change to native 7->7 suppression
-NO marker-2 rearm
-NO collision-group mutation
-NO StatePosition write
-NO direct damage
-NO cleanup/repair change
-NO polling
-NO production-module change
-```
-
-## Immediate next step
-
-User + Normal Chat perform local validation only:
-
-```text
-GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
--> confirm Changes empty
--> build Script_FrameCollisionTest Release only
--> STOP on build result
--> POP-03 deploy/hash/twin verification if build passes
--> deploy only to E:\SteamLibrary\steamapps\common\Gothic 3\scripts
--> POP-04 startup banner
--> same Normal two-FIST Troll runtime
--> preserve log from E:\SteamLibrary\steamapps\common\Gothic 3
--> POP-07/POP-06 evidence closure
-```
-
-Preferred runtime artifact:
-
-`research/raw/2026.09.16_troll_raw55_normal_trigger_clear_observation.log`
-
-No EV-290 exists yet.
-
-## Decisive interpretation
-
-```text
-later public clear after hit 1
-+ PRE player present
-+ POST player absent/reset
-    => factual public reset operation/caller identified
-
-ENTITY clear with PC_Hero
-+ player removed
-    => factual player-specific reset operation identified
-
-known marker-1 clear observed
-+ no later public clear
-+ EV-289 reset still occurs
-    => public clear APIs ruled out; inspect lower/private trigger internals
+NO permanent PhysicalFistCollision
+NO promotion/copy of PhysicalFistProbe scaffolding
+NO Normal marker-2 rearm until native-clear necessity is closed
+NO Power/Sprint repeat-FIST intervention yet
+NO New Balance final regression before permanent collision structure
+NO Raise / speed-control work before collision module closes
+NO AttackContinuationProtection work
 ```
 
 ## Deployment authority
-
-Use `docs/LOCAL_WORKSTATION_PATHS.md`.
 
 ```text
 live collision DLLs:
@@ -173,18 +148,13 @@ runtime diagnostic logs:
 E:\SteamLibrary\steamapps\common\Gothic 3
 ```
 
-Never deploy `Script_FrameCollisionTest.dll` or `Script_FrameCollisionBehaviorTest.dll` to the game root.
-
-## Power observation
-
-The User reports that prepared Power two-swing animations visibly damage on marker 1 but do not rearm for marker 2. This remains behavioral guidance, not a separate causal EV.
+Never deploy a collision DLL to the game root.
 
 ## Remaining collision sequence
 
 ```text
-Normal exact native trigger-clear observation
--> if a public clear is identified, isolate/causally test it only if needed
--> establish authored Normal marker-2 ownership
+Normal exact native clear necessity probe
+-> if required, authored Normal marker-2 replacement/rearm proof
 -> Power repeated-FIST rearm
 -> Sprint repeated-FIST rearm preserving same-C1 Action9 -> Action2 continuity
 -> permanent raw55 architecture / implementation
@@ -192,18 +162,4 @@ Normal exact native trigger-clear observation
 -> New Balance 0.7 bundle regression exactly as distributed, AttackCollision included
 -> collision module complete
 -> Raise / speed-control work
-```
-
-New Balance 0.7 is not a current blocker. Source-level preflight is EV-284; corrected AttackCollision coexistence interpretation is EV-285, with prior combined runtime passes EV-035/EV-150/EV-242.
-
-## Still paused
-
-```text
-NO permanent PhysicalFistCollision
-NO promotion/copy of PhysicalFistProbe scaffolding
-NO Normal marker-2 rearm yet
-NO Power/Sprint repeat-FIST intervention yet
-NO New Balance final regression before permanent collision structure
-NO Raise / speed-control work before collision module closes
-NO AttackContinuationProtection work
 ```
