@@ -86,6 +86,7 @@ struct SprintEarlySuppressionProof
     gEUseType rightUseType;
     bool earlySuppressionProven;
     bool activationUsed;
+    bool repeatFistRearmUsed;
 };
 
 static thread_local QuickCallbackObservation *g_pCurrentQuickCallbackScope =
@@ -990,6 +991,7 @@ static bool ShouldSuppressSprintCollisionGroupRequest(
     }
 
     bool activationUsed = false;
+    bool repeatFistRearmUsed = false;
     auto const existingProof =
         g_SprintEarlySuppressionProofs.find(scope->actorInstance);
     if (existingProof != g_SprintEarlySuppressionProofs.end()
@@ -997,6 +999,8 @@ static bool ShouldSuppressSprintCollisionGroupRequest(
         && existingProof->second.rightSourceInstance == sourceInstance)
     {
         activationUsed = existingProof->second.activationUsed;
+        repeatFistRearmUsed =
+            existingProof->second.repeatFistRearmUsed;
     }
 
     SprintEarlySuppressionProof proof = {};
@@ -1006,6 +1010,7 @@ static bool ShouldSuppressSprintCollisionGroupRequest(
     proof.rightUseType = gEUseType_PhysicalFist;
     proof.earlySuppressionProven = true;
     proof.activationUsed = activationUsed;
+    proof.repeatFistRearmUsed = repeatFistRearmUsed;
     g_SprintEarlySuppressionProofs[scope->actorInstance] = proof;
 
     FILE *const log = CollisionDiagnostics::GetLog();
@@ -2285,6 +2290,175 @@ static bool TryApplySprintFistActivationProbe(
     return true;
 }
 
+static bool TryApplySprintOriginRepeatFistRearmProbe(
+    Entity &actor, MarkerOpcode markerOpcode,
+    MarkerProcessResult const &result)
+{
+    if (actor == None || actor.GetInstance() == nullptr)
+        return false;
+
+    eCEntity *const actorInstance = actor.GetInstance();
+    auto proofIt = g_SprintEarlySuppressionProofs.find(actorInstance);
+    if (proofIt == g_SprintEarlySuppressionProofs.end())
+        return false;
+
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(actorInstance);
+    EquippedCollisionSources const currentSources =
+        CollisionSources::GetEquippedCollisionSources(actor);
+    SprintEarlySuppressionProof &proof = proofIt->second;
+    CurrentMotionMarkerResult const &decision = result.decision;
+    if (!generation.valid || generation.actorInstance != actorInstance
+        || generation.generation != proof.c1Generation
+        || proof.actorInstance != actorInstance
+        || currentSources.rightInstance != proof.rightSourceInstance
+        || !proof.earlySuppressionProven || !proof.activationUsed
+        || proof.repeatFistRearmUsed
+        || proof.rightUseType != gEUseType_PhysicalFist
+        || markerOpcode != MarkerOpcode_Fist
+        || result.opcode != MarkerOpcode_Fist
+        || result.code != MarkerResult_UnsupportedMissingSource
+        || actor.Routine.GetProperty<PSRoutine::PropertyAction>()
+            != gEAction_PowerAttack
+        || !FrameCollisionMarkers::IsAttackHit(actor, AttackFamily_Power)
+        || !decision.foundMatchingMotion || !decision.scanValid
+        || !decision.markerPresent || !decision.hasFistMarkers
+        || decision.markerCounts[MarkerOpcode_Fist] != 2
+        || decision.markerCounts[MarkerOpcode_Right] != 0
+        || decision.markerCounts[MarkerOpcode_Left] != 0
+        || decision.markerCounts[MarkerOpcode_Both] != 0
+        || decision.markerCounts[MarkerOpcode_Off] != 0
+        || decision.requiredSourceMask != SourceMask_None
+        || CollisionSources::ResolveFistCollisionSource(actor) != nullptr
+        || result.sources.rightInstance != proof.rightSourceInstance)
+    {
+        return false;
+    }
+
+    Entity rightSource(proof.rightSourceInstance);
+    GEInt const statePosition = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyStatePosition>());
+    if (rightSource == None
+        || CollisionSources::GetCollisionSourceUseType(rightSource)
+            != gEUseType_PhysicalFist
+        || rightSource.GetCollisionGroup()
+            != eECollisionGroup_Item_Attack
+        || statePosition != 1)
+    {
+        return false;
+    }
+
+    bool matchingPowerProof = false;
+    auto const powerProofIt =
+        g_PowerEarlySuppressionProofs.find(actorInstance);
+    if (powerProofIt != g_PowerEarlySuppressionProofs.end())
+    {
+        PowerEarlySuppressionProof const &powerProof =
+            powerProofIt->second;
+        matchingPowerProof = powerProof.actorInstance == actorInstance
+            && powerProof.rightSourceInstance == proof.rightSourceInstance
+            && powerProof.c1Generation == proof.c1Generation
+            && powerProof.earlySuppressionProven;
+    }
+
+    if (matchingPowerProof)
+    {
+        FILE *const log = CollisionDiagnostics::GetLog();
+        if (log != nullptr)
+        {
+            std::fprintf(
+                log,
+                "CORE RAW55_SPRINT_ORIGIN_REPEAT_FIST_REARM_CANDIDATE Actor=%s C1=%llu CurrentAction=%d CurrentFamily=POWER StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d DecisionFistCount=%d SprintOriginProof=1 FirstSprintActivationUsed=1 SameC1=1 SameRight=1 MatchingPowerProof=1 ClearTriggeredList=0 REPEAT_FIST_REARM=0\n",
+                actor.GetName().GetText(),
+                static_cast<unsigned long long>(proof.c1Generation),
+                static_cast<GEInt>(gEAction_PowerAttack), statePosition,
+                static_cast<double>(actor.Routine.GetStateTime()),
+                rightSource.GetName().GetText(),
+                static_cast<GEInt>(
+                    CollisionSources::GetCollisionSourceUseType(
+                        rightSource)),
+                static_cast<GEInt>(rightSource.GetCollisionGroup()),
+                decision.markerCounts[MarkerOpcode_Fist]);
+            std::fflush(log);
+        }
+        return true;
+    }
+
+    NormalTriggerStateSnapshot before = {};
+    bool const preStateCaptured = TryCaptureTriggerState(
+        proof.rightSourceInstance, before);
+    bool const preClearContactProven = preStateCaptured
+        && before.countsAligned == 1
+        && before.playerResolved == 1
+        && before.playerPresent == 1
+        && before.playerEntryCount == 1
+        && before.playerVisitCount >= 1;
+    if (!preClearContactProven)
+    {
+        FILE *const log = CollisionDiagnostics::GetLog();
+        if (log != nullptr)
+        {
+            std::fprintf(
+                log,
+                "CORE RAW55_SPRINT_ORIGIN_REPEAT_FIST_REARM_CANDIDATE Actor=%s C1=%llu CurrentAction=%d CurrentFamily=POWER StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d DecisionFistCount=%d SprintOriginProof=1 FirstSprintActivationUsed=1 SameC1=1 SameRight=1 MatchingPowerProof=0 PreStateCaptured=%d PlayerResolvedBefore=%d PlayerPresentBefore=%d PlayerEntryCountBefore=%d PlayerVisitCountBefore=%d CountsAlignedBefore=%d ClearTriggeredList=0 REPEAT_FIST_REARM=0\n",
+                actor.GetName().GetText(),
+                static_cast<unsigned long long>(proof.c1Generation),
+                static_cast<GEInt>(gEAction_PowerAttack), statePosition,
+                static_cast<double>(actor.Routine.GetStateTime()),
+                rightSource.GetName().GetText(),
+                static_cast<GEInt>(
+                    CollisionSources::GetCollisionSourceUseType(
+                        rightSource)),
+                static_cast<GEInt>(rightSource.GetCollisionGroup()),
+                decision.markerCounts[MarkerOpcode_Fist],
+                preStateCaptured ? 1 : 0, before.playerResolved,
+                before.playerPresent, before.playerEntryCount,
+                before.playerVisitCount, before.countsAligned);
+            std::fflush(log);
+        }
+        return true;
+    }
+
+    gEAction const action =
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+    GEFloat const stateTime = actor.Routine.GetStateTime();
+    gEUseType const rightUseType =
+        CollisionSources::GetCollisionSourceUseType(rightSource);
+    eECollisionGroup const rightGroup = rightSource.GetCollisionGroup();
+
+    proof.repeatFistRearmUsed = true;
+    rightSource.TouchDamage.ClearTriggeredList();
+
+    NormalTriggerStateSnapshot after = {};
+    after.playerVisitCount = -1;
+    bool const postStateCaptured = TryCaptureTriggerState(
+        proof.rightSourceInstance, after);
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        std::fprintf(
+            log,
+            "CORE RAW55_SPRINT_ORIGIN_REPEAT_FIST_REARM_PROBE Actor=%s C1=%llu CurrentAction=%d CurrentFamily=POWER StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d DecisionFistCount=%d SprintOriginProof=1 FirstSprintActivationUsed=1 SameC1=1 SameRight=1 MatchingPowerProof=0 PlayerPresentBefore=%d PlayerEntryCountBefore=%d PlayerVisitCountBefore=%d CountsAlignedBefore=%d PostStateCaptured=%d PlayerPresentAfter=%d PlayerEntryCountAfter=%d PlayerVisitCountAfter=%d CountsAlignedAfter=%d ClearTriggeredList=1 REPEAT_FIST_REARM=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(proof.c1Generation),
+            static_cast<GEInt>(action), statePosition,
+            static_cast<double>(stateTime),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(rightUseType),
+            static_cast<GEInt>(rightGroup),
+            decision.markerCounts[MarkerOpcode_Fist],
+            before.playerPresent, before.playerEntryCount,
+            before.playerVisitCount, before.countsAligned,
+            postStateCaptured ? 1 : 0,
+            after.playerPresent, after.playerEntryCount,
+            after.playerVisitCount, after.countsAligned);
+        std::fflush(log);
+    }
+
+    return true;
+}
+
 static void TryApplyNormalMarker2ReplacementClearProbe(
     Entity &actor, MarkerOpcode markerOpcode,
     MarkerProcessResult const &result)
@@ -2413,14 +2587,20 @@ void OnMarkerProcessed(
     if (TryApplyPowerFistActivationProbe(actor, markerOpcode, result))
         return;
 
-    if (TryApplyPowerRepeatFistRearmProbe(
+    if (TryApplySprintFistActivationProbe(actor, markerOpcode, result))
+        return;
+
+    if (TryApplySprintOriginRepeatFistRearmProbe(
             actor, markerOpcode, result))
     {
         return;
     }
 
-    if (TryApplySprintFistActivationProbe(actor, markerOpcode, result))
+    if (TryApplyPowerRepeatFistRearmProbe(
+            actor, markerOpcode, result))
+    {
         return;
+    }
 
     if (TryApplyPreStateFistProbe(actor, markerOpcode, result))
         return;
