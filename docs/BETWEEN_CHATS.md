@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-17
 
-## Current Bridge — EV-294 CLOSED; PERMANENT RAW55 IMPLEMENTED + SOURCE REVIEW PASS
+## Current Bridge — EV-294 CLOSED; PERMANENT RAW55 BUILT + BEHAVIOR-ONLY SMOKE PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -108,35 +108,84 @@ public ALL ClearTriggeredList hook promoted as permanent behavior transport
 
 No material source contradiction found.
 
-## Immediate next responsibility — LOCAL BUILDS ONLY
+## Local validation so far — PASS
+
+Release builds:
+
+```text
+Script_FrameCollisionBehaviorTest  PASS
+Script_FrameCollisionTest          PASS
+```
+
+Behavior-only deployment:
+
+```text
+only live collision DLL: Script_FrameCollisionBehaviorTest.dll
+length: 418304 bytes
+built/live SHA256:
+0EB935FCBFD5B7A2D2D56683971641EA42B9F7FF074D5B7F2EC2FD353594833A
+```
+
+The attempted live process-module query returned no `Script_FrameCollision*` module. Do not treat that as a failure criterion; the behavior product is diagnostics-free and prior canonical behavior-only gates use isolated deployment + runtime behavior/load/exit rather than persistent module enumeration.
+
+User then performed a stronger functional smoke with the behavior-only DLL:
+
+```text
+Troll spawned and exercised:
+- attacks could damage twice, behavior not observed before permanent raw55 support
+
+Golem spawned and attacked with:
+- 2H
+- Dual 1H/1H
+- Staff
+Established authored marker behavior appeared to work normally.
+
+Hack attack exercised and appeared to work normally.
+```
+
+Therefore the behavior-only release-purity/functional smoke is **PASS** for this bounded scope.
+
+This functional result does not replace internal diagnostic proof of C1/source/family transitions.
+
+## Immediate next responsibility — DIAGNOSTIC DEPLOY / STARTUP ONLY
 
 Do not launch Work.
 
-1. GitHub Desktop: **Fetch origin -> Pull origin -> Fetch origin**.
-2. Confirm branch `docs/collision-source-evidence` is current and `Changes = 0`.
-3. Build diagnostics-free permanent behavior target:
-
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
-```
-
-4. If PASS, build diagnostic twin:
-
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionTest
-```
-
-5. STOP on the two build results.
-
-## After both builds PASS
+Remove `Script_FrameCollisionBehaviorTest.dll` from the live scripts directory and deploy the freshly built reviewed:
 
 ```text
-behavior-only load smoke
--> diagnostic deploy/hash/startup
--> focused permanent raw55 acceptance
+build/prototypes/Script_FrameCollisionTest/Release/Script_FrameCollisionTest.dll
 ```
 
-Focused acceptance scope:
+Do **not** restore an older held diagnostic DLL.
+
+Verify:
+
+```text
+exactly one live Script_FrameCollision* DLL
+name = Script_FrameCollisionTest.dll
+built/live SHA256 match
+```
+
+Then launch Gothic 3 only far enough to load scripts and exit normally.
+
+Verify startup log shows:
+
+```text
+diagnostic build loaded
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+unique Hack callback identity
+Installing behavior hooks...
+Hooks installed.
+clean unload
+```
+
+STOP on startup result.
+
+## After diagnostic startup PASS
+
+Run the focused permanent raw55 acceptance only:
 
 ```text
 Quick first/repeat
