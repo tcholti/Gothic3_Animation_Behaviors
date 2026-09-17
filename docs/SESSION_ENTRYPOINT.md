@@ -31,6 +31,7 @@ PERMANENT RAW55 ARCHITECTURE FROZEN
 PERMANENT RAW55 IMPLEMENTATION PUBLISHED + INDEPENDENT SOURCE REVIEW PASS
 BOTH PERMANENT LOCAL TARGETS BUILD PASS
 BEHAVIOR-ONLY DEPLOYMENT + FUNCTIONAL SMOKE PASS
+DIAGNOSTIC DEPLOYMENT + STARTUP/LOAD/UNLOAD PASS
 ```
 
 Permanent implementation commit:
@@ -39,45 +40,11 @@ Permanent implementation commit:
 21853392f146febbc2d1aad4e501baa741fd65b2
 ```
 
-Frozen implementation base:
-
-```text
-71a5ae377c4043677c0a8edd86801d2db697fac0
-```
-
 Independent Normal Chat source review: **PASS**.
-
-Review confirms:
-
-```text
-exactly one implementation commit over frozen base
-expected source scope only
-PhysicalFistCollision.cpp/.h added as permanent behavior source
-PhysicalFistProbe.cpp/.h deleted
-probe removed from CMake / executable architecture
-raw55 family-specific proof maps replaced by one actor/C1 execution record
-origin family immutable; Sprint Action9 -> Action2 continuation preserved
-premature exact RIGHT raw55 5 -> 7 suppression is selective and callback-scoped
-first-FIST semantics match frozen Quick / Normal / Power / Sprint rules
-second FIST is clear-only with no second collision-group request
-Normal hidden ALL-clear suppression is exact trigger + Script_Game.dll+0x386C6 + one-shot
-no PC_Hero / visited-array / ResetOnUntouch production policy
-ActivateAttackSource and RearmTriggeredContacts split generic mutation primitives
-existing ActivateOrRearm equipped semantics retained
-FrameCollisionMarkers changes only expose existing family/result helpers
-original native AI callbacks remain active
-raw8/equipped marker paths remain established path
-Gothic native damage/target/contact and final 7 -> 5 cleanup remain native
-CollisionLifecycleGuard/C1-R1 unchanged
-entity-specific ClearTriggeredList diagnostic hook removed
-no Action / StatePosition / SPU writes, direct damage or custom cleanup
-```
-
-No material source contradiction found.
 
 ## Local build / behavior-only smoke — PASS
 
-Both Release targets built successfully from the reviewed permanent candidate:
+Both Release targets built successfully:
 
 ```text
 Script_FrameCollisionBehaviorTest  PASS
@@ -93,13 +60,11 @@ built/live SHA256:
 0EB935FCBFD5B7A2D2D56683971641EA42B9F7FF074D5B7F2EC2FD353594833A
 ```
 
-The process-module enumeration attempted during the smoke returned no `Script_FrameCollision*` module and is **not** used as a pass/fail criterion; prior canonical Gate-3 behavior-only validation likewise establishes functional load/exit by isolated deployment + runtime behavior, not persistent module enumeration.
-
 User functional smoke under the behavior-only DLL:
 
 ```text
 spawned Troll
-observed Troll attacks capable of damaging twice, behavior not seen before permanent raw55 support
+observed attacks capable of damaging twice, behavior not previously available before permanent raw55 support
 
 spawned Golem
 attacked with 2H, Dual 1H/1H and Staff
@@ -109,32 +74,56 @@ exercised Hack attack
 observed Hack behavior still functioning
 ```
 
-This is functional/release-purity evidence only. It does not independently prove internal family/C1/source transitions; the diagnostic twin owns that focused acceptance.
+This is functional/release-purity evidence only; internal family/C1/source proof belongs to the diagnostic twin.
 
-## Immediate next responsibility — DIAGNOSTIC DEPLOY / STARTUP GATE
+## Diagnostic deployment / startup — PASS
+
+Reviewed diagnostic twin deployed alone:
+
+```text
+only live collision DLL: Script_FrameCollisionTest.dll
+length: 457728 bytes
+built/live SHA256:
+4A402FD2300C95344657719895BCEF49F07AD417AAFCF1287F5421F641311FCA
+```
+
+Startup/load/unload verified:
+
+```text
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+HACK_CALLBACK_IDENTITY ... ExactlyOne=1 ... Name=OnAI_HackAttack
+Installing behavior hooks...
+Hooks installed.
+Script_FrameCollisionTest unloading cleanly.
+```
+
+## Immediate next responsibility — FOCUSED PERMANENT RAW55 ACCEPTANCE
 
 Do not launch Work.
 
-Replace the behavior-only DLL with the freshly built reviewed `Script_FrameCollisionTest.dll`, verify it is the only live collision DLL, verify built/live SHA256 identity, then launch only far enough to load scripts and exit normally.
-
-Verify startup log contains the normal diagnostic load/profile, Hack callback identity, hook installation and clean unload.
-
-Only after diagnostic startup PASS proceed to focused permanent raw55 runtime acceptance.
-
-## Focused permanent acceptance
-
-The first diagnostic production acceptance must cover only the frozen permanent candidate before broad regression:
+Run one controlled diagnostic Troll session using the marked two-FIST fixture. Exercise enough attacks to capture factual examples of:
 
 ```text
 Quick first/repeated FIST
 Normal SP0 first FIST + marker2
 true Power first/repeated FIST
 Sprint-origin Action9 -> Action2 first/repeated FIST
-unmarked raw55 native fallback
-raw8 FIST sentinel
-equipped marker sentinel
 native raw55 7 -> 5 cleanup / outstanding-zero lifecycle
 ```
+
+Visual family identification is not authoritative. Use runtime action/family/C1 records.
+
+Also include, if practical in the same session or immediately after:
+
+```text
+one unmarked Troll/native raw55 fallback sample
+one raw8 FIST sentinel
+one equipped-marker sentinel
+```
+
+The first analysis target is the permanent raw55 Troll route. Do not broaden into full standalone regression until it passes.
 
 ## Still paused
 
