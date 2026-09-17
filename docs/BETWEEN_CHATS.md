@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-17
 
-## Current Bridge — EV-294 CLOSED; PERMANENT RAW55 BUILT + BEHAVIOR-ONLY SMOKE PASS
+## Current Bridge — EV-294 CLOSED; PERMANENT RAW55 DIAGNOSTIC STARTUP PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -22,93 +22,9 @@ Permanent implementation:
 21853392f146febbc2d1aad4e501baa741fd65b2
 ```
 
-Frozen base:
-
-```text
-71a5ae377c4043677c0a8edd86801d2db697fac0
-```
-
 Normal Chat independent source review: **PASS**.
 
-## Review result
-
-The implementation is exactly one commit over the frozen base and stays inside the authorized source scope:
-
-```text
-ADD
-PhysicalFistCollision.cpp/.h
-
-MODIFY
-CMakeLists.txt
-CollisionSourceOperations.cpp/.h
-EngineBridge.cpp
-FrameCollisionMarkers.cpp/.h
-
-DELETE
-PhysicalFistProbe.cpp/.h
-```
-
-No conditional `CollisionSources.*` or `CollisionDiagnostics.*` broadening was required.
-
-Review confirms the permanent design rather than probe promotion:
-
-```text
-one actor/C1 raw55 execution record
-exact RIGHT PhysicalFist/raw55 FIST-only eligibility
-immutable origin family
-Sprint origin survives same-C1/same-RIGHT Action9 -> Action2
-feature-local authored FIST count + duplicate budget
-stack-scoped native callback transport
-selective premature exact RIGHT 5 -> 7 suppression only before first accepted FIST
-Quick first FIST = 5 -> 7 + clear
-Normal SP0 first FIST = 5 -> 7 + clear
-Normal SP1 first FIST after suppression = 5 -> 7 only
-Power SP1 first FIST after suppression = 5 -> 7 only
-Sprint Action9/SP1 first FIST after suppression = 5 -> 7 only
-second FIST = clear only, no second group request
-Normal hidden native ALL clear suppression = exact trigger + Script_Game.dll+0x386C6 + one-shot
-Gothic native 7 -> 5 cleanup remains primary
-```
-
-Production exclusions are preserved:
-
-```text
-NO whole-callback suppression
-NO PC_Hero / target-specific eligibility
-NO visited-array or ResetOnUntouch policy
-NO Action / StatePosition / SPU writes
-NO direct/custom damage
-NO raw55 LEFT/BOTH/OFF
-NO custom cleanup
-NO polling/watchdog
-```
-
-Stable coexistence review:
-
-```text
-Raw8FistCollision behavior unchanged
-FrameCollisionMarkers equipped/raw8 processing body unchanged
-only existing family resolver + marker-result constructor were exposed
-ActivateOrRearm equipped semantics retained through separated primitives
-Hack routing unchanged
-CollisionLifecycleGuard / C1-R1 unchanged
-StartEffect gives raw55 first refusal only for exact owned FIST; otherwise existing marker path runs
-Raw8 timing-permission call sees raw55 UseType55 and naturally ignores it
-```
-
-Probe removal is complete from executable architecture:
-
-```text
-PhysicalFistProbe source deleted
-CMake probe entries removed
-EngineBridge probe calls removed
-entity-specific ClearTriggeredList hook removed
-public ALL ClearTriggeredList hook promoted as permanent behavior transport
-```
-
-No material source contradiction found.
-
-## Local validation so far — PASS
+## Local validation status
 
 Release builds:
 
@@ -117,94 +33,83 @@ Script_FrameCollisionBehaviorTest  PASS
 Script_FrameCollisionTest          PASS
 ```
 
-Behavior-only deployment:
+Behavior-only deployment and functional smoke: **PASS**.
 
 ```text
-only live collision DLL: Script_FrameCollisionBehaviorTest.dll
-length: 418304 bytes
+only live behavior DLL during smoke:
+Script_FrameCollisionBehaviorTest.dll
+length 418304
+SHA256 0EB935FCBFD5B7A2D2D56683971641EA42B9F7FF074D5B7F2EC2FD353594833A
+
+User runtime:
+- Troll attacks visibly capable of two damage events
+- 2H marker behavior exercised against Golem
+- Dual 1H/1H marker behavior exercised against Golem
+- Staff marker behavior exercised against Golem
+- Hack attack exercised
+- no obvious regression reported
+```
+
+Diagnostic twin deployment: **PASS**.
+
+```text
+only live diagnostic DLL:
+Script_FrameCollisionTest.dll
+length 457728
 built/live SHA256:
-0EB935FCBFD5B7A2D2D56683971641EA42B9F7FF074D5B7F2EC2FD353594833A
+4A402FD2300C95344657719895BCEF49F07AD417AAFCF1287F5421F641311FCA
 ```
 
-The attempted live process-module query returned no `Script_FrameCollision*` module. Do not treat that as a failure criterion; the behavior product is diagnostics-free and prior canonical behavior-only gates use isolated deployment + runtime behavior/load/exit rather than persistent module enumeration.
-
-User then performed a stronger functional smoke with the behavior-only DLL:
+Diagnostic startup/load/unload: **PASS**.
 
 ```text
-Troll spawned and exercised:
-- attacks could damage twice, behavior not observed before permanent raw55 support
-
-Golem spawned and attacked with:
-- 2H
-- Dual 1H/1H
-- Staff
-Established authored marker behavior appeared to work normally.
-
-Hack attack exercised and appeared to work normally.
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore loaded
+HACK_CALLBACK_IDENTITY ExactlyOne=1 / OnAI_HackAttack
+Installing behavior hooks...
+Hooks installed.
+Script_FrameCollisionTest unloading cleanly.
 ```
 
-Therefore the behavior-only release-purity/functional smoke is **PASS** for this bounded scope.
-
-This functional result does not replace internal diagnostic proof of C1/source/family transitions.
-
-## Immediate next responsibility — DIAGNOSTIC DEPLOY / STARTUP ONLY
+## Immediate next responsibility — FOCUSED PERMANENT RAW55 ACCEPTANCE
 
 Do not launch Work.
 
-Remove `Script_FrameCollisionBehaviorTest.dll` from the live scripts directory and deploy the freshly built reviewed:
+Run one controlled Troll session using the marked two-FIST fixture. Exercise enough attacks to obtain factual diagnostic routes for:
 
 ```text
-build/prototypes/Script_FrameCollisionTest/Release/Script_FrameCollisionTest.dll
+Quick first/repeated FIST
+Normal SP0 first FIST + marker2
+true Power first/repeated FIST
+Sprint-origin Action9 -> Action2 first/repeated FIST
+native raw55 7 -> 5 cleanup
+C1 outstanding zero / clean finalization
 ```
 
-Do **not** restore an older held diagnostic DLL.
+Visual family identity is secondary; runtime Action/Family/C1/source records are authoritative.
 
-Verify:
+The permanent acceptance should prove the production records, not reproduce the old probe vocabulary. Expected permanent evidence includes:
 
 ```text
-exactly one live Script_FrameCollision* DLL
-name = Script_FrameCollisionTest.dll
-built/live SHA256 match
+CORE RAW55_PHYSICAL_FIST_NATIVE_OPEN_SUPPRESSED
+CORE RAW55_PHYSICAL_FIST_MARKER
+CORE RAW55_PHYSICAL_FIST_NORMAL_NATIVE_CLEAR_SUPPRESSED where applicable
+ordinary CORE COLLISION_GROUP / C1 OFFENSE REQUEST / cleanup
+CORE ONDAMAGE in the diagnostic twin
+clean C1 finalization
 ```
 
-Then launch Gothic 3 only far enough to load scripts and exit normally.
-
-Verify startup log shows:
+After the marked Troll route is established, include bounded sentinels for:
 
 ```text
-diagnostic build loaded
-DiagnosticProfile: CORE
-DeepDiagnostics: DISABLED
-unique Hack callback identity
-Installing behavior hooks...
-Hooks installed.
-clean unload
-```
-
-STOP on startup result.
-
-## After diagnostic startup PASS
-
-Run the focused permanent raw55 acceptance only:
-
-```text
-Quick first/repeat
-Normal SP0 first + marker2
-true Power first/repeat
-Sprint-origin Action9 -> Action2 first/repeat
 unmarked raw55 native fallback
-raw8 FIST sentinel
-equipped-marker sentinel
-native raw55 7 -> 5 / outstanding-zero lifecycle
+raw8 FIST
+one equipped authored-marker route
 ```
 
-Only after focused permanent acceptance closes:
-
-```text
-standalone collision regression
--> New Balance 0.7 exact distributed bundle regression with AttackCollision included
--> mature collision migration into Script_G3AnimationBehaviors
-```
+Do not begin broad standalone collision regression until this focused permanent acceptance passes.
 
 ## Still paused
 
