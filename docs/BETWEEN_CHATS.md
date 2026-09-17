@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-17
 
-## Current Bridge — EV-291 CLOSED; MARKER2 REPLACEMENT-CLEAR PROBE FROZEN
+## Current Bridge — EV-291 CLOSED; MARKER2 REPLACEMENT-CLEAR IMPLEMENTED + SOURCE-REVIEW PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -57,42 +57,54 @@ first swing damaged = YES
 second swing damaged = NO
 ```
 
-The native ALL clear is therefore not merely correlated bookkeeping; it creates the tested Normal second-contact opportunity.
+## Current implementation under local validation
 
-EV-291 provenance:
+Implementation commit:
 
 ```text
-implementation tested:
-2839c8c271fa240b81ce5ccd203c34058870a5bb
-
-DLL SHA256:
-0F2CBF35199D111C405E03E5AE824B0AC76BF47B06C1BF13A47098BCFFF6F830
-
-original source upload commit:
-056951242b549c0de690ef80714b0806c688ef28
-
-source SHA256:
-33C2B2F3E7732B3AB9BEB42C4ED6528D91E0F08F5782F498AF9F1F1A231D9D98
-
-derived package:
-research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_suppression_large_log/
+f2ae82991bc1c1675c6e56c45b6f1bd267f093ee
 ```
 
-Processed source is archived unchanged; `research/raw/` is intake-only again.
+Frozen base:
 
-## Frozen next causal question
+```text
+7aa215eb7812f8819d87bd9a46c3dc9fa86490d9
+```
+
+Normal Chat independent review: **SOURCE REVIEW PASS**.
+
+The commit is exactly one source commit over the frozen base and changes only:
+
+```text
+prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+```
+
+Review confirms:
+
+- the previous read-only later-FIST seam is converted into the bounded marker2 replacement-clear probe;
+- exact FIST/result/Normal-hit/motion-marker gates are preserved and strengthened to exactly two FIST markers;
+- same current C1 and exact current/stored RIGHT source identity are required;
+- exact RIGHT must remain PhysicalFist/raw55, group7, StatePosition1;
+- `preStateRearmProven`, `nativeRearmSuppressionUsed`, and `nativeTriggerClearSuppressionUsed` are all required;
+- a one-shot `marker2ReplacementClearUsed` gate prevents repeated clears in the same C1;
+- PRE trigger state must be aligned with `PC_Hero` resolved, present exactly once, and visit count >=1;
+- the exact current RIGHT `TouchDamage.ClearTriggeredList()` is called once;
+- POST trigger state is captured and logged, while the existing shared clear hook remains available to observe the actual call;
+- marker1 behavior, EV-288 native 7->7 suppression, EV-291 native ALL-clear suppression, cleanup and all other families are unchanged;
+- no `EngineBridge`, header API, hook, RVA, CMake or production source change occurred.
+
+Work build status: **NOT ATTEMPTED — correctly prohibited**.
+
+No material contradiction was found in source review.
+
+## Frozen runtime question
 
 Preserve the complete EV-291 environment and change exactly one thing:
 
 ```text
-keep marker1 unchanged
-keep EV-288 native 7 -> 7 suppression unchanged
-keep EV-291 Script_Game +0x386C6 ALL-clear suppression unchanged
-
-at the factual later authored Normal FIST only:
+at the factual later authored Normal FIST:
 -> require same actor/C1/current RIGHT raw55 group7
--> require native clear suppression already used
--> require PC_Hero still factually visited exactly once
+-> require player still factually visited exactly once
 -> execute exactly one replacement ClearTriggeredList()
 ```
 
@@ -122,43 +134,32 @@ progression/source/cleanup materially diverges
     => preserve contradiction and isolate
 ```
 
-## Frozen implementation responsibility
+## Immediate next responsibility — LOCAL VALIDATION ONLY
 
-Implement ONLY `docs/COLLISION_RAW55_NORMAL_MARKER2_REPLACEMENT_CLEAR_PROBE.md`.
+Do not launch another Work task.
 
-Current source inspection shows the required seam already exists in `PhysicalFistProbe.cpp`:
+1. User syncs GitHub Desktop: **Fetch origin -> Pull origin -> Fetch origin**.
+2. Confirm `Changes = 0 changed files`.
+3. Build only:
 
-- same-C1/source `NormalPreStateFistIntervention` state;
-- `preStateRearmProven`;
-- `nativeRearmSuppressionUsed`;
-- `nativeTriggerClearSuppressionUsed`;
-- Normal trigger-state capture;
-- later authored Normal FIST observation inside `OnMarkerProcessed`;
-- shared Engine clear hook already observes replacement clear calls.
-
-Expected source scope is therefore exactly:
-
-```text
-prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionTest
 ```
 
-Expected implementation shape:
+4. STOP on build result.
+5. If PASS, use normal POP-03 deploy/hash/twin verification.
+6. Deploy only to `E:\SteamLibrary\steamapps\common\Gothic 3\scripts`.
+7. Verify startup banner/hooks from the game-root diagnostic log.
+8. Run the same Normal two-FIST Troll fixture.
+9. Observe first swing, second swing, and abnormal/stuck behavior.
+10. Preserve the untouched runtime source as:
 
 ```text
-one per-C1 marker2 replacement-clear used flag
-+ convert/strengthen existing later-Normal-FIST observation seam into exact gated intervention
-+ factual PRE state gate/log
-+ one exact current RIGHT TouchDamage.ClearTriggeredList()
-+ factual POST state/log
+research/raw/2026.09.17_troll_raw55_normal_marker2_replacement_clear.log
 ```
 
-No `EngineBridge.cpp` change is expected.  
-No `PhysicalFistProbe.h` API change is expected.  
-No new hook/RVA/CMake/production change is expected.
-
-If broader source scope or another mutation appears necessary, STOP and report the contradiction instead of broadening.
-
-Work build execution remains prohibited. Work publishes source only and stops; Normal Chat independently reviews before User-local build.
+11. Process with `tools\log_evidence\Prepare-Log.cmd` if useful/large.
+12. Publish raw + derived evidence and close the result as the next canonical EV before advancing.
 
 ## Remaining collision order
 
