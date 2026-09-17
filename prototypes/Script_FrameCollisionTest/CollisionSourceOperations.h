@@ -14,5 +14,7 @@ struct SourceOperationResult
 };
 
 SourceOperationResult ActivateOrRearm(eCEntity *sourceInstance);
+SourceOperationResult ActivateAttackSource(eCEntity *sourceInstance);
+SourceOperationResult RearmTriggeredContacts(eCEntity *sourceInstance);
 SourceOperationResult DeactivateOwnedAttackSource(eCEntity *sourceInstance);
 }

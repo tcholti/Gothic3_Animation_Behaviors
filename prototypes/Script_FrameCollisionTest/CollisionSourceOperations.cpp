@@ -4,7 +4,7 @@
 
 namespace FrameCollision::CollisionSourceOperations
 {
-SourceOperationResult ActivateOrRearm(eCEntity *sourceInstance)
+SourceOperationResult ActivateAttackSource(eCEntity *sourceInstance)
 {
     SourceOperationResult result = {};
     result.groupBefore = -1;
@@ -22,9 +22,39 @@ SourceOperationResult ActivateOrRearm(eCEntity *sourceInstance)
         CollisionSources::GetCollisionSourceUseType(source));
     source.SetCollisionGroup(eECollisionGroup_Item_Attack);
     result.groupRequested = true;
+    result.groupAfter = static_cast<GEInt>(source.GetCollisionGroup());
+    return result;
+}
+
+SourceOperationResult RearmTriggeredContacts(eCEntity *sourceInstance)
+{
+    SourceOperationResult result = {};
+    result.groupBefore = -1;
+    result.groupAfter = -1;
+    result.useType = -1;
+    if (sourceInstance == nullptr)
+        return result;
+
+    Entity source(sourceInstance);
+    if (source == None)
+        return result;
+
+    result.groupBefore = static_cast<GEInt>(source.GetCollisionGroup());
+    result.useType = static_cast<GEInt>(
+        CollisionSources::GetCollisionSourceUseType(source));
     source.TouchDamage.ClearTriggeredList();
     result.triggeredListCleared = true;
     result.groupAfter = static_cast<GEInt>(source.GetCollisionGroup());
+    return result;
+}
+
+SourceOperationResult ActivateOrRearm(eCEntity *sourceInstance)
+{
+    SourceOperationResult result = ActivateAttackSource(sourceInstance);
+    SourceOperationResult const rearm =
+        RearmTriggeredContacts(sourceInstance);
+    result.groupAfter = rearm.groupAfter;
+    result.triggeredListCleared = rearm.triggeredListCleared;
     return result;
 }
 

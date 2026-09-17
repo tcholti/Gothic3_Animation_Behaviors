@@ -19,6 +19,8 @@ GEInt GetFirstAuthoredMarkerFrame(
     CurrentMotionMarkerResult const &decision, MarkerOpcode opcode);
 
 bool IsAttackHit(Entity &actor, AttackFamily family);
+bool TryGetCurrentAttackHitFamily(
+    Entity &actor, AttackFamily &family);
 CurrentMotionMarkerResult GetCurrentMarkerDecision(Entity &actor);
 AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
     Entity &actor, AttackFamily family);
@@ -26,6 +28,9 @@ AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
 MarkerProcessResult ProcessMarker(
     Entity &actor, MarkerOpcode markerOpcode, char const *effectName,
     double elapsedMs);
+MarkerProcessResult CreateMarkerResult(
+    EquippedCollisionSources const &sources, MarkerOpcode opcode,
+    char const *effectName, double elapsedMs);
 
 GEInt RetireMarkerOwnedSource(eCEntity *sourceInstance);
 bool HasMarkerOwnedWindows();

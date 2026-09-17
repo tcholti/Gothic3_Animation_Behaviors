@@ -395,7 +395,7 @@ GEInt RetireMarkerOwnedSource(eCEntity *sourceInstance)
     return retiredSourceBitCount;
 }
 
-static bool TryGetCurrentAttackHitFamily(
+bool TryGetCurrentAttackHitFamily(
     Entity &actor, AttackFamily &family)
 {
     if (actor.GetCurrentAniPhase() != gEPhase_Hit)
@@ -657,7 +657,7 @@ AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
     return result;
 }
 
-static MarkerProcessResult MakeMarkerResult(
+MarkerProcessResult CreateMarkerResult(
     EquippedCollisionSources const &sources, MarkerOpcode opcode,
     char const *effectName, double elapsedMs)
 {
@@ -691,7 +691,7 @@ MarkerProcessResult ProcessMarker(
     EquippedCollisionSources const sources =
         CollisionSources::GetEquippedCollisionSources(actor);
     MarkerProcessResult result =
-        MakeMarkerResult(sources, markerOpcode, effectName, elapsedMs);
+        CreateMarkerResult(sources, markerOpcode, effectName, elapsedMs);
     AttackFamily family = AttackFamily_Normal;
     if (!TryGetCurrentAttackHitFamily(actor, family))
     {

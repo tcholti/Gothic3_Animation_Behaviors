@@ -19,6 +19,8 @@ set(
     FrameCollisionMarkers.cpp
     FrameCollisionMarkers.h
     FrameCollisionShared.h
+    PhysicalFistCollision.cpp
+    PhysicalFistCollision.h
     Raw8FistCollision.cpp
     Raw8FistCollision.h
     RuntimeClock.cpp
@@ -78,6 +80,4 @@ target_tree_sources(
         CollisionDiagnostics.h
         CollisionDiagnosticsDeep.cpp
         CollisionDiagnosticsDeep.h
-        PhysicalFistProbe.cpp
-        PhysicalFistProbe.h
 )

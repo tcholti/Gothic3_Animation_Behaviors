@@ -4,12 +4,12 @@
 #include "CollisionLifecycleGuard.h"
 #include "CollisionSources.h"
 #include "FrameCollisionMarkers.h"
+#include "PhysicalFistCollision.h"
 #include "Raw8FistCollision.h"
 #include "RuntimeClock.h"
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 #include "CollisionDiagnostics.h"
-#include "PhysicalFistProbe.h"
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include "CollisionDiagnosticsDeep.h"
@@ -23,10 +23,8 @@
 #include <g3sdk/util/Memory.h>
 #include <g3sdk/util/ScriptUtil.h>
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
 #include <intrin.h>
 #pragma intrinsic(_ReturnAddress)
-#endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include <cstdio>
 #endif
@@ -49,11 +47,10 @@ static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AISetState;
 static mCFunctionHook Hook_RunScriptFunction;
 static mCCallHook Hook_Raw8FistTimingGateGetPlayTime;
+static mCFunctionHook Hook_ClearTriggeredListAll;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 static mCFunctionHook Hook_EntityOnDamage;
-static mCFunctionHook Hook_ClearTriggeredListAll;
-static mCFunctionHook Hook_ClearTriggeredListEntity;
 static GEU32 const EntityOnDamageEntryLogCap = 64;
 static GEU32 g_EntityOnDamageEntryOrdinal = 0;
 #endif
@@ -175,43 +172,38 @@ static gCScriptProcessingUnit *GetActorSPU(Entity &actor)
 #endif
 
 static bool EvaluateAttackCallback(
-    Entity &actor, AttackFamily family, gCScriptProcessingUnit *spu)
+    Entity &actor, AttackFamily family, gCScriptProcessingUnit *spu,
+    FrameCollisionMarkers::AttackCallbackOwnershipResult *ownershipOut = nullptr)
 {
     FrameCollisionMarkers::AttackCallbackOwnershipResult const ownership =
         FrameCollisionMarkers::EvaluateAttackCallbackOwnership(actor, family);
+    if (ownershipOut != nullptr)
+        *ownershipOut = ownership;
     Raw8FistCollision::UpdateMarkerOwnership(
         actor, family, ownership, spu);
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogAttackCallbackOwnership(actor, family, ownership);
-    bool const probeSuppress =
-        PhysicalFistProbe::ShouldSuppressNativeCallback(
-            actor, family, ownership, spu);
-    return ownership.suppressNativeCallback || probeSuppress;
-#else
-    return ownership.suppressNativeCallback;
 #endif
+    return ownership.suppressNativeCallback;
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_Attack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
-    if (EvaluateAttackCallback(SelfEntity, AttackFamily_Normal, a_pSPU))
+    FrameCollisionMarkers::AttackCallbackOwnershipResult ownership = {};
+    if (EvaluateAttackCallback(
+            SelfEntity, AttackFamily_Normal, a_pSPU, &ownership))
         return GETrue;
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     CollisionDiagnostics::LogFistTriggerStateSnapshot(
         "NATIVE_ATTACK_BEFORE_ORIGINAL", SelfEntity);
 #endif
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    PhysicalFistProbe::NormalCallbackObservation observation = {};
-    PhysicalFistProbe::BeginNormalCallbackObservation(
-        SelfEntity, a_pSPU, observation);
-#endif
+    PhysicalFistCollision::NativeCallbackScope nativeScope = {};
+    PhysicalFistCollision::BeginNativeCallbackScope(
+        SelfEntity, AttackFamily_Normal, ownership, a_pSPU, nativeScope);
     GEBool const result = Hook_OnAI_Attack.GetOriginalFunction(
         &OnAI_Attack_FrameCollisionTest)(a_pSPU);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    PhysicalFistProbe::EndNormalCallbackObservation(
-        SelfEntity, observation, result);
-#endif
+    PhysicalFistCollision::EndNativeCallbackScope(nativeScope);
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     CollisionDiagnostics::LogFistTriggerStateSnapshot(
         "NATIVE_ATTACK_AFTER_ORIGINAL", SelfEntity);
@@ -226,58 +218,32 @@ DECLARE_SCRIPT_CALLBACK(OnAI_PowerAttack_FrameCollisionTest)
         SelfEntity.Routine.GetProperty<PSRoutine::PropertyAction>();
     AttackFamily const family = action == gEAction_SprintAttack
         ? AttackFamily_Sprint : AttackFamily_Power;
-    if (EvaluateAttackCallback(SelfEntity, family, a_pSPU))
+    FrameCollisionMarkers::AttackCallbackOwnershipResult ownership = {};
+    if (EvaluateAttackCallback(SelfEntity, family, a_pSPU, &ownership))
         return GETrue;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    PhysicalFistProbe::PowerCallbackObservation powerObservation = {};
-    PhysicalFistProbe::SprintCallbackObservation sprintObservation = {};
-    if (family == AttackFamily_Power)
-    {
-        PhysicalFistProbe::BeginPowerCallbackObservation(
-            SelfEntity, a_pSPU, powerObservation);
-    }
-    else if (family == AttackFamily_Sprint)
-    {
-        PhysicalFistProbe::BeginSprintCallbackObservation(
-            SelfEntity, a_pSPU, sprintObservation);
-    }
+    PhysicalFistCollision::NativeCallbackScope nativeScope = {};
+    PhysicalFistCollision::BeginNativeCallbackScope(
+        SelfEntity, family, ownership, a_pSPU, nativeScope);
     GEBool const result = Hook_OnAI_PowerAttack.GetOriginalFunction(
         &OnAI_PowerAttack_FrameCollisionTest)(a_pSPU);
-    if (family == AttackFamily_Power)
-    {
-        PhysicalFistProbe::EndPowerCallbackObservation(
-            SelfEntity, powerObservation, result);
-    }
-    else if (family == AttackFamily_Sprint)
-    {
-        PhysicalFistProbe::EndSprintCallbackObservation(
-            SelfEntity, sprintObservation, result);
-    }
+    PhysicalFistCollision::EndNativeCallbackScope(nativeScope);
     return result;
-#else
-    return Hook_OnAI_PowerAttack.GetOriginalFunction(
-        &OnAI_PowerAttack_FrameCollisionTest)(a_pSPU);
-#endif
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_QuickAttack_FrameCollisionTest)
 {
     INIT_SCRIPT_CALLBACK()
-    if (EvaluateAttackCallback(SelfEntity, AttackFamily_Quick, a_pSPU))
+    FrameCollisionMarkers::AttackCallbackOwnershipResult ownership = {};
+    if (EvaluateAttackCallback(
+            SelfEntity, AttackFamily_Quick, a_pSPU, &ownership))
         return GETrue;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    PhysicalFistProbe::QuickCallbackObservation observation = {};
-    PhysicalFistProbe::BeginQuickCallbackObservation(
-        SelfEntity, a_pSPU, observation);
+    PhysicalFistCollision::NativeCallbackScope nativeScope = {};
+    PhysicalFistCollision::BeginNativeCallbackScope(
+        SelfEntity, AttackFamily_Quick, ownership, a_pSPU, nativeScope);
     GEBool const result = Hook_OnAI_QuickAttack.GetOriginalFunction(
         &OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
-    PhysicalFistProbe::EndQuickCallbackObservation(
-        SelfEntity, observation, result);
+    PhysicalFistCollision::EndNativeCallbackScope(nativeScope);
     return result;
-#else
-    return Hook_OnAI_QuickAttack.GetOriginalFunction(
-        &OnAI_QuickAttack_FrameCollisionTest)(a_pSPU);
-#endif
 }
 
 DECLARE_SCRIPT_CALLBACK(OnAI_SimpleWhirl_FrameCollisionTest)
@@ -368,9 +334,16 @@ static GELPVoid StartEffect_FrameCollisionTest(
     }
 
     Entity actor(a_pEntity1);
-    MarkerProcessResult const result = FrameCollisionMarkers::ProcessMarker(
-        actor, markerOpcode, effectName,
-        RuntimeClock::GetElapsedMilliseconds());
+    double const elapsedMs = RuntimeClock::GetElapsedMilliseconds();
+    MarkerProcessResult result = {};
+    bool const raw55MarkerOwned =
+        PhysicalFistCollision::TryProcessMarker(
+            actor, markerOpcode, effectName, elapsedMs, result);
+    if (!raw55MarkerOwned)
+    {
+        result = FrameCollisionMarkers::ProcessMarker(
+            actor, markerOpcode, effectName, elapsedMs);
+    }
     Raw8FistCollision::UpdateTimingPermissionFromMarker(actor, result);
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -390,7 +363,6 @@ static GELPVoid StartEffect_FrameCollisionTest(
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogMarkerResult(actor, result);
-    PhysicalFistProbe::OnMarkerProcessed(actor, markerOpcode, result);
 #endif
     return nullptr;
 }
@@ -854,49 +826,19 @@ static void GE_STDCALL FistTriggerTarget_FrameCollisionTest(
 }
 #endif
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
 static void GE_STDCALL ClearTriggeredListAll_FrameCollisionTest(
     eCTrigger_PS *a_pThis)
 {
     void *const callerAddress = _ReturnAddress();
-    PhysicalFistProbe::ObserveTriggerClear(
-        a_pThis, nullptr, PhysicalFistProbe::TriggerClearKind_All,
-        PhysicalFistProbe::TriggerClearBoundary_Pre, callerAddress);
-
-    bool const suppressClear =
-        PhysicalFistProbe::ShouldSuppressTriggerClear(
-            a_pThis, PhysicalFistProbe::TriggerClearKind_All,
-            callerAddress);
-    if (!suppressClear)
+    if (!PhysicalFistCollision::ShouldSuppressNormalNativeTriggerClear(
+            a_pThis, callerAddress))
     {
         Hook_ClearTriggeredListAll.GetOriginalFunction(
             &ClearTriggeredListAll_FrameCollisionTest)(a_pThis);
     }
-
-    PhysicalFistProbe::ObserveTriggerClear(
-        a_pThis, nullptr, PhysicalFistProbe::TriggerClearKind_All,
-        PhysicalFistProbe::TriggerClearBoundary_Post, callerAddress);
 }
 
-static void GE_STDCALL ClearTriggeredListEntity_FrameCollisionTest(
-    eCTrigger_PS *a_pThis, eCEntity *a_pEntity)
-{
-    void *const callerAddress = _ReturnAddress();
-    PhysicalFistProbe::ObserveTriggerClear(
-        a_pThis, a_pEntity,
-        PhysicalFistProbe::TriggerClearKind_Entity,
-        PhysicalFistProbe::TriggerClearBoundary_Pre, callerAddress);
-
-    Hook_ClearTriggeredListEntity.GetOriginalFunction(
-        &ClearTriggeredListEntity_FrameCollisionTest)(
-            a_pThis, a_pEntity);
-
-    PhysicalFistProbe::ObserveTriggerClear(
-        a_pThis, a_pEntity,
-        PhysicalFistProbe::TriggerClearKind_Entity,
-        PhysicalFistProbe::TriggerClearBoundary_Post, callerAddress);
-}
-
+#ifdef FRAME_COLLISION_DIAGNOSTICS
 static void GE_STDCALL EntityOnDamage_FrameCollisionTest(
     gCEntity *a_pThis, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
     GEInt a_iArg1, GEInt a_iArg2, eCContactIterator &a_rContactIterator)
@@ -930,13 +872,11 @@ static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
         ? a_pThis->GetCollisionGroup()
         : static_cast<eECollisionGroup>(-1);
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    if (PhysicalFistProbe::ShouldSuppressCollisionGroupRequest(
+    if (PhysicalFistCollision::ShouldSuppressCollisionGroupRequest(
             a_pThis, a_Group, beforeGroup))
     {
         return;
     }
-#endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     void *callerAddress = _ReturnAddress();
@@ -1163,6 +1103,12 @@ void FrameCollision::EngineBridge::InstallHooks()
         .AddThisArg()
         .Hook();
 
+    Hook_ClearTriggeredListAll
+        .Prepare(RVA_Engine(0x7DDA0),
+                 &ClearTriggeredListAll_FrameCollisionTest)
+        .ThisCall()
+        .Hook();
+
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     Hook_FistCanBeActivatedNow
         .Prepare(RVA_Game(0x692F0),
@@ -1176,16 +1122,6 @@ void FrameCollision::EngineBridge::InstallHooks()
 #endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    Hook_ClearTriggeredListAll
-        .Prepare(RVA_Engine(0x7DDA0),
-                 &ClearTriggeredListAll_FrameCollisionTest)
-        .ThisCall()
-        .Hook();
-    Hook_ClearTriggeredListEntity
-        .Prepare(RVA_Engine(0x7DDF0),
-                 &ClearTriggeredListEntity_FrameCollisionTest)
-        .ThisCall()
-        .Hook();
     Hook_EntityOnDamage
         .Prepare(RVA_Game(0x668D0), &EntityOnDamage_FrameCollisionTest)
         .ThisCall()
