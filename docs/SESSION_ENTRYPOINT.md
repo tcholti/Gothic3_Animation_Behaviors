@@ -15,123 +15,121 @@
 > **LARGE-LOG RULE:** Do not orient by scanning raw/archive logs. Use canonical EV first and committed derived packages for large-log retrieval. Processed source evidence moves unchanged to `research/archive/`.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Frozen production contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
-Latest canonical evidence: **EV-294** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
+Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
+Current bounded correction: `docs/COLLISION_RAW55_CORE_DIAGNOSTIC_CLASSIFICATION_CORRECTION.md`  
+Latest closed causal evidence: **EV-294** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
 ```text
-raw55 Quick         repeated-FIST CLOSED/PASS — EV-273
-raw55 Normal        repeated-FIST CLOSED/PASS — EV-292
-raw55 true Power    repeated-FIST CLOSED/PASS — EV-293
+raw55 Quick repeated-FIST CLOSED/PASS — EV-273
+raw55 Normal repeated-FIST CLOSED/PASS — EV-292
+raw55 true Power repeated-FIST CLOSED/PASS — EV-293
 raw55 Sprint-origin repeated-FIST CLOSED/PASS — EV-294
 
-ALL FAMILY-SPECIFIC RAW55 CAUSAL RESEARCH CLOSED
-PERMANENT RAW55 ARCHITECTURE FROZEN
-PERMANENT RAW55 IMPLEMENTATION PUBLISHED + INDEPENDENT SOURCE REVIEW PASS
-BOTH PERMANENT LOCAL TARGETS BUILD PASS
-BEHAVIOR-ONLY DEPLOYMENT + FUNCTIONAL SMOKE PASS
-DIAGNOSTIC DEPLOYMENT + STARTUP/LOAD/UNLOAD PASS
+PERMANENT RAW55 IMPLEMENTATION 21853392... SOURCE REVIEW PASS
+BOTH RELEASE TARGETS BUILD PASS
+BEHAVIOR-ONLY FUNCTIONAL/RELEASE-PURITY SMOKE PASS
+DIAGNOSTIC DEPLOYMENT + STARTUP PASS
+PERMANENT RAW55 FOUR-FAMILY BEHAVIOR CORE ACCEPTANCE PASS
+CORE DIAGNOSTIC OWNERSHIP CLASSIFIER FALSE-POSITIVE FOUND
 ```
 
-Permanent implementation commit:
+## Permanent core acceptance result
+
+Evidence:
 
 ```text
-21853392f146febbc2d1aad4e501baa741fd65b2
+research/raw/2026.09.17_troll_raw55_permanent_acceptance.log
+research/derived/2026.09.17_troll_raw55_permanent_acceptance_large_log/
+upload commit 6ae7dcc315e0859ab8ff061f1576d52206d21008
+SHA256 AA866E70BF2DB42CF7CE73607040443A9F8725F05CCFDDB01116E582956DA6A7
+blob 8ae8cd8da6e958f6b7f0b139a17467fcc7dd3c6b
+150110 bytes / 1011 lines
 ```
 
-Independent Normal Chat source review: **PASS**.
-
-## Local build / behavior-only smoke — PASS
-
-Both Release targets built successfully:
+Factual representative routes are complete and clean:
 
 ```text
-Script_FrameCollisionBehaviorTest  PASS
-Script_FrameCollisionTest          PASS
+Quick C1=3:
+first FIST 5->7 + clear -> damage
+second FIST clear-only -> second damage
+native 7->5 -> outstanding zero
+
+Power C1=6:
+early native opening suppressed
+first FIST Action2/SP1 5->7, no clear -> damage
+second FIST clear-only -> second damage
+native 7->5 -> outstanding zero
+
+Normal C1=33:
+first FIST SP0 5->7 + clear -> damage
+exact native Script_Game+0x386C6 ALL clear suppressed
+second FIST SP1 clear-only -> second damage
+native 7->5 -> outstanding zero
+
+Sprint-origin C1=42:
+early native opening suppressed
+first FIST Action9/SP1 5->7, no clear -> damage
+same C1/right Action9->Action2
+second FIST keeps Origin=SPRINT, Current=POWER, clear-only
+second damage occurs during LieKnockDown_Begin
+native 7->5 -> outstanding zero
 ```
 
-Behavior-only deployment identity:
+User observed all exercised two-swing attacks damage twice; Sprint knocked the player down.
+
+## Current diagnostic gap
+
+`CollisionDiagnostics::LogAttackCallbackOwnership()` predates permanent raw55 and currently calls every FIST marker with a non-raw8 resolver a contradiction:
+
+```cpp
+result.decision.hasFistMarkers
+&& fistUseType != static_cast<GEInt>(gEUseType_Fist)
+```
+
+The acceptance run therefore produced 19 `CORE ATTACK OWNERSHIP ANOMALY` blocks for legitimate raw55 executions. Source inspection proves these are false positives: permanent raw55 intentionally has no raw8 resolver and instead owns exact RIGHT PhysicalFist/UseType55.
+
+Behavior is not implicated. Fix the diagnostic classification before continuing certification so future CORE regression signals remain meaningful.
+
+## Current responsibility — BOUNDED WORK DIAGNOSTIC-ONLY CORRECTION
+
+Read:
+
+1. `docs/SESSION_ENTRYPOINT.md`
+2. `docs/BETWEEN_CHATS.md`
+3. `docs/COLLISION_RAW55_CORE_DIAGNOSTIC_CLASSIFICATION_CORRECTION.md`
+4. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
+5. exact `CollisionDiagnostics.cpp` source only as required.
+
+Allowed source change:
 
 ```text
-only live collision DLL: Script_FrameCollisionBehaviorTest.dll
-length: 418304 bytes
-built/live SHA256:
-0EB935FCBFD5B7A2D2D56683971641EA42B9F7FF074D5B7F2EC2FD353594833A
+prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
 ```
 
-User functional smoke under the behavior-only DLL:
+No behavior/core/hook/CMake source change is authorized.
+
+**WORK BUILD EXECUTION IS PROHIBITED.**
+
+After Work:
 
 ```text
-spawned Troll
-observed attacks capable of damaging twice, behavior not previously available before permanent raw55 support
-
-spawned Golem
-attacked with 2H, Dual 1H/1H and Staff
-observed established authored marker behavior still functioning
-
-exercised Hack attack
-observed Hack behavior still functioning
+independent source review
+-> rebuild diagnostic target only
+-> redeploy/startup
+-> small marked raw55 control proving routine ownership classification
+-> remaining focused sentinels: unmarked raw55, raw8 FIST, equipped marker
 ```
 
-This is functional/release-purity evidence only; internal family/C1/source proof belongs to the diagnostic twin.
-
-## Diagnostic deployment / startup — PASS
-
-Reviewed diagnostic twin deployed alone:
-
-```text
-only live collision DLL: Script_FrameCollisionTest.dll
-length: 457728 bytes
-built/live SHA256:
-4A402FD2300C95344657719895BCEF49F07AD417AAFCF1287F5421F641311FCA
-```
-
-Startup/load/unload verified:
-
-```text
-Script_FrameCollisionTest diagnostic build loaded.
-DiagnosticProfile: CORE
-DeepDiagnostics: DISABLED
-HACK_CALLBACK_IDENTITY ... ExactlyOne=1 ... Name=OnAI_HackAttack
-Installing behavior hooks...
-Hooks installed.
-Script_FrameCollisionTest unloading cleanly.
-```
-
-## Immediate next responsibility — FOCUSED PERMANENT RAW55 ACCEPTANCE
-
-Do not launch Work.
-
-Run one controlled diagnostic Troll session using the marked two-FIST fixture. Exercise enough attacks to capture factual examples of:
-
-```text
-Quick first/repeated FIST
-Normal SP0 first FIST + marker2
-true Power first/repeated FIST
-Sprint-origin Action9 -> Action2 first/repeated FIST
-native raw55 7 -> 5 cleanup / outstanding-zero lifecycle
-```
-
-Visual family identification is not authoritative. Use runtime action/family/C1 records.
-
-Also include, if practical in the same session or immediately after:
-
-```text
-one unmarked Troll/native raw55 fallback sample
-one raw8 FIST sentinel
-one equipped-marker sentinel
-```
-
-The first analysis target is the permanent raw55 Troll route. Do not broaden into full standalone regression until it passes.
+Do not rerun the full four-family permanent acceptance unless source scope unexpectedly broadens.
 
 ## Still paused
 
 ```text
-NO new Work task during local validation
-NO collision migration into src/Script_G3AnimationBehaviors yet
-NO standalone broad regression before focused permanent raw55 acceptance
+NO broad standalone collision regression yet
 NO New Balance final regression yet
+NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
 NO AttackContinuationProtection work
 ```
