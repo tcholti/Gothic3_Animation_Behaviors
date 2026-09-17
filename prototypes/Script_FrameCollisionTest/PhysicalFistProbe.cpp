@@ -73,7 +73,7 @@ struct NormalPreStateFistIntervention
     bool nativeRearmSuppressionUsed;
     bool nativeTriggerClearSuppressionUsed;
     bool triggerStateInitialized;
-    bool laterFistObserved;
+    bool marker2ReplacementClearUsed;
     NormalTriggerStateSnapshot lastTriggerState;
 };
 
@@ -2139,7 +2139,7 @@ static bool TryApplySprintFistActivationProbe(
     return true;
 }
 
-static void ObserveNormalLaterFist(
+static void TryApplyNormalMarker2ReplacementClearProbe(
     Entity &actor, MarkerOpcode markerOpcode,
     MarkerProcessResult const &result)
 {
@@ -2161,7 +2161,7 @@ static void ObserveNormalLaterFist(
         || !FrameCollisionMarkers::IsAttackHit(actor, AttackFamily_Normal)
         || !decision.foundMatchingMotion || !decision.scanValid
         || !decision.markerPresent || !decision.hasFistMarkers
-        || decision.markerCounts[MarkerOpcode_Fist] <= 0
+        || decision.markerCounts[MarkerOpcode_Fist] != 2
         || decision.markerCounts[MarkerOpcode_Right] != 0
         || decision.markerCounts[MarkerOpcode_Left] != 0
         || decision.markerCounts[MarkerOpcode_Both] != 0
@@ -2191,16 +2191,60 @@ static void ObserveNormalLaterFist(
     if (!TryResolveProvenNormalPreStateIntervention(
             actor, currentSources.rightInstance, generation.generation,
             intervention)
-        || intervention->laterFistObserved)
+        || !intervention->preStateRearmProven
+        || !intervention->nativeRearmSuppressionUsed
+        || !intervention->nativeTriggerClearSuppressionUsed
+        || intervention->marker2ReplacementClearUsed)
     {
         return;
     }
 
-    if (ObserveNormalTriggerState(
-            "LATER_FIST", actor, currentSources.rightInstance,
-            generation.generation, false))
+    NormalTriggerStateSnapshot before = {};
+    if (!TryCaptureNormalTriggerState(*intervention, before)
+        || before.countsAligned != 1
+        || before.playerResolved != 1
+        || before.playerPresent != 1
+        || before.playerEntryCount != 1
+        || before.playerVisitCount < 1)
     {
-        intervention->laterFistObserved = true;
+        return;
+    }
+
+    gEAction const action =
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+    GEFloat const stateTime = actor.Routine.GetStateTime();
+    gEUseType const rightUseType =
+        CollisionSources::GetCollisionSourceUseType(rightSource);
+    eECollisionGroup const rightGroup = rightSource.GetCollisionGroup();
+
+    intervention->marker2ReplacementClearUsed = true;
+    rightSource.TouchDamage.ClearTriggeredList();
+
+    NormalTriggerStateSnapshot after = {};
+    after.playerVisitCount = -1;
+    bool const postStateCaptured =
+        TryCaptureNormalTriggerState(*intervention, after);
+
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log != nullptr)
+    {
+        std::fprintf(
+            log,
+            "CORE RAW55_NORMAL_MARKER2_REPLACEMENT_CLEAR_PROBE Actor=%s C1=%llu Action=%d StatePosition=%d StateTime=%.6f Right=%s RightUseType=%d RightGroup=%d PreStateRearmProven=1 Native7To7SuppressionUsed=1 NativeClearSuppressionUsed=1 PlayerPresentBefore=%d PlayerEntryCountBefore=%d PlayerVisitCountBefore=%d CountsAlignedBefore=%d PostStateCaptured=%d PlayerPresentAfter=%d PlayerEntryCountAfter=%d PlayerVisitCountAfter=%d CountsAlignedAfter=%d DecisionFistCount=%d MARKER2_REPLACEMENT_CLEAR=1\n",
+            actor.GetName().GetText(),
+            static_cast<unsigned long long>(generation.generation),
+            static_cast<GEInt>(action), statePosition,
+            static_cast<double>(stateTime),
+            rightSource.GetName().GetText(),
+            static_cast<GEInt>(rightUseType),
+            static_cast<GEInt>(rightGroup),
+            before.playerPresent, before.playerEntryCount,
+            before.playerVisitCount, before.countsAligned,
+            postStateCaptured ? 1 : 0,
+            after.playerPresent, after.playerEntryCount,
+            after.playerVisitCount, after.countsAligned,
+            decision.markerCounts[MarkerOpcode_Fist]);
+        std::fflush(log);
     }
 }
 
@@ -2211,7 +2255,8 @@ void OnMarkerProcessed(
     if (actor == None || actor.GetInstance() == nullptr)
         return;
 
-    ObserveNormalLaterFist(actor, markerOpcode, result);
+    TryApplyNormalMarker2ReplacementClearProbe(
+        actor, markerOpcode, result);
 
     if (TryApplyNormalFistActivationProbe(actor, markerOpcode, result))
         return;
