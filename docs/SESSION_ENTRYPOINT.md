@@ -59,38 +59,77 @@ native exact RIGHT 7 -> 5 cleanup
 
 Therefore the exact native ALL clear is causally required for the implicit second contact opportunity in the tested Normal route.
 
-## Immediate next responsibility — bounded Work implementation
+## Current diagnostic implementation
 
-The next one-variable probe is frozen in:
+Marker2 replacement-clear implementation:
 
 ```text
-docs/COLLISION_RAW55_NORMAL_MARKER2_REPLACEMENT_CLEAR_PROBE.md
+f2ae82991bc1c1675c6e56c45b6f1bd267f093ee
 ```
 
-Implement only that diagnostics-only contract.
-
-Frozen question:
+Required implementation base:
 
 ```text
-keep EV-291 native clear suppression unchanged
-+ at exact later authored Normal FIST only
-+ require player still factually visited
-+ perform one replacement ClearTriggeredList()
-
-Does hit2 return?
+7aa215eb7812f8819d87bd9a46c3dc9fa86490d9
 ```
 
-Expected source scope:
+Independent Normal Chat source review: **PASS**.
+
+Review findings:
 
 ```text
+one commit over frozen base
+one changed file only:
 prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+
+exact two-FIST Normal marker shape
+same actor/current C1/current RIGHT source
+raw55 / group7 / StatePosition1
+preStateRearmProven
+nativeRearmSuppressionUsed
+nativeTriggerClearSuppressionUsed
+one-shot marker2ReplacementClearUsed gate
+factual PRE player visit gate
+one exact current RIGHT TouchDamage.ClearTriggeredList()
+factual POST state capture/log
 ```
 
-No `EngineBridge.cpp`, header API, hook, RVA, CMake or production change is expected. If implementation requires broader scope, STOP and report the contradiction.
+No `EngineBridge.cpp`, header API, hook, RVA, CMake or production change occurred. EV-288 and EV-291 suppressions remain unchanged. Build was **NOT ATTEMPTED** by Work.
 
-Work build execution is not authorized. Work performs source/static audit, publishes the bounded implementation, reports final remote SHA/changed files/result/build status/contradictions, then stops.
+## Immediate next responsibility — local validation only
 
-Normal Chat must independently review the Work commit before any User-local build.
+Do not launch another Work task.
+
+```text
+GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
+-> confirm Changes = 0
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+```
+
+If build passes, continue with the established POP-03/04 deploy/hash/twin/startup gates, then run the same Normal two-FIST Troll fixture.
+
+Frozen runtime source filename:
+
+```text
+research/raw/2026.09.17_troll_raw55_normal_marker2_replacement_clear.log
+```
+
+Runtime question:
+
+```text
+Does the authored marker2 replacement ClearTriggeredList restore hit2 while hit1, SP0->1 progression and native 7->5 cleanup remain healthy?
+```
+
+Record visually:
+
+```text
+first swing damaged? yes/no
+second swing damaged? yes/no
+anything abnormal/stuck? yes/no + note
+```
+
+After runtime, preserve the untouched log under the frozen filename. If useful/large, process with `tools\log_evidence\Prepare-Log.cmd`. Close the runtime as the next canonical EV before advancing.
 
 ## Retrieval discipline
 
@@ -102,13 +141,7 @@ Use:
 2. `BETWEEN_CHATS.md`;
 3. `COLLISION_RAW55_NORMAL_MARKER2_REPLACEMENT_CLEAR_PROBE.md`;
 4. EV-291 only if factual causal verification is needed;
-5. exact source files required for the bounded implementation.
-
-EV-291 derived package:
-
-```text
-research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_suppression_large_log/
-```
+5. exact runtime-derived package only after the new test exists.
 
 ## Still paused
 
