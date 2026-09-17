@@ -1,0 +1,374 @@
+00000411: CORE ONDAMAGE ElapsedMs=57457.805 Ordinal=18 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000412: CORE C1_START ElapsedMs=57461.198 Actor=Troll Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=31 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000413: CORE C1_BIND ElapsedMs=57461.209 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000414: CORE C1_STATUS ElapsedMs=57461.533 Event=PERSISTED Actor=Troll Generation=32 Status=PERSISTED Outstanding=0
+00000415: CORE COLLISION_GROUP ElapsedMs=57634.211 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000416: CORE C1 CLEANUP FULFILLED ElapsedMs=57634.231 Actor=PC_Hero Generation=30 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000417: CORE C1_FINAL ElapsedMs=57724.775 Actor=PC_Hero Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000418: CORE C1_FINAL ElapsedMs=57827.967 Actor=Troll Generation=32 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000419: CORE C1_START ElapsedMs=57842.224 Actor=Troll Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000420: CORE C1_BIND ElapsedMs=57842.237 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000421: CORE C1_STATUS ElapsedMs=57842.303 Event=PERSISTED Actor=Troll Generation=33 Status=PERSISTED Outstanding=0
+00000422: CORE ATTACK_OWNERSHIP ElapsedMs=57842.322 Actor=Troll Family=NORMAL Action=1 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00000423: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00000424: MatchingMotionFound: 1
+00000425: MarkerScanValid: 1
+00000426: RequiredSourcesAvailable: 1
+00000427: RightSourceSlot: RIGHT
+00000428: RightSourceName: TrollFist
+00000429: RightSourceUseType: 55
+00000430: RightSourceCollisionGroup: 5
+00000431: LeftSourceSlot: LEFT
+00000432: LeftSourceName: TrollFist
+00000433: LeftSourceUseType: 55
+00000434: LeftSourceCollisionGroup: 5
+00000435: Raw8FistSourceName: <none>
+00000436: Raw8FistSourceUseType: -1
+00000437: Raw8FistSourceCollisionGroup: -1
+00000438: =========================================
+00000439: 
+00000440: CORE COLLISION_GROUP ElapsedMs=57872.174 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000441: CORE C1 OFFENSE REQUEST ElapsedMs=57872.202 Actor=Troll Generation=33 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000442: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=33 OriginFamily=NORMAL CurrentFamily=NORMAL Action=1 StatePosition=0 StateTime=0.042290 Right=TrollFist RightUseType=55 GroupBefore=5 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=1 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=0 GroupRequested=1 ClearTriggeredList=1 Result=11
+00000443: CORE MARKER ElapsedMs=57872.225 Actor=Troll Action=1 Family=NORMAL Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=33 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000444: CORE ONDAMAGE ElapsedMs=58055.558 Ordinal=19 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_2H_P1_QuickAttackL_Recover_N_Fwd_00_%_00_P1_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000445: CORE C1_START ElapsedMs=58064.406 Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000446: CORE C1_BIND ElapsedMs=58064.418 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000447: CORE C1_STATUS ElapsedMs=58064.474 Event=PERSISTED Actor=PC_Hero Generation=34 Status=PERSISTED Outstanding=0
+00000448: CORE COLLISION_GROUP ElapsedMs=58067.789 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00000449: CORE C1 OFFENSE REQUEST ElapsedMs=58067.817 Actor=Troll Generation=33 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00000450: CORE RAW55_PHYSICAL_FIST_NORMAL_NATIVE_CLEAR_SUPPRESSED Actor=E6EAA210 C1=33 Right=E6EB1210 CallerModule=Script_Game.dll CallerRVA=0x000386C6 SUPPRESS_CLEAR=1
+00000451: CORE C1_FINAL ElapsedMs=58342.779 Actor=PC_Hero Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000452: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=33 OriginFamily=NORMAL CurrentFamily=NORMAL Action=1 StatePosition=1 StateTime=0.601772 Right=TrollFist RightUseType=55 GroupBefore=7 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=2 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=1 GroupRequested=0 ClearTriggeredList=1 Result=11
+00000453: CORE MARKER ElapsedMs=58378.033 Actor=Troll Action=1 Family=NORMAL Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=33 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000454: CORE ONDAMAGE ElapsedMs=58492.329 Ordinal=20 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000455: CORE C1_START ElapsedMs=58497.134 Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000456: CORE C1_BIND ElapsedMs=58497.143 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000457: CORE C1_STATUS ElapsedMs=58497.193 Event=PERSISTED Actor=PC_Hero Generation=35 Status=PERSISTED Outstanding=0
+00000458: CORE COLLISION_GROUP ElapsedMs=58561.575 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000459: CORE C1 CLEANUP FULFILLED ElapsedMs=58561.603 Actor=Troll Generation=33 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00000460: CORE C1_FINAL ElapsedMs=58561.623 Actor=Troll Generation=33 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000461: CORE C1_FINAL ElapsedMs=58773.836 Actor=PC_Hero Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000462: CORE C1_START ElapsedMs=58945.439 Actor=PC_Hero Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000463: CORE C1_STATUS ElapsedMs=58945.511 Event=PERSISTED Actor=PC_Hero Generation=36 Status=PERSISTED Outstanding=0
+00000464: CORE C1_START ElapsedMs=59090.363 Actor=PC_Hero Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=36 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000465: CORE C1_BIND ElapsedMs=59090.376 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000466: CORE C1_STATUS ElapsedMs=59090.440 Event=PERSISTED Actor=PC_Hero Generation=37 Status=PERSISTED Outstanding=0
+00000467: CORE ATTACK_OWNERSHIP ElapsedMs=59090.456 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000468: CORE C1_START ElapsedMs=59102.188 Actor=Troll Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000469: CORE C1_BIND ElapsedMs=59102.200 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+00000470: CORE C1_STATUS ElapsedMs=59102.255 Event=PERSISTED Actor=Troll Generation=38 Status=PERSISTED Outstanding=0
+00000471: CORE COLLISION_GROUP ElapsedMs=59340.484 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000472: CORE C1 OFFENSE REQUEST ElapsedMs=59340.512 Actor=PC_Hero Generation=37 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000473: CORE MARKER ElapsedMs=59340.525 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=37 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000474: CORE ONDAMAGE ElapsedMs=59408.407 Ordinal=21 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000475: CORE C1_START ElapsedMs=59413.095 Actor=Troll Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=38 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000476: CORE C1_BIND ElapsedMs=59413.108 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000477: CORE C1_STATUS ElapsedMs=59413.168 Event=PERSISTED Actor=Troll Generation=39 Status=PERSISTED Outstanding=0
+00000478: CORE COLLISION_GROUP ElapsedMs=59526.277 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000479: CORE C1 CLEANUP FULFILLED ElapsedMs=59526.306 Actor=PC_Hero Generation=37 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000480: CORE C1_FINAL ElapsedMs=59526.342 Actor=PC_Hero Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000481: CORE C1_START ElapsedMs=59533.286 Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000482: CORE C1_STATUS ElapsedMs=59533.621 Event=PERSISTED Actor=PC_Hero Generation=40 Status=PERSISTED Outstanding=0
+00000483: CORE C1_START ElapsedMs=59681.365 Actor=PC_Hero Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=40 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000484: CORE C1_BIND ElapsedMs=59681.378 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000485: CORE C1_STATUS ElapsedMs=59681.732 Event=PERSISTED Actor=PC_Hero Generation=41 Status=PERSISTED Outstanding=0
+00000486: CORE ATTACK_OWNERSHIP ElapsedMs=59681.755 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000487: CORE C1_FINAL ElapsedMs=59783.735 Actor=Troll Generation=39 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000488: CORE C1_START ElapsedMs=59799.783 Actor=Troll Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000489: CORE C1_BIND ElapsedMs=59799.797 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000490: CORE C1_STATUS ElapsedMs=59799.895 Event=PERSISTED Actor=Troll Generation=42 Status=PERSISTED Outstanding=0
+00000491: CORE COLLISION_GROUP ElapsedMs=59940.138 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000492: CORE C1 OFFENSE REQUEST ElapsedMs=59940.164 Actor=PC_Hero Generation=41 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000493: CORE MARKER ElapsedMs=59940.176 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=41 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000494: CORE ONDAMAGE ElapsedMs=59987.826 Ordinal=22 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000495: CORE COLLISION_GROUP ElapsedMs=60130.963 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000496: CORE C1 CLEANUP FULFILLED ElapsedMs=60130.985 Actor=PC_Hero Generation=41 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000497: CORE C1_FINAL ElapsedMs=60131.007 Actor=PC_Hero Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000498: CORE C1_BIND ElapsedMs=61086.972 Event=COMBAT_MOVE_REUSED Actor=Troll Generation=42 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000499: CORE ATTACK_OWNERSHIP ElapsedMs=61087.080 Actor=Troll Family=SPRINT Action=9 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00000500: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00000501: MatchingMotionFound: 1
+00000502: MarkerScanValid: 1
+00000503: RequiredSourcesAvailable: 1
+00000504: RightSourceSlot: RIGHT
+00000505: RightSourceName: TrollFist
+00000506: RightSourceUseType: 55
+00000507: RightSourceCollisionGroup: 5
+00000508: LeftSourceSlot: LEFT
+00000509: LeftSourceName: TrollFist
+00000510: LeftSourceUseType: 55
+00000511: LeftSourceCollisionGroup: 5
+00000512: Raw8FistSourceName: <none>
+00000513: Raw8FistSourceUseType: -1
+00000514: Raw8FistSourceCollisionGroup: -1
+00000515: =========================================
+00000516: 
+00000517: CORE RAW55_PHYSICAL_FIST_NATIVE_OPEN_SUPPRESSED Actor=E6EAA210 C1=42 OriginFamily=SPRINT CallbackFamily=SPRINT Right=E6EB1210 BeforeGroup=5 RequestedGroup=7 SUPPRESS_GROUP=1
+00000518: CORE COLLISION_GROUP ElapsedMs=61118.813 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000519: CORE C1 OFFENSE REQUEST ElapsedMs=61118.840 Actor=Troll Generation=42 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000520: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=42 OriginFamily=SPRINT CurrentFamily=SPRINT Action=9 StatePosition=1 StateTime=1.447434 Right=TrollFist RightUseType=55 GroupBefore=5 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=1 EarlyOpeningSuppressed=1 FirstMarkerStatePosition=1 NormalNativeClearSuppressed=0 GroupRequested=1 ClearTriggeredList=0 Result=11
+00000521: CORE MARKER ElapsedMs=61118.861 Actor=Troll Action=9 Family=SPRINT Phase=1 Motion=Troll_Stand_Fist_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=42 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=0 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000522: CORE ONDAMAGE ElapsedMs=61306.144 Ordinal=23 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000523: CORE C1_START ElapsedMs=61311.503 Actor=PC_Hero Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000524: CORE C1_STATUS ElapsedMs=61311.832 Event=PERSISTED Actor=PC_Hero Generation=43 Status=PERSISTED Outstanding=0
+00000525: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=42 OriginFamily=SPRINT CurrentFamily=POWER Action=2 StatePosition=1 StateTime=2.006224 Right=TrollFist RightUseType=55 GroupBefore=7 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=2 EarlyOpeningSuppressed=1 FirstMarkerStatePosition=1 NormalNativeClearSuppressed=0 GroupRequested=0 ClearTriggeredList=1 Result=11
+00000526: CORE MARKER ElapsedMs=61632.711 Actor=Troll Action=2 Family=POWER Phase=1 Motion=Troll_Stand_Fist_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=42 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000527: CORE ONDAMAGE ElapsedMs=61763.728 Ordinal=24 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=29 PlayerPhase=4 PlayerMotion=Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000528: CORE COLLISION_GROUP ElapsedMs=61832.997 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000529: CORE C1 CLEANUP FULFILLED ElapsedMs=61833.025 Actor=Troll Generation=42 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000530: CORE C1_FINAL ElapsedMs=61833.050 Actor=Troll Generation=42 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000531: CORE C1_FINAL ElapsedMs=63178.708 Actor=PC_Hero Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000532: CORE COLLISION_GROUP ElapsedMs=63187.546 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000533: CORE C1_START ElapsedMs=63187.574 Actor=PC_Hero Generation=44 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+00000534: CORE C1_BIND ElapsedMs=63187.580 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=44 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+00000535: CORE C1 OFFENSE REQUEST ElapsedMs=63187.584 Actor=PC_Hero Generation=44 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000536: CORE C1_BIND ElapsedMs=63187.599 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=44 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+00000537: CORE COLLISION_GROUP ElapsedMs=63288.474 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00000538: CORE C1 OFFENSE REQUEST ElapsedMs=63288.502 Actor=PC_Hero Generation=44 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00000539: CORE C1_START ElapsedMs=63308.914 Actor=Troll Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000540: CORE C1_BIND ElapsedMs=63308.928 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000541: CORE C1_STATUS ElapsedMs=63308.991 Event=PERSISTED Actor=Troll Generation=45 Status=PERSISTED Outstanding=0
+00000542: CORE ATTACK_OWNERSHIP ElapsedMs=63309.007 Actor=Troll Family=NORMAL Action=1 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00000543: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00000544: MatchingMotionFound: 1
+00000545: MarkerScanValid: 1
+00000546: RequiredSourcesAvailable: 1
+00000547: RightSourceSlot: RIGHT
+00000548: RightSourceName: TrollFist
+00000549: RightSourceUseType: 55
+00000550: RightSourceCollisionGroup: 5
+00000551: LeftSourceSlot: LEFT
+00000552: LeftSourceName: TrollFist
+00000553: LeftSourceUseType: 55
+00000554: LeftSourceCollisionGroup: 5
+00000555: Raw8FistSourceName: <none>
+00000556: Raw8FistSourceUseType: -1
+00000557: Raw8FistSourceCollisionGroup: -1
+00000558: =========================================
+00000559: 
+00000560: CORE COLLISION_GROUP ElapsedMs=63343.582 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000561: CORE C1 OFFENSE REQUEST ElapsedMs=63343.610 Actor=Troll Generation=45 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000562: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=45 OriginFamily=NORMAL CurrentFamily=NORMAL Action=1 StatePosition=0 StateTime=0.042985 Right=TrollFist RightUseType=55 GroupBefore=5 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=1 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=0 GroupRequested=1 ClearTriggeredList=1 Result=11
+00000563: CORE MARKER ElapsedMs=63343.698 Actor=Troll Action=1 Family=NORMAL Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=45 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000564: CORE ONDAMAGE ElapsedMs=63414.288 Ordinal=25 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000565: CORE COLLISION_GROUP ElapsedMs=63418.827 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000566: CORE C1 CLEANUP FULFILLED ElapsedMs=63418.853 Actor=Troll Generation=45 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000567: CORE C1_START ElapsedMs=63418.877 Actor=Troll Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=45 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000568: CORE C1_BIND ElapsedMs=63418.884 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000569: CORE C1_STATUS ElapsedMs=63418.934 Event=PERSISTED Actor=Troll Generation=46 Status=PERSISTED Outstanding=0
+00000570: CORE COLLISION_GROUP ElapsedMs=63570.782 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000571: CORE C1 CLEANUP FULFILLED ElapsedMs=63570.804 Actor=PC_Hero Generation=44 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00000572: CORE C1_FINAL ElapsedMs=63570.836 Actor=PC_Hero Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000573: CORE C1_FINAL ElapsedMs=63805.229 Actor=Troll Generation=46 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000574: CORE C1_START ElapsedMs=63821.094 Actor=Troll Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000575: CORE C1_BIND ElapsedMs=63821.107 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000576: CORE C1_STATUS ElapsedMs=63821.170 Event=PERSISTED Actor=Troll Generation=47 Status=PERSISTED Outstanding=0
+00000577: CORE COLLISION_GROUP ElapsedMs=63852.644 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000578: CORE C1 OFFENSE REQUEST ElapsedMs=63852.671 Actor=Troll Generation=47 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000579: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=47 OriginFamily=NORMAL CurrentFamily=NORMAL Action=1 StatePosition=0 StateTime=0.042304 Right=TrollFist RightUseType=55 GroupBefore=5 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=1 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=0 GroupRequested=1 ClearTriggeredList=1 Result=11
+00000580: CORE MARKER ElapsedMs=63852.692 Actor=Troll Action=1 Family=NORMAL Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=47 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000581: CORE C1_START ElapsedMs=63944.520 Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000582: CORE C1_BIND ElapsedMs=63944.533 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+00000583: CORE C1_STATUS ElapsedMs=63944.874 Event=PERSISTED Actor=PC_Hero Generation=48 Status=PERSISTED Outstanding=0
+00000584: CORE C1_FINAL ElapsedMs=63950.449 Actor=PC_Hero Generation=48 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000585: CORE C1_START ElapsedMs=63954.342 Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000586: CORE C1_BIND ElapsedMs=63954.354 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00000587: CORE C1_STATUS ElapsedMs=63954.713 Event=PERSISTED Actor=PC_Hero Generation=49 Status=PERSISTED Outstanding=0
+00000588: CORE ATTACK_OWNERSHIP ElapsedMs=63954.735 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000589: CORE ONDAMAGE ElapsedMs=64046.676 Ordinal=26 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000590: CORE C1_START ElapsedMs=64056.604 Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=49 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000591: CORE C1_BIND ElapsedMs=64056.616 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000592: CORE C1_STATUS ElapsedMs=64056.669 Event=PERSISTED Actor=PC_Hero Generation=50 Status=PERSISTED Outstanding=0
+00000593: CORE COLLISION_GROUP ElapsedMs=64060.383 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00000594: CORE C1 OFFENSE REQUEST ElapsedMs=64060.409 Actor=Troll Generation=47 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00000595: CORE RAW55_PHYSICAL_FIST_NORMAL_NATIVE_CLEAR_SUPPRESSED Actor=E6EAA210 C1=47 Right=E6EB1210 CallerModule=Script_Game.dll CallerRVA=0x000386C6 SUPPRESS_CLEAR=1
+00000596: CORE C1_FINAL ElapsedMs=64344.631 Actor=PC_Hero Generation=50 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000597: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=47 OriginFamily=NORMAL CurrentFamily=NORMAL Action=1 StatePosition=1 StateTime=0.604170 Right=TrollFist RightUseType=55 GroupBefore=7 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=2 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=1 GroupRequested=0 ClearTriggeredList=1 Result=11
+00000598: CORE MARKER ElapsedMs=64374.568 Actor=Troll Action=1 Family=NORMAL Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=47 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000599: CORE C1_START ElapsedMs=64457.868 Actor=PC_Hero Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000600: CORE C1_STATUS ElapsedMs=64457.939 Event=PERSISTED Actor=PC_Hero Generation=51 Status=PERSISTED Outstanding=0
+00000601: CORE ONDAMAGE ElapsedMs=64483.300 Ordinal=27 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=0 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000602: CORE C1_START ElapsedMs=64491.861 Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=51 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000603: CORE C1_BIND ElapsedMs=64491.873 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000604: CORE C1_STATUS ElapsedMs=64491.934 Event=PERSISTED Actor=PC_Hero Generation=52 Status=PERSISTED Outstanding=0
+00000605: CORE COLLISION_GROUP ElapsedMs=64568.391 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000606: CORE C1 CLEANUP FULFILLED ElapsedMs=64568.420 Actor=Troll Generation=47 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00000607: CORE C1_FINAL ElapsedMs=64568.443 Actor=Troll Generation=47 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000608: CORE C1_FINAL ElapsedMs=64780.894 Actor=PC_Hero Generation=52 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000609: CORE C1_START ElapsedMs=64967.910 Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000610: CORE C1_STATUS ElapsedMs=64967.979 Event=PERSISTED Actor=PC_Hero Generation=53 Status=PERSISTED Outstanding=0
+00000611: CORE C1_START ElapsedMs=64972.543 Actor=Troll Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000612: CORE C1_BIND ElapsedMs=64972.560 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=54 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000613: CORE C1_STATUS ElapsedMs=64972.624 Event=PERSISTED Actor=Troll Generation=54 Status=PERSISTED Outstanding=0
+00000614: CORE C1_START ElapsedMs=65117.342 Actor=PC_Hero Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=53 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000615: CORE C1_BIND ElapsedMs=65117.355 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000616: CORE C1_STATUS ElapsedMs=65117.419 Event=PERSISTED Actor=PC_Hero Generation=55 Status=PERSISTED Outstanding=0
+00000617: CORE ATTACK_OWNERSHIP ElapsedMs=65117.436 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000618: CORE COLLISION_GROUP ElapsedMs=65374.826 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000619: CORE C1 OFFENSE REQUEST ElapsedMs=65374.854 Actor=PC_Hero Generation=55 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000620: CORE MARKER ElapsedMs=65374.867 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=55 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000621: CORE ONDAMAGE ElapsedMs=65406.948 Ordinal=28 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000622: CORE COLLISION_GROUP ElapsedMs=65566.069 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000623: CORE C1 CLEANUP FULFILLED ElapsedMs=65566.098 Actor=PC_Hero Generation=55 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000624: CORE C1_FINAL ElapsedMs=65566.120 Actor=PC_Hero Generation=55 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000625: CORE C1_START ElapsedMs=65574.682 Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000626: CORE C1_STATUS ElapsedMs=65574.755 Event=PERSISTED Actor=PC_Hero Generation=56 Status=PERSISTED Outstanding=0
+00000627: CORE C1_START ElapsedMs=65725.631 Actor=PC_Hero Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=56 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000628: CORE C1_BIND ElapsedMs=65725.644 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000629: CORE C1_STATUS ElapsedMs=65725.709 Event=PERSISTED Actor=PC_Hero Generation=57 Status=PERSISTED Outstanding=0
+00000630: CORE ATTACK_OWNERSHIP ElapsedMs=65725.727 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000631: CORE COLLISION_GROUP ElapsedMs=65969.419 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000632: CORE C1 OFFENSE REQUEST ElapsedMs=65969.447 Actor=PC_Hero Generation=57 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000633: CORE MARKER ElapsedMs=65969.459 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=57 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000634: CORE ONDAMAGE ElapsedMs=65987.589 Ordinal=29 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000635: CORE COLLISION_GROUP ElapsedMs=66168.586 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000636: CORE C1 CLEANUP FULFILLED ElapsedMs=66168.614 Actor=PC_Hero Generation=57 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000637: CORE C1_FINAL ElapsedMs=66168.635 Actor=PC_Hero Generation=57 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000638: CORE C1_BIND ElapsedMs=66266.730 Event=COMBAT_MOVE_REUSED Actor=Troll Generation=54 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000639: CORE ATTACK_OWNERSHIP ElapsedMs=66266.808 Actor=Troll Family=SPRINT Action=9 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00000640: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00000641: MatchingMotionFound: 1
+00000642: MarkerScanValid: 1
+00000643: RequiredSourcesAvailable: 1
+00000644: RightSourceSlot: RIGHT
+00000645: RightSourceName: TrollFist
+00000646: RightSourceUseType: 55
+00000647: RightSourceCollisionGroup: 5
+00000648: LeftSourceSlot: LEFT
+00000649: LeftSourceName: TrollFist
+00000650: LeftSourceUseType: 55
+00000651: LeftSourceCollisionGroup: 5
+00000652: Raw8FistSourceName: <none>
+00000653: Raw8FistSourceUseType: -1
+00000654: Raw8FistSourceCollisionGroup: -1
+00000655: =========================================
+00000656: 
+00000657: CORE RAW55_PHYSICAL_FIST_NATIVE_OPEN_SUPPRESSED Actor=E6EAA210 C1=54 OriginFamily=SPRINT CallbackFamily=SPRINT Right=E6EB1210 BeforeGroup=5 RequestedGroup=7 SUPPRESS_GROUP=1
+00000658: CORE COLLISION_GROUP ElapsedMs=66297.521 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000659: CORE C1 OFFENSE REQUEST ElapsedMs=66297.548 Actor=Troll Generation=54 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000660: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=54 OriginFamily=SPRINT CurrentFamily=SPRINT Action=9 StatePosition=1 StateTime=1.449448 Right=TrollFist RightUseType=55 GroupBefore=5 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=1 EarlyOpeningSuppressed=1 FirstMarkerStatePosition=1 NormalNativeClearSuppressed=0 GroupRequested=1 ClearTriggeredList=0 Result=11
+00000661: CORE MARKER ElapsedMs=66297.576 Actor=Troll Action=9 Family=SPRINT Phase=1 Motion=Troll_Stand_Fist_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=54 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=0 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000662: CORE ONDAMAGE ElapsedMs=66482.111 Ordinal=30 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000663: CORE C1_START ElapsedMs=66487.940 Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000664: CORE C1_STATUS ElapsedMs=66488.002 Event=PERSISTED Actor=PC_Hero Generation=58 Status=PERSISTED Outstanding=0
+00000665: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=54 OriginFamily=SPRINT CurrentFamily=POWER Action=2 StatePosition=1 StateTime=2.008908 Right=TrollFist RightUseType=55 GroupBefore=7 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=2 EarlyOpeningSuppressed=1 FirstMarkerStatePosition=1 NormalNativeClearSuppressed=0 GroupRequested=0 ClearTriggeredList=1 Result=11
+00000666: CORE MARKER ElapsedMs=66819.568 Actor=Troll Action=2 Family=POWER Phase=1 Motion=Troll_Stand_Fist_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=54 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000667: CORE ONDAMAGE ElapsedMs=66943.870 Ordinal=31 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=29 PlayerPhase=4 PlayerMotion=Hero_Stand_None_2H_P0_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000668: CORE COLLISION_GROUP ElapsedMs=67001.750 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000669: CORE C1 CLEANUP FULFILLED ElapsedMs=67001.777 Actor=Troll Generation=54 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000670: CORE C1_FINAL ElapsedMs=67001.799 Actor=Troll Generation=54 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000671: CORE C1_FINAL ElapsedMs=68285.569 Actor=PC_Hero Generation=58 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000672: CORE COLLISION_GROUP ElapsedMs=68293.833 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000673: CORE C1_START ElapsedMs=68293.861 Actor=PC_Hero Generation=59 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+00000674: CORE C1_BIND ElapsedMs=68293.868 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=59 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+00000675: CORE C1 OFFENSE REQUEST ElapsedMs=68293.872 Actor=PC_Hero Generation=59 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000676: CORE C1_BIND ElapsedMs=68293.890 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=59 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+00000677: CORE COLLISION_GROUP ElapsedMs=68385.946 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00000678: CORE C1 OFFENSE REQUEST ElapsedMs=68385.979 Actor=PC_Hero Generation=59 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00000679: CORE C1_START ElapsedMs=68398.800 Actor=Troll Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000680: CORE C1_BIND ElapsedMs=68398.813 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=60 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00000681: CORE C1_STATUS ElapsedMs=68398.888 Event=PERSISTED Actor=Troll Generation=60 Status=PERSISTED Outstanding=0
+00000682: CORE ATTACK_OWNERSHIP ElapsedMs=68398.904 Actor=Troll Family=QUICK Action=5 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00000683: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00000684: MatchingMotionFound: 1
+00000685: MarkerScanValid: 1
+00000686: RequiredSourcesAvailable: 1
+00000687: RightSourceSlot: RIGHT
+00000688: RightSourceName: TrollFist
+00000689: RightSourceUseType: 55
+00000690: RightSourceCollisionGroup: 5
+00000691: LeftSourceSlot: LEFT
+00000692: LeftSourceName: TrollFist
+00000693: LeftSourceUseType: 55
+00000694: LeftSourceCollisionGroup: 5
+00000695: Raw8FistSourceName: <none>
+00000696: Raw8FistSourceUseType: -1
+00000697: Raw8FistSourceCollisionGroup: -1
+00000698: =========================================
+00000699: 
+00000700: CORE COLLISION_GROUP ElapsedMs=68429.762 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000701: CORE C1 OFFENSE REQUEST ElapsedMs=68429.791 Actor=Troll Generation=60 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000702: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=60 OriginFamily=QUICK CurrentFamily=QUICK Action=5 StatePosition=0 StateTime=0.043912 Right=TrollFist RightUseType=55 GroupBefore=5 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=1 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=0 GroupRequested=1 ClearTriggeredList=1 Result=11
+00000703: CORE MARKER ElapsedMs=68429.815 Actor=Troll Action=5 Family=QUICK Phase=1 Motion=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=60 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000704: CORE COLLISION_GROUP ElapsedMs=68489.783 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00000705: CORE C1 OFFENSE REQUEST ElapsedMs=68489.811 Actor=Troll Generation=60 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00000706: CORE ONDAMAGE ElapsedMs=68512.469 Ordinal=32 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000707: CORE COLLISION_GROUP ElapsedMs=68515.898 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000708: CORE C1 CLEANUP FULFILLED ElapsedMs=68515.926 Actor=Troll Generation=60 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00000709: CORE C1_START ElapsedMs=68515.951 Actor=Troll Generation=61 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=60 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000710: CORE C1_BIND ElapsedMs=68515.972 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=61 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000711: CORE C1_STATUS ElapsedMs=68516.035 Event=PERSISTED Actor=Troll Generation=61 Status=PERSISTED Outstanding=0
+00000712: CORE COLLISION_GROUP ElapsedMs=68655.781 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000713: CORE C1 CLEANUP FULFILLED ElapsedMs=68655.813 Actor=PC_Hero Generation=59 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00000714: CORE C1_FINAL ElapsedMs=68655.848 Actor=PC_Hero Generation=59 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000715: CORE C1_FINAL ElapsedMs=68877.221 Actor=Troll Generation=61 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000716: CORE C1_START ElapsedMs=68893.000 Actor=Troll Generation=62 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000717: CORE C1_BIND ElapsedMs=68893.013 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=62 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00000718: CORE C1_STATUS ElapsedMs=68893.076 Event=PERSISTED Actor=Troll Generation=62 Status=PERSISTED Outstanding=0
+00000719: CORE ATTACK_OWNERSHIP ElapsedMs=68893.090 Actor=Troll Family=QUICK Action=4 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00000720: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00000721: MatchingMotionFound: 1
+00000722: MarkerScanValid: 1
+00000723: RequiredSourcesAvailable: 1
+00000724: RightSourceSlot: RIGHT
+00000725: RightSourceName: TrollFist
+00000726: RightSourceUseType: 55
+00000727: RightSourceCollisionGroup: 5
+00000728: LeftSourceSlot: LEFT
+00000729: LeftSourceName: TrollFist
+00000730: LeftSourceUseType: 55
+00000731: LeftSourceCollisionGroup: 5
+00000732: Raw8FistSourceName: <none>
+00000733: Raw8FistSourceUseType: -1
+00000734: Raw8FistSourceCollisionGroup: -1
+00000735: =========================================
+00000736: 
+00000737: CORE COLLISION_GROUP ElapsedMs=68924.036 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000738: CORE C1 OFFENSE REQUEST ElapsedMs=68924.063 Actor=Troll Generation=62 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000739: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=62 OriginFamily=QUICK CurrentFamily=QUICK Action=4 StatePosition=0 StateTime=0.043275 Right=TrollFist RightUseType=55 GroupBefore=5 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=1 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=0 GroupRequested=1 ClearTriggeredList=1 Result=11
+00000740: CORE MARKER ElapsedMs=68924.084 Actor=Troll Action=4 Family=QUICK Phase=1 Motion=Troll_Stand_Fist_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=62 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000741: CORE COLLISION_GROUP ElapsedMs=68985.580 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00000742: CORE C1 OFFENSE REQUEST ElapsedMs=68985.608 Actor=Troll Generation=62 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00000743: CORE ONDAMAGE ElapsedMs=69107.846 Ordinal=33 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000744: CORE C1_START ElapsedMs=69115.877 Actor=PC_Hero Generation=63 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000745: CORE C1_BIND ElapsedMs=69115.889 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=63 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000746: CORE C1_STATUS ElapsedMs=69115.945 Event=PERSISTED Actor=PC_Hero Generation=63 Status=PERSISTED Outstanding=0
+00000747: CORE C1_FINAL ElapsedMs=69395.091 Actor=PC_Hero Generation=63 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000748: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=62 OriginFamily=QUICK CurrentFamily=QUICK Action=4 StatePosition=1 StateTime=0.606093 Right=TrollFist RightUseType=55 GroupBefore=7 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=2 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=0 GroupRequested=0 ClearTriggeredList=1 Result=11
+00000749: CORE MARKER ElapsedMs=69432.546 Actor=Troll Action=4 Family=QUICK Phase=1 Motion=Troll_Stand_Fist_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=62 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000750: CORE ONDAMAGE ElapsedMs=69543.219 Ordinal=34 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_2H_P10_StumbleR_Recover_N_Back_00_%_00_P10_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000751: CORE C1_START ElapsedMs=69549.730 Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000752: CORE C1_BIND ElapsedMs=69549.738 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000753: CORE C1_STATUS ElapsedMs=69549.789 Event=PERSISTED Actor=PC_Hero Generation=64 Status=PERSISTED Outstanding=0
+00000754: CORE COLLISION_GROUP ElapsedMs=69622.074 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00000755: CORE C1 CLEANUP FULFILLED ElapsedMs=69622.101 Actor=Troll Generation=62 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00000756: CORE C1_FINAL ElapsedMs=69717.836 Actor=Troll Generation=62 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000757: CORE C1_FINAL ElapsedMs=69830.952 Actor=PC_Hero Generation=64 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000758: CORE C1_START ElapsedMs=70952.175 Actor=Troll Generation=65 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00000759: CORE C1_BIND ElapsedMs=70952.188 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=65 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000760: CORE C1_STATUS ElapsedMs=70952.250 Event=PERSISTED Actor=Troll Generation=65 Status=PERSISTED Outstanding=0
+00000761: CORE ATTACK_OWNERSHIP ElapsedMs=70952.266 Actor=Troll Family=NORMAL Action=1 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00000762: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00000763: MatchingMotionFound: 1
+00000764: MarkerScanValid: 1
+00000765: RequiredSourcesAvailable: 1
+00000766: RightSourceSlot: RIGHT
+00000767: RightSourceName: TrollFist
+00000768: RightSourceUseType: 55
+00000769: RightSourceCollisionGroup: 5
+00000770: LeftSourceSlot: LEFT
+00000771: LeftSourceName: TrollFist
+00000772: LeftSourceUseType: 55
+00000773: LeftSourceCollisionGroup: 5
+00000774: Raw8FistSourceName: <none>
+00000775: Raw8FistSourceUseType: -1
+00000776: Raw8FistSourceCollisionGroup: -1
+00000777: =========================================
+00000778: 
+00000779: CORE COLLISION_GROUP ElapsedMs=70983.984 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000780: CORE C1 OFFENSE REQUEST ElapsedMs=70984.013 Actor=Troll Generation=65 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000781: CORE RAW55_PHYSICAL_FIST_MARKER Actor=Troll C1=65 OriginFamily=NORMAL CurrentFamily=NORMAL Action=1 StatePosition=0 StateTime=0.043898 Right=TrollFist RightUseType=55 GroupBefore=5 GroupAfter=7 AuthoredFistCount=2 AcceptedFistCount=1 EarlyOpeningSuppressed=0 FirstMarkerStatePosition=0 NormalNativeClearSuppressed=0 GroupRequested=1 ClearTriggeredList=1 Result=11
+00000782: CORE MARKER ElapsedMs=70984.040 Actor=Troll Action=1 Family=NORMAL Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=65 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 Raw8Fist=TrollFist Raw8UseType=55 Latch=-1->-1 LatchConfirmed=0
+00000783: CORE ONDAMAGE ElapsedMs=71136.746 Ordinal=35 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000784: CORE C1_START ElapsedMs=71146.565 Actor=PC_Hero Generation=66 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5

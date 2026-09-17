@@ -1,0 +1,43 @@
+CHAT-FRIENDLY LARGE LOG PACKAGE
+ToolVersion: 1
+SourceInput: E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\research\raw\2026.09.17_troll_raw55_permanent_acceptance.log
+SourceFileName: 2026.09.17_troll_raw55_permanent_acceptance.log
+SourceSHA256: AA866E70BF2DB42CF7CE73607040443A9F8725F05CCFDDB01116E582956DA6A7
+SourceBytes: 150110
+SourceLineCount: 1011
+DistinctEventTypes: 1
+EventTimelineRows: 19
+SignalMatches: 282
+MaxOutputPartBytes: 60000
+FullSourceParts: 3
+EventTimelineParts: 1
+SignalParts: 2
+
+SignalPatterns:
+- C1_INVARIANT_WARNING = C1 INVARIANT WARNING
+- WOULD_REPAIR = WOULD_REPAIR
+- WARNING = (?i)\bWARNING\b
+- ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
+- MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
+- OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
+- RAW55_CALLBACK_BOUNDARY = RAW55_[A-Z0-9_]*CALLBACK_BOUNDARY
+- RAW55_GROUP_SUPPRESSION = RAW55_[A-Z0-9_]*GROUP_SUPPRESSION
+- FIST_ACTIVATION = (?i)ACTIVATE_FIST\s*[:=]\s*1
+- AUTHORED_FIST_MARKER = G3AB_COL_FIST
+- CLEAR_TRIGGERED_LIST = (?i)CLEARTRIGGEREDLIST|ClearTriggeredList
+- ON_DAMAGE = (?i)\bONDAMAGE\b|OnDamage
+- COLLISION_GROUP = CORE COLLISION_GROUP
+- C1_CLEANUP_FULFILLED = C1 CLEANUP FULFILLED
+- C1_FINAL = C1_FINAL|C1 FINAL
+- REPAIRED_TO_ITEM_EQUIPPED = REPAIRED_TO_ITEM_EQUIPPED
+- REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
+
+Files:
+- event_counts.tsv
+- full_source_index.tsv
+- event_timeline_part_001.tsv
+- signals_part_001.tsv
+- signals_part_002.tsv
+- full_source_part_001.txt
+- full_source_part_002.txt
+- full_source_part_003.txt
