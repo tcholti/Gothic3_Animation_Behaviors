@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-17
 
-## Current Bridge — EV-292 CLOSED; POWER REPEATED-FIST REARM PROBE FROZEN
+## Current Bridge — EV-292 CLOSED; POWER REPEATED-FIST PROBE IMPLEMENTED + SOURCE-REVIEW PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -34,144 +34,120 @@ native 7 -> 5 cleanup remains healthy
 
 Do not generalize Normal's exact state/timing route to other families.
 
-## Reconstructed Power causal boundary
+## Power causal boundary
 
-### EV-275 — early physical opening separated from native state progression
-
-For factual `Action=2 / Family=POWER`:
+Canonical Power evidence remains:
 
 ```text
-exact native RIGHT raw55 group5 -> requested7 suppressed
-original _AI_PowerAttack runs normally
-StatePosition 0 -> 1 survives
+EV-275
+exact premature native RIGHT raw55 5 -> 7 suppressed
+original _AI_PowerAttack still advances StatePosition 0 -> 1
 RIGHT remains group5
-```
 
-### EV-276 — first authored FIST activation
-
-At the first authored Power FIST:
-
-```text
-same factual actor/source/C1
-StatePosition=1
-RIGHT PhysicalFist/raw55 group5
--> one ordinary 5 -> 7 request
+EV-276
+first authored Power FIST at StatePosition1
+-> exact RIGHT raw55 5 -> 7
 -> ClearTriggeredList=0
--> native first damage occurs
--> native cleanup later 7 -> 5
--> clean C1
-```
+-> native first damage
+-> native final 7 -> 5 cleanup remains healthy
 
-Thus first-contact Power does not need a probe-issued clear.
-
-### EV-283 — second authored FIST exists but current policy is one-shot
-
-In the controlled two-FIST Power fixture:
-
-```text
-first authored FIST already opened RIGHT raw55 and produced native damage
-later second authored FIST is transported in the same C1
+EV-283
+controlled two-FIST Power fixture transports a later second authored FIST
+in the same C1 after first authored activation/damage
 RIGHT remains group7
-Power proof activationUsed is already true
-current one-shot activation probe performs no second intervention
+existing activationUsed one-shot prevented any second intervention
 ```
 
-Therefore absence of a second hit in that old fixture is not evidence that Power cannot double-hit. The remaining unknown is exactly what contact reset, if any, is needed at the second authored FIST.
+Thus the remaining Power question is contact rearm only.
 
-## Frozen next causal question
+## Current implementation under local validation
 
-For the exact later authored Power FIST only:
+Implementation commit:
 
 ```text
-controlled decision has exactly two FIST markers
-same actor / same current C1 / same exact RIGHT as EV-275/276 proof
-Action=2 / Family=POWER Hit
-StatePosition=1
-RIGHT PhysicalFist/raw55 already group7
-earlySuppressionProven=1
-activationUsed=1
-repeat rearm not already used
+d3388d5c38c29ea4453259e9efb3fd67916d865e
 ```
 
-Immediately before intervention require factual exact-trigger state:
+Frozen base:
 
 ```text
-CountsAligned=1
-PlayerResolved=1
-PlayerPresent=1
-PlayerEntryCount=1
-PlayerVisitCount>=1
+f5559a38866a7781be3de4e8ac8847b1a1f531c7
 ```
 
-Then perform exactly:
+Normal Chat independent source review: **PASS**.
 
-```text
-RIGHT TouchDamage.ClearTriggeredList()
-```
-
-once, with no collision-group request.
-
-Capture POST trigger state and correlate runtime with genuine first `ONDAMAGE`, later second `ONDAMAGE`, native `7 -> 5` cleanup and clean C1 finalization.
-
-Interpretation:
-
-```text
-PRE visited
-+ clear once
-+ POST absent
-+ later second damage
-+ cleanup healthy
-    => Power repeated-FIST contact rearm PASS
-
-PRE visited
-+ clear succeeds
-+ repeated contact still cannot damage
-    => ClearTriggeredList alone insufficient
-
-first damage exists but PRE player already absent before marker2
-    => Power has a native between-contact reset; isolate before authored-clear causality
-
-source/state/cleanup/C1 diverges
-    => preserve contradiction and isolate
-```
-
-## Frozen implementation responsibility
-
-Implement ONLY:
-
-`docs/COLLISION_RAW55_POWER_REPEAT_FIST_REARM_PROBE.md`
-
-Expected source scope:
+The implementation is exactly one source commit over the frozen base and changes only:
 
 ```text
 prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
 ```
 
-Expected implementation shape:
+Review confirms:
 
-```text
-one per-proof/C1 repeat-FIST-rearm-used flag
-+ smallest internal read-only exact-trigger state capture reuse/extraction
-+ exact controlled second-Power-FIST gating
-+ factual PRE player-visit gate
-+ one exact current RIGHT TouchDamage.ClearTriggeredList()
-+ factual POST capture/log
+- existing EV-275 Power early selective `5 -> 7` suppression is preserved;
+- original `_AI_PowerAttack` callback and native `StatePosition 0 -> 1` progression are untouched;
+- existing EV-276 first authored Power activation remains `5 -> 7` with `ClearTriggeredList=0`;
+- `PowerEarlySuppressionProof` gains one bounded `repeatFistRearmUsed` flag preserved only for matching actor/C1/source identity;
+- existing Normal trigger-state capture is safely factored through a generic read-only helper while the old Normal wrapper and callers remain intact;
+- later Power intervention requires exact current actor/C1/current RIGHT/source identity, Action2/Power Hit, exactly two FIST markers, group7, StatePosition1, prior suppression proof and first activation proof;
+- intervention also requires exact PRE trigger state with aligned arrays, `PC_Hero` resolved and present exactly once, and visit count >=1;
+- failed exact candidate emits observation only and performs no mutation;
+- eligible intervention marks the exact proof one-shot, performs exactly one `RIGHT TouchDamage.ClearTriggeredList()`, captures POST state and logs one compact Power repeat-FIST record;
+- no second `SetCollisionGroup` request exists in the new path;
+- no direct damage, TriggerTarget, StatePosition/SPU mutation, manual visited-array mutation or cleanup compensation was added;
+- `EngineBridge`, headers, hooks/RVAs, CMake, production modules, Quick, Sprint and stable marker/lifecycle modules are unchanged.
+
+Work build status: **NOT ATTEMPTED — correctly prohibited**.
+
+No material source contradiction found.
+
+## Immediate next responsibility — LOCAL BUILD ONLY
+
+Do not launch another Work task.
+
+1. User syncs GitHub Desktop: **Fetch origin -> Pull origin -> Fetch origin**.
+2. Confirm branch `docs/collision-source-evidence` is current and `Changes = 0 changed files`.
+3. Build only:
+
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionTest
 ```
 
-No `EngineBridge.cpp` change expected.  
-No header API change expected.  
-No new hook/RVA/CMake/production change expected.
+4. STOP on build result.
+5. If PASS, Normal Chat continues with normal POP-03 deploy/hash/twin verification and POP-04 startup gate before runtime.
 
-Do not change EV-275 early suppression or EV-276 first-FIST activation. Do not add a second group request. Do not touch Quick/Normal/Sprint/raw8 behavior.
+Frozen runtime question after deployment:
 
-If broader source scope or another mutation is required, STOP and report the contradiction.
+```text
+first Power authored FIST -> real 5 -> 7 / no probe clear / first damage
+later second Power authored FIST -> same C1/source, RIGHT group7
+PRE PC_Hero still visited exactly once
+-> one ClearTriggeredList only
+-> POST player absent
 
-Work build execution is prohibited. Work source/static audits, commits/pushes, reports and stops. Normal Chat independently reviews before User-local build.
+Does a later second ONDAMAGE return while native 7 -> 5 cleanup and clean C1 finalization remain healthy?
+```
+
+Interpretation remains exactly the frozen contract:
+
+```text
+Route A: clear removes visit + hit2 returns + cleanup healthy
+    => Power repeated-FIST contact rearm PASS
+
+Route B: clear removes visit but hit2 remains absent
+    => ClearTriggeredList alone insufficient
+
+Route C: genuine hit1 exists but player already absent before marker2
+    => native Power between-contact reset exists; isolate first
+
+Route D: source/state/cleanup/C1 diverges
+    => preserve contradiction and isolate
+```
 
 ## Remaining collision order
 
 ```text
-Power repeated-FIST rearm
+Power repeated-FIST runtime closure
 -> Sprint repeated-FIST rearm preserving same-C1 Action9 -> Action2 continuity
 -> permanent raw55 architecture / implementation
 -> standalone collision regression
