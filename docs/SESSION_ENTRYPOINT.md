@@ -33,99 +33,76 @@ raw55 Normal native ALL-clear causal necessity CLOSED/PASS — EV-291
 raw55 Normal authored marker2 replacement-clear sufficiency CLOSED/PASS — EV-292
 ```
 
-## EV-292 factual result
+## Power repeated-FIST implementation under local validation
 
-Representative Normal route is closed:
-
-```text
-marker1 at SP0
--> exact RIGHT raw55 5 -> 7 + authored contact clear
--> hit1
-
-native hidden between-contact clear suppressed
--> player remains visited
--> SP0 -> 1 survives
-
-marker2 at SP1
--> one authored replacement ClearTriggeredList
--> PRE player visited / POST player absent
--> hit2 returns
-
-native 7 -> 5 cleanup
--> clean C1 finalization
-```
-
-Conclusion:
-
-> Authored Normal marker2 `ClearTriggeredList()` is sufficient to replace Gothic's suppressed native between-contact clear and causally owns the second same-C1 contact rearm in the tested route.
-
-Canonical EV-292 source:
-
-```text
-research/archive/2026.09.17_troll_raw55_normal_marker2_replacement_clear.log
-SHA256 = 4AE9700C2944FC2940AB194E018478B88EF00A90157BC8DC3AC1FDB48BEDD91D
-```
-
-## Power repeated-FIST causal route
-
-Canonical Power evidence now reconstructs:
-
-```text
-EV-275
-native true-Power early RIGHT raw55 5 -> 7 is selectively suppressed
-original _AI_PowerAttack still advances StatePosition 0 -> 1
-RIGHT remains group5
-
-EV-276
-first authored Power FIST at StatePosition1
--> exact RIGHT raw55 5 -> 7
--> ClearTriggeredList=0
--> native first damage
--> native cleanup remains healthy
-
-EV-283 controlled two-FIST fixture
-later second authored Power FIST is delivered in the same C1
-after the first authored FIST already opened RIGHT raw55 and produced damage
-RIGHT remains group7
-temporary activationUsed one-shot policy prevents any second intervention
-```
-
-Therefore the remaining Power question is contact rearm only; another physical activation test is not required.
-
-## Immediate next responsibility — BOUNDED WORK IMPLEMENTATION
-
-Implement only:
+Frozen contract:
 
 ```text
 docs/COLLISION_RAW55_POWER_REPEAT_FIST_REARM_PROBE.md
 ```
 
-Frozen question:
+Implementation commit:
 
 ```text
-at exact later authored true-Power FIST in the controlled two-FIST fixture
-+ same actor / same C1 / same exact RIGHT raw55 source
-+ first Power activation already used
-+ RIGHT already group7 / StatePosition1
-+ factual PC_Hero visited exactly once from first contact
-
-perform exactly one TouchDamage.ClearTriggeredList()
-without any second collision-group request
-
-Does this create the second same-C1 damage opportunity?
+d3388d5c38c29ea4453259e9efb3fd67916d865e
 ```
 
-Expected source scope:
+Required implementation base:
 
 ```text
+f5559a38866a7781be3de4e8ac8847b1a1f531c7
+```
+
+Independent Normal Chat source review: **PASS**.
+
+Review findings:
+
+```text
+one commit over frozen base
+one changed source file only:
 prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+
+preserves EV-275 early Power selective suppression
+preserves original _AI_PowerAttack / StatePosition progression
+preserves EV-276 first authored Power activation with ClearTriggeredList=0
+adds one per-proof/C1 repeatFistRearmUsed flag
+reuses/extracts read-only exact trigger-state capture while preserving Normal wrapper behavior
+requires exact actor/C1/current-RIGHT/source identity
+requires Action2 / Power Hit / exactly two FIST markers / group7 / StatePosition1
+requires earlySuppressionProven + activationUsed + repeat not yet used
+requires PRE aligned PC_Hero visited exactly once / visit count >=1
+executes exactly one RIGHT TouchDamage.ClearTriggeredList()
+captures/logs POST trigger state
+issues no second collision-group request
 ```
 
-No `EngineBridge.cpp`, header API, new hook/RVA, CMake or production change is expected. A smallest internal read-only trigger-state capture extraction/reuse inside `PhysicalFistProbe.cpp` is allowed only if existing Normal behavior remains unchanged.
+No `EngineBridge.cpp`, header API, hook, RVA, CMake or production change occurred. Quick/Normal/Sprint/raw8 behavior remains structurally outside the new Power path. Work build status: **NOT ATTEMPTED — correctly prohibited**.
 
-Work build execution is not authorized. Work performs source/static audit, publishes the bounded implementation, reports final remote SHA/changed files/result/build status/contradictions, then stops.
+## Immediate next responsibility — LOCAL BUILD ONLY
 
-Normal Chat independently reviews before any User-local build.
+Do not launch another Work task.
+
+```text
+GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
+-> confirm Changes = 0 changed files
+-> confirm branch docs/collision-source-evidence is current
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+```
+
+Build command:
+
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionTest
+```
+
+If build passes, Normal Chat will continue with the established POP-03/04 deploy/hash/twin/startup gates before runtime.
+
+Runtime question after those gates:
+
+```text
+Does one exact second-Power-FIST ClearTriggeredList(), with RIGHT already group7 and factual first-contact visit still present, restore a second same-C1 damage opportunity without another group request?
+```
 
 ## Evidence retrieval discipline
 
@@ -138,7 +115,7 @@ Use:
 3. `COLLISION_RAW55_POWER_REPEAT_FIST_REARM_PROBE.md`;
 4. EV-275/EV-276 in `EVIDENCE_LEDGER_274_ONWARD.md`;
 5. EV-283 in `EVIDENCE_LEDGER_283_ONWARD.md`;
-6. exact source needed for the bounded implementation.
+6. exact runtime evidence only after the new test exists.
 
 ## Still paused
 
