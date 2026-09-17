@@ -28,151 +28,93 @@ raw55 Sprint-origin repeated-FIST CLOSED/PASS — EV-294
 
 ALL FAMILY-SPECIFIC RAW55 CAUSAL RESEARCH CLOSED
 PERMANENT RAW55 ARCHITECTURE FROZEN
+PERMANENT RAW55 IMPLEMENTATION PUBLISHED + INDEPENDENT SOURCE REVIEW PASS
 ```
 
-## Frozen permanent architecture
-
-Permanent owner:
+Permanent implementation commit:
 
 ```text
-PhysicalFistCollision.cpp/.h
+21853392f146febbc2d1aad4e501baa741fd65b2
 ```
 
-First implementation location:
+Frozen implementation base:
 
 ```text
-prototypes/Script_FrameCollisionTest/
+71a5ae377c4043677c0a8edd86801d2db697fac0
 ```
 
-The files are behavior sources and must compile into both:
+Independent Normal Chat source review: **PASS**.
+
+Review confirms:
 
 ```text
-Script_FrameCollisionBehaviorTest
-Script_FrameCollisionTest
+exactly one implementation commit over frozen base
+expected source scope only
+PhysicalFistCollision.cpp/.h added as permanent behavior source
+PhysicalFistProbe.cpp/.h deleted
+probe removed from CMake / executable architecture
+raw55 family-specific proof maps replaced by one actor/C1 execution record
+origin family immutable; Sprint Action9 -> Action2 continuation preserved
+premature exact RIGHT raw55 5 -> 7 suppression is selective and callback-scoped
+first-FIST semantics match frozen Quick / Normal / Power / Sprint rules
+second FIST is clear-only with no second collision-group request
+Normal hidden ALL-clear suppression is exact trigger + Script_Game.dll+0x386C6 + one-shot
+no PC_Hero / visited-array / ResetOnUntouch production policy
+ActivateAttackSource and RearmTriggeredContacts split generic mutation primitives
+existing ActivateOrRearm equipped semantics retained
+FrameCollisionMarkers changes only expose existing family/result helpers
+original native AI callbacks remain active
+raw8/equipped marker paths remain established path
+Gothic native damage/target/contact and final 7 -> 5 cleanup remain native
+CollisionLifecycleGuard/C1-R1 unchanged
+entity-specific ClearTriggeredList diagnostic hook removed
+no Action / StatePosition / SPU writes, direct damage or custom cleanup
 ```
 
-Do **not** migrate collision into `src/Script_G3AnimationBehaviors` yet.
+No material source contradiction found.
 
-Core production semantics:
+## Immediate next responsibility — LOCAL BUILD GATE
 
-```text
-exact FIST-only current-motion ownership
-+ exact current RIGHT PhysicalFist/raw55 source
-+ valid factual C1 generation
-+ family in Normal / Quick / Power / Sprint
--> PhysicalFistCollision may own authored raw55 timing
+Do not launch Work.
 
-premature native exact RIGHT 5 -> 7 before first FIST
--> suppress only that physical request
--> original AI callback/state progression remains native
+Sync the branch, confirm clean working tree, then build **both** permanent behavior products in this order:
 
-first FIST:
-Quick SP0 or proven post-suppression SP1 -> 5 -> 7 + ClearTriggeredList
-Normal SP0 -> 5 -> 7 + ClearTriggeredList
-Normal proven post-suppression SP1 -> 5 -> 7 only
-Power proven post-suppression SP1 -> 5 -> 7 only
-Sprint proven post-suppression Action9/SP1 -> 5 -> 7 only
-
-Normal first FIST at SP0
--> suppress only exact native ALL ClearTriggeredList from Script_Game.dll +0x386C6
--> prevents Gothic's hidden between-contact rearm from substituting for marker2
-
-second FIST:
-RIGHT already group7
--> ClearTriggeredList only
--> NO second SetCollisionGroup request
-
-Sprint origin:
-Action9 origin persists across same-C1/same-RIGHT Action9 -> Action2
-current Action2 alone never reclassifies it as true Power
-
-cleanup:
-Gothic native exact RIGHT 7 -> 5 remains primary
-CollisionLifecycleGuard remains backup-only
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
+cmake --build build --config Release --target Script_FrameCollisionTest
 ```
 
-Production deliberately excludes probe-only safety/causal state:
+STOP on the build results.
+
+If both pass, Normal Chat continues with:
 
 ```text
-NO PC_Hero visited-array gates
-NO target-specific policy
-NO causal snapshots
-NO per-family proof maps
-NO whole-callback suppression
-NO Action/StatePosition/SPU writes
-NO direct damage
-NO custom cleanup
-NO raw55 LEFT/BOTH/OFF
-NO >2 FIST generalization
-```
-
-## Current responsibility — BOUNDED WORK PRODUCTION IMPLEMENTATION
-
-The architecture is frozen. A Work implementation task may now be issued.
-
-Work must read:
-
-1. `docs/SESSION_ENTRYPOINT.md`
-2. `docs/BETWEEN_CHATS.md`
-3. `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
-4. `docs/FEATURE_DEVELOPMENT_METHOD.md`
-5. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
-6. only the exact source/API files required by the frozen source scope.
-
-Work responsibility:
-
-```text
-implement the permanent PhysicalFistCollision owner exactly as frozen
-add separate generic source primitives for group opening and contact rearm
-add only the minimal EngineBridge transport seams
-preserve stable raw8/equipped/lifecycle behavior
-remove PhysicalFistProbe from the compiled architecture and delete its source
-publish one bounded production implementation
-source/static audit
-STOP
-```
-
-**Work build execution is PROHIBITED.**
-
-Normal Chat + User own independent source review and both local builds after Work returns.
-
-## Expected source scope
-
-```text
-ADD
-PhysicalFistCollision.cpp/.h
-
-MODIFY
-CMakeLists.txt
-CollisionSourceOperations.cpp/.h
-EngineBridge.cpp
-FrameCollisionMarkers.cpp/.h only for the smallest dispatch/family seam if needed
-
-DELETE
-PhysicalFistProbe.cpp/.h
-```
-
-`CollisionSources.*` and `CollisionDiagnostics.*` are conditional narrow allowances only as specified by the frozen architecture. No other source broadening is authorized without an exact contradiction.
-
-## After Work
-
-```text
-independent Normal Chat source review
--> build Script_FrameCollisionBehaviorTest Release
--> build Script_FrameCollisionTest Release
--> behavior-only load smoke
+behavior-only load smoke
 -> diagnostic deploy/hash/startup
 -> focused permanent raw55 acceptance
--> standalone collision regression
--> New Balance 0.7 exact distributed-bundle regression, AttackCollision included
--> migrate mature collision assembly into Script_G3AnimationBehaviors
+```
+
+## Focused acceptance after build/load
+
+The first production acceptance must cover only the frozen permanent candidate before broad regression:
+
+```text
+Quick first/repeated FIST
+Normal SP0 first FIST + marker2
+true Power first/repeated FIST
+Sprint-origin Action9 -> Action2 first/repeated FIST
+unmarked raw55 native fallback
+raw8 FIST sentinel
+equipped marker sentinel
+native raw55 7 -> 5 cleanup / outstanding-zero lifecycle
 ```
 
 ## Still paused
 
 ```text
+NO new Work task during local validation
 NO collision migration into src/Script_G3AnimationBehaviors yet
-NO standalone broad regression before permanent raw55 focused acceptance
+NO standalone broad regression before focused permanent raw55 acceptance
 NO New Balance final regression yet
 NO Raise/speed work yet
 NO AttackContinuationProtection work
