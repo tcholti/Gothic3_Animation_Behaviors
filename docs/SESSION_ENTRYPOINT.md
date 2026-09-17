@@ -29,6 +29,8 @@ raw55 Sprint-origin repeated-FIST CLOSED/PASS — EV-294
 ALL FAMILY-SPECIFIC RAW55 CAUSAL RESEARCH CLOSED
 PERMANENT RAW55 ARCHITECTURE FROZEN
 PERMANENT RAW55 IMPLEMENTATION PUBLISHED + INDEPENDENT SOURCE REVIEW PASS
+BOTH PERMANENT LOCAL TARGETS BUILD PASS
+BEHAVIOR-ONLY DEPLOYMENT + FUNCTIONAL SMOKE PASS
 ```
 
 Permanent implementation commit:
@@ -73,30 +75,55 @@ no Action / StatePosition / SPU writes, direct damage or custom cleanup
 
 No material source contradiction found.
 
-## Immediate next responsibility — LOCAL BUILD GATE
+## Local build / behavior-only smoke — PASS
+
+Both Release targets built successfully from the reviewed permanent candidate:
+
+```text
+Script_FrameCollisionBehaviorTest  PASS
+Script_FrameCollisionTest          PASS
+```
+
+Behavior-only deployment identity:
+
+```text
+only live collision DLL: Script_FrameCollisionBehaviorTest.dll
+length: 418304 bytes
+built/live SHA256:
+0EB935FCBFD5B7A2D2D56683971641EA42B9F7FF074D5B7F2EC2FD353594833A
+```
+
+The process-module enumeration attempted during the smoke returned no `Script_FrameCollision*` module and is **not** used as a pass/fail criterion; prior canonical Gate-3 behavior-only validation likewise establishes functional load/exit by isolated deployment + runtime behavior, not persistent module enumeration.
+
+User functional smoke under the behavior-only DLL:
+
+```text
+spawned Troll
+observed Troll attacks capable of damaging twice, behavior not seen before permanent raw55 support
+
+spawned Golem
+attacked with 2H, Dual 1H/1H and Staff
+observed established authored marker behavior still functioning
+
+exercised Hack attack
+observed Hack behavior still functioning
+```
+
+This is functional/release-purity evidence only. It does not independently prove internal family/C1/source transitions; the diagnostic twin owns that focused acceptance.
+
+## Immediate next responsibility — DIAGNOSTIC DEPLOY / STARTUP GATE
 
 Do not launch Work.
 
-Sync the branch, confirm clean working tree, then build **both** permanent behavior products in this order:
+Replace the behavior-only DLL with the freshly built reviewed `Script_FrameCollisionTest.dll`, verify it is the only live collision DLL, verify built/live SHA256 identity, then launch only far enough to load scripts and exit normally.
 
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
-cmake --build build --config Release --target Script_FrameCollisionTest
-```
+Verify startup log contains the normal diagnostic load/profile, Hack callback identity, hook installation and clean unload.
 
-STOP on the build results.
+Only after diagnostic startup PASS proceed to focused permanent raw55 runtime acceptance.
 
-If both pass, Normal Chat continues with:
+## Focused permanent acceptance
 
-```text
-behavior-only load smoke
--> diagnostic deploy/hash/startup
--> focused permanent raw55 acceptance
-```
-
-## Focused acceptance after build/load
-
-The first production acceptance must cover only the frozen permanent candidate before broad regression:
+The first diagnostic production acceptance must cover only the frozen permanent candidate before broad regression:
 
 ```text
 Quick first/repeated FIST
