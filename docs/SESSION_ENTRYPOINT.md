@@ -15,26 +15,39 @@
 > **LARGE-LOG RULE:** Do not orient by scanning raw/archive logs. Use canonical EV first and the committed derived package for large-log retrieval. Processed source evidence moves unchanged to `research/archive/`.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
-Current frozen probe: `docs/COLLISION_RAW55_NORMAL_MARKER2_REPLACEMENT_CLEAR_PROBE.md`  
-Latest canonical evidence: **EV-291** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
+Latest canonical evidence: **EV-292** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
 ```text
 raw55 Quick       CLOSED/PASS through EV-273
 raw55 true Power  first-contact CLOSED/PASS through EV-276
-raw55 Normal      first-contact + SP0 route CLOSED/PASS through EV-287
+raw55 Normal      repeated-FIST contact rearm CLOSED/PASS — EV-292
 raw55 Sprint      first-contact CLOSED/PASS through EV-282
 raw55 two-FIST cross-family runtime CLOSED — EV-283
 raw55 Normal native 7->7 setter as second-rearm source REJECTED — EV-288
 raw55 Normal native trigger-bookkeeping reset before marker2 CONFIRMED — EV-289
 raw55 Normal exact native public ALL-clear reset operation IDENTIFIED — EV-290
 raw55 Normal native ALL-clear causal necessity CLOSED/PASS — EV-291
+raw55 Normal authored marker2 replacement-clear sufficiency CLOSED/PASS — EV-292
 ```
 
-## Current factual model
+## EV-292 factual result
 
-EV-291 establishes:
+Diagnostic implementation:
+
+```text
+f2ae82991bc1c1675c6e56c45b6f1bd267f093ee
+```
+
+Local build/deploy/startup PASS:
+
+```text
+Built SHA256 = 98878AA9DE76CA04C9EEFFA07A9FD44C190E6711825231D2688FE1B75864B6E3
+Live  SHA256 = 98878AA9DE76CA04C9EEFFA07A9FD44C190E6711825231D2688FE1B75864B6E3
+```
+
+Representative factual Normal C1=3:
 
 ```text
 marker1 at SP0
@@ -44,112 +57,69 @@ marker1 at SP0
 -> PC_Hero visited/count1
 
 native Normal transition
--> exact native 7 -> 7 setter suppressed
--> exact native ALL clear from Script_Game.dll +0x386C6 suppressed
--> player remains visited/count1
--> SP0 -> 1 still completes
+-> EV-288 exact native 7 -> 7 setter suppressed
+-> EV-291 exact Script_Game +0x386C6 ALL clear suppressed
+-> PC_Hero remains visited/count1
+-> original _AI_Attack completes SP0 -> 1
 
-marker2
--> player still visited/count1
--> no hit2
+marker2 at SP1
+-> same C1 / same exact RIGHT raw55 group7
+-> PRE PC_Hero visited/count1
+-> one authored replacement ClearTriggeredList
+-> actual clear observed from Script_FrameCollisionTest.dll
+-> POST PC_Hero absent / aligned arrays
+-> later hit2 returns
 
 native exact RIGHT 7 -> 5 cleanup
--> clean C1
+-> outstanding = 0
+-> clean C1 finalization
 ```
 
-Therefore the exact native ALL clear is causally required for the implicit second contact opportunity in the tested Normal route.
+User visual result: **both swings connected/damaged**.
 
-## Current diagnostic implementation
+Conclusion:
 
-Marker2 replacement-clear implementation:
+> Authored Normal marker2 `ClearTriggeredList()` is sufficient to replace Gothic's suppressed native between-contact clear and causally owns the second same-C1 contact rearm in the tested route.
 
-```text
-f2ae82991bc1c1675c6e56c45b6f1bd267f093ee
-```
+## Immediate next responsibility — NORMAL CHAT DESIGN/FREEZE ONLY
 
-Required implementation base:
+Do not launch another Work task automatically.
 
-```text
-7aa215eb7812f8819d87bd9a46c3dc9fa86490d9
-```
+Normal repeated-FIST contact-rearm causality is closed for the tested raw55 route. The next planned family is **Power repeated-FIST rearm**.
 
-Independent Normal Chat source review: **PASS**.
+Before any Work implementation, Normal Chat must reconstruct only the already-proven Power first-contact/two-FIST route and freeze the smallest one-variable repeated-contact probe. Do not copy Normal's SP0/SP1 assumptions into Power without evidence.
 
-Review findings:
+## Evidence retrieval discipline
 
-```text
-one commit over frozen base
-one changed file only:
-prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+Do not scan `research/raw/` or `research/archive/` during orientation.
 
-exact two-FIST Normal marker shape
-same actor/current C1/current RIGHT source
-raw55 / group7 / StatePosition1
-preStateRearmProven
-nativeRearmSuppressionUsed
-nativeTriggerClearSuppressionUsed
-one-shot marker2ReplacementClearUsed gate
-factual PRE player visit gate
-one exact current RIGHT TouchDamage.ClearTriggeredList()
-factual POST state capture/log
-```
-
-No `EngineBridge.cpp`, header API, hook, RVA, CMake or production change occurred. EV-288 and EV-291 suppressions remain unchanged. Build was **NOT ATTEMPTED** by Work.
-
-## Immediate next responsibility — local validation only
-
-Do not launch another Work task.
-
-```text
-GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
--> confirm Changes = 0
--> build Script_FrameCollisionTest Release only
--> STOP on build result
-```
-
-If build passes, continue with the established POP-03/04 deploy/hash/twin/startup gates, then run the same Normal two-FIST Troll fixture.
-
-Frozen runtime source filename:
-
-```text
-research/raw/2026.09.17_troll_raw55_normal_marker2_replacement_clear.log
-```
-
-Runtime question:
-
-```text
-Does the authored marker2 replacement ClearTriggeredList restore hit2 while hit1, SP0->1 progression and native 7->5 cleanup remain healthy?
-```
-
-Record visually:
-
-```text
-first swing damaged? yes/no
-second swing damaged? yes/no
-anything abnormal/stuck? yes/no + note
-```
-
-After runtime, preserve the untouched log under the frozen filename. If useful/large, process with `tools\log_evidence\Prepare-Log.cmd`. Close the runtime as the next canonical EV before advancing.
-
-## Retrieval discipline
-
-Do not scan raw/archive logs during orientation.
-
-Use:
+Use in this order:
 
 1. this file;
 2. `BETWEEN_CHATS.md`;
-3. `COLLISION_RAW55_NORMAL_MARKER2_REPLACEMENT_CLEAR_PROBE.md`;
-4. EV-291 only if factual causal verification is needed;
-5. exact runtime-derived package only after the new test exists.
+3. EV-292 in `EVIDENCE_LEDGER_291_ONWARD.md`;
+4. the EV-292 derived package only for exact runtime verification;
+5. prior Power canonical evidence only when designing the next probe.
+
+EV-292 derived package:
+
+```text
+research/derived/2026.09.17_troll_raw55_normal_marker2_replacement_clear_large_log/
+```
+
+Source SHA256:
+
+```text
+4AE9700C2944FC2940AB194E018478B88EF00A90157BC8DC3AC1FDB48BEDD91D
+```
 
 ## Still paused
 
 ```text
 NO permanent PhysicalFistCollision
 NO promotion/copy of PhysicalFistProbe scaffolding
-NO production Normal marker2 behavior until replacement-clear causal proof closes
-NO Power/Sprint repeated-FIST work yet
+NO Power/Sprint repeated-FIST intervention until separately frozen
+NO permanent raw55 architecture until Power + Sprint repeated-contact work closes
 NO New Balance final regression yet
 NO Raise/speed work yet
 NO AttackContinuationProtection work
