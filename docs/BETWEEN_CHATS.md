@@ -4,159 +4,162 @@
 
 **Updated:** 2026-09-17
 
-## Current Bridge — EV-293 CLOSED; SPRINT-ORIGIN REPEATED-FIST IMPLEMENTED + SOURCE-REVIEW PASS
+## Current Bridge — EV-294 CLOSED; ALL FAMILY-SPECIFIC RAW55 RESEARCH CLOSED
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock is **CLOSED**. Canonical collision evidence is through **EV-293**. No permanent raw55 implementation is authorized.
+Recovery Lock is **CLOSED**. Canonical collision evidence is through **EV-294**.
 
 Latest canonical evidence:
 
-`docs/EVIDENCE_LEDGER_291_ONWARD.md` — EV-293
+`docs/EVIDENCE_LEDGER_291_ONWARD.md` — EV-294
 
-Current frozen diagnostic contract:
+There is **no active Work implementation responsibility**. Do not launch Work until Normal Chat has completed and frozen the permanent raw55 architecture.
 
-`docs/COLLISION_RAW55_SPRINT_ORIGIN_REPEAT_FIST_REARM_PROBE.md`
-
-## Closed Power checkpoint — EV-293
-
-True Power repeated-FIST contact rearm is causally closed for the tested raw55 route:
+## Final family-specific raw55 checkpoint
 
 ```text
-first authored Power FIST at SP1 -> exact RIGHT 5 -> 7, ClearTriggeredList=0, first damage
-second authored Power FIST in same C1/source -> PRE PC_Hero visited -> one ClearTriggeredList -> POST absent -> second damage
-native 7 -> 5 cleanup -> clean C1
+Quick         repeated-FIST CLOSED/PASS — EV-273
+Normal        repeated-FIST CLOSED/PASS — EV-292
+true Power    repeated-FIST CLOSED/PASS — EV-293
+Sprint-origin repeated-FIST CLOSED/PASS — EV-294
 ```
 
-Power marker1 owns the single physical opening; marker2 owns contact-bookkeeping clear only.
+### EV-294 — Sprint-origin repeated contact
 
-## Sprint-origin causal boundary
-
-Canonical Sprint evidence remains:
+Representative factual Troll C1=24:
 
 ```text
-EV-281
-Action9 / Family SPRINT early exact RIGHT raw55 5 -> 7 is selectively suppressed
-original _AI_PowerAttack still advances StatePosition 0 -> 1
-RIGHT remains group5
-
-EV-282
-first authored Sprint FIST under Action9 / Sprint / SP1
--> exact RIGHT raw55 5 -> 7
+Action9 / SPRINT
+-> EV-281 exact premature RIGHT raw55 5 -> 7 suppression
+-> original _AI_PowerAttack preserves SP0 -> 1
+-> first authored Sprint FIST at SP1 performs real exact RIGHT 5 -> 7
 -> ClearTriggeredList=0
--> native first damage
+-> first native ONDAMAGE
 
-EV-283
 same C1 / same exact RIGHT continues
--> factual Action9 -> Action2 transition
--> later second authored FIST arrives under current Action2 / Family POWER
+-> factual Action9 -> Action2
 -> RIGHT remains group7
+
+second authored FIST under current Action2 / POWER
+-> original Sprint proof still matches actor/source/C1
+-> MatchingPowerProof=0
+-> PRE PC_Hero present exactly once/count1/aligned
+-> exactly one current-RIGHT TouchDamage.ClearTriggeredList()
+-> POST PC_Hero absent/aligned
+-> no second group request
+-> later second native ONDAMAGE
+
+second ONDAMAGE occurs while PC_Hero is already in LieKnockDown_Begin
+-> knockdown explains why hit2 was difficult to verify visually
+-> it does not invalidate the contact-rearm result
+
+native exact RIGHT 7 -> 5 cleanup
+-> offense obligation fulfilled
+-> outstanding=0
+-> clean finalization
 ```
 
-The second marker therefore remains owned by the factual Sprint-origin actor/source/C1 proof, not by visual animation identity or current Action2 alone.
+C1=44, 58 and 70 independently repeat the decisive Sprint-origin marker2 PRE visited -> POST absent reset with same-C1/source ownership.
 
-## Current implementation under local validation
-
-Implementation commit:
+Runtime identity:
 
 ```text
+implementation:
 32dc52dcba327e74436dcd76b70b21251e06565c
+
+built/live DLL SHA256:
+50DA8C98D5C059A857383B2C690D499E1E2F0A3B21760B7626FBA60BDF52D1B8
+
+canonical source:
+research/archive/2026.09.17_troll_raw55_sprint_origin_repeat_fist_rearm.log
+
+source SHA256:
+5F4AB5E6F0C2C8BE7A0E7331493B7FA7DC02D19139B3218062513CE9FDA05A3C
+
+source bytes / lines:
+598111 / 2825
+
+source Git blob:
+f429aa4ccadc08e75a542ad5b12f0e3d372702c1
+
+source upload + derived package commit:
+a684dfba2ecc4f72b46140cf8beef3bdf9ceb946
+
+byte-identical archive commit:
+08e29d3a4453759dcc53733b7270b4585afe0599
 ```
 
-Frozen base:
+## Governing permanent-design facts
+
+The permanent raw55 design must preserve these closed boundaries:
 
 ```text
-aedc129a09f0eebc4d00c55106848f21f5d8c147
+AUTHORED TIMING
+Authored FIST timing, not Gothic's premature raw55 opening, owns offense start.
+
+HOOK OWNERSHIP
+Hooks remain transport-only; permanent behavior belongs in the appropriate production raw55 owner module.
+
+QUICK
+Quick retains its proven pre-StatePosition/raw55 route and proven repeated-contact rearm semantics.
+
+NORMAL
+first authored FIST owns physical opening / first-contact preparation in its proven route
+later repeated FIST owns contact reset only
+no repeated-marker group transition
+
+TRUE POWER
+preserve original _AI_PowerAttack and StatePosition progression
+suppress only premature exact RIGHT raw55 5 -> 7
+first authored FIST: real 5 -> 7, no clear
+later FIST: contact clear only
+
+SPRINT
+preserve original Action9 callback and StatePosition progression
+suppress only premature exact RIGHT raw55 5 -> 7
+first authored FIST under Action9: real 5 -> 7, no clear
+Sprint origin must survive same-C1 factual Action9 -> Action2
+later FIST remains Sprint-origin owned even while current state is Action2/POWER
+current Action2 alone is insufficient to infer true-Power origin
+later FIST: contact clear only
+
+CLEANUP
+Gothic native exact RIGHT 7 -> 5 cleanup remains primary ownership.
+CollisionLifecycleGuard remains protective repair, not ordinary collision semantics.
+
+RESEARCH PURITY
+PhysicalFistProbe is temporary diagnostic scaffolding and must not be promoted/copied wholesale.
 ```
 
-Normal Chat independent source review: **PASS**.
+## Current responsibility — NORMAL CHAT PERMANENT RAW55 ARCHITECTURE SYNTHESIS
 
-The implementation is exactly one source commit over the frozen base and changes only:
+Do not implement yet.
+
+Normal Chat must inspect only the permanent module/source boundaries needed to answer:
 
 ```text
-prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+Which production module should own raw55 PhysicalFist marker behavior?
+What minimal transport seam is required from existing hooks?
+Which raw55 operations are family-independent?
+Which timing/origin decisions remain family-specific?
+How should per-execution identity be represented without diagnostic probe maps/scaffolding?
+How is Sprint-origin continuity represented across Action9 -> Action2?
+How does this coexist with existing raw8 Fist behavior without changing it?
+How is native cleanup kept Gothic-owned while lifecycle repair remains backup-only?
+What exact production source scope and regression obligations should Work receive?
 ```
 
-Review confirms:
-
-- EV-281 Sprint early selective suppression is unchanged;
-- EV-282 first authored Sprint activation remains Action9/SP1 `5 -> 7` with `ClearTriggeredList=0`;
-- native Action9 -> Action2 progression is not modified;
-- EV-293 true-Power repeated-FIST behavior is preserved;
-- `SprintEarlySuppressionProof` gains one bounded `repeatFistRearmUsed` flag retained only for matching actor/C1/source identity;
-- later eligibility is anchored to that Sprint proof while requiring current factual Action2 / Family POWER Hit;
-- same current C1 and exact current RIGHT source are required;
-- exactly two FIST markers, zero RIGHT/LEFT/BOTH/OFF, no raw8 resolver, SP1 and RIGHT raw55 group7 are required;
-- a matching same-C1 true-Power proof is treated as ambiguous and performs no mutation;
-- eligible intervention requires aligned trigger arrays with `PC_Hero` resolved, present exactly once and visit count >=1;
-- intervention performs exactly one current-RIGHT `TouchDamage.ClearTriggeredList()` and captures POST state;
-- no second collision-group request, Action/StatePosition/SPU write, direct damage, trigger target, manual visited mutation or cleanup compensation was added;
-- no hook/RVA/header/CMake/production/stable marker/lifecycle/source change occurred.
-
-`OnMarkerProcessed` ordering preserves ownership:
-
-```text
-first Action9 marker -> existing Sprint activation succeeds/returns
-later Action2 marker -> Sprint activation fails -> Sprint-origin repeat path evaluates preserved origin proof
-true-Power repeat handling remains available only when Sprint-origin path does not own the marker
-```
-
-Work build status: **NOT ATTEMPTED — correctly prohibited**.
-
-No material source contradiction found.
-
-## Immediate next responsibility — LOCAL BUILD ONLY
-
-Do not launch another Work task.
-
-1. User syncs GitHub Desktop: **Fetch origin -> Pull origin -> Fetch origin**.
-2. Confirm branch `docs/collision-source-evidence` is current and `Changes = 0 changed files`.
-3. Build only:
-
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionTest
-```
-
-4. STOP on build result.
-5. If PASS, Normal Chat continues with normal POP-03 deploy/hash/twin verification and POP-04 startup gate before runtime.
-
-Frozen runtime interpretation:
-
-```text
-Route A:
-Action9 first activation/damage
-+ same C1/source becomes Action2 before marker2
-+ PRE player visited
-+ one Sprint-origin clear
-+ POST player absent
-+ later second damage
-+ native 7 -> 5 cleanup / clean C1
-=> Sprint-origin repeated-FIST ownership/rearm PASS
-
-Route B:
-clear succeeds but second damage absent
-=> ClearTriggeredList alone insufficient
-
-Route C:
-first damage exists but player already absent before marker2
-=> native between-contact reset exists; isolate
-
-Route D:
-matching same-C1 true-Power proof or ownership/transition ambiguity
-=> preserve contradiction; no mutation
-
-Route E:
-source/state/cleanup/C1 diverges
-=> preserve and isolate
-```
+Architecture must be documented/frozen before a bounded Work implementation task is issued.
 
 ## Remaining collision order
 
 ```text
-Sprint-origin repeated-FIST runtime closure
--> permanent raw55 architecture / implementation
+permanent raw55 architecture synthesis
+-> freeze bounded production implementation
+-> permanent raw55 implementation
 -> standalone collision regression
 -> New Balance 0.7 bundle regression exactly as distributed, AttackCollision included
 -> collision module complete
@@ -166,9 +169,8 @@ Sprint-origin repeated-FIST runtime closure
 ## Still paused
 
 ```text
-NO permanent PhysicalFistCollision
+NO Work implementation until permanent architecture is frozen
 NO promotion/copy of PhysicalFistProbe scaffolding
-NO permanent raw55 architecture until Sprint repeated-contact closes
 NO New Balance final regression yet
 NO Raise/speed work yet
 NO AttackContinuationProtection work
