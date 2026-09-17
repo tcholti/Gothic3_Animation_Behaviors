@@ -1091,6 +1091,14 @@ void LogAttackCallbackOwnership(
             ? static_cast<GEInt>(
                   CollisionSources::GetCollisionSourceUseType(fistSource))
             : -1;
+        Entity rightSource(result.sources.rightInstance);
+        bool const raw55PhysicalFistCandidate =
+            result.decision.hasFistMarkers
+            && result.decision.requiredSourceMask == SourceMask_None
+            && result.fistSourceInstance == nullptr
+            && rightSource != None
+            && CollisionSources::GetCollisionSourceUseType(rightSource)
+                == gEUseType_PhysicalFist;
         bool const requiredSourcesAvailable =
             CollisionSources::HasRequiredCollisionSources(
                 result.sources, result.decision.requiredSourceMask);
@@ -1100,7 +1108,8 @@ void LogAttackCallbackOwnership(
                 && result.decision.requiredSourceMask != SourceMask_None
                 && !requiredSourcesAvailable)
             || (result.decision.hasFistMarkers
-                && fistUseType != static_cast<GEInt>(gEUseType_Fist));
+                && fistUseType != static_cast<GEInt>(gEUseType_Fist)
+                && !raw55PhysicalFistCandidate);
         std::fprintf(
             g_pLog,
             "CORE ATTACK_OWNERSHIP ElapsedMs=%.3f Actor=%s Family=%s Action=%d Phase=%d Motion=%s MarkerPresent=%d RequiredMask=%u FistMarkers=%d Raw8Fist=%s Raw8UseType=%d SuppressNative=%d Classification=%s\n",
