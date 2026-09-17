@@ -24,138 +24,96 @@ Latest canonical evidence: **EV-293** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 raw55 Quick       repeated-FIST CLOSED/PASS through EV-273
 raw55 true Power  repeated-FIST CLOSED/PASS — EV-293
 raw55 Normal      repeated-FIST CLOSED/PASS — EV-292
-raw55 Sprint      first-contact CLOSED/PASS through EV-282; repeated-FIST next
+raw55 Sprint      first-contact CLOSED/PASS through EV-282; repeated-FIST implementation under local validation
 raw55 two-FIST cross-family runtime CLOSED — EV-283
 ```
 
-## EV-293 factual result — true Power repeated-FIST
+## Sprint-origin repeated-FIST implementation under local validation
 
-Representative factual Action2 Power C1=6:
-
-```text
-native early 5 -> 7 suppressed at SP0
--> original _AI_PowerAttack still advances SP0 -> 1
--> RIGHT remains group5
-
-first authored FIST at SP1
--> exact RIGHT raw55 5 -> 7
--> ClearTriggeredList=0
--> first native ONDAMAGE
--> PC_Hero becomes visited/count1
-
-later second authored FIST, same C1/source
--> Action2 / POWER / SP1 / RIGHT group7
--> exact two-FIST decision
--> PRE PC_Hero visited exactly once/count1
--> one TouchDamage.ClearTriggeredList()
--> POST PC_Hero absent / aligned arrays
--> later second native ONDAMAGE
-
-native exact RIGHT 7 -> 5 cleanup
--> outstanding=0
--> clean C1 finalization
-```
-
-Independent factual Power C1=52 repeats the same first activation -> first damage -> marker2 clear -> second damage -> cleanup route.
-
-Conclusion:
-
-> **Power repeated-FIST contact rearm is CLOSED/PASS for the tested raw55 route.** Marker1 owns the single physical `5 -> 7` opening; marker2 needs contact-bookkeeping clear only and no second group request.
-
-Diagnostic implementation:
-
-```text
-d3388d5c38c29ea4453259e9efb3fd67916d865e
-```
-
-Local built/live DLL SHA256:
-
-```text
-1EAD1E361755368DF9DAC5C8A068549CFC63BDD95381247F41F1B4BA68693B7E
-```
-
-Canonical source:
-
-```text
-research/archive/2026.09.17_troll_raw55_power_repeat_fist_rearm.log
-SHA256 = 61F572B13D78C25A7363FC85076AEC7FAEC48CD8A51EC540F012D7541D1C42D5
-Git blob = ffa3777e9a9311afc77af2ffff4e84eb05fa6cdc
-```
-
-Derived retrieval package:
-
-```text
-research/derived/2026.09.17_troll_raw55_power_repeat_fist_rearm_large_log/
-```
-
-## Sprint-origin repeated-FIST boundary
-
-EV-281/282 + EV-283 establish:
-
-```text
-Sprint origin:
-Action9 / Family SPRINT
--> native early 5 -> 7 suppressed while SP0 -> 1 survives
--> first authored FIST under Action9 opens exact RIGHT 5 -> 7
--> ClearTriggeredList=0
--> first native damage
-
-same C1 / same exact RIGHT continues
--> factual Action9 -> Action2 transition
--> RIGHT remains group7
--> later second authored FIST is delivered under current Action2 / Family POWER
-```
-
-The current Action2 label does **not** make this a true-Power-origin execution. Origin ownership remains the factual Sprint proof tied to actor + exact RIGHT source + C1 generation.
-
-## Immediate next responsibility — BOUNDED WORK IMPLEMENTATION
-
-Implement only:
+Frozen contract:
 
 ```text
 docs/COLLISION_RAW55_SPRINT_ORIGIN_REPEAT_FIST_REARM_PROBE.md
 ```
 
-Frozen question:
+Implementation commit:
 
 ```text
-Sprint-origin proof from Action9 first-contact path remains same actor/source/C1
-+ first Sprint activation already used
-+ C1 has transitioned to current Action2
-+ second authored FIST arrives at SP1 with RIGHT already group7
-+ exact first-contact PC_Hero visit still present
-
-perform exactly one current-RIGHT TouchDamage.ClearTriggeredList()
-without another group request
-
-Does second native damage return while native cleanup and same-C1 continuity remain healthy?
+32dc52dcba327e74436dcd76b70b21251e06565c
 ```
 
-Expected source scope:
+Required implementation base:
 
 ```text
+aedc129a09f0eebc4d00c55106848f21f5d8c147
+```
+
+Independent Normal Chat source review: **PASS**.
+
+Review findings:
+
+```text
+one commit over frozen base
+one changed source file only:
 prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+
+preserves EV-281 Sprint selective early raw55 5 -> 7 suppression
+preserves original _AI_PowerAttack and Sprint StatePosition 0 -> 1 progression
+preserves EV-282 first authored Sprint activation under Action9 with ClearTriggeredList=0
+preserves EV-293 true-Power repeated-FIST behavior
+adds one per-Sprint-proof/C1 repeatFistRearmUsed flag
+preserves that flag only for matching actor/source/C1 Sprint proof refresh
+later marker requires same Sprint-origin actor/source/C1 proof
+later marker requires current Action2 / Family POWER Hit, exactly two FIST markers, SP1, RIGHT raw55 group7
+rejects matching true-Power proof for same actor/source/C1 as ambiguous ownership
+requires exact PRE aligned PC_Hero visit exactly once/count >=1
+executes exactly one RIGHT TouchDamage.ClearTriggeredList()
+captures/logs POST trigger state
+issues no second collision-group request
+writes no Action/StatePosition/SPU and performs no direct damage
 ```
 
-Expected implementation shape:
+The `OnMarkerProcessed` ordering is correct for the established Action9 -> Action2 route:
 
 ```text
-add one Sprint-proof repeatFistRearmUsed flag
-preserve it only for matching actor/source/C1 proof refresh
-preserve EV-281/EV-282 behavior unchanged
-at later current-Action2 FIST, require Sprint-origin proof + exact same C1/source
-reject an ambiguous matching true-Power proof
-require exactly two FIST markers, SP1, RIGHT raw55 group7
-require PRE aligned PC_Hero visited exactly once/count>=1
-perform one ClearTriggeredList only
-capture/log POST state
+first Action9 FIST
+-> existing Sprint activation succeeds and returns
+
+later Action2 FIST
+-> Sprint activation fails by current Action
+-> Sprint-origin repeat probe evaluates preserved Sprint proof
+-> only if that path does not own the marker can ordinary true-Power repeat handling run
 ```
 
-No `EngineBridge.cpp`, header API, new hook/RVA, CMake or production change is expected. Work build execution is not authorized. Normal Chat independently reviews before local build.
+No `EngineBridge.cpp`, header API, hook, RVA, CMake, production module, stable marker/lifecycle/source change occurred. Work build status: **NOT ATTEMPTED — correctly prohibited**.
+
+## Immediate next responsibility — LOCAL BUILD ONLY
+
+Do not launch another Work task.
+
+```text
+GitHub Desktop: Fetch origin -> Pull origin -> Fetch origin
+-> confirm Changes = 0 changed files
+-> confirm branch docs/collision-source-evidence is current
+-> build Script_FrameCollisionTest Release only
+-> STOP on build result
+```
+
+Build command:
+
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionTest
+```
+
+If build passes, Normal Chat continues with the established POP-03 deploy/hash/twin gate and POP-04 startup gate before runtime.
+
+Frozen runtime question:
+
+```text
+Does one later-FIST ClearTriggeredList(), owned by the original Sprint Action9 proof across the same-C1 Action9 -> Action2 transition, restore a second same-C1 damage opportunity without another group request?
+```
 
 ## Evidence retrieval discipline
-
-Do not scan `research/raw/` or `research/archive/` during orientation.
 
 Use:
 
@@ -164,8 +122,8 @@ Use:
 3. `COLLISION_RAW55_SPRINT_ORIGIN_REPEAT_FIST_REARM_PROBE.md`;
 4. EV-281/EV-282 in `EVIDENCE_LEDGER_280_ONWARD.md`;
 5. EV-283 in `EVIDENCE_LEDGER_283_ONWARD.md`;
-6. EV-293 in `EVIDENCE_LEDGER_291_ONWARD.md` only for the proven clear-only repeated-contact precedent;
-7. exact diagnostic source needed for implementation.
+6. EV-293 in `EVIDENCE_LEDGER_291_ONWARD.md` only as the clear-only repeated-contact precedent;
+7. exact runtime evidence only after local validation.
 
 ## Still paused
 
