@@ -15,6 +15,7 @@
 > **LARGE-LOG RULE:** Do not orient by scanning raw/archive logs. Use canonical EV first and the committed derived package for large-log retrieval. Processed source evidence moves unchanged to `research/archive/`.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
+Current frozen probe: `docs/COLLISION_RAW55_POWER_REPEAT_FIST_REARM_PROBE.md`  
 Latest canonical evidence: **EV-292** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
@@ -34,91 +35,117 @@ raw55 Normal authored marker2 replacement-clear sufficiency CLOSED/PASS — EV-2
 
 ## EV-292 factual result
 
-Diagnostic implementation:
-
-```text
-f2ae82991bc1c1675c6e56c45b6f1bd267f093ee
-```
-
-Local build/deploy/startup PASS:
-
-```text
-Built SHA256 = 98878AA9DE76CA04C9EEFFA07A9FD44C190E6711825231D2688FE1B75864B6E3
-Live  SHA256 = 98878AA9DE76CA04C9EEFFA07A9FD44C190E6711825231D2688FE1B75864B6E3
-```
-
-Representative factual Normal C1=3:
+Representative Normal route is closed:
 
 ```text
 marker1 at SP0
--> exact RIGHT raw55 5 -> 7
--> marker-owned ClearTriggeredList
+-> exact RIGHT raw55 5 -> 7 + authored contact clear
 -> hit1
--> PC_Hero visited/count1
 
-native Normal transition
--> EV-288 exact native 7 -> 7 setter suppressed
--> EV-291 exact Script_Game +0x386C6 ALL clear suppressed
--> PC_Hero remains visited/count1
--> original _AI_Attack completes SP0 -> 1
+native hidden between-contact clear suppressed
+-> player remains visited
+-> SP0 -> 1 survives
 
 marker2 at SP1
--> same C1 / same exact RIGHT raw55 group7
--> PRE PC_Hero visited/count1
 -> one authored replacement ClearTriggeredList
--> actual clear observed from Script_FrameCollisionTest.dll
--> POST PC_Hero absent / aligned arrays
--> later hit2 returns
+-> PRE player visited / POST player absent
+-> hit2 returns
 
-native exact RIGHT 7 -> 5 cleanup
--> outstanding = 0
+native 7 -> 5 cleanup
 -> clean C1 finalization
 ```
-
-User visual result: **both swings connected/damaged**.
 
 Conclusion:
 
 > Authored Normal marker2 `ClearTriggeredList()` is sufficient to replace Gothic's suppressed native between-contact clear and causally owns the second same-C1 contact rearm in the tested route.
 
-## Immediate next responsibility — NORMAL CHAT DESIGN/FREEZE ONLY
+Canonical EV-292 source:
 
-Do not launch another Work task automatically.
+```text
+research/archive/2026.09.17_troll_raw55_normal_marker2_replacement_clear.log
+SHA256 = 4AE9700C2944FC2940AB194E018478B88EF00A90157BC8DC3AC1FDB48BEDD91D
+```
 
-Normal repeated-FIST contact-rearm causality is closed for the tested raw55 route. The next planned family is **Power repeated-FIST rearm**.
+## Power repeated-FIST causal route
 
-Before any Work implementation, Normal Chat must reconstruct only the already-proven Power first-contact/two-FIST route and freeze the smallest one-variable repeated-contact probe. Do not copy Normal's SP0/SP1 assumptions into Power without evidence.
+Canonical Power evidence now reconstructs:
+
+```text
+EV-275
+native true-Power early RIGHT raw55 5 -> 7 is selectively suppressed
+original _AI_PowerAttack still advances StatePosition 0 -> 1
+RIGHT remains group5
+
+EV-276
+first authored Power FIST at StatePosition1
+-> exact RIGHT raw55 5 -> 7
+-> ClearTriggeredList=0
+-> native first damage
+-> native cleanup remains healthy
+
+EV-283 controlled two-FIST fixture
+later second authored Power FIST is delivered in the same C1
+after the first authored FIST already opened RIGHT raw55 and produced damage
+RIGHT remains group7
+temporary activationUsed one-shot policy prevents any second intervention
+```
+
+Therefore the remaining Power question is contact rearm only; another physical activation test is not required.
+
+## Immediate next responsibility — BOUNDED WORK IMPLEMENTATION
+
+Implement only:
+
+```text
+docs/COLLISION_RAW55_POWER_REPEAT_FIST_REARM_PROBE.md
+```
+
+Frozen question:
+
+```text
+at exact later authored true-Power FIST in the controlled two-FIST fixture
++ same actor / same C1 / same exact RIGHT raw55 source
++ first Power activation already used
++ RIGHT already group7 / StatePosition1
++ factual PC_Hero visited exactly once from first contact
+
+perform exactly one TouchDamage.ClearTriggeredList()
+without any second collision-group request
+
+Does this create the second same-C1 damage opportunity?
+```
+
+Expected source scope:
+
+```text
+prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
+```
+
+No `EngineBridge.cpp`, header API, new hook/RVA, CMake or production change is expected. A smallest internal read-only trigger-state capture extraction/reuse inside `PhysicalFistProbe.cpp` is allowed only if existing Normal behavior remains unchanged.
+
+Work build execution is not authorized. Work performs source/static audit, publishes the bounded implementation, reports final remote SHA/changed files/result/build status/contradictions, then stops.
+
+Normal Chat independently reviews before any User-local build.
 
 ## Evidence retrieval discipline
 
 Do not scan `research/raw/` or `research/archive/` during orientation.
 
-Use in this order:
+Use:
 
 1. this file;
 2. `BETWEEN_CHATS.md`;
-3. EV-292 in `EVIDENCE_LEDGER_291_ONWARD.md`;
-4. the EV-292 derived package only for exact runtime verification;
-5. prior Power canonical evidence only when designing the next probe.
-
-EV-292 derived package:
-
-```text
-research/derived/2026.09.17_troll_raw55_normal_marker2_replacement_clear_large_log/
-```
-
-Source SHA256:
-
-```text
-4AE9700C2944FC2940AB194E018478B88EF00A90157BC8DC3AC1FDB48BEDD91D
-```
+3. `COLLISION_RAW55_POWER_REPEAT_FIST_REARM_PROBE.md`;
+4. EV-275/EV-276 in `EVIDENCE_LEDGER_274_ONWARD.md`;
+5. EV-283 in `EVIDENCE_LEDGER_283_ONWARD.md`;
+6. exact source needed for the bounded implementation.
 
 ## Still paused
 
 ```text
 NO permanent PhysicalFistCollision
 NO promotion/copy of PhysicalFistProbe scaffolding
-NO Power/Sprint repeated-FIST intervention until separately frozen
+NO Sprint repeated-FIST intervention yet
 NO permanent raw55 architecture until Power + Sprint repeated-contact work closes
 NO New Balance final regression yet
 NO Raise/speed work yet
