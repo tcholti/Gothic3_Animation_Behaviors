@@ -12,11 +12,12 @@
 
 > **RELEASE-PURITY RULE:** `Script_FrameCollisionTest` is the diagnostic twin. Permanent collision behavior must also compile in diagnostics-free `Script_FrameCollisionBehaviorTest`. Final migration into `src/Script_G3AnimationBehaviors` occurs only after focused acceptance and standalone collision regression.
 
-> **LARGE-LOG RULE:** Do not orient by scanning raw/archive logs. Use canonical EV first and committed derived packages for large-log retrieval. Processed source evidence moves unchanged to `research/archive/`.
+> **LARGE-LOG RULE:** Do not orient by scanning raw/archive logs. Use canonical EV first and committed derived packages for large-log retrieval. Processed source evidence moves unchanged to `research/archive/` after evidence closure.
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
-Current bounded correction: `docs/COLLISION_RAW55_CORE_DIAGNOSTIC_CLASSIFICATION_CORRECTION.md`  
+Diagnostic correction authority: `docs/COLLISION_RAW55_CORE_DIAGNOSTIC_CLASSIFICATION_CORRECTION.md`  
+Saved Astra audit experiment: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_TASK.md`  
 Latest closed causal evidence: **EV-294** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
@@ -32,7 +33,8 @@ BOTH RELEASE TARGETS BUILD PASS
 BEHAVIOR-ONLY FUNCTIONAL/RELEASE-PURITY SMOKE PASS
 DIAGNOSTIC DEPLOYMENT + STARTUP PASS
 PERMANENT RAW55 FOUR-FAMILY BEHAVIOR CORE ACCEPTANCE PASS
-CORE DIAGNOSTIC OWNERSHIP CLASSIFIER FALSE-POSITIVE FOUND
+DIAGNOSTIC OWNERSHIP FALSE-POSITIVE IDENTIFIED
+DIAGNOSTIC-ONLY CORRECTION 314f284d... PUBLISHED; INDEPENDENT REVIEW PENDING
 ```
 
 ## Permanent core acceptance result
@@ -79,50 +81,73 @@ native 7->5 -> outstanding zero
 
 User observed all exercised two-swing attacks damage twice; Sprint knocked the player down.
 
-## Current diagnostic gap
+The full focused permanent-acceptance transaction is still open until the corrected CORE diagnostic classification and three bounded sentinels pass. Do not archive/canonicalize this source yet.
 
-`CollisionDiagnostics::LogAttackCallbackOwnership()` predates permanent raw55 and currently calls every FIST marker with a non-raw8 resolver a contradiction:
+## Current published source change — diagnostics only
 
-```cpp
-result.decision.hasFistMarkers
-&& fistUseType != static_cast<GEInt>(gEUseType_Fist)
+Work commit:
+
+```text
+314f284dbaaf05c5f185811aab107e84f1d434ce
 ```
 
-The acceptance run therefore produced 19 `CORE ATTACK OWNERSHIP ANOMALY` blocks for legitimate raw55 executions. Source inspection proves these are false positives: permanent raw55 intentionally has no raw8 resolver and instead owns exact RIGHT PhysicalFist/UseType55.
-
-Behavior is not implicated. Fix the diagnostic classification before continuing certification so future CORE regression signals remain meaningful.
-
-## Current responsibility — BOUNDED WORK DIAGNOSTIC-ONLY CORRECTION
-
-Read:
-
-1. `docs/SESSION_ENTRYPOINT.md`
-2. `docs/BETWEEN_CHATS.md`
-3. `docs/COLLISION_RAW55_CORE_DIAGNOSTIC_CLASSIFICATION_CORRECTION.md`
-4. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
-5. exact `CollisionDiagnostics.cpp` source only as required.
-
-Allowed source change:
+Changed only:
 
 ```text
 prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
 ```
 
-No behavior/core/hook/CMake source change is authorized.
-
-**WORK BUILD EXECUTION IS PROHIBITED.**
-
-After Work:
+Purpose:
 
 ```text
-independent source review
--> rebuild diagnostic target only
--> redeploy/startup
--> small marked raw55 control proving routine ownership classification
--> remaining focused sentinels: unmarked raw55, raw8 FIST, equipped marker
+Treat the exact no-mask / no-raw8-resolver / current-RIGHT-PhysicalFist
+FIST ownership shape as routine raw55 diagnostic ownership rather than a contradiction.
+Preserve contradiction reporting for malformed FIST shapes.
 ```
 
-Do not rerun the full four-family permanent acceptance unless source scope unexpectedly broadens.
+Work reports static checks PASS, build not attempted, no contradiction. Normal Chat independent source review and local validation are still pending.
+
+## Tomorrow first — Astra review experiment
+
+The User wants to evaluate GPT-6 Astra against the mature raw55 implementation before deciding whether its engineering benefit justifies its much higher usage cost.
+
+Use exactly:
+
+`docs/ASTRA_RAW55_INDEPENDENT_AUDIT_TASK.md`
+
+Run only after the Astra allowance is fully reset. It is read-only: no edits, build or publication. Its report is not project authority; Normal Chat must independently verify every substantive finding.
+
+The first 2026-09-17 attempt exhausted the remaining ~32% five-hour allowance in about three minutes and returned no final report. It produced no engineering conclusion.
+
+## After Astra / if skipped
+
+```text
+Normal Chat independent review of 314f284d...
+-> rebuild Script_FrameCollisionTest only
+-> diagnostic deploy/startup
+-> small marked raw55 control:
+   Classification=ROUTINE
+   no false CORE ATTACK OWNERSHIP ANOMALY
+   behavior facts still healthy
+-> remaining focused sentinels:
+   unmarked raw55 native fallback
+   raw8 FIST
+   one equipped authored-marker route
+```
+
+Do not rerun the full four-family Troll acceptance unless the diagnostic-only correction unexpectedly broadens into behavior-facing source.
+
+## After focused permanent acceptance closes
+
+```text
+archive permanent-acceptance source unchanged
+record canonical permanent-acceptance evidence
+update EVIDENCE_INDEX
+standalone collision regression
+-> New Balance 0.7 exact distributed bundle regression with AttackCollision included
+-> mature collision migration into src/Script_G3AnimationBehaviors
+-> later Raise/speed
+```
 
 ## Still paused
 
