@@ -1,0 +1,304 @@
+00001302: CORE C1_FINAL ElapsedMs=41287.212 Actor=PC_Hero Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00001303: CORE C1_START ElapsedMs=41287.976 Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00001304: CORE C1_BIND ElapsedMs=41287.985 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00001305: CORE C1_STATUS ElapsedMs=41288.120 Event=PERSISTED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0
+00001306: CORE C1_START ElapsedMs=41421.986 Actor=Troll Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00001307: CORE C1_BIND ElapsedMs=41421.999 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00001308: CORE C1_STATUS ElapsedMs=41422.054 Event=PERSISTED Actor=Troll Generation=32 Status=PERSISTED Outstanding=0
+00001309: CORE ATTACK_OWNERSHIP ElapsedMs=41422.070 Actor=Troll Family=NORMAL Action=1 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00001310: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00001311: MatchingMotionFound: 1
+00001312: MarkerScanValid: 1
+00001313: RequiredSourcesAvailable: 1
+00001314: RightSourceSlot: RIGHT
+00001315: RightSourceName: TrollFist
+00001316: RightSourceUseType: 55
+00001317: RightSourceCollisionGroup: 5
+00001318: LeftSourceSlot: LEFT
+00001319: LeftSourceName: TrollFist
+00001320: LeftSourceUseType: 55
+00001321: LeftSourceCollisionGroup: 5
+00001322: Raw8FistSourceName: <none>
+00001323: Raw8FistSourceUseType: -1
+00001324: Raw8FistSourceCollisionGroup: -1
+00001325: =========================================
+00001326: 
+00001327: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.000000->0.000000 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001328: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.009942->0.009942 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001329: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.018275->0.018275 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001330: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.026608->0.026608 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001331: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.037535->0.037535 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001332: ===== CORE MARKER ANOMALY / DISCOVERY =====
+00001333: ElapsedMs: 41455.806
+00001334: Actor: Troll
+00001335: Action: 1
+00001336: Family: NORMAL
+00001337: AniPhase: 1
+00001338: StatePosition: 0
+00001339: CurrentMovementAni: Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot
+00001340: MarkerName: G3AB_COL_FIST
+00001341: MarkerOpcode: FIST
+00001342: Result: UNSUPPORTED_MISSING_SOURCE
+00001343: C1GenerationValid: 1
+00001344: C1Generation: 32
+00001345: RequiredSourceMask: 0
+00001346: MissingSourceMask: 0
+00001347: RightSourceSlot: RIGHT
+00001348: RightSourceName: TrollFist
+00001349: RightSourceUseType: 55
+00001350: RightSourceCollisionGroup: 5
+00001351: LeftSourceSlot: LEFT
+00001352: LeftSourceName: TrollFist
+00001353: LeftSourceUseType: 55
+00001354: LeftSourceCollisionGroup: 5
+00001355: Raw8FistSourceName: <none>
+00001356: Raw8FistSourceUseType: -1
+00001357: Raw8FistSourceCollisionGroup: -1
+00001358: ===========================================
+00001359: 
+00001360: CORE COLLISION_GROUP ElapsedMs=41455.849 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00001361: CORE C1 OFFENSE REQUEST ElapsedMs=41455.860 Actor=Troll Generation=32 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00001362: CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=PRE ClearKind=ALL Actor=Troll C1=32 Action=1 StatePosition=0 StateTime=0.045868 Right=TrollFist RightUseType=55 RightGroup=7 PreStateRearmProven=0 Native7To7SuppressionUsed=0 NativeClearSuppressionUsed=0 TriggerIdentityMatch=1 ResetOnUntouch=0 VisitedSize=3 VisitedCountSize=3 PlayerResolved=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 Argument=<none> ArgumentAddress=00000000 ArgumentIsPlayer=0 CallerResolved=1 CallerModule=Script_FrameCollisionTest.dll CallerRVA=0x000150E0 CallerAddress=5B8850E0
+00001363: CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=POST ClearKind=ALL Actor=Troll C1=32 Action=1 StatePosition=0 StateTime=0.045868 Right=TrollFist RightUseType=55 RightGroup=7 PreStateRearmProven=0 Native7To7SuppressionUsed=0 NativeClearSuppressionUsed=0 TriggerIdentityMatch=1 ResetOnUntouch=0 VisitedSize=0 VisitedCountSize=0 PlayerResolved=1 PlayerPresent=0 PlayerEntryCount=0 PlayerVisitCount=-1 CountsAligned=1 Argument=<none> ArgumentAddress=00000000 ArgumentIsPlayer=0 CallerResolved=1 CallerModule=Script_FrameCollisionTest.dll CallerRVA=0x000150E0 CallerAddress=5B8850E0
+00001364: CORE RAW55_NORMAL_TRIGGER_STATE_OBSERVATION Boundary=POST_PRESTATE_REARM Actor=Troll C1=32 Action=1 StatePosition=0 StateTime=0.045868 Right=TrollFist RightUseType=55 RightGroup=7 ResetOnUntouch=0 VisitedSize=0 VisitedCountSize=0 PlayerResolved=1 PlayerPresent=0 PlayerEntryCount=0 PlayerVisitCount=-1 CountsAligned=1 ChangeReason=NONE
+00001365: CORE RAW55_NORMAL_PRESTATE_FIST_PROBE Actor=Troll C1=32 Action=1 StatePosition=0 StateTime=0.045868 Right=TrollFist RightUseType=55 GroupBefore=5 RequestedGroup=7 GroupAfter=7 ClearTriggeredList=1 PRESTATE_FIST=1 PRESTATE_REARM=1
+00001366: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.045868->0.045868 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001367: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.055810->0.055810 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001368: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.064143->0.064143 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001369: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.074099->0.074099 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001370: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.082433->0.082433 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001371: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.090766->0.090766 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001372: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.099099->0.099099 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001373: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.108070->0.108070 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001374: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.116403->0.116403 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001375: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.124737->0.124737 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001376: CORE COLLISION_GROUP ElapsedMs=41534.544 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00001377: CORE C1 OFFENSE REQUEST ElapsedMs=41534.559 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00001378: CORE MARKER ElapsedMs=41534.574 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=31 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00001379: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.133707->0.133707 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001380: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.142041->0.142041 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001381: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.151012->0.151012 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001382: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.159345->0.159345 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001383: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.167678->0.167678 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001384: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.177620->0.177620 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001385: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=32 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.185953->0.185953 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001386: CORE ONDAMAGE ElapsedMs=41600.747 Ordinal=15 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00001387: CORE COLLISION_GROUP ElapsedMs=41604.936 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00001388: CORE C1 CLEANUP FULFILLED ElapsedMs=41604.963 Actor=Troll Generation=32 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00001389: CORE C1_START ElapsedMs=41604.986 Actor=Troll Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=32 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00001390: CORE C1_BIND ElapsedMs=41604.993 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00001391: CORE C1_STATUS ElapsedMs=41605.041 Event=PERSISTED Actor=Troll Generation=33 Status=PERSISTED Outstanding=0
+00001392: CORE COLLISION_GROUP ElapsedMs=41731.048 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00001393: CORE C1 CLEANUP FULFILLED ElapsedMs=41731.106 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00001394: CORE C1_FINAL ElapsedMs=41827.667 Actor=PC_Hero Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00001395: CORE C1_START ElapsedMs=41835.540 Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00001396: CORE C1_BIND ElapsedMs=41835.552 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00001397: CORE C1_STATUS ElapsedMs=41835.621 Event=PERSISTED Actor=PC_Hero Generation=34 Status=PERSISTED Outstanding=0
+00001398: CORE ATTACK_OWNERSHIP ElapsedMs=41835.638 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00001399: CORE C1_FINAL ElapsedMs=41975.262 Actor=Troll Generation=33 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00001400: CORE C1_START ElapsedMs=41990.158 Actor=Troll Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00001401: CORE C1_BIND ElapsedMs=41990.171 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00001402: CORE C1_STATUS ElapsedMs=41990.351 Event=PERSISTED Actor=Troll Generation=35 Status=PERSISTED Outstanding=0
+00001403: CORE ATTACK_OWNERSHIP ElapsedMs=41990.374 Actor=Troll Family=QUICK Action=5 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00001404: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00001405: MatchingMotionFound: 1
+00001406: MarkerScanValid: 1
+00001407: RequiredSourcesAvailable: 1
+00001408: RightSourceSlot: RIGHT
+00001409: RightSourceName: TrollFist
+00001410: RightSourceUseType: 55
+00001411: RightSourceCollisionGroup: 5
+00001412: LeftSourceSlot: LEFT
+00001413: LeftSourceName: TrollFist
+00001414: LeftSourceUseType: 55
+00001415: LeftSourceCollisionGroup: 5
+00001416: Raw8FistSourceName: <none>
+00001417: Raw8FistSourceUseType: -1
+00001418: Raw8FistSourceCollisionGroup: -1
+00001419: =========================================
+00001420: 
+00001421: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.000000->0.000000 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001422: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.008333->0.008333 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001423: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.016667->0.016667 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001424: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.025000->0.025000 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001425: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.033333->0.033333 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001426: ===== CORE MARKER ANOMALY / DISCOVERY =====
+00001427: ElapsedMs: 42022.397
+00001428: Actor: Troll
+00001429: Action: 5
+00001430: Family: QUICK
+00001431: AniPhase: 1
+00001432: StatePosition: 0
+00001433: CurrentMovementAni: Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot
+00001434: MarkerName: G3AB_COL_FIST
+00001435: MarkerOpcode: FIST
+00001436: Result: UNSUPPORTED_MISSING_SOURCE
+00001437: C1GenerationValid: 1
+00001438: C1Generation: 35
+00001439: RequiredSourceMask: 0
+00001440: MissingSourceMask: 0
+00001441: RightSourceSlot: RIGHT
+00001442: RightSourceName: TrollFist
+00001443: RightSourceUseType: 55
+00001444: RightSourceCollisionGroup: 5
+00001445: LeftSourceSlot: LEFT
+00001446: LeftSourceName: TrollFist
+00001447: LeftSourceUseType: 55
+00001448: LeftSourceCollisionGroup: 5
+00001449: Raw8FistSourceName: <none>
+00001450: Raw8FistSourceUseType: -1
+00001451: Raw8FistSourceCollisionGroup: -1
+00001452: ===========================================
+00001453: 
+00001454: CORE COLLISION_GROUP ElapsedMs=42022.435 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00001455: CORE C1 OFFENSE REQUEST ElapsedMs=42022.444 Actor=Troll Generation=35 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00001456: CORE RAW55_QUICK_PRESTATE_FIST_PROBE Actor=Troll C1=35 Action=5 StatePosition=0 StateTime=0.041667 Right=TrollFist RightUseType=55 GroupBefore=5 RequestedGroup=7 GroupAfter=7 ClearTriggeredList=1 PRESTATE_FIST=1
+00001457: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.041667->0.041667 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001458: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.050637->0.050637 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001459: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.058971->0.058971 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001460: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.067304->0.067304 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001461: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.075637->0.075637 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001462: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.083971->0.083971 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001463: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.092304->0.092304 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001464: CORE COLLISION_GROUP ElapsedMs=42083.082 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00001465: CORE C1 OFFENSE REQUEST ElapsedMs=42083.141 Actor=Troll Generation=35 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00001466: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.100637->0.100637 StatePosition=0->1 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001467: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.108971->0.108971 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001468: CORE COLLISION_GROUP ElapsedMs=42090.546 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00001469: CORE C1 OFFENSE REQUEST ElapsedMs=42090.559 Actor=PC_Hero Generation=34 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00001470: CORE MARKER ElapsedMs=42090.573 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=34 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00001471: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.117304->0.117304 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001472: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.125637->0.125637 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001473: CORE RAW55_QUICK_CALLBACK_BOUNDARY Actor=Troll C1=35 SameC1=1 Action=5->5 Phase=1->1 StateTime=0.134608->0.134608 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001474: CORE ONDAMAGE ElapsedMs=42118.101 Ordinal=16 Target=Troll Arg1=Troll Arg2=Troll Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00001475: CORE COLLISION_GROUP ElapsedMs=42122.060 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00001476: CORE C1 CLEANUP FULFILLED ElapsedMs=42122.087 Actor=Troll Generation=35 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00001477: CORE C1_START ElapsedMs=42122.112 Actor=Troll Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=35 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00001478: CORE C1_BIND ElapsedMs=42122.119 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00001479: CORE C1_STATUS ElapsedMs=42122.697 Event=PERSISTED Actor=Troll Generation=36 Status=PERSISTED Outstanding=0
+00001480: CORE COLLISION_GROUP ElapsedMs=42282.382 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00001481: CORE C1 CLEANUP FULFILLED ElapsedMs=42282.411 Actor=PC_Hero Generation=34 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00001482: CORE C1_FINAL ElapsedMs=42381.105 Actor=PC_Hero Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00001483: CORE C1_FINAL ElapsedMs=42492.278 Actor=Troll Generation=36 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=TrollFist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=TrollFist Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00001484: CORE C1_START ElapsedMs=42507.717 Actor=Troll Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=TrollFist Side=RIGHT Group=5 Source[1]=TrollFist Side=LEFT Group=5
+00001485: CORE C1_BIND ElapsedMs=42507.730 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Troll Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00001486: CORE C1_STATUS ElapsedMs=42507.793 Event=PERSISTED Actor=Troll Generation=37 Status=PERSISTED Outstanding=0
+00001487: CORE ATTACK_OWNERSHIP ElapsedMs=42507.811 Actor=Troll Family=NORMAL Action=1 Phase=1 Motion=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=CONTRADICTION
+00001488: ===== CORE ATTACK OWNERSHIP ANOMALY =====
+00001489: MatchingMotionFound: 1
+00001490: MarkerScanValid: 1
+00001491: RequiredSourcesAvailable: 1
+00001492: RightSourceSlot: RIGHT
+00001493: RightSourceName: TrollFist
+00001494: RightSourceUseType: 55
+00001495: RightSourceCollisionGroup: 5
+00001496: LeftSourceSlot: LEFT
+00001497: LeftSourceName: TrollFist
+00001498: LeftSourceUseType: 55
+00001499: LeftSourceCollisionGroup: 5
+00001500: Raw8FistSourceName: <none>
+00001501: Raw8FistSourceUseType: -1
+00001502: Raw8FistSourceCollisionGroup: -1
+00001503: =========================================
+00001504: 
+00001505: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.000000->0.000000 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001506: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.008333->0.008333 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001507: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.017304->0.017304 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001508: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.025637->0.025637 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001509: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.034608->0.034608 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=5->5 NativeResult=1 OBSERVE_NATIVE=1
+00001510: ===== CORE MARKER ANOMALY / DISCOVERY =====
+00001511: ElapsedMs: 42547.277
+00001512: Actor: Troll
+00001513: Action: 1
+00001514: Family: NORMAL
+00001515: AniPhase: 1
+00001516: StatePosition: 0
+00001517: CurrentMovementAni: Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot
+00001518: MarkerName: G3AB_COL_FIST
+00001519: MarkerOpcode: FIST
+00001520: Result: UNSUPPORTED_MISSING_SOURCE
+00001521: C1GenerationValid: 1
+00001522: C1Generation: 37
+00001523: RequiredSourceMask: 0
+00001524: MissingSourceMask: 0
+00001525: RightSourceSlot: RIGHT
+00001526: RightSourceName: TrollFist
+00001527: RightSourceUseType: 55
+00001528: RightSourceCollisionGroup: 5
+00001529: LeftSourceSlot: LEFT
+00001530: LeftSourceName: TrollFist
+00001531: LeftSourceUseType: 55
+00001532: LeftSourceCollisionGroup: 5
+00001533: Raw8FistSourceName: <none>
+00001534: Raw8FistSourceUseType: -1
+00001535: Raw8FistSourceCollisionGroup: -1
+00001536: ===========================================
+00001537: 
+00001538: CORE COLLISION_GROUP ElapsedMs=42547.315 Source=TrollFist UseType=55 Owner=Troll Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00001539: CORE C1 OFFENSE REQUEST ElapsedMs=42547.323 Actor=Troll Generation=37 Status=PERSISTED Source=TrollFist Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00001540: CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=PRE ClearKind=ALL Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.042942 Right=TrollFist RightUseType=55 RightGroup=7 PreStateRearmProven=0 Native7To7SuppressionUsed=0 NativeClearSuppressionUsed=0 TriggerIdentityMatch=1 ResetOnUntouch=0 VisitedSize=0 VisitedCountSize=0 PlayerResolved=1 PlayerPresent=0 PlayerEntryCount=0 PlayerVisitCount=-1 CountsAligned=1 Argument=<none> ArgumentAddress=00000000 ArgumentIsPlayer=0 CallerResolved=1 CallerModule=Script_FrameCollisionTest.dll CallerRVA=0x000150E0 CallerAddress=5B8850E0
+00001541: CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=POST ClearKind=ALL Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.042942 Right=TrollFist RightUseType=55 RightGroup=7 PreStateRearmProven=0 Native7To7SuppressionUsed=0 NativeClearSuppressionUsed=0 TriggerIdentityMatch=1 ResetOnUntouch=0 VisitedSize=0 VisitedCountSize=0 PlayerResolved=1 PlayerPresent=0 PlayerEntryCount=0 PlayerVisitCount=-1 CountsAligned=1 Argument=<none> ArgumentAddress=00000000 ArgumentIsPlayer=0 CallerResolved=1 CallerModule=Script_FrameCollisionTest.dll CallerRVA=0x000150E0 CallerAddress=5B8850E0
+00001542: CORE RAW55_NORMAL_TRIGGER_STATE_OBSERVATION Boundary=POST_PRESTATE_REARM Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.042942 Right=TrollFist RightUseType=55 RightGroup=7 ResetOnUntouch=0 VisitedSize=0 VisitedCountSize=0 PlayerResolved=1 PlayerPresent=0 PlayerEntryCount=0 PlayerVisitCount=-1 CountsAligned=1 ChangeReason=NONE
+00001543: CORE RAW55_NORMAL_PRESTATE_FIST_PROBE Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.042942 Right=TrollFist RightUseType=55 GroupBefore=5 RequestedGroup=7 GroupAfter=7 ClearTriggeredList=1 PRESTATE_FIST=1 PRESTATE_REARM=1
+00001544: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.042942->0.042942 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001545: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.059794->0.059794 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001546: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.069845->0.069845 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001547: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.078178->0.078178 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001548: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.086511->0.086511 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001549: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.098452->0.098452 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001550: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.106785->0.106785 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001551: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.115742->0.115742 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001552: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.124075->0.124075 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001553: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.133046->0.133046 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001554: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.142046->0.142046 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001555: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.150379->0.150379 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001556: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.159350->0.159350 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001557: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.167683->0.167683 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001558: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.176654->0.176654 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001559: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.184987->0.184987 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001560: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.193944->0.193944 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001561: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.202277->0.202277 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001562: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.213204->0.213204 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001563: CORE ONDAMAGE ElapsedMs=42708.186 Ordinal=17 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00001564: CORE RAW55_NORMAL_TRIGGER_STATE_OBSERVATION Boundary=CALLBACK_CHANGE Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.221537 Right=TrollFist RightUseType=55 RightGroup=7 ResetOnUntouch=0 VisitedSize=1 VisitedCountSize=1 PlayerResolved=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 ChangeReason=VISITED_SIZE|VISITED_COUNT_SIZE|PLAYER_PRESENT|PLAYER_ENTRY_COUNT|PLAYER_VISIT_COUNT
+00001565: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.221537->0.221537 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001566: CORE C1_START ElapsedMs=42713.589 Actor=PC_Hero Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00001567: CORE C1_BIND ElapsedMs=42713.598 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00001568: CORE C1_STATUS ElapsedMs=42713.649 Event=PERSISTED Actor=PC_Hero Generation=38 Status=PERSISTED Outstanding=0
+00001569: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.229870->0.229870 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001570: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.238855->0.238855 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001571: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.247189->0.247189 StatePosition=0->0 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001572: CORE RAW55_NORMAL_TRIGGER_STATE_OBSERVATION Boundary=NATIVE_7TO7_SUPPRESS_PRE Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.256160 Right=TrollFist RightUseType=55 RightGroup=7 ResetOnUntouch=0 VisitedSize=1 VisitedCountSize=1 PlayerResolved=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 ChangeReason=NONE
+00001573: CORE RAW55_NORMAL_NATIVE_REARM_SUPPRESSION_PROBE Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.256160 Right=TrollFist RightUseType=55 RequestedGroup=7 BeforeGroup=7 PreStateRearmProven=1 NATIVE_7TO7_SUPPRESS=1
+00001574: CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=PRE ClearKind=ALL Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.256160 Right=TrollFist RightUseType=55 RightGroup=7 PreStateRearmProven=1 Native7To7SuppressionUsed=1 NativeClearSuppressionUsed=0 TriggerIdentityMatch=1 ResetOnUntouch=0 VisitedSize=1 VisitedCountSize=1 PlayerResolved=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 Argument=<none> ArgumentAddress=00000000 ArgumentIsPlayer=0 CallerResolved=1 CallerModule=Script_Game.dll CallerRVA=0x000386C6 CallerAddress=1B1386C6
+00001575: CORE RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.256160 Right=TrollFist RightUseType=55 RightGroup=7 PreStateRearmProven=1 Native7To7SuppressionUsed=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 CallerModule=Script_Game.dll CallerRVA=0x000386C6 SUPPRESS_CLEAR=1
+00001576: CORE RAW55_NORMAL_TRIGGER_CLEAR_OBSERVATION Boundary=POST ClearKind=ALL Actor=Troll C1=37 Action=1 StatePosition=0 StateTime=0.256160 Right=TrollFist RightUseType=55 RightGroup=7 PreStateRearmProven=1 Native7To7SuppressionUsed=1 NativeClearSuppressionUsed=1 TriggerIdentityMatch=1 ResetOnUntouch=0 VisitedSize=1 VisitedCountSize=1 PlayerResolved=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 Argument=<none> ArgumentAddress=00000000 ArgumentIsPlayer=0 CallerResolved=1 CallerModule=Script_Game.dll CallerRVA=0x000386C6 CallerAddress=1B1386C6
+00001577: CORE RAW55_NORMAL_TRIGGER_STATE_OBSERVATION Boundary=SP0_TO1_POST_CALLBACK Actor=Troll C1=37 Action=1 StatePosition=1 StateTime=0.256160 Right=TrollFist RightUseType=55 RightGroup=7 ResetOnUntouch=0 VisitedSize=1 VisitedCountSize=1 PlayerResolved=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 ChangeReason=NONE
+00001578: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.256160->0.256160 StatePosition=0->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001579: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.264493->0.264493 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001580: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.272826->0.272826 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001581: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.281160->0.281160 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001582: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.290130->0.290130 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001583: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.298464->0.298464 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001584: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.306797->0.306797 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001585: CORE RAW55_NORMAL_TRIGGER_STATE_OBSERVATION Boundary=CALLBACK_CHANGE Actor=Troll C1=37 Action=1 StatePosition=1 StateTime=0.315768 Right=TrollFist RightUseType=55 RightGroup=7 ResetOnUntouch=0 VisitedSize=2 VisitedCountSize=2 PlayerResolved=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 ChangeReason=VISITED_SIZE|VISITED_COUNT_SIZE
+00001586: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.315768->0.315768 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001587: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.324101->0.324101 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001588: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.334057->0.334057 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001589: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.342390->0.342390 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001590: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.350724->0.350724 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001591: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.359057->0.359057 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001592: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.367390->0.367390 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001593: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.375724->0.375724 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001594: CORE RAW55_NORMAL_TRIGGER_STATE_OBSERVATION Boundary=CALLBACK_CHANGE Actor=Troll C1=37 Action=1 StatePosition=1 StateTime=0.384057 Right=TrollFist RightUseType=55 RightGroup=7 ResetOnUntouch=0 VisitedSize=4 VisitedCountSize=4 PlayerResolved=1 PlayerPresent=1 PlayerEntryCount=1 PlayerVisitCount=1 CountsAligned=1 ChangeReason=VISITED_SIZE|VISITED_COUNT_SIZE
+00001595: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.384057->0.384057 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001596: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.393028->0.393028 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001597: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.401361->0.401361 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001598: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.411317->0.411317 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001599: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.419650->0.419650 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001600: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.427984->0.427984 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001601: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.436317->0.436317 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001602: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.445288->0.445288 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001603: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.453621->0.453621 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001604: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.462592->0.462592 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
+00001605: CORE RAW55_NORMAL_CALLBACK_BOUNDARY Actor=Troll C1=37 SameC1=1 SameRight=1 Action=1->1 Phase=1->1 StateTime=0.470925->0.470925 StatePosition=1->1 MotionBefore=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot MotionAfter=Troll_Stand_Fist_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100.xmot Right=TrollFist RightUseType=55 RightGroup=7->7 NativeResult=1 OBSERVE_NATIVE=1
