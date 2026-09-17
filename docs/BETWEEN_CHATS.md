@@ -4,151 +4,204 @@
 
 **Updated:** 2026-09-17
 
-## Current Bridge — EV-292 CLOSED; POWER REPEATED-FIST PROBE IMPLEMENTED + SOURCE-REVIEW PASS
+## Current Bridge — EV-293 CLOSED; SPRINT-ORIGIN REPEATED-FIST PROBE FROZEN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Recovery Lock is **CLOSED**. Canonical collision evidence is through **EV-292**. No permanent raw55 implementation is authorized.
+Recovery Lock is **CLOSED**. Canonical collision evidence is through **EV-293**. No permanent raw55 implementation is authorized.
 
 Latest canonical evidence:
 
-`docs/EVIDENCE_LEDGER_291_ONWARD.md` — EV-292
+`docs/EVIDENCE_LEDGER_291_ONWARD.md` — EV-293
 
 Current frozen diagnostic contract:
 
-`docs/COLLISION_RAW55_POWER_REPEAT_FIST_REARM_PROBE.md`
+`docs/COLLISION_RAW55_SPRINT_ORIGIN_REPEAT_FIST_REARM_PROBE.md`
 
-## Closed Normal checkpoint — EV-292
+## Closed Power checkpoint — EV-293
 
-Normal repeated-FIST contact rearm is causally closed for the tested raw55 route:
+True Power repeated-FIST contact rearm is causally closed for the tested raw55 route.
+
+Representative factual Power C1=6:
 
 ```text
-marker1 owns physical opening + hit1 contact reset
-marker2 owns hit2 contact reset
-no second marker2 group request
-native hidden between-contact clear is unnecessary when authored marker2 owns rearm
-native 7 -> 5 cleanup remains healthy
+EV-275 early native 5 -> 7 suppression
+-> original _AI_PowerAttack preserves SP0 -> 1
+-> RIGHT remains group5
+
+first authored Power FIST at SP1
+-> exact RIGHT 5 -> 7
+-> ClearTriggeredList=0
+-> first ONDAMAGE
+-> PC_Hero visited/count1
+
+second authored Power FIST in same C1/source
+-> current Action2 / Family POWER
+-> RIGHT already group7
+-> PRE PC_Hero present exactly once / count1
+-> one ClearTriggeredList()
+-> POST PC_Hero absent / aligned arrays
+-> later second ONDAMAGE
+
+native 7 -> 5 cleanup
+-> outstanding=0
+-> clean C1 finalization
 ```
 
-Do not generalize Normal's exact state/timing route to other families.
+Independent factual Power C1=52 repeats the same route.
 
-## Power causal boundary
-
-Canonical Power evidence remains:
+Power conclusion:
 
 ```text
-EV-275
-exact premature native RIGHT raw55 5 -> 7 suppressed
+marker1 = physical opening only
+marker2 = contact-bookkeeping clear only
+no second group request required
+```
+
+Runtime identity:
+
+```text
+implementation:
+d3388d5c38c29ea4453259e9efb3fd67916d865e
+
+built/live DLL SHA256:
+1EAD1E361755368DF9DAC5C8A068549CFC63BDD95381247F41F1B4BA68693B7E
+
+canonical source:
+research/archive/2026.09.17_troll_raw55_power_repeat_fist_rearm.log
+
+source SHA256:
+61F572B13D78C25A7363FC85076AEC7FAEC48CD8A51EC540F012D7541D1C42D5
+
+source Git blob:
+ffa3777e9a9311afc77af2ffff4e84eb05fa6cdc
+
+source upload + derived package commit:
+44abff33303662e7620b5bb961758b9f0a8bedfc
+
+byte-identical archive commit:
+5c5617cfdb38f45fb06d326cad722fb6e8a123a7
+```
+
+The User visually observed at least two attacks using the shared Power/Sprint animation in which both swings damaged. Because Power and Sprint share the same animation, factual Action2 records — not visual appearance — establish the Power result.
+
+## Sprint-origin causal boundary
+
+### EV-281 — selective early gate
+
+For factual Sprint:
+
+```text
+Action9 / Family SPRINT
+exact native RIGHT raw55 5 -> requested7 suppressed
 original _AI_PowerAttack still advances StatePosition 0 -> 1
 RIGHT remains group5
+```
 
-EV-276
-first authored Power FIST at StatePosition1
--> exact RIGHT raw55 5 -> 7
+### EV-282 — first authored Sprint FIST
+
+```text
+same Sprint-origin actor/source/C1
+current Action9 / Family SPRINT
+StatePosition1
+RIGHT group5
+-> one real exact RIGHT 5 -> 7 request
 -> ClearTriggeredList=0
 -> native first damage
--> native final 7 -> 5 cleanup remains healthy
+```
 
-EV-283
-controlled two-FIST Power fixture transports a later second authored FIST
-in the same C1 after first authored activation/damage
+### EV-283 — same C1 changes label before marker2
+
+Controlled two-FIST Sprint-origin executions prove:
+
+```text
+first authored FIST opens RIGHT group7 under Action9
+first damage occurs
+same C1 / same RIGHT continues
+factual Action changes Action9 -> Action2
+second authored FIST is delivered under current Action2 / Family POWER
 RIGHT remains group7
-existing activationUsed one-shot prevented any second intervention
+existing one-shot Sprint activation proof does not act again
+separate true-Power proof does not own the Sprint-origin occurrence
 ```
 
-Thus the remaining Power question is contact rearm only.
+This transition is the key ownership boundary. Do not use the shared PowerAttack animation name as family identity and do not transfer the second marker to true-Power ownership merely because current Action is 2.
 
-## Current implementation under local validation
+## Frozen next causal question
 
-Implementation commit:
+For the exact later authored FIST in a proven Sprint-origin C1:
 
 ```text
-d3388d5c38c29ea4453259e9efb3fd67916d865e
+SprintEarlySuppressionProof exists
+same actor / same exact RIGHT / same current C1
+Sprint earlySuppressionProven=1
+Sprint activationUsed=1
+Sprint repeat rearm not already used
+no matching true-Power proof for same actor/source/C1
+
+current factual Action=2 / Family=POWER Hit
+StatePosition=1
+exactly two authored FIST markers
+RIGHT PhysicalFist/raw55 already group7
 ```
 
-Frozen base:
+Immediately before intervention require:
 
 ```text
-f5559a38866a7781be3de4e8ac8847b1a1f531c7
+CountsAligned=1
+PlayerResolved=1
+PlayerPresent=1
+PlayerEntryCount=1
+PlayerVisitCount>=1
 ```
 
-Normal Chat independent source review: **PASS**.
+Then perform exactly:
 
-The implementation is exactly one source commit over the frozen base and changes only:
+```text
+RIGHT TouchDamage.ClearTriggeredList()
+```
+
+once, with no collision-group request.
+
+Capture POST trigger state and correlate with genuine first Sprint-origin `ONDAMAGE`, later second `ONDAMAGE`, native `7 -> 5` cleanup and clean same-C1 finalization.
+
+## Frozen implementation responsibility
+
+Implement ONLY:
+
+`docs/COLLISION_RAW55_SPRINT_ORIGIN_REPEAT_FIST_REARM_PROBE.md`
+
+Expected source scope:
 
 ```text
 prototypes/Script_FrameCollisionTest/PhysicalFistProbe.cpp
 ```
 
-Review confirms:
-
-- existing EV-275 Power early selective `5 -> 7` suppression is preserved;
-- original `_AI_PowerAttack` callback and native `StatePosition 0 -> 1` progression are untouched;
-- existing EV-276 first authored Power activation remains `5 -> 7` with `ClearTriggeredList=0`;
-- `PowerEarlySuppressionProof` gains one bounded `repeatFistRearmUsed` flag preserved only for matching actor/C1/source identity;
-- existing Normal trigger-state capture is safely factored through a generic read-only helper while the old Normal wrapper and callers remain intact;
-- later Power intervention requires exact current actor/C1/current RIGHT/source identity, Action2/Power Hit, exactly two FIST markers, group7, StatePosition1, prior suppression proof and first activation proof;
-- intervention also requires exact PRE trigger state with aligned arrays, `PC_Hero` resolved and present exactly once, and visit count >=1;
-- failed exact candidate emits observation only and performs no mutation;
-- eligible intervention marks the exact proof one-shot, performs exactly one `RIGHT TouchDamage.ClearTriggeredList()`, captures POST state and logs one compact Power repeat-FIST record;
-- no second `SetCollisionGroup` request exists in the new path;
-- no direct damage, TriggerTarget, StatePosition/SPU mutation, manual visited-array mutation or cleanup compensation was added;
-- `EngineBridge`, headers, hooks/RVAs, CMake, production modules, Quick, Sprint and stable marker/lifecycle modules are unchanged.
-
-Work build status: **NOT ATTEMPTED — correctly prohibited**.
-
-No material source contradiction found.
-
-## Immediate next responsibility — LOCAL BUILD ONLY
-
-Do not launch another Work task.
-
-1. User syncs GitHub Desktop: **Fetch origin -> Pull origin -> Fetch origin**.
-2. Confirm branch `docs/collision-source-evidence` is current and `Changes = 0 changed files`.
-3. Build only:
-
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionTest
-```
-
-4. STOP on build result.
-5. If PASS, Normal Chat continues with normal POP-03 deploy/hash/twin verification and POP-04 startup gate before runtime.
-
-Frozen runtime question after deployment:
+Expected implementation shape:
 
 ```text
-first Power authored FIST -> real 5 -> 7 / no probe clear / first damage
-later second Power authored FIST -> same C1/source, RIGHT group7
-PRE PC_Hero still visited exactly once
--> one ClearTriggeredList only
--> POST player absent
-
-Does a later second ONDAMAGE return while native 7 -> 5 cleanup and clean C1 finalization remain healthy?
+one per-Sprint-proof/C1 repeatFistRearmUsed flag
++ preserve it only for exact matching Sprint proof refresh
++ reuse existing generic read-only trigger-state capture
++ later-FIST eligibility anchored to Sprint-origin proof
++ current marker factual Action2 / Power Hit
++ same C1/source identity preserved across Action9 -> Action2
++ reject ambiguous matching true-Power proof
++ factual PRE player-visit gate
++ one exact current RIGHT TouchDamage.ClearTriggeredList()
++ factual POST capture/log
 ```
 
-Interpretation remains exactly the frozen contract:
+Preserve EV-281/EV-282/EV-293 unchanged. No second group request. No Action/StatePosition writes. No direct damage. No new hook/RVA. No stable marker/lifecycle/source change. No production raw55 architecture in this task.
 
-```text
-Route A: clear removes visit + hit2 returns + cleanup healthy
-    => Power repeated-FIST contact rearm PASS
-
-Route B: clear removes visit but hit2 remains absent
-    => ClearTriggeredList alone insufficient
-
-Route C: genuine hit1 exists but player already absent before marker2
-    => native Power between-contact reset exists; isolate first
-
-Route D: source/state/cleanup/C1 diverges
-    => preserve contradiction and isolate
-```
+Work build execution is prohibited. Work source/static audits, commits/pushes, reports and stops. Normal Chat independently reviews before User-local build.
 
 ## Remaining collision order
 
 ```text
-Power repeated-FIST runtime closure
--> Sprint repeated-FIST rearm preserving same-C1 Action9 -> Action2 continuity
+Sprint-origin repeated-FIST rearm
 -> permanent raw55 architecture / implementation
 -> standalone collision regression
 -> New Balance 0.7 bundle regression exactly as distributed, AttackCollision included
@@ -161,8 +214,7 @@ Power repeated-FIST runtime closure
 ```text
 NO permanent PhysicalFistCollision
 NO promotion/copy of PhysicalFistProbe scaffolding
-NO Sprint repeated-FIST intervention yet
-NO permanent raw55 architecture until Power + Sprint close
+NO permanent raw55 architecture until Sprint repeated-contact closes
 NO New Balance final regression yet
 NO Raise/speed work yet
 NO AttackContinuationProtection work
