@@ -128,14 +128,16 @@ Normal Chat interprets build/load result
         ↓
 LOCAL MAINTENANCE TRANSACTION when the gate changes
         ↓
-User performs controlled runtime test
+User performs controlled runtime test / small intentional batch
         ↓
-Normal Chat interprets log + observation
+Normal Chat interprets EVERY uploaded log + observation
         ↓
-EVIDENCE TRANSACTION
-raw intake → evidence conclusion → authority trigger check → future-relevance/index check → archive processed artifact
+EVIDENCE TRANSACTION FOR THAT UPLOADED BATCH
+raw intake → per-test evidence conclusion → authority trigger check → future-relevance/index check → archive each processed artifact
         ↓
-next design question
+verify raw intake + current-state docs are clean/aligned
+        ↓
+only then next runtime batch / design question
 ```
 
 The User does not need to separately request the maintenance transactions.
@@ -309,15 +311,20 @@ This is the main evidence transaction.
 Default transaction:
 
 ```text
-preserve raw log/source artifact
-→ interpret result
-→ add/update exact EV entry
+preserve uploaded raw log(s)/source artifact(s)
+→ interpret every artifact in the just-uploaded batch
+→ add/update exact EV representation for every completed test/run
 → update EVIDENCE_INDEX if a route/range materially changes OR a concrete future responsibility now needs a route back to the result
 → update owning design/reference authority only if its semantic model changed
 → preserve workaround-reason links if the result may later justify simplification
-→ update SESSION_ENTRYPOINT if the active gate/direction changed
-→ move processed artifact raw → archive when no longer active/unprocessed
+→ update SESSION_ENTRYPOINT / BETWEEN_CHATS when the active gate/direction changes
+→ move each processed artifact raw → archive immediately when no longer active/unprocessed
+→ verify research/raw contains only Keep.txt plus explicitly active/unprocessed artifacts
+→ verify current-state pointers and current test authority agree
+→ only then issue the next runtime batch
 ```
+
+The User may upload two or three related logs together. That is one **publication batch**, not permission to postpone maintenance until the whole campaign ends. Normal Chat owns this closure automatically; the User should not need to request evidence/doc/archive cleanup after each batch.
 
 Repeated confirmation of an already-established fact may require only provenance/archive handling and no architecture edit.
 
@@ -345,12 +352,15 @@ This is an appropriate time for consolidation. It is still not automatically a w
 Use:
 
 ```text
-new/unprocessed artifact
+new/unprocessed artifact(s)
 → research/raw/
-→ interpret against current question
-→ canonical EV/result recorded
-→ durable technical value routed to authority/index if needed
-→ artifact moved to research/archive/
+→ publish one test or small intentional batch
+→ interpret every uploaded artifact against its frozen test
+→ canonical EV/result representation for every completed test/run
+→ durable technical value routed to authority/index/current-state if needed
+→ processed artifacts moved immediately to research/archive/
+→ raw inventory + current-state consistency verified
+→ next batch only after closure
 ```
 
 An artifact may remain in `research/raw/` while:
