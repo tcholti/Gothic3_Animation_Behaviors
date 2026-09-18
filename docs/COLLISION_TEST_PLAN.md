@@ -298,6 +298,17 @@ The campaign is intentionally split into multiple logs/runs so factual source/ac
 
 ### 8.1 Phase 1 — Player equipped-weapon matrix against Golem
 
+**Progress through EV-301:**
+
+```text
+1H        PASS — EV-299
+1H+torch  PASS — EV-300
+dual 1H   PASS — EV-301
+remaining prepared Golem weapon setups = OPEN
+```
+
+The first batch also passes deliberate C1-R1 bad-skip repair checks. 1H+torch and dual-1H each expose one late Quick marker after Gothic has already returned to Action0/no live C1; the marker is correctly rejected under the standing late/dead/unsupported rule while all physical sources rest at group5. No source change is required.
+
 The User attacks a Golem using the prepared marked animations across the different weapon types.
 
 Rules:
