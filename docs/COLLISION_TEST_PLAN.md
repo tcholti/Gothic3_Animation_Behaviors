@@ -288,70 +288,132 @@ This rule is intended to discover any new unplanned family/source during larger 
 
 ---
 
-## 8. Pre-Regression Cross-Actor / Family Compatibility Gates
+## 8. Standalone Collision Regression Campaign — ACTIVE
 
-Architecture sentinel and focused Sprint disposition are now closed. Resume here.
+The broader regression campaign prepared before the Troll/raw55 investigation is now resumed. The intervening raw55 work is CLOSED/PASS at EV-298 and is incorporated as one supported collision mechanism inside this campaign; it does not replace the previously prepared actor/weapon/mod coverage.
 
-### 8.1 Native equipped-NPC marker controls — CLOSED/PASS
+The campaign is intentionally split into multiple logs/runs so factual source/action semantics remain attributable when a contradiction appears.
 
-Separate controls completed:
+### 8.1 Phase 1 — Player equipped-weapon matrix against Golem
 
-```text
-Goblin / BlackGoblin -> factual 1H / raw2    EV-252
-Demon                -> factual 2H / raw3    EV-253
-Ogre                 -> factual Axe / raw52  EV-254
-```
+The User attacks a Golem using the prepared marked animations across the different weapon types.
 
-Purpose proven for the tested scope:
+Rules:
 
 ```text
-established equipped marker ownership follows factual equipped source/action semantics
-for native NPC attackers as well as already-proven player-side cases
+one weapon/setup per runtime run
+-> one complete log per weapon/setup
+-> exercise several relevant attack families/markers for that setup
+-> preserve factual source/UseType, marker decisions, physical group changes,
+   native damage, cleanup and C1 finalization
+-> upload the completed weapon logs together as one review batch
 ```
 
-Across the three controls, accepted RIGHT markers armed the exact factual source from group 5 to 7, native cleanup returned it to group 5, and C1 finalized cleanly without invariant/source-resolution failures or required terminal repair.
+Do not combine different weapon types into one log merely to reduce file count. This phase is the clean player-side equipped-source matrix.
 
-The Demon run also captured a user-attempted mid-attack interruption in which native cleanup completed before `_AI_Stumble` replaced the attack with `ReplacedOutstanding=0`; this is an incidental legitimate-reaction observation, not a destructive-interruption test objective.
+Use filenames of the form:
 
-Do not reopen §8.1 merely for more routine variation.
+```text
+research/raw/2026-09-18_regression_golem_<weapon-label>.log
+```
 
-### 8.2 Additional prepared native/modded actor-family controls — IN PROGRESS
+where `<weapon-label>` names the actual tested weapon/setup in lowercase project style.
 
-The User has prepared marked Orc animations. Orcs have greater attack variety and use multiple weapon types, so use them as the current intentional broader native-NPC validation extension.
+### 8.2 Phase 2 — Orc mixed equipped + raw8 Fist coverage
 
-Use one weapon/setup per log where practical. Different attack families for the same setup may remain together. For each log, retain factual source/UseType, observed families, accepted marker/source transitions, native cleanup, C1 finalization, and any unsupported/anomalous path. Player counterattacks are allowed and can be separated by actor identity.
+Run approximately two or three Orc logs because Orcs exercise multiple prepared families:
 
-Do not reinterpret the Orc extension as a missing prerequisite for the already-closed §8.1 gate. Grow beyond the prepared Orc set only when a concrete compatibility question remains open.
+```text
+2H
+Staff
+Fist/raw8
+```
 
-### 8.3 Separated 2H vs Axe mod compatibility
+Fist may be combined with one of the weapon runs because reaching the Orc unarmed requires knocking it down/disarming it and allowing it to continue fighting without a weapon.
 
-With the mod that separates 2H from Axe animation families:
+Keep enough separation that each factual source/UseType and family remains attributable. The objective is cross-source/cross-family native-NPC behavior, not one artificial attack per file.
 
-- mark at least one new 2H attack;
-- mark at least one new Axe attack;
-- include marker-free/native controls where practical.
+### 8.3 Phase 3 — Other weapon-using creatures/NPCs
 
-The question is whether collision follows factual source/action semantics after the animation-family split.
+Exercise the prepared marked animations for additional weapon-using actors.
 
-### 8.4 Separated 1H vs Rapier mod compatibility
+Use separate runs where actor/source combinations would otherwise become ambiguous. Upload a completed group of these logs together for one review transaction.
 
-With the mod that separates ordinary 1H from Rapiers:
+Historical controls already closed and need not be repeated merely for duplication:
 
-- mark at least one ordinary 1H attack;
-- mark at least one Rapier attack;
-- include marker-free/native controls where practical.
+```text
+Goblin / BlackGoblin -> factual 1H/raw2 — EV-252
+Demon                -> factual 2H/raw3 — EV-253
+Ogre                 -> factual Axe/raw52 — EV-254
+```
 
-Again, factual source/action semantics outrank animation-family naming.
+New prepared actors extend coverage; they do not reopen those prior gates.
 
-Only after these bounded gates are dispositioned should final mixed regression begin.
+### 8.4 Phase 4 — Non-weapon creatures
+
+Exercise the prepared FIST/body-damage marker animations for multiple creatures that do not use weapons.
+
+Because this population is large:
+
+```text
+multiple creatures per collection phase
+-> retain complete per-run logs
+-> upload/review in manageable chunks
+```
+
+Preserve factual raw source identity and UseType. Raw8, raw55 or another factual source class must be classified from runtime evidence rather than inferred from creature name.
+
+Permanent raw55 behavior applies only to its frozen factual marked raw55 contract; ordinary raw8 behavior remains governed by the existing raw8 mechanism.
+
+### 8.5 Phase 5 — 2H vs Axe separation-mod compatibility
+
+Vanilla/baseline Gothic 3 uses the ordinary 2H animation family for two-handed weapons other than the Staff/Spear/Halberd family. The prepared Axe-separation mod gives weapons defined as Axe their own animation family.
+
+Run this phase separately from native/baseline validation.
+
+Protect both sides of the separation:
+
+```text
+ordinary 2H route
+Axe-defined separated route
+authored markers
+factual equipped source/UseType
+native cleanup/finalization
+no ownership/anomaly regression
+```
+
+Use several runs when needed to cover the prepared Axe/2H fixtures without making attribution ambiguous.
+
+### 8.6 Phase 6 — 1H vs Rapier separation-mod compatibility
+
+Vanilla/baseline Gothic 3 uses the 1H animation family for one-handed weapons. The prepared Rapier-separation mod gives Rapiers their own animation family.
+
+Run ordinary 1H and separated Rapier routes under the mod and verify that collision still follows factual source/action semantics rather than relying on the old animation-family grouping.
+
+### 8.7 Phase 7 — Stress regression
+
+After the structured actor/weapon/mod phases are clean, run several stress tests.
+
+Stress runs may intentionally combine many already-supported collision routes. They are intended to expose:
+
+```text
+unexpected ownership/anomaly classifications
+occurrence/dedupe leakage across C1 generations
+lost native cleanup
+unexpected terminal repair
+source replacement/liveness contradictions
+repeated-contact regressions
+raw8/raw55/equipped cross-mechanism interference
+mixed actor/target sequencing problems
+```
+
+Stress evidence is regression evidence, not permission to redesign from a single noisy event. Any failure must first be reduced to the smallest factual route before source changes are considered.
 
 ---
 
-## 9. Final Native Mixed / Stress Collision Regression
+## 9. Regression Acceptance Invariants
 
-Run one native/no-third-party mixed regression over the supported scope after the pre-regression gates close.
-
-Protect at minimum:
+Across the complete campaign, protect at minimum:
 
 ```text
 equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
@@ -359,16 +421,20 @@ repeated-contact ClearTriggeredList semantics
 Power / Pierce / SimpleWhirl / Hack behavior
 supported Sprint behavior
 C1 generation-scoped occurrence/dedupe
-C1-R1 exact-source terminal repair
+C1-R1 exact-source terminal repair behavior
 supported raw8 FIST behavior
-unmarked/native fallback
+supported permanent marked raw55 behavior
+unmarked/native raw55 fallback
+native cleanup + outstanding-zero finalization
 one-live-collision-twin deployment invariant
 compact CORE anomaly discovery
+Axe-separation compatibility
+Rapier-separation compatibility
 ```
 
-Include the accepted permanent raw55 behavior in this regression: supported marked Quick/Normal/true-Power/Sprint-origin routes, unmarked/native raw55 fallback, native final cleanup, and no false CORE ownership anomalies.
+The regression is complete only when all seven phases have an explicit PASS/disposition and every published runtime artifact has been processed under POP-06.
 
-Do not broaden this gate into Raise, speed, target acquisition, or a new source redesign.
+Do not broaden this campaign into Raise, speed, target acquisition, or AttackContinuationProtection. Those remain separate responsibilities.
 
 ---
 
