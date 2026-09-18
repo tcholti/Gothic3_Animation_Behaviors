@@ -168,19 +168,33 @@ A procedure-maintenance review found that build/deploy/startup details had been 
 Resume exactly:
 
 ```text
-1. Use POP-03 canonical diagnostic-twin deployment block verbatim.
-2. Require exactly one live Script_FrameCollisionTest.dll and Built SHA256 == Live SHA256.
-3. If and only if POP-03 prints DIAGNOSTIC DEPLOYMENT PASS, launch Gothic 3 to main menu and exit normally.
-4. Use POP-04 canonical diagnostic startup-log block verbatim.
-5. If startup/load PASS, run the small marked raw55 control:
+1. GitHub Desktop POP-01 handoff FIRST:
+   - repository Gothic3_Animation_Behaviors
+   - branch docs/collision-source-evidence
+   - Fetch origin
+   - Pull origin
+   - top action returns to Fetch origin
+   - no unexpected local Changes
+2. Do NOT rebuild: every remote commit after the successful 8abe9c30... build is documentation/procedure-only.
+3. Use POP-03 canonical diagnostic-twin deployment block verbatim.
+4. Require exactly one live Script_FrameCollisionTest.dll and Built SHA256 == Live SHA256.
+5. If and only if POP-03 prints DIAGNOSTIC DEPLOYMENT PASS, launch Gothic 3 to main menu and exit normally.
+6. Use POP-04 canonical diagnostic startup-log block verbatim.
+7. If startup/load PASS, run the small marked raw55 control:
    - legitimate raw55 ATTACK_OWNERSHIP Classification=ROUTINE
    - no false CORE ATTACK OWNERSHIP ANOMALY
    - permanent marker/damage/native-cleanup behavior remains healthy
-6. Run remaining focused sentinels:
+8. Run remaining focused sentinels:
    - unmarked raw55 native fallback
    - raw8 FIST
    - one equipped authored-marker route
-7. Close focused permanent acceptance.
+9. For any oversized diagnostic log:
+   - preserve complete log in research/raw/
+   - run tools/log_evidence/Prepare-Log.cmd
+   - GitHub Desktop review Changes
+   - Commit + Push BOTH raw log and generated derived package
+   - Normal Chat reads/analyzes the derived package by default
+10. Close focused permanent acceptance.
 ```
 
 Do not insert an extra `Get-Item | Select-Object` artifact gate between build and POP-03. The canonical deployment block already validates the exact built/live hashes and sole-live-twin state.
