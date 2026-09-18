@@ -1,7 +1,7 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw55 bounded discovery CLOSED/DEFERRED through EV-246; raw8 Normal/Power/Quick CLOSED/PASS through EV-249; architecture/diagnostic refactor sentinel CLOSED/PASS through EV-250; raw8 Sprint FIST production support CLOSED/PASS through EV-251; native equipped-NPC Goblin/Demon/Ogre controls CLOSED/PASS through EV-254; current broader extension is prepared Orc multi-weapon validation under §8.2  
-**Updated:** 2026-09-11
+**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw8 supported-family production controls CLOSED/PASS through EV-263; raw55 factual discovery + four-family causal closure CLOSED/PASS through EV-294; permanent raw55 implementation/core acceptance PASS; post-audit diagnostic-corrections control + equipped sentinel PASS at EV-295; focused permanent acceptance remains open only for unmarked raw55 native fallback + raw8 FIST sentinels before standalone regression  
+**Updated:** 2026-09-18
 
 ## Purpose
 
@@ -167,9 +167,9 @@ NO Sprint equipped-marker support without factual equipped Sprint evidence
 
 ---
 
-## 4. PhysicalFist/raw55 Bounded Discovery — CLOSED/DEFERRED
+## 4. PhysicalFist/raw55 Discovery / Permanent Acceptance — ACTIVE CLOSURE
 
-The bounded discovery completed through EV-245–EV-246 without observing raw55.
+The original bounded discovery completed through EV-245–EV-246 without observing raw55. That historical result was later superseded by factual Troll/BlackTroll `TrollFist` / PhysicalFist raw55 discovery at EV-262 and the causal route through EV-294.
 
 Observed:
 
@@ -182,10 +182,30 @@ Demon  -> 2H/raw3
 Goblin -> 1H/raw2
 Ogre   -> Axe/raw52
 Dragon capture -> Cast/raw15 fireball; physical attack inconclusive
-raw55 -> not observed
+raw55 -> not observed in the original EV-245–EV-246 survey
 ```
 
-Raw55 remains unsupported/unobserved, not globally disproven. Do not create raw55 behavior or new discovery probes unless factual `UseType == 55` appears.
+Current state after later factual discovery:
+
+```text
+EV-262             Troll/BlackTroll TrollFist/raw55 factual source confirmed
+EV-264–EV-273      Quick causal closure
+EV-274–EV-276      true Power first-contact closure
+EV-277–EV-292      Normal first/repeated-contact closure
+EV-280–EV-282,
+EV-294              Sprint-origin closure
+EV-293              true Power repeated-contact closure
+EV-295              permanent diagnostic-corrections control PASS + equipped sentinel PASS
+```
+
+Permanent raw55 behavior is now implemented under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`. The four-family behavior core acceptance is PASS. Focused permanent acceptance remains open only for:
+
+```text
+unmarked raw55 native fallback
+raw8 FIST sentinel
+```
+
+Do not reopen broad raw55 discovery or family-specific causal probing without concrete contradictory evidence.
 
 ---
 
@@ -350,7 +370,7 @@ one-live-collision-twin deployment invariant
 compact CORE anomaly discovery
 ```
 
-There is no accepted raw55 behavior to add unless future factual evidence reopens it.
+Include the accepted permanent raw55 behavior in this regression: supported marked Quick/Normal/true-Power/Sprint-origin routes, unmarked/native raw55 fallback, native final cleanup, and no false CORE ownership anomalies.
 
 Do not broaden this gate into Raise, speed, target acquisition, or a new source redesign.
 
@@ -439,25 +459,21 @@ research/archive/2026.09.11_ogre_axe_native_equipped_control.log
 ## 13. Current Collision Validation Sequence
 
 ```text
-production raw8 Normal/Power                         CLOSED/PASS
+production raw8 Normal/Power/Quick/Sprint            CLOSED/PASS through EV-263
 Power/Pierce/SimpleWhirl/Hack expansion              CLOSED/PASS for tested scope
-PhysicalFist/raw55 bounded discovery                 CLOSED/DEFERRED
-Sabretooth raw8 + Quick mechanism                    PASS/CLASSIFIED — EV-247–EV-248
-raw8 Quick extension + two-direction validation      CLOSED/PASS — EV-249
-architecture + diagnostic refactor/sentinel          CLOSED/PASS — EV-250
-raw8 Sprint source/transport/production support      CLOSED/PASS — EV-251
-native equipped-NPC Goblin/Demon/Ogre controls       CLOSED/PASS — EV-252–EV-254
--> prepared Orc multi-weapon native extension
--> additional bounded native/modded family controls only if concrete questions remain
--> separated 2H-vs-Axe compatibility
--> separated 1H-vs-Rapier compatibility
--> final native mixed/stress regression
--> separate AttackContinuationProtection
--> combined marker + lifecycle + continuation regression
--> mature New Balance + relevant Jackydima compatibility
+PhysicalFist/raw55 factual discovery + causal route  CLOSED/PASS through EV-294
+permanent raw55 implementation/core behavior         PASS
+post-audit diagnostic corrections control            PASS — EV-295
+equipped authored-marker sentinel                    PASS — EV-295
+-> unmarked raw55 native-fallback sentinel
+-> raw8 FIST sentinel
+-> CLOSE focused permanent raw55 acceptance
+-> standalone collision regression
+-> New Balance 0.7 exact distributed-bundle regression incl. AttackCollision
 -> production collision migration
 -> diagnostics-free production integration validation
--> integrate Raise + Speed + Config
+-> later Raise + Speed + Config
+-> AttackContinuationProtection remains separate unless deliberately reopened
 ```
 
 Exact immediate task remains owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
