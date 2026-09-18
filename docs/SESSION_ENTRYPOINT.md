@@ -17,7 +17,7 @@
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
 Astra audit result/disposition: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`  
-Latest canonical evidence: **EV-296** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
+Latest canonical evidence: **EV-298** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
@@ -48,9 +48,10 @@ CALLBACK IDENTITY DIAGNOSTIC SURFACING 6795377f...:
 - source-contract correction remains PASS
 
 FOCUSED SENTINELS:
-- equipped authored-marker sentinel PASS inside EV-295
+- equipped authored-marker sentinel PASS — EV-295
 - unmarked raw55 native fallback PASS — EV-296
-- raw8 FIST OPEN
+- raw8 FIST coexistence PASS — EV-297
+- focused permanent raw55 acceptance CLOSED/PASS — EV-298
 
 ASTRA PERMANENT RAW55 AUDIT:
 PASS WITH NON-BLOCKING FINDINGS
@@ -72,7 +73,7 @@ blob 8ae8cd8da6e958f6b7f0b139a17467fcc7dd3c6b
 
 Representative Quick, Normal, true-Power and Sprint-origin two-FIST routes all show intended first-marker behavior, clear-only marker2 rearm, two native damage opportunities, native exact RIGHT `7 -> 5` cleanup and outstanding-zero finalization.
 
-The full focused permanent-acceptance transaction remains open until the corrected diagnostics and three bounded sentinels pass. Do not archive/canonicalize this source yet.
+The focused permanent-acceptance transaction is CLOSED/PASS at EV-298. Its processed runtime sources have been archived byte-identically; do not rerun the focused raw55 matrix without concrete contradictory evidence.
 
 ## Independent Astra audit disposition
 
@@ -108,63 +109,42 @@ using the already-computed callback-entry contradiction. Behavior still returns 
 
 Normal Chat independent source review: **PASS**.
 
-## Current responsibility — FINAL RAW8 FIST SENTINEL
+## Current responsibility — STANDALONE COLLISION REGRESSION
 
-The current diagnostic binary has already passed build, deployment, binary-identity and startup/load gates:
+Focused permanent raw55 acceptance is now **CLOSED/PASS — EV-298**.
+
+Final raw8 sentinel EV-297 proves the established raw8 mechanism remains healthy under the permanent raw55 source state:
 
 ```text
-Script_FrameCollisionTest Release — BUILD PASS
+47 accepted FIST markers with Fist / Raw8UseType=8
+native Sabertooth -> PC_Hero damage = 11
+transformed Sabertooth -> native Sabertooth damage = 13
+native + transformed C1 finalizations = 47 clean
+raw55 intervention in raw8 route = 0
+ownership anomaly / invariant / repair / divergence = 0
+```
+
+The four focused acceptance sources were archived byte-identically in:
+
+```text
+5700aedb2feadbde1d1a635a9538ed788836f36d
+```
+
+Current diagnostic binary remains the already-verified product:
+
+```text
 build source checkout = 8abe9c30cae5755184bb5ed22b2959998ad22d33
 built/live DLL SHA256 = 68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C59BBD14BD
-POP-03 deployment PASS
-POP-04 startup/load/clean-unload PASS
+build/deploy/startup PASS
 ```
 
-EV-295 then validated the corrected diagnostics and permanent raw55 behavior:
+All repository commits after that binary build are documentation/evidence maintenance only unless a later source change is explicitly introduced.
+
+Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then freeze and run the **standalone collision regression** under `COLLISION_TEST_PLAN.md` §9. Do not reopen raw55 family-specific probing.
+
+## Next sequence after standalone collision regression
 
 ```text
-raw55 Quick/Normal/Power/Sprint ownership = ROUTINE
-false CORE ATTACK OWNERSHIP ANOMALY = 0
-identity-contradiction diagnostic = 0 in legitimate control
-C1 invariant/repair/divergence = 0
-raw55 cleanup/finalization healthy
-equipped Flamberge authored-marker sentinel = PASS
-```
-
-The control log is only 64,805 bytes / 323 lines. POP-07 processing was harmless but unnecessary; use `Prepare-Log.cmd` only when a new log is genuinely large enough that direct retrieval is inefficient.
-
-Assistant-side commits after that runtime control are documentation/evidence maintenance only. Before the next local test, perform the ordinary POP-01 GitHub Desktop Fetch/Pull handoff. **Do not rebuild, redeploy or repeat startup merely because these docs-only commits advanced remote HEAD.**
-
-EV-296 closes the unmarked raw55 fallback control:
-
-```text
-30 factual unmarked Troll ownership records
-MarkerPresent=0 / FistMarkers=0 / Classification=ROUTINE
-raw55 marker/suppression intervention count = 0
-native TrollFist 5->7 / damage-on-contact / 7->5 preserved
-C1 cleanup Outstanding=0
-ownership anomaly / invariant warning / repair / divergence = 0
-User visual: all exercised unmarked attacks worked as before
-```
-
-Only one focused sentinel remains:
-
-```text
-raw8 FIST sentinel
-```
-
-After it passes, close focused permanent raw55 acceptance and proceed to standalone collision regression.
-
-No dedicated runtime reproduction of the identity contradiction is required before focused acceptance continues.
-
-Do not rerun the full four-family Troll acceptance unless behavior-facing source unexpectedly broadens.
-
-## After focused permanent acceptance closes
-
-```text
-archive permanent-acceptance source unchanged
-record canonical permanent-acceptance evidence
-update EVIDENCE_INDEX
 standalone collision regression
 -> New Balance 0.7 exact distributed bundle regression with AttackCollision included
 -> mature collision migration into src/Script_G3AnimationBehaviors
@@ -174,7 +154,7 @@ standalone collision regression
 ## Still paused
 
 ```text
-NO broad standalone collision regression yet
+standalone collision regression = CURRENT GATE
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
