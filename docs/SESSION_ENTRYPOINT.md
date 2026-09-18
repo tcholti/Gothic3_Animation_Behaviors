@@ -4,7 +4,7 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-17
+**Updated:** 2026-09-18
 
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat after independent source review.
 
@@ -16,8 +16,8 @@
 
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
-Diagnostic correction authority: `docs/COLLISION_RAW55_CORE_DIAGNOSTIC_CLASSIFICATION_CORRECTION.md`  
-Saved Astra audit experiment: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_TASK.md`  
+Astra audit result/disposition: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`  
+Current bounded correction: `docs/COLLISION_RAW55_CALLBACK_IDENTITY_DIAGNOSTIC_SURFACING_CORRECTION.md`  
 Latest closed causal evidence: **EV-294** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
@@ -33,13 +33,21 @@ BOTH RELEASE TARGETS BUILD PASS
 BEHAVIOR-ONLY FUNCTIONAL/RELEASE-PURITY SMOKE PASS
 DIAGNOSTIC DEPLOYMENT + STARTUP PASS
 PERMANENT RAW55 FOUR-FAMILY BEHAVIOR CORE ACCEPTANCE PASS
-DIAGNOSTIC OWNERSHIP FALSE-POSITIVE IDENTIFIED
-DIAGNOSTIC-ONLY CORRECTION 314f284d... PUBLISHED; INDEPENDENT REVIEW PENDING
+
+CORE OWNERSHIP CLASSIFIER CORRECTION 314f284d...:
+- Work static audit PASS
+- Normal Chat independent source review PASS
+- Astra independent review agrees classifier correction is narrow/correct
+- local rebuild/runtime validation not yet performed
+
+ASTRA PERMANENT RAW55 AUDIT:
+PASS WITH NON-BLOCKING FINDINGS
+- no confirmed release-behavior defect
+- F1 nested marker/callback attribution = defensible risk, no change
+- F2 callback-entry identity contradiction not always surfaced = confirmed diagnostics-only contract omission
 ```
 
-## Permanent core acceptance result
-
-Evidence:
+## Permanent core acceptance evidence
 
 ```text
 research/raw/2026.09.17_troll_raw55_permanent_acceptance.log
@@ -50,92 +58,64 @@ blob 8ae8cd8da6e958f6b7f0b139a17467fcc7dd3c6b
 150110 bytes / 1011 lines
 ```
 
-Factual representative routes are complete and clean:
+Representative Quick, Normal, true-Power and Sprint-origin two-FIST routes all show intended first-marker behavior, clear-only marker2 rearm, two native damage opportunities, native exact RIGHT `7 -> 5` cleanup and outstanding-zero finalization.
+
+The full focused permanent-acceptance transaction is still open until the diagnostic corrections and three bounded sentinels pass. Do not archive/canonicalize this source yet.
+
+## Independent Astra audit disposition
+
+Saved full project disposition:
+
+`docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`
+
+### F1 — nested marker inside active callback scope
+
+Source makes the hypothetical suppression collision logically possible, but accepted runtime evidence demonstrates it does not occur in the supported tested first-marker routes. Do **not** add speculative release behavior.
+
+### F2 — callback identity contradiction surfacing
+
+Confirmed frozen-contract omission:
+
+`PhysicalFistCollision::BeginNativeCallbackScope()` correctly declines intervention on a same-C1 identity/origin contradiction but can return without surfacing that fact diagnostically.
+
+Behavior is correct; diagnostics are incomplete.
+
+Frozen correction:
+
+`docs/COLLISION_RAW55_CALLBACK_IDENTITY_DIAGNOSTIC_SURFACING_CORRECTION.md`
+
+## Current responsibility — bounded Work diagnostic surfacing correction
+
+Allowed expected source:
 
 ```text
-Quick C1=3:
-first FIST 5->7 + clear -> damage
-second FIST clear-only -> second damage
-native 7->5 -> outstanding zero
-
-Power C1=6:
-early native opening suppressed
-first FIST Action2/SP1 5->7, no clear -> damage
-second FIST clear-only -> second damage
-native 7->5 -> outstanding zero
-
-Normal C1=33:
-first FIST SP0 5->7 + clear -> damage
-exact native Script_Game+0x386C6 ALL clear suppressed
-second FIST SP1 clear-only -> second damage
-native 7->5 -> outstanding zero
-
-Sprint-origin C1=42:
-early native opening suppressed
-first FIST Action9/SP1 5->7, no clear -> damage
-same C1/right Action9->Action2
-second FIST keeps Origin=SPRINT, Current=POWER, clear-only
-second damage occurs during LieKnockDown_Begin
-native 7->5 -> outstanding zero
+prototypes/Script_FrameCollisionTest/PhysicalFistCollision.cpp
 ```
 
-User observed all exercised two-swing attacks damage twice; Sprint knocked the player down.
+Add only one compact diagnostic fact under `FRAME_COLLISION_DIAGNOSTICS` when the already-computed callback-entry `identityContradiction` occurs.
 
-The full focused permanent-acceptance transaction is still open until the corrected CORE diagnostic classification and three bounded sentinels pass. Do not archive/canonicalize this source yet.
+Do not change behavior, identity rules, eligibility, callback scope decisions, markers, hooks, lifecycle, raw8/equipped behavior or F1.
 
-## Current published source change — diagnostics only
+**WORK BUILD EXECUTION IS PROHIBITED.**
 
-Work commit:
-
-```text
-314f284dbaaf05c5f185811aab107e84f1d434ce
-```
-
-Changed only:
+After Work:
 
 ```text
-prototypes/Script_FrameCollisionTest/CollisionDiagnostics.cpp
-```
-
-Purpose:
-
-```text
-Treat the exact no-mask / no-raw8-resolver / current-RIGHT-PhysicalFist
-FIST ownership shape as routine raw55 diagnostic ownership rather than a contradiction.
-Preserve contradiction reporting for malformed FIST shapes.
-```
-
-Work reports static checks PASS, build not attempted, no contradiction. Normal Chat independent source review and local validation are still pending.
-
-## Tomorrow first — Astra review experiment
-
-The User wants to evaluate GPT-6 Astra against the mature raw55 implementation before deciding whether its engineering benefit justifies its much higher usage cost.
-
-Use exactly:
-
-`docs/ASTRA_RAW55_INDEPENDENT_AUDIT_TASK.md`
-
-Run only after the Astra allowance is fully reset. It is read-only: no edits, build or publication. Its report is not project authority; Normal Chat must independently verify every substantive finding.
-
-The first 2026-09-17 attempt exhausted the remaining ~32% five-hour allowance in about three minutes and returned no final report. It produced no engineering conclusion.
-
-## After Astra / if skipped
-
-```text
-Normal Chat independent review of 314f284d...
--> rebuild Script_FrameCollisionTest only
--> diagnostic deploy/startup
+Normal Chat independent source review
+-> build Script_FrameCollisionTest Release only
+-> deploy/hash/startup
 -> small marked raw55 control:
-   Classification=ROUTINE
+   legitimate raw55 ownership = ROUTINE
    no false CORE ATTACK OWNERSHIP ANOMALY
    behavior facts still healthy
 -> remaining focused sentinels:
    unmarked raw55 native fallback
    raw8 FIST
    one equipped authored-marker route
+-> close focused permanent acceptance
 ```
 
-Do not rerun the full four-family Troll acceptance unless the diagnostic-only correction unexpectedly broadens into behavior-facing source.
+Do not rerun the full four-family Troll acceptance unless behavior-facing source unexpectedly broadens.
 
 ## After focused permanent acceptance closes
 
