@@ -17,7 +17,7 @@
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
 Astra audit result/disposition: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`  
-Latest canonical evidence: **EV-298** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
+Latest canonical evidence: **EV-301** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
@@ -130,6 +130,19 @@ The four focused acceptance sources were archived byte-identically in:
 5700aedb2feadbde1d1a635a9538ed788836f36d
 ```
 
+
+First standalone-regression batch is CLOSED/PASS:
+
+```text
+EV-299  1H        PASS
+EV-300  1H+torch  PASS
+EV-301  dual 1H   PASS
+```
+
+All three runs include no-target exercise followed by Golem contact; the User visually confirmed intended attacks connected. Deliberate bad skips produced only the exact accepted C1-R1 repair path (2x 1H, 1x 1H+torch, 1x dual-1H), with successful group5 readback and no repair divergence. Late unsupported Quick markers in 1H+torch and dual-1H occurred only after Action0/no live C1 and were safely rejected with physical sources already group5.
+
+The three source logs are archived and `research/raw/` is clean except `Keep.txt`.
+
 Current diagnostic binary remains the already-verified product:
 
 ```text
@@ -140,7 +153,7 @@ build/deploy/startup PASS
 
 All repository commits after that binary build are documentation/evidence maintenance only unless a later source change is explicitly introduced.
 
-Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then begin the restored seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase is §8.1: the User attacks a Golem with each prepared weapon/setup, using one runtime run/log per weapon. The User may upload the logs in small batches (typically 2–3 at a time) rather than waiting for the full weapon matrix. After every uploaded batch, Normal Chat must complete POP-06 evidence/document/archive cleanup before requesting the next batch. Do not reopen raw55 family-specific probing.
+Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then begin the restored seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase remains §8.1: continue the remaining prepared Golem weapon/setup runs. Completed setups already closed: 1H, 1H+torch and dual-1H. Use one runtime run/log per weapon. The User may upload small batches (typically 2–3 at a time). After every uploaded batch, Normal Chat must complete POP-06 evidence/document/archive cleanup before requesting the next batch. Do not reopen raw55 family-specific probing.
 
 ## Next sequence after standalone collision regression
 
