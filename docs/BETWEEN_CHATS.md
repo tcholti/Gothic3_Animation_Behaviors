@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — PERMANENT RAW55 CORE PASS; DIAGNOSTIC BUILD PASS; CANONICAL DEPLOYMENT NEXT
+## Current Bridge — EV-295 PASS; ONLY UNMARKED RAW55 + RAW8 SENTINELS REMAIN
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Canonical family-specific causal evidence remains closed through **EV-294**.
+Canonical family-specific causal evidence remains closed through **EV-294**; post-audit permanent diagnostic control is **EV-295 PASS**.
 
 Permanent raw55 contract:
 
@@ -151,63 +151,74 @@ identity contradiction
 
 No identity, eligibility, marker, hook, lifecycle, raw8/equipped or F1 logic changed.
 
-## Immediate next responsibility — LOCAL DEPLOYMENT / VALIDATION
+## Immediate next responsibility — FINAL TWO FOCUSED SENTINELS
 
-The User returned to the authoritative local build machine and completed the diagnostic build successfully:
+Current verified diagnostic binary:
 
 ```text
-Script_FrameCollisionTest Release — BUILD PASS
-local checkout used for build:
+build source checkout:
 8abe9c30cae5755184bb5ed22b2959998ad22d33
+
+built/live SHA256:
+68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C59BBD14BD
+
+build PASS
+POP-03 deployment PASS
+POP-04 startup/load/clean-unload PASS
 ```
 
-The subsequent remote commits are documentation/procedure maintenance only. No executable source changed after the successful build, so do **not** rebuild solely because current remote HEAD is newer.
-
-A procedure-maintenance review found that build/deploy/startup details had been reconstructed differently across chats. `PROJECT_OPERATING_PROCEDURES.md` v1.15 now owns exact canonical command blocks. Historical probe/task/handoff/chat snippets are not executable procedure authority.
-
-Resume exactly:
+EV-295 control source:
 
 ```text
-1. GitHub Desktop POP-01 handoff FIRST:
-   - repository Gothic3_Animation_Behaviors
-   - branch docs/collision-source-evidence
-   - Fetch origin
-   - Pull origin
-   - top action returns to Fetch origin
-   - no unexpected local Changes
-2. Do NOT rebuild: every remote commit after the successful 8abe9c30... build is documentation/procedure-only.
-3. Use POP-03 canonical diagnostic-twin deployment block verbatim.
-4. Require exactly one live Script_FrameCollisionTest.dll and Built SHA256 == Live SHA256.
-5. If and only if POP-03 prints DIAGNOSTIC DEPLOYMENT PASS, launch Gothic 3 to main menu and exit normally.
-6. Use POP-04 canonical diagnostic startup-log block verbatim.
-7. If startup/load PASS, run the small marked raw55 control:
-   - legitimate raw55 ATTACK_OWNERSHIP Classification=ROUTINE
-   - no false CORE ATTACK OWNERSHIP ANOMALY
-   - permanent marker/damage/native-cleanup behavior remains healthy
-8. Run remaining focused sentinels:
-   - unmarked raw55 native fallback
-   - raw8 FIST
-   - one equipped authored-marker route
-9. For any oversized diagnostic log:
-   - preserve complete log in research/raw/
-   - run tools/log_evidence/Prepare-Log.cmd
-   - GitHub Desktop review Changes
-   - Commit + Push BOTH raw log and generated derived package
-   - Normal Chat reads/analyzes the derived package by default
-10. Close focused permanent acceptance.
+research/raw/2026-09-18_troll_raw55_diagnostic_corrections_control.log
+SHA256 6A3C9764B7799B4355B50C37F10041346379C04620744DEA4F8118A5C6E96658
+64,805 bytes / 323 lines
+upload commit a18c2d9f595b016b16c96dc5467191fc3705a772
 ```
 
-Do not insert an extra `Get-Item | Select-Object` artifact gate between build and POP-03. The canonical deployment block already validates the exact built/live hashes and sole-live-twin state.
+EV-295 result:
 
-No dedicated runtime reproduction of the callback identity contradiction is required before focused acceptance continues.
+```text
+Troll raw55 QUICK/NORMAL/POWER/SPRINT Classification=ROUTINE
+CORE ATTACK OWNERSHIP ANOMALY = 0
+RAW55 identity contradiction = 0 in legitimate control
+C1 invariant warning / repair / divergence = 0
+native raw55 7->5 cleanup + Outstanding=0 PASS
+User visual: all exercised attack families damaged on both swings;
+Sprint second visual remains obscured by knockdown, already accepted
+equipped Flamberge authored-marker sentinel = PASS
+```
 
-Do not rerun the full four-family Troll acceptance unless behavior-facing source unexpectedly broadens.
+The same run contains no factual raw8 UseType8 route.
+
+The only remaining focused permanent-acceptance controls are:
+
+```text
+A. unmarked raw55 native fallback
+B. raw8 FIST sentinel
+```
+
+Use historical fixtures as controls rather than inventing new mechanisms:
+
+```text
+unmarked raw55 reference:
+EV-267 / research/raw/2026.09.12_troll_native_collision_3.log
+ordinary native Troll attacks with no authored attack markers
+
+raw8 reference:
+EV-263 / marked Sabretooth Quick control
+factual Fist / raw8 UseType=8
+```
+
+Assistant-side commits after EV-295 are docs/evidence-only. Before running the next local test, User performs ordinary GitHub Desktop Fetch/Pull under POP-01. No rebuild/redeploy/startup repeat is required solely for those commits.
+
+For small CORE logs like EV-295, preserve and push the raw log directly; POP-07 processing is optional and unnecessary unless retrieval size becomes inefficient. If a log is genuinely large, use `Prepare-Log.cmd` and push raw + derived together.
 
 ## Evidence transaction / archive status
 
 Do not create the next canonical EV or move the permanent-acceptance source from `research/raw/` to `research/archive/` yet.
 
-The four-family behavior core is PASS, but focused permanent acceptance remains open until both diagnostic corrections and the three bounded sentinels are locally validated.
+The four-family behavior core and diagnostic corrections are PASS. The equipped authored-marker sentinel is also PASS at EV-295. Focused permanent acceptance remains open only until the unmarked raw55 fallback and raw8 FIST sentinels pass.
 
 ## After focused permanent acceptance closes
 
