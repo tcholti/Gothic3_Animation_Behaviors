@@ -314,7 +314,7 @@ For diagnostics-free behavior-only smoke, the raw-log stages are omitted by desi
 
 Do not collapse gates merely because another Chat prefers fewer steps when the separation protects causal certainty.
 
-Detailed commands and stop/failure branches belong to `PROJECT_OPERATING_PROCEDURES.md`.
+Detailed commands and stop/failure branches belong exclusively to `PROJECT_OPERATING_PROCEDURES.md`. When executing the local validation stages, use POP-01/02/03/04 directly; do not recreate equivalent PowerShell from memory, old task documents, handoffs or prior chats.
 
 ---
 
