@@ -112,7 +112,21 @@ build source checkout = 8abe9c30cae5755184bb5ed22b2959998ad22d33
 
 After that build, repository changes were documentation/procedure maintenance only; no executable source changed. Do **not** require a rebuild merely because remote HEAD advanced through those docs-only commits.
 
-The next runtime step is therefore:
+The Assistant has since published documentation/procedure-only commits after the successful local build. Before any further local PowerShell command, the User must perform the normal POP-01 GitHub Desktop handoff:
+
+```text
+GitHub Desktop
+-> repository = Gothic3_Animation_Behaviors
+-> branch = docs/collision-source-evidence
+-> Fetch origin
+-> Pull origin
+-> top action returns to Fetch origin
+-> no unexpected local Changes
+```
+
+These pulled changes are documentation only; they do **not** invalidate the already-built diagnostic DLL and do not require a rebuild.
+
+The next runtime step after Desktop synchronization is therefore:
 
 ```text
 POP-03 exact diagnostic-twin deployment block
@@ -129,7 +143,9 @@ POP-03 exact diagnostic-twin deployment block
 -> close focused permanent acceptance
 ```
 
-**Procedure lock:** execute POP-03 and POP-04 from `PROJECT_OPERATING_PROCEDURES.md` verbatim. Do not insert an extra artifact-formatting/hash-precheck or reconstruct equivalent PowerShell from memory.
+**Procedure lock:** routine Git synchronization/publication uses GitHub Desktop under POP-01. After Desktop synchronization, execute POP-03 and POP-04 from `PROJECT_OPERATING_PROCEDURES.md` verbatim. Do not insert an extra artifact-formatting/hash-precheck or reconstruct equivalent PowerShell from memory.
+
+For any new oversized runtime log, use `tools/log_evidence/Prepare-Log.cmd`, then GitHub Desktop Commit + Push **both** the unchanged `research/raw/` log and generated `research/derived/<stem>_large_log/` package. Normal Chat analyzes the derived package by default.
 
 No dedicated runtime reproduction of the identity contradiction is required before focused acceptance continues.
 
