@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.14  
+**Version:** 1.15  
 **Updated:** 2026-09-18
 
 ## Purpose
@@ -164,13 +164,28 @@ Do not commit to `main` merely because it is the default/stable branch. Branch s
 
 ### Assistant remote writes and local synchronization
 
-If the Assistant changed the remote since the User last synchronized, the User should normally Fetch/Pull through GitHub Desktop before beginning a new local write window.
+If the Assistant changed the remote since the User last synchronized, the **normal next local step is always GitHub Desktop synchronization before any PowerShell build/deploy/test command**:
+
+```text
+Assistant finishes remote repository writes
+-> User opens Gothic3_Animation_Behaviors in GitHub Desktop
+-> verify active branch
+-> Fetch origin
+-> Pull origin when offered
+-> wait until top action returns to Fetch origin
+-> verify no unexpected local Changes
+-> only then run the next PowerShell build/deploy/test command
+```
+
+Do not replace this routine Desktop handoff with a Git command merely because PowerShell will be used afterward. The command-line sync block below is fallback/recovery only.
 
 If the User already has important local commits or uncommitted work when the remote has also advanced, do not improvise a merge/rebase sequence in the UI. Stop, report the visible state, and choose the smallest safe recovery deliberately.
 
 ### PowerShell / command-line fallback
 
-GitHub Desktop is a convenience interface, not a ban on exact command-line work. Use PowerShell/Git when it is materially clearer or safer for the task, especially for:
+GitHub Desktop is the normal User-side Git interface. PowerShell/Git is a fallback for Git synchronization/publication, not a co-equal default.
+
+Use PowerShell for build/deploy/test tooling, and use PowerShell/Git for repository operations only when it is materially clearer or safer for the task, especially for:
 
 ```text
 exact SHA/status diagnostics
@@ -186,7 +201,7 @@ Do not paste long Git command blocks into Chat when the same routine Fetch/Pull/
 
 If a push is rejected, GitHub Desktop reports a conflict, or the visible local/remote state is unclear, stop and inspect; do not guess or auto-pick a side.
 
-Command-line fallback for a known clean synchronization remains available when needed. Use the exact non-rewriting form below; do not casually substitute a rebase/pull variant:
+Exceptional command-line fallback for a known clean synchronization remains available when Desktop is unsuitable or the exact Git state must be diagnosed. Use the exact non-rewriting form below; do not offer it as the normal path and do not casually substitute a rebase/pull variant:
 
 ```powershell
 $repoRoot = '<repository from LOCAL_WORKSTATION_PATHS.md>'
@@ -601,31 +616,71 @@ Keep unresolved artifacts in raw with explicit disposition rather than making a 
 
 Use when a canonical runtime log is too large for efficient retrieval.
 
+The normal Windows workflow is deliberately split between User-local preparation and Assistant-side analysis:
+
 ```text
-canonical raw/archive log
--> deterministic local post-processing when needed
--> derived retrieval package under research/derived/
--> read smallest useful derived signals/timeline first
--> return to canonical source for exact verification
+User preserves complete raw log unchanged under research/raw/
+-> User runs tools/log_evidence/Prepare-Log.cmd on that raw log
+-> tool creates complete derived package under research/derived/
+-> User verifies GitHub Desktop Changes contains BOTH:
+   canonical raw log
+   generated derived package
+-> User commits and Pushes both together
+-> Assistant reads the committed derived package
+-> raw log remains canonical provenance but is not routinely re-opened
 ```
 
-Current deterministic tool: `tools/log_evidence/` with usage in its README.
+Current deterministic tool: `tools/log_evidence/Prepare-Log.cmd` with usage in its README.
 
-A derived package must remain reproducibly tied to source identity/hash and extraction identity. It is a retrieval aid, not replacement evidence.
-
-Whole-run interpretation order:
+The routine derived package contains:
 
 ```text
-verify source identity/hash
+manifest + raw SHA256/provenance
+whole-run event counts
+chronological event timeline
+high-signal indexes
+full_source_index
+complete line-numbered full_source_part_* mirror
+```
+
+Because the package contains a complete line-numbered mirror of the source and is tied to the raw source by SHA256, the **normal Assistant retrieval path is the derived package only**. This avoids repeatedly transferring/retrieving the oversized raw file while preserving whole-run verification capability.
+
+The raw file remains the byte-faithful canonical evidence authority. Retrieve/read the raw file itself only when there is a concrete reason, for example:
+
+- derived manifest/hash does not match the intended raw artifact;
+- package generation appears incomplete or corrupt;
+- an exact byte-level property not represented by the line-numbered mirror matters;
+- a later procedure explicitly requires canonical raw bytes.
+
+Do not reopen the raw log merely because an older procedure says to "verify against source" when the complete derived mirror already provides the needed exact lines.
+
+### Whole-run interpretation order
+
+```text
+read derived manifest and source identity/hash
 -> inspect whole-run event counts
 -> inspect chronological timeline
 -> enumerate high-signal/invariant/failure matches
--> read source-context windows
--> retrieve additional exact source ranges when needed
--> correlate final symptom with complete run
+-> use full_source_index
+-> read exact line-numbered full_source_part_* ranges
+-> correlate final symptom with the complete mirrored run
 ```
 
-Counts are navigation leads, not conclusions. Tail-only extracts cannot prove earlier cleanliness. User visual observations remain valid evidence inputs. Distinguish diagnostic/shadow outcomes from actual mutations. If derived material is insufficient, retrieve exact source ranges rather than rerunning Gothic solely for Chat convenience.
+Counts are navigation leads, not conclusions. Tail-only extracts cannot prove earlier cleanliness. The complete-source mirror can. User visual observations remain valid evidence inputs. Distinguish diagnostic/shadow outcomes from actual mutations.
+
+If the routine package is insufficient because of a package/provenance problem, inspect the canonical raw artifact or regenerate the package rather than rerunning Gothic solely for Chat convenience.
+
+### Publication lock
+
+For a newly captured large log, **do not push only the raw file and leave the derived package local**, and do not push only the derived package without its canonical raw source. The ordinary publication unit is:
+
+```text
+research/raw/<exact frozen log>
++
+research/derived/<same-stem>_large_log/
+```
+
+Commit and Push both through GitHub Desktop in the same local publication window unless a concrete repository-size/tooling contradiction requires a deliberately different transaction.
 
 ---
 
