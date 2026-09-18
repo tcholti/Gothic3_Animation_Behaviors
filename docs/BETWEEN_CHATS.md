@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — EV-298 CLOSED; STANDALONE REGRESSION PHASE 1 GOLEM MATRIX
+## Current Bridge — EV-301; GOLEM PHASE 1 FIRST BATCH CLOSED/PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
