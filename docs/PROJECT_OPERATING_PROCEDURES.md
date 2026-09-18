@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.13  
-**Updated:** 2026-09-08
+**Version:** 1.14  
+**Updated:** 2026-09-18
 
 ## Purpose
 
@@ -186,16 +186,20 @@ Do not paste long Git command blocks into Chat when the same routine Fetch/Pull/
 
 If a push is rejected, GitHub Desktop reports a conflict, or the visible local/remote state is unclear, stop and inspect; do not guess or auto-pick a side.
 
-Command-line fallback for a known clean synchronization remains available when needed:
+Command-line fallback for a known clean synchronization remains available when needed. Use the exact non-rewriting form below; do not casually substitute a rebase/pull variant:
 
 ```powershell
 $repoRoot = '<repository from LOCAL_WORKSTATION_PATHS.md>'
+$branch   = '<active branch from SESSION_ENTRYPOINT.md>'
+
 Set-Location $repoRoot
-$branch = '<active branch from SESSION_ENTRYPOINT.md>'
-git pull --rebase origin $branch
+git fetch origin
+git checkout $branch
+git pull --ff-only origin $branch
+git rev-parse HEAD
 ```
 
-If a deliberate command-line rebase conflicts, stop and inspect; do not auto-pick a side.
+The final SHA is the synchronization proof. If `--ff-only` refuses because the local branch diverged, stop and inspect; do not auto-merge, auto-rebase, reset, or pick a side. A deliberate recovery may later choose a rebase, but routine synchronization must not rewrite local history.
 
 ---
 
@@ -205,18 +209,18 @@ If a deliberate command-line rebase conflicts, stop and inspect; do not auto-pic
 
 Use after required source review when a local runtime binary is needed.
 
-### Pattern
+### Canonical rule
 
 ```text
 correct branch/source state
--> choose exact target required by frozen question
--> build only that target into repository-local build tree
--> leave artifact in build tree
+-> choose the exact target set required by the frozen question
+-> build into the repository-local build tree
+-> leave artifacts in the build tree
 -> User reports success or smallest useful error excerpt
 -> STOP build stage
 ```
 
-Do not use the live Gothic 3 `scripts` directory as build output/staging/backup. Current collision research products are mutually exclusive:
+Do not use the live Gothic 3 `scripts` directory as build output/staging/backup. Current collision research products are:
 
 ```text
 Script_FrameCollisionTest
@@ -226,7 +230,39 @@ Script_FrameCollisionBehaviorTest
 = diagnostics-free behavior twin
 ```
 
-Build only the selected target. A successful build does not deploy it. Request only compact success or smallest useful failure output.
+The twins are mutually exclusive **at runtime**, not at build time.
+
+Use these exact build rules:
+
+- diagnostics-only source change or diagnostic-only validation question -> build `Script_FrameCollisionTest` only;
+- behavior-facing shared collision-source change before release-purity validation -> build **both** twins;
+- behavior-only smoke after the diagnostic twin is already proven from the same source state -> build the behavior twin required by that gate;
+- do not build unrelated targets merely because they exist.
+
+Canonical diagnostic build:
+
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionTest
+```
+
+Canonical behavior-only build:
+
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
+```
+
+Canonical two-twin build when the frozen gate requires both:
+
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
+cmake --build build --config Release --target Script_FrameCollisionTest
+```
+
+A successful build does not deploy it.
+
+**Do not insert an extra artifact-formatting gate merely to print `FullName/Length/LastWriteTime`.** POP-03 verifies the exact built artifact, live artifact, sole-live-twin state and SHA256 in one bounded step. A separate artifact inspection is justified only when the build output itself is ambiguous or a specific artifact question exists.
+
+Request only compact success or the smallest useful failure excerpt.
 
 ---
 
@@ -241,16 +277,109 @@ Use after a successful build and before launching Gothic 3 for that build.
 ```text
 resolve exact selected built DLL
 -> ensure every mutually exclusive non-selected collision twin is physically absent from live scripts
--> manually copy only selected DLL
+-> copy only selected DLL
 -> enumerate Script_FrameCollision* files in live scripts
--> require exactly one selected collision twin and no renamed/disabled sibling copies
+-> require exactly one selected collision twin
 -> SHA256 built == selected live DLL
 -> only then launch
 ```
 
 Do not co-load the diagnostic and behavior-only twins. The live scripts directory is deployment surface, not storage. Renaming a script DLL in place is not a safe disable mechanism; EV-173 showed a renamed backup can still participate in runtime loading.
 
-If any sibling/wrong product is live or the hash differs, stop before launch.
+### Canonical diagnostic-twin deployment block
+
+Use this block verbatim for `Script_FrameCollisionTest` unless workstation paths have deliberately changed in `LOCAL_WORKSTATION_PATHS.md`:
+
+```powershell
+$buildDir = ".\build\prototypes\Script_FrameCollisionTest\Release"
+$liveDir  = "E:\SteamLibrary\steamapps\common\Gothic 3\scripts"
+
+$behaviorLive   = Join-Path $liveDir "Script_FrameCollisionBehaviorTest.dll"
+$diagnosticBuilt = Join-Path $buildDir "Script_FrameCollisionTest.dll"
+$diagnosticLive  = Join-Path $liveDir "Script_FrameCollisionTest.dll"
+
+if (Test-Path $behaviorLive) {
+    Remove-Item -LiteralPath $behaviorLive -Force
+}
+
+Copy-Item -LiteralPath $diagnosticBuilt -Destination $diagnosticLive -Force
+
+Write-Host "`n=== LIVE COLLISION DLLS ==="
+$twins = @(Get-ChildItem -LiteralPath $liveDir -File |
+    Where-Object { $_.Name -like "Script_FrameCollision*" })
+
+$twins | Select-Object Name, Length, LastWriteTime
+
+$builtHash = (Get-FileHash -LiteralPath $diagnosticBuilt -Algorithm SHA256).Hash
+$liveHash  = (Get-FileHash -LiteralPath $diagnosticLive -Algorithm SHA256).Hash
+
+Write-Host "`nBuilt SHA256: $builtHash"
+Write-Host "Live  SHA256: $liveHash"
+
+if ($twins.Count -ne 1 -or $twins[0].Name -ne "Script_FrameCollisionTest.dll") {
+    Write-Host "`nSTOP: unexpected collision DLL state."
+}
+elseif ($builtHash -ne $liveHash) {
+    Write-Host "`nSTOP: built/live hash mismatch."
+}
+else {
+    Write-Host "`nDIAGNOSTIC DEPLOYMENT PASS"
+}
+```
+
+Required success surface:
+
+```text
+exactly one Script_FrameCollision* live DLL
+selected DLL = Script_FrameCollisionTest.dll
+Built SHA256 == Live SHA256
+DIAGNOSTIC DEPLOYMENT PASS
+```
+
+### Canonical behavior-twin deployment block
+
+Use this block verbatim for `Script_FrameCollisionBehaviorTest`:
+
+```powershell
+$buildDir = ".\build\prototypes\Script_FrameCollisionTest\Release"
+$liveDir  = "E:\SteamLibrary\steamapps\common\Gothic 3\scripts"
+
+$diagnosticLive = Join-Path $liveDir "Script_FrameCollisionTest.dll"
+$behaviorBuilt  = Join-Path $buildDir "Script_FrameCollisionBehaviorTest.dll"
+$behaviorLive   = Join-Path $liveDir "Script_FrameCollisionBehaviorTest.dll"
+
+if (Test-Path $diagnosticLive) {
+    Remove-Item -LiteralPath $diagnosticLive -Force
+}
+
+Copy-Item -LiteralPath $behaviorBuilt -Destination $behaviorLive -Force
+
+Write-Host "`n=== LIVE COLLISION DLLS ==="
+$twins = @(Get-ChildItem -LiteralPath $liveDir -File |
+    Where-Object { $_.Name -like "Script_FrameCollision*" })
+
+$twins | Select-Object Name, Length, LastWriteTime
+
+$builtHash = (Get-FileHash -LiteralPath $behaviorBuilt -Algorithm SHA256).Hash
+$liveHash  = (Get-FileHash -LiteralPath $behaviorLive -Algorithm SHA256).Hash
+
+Write-Host "`nBuilt SHA256: $builtHash"
+Write-Host "Live  SHA256: $liveHash"
+
+if ($twins.Count -ne 1 -or $twins[0].Name -ne "Script_FrameCollisionBehaviorTest.dll") {
+    Write-Host "`nSTOP: unexpected collision DLL state."
+}
+elseif ($builtHash -ne $liveHash) {
+    Write-Host "`nSTOP: built/live hash mismatch."
+}
+else {
+    Write-Host "`nBEHAVIOR DEPLOYMENT PASS"
+}
+```
+
+If either block prints `STOP`, or the expected PASS line is absent, stop before launch.
+
+The table is human-readable context only. **The required values are the explicit scalar PASS/hash lines; never require a width-dependent `Select-Object` table to prove binary identity.**
 
 ---
 
@@ -270,9 +399,56 @@ launch only far enough to exercise script loading
 -> only then run behavioral matrix
 ```
 
-For `Script_FrameCollisionTest`, verify expected diagnostic startup banner. Missing banner/wrong binary/load failure/crash is a stop condition.
+### Diagnostic twin — canonical startup gate
 
-For `Script_FrameCollisionBehaviorTest`, no diagnostic banner/log is expected by design. Sole-live-DLL + SHA followed by normal main-menu load/exit is the minimal load check; later functional smoke provides behavior evidence.
+For `Script_FrameCollisionTest`:
+
+1. launch Gothic 3 to the main menu;
+2. exit normally;
+3. run exactly:
+
+```powershell
+$log = "E:\SteamLibrary\steamapps\common\Gothic 3\Script_FrameCollisionTest.log"
+
+Write-Host "`n=== START ==="
+Get-Content -LiteralPath $log -TotalCount 12
+
+Write-Host "`n=== END ==="
+Get-Content -LiteralPath $log -Tail 5
+```
+
+Require the expected diagnostic banner/profile/hook-install facts at the start and:
+
+```text
+Script_FrameCollisionTest unloading cleanly.
+```
+
+at the end.
+
+Missing banner, wrong binary/profile, hook-install failure, crash or missing clean unload is a stop condition.
+
+Do not start the behavioral runtime test until this gate passes unless the frozen test explicitly combines startup and behavior.
+
+### Behavior twin — canonical startup gate
+
+For `Script_FrameCollisionBehaviorTest`, no diagnostic banner/log is expected by design.
+
+Require:
+
+```text
+POP-03 behavior deployment PASS
+-> launch Gothic 3 to the main menu
+-> exit normally
+-> no load/startup crash
+```
+
+Then proceed to the frozen behavior-only functional smoke. Do not invent a missing diagnostic-log requirement for the behavior twin.
+
+### Authority lock
+
+These POP-02/03/04 command blocks are the active operational authority. Build/deploy/startup snippets preserved in old probe plans, evidence ledgers, historical handoffs or past conversations are historical records, not executable procedure authority.
+
+When a current handoff says `build`, `deploy/hash` or `startup gate`, open the corresponding POP section and reuse its exact current block rather than reconstructing an equivalent command from memory.
 
 ---
 
