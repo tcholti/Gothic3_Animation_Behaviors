@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — EV-296 PASS; ONLY RAW8 FIST SENTINEL REMAINS
+## Current Bridge — EV-298 FOCUSED RAW55 ACCEPTANCE CLOSED; STANDALONE REGRESSION NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Canonical family-specific causal evidence remains closed through **EV-294**; post-audit permanent diagnostic/equipped control is **EV-295 PASS**; unmarked raw55 native fallback is **EV-296 PASS**.
+Canonical family-specific causal evidence is closed through **EV-294**; post-audit diagnostic/equipped control is **EV-295 PASS**; unmarked raw55 fallback is **EV-296 PASS**; raw8 coexistence is **EV-297 PASS**; aggregate focused permanent raw55 acceptance is **EV-298 CLOSED/PASS**.
 
 Permanent raw55 contract:
 
@@ -151,83 +151,82 @@ identity contradiction
 
 No identity, eligibility, marker, hook, lifecycle, raw8/equipped or F1 logic changed.
 
-## Immediate next responsibility — FINAL RAW8 FIST SENTINEL
+## Immediate next responsibility — STANDALONE COLLISION REGRESSION
 
-Current verified diagnostic binary:
-
-```text
-build source checkout:
-8abe9c30cae5755184bb5ed22b2959998ad22d33
-
-built/live SHA256:
-68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C59BBD14BD
-
-build PASS
-POP-03 deployment PASS
-POP-04 startup/load/clean-unload PASS
-```
-
-EV-295 control source:
+The final raw8 sentinel is PASS:
 
 ```text
-research/raw/2026-09-18_troll_raw55_diagnostic_corrections_control.log
-SHA256 6A3C9764B7799B4355B50C37F10041346379C04620744DEA4F8118A5C6E96658
-64,805 bytes / 323 lines
-upload commit a18c2d9f595b016b16c96dc5467191fc3705a772
+research/archive/2026-09-18_sabertooth_raw8_fist_sentinel.log
+Git blob 3f0dedbba3580711761610476ba1080b4916b634
+119,668 bytes / 552 lines
+
+47 accepted FIST markers
+Fist / Raw8UseType=8
+Normal / Quick / Power / Sprint exercised
+native Sabertooth -> PC_Hero ONDAMAGE = 11
+Transform_Sabertooth_Potion -> Sabertooth ONDAMAGE = 13
+47 clean native/transformed C1 finalizations
+raw55 intervention = 0
+CORE ownership anomaly = 0
+C1 invariant / repair / divergence = 0
 ```
 
-EV-295 result:
+User runtime observation: native Sabretooth attacked with multiple attack types; User transformed into Sabretooth and attacked back with many attack types.
+
+EV-297 records the sentinel. EV-298 closes the complete focused permanent raw55 acceptance transaction.
+
+Closed focused artifacts are now archived byte-identically:
 
 ```text
-Troll raw55 QUICK/NORMAL/POWER/SPRINT Classification=ROUTINE
-CORE ATTACK OWNERSHIP ANOMALY = 0
-RAW55 identity contradiction = 0 in legitimate control
-C1 invariant warning / repair / divergence = 0
-native raw55 7->5 cleanup + Outstanding=0 PASS
-User visual: all exercised attack families damaged on both swings;
-Sprint second visual remains obscured by knockdown, already accepted
-equipped Flamberge authored-marker sentinel = PASS
+research/archive/2026.09.17_troll_raw55_permanent_acceptance.log
+research/archive/2026-09-18_troll_raw55_diagnostic_corrections_control.log
+research/archive/2026-09-18_troll_raw55_unmarked_native_fallback_sentinel.log
+research/archive/2026-09-18_sabertooth_raw8_fist_sentinel.log
+
+archive commit:
+5700aedb2feadbde1d1a635a9538ed788836f36d
 ```
 
-The same run contains no factual raw8 UseType8 route.
-
-EV-296 closes the unmarked raw55 native-fallback sentinel:
+Current verified diagnostic DLL remains:
 
 ```text
-research/raw/2026-09-18_troll_raw55_unmarked_native_fallback_sentinel.log
-Git blob 795e137626b787654ceca66f29a9e09fc2e1c958
-107,085 bytes / 594 lines
-30 unmarked Troll ownership records
-no raw55 marker/suppression intervention
-native raw55 open/damage/cleanup preserved
-no anomaly/invariant/repair/divergence
-User visual: all attacks worked as before
+source checkout 8abe9c30cae5755184bb5ed22b2959998ad22d33
+SHA256 68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C59BBD14BD
 ```
 
-The only remaining focused permanent-acceptance control is:
+No executable source changed after that build.
+
+Resume:
 
 ```text
-raw8 FIST sentinel
+1. User GitHub Desktop Fetch/Pull.
+2. Do not rebuild/redeploy solely for docs/evidence commits.
+3. Read/freeze COLLISION_TEST_PLAN.md §9 standalone collision regression.
+4. Run the minimum native/no-third-party mixed regression protecting:
+   - equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
+   - repeated-contact ClearTriggeredList semantics
+   - Power / Pierce / SimpleWhirl / Hack
+   - supported Sprint
+   - C1 generation-scoped occurrence/dedupe
+   - C1-R1 exact-source terminal repair
+   - raw8 FIST
+   - permanent marked raw55 + unmarked raw55 fallback
+   - one-live-collision-twin invariant
+   - compact CORE anomaly discovery
+5. Close regression evidence before advancing.
+6. Only after standalone regression PASS:
+   New Balance 0.7 exact distributed-bundle regression including AttackCollision.
 ```
 
-Use the established EV-263 fixture rather than inventing a new mechanism:
-
-```text
-marked Sabretooth Quick
-factual Fist / raw8 UseType=8
-```
-
-Assistant-side commits after EV-295 are docs/evidence-only. Before running the next local test, User performs ordinary GitHub Desktop Fetch/Pull under POP-01. No rebuild/redeploy/startup repeat is required solely for those commits.
-
-For small CORE logs like EV-295, preserve and push the raw log directly; POP-07 processing is optional and unnecessary unless retrieval size becomes inefficient. If a log is genuinely large, use `Prepare-Log.cmd` and push raw + derived together.
+Do not reopen raw55 family-specific causal work without concrete contradictory evidence.
 
 ## Evidence transaction / archive status
 
 Do not create the next canonical EV or move the permanent-acceptance source from `research/raw/` to `research/archive/` yet.
 
-The four-family behavior core and diagnostic corrections are PASS. The equipped authored-marker sentinel is PASS at EV-295 and the unmarked raw55 fallback sentinel is PASS at EV-296. Focused permanent acceptance remains open only until the raw8 FIST sentinel passes.
+Focused permanent raw55 acceptance is CLOSED/PASS at EV-298. No focused sentinel remains open.
 
-## After focused permanent acceptance closes
+## Sequence after standalone collision regression
 
 ```text
 archive permanent-acceptance raw source unchanged
@@ -242,7 +241,7 @@ standalone collision regression
 ## Still paused
 
 ```text
-NO broad standalone collision regression yet
+standalone collision regression = CURRENT GATE
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
