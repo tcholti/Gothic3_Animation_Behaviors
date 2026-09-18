@@ -109,7 +109,7 @@ using the already-computed callback-entry contradiction. Behavior still returns 
 
 Normal Chat independent source review: **PASS**.
 
-## Current responsibility — STANDALONE COLLISION REGRESSION
+## Current responsibility — STANDALONE REGRESSION PHASE 1: GOLEM WEAPON MATRIX
 
 Focused permanent raw55 acceptance is now **CLOSED/PASS — EV-298**.
 
@@ -140,7 +140,7 @@ build/deploy/startup PASS
 
 All repository commits after that binary build are documentation/evidence maintenance only unless a later source change is explicitly introduced.
 
-Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then freeze and run the **standalone collision regression** under `COLLISION_TEST_PLAN.md` §9. Do not reopen raw55 family-specific probing.
+Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then begin the restored seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase is §8.1: the User attacks a Golem with each prepared weapon/setup, using one runtime run/log per weapon and uploading the completed set together. Do not reopen raw55 family-specific probing.
 
 ## Next sequence after standalone collision regression
 
@@ -155,6 +155,7 @@ standalone collision regression
 
 ```text
 standalone collision regression = CURRENT GATE
+current subphase = §8.1 Golem player equipped-weapon matrix
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
