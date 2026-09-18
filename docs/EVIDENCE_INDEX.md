@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-18
 
 ## Purpose
 
@@ -19,7 +19,8 @@ EVIDENCE_LEDGER_265_ONWARD.md       EV-265–EV-273
 EVIDENCE_LEDGER_274_ONWARD.md       EV-274–EV-279
 EVIDENCE_LEDGER_280_ONWARD.md       EV-280–EV-282
 EVIDENCE_LEDGER_283_ONWARD.md       EV-283–EV-285
-EVIDENCE_LEDGER_286_ONWARD.md       EV-286 onward
+EVIDENCE_LEDGER_286_ONWARD.md       EV-286–EV-290
+EVIDENCE_LEDGER_291_ONWARD.md       EV-291 onward
 ```
 
 The ledger splits are storage-only; numbering remains one global monotonic namespace.
@@ -42,7 +43,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
 | raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263 | `DESIGN.md` raw-8 Fist architecture; `SOURCE_HOOK_GUIDE.md` proven timing path |
-| PhysicalFist/raw55 factual source + family/repeated-contact causal route | EV-245–EV-246, EV-262–EV-290 | §3K below; Quick EV-264–EV-273; Power EV-274–EV-276; Normal first-contact EV-277–EV-279; Sprint EV-280–EV-282; cross-family repeated-FIST/Normal reset EV-283–EV-290 |
+| PhysicalFist/raw55 factual source + permanent validation | EV-245–EV-246, EV-262–EV-295 | §3K below; family causal closure through EV-294; permanent diagnostic-corrections control + equipped sentinel EV-295 |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-273, EV-283–EV-290 | equipped exact-set/replay evidence; raw55 Quick and Normal have family/timing-specific rearm behavior—do not generalize one family's mechanism to another |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-273 | EV-182–EV-196 lifecycle context; EV-264–EV-273 raw55 Quick ownership/separability/activation/rearm/pre-state closure |
@@ -369,14 +370,14 @@ Current engineering status:
 
 ```text
 factual raw55 source                  = CONFIRMED for Troll/BlackTroll TrollFist
-raw55 Quick                           = CLOSED/PASS through EV-273; special rearm/pre-state behavior
-raw55 true Power                      = first-contact CLOSED/PASS through EV-276
-raw55 Normal                          = first-contact CLOSED/PASS through EV-279; repeated-contact mechanism under active causal closure through EV-290
-raw55 Sprint                          = first-contact CLOSED/PASS through EV-282
-cross-family two-FIST transport       = CONFIRMED — EV-283
-Normal native between-contact reset   = EXACT ALL-clear operation/caller IDENTIFIED — EV-290
-Normal native clear causal necessity  = NOT YET PROVEN
-permanent raw55 marker architecture   = PAUSED until repeated-contact ownership is closed
+raw55 Quick                           = CLOSED/PASS through EV-273
+raw55 Normal                          = CLOSED/PASS repeated-contact route through EV-292
+raw55 true Power                      = CLOSED/PASS repeated-contact route through EV-293
+raw55 Sprint-origin                   = CLOSED/PASS repeated-contact route through EV-294
+permanent raw55 implementation        = SOURCE/CORE BEHAVIOR ACCEPTED
+diagnostic ownership correction       = RUNTIME PASS — EV-295
+equipped authored-marker sentinel     = PASS inside EV-295 control
+remaining focused sentinels           = unmarked raw55 native fallback + raw8 FIST
 ```
 
 The source-reviewed current diagnostic suppresses exactly once the EV-290 native ALL clear from `Engine + 0x7DDA0`, caller `Script_Game.dll + 0x386C6`, only when the factual Normal actor/C1/current RIGHT raw55/contact gates match and PC_Hero is still visited after hit1. Marker1 remains unchanged, marker2 remains observational, the EV-288 `7 -> 7` suppression remains, and native cleanup is not modified.
@@ -423,6 +424,11 @@ Normal SP0 opening/first-contact rearm       CLOSED/PASS — EV-286–EV-287
 Normal native 7 -> 7 second-rearm hypothesis REJECTED — EV-288
 Normal between-contact bookkeeping reset    CONFIRMED — EV-289
 Normal exact native ALL-clear reset source  IDENTIFIED — EV-290
+Normal repeated-contact causal closure       CLOSED/PASS — EV-291–EV-292
+true Power repeated-FIST closure             CLOSED/PASS — EV-293
+Sprint-origin repeated-FIST closure          CLOSED/PASS — EV-294
+permanent raw55 diagnostic control           PASS — EV-295
+equipped authored-marker sentinel            PASS — EV-295
 ```
 
 ```text
@@ -431,9 +437,11 @@ RAW8 FIST SHARED MECHANISM = CLOSED/PASS FOR THE EVIDENCE-BACKED FAMILIES/CONTRO
 EQUIPPED POWER / PIERCE / SIMPLEWHIRL / HACK EXPANSION CHECKPOINTS = CANONICALLY PROMOTED
 RAW55 FACTUAL SOURCE = CONFIRMED FOR TROLL/BLACKTROLL
 RAW55 QUICK = CLOSED/PASS WITH PROVEN QUICK-SPECIFIC REARM/PRE-STATE BEHAVIOR
-RAW55 TRUE POWER / NORMAL / SPRINT FIRST-CONTACT ROUTES = CLOSED/PASS FOR THEIR TESTED TIMINGS
-RAW55 NORMAL REPEATED-CONTACT NATIVE RESET = IDENTIFIED THROUGH EV-290; CAUSAL NECESSITY TEST IS CURRENT
-RAW55 PERMANENT RESPONSIBILITY DESIGN = PAUSED UNTIL REPEATED-CONTACT OWNERSHIP CLOSES
+RAW55 QUICK / NORMAL / TRUE POWER / SPRINT-ORIGIN REPEATED-CONTACT ROUTES = CLOSED/PASS THROUGH EV-294
+PERMANENT RAW55 IMPLEMENTATION + FOUR-FAMILY CORE ACCEPTANCE = PASS
+POST-AUDIT DIAGNOSTIC CORRECTIONS CONTROL = PASS — EV-295
+EQUIPPED AUTHORED-MARKER SENTINEL = PASS — EV-295
+FOCUSED ACCEPTANCE REMAINS OPEN ONLY FOR UNMARKED RAW55 FALLBACK + RAW8 FIST SENTINELS
 ```
 
 Do not route current work back into broad raw55 source search, permanent architecture, Power/Sprint repeated-FIST intervention, or marker2 ownership yet. The current one-variable gate is the EV-290 native ALL-clear necessity test. If suppression removes hit2 while preserving hit1/progression/cleanup and PC_Hero stays visited, the native clear is causally required and a later marker2 replacement-clear probe becomes justified. If hit2 survives, another native contact mechanism remains. If progression/source/cleanup diverges, preserve that contradiction first.
@@ -451,18 +459,17 @@ EV-245–EV-246  initial bounded survey / raw8-vs-raw55 distinction
 EV-262–EV-263  factual raw55 discovery + raw8 comparison boundary
 EV-264–EV-273  complete Quick causal closure
 EV-274–EV-276  true Power first-contact closure
-EV-277–EV-279  Normal first-contact closure
-EV-280–EV-282  Sprint first-contact closure
-EV-283–EV-285  cross-family two-FIST / Normal repeated-contact narrowing
-EV-286–EV-287  Normal SP0 opening + first-contact rearm
-EV-288         native 7 -> 7 setter rejected as second-contact owner
-EV-289         native visited-state reset during SP0 -> 1 confirmed
-EV-290         exact public ALL clear + Script_Game.dll +0x386C6 caller identified
-COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md
+EV-277–EV-290  Normal first-contact + repeated-contact narrowing
+EV-291–EV-292  Normal native-clear necessity + authored marker2 replacement-clear closure
+EV-293         true Power repeated-FIST closure
+EV-294         Sprint-origin repeated-FIST closure across Action9 -> Action2
+EV-295         permanent post-audit diagnostic-corrections control + equipped-marker sentinel
+COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md
+COLLISION_TEST_PLAN.md
 SESSION_ENTRYPOINT.md / BETWEEN_CHATS.md
 ```
 
-The immediate question is whether the EV-290 native ALL clear is **causally required** for the implicit second same-C1 Normal damage opportunity. Do not give marker2 replacement-clear ownership before that necessity test closes. After Normal closes, Power and Sprint repeated-FIST behavior remain separate bounded responsibilities before permanent raw55 architecture is frozen.
+The family-specific causal route and permanent raw55 architecture are closed through EV-294. EV-295 validates the post-audit diagnostic correction in runtime and also supplies the equipped authored-marker sentinel. Do not route current work back into causal raw55 probing. The only remaining focused permanent-acceptance controls are the unmarked raw55 native-fallback sentinel and the raw8 FIST sentinel; current execution details remain owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
 ### Pre-regression actor/family compatibility sequence
 
