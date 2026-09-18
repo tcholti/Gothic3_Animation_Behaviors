@@ -1,6 +1,6 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw8 supported-family production controls CLOSED/PASS through EV-263; raw55 factual discovery + four-family causal closure CLOSED/PASS through EV-294; permanent raw55 implementation/core acceptance PASS; post-audit diagnostic-corrections control + equipped sentinel PASS at EV-295; unmarked raw55 native fallback PASS at EV-296; focused permanent acceptance remains open only for the raw8 FIST sentinel before standalone regression  
+**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw8 supported-family production controls CLOSED/PASS through EV-263; raw55 factual discovery + four-family causal closure CLOSED/PASS through EV-294; permanent raw55 implementation/core acceptance PASS; post-audit diagnostic/equipped sentinel PASS at EV-295; unmarked raw55 fallback PASS at EV-296; raw8 FIST coexistence PASS at EV-297; focused permanent raw55 acceptance CLOSED/PASS at EV-298; current gate = standalone collision regression  
 **Updated:** 2026-09-18
 
 ## Purpose
@@ -196,16 +196,12 @@ EV-280–EV-282,
 EV-294              Sprint-origin closure
 EV-293              true Power repeated-contact closure
 EV-295              permanent diagnostic-corrections control PASS + equipped sentinel PASS
+EV-296              unmarked raw55 native-fallback sentinel PASS
+EV-297              raw8 FIST coexistence sentinel PASS
+EV-298              focused permanent raw55 acceptance CLOSED/PASS
 ```
 
-Permanent raw55 behavior is now implemented under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`. The four-family behavior core acceptance is PASS. Focused permanent acceptance remains open only for:
-
-```text
-unmarked raw55 native fallback — PASS EV-296
-raw8 FIST sentinel — OPEN
-```
-
-Do not reopen broad raw55 discovery or family-specific causal probing without concrete contradictory evidence.
+Permanent raw55 behavior is implemented under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`. Focused acceptance is CLOSED/PASS at EV-298, including four-family marked behavior, post-audit diagnostics, equipped-marker coexistence, unmarked raw55 native fallback and raw8 FIST coexistence. Do not reopen broad raw55 discovery or family-specific causal probing without concrete contradictory evidence.
 
 ---
 
@@ -466,8 +462,8 @@ permanent raw55 implementation/core behavior         PASS
 post-audit diagnostic corrections control            PASS — EV-295
 equipped authored-marker sentinel                    PASS — EV-295
 unmarked raw55 native-fallback sentinel              PASS — EV-296
--> raw8 FIST sentinel
--> CLOSE focused permanent raw55 acceptance
+raw8 FIST coexistence sentinel                       PASS — EV-297
+focused permanent raw55 acceptance                  CLOSED/PASS — EV-298
 -> standalone collision regression
 -> New Balance 0.7 exact distributed-bundle regression incl. AttackCollision
 -> production collision migration
