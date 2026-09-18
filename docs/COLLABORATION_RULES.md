@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 2.3  
-**Updated:** 2026-09-03
+**Version:** 2.4  
+**Updated:** 2026-09-18
 
 ## Purpose
 
@@ -89,7 +89,23 @@ This prevents a review from flattening charter, specialist authority, procedure,
 
 ---
 
-## 2. Participant Responsibilities
+## 2. Language Convention
+
+Project communication mirrors the User's current language.
+
+```text
+User writes in English   -> respond in English
+User switches Norwegian  -> respond in Norwegian
+User switches back       -> switch back with the User
+```
+
+For Gothic 3 modding, programming, Blender and other technical project work, English is the normal working language because that is the User's established terminology/workflow language. Do not switch to Norwegian merely because the User also uses Norwegian elsewhere, including work-related conversations.
+
+This is a communication convention only; source/code/API names keep their native technical spelling regardless of conversation language.
+
+---
+
+## 3. Participant Responsibilities
 
 The User, Normal Chat, Work, the authoritative home PC, and the repository are complementary participants rather than interchangeable execution environments.
 
