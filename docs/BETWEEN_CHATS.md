@@ -207,8 +207,15 @@ Resume:
    - each prepared weapon/setup gets its own runtime run/log
    - exercise several relevant marked attacks for that weapon/setup
    - do not mix different weapon types into one log
-   - upload the completed weapon-log set together
-5. Process/promote/archive the complete Phase-1 batch under POP-06.
+   - User may upload 2–3 completed weapon logs at a time
+5. AFTER EVERY uploaded batch, Normal Chat automatically:
+   - analyzes every uploaded log
+   - records canonical EV representation for every completed test/run
+   - updates only necessary evidence/index/current-state/technical owners
+   - archives every fully processed log that has no active-comparison reason
+   - verifies research/raw/ is clean except Keep.txt + explicitly open inputs
+   - verifies SESSION_ENTRYPOINT / BETWEEN_CHATS / COLLISION_TEST_PLAN agree
+   - only then requests the next Golem batch
 6. Continue in order:
    §8.2 Orc 2H/Staff/Fist
    §8.3 other weapon-using actors
@@ -253,6 +260,7 @@ standalone collision regression
 ```text
 standalone collision regression = CURRENT GATE
 current subphase = §8.1 Golem player equipped-weapon matrix
+publication cadence = 2–3 logs allowed; complete POP-06 closure after every upload batch
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
