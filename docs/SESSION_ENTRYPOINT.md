@@ -17,7 +17,7 @@
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
 Astra audit result/disposition: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`  
-Latest closed causal evidence: **EV-294** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
+Latest canonical evidence: **EV-295** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
@@ -36,14 +36,21 @@ PERMANENT RAW55 FOUR-FAMILY BEHAVIOR CORE ACCEPTANCE PASS
 CORE OWNERSHIP CLASSIFIER CORRECTION 314f284d...:
 - Work static audit PASS
 - Normal Chat independent source review PASS
-- local rebuild/runtime validation pending
+- runtime control PASS — EV-295
+- legitimate raw55 ownership is ROUTINE; false CORE ATTACK OWNERSHIP ANOMALY count = 0
 
 CALLBACK IDENTITY DIAGNOSTIC SURFACING 6795377f...:
 - Astra implementation/static audit PASS
 - Normal Chat independent source review PASS
 - exactly one source file, +27/-0
 - diagnostics-only under FRAME_COLLISION_DIAGNOSTICS
-- local rebuild/runtime validation pending
+- legitimate control produced no contradiction, as expected
+- source-contract correction remains PASS
+
+FOCUSED SENTINELS:
+- equipped authored-marker sentinel PASS inside EV-295
+- unmarked raw55 native fallback OPEN
+- raw8 FIST OPEN
 
 ASTRA PERMANENT RAW55 AUDIT:
 PASS WITH NON-BLOCKING FINDINGS
@@ -101,51 +108,41 @@ using the already-computed callback-entry contradiction. Behavior still returns 
 
 Normal Chat independent source review: **PASS**.
 
-## Current responsibility — LOCAL DIAGNOSTIC DEPLOYMENT GATE
+## Current responsibility — FINAL TWO FOCUSED SENTINELS
 
-The User returned to the authoritative local build machine and successfully built:
+The current diagnostic binary has already passed build, deployment, binary-identity and startup/load gates:
 
 ```text
-Script_FrameCollisionTest Release — PASS
+Script_FrameCollisionTest Release — BUILD PASS
 build source checkout = 8abe9c30cae5755184bb5ed22b2959998ad22d33
+built/live DLL SHA256 = 68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C59BBD14BD
+POP-03 deployment PASS
+POP-04 startup/load/clean-unload PASS
 ```
 
-After that build, repository changes were documentation/procedure maintenance only; no executable source changed. Do **not** require a rebuild merely because remote HEAD advanced through those docs-only commits.
-
-The Assistant has since published documentation/procedure-only commits after the successful local build. Before any further local PowerShell command, the User must perform the normal POP-01 GitHub Desktop handoff:
+EV-295 then validated the corrected diagnostics and permanent raw55 behavior:
 
 ```text
-GitHub Desktop
--> repository = Gothic3_Animation_Behaviors
--> branch = docs/collision-source-evidence
--> Fetch origin
--> Pull origin
--> top action returns to Fetch origin
--> no unexpected local Changes
+raw55 Quick/Normal/Power/Sprint ownership = ROUTINE
+false CORE ATTACK OWNERSHIP ANOMALY = 0
+identity-contradiction diagnostic = 0 in legitimate control
+C1 invariant/repair/divergence = 0
+raw55 cleanup/finalization healthy
+equipped Flamberge authored-marker sentinel = PASS
 ```
 
-These pulled changes are documentation only; they do **not** invalidate the already-built diagnostic DLL and do not require a rebuild.
+The control log is only 64,805 bytes / 323 lines. POP-07 processing was harmless but unnecessary; use `Prepare-Log.cmd` only when a new log is genuinely large enough that direct retrieval is inefficient.
 
-The next runtime step after Desktop synchronization is therefore:
+Assistant-side commits after that runtime control are documentation/evidence maintenance only. Before the next local test, perform the ordinary POP-01 GitHub Desktop Fetch/Pull handoff. **Do not rebuild, redeploy or repeat startup merely because these docs-only commits advanced remote HEAD.**
+
+Only two focused sentinels remain:
 
 ```text
-POP-03 exact diagnostic-twin deployment block
--> sole-live collision DLL + built/live SHA256 PASS
--> POP-04 exact diagnostic startup/load block
--> small marked raw55 control:
-   legitimate raw55 ownership = ROUTINE
-   no false CORE ATTACK OWNERSHIP ANOMALY
-   marker/damage/cleanup facts healthy
--> remaining focused sentinels:
-   unmarked raw55 native fallback
-   raw8 FIST
-   one equipped authored-marker route
--> close focused permanent acceptance
+1. unmarked raw55 native fallback
+2. raw8 FIST
 ```
 
-**Procedure lock:** routine Git synchronization/publication uses GitHub Desktop under POP-01. After Desktop synchronization, execute POP-03 and POP-04 from `PROJECT_OPERATING_PROCEDURES.md` verbatim. Do not insert an extra artifact-formatting/hash-precheck or reconstruct equivalent PowerShell from memory.
-
-For any new oversized runtime log, use `tools/log_evidence/Prepare-Log.cmd`, then GitHub Desktop Commit + Push **both** the unchanged `research/raw/` log and generated `research/derived/<stem>_large_log/` package. Normal Chat analyzes the derived package by default.
+After both pass, close focused permanent raw55 acceptance and proceed to standalone collision regression.
 
 No dedicated runtime reproduction of the identity contradiction is required before focused acceptance continues.
 
