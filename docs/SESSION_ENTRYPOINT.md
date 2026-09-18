@@ -140,7 +140,7 @@ build/deploy/startup PASS
 
 All repository commits after that binary build are documentation/evidence maintenance only unless a later source change is explicitly introduced.
 
-Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then begin the restored seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase is §8.1: the User attacks a Golem with each prepared weapon/setup, using one runtime run/log per weapon and uploading the completed set together. Do not reopen raw55 family-specific probing.
+Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then begin the restored seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase is §8.1: the User attacks a Golem with each prepared weapon/setup, using one runtime run/log per weapon. The User may upload the logs in small batches (typically 2–3 at a time) rather than waiting for the full weapon matrix. After every uploaded batch, Normal Chat must complete POP-06 evidence/document/archive cleanup before requesting the next batch. Do not reopen raw55 family-specific probing.
 
 ## Next sequence after standalone collision regression
 
@@ -156,6 +156,7 @@ standalone collision regression
 ```text
 standalone collision regression = CURRENT GATE
 current subphase = §8.1 Golem player equipped-weapon matrix
+publication cadence = small batches allowed; each batch fully closes before next
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
