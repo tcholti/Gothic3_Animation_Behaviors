@@ -81,19 +81,21 @@ This avoids creating another independently stale chronology that fresh Chats mus
 
 ## 4. Current Intake State
 
-Latest closed collision evidence checkpoint:
+Latest processed collision evidence checkpoint:
 
 ```text
-EV-298 — focused permanent raw55 acceptance CLOSED/PASS
+EV-299 — Golem 1H regression PASS
+EV-300 — Golem 1H+torch regression PASS
+EV-301 — Golem dual-1H regression PASS
 ```
 
-The EV-298 acceptance/control artifacts were archived byte-identically on 2026-09-18. Current expected active-intake baseline is:
+The first standalone-regression batch has been processed and archived byte-identically. Current expected active-intake baseline is:
 
 ```text
 research/raw/Keep.txt
 ```
 
-That baseline has been verified at the start of the standalone collision regression campaign.
+That baseline has been verified again after closure of the EV-299–EV-301 batch.
 
 A future artifact belongs in raw only while it is genuinely unprocessed or intentionally retained as an active comparison. After each uploaded test batch, POP-06 requires processed artifacts to be archived before the next batch is requested.
 
