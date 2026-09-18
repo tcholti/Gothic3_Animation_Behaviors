@@ -17,7 +17,7 @@
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
 Astra audit result/disposition: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`  
-Latest canonical evidence: **EV-295** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
+Latest canonical evidence: **EV-296** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
@@ -49,7 +49,7 @@ CALLBACK IDENTITY DIAGNOSTIC SURFACING 6795377f...:
 
 FOCUSED SENTINELS:
 - equipped authored-marker sentinel PASS inside EV-295
-- unmarked raw55 native fallback OPEN
+- unmarked raw55 native fallback PASS — EV-296
 - raw8 FIST OPEN
 
 ASTRA PERMANENT RAW55 AUDIT:
@@ -108,7 +108,7 @@ using the already-computed callback-entry contradiction. Behavior still returns 
 
 Normal Chat independent source review: **PASS**.
 
-## Current responsibility — FINAL TWO FOCUSED SENTINELS
+## Current responsibility — FINAL RAW8 FIST SENTINEL
 
 The current diagnostic binary has already passed build, deployment, binary-identity and startup/load gates:
 
@@ -135,14 +135,25 @@ The control log is only 64,805 bytes / 323 lines. POP-07 processing was harmless
 
 Assistant-side commits after that runtime control are documentation/evidence maintenance only. Before the next local test, perform the ordinary POP-01 GitHub Desktop Fetch/Pull handoff. **Do not rebuild, redeploy or repeat startup merely because these docs-only commits advanced remote HEAD.**
 
-Only two focused sentinels remain:
+EV-296 closes the unmarked raw55 fallback control:
 
 ```text
-1. unmarked raw55 native fallback
-2. raw8 FIST
+30 factual unmarked Troll ownership records
+MarkerPresent=0 / FistMarkers=0 / Classification=ROUTINE
+raw55 marker/suppression intervention count = 0
+native TrollFist 5->7 / damage-on-contact / 7->5 preserved
+C1 cleanup Outstanding=0
+ownership anomaly / invariant warning / repair / divergence = 0
+User visual: all exercised unmarked attacks worked as before
 ```
 
-After both pass, close focused permanent raw55 acceptance and proceed to standalone collision regression.
+Only one focused sentinel remains:
+
+```text
+raw8 FIST sentinel
+```
+
+After it passes, close focused permanent raw55 acceptance and proceed to standalone collision regression.
 
 No dedicated runtime reproduction of the identity contradiction is required before focused acceptance continues.
 
