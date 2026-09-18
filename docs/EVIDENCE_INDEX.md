@@ -459,18 +459,17 @@ EV-245–EV-246  initial bounded survey / raw8-vs-raw55 distinction
 EV-262–EV-263  factual raw55 discovery + raw8 comparison boundary
 EV-264–EV-273  complete Quick causal closure
 EV-274–EV-276  true Power first-contact closure
-EV-277–EV-279  Normal first-contact closure
-EV-280–EV-282  Sprint first-contact closure
-EV-283–EV-285  cross-family two-FIST / Normal repeated-contact narrowing
-EV-286–EV-287  Normal SP0 opening + first-contact rearm
-EV-288         native 7 -> 7 setter rejected as second-contact owner
-EV-289         native visited-state reset during SP0 -> 1 confirmed
-EV-290         exact public ALL clear + Script_Game.dll +0x386C6 caller identified
-COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md
+EV-277–EV-290  Normal first-contact + repeated-contact narrowing
+EV-291–EV-292  Normal native-clear necessity + authored marker2 replacement-clear closure
+EV-293         true Power repeated-FIST closure
+EV-294         Sprint-origin repeated-FIST closure across Action9 -> Action2
+EV-295         permanent post-audit diagnostic-corrections control + equipped-marker sentinel
+COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md
+COLLISION_TEST_PLAN.md
 SESSION_ENTRYPOINT.md / BETWEEN_CHATS.md
 ```
 
-The immediate question is whether the EV-290 native ALL clear is **causally required** for the implicit second same-C1 Normal damage opportunity. Do not give marker2 replacement-clear ownership before that necessity test closes. After Normal closes, Power and Sprint repeated-FIST behavior remain separate bounded responsibilities before permanent raw55 architecture is frozen.
+The family-specific causal route and permanent raw55 architecture are closed through EV-294. EV-295 validates the post-audit diagnostic correction in runtime and also supplies the equipped authored-marker sentinel. Do not route current work back into causal raw55 probing. The only remaining focused permanent-acceptance controls are the unmarked raw55 native-fallback sentinel and the raw8 FIST sentinel; current execution details remain owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
 ### Pre-regression actor/family compatibility sequence
 
