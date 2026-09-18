@@ -297,6 +297,8 @@ controlled runtime evidence
 
 Exact log naming and validation conventions are owned by `PROJECT_PIPELINE.md`; the concrete runtime-test/raw-publish sequences are POP-05/POP-06 in `PROJECT_OPERATING_PROCEDURES.md`.
 
+The User may publish several related runtime logs together (for example two or three weapon tests). After each published batch, Normal Chat automatically owns the complete POP-06 closure: interpret every log, maintain canonical evidence and the smallest affected documents, archive completed artifacts, verify raw intake/current-state consistency, and only then request the next batch. The User should not need to prompt for documentation or cleanup.
+
 This is intended to keep the collaboration focused on meaning rather than turning the Chat transcript into a duplicate artifact store.
 
 ---
