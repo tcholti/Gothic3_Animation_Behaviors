@@ -96,16 +96,13 @@ Script_CombatMoveLogger
 
 The repository also contains the offline deterministic large-log processor under `tools/log_evidence/`. It is not a Gothic DLL build target.
 
-Example diagnostic collision build:
+For actual local validation, do **not** reconstruct build/deploy/hash/startup commands from this README or from historical task documents. Use the exact current blocks in `docs/PROJECT_OPERATING_PROCEDURES.md`:
 
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionTest
-```
-
-Example diagnostics-free collision behavior build:
-
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
+```text
+POP-01 = local branch synchronization
+POP-02 = build target selection + exact build commands
+POP-03 = selected-twin deployment + sole-live-DLL + SHA256 verification
+POP-04 = startup/load verification
 ```
 
 The obsolete `Script_FrameEffectLogger` target has been retired; its historical research remains recoverable through evidence/Git history.
