@@ -203,6 +203,29 @@ static char const *FamilyName(AttackFamily family)
     }
 }
 
+static void LogCallbackIdentityContradiction(EligibilityFacts const &facts)
+{
+    FILE *const log = CollisionDiagnostics::GetLog();
+    if (log == nullptr)
+        return;
+    auto const found = g_Executions.find(facts.actorInstance);
+    if (found == g_Executions.end())
+        return;
+    PhysicalFistExecution const &stored = found->second;
+    std::fprintf(
+        log,
+        "CORE RAW55_PHYSICAL_FIST_IDENTITY_CONTRADICTION Actor=%p C1=%llu StoredOriginFamily=%s CallbackFamily=%s StoredRight=%p CurrentRight=%p StoredMotion=%s CurrentMotion=%s StoredAuthoredFistCount=%d CurrentAuthoredFistCount=%d Rejected=1\n",
+        static_cast<void *>(facts.actorInstance),
+        static_cast<unsigned long long>(facts.generation.generation),
+        FamilyName(stored.originFamily), FamilyName(facts.currentFamily),
+        static_cast<void *>(stored.rightSourceInstance),
+        static_cast<void *>(facts.rightSourceInstance),
+        stored.animationName.c_str(), facts.animationName.c_str(),
+        stored.authoredFistCount,
+        facts.decision.markerCounts[MarkerOpcode_Fist]);
+    std::fflush(log);
+}
+
 static void LogMarkerResult(
     Entity &actor, PhysicalFistExecution const &execution,
     AttackFamily currentFamily, MarkerProcessResult const &result,
@@ -293,6 +316,10 @@ void BeginNativeCallbackScope(
     bool identityContradiction = false;
     PhysicalFistExecution *const execution = ResolveExecution(
         facts, created, identityContradiction);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    if (identityContradiction)
+        LogCallbackIdentityContradiction(facts);
+#endif
     if (execution == nullptr || identityContradiction)
         return;
 
