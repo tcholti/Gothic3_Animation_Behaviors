@@ -44,6 +44,7 @@ Current project responsibility is never owned by this historical index. Use `SES
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
 | raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263 | `DESIGN.md` raw-8 Fist architecture; `SOURCE_HOOK_GUIDE.md` proven timing path |
 | PhysicalFist/raw55 factual source + permanent validation | EV-245–EV-246, EV-262–EV-298 | §3K below; family causal closure through EV-294; focused sentinels EV-295–EV-297; aggregate permanent-acceptance closure EV-298 |
+| standalone collision regression campaign | EV-299 onward | `COLLISION_TEST_PLAN.md` §8; Phase 1 Golem player weapon matrix begins EV-299–EV-301 |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-273, EV-283–EV-290 | equipped exact-set/replay evidence; raw55 Quick and Normal have family/timing-specific rearm behavior—do not generalize one family's mechanism to another |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-273 | EV-182–EV-196 lifecycle context; EV-264–EV-273 raw55 Quick ownership/separability/activation/rearm/pre-state closure |
@@ -481,37 +482,30 @@ SESSION_ENTRYPOINT.md / BETWEEN_CHATS.md
 
 The family-specific causal route is closed through EV-294. EV-295 supplies the post-audit diagnostic/equipped sentinel, EV-296 closes unmarked raw55 fallback, EV-297 closes raw8 coexistence, and EV-298 closes focused permanent raw55 acceptance. Do not route current work back into causal raw55 probing without contradictory evidence; current execution details remain owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
-### Pre-regression actor/family compatibility sequence
+### Standalone collision regression campaign
 
-The broader compatibility sequence remains paused while raw55 repeated-contact ownership and permanent architecture are still scope-changing.
+Focused permanent raw55 acceptance is closed at EV-298. The prepared standalone campaign is now active under `COLLISION_TEST_PLAN.md` §8.
 
-When raw55 architecture is implemented or explicitly deferred, resume from the current canonical evidence rather than the older EV-247-only route:
-
-```text
-raw8 native/transformed controls through EV-263
-native equipped-NPC controls EV-252–EV-258
-Stalker raw52 control EV-259
-raw55 causal route EV-262 onward
--> separated 2H-vs-Axe mod compatibility
--> separated 1H-vs-Rapier mod compatibility
--> final native mixed collision regression
-```
-
-### Final native mixed collision regression
-
-After the pre-regression compatibility sequence closes, start from:
+Current canonical regression sequence:
 
 ```text
-DESIGN.md collision architecture
-COLLISION_TEST_PLAN.md final mixed-regression gate
-EV-206–EV-215 lifecycle/architecture proof
-EV-216–EV-220 equipped expansion history
-EV-221–EV-240 human raw8 production proof
-EV-241–EV-244 canonical equipped expansion closures
-EV-245 onward source/mechanism/compatibility evidence
+Phase 1 — Golem player equipped-weapon matrix
+  EV-299  1H PASS
+  EV-300  1H + torch PASS
+  EV-301  dual 1H PASS
+  -> remaining prepared Golem weapon setups
+
+Phase 2 — Orc 2H / Staff / raw8 Fist
+Phase 3 — other weapon-using actors
+Phase 4 — non-weapon creatures in chunks
+Phase 5 — 2H vs Axe separation-mod compatibility
+Phase 6 — 1H vs Rapier separation-mod compatibility
+Phase 7 — stress regression
 ```
 
-This is regression confirmation, not source/lifecycle redesign.
+The first Golem batch also provides positive deliberate C1-R1 bad-skip repair coverage in all three setups and late-marker safety-rejection coverage in 1H+torch / dual-1H.
+
+This campaign is regression confirmation, not source/lifecycle redesign. Current execution details belong to `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
 ### AttackContinuationProtection
 
