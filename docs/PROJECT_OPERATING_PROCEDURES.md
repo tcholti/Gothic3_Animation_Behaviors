@@ -2,7 +2,7 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.15  
+**Version:** 1.16  
 **Updated:** 2026-09-18
 
 ## Purpose
@@ -66,16 +66,20 @@ design/evidence question frozen
 -> deploy exact built DLL
 -> verify selected product is the only intended live twin + SHA match
 -> startup/load verification
--> freeze exact runtime matrix + raw filename when diagnostic evidence is expected
--> User runs test
--> raw log copied unchanged into research/raw
--> raw artifact commit/push
--> Normal Chat analyzes committed evidence
+-> freeze exact runtime matrix + raw filename(s) when diagnostic evidence is expected
+-> User runs one test or a small intentional batch
+-> raw log(s) copied unchanged into research/raw
+-> raw artifact batch commit/push
+-> Normal Chat analyzes every committed artifact in that uploaded batch
 -> derived package/extract only if retrieval requires it
--> close evidence transaction: explicit disposition + canonical evidence promotion when warranted
--> archive processed source artifact when no longer an active comparison input
+-> close THAT uploaded batch completely:
+   explicit per-artifact disposition
+   canonical Evidence Ledger representation
+   smallest required authority/index/current-state maintenance
+   archive every processed artifact that has no active-comparison reason
+   verify research/raw/ contains only genuinely open/unprocessed inputs
+-> only then give the User the next runtime test/batch
 -> only then advance to the next causal question or planned handoff
--> normal knowledge-maintenance transaction for affected technical/current-state owners
 ```
 
 Do not collapse stages merely to save messages when the separation protects causal certainty. Build != deployment; deployment != load; load != behavioral proof.
@@ -519,6 +523,38 @@ If GitHub Desktop does not express the exact operation safely enough, use a boun
 
 Normal Chat should provide the resolved exact path/branch/filename and the concrete Desktop steps or commands appropriate to the operation. Because the User is new to GitHub Desktop, repeat the relevant UI sequence when asking for it rather than assuming prior demonstrations were memorized. Ask only for the smallest useful confirmation/output; the Assistant can usually resolve the pushed remote SHA directly.
 
+### Per-upload batch closure lock
+
+The normal unit of evidence closure is the **just-uploaded runtime batch**, not the entire multi-day validation phase.
+
+The User may intentionally upload several related logs together — for example two or three weapon runs — to keep local testing efficient. That does not defer repository maintenance until the larger phase ends.
+
+After each uploaded batch, Normal Chat must automatically perform the complete closure transaction before asking the User to run the next batch:
+
+```text
+uploaded batch arrives
+-> inspect EVERY log in the batch
+-> correlate each log with its frozen fixture + User observation
+-> give every log an explicit result/disposition
+-> record the reusable result in the canonical Evidence Ledger
+   (normally one EV per distinct test/run; a batch EV is allowed only when
+    every included log/result is individually explicit and the batch answers
+    one shared regression question)
+-> update EVIDENCE_INDEX only when routing materially changes
+-> update the smallest affected technical/current-state authorities
+-> archive each fully processed log immediately when no active comparison
+   requires it to remain in research/raw/
+-> record path migration when required by POP-06
+-> verify research/raw/ is clean except Keep.txt and any explicitly named
+   ACTIVE COMPARISON / UNPROCESSED artifacts
+-> verify SESSION_ENTRYPOINT / BETWEEN_CHATS / current test authority agree
+-> ONLY THEN issue the next test or test batch
+```
+
+This maintenance is **automatic Normal Chat responsibility**. The User should not have to ask after each test whether evidence, archival, indexes, current-state documents or stale handoffs were updated.
+
+A larger campaign may remain active across many batches, but completed batches must not accumulate as processed files in `research/raw/` or as chat-only conclusions.
+
 ### Same-investigation evidence-closure invariant
 
 > **No completed runtime investigation may be knowingly handed off to a later Chat, or followed by a new causal question, while its reusable conclusion exists only in conversation, a derived artifact, an index, or an unprocessed file in `research/raw/`.**
@@ -572,14 +608,16 @@ Preserve basename and content identity whenever possible. Archive is durable pro
 
 Interpretation remains evidence-driven and Normal-Chat reviewed. Automation may check bookkeeping completeness but must not decide what evidence means.
 
-At the end of each evidence transaction, and again before a planned Chat transition or stable-subsystem checkpoint, check:
+At the end of **every uploaded runtime batch**, and again before a planned Chat transition or stable-subsystem checkpoint, check:
 
 ```text
-all newly published raw artifacts have explicit disposition
-completed reusable findings are in canonical Evidence Ledger
+every artifact in the just-uploaded batch has an explicit disposition
+every completed test/run is represented in canonical Evidence Ledger evidence
 EVIDENCE_INDEX does not claim a factual result that exists nowhere canonically
 processed artifacts are not left in raw without active-comparison reason
+research/raw/ contains only Keep.txt plus explicitly active/unprocessed inputs
 archive/current routes point to paths that actually exist
+SESSION_ENTRYPOINT / BETWEEN_CHATS / current test authority agree on the next gate
 no current-state document relies on an unpromoted chat-only result
 ```
 
