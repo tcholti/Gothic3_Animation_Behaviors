@@ -4,7 +4,7 @@ This directory contains the deterministic post-processing tools used by POP-07 f
 
 The canonical raw log remains untouched in `research/raw/`. Generated files under `research/derived/` are retrieval aids tied to the raw file by SHA-256; they do not replace canonical evidence.
 
-For the normal project workflow, **both the unchanged raw log and its generated derived package are committed and pushed together through GitHub Desktop**. The Assistant then analyzes the derived package by default; the raw file remains canonical provenance and is opened only when a concrete byte-level/provenance/package-integrity reason requires it.
+`Prepare-Log.cmd` is for **large logs that are inefficient to retrieve directly**, not an automatic step for every diagnostic log. For a small CORE log, commit/push the unchanged raw log directly. When POP-07 is triggered for a genuinely large log, both the unchanged raw log and its generated derived package are committed and pushed together through GitHub Desktop. The Assistant then analyzes the derived package by default; the raw file remains canonical provenance and is opened only when a concrete byte-level/provenance/package-integrity reason requires it.
 
 ## Normal Windows workflow — one command or drag-and-drop
 
@@ -69,7 +69,17 @@ No signal arguments are required for the normal workflow.
 
 Do not rewrite, trim or replace the raw log to make retrieval easier. Generate or regenerate the derived package instead. The manifest records the raw source SHA-256 so the derived files can always be tied back to the canonical evidence.
 
-Normal publication sequence:
+Small-log publication sequence:
+
+```text
+place complete log in research/raw/
+-> GitHub Desktop: review raw log
+-> Commit
+-> Push origin
+-> tell Normal Chat the push is complete
+```
+
+Large-log POP-07 publication sequence:
 
 ```text
 place complete log in research/raw/
@@ -81,4 +91,4 @@ place complete log in research/raw/
 -> tell Normal Chat the push is complete
 ```
 
-Normal Chat should start from the processed package and should not request the raw log again unless the package or provenance itself is insufficient.
+Normal Chat should start from the processed package for a POP-07 log and should not request the raw log again unless the package or provenance itself is insufficient.
