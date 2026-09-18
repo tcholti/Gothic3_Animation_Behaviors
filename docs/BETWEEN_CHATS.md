@@ -163,7 +163,7 @@ local checkout used for build:
 
 The subsequent remote commits are documentation/procedure maintenance only. No executable source changed after the successful build, so do **not** rebuild solely because current remote HEAD is newer.
 
-A procedure-maintenance review found that build/deploy/startup details had been reconstructed differently across chats. `PROJECT_OPERATING_PROCEDURES.md` v1.14 now owns exact canonical command blocks. Historical probe/task/handoff/chat snippets are not executable procedure authority.
+A procedure-maintenance review found that build/deploy/startup details had been reconstructed differently across chats. `PROJECT_OPERATING_PROCEDURES.md` v1.15 now owns exact canonical command blocks. Historical probe/task/handoff/chat snippets are not executable procedure authority.
 
 Resume exactly:
 
