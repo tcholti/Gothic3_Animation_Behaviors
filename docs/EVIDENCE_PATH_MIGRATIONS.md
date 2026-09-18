@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-18
 
 ## Purpose
 
@@ -177,6 +177,44 @@ research/archive/<same basename>
 ```
 
 The derived packages referenced by those EVs are unchanged.
+
+---
+
+## 2026-09-18 — Focused permanent raw55 acceptance closure
+
+Focused permanent raw55 acceptance closed at EV-298. The four active acceptance/control sources no longer own any unresolved comparison question and were moved byte-identically by reusing their existing Git blob SHAs:
+
+```text
+research/raw/2026.09.17_troll_raw55_permanent_acceptance.log
+    -> research/archive/2026.09.17_troll_raw55_permanent_acceptance.log
+    blob 8ae8cd8da6e958f6b7f0b139a17467fcc7dd3c6b
+
+research/raw/2026-09-18_troll_raw55_diagnostic_corrections_control.log
+    -> research/archive/2026-09-18_troll_raw55_diagnostic_corrections_control.log
+    blob 843d1054683996761b941493a95b76ffa2f9f60d
+
+research/raw/2026-09-18_troll_raw55_unmarked_native_fallback_sentinel.log
+    -> research/archive/2026-09-18_troll_raw55_unmarked_native_fallback_sentinel.log
+    blob 795e137626b787654ceca66f29a9e09fc2e1c958
+
+research/raw/2026-09-18_sabertooth_raw8_fist_sentinel.log
+    -> research/archive/2026-09-18_sabertooth_raw8_fist_sentinel.log
+    blob 3f0dedbba3580711761610476ba1080b4916b634
+```
+
+Archive transaction:
+
+```text
+5700aedb2feadbde1d1a635a9538ed788836f36d
+```
+
+Migration properties:
+
+- exact existing Git blob identities were reused;
+- no runtime log was downloaded, reconstructed, normalized, trimmed or regenerated;
+- basenames and evidence meaning stayed unchanged;
+- EV-295–EV-298 own the final focused validation/closure conclusions;
+- existing `research/derived/` packages remain unchanged retrieval aids.
 
 ---
 
