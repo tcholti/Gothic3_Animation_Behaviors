@@ -1,7 +1,7 @@
 # Local Workstation Paths
 
 **Status:** Workstation-specific operational reference  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-18
 
 ## Purpose
 
@@ -27,4 +27,5 @@ Record the User's current Windows paths for Gothic 3 development and testing. Th
 - **Deploy `Script_FrameCollisionTest.dll` / `Script_FrameCollisionBehaviorTest.dll` only to the runtime mod-script DLL directory `E:\SteamLibrary\steamapps\common\Gothic 3\scripts`, never to the Gothic 3 runtime/game root.**
 - `Script_FrameCollisionBehaviorTest.dll` and `Script_FrameCollisionTest.dll` are mutually exclusive runtime twins.
 - Runtime logs such as `Script_FrameCollisionTest.log` are written in the Gothic 3 runtime root.
+- Exact sync/build/deploy/hash/startup commands are owned by `PROJECT_OPERATING_PROCEDURES.md` POP-01 through POP-04. This file owns paths only; do not duplicate or improvise a competing deployment procedure here.
 - If a future path stops resolving, verify it with the User or the filesystem rather than silently inventing a replacement.
