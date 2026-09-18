@@ -199,7 +199,7 @@ Use repository authority instead of making the User carry technical continuity b
 
 ---
 
-## 3. Default Responsibility Allocation
+## 4. Default Responsibility Allocation
 
 Current project allocation:
 
@@ -229,7 +229,7 @@ No permanent Medium/High reasoning-mode rule belongs in this project. Use suffic
 
 ---
 
-## 4. Interaction and Authorization Boundary
+## 5. Interaction and Authorization Boundary
 
 ### Routine continuation
 
@@ -253,7 +253,7 @@ Agreement given **before** a new responsibility was exposed is agreement with th
 
 ---
 
-## 5. Bounded Work Handoff
+## 6. Bounded Work Handoff
 
 When User + Normal Chat decide that Work is the appropriate executor:
 
@@ -274,7 +274,7 @@ The launcher should contain only what Work cannot safely derive from the reposit
 
 ---
 
-## 6. Keep User/Chat Transfer Burden Small
+## 7. Keep User/Chat Transfer Burden Small
 
 Routine successful command output and large runtime logs should not be pasted into Chat by default.
 
@@ -301,7 +301,7 @@ This is intended to keep the collaboration focused on meaning rather than turnin
 
 ---
 
-## 7. Continuity Without User Reconstruction
+## 8. Continuity Without User Reconstruction
 
 A Chat or Work context is not the sole project memory.
 
@@ -328,7 +328,7 @@ After an abrupt failure, maximum-context stop, or unusable previous Chat, do **n
 
 ---
 
-## 8. Project Method Evolution
+## 9. Project Method Evolution
 
 Project procedures/rules are working operationalizations under the CAM constitutional layer and the Gothic project charter, not immutable law.
 
