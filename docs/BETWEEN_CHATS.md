@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — EV-295 PASS; ONLY UNMARKED RAW55 + RAW8 SENTINELS REMAIN
+## Current Bridge — EV-296 PASS; ONLY RAW8 FIST SENTINEL REMAINS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Canonical family-specific causal evidence remains closed through **EV-294**; post-audit permanent diagnostic control is **EV-295 PASS**.
+Canonical family-specific causal evidence remains closed through **EV-294**; post-audit permanent diagnostic/equipped control is **EV-295 PASS**; unmarked raw55 native fallback is **EV-296 PASS**.
 
 Permanent raw55 contract:
 
@@ -151,7 +151,7 @@ identity contradiction
 
 No identity, eligibility, marker, hook, lifecycle, raw8/equipped or F1 logic changed.
 
-## Immediate next responsibility — FINAL TWO FOCUSED SENTINELS
+## Immediate next responsibility — FINAL RAW8 FIST SENTINEL
 
 Current verified diagnostic binary:
 
@@ -191,22 +191,29 @@ equipped Flamberge authored-marker sentinel = PASS
 
 The same run contains no factual raw8 UseType8 route.
 
-The only remaining focused permanent-acceptance controls are:
+EV-296 closes the unmarked raw55 native-fallback sentinel:
 
 ```text
-A. unmarked raw55 native fallback
-B. raw8 FIST sentinel
+research/raw/2026-09-18_troll_raw55_unmarked_native_fallback_sentinel.log
+Git blob 795e137626b787654ceca66f29a9e09fc2e1c958
+107,085 bytes / 594 lines
+30 unmarked Troll ownership records
+no raw55 marker/suppression intervention
+native raw55 open/damage/cleanup preserved
+no anomaly/invariant/repair/divergence
+User visual: all attacks worked as before
 ```
 
-Use historical fixtures as controls rather than inventing new mechanisms:
+The only remaining focused permanent-acceptance control is:
 
 ```text
-unmarked raw55 reference:
-EV-267 / research/raw/2026.09.12_troll_native_collision_3.log
-ordinary native Troll attacks with no authored attack markers
+raw8 FIST sentinel
+```
 
-raw8 reference:
-EV-263 / marked Sabretooth Quick control
+Use the established EV-263 fixture rather than inventing a new mechanism:
+
+```text
+marked Sabretooth Quick
 factual Fist / raw8 UseType=8
 ```
 
@@ -218,7 +225,7 @@ For small CORE logs like EV-295, preserve and push the raw log directly; POP-07 
 
 Do not create the next canonical EV or move the permanent-acceptance source from `research/raw/` to `research/archive/` yet.
 
-The four-family behavior core and diagnostic corrections are PASS. The equipped authored-marker sentinel is also PASS at EV-295. Focused permanent acceptance remains open only until the unmarked raw55 fallback and raw8 FIST sentinels pass.
+The four-family behavior core and diagnostic corrections are PASS. The equipped authored-marker sentinel is PASS at EV-295 and the unmarked raw55 fallback sentinel is PASS at EV-296. Focused permanent acceptance remains open only until the raw8 FIST sentinel passes.
 
 ## After focused permanent acceptance closes
 
