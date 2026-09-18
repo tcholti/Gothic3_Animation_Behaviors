@@ -294,6 +294,8 @@ The broader regression campaign prepared before the Troll/raw55 investigation is
 
 The campaign is intentionally split into multiple logs/runs so factual source/action semantics remain attributable when a contradiction appears.
 
+**Campaign publication/closure rule:** the User may upload completed logs in small manageable batches (commonly 2–3 at a time). After every uploaded batch, Normal Chat must complete POP-06 interpretation, canonical evidence maintenance, required current-state/authority updates, archive cleanup and raw-inventory verification before requesting the next batch. Do not wait for the whole phase or whole campaign to finish before closing already-processed logs.
+
 ### 8.1 Phase 1 — Player equipped-weapon matrix against Golem
 
 The User attacks a Golem using the prepared marked animations across the different weapon types.
@@ -306,7 +308,8 @@ one weapon/setup per runtime run
 -> exercise several relevant attack families/markers for that setup
 -> preserve factual source/UseType, marker decisions, physical group changes,
    native damage, cleanup and C1 finalization
--> upload the completed weapon logs together as one review batch
+-> upload completed weapon logs in small batches (typically 2–3 at a time)
+-> each uploaded batch closes fully under POP-06 before the next batch
 ```
 
 Do not combine different weapon types into one log merely to reduce file count. This phase is the clean player-side equipped-source matrix.
@@ -337,7 +340,7 @@ Keep enough separation that each factual source/UseType and family remains attri
 
 Exercise the prepared marked animations for additional weapon-using actors.
 
-Use separate runs where actor/source combinations would otherwise become ambiguous. Upload a completed group of these logs together for one review transaction.
+Use separate runs where actor/source combinations would otherwise become ambiguous. Upload completed logs in manageable batches; each uploaded batch is a complete POP-06 evidence transaction before the next batch.
 
 Historical controls already closed and need not be repeated merely for duplication:
 
