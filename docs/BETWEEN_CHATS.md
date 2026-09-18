@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — EV-298 FOCUSED RAW55 ACCEPTANCE CLOSED; STANDALONE REGRESSION NEXT
+## Current Bridge — EV-298 CLOSED; STANDALONE REGRESSION PHASE 1 GOLEM MATRIX
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -201,22 +201,32 @@ Resume:
 ```text
 1. User GitHub Desktop Fetch/Pull.
 2. Do not rebuild/redeploy solely for docs/evidence commits.
-3. Read/freeze COLLISION_TEST_PLAN.md §9 standalone collision regression.
-4. Run the minimum native/no-third-party mixed regression protecting:
-   - equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
-   - repeated-contact ClearTriggeredList semantics
-   - Power / Pierce / SimpleWhirl / Hack
-   - supported Sprint
-   - C1 generation-scoped occurrence/dedupe
-   - C1-R1 exact-source terminal repair
-   - raw8 FIST
-   - permanent marked raw55 + unmarked raw55 fallback
-   - one-live-collision-twin invariant
-   - compact CORE anomaly discovery
-5. Close regression evidence before advancing.
-6. Only after standalone regression PASS:
+3. Use COLLISION_TEST_PLAN.md §8 seven-phase standalone campaign.
+4. CURRENT = §8.1 Golem player equipped-weapon matrix:
+   - User attacks Golem
+   - each prepared weapon/setup gets its own runtime run/log
+   - exercise several relevant marked attacks for that weapon/setup
+   - do not mix different weapon types into one log
+   - upload the completed weapon-log set together
+5. Process/promote/archive the complete Phase-1 batch under POP-06.
+6. Continue in order:
+   §8.2 Orc 2H/Staff/Fist
+   §8.3 other weapon-using actors
+   §8.4 non-weapon creatures in chunks
+   §8.5 Axe-separation mod
+   §8.6 Rapier-separation mod
+   §8.7 stress regression
+7. Only after all seven standalone phases PASS:
    New Balance 0.7 exact distributed-bundle regression including AttackCollision.
 ```
+
+Phase-1 filename pattern:
+
+```text
+research/raw/2026-09-18_regression_golem_<weapon-label>.log
+```
+
+Use the factual tested weapon/setup as `<weapon-label>` in lowercase project style.
 
 Do not reopen raw55 family-specific causal work without concrete contradictory evidence.
 
@@ -242,6 +252,7 @@ standalone collision regression
 
 ```text
 standalone collision regression = CURRENT GATE
+current subphase = §8.1 Golem player equipped-weapon matrix
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
