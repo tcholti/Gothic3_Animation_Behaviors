@@ -101,18 +101,23 @@ using the already-computed callback-entry contradiction. Behavior still returns 
 
 Normal Chat independent source review: **PASS**.
 
-## Current responsibility — LOCAL DIAGNOSTIC BUILD GATE
+## Current responsibility — LOCAL DIAGNOSTIC DEPLOYMENT GATE
 
-No further repository/source work is currently required.
-
-When the User is back at the local Gothic 3 build machine:
+The User returned to the authoritative local build machine and successfully built:
 
 ```text
-sync branch
--> build Script_FrameCollisionTest Release only
--> deploy diagnostic twin alone
--> verify built/live hash
--> startup + clean unload
+Script_FrameCollisionTest Release — PASS
+build source checkout = 8abe9c30cae5755184bb5ed22b2959998ad22d33
+```
+
+After that build, repository changes were documentation/procedure maintenance only; no executable source changed. Do **not** require a rebuild merely because remote HEAD advanced through those docs-only commits.
+
+The next runtime step is therefore:
+
+```text
+POP-03 exact diagnostic-twin deployment block
+-> sole-live collision DLL + built/live SHA256 PASS
+-> POP-04 exact diagnostic startup/load block
 -> small marked raw55 control:
    legitimate raw55 ownership = ROUTINE
    no false CORE ATTACK OWNERSHIP ANOMALY
@@ -123,6 +128,8 @@ sync branch
    one equipped authored-marker route
 -> close focused permanent acceptance
 ```
+
+**Procedure lock:** execute POP-03 and POP-04 from `PROJECT_OPERATING_PROCEDURES.md` verbatim. Do not insert an extra artifact-formatting/hash-precheck or reconstruct equivalent PowerShell from memory.
 
 No dedicated runtime reproduction of the identity contradiction is required before focused acceptance continues.
 
