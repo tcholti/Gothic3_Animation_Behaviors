@@ -10,7 +10,7 @@ Repository: `tcholti/Gothic3_Animation_Behaviors`
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Canonical family-specific causal evidence is closed through **EV-294**; post-audit diagnostic/equipped control is **EV-295 PASS**; unmarked raw55 fallback is **EV-296 PASS**; raw8 coexistence is **EV-297 PASS**; aggregate focused permanent raw55 acceptance is **EV-298 CLOSED/PASS**.
+Focused permanent raw55 acceptance remains CLOSED/PASS at **EV-298**. Standalone regression Phase 1 has now added **EV-299 1H PASS, EV-300 1H+torch PASS, EV-301 dual-1H PASS**.
 
 Permanent raw55 contract:
 
@@ -151,97 +151,80 @@ identity contradiction
 
 No identity, eligibility, marker, hook, lifecycle, raw8/equipped or F1 logic changed.
 
-## Immediate next responsibility — STANDALONE COLLISION REGRESSION
+## Immediate next responsibility — CONTINUE GOLEM WEAPON MATRIX
 
-The final raw8 sentinel is PASS:
-
-```text
-research/archive/2026-09-18_sabertooth_raw8_fist_sentinel.log
-Git blob 3f0dedbba3580711761610476ba1080b4916b634
-119,668 bytes / 552 lines
-
-47 accepted FIST markers
-Fist / Raw8UseType=8
-Normal / Quick / Power / Sprint exercised
-native Sabertooth -> PC_Hero ONDAMAGE = 11
-Transform_Sabertooth_Potion -> Sabertooth ONDAMAGE = 13
-47 clean native/transformed C1 finalizations
-raw55 intervention = 0
-CORE ownership anomaly = 0
-C1 invariant / repair / divergence = 0
-```
-
-User runtime observation: native Sabretooth attacked with multiple attack types; User transformed into Sabretooth and attacked back with many attack types.
-
-EV-297 records the sentinel. EV-298 closes the complete focused permanent raw55 acceptance transaction.
-
-Closed focused artifacts are now archived byte-identically:
+First Phase-1 upload batch is fully closed:
 
 ```text
-research/archive/2026.09.17_troll_raw55_permanent_acceptance.log
-research/archive/2026-09-18_troll_raw55_diagnostic_corrections_control.log
-research/archive/2026-09-18_troll_raw55_unmarked_native_fallback_sentinel.log
-research/archive/2026-09-18_sabertooth_raw8_fist_sentinel.log
-
-archive commit:
-5700aedb2feadbde1d1a635a9538ed788836f36d
+EV-299  1H        PASS
+EV-300  1H+torch  PASS
+EV-301  dual 1H   PASS
 ```
 
-Current verified diagnostic DLL remains:
+Key regression facts:
 
 ```text
-source checkout 8abe9c30cae5755184bb5ed22b2959998ad22d33
-SHA256 68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C59BBD14BD
+1H:
+  RIGHT/raw2 ownership across Normal/Quick/Power/Pierce
+  balanced 5->7 / 7->5 physical transitions
+  21 Golem damage events
+  2 deliberate exact C1-R1 repairs PASS
+
+1H+torch:
+  RIGHT sword raw2 + LEFT torch raw24
+  RIGHT and LEFT marker ownership/cleanup balanced
+  23 Golem damage events
+  1 deliberate exact C1-R1 RIGHT repair PASS; torch remains no-op/group5
+  one Action0/no-C1 late Quick marker safely rejected
+
+dual 1H:
+  RIGHT / LEFT / BOTH / OFF
+  Normal/Quick/Power/SimpleWhirl/Pierce
+  balanced RIGHT and LEFT physical transitions
+  45 Golem damage events
+  1 deliberate exact C1-R1 RIGHT repair PASS; LEFT remains no-op/group5
+  occurrence-budget / same-update duplicate guards behave as designed
+  one Action0/no-C1 late Quick marker safely rejected
+
+whole batch:
+  CORE ATTACK OWNERSHIP ANOMALY = 0
+  C1 INVARIANT WARNING = 0
+  REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = 0
+  all PC_Hero C1 final records Outstanding=0
 ```
 
-No executable source changed after that build.
+User visual observation: each run began with attacks without a target, then attacks against Golem; intended attacks connected. Bad skips were deliberately exercised.
 
-Resume:
+Archived canonical sources:
 
 ```text
-1. User GitHub Desktop Fetch/Pull.
-2. Do not rebuild/redeploy solely for docs/evidence commits.
-3. Use COLLISION_TEST_PLAN.md §8 seven-phase standalone campaign.
-4. CURRENT = §8.1 Golem player equipped-weapon matrix:
-   - User attacks Golem
-   - each prepared weapon/setup gets its own runtime run/log
-   - exercise several relevant marked attacks for that weapon/setup
-   - do not mix different weapon types into one log
-   - User may upload 2–3 completed weapon logs at a time
-5. AFTER EVERY uploaded batch, Normal Chat automatically:
-   - analyzes every uploaded log
-   - records canonical EV representation for every completed test/run
-   - updates only necessary evidence/index/current-state/technical owners
-   - archives every fully processed log that has no active-comparison reason
-   - verifies research/raw/ is clean except Keep.txt + explicitly open inputs
-   - verifies SESSION_ENTRYPOINT / BETWEEN_CHATS / COLLISION_TEST_PLAN agree
-   - only then requests the next Golem batch
-6. Continue in order:
-   §8.2 Orc 2H/Staff/Fist
-   §8.3 other weapon-using actors
-   §8.4 non-weapon creatures in chunks
-   §8.5 Axe-separation mod
-   §8.6 Rapier-separation mod
-   §8.7 stress regression
-7. Only after all seven standalone phases PASS:
-   New Balance 0.7 exact distributed-bundle regression including AttackCollision.
+research/archive/researchraw2026-09-18_regression_golem_1h.log
+research/archive/researchraw2026-09-18_regression_golem_1h_torch.log
+research/archive/researchraw2026-09-18_regression_golem_1h_1h.log
 ```
 
-Phase-1 filename pattern:
+Current raw intake after closure:
 
 ```text
-research/raw/2026-09-18_regression_golem_<weapon-label>.log
+research/raw/Keep.txt
 ```
 
-Use the factual tested weapon/setup as `<weapon-label>` in lowercase project style.
+Tomorrow / next local session:
 
-Do not reopen raw55 family-specific causal work without concrete contradictory evidence.
+```text
+1. GitHub Desktop Fetch/Pull.
+2. No rebuild/redeploy solely for these evidence/docs commits.
+3. Continue remaining prepared Golem weapon/setup runs under COLLISION_TEST_PLAN §8.1.
+4. One complete log per setup.
+5. Upload 2–3 logs whenever convenient.
+6. Normal Chat fully closes each uploaded batch before requesting the next.
+```
 
 ## Evidence transaction / archive status
 
-Do not create the next canonical EV or move the permanent-acceptance source from `research/raw/` to `research/archive/` yet.
+EV-299–EV-301 are canonically recorded and their three source logs are archived byte-identically. No artifact from this batch remains active in `research/raw/`.
 
-Focused permanent raw55 acceptance is CLOSED/PASS at EV-298. No focused sentinel remains open.
+Phase 1 itself remains open only because additional prepared Golem weapon setups have not yet been run.
 
 ## Sequence after standalone collision regression
 
