@@ -17,7 +17,6 @@
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
 Astra audit result/disposition: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`  
-Current bounded correction: `docs/COLLISION_RAW55_CALLBACK_IDENTITY_DIAGNOSTIC_SURFACING_CORRECTION.md`  
 Latest closed causal evidence: **EV-294** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
@@ -37,14 +36,20 @@ PERMANENT RAW55 FOUR-FAMILY BEHAVIOR CORE ACCEPTANCE PASS
 CORE OWNERSHIP CLASSIFIER CORRECTION 314f284d...:
 - Work static audit PASS
 - Normal Chat independent source review PASS
-- Astra independent review agrees classifier correction is narrow/correct
-- local rebuild/runtime validation not yet performed
+- local rebuild/runtime validation pending
+
+CALLBACK IDENTITY DIAGNOSTIC SURFACING 6795377f...:
+- Astra implementation/static audit PASS
+- Normal Chat independent source review PASS
+- exactly one source file, +27/-0
+- diagnostics-only under FRAME_COLLISION_DIAGNOSTICS
+- local rebuild/runtime validation pending
 
 ASTRA PERMANENT RAW55 AUDIT:
 PASS WITH NON-BLOCKING FINDINGS
 - no confirmed release-behavior defect
 - F1 nested marker/callback attribution = defensible risk, no change
-- F2 callback-entry identity contradiction not always surfaced = confirmed diagnostics-only contract omission
+- F2 callback-entry identity contradiction surfacing = corrected by 6795377f...
 ```
 
 ## Permanent core acceptance evidence
@@ -60,7 +65,7 @@ blob 8ae8cd8da6e958f6b7f0b139a17467fcc7dd3c6b
 
 Representative Quick, Normal, true-Power and Sprint-origin two-FIST routes all show intended first-marker behavior, clear-only marker2 rearm, two native damage opportunities, native exact RIGHT `7 -> 5` cleanup and outstanding-zero finalization.
 
-The full focused permanent-acceptance transaction is still open until the diagnostic corrections and three bounded sentinels pass. Do not archive/canonicalize this source yet.
+The full focused permanent-acceptance transaction remains open until the corrected diagnostics and three bounded sentinels pass. Do not archive/canonicalize this source yet.
 
 ## Independent Astra audit disposition
 
@@ -74,46 +79,52 @@ Source makes the hypothetical suppression collision logically possible, but acce
 
 ### F2 — callback identity contradiction surfacing
 
-Confirmed frozen-contract omission:
+The diagnostics-only contract omission is now source-corrected by:
 
-`PhysicalFistCollision::BeginNativeCallbackScope()` correctly declines intervention on a same-C1 identity/origin contradiction but can return without surfacing that fact diagnostically.
+```text
+6795377f2a827a8c06a531006a56a87b457e8642
+```
 
-Behavior is correct; diagnostics are incomplete.
-
-Frozen correction:
-
-`docs/COLLISION_RAW55_CALLBACK_IDENTITY_DIAGNOSTIC_SURFACING_CORRECTION.md`
-
-## Current responsibility — bounded Work diagnostic surfacing correction
-
-Allowed expected source:
+Changed only:
 
 ```text
 prototypes/Script_FrameCollisionTest/PhysicalFistCollision.cpp
 ```
 
-Add only one compact diagnostic fact under `FRAME_COLLISION_DIAGNOSTICS` when the already-computed callback-entry `identityContradiction` occurs.
-
-Do not change behavior, identity rules, eligibility, callback scope decisions, markers, hooks, lifecycle, raw8/equipped behavior or F1.
-
-**WORK BUILD EXECUTION IS PROHIBITED.**
-
-After Work:
+The new helper is compiled only under `FRAME_COLLISION_DIAGNOSTICS` and emits:
 
 ```text
-Normal Chat independent source review
+CORE RAW55_PHYSICAL_FIST_IDENTITY_CONTRADICTION
+```
+
+using the already-computed callback-entry contradiction. Behavior still returns without raw55 intervention exactly as before.
+
+Normal Chat independent source review: **PASS**.
+
+## Current responsibility — LOCAL DIAGNOSTIC BUILD GATE
+
+No further repository/source work is currently required.
+
+When the User is back at the local Gothic 3 build machine:
+
+```text
+sync branch
 -> build Script_FrameCollisionTest Release only
--> deploy/hash/startup
+-> deploy diagnostic twin alone
+-> verify built/live hash
+-> startup + clean unload
 -> small marked raw55 control:
    legitimate raw55 ownership = ROUTINE
    no false CORE ATTACK OWNERSHIP ANOMALY
-   behavior facts still healthy
+   marker/damage/cleanup facts healthy
 -> remaining focused sentinels:
    unmarked raw55 native fallback
    raw8 FIST
    one equipped authored-marker route
 -> close focused permanent acceptance
 ```
+
+No dedicated runtime reproduction of the identity contradiction is required before focused acceptance continues.
 
 Do not rerun the full four-family Troll acceptance unless behavior-facing source unexpectedly broadens.
 
