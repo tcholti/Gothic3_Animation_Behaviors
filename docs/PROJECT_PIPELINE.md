@@ -323,13 +323,16 @@ Detailed commands and stop/failure branches belong exclusively to `PROJECT_OPERA
 Current project evidence flow:
 
 ```text
-controlled runtime/source investigation
+controlled runtime/source test or small intentional batch
 → research/raw/ for active canonical intake
-→ commit/publish unchanged artifact
-→ Normal Chat interpretation
-→ canonical EV/result update
+→ commit/publish unchanged artifact batch
+→ Normal Chat interprets EVERY uploaded artifact
+→ canonical EV/result representation for every completed test/run
 → EVIDENCE_INDEX route only when retrieval changes
-→ research/archive/ when the unchanged source artifact is processed and no longer active
+→ smallest required technical/current-state maintenance
+→ research/archive/ immediately for each processed artifact no longer active
+→ verify research/raw/ contains only genuinely open/unprocessed inputs
+→ only then begin the next test batch
 → research/derived/ only for deterministic retrieval/analysis aids when needed
 ```
 
@@ -347,6 +350,8 @@ research/derived/
 ```
 
 Raw/source provenance, interpreted evidence, and derived retrieval aids must remain distinguishable.
+
+A multi-run validation campaign may be published in small batches (for example two or three logs at a time). The campaign can remain active, but each published batch must be fully closed under POP-06 before the next batch is requested. Do not let already-interpreted logs accumulate in `research/raw/` merely because the larger campaign is still in progress.
 
 When a processed artifact moves from raw to archive, preserve the exact blob/content and basename. If historical ledger paths would otherwise become ambiguous, record the repository path migration in `EVIDENCE_PATH_MIGRATIONS.md` rather than cosmetically rewriting historical evidence rows.
 
