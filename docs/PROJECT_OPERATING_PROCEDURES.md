@@ -666,6 +666,8 @@ User preserves complete raw log unchanged under research/raw/
 -> User commits and Pushes both together
 -> Assistant reads the committed derived package
 -> raw log remains canonical provenance but is not routinely re-opened
+-> after interpretation, return to POP-06 and fully close that uploaded batch
+   before the next runtime test/batch
 ```
 
 Current deterministic tool: `tools/log_evidence/Prepare-Log.cmd` with usage in its README.
