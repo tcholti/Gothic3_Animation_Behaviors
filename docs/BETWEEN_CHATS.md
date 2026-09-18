@@ -4,7 +4,7 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — PERMANENT RAW55 CORE PASS; BOTH DIAGNOSTIC CORRECTIONS SOURCE-REVIEWED; LOCAL BUILD NEXT
+## Current Bridge — PERMANENT RAW55 CORE PASS; DIAGNOSTIC BUILD PASS; CANONICAL DEPLOYMENT NEXT
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
@@ -151,30 +151,39 @@ identity contradiction
 
 No identity, eligibility, marker, hook, lifecycle, raw8/equipped or F1 logic changed.
 
-## Immediate next responsibility — LOCAL BUILD / VALIDATION
+## Immediate next responsibility — LOCAL DEPLOYMENT / VALIDATION
 
-The User is currently away from the PC containing the local build and Gothic 3 installation.
-
-Therefore **STOP HERE**. No additional source task is needed before local validation.
-
-When that PC is available:
+The User returned to the authoritative local build machine and completed the diagnostic build successfully:
 
 ```text
-1. Sync docs/collision-source-evidence.
-2. Build Script_FrameCollisionTest Release only.
-3. Deploy diagnostic twin alone.
-4. Verify exactly one live collision DLL and built/live SHA256 identity.
-5. Launch to main menu and exit normally; confirm clean startup/unload.
-6. Run a small marked raw55 control proving:
+Script_FrameCollisionTest Release — BUILD PASS
+local checkout used for build:
+8abe9c30cae5755184bb5ed22b2959998ad22d33
+```
+
+The subsequent remote commits are documentation/procedure maintenance only. No executable source changed after the successful build, so do **not** rebuild solely because current remote HEAD is newer.
+
+A procedure-maintenance review found that build/deploy/startup details had been reconstructed differently across chats. `PROJECT_OPERATING_PROCEDURES.md` v1.14 now owns exact canonical command blocks. Historical probe/task/handoff/chat snippets are not executable procedure authority.
+
+Resume exactly:
+
+```text
+1. Use POP-03 canonical diagnostic-twin deployment block verbatim.
+2. Require exactly one live Script_FrameCollisionTest.dll and Built SHA256 == Live SHA256.
+3. If and only if POP-03 prints DIAGNOSTIC DEPLOYMENT PASS, launch Gothic 3 to main menu and exit normally.
+4. Use POP-04 canonical diagnostic startup-log block verbatim.
+5. If startup/load PASS, run the small marked raw55 control:
    - legitimate raw55 ATTACK_OWNERSHIP Classification=ROUTINE
    - no false CORE ATTACK OWNERSHIP ANOMALY
    - permanent marker/damage/native-cleanup behavior remains healthy
-7. Run remaining focused sentinels:
+6. Run remaining focused sentinels:
    - unmarked raw55 native fallback
    - raw8 FIST
    - one equipped authored-marker route
-8. Close focused permanent acceptance.
+7. Close focused permanent acceptance.
 ```
+
+Do not insert an extra `Get-Item | Select-Object` artifact gate between build and POP-03. The canonical deployment block already validates the exact built/live hashes and sole-live-twin state.
 
 No dedicated runtime reproduction of the callback identity contradiction is required before focused acceptance continues.
 
