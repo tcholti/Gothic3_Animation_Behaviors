@@ -92,3 +92,5 @@ place complete log in research/raw/
 ```
 
 Normal Chat should start from the processed package for a POP-07 log and should not request the raw log again unless the package or provenance itself is insufficient.
+
+After interpretation, large-log evidence returns to the **same POP-06 closure path as every other runtime batch**: canonical EV representation, smallest required documentation/current-state maintenance, byte-identical archive of the processed raw source when no active comparison remains, raw-inventory verification, then the next test batch. POP-07 changes retrieval mechanics only; it does not defer or replace per-batch evidence closure.
