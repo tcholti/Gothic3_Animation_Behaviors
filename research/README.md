@@ -1,7 +1,7 @@
 # Research Source Intake and Provenance Map
 
 **Status:** Current research-layer usage map  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-18
 
 ## Purpose
 
@@ -40,16 +40,20 @@ Operational evidence closure is owned by POP-05/POP-06 in `docs/PROJECT_OPERATIN
 Normal runtime/source flow:
 
 ```text
-freeze test / expected artifact
+freeze test / expected artifact(s)
 → preserve produced source unchanged in research/raw
-→ publish exact artifact
-→ Normal Chat interprets against frozen question + User observation
-→ promote reusable factual conclusion into canonical Evidence Ledger
+→ publish one test or small intentional batch
+→ Normal Chat interprets EVERY uploaded artifact against frozen test + User observation
+→ represent every completed test/run in canonical Evidence Ledger evidence
 → update EVIDENCE_INDEX only when retrieval changes
-→ perform smallest-owner technical/current-state maintenance if meaning changed
-→ assign explicit artifact disposition
-→ archive unchanged when no active comparison needs raw intake
+→ perform smallest-owner technical/current-state maintenance
+→ assign explicit artifact disposition to every uploaded artifact
+→ archive each processed artifact unchanged when no active comparison needs raw intake
+→ verify research/raw + current-state pointers
+→ only then begin the next runtime batch
 ```
+
+Uploading two or three related logs together is normal. It changes only the publication unit, not the closure rule: the entire uploaded batch must be processed and cleaned before the next batch starts.
 
 Do not leave a completed investigation with its result existing only in Chat, a derived checkpoint, this README, or an index.
 
@@ -77,29 +81,29 @@ This avoids creating another independently stale chronology that fresh Chats mus
 
 ## 4. Current Intake State
 
-The latest cleanup boundary is the 2026-09-16 EV-290 checkpoint. All processed September 8–16 collision artifacts that no longer owned an active comparison obligation were moved unchanged to `research/archive/` using their existing Git blob identities.
+Latest closed collision evidence checkpoint:
 
-Current expected active-intake baseline:
+```text
+EV-298 — focused permanent raw55 acceptance CLOSED/PASS
+```
+
+The EV-298 acceptance/control artifacts were archived byte-identically on 2026-09-18. Current expected active-intake baseline is:
 
 ```text
 research/raw/Keep.txt
 ```
 
-A future artifact belongs in raw only while it is genuinely unprocessed or intentionally active for comparison.
+That baseline has been verified at the start of the standalone collision regression campaign.
 
-Migration details/provenance, including the earlier September 2–7 and September 12 archive boundaries:
+A future artifact belongs in raw only while it is genuinely unprocessed or intentionally retained as an active comparison. After each uploaded test batch, POP-06 requires processed artifacts to be archived before the next batch is requested.
+
+Migration details/provenance:
 
 ```text
 docs/EVIDENCE_PATH_MIGRATIONS.md
 ```
 
-For the active raw55 Normal question at the EV-290 checkpoint, routine exact-runtime retrieval should begin with canonical EV-290 and its deterministic derived package rather than reopening the archived multi-megabyte source log:
-
-```text
-research/derived/2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log/
-```
-
-Use the archived full source only when a precise fact is not already represented canonically or by the derived package.
+For large archived logs, routine retrieval should begin with the canonical EV and committed `research/derived/` package when one exists. Small CORE logs may be read directly from archive. The archive is opened only when exact source verification is needed beyond maintained evidence.
 
 ---
 
