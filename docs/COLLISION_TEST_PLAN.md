@@ -1,6 +1,6 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw8 supported-family production controls CLOSED/PASS through EV-263; raw55 factual discovery + four-family causal closure CLOSED/PASS through EV-294; permanent raw55 implementation/core acceptance PASS; post-audit diagnostic-corrections control + equipped sentinel PASS at EV-295; focused permanent acceptance remains open only for unmarked raw55 native fallback + raw8 FIST sentinels before standalone regression  
+**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw8 supported-family production controls CLOSED/PASS through EV-263; raw55 factual discovery + four-family causal closure CLOSED/PASS through EV-294; permanent raw55 implementation/core acceptance PASS; post-audit diagnostic-corrections control + equipped sentinel PASS at EV-295; unmarked raw55 native fallback PASS at EV-296; focused permanent acceptance remains open only for the raw8 FIST sentinel before standalone regression  
 **Updated:** 2026-09-18
 
 ## Purpose
@@ -201,8 +201,8 @@ EV-295              permanent diagnostic-corrections control PASS + equipped sen
 Permanent raw55 behavior is now implemented under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`. The four-family behavior core acceptance is PASS. Focused permanent acceptance remains open only for:
 
 ```text
-unmarked raw55 native fallback
-raw8 FIST sentinel
+unmarked raw55 native fallback — PASS EV-296
+raw8 FIST sentinel — OPEN
 ```
 
 Do not reopen broad raw55 discovery or family-specific causal probing without concrete contradictory evidence.
@@ -465,7 +465,7 @@ PhysicalFist/raw55 factual discovery + causal route  CLOSED/PASS through EV-294
 permanent raw55 implementation/core behavior         PASS
 post-audit diagnostic corrections control            PASS — EV-295
 equipped authored-marker sentinel                    PASS — EV-295
--> unmarked raw55 native-fallback sentinel
+unmarked raw55 native-fallback sentinel              PASS — EV-296
 -> raw8 FIST sentinel
 -> CLOSE focused permanent raw55 acceptance
 -> standalone collision regression
