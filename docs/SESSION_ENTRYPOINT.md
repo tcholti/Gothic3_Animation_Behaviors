@@ -17,11 +17,11 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint causal probe = GOBLIN PASS EV-315 + PROTECTED SENTINELS COMPLETE/PASS EV-316–EV-318; BROADER FIXTURES NEXT
+generic equipped Sprint = EV-315 RIGHT PASS + EV-321 missing-source NEGATIVE PASS; EV-320 SAME-C1 ORIGIN CONTINUATION CORRECTION REQUIRED
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-319
+latest completed evidence = EV-321
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: EV-315 Goblin causal PASS and all three protected coexistence sentinels EV-316–EV-318 are closed PASS. EV-319 Ogre/raw52 broader attempt was NOT EXERCISED because factual Action9 never occurred, while ordinary Ogre regression remained healthy. Select further broader fixtures from routes likely to factually enter Action9 before any permanent-promotion decision. Phase 4 remains held.
+Current responsibility: EV-320 proves the diagnostic equipped-Sprint implementation loses later marker ownership when the same bound Goblin C1/motion transitions Action9/SPRINT -> Action2/POWER before OFF. EV-321 separately closes BOTH-with-missing-LEFT as a NEGATIVE PASS with native fallback. Implement/review the bounded diagnostic-only Sprint-origin continuation correction before further runtime coverage or production-promotion decisions. Phase 4 remains held.
 
 ## Immediate responsibility
 
@@ -40,7 +40,9 @@ Current responsibility: EV-315 Goblin causal PASS and all three protected coexis
 3. EV-317 Troll raw55 Sprint-origin sentinel = PASS.
 4. EV-318 equipped 2H true-Power sentinel = PASS.
 5. EV-319 Ogre/raw52 Sprint attempt = NOT EXERCISED / ordinary regression healthy.
-6. Continue broader Sprint-fixture discovery using routes with evidence that factual Action9 can occur before deciding permanent promotion.
+6. EV-320 Goblin RIGHT->OFF = continuation gap: Action9->Action2 same C1 breaks later OFF ownership.
+7. EV-321 Goblin BOTH missing LEFT = NEGATIVE PASS / native fallback preserved.
+8. Next: Work implements `docs/work/active/COLLISION_EQUIPPED_SPRINT_ORIGIN_CONTINUATION_CORRECTION.md`; Normal Chat reviews before local rebuild/runtime.
 
 ## Current verified diagnostic product
 
