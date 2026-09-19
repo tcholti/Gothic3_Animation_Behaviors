@@ -173,12 +173,15 @@ Normally:
 
 Use when the previous Chat stopped abruptly, maxed context, became unusable, or failed before maintenance/handoff completed.
 
+The repository root `README.md` **Start Here** recovery block is the canonical discoverable first hop for this situation. It routes the recovering Chat into POP-11; this charter owns the retrieval model, while POP-11 owns the detailed recovery mechanics.
+
 `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` are then **clues, not unquestioned truth** until reconciled.
 
-Follow POP-11:
+Start from the root README recovery block, then follow POP-11:
 
 ```text
-Recovery Lock
+root README interrupted-Chat front door
+→ Recovery Lock
 → authority orientation: charter + ownership + maintenance + relevant specialist owner
 → compact recovery preflight
 → reconstruct only recent durable tail
@@ -190,7 +193,7 @@ Recovery Lock
 → release Recovery Lock
 ```
 
-Do not start new implementation, new runtime research or a new Work task while Recovery Lock is active.
+Do not start new implementation, new runtime research or a new Work task while Recovery Lock is active. Formal review/audit should not relocate the interrupted-Chat first hop away from the root README merely for document symmetry; changing that entry model is a deliberate project-retrieval decision.
 
 ### Retrieval depth B — Subsystem Orientation Pass
 
