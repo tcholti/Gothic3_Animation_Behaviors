@@ -300,7 +300,8 @@ Ordinary documentation history belongs in Git; historical Git content never over
 | What are we doing now? | `SESSION_ENTRYPOINT.md` | `BETWEEN_CHATS.md` for exact transient continuation |
 | Previous Chat died before handoff; what now? | `PROJECT_OPERATING_PROCEDURES.md` POP-11 | this charter §0 + `KNOWLEDGE_REGISTRY.md` + `KNOWLEDGE_MAINTENANCE.md` + recent durable tail; POP-10 only if contradiction gate fires |
 | How must formal review/audit begin? | POP-10 | this charter + target Purpose/Scope + Registry ownership |
-| What causal model constrains active collision problem? | current subsystem authority | `EVIDENCE_INDEX.md` reconstruction route → exact EV |
+| What is already established about collision behavior? | `COLLISION_REFERENCE.md` | owning architecture; `EVIDENCE_INDEX.md` only for proof/qualification |
+| What causal model constrains a genuinely unresolved collision problem? | current subsystem authority + current active temporary contract | `EVIDENCE_INDEX.md` reconstruction only as needed route → exact EV |
 | What did last Chat/Work handoff do? | `BETWEEN_CHATS.md` | exact commit/diff |
 | How does CAM govern project / who owns responsibility? | charter → `COLLABORATION_RULES.md` | CAM itself only for genuine principle-level comparison |
 | What naming/numbering/test/artifact convention? | `PROJECT_PIPELINE.md` | owning procedure/current plan only for task semantics |
@@ -325,13 +326,13 @@ Ordinary documentation history belongs in Git; historical Git content never over
 
 | Subsystem | Orientation route |
 |---|---|
-| frame collision / lifecycle | `DESIGN.md` collision sections → collision routes in `EVIDENCE_INDEX.md` → `COLLISION_LIFECYCLE.md`; Source Guide/Cleanup Map only for source/hook/cleanup context |
+| frame collision / lifecycle | `COLLISION_REFERENCE.md` → `DESIGN.md` / `COLLISION_LIFECYCLE.md`; `EVIDENCE_INDEX.md` only when proof or unresolved causal reconstruction is needed |
 | Raise | `DESIGN.md` Raise section → Raise route in `EVIDENCE_INDEX.md` → `ANIMATION_INDEX.md` for asset/selection questions |
 | playback speed | `DESIGN.md` speed section → speed evidence route → Source Guide when implementation/hook context matters |
 | animation semantics / selection | `ANIMATION_INDEX.md` → exact Rules/Catalog/data → relevant evidence only when behavioral interpretation matters |
 | source/API/hook investigation | `SOURCE_HOOK_GUIDE.md` → exact evidence/callsite authority named there → SDK/reference source for concrete symbol/API question |
 
-Prefer adding a route to an existing owner/index over creating another independently maintained subsystem-summary document.
+Prefer an existing current reference/authority first. Create a new permanent reference only when a stable factual domain lacks a clear owner and the new document reduces retrieval ambiguity; otherwise add a route/section rather than another summary.
 
 ---
 
@@ -358,8 +359,9 @@ Read a full large document only for genuine broad synthesis, contradiction resol
 3. Subsystem Orientation Pass once if subsystem model is stale;
 4. targeted Active-Problem Reconstruction once if causal model is stale;
 5. pipeline section only when immediate task creates/changes a convention;
-6. exact current evidence/source named by responsibility;
-7. broaden only when concrete question requires it.
+6. current reference/architecture named by responsibility;
+7. descend to exact evidence/source only when proof, contradiction, or unresolved reasoning requires it;
+8. broaden only when the concrete question requires it.
 
 ### Normal Chat — failed previous context
 
