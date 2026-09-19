@@ -244,61 +244,34 @@ Evidence route: EV-221–EV-240 for human production, with later raw8 actor/fami
 
 ## 5. PhysicalFist/raw55 Status
 
-`gEUseType_PhysicalFist` / raw 55 serializes through animation category `Fist`, but factual Troll/BlackTroll runtime evidence has now established a distinct physical source mechanism.
+`gEUseType_PhysicalFist` / raw55 is now a permanent, distinct collision mechanism. Ordinary semantic lookup starts in `COLLISION_REFERENCE.md`; exact production ownership is `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.
 
-Current tested factual source boundary:
-
-```text
-source identity        = exact RIGHT/LEFT TrollFist entities
-UseType                = PhysicalFist / raw55
-resting collision group = Item_Equipped(5)
-offensive group         = Item_Attack(7)
-native exact cleanup    = 7 -> 5
-```
-
-Evidence route:
+Stable source/hook facts:
 
 ```text
-EV-245–EV-246  initial bounded survey did not observe raw55
-EV-262         later Troll/BlackTroll evidence factually establishes raw55
-EV-264–EV-273  Quick causal closure, including Quick-specific rearm/pre-state behavior
-EV-274–EV-276  true Power first-contact closure
-EV-277–EV-279  Normal first-contact closure
-EV-280–EV-282  Sprint first-contact closure
-EV-283         cross-family two-FIST checkpoint
-EV-286–EV-290  Normal SP0/rearm/native-between-contact reset causal route
+factual tested source       = exact current RIGHT TrollFist / PhysicalFist raw55
+resting group               = Item_Equipped(5)
+offensive group             = Item_Attack(7)
+physical mutation transport = existing SetCollisionGroup hook
+native final cleanup        = exact RIGHT 7 -> 5
+Normal between-contact clear caller = Script_Game.dll +0x386C6
 ```
 
-Current Normal reset facts through EV-290:
+Permanent behavior keeps `EngineBridge` as physical hook/call-site transport owner and `PhysicalFistCollision` as raw55 semantic owner. Historical `PhysicalFistProbe` modules and family-specific causal contracts are archived provenance, not current implementation guidance.
 
-```text
-frame-1 FIST at SP0 can open exact RIGHT 5 -> 7
-one exact marker-owned ALL clear after opening enables first damage before SP0 -> 1
-native exact RIGHT 7 -> 7 setter is not required for second damage
-PC_Hero is still visited after hit1
-Gothic later calls exact eCTrigger_PS::ClearTriggeredList() ALL
-caller = Script_Game.dll +0x386C6
-PRE  = PC_Hero present/count1
-POST = visited arrays empty / PC_Hero absent
-original _AI_Attack then completes SP0 -> 1
-later marker2 remains observational in the EV-290 run
-second damage later re-inserts PC_Hero
-native exact 7 -> 5 cleanup remains healthy
-```
-
-The exact native ALL clear is identified but its **causal necessity** for hit2 is not yet proven. The source-reviewed current diagnostic suppresses only that exact proven clear under factual Normal actor/C1/current-RIGHT/raw55/contact/caller gates. `PhysicalFistProbe` remains diagnostic research scaffolding and must not be promoted wholesale.
+Current proven marked family scope is Normal / Quick / true Power / Sprint-origin. The first authored FIST owns the physical opening; a later same-C1 FIST uses the evidence-backed contact-bookkeeping rearm without another physical opening. Native target/contact/damage and final exact RIGHT cleanup remain Gothic-owned.
 
 Do not:
 
 ```text
 copy raw8 SPU+0x164 timing/latch policy onto raw55
 species-gate production behavior
-infer all raw55 families share Quick's triggered-list semantics
-assign marker2 replacement-clear ownership before the native-clear necessity test closes
-create permanent PhysicalFistCollision merely because the probe exists
+generalize raw55 to LEFT without evidence
+turn the historical probe policy into bridge policy
+reconstruct current raw55 semantics from archived probe chronology by default
 ```
 
-Current task authority: `COLLISION_RAW55_NORMAL_NATIVE_TRIGGER_CLEAR_SUPPRESSION_PROBE.md` plus `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
+Evidence: EV-262–EV-298. Exact family causal history routes through `EVIDENCE_INDEX.md` only when proof detail is needed.
 
 ---
 
