@@ -201,11 +201,12 @@ EV-315  Goblin equipped Sprint probe  CAUSAL PASS / promotion pending
 EV-316  Sabretooth raw8 Sprint sentinel PASS
 EV-317  Troll raw55 Sprint sentinel      PASS
 EV-318  equipped 2H true-Power sentinel  PASS
+EV-319  Ogre raw52 Sprint attempt          NOT EXERCISED / regression healthy
 ```
 
 Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. EV-311's equipped Sprint rejection exposed a new scope question; EV-315 passes the first diagnostic causal handoff for that Goblin fixture without changing production support.
 
-Phase 4 is temporarily held while the active equipped-Sprint investigation exercises additional factual equipped-Sprint fixtures. The protected coexistence sentinel stage is CLOSED/PASS: raw8 Sprint EV-316, raw55 Sprint-origin EV-317 and equipped true Power EV-318. Current validation plan: `COLLISION_TEST_PLAN.md`.
+Phase 4 is temporarily held while the active equipped-Sprint investigation seeks additional factual equipped-Sprint fixtures. EV-319's Ogre/raw52 attempt did not enter Action9 and therefore does not broaden Sprint support. The protected coexistence sentinel stage is CLOSED/PASS: raw8 Sprint EV-316, raw55 Sprint-origin EV-317 and equipped true Power EV-318. Current validation plan: `COLLISION_TEST_PLAN.md`.
 
 ## 10. Evidence escalation rule
 
