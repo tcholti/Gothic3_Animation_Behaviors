@@ -1,590 +1,408 @@
 # Gothic 3 Knowledge Maintenance Protocol
 
-**Status:** Active project knowledge-maintenance protocol  
-**Version:** 1.5
-**Updated:** 2026-09-01
+**Status:** Active project knowledge-maintenance authority  
+**Version:** 2.0  
+**Updated:** 2026-09-19
+
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
 ## Purpose
 
-Keep the repository current through **small local maintenance transactions** instead of frequent repository-wide documentation reviews.
+Keep the repository useful as long-term external memory **without forcing ordinary work to reread the history of how knowledge was discovered**.
 
-The User should not need to ask after every design decision, Work session, build, runtime test, or important cross-subsystem discovery whether documentation, evidence, indexes, raw logs, archives, or future retrieval routes were updated.
+Normal Chat owns this maintenance automatically. The User should not need to ask whether a completed design decision, Work task, runtime test, probe, audit, evidence batch, or handoff also needs documentation cleanup.
 
-For Normal Chat, checking and performing the necessary local knowledge maintenance is part of completing the engineering step.
+> **Current reference tells us what we know. Architecture tells us how our system uses it. ADRs preserve why important choices were made. Evidence proves it. Temporary work records how we are finding out. Closed temporary work and closed ledger volumes are archived.**
 
-This protocol does not require every event to change documentation. It requires checking the event against the registry and changing only the authorities whose update trigger actually fired.
-
-It also requires checking whether a new finding has become materially relevant to a **different future responsibility**. When that happens, preserve the fact in its one owning authority and add only the smallest retrieval route needed so that future work can find it.
-
-> **Normal maintenance is incremental. Full documentation audits are exceptional; when one is justified, it must begin with the authority/intended-use preflight in POP-10.**
+This protocol is the canonical lifecycle authority. Other rule/procedure documents route here instead of restating independent variants.
 
 ---
 
-## 1. Governing Model
-
-Before the storage/maintenance layers below, the project has a governing authority structure:
+## 1. Governing authority
 
 ```text
 CAM constitutional collaboration layer
         ↓
 docs/README.md project charter
-(purpose / long-term direction / scope / authority topology)
         ↓
-specialist Gothic authorities within delegated domains
+specialist current authorities / references
+        ↓
+this maintenance lifecycle + project procedures
+        ↓
+current-state / temporary work
 ```
 
-This maintenance protocol operates **inside** that structure. It must not silently alter the project charter or CAM while performing lower-level housekeeping.
+Maintenance may update lower owners when their trigger fires. It must not silently change project purpose, long-term direction, scope, authority topology, or CAM-level principles.
 
-The repository then stores maintainable knowledge in four layers.
+A broad documentation/authority review uses POP-10 first.
 
-### Layer A — evidence / provenance
+---
+
+## 2. Five documentation roles
+
+### A. Current reference — what is established
+
+Compact factual projections for ordinary retrieval.
 
 Examples:
 
-- evidence-ledger entries;
-- raw and archived runtime logs;
-- exact animation-name inventories;
-- source/binary observations;
-- build-specific RVAs and call stacks.
+- `COLLISION_REFERENCE.md`;
+- `ANIMATION_RULES.md`;
+- `SOURCE_HOOK_GUIDE.md`;
+- `COLLISION_CLEANUP_CALLSITE_MAP.md`.
 
-This layer is primarily append-oriented. Old confirmed evidence is not rewritten merely because the project has moved on; qualifications or contradictions are recorded explicitly.
+Reference statements should be short, current, qualified where necessary, and point to supporting EVs rather than reproduce full evidence reasoning.
 
-### Layer B — canonical topic authorities
+### B. Current architecture — how the project uses those facts
 
-Each important technical responsibility has one primary home.
-
-Examples:
-
-- overall system architecture → `DESIGN.md`;
-- collision lifecycle architecture → `COLLISION_LIFECYCLE_PLAN.md`;
-- native cleanup RVAs/stacks → `COLLISION_CLEANUP_CALLSITE_MAP.md`;
-- generalized animation semantics → `ANIMATION_RULES.md`;
-- concrete animation assets/fixtures → `ANIMATION_CATALOG.md`.
-
-Other documents should route to these authorities rather than maintain independent copies of the same fact.
-
-### Layer C — indexes / catalog records
+Owns current responsibilities, invariants, module boundaries and intended behavior.
 
 Examples:
 
-- `EVIDENCE_INDEX.md`;
-- `ANIMATION_INDEX.md`;
-- `KNOWLEDGE_REGISTRY.md`.
+- `DESIGN.md`;
+- `COLLISION_LIFECYCLE.md`;
+- `COLLISION_DIAGNOSTICS.md`;
+- `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`;
+- `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
-Indexes route a question to the correct authority/evidence. They do not become another narrative copy of the underlying knowledge.
+Architecture is not experiment chronology.
 
-Indexes may route by either:
+### C. Decision records — why a significant choice was made
 
-- **what the knowledge describes now**, or
-- **what future engineering responsibility materially depends on it**.
+`docs/decisions/` contains short ADRs for non-obvious project/architecture choices whose rationale may matter later.
 
-A future-use route is justified only when the dependency is concrete enough that missing the knowledge could change a later design, implementation, refactor, regression decision, or safety invariant.
+Create an ADR only when a future maintainer could reasonably ask “why did we choose this instead of the plausible alternative?”
 
-### Layer D — current-state pointers
+Do not create ADRs for routine test results, individual probe steps, implementation minutiae, or facts already captured by reference/evidence.
 
-Examples:
+### D. Evidence / provenance — prove it
 
-- `SESSION_ENTRYPOINT.md`;
-- `BETWEEN_CHATS.md`.
+Includes:
 
-These are intentionally small and replaceable. They point to current responsibilities; they do not preserve long history.
+- EV entries;
+- raw/archived runtime logs;
+- deterministic derived packages;
+- exact source/binary observations;
+- hashes/build provenance.
+
+Evidence is append-oriented proof history. It is **not** the normal interface for settled knowledge.
+
+### E. Temporary work — what we are currently testing/building
+
+Active probes, bounded implementation contracts, audit tasks and short-lived research designs live under:
+
+```text
+docs/work/active/
+```
+
+They exist to control an unresolved question. They are not permanent architecture.
+
+When closed they move to:
+
+```text
+docs/archive/investigations/
+```
+
+only after reusable conclusions are promoted.
 
 ---
 
-## 2. Default Engineering + Knowledge Loop
+## 3. Ordinary retrieval order
 
-The normal project loop is:
+For a question already researched:
 
 ```text
-User vision / desired behavior / problem
-        ↓
-User + Normal Chat
-search only relevant existing knowledge
-reason / challenge / design / decide architecture
-        ↓
-LOCAL MAINTENANCE TRANSACTION
-update only authorities whose meaning changed
-check concrete future-relevance routes
-        ↓
-freeze bounded implementation task
-store exact transient contract in BETWEEN_CHATS when needed
-produce a small Work launcher that points to that authority
-        ↓
-Work
-implement from the frozen contract
-source-audit / commit / push / concise handoff
-        ↓
-User reports Work completion
-        ↓
-Normal Chat
-independent diff-against-contract review
-        ↓
-LOCAL MAINTENANCE TRANSACTION
-record only implementation-state changes that matter
-        ↓
-home-PC build / install
-        ↓
-Normal Chat interprets build/load result
-        ↓
-LOCAL MAINTENANCE TRANSACTION when the gate changes
-        ↓
-User performs controlled runtime test / small intentional batch
-        ↓
-Normal Chat interprets EVERY uploaded log + observation
-        ↓
-EVIDENCE TRANSACTION FOR THAT UPLOADED BATCH
-raw intake → per-test evidence conclusion → authority trigger check → future-relevance/index check → archive each processed artifact
-        ↓
-verify raw intake + current-state docs are clean/aligned
-        ↓
-only then next runtime batch / design question
+current state (only if needed)
+-> current reference
+-> owning architecture/reference detail
+-> EVIDENCE_INDEX
+-> exact EV
+-> archived raw/derived/probe only for verification or contradiction
 ```
 
-The User does not need to separately request the maintenance transactions.
+Do **not** scan evidence ledgers, archived probes, raw logs or completed audits merely to answer “how does this work now?”
+
+If current reference and evidence disagree, evidence wins the factual dispute and the current reference must be corrected.
 
 ---
 
-## 3. Maintenance Transaction Rule
+## 4. Maintenance transaction
 
-After a meaningful project event, Normal Chat asks internally:
+After every meaningful project event, Normal Chat asks:
 
-1. **What actually changed?**
-2. Is it a new fact/evidence result, a design decision, an implementation-state change, a current-task change, a reusable source/hook finding, or merely another confirmation of existing knowledge?
-3. Which authority in `KNOWLEDGE_REGISTRY.md` owns that change?
-4. Did that authority's update trigger fire?
-5. Does an index need a new route, or does the existing route already cover it?
-6. **What already-planned or foreseeable future engineering responsibility could materially depend on this finding?**
-7. If such a dependency exists, can that future responsibility already retrieve the owning knowledge without a broad search?
-8. If the finding may replace/simplify an existing workaround, does the retrieval route also preserve **why the workaround exists** and the regressions/invariants it currently protects?
-9. Does the current-state pointer need to advance?
-10. Has a raw artifact now been fully processed and become archive material?
-11. Would the proposed maintenance change project purpose, long-term direction, scope or authority topology rather than a lower specialist responsibility? If yes, stop ordinary maintenance and surface the charter-level decision to the User.
+1. What actually changed?
+2. Is it a factual discovery, architecture decision, implementation-state change, current-state change, validation result, or only another confirmation?
+3. Which current authority/reference owns the reusable result?
+4. Does an ADR-worthy rationale exist?
+5. Does exact proof need a new EV?
+6. Does an active temporary document now close?
+7. Does a current-state pointer need to move?
+8. Is a future responsibility now dependent on this knowledge?
+9. Can that future responsibility retrieve the current owner without opening historical material?
+10. Can the knowledge-state validator pass after this transaction?
 
-Then update only those local targets.
+Update only the owners whose triggers fired.
 
-A normal result should usually require **one evidence update plus zero to three local authority/index/current-state updates**. A future-relevance route should normally be a small index/pointer change, not another narrative document.
-
-If a routine test seems to require a broad documentation review, or one finding seems to require many new cross-links, stop and check whether knowledge is duplicated, retrieval rules are too permissive, or authority boundaries are unclear.
-
-### Future-relevance trigger
-
-Add or refine a future-use retrieval route when at least one of these is true:
-
-- a current finding may materially change how an already-planned subsystem will later be implemented;
-- a newly understood native mechanism overlaps responsibility with existing custom code or bookkeeping;
-- a current workaround may later become replaceable/simplifiable because of new evidence;
-- a future refactor could accidentally remove a behavior whose original reason lives in another evidence domain;
-- the User explicitly identifies a meaningful future-use relationship;
-- a later safety/regression decision would be materially weaker if the finding were not retrieved.
-
-Do **not** add cross-routes for vague possibilities such as “this might be useful someday.”
-
-### Workaround-reevaluation rule
-
-When new knowledge may replace or simplify an existing workaround, preserve the relationship in both directions:
+A routine result should normally produce:
 
 ```text
-WHY CURRENT WORKAROUND EXISTS
-        +
-WHAT NEW EVIDENCE MAY REPLACE/SIMPLIFY IT
-        ↓
-future comparison before removal/refactor
+0–1 evidence entry
+0–2 current reference/architecture edits
+0–1 index route
+0–1 current-state edit
+temporary document archive when its question closes
 ```
 
-Never leave a future chat with only “this can probably be simplified.” It must also be routed to the reproduced failures, invariants, or compatibility reasons that caused the current machinery to exist.
-
-### CAM ↔ project learning boundary
-
-`README.md` owns the Gothic project charter beneath CAM. `COLLABORATION_RULES.md` owns the detailed Gothic operationalization of CAM for participant allocation and collaboration.
-
-Knowledge maintenance therefore preserves both directions without collapsing them into one transaction:
-
-```text
-CAM principles
-→ project charter defines Gothic purpose/direction/authority topology
-→ specialist Gothic rules/procedures operationalize that structure
-→ used in real project work
-→ project success/friction/failure produces empirical lessons
-→ improve the lowest owning Gothic authority when the lesson fits the charter + adopted CAM principles
-→ observe the revised project behavior
-→ identify candidate wider value or a possible charter/CAM-level gap when warranted
-→ STOP upward modification in ordinary Gothic maintenance
-→ charter-level changes are discussed with the User
-→ dedicated CAM-evolution responsibility compares across projects and may evolve CAM
-→ deliberately review/apply adopted CAM evolution back into the Gothic charter/specialist authorities
-```
-
-Normal Gothic 3 maintenance may:
-
-- fix the relevant project rule/procedure/route;
-- preserve why the change was needed;
-- use the charter/CAM as governing context when materially relevant;
-- identify a lesson as a candidate for wider reuse or CAM-level review.
-
-It must not edit the CAM repository or pretend that a lower project-local rule has silently changed the project charter or CAM philosophy.
-
-Likewise, a later CAM revision does not silently alter this repository. Applicable CAM evolution is deliberately brought back down into the project charter and appropriate specialist authority so the operational consequence is explicit.
-
-The User may explicitly open the separate CAM-evolution responsibility. Until then, Gothic maintenance stops at the project-local boundary.
+A result that appears to require broad edits across many unrelated authorities is a signal to stop and inspect ownership before continuing.
 
 ---
 
-## 4. Event Transactions
+## 5. Temporary-document lifecycle — mandatory closure
 
-### Event A — design / architecture decision
+### Creation
 
-Examples:
-
-- lifecycle authority changes;
-- marker semantics change;
-- a subsystem responsibility moves;
-- a previously open design choice is deliberately frozen.
-
-Default transaction:
+A probe, implementation contract, audit task or other bounded research document goes in `docs/work/active/` and declares:
 
 ```text
-update owning architecture/design authority
-→ update current-state pointer if it changes active work
-→ update index only if retrieval routing changed
-→ check whether another planned responsibility now materially depends on the decision
-→ no Evidence Ledger entry unless the decision also asserts a tested/source fact
+**Status:** ACTIVE
 ```
 
-Do not update unrelated evidence/history/reference documents merely because a design discussion occurred.
+Do not create new temporary task/probe documents in the root `docs/` directory.
 
-If the decision changes project purpose, long-term direction, scope or authority topology rather than technical architecture inside the existing charter, treat it as a charter-level decision instead of hiding it in `DESIGN.md`.
+### While active
 
-### Event B — frozen Work handoff
+The document may contain detailed hypotheses, controls, implementation boundaries and reasoning necessary to run the investigation safely.
 
-Default transaction:
+Do not promote an unproven hypothesis into current reference merely because it appears in an active task document.
+
+### Closure
+
+A temporary document is not closed until this transaction completes:
 
 ```text
-confirm architecture already authoritative
-→ place the detailed frozen implementation contract in BETWEEN_CHATS when transient handoff detail is needed
-→ keep SESSION_ENTRYPOINT limited to current-state routing
-→ produce a short Work launcher containing repository/branch/base identity + instruction to read the frozen contract/protocol + publish/stop requirement
-→ do not duplicate the full contract into both Normal Chat and Work
-→ no broad documentation review
+result established
+-> exact evidence recorded when applicable
+-> reusable factual conclusion promoted to current reference
+-> architecture consequence promoted to owning architecture
+-> significant non-obvious rationale -> ADR when warranted
+-> future-use/index route checked
+-> current-state pointer updated if needed
+-> temporary document moved to docs/archive/investigations/
+-> knowledge-state validation passes
 ```
 
-The purpose of the short launcher is not brevity for its own sake. It keeps one authoritative implementation contract, reduces context duplication in both chats, and avoids spending Work budget on project reconstruction.
+Hard closure question:
 
-Work should not be asked to reconstruct project history.
+> **If this temporary document disappeared from ordinary retrieval tomorrow, has every reusable conclusion already been promoted to its durable owner?**
 
-### Event C — Work implementation completed
+If no, closure is incomplete.
 
-Normal Chat first performs the independent source review required by `WORK_IMPLEMENTATION_PROTOCOL.md`.
-
-Default transaction after review:
-
-```text
-implementation matches contract
-→ record exact implementation/commit state only where current continuation needs it
-→ preserve semantic authorities unchanged unless implementation exposed a real contradiction
-
-implementation exposed contradiction
-→ return to design
-→ update authority only after the contradiction is interpreted/resolved
-```
-
-A source commit is not engine evidence.
-
-### Event D — build / load result
-
-Default transaction:
-
-```text
-build/load passes and this was expected
-→ usually only advance current test gate
-
-build/load establishes a reusable toolchain/API fact
-→ evidence/reference authority may also update
-
-build/load fails
-→ diagnose locally; do not rewrite architecture unless failure reveals an architectural/API contradiction
-```
-
-### Event E — controlled runtime result
-
-This is the main evidence transaction.
-
-Default transaction:
-
-```text
-preserve uploaded raw log(s)/source artifact(s)
-→ interpret every artifact in the just-uploaded batch
-→ add/update exact EV representation for every completed test/run
-→ update EVIDENCE_INDEX if a route/range materially changes OR a concrete future responsibility now needs a route back to the result
-→ update owning design/reference authority only if its semantic model changed
-→ preserve workaround-reason links if the result may later justify simplification
-→ update SESSION_ENTRYPOINT / BETWEEN_CHATS when the active gate/direction changes
-→ move each processed artifact raw → archive immediately when no longer active/unprocessed
-→ verify research/raw contains only Keep.txt plus explicitly active/unprocessed artifacts
-→ verify current-state pointers and current test authority agree
-→ only then issue the next runtime batch
-```
-
-The User may upload two or three related logs together. That is one **publication batch**, not permission to postpone maintenance until the whole campaign ends. Normal Chat owns this closure automatically; the User should not need to request evidence/doc/archive cleanup after each batch.
-
-Repeated confirmation of an already-established fact may require only provenance/archive handling and no architecture edit.
-
-### Event F — stable subsystem / promotion checkpoint
-
-Use a somewhat broader but still scoped review:
-
-- stable public/reusable knowledge;
-- current subsystem architecture;
-- evidence qualifications;
-- implementation readiness;
-- future-relevance routes created by the subsystem;
-- `main` promotion set;
-- archive/current-state cleanup;
-- lightweight knowledge-system health check for the affected subsystem.
-
-Before beginning that formal review, apply POP-10: confirm the project charter hierarchy and the intended role of the affected authorities. This prevents the checkpoint review from flattening specialist documents into peers or treating layered operationalization as accidental duplication.
-
-This is an appropriate time for consolidation. It is still not automatically a whole-repository audit and does not automatically open CAM-layer promotion.
+Archive preserves history; it is not a deletion step.
 
 ---
 
-## 5. Evidence Intake and Archival Lifecycle
+## 6. Evidence ledger lifecycle
 
-Use:
+### Current ledger
 
-```text
-new/unprocessed artifact(s)
-→ research/raw/
-→ publish one test or small intentional batch
-→ interpret every uploaded artifact against its frozen test
-→ canonical EV/result representation for every completed test/run
-→ durable technical value routed to authority/index/current-state if needed
-→ processed artifacts moved immediately to research/archive/
-→ raw inventory + current-state consistency verified
-→ next batch only after closure
-```
-
-An artifact may remain in `research/raw/` while:
-
-- its interpretation is incomplete;
-- it is still being compared with another control;
-- a question in the current causal gate remains unresolved.
-
-Once its relevant result is represented canonically and it is no longer active input, move it to archive without changing the artifact contents.
-
-`research/archive/` is deep provenance, not dead material.
-
----
-
-## 6. Current-State Maintenance
-
-### Current-state drift check
-
-When a meaningful event creates an unexpected runtime/build/source contradiction, suspends the planned gate, makes an isolation experiment prerequisite, requires crash/safety hardening, makes contradiction-resolution the immediate responsibility, or otherwise materially changes what comes next while the higher-level gate/test ID remains unchanged, Normal Chat must ask:
-
-> **If a fresh Normal Chat followed `SESSION_ENTRYPOINT.md` literally right now, would it begin with the correct immediate responsibility?**
-
-If the answer is **no**, update `SESSION_ENTRYPOINT.md` in the same maintenance transaction.
-
-The enclosing gate remaining conceptually active does not justify pointing a fresh Chat at work that is currently unsafe, blocked, suspended or premature. Temporary prerequisite, isolation, contradiction-resolution or hardening work is durable current state for as long as it is the actual next responsibility. Keep the entry point compact: describe the current route back toward the larger gate, not the detailed chronology.
-
-Apply this check only to a **material** change in what a fresh Normal Chat should actually do next. Routine debugging substeps, expected build/test continuation and other minor detours do not require entrypoint churn.
-
-The responsibilities are distinct:
-
-- `SESSION_ENTRYPOINT.md` = what a fresh Normal Chat should understand and do now;
-- `BETWEEN_CHATS.md` = exact short-lived details needed to continue that already-current responsibility across contexts.
-
-`BETWEEN_CHATS.md` is not a substitute for correcting a stale `SESSION_ENTRYPOINT.md`.
-
-### `SESSION_ENTRYPOINT.md`
-
-Update when:
-
-- active subsystem changes;
-- current causal gate changes;
-- the immediate architecture candidate materially changes;
-- a test gate is completed and the next responsibility becomes different;
-- temporary prerequisite, isolation, contradiction-resolution or safety/hardening work materially replaces the immediate responsibility, even if the enclosing gate ID or long-term objective does not change.
-
-Do **not** add the full history of how the current state was reached.
-
-If the entrypoint must keep growing to preserve many unrelated future-use notes, move those routes to indexes/authorities and keep only the ones necessary for the active subsystem or a particularly easy-to-lose near-future dependency.
-
-### `BETWEEN_CHATS.md`
-
-Use only when there is a real transient handoff that another context needs.
-
-Replace/overwrite rather than accumulate chronology.
-
-When the receiving context has incorporated the state into durable authorities, `BETWEEN_CHATS.md` can become minimal again.
-
----
-
-## 7. Index Maintenance
-
-An index is updated when **retrieval changes**, not every time underlying evidence grows.
-
-Retrieval can change because a new topic appears **or because existing knowledge becomes materially relevant to a different future responsibility**.
-
-Examples:
-
-Update `EVIDENCE_INDEX.md` when:
-
-- a new evidence range opens;
-- an existing topic now routes to a materially different EV range;
-- a major new search term/symbol/subsystem needs a route;
-- a concrete future implementation/refactor responsibility now depends on evidence that its normal topic route would otherwise miss;
-- new evidence may allow an existing workaround to be simplified and the future refactor must retrieve both the newer evidence and the original workaround/regression evidence.
-
-Do not update it merely because EV-174 is another confirmation already covered by an existing row.
-
-Update `ANIMATION_INDEX.md` when:
-
-- a new animation knowledge category appears;
-- an existing question should route to a different section/data source;
-- a new family/search route becomes materially useful.
-
-### Cross-route restraint
-
-Future-relevance routing must remain selective.
-
-Prefer:
+Exactly **one** evidence ledger may remain in the active `docs/` root:
 
 ```text
-one concise index row/pointer
-→ owning authority / exact evidence range
+EVIDENCE_LEDGER_<first-open-EV>_ONWARD.md
 ```
 
-over:
+All closed volumes live under:
 
 ```text
-copying the same finding into several subsystem documents
+docs/archive/evidence/
 ```
 
-If a future responsibility would need to open many documents before it can act, that is a signal to improve routing or consolidate authority—not a reason to duplicate more prose.
+`EVIDENCE_INDEX.md` routes EV ranges to the correct volume.
 
----
+### New entry format
 
-## 8. Full Reviews / Audits — Exceptional Triggers
-
-A broad review is appropriate when:
-
-- authority boundaries themselves changed;
-- a major subsystem is being declared stable or promoted to `main`;
-- contradictions appear across several authorities;
-- many local updates accumulated without clear ownership;
-- a long period of development suggests index/registry drift;
-- the repository is being reorganized or its knowledge schema changes;
-- a health check is deliberately scheduled after substantial growth;
-- ordinary work repeatedly requires too many documents or broad searches to recover one responsibility;
-- indexes accumulate so many cross-routes that they stop narrowing retrieval;
-- current-state/bootstrap documents become large enough to recreate the context-window problem the repository is meant to solve.
-
-A full review is **not** the normal response to:
-
-- one new test;
-- one new Work commit;
-- one compile failure;
-- one new animation fixture;
-- another confirmation of an already-canonical fact;
-- one new future-relevance route.
-
-### Mandatory review/audit preflight
-
-Every formal review/audit covered by this section must begin with POP-10 in `PROJECT_OPERATING_PROCEDURES.md`.
-
-Before findings, the reviewer must be able to state:
+New EV entries are provenance-first and concise:
 
 ```text
-CAM → Gothic project charter → relevant specialist authorities → procedure/task layer
-review scope
-intended use / owner of each major target
-higher-level intent that must be preserved
-what the review is not authorized to redefine
+EV ID + short title
+Observed
+Scope / limits
+Provenance
+Disposition
 ```
 
-The reviewer must read/confirm `README.md` §0 and each target's Purpose/Scope/Status before judging contradiction, duplication or cleanup. If that hierarchy/intended-use model is not clear, the review has not started yet.
+Do not repeat a long causal narrative once the reusable result has a current reference owner.
 
-This does not require loading every project document or the whole CAM repository. It requires enough targeted retrieval to understand authority before evaluation.
+### Rotation
 
-### Knowledge-system health check during an audit/review
+Rotate the active ledger at a natural closed checkpoint and **before it becomes a routine context burden**. The mechanical validator warns above 64 KiB; do not treat that warning as a target to reach.
 
-When an audit/review is already justified, explicitly inspect whether the knowledge system itself is becoming a burden. Check for:
-
-- duplicated narrative facts maintained in several authorities **after accounting for deliberate layering between charter, specialist rule and procedure**;
-- documents whose responsibilities substantially overlap at the same ownership layer;
-- indexes that point to too many documents instead of narrowing the search;
-- one future task requiring a broad repository scan despite existing indexes;
-- `SESSION_ENTRYPOINT.md` or subsystem-orientation context growing beyond what a fresh chat should reasonably load;
-- too many “read these first” documents;
-- large active documents containing substantial obsolete/superseded material that should be archived or compressed;
-- `research/raw/` accumulating already-processed evidence;
-- cross-routes that were speculative and never became useful;
-- future-relevance rules becoming so permissive that every finding links to many subsystems.
-
-Possible audit remedies include:
-
-- tighten future-relevance criteria;
-- remove redundant cross-routes;
-- merge overlapping authorities only when one responsibility truly exists at the same layer;
-- preserve necessary higher-to-lower operationalization rather than deleting it as superficial repetition;
-- archive/compress obsolete narrative while preserving provenance;
-- improve one index route instead of adding another document;
-- shorten bootstrap/current-state pointers;
-- move deep proof/history out of hot-path documents.
-
-### Early-warning obligation outside audits
-
-Do **not** run a full audit merely because a possible bloat issue is noticed during normal engineering work.
-
-However, if Normal Chat notices clear evidence that document growth, retrieval fan-out, duplicated authorities, or required context is becoming counterproductive, it should **tell the User proactively** and identify the concrete symptom. Then choose the smallest response:
+Rotation transaction:
 
 ```text
-local cleanup if obvious and safe
-OR
-record as an audit concern for the next suitable stabilization/review point
-OR
-recommend a scoped audit if the problem is already materially degrading work
+close current last EV
+-> verify EVIDENCE_INDEX routes the completed range
+-> move closed ledger to docs/archive/evidence/
+-> open next EVIDENCE_LEDGER_<next-EV>_ONWARD.md
+-> update SESSION_ENTRYPOINT latest/current-ledger pointer
+-> run knowledge-state validation
 ```
 
-This warning responsibility is part of normal collaboration; the full health check remains exceptional.
+Never renumber EVs. Ledger movement is storage-only.
 
 ---
 
-## 9. Future Mechanical Automation
+## 7. Runtime evidence lifecycle
 
-The current protocol is assistant-driven and repository-driven; it requires no separate request from the User.
+Runtime artifacts remain:
 
-Later, if the pattern proves stable, parts can be mechanically validated without changing semantic authority. Useful candidates include:
+```text
+research/raw/      unprocessed/open intake only
+research/derived/  deterministic retrieval aids
+research/archive/  processed canonical runtime provenance
+```
 
-- broken cross-reference detection;
-- duplicate/competing `Status: current` ownership warnings;
-- EV-range/index consistency checks;
-- `research/raw/` age/processed-status reminders;
-- branch knowledge-promotion manifests;
-- stale `BETWEEN_CHATS.md` warnings;
-- registry paths/heading existence checks;
-- index fan-out / “too many first-hop documents” warnings;
-- unusually large hot-path/bootstrap document warnings.
+For every uploaded batch under POP-06:
 
-A validator should detect maintenance problems, not decide engineering meaning.
+```text
+preserve source unchanged
+-> interpret every artifact
+-> record canonical EV conclusion
+-> promote reusable current fact
+-> archive processed source when no active comparison remains
+-> verify research/raw/ contains only genuinely open inputs
+```
 
-Do not build automation until repeated manual use shows which checks are genuinely valuable.
-
----
-
-## 10. User Responsibility
-
-The User remains responsible for vision, desired behavior, priorities, observations and authoritative local runtime testing.
-
-The User should **not** need to manage repository housekeeping after each normal engineering step, nor remember to ask whether a finding should be made discoverable for a future subsystem.
-
-Normal Chat owns the maintenance trigger check, future-relevance check, and important early-warning responsibility for knowledge-system bloat. It should report important durable updates as part of the result.
-
-If no document needs changing, it can simply continue; absence of documentation churn is healthy when no authority or retrieval route changed.
+A derived package helps retrieval but never replaces canonical source provenance.
 
 ---
 
-## Core Rule
+## 8. Current-state discipline
 
-> **Every meaningful event updates the smallest owning records automatically. Preserve the project charter as the highest Gothic-specific purpose/direction/topology authority beneath CAM; preserve knowledge once, route to it by both present topic and concrete future responsibility when needed, preserve the reason behind workarounds before simplifying them, keep bounded Work contracts authoritative in the repository rather than duplicated into launch prompts, keep CAM as the constitutional collaboration layer while reserving CAM evolution for a separate deliberate responsibility, deliberately bring adopted CAM evolution back into the charter/affected Gothic authorities, and keep full audits rare. When a formal audit is justified, establish hierarchy and intended use first through POP-10. If the retrieval system itself starts creating context or document bloat, surface that problem early and use audits/stabilization points to tighten it.**
+`SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` are small replaceable pointers, not history stores.
+
+### SESSION_ENTRYPOINT
+
+Own only:
+
+- current branch/state;
+- current gate/responsibility;
+- latest relevant evidence checkpoint;
+- exact immediate next route;
+- minimal safety/recovery cues.
+
+Established subsystem history belongs in current reference/architecture/evidence, not here.
+
+### BETWEEN_CHATS
+
+Own only short-lived continuation details that another context genuinely needs and that are not already obvious from current authorities.
+
+Replace rather than accumulate.
+
+If either current-state file starts carrying old campaigns, audit chronology or detailed proof, move that material to its proper owner and compress the pointer.
+
+---
+
+## 9. Decision-record lifecycle
+
+Create ADRs under `docs/decisions/`.
+
+Accepted ADRs are not rewritten to make history look cleaner. If a later choice changes the decision:
+
+```text
+new ADR
+-> old ADR status = Superseded by ADR-xxxx
+-> current architecture/reference updated to the new rule
+```
+
+ADRs explain rationale; they do not replace current architecture or evidence.
+
+---
+
+## 10. Future-relevance and workaround checks
+
+When a finding materially affects a foreseeable future responsibility, make that fact retrievable from the current owner with the smallest route necessary.
+
+When new knowledge makes an old workaround potentially unnecessary:
+
+1. preserve why the workaround existed;
+2. identify the invariants/regressions it protects;
+3. reevaluate it deliberately;
+4. remove/simplify only when those protections are demonstrably retained.
+
+Do not let new knowledge silently strand historical workarounds.
+
+---
+
+## 11. Archive policy
+
+`docs/archive/` is cold provenance.
+
+Ordinary orientation/search must not scan it. Open archive material only when:
+
+- a current reference/evidence pointer requires exact historical detail;
+- a contradiction appears;
+- an audit needs provenance;
+- a current statement cannot be verified from its normal evidence route.
+
+Closed archive material is preserved; it is not a second current authority.
+
+Git history remains the fallback for old wording and path history.
+
+---
+
+## 12. Mechanical automation
+
+Canonical validator:
+
+```text
+python tools/knowledge/validate_knowledge_state.py
+```
+
+It checks at minimum:
+
+- exactly one active evidence ledger remains in `docs/`;
+- closed ledger volumes are not left in the active surface;
+- temporary probe/task/correction/implementation/refactor filenames are not left in root `docs/`;
+- active temporary documents declare ACTIVE status;
+- required rule/procedure authorities route to this lifecycle;
+- ordinary/current Markdown links resolve;
+- required archive/work directories exist.
+
+GitHub Actions runs the same validator on relevant pushes and pull requests.
+
+Automation catches structural drift; it does not decide whether technical conclusions are correct.
+
+---
+
+## 13. Full reviews / audits
+
+Routine work uses local maintenance transactions.
+
+A broad review is justified by repeated drift, conflicting owners, inability to retrieve settled knowledge, uncontrolled document growth, or another structural problem that cannot be repaired locally.
+
+Formal review begins with POP-10. It must preserve the distinction between:
+
+```text
+current knowledge
+current architecture
+decision rationale
+evidence/provenance
+temporary/history
+```
+
+unless the User deliberately changes the project knowledge model.
+
+---
+
+## 14. User responsibility
+
+The User decides project direction and higher-level intent.
+
+Normal Chat owns routine maintenance, promotion, archival, evidence closure and validator use automatically. The User should not need to remember housekeeping rules after every engineering step.
+
+---
+
+## Core rule
+
+> **Preserve proof deeply, present knowledge shallowly. Promote reusable conclusions before archiving temporary work. Keep only one current evidence ledger. Keep current-state files small. Start from reference/architecture and descend into evidence only when needed. Let automation detect lifecycle drift before it becomes context bloat.**
