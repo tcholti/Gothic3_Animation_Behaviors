@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-19
 
 ## Purpose
 
@@ -21,12 +21,13 @@ This file owns authority/update routing. It does not repeat the project charter,
 
 | Knowledge / project responsibility | Primary authority | Update when | Usually do NOT update when |
 |---|---|---|---|
-| project purpose / long-term direction / scope / authority topology / retrieval model / subsystem-orientation routes | `README.md` project charter | User-authorized purpose/direction/scope/topology change, or durable retrieval-model/current-context reconstruction structure materially changes | technical/evidence content changes inside already-valid specialist owner; routine current-state movement |
+| project purpose / long-term direction / scope / authority topology / retrieval model / subsystem-orientation routes | `docs/README.md` project charter | User-authorized purpose/direction/scope/topology change, or durable retrieval-model/current-context reconstruction structure materially changes | technical/evidence content changes inside already-valid specialist owner; routine current-state movement |
+| repository front-door startup routing for ordinary continuation and abrupt/max-context Chat recovery | root `/README.md` **Start Here** | the discoverable first hop or compact startup route changes | detailed recovery mechanics change inside already-valid POP-11; current responsibility movement inside SESSION_ENTRYPOINT |
 | current active subsystem / causal gate / immediate next responsibility | `SESSION_ENTRYPOINT.md` | active gate/subsystem/immediate candidate/next responsibility changes, including material temporary prerequisite/safety/contradiction/recovery route | routine continuation inside same route |
 | transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact short-lived continuation detail not already durable | ordinary project facts already live in durable authorities |
 | project-specific collaboration behavior / participant-tool allocation / Gothic↔CAM operationalization | `COLLABORATION_RULES.md` | recurring Gothic-specific collaboration lesson changes participant allocation, authorization/interaction behavior, or project-local CAM operationalization | technical result with no collaboration consequence; project purpose/topology change belonging in charter |
 | stable operating conventions: branch/state meanings, gate/test IDs, evidence/procedure IDs, raw/derived naming, build identity, document versioning, validation/artifact flow | `PROJECT_PIPELINE.md` | accepted convention changes or a new convention responsibility/transition is defined | routine use of established convention |
-| recurring project-local operations: Git handoff/sync, build/deploy/load, runtime-artifact intake/publish/closure, large-log/static retrieval, formal review preflight, Normal Chat continuity/recovery | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistake, one serious failure, clearly better recurring method, new recurring operation, or owned sequence changes | one-off command variation; review finding whose owner is another authority |
+| recurring project-local operations: Git handoff/sync, build/deploy/load, runtime-artifact intake/publish/closure, large-log/static retrieval, formal review preflight, and detailed Normal Chat continuity/recovery mechanics after the root README first hop | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistake, one serious failure, clearly better recurring method, new recurring operation, or owned sequence changes | one-off command variation; front-door startup-routing change owned by root `/README.md`; review finding whose owner is another authority |
 | workstation-specific repository/build/runtime paths | `LOCAL_WORKSTATION_PATHS.md` | actual local path changes or another workstation path becomes operationally necessary | portable procedure semantics or branch/build conventions |
 | bounded Work execution contract | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work authority/preflight/publication/stop/review/bounded-execution model changes | participant allocation without Work-execution change; unrelated technical result |
 | knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing, workaround reevaluation, audit-health/bloat process changes | ordinary technical result handled by existing process |
