@@ -354,7 +354,33 @@ NO weapon C1 cleanup obligation
 
 Frame 0 is a valid raw8 FIST frame in the tested Sabretooth Quick mechanism, but it rearms the opportunity immediately. EV-271 observed more frame-0 misses than frame 1 despite correct marker acceptance/timing-permission use. For practical authoring, place FIST near the intended physical contact rather than at frame 0 merely because frame 0 is legal.
 
-Current proven raw8 family scope is Normal/Power/Quick/Sprint and is tracked in `EVIDENCE_INDEX.md` / `COLLISION_TEST_PLAN.md`. Raw55/PhysicalFist is a separate permanent family-specific mechanism under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; it must not inherit raw8 latch semantics merely because both serialize as `Fist`.
+Current proven raw8 family scope is Normal/Power/Quick/Sprint and is summarized in `COLLISION_REFERENCE.md`. Raw55/PhysicalFist is a separate permanent mechanism under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; it must not inherit raw8 latch semantics merely because both serialize as `Fist`.
+
+### Raw55 / PhysicalFist FIST authoring
+
+Raw55 uses the same authored marker token:
+
+```text
+G3AB_COL_FIST
+```
+
+but a different runtime mechanism.
+
+Current supported/proven raw55 scope is factual current RIGHT PhysicalFist/raw55 in Normal, Quick, true Power and Sprint-origin marked executions. One or two authored FIST markers are supported. The first FIST owns the authored physical opening/contact opportunity; a later FIST in the same C1 rearms another contact opportunity without authoring another physical group opening.
+
+Author each FIST at the intended physical contact. Do not infer raw55 support merely from the serialized animation token `Fist`; runtime source identity decides raw8 vs raw55 behavior.
+
+Current exclusions:
+
+```text
+NO FIST_OFF
+NO LEFT raw55 generalization
+NO mixed FIST + equipped RIGHT/LEFT/BOTH/OFF execution
+NO more than two raw55 FIST markers
+NO custom/direct damage semantics
+```
+
+Evidence: EV-262–EV-298. Current behavior summary: `COLLISION_REFERENCE.md`.
 
 ---
 
