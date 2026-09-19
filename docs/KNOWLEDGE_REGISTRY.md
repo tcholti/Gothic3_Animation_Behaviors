@@ -13,7 +13,7 @@ This file owns authority/update routing. It does not repeat the project charter,
 
 > **One responsibility should have one primary authority. Other documents route to it.**
 
-`README.md` is the project charter and highest project-specific authority beneath CAM for purpose, long-term direction, scope, authority topology and retrieval model. This registry maps specialist responsibilities beneath that charter.
+`docs/README.md` is the project charter and highest project-specific authority beneath CAM for purpose, long-term direction, scope, authority topology and retrieval model. The repository root `/README.md` owns the discoverable Start Here front door. This registry maps those distinct responsibilities and the specialist responsibilities beneath the charter.
 
 ---
 
