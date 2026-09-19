@@ -1,0 +1,464 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + Raw8FistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=24117.117 Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=24117.137 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=24124.056 Event=PERSISTED Actor=PC_Hero Generation=1 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=24124.099 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=1 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=24124.114 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=24221.052 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=1 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=24221.084 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=1 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=24229.320 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=1 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE COLLISION_GROUP ElapsedMs=24340.817 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=24414.550 Actor=PC_Hero Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=25022.939 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=25022.951 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=25030.010 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=25030.042 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=2 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=25030.054 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=25129.466 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=2 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=25129.543 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=2 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=25135.649 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=2 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE COLLISION_GROUP ElapsedMs=25254.389 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=25489.419 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=28585.010 Actor=PC_Hero Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=28585.022 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=28585.090 Event=PERSISTED Actor=PC_Hero Generation=3 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=28585.108 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=3 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=28585.119 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=28690.627 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=3 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=28690.677 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=3 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=28697.906 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=3 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE COLLISION_GROUP ElapsedMs=28810.123 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=28876.176 Actor=PC_Hero Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=29271.220 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=29271.232 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=29274.712 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=29534.146 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=29535.872 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=29535.898 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=29827.041 Actor=PC_Hero Generation=4 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=30757.322 Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=30757.334 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=30767.096 Event=PERSISTED Actor=PC_Hero Generation=5 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=31025.461 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=5 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=31032.648 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=5 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=31032.740 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=31032.764 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE RAW8_FIST_TIMING ElapsedMs=31131.298 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=5 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=31131.328 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=5 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=31138.578 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=5 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE C1_FINAL ElapsedMs=31321.730 Actor=PC_Hero Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=37011.185 Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=37011.197 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=37011.263 Event=PERSISTED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=37011.281 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=6 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=37011.292 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=37128.547 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=6 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=37128.591 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=6 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=37135.981 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=6 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=37138.443 Ordinal=1 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=37142.474 Actor=Golem Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=37142.484 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=37142.923 Event=PERSISTED Actor=Golem Generation=7 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=37258.741 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=37324.571 Actor=PC_Hero Generation=6 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=37493.818 Actor=Golem Generation=7 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=37574.079 Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=37574.091 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=37574.149 Event=PERSISTED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=37593.837 Actor=PC_Hero Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=37597.486 Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=37597.496 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=37597.556 Event=PERSISTED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=37597.573 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=9 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=37597.583 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=37704.469 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=9 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=37704.498 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=9 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=37712.768 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=9 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE COLLISION_GROUP ElapsedMs=37842.118 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=37905.701 Actor=PC_Hero Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=38313.799 Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=38313.811 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=38313.989 Event=PERSISTED Actor=PC_Hero Generation=10 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=38314.048 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=10 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=38314.062 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=38420.472 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=10 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=38420.503 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=10 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=38430.517 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=10 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=38430.666 Ordinal=2 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=38438.156 Actor=Golem Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=38438.168 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=38438.528 Event=PERSISTED Actor=Golem Generation=11 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=38567.969 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=38628.007 Actor=PC_Hero Generation=10 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=38792.431 Actor=Golem Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=39073.458 Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=39073.484 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=39073.550 Event=PERSISTED Actor=PC_Hero Generation=12 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=39081.314 Actor=Golem Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=39081.326 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=39081.777 Event=PERSISTED Actor=Golem Generation=13 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=39097.096 Actor=PC_Hero Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=39098.106 Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=39098.115 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=39098.175 Event=PERSISTED Actor=PC_Hero Generation=14 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=39098.193 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=14 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=39098.204 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=39206.410 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=14 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=39206.440 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=14 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=39215.450 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=14 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE COLLISION_GROUP ElapsedMs=39340.703 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=39405.270 Actor=PC_Hero Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=39414.878 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=13 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=39415.277 Actor=Golem Family=SPRINT Action=9 Phase=1 Motion=Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=39415.295 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=39570.278 Ordinal=3 Target=PC_Hero Arg1=Fist Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Fist_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=39572.735 Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_STATUS ElapsedMs=39574.592 Event=PERSISTED Actor=PC_Hero Generation=15 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=39672.997 Actor=Golem Generation=13 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=40861.338 Actor=Golem Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=40861.349 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=40861.655 Event=PERSISTED Actor=Golem Generation=16 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=40861.678 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=41096.148 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=41233.166 Actor=Golem Generation=16 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=41241.113 Actor=Golem Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=41241.124 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=41241.417 Event=PERSISTED Actor=Golem Generation=17 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=41445.287 Actor=PC_Hero Generation=15 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=41690.320 Actor=Golem Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=41700.850 Actor=Golem Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=41700.861 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=41700.914 Event=PERSISTED Actor=Golem Generation=18 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=42151.574 Actor=Golem Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=42159.797 Actor=Golem Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=42159.823 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=42159.923 Event=PERSISTED Actor=Golem Generation=19 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=42615.323 Actor=Golem Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=43107.677 Actor=PC_Hero Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=43107.689 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=20 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_GetUpParade
+CORE C1_STATUS ElapsedMs=43111.306 Event=PERSISTED Actor=PC_Hero Generation=20 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=44056.343 Actor=PC_Hero Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=44318.382 Actor=Golem Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=44318.393 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=21 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=44318.450 Event=PERSISTED Actor=Golem Generation=21 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=44547.411 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=44694.170 Actor=Golem Generation=21 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=44886.539 Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=44886.551 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=44886.615 Event=PERSISTED Actor=PC_Hero Generation=22 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=44900.816 Actor=Golem Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=44900.828 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=44900.889 Event=PERSISTED Actor=Golem Generation=23 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=45148.293 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=22 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=45148.375 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=22 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=45148.388 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=45148.421 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE RAW8_FIST_TIMING ElapsedMs=45251.642 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=22 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=45251.673 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=22 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=45257.321 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=22 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=45261.160 Ordinal=4 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=45267.935 Actor=Golem Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=23 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=45267.946 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=45268.002 Event=PERSISTED Actor=Golem Generation=24 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=45437.589 Actor=PC_Hero Generation=22 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=45597.660 Actor=Golem Generation=24 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=46105.719 Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=46105.731 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=46105.801 Event=PERSISTED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=46116.531 Actor=Golem Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=46116.543 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=46116.598 Event=PERSISTED Actor=Golem Generation=26 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=46337.165 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_BIND ElapsedMs=46366.540 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=46366.622 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=46366.658 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=46472.811 Actor=Golem Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE ONDAMAGE ElapsedMs=46545.424 Ordinal=5 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=46551.491 Actor=Golem Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=46551.503 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=46551.798 Event=PERSISTED Actor=Golem Generation=27 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=46652.829 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=46883.733 Actor=Golem Generation=27 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47325.236 Actor=PC_Hero Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=47325.249 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=47325.316 Event=PERSISTED Actor=PC_Hero Generation=28 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=47340.162 Actor=Golem Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=47340.174 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=47340.231 Event=PERSISTED Actor=Golem Generation=29 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=47587.031 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=28 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=47587.117 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=28 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=47587.135 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=47587.172 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE RAW8_FIST_TIMING ElapsedMs=47688.005 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=28 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=47688.036 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=28 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=47694.630 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=28 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE C1_FINAL ElapsedMs=47770.702 Actor=Golem Generation=29 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47778.171 Actor=Golem Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=47778.183 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=47778.235 Event=PERSISTED Actor=Golem Generation=30 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=47871.833 Actor=PC_Hero Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=48084.490 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=30 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=48084.569 Actor=Golem Family=POWER Action=2 Phase=1 Motion=Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=48084.584 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=48442.875 Actor=Golem Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=48450.967 Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=48450.978 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=48451.073 Event=PERSISTED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=48466.624 Actor=Golem Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=48466.637 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=48466.702 Event=PERSISTED Actor=Golem Generation=32 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=48714.726 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=48714.813 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=48714.848 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=48897.043 Actor=Golem Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=49003.444 Actor=PC_Hero Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49524.095 Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=49524.107 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=49524.174 Event=PERSISTED Actor=PC_Hero Generation=33 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=49538.629 Actor=Golem Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=49538.641 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=49538.704 Event=PERSISTED Actor=Golem Generation=34 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=49786.092 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=33 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=49786.173 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=33 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=49786.186 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=49786.214 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE RAW8_FIST_TIMING ElapsedMs=49893.221 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=33 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=49893.250 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=33 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=49899.663 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=33 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE C1_FINAL ElapsedMs=49967.890 Actor=Golem Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49975.785 Actor=Golem Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=49975.795 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=49975.856 Event=PERSISTED Actor=Golem Generation=35 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=49975.876 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_FINAL ElapsedMs=50075.233 Actor=PC_Hero Generation=33 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=50208.087 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=50338.591 Actor=Golem Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50631.587 Actor=PC_Hero Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=50631.599 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=50631.664 Event=PERSISTED Actor=PC_Hero Generation=36 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=50646.122 Actor=Golem Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=50646.134 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=50646.196 Event=PERSISTED Actor=Golem Generation=37 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=50898.053 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=36 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=50898.134 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=50898.168 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=51075.739 Actor=Golem Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=51178.772 Actor=PC_Hero Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=51564.383 Actor=Golem Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=51564.395 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=51564.451 Event=PERSISTED Actor=Golem Generation=38 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=51662.274 Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=51662.286 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=51662.344 Event=PERSISTED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=51787.141 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=51926.808 Actor=Golem Generation=38 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=51927.148 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=51927.208 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=39 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=51927.223 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=51927.248 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=51933.739 Actor=Golem Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=51933.751 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=51933.812 Event=PERSISTED Actor=Golem Generation=40 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_TIMING ElapsedMs=52030.963 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=39 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=52030.993 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=39 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=52038.785 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=39 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=52038.931 Ordinal=6 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=52046.065 Actor=Golem Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=40 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=52046.077 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=52046.140 Event=PERSISTED Actor=Golem Generation=41 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=52216.422 Actor=PC_Hero Generation=39 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=52376.754 Actor=Golem Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52804.493 Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=52804.505 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=52804.572 Event=PERSISTED Actor=PC_Hero Generation=42 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=52819.075 Actor=Golem Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=52819.087 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=52819.143 Event=PERSISTED Actor=Golem Generation=43 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=53067.007 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=42 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=53067.095 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=53067.133 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=53254.328 Actor=Golem Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=53260.649 Actor=Golem Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=53260.661 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=53260.712 Event=PERSISTED Actor=Golem Generation=44 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=53359.623 Actor=PC_Hero Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=53570.496 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=44 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=53570.572 Actor=Golem Family=POWER Action=2 Phase=1 Motion=Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=53570.588 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=53929.063 Actor=Golem Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=55120.479 Actor=Golem Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=55120.491 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=55120.558 Event=PERSISTED Actor=Golem Generation=45 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=55120.574 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=55131.254 Actor=PC_Hero Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=55131.265 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=55131.329 Event=PERSISTED Actor=PC_Hero Generation=46 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=55131.344 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=46 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=55131.355 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=55227.685 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=46 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=55227.715 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=46 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=55235.938 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=46 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=55239.796 Ordinal=7 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=55246.449 Actor=Golem Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=45 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=55246.461 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=55246.524 Event=PERSISTED Actor=Golem Generation=47 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=55355.211 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=55414.422 Actor=PC_Hero Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=55570.033 Actor=Golem Generation=47 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=55980.441 Actor=Golem Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=55980.453 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=55980.510 Event=PERSISTED Actor=Golem Generation=48 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=56033.429 Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=56033.441 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=56033.573 Event=PERSISTED Actor=PC_Hero Generation=49 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=56058.059 Actor=PC_Hero Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=56059.059 Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=56059.081 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=56059.166 Event=PERSISTED Actor=PC_Hero Generation=50 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=56059.181 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=50 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=56059.191 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=56155.858 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=50 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=56155.892 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=50 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=56163.563 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=50 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=56163.778 Ordinal=8 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=56169.502 Actor=Golem Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=48 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=56169.514 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=51 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=56169.575 Event=PERSISTED Actor=Golem Generation=51 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=56276.588 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=56344.406 Actor=PC_Hero Generation=50 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=56503.307 Actor=Golem Generation=51 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=56917.707 Actor=Golem Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=56917.718 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=56917.773 Event=PERSISTED Actor=Golem Generation=52 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=57137.205 Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=57137.217 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=57137.278 Event=PERSISTED Actor=PC_Hero Generation=53 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=57137.294 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=53 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=57137.305 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=57144.137 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE RAW8_FIST_TIMING ElapsedMs=57235.822 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=53 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=57235.852 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=53 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=57243.960 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=53 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=57244.107 Ordinal=9 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=57251.115 Actor=Golem Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=52 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=57251.127 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=54 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=57251.186 Event=PERSISTED Actor=Golem Generation=54 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=57366.744 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=57423.972 Actor=PC_Hero Generation=53 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=57575.186 Actor=Golem Generation=54 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58004.346 Actor=Golem Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=58004.372 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=58004.444 Event=PERSISTED Actor=Golem Generation=55 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=58118.756 Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=58118.768 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=58118.828 Event=PERSISTED Actor=PC_Hero Generation=56 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=58118.842 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=56 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=58118.852 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=58222.344 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=56 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=58222.375 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=56 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE COLLISION_GROUP ElapsedMs=58231.181 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE RAW8_FIST_TIMING ElapsedMs=58231.448 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=56 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=58233.812 Ordinal=10 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=58240.500 Actor=Golem Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=55 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=58240.512 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=58240.574 Event=PERSISTED Actor=Golem Generation=57 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=58348.266 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=58408.849 Actor=PC_Hero Generation=56 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=58571.616 Actor=Golem Generation=57 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58993.491 Actor=Golem Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=58993.502 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=58 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=58993.557 Event=PERSISTED Actor=Golem Generation=58 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=59220.806 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=59355.077 Actor=Golem Generation=58 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=59408.851 Actor=PC_Hero Generation=59 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=59408.864 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=59 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=59408.930 Event=PERSISTED Actor=PC_Hero Generation=59 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=59408.948 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=59 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=59408.959 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE RAW8_FIST_TIMING ElapsedMs=59519.065 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=59 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=59519.095 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=59 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=59526.537 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=59 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=59526.666 Ordinal=11 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=59534.603 Actor=Golem Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=59534.615 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=60 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=59534.723 Event=PERSISTED Actor=Golem Generation=60 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=59638.598 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=59700.760 Actor=PC_Hero Generation=59 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=59878.642 Actor=Golem Generation=60 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=60413.117 Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=60413.130 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=60413.194 Event=PERSISTED Actor=PC_Hero Generation=61 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=60413.212 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=61 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=60413.223 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=60420.645 Actor=Golem Generation=62 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=60420.657 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=62 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=60420.710 Event=PERSISTED Actor=Golem Generation=62 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_TIMING ElapsedMs=60514.654 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=61 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=60514.685 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=61 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=60523.241 Actor=PC_Hero Action=1 Family=NORMAL Motion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot C1=61 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=60523.361 Ordinal=12 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE COLLISION_GROUP ElapsedMs=60637.905 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=60707.092 Actor=PC_Hero Generation=61 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=60729.267 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=62 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=60729.342 Actor=Golem Family=SPRINT Action=9 Phase=1 Motion=Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=60729.404 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=60974.083 Actor=Golem Generation=62 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=60982.521 Actor=Golem Generation=63 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=60982.533 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=63 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=60982.593 Event=PERSISTED Actor=Golem Generation=63 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=61214.177 Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=61214.188 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=61214.252 Event=PERSISTED Actor=PC_Hero Generation=64 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=61295.049 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=63 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=61295.125 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_BIND ElapsedMs=61482.106 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=64 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE RAW8_FIST_OWNERSHIP ElapsedMs=61482.187 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=64 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+CORE ATTACK_OWNERSHIP ElapsedMs=61482.201 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=61482.233 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=61546.248 Actor=Golem Generation=63 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=61554.907 Actor=Golem Generation=65 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=61554.919 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=65 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=61554.978 Event=PERSISTED Actor=Golem Generation=65 Status=PERSISTED Outstanding=0
+CORE RAW8_FIST_TIMING ElapsedMs=61585.906 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=64 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+CORE MARKER ElapsedMs=61585.936 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=64 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+CORE RAW8_FIST_TIMING ElapsedMs=61592.247 Actor=PC_Hero Action=2 Family=POWER Motion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot C1=64 Raw8Fist=Fist Raw8UseType=8 PermissionConsumed=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_USED
+CORE ONDAMAGE ElapsedMs=61592.473 Ordinal=13 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_FINAL ElapsedMs=61774.573 Actor=PC_Hero Generation=64 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=61869.702 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=65 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=61869.783 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=62112.826 Actor=Golem Generation=65 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=62119.209 Actor=Golem Generation=66 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=62119.222 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=66 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=62119.283 Event=PERSISTED Actor=Golem Generation=66 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=62268.391 Actor=PC_Hero Generation=67 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=62268.403 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=67 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=62268.471 Event=PERSISTED Actor=PC_Hero Generation=67 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=62435.957 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=66 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=62436.035 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_BIND ElapsedMs=62535.503 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=67 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=62535.582 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=62535.616 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=62675.858 Actor=Golem Generation=66 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=62683.821 Actor=Golem Generation=68 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=62683.832 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=68 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=62683.889 Event=PERSISTED Actor=Golem Generation=68 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=62707.049 Ordinal=14 Target=Golem Arg1=Fist Arg2=PC_Hero Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_FINAL ElapsedMs=62815.394 Actor=PC_Hero Generation=67 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=62995.005 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=68 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=62995.086 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=63234.638 Actor=Golem Generation=68 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=64442.742 Actor=Golem Generation=69 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=64442.754 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=69 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=64442.817 Event=PERSISTED Actor=Golem Generation=69 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=64442.833 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+Script_FrameCollisionTest unloading cleanly.
