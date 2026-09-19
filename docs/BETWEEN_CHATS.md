@@ -10,7 +10,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **Sprint-origin continuation correction — EV-322 positive PASS; negative + true-Power controls pending.** Phase 4 remains held.
+Current gate: **Sprint-origin continuation correction — EV-322 positive PASS + EV-323 negative PASS; true-Power protected control pending.** Phase 4 remains held.
 
 Active correction:
 
@@ -20,20 +20,18 @@ Reviewed implementation:
 
 `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`
 
-Evidence state:
+Runtime acceptance:
 
 ```text
-EV-320 old RIGHT->OFF behavior                     CONTINUATION GAP
-EV-321 BOTH with LEFT absent                       NEGATIVE PASS baseline
-EV-322 corrected RIGHT->OFF runtime                PASS
+EV-322 Goblin RIGHT -> OFF correction               PASS
+EV-323 Goblin BOTH with LEFT absent negative rerun  PASS
+true-Power protected control                        NEXT
 ```
 
-EV-322 repeated six complete Goblin P0 sequences. RIGHT opened the exact club 5 -> 7 under Action9/SPRINT; after same-C1 Action9 -> Action2, OFF was authorized as `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION`, remained factually logged as Action2/POWER, returned `OFF_ACCEPTED`, closed 7 -> 5 at OFF timing and finalized `Outstanding=0`. No OFF rejection or generation inconsistency remained.
+EV-323 confirms the correction did not weaken the required-source gate. Four factual P0 Sprint executions used `RequiredMask=3` with no LEFT source; all delegated native on `REQUIRED_EQUIPPED_SOURCE_MISSING`, no Sprint binding or continuation authorization was created, BOTH stayed rejected, native RIGHT still damaged, native cleanup returned 7 -> 5, and finalization was clean.
 
-Next runtime gates:
-1. rerun EV-321 BOTH with LEFT absent — must still delegate native on `REQUIRED_EQUIPPED_SOURCE_MISSING`, create no binding, reject BOTH, preserve native fallback and clean finalization;
-2. rerun EV-318 equipped 2H true Power — must remain outside Sprint-origin inheritance/authorization.
+Next gate: repeat the EV-318 player 2H true-Power fixture. It must remain under ordinary equipped-Power ownership with no Sprint-origin inheritance or marker authorization.
 
-Processed EV-322 raw log is archived; `research/raw/` should be clean except `Keep.txt`.
+Processed EV-323 raw log is archived; `research/raw/` should be clean except `Keep.txt`.
 
 Use `COLLISION_REFERENCE.md` for settled facts and `EVIDENCE_INDEX.md` for provenance.
