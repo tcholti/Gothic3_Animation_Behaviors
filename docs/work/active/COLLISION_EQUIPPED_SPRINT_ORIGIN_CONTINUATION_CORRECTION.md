@@ -1,6 +1,6 @@
 # Equipped Sprint Origin-Continuation Correction
 
-**Status:** ACTIVE — EV-322 POSITIVE RUNTIME PASS / NEGATIVE + TRUE-POWER CONTROLS PENDING  
+**Status:** ACTIVE — EV-322 POSITIVE + EV-323 NEGATIVE PASS / TRUE-POWER CONTROL PENDING  
 **Type:** Bounded diagnostic-only correction  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime interpretation.
@@ -275,3 +275,17 @@ Zero OFF rejection and zero `REJECTED_C1_GENERATION_INCONSISTENCY` occurred.
 EV-322 closes only the positive correction gate. Remaining required controls:
 1. EV-321 BOTH with LEFT absent negative rerun.
 2. EV-318 equipped true-Power protected control.
+
+
+## EV-323 runtime result
+
+Missing-LEFT/BOTH negative rerun: **PASS**.
+
+Four factual P0 Sprint executions scanned `RequiredMask=3` with RIGHT club present and LEFT absent. All delegated native with `REQUIRED_EQUIPPED_SOURCE_MISSING`; no Sprint binding was created and no continuation authorization occurred.
+
+Three BOTH markers arrived while still Sprint and were denied `NO_BOUND_EXECUTION` / rejected `REJECTED_UNSUPPORTED_HIT`. One arrived after the same C1 became Power and remained outside Sprint inheritance (`NO_BOUND_SPRINT_ORIGIN`), then generic processing rejected it as `UNSUPPORTED_MISSING_SOURCE`.
+
+All four preserved native RIGHT fallback, native damage, 7 -> 5 cleanup and `Outstanding=0`.
+
+Remaining required control:
+- EV-318 equipped 2H true Power must remain outside Sprint-origin inheritance/authorization.
