@@ -9,7 +9,7 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Technical active branch: `docs/collision-source-evidence`  
-Current gate: **generic equipped Sprint diagnostic causal probe — SOURCE REVIEW PASS / BUILD+RUNTIME PENDING**, with Goblin RIGHT/raw2 retained only as the first causal fixture. Phase 4 non-weapon regression is temporarily held.
+Current gate: **generic equipped Sprint diagnostic causal probe — GOBLIN FIRST FIXTURE PASS / PROTECTED SENTINELS PENDING**. Phase 4 non-weapon regression is temporarily held.
 
 Corrected closed state:
 
@@ -48,21 +48,22 @@ Active frozen task:
 
 Question: can factual Action9/Sprint use the established generic equipped RIGHT/LEFT/BOTH/OFF marker mechanism safely when native early `OnAI_PowerAttack` timing is suppressed, with ordinary complete-motion required-source validation deciding which equipped sources must exist? Goblin RIGHT/raw2 is the first test fixture only.
 
-Hard boundary: diagnostic-only temporary probe; no production promotion yet. Generic implementation `d2c6c8be0d56129ec6725571324a9066b181242c` has passed independent Normal Chat source review and is the exact next build/runtime candidate. It is not yet built or runtime-tested. Existing `1ae0731cd501e6d72bbbf6642188a3047d134805` remains superseded.
+Hard boundary: diagnostic-only temporary probe; no production promotion yet. Generic implementation `d2c6c8be0d56129ec6725571324a9066b181242c` passed source review, build/deploy/startup, and the first Goblin runtime causal fixture at EV-315. Live diagnostic DLL SHA256 is `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`. Existing `1ae0731cd501e6d72bbbf6642188a3047d134805` remains superseded.
 
 Runtime order is:
 
 ```text
-Goblin equipped Sprint/right/raw2 causal fixture FIRST
--> if PASS: Sabretooth raw8 Sprint sentinel
+EV-315 Goblin equipped Sprint/right/raw2 causal fixture PASS
+-> Sabretooth raw8 Sprint sentinel NEXT
 -> Troll/BlackTroll raw55 Sprint-origin sentinel
 -> one equipped true-Power sentinel
+-> additional factual equipped Sprint fixtures across available UseTypes/animation sets
 -> then decide permanent promotion
 ```
 
 Phase 4 remains held until this scope question is resolved.
 
-Latest closed evidence is EV-314. `research/raw/` is clean except `Keep.txt`.
+Latest closed evidence is EV-315. The EV-315 raw log is archived unchanged; `research/raw/` should be clean except `Keep.txt` after this closure transaction.
 
 The knowledge-lifecycle restructure, formal post-restructure audit, and bounded M-1 through M-5 corrections are CLOSED/PASS. Ordinary reference-first retrieval and automated knowledge-state validation are now the baseline.
 
