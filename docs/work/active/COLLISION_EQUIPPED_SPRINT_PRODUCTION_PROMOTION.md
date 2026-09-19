@@ -1,6 +1,6 @@
 # Equipped Sprint Production Promotion
 
-**Status:** ACTIVE — FROZEN RESPONSIBILITY / WORK IMPLEMENTATION PENDING  
+**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / BUILD+RUNTIME PENDING  
 **Type:** Bounded production-behavior promotion  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime acceptance.
@@ -258,3 +258,40 @@ Report:
 - confirmation that diagnostics do not own behavior;
 - build status;
 - material contradictions if any.
+
+
+## Independent Normal Chat source review
+
+Reviewed implementation:
+
+`218c7ab73815a9afc46fc3ea5ac7246998bc2b1b`
+
+Review result: **PASS — build/runtime still required.**
+
+Confirmed:
+- `EquippedSprintProbe.cpp/.h` are removed from active source.
+- Permanent `EquippedSprintCollision.cpp/.h` are part of `FRAME_COLLISION_BEHAVIOR_SOURCES`, so behavior-only and diagnostic targets compile the same Sprint behavior authority.
+- `EngineBridge` delegates to `EquippedSprintCollision` outside diagnostic compile guards; Sprint behavior is no longer enabled by diagnostics.
+- Diagnostic logging inside `EquippedSprintCollision` is fully guarded by `FRAME_COLLISION_DIAGNOSTICS`; behavior state/decisions do not require `CollisionDiagnostics`, `RuntimeClock`, an open log, or diagnostic-only hooks.
+- Existing generic attack ownership remains first in `OnAI_PowerAttack`; ordinary marked true Power therefore remains upstream of Sprint behavior.
+- Power/2 cannot create a Sprint binding. It can only preserve an already-bound Sprint origin when generation, motion, required-source mask, required-source availability and exact required source identities still match.
+- Missing required equipped sources still fail closed before Sprint binding creation.
+- Marker authorization remains limited to RIGHT / LEFT / BOTH / OFF.
+- `FrameCollisionMarkers` keeps generic source-set, OFF, occurrence/dedupe, marker-window and source-operation behavior.
+- Production marker bookkeeping now receives the permanent Sprint authorization directly and canonicalizes execution action to Action9 only for an explicitly authorized bound Sprint execution; factual current `markerAction` remains unchanged for diagnostics.
+- Permanent raw55 marker ownership still precedes generic equipped marker dispatch.
+- No species, raw2 or other Sprint-specific UseType gate was introduced.
+- Raw8/raw55 behavior, hook RVAs, lifecycle repair and target/contact/damage ownership were not changed by the promotion commit.
+
+Static limitations:
+- Work did not build either target under the implementation protocol.
+- This review therefore cannot establish compile/link correctness, behavior-only startup purity, or runtime equivalence.
+- Do not mark equipped Sprint production support accepted until the build/startup/runtime gates frozen below pass.
+
+Next acceptance gate:
+1. build `Script_FrameCollisionBehaviorTest`;
+2. build `Script_FrameCollisionTest`;
+3. verify behavior-only startup/load without diagnostics;
+4. run diagnostic EV-322/323/324 compact controls;
+5. run behavior-only Goblin Sprint smoke;
+6. only then close/archive this promotion contract and promote the behavior baseline to permanent equipped-Sprint production support.
