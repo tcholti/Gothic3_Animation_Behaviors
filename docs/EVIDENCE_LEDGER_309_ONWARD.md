@@ -284,3 +284,29 @@ Disposition:
 - PASS — established equipped true Power remains structurally and behaviorally isolated from the temporary equipped-Sprint diagnostic seam.
 - Protected sentinel stage is COMPLETE/PASS: raw8 Sprint EV-316, raw55 Sprint-origin EV-317, equipped true Power EV-318.
 - Active investigation advances to additional factual equipped-Sprint fixtures across other available equipped UseTypes/animation sets before any permanent-promotion decision.
+
+### EV-319 — Ogre raw52 broader equipped-Sprint fixture NOT EXERCISED / regression healthy
+
+Observed:
+- The broader equipped-Sprint fixture attempt used `Ogre` with exact RIGHT `It_Axe_OgreMorningStar_01` / UseType 52 under the current diagnostic Sprint build.
+- The complete run contains **zero factual Ogre `Action=9 / Family=SPRINT` executions**. Therefore this run does not test the generic equipped-Sprint causal handoff for raw52 and cannot be counted as a Sprint PASS or FAIL.
+- Ogre instead exercised 10 factual true-Power ownership events, 10 Normal events and 6 Quick events. Twenty-eight Ogre RIGHT markers were accepted and 26 native damage events targeted `PC_Hero`.
+- All 72 Ogre C1 finalizations record `Outstanding=0`. No Ogre terminal repair was required.
+- Whole-log checks found no marker rejection, ownership contradiction, invariant warning, lifecycle issue, repair divergence, unresolved equipped-source outcome or `ReplacedOutstanding=1`.
+
+Interpretation:
+- **NOT EXERCISED** for the intended Sprint/raw52 question because the factual Action9 condition never occurred.
+- The run is still a healthy current-build regression control for Ogre Normal/Quick/true-Power raw52 and provides no evidence of collateral breakage.
+- Do not generalize EV-315's Goblin Sprint PASS to raw52 from this run.
+
+Provenance:
+- User upload branch state/head: `72889c76d6f493d7ffcfecc5ee55763b3e42411d`.
+- Reviewed diagnostic implementation: `d2c6c8be0d56129ec6725571324a9066b181242c`.
+- Built/live diagnostic DLL SHA256: `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`.
+- Canonical archived log: `research/archive/2026-09-19_equipped_sprint_ogre_raw52_causal_fixture.log`.
+- Git blob `89482478d09fd4756a95bdb2d25cc67b781f203c`; 330,147 characters / 1,719 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- Do not repeat this same Ogre setup merely to accumulate ordinary Power/Normal/Quick traffic.
+- Continue broader Sprint-fixture discovery using evidence for which actors/routes can factually enter Action9.
