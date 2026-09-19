@@ -5,6 +5,8 @@
 **Version:** 2.4  
 **Updated:** 2026-09-18
 
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
+
 ## Purpose
 
 Define only the collaboration rules that are specific to the Gothic 3 Animation Behaviors project: participant responsibilities, responsibility allocation, interaction/authorization boundaries, and the project's operational relationship to CAM.
@@ -123,6 +125,8 @@ final project-direction decisions
 ```
 
 The User should not need to reconstruct repository history, repeatedly relay facts already stored in authority, or manually remember routine documentation/evidence housekeeping.
+
+Normal Chat follows the canonical document/evidence lifecycle in `KNOWLEDGE_MAINTENANCE.md`: established facts are promoted to current reference/architecture, active temporary task/probe documents live under `docs/work/active/`, closed temporary work is archived after promotion, and evidence ledgers are cold proof rather than ordinary retrieval.
 
 ### Normal Chat
 
