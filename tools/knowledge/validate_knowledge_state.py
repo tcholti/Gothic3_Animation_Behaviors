@@ -77,6 +77,37 @@ CURRENT_STATE_MAX_BYTES = {
     "BETWEEN_CHATS.md": 4 * 1024,
 }
 
+# Semantic route invariants protect the high-value rules that are easiest for a
+# later cleanup/review to accidentally make ambiguous while still passing
+# structural checks.
+REQUIRED_SNIPPETS = {
+    ROOT / "README.md": [
+        "canonical front door",
+        "If the previous Chat failed, hit max context, or became unusable",
+    ],
+    DOCS / "README.md": [
+        "root `README.md` **Start Here** → `SESSION_ENTRYPOINT.md`",
+        "Previous Chat died before handoff; what now?",
+    ],
+    DOCS / "SESSION_ENTRYPOINT.md": [
+        "Repository startup begins at root `README.md` **Start Here**",
+    ],
+    DOCS / "BETWEEN_CHATS.md": [
+        "start at root `README.md`",
+    ],
+    DOCS / "COLLABORATION_RULES.md": [
+        "discoverable first hop is always root `README.md` **Start Here**",
+    ],
+    DOCS / "KNOWLEDGE_MAINTENANCE.md": [
+        "Current reference tells us what we know.",
+        "Closed temporary work and closed ledger volumes are archived.",
+    ],
+}
+
+CLOSED_LEDGER_REF_PATTERN = re.compile(
+    r"EVIDENCE_LEDGER_(?!309_ONWARD\.md)(?:STEP_B|\d+_ONWARD)\.md"
+)
+
 
 def read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
@@ -159,6 +190,18 @@ def main() -> int:
                 f"knowledge-lifecycle route marker missing: {p.relative_to(ROOT)}"
             )
 
+    for p, snippets in REQUIRED_SNIPPETS.items():
+        if not p.exists():
+            errors.append(f"semantic-route file missing: {p.relative_to(ROOT)}")
+            continue
+        text = read(p)
+        for snippet in snippets:
+            if snippet not in text:
+                errors.append(
+                    f"required semantic lifecycle/startup rule missing from "
+                    f"{p.relative_to(ROOT)}: {snippet}"
+                )
+
     for name, max_bytes in CURRENT_STATE_MAX_BYTES.items():
         p = DOCS / name
         if p.exists() and p.stat().st_size > max_bytes:
@@ -172,6 +215,24 @@ def main() -> int:
         warnings.append(
             "EVIDENCE_INDEX.md exceeds 20 KiB; prefer routing compression over narrative growth"
         )
+
+    if evidence_index.exists():
+        index_text = read(evidence_index)
+        archive_evidence = ARCHIVE / "evidence"
+        archived_ledgers = sorted(
+            p for p in archive_evidence.glob("EVIDENCE_LEDGER*.md") if p.is_file()
+        )
+        for p in archived_ledgers:
+            if p.name not in index_text:
+                errors.append(
+                    f"archived evidence ledger is not routed by EVIDENCE_INDEX.md: "
+                    f"{p.relative_to(ROOT)}"
+                )
+        if len(active_ledgers) == 1 and active_ledgers[0].name not in index_text:
+            errors.append(
+                "active evidence ledger is not routed by EVIDENCE_INDEX.md: "
+                + active_ledgers[0].name
+            )
 
     collision_reference = DOCS / "COLLISION_REFERENCE.md"
     if collision_reference.exists() and collision_reference.stat().st_size > 24 * 1024:
@@ -187,6 +248,19 @@ def main() -> int:
                 errors.append(
                     f"stale current-document reference in {p.relative_to(ROOT)}: "
                     f"{old_name} -> use {replacement}"
+                )
+
+        # Closed ledger filenames belong behind EVIDENCE_INDEX routing. Current
+        # technical/reference/procedure documents should cite EV IDs, not bind
+        # themselves directly to old storage volumes. The index and migration
+        # map are the intentional exceptions.
+        if p.name not in {"EVIDENCE_INDEX.md", "EVIDENCE_PATH_MIGRATIONS.md"}:
+            match = CLOSED_LEDGER_REF_PATTERN.search(text)
+            if match:
+                errors.append(
+                    f"direct closed-ledger filename reference in current document "
+                    f"{p.relative_to(ROOT)}: {match.group(0)}; cite EV IDs and route "
+                    f"storage through EVIDENCE_INDEX.md"
                 )
 
     # Validate ordinary/current Markdown links. Archive documents are provenance
