@@ -1,6 +1,6 @@
 # Generic Equipped Sprint Causal Probe
 
-**Status:** ACTIVE — EV-320 CONTINUATION GAP / BOUNDED CORRECTION REQUIRED  
+**Status:** ACTIVE — DIAGNOSTIC CAUSAL CASE ACCEPTED / PRODUCTION-PROMOTION DECISION NEXT  
 **Type:** Bounded diagnostic-only causal implementation  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and interprets runtime result.
@@ -391,13 +391,23 @@ This is a bounded implementation gap: the execution is still the same C1, motion
 
 Correction authority is frozen separately in:
 
-`docs/work/active/COLLISION_EQUIPPED_SPRINT_ORIGIN_CONTINUATION_CORRECTION.md`
+`docs/archive/investigations/COLLISION_EQUIPPED_SPRINT_ORIGIN_CONTINUATION_CORRECTION.md`
 
 Do not broaden this into generic cross-action identity weakening.
 
 ### EV-321 — BOTH with missing LEFT negative PASS
 
 Controlled BOTH authoring produced RequiredMask=RIGHT|LEFT while the Goblin had only RIGHT. The Sprint probe correctly delegated native with REQUIRED_EQUIPPED_SOURCE_MISSING, created no bound Sprint execution, denied BOTH at the marker, and Gothic's native path still opened/damaged/cleaned RIGHT. This closes the missing-required-source negative path.
+
+### EV-322–EV-324 — continuation correction acceptance COMPLETE/PASS
+
+The bounded EV-320 correction was implemented at `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`, independently source-reviewed PASS, then runtime-accepted:
+
+- EV-322: RIGHT -> OFF positive continuation PASS. Same bound Sprint C1 survives current Action9 -> Action2; OFF is authorized as `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION`, remains factually logged Action2/POWER, is accepted and closes exact RIGHT 7 -> 5.
+- EV-323: BOTH with LEFT absent negative rerun PASS. `RequiredMask=3` still delegates native on missing LEFT, creates no Sprint binding, rejects BOTH and preserves native fallback.
+- EV-324: equipped 2H true-Power protected control PASS. Ordinary true Power remains under existing equipped-Power ownership; PC_Hero produces zero Sprint-probe records and zero continuation signatures.
+
+The diagnostic causal case is now accepted. Production equipped-Sprint support remains intentionally unpromoted pending an explicit parent-level promotion decision.
 
 ## Follow-up after first PASS
 
@@ -409,13 +419,14 @@ Only after Normal Chat independently reviews a Goblin PASS:
    - one equipped true-Power route = PASS at EV-318;
 2. exercise additional factual equipped Sprint fixtures across other available equipped UseTypes/animation sets where possible (for example Orc/Demon/Ogre/Stalker families already used in regression);
 3. deliberately authored fixtures EV-320–EV-321 are now available: missing-LEFT BOTH is PASS, while RIGHT->OFF exposed the same-C1 Action9->Action2 continuation gap;
-4. implement and validate the bounded origin-continuation correction before any permanent-promotion decision.
+4. bounded origin-continuation correction is accepted through EV-322–EV-324;
+5. next make the explicit production-promotion decision: whether to translate the proven diagnostic seam into behavior-facing architecture, with release-purity and diagnostics-free validation planned separately.
 
 Do not create production support, archive this task, or update settled collision reference facts merely because the code compiles.
 
 ## Build status
 
-Reviewed generic implementation `d2c6c8be0d56129ec6725571324a9066b181242c` = **BUILT / DEPLOYED / STARTUP PASS / FIRST GOBLIN RUNTIME PASS** with DLL SHA256 `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`.
+Reviewed generic implementation `d2c6c8be0d56129ec6725571324a9066b181242c` completed the initial causal/sentinel stages. Continuation correction `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` was independently reviewed, locally built/deployed, startup-verified and runtime-accepted through EV-322–EV-324. The exact post-correction DLL SHA256 was not captured in the Normal Chat transcript; do not reuse the earlier `A421...` hash as identity for the corrected build.
 
 The superseded `1ae0731...` implementation was **NOT BUILT / NOT RUNTIME TESTED**.
 
