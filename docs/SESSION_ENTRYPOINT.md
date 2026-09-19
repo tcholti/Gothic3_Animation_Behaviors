@@ -17,7 +17,7 @@
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
 Astra audit result/disposition: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`  
-Latest canonical evidence: **EV-301** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
+Latest canonical evidence: **EV-305** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
@@ -131,17 +131,58 @@ The four focused acceptance sources were archived byte-identically in:
 ```
 
 
-First standalone-regression batch is CLOSED/PASS:
+First two standalone-regression batches are CLOSED/PASS:
 
 ```text
-EV-299  1H        PASS
-EV-300  1H+torch  PASS
-EV-301  dual 1H   PASS
+EV-299  1H                         PASS
+EV-300  1H+torch                   PASS
+EV-301  dual 1H                    PASS
+EV-302  2H                         PASS
+EV-303  Staff                      PASS
+EV-304  human Fist single marker   PASS
+EV-305  human Fist double markers  PASS
 ```
 
-All three runs include no-target exercise followed by Golem contact; the User visually confirmed intended attacks connected. Deliberate bad skips produced only the exact accepted C1-R1 repair path (2x 1H, 1x 1H+torch, 1x dual-1H), with successful group5 readback and no repair divergence. Late unsupported Quick markers in 1H+torch and dual-1H occurred only after Action0/no live C1 and were safely rejected with physical sources already group5.
+Second-batch highlights:
 
-The three source logs are archived and `research/raw/` is clean except `Keep.txt`.
+```text
+2H:
+  Normal/Quick/Power/Whirl/Hack
+  RIGHT Flamberge raw3
+  18 Golem damage events
+  deliberate bad skip -> exact C1-R1 repair PASS
+  late Action0 Whirl marker callbacks safely rejected
+
+Staff:
+  Normal/Quick/Power/Whirl/Hack
+  RIGHT Wrestling Staff raw12
+  22 Golem damage events
+  deliberate bad-skip attempts -> cleanup reaches group5 before repair is needed
+  late Action0 Whirl marker callbacks safely rejected
+
+human raw8 Fist single marker:
+  Normal + Power
+  19 accepted FIST markers
+  intentionally unmarked Power P1 remains native and damages through Game+0x16E348
+  13 Golem damage events total
+
+human raw8 Fist double markers:
+  21 marked C1 executions
+  exactly 42 accepted FIST markers = two per C1
+  second FIST accepted as NATIVE_TIMING rearm
+  10 target-contact executions produce two Golem damage events each
+```
+
+Across EV-302–EV-305:
+
+```text
+CORE ATTACK OWNERSHIP ANOMALY = 0
+C1 INVARIANT WARNING = 0
+REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = 0
+all PC_Hero C1 final records Outstanding=0
+```
+
+All seven Phase-1 logs through EV-305 are archived and `research/raw/` is clean except `Keep.txt`.
 
 Current diagnostic binary remains the already-verified product:
 
@@ -153,7 +194,7 @@ build/deploy/startup PASS
 
 All repository commits after that binary build are documentation/evidence maintenance only unless a later source change is explicitly introduced.
 
-Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then continue the seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase remains §8.1: continue the remaining prepared Golem weapon/setup runs. Completed setups already closed: 1H, 1H+torch and dual-1H. Use one runtime run/log per weapon. The User may upload small batches (typically 2–3 at a time). After every uploaded batch, Normal Chat must complete POP-06 evidence/document/archive cleanup before requesting the next batch. Do not reopen raw55 family-specific probing.
+Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then continue the seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase remains §8.1: continue the remaining prepared Golem weapon/setup runs. Completed setups already closed: 1H, 1H+torch, dual-1H, 2H, Staff, human Fist single-marker and human Fist double-marker. Use one runtime run/log per weapon. The User may upload small batches (typically 2–3 at a time). After every uploaded batch, Normal Chat must complete POP-06 evidence/document/archive cleanup before requesting the next batch. Do not reopen raw55 family-specific probing.
 
 ## Next sequence after standalone collision regression
 
@@ -168,7 +209,7 @@ standalone collision regression
 
 ```text
 standalone collision regression = CURRENT GATE
-current subphase = §8.1 Golem player equipped-weapon matrix
+current subphase = §8.1 Golem player equipped/setup matrix; EV-299–EV-305 PASS
 publication cadence = small batches allowed; each batch fully closes before next
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
