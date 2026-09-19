@@ -44,9 +44,9 @@ Current project responsibility is never owned by this historical index. Use `SES
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
 | raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307 | `DESIGN.md` raw-8 Fist architecture; EV-304 native fallback; EV-305 human two-FIST rearm; EV-307 Sabretooth actor-general two-FIST confirmation |
 | PhysicalFist/raw55 factual source + permanent validation | EV-245–EV-246, EV-262–EV-298 | §3K below; family causal closure through EV-294; focused sentinels EV-295–EV-297; aggregate permanent-acceptance closure EV-298 |
-| standalone collision regression campaign | EV-299 onward | `COLLISION_TEST_PLAN.md` §8; Golem/setup coverage through EV-306 plus Sabretooth raw8 corroboration EV-307 |
+| standalone collision regression campaign | EV-299 onward | `COLLISION_TEST_PLAN.md` §8; Golem/setup coverage through EV-306; Sabretooth raw8 corroboration EV-307; shield-bash negative control EV-308 |
 | repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-273, EV-283–EV-292, EV-305, EV-307 | equipped exact-set/replay evidence; raw8 same-C1 FIST rearm human EV-305 + Sabretooth EV-307; raw55 family/timing-specific rearm remains separate |
-| Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
+| Hero family / poses / UseType / R-L semantics | EV-036–EV-065, EV-306, EV-308 | `ANIMATION_INDEX.md`; EV-306 shield tracked/non-offensive under RIGHT-only authoring; EV-308 raw9 LEFT activation without native damage |
 | Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-273 | EV-182–EV-196 lifecycle context; EV-264–EV-273 raw55 Quick ownership/separability/activation/rearm/pre-state closure |
 | Dual native source map / source-explicit marker review | EV-090–EV-094 | EV-207, EV-211, EV-214 |
 | multi-target, OFF, duplicate/replay/occurrence guard | EV-106–EV-116 | EV-131–EV-144; archived fixture logs |
@@ -500,8 +500,9 @@ Phase 1 — Golem player equipped/setup matrix
   EV-306  1H + shield PASS
   -> remaining prepared Golem setups, if any
 
-Supplemental raw8 actor-general control:
+Supplemental controls:
   EV-307  Sabretooth double-FIST repeated-contact PASS
+  EV-308  shield/raw9 LEFT activation -> no native damage; deferred shield-bash feature
 
 Phase 2 — Orc 2H / Staff / raw8 Fist
 Phase 3 — other weapon-using actors
@@ -511,7 +512,7 @@ Phase 6 — 1H vs Rapier separation-mod compatibility
 Phase 7 — stress regression
 ```
 
-The Golem batches provide positive C1-R1 bad-skip repair coverage in 1H, 1H+torch, dual-1H, 2H and 1H+shield; Staff supplies the complementary cleanup-completes-before-repair control. EV-306 additionally proves the tracked LEFT shield remains non-offensive while only the exact stale RIGHT sword is repaired. EV-304/EV-305 add human raw8 fallback/two-marker coverage, and EV-307 independently confirms the same raw8 double-FIST mechanism on Sabretooth.
+The Golem batches provide positive C1-R1 bad-skip repair coverage in 1H, 1H+torch, dual-1H, 2H and 1H+shield; Staff supplies the complementary cleanup-completes-before-repair control. EV-306 additionally proves the tracked LEFT shield remains non-offensive while only the exact stale RIGHT sword is repaired. EV-304/EV-305 add human raw8 fallback/two-marker coverage, and EV-307 independently confirms the same raw8 double-FIST mechanism on Sabretooth. EV-308 proves that generic LEFT can physically activate a shield/raw9 source and clean it up, but that activation alone produces no native damage in the tested Quick shield-bash fixture.
 
 This campaign is regression confirmation, not source/lifecycle redesign. Current execution details belong to `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
