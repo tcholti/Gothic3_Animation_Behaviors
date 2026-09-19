@@ -10,37 +10,31 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **equipped Sprint diagnostic — EV-320 origin-continuation correction REQUIRED.** Phase 4 remains held.
+Current gate: **EV-320 Sprint-origin continuation correction implemented + independently reviewed PASS; local build/runtime pending.** Phase 4 remains held.
 
-Parent investigation:
-
-`docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md`
-
-Next frozen Work responsibility:
+Active correction:
 
 `docs/work/active/COLLISION_EQUIPPED_SPRINT_ORIGIN_CONTINUATION_CORRECTION.md`
 
-Current evidence:
+Reviewed implementation:
 
-```text
-EV-315 Goblin Sprint RIGHT causal handoff              PASS
-EV-316 raw8 Sprint protected sentinel                  PASS
-EV-317 raw55 Sprint-origin protected sentinel          PASS
-EV-318 equipped true-Power protected sentinel          PASS
-EV-319 Ogre/raw52 broader attempt                      NOT EXERCISED
-EV-320 Goblin Sprint RIGHT->OFF                        CONTINUATION GAP
-EV-321 Goblin Sprint BOTH with LEFT absent             NEGATIVE PASS
-```
+`c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`
 
-EV-320: RIGHT is accepted under factual Action9/SPRINT, but before OFF fires Gothic changes the same C1/motion/source to Action2/POWER. The current probe denies OFF as `NOT_FACTUAL_SPRINT_HIT`; generic action-sensitive marker-window identity then rejects it as `REJECTED_C1_GENERATION_INCONSISTENCY`.
+Source-review findings:
+- binding creation remains factual Action9/SPRINT only;
+- exact same bound C1/motion/mask/source identity may survive current Action2/POWER;
+- Power continuation delegates native and adds no new suppression;
+- authorized continuation markers keep generic bookkeeping canonical to Sprint origin while factual current action remains logged;
+- behavior-only semantics remain unchanged behind `FRAME_COLLISION_DIAGNOSTICS`;
+- EV-321 missing-LEFT/BOTH fail-closed path remains structurally intact;
+- ordinary true Power cannot create Sprint ownership.
 
-EV-321: BOTH scans as `RequiredMask=3`; Goblin has no LEFT. Probe delegates native with `REQUIRED_EQUIPPED_SOURCE_MISSING`, creates no binding, BOTH is rejected, native RIGHT can still damage and clean up. This is the intended fail-closed result.
+Required local acceptance order:
+1. build/deploy/startup diagnostic DLL;
+2. rerun EV-320 Goblin RIGHT -> OFF: OFF must be authorized as `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION`, accepted, and close exact RIGHT 7 -> 5;
+3. rerun EV-321 Goblin BOTH with LEFT absent: missing-source delegation + marker rejection + native fallback must remain;
+4. rerun EV-318 equipped 2H true Power: no Sprint-origin inheritance/authorization.
 
-Correction rule: preserve immutable Sprint origin only for an already-bound exact same C1 + motion + required-source mask + exact source identities across current Action9 -> Action2. Do not weaken generic action identity globally and do not let a new true-Power execution inherit Sprint ownership.
-
-Reviewed diagnostic implementation before correction: `d2c6c8be0d56129ec6725571324a9066b181242c`  
-Live DLL SHA256: `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`
-
-Latest closed evidence: **EV-321**. Processed raw logs are archived; `research/raw/` should be clean except `Keep.txt`.
+Existing evidence through EV-321 remains authoritative. No new runtime evidence exists for `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` yet.
 
 Use `COLLISION_REFERENCE.md` for settled facts and `EVIDENCE_INDEX.md` for provenance.
