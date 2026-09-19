@@ -56,7 +56,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | original raw55-negative survey | EV-245–EV-246 |
 | raw8 transformed/native Sabretooth + Quick | EV-247–EV-249 |
 | architecture/diagnostic equivalence refactor | EV-249–EV-250 |
-| raw8 Sprint transport + production support | EV-250–EV-251 |
+| raw8 Sprint transport + production support / current protected sentinel | EV-250–EV-251, EV-316 |
 | native equipped NPC controls | EV-252–EV-254 |
 | later raw8 controls / supported scope | EV-257, EV-263 |
 | factual PhysicalFist/raw55 discovery | EV-262 |
