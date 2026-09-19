@@ -52,7 +52,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | Hack callback identity | EV-216 |
 | SimpleWhirl StatePosition/target semantics | EV-217–EV-220, EV-243 |
 | human raw8 Fist production causal route | EV-221–EV-240 |
-| Power / Pierce / Hack equipped expansion | EV-241–EV-244 |
+| Power / Pierce / Hack equipped expansion / current true-Power sentinel | EV-241–EV-244, EV-318 |
 | original raw55-negative survey | EV-245–EV-246 |
 | raw8 transformed/native Sabretooth + Quick | EV-247–EV-249 |
 | architecture/diagnostic equivalence refactor | EV-249–EV-250 |
