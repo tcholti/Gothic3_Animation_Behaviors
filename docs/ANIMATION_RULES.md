@@ -339,7 +339,7 @@ marked exact supported raw8 Fist Hit
 
 There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Gothic self-closes a successful raw8 Fist opportunity; the next `FIST` marker rearms the next intended contact.
 
-EV-305 directly confirms the multi-contact authoring meaning: two authored `FIST` markers in one supported raw8 Hit are accepted in the same C1, and on contacting executions they produce two native Golem damage contacts. Therefore repeat `FIST` only when the animation genuinely intends another body-contact hit.
+EV-305 directly confirms the multi-contact authoring meaning on human raw8 Fist: two authored `FIST` markers in one supported Hit are accepted in the same C1, and on contacting executions they produce two native damage contacts. EV-307 independently confirms the same mechanism on Sabretooth/transformed Sabretooth: marker1 uses the early-permission path, marker2 is accepted later as `NATIVE_TIMING`, and contacting executions can damage twice. Therefore repeat `FIST` only when the animation genuinely intends another body-contact hit; the rule is factual-source/mechanism based, not human-species specific.
 
 Do not apply weapon semantics to FIST:
 
