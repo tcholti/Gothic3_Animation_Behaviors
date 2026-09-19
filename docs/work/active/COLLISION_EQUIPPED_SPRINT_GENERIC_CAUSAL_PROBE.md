@@ -1,6 +1,6 @@
 # Generic Equipped Sprint Causal Probe
 
-**Status:** ACTIVE — GOBLIN CAUSAL PASS + PROTECTED SENTINELS COMPLETE/PASS / BROADER FIXTURES NEXT  
+**Status:** ACTIVE — EV-320 CONTINUATION GAP / BOUNDED CORRECTION REQUIRED  
 **Type:** Bounded diagnostic-only causal implementation  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and interprets runtime result.
@@ -383,6 +383,22 @@ Ogre final Outstanding!=0  = 0
 
 Therefore EV-319 is neither a Sprint PASS nor FAIL. Do not infer raw52 Sprint support from it and do not repeat the identical fixture without a reason to expect factual Action9. Broader fixture selection should prefer routes with evidence that Action9 can actually occur.
 
+### EV-320 — RIGHT -> OFF exposes same-C1 Sprint-origin gap
+
+Controlled RIGHT -> OFF authoring reached the known factual Goblin Sprint route. RIGHT was accepted under Action9/SPRINT and opened the exact club 5 -> 7. Before the later OFF event, Gothic changed the same C1/motion to Action2/POWER. The current probe then denied OFF as NOT_FACTUAL_SPRINT_HIT, and generic marker bookkeeping rejected it as REJECTED_C1_GENERATION_INCONSISTENCY because the marker-owned window/budget identity is action-sensitive.
+
+This is a bounded implementation gap: the execution is still the same C1, motion and exact source, but current action no longer equals the immutable Sprint origin.
+
+Correction authority is frozen separately in:
+
+`docs/work/active/COLLISION_EQUIPPED_SPRINT_ORIGIN_CONTINUATION_CORRECTION.md`
+
+Do not broaden this into generic cross-action identity weakening.
+
+### EV-321 — BOTH with missing LEFT negative PASS
+
+Controlled BOTH authoring produced RequiredMask=RIGHT|LEFT while the Goblin had only RIGHT. The Sprint probe correctly delegated native with REQUIRED_EQUIPPED_SOURCE_MISSING, created no bound Sprint execution, denied BOTH at the marker, and Gothic's native path still opened/damaged/cleaned RIGHT. This closes the missing-required-source negative path.
+
 ## Follow-up after first PASS
 
 Only after Normal Chat independently reviews a Goblin PASS:
@@ -392,8 +408,8 @@ Only after Normal Chat independently reviews a Goblin PASS:
    - raw55 Sprint-origin = PASS at EV-317;
    - one equipped true-Power route = PASS at EV-318;
 2. exercise additional factual equipped Sprint fixtures across other available equipped UseTypes/animation sets where possible (for example Orc/Demon/Ogre/Stalker families already used in regression);
-3. if RIGHT/LEFT/BOTH/OFF combinations cannot be exercised by vanilla actors, deliberately authored diagnostic fixtures may be designed later rather than narrowing the framework contract to vanilla limitations;
-4. only then decide whether permanent promotion is justified.
+3. deliberately authored fixtures EV-320–EV-321 are now available: missing-LEFT BOTH is PASS, while RIGHT->OFF exposed the same-C1 Action9->Action2 continuation gap;
+4. implement and validate the bounded origin-continuation correction before any permanent-promotion decision.
 
 Do not create production support, archive this task, or update settled collision reference facts merely because the code compiles.
 
