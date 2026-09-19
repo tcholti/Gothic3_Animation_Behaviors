@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — EV-305; GOLEM PHASE 1 FIRST TWO BATCHES CLOSED/PASS
+## Current Bridge — EV-307; GOLEM/RAW8 REGRESSION BATCHES CLOSED/PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Focused permanent raw55 acceptance remains CLOSED/PASS at **EV-298**. Standalone regression Phase 1 is now PASS through **EV-305**: 1H, 1H+torch, dual-1H, 2H, Staff, human raw8 Fist single-marker/native-fallback, and human raw8 Fist double-marker repeated-contact.
+Focused permanent raw55 acceptance remains CLOSED/PASS at **EV-298**. Standalone regression now includes PASS evidence through **EV-307**: Golem setups 1H, 1H+torch, dual-1H, 2H, Staff, human raw8 Fist single/double marker, 1H+shield, plus supplemental Sabretooth raw8 double-FIST actor-general confirmation.
 
 Permanent raw55 contract:
 
@@ -163,6 +163,38 @@ EV-302  2H                         PASS
 EV-303  Staff                      PASS
 EV-304  human Fist single marker   PASS
 EV-305  human Fist double markers  PASS
+EV-306  1H+shield                   PASS
+EV-307  Sabretooth double FIST      PASS
+```
+
+Latest-batch facts:
+
+```text
+1H+shield:
+  RIGHT It_1H_Sword_Rust_01 raw2
+  LEFT It_Shield_StewarkGreat raw9 tracked but non-offensive
+  56 accepted RIGHT markers
+  sword 60x 5->7 / 60x 7->5
+  31 Golem damage events
+  deliberate bad skip repairs only RIGHT sword
+  LEFT shield stays group5 / no obligation / no repair
+  late Action0 Quick marker safely rejected
+
+Sabretooth double FIST:
+  factual raw8 Fist/UseType8 on native + transformed Sabretooth
+  transformed: 20 marked executions, 40 accepted FISTs, exactly 2 per C1
+  marker1 early-permission; marker2 NATIVE_TIMING
+  18 executions damage native Sabretooth twice; 2 damage once
+  native Sabretooth two-marker mechanism also present
+  native one-marker cases = 8 Stumble replacements + final shutdown case
+  Transform_Sabretooth_Potion -> Sabretooth ONDAMAGE = 38
+  Sabretooth -> PC_Hero ONDAMAGE = 19
+
+whole latest batch:
+  ownership anomalies = 0
+  C1 invariant warnings = 0
+  repair divergences = 0
+  all raw8/equipped finalizations remain Outstanding=0
 ```
 
 Second-batch facts:
@@ -217,6 +249,8 @@ research/archive/researchraw2026-09-19_regression_golem_2h.log
 research/archive/researchraw2026-09-19_regression_golem_staff.log
 research/archive/researchraw2026-09-19_regression_golem_human_fist.log
 research/archive/researchraw2026-09-19_regression_golem_human_fist_double_markers.log
+research/archive/2026-09-19_regression_golem_1h_shield.log
+research/archive/2026-09-19_regression_sabertooth_double_markers.log
 ```
 
 Current raw intake:
@@ -238,9 +272,9 @@ Next local session:
 
 ## Evidence transaction / archive status
 
-EV-299–EV-305 are canonically recorded. All seven Phase-1 source logs processed so far are archived byte-identically; no completed artifact remains in `research/raw/`.
+EV-299–EV-307 are canonically recorded. All processed source logs through EV-307 are archived byte-identically; no completed artifact remains in `research/raw/`.
 
-Phase 1 remains open only for any prepared Golem setup(s) the User has not yet exercised.
+Phase 1 remains open only for any prepared Golem setup(s) the User has not yet exercised. EV-307 is supplemental raw8 actor-general coverage and does not by itself advance to Orc Phase 2.
 
 ## Sequence after standalone collision regression
 
@@ -255,7 +289,7 @@ complete all seven standalone regression phases
 
 ```text
 standalone collision regression = CURRENT GATE
-current subphase = §8.1 Golem player equipped/setup matrix; EV-299–EV-305 PASS
+current subphase = §8.1 Golem player attack/setup matrix; Golem coverage through EV-306 + supplemental raw8 EV-307
 publication cadence = 2–3 logs allowed; complete POP-06 closure after every upload batch
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
