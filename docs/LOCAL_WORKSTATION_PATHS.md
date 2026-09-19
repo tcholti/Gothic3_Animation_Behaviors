@@ -27,5 +27,7 @@ Record the User's current Windows paths for Gothic 3 development and testing. Th
 - **Deploy `Script_FrameCollisionTest.dll` / `Script_FrameCollisionBehaviorTest.dll` only to the runtime mod-script DLL directory `E:\SteamLibrary\steamapps\common\Gothic 3\scripts`, never to the Gothic 3 runtime/game root.**
 - `Script_FrameCollisionBehaviorTest.dll` and `Script_FrameCollisionTest.dll` are mutually exclusive runtime twins.
 - Runtime logs such as `Script_FrameCollisionTest.log` are written in the Gothic 3 runtime root.
-- Exact sync/build/deploy/hash/startup commands are owned by `PROJECT_OPERATING_PROCEDURES.md` POP-01 through POP-04. This file owns paths only; do not duplicate or improvise a competing deployment procedure here.
+- Exact sync/build/deploy/hash/startup commands are owned by `PROJECT_OPERATING_PROCEDURES.md` POP-01 through POP-04. This file owns paths/environment facts only; do not duplicate or improvise a competing deployment procedure here.
+- On this workstation, CMake is available in **Developer PowerShell for VS 2022**; an ordinary Windows PowerShell session may not have `cmake` on `PATH`. Use the Developer PowerShell environment for CMake build commands rather than treating a plain-PowerShell `cmake` lookup failure as a missing project dependency.
+- The Python knowledge-state validator may be run from an ordinary PowerShell session where `python` is on `PATH`; Python is not part of the Gothic DLL build toolchain.
 - If a future path stops resolving, verify it with the User or the filesystem rather than silently inventing a replacement.
