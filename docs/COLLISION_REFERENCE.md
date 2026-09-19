@@ -147,9 +147,9 @@ For the supported raw8 FIST path, Sprint arrives through the existing physical `
 
 The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution.
 
-These FIST mechanisms do not establish equipped Sprint marker semantics. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported. EV-311 now provides one concrete factual fixture — Goblin Action9/SPRINT with RIGHT 1H/raw2 — where the authored RIGHT marker is rejected under that current boundary. That discovery is retained for any future deliberate equipped-Sprint extension; it is not production support.
+These FIST mechanisms do not establish equipped Sprint marker semantics. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported in the current production/behavior baseline. EV-311 provides the concrete Goblin Action9/SPRINT RIGHT 1H/raw2 boundary fixture. Under the temporary diagnostic-only generic Sprint handoff, EV-315 then proves that this first fixture can suppress the native early callback, remain group 5 until the authored RIGHT marker, activate 5 -> 7 through the existing generic marker mechanism, deliver native damage, clean 7 -> 5 and finalize Outstanding=0. EV-315 is causal research evidence, not production promotion and not proof of every marker/source combination.
 
-Evidence: raw8 Sprint EV-250–EV-251; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298; equipped Sprint boundary fixture EV-311.
+Evidence: raw8 Sprint EV-250–EV-251; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298; equipped Sprint boundary fixture EV-311; first diagnostic equipped-Sprint causal handoff EV-315.
 
 ## 7. Shield / raw9 boundary
 
@@ -197,11 +197,12 @@ EV-311  Goblin 1H/raw2              PASS + equipped-Sprint scope deferred
 EV-312  Demon 2H/raw3               PASS
 EV-313  Ogre Axe/raw52              PASS
 EV-314  Stalker Axe/raw52           PASS
+EV-315  Goblin equipped Sprint probe  CAUSAL PASS / promotion pending
 ```
 
-Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. EV-311's equipped Sprint rejection is an explicit unsupported-scope discovery rather than a regression failure.
+Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. EV-311's equipped Sprint rejection exposed a new scope question; EV-315 passes the first diagnostic causal handoff for that Goblin fixture without changing production support.
 
-Next validation subject: prepared non-weapon creatures (Phase 4), excluding redundant Troll/BlackTroll and Sabretooth retests unless a new contradiction appears. Current validation plan: `COLLISION_TEST_PLAN.md`.
+Phase 4 is temporarily held while the active equipped-Sprint investigation runs its protected raw8 Sprint, raw55 Sprint-origin and equipped true-Power sentinels. Current validation plan: `COLLISION_TEST_PLAN.md`.
 
 ## 10. Evidence escalation rule
 
