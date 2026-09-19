@@ -5,59 +5,41 @@
 
 > After an abrupt/max-context/unusable Chat, start at root `README.md`; this bridge is only a clue until POP-11 recovery verifies it.
 
-## Current bridge — Work formal audit
+## Current bridge — Work bounded correction
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`  
-Responsibility: **formal read-only post-restructure knowledge/documentation audit**.
+Responsibility: **implement only the accepted post-restructure audit corrections M-1 through M-5**.
 
 Frozen task:
 
-`docs/work/active/POST_RESTRUCTURE_KNOWLEDGE_AUDIT.md`
+`docs/work/active/POST_RESTRUCTURE_DOCUMENTATION_CORRECTIONS.md`
 
-Required orientation:
+Audit provenance is closed under:
 
 ```text
-root README
--> docs/README.md §0 + retrieval model
--> SESSION_ENTRYPOINT.md
--> this bridge
--> PROJECT_OPERATING_PROCEDURES.md POP-10 + POP-12
--> KNOWLEDGE_MAINTENANCE.md
--> KNOWLEDGE_REGISTRY.md
--> frozen audit contract
+docs/archive/investigations/POST_RESTRUCTURE_KNOWLEDGE_AUDIT_2026-09-19.md
+docs/archive/investigations/POST_RESTRUCTURE_KNOWLEDGE_AUDIT_RESULT_2026-09-19.txt
 ```
-
-Apply POP-10 before findings. Audit current authorities first; descend into archived ledgers/raw/probes only for targeted provenance checks required by the contract.
 
 Hard boundaries:
 
 ```text
-READ-ONLY
-NO repository edits / commits / pushes
-NO branch creation/deletion
-NO source changes
-NO build / deploy / Gothic launch
-NO runtime experiments
-NO new EVs
-NO implementation of findings
+documentation/validator correction only
+NO Gothic source/CMake change
+NO evidence rewrite / new EV
+NO runtime test
+NO build/deploy
+NO branch-protection/ruleset change
+NO redesign of accepted knowledge lifecycle
 ```
 
-Return the required structured audit report and STOP.
+Work publishes the bounded correction and STOPs. Normal Chat independently reviews before closing this task.
 
-## Technical state held during audit
+## Technical state held during correction
 
-Standalone collision regression remains paused at `COLLISION_TEST_PLAN.md` §8.1.
+Standalone collision regression remains paused.
 
-Latest closed evidence:
+After correction closure, resume [COLLISION_TEST_PLAN.md — Phase 1 Golem matrix](COLLISION_TEST_PLAN.md#phase-1-golem): exercise any prepared remaining Golem setup, or explicitly close Phase 1 if none remain before Phase 2.
 
-```text
-EV-298 raw55 focused permanent acceptance PASS
-EV-299–EV-306 Phase-1 player/Golem setups PASS
-EV-307 Sabretooth double-FIST supplemental PASS
-EV-308 shield/raw9 LEFT shield-bash NEGATIVE CONTROL / DEFERRED
-```
-
-`research/raw/` was clean except `Keep.txt` at audit freeze.
-
-After the audit returns, Normal Chat + User decide corrections, close/archive the audit task, and only then resume the preserved technical collision gate.
+Latest closed evidence remains EV-308. `research/raw/` is clean except `Keep.txt`.
