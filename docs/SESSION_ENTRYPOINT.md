@@ -9,16 +9,6 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-## Documentation-review branch override
-
-This branch is the temporary documentation review branch `docs/knowledge-lifecycle-restructure`. While reviewing this branch, the immediate responsibility is **knowledge-lifecycle restructure/audit**, not runtime collision testing.
-
-Active contract:
-
-`docs/work/active/KNOWLEDGE_LIFECYCLE_RESTRUCTURE.md`
-
-The technical collision branch remains `docs/collision-source-evidence` at the preserved EV-308 standalone-regression state. Do not launch a new runtime test or source implementation from this review branch.
-
 ## Current gate
 
 ```text
