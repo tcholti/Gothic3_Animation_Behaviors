@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — EV-307; GOLEM/RAW8 REGRESSION BATCHES CLOSED/PASS
+## Current Bridge — EV-308; SHIELD-BASH NEGATIVE CONTROL CLOSED
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Focused permanent raw55 acceptance remains CLOSED/PASS at **EV-298**. Standalone regression now includes PASS evidence through **EV-307**: Golem setups 1H, 1H+torch, dual-1H, 2H, Staff, human raw8 Fist single/double marker, 1H+shield, plus supplemental Sabretooth raw8 double-FIST actor-general confirmation.
+Focused permanent raw55 acceptance remains CLOSED/PASS at **EV-298**. Standalone regression includes Golem setup PASS evidence through EV-306, Sabretooth raw8 double-FIST corroboration EV-307 PASS, and shield-bash LEFT/raw9 negative control EV-308 CLOSED/DEFERRED.
 
 Permanent raw55 contract:
 
@@ -165,6 +165,23 @@ EV-304  human Fist single marker   PASS
 EV-305  human Fist double markers  PASS
 EV-306  1H+shield                   PASS
 EV-307  Sabretooth double FIST      PASS
+EV-308  shield-bash LEFT/raw9        NEGATIVE CONTROL / DEFERRED
+```
+
+Newest supplemental fact:
+
+```text
+EV-308 shield-bash:
+  existing shield-bash animation substituted into Quick attacks
+  LEFT marker accepted 9/9
+  LEFT shield/raw9 physically 5->7 on every marker
+  shield returns 7->5 on every execution
+  cleanup fulfilled 9/9
+  zero ONDAMAGE in no-target + Golem-contact run
+  marker/source/cleanup path works
+  native shield damage path does not fire in this fixture
+  future shield-bash implementation requires separate research
+  NO current behavior change
 ```
 
 Latest-batch facts:
@@ -251,6 +268,7 @@ research/archive/researchraw2026-09-19_regression_golem_human_fist.log
 research/archive/researchraw2026-09-19_regression_golem_human_fist_double_markers.log
 research/archive/2026-09-19_regression_golem_1h_shield.log
 research/archive/2026-09-19_regression_sabertooth_double_markers.log
+research/archive/2026-09-19_regression_golem_1h_shield_left_marker.log
 ```
 
 Current raw intake:
@@ -272,9 +290,9 @@ Next local session:
 
 ## Evidence transaction / archive status
 
-EV-299–EV-307 are canonically recorded. All processed source logs through EV-307 are archived byte-identically; no completed artifact remains in `research/raw/`.
+EV-299–EV-308 are canonically recorded. All processed source logs through EV-308 are archived byte-identically; no completed artifact remains in `research/raw/`.
 
-Phase 1 remains open only for any prepared Golem setup(s) the User has not yet exercised. EV-307 is supplemental raw8 actor-general coverage and does not by itself advance to Orc Phase 2.
+Phase 1 remains open only for any prepared Golem setup(s) the User has not yet exercised. EV-307 and EV-308 are supplemental controls and do not by themselves advance to Orc Phase 2.
 
 ## Sequence after standalone collision regression
 
@@ -289,7 +307,7 @@ complete all seven standalone regression phases
 
 ```text
 standalone collision regression = CURRENT GATE
-current subphase = §8.1 Golem player attack/setup matrix; Golem coverage through EV-306 + supplemental raw8 EV-307
+current subphase = §8.1 Golem player attack/setup matrix; Golem coverage through EV-306 + supplemental controls EV-307–EV-308
 publication cadence = 2–3 logs allowed; complete POP-06 closure after every upload batch
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
