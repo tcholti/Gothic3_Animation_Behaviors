@@ -2,7 +2,9 @@
 
 **Purpose:** Exact short-lived continuation bridge. Replace rather than accumulate chronology.
 
-**Updated:** 2026-09-18
+**Updated:** 2026-09-19
+
+> **Interrupted-Chat note:** after an abrupt/max-context/unusable previous Chat, begin from the repository root `README.md` **Start Here** recovery block. This bridge is then only a clue until POP-11 recovery verifies it against newer durable facts.
 
 ## Current Bridge — EV-308; SHIELD-BASH NEGATIVE CONTROL CLOSED
 
