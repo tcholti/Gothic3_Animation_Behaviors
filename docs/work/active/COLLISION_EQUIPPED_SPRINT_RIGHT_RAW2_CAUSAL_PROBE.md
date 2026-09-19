@@ -50,6 +50,7 @@ factual Action9 / Sprint Hit
 + exact current RIGHT source exists
 + RIGHT source UseType == gEUseType_1H / raw2
 + current motion has authored RIGHT marker(s)
++ OFF may coexist as the ordinary equipped empty-set/deactivation marker
 + no LEFT / BOTH / FIST marker ownership
 + valid current C1 generation
 -> suppress original OnAI_PowerAttack callback for this execution
@@ -68,14 +69,14 @@ Probe support is limited to the discovered factual class:
 family/action          = Sprint / Action9
 equipped source        = exact current RIGHT only
 source UseType         = 1H / raw2
-authored source marker = RIGHT only
+authored source marker = RIGHT, with ordinary OFF allowed
 FIST                   = excluded from this probe
 LEFT/BOTH              = excluded
 other UseTypes         = excluded
 unmarked Sprint        = native / excluded
 ```
 
-`OFF` is not required for the first causal test and should remain outside probe authorization unless source inspection proves it is inseparable from this exact motion's authored marker contract. Do not broaden merely for generic completeness.
+`OFF` remains part of the established equipped marker vocabulary. In this probe it is allowed only as the ordinary empty-set/deactivation partner to the exact RIGHT/raw2 marker-owned window; it does not broaden source ownership beyond RIGHT. The probe must not invent separate OFF behavior: authorized OFF must enter the existing generic equipped OFF path.
 
 Do not species-gate to Goblin. Eligibility is factual action/source/marker/C1 identity, with the Goblin only serving as the current runtime fixture.
 
@@ -94,12 +95,12 @@ The probe owns:
 
 - exact eligibility for this temporary intervention;
 - binding callback suppression to actor + current C1 + exact RIGHT source + exact motion;
-- authorization for the matching RIGHT marker only;
+- authorization for matching RIGHT and ordinary OFF markers on the same bound execution;
 - compact probe-specific diagnostic result/state needed to prove the causal question.
 
 `EngineBridge` remains transport-only. It may call the probe at the existing `OnAI_PowerAttack` transport and enact only the probe's returned suppress/delegate decision.
 
-`FrameCollisionMarkers` remains the owner of the established generic equipped marker mechanism. Add only the smallest **diagnostic-build-only permission seam** needed so the probe can authorize the otherwise-rejected Sprint RIGHT marker. Do not copy equipped activation/lifecycle logic into the probe.
+`FrameCollisionMarkers` remains the owner of the established generic equipped marker mechanism. Add only the smallest **diagnostic-build-only permission seam** needed so the probe can authorize the otherwise-rejected Sprint RIGHT/OFF markers. Do not copy equipped activation/deactivation/lifecycle logic into the probe.
 
 The behavior-only twin must remain unchanged in runtime semantics: the probe must compile only into `Script_FrameCollisionTest`, not `Script_FrameCollisionBehaviorTest`.
 
@@ -119,8 +120,8 @@ For an exact probe-eligible marked Sprint execution:
 
 For a matching bound execution:
 
-- only `G3AB_COL_RIGHT` may bypass the current generic `Sprint + non-FIST -> REJECTED_UNSUPPORTED_HIT` gate;
-- after that permission, `FrameCollisionMarkers::ProcessMarker()` must use its existing normal equipped RIGHT path without duplicated probe-side activation logic;
+- only `G3AB_COL_RIGHT` and `G3AB_COL_OFF` may bypass the current generic `Sprint + non-FIST -> REJECTED_UNSUPPORTED_HIT` gate for the same exact bound RIGHT/raw2 execution;
+- after that permission, `FrameCollisionMarkers::ProcessMarker()` must use its existing normal equipped RIGHT/OFF paths without duplicated probe-side activation/deactivation logic;
 - marker occurrence/dedupe, exact-source operation, C1 offense obligation, rearm, marker-owned window and StatePosition behavior remain generic existing owners.
 
 If actor/C1/source/motion/UseType/marker identity no longer matches the bound execution, deny authorization and preserve the existing unsupported/native behavior. Do not guess or repair stale probe identity.
@@ -172,6 +173,7 @@ native early callback-owned 5 -> 7 does NOT occur before marker
 G3AB_COL_RIGHT is ACCEPTED (not REJECTED_UNSUPPORTED_HIT)
 RIGHT source is 5 before authored marker
 authored RIGHT causes/rearms Item_Attack(7)
+if an authored OFF occurs in the fixture, OFF is accepted through the generic equipped path and deactivates the marker-owned source set
 native ONDAMAGE to player occurs
 native exact-source cleanup returns 7 -> 5
 C1 finalizes Outstanding=0
