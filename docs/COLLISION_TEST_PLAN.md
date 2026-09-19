@@ -133,23 +133,26 @@ Across both logs, all tested Orc attack types damaged the player at least once, 
 
 Phase 2 is complete.
 
-### 3.3 Phase 3 — Other weapon-using creatures/NPCs
+### 3.3 Phase 3 — Other weapon-using creatures/NPCs — CLOSED/PASS
 
-Exercise prepared marked animations for additional weapon-using actors.
-
-Historical controls that need not be repeated merely for duplication:
+Current-DLL/post-raw55 regression coverage:
 
 ```text
-Goblin / BlackGoblin -> factual 1H/raw2 — EV-252
-Demon                -> factual 2H/raw3 — EV-253
-Ogre                 -> factual Axe/raw52 — EV-254
+Goblin  -> factual 1H/raw2                 PASS — EV-311
+Demon   -> factual 2H/raw3                 PASS — EV-312
+Ogre    -> factual Axe/raw52               PASS — EV-313
+Stalker -> factual Axe/raw52               PASS — EV-314
 ```
 
-New prepared actors extend coverage; they do not reopen those gates.
+Goblin, Demon and Ogre were deliberately repeated after permanent raw55 integration even though earlier controls existed at EV-252–EV-254. Their established supported routes remain healthy, providing bounded regression evidence that the raw55 work did not disturb those equipped-NPC paths. Stalker extends the current coverage with another Axe/raw52 actor/source fixture.
 
-### 3.4 Phase 4 — Non-weapon creatures
+EV-311 also exposes one concrete equipped Sprint/right/raw2 Goblin execution: factual Action9/SPRINT with an authored RIGHT marker is rejected under the current unsupported equipped-Sprint boundary. This is a deferred scope discovery, not a raw55 regression failure and not evidence of equipped Sprint marker support.
 
-Exercise multiple creature/body-contact routes.
+### 3.4 Phase 4 — Non-weapon creatures — NEXT
+
+Exercise multiple prepared creature/body-contact routes.
+
+Do not repeat Troll/BlackTroll raw55 or Sabretooth raw8 merely for duplication: both mechanisms already have current-DLL regression/acceptance evidence in the latest collision line (raw55 through EV-298; Sabretooth through EV-307). Reopen them only for a concrete contradiction or a deliberately different fixture.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 

@@ -16,9 +16,11 @@ standalone collision regression = ACTIVE
 human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
-current subphase = Phase 3 other weapon-using creatures/NPCs
+weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
+equipped Sprint/right/raw2 fixture = DISCOVERED/DEFERRED at EV-311
+current subphase = Phase 4 non-weapon creatures
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-310
+latest completed evidence = EV-314
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -26,15 +28,17 @@ Phase 1 is closed: the EV-299–EV-306 runs tested human marked attack routes, w
 
 Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-309; 2H-animation/Axe raw52 passed at EV-310. User visual observation and CORE logs agree that all tested Orc attack types damaged the player.
 
-Current route: `COLLISION_TEST_PLAN.md` §3.3 — other weapon-using creatures/NPCs.
+Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. Goblin/Demon/Ogre specifically confirm their older equipped-NPC routes remain healthy after raw55 integration. EV-311 also records a factual Goblin equipped-Sprint/right/raw2 marker rejection as a separate deferred scope discovery.
+
+Current route: `COLLISION_TEST_PLAN.md` §3.4 — non-weapon creatures.
 
 ## Immediate responsibility
 
 1. Use POP-01 before the next local test because remote evidence/documentation state changed.
-2. Continue Phase 3 with the next prepared weapon-using creature/NPC fixture(s); do not repeat Goblin/BlackGoblin, Demon or Ogre merely to duplicate EV-252–EV-254.
-3. Keep each new actor/source route attributable and preserve factual runtime source/UseType rather than inferring from animation-family names.
-4. Close every uploaded batch under POP-06 before starting the next validation batch.
-5. Do not reopen family-specific raw55 research without concrete contradictory evidence.
+2. Continue Phase 4 with prepared non-weapon animal/monster fixtures.
+3. Do not repeat Troll/BlackTroll or Sabretooth merely for duplication; their current-DLL raw55/raw8 evidence is already closed unless a concrete contradiction appears.
+4. Preserve factual runtime source/UseType and keep each creature route attributable; do not infer mechanism from species or animation naming.
+5. Close every uploaded batch under POP-06 before starting the next validation batch. The EV-311 equipped-Sprint fixture remains deferred and does not block Phase 4.
 
 ## Current verified diagnostic product
 

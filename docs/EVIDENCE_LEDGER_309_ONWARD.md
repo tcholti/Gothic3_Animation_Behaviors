@@ -81,3 +81,93 @@ Disposition:
 - PASS — Orc 2H-animation marker behavior passes the standalone regression fixture.
 - Together with EV-309, Phase 2 Orc attack-matrix coverage is CLOSED/PASS; next validation phase is the prepared other weapon-using creature/NPC set.
 
+
+### EV-311 — Goblin 1H post-raw55 regression PASS + equipped-Sprint boundary discovery
+
+Observed:
+- `Goblin` used factual RIGHT source `It_1H_Club_01` / UseType 2. Eleven supported RIGHT markers were accepted across Normal and Quick-left/right, and all eleven were followed by native `ONDAMAGE Target=PC_Hero`.
+- Supported executions cleaned the exact source back to group 5 and finalized with no outstanding obligation, repair/divergence or ownership/invariant failure.
+- One additional PowerAttack-named execution was factually `Action=9 / Family=SPRINT`. Its equipped `G3AB_COL_RIGHT` marker was `REJECTED_UNSUPPORTED_HIT`, matching the current rule that equipped Sprint marker semantics are not production-supported.
+- User visual observation: the tested Goblin attacks were able to damage the player.
+
+Scope / limits:
+- Post-raw55 regression control for the established Goblin 1H/raw2 marker route previously closed at EV-252.
+- EV-311 adds a concrete factual equipped-Sprint fixture; it does **not** promote equipped Sprint marker support. Any such extension remains a separate future responsibility.
+- No raw55/PhysicalFist intervention appeared in this log.
+
+Provenance:
+- User upload commit `181fb1eab09607771b1ef3ec16af5b5f34d4c887`.
+- Canonical archived log: `research/archive/2026-09-19_validation_goblin_1h_marker_test.log`.
+- Git blob `d9e20404324311faa3d058f4ecc293efc75c4b41`; 50,739 bytes / 301 lines.
+- Diagnostic profile: CORE; user states this batch used the current/latest diagnostic DLL.
+
+Disposition:
+- PASS — established Goblin Normal/Quick 1H marker behavior remains compatible after the raw55 implementation.
+- DEFERRED SCOPE DISCOVERY — factual equipped Sprint/right/raw2 exists, but current production correctly rejects that marker family; do not reinterpret native damage capability as marker support.
+
+### EV-312 — Demon 2H/raw3 post-raw55 regression PASS
+
+Observed:
+- `Demon` used factual RIGHT source `It_2H_DemonSword_01` / UseType 3.
+- Fifteen RIGHT markers were accepted across Normal, Quick-left/right and Power, and all fifteen were followed by native `ONDAMAGE Target=PC_Hero`.
+- Finalization remained clean with no outstanding obligation, repair/divergence, marker rejection, ownership anomaly or invariant warning.
+- User visual observation: all tested Demon attack types damaged the player.
+
+Scope / limits:
+- Post-raw55 regression control for the established Demon 2H/raw3 route previously closed at EV-253.
+- No raw55/PhysicalFist intervention appeared in this log.
+
+Provenance:
+- User upload commit `181fb1eab09607771b1ef3ec16af5b5f34d4c887`.
+- Canonical archived log: `research/archive/2026-09-19_validation_demon_2h_marker_test.log`.
+- Git blob `02379f7a4a74c9051270e91f17299ddf1681cb90`; 84,214 bytes / 433 lines.
+- Diagnostic profile: CORE; user states this batch used the current/latest diagnostic DLL.
+
+Disposition:
+- PASS — Demon 2H/raw3 marker behavior remains compatible after the raw55 implementation.
+
+### EV-313 — Ogre Axe/raw52 post-raw55 regression PASS
+
+Observed:
+- `Ogre` used factual RIGHT source `It_Axe_OgreMorningStar_01` / UseType 52.
+- Twelve RIGHT markers were accepted across Power, Normal and Quick-right, and all twelve were followed by native `ONDAMAGE Target=PC_Hero`.
+- Completed Ogre generations carried no outstanding obligation or repair/divergence result; there were no marker rejections, ownership anomalies or invariant warnings.
+- One cancelled candidate was followed by a native/unowned 5 -> 7 source transition; it was not a marker-owned obligation and did not produce a lifecycle contradiction.
+- User visual observation: all tested Ogre attack types damaged the player.
+
+Scope / limits:
+- Post-raw55 regression control for the established Ogre Axe/raw52 route previously closed at EV-254.
+- No raw55/PhysicalFist intervention appeared in this log.
+
+Provenance:
+- User upload commit `181fb1eab09607771b1ef3ec16af5b5f34d4c887`.
+- Canonical archived log: `research/archive/2026-09-19_validation_ogre_2h_marker_test.log`.
+- Git blob `c7b03b6969b93db018cdd0df8c5b2a74f6750118`; 59,860 bytes / 321 lines.
+- Diagnostic profile: CORE; user states this batch used the current/latest diagnostic DLL.
+
+Disposition:
+- PASS — Ogre Axe/raw52 marker behavior remains compatible after the raw55 implementation.
+
+### EV-314 — Stalker Axe/raw52 regression PASS
+
+Observed:
+- `Stalker` used factual RIGHT source `It_Axe_SpikedClub_01` / UseType 52.
+- Twenty-five RIGHT markers were accepted across Normal, Power and Quick-right. Eighteen accepted opportunities produced native `ONDAMAGE Target=PC_Hero`; every tested family produced damage at least once.
+- Non-damaging accepted opportunities are consistent with native contact/reaction geometry and did not leave collision obligations outstanding.
+- Finalization showed no repair/divergence, marker rejection, ownership anomaly or invariant warning.
+- User visual observation: all tested Stalker attack types damaged the player.
+
+Scope / limits:
+- New prepared weapon-using actor/source regression fixture.
+- Confirms the tested Stalker Normal/Power/Quick-right routes on factual Axe/raw52; it does not generalize untested Stalker actions.
+- No raw55/PhysicalFist intervention appeared in this log.
+
+Provenance:
+- User upload commit `181fb1eab09607771b1ef3ec16af5b5f34d4c887`.
+- Canonical archived log: `research/archive/2026-09-19_validation_stalker_2h_marker_test.log`.
+- Git blob `499caefc8471ffd7ab351e54ce443b1c9975df5a`; 117,929 bytes / 639 lines.
+- Diagnostic profile: CORE; user states this batch used the current/latest diagnostic DLL.
+
+Disposition:
+- PASS — Stalker Axe/raw52 joins the current equipped-NPC regression coverage.
+- Together with EV-311–EV-313, Phase 3 weapon-using creature/NPC regression is CLOSED/PASS for its prepared scope, with the equipped-Sprint fixture from EV-311 explicitly deferred as a separate unsupported scope question.
