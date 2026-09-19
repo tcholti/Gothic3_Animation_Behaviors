@@ -298,7 +298,7 @@ The campaign is intentionally split into multiple logs/runs so factual source/ac
 
 ### 8.1 Phase 1 — Player attack/setup matrix against Golem
 
-**Progress through EV-305:**
+**Progress through EV-307:**
 
 ```text
 1H                         PASS — EV-299
@@ -308,10 +308,14 @@ dual 1H                    PASS — EV-301
 Staff                      PASS — EV-303
 human Fist single marker   PASS — EV-304
 human Fist double markers  PASS — EV-305
-remaining prepared Golem setups = OPEN
+1H+shield                   PASS — EV-306
+remaining prepared Golem setups = OPEN if any
+
+supplemental raw8 control:
+Sabretooth double markers   PASS — EV-307
 ```
 
-The first two batches pass deliberate C1-R1/cleanup checks. 1H, 1H+torch, dual-1H and 2H produce exact-source repair when a real stale group7 obligation survives; the Staff bad-skip attempts instead finish cleanup before terminal repair is needed. Late Action0/no-C1 callbacks are safely rejected with physical sources at group5. EV-304 proves intentionally unmarked raw8 Power P1 remains native and damaging; EV-305 proves two authored FIST markers can rearm two same-C1 raw8 contacts. No source change is required.
+Completed Golem batches pass deliberate C1-R1/cleanup checks. 1H, 1H+torch, dual-1H, 2H and 1H+shield produce exact-source repair when a real stale group7 obligation survives; Staff bad-skip attempts instead finish cleanup before terminal repair is needed. EV-306 proves the LEFT shield/raw9 remains tracked but non-offensive and non-mutating while only the exact stale RIGHT sword is repaired. EV-304 proves intentionally unmarked raw8 Power P1 remains native and damaging; EV-305 proves two authored FIST markers can rearm two same-C1 human raw8 contacts; EV-307 independently confirms the same repeated-FIST mechanism on Sabretooth. No source change is required.
 
 The User attacks a Golem using the prepared marked animations across the different weapon types.
 
