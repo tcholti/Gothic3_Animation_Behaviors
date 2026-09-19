@@ -16,7 +16,7 @@ Use this file when searching by:
 - `RunScriptFunction` / `RunScriptState` / `ProcessScript`;
 - Step-B cleanup stack evidence.
 
-Current lifecycle architecture is in `COLLISION_LIFECYCLE_PLAN.md`.
+Current lifecycle architecture is in `COLLISION_LIFECYCLE.md`.
 
 Superseded pre-information-architecture wording remains recoverable through Git history. Exact factual provenance routes through the EV entries and processed runtime logs below.
 
