@@ -425,3 +425,30 @@ Provenance:
 Disposition:
 - EV-321 negative-control semantics are preserved under the corrected implementation.
 - One required runtime gate remains before correction closure: the EV-318 equipped true-Power protected control.
+
+### EV-324 — equipped true-Power protected control PASS after Sprint-origin correction
+
+Observed:
+- Runtime protected-control validation used implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` with the established player 2H true-Power fixture: `PC_Hero`, exact RIGHT `It_2H_Sword_Flamberge` / UseType 3, Golem target.
+- Twelve ordinary equipped-Power ownership records were observed with factual `Action=2 / Family=POWER`, `RequiredMask=1`, `FistMarkers=0`, `SuppressNative=1`, `Classification=ROUTINE`.
+- Fourteen factual Power RIGHT markers were accepted on the Flamberge. Fourteen matching cleanup events returned the exact source to group 5.
+- Eight native `ONDAMAGE Target=Golem` contacts occurred while `PlayerAction=2`.
+- There were **zero** `EQUIPPED_SPRINT_PROBE` records for `Actor=PC_Hero` and zero `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION` signatures anywhere in the run.
+- There were zero true-Power marker rejections, zero nonzero PC_Hero finalizations, zero terminal repairs, and no contradiction/invariant/lifecycle/repair-divergence flag.
+
+Interpretation:
+- **PASS.**
+- Ordinary equipped true Power remains structurally upstream/outside the diagnostic Sprint-origin seam after the EV-320 correction.
+- The correction does not fabricate Sprint origin for a new true-Power execution.
+- Together with EV-322 positive RIGHT->OFF and EV-323 missing-LEFT/BOTH negative rerun, this completes the bounded Sprint-origin continuation correction runtime acceptance.
+
+Provenance:
+- User upload commit `01ace221d5049803fa27166ca00e21eb6a596a8c`.
+- Reviewed correction implementation: `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`.
+- Canonical archived log: `research/archive/2026-09-19_sprint_origin_continuation_true_power_protected_validation.log`.
+- Git blob `01b57db6f3450d06ab6c5ab66c48b4e6a654a81d`; 57,783 characters / 330 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- PASS — bounded correction acceptance COMPLETE.
+- Next responsibility returns to the parent generic equipped-Sprint investigation: decide whether the now-proven diagnostic architecture should be promoted into production behavior, without performing that promotion implicitly.
