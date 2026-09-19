@@ -17,11 +17,11 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint causal probe = SOURCE REVIEW PASS; BUILD/RUNTIME PENDING; first fixture Goblin RIGHT/raw2
+generic equipped Sprint causal probe = GOBLIN FIRST FIXTURE PASS at EV-315; PROTECTED SENTINELS PENDING
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-314
+latest completed evidence = EV-315
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,25 +31,26 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: build/deploy/startup-verify the independently reviewed generic equipped Sprint diagnostic source at `d2c6c8be0d56129ec6725571324a9066b181242c`, then run the exact EV-311 Goblin Sprint RIGHT/raw2 causal fixture first. Normal Chat source review found no material contract violation. Goblin RIGHT/raw2 remains the first runtime fixture, not the framework boundary. Phase 4 resumes only after the Sprint question is either closed or explicitly deferred again.
+Current responsibility: EV-315 has closed the first Goblin RIGHT/raw2 diagnostic causal fixture as PASS. Run the protected sentinels in order — Sabretooth raw8 Sprint, Troll/BlackTroll raw55 Sprint-origin, then one equipped true-Power route — before broader equipped-Sprint fixture coverage or any permanent-promotion decision. Phase 4 remains held until the Sprint question is closed or explicitly deferred.
 
 ## Immediate responsibility
 
-1. Reviewed runtime candidate = `d2c6c8be0d56129ec6725571324a9066b181242c`.
-2. User builds/deploys locally and verifies diagnostic startup for that exact source.
-3. Run the exact EV-311 Goblin Sprint RIGHT/raw2 causal fixture first.
-4. Do not resume Phase 4 or broad regression until the Goblin causal result is interpreted.
-5. If Goblin passes, run Sabretooth raw8 Sprint, Troll/BlackTroll raw55 Sprint-origin, and one equipped true-Power sentinel before deciding permanent promotion.
+1. EV-315 Goblin equipped Sprint RIGHT/raw2 causal fixture = PASS.
+2. Run Sabretooth raw8 Sprint sentinel.
+3. Run Troll/BlackTroll raw55 Sprint-origin sentinel.
+4. Run one equipped true-Power sentinel.
+5. If protected sentinels pass, exercise additional factual equipped Sprint fixtures across other available UseTypes/animation sets before deciding permanent promotion.
 
 ## Current verified diagnostic product
 
 ```text
-build source checkout = 8abe9c30cae5755184bb5ed22b2959998ad22d33
-built/live DLL SHA256 = 68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C59BBD14BD
+reviewed generic Sprint implementation = d2c6c8be0d56129ec6725571324a9066b181242c
+built/live DLL SHA256 = A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7
 build/deploy/startup = PASS
+Goblin first causal fixture = PASS at EV-315
 ```
 
-The current verified/live diagnostic product remains the build above until the new candidate is built. Generic Sprint runtime candidate `d2c6c8be0d56129ec6725571324a9066b181242c` has passed independent Normal Chat source review but is **NOT YET BUILT / NOT RUNTIME TESTED**. The earlier `1ae0731cd501e6d72bbbf6642188a3047d134805` RIGHT/raw2 implementation remains superseded. Documentation/evidence-only commits do not require rebuild/redeploy by themselves.
+The live diagnostic product above remains the active sentinel-test binary. The earlier `1ae0731cd501e6d72bbbf6642188a3047d134805` RIGHT/raw2 implementation remains superseded. Later documentation/evidence-only commits do not require rebuild/redeploy by themselves.
 
 ## Read next by question
 
