@@ -1,0 +1,201 @@
+Formal audit report
+
+Remote branch docs/collision-source-evidence was verified at the required HEAD:
+
+b94cd2748052058e2609e3e1228f852cef2c6350
+
+No blockers were found. The restructure is structurally sound and safe to retain as the baseline, but several current-authority contradictions should be corrected before technical collision work resumes.
+
+1. POP-10 preflight
+Governing hierarchy
+CAM
+-> docs/README.md project charter
+-> parallel specialist authorities/references
+-> procedures, conventions and current-state pointers
+-> temporary work contracts
+-> evidence/archive/raw provenance
+
+Role interpretation applied:
+
+Layer	Responsibility
+Root README.md	Unique ordinary and interrupted-context startup route
+docs/README.md	Highest project-specific charter and authority topology
+Current references	Established facts
+Architecture documents	Current ownership, invariants and system design
+ADRs	Rationale for significant non-obvious decisions
+Procedures/protocols	Recurring operations and bounded execution rules
+SESSION_ENTRYPOINT / BETWEEN_CHATS	Small, replaceable current-state pointers
+Active work	Unresolved temporary responsibility only
+Evidence	Proof, provenance and scope
+Archive/raw	Cold history and canonical source artifacts
+
+Review scope was current-surface-first, followed by the six required targeted evidence traces, minimum source/CMake reality checks, automation review and repository hygiene. The accepted lifecycle was treated as the system under test; it was not redesigned.
+
+2. Coverage map
+Surface	Reviewed
+Charter/startup/current state	Root README.md, docs/README.md, SESSION_ENTRYPOINT.md, BETWEEN_CHATS.md
+Lifecycle and authority rules	COLLABORATION_RULES.md, PROJECT_PIPELINE.md, POP-10/POP-12, KNOWLEDGE_MAINTENANCE.md, KNOWLEDGE_REGISTRY.md, FEATURE_DEVELOPMENT_METHOD.md, WORK_IMPLEMENTATION_PROTOCOL.md, research/README.md
+Collision facts/architecture	COLLISION_REFERENCE.md, DESIGN.md, COLLISION_LIFECYCLE.md, COLLISION_DIAGNOSTICS.md, COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md, COLLISION_TEST_PLAN.md
+Source/API/release references	SOURCE_HOOK_GUIDE.md, COLLISION_CLEANUP_CALLSITE_MAP.md, GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
+Animation/project context	ANIMATION_INDEX.md, ANIMATION_RULES.md, ANIMATION_CATALOG.md, ENGINEERING_GUIDE.md, PROJECT_SCOPE_CONTEXT.md, LOCAL_WORKSTATION_PATHS.md
+Decisions/evidence	ADR-0001, ADR-0002, EVIDENCE_INDEX.md, EVIDENCE_PATH_MIGRATIONS.md, active EV-309 ledger
+Targeted historical proof	EV-206–207, EV-240, EV-251, EV-292–298, EV-299, EV-304–308 and their cited raw artifacts
+Source/CMake reality	Root and collision-prototype CMake, release target CMake, module inventory, EngineBridge, collision operations, raw8/raw55/lifecycle owners
+Automation/hygiene	Validator, workflow, remote branches, active work, raw intake and top-level archive routing
+
+The complete archive and all 308 historical EVs were not enumerated.
+
+3. Findings
+BLOCKER
+
+None.
+
+MATERIAL
+M-1 — Current diagnostics authority describes completed raw55 research as unresolved
+
+Category: Current/historical separation; architecture contradiction
+Files/sections: COLLISION_DIAGNOSTICS.md §§7, 9 and 14
+Observed inconsistency or weakness: The document still lists “remaining PhysicalFist/raw55 repeated-contact causality,” describes the EV-290 ALL-clear suppression probe as current, prohibits the later replacement clear, and schedules Normal, Power, Sprint and permanent raw55 closure as future work. Those stages closed through EV-292–EV-298.
+Why it matters: A fresh context following a current authority could reconstruct obsolete probes or treat archived diagnostic policy as current implementation guidance. This directly violates the intended current-versus-history lifecycle.
+Smallest correct owner: COLLISION_DIAGNOSTICS.md
+Evidence/provenance check: EV-292–EV-298; permanent PhysicalFistCollision source and CMake inclusion; absence of PhysicalFistProbe.
+Suggested correction direction: Replace the closed probe chronology with the current diagnostic ownership/event model and route causal history through EVIDENCE_INDEX.md.
+
+M-2 — Current Sprint collision-scope statement excludes supported raw55 Sprint-origin behavior
+
+Category: Current factual contradiction
+Files/sections: COLLISION_REFERENCE.md §6, especially “Current supported Sprint collision scope is raw8 FIST.”
+Observed inconsistency or weakness: The statement conflicts with the same document’s raw55 section and the permanent raw55 architecture, which support Sprint-origin PhysicalFist/raw55 across the same-C1 Action9→Action2 transition.
+Why it matters: COLLISION_REFERENCE.md is the primary settled-fact interface. Its Sprint section can make a supported production route appear unsupported.
+Smallest correct owner: COLLISION_REFERENCE.md
+Evidence/provenance check: EV-294 and EV-298; COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md; current PhysicalFistCollision module.
+Suggested correction direction: Distinguish raw8 Sprint transport, unsupported equipped RIGHT/LEFT/BOTH/OFF marker semantics, and supported raw55 Sprint-origin FIST semantics.
+
+M-3 — Both current-state pointers route to a nonexistent test-plan section
+
+Category: Stale route; retrieval failure
+Files/sections: SESSION_ENTRYPOINT.md and BETWEEN_CHATS.md, references to COLLISION_TEST_PLAN.md §8.1
+Observed inconsistency or weakness: The current plan has §3.1 for the Phase-1 Golem matrix and no §8.1.
+Why it matters: This is the immediate post-audit continuation route. The surrounding prose allows recovery, but the formal pointer itself fails.
+Smallest correct owner: SESSION_ENTRYPOINT.md and BETWEEN_CHATS.md
+Evidence/provenance check: Current COLLISION_TEST_PLAN.md section structure and Phase-1 status.
+Suggested correction direction: Route both pointers to the exact current section and preserve the decision: exercise a prepared remaining Golem setup or explicitly close Phase 1.
+
+M-4 — Dynamic collision roadmap state is duplicated into architecture authorities and has drifted
+
+Category: Duplicate ownership; stale current state
+Files/sections: DESIGN.md §12; COLLISION_LIFECYCLE.md §10
+Observed inconsistency or weakness: DESIGN.md calls regression current through EV-307, while COLLISION_LIFECYCLE.md says EV-299–EV-305. The actual state includes EV-306–EV-308 and is temporarily held for this audit. The registry assigns immediate state to SESSION_ENTRYPOINT.md and validation gates to COLLISION_TEST_PLAN.md.
+Why it matters: Frequently changing campaign progress now has multiple current owners and has already drifted.
+Smallest correct owner: DESIGN.md and COLLISION_LIFECYCLE.md, with live status retained in the state pointer/test plan.
+Evidence/provenance check: Registry ownership map, current state pointers, test plan and EV-299–EV-308.
+Suggested correction direction: Keep only durable dependency/order constraints in architecture documents and route live progress to the designated owners.
+
+M-5 — Validator misses mechanically detectable ownership and section-route failures
+
+Category: Automation gap; false confidence
+Files/sections: tools/knowledge/validate_knowledge_state.py; POP-12
+Observed inconsistency or weakness:
+
+It verifies .md file existence but not Markdown anchors, numbered-section targets or code-form routes such as FILE.md §8.1; therefore M-3 passes.
+The docs-root allowlist comment requires updating KNOWLEDGE_REGISTRY.md, but the validator does not confirm that an allowlisted permanent document actually has a registry ownership row.
+Root allowlisting does not similarly classify a new permanent Markdown document placed under another current docs/ subdirectory.
+Stale plan/probe detection is limited to three hard-coded historical names and cannot catch the obsolete raw55 diagnostic sequence.
+
+Why it matters: The workflow can report success while navigability or primary ownership is structurally incomplete. POP-12 correctly disclaims technical/architectural judgment, but section routing and registry pairing are amenable to mechanical validation.
+Smallest correct owner: Validator plus the corresponding lifecycle convention.
+Evidence/provenance check: Required-head validator and GitHub Action both pass despite M-1 through M-4.
+Suggested correction direction: Standardize section routes as validated links/anchors, validate allowlist-to-registry pairing, and define the permitted current-document directory topology. Leave semantic closure and factual contradictions to POP-10 review.
+
+MINOR
+N-1 — Successful validation is advisory on the working branch
+
+Category: CI enforcement
+Files/sections: Repository branch settings and knowledge workflow
+Observed inconsistency or weakness: The current branch is not protected and has no required status checks. The validator runs on relevant pushes/PRs, but GitHub does not prevent a failing direct push from becoming branch HEAD.
+Why it matters: POP-12 remains a procedural stop condition rather than an enforced repository gate.
+Smallest correct owner: Repository settings; document only if the policy changes.
+Evidence/provenance check: Remote branch metadata and current check configuration.
+Suggested correction direction: If this branch is intended as a retained baseline, consider requiring the Knowledge state check; otherwise preserve the explicit procedural responsibility.
+
+4. Required evidence traces
+Topic	Trace and result
+Equipped collision/lifecycle	COLLISION_REFERENCE → EVIDENCE_INDEX EV-180–215 → archived EV-206/207. Exact repair and control raws exist. Positive exact-source 7→5 repair, ordinary/reaction no-op controls, dual isolation and broad negatives are preserved. PASS. Explicit evidence limits—no positive unresolved-liveness case and no positive NPC destructive repair—remain qualified.
+Raw8 Fist	Current reference/rules/source guide → EV-221–251 and later EV-297/304/305/307. EV-240 closes human Normal/Power; EV-251 closes Sprint transport; EV-297 protects raw8 after raw55 promotion; EV-305/307 prove repeated FIST. Artifacts and Raw8FistCollision exist. PASS.
+Raw55 PhysicalFist	Current reference/raw55 architecture → EV-262–298, specifically EV-292–294 causal closure and EV-295–298 focused permanent acceptance. All representative canonical artifacts exist. PhysicalFistCollision exists, PhysicalFistProbe does not, and operation splitting matches the architecture. PASS, subject to stale diagnostics documentation M-1.
+Sprint identity/transport	Raw8 Action9 through _AI_PowerAttack traces to EV-250/251. Raw55 Sprint-origin Action9→Action2 continuity traces to EV-294 and EV-298. Current source transports callback scope through EngineBridge while semantic ownership stays in feature modules. Evidence PASS; current reference wording fails under M-2.
+Current regression	State pointer/test plan → index → EV-299 and EV-304–308 representative rows and raw artifacts. Player/Golem setups through EV-306 pass, EV-307 is supplemental raw8 corroboration, and EV-308 is a deferred negative control. PASS. Campaign remains incomplete; Phase 1 is not explicitly closed.
+Shield/raw9	COLLISION_REFERENCE §7 → EV-306 and EV-308. EV-306 establishes LEFT shield non-ownership in ordinary RIGHT authoring; EV-308 proves LEFT/raw9 activation/rearm/cleanup but zero native damage. PASS. Current documents correctly avoid claiming shield-bash support.
+
+No required factual conclusion was found stranded solely in archived task prose.
+
+5. Automation-strength assessment
+Mechanically enforced successfully
+Required lifecycle directories.
+Curated docs/ root allowlist.
+Exactly one active evidence ledger.
+Active-task Status: ACTIVE and routing from current state.
+Startup/lifecycle route markers and required recovery snippets.
+Current-state and selected reference/index size limits.
+Evidence-index routing for every archived ledger.
+Bans on direct current references to closed ledger filenames.
+Selected stale document names.
+Current Markdown file-link existence.
+Workflow execution on relevant documentation/tool changes.
+
+Verification results:
+
+Exact required-head validator: Knowledge-state validation PASS.
+GitHub Actions run 35450416734, job validate: success.
+No validator warnings occurred in the direct exact-snapshot run.
+Still semantic/manual
+Whether an ACTIVE task has factually closed.
+Technical truth and architecture/source agreement.
+Duplicate ownership expressed with different wording.
+Whether durable knowledge was promoted before archival.
+Whether current narrative accidentally preserves obsolete probe work.
+Plan-state meaning and evidence sufficiency.
+Section/anchor validity under the current validator.
+Enforcement of passing CI on direct branch pushes.
+
+POP-12’s disclaimer that validation does not replace technical evidence or POP-10 review is accurate.
+
+6. Branch/work/archive/raw hygiene
+Remote branches: only main and docs/collision-source-evidence.
+Required branch HEAD: exact match at b94cd2748052058e2609e3e1228f852cef2c6350.
+docs/work/active/: only its README and this routed ACTIVE audit.
+research/raw/: only Keep.txt; no unprocessed artifacts.
+docs/archive/: correctly divided into investigations/ and evidence/; ordinary retrieval is explicitly discouraged.
+Active evidence ledger: exactly one, EVIDENCE_LEDGER_309_ONWARD.md, empty and ready after EV-308.
+Evidence namespace: continuous EV-001–EV-308 with EV-309 onward open.
+Path migrations and every representative canonical artifact checked were coherent.
+ADR-0001 and ADR-0002 preserve rationale rather than replacing current architecture; neither conflicts with current authorities.
+Root startup remains the unique advertised front door.
+Current-state files remain compact: approximately 3.9 KiB and 1.9 KiB.
+No repository files were changed.
+7. Baseline assessment
+
+Safe to retain as the current baseline: YES, with bounded documentation corrections required before normal technical work resumes.
+
+The restructure’s central model is sound:
+
+startup and authority topology are clear;
+evidence routing is compact and continuous;
+raw/archive hygiene is strong;
+source/CMake reality matches the permanent module and release/diagnostic split;
+the validator provides meaningful structural protection;
+ADR and archive roles are coherent.
+
+The findings do not justify reverting or redesigning the restructure. They are localized promotion/routing defects: one badly stale current diagnostics section, one factual Sprint contradiction, one broken immediate route, duplicated campaign state and two automation enforcement gaps.
+
+8. Recommended correction order
+Correct COLLISION_DIAGNOSTICS.md so closed raw55 probe work is no longer presented as current.
+Correct COLLISION_REFERENCE.md Sprint scope to include proven raw55 Sprint-origin behavior while retaining equipped-marker exclusions.
+Repair both §8.1 current-state routes to the exact current test-plan section.
+Remove live campaign-progress ownership from DESIGN.md and COLLISION_LIFECYCLE.md, retaining only durable architecture/order constraints.
+Extend validator coverage for section routes and allowlist-to-registry ownership pairing.
+Decide separately whether the working branch should require the successful Knowledge state check.
+
+Build status: NOT ATTEMPTED — prohibited by task.
+
+Repository changes: NONE — audit is read-only.
