@@ -366,3 +366,33 @@ Provenance:
 
 Disposition:
 - PASS — the generic required-source gate fails closed and preserves native fallback for a Sprint BOTH motion when LEFT is absent.
+
+### EV-322 — equipped Sprint origin-continuation RIGHT -> OFF correction PASS
+
+Observed:
+- Runtime validation used the reviewed correction implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` with the controlled Goblin Sprint RIGHT -> OFF fixture from EV-320.
+- Eight factual Goblin Action9/SPRINT executions accepted the authored RIGHT marker. Six executions on the P0 fixture motion reached the authored OFF after Gothic changed current factual state to Action2/POWER: C1 generations 24, 34, 45, 84, 92 and 101.
+- In all six complete continuations, RIGHT first opened exact `It_1H_Club_01` / raw2 `5 -> 7`; the later OFF marker was explicitly authorized by `EquippedSprintProbe` with `Reason=BOUND_SPRINT_ORIGIN_POWER_CONTINUATION`.
+- All six OFF markers remained factually visible as `Action=2 Family=POWER` and returned `Result=OFF_ACCEPTED`.
+- At OFF timing the exact club was deactivated `7 -> 5`; each C1 recorded `C1 CLEANUP FULFILLED` and finalized `Outstanding=0`.
+- The run contains zero OFF rejection, zero `REJECTED_C1_GENERATION_INCONSISTENCY`, zero nonzero Goblin finalization, zero terminal repair and no invariant/lifecycle/repair-divergence flag.
+- The two other factual Sprint executions used the alternate P1 PowerAttack motion and did not exercise the authored OFF fixture; they are not counted against the RIGHT -> OFF acceptance question.
+- Native contact remained possible; the run contains 19 `ONDAMAGE Target=PC_Hero` events overall.
+
+Interpretation:
+- **PASS.**
+- EV-320's exact defect is corrected: immutable Sprint-origin execution identity now survives the proven same-C1 Action9 -> Action2 transition long enough for the later generic OFF marker to close the marker-owned window.
+- Factual current Action2 remains visible in diagnostics while generic marker bookkeeping stays coherent to the bound Sprint origin.
+- This result does not yet close the correction as a whole; the EV-321 missing-LEFT/BOTH negative rerun and EV-318 true-Power protected control remain required.
+
+Provenance:
+- User upload commit `514aad0f55ab9e3f90076ff832c598c5d83d32fc`.
+- Reviewed correction implementation: `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`.
+- Canonical archived log: `research/archive/2026-09-19_sprint_origin_continuation_right_off_validation.log`.
+- Git blob `011c674b890593c4a69b18d46902842df8b1a41f`; 206,966 characters / 940 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+- Startup/load gate passed before this run. The POP-03 built/live SHA256 was not reproduced in the chat transcript for this validation cycle; the runtime log itself contains the correction-specific `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION` signature from the reviewed implementation.
+
+Disposition:
+- Positive correction gate PASS.
+- Next required runtime gate: rerun EV-321 BOTH with LEFT absent and require the prior fail-closed/native-fallback behavior to remain intact.
