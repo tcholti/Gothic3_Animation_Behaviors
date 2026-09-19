@@ -17,8 +17,8 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-equipped Sprint/right/raw2 fixture = ACTIVE CAUSAL PROBE
-active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_RIGHT_RAW2_CAUSAL_PROBE.md
+generic equipped Sprint causal probe = ACTIVE; first fixture Goblin RIGHT/raw2
+active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-314
@@ -31,13 +31,13 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: implement and independently review the diagnostic-only causal probe in `docs/work/active/COLLISION_EQUIPPED_SPRINT_RIGHT_RAW2_CAUSAL_PROBE.md`. Phase 4 resumes only after the Sprint question is either closed or explicitly deferred again.
+Current responsibility: replace the superseded fixture-narrow Sprint diagnostic implementation with the generic equipped Sprint causal probe in `docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md`, then independently review the Work commit before any build/runtime test. Goblin RIGHT/raw2 remains the first runtime fixture, not the framework boundary. Phase 4 resumes only after the Sprint question is either closed or explicitly deferred again.
 
 ## Immediate responsibility
 
-1. Work implements only the frozen diagnostic-only equipped Sprint RIGHT/raw2 causal probe.
+1. Work replaces the current unbuilt narrow RIGHT/raw2 diagnostic with only the frozen generic equipped Sprint causal probe.
 2. Normal Chat independently reviews the Work commit before any build/runtime test.
-3. User then builds/deploys locally and tests the exact Goblin Sprint fixture first.
+3. User then builds/deploys locally and tests the exact Goblin Sprint RIGHT/raw2 fixture first.
 4. Do not resume Phase 4 or broad regression until the Goblin causal result is interpreted.
 5. If Goblin passes, run Sabretooth raw8 Sprint, Troll/BlackTroll raw55 Sprint-origin, and one equipped true-Power sentinel before deciding permanent promotion.
 
@@ -49,7 +49,7 @@ built/live DLL SHA256 = 68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C5
 build/deploy/startup = PASS
 ```
 
-Documentation/evidence-only commits after that build do not require rebuild/redeploy by themselves.
+The current verified/live diagnostic product remains the build above. Branch source commit `1ae0731cd501e6d72bbbf6642188a3047d134805` is a **superseded, unbuilt** narrow Sprint diagnostic implementation and must not be built/runtime-tested before Work replaces it under the generic active contract. Documentation/evidence-only commits do not require rebuild/redeploy by themselves.
 
 ## Read next by question
 
