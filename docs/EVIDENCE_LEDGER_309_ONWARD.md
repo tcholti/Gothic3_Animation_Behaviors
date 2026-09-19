@@ -171,3 +171,31 @@ Provenance:
 Disposition:
 - PASS — Stalker Axe/raw52 joins the current equipped-NPC regression coverage.
 - Together with EV-311–EV-313, Phase 3 weapon-using creature/NPC regression is CLOSED/PASS for its prepared scope, with the equipped-Sprint fixture from EV-311 explicitly deferred as a separate unsupported scope question.
+
+### EV-315 — Goblin equipped-Sprint generic marker causal handoff PASS
+
+Observed:
+- The committed run contains two factual Goblin `Action=9 / Family=SPRINT` Hit executions, C1 generations 59 and 79, using RIGHT source `It_1H_Club_01` / UseType 2 and motion `Goblin_Stand_None_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot`.
+- In both executions the Goblin C1 begins with the RIGHT source at collision group 5. The diagnostic Sprint probe then records `CALLBACK Decision=SUPPRESS_NATIVE Reason=ELIGIBLE`; no Goblin RIGHT-source 5 -> 7 transition occurs before the authored marker.
+- At the authored RIGHT event the probe records `MARKER Decision=AUTHORIZE_GENERIC_EQUIPPED Reason=BOUND_EXECUTION_MATCHED`. Generic marker processing then changes the exact RIGHT source 5 -> 7 and records `CORE MARKER ... Action=9 Family=SPRINT ... Marker=RIGHT Result=ACCEPTED`.
+- Both factual Sprint executions are followed by native `ONDAMAGE Target=PC_Hero`, exact-source native cleanup 7 -> 5, `C1 CLEANUP FULFILLED`, and Goblin finalization with `Outstanding=0`.
+- Later ordinary Goblin `Action=1 / Family=NORMAL` markers are explicitly `DENY_GENERIC_EQUIPPED Reason=NOT_FACTUAL_SPRINT_HIT` by the Sprint probe while the ordinary marker path still accepts them. This is a bounded scoping control showing the diagnostic Sprint permission does not own those Normal executions.
+- No raw55 identity contradiction, generic ownership contradiction, invariant failure or Sprint marker rejection appears in the factual Sprint executions.
+- User observation: Sprint and Power are difficult to distinguish visually because they share the animation; knockdown behavior suggested Sprint. The log resolves the identity factually as Action9/SPRINT.
+
+Scope / limits:
+- Causal PASS for the first EV-311 fixture only: Goblin, equipped RIGHT 1H/raw2, authored RIGHT marker, temporary diagnostic Sprint handoff.
+- This does not yet prove LEFT/BOTH/OFF combinations, other equipped UseTypes/species, protected raw8/raw55/true-Power sentinels, or production support.
+- Equipped Sprint remains unsupported in the current production/behavior baseline until the active diagnostic investigation completes and promotion is separately decided.
+
+Provenance:
+- User upload commit `f884659345a8572a9e476fadaab7e0031ab3c0a4`.
+- Reviewed diagnostic implementation: `d2c6c8be0d56129ec6725571324a9066b181242c`.
+- Built/live diagnostic DLL SHA256: `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`; build, deployment/hash and startup/load gates PASS.
+- Canonical archived log: `research/archive/2026-09-19_equipped_sprint_goblin_right_raw2_causal_probe.log`.
+- Git blob `2b534f564108f064b7fc7a043202df8c6cbdf483`; 161,165 bytes / 789 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- PASS — suppressing native early `OnAI_PowerAttack` timing allows the existing generic equipped marker mechanism to own the first factual Goblin Sprint RIGHT/raw2 fixture at authored marker timing while preserving native damage and cleanup.
+- Active investigation continues with protected raw8 Sprint, raw55 Sprint-origin and equipped true-Power sentinels before broader equipped-Sprint fixtures or any permanent promotion decision.
