@@ -178,22 +178,22 @@ For exact RVAs, call stacks, hook signatures, and build-specific source facts, u
 
 Focused raw55 acceptance is CLOSED/PASS at EV-298.
 
-Standalone collision regression currently has:
+Standalone regression has closed the human marked-attack matrix. EV-299–EV-306 used Golem as a consistent target fixture while testing the human attack routes themselves. Sabretooth marked single-marker compatibility/Quick support is established through EV-247–EV-249, and its later same-C1 double-FIST control passed at EV-307.
 
 ```text
-EV-299  1H                         PASS
-EV-300  1H+torch                   PASS
-EV-301  dual 1H                    PASS
-EV-302  2H                         PASS
-EV-303  Staff                      PASS
-EV-304  human raw8 single FIST     PASS
-EV-305  human raw8 double FIST     PASS
-EV-306  1H+shield                  PASS
-EV-307  Sabretooth double FIST     PASS
-EV-308  shield-bash LEFT/raw9      NEGATIVE CONTROL / DEFERRED
+EV-299  human 1H                    PASS
+EV-300  human 1H+torch              PASS
+EV-301  human dual 1H               PASS
+EV-302  human 2H                    PASS
+EV-303  human Staff                 PASS
+EV-304  human raw8 single FIST      PASS
+EV-305  human raw8 double FIST      PASS
+EV-306  human 1H+shield             PASS
+EV-307  Sabretooth double FIST      PASS
+EV-308  shield-bash LEFT/raw9       NEGATIVE CONTROL / DEFERRED
 ```
 
-Current validation plan: `COLLISION_TEST_PLAN.md`.
+Next validation subject: Orc marked attack routes. Current validation plan: `COLLISION_TEST_PLAN.md`.
 
 ## 10. Evidence escalation rule
 
