@@ -1,6 +1,6 @@
 # Generic Equipped Sprint Causal Probe
 
-**Status:** ACTIVE — GOBLIN FIRST FIXTURE PASS / PROTECTED SENTINELS PENDING  
+**Status:** ACTIVE — GOBLIN PASS + RAW8 SENTINEL PASS / RAW55 SENTINEL NEXT  
 **Type:** Bounded diagnostic-only causal implementation  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and interprets runtime result.
@@ -301,14 +301,34 @@ Later ordinary Action1/NORMAL markers were denied by the Sprint probe and still 
 
 This proves the causal handoff only for the first Goblin RIGHT/raw2 fixture. It does not promote equipped Sprint support or prove untested marker/source combinations.
 
+## Protected sentinel results
+
+### EV-316 — raw8 Sprint sentinel PASS
+
+Five factual native-Sabretooth Action9/SPRINT generations confirmed the established raw8 mechanism while this diagnostic seam was active:
+
+```text
+raw8 ownership confirmed
+-> EquippedSprintProbe DELEGATE_NATIVE / FIST_MARKER_PRESENT
+-> FIST accepted
+-> latch 1 -> 0 confirmed
+-> bounded timing permission armed/used
+-> native ONDAMAGE to PC_Hero
+-> C1 final Outstanding=0
+```
+
+A later same-C1 Action2/POWER replay of the same PowerAttack-named motion produced one `REJECTED_C1_GENERATION_INCONSISTENCY` FIST dispatch per sampled Sprint generation. This occurred after the valid Sprint FIST/contact and cleanly failed closed; it was not captured in the older EV-251 sample and is retained as a bounded observation, not a sentinel failure.
+
+Next protected sentinel: raw55 Sprint-origin.
+
 ## Follow-up after first PASS
 
 Only after Normal Chat independently reviews a Goblin PASS:
 
-1. run the existing protected sentinels required to prove no regression:
-   - raw8 Sprint;
-   - raw55 Sprint-origin;
-   - one equipped true-Power route;
+1. complete the existing protected sentinels required to prove no regression:
+   - raw8 Sprint = PASS at EV-316;
+   - raw55 Sprint-origin = NEXT;
+   - one equipped true-Power route = PENDING;
 2. exercise additional factual equipped Sprint fixtures across other available equipped UseTypes/animation sets where possible (for example Orc/Demon/Ogre/Stalker families already used in regression);
 3. if RIGHT/LEFT/BOTH/OFF combinations cannot be exercised by vanilla actors, deliberately authored diagnostic fixtures may be designed later rather than narrowing the framework contract to vanilla limitations;
 4. only then decide whether permanent promotion is justified.
