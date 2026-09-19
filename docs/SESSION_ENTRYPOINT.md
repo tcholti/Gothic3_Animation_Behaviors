@@ -17,8 +17,9 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-equipped Sprint/right/raw2 fixture = DISCOVERED/DEFERRED at EV-311
-current subphase = Phase 4 non-weapon creatures
+equipped Sprint/right/raw2 fixture = ACTIVE CAUSAL PROBE
+active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_RIGHT_RAW2_CAUSAL_PROBE.md
+Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-314
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
@@ -28,17 +29,17 @@ Phase 1 is closed: the EV-299–EV-306 runs tested human marked attack routes, w
 
 Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-309; 2H-animation/Axe raw52 passed at EV-310. User visual observation and CORE logs agree that all tested Orc attack types damaged the player.
 
-Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. Goblin/Demon/Ogre specifically confirm their older equipped-NPC routes remain healthy after raw55 integration. EV-311 also records a factual Goblin equipped-Sprint/right/raw2 marker rejection as a separate deferred scope discovery.
+Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current route: `COLLISION_TEST_PLAN.md` §3.4 — non-weapon creatures.
+Current responsibility: implement and independently review the diagnostic-only causal probe in `docs/work/active/COLLISION_EQUIPPED_SPRINT_RIGHT_RAW2_CAUSAL_PROBE.md`. Phase 4 resumes only after the Sprint question is either closed or explicitly deferred again.
 
 ## Immediate responsibility
 
-1. Use POP-01 before the next local test because remote evidence/documentation state changed.
-2. Continue Phase 4 with prepared non-weapon animal/monster fixtures.
-3. Do not repeat Troll/BlackTroll or Sabretooth merely for duplication; their current-DLL raw55/raw8 evidence is already closed unless a concrete contradiction appears.
-4. Preserve factual runtime source/UseType and keep each creature route attributable; do not infer mechanism from species or animation naming.
-5. Close every uploaded batch under POP-06 before starting the next validation batch. The EV-311 equipped-Sprint fixture remains deferred and does not block Phase 4.
+1. Work implements only the frozen diagnostic-only equipped Sprint RIGHT/raw2 causal probe.
+2. Normal Chat independently reviews the Work commit before any build/runtime test.
+3. User then builds/deploys locally and tests the exact Goblin Sprint fixture first.
+4. Do not resume Phase 4 or broad regression until the Goblin causal result is interpreted.
+5. If Goblin passes, run Sabretooth raw8 Sprint, Troll/BlackTroll raw55 Sprint-origin, and one equipped true-Power sentinel before deciding permanent promotion.
 
 ## Current verified diagnostic product
 
