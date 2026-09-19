@@ -9,7 +9,7 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Technical active branch: `docs/collision-source-evidence`  
-Current gate: **generic equipped Sprint diagnostic causal probe — GOBLIN PASS + RAW8 SPRINT SENTINEL PASS / RAW55 SENTINEL NEXT**. Phase 4 non-weapon regression is temporarily held.
+Current gate: **generic equipped Sprint diagnostic causal probe — GOBLIN + RAW8 + RAW55 PASS / TRUE-POWER SENTINEL NEXT**. Phase 4 non-weapon regression is temporarily held.
 
 Corrected closed state:
 
@@ -55,15 +55,15 @@ Runtime order is:
 ```text
 EV-315 Goblin equipped Sprint/right/raw2 causal fixture PASS
 -> EV-316 Sabretooth raw8 Sprint sentinel PASS
--> Troll/BlackTroll raw55 Sprint-origin sentinel NEXT
--> one equipped true-Power sentinel
+-> EV-317 Troll raw55 Sprint-origin sentinel PASS
+-> one equipped true-Power sentinel NEXT
 -> additional factual equipped Sprint fixtures across available UseTypes/animation sets
 -> then decide permanent promotion
 ```
 
 Phase 4 remains held until this scope question is resolved.
 
-Latest closed evidence is EV-316. The EV-316 Sabretooth raw8 Sprint sentinel is PASS; its processed raw log is archived unchanged. `research/raw/` should be clean except `Keep.txt` after this closure transaction.
+Latest closed evidence is EV-317. The EV-317 Troll raw55 Sprint-origin sentinel is PASS; its processed raw log is archived unchanged. `research/raw/` should be clean except `Keep.txt` after this closure transaction.
 
 The knowledge-lifecycle restructure, formal post-restructure audit, and bounded M-1 through M-5 corrections are CLOSED/PASS. Ordinary reference-first retrieval and automated knowledge-state validation are now the baseline.
 
