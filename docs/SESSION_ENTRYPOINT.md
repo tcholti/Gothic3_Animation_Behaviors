@@ -109,7 +109,7 @@ using the already-computed callback-entry contradiction. Behavior still returns 
 
 Normal Chat independent source review: **PASS**.
 
-## Current responsibility — STANDALONE REGRESSION PHASE 1: GOLEM WEAPON MATRIX
+## Current responsibility — STANDALONE REGRESSION PHASE 1: GOLEM ATTACK/SETUP MATRIX
 
 Focused permanent raw55 acceptance is now **CLOSED/PASS — EV-298**.
 
