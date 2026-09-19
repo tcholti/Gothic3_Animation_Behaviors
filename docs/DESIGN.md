@@ -8,7 +8,7 @@
 
 `Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. Active behavior domains are Raise-phase control, attack playback-speed control, and authored-frame collision control. Future independent domains may include target acquisition and climbing.
 
-This file owns overall intended architecture and implementation order. Collision redesign detail is frozen in `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`; collision lifecycle authority is `COLLISION_LIFECYCLE_PLAN.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_LOGGER_PLAN.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
+This file owns overall intended architecture and implementation order. Established collision facts are projected in `COLLISION_REFERENCE.md`; collision lifecycle authority is `COLLISION_LIFECYCLE.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_DIAGNOSTICS.md`; permanent raw55 behavior is owned by `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
 
 ---
 
@@ -339,7 +339,7 @@ CollisionSourceOperations
 
 Unknown/new mechanisms follow `FEATURE_DEVELOPMENT_METHOD.md`: dedicated temporary probe first, then the smallest proven permanent owner after research closure.
 
-Full authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.
+Current architecture is owned by this file plus `COLLISION_REFERENCE.md`, `COLLISION_LIFECYCLE.md`, and `COLLISION_DIAGNOSTICS.md`; the completed redesign plan is archived provenance.
 
 ---
 
@@ -372,7 +372,7 @@ Temporary behavior probes such as `PhysicalFistProbe` are separate from both sta
 
 CORE must remain capable of discovering SprintAttack and other future unexpected traffic without requiring full research-era verbosity for every healthy execution.
 
-Detailed authority: `COLLISION_LOGGER_PLAN.md`, `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`, and `FEATURE_DEVELOPMENT_METHOD.md`.
+Detailed authority: `COLLISION_DIAGNOSTICS.md` and `FEATURE_DEVELOPMENT_METHOD.md`. The completed redesign/refactor plan is archived historical provenance.
 
 ---
 
@@ -525,11 +525,11 @@ Do not combine the current regression campaign with:
 |---|---|
 | Current exact task | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
 | Feature research -> production method | `FEATURE_DEVELOPMENT_METHOD.md` |
-| Current architecture/diagnostic redesign | `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md` |
+| Current established collision facts | `COLLISION_REFERENCE.md` |
 | Overall architecture/order | this file |
-| Collision lifecycle | `COLLISION_LIFECYCLE_PLAN.md` |
+| Collision lifecycle | `COLLISION_LIFECYCLE.md` |
 | Validation | `COLLISION_TEST_PLAN.md` |
-| Diagnostics | `COLLISION_LOGGER_PLAN.md` |
+| Diagnostics | `COLLISION_DIAGNOSTICS.md` |
 | Source/hooks/RVAs | `SOURCE_HOOK_GUIDE.md` |
 | Animation authoring semantics | `ANIMATION_INDEX.md` -> `ANIMATION_RULES.md` |
 | Exact evidence | `EVIDENCE_INDEX.md` -> canonical ledgers -> archived provenance |
