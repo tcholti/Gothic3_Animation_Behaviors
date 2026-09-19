@@ -4,13 +4,13 @@
 
 **Updated:** 2026-09-18
 
-## Current Bridge — EV-301; GOLEM PHASE 1 FIRST BATCH CLOSED/PASS
+## Current Bridge — EV-305; GOLEM PHASE 1 FIRST TWO BATCHES CLOSED/PASS
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `docs/collision-source-evidence`  
 Stable branch: `main`
 
-Focused permanent raw55 acceptance remains CLOSED/PASS at **EV-298**. Standalone regression Phase 1 has now added **EV-299 1H PASS, EV-300 1H+torch PASS, EV-301 dual-1H PASS**.
+Focused permanent raw55 acceptance remains CLOSED/PASS at **EV-298**. Standalone regression Phase 1 is now PASS through **EV-305**: 1H, 1H+torch, dual-1H, 2H, Staff, human raw8 Fist single-marker/native-fallback, and human raw8 Fist double-marker repeated-contact.
 
 Permanent raw55 contract:
 
@@ -151,88 +151,101 @@ identity contradiction
 
 No identity, eligibility, marker, hook, lifecycle, raw8/equipped or F1 logic changed.
 
-## Immediate next responsibility — CONTINUE GOLEM WEAPON MATRIX
+## Immediate next responsibility — CONTINUE REMAINING GOLEM SETUPS
 
-First Phase-1 upload batch is fully closed:
+Closed Phase-1 evidence so far:
 
 ```text
-EV-299  1H        PASS
-EV-300  1H+torch  PASS
-EV-301  dual 1H   PASS
+EV-299  1H                         PASS
+EV-300  1H+torch                   PASS
+EV-301  dual 1H                    PASS
+EV-302  2H                         PASS
+EV-303  Staff                      PASS
+EV-304  human Fist single marker   PASS
+EV-305  human Fist double markers  PASS
 ```
 
-Key regression facts:
+Second-batch facts:
 
 ```text
-1H:
-  RIGHT/raw2 ownership across Normal/Quick/Power/Pierce
-  balanced 5->7 / 7->5 physical transitions
-  21 Golem damage events
-  2 deliberate exact C1-R1 repairs PASS
+2H:
+  RIGHT It_2H_Sword_Flamberge raw3
+  Normal/Quick/Power/Whirl/Hack
+  40 exact 5->7 and 40 exact 7->5
+  18 Golem damage events
+  1 deliberate C1-R1 bad-skip repair PASS
+  late Action0/no-C1 Whirl markers safely rejected
 
-1H+torch:
-  RIGHT sword raw2 + LEFT torch raw24
-  RIGHT and LEFT marker ownership/cleanup balanced
-  23 Golem damage events
-  1 deliberate exact C1-R1 RIGHT repair PASS; torch remains no-op/group5
-  one Action0/no-C1 late Quick marker safely rejected
+Staff:
+  RIGHT Wrestling Staff_BBM raw12
+  Normal/Quick/Power/Whirl/Hack
+  39 exact 5->7 and 39 exact 7->5
+  22 Golem damage events
+  bad-skip attempts cleaned to group5 before terminal repair
+  no repair was required
+  late Action0/no-C1 Whirl markers safely rejected
 
-dual 1H:
-  RIGHT / LEFT / BOTH / OFF
-  Normal/Quick/Power/SimpleWhirl/Pierce
-  balanced RIGHT and LEFT physical transitions
-  45 Golem damage events
-  1 deliberate exact C1-R1 RIGHT repair PASS; LEFT remains no-op/group5
-  occurrence-budget / same-update duplicate guards behave as designed
-  one Action0/no-C1 late Quick marker safely rejected
+human Fist single marker:
+  factual raw8 Fist/UseType8
+  marked Normal + Power P0 use established latch/timing path
+  19 accepted FIST markers
+  Power P1 intentionally unmarked:
+    MarkerPresent=0 / SuppressNative=0
+    contacting executions still damage through Game.dll+0x16E348
+  13 Golem damage events
+
+human Fist double markers:
+  21 marked executions / 42 accepted FIST callbacks
+  first FIST = early-permission rearm
+  second FIST = same-C1 NATIVE_TIMING rearm
+  10 target-contact executions = 2 Golem damage events each
+  20 Golem damage events total
 
 whole batch:
-  CORE ATTACK OWNERSHIP ANOMALY = 0
-  C1 INVARIANT WARNING = 0
-  REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = 0
-  all PC_Hero C1 final records Outstanding=0
+  ownership anomalies = 0
+  C1 invariant warnings = 0
+  repair divergences = 0
+  all PC_Hero C1 finals Outstanding=0
 ```
 
-User visual observation: each run began with attacks without a target, then attacks against Golem; intended attacks connected. Bad skips were deliberately exercised.
+User observation: where applicable attacks were first exercised without a target and then against Golem; all intended target attacks connected. Bad skip was deliberately tested in 2H and Staff. Power Hit P1 in the single-FIST set intentionally had no authored marker.
 
 Archived canonical sources:
 
 ```text
-research/archive/researchraw2026-09-18_regression_golem_1h.log
-research/archive/researchraw2026-09-18_regression_golem_1h_torch.log
-research/archive/researchraw2026-09-18_regression_golem_1h_1h.log
+research/archive/researchraw2026-09-19_regression_golem_2h.log
+research/archive/researchraw2026-09-19_regression_golem_staff.log
+research/archive/researchraw2026-09-19_regression_golem_human_fist.log
+research/archive/researchraw2026-09-19_regression_golem_human_fist_double_markers.log
 ```
 
-Current raw intake after closure:
+Current raw intake:
 
 ```text
 research/raw/Keep.txt
 ```
 
-Tomorrow / next local session:
+Next local session:
 
 ```text
 1. GitHub Desktop Fetch/Pull.
-2. No rebuild/redeploy solely for these evidence/docs commits.
-3. Continue remaining prepared Golem weapon/setup runs under COLLISION_TEST_PLAN §8.1.
-4. One complete log per setup.
-5. Upload 2–3 logs whenever convenient.
-6. Normal Chat fully closes each uploaded batch before requesting the next.
+2. No rebuild/redeploy solely for evidence/docs maintenance.
+3. Continue any remaining prepared Golem setups under COLLISION_TEST_PLAN §8.1.
+4. If the prepared Golem setup matrix is complete, explicitly close Phase 1 before moving to Orc Phase 2.
+5. One complete log per setup; upload small batches whenever convenient.
+6. Normal Chat fully closes every uploaded batch before requesting the next.
 ```
 
 ## Evidence transaction / archive status
 
-EV-299–EV-301 are canonically recorded and their three source logs are archived byte-identically. No artifact from this batch remains active in `research/raw/`.
+EV-299–EV-305 are canonically recorded. All seven Phase-1 source logs processed so far are archived byte-identically; no completed artifact remains in `research/raw/`.
 
-Phase 1 itself remains open only because additional prepared Golem weapon setups have not yet been run.
+Phase 1 remains open only for any prepared Golem setup(s) the User has not yet exercised.
 
 ## Sequence after standalone collision regression
 
 ```text
-archive permanent-acceptance raw source unchanged
-record canonical permanent-acceptance evidence
-update EVIDENCE_INDEX
-standalone collision regression
+complete all seven standalone regression phases
 -> New Balance 0.7 exact distributed-bundle regression with AttackCollision
 -> mature collision migration into src/Script_G3AnimationBehaviors
 -> later Raise/speed
@@ -242,7 +255,7 @@ standalone collision regression
 
 ```text
 standalone collision regression = CURRENT GATE
-current subphase = §8.1 Golem player equipped-weapon matrix
+current subphase = §8.1 Golem player equipped/setup matrix; EV-299–EV-305 PASS
 publication cadence = 2–3 logs allowed; complete POP-06 closure after every upload batch
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
