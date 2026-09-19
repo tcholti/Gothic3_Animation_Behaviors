@@ -17,7 +17,7 @@
 Immediate handoff: `docs/BETWEEN_CHATS.md`  
 Permanent raw55 contract: `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`  
 Astra audit result/disposition: `docs/ASTRA_RAW55_INDEPENDENT_AUDIT_RESULT.md`  
-Latest canonical evidence: **EV-307** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
+Latest canonical evidence: **EV-308** in `docs/EVIDENCE_LEDGER_291_ONWARD.md`
 
 ## Current checkpoint
 
@@ -143,6 +143,24 @@ EV-304  human Fist single marker   PASS
 EV-305  human Fist double markers  PASS
 EV-306  1H+shield                   PASS
 EV-307  Sabretooth double FIST      PASS
+EV-308  shield-bash LEFT/raw9        NEGATIVE CONTROL / DEFERRED
+```
+
+Newest supplemental finding:
+
+```text
+shield-bash LEFT/raw9:
+  tested existing shield-bash animation in Quick slots
+  first no-target, then Golem-contact exercise
+  9 accepted LEFT markers
+  factual LEFT shield = It_Shield_StewarkGreat / UseType9
+  9 exact shield 5->7 activations
+  9 exact shield 7->5 cleanups
+  9 C1 cleanup fulfilled records
+  zero ONDAMAGE events for the entire run
+  zero ownership anomaly / invariant warning / repair divergence
+  conclusion = marker/source activation works; native shield-bash damage does not
+  current feature status = DEFERRED, no source change
 ```
 
 Latest-batch highlights:
@@ -198,7 +216,7 @@ human raw8 Fist double markers:
   10 target-contact executions produce two Golem damage events each
 ```
 
-Across the processed regression batches through EV-307:
+Across the processed regression batches through EV-308:
 
 ```text
 CORE ATTACK OWNERSHIP ANOMALY = 0
@@ -207,7 +225,7 @@ REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = 0
 all PC_Hero C1 final records Outstanding=0
 ```
 
-All processed regression logs through EV-307 are archived and `research/raw/` is clean except `Keep.txt`.
+All processed regression logs through EV-308 are archived and `research/raw/` is clean except `Keep.txt`.
 
 Current diagnostic binary remains the already-verified product:
 
@@ -219,7 +237,7 @@ build/deploy/startup PASS
 
 All repository commits after that binary build are documentation/evidence maintenance only unless a later source change is explicitly introduced.
 
-Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then continue the seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase remains §8.1: continue the remaining prepared Golem weapon/setup runs. Completed Golem setups already closed: 1H, 1H+torch, dual-1H, 2H, Staff, human Fist single-marker, human Fist double-marker and 1H+shield. Supplemental Sabretooth double-FIST raw8 control is also PASS at EV-307. Use one runtime run/log per weapon. The User may upload small batches (typically 2–3 at a time). After every uploaded batch, Normal Chat must complete POP-06 evidence/document/archive cleanup before requesting the next batch. Do not reopen raw55 family-specific probing.
+Before the next local test, use the normal POP-01 GitHub Desktop Fetch/Pull handoff. Then continue the seven-phase standalone campaign in `COLLISION_TEST_PLAN.md` §8. Current phase remains §8.1: continue the remaining prepared Golem weapon/setup runs. Completed Golem setups already closed: 1H, 1H+torch, dual-1H, 2H, Staff, human Fist single-marker, human Fist double-marker and 1H+shield. Supplemental Sabretooth double-FIST raw8 control is PASS at EV-307. EV-308 adds a shield-bash negative control: LEFT physically activates shield/raw9 but produces no native damage, so shield-bash damage remains deliberately unsupported/deferred. Use one runtime run/log per weapon. The User may upload small batches (typically 2–3 at a time). After every uploaded batch, Normal Chat must complete POP-06 evidence/document/archive cleanup before requesting the next batch. Do not reopen raw55 family-specific probing.
 
 ## Next sequence after standalone collision regression
 
@@ -234,7 +252,7 @@ standalone collision regression
 
 ```text
 standalone collision regression = CURRENT GATE
-current subphase = §8.1 Golem player attack/setup matrix; Golem coverage through EV-306, supplemental raw8 EV-307 PASS
+current subphase = §8.1 Golem player attack/setup matrix; Golem coverage through EV-306, supplemental controls EV-307–EV-308 closed
 publication cadence = small batches allowed; each batch fully closes before next
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
