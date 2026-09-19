@@ -143,11 +143,13 @@ Evidence/current closure: EV-295–EV-298. Historical audit/probe documents are 
 
 SprintAttack is factual `gEAction_SprintAttack = 9`.
 
-For the proven raw8 path, Sprint arrives through the existing physical `OnAI_PowerAttack` transport while factual actor action is already Sprint at callback entry. The Power-named transport/motion does not redefine Sprint as Power.
+For the supported raw8 FIST path, Sprint arrives through the existing physical `OnAI_PowerAttack` transport while factual actor action is already Sprint at callback entry. The Power-named transport/motion does not redefine Sprint as Power.
 
-Current supported Sprint collision scope is raw8 FIST. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported without factual evidence.
+The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution.
 
-Evidence: EV-250–EV-251.
+These FIST mechanisms do not establish equipped Sprint marker semantics. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported without factual evidence.
+
+Evidence: raw8 Sprint EV-250–EV-251; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298.
 
 ## 7. Shield / raw9 boundary
 

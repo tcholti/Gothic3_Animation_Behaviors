@@ -1,7 +1,7 @@
 # Collision Lifecycle Architecture
 
 **Status:** Current collision-lifecycle architecture authority  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-19
 
 ## Purpose
 
@@ -262,20 +262,19 @@ unsupported bow/crossbow/magic negatives
 
 ---
 
-## 10. Development Order
+## 10. Durable Downstream Order
 
-Lifecycle architecture and permanent raw55 ownership are closed. The surrounding collision roadmap is:
+Lifecycle architecture and permanent raw55 ownership are closed. The durable downstream dependency order is:
 
 ```text
-standalone collision regression — IN PROGRESS, EV-299–EV-305
--> finish remaining Phase-1 Golem setups
--> Orc / other weapon users / non-weapon creatures
--> Axe and Rapier separation-mod compatibility
--> stress regression
+closed collision behavior/lifecycle architecture
+-> standalone collision regression campaign
 -> New Balance 0.7 bundle regression exactly as distributed, AttackCollision included
 -> production collision migration
 -> diagnostics-free integration validation
 -> separate AttackContinuationProtection investigation/implementation when deliberately resumed
 ```
+
+Live campaign status and the exact next setup belong in `SESSION_ENTRYPOINT.md` and `COLLISION_TEST_PLAN.md`.
 
 Even if continuation prevention later succeeds, C1-R1 remains the independent equipped-source fail-safe.

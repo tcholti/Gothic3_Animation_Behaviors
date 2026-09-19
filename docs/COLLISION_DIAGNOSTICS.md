@@ -1,7 +1,7 @@
 # Collision Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-19
 
 ## Purpose
 
@@ -191,7 +191,7 @@ native damage correlation when required
 native exact 7 -> 5 cleanup
 ```
 
-Repeated-contact research may additionally require current trigger bookkeeping (`EntitiesVisited`, `EntitiesVisitedCount`, player presence/count) and exact clear-call caller identity. Those are question-specific deep/probe facts, not permanent CORE noise.
+A genuinely new repeated-contact contradiction may additionally require current trigger bookkeeping (`EntitiesVisited`, `EntitiesVisitedCount`, player presence/count) and exact clear-call caller identity. Those are question-specific deep/probe facts, not permanent CORE noise.
 
 ### Damage correlation
 
@@ -339,7 +339,7 @@ Likely future uses:
 
 ```text
 future unexpected source/family discovery
-remaining PhysicalFist/raw55 repeated-contact causality
+new PhysicalFist/raw55 contradiction or deliberate scope extension
 AttackContinuationProtection native timeout/consumer trace
 new cleanup/source-lifetime contradiction
 calling-convention/hook-order investigation
@@ -351,7 +351,7 @@ Deep capture must not become a production prerequisite.
 
 ## 8. Closed Sprint Diagnostic Questions
 
-The earlier Sprint discovery questions are closed for the current proven raw8 scope. Evidence established factual Action9/Sprint semantic identity, transport through the existing Power callback path, raw8 source/mechanism support and production validation.
+The earlier Sprint discovery questions are closed for both supported FIST mechanisms. Evidence established factual Action9/Sprint semantic identity, raw8 transport through the existing Power callback path, and raw55 Sprint-origin continuity across the proven same-C1 Action9 -> Action2 transition.
 
 Retained limit:
 
@@ -359,43 +359,30 @@ Retained limit:
 equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported without factual evidence
 ```
 
-If a future equipped Sprint source appears, reopen only that new source/mechanism question rather than the closed raw8 Sprint route.
+If future equipped Sprint RIGHT/LEFT/BOTH/OFF marker evidence appears, reopen only that new mechanism question rather than either closed FIST route.
 
 ---
 
-## 9. PhysicalFist/raw55 Repeated-Contact Diagnostics
+## 9. PhysicalFist/raw55 Diagnostics
 
-Raw55 factual source discovery and first-contact family classification are closed through EV-282. Current unresolved work is narrower: family-specific repeated-contact ownership.
+PhysicalFist/raw55 causal research is closed through EV-294, and focused permanent acceptance is CLOSED/PASS through EV-298. `PhysicalFistCollision` owns the permanent raw55 behavior; diagnostics only observe and validate its factual decisions and outcomes.
 
-Normal evidence through EV-290 establishes:
-
-```text
-frame-1/SP0 authored raw55 opening
-marker-owned ClearTriggeredList enables early first contact
-native exact 7 -> 7 setter is not second-contact owner
-PC_Hero becomes visited after hit1
-visited bookkeeping is reset during native SP0 -> 1 callback
-exact reset operation = eCTrigger_PS::ClearTriggeredList() ALL
-Engine RVA = +0x7DDA0
-caller = Script_Game.dll +0x386C6
-```
-
-The current diagnostic-only causal probe suppresses only that exact post-hit1 native ALL clear when all factual Normal actor/C1/current-RIGHT/raw55/contact/caller gates match. Required observations include:
+Ordinary regression uses compact CORE records sufficient to confirm:
 
 ```text
-suppression decision/fired state
-PRE/POST player presence and visited/count alignment
-SP0 -> 1 progression
-marker2 remains observational
-first damage survives or not
-second damage survives or not
-native exact 7 -> 5 cleanup
-clean C1 finalization / any contradiction
+supported factual family and immutable origin where relevant
+exact current RIGHT PhysicalFist/raw55 source
+first-FIST authored opening
+later-FIST contact rearm without another group request
+Normal's narrow native-clear suppression/replacement result
+native damage correlation when required by the test
+native exact RIGHT 7 -> 5 cleanup
+outstanding-zero C1 finalization / explicit contradiction
 ```
 
-Do not directly mutate visited arrays, add a replacement clear, write StatePosition, dispatch damage or alter native cleanup in the same test.
+Historical family-specific suppression, activation and repeated-contact probes are archived provenance, not current diagnostic architecture. Route exact causal reconstruction through `EVIDENCE_INDEX.md` and open archived contracts/raw artifacts only when proof or contradiction requires it.
 
-If the native clear is proven necessary, a later one-variable marker2 replacement-clear probe may be justified. If hit2 survives suppression, continue causal isolation instead of giving marker2 ownership.
+Enable DEEP or create a new bounded probe only for a genuinely new raw55 contradiction or deliberate scope extension that CORE cannot resolve. Do not restore the closed research sequence as routine diagnostic state or logging.
 
 ---
 
@@ -455,7 +442,7 @@ C1-R1 mutation remains two-phase/reentrancy-safe: classify/repair fixed sources 
 
 ---
 
-## 14. Current Diagnostic Sequence
+## 14. Current Diagnostic Posture
 
 ```text
 architecture + diagnostic-volume audit             DONE
@@ -463,18 +450,17 @@ Stage A behavior architecture refactor              DONE/PASS
 Stage B diagnostic refactor + compact sentinel      DONE/PASS
 raw8 Sprint discovery/production validation         DONE/PASS
 native equipped-NPC / raw8 compatibility controls  DONE/PASS through later evidence
-raw55 factual source + first-contact family routes  DONE/PASS through EV-282
-raw55 cross-family two-FIST checkpoint              DONE — EV-283
-Normal repeated-contact reset-source isolation      DONE through EV-290
--> local build/runtime of exact native ALL-clear suppression causal probe
--> close Normal native-clear necessity
--> if required, one-variable marker2 replacement-clear proof
--> Power repeated-FIST closure
--> Sprint repeated-FIST closure
--> permanent raw55 architecture
--> standalone collision regression
--> mature New Balance/Jackydima compatibility gate
--> AttackContinuationProtection later, separately
+raw55 family-specific causal research               CLOSED through EV-294
+focused permanent raw55 acceptance                  CLOSED/PASS through EV-298
+
+ordinary validation
+-> compact CORE under COLLISION_TEST_PLAN.md
+
+new contradiction / deliberate scope extension
+-> smallest sufficient DEEP signal or bounded probe
+
+AttackContinuationProtection
+-> later separate native timeout/consumer investigation when deliberately resumed
 ```
 
 For each new causal question, use CORE if sufficient and enable only the smallest DEEP/probe surface needed for facts CORE cannot establish.

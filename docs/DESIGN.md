@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-13  
+**Updated:** 2026-09-19
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -472,32 +472,19 @@ Diagnostic research products may add dedicated removable probes for future unkno
 
 ---
 
-## 12. Current Implementation Order
+## 12. Durable Implementation Order
 
 ```text
-collision architecture foundation                     CLOSED — EV-206–EV-215
-Power / Pierce / SimpleWhirl / Hack equipped scope    CLOSED — EV-216–EV-244
-production raw8 FIST Normal/Power/Quick/Sprint         CLOSED/PASS — through EV-251
-permanent raw55 family causal route                    CLOSED/PASS — through EV-294
-focused permanent raw55 acceptance                    CLOSED/PASS — EV-298
-standalone regression campaign                        IN PROGRESS — EV-299–EV-307
-
-CURRENT
--> finish remaining Golem Phase-1 setups
--> Orc 2H / Staff / raw8 Fist
--> other weapon-using actors
--> non-weapon creatures
--> 2H-vs-Axe separation-mod compatibility
--> 1H-vs-Rapier separation-mod compatibility
--> stress regression
-
-THEN
+closed collision architecture + evidence-backed feature scope
+-> standalone collision regression campaign
 -> New Balance 0.7 exact distributed-bundle regression incl. AttackCollision
 -> mature collision migration into Script_G3AnimationBehaviors
 -> diagnostics-free production integration validation
 -> later Raise + action/profile Speed + Config
 -> AttackContinuationProtection remains a separate responsibility
 ```
+
+Live campaign status and the exact next setup belong in `SESSION_ENTRYPOINT.md` and `COLLISION_TEST_PLAN.md`, not in this architecture authority.
 
 Do not create `feature/raise-attack-speed` early.
 

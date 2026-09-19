@@ -83,6 +83,8 @@ one complete runtime log per setup where attribution matters
 -> next batch only after evidence/reference/archive/current-state maintenance is complete
 ```
 
+<a id="phase-1-golem"></a>
+
 ### 3.1 Phase 1 — Player attack/setup matrix against Golem
 
 Current progress:

@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+import html
 import re
 from pathlib import Path
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[2]
 DOCS = ROOT / "docs"
@@ -65,6 +67,17 @@ TEMP_ROOT_PATTERN = re.compile(
 )
 ACTIVE_LEDGER_PATTERN = re.compile(r"EVIDENCE_LEDGER_\d+_ONWARD\.md$")
 MD_LINK_PATTERN = re.compile(r"\[[^\]]*\]\(([^)]+\.md(?:#[^)]+)?)\)")
+EXPLICIT_HTML_ID_PATTERN = re.compile(
+    r"<(?:a|span)\b[^>]*\bid\s*=\s*['\"]([^'\"]+)['\"][^>]*>",
+    re.IGNORECASE,
+)
+ATX_HEADING_PATTERN = re.compile(r"^ {0,3}#{1,6}\s+(.+?)\s*$")
+SETEXT_HEADING_PATTERN = re.compile(r"^ {0,3}(?:=+|-+)\s*$")
+FENCED_CODE_BOUNDARY_PATTERN = re.compile(r"^ {0,3}(?:`{3,}|~{3,})")
+NUMERIC_SECTION_ROUTE_PATTERN = re.compile(
+    r"(?P<target>(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.md)"
+    r"`?\s+§(?P<section>\d+(?:\.\d+)*)\b"
+)
 
 FORBIDDEN_CURRENT_REFERENCES = {
     "COLLISION_LIFECYCLE_PLAN.md": "COLLISION_LIFECYCLE.md",
@@ -121,6 +134,103 @@ def current_markdown_files() -> list[Path]:
     ]
 
 
+def strip_inline_markdown(text: str) -> str:
+    text = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"<[^>]+>", "", text)
+    return html.unescape(text)
+
+
+def markdown_prose_text(text: str) -> str:
+    prose_lines: list[str] = []
+    inside_fence = False
+    for line in text.splitlines():
+        if FENCED_CODE_BOUNDARY_PATTERN.match(line):
+            inside_fence = not inside_fence
+            prose_lines.append("")
+            continue
+        prose_lines.append("" if inside_fence else line)
+    return "\n".join(prose_lines)
+
+
+def normalize_heading_anchor(heading: str) -> str:
+    heading = strip_inline_markdown(heading)
+    heading = re.sub(r"\s+#+\s*$", "", heading).strip().lower()
+    return "".join(
+        "-" if char.isspace() else char
+        for char in heading
+        if char.isalnum() or char in {"_", "-"} or char.isspace()
+    )
+
+
+def markdown_anchors(text: str) -> set[str]:
+    text = markdown_prose_text(text)
+    anchors = {
+        html.unescape(match)
+        for match in EXPLICIT_HTML_ID_PATTERN.findall(text)
+    }
+    heading_counts: dict[str, int] = {}
+    lines = text.splitlines()
+
+    heading_texts: list[str] = []
+    for index, line in enumerate(lines):
+        atx_match = ATX_HEADING_PATTERN.match(line)
+        if atx_match:
+            heading_texts.append(atx_match.group(1))
+            continue
+        if index > 0 and SETEXT_HEADING_PATTERN.match(line) and lines[index - 1].strip():
+            heading_texts.append(lines[index - 1].strip())
+
+    for heading in heading_texts:
+        base = normalize_heading_anchor(heading)
+        if not base:
+            continue
+        duplicate_index = heading_counts.get(base, 0)
+        anchor = base if duplicate_index == 0 else f"{base}-{duplicate_index}"
+        anchors.add(anchor)
+        heading_counts[base] = duplicate_index + 1
+
+    return anchors
+
+
+def markdown_section_numbers(text: str) -> set[str]:
+    text = markdown_prose_text(text)
+    sections: set[str] = set()
+    for line in text.splitlines():
+        heading_match = ATX_HEADING_PATTERN.match(line)
+        if not heading_match:
+            continue
+        heading = strip_inline_markdown(heading_match.group(1))
+        section_match = re.match(r"^(\d+(?:\.\d+)*)\b", heading.strip())
+        if section_match:
+            sections.add(section_match.group(1))
+    return sections
+
+
+def numeric_route_text(text: str) -> str:
+    # A complete route inside one code span is treated as a literal/example.
+    # Filename-only code spans remain eligible when the following §N is prose.
+    text = markdown_prose_text(text)
+    return re.sub(
+        r"`([^`\n]+)`",
+        lambda match: "" if "§" in match.group(1) else match.group(1),
+        text,
+    )
+
+
+def resolve_numeric_route(source: Path, target: str) -> Path | None:
+    relative_candidate = (source.parent / target).resolve()
+    root_candidate = (ROOT / target).resolve()
+    for candidate in (relative_candidate, root_candidate):
+        try:
+            candidate.relative_to(ROOT.resolve())
+        except ValueError:
+            continue
+        if candidate.exists():
+            return candidate
+    return None
+
+
 def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
@@ -153,6 +263,22 @@ def main() -> int:
         errors.append(
             "registered current docs missing from docs/ root: " + ", ".join(missing_root)
         )
+
+    registry = DOCS / "KNOWLEDGE_REGISTRY.md"
+    if registry.exists():
+        registry_text = read(registry)
+        missing_registry_routes = []
+        for name in sorted(ALLOWED_DOC_ROOT_FILES):
+            registry_token = (
+                "`docs/README.md`" if name == "README.md" else f"`{name}`"
+            )
+            if registry_token not in registry_text:
+                missing_registry_routes.append(name)
+        if missing_registry_routes:
+            errors.append(
+                "docs-root allowlist file(s) lack a KNOWLEDGE_REGISTRY.md route: "
+                + ", ".join(missing_registry_routes)
+            )
 
     root_ledgers = sorted(p for p in DOCS.glob("EVIDENCE_LEDGER*.md") if p.is_file())
     active_ledgers = [p for p in root_ledgers if ACTIVE_LEDGER_PATTERN.fullmatch(p.name)]
@@ -250,6 +376,23 @@ def main() -> int:
         )
 
     current_docs = current_markdown_files()
+    permitted_current_markdown_dirs = {
+        DOCS.resolve(),
+        (DOCS / "decisions").resolve(),
+        ACTIVE_WORK.resolve(),
+    }
+    unexpected_current_locations = sorted(
+        p.relative_to(ROOT)
+        for p in current_docs
+        if p.parent.resolve() not in permitted_current_markdown_dirs
+    )
+    if unexpected_current_locations:
+        errors.append(
+            "current Markdown file(s) found outside permitted docs/, docs/decisions/, "
+            "or docs/work/active/ topology: "
+            + ", ".join(str(p) for p in unexpected_current_locations)
+        )
+
     for p in current_docs:
         text = read(p)
         for old_name, replacement in FORBIDDEN_CURRENT_REFERENCES.items():
@@ -276,13 +419,15 @@ def main() -> int:
     # and may retain historical paths deliberately.
     scan_roots = [ROOT / "README.md", ROOT / "research" / "README.md"] + current_docs
     seen: set[Path] = set()
+    anchor_cache: dict[Path, set[str]] = {}
+    section_cache: dict[Path, set[str]] = {}
     for p in scan_roots:
         if p in seen:
             continue
         seen.add(p)
         text = read(p)
         for raw_target in MD_LINK_PATTERN.findall(text):
-            target = raw_target.split("#", 1)[0]
+            target, separator, raw_fragment = raw_target.partition("#")
             if not target or "://" in target or target.startswith("mailto:"):
                 continue
             resolved = (p.parent / target).resolve()
@@ -296,6 +441,38 @@ def main() -> int:
             if not resolved.exists():
                 errors.append(
                     f"broken Markdown link: {p.relative_to(ROOT)} -> {target}"
+                )
+                continue
+            if separator:
+                fragment = unquote(raw_fragment)
+                anchors = anchor_cache.setdefault(
+                    resolved, markdown_anchors(read(resolved))
+                )
+                if fragment not in anchors:
+                    errors.append(
+                        f"broken Markdown fragment: {p.relative_to(ROOT)} -> "
+                        f"{target}#{raw_fragment}"
+                    )
+
+        for match in NUMERIC_SECTION_ROUTE_PATTERN.finditer(
+            numeric_route_text(text)
+        ):
+            target = match.group("target")
+            section = match.group("section")
+            resolved = resolve_numeric_route(p, target)
+            if resolved is None:
+                errors.append(
+                    f"broken numeric section route: {p.relative_to(ROOT)} -> "
+                    f"{target} §{section} (target file not found)"
+                )
+                continue
+            sections = section_cache.setdefault(
+                resolved, markdown_section_numbers(read(resolved))
+            )
+            if section not in sections:
+                errors.append(
+                    f"broken numeric section route: {p.relative_to(ROOT)} -> "
+                    f"{target} §{section}"
                 )
 
     if warnings:

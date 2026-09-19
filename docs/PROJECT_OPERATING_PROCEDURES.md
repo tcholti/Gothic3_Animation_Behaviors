@@ -1048,11 +1048,11 @@ python tools/knowledge/validate_knowledge_state.py
 
 Require `Knowledge-state validation PASS`.
 
-The validator mechanically checks the structural invariants owned by `KNOWLEDGE_MAINTENANCE.md`, including one active evidence ledger, temporary-document placement, required lifecycle routing, required archive/work paths and ordinary Markdown-link integrity.
+The validator mechanically checks the structural invariants owned by `KNOWLEDGE_MAINTENANCE.md`, including one active evidence ledger, temporary-document placement, required lifecycle routing, required archive/work paths, permitted current-Markdown topology, docs-root allowlist/registry pairing, Markdown file/fragment integrity and numeric `FILE.md §N` section routes.
 
 A validation failure is a **documentation-state stop condition**. Fix the owning structural problem before continuing. Do not weaken the validator merely to make a stale state pass.
 
-The validator does not judge technical evidence, decide architecture, or replace POP-10 review.
+The validator does not judge technical evidence, decide architecture, detect semantically closed work, or replace POP-10 review.
 
 ---
 
