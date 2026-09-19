@@ -9,7 +9,7 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Technical active branch: `docs/collision-source-evidence`  
-Current gate: standalone collision regression — **Phase 4 non-weapon creatures**.
+Current gate: **equipped Sprint RIGHT/raw2 diagnostic causal probe**. Phase 4 non-weapon regression is temporarily held.
 
 Corrected closed state:
 
@@ -42,7 +42,25 @@ Phase 3                   CLOSED/PASS
 
 Goblin/Demon/Ogre were deliberately rerun on the current post-raw55 build to protect against cross-feature regression; their established supported routes remain healthy. Stalker adds a new current Axe/raw52 actor fixture. The Goblin Action9/SPRINT RIGHT-marker rejection is a known unsupported-scope discovery, not evidence that equipped Sprint markers are supported.
 
-Immediate continuation: Phase 4 — test prepared non-weapon animals/monsters. Do not repeat Troll/BlackTroll or Sabretooth merely for duplication because their current-DLL raw55/raw8 paths are already covered.
+Active frozen task:
+
+`docs/work/active/COLLISION_EQUIPPED_SPRINT_RIGHT_RAW2_CAUSAL_PROBE.md`
+
+Question: can factual Action9/Sprint with exact current RIGHT 1H/raw2 use the established generic equipped RIGHT marker mechanism safely when the native early `OnAI_PowerAttack` callback timing is suppressed?
+
+Hard boundary: diagnostic-only temporary probe; no production promotion yet.
+
+After independent source review, runtime order is:
+
+```text
+Goblin equipped Sprint/right/raw2 causal fixture FIRST
+-> if PASS: Sabretooth raw8 Sprint sentinel
+-> Troll/BlackTroll raw55 Sprint-origin sentinel
+-> one equipped true-Power sentinel
+-> then decide permanent promotion
+```
+
+Phase 4 remains held until this scope question is resolved.
 
 Latest closed evidence is EV-314. `research/raw/` is clean except `Keep.txt`.
 
