@@ -296,7 +296,7 @@ The campaign is intentionally split into multiple logs/runs so factual source/ac
 
 **Campaign publication/closure rule:** the User may upload completed logs in small manageable batches (commonly 2–3 at a time). After every uploaded batch, Normal Chat must complete POP-06 interpretation, canonical evidence maintenance, required current-state/authority updates, archive cleanup and raw-inventory verification before requesting the next batch. Do not wait for the whole phase or whole campaign to finish before closing already-processed logs.
 
-### 8.1 Phase 1 — Player equipped-weapon matrix against Golem
+### 8.1 Phase 1 — Player attack/setup matrix against Golem
 
 **Progress through EV-305:**
 
