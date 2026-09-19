@@ -1,0 +1,26 @@
+name: Knowledge state
+
+on:
+  push:
+    paths:
+      - "README.md"
+      - "docs/**"
+      - "tools/knowledge/**"
+      - ".github/workflows/knowledge-state.yml"
+  pull_request:
+    paths:
+      - "README.md"
+      - "docs/**"
+      - "tools/knowledge/**"
+      - ".github/workflows/knowledge-state.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate documentation lifecycle
+        run: python tools/knowledge/validate_knowledge_state.py
