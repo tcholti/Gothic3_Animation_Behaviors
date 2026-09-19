@@ -44,7 +44,7 @@ Repeated RIGHT/LEFT/BOTH later in the same Hit can author another contact by rea
 
 Supported/proven equipped attack scope currently includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl and tested 2H/Staff Hack routes. Family-specific native target/reaction behavior remains native and is not normalized merely by marker support.
 
-Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306.
+Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-310.
 
 ## 3. Equipped lifecycle / terminal repair
 
@@ -92,11 +92,11 @@ each accepted G3AB_COL_FIST
 -> successful opportunity self-closes latch
 ```
 
-A later FIST in the same C1 can rearm another native contact opportunity. This is proven for human raw8 and Sabretooth/transformed Sabretooth; it is source/mechanism behavior, not a human/species special case.
+A later FIST in the same C1 can rearm another native contact opportunity. The marked raw8 mechanism is proven across human, Sabretooth/transformed Sabretooth and Orc fixtures; it is source/mechanism behavior, not a human/species special case.
 
 There is no production `FIST_OFF`, no raw8 equipped-source window, no raw8 `ClearTriggeredList()` mechanism, and no direct/custom raw8 damage.
 
-Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307.
+Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309.
 
 ## 5. PhysicalFist / raw55
 
@@ -191,9 +191,13 @@ EV-305  human raw8 double FIST      PASS
 EV-306  human 1H+shield             PASS
 EV-307  Sabretooth double FIST      PASS
 EV-308  shield-bash LEFT/raw9       NEGATIVE CONTROL / DEFERRED
+EV-309  Orc Staff + raw8 Fist       PASS
+EV-310  Orc 2H animation set        PASS
 ```
 
-Next validation subject: Orc marked attack routes. Current validation plan: `COLLISION_TEST_PLAN.md`.
+Orc Phase 2 is CLOSED/PASS. In the Orc fixtures, the Staff animation set resolved factual Halberd/UseType 51, the 2H animation set resolved factual Axe/UseType 52, and unarmed Fist resolved raw8; all tested prepared attack types damaged the player at least once without ownership/lifecycle anomalies.
+
+Next validation subject: other prepared weapon-using creatures/NPCs (Phase 3). Current validation plan: `COLLISION_TEST_PLAN.md`.
 
 ## 10. Evidence escalation rule
 

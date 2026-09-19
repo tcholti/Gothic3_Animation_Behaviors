@@ -111,19 +111,27 @@ The human marker matrix is complete. Sabretooth has also covered marked single-m
 
 The shield-bash negative control does not represent a regression failure: LEFT/raw9 physical activation/cleanup worked, but Gothic supplied no native damage route in the tested fixture. Shield-bash damage is deferred.
 
-### 3.2 Phase 2 — Orc attack matrix — NEXT
+### 3.2 Phase 2 — Orc attack matrix — CLOSED/PASS
 
-Exercise enough attributable Orc runs to cover the prepared routes, expected to require approximately two or three complete logs:
+Closed coverage:
 
 ```text
-2H
-Staff
+Staff animation set
+  factual source = It_Halberd_Orc_01 / UseType 51
+  Hack / Whirl / Quick L+R / Power / Normal = PASS — EV-309
+
 Fist/raw8
+  factual source = Fist / UseType 8
+  Normal / Power = PASS — EV-309
+
+2H animation set
+  factual source = It_Axe_Orc_01 / UseType 52
+  Quick L+R / Normal / Power / Hack / Whirl = PASS — EV-310
 ```
 
-Fist may share a run with a weapon case when disarming is needed to reach the unarmed route, provided source/family attribution remains clear. Use fewer or more runs only as needed to keep each route factually attributable.
+Across both logs, all tested Orc attack types damaged the player at least once, accepted marker routes remained attributable, native cleanup/finalization stayed clean, and no ownership/invariant/rejection/repair contradiction appeared.
 
-Objective: validate marked Orc attack behavior across equipped and raw8 sources under the mature collision system.
+Phase 2 is complete.
 
 ### 3.3 Phase 3 — Other weapon-using creatures/NPCs
 

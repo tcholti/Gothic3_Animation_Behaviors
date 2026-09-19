@@ -9,7 +9,7 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Technical active branch: `docs/collision-source-evidence`  
-Current gate: standalone collision regression — **Phase 2 Orc attack matrix**.
+Current gate: standalone collision regression — **Phase 3 other weapon-using creatures/NPCs**.
 
 Corrected closed state:
 
@@ -20,16 +20,19 @@ Sabretooth marked single-marker route = CLOSED/PASS
 Sabretooth raw8 double-marker same-C1 control = CLOSED/PASS at EV-307
 ```
 
-Immediate continuation:
+Latest closure:
 
 ```text
-Orc marked attacks
--> cover 2H / Staff / raw8 Fist
--> expected approximately 2–3 complete attributable logs
--> exact run count follows attribution needs
+EV-309 Orc Staff-animation / factual Halberd raw51 + raw8 Fist = PASS
+EV-310 Orc 2H-animation / factual Axe raw52                   = PASS
+Phase 2 Orc attack matrix                                    = CLOSED/PASS
 ```
 
-Latest closed evidence remains EV-308. `research/raw/` is clean except `Keep.txt`.
+User visual observation: all tested Orc attack types damaged the player. CORE logs show no marker rejection, ownership/invariant anomaly, outstanding finalization, repair or divergence in the tested Orc routes.
+
+Immediate continuation: Phase 3 — next prepared weapon-using creature/NPC fixture(s). Historical Goblin/BlackGoblin, Demon and Ogre controls EV-252–EV-254 need not be repeated merely for duplication.
+
+Latest closed evidence is EV-310. `research/raw/` is clean except `Keep.txt`.
 
 The knowledge-lifecycle restructure, formal post-restructure audit, and bounded M-1 through M-5 corrections are CLOSED/PASS. Ordinary reference-first retrieval and automated knowledge-state validation are now the baseline.
 

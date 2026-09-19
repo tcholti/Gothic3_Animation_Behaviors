@@ -67,6 +67,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | New Balance 0.7 source compatibility preflight | EV-284 |
 | permanent raw55 implementation + focused sentinels | EV-295–EV-298 |
 | standalone collision regression | EV-299 onward |
+| Orc Phase-2 Staff/Fist/2H attack matrix | EV-309–EV-310 |
 | shield/raw9 LEFT physical activation without shield-bash damage | EV-306, EV-308 |
 | human raw8 same-C1 double-FIST | EV-305 |
 | Sabretooth raw8 same-C1 double-FIST | EV-307 |
@@ -91,6 +92,7 @@ EV-298         focused permanent raw55 acceptance closure
 EV-299–EV-306  Phase-1 player/Golem regression passes
 EV-307         Sabretooth raw8 double-FIST corroboration
 EV-308         shield-bash LEFT/raw9 negative control
+EV-309–EV-310  Orc Phase-2 Staff/Fist/2H regression PASS
 ```
 
 ## 4. Escalation order

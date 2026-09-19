@@ -15,22 +15,25 @@
 standalone collision regression = ACTIVE
 human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
-current subphase = Phase 2 Orc attack matrix
+Orc attack matrix = CLOSED/PASS at EV-309–EV-310
+current subphase = Phase 3 other weapon-using creatures/NPCs
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-308
+latest completed evidence = EV-310
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
 Phase 1 is closed: the EV-299–EV-306 runs tested human marked attack routes, with Golem used only as a consistent target fixture. Sabretooth marked single-marker compatibility/Quick support is already closed through EV-247–EV-249 and the two-marker same-C1 control passed at EV-307.
 
-Current route: `COLLISION_TEST_PLAN.md` §3.2 — Orc attack matrix.
+Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-309; 2H-animation/Axe raw52 passed at EV-310. User visual observation and CORE logs agree that all tested Orc attack types damaged the player.
+
+Current route: `COLLISION_TEST_PLAN.md` §3.3 — other weapon-using creatures/NPCs.
 
 ## Immediate responsibility
 
-1. Use POP-01 before the next local test because remote documentation state changed.
-2. Run the Orc matrix next: cover prepared 2H, Staff and raw8 Fist routes with enough attributable runs (expected approximately two or three complete logs).
-3. Keep one complete log per run/setup; a small batch of Orc logs may be uploaded together when attribution remains clear.
-4. Close the uploaded batch under POP-06 before starting the next validation batch.
+1. Use POP-01 before the next local test because remote evidence/documentation state changed.
+2. Continue Phase 3 with the next prepared weapon-using creature/NPC fixture(s); do not repeat Goblin/BlackGoblin, Demon or Ogre merely to duplicate EV-252–EV-254.
+3. Keep each new actor/source route attributable and preserve factual runtime source/UseType rather than inferring from animation-family names.
+4. Close every uploaded batch under POP-06 before starting the next validation batch.
 5. Do not reopen family-specific raw55 research without concrete contradictory evidence.
 
 ## Current verified diagnostic product
