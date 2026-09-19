@@ -367,6 +367,22 @@ EV-318 equipped true Power PASS
 
 Next: additional factual equipped-Sprint fixtures across other available equipped UseTypes/animation sets.
 
+### EV-319 — Ogre raw52 broader fixture NOT EXERCISED
+
+The first broader cross-UseType attempt used Ogre / `It_Axe_OgreMorningStar_01` / raw52. The run remained healthy but never entered factual Action9/SPRINT:
+
+```text
+Ogre Sprint Action9 count = 0
+true Power ownership       = 10
+Normal ownership           = 10
+Quick ownership            = 6
+accepted RIGHT markers     = 28
+damage events to PC_Hero   = 26
+Ogre final Outstanding!=0  = 0
+```
+
+Therefore EV-319 is neither a Sprint PASS nor FAIL. Do not infer raw52 Sprint support from it and do not repeat the identical fixture without a reason to expect factual Action9. Broader fixture selection should prefer routes with evidence that Action9 can actually occur.
+
 ## Follow-up after first PASS
 
 Only after Normal Chat independently reviews a Goblin PASS:
