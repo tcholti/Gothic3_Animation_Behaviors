@@ -76,9 +76,11 @@ design/evidence question frozen
 -> derived package/extract only if retrieval requires it
 -> close THAT uploaded batch completely:
    explicit per-artifact disposition
-   canonical Evidence Ledger representation
-   smallest required authority/index/current-state maintenance
-   archive every processed artifact that has no active-comparison reason
+   concise representation in the single active Evidence Ledger
+   promote any changed reusable fact to current reference/architecture
+   smallest required index/current-state maintenance
+   archive closed temporary investigation documents after promotion
+   archive every processed runtime artifact that has no active-comparison reason
    verify research/raw/ contains only genuinely open/unprocessed inputs
 -> only then give the User the next runtime test/batch
 -> only then advance to the next causal question or planned handoff
@@ -618,8 +620,9 @@ At the end of **every uploaded runtime batch**, and again before a planned Chat 
 
 ```text
 every artifact in the just-uploaded batch has an explicit disposition
-every completed test/run is represented in canonical Evidence Ledger evidence
-EVIDENCE_INDEX does not claim a factual result that exists nowhere canonically
+every completed test/run is represented in the single active Evidence Ledger
+every changed reusable conclusion is promoted to its current reference/architecture owner
+EVIDENCE_INDEX does not claim a factual result that exists nowhere in evidence
 processed artifacts are not left in raw without active-comparison reason
 research/raw/ contains only Keep.txt plus explicitly active/unprocessed inputs
 archive/current routes point to paths that actually exist
