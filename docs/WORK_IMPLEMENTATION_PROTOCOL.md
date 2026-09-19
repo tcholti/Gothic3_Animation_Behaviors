@@ -5,6 +5,8 @@
 **Version:** 1.6  
 **Updated:** 2026-09-12
 
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
+
 ## Purpose
 
 Define how Work or another implementation agent executes a bounded Gothic 3 source task **after User + Normal Chat have assigned that responsibility and sufficiently decided its important semantics**.
@@ -156,13 +158,14 @@ If a new behavior needs an already-owned hook, add the **smallest delegation sea
 
 If the frozen task is experimental and the underlying mechanism/ownership is not yet proven:
 
+- when a dedicated task/probe document is needed, it lives under `docs/work/active/` with `**Status:** ACTIVE`; do not create new temporary probe/task documents in root `docs/`;
 - put intervention/state/policy in a dedicated temporary probe/test module by default;
 - compile the probe only into the diagnostic/research target whenever practical;
 - keep established production feature modules unchanged unless the task has already proved the experiment is an extension of their exact mechanism;
 - keep diagnostic observation separate from behavior intervention;
 - do not make release behavior depend on the probe.
 
-A probe task is not permission to implement the final feature.
+A probe task is not permission to implement the final feature. Work does not promote the probe document into permanent authority. After independent review/evidence closure, Normal Chat promotes durable conclusions and archives the closed temporary document under `docs/archive/investigations/`.
 
 ### 5.3 Proven mechanism -> permanent owner
 
@@ -321,6 +324,9 @@ After the bounded task report only what the receiving context needs:
 For probe tasks, explicitly identify the code as temporary diagnostic/research scaffolding and state the exact causal question it is meant to answer.
 
 Do not reproduce the whole project/design/evidence history. Then stop unless another task is explicitly assigned.
+
+
+For a task backed by a document in `docs/work/active/`, the handoff must identify that document and report whether the bounded implementation responsibility is complete. **Do not archive it from Work.** Normal Chat owns post-review promotion/archive under the knowledge lifecycle.
 
 ---
 
