@@ -163,9 +163,11 @@ The repository is external project memory, **not a reading list**.
 
 Use when the question is “where are we now?”
 
+The repository root `README.md` **Start Here** is the canonical discoverable front door. For ordinary continuation it routes directly to `SESSION_ENTRYPOINT.md`.
+
 Normally:
 
-- read `SESSION_ENTRYPOINT.md`;
+- enter through root `README.md` **Start Here** → `SESSION_ENTRYPOINT.md`;
 - read `BETWEEN_CHATS.md` only when an active transient handoff matters;
 - retrieve a `PROJECT_PIPELINE.md` section only when the immediate task creates/changes a project convention.
 
