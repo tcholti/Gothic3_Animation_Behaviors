@@ -330,7 +330,7 @@ Normal Chat owns both planned transition and interrupted-context recovery. The d
 
 At a planned transition, finish the normal maintenance catch-up before handing off and make one final check for completed work that has not yet been recorded durably. If the product exposes a real context/usage warning and losing the current transient state would matter, create the smallest useful durable checkpoint rather than waiting for failure.
 
-After an abrupt failure, maximum-context stop, or unusable previous Chat, do **not** require the User to reconstruct the project manually. Treat `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` as potentially stale until POP-11 has compared them with the newest branch commits, active raw evidence, and any supplied transcript/recovery material and has completed any missed `KNOWLEDGE_MAINTENANCE.md` transaction.
+After an abrupt failure, maximum-context stop, or unusable previous Chat, do **not** require the User to reconstruct the project manually. The discoverable first hop is always root `README.md` **Start Here**; enter its Recovery Lock route into POP-11. Treat `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` as potentially stale until POP-11 has compared them with the newest branch commits, active raw evidence, and any supplied transcript/recovery material and has completed any missed `KNOWLEDGE_MAINTENANCE.md` transaction.
 
 ---
 
