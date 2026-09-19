@@ -1,6 +1,6 @@
 # Session Entry Point
 
-**Purpose:** Minimal durable front door for current Gothic 3 Animation Behaviors work.
+**Purpose:** Minimal durable current-state pointer for Gothic 3 Animation Behaviors work. The repository-level startup front door is root `README.md` **Start Here**.
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
