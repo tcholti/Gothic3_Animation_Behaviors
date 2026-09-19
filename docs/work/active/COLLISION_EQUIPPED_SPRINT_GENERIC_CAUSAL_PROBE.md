@@ -1,6 +1,6 @@
 # Generic Equipped Sprint Causal Probe
 
-**Status:** ACTIVE — IMPLEMENTED / INDEPENDENT SOURCE REVIEW PASS / RUNTIME PENDING  
+**Status:** ACTIVE — GOBLIN FIRST FIXTURE PASS / PROTECTED SENTINELS PENDING  
 **Type:** Bounded diagnostic-only causal implementation  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and interprets runtime result.
@@ -245,7 +245,7 @@ Reviewed diagnostic runtime candidate:
 
 `d2c6c8be0d56129ec6725571324a9066b181242c`
 
-Normal Chat independently reviewed the published Work diff against this frozen contract on 2026-09-19. Result: **SOURCE REVIEW PASS** — no material contract violation identified. Build and runtime testing remain pending.
+Normal Chat independently reviewed the published Work diff against this frozen contract on 2026-09-19. Result: **SOURCE REVIEW PASS** — no material contract violation identified. The implementation was subsequently built/deployed with DLL SHA256 `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`; build, deployment/hash and startup/load gates PASS.
 
 The review specifically confirmed that:
 
@@ -280,6 +280,27 @@ no raw8/raw55/true-Power ownership contradiction
 
 The Goblin pass proves the causal handoff for the first fixture. It does **not by itself** prove every marker/source combination.
 
+## First fixture runtime result
+
+EV-315 closes the first Goblin fixture as **CAUSAL PASS**.
+
+Two factual Action9/SPRINT executions independently showed the required sequence:
+
+```text
+C1 starts RIGHT group 5
+-> diagnostic probe SUPPRESS_NATIVE
+-> no Goblin RIGHT 5 -> 7 before authored marker
+-> AUTHORIZE_GENERIC_EQUIPPED at RIGHT marker
+-> generic FrameCollisionMarkers RIGHT activation 5 -> 7
+-> native ONDAMAGE to PC_Hero
+-> native exact-source cleanup 7 -> 5
+-> C1 final Outstanding=0
+```
+
+Later ordinary Action1/NORMAL markers were denied by the Sprint probe and still accepted by ordinary marker processing, providing a useful scoping control.
+
+This proves the causal handoff only for the first Goblin RIGHT/raw2 fixture. It does not promote equipped Sprint support or prove untested marker/source combinations.
+
 ## Follow-up after first PASS
 
 Only after Normal Chat independently reviews a Goblin PASS:
@@ -295,6 +316,8 @@ Only after Normal Chat independently reviews a Goblin PASS:
 Do not create production support, archive this task, or update settled collision reference facts merely because the code compiles.
 
 ## Build status
+
+Reviewed generic implementation `d2c6c8be0d56129ec6725571324a9066b181242c` = **BUILT / DEPLOYED / STARTUP PASS / FIRST GOBLIN RUNTIME PASS** with DLL SHA256 `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`.
 
 The superseded `1ae0731...` implementation was **NOT BUILT / NOT RUNTIME TESTED**.
 
