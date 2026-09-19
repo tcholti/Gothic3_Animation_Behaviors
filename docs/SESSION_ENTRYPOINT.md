@@ -17,7 +17,7 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint = EV-315 RIGHT PASS + EV-321 missing-source NEGATIVE PASS; EV-320 SAME-C1 ORIGIN CONTINUATION CORRECTION REQUIRED
+generic equipped Sprint = EV-320 continuation correction IMPLEMENTED/REVIEWED PASS; LOCAL BUILD+RUNTIME PENDING
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: EV-320 proves the diagnostic equipped-Sprint implementation loses later marker ownership when the same bound Goblin C1/motion transitions Action9/SPRINT -> Action2/POWER before OFF. EV-321 separately closes BOTH-with-missing-LEFT as a NEGATIVE PASS with native fallback. Implement/review the bounded diagnostic-only Sprint-origin continuation correction before further runtime coverage or production-promotion decisions. Phase 4 remains held.
+Current responsibility: implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` for the EV-320 same-C1 Sprint-origin continuation correction passed independent Normal Chat source review. Build/deploy/startup the diagnostic product locally, then rerun the EV-320 RIGHT->OFF positive fixture, EV-321 BOTH-with-missing-LEFT negative control, and EV-318 equipped true-Power protected control. Phase 4 remains held.
 
 ## Immediate responsibility
 
@@ -42,12 +42,12 @@ Current responsibility: EV-320 proves the diagnostic equipped-Sprint implementat
 5. EV-319 Ogre/raw52 Sprint attempt = NOT EXERCISED / ordinary regression healthy.
 6. EV-320 Goblin RIGHT->OFF = continuation gap: Action9->Action2 same C1 breaks later OFF ownership.
 7. EV-321 Goblin BOTH missing LEFT = NEGATIVE PASS / native fallback preserved.
-8. Next: Work implements `docs/work/active/COLLISION_EQUIPPED_SPRINT_ORIGIN_CONTINUATION_CORRECTION.md`; Normal Chat reviews before local rebuild/runtime.
+8. Implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` = Normal Chat source-review PASS; local build/deploy/startup + three runtime acceptance controls NEXT.
 
 ## Current verified diagnostic product
 
 ```text
-reviewed generic Sprint implementation = d2c6c8be0d56129ec6725571324a9066b181242c
+reviewed Sprint continuation implementation = c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86
 built/live DLL SHA256 = A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7
 build/deploy/startup = PASS
 Goblin first causal fixture = PASS at EV-315
