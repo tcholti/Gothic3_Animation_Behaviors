@@ -5,13 +5,49 @@
 
 > After an abrupt/max-context/unusable Chat, start at root `README.md`; this bridge is only a clue until POP-11 recovery verifies it.
 
-## Current bridge
+## Current bridge — Work formal audit
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
-Technical active branch: `docs/collision-source-evidence`  
-Current gate: standalone collision regression, `COLLISION_TEST_PLAN.md` §8.1.
+Branch: `docs/collision-source-evidence`  
+Responsibility: **formal read-only post-restructure knowledge/documentation audit**.
 
-Knowledge-lifecycle restructure is CLOSED/PASS and preserved under `docs/archive/investigations/`. Ordinary continuation now uses the new reference-first lifecycle and automated POP-12 validation.
+Frozen task:
+
+`docs/work/active/POST_RESTRUCTURE_KNOWLEDGE_AUDIT.md`
+
+Required orientation:
+
+```text
+root README
+-> docs/README.md §0 + retrieval model
+-> SESSION_ENTRYPOINT.md
+-> this bridge
+-> PROJECT_OPERATING_PROCEDURES.md POP-10 + POP-12
+-> KNOWLEDGE_MAINTENANCE.md
+-> KNOWLEDGE_REGISTRY.md
+-> frozen audit contract
+```
+
+Apply POP-10 before findings. Audit current authorities first; descend into archived ledgers/raw/probes only for targeted provenance checks required by the contract.
+
+Hard boundaries:
+
+```text
+READ-ONLY
+NO repository edits / commits / pushes
+NO branch creation/deletion
+NO source changes
+NO build / deploy / Gothic launch
+NO runtime experiments
+NO new EVs
+NO implementation of findings
+```
+
+Return the required structured audit report and STOP.
+
+## Technical state held during audit
+
+Standalone collision regression remains paused at `COLLISION_TEST_PLAN.md` §8.1.
 
 Latest closed evidence:
 
@@ -22,14 +58,6 @@ EV-307 Sabretooth double-FIST supplemental PASS
 EV-308 shield/raw9 LEFT shield-bash NEGATIVE CONTROL / DEFERRED
 ```
 
-`research/raw/` is clean except `Keep.txt`.
+`research/raw/` was clean except `Keep.txt` at audit freeze.
 
-Immediate continuation:
-
-```text
-finish any remaining prepared Golem setup(s)
-OR, if none remain, explicitly close Phase 1
--> then begin Orc Phase 2
-```
-
-Use `COLLISION_REFERENCE.md` for settled facts. Use `EVIDENCE_INDEX.md` only when proof/provenance is needed. Closed probes/audits are under `docs/archive/investigations/` and are not ordinary continuation material.
+After the audit returns, Normal Chat + User decide corrections, close/archive the audit task, and only then resume the preserved technical collision gate.
