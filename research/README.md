@@ -1,7 +1,7 @@
 # Research Source Intake and Provenance Map
 
 **Status:** Current research-layer usage map  
-**Updated:** 2026-09-18
+**Updated:** 2026-09-19
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -151,7 +151,7 @@ derived package identifies canonical source
 → exact disputed fact returns to canonical source
 ```
 
-A hand-written summary must not replace the canonical Evidence Ledger or the underlying raw/archive artifact.
+A derived or ad-hoc summary must not replace the EV proof record or the underlying raw/archive artifact. Current factual reference documents are a separate maintained projection of established knowledge and must point back to evidence rather than replace it.
 
 For large logs, prefer the derived package for routine orientation and targeted retrieval. Do not scan a directory of full archived logs merely to reconstruct current state.
 
