@@ -17,8 +17,8 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint = DIAGNOSTIC CAUSAL CASE ACCEPTED THROUGH EV-324; PRODUCTION-PROMOTION DECISION NEXT
-active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
+generic equipped Sprint = PROMOTION APPROVED / PERMANENT EXTRACTION IMPLEMENTATION NEXT
+active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-324
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: EV-324 closes the final true-Power protected control PASS. The bounded EV-320 continuation correction is fully runtime-accepted through EV-322–EV-324. Next make the explicit parent-level production-promotion decision for generic equipped Sprint; do not change behavior-facing code implicitly. Phase 4 remains held until that decision.
+Current responsibility: ADR-0003 approves promotion of the accepted equipped-Sprint mechanism into permanent behavior. Work must implement only `docs/work/active/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md`: extract permanent `EquippedSprintCollision`, remove the temporary probe dependency, keep EngineBridge transport-only and preserve diagnostics/release separation. Phase 4 remains held through promotion acceptance.
 
 ## Immediate responsibility
 
@@ -46,7 +46,8 @@ Current responsibility: EV-324 closes the final true-Power protected control PAS
 9. EV-322 RIGHT->OFF positive correction runtime = PASS.
 10. EV-323 BOTH-with-missing-LEFT negative rerun = PASS.
 11. EV-324 equipped 2H true-Power protected control = PASS.
-12. Next: explicit production-promotion decision for generic equipped Sprint.
+12. Production promotion decision = APPROVED by ADR-0003.
+13. Next: Work implements the bounded permanent `EquippedSprintCollision` extraction/promotion.
 
 ## Current verified diagnostic product
 
