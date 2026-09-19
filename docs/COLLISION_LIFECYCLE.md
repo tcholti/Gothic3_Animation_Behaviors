@@ -1,4 +1,4 @@
-# Collision Lifecycle Plan
+# Collision Lifecycle Architecture
 
 **Status:** Current collision-lifecycle architecture authority  
 **Updated:** 2026-09-16
