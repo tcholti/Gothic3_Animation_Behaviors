@@ -171,6 +171,7 @@ raw8 Sprint production support                              EV-251
 post-raw55 coexistence sentinel                             EV-297
 human single-marker/native fallback regression              EV-304
 human double-marker same-C1 repeated-contact regression     EV-305
+Sabretooth actor-general double-marker regression             EV-307
 ```
 
 Supported/proven raw-8 FIST family set for the tested current scope:
@@ -477,7 +478,7 @@ Power / Pierce / SimpleWhirl / Hack equipped scope    CLOSED — EV-216–EV-244
 production raw8 FIST Normal/Power/Quick/Sprint         CLOSED/PASS — through EV-251
 permanent raw55 family causal route                    CLOSED/PASS — through EV-294
 focused permanent raw55 acceptance                    CLOSED/PASS — EV-298
-standalone regression Phase 1                         IN PROGRESS — EV-299–EV-305
+standalone regression campaign                        IN PROGRESS — EV-299–EV-307
 
 CURRENT
 -> finish remaining Golem Phase-1 setups
