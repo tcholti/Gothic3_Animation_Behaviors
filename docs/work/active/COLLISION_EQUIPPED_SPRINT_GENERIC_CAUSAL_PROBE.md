@@ -1,6 +1,6 @@
 # Generic Equipped Sprint Causal Probe
 
-**Status:** ACTIVE — GOBLIN + RAW8 + RAW55 PASS / TRUE-POWER SENTINEL NEXT  
+**Status:** ACTIVE — GOBLIN CAUSAL PASS + PROTECTED SENTINELS COMPLETE/PASS / BROADER FIXTURES NEXT  
 **Type:** Bounded diagnostic-only causal implementation  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and interprets runtime result.
@@ -340,6 +340,33 @@ Whole-log checks found no contradiction, rejection or lifecycle failure. This is
 
 Next protected sentinel: one equipped true-Power route.
 
+### EV-318 — equipped true-Power sentinel PASS
+
+Player 2H true Power with RIGHT Flamberge/raw3 remains entirely under the established generic equipped-Power owner:
+
+```text
+Action2 / POWER
+-> existing ATTACK_OWNERSHIP SuppressNative=1 / ROUTINE
+-> EquippedSprintProbe is not reached for PC_Hero
+-> RIGHT marker accepted
+-> exact Flamberge 5 -> 7
+-> native Golem contact where geometry permits
+-> native cleanup to group5
+-> C1 final Outstanding=0
+```
+
+The run contains 25 distinct accepted true-Power marker C1s and 12 native Golem damage contacts, with zero true-Power marker rejection, repair, contradiction or lifecycle failure.
+
+Protected sentinel stage is therefore **COMPLETE/PASS**:
+
+```text
+EV-316 raw8 Sprint         PASS
+EV-317 raw55 Sprint-origin PASS
+EV-318 equipped true Power PASS
+```
+
+Next: additional factual equipped-Sprint fixtures across other available equipped UseTypes/animation sets.
+
 ## Follow-up after first PASS
 
 Only after Normal Chat independently reviews a Goblin PASS:
@@ -347,7 +374,7 @@ Only after Normal Chat independently reviews a Goblin PASS:
 1. complete the existing protected sentinels required to prove no regression:
    - raw8 Sprint = PASS at EV-316;
    - raw55 Sprint-origin = PASS at EV-317;
-   - one equipped true-Power route = NEXT;
+   - one equipped true-Power route = PASS at EV-318;
 2. exercise additional factual equipped Sprint fixtures across other available equipped UseTypes/animation sets where possible (for example Orc/Demon/Ogre/Stalker families already used in regression);
 3. if RIGHT/LEFT/BOTH/OFF combinations cannot be exercised by vanilla actors, deliberately authored diagnostic fixtures may be designed later rather than narrowing the framework contract to vanilla limitations;
 4. only then decide whether permanent promotion is justified.
