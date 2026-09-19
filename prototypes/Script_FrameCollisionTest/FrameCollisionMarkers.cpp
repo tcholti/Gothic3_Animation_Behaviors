@@ -688,7 +688,7 @@ MarkerProcessResult ProcessMarker(
     Entity &actor, MarkerOpcode markerOpcode, char const *effectName,
     double elapsedMs
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    , bool equippedSprintRightAuthorized
+    , bool equippedSprintAuthorized
 #endif
 )
 {
@@ -705,8 +705,7 @@ MarkerProcessResult ProcessMarker(
     if (family == AttackFamily_Sprint
         && markerOpcode != MarkerOpcode_Fist
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-        && !(equippedSprintRightAuthorized
-             && markerOpcode == MarkerOpcode_Right)
+        && !equippedSprintAuthorized
 #endif
        )
     {

@@ -29,7 +29,7 @@ MarkerProcessResult ProcessMarker(
     Entity &actor, MarkerOpcode markerOpcode, char const *effectName,
     double elapsedMs
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    , bool equippedSprintRightAuthorized
+    , bool equippedSprintAuthorized
 #endif
 );
 MarkerProcessResult CreateMarkerResult(

@@ -350,11 +350,12 @@ static GELPVoid StartEffect_FrameCollisionTest(
     if (!raw55MarkerOwned)
     {
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-        bool const equippedSprintRightAuthorized =
-            EquippedSprintProbe::AuthorizeRightMarker(actor, markerOpcode);
+        bool const equippedSprintAuthorized =
+            EquippedSprintProbe::AuthorizeGenericEquippedMarker(
+                actor, markerOpcode);
         result = FrameCollisionMarkers::ProcessMarker(
             actor, markerOpcode, effectName, elapsedMs,
-            equippedSprintRightAuthorized);
+            equippedSprintAuthorized);
 #else
         result = FrameCollisionMarkers::ProcessMarker(
             actor, markerOpcode, effectName, elapsedMs);

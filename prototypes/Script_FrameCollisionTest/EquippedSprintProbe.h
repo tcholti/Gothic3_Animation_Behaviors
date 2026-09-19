@@ -7,5 +7,6 @@ namespace FrameCollision::EquippedSprintProbe
 bool ShouldSuppressNativeCallback(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &ownership);
-bool AuthorizeRightMarker(Entity &actor, MarkerOpcode markerOpcode);
+bool AuthorizeGenericEquippedMarker(
+    Entity &actor, MarkerOpcode markerOpcode);
 }
