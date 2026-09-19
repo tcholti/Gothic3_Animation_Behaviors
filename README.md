@@ -1,5 +1,7 @@
 # Gothic 3 Animation Behaviors
 
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
+
 General Gothic 3 animation-behavior research and implementation for configurable Raise behavior, attack playback speed, animation-authored frame collision, and reusable Gothic 3 modding knowledge.
 
 ## Branches
@@ -36,7 +38,8 @@ Do **not** blindly follow the old `NEXT` pointer. Start here and enter **Recover
 Only broaden when the current responsibility requires it:
 
 - [Project charter and knowledge map](docs/README.md) — highest Gothic-specific authority beneath CAM; use for project purpose, long-term direction, authority topology, formal-audit preflight, or one-time subsystem orientation.
-- [Evidence index](docs/EVIDENCE_INDEX.md) — route engine/research questions to exact EV ranges and provenance.
+- [Collision reference](docs/COLLISION_REFERENCE.md) — compact current collision facts; use before evidence for already-settled questions.
+- [Evidence index](docs/EVIDENCE_INDEX.md) — route proof-sensitive questions to exact EV ranges and provenance only when needed.
 - [Animation knowledge index](docs/ANIMATION_INDEX.md) — route filename/UseType/action/pose/asset questions to exact sections/data.
 - [Project operating procedures](docs/PROJECT_OPERATING_PROCEDURES.md) — retrieve the exact recurring Git/build/deploy/test/evidence/review/continuity procedure when that operation is active.
 - [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — retrieve for bounded Work/coding sessions.
@@ -53,9 +56,9 @@ The maintenance protocol/registry are process tools, not mandatory context for e
 
 The repository intentionally preserves detailed evidence, animation semantics, hook/source research, reverse-engineering results, test methodology, and searchable asset data so they can be reused beyond the current collision feature.
 
-Large technical documents should be indexed and retrieved by topic/section/evidence ID/symbol rather than treated as mandatory reading.
+Ordinary work consumes **current reference/architecture first**. Closed probes, audits and ledger volumes are cold archive material and are opened only for provenance, contradiction or reconstruction. The canonical lifecycle is `docs/KNOWLEDGE_MAINTENANCE.md` and is checked mechanically by `tools/knowledge/validate_knowledge_state.py`.
 
-> **Not necessary to read now does not mean not necessary to preserve.**
+> **Preserve proof deeply; present current knowledge shallowly. Not necessary to read now does not mean not necessary to preserve.**
 
 ## Searchable Animation-Name Data
 
