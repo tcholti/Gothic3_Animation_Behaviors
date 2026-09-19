@@ -199,3 +199,30 @@ Provenance:
 Disposition:
 - PASS — suppressing native early `OnAI_PowerAttack` timing allows the existing generic equipped marker mechanism to own the first factual Goblin Sprint RIGHT/raw2 fixture at authored marker timing while preserving native damage and cleanup.
 - Active investigation continues with protected raw8 Sprint, raw55 Sprint-origin and equipped true-Power sentinels before broader equipped-Sprint fixtures or any permanent promotion decision.
+
+### EV-316 — Sabretooth raw8 Sprint protected sentinel PASS
+
+Observed:
+- The current equipped-Sprint diagnostic build captured five factual native-Sabretooth `Action=9 / Family=SPRINT` executions: C1 generations 8, 34, 44, 55 and 109. Each used factual `Fist` / raw8 with `RequiredMask=0` and the PowerAttack-named Sprint motion.
+- In every Sprint generation, existing raw8 ownership remained authoritative: `RAW8_FIST_OWNERSHIP ... InitialClose=0->1 Result=CONFIRMED`; the equipped-Sprint probe explicitly recorded `DELEGATE_NATIVE Reason=FIST_MARKER_PRESENT` rather than suppressing/claiming the callback.
+- Each factual Sprint accepted `G3AB_COL_FIST` at `StatePosition=1`, confirmed latch rearm `1->0 / LatchConfirmed=1`, armed and consumed the existing bounded early timing permission, and produced native `ONDAMAGE Target=PC_Hero Arg2=Sabertooth Caller=Game.dll+0x0016E348`.
+- All five Sprint C1 generations finalized with `Outstanding=0`, `PhysicalChanged=0` and `NO_OP_NO_OUTSTANDING`. No raw55 ownership contradiction, C1 invariant warning, lifecycle issue, repair divergence or unresolved equipped-source outcome appeared.
+- New bounded observation: after the successful Action9/SPRINT FIST/contact in each of these five generations, the same PowerAttack-named motion later continued under factual `Action=2 / Family=POWER` within the same C1 and a later FIST dispatch was rejected as `REJECTED_C1_GENERATION_INCONSISTENCY`. The accepted Sprint FIST, raw8 timing permission, native damage and clean C1 finalization had already occurred before this replay/rejection. The older EV-251 sample did not capture this repeated Action9->Action2 replay shape. On the current evidence it is a fail-safe identity rejection after successful Sprint ownership, not a protected-raw8 regression and not equipped-Sprint ownership.
+
+Scope / limits:
+- Protected sentinel for native Sabretooth raw8 Sprint while the temporary equipped-Sprint diagnostic seam is present.
+- Confirms that the new equipped-Sprint probe excludes FIST-marked Sprint and leaves the established raw8 mechanism operational in five current executions.
+- The later Action2 same-C1 replay observation is preserved for future contradiction/reproduction checks; no source change or separate causal investigation is justified by this sentinel alone.
+
+Provenance:
+- User upload commit `d7c93d59f27d90752bea125ae351c9afec4ecf8e`.
+- Reviewed diagnostic implementation: `d2c6c8be0d56129ec6725571324a9066b181242c`.
+- Built/live diagnostic DLL SHA256: `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`.
+- Canonical archived log: `research/archive/2026-09-19_equipped_sprint_sentinel_sabretooth_raw8_sprint.log`.
+- Git blob `2c6a0faff392436d85dc9f4fedca070c0e26a715`; 400,433 characters / 1,547 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+- Comparison baseline: EV-251 / `research/archive/2026.09.11_sprint_raw8_production_validation.log`.
+
+Disposition:
+- PASS — raw8 Sprint remains protected under the generic equipped-Sprint diagnostic seam, and FIST-marked Sprint is explicitly delegated rather than claimed.
+- Active investigation advances to the raw55 Sprint-origin protected sentinel.
