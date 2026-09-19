@@ -69,7 +69,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | standalone collision regression | EV-299 onward |
 | Orc Phase-2 Staff/Fist/2H attack matrix | EV-309–EV-310 |
 | post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314 |
-| factual equipped Sprint boundary + first diagnostic causal handoff | EV-311, EV-315 |
+| factual equipped Sprint handoff / controlled continuation + missing-source fixtures | EV-311, EV-315, EV-320–EV-321 |
 | shield/raw9 LEFT physical activation without shield-bash damage | EV-306, EV-308 |
 | human raw8 same-C1 double-FIST | EV-305 |
 | Sabretooth raw8 same-C1 double-FIST | EV-307 |
