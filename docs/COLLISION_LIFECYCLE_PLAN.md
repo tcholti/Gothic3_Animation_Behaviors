@@ -148,7 +148,7 @@ no positive NPC destructive-abandonment physical-repair case claimed
 
 These are claim limits, not open gates.
 
-PhysicalFist/raw55 has now been proven to use a real exact physical source in the tested Troll/BlackTroll domain: `TrollFist`/raw55 can transition `Item_Equipped(5) -> Item_Attack(7)` and later receive native exact `7 -> 5` cleanup. The current diagnostic route records a real C1 offense obligation when authored opening actually reaches group7. That factual lifecycle participation does **not** yet authorize copying equipped terminal-repair policy wholesale into a permanent raw55 module; the final raw55 production ownership boundary remains paused until repeated-contact behavior is closed.
+PhysicalFist/raw55 uses a real exact physical source in the accepted Troll/BlackTroll domain: `TrollFist`/raw55 transitions `Item_Equipped(5) -> Item_Attack(7)` under the frozen marked contract and later receives native exact `7 -> 5` cleanup. Permanent family/contact ownership is closed through EV-294 and focused acceptance through EV-298. No custom raw55 terminal-cleanup system is added; Gothic cleanup remains first authority and C1-R1 remains backup-only for an exact outstanding live/equipped source still at group7.
 
 ---
 
@@ -185,7 +185,7 @@ valid-motion-only caching
 
 Gate 4 removed older marker-local guesses based on source/motion/action/phase/state-time changes or callback rollback. Natural `RetireMarkerOwnedSource()` handling retires only the exact physical marker-owned source bit/window.
 
-Raw55 repeated-contact timing is family-specific. Quick's proven rearm path must not be generalized to Normal/Power/Sprint. Normal EV-286–EV-290 proves that marker timing can change whether an authored opening itself needs a clear and that Gothic may perform a separate native trigger-bookkeeping reset between contacts. This is contact semantics, not terminal lifecycle cleanup.
+Raw55 repeated-contact timing is family-specific. Quick, Normal, true Power and Sprint-origin repeated-contact behavior is closed through EV-294; do not generalize one family's timing/rearm rule to another. Normal EV-291–EV-292 establishes the exact native between-contact clear ownership and its narrow permanent suppression/replacement behavior. These are contact semantics, not terminal lifecycle cleanup.
 
 ---
 
@@ -204,9 +204,9 @@ native exact 7 -> 5     = proven cleanup
 family contact/rearm    = not uniform
 ```
 
-Quick repeated-contact behavior is closed through EV-273. True Power, Normal and Sprint first-contact paths are closed through EV-282. The cross-family two-FIST checkpoint is EV-283. Normal's between-contact native visited-list reset is isolated through EV-290, with the exact public ALL clear identified but its causal necessity for hit2 still under validation.
+Quick repeated-contact behavior is closed through EV-273; Normal through EV-292; true Power through EV-293; Sprint-origin through EV-294. Permanent raw55 ownership is frozen in `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` and focused acceptance is CLOSED/PASS at EV-298.
 
-Do not assign raw8 latch semantics to raw55. Do not freeze a permanent raw55 terminal-repair or marker2 ownership policy until the remaining repeated-contact causal gates close.
+Do not assign raw8 latch semantics to raw55. Permanent raw55 uses its own family-specific marker/contact policy, preserves Gothic native final cleanup, and adds no independent terminal-cleanup mechanism.
 
 ---
 
@@ -264,19 +264,18 @@ unsupported bow/crossbow/magic negatives
 
 ## 10. Development Order
 
-Lifecycle architecture itself is closed. The surrounding collision roadmap is:
+Lifecycle architecture and permanent raw55 ownership are closed. The surrounding collision roadmap is:
 
 ```text
-Normal native ALL-clear causal-necessity validation
--> if required, one-variable Normal marker2 replacement-clear proof
--> Power repeated-FIST closure
--> Sprint repeated-FIST closure preserving same-C1 Action9 -> Action2 continuity
--> freeze permanent raw55 responsibility/lifecycle ownership
--> standalone collision regression
+standalone collision regression — IN PROGRESS, EV-299–EV-305
+-> finish remaining Phase-1 Golem setups
+-> Orc / other weapon users / non-weapon creatures
+-> Axe and Rapier separation-mod compatibility
+-> stress regression
 -> New Balance 0.7 bundle regression exactly as distributed, AttackCollision included
--> separate AttackContinuationProtection investigation/implementation
--> combined regression
 -> production collision migration
+-> diagnostics-free integration validation
+-> separate AttackContinuationProtection investigation/implementation when deliberately resumed
 ```
 
-Even if continuation prevention succeeds, C1-R1 remains the independent equipped-source fail-safe.
+Even if continuation prevention later succeeds, C1-R1 remains the independent equipped-source fail-safe.
