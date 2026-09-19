@@ -9,11 +9,11 @@ Define the standing validation rules and remaining collision-validation gates. T
 
 Current state: `SESSION_ENTRYPOINT.md`.  
 Transient continuation: `BETWEEN_CHATS.md`.  
-Current redesign authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.  
+Established collision facts: `COLLISION_REFERENCE.md`.  
 Overall architecture/order: `DESIGN.md`.  
-Lifecycle architecture: `COLLISION_LIFECYCLE_PLAN.md`.  
-Diagnostic architecture: `COLLISION_LOGGER_PLAN.md`.  
-Exact proof: `EVIDENCE_INDEX.md` -> canonical evidence ledgers.
+Lifecycle architecture: `COLLISION_LIFECYCLE.md`.  
+Diagnostic architecture: `COLLISION_DIAGNOSTICS.md`.  
+Exact proof: `EVIDENCE_INDEX.md` -> exact current/archived EV ledger.
 
 ---
 
@@ -270,7 +270,7 @@ Focused Sprint closure permits the broad compatibility matrix to resume.
 
 ## 7. Diagnostic Requirements for Remaining Large Tests
 
-Default large tests should use compact CORE diagnostics under `COLLISION_LOGGER_PLAN.md`.
+Default large tests should use compact CORE diagnostics under `COLLISION_DIAGNOSTICS.md`.
 
 CORE governing rule:
 
