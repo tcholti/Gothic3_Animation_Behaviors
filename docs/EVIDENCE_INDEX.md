@@ -42,10 +42,10 @@ Current project responsibility is never owned by this historical index. Use `SES
 | frame effects / marker channel / frame-effect layout | EV-012–EV-018 | source guide Frame effects |
 | ordinary natural weapon reset / marker timing | EV-019–EV-023 | lifecycle evidence for abnormal endings |
 | Staff + NPC actor-general marker proof | EV-024–EV-028 | Quick evidence EV-066+; R1-E stability EV-207 |
-| raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263 | `DESIGN.md` raw-8 Fist architecture; `SOURCE_HOOK_GUIDE.md` proven timing path |
+| raw-8 Fist/body contact — production + cross-family marker route | EV-029–EV-032, EV-080–EV-085, EV-207, EV-211, EV-221–EV-240, EV-247, EV-250–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305 | `DESIGN.md` raw-8 Fist architecture; EV-304 native unmarked Power-P1 fallback; EV-305 two-FIST same-C1 rearm |
 | PhysicalFist/raw55 factual source + permanent validation | EV-245–EV-246, EV-262–EV-298 | §3K below; family causal closure through EV-294; focused sentinels EV-295–EV-297; aggregate permanent-acceptance closure EV-298 |
-| standalone collision regression campaign | EV-299 onward | `COLLISION_TEST_PLAN.md` §8; Phase 1 Golem player weapon matrix begins EV-299–EV-301 |
-| repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-273, EV-283–EV-290 | equipped exact-set/replay evidence; raw55 Quick and Normal have family/timing-specific rearm behavior—do not generalize one family's mechanism to another |
+| standalone collision regression campaign | EV-299 onward | `COLLISION_TEST_PLAN.md` §8; Phase 1 Golem player setup matrix currently closed through EV-305 |
+| repeated-hit rearm / triggered lists | EV-033, EV-106–EV-116, EV-266–EV-273, EV-283–EV-292, EV-305 | equipped exact-set/replay evidence; raw8 same-C1 FIST rearm EV-305; raw55 family/timing-specific rearm remains separate |
 | Hero family / poses / UseType / R-L semantics | EV-036–EV-065 | `ANIMATION_INDEX.md` |
 | Quick marker ownership / StatePosition | EV-066–EV-075, EV-263–EV-273 | EV-182–EV-196 lifecycle context; EV-264–EV-273 raw55 Quick ownership/separability/activation/rearm/pre-state closure |
 | Dual native source map / source-explicit marker review | EV-090–EV-094 | EV-207, EV-211, EV-214 |
@@ -489,11 +489,15 @@ Focused permanent raw55 acceptance is closed at EV-298. The prepared standalone 
 Current canonical regression sequence:
 
 ```text
-Phase 1 — Golem player equipped-weapon matrix
+Phase 1 — Golem player equipped/setup matrix
   EV-299  1H PASS
   EV-300  1H + torch PASS
   EV-301  dual 1H PASS
-  -> remaining prepared Golem weapon setups
+  EV-302  2H PASS
+  EV-303  Staff PASS
+  EV-304  human raw8 Fist single-marker + unmarked Power-P1 fallback PASS
+  EV-305  human raw8 Fist double-marker repeated-contact PASS
+  -> remaining prepared Golem setups
 
 Phase 2 — Orc 2H / Staff / raw8 Fist
 Phase 3 — other weapon-using actors
@@ -503,7 +507,7 @@ Phase 6 — 1H vs Rapier separation-mod compatibility
 Phase 7 — stress regression
 ```
 
-The first Golem batch also provides positive deliberate C1-R1 bad-skip repair coverage in all three setups and late-marker safety-rejection coverage in 1H+torch / dual-1H.
+The first two Golem batches provide positive C1-R1 bad-skip repair coverage in 1H, 1H+torch, dual-1H and 2H; Staff supplies the complementary cleanup-completes-before-repair control. Late/dead marker rejection is exercised in 1H+torch, dual-1H, 2H and Staff. EV-304/EV-305 add raw8 native-fallback and two-marker repeated-contact coverage.
 
 This campaign is regression confirmation, not source/lifecycle redesign. Current execution details belong to `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
 
