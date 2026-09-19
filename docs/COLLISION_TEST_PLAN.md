@@ -298,16 +298,20 @@ The campaign is intentionally split into multiple logs/runs so factual source/ac
 
 ### 8.1 Phase 1 — Player equipped-weapon matrix against Golem
 
-**Progress through EV-301:**
+**Progress through EV-305:**
 
 ```text
-1H        PASS — EV-299
-1H+torch  PASS — EV-300
-dual 1H   PASS — EV-301
-remaining prepared Golem weapon setups = OPEN
+1H                         PASS — EV-299
+1H+torch                   PASS — EV-300
+dual 1H                    PASS — EV-301
+2H                         PASS — EV-302
+Staff                      PASS — EV-303
+human Fist single marker   PASS — EV-304
+human Fist double markers  PASS — EV-305
+remaining prepared Golem setups = OPEN
 ```
 
-The first batch also passes deliberate C1-R1 bad-skip repair checks. 1H+torch and dual-1H each expose one late Quick marker after Gothic has already returned to Action0/no live C1; the marker is correctly rejected under the standing late/dead/unsupported rule while all physical sources rest at group5. No source change is required.
+The first two batches pass deliberate C1-R1/cleanup checks. 1H, 1H+torch, dual-1H and 2H produce exact-source repair when a real stale group7 obligation survives; the Staff bad-skip attempts instead finish cleanup before terminal repair is needed. Late Action0/no-C1 callbacks are safely rejected with physical sources at group5. EV-304 proves intentionally unmarked raw8 Power P1 remains native and damaging; EV-305 proves two authored FIST markers can rearm two same-C1 raw8 contacts. No source change is required.
 
 The User attacks a Golem using the prepared marked animations across the different weapon types.
 
