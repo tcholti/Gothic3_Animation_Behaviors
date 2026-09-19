@@ -240,7 +240,7 @@ After state/orientation/reconstruction are known, retrieve only the exact EV, so
 
 ### HOT — start/resume here
 
-- `SESSION_ENTRYPOINT.md` — minimal durable current front door.
+- `SESSION_ENTRYPOINT.md` — minimal durable current-state pointer reached from the repository root `README.md` front door.
 - `BETWEEN_CHATS.md` — transient latest Chat/Work handoff only.
 - `COLLABORATION_RULES.md` — Gothic CAM operationalization and participant allocation.
 - `PROJECT_PIPELINE.md` — stable branch/state, numbering, test/artifact/product conventions.
@@ -286,7 +286,7 @@ Other deep references:
 - `research/README.md` — research-layer usage/processing map.
 - `EVIDENCE_PATH_MIGRATIONS.md` — deliberate raw/archive path-migration lookup when historical paths differ from current storage.
 
-Prefer EV first. Open raw/archive when verifying wording, challenging interpretation, or extracting a fact not represented canonically. For oversized logs, use POP-07 and prefer a committed derived package for routine retrieval.
+Prefer current reference/architecture first. When proof is needed, use `EVIDENCE_INDEX.md` → exact EV; open raw/archive only when verifying wording, challenging interpretation, or extracting a fact not represented canonically. For oversized logs, use POP-07 and prefer a committed derived package for routine retrieval.
 
 Ordinary documentation history belongs in Git; historical Git content never overrides maintained current authorities.
 
@@ -298,7 +298,7 @@ Ordinary documentation history belongs in Git; historical Git content never over
 |---|---|---|
 | Why does project exist / what is authority hierarchy? | this `README.md` §0 | owning specialist authority after charter role is clear |
 | What are we doing now? | `SESSION_ENTRYPOINT.md` | `BETWEEN_CHATS.md` for exact transient continuation |
-| Previous Chat died before handoff; what now? | `PROJECT_OPERATING_PROCEDURES.md` POP-11 | this charter §0 + `KNOWLEDGE_REGISTRY.md` + `KNOWLEDGE_MAINTENANCE.md` + recent durable tail; POP-10 only if contradiction gate fires |
+| Previous Chat died before handoff; what now? | root `README.md` **Start Here** | follow its Recovery Lock route into POP-11; then this charter §0 + `KNOWLEDGE_REGISTRY.md` + `KNOWLEDGE_MAINTENANCE.md` + recent durable tail; POP-10 only if contradiction gate fires |
 | How must formal review/audit begin? | POP-10 | this charter + target Purpose/Scope + Registry ownership |
 | What is already established about collision behavior? | `COLLISION_REFERENCE.md` | owning architecture; `EVIDENCE_INDEX.md` only for proof/qualification |
 | What causal model constrains a genuinely unresolved collision problem? | current subsystem authority + current active temporary contract | `EVIDENCE_INDEX.md` reconstruction only as needed route → exact EV |
@@ -320,7 +320,8 @@ Ordinary documentation history belongs in Git; historical Git content never over
 | Exact animation exists? | animation-name data | catalog/rules for interpretation |
 | Family/fixture/source note? | `ANIMATION_INDEX.md` | Catalog |
 | Gothic source/API/hook? | `SOURCE_HOOK_GUIDE.md` | SDK/reference/binary/evidence |
-| Why older technical decision existed? | `EVIDENCE_INDEX.md` → exact EV/provenance | Git history/raw/archive only if chronology/wording matters |
+| Why was a significant architectural/project choice made? | `docs/decisions/` ADRs | current architecture/reference; evidence only when factual premise/provenance matters |
+| Why did an older technical workaround/behavior exist when no ADR owns the rationale? | current reference/architecture → `EVIDENCE_INDEX.md` | exact EV/provenance; Git history/raw/archive only if chronology/wording matters |
 
 ### Subsystem Orientation Routes
 
@@ -354,7 +355,7 @@ Read a full large document only for genuine broad synthesis, contradiction resol
 
 ### Normal Chat — ordinary continuation
 
-1. `SESSION_ENTRYPOINT.md`;
+1. enter through root `README.md` **Start Here** → `SESSION_ENTRYPOINT.md`;
 2. `BETWEEN_CHATS.md` only for active handoff;
 3. Subsystem Orientation Pass once if subsystem model is stale;
 4. targeted Active-Problem Reconstruction once if causal model is stale;
@@ -365,16 +366,17 @@ Read a full large document only for genuine broad synthesis, contradiction resol
 
 ### Normal Chat — failed previous context
 
-POP-11 overrides ordinary continuation until Recovery Lock ends:
+Root `README.md` **Start Here** is always the discoverable first hop. Its Recovery Lock route enters POP-11, which overrides ordinary continuation until recovery ends:
 
-1. read entry point as clue, not unquestioned NEXT;
-2. orient to charter/ownership/maintenance/relevant specialist owner;
-3. state recovery preflight;
-4. reconstruct only recent durable gap;
-5. close missed evidence/maintenance/current-state work;
-6. invoke POP-10 only if contradiction gate reveals broad authority/structure issue;
-7. verify fresh-Chat start state;
-8. resume ordinary continuation.
+1. start at root `README.md` **Start Here** and enter Recovery Lock;
+2. read `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` as clues, not unquestioned NEXT;
+3. orient to charter/ownership/maintenance/relevant specialist owner;
+4. state recovery preflight;
+5. reconstruct only recent durable gap;
+6. close missed evidence/maintenance/current-state work;
+7. invoke POP-10 only if contradiction gate reveals broad authority/structure issue;
+8. verify fresh-Chat start state;
+9. resume ordinary continuation.
 
 ### Formal review/audit
 
