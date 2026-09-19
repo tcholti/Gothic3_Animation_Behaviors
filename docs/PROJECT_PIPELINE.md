@@ -134,19 +134,22 @@ Rules:
 Current storage boundaries:
 
 ```text
-EVIDENCE_LEDGER.md                EV-001–EV-157
-EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
-EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
-EVIDENCE_LEDGER_232_ONWARD.md     EV-232–EV-249
-EVIDENCE_LEDGER_250_ONWARD.md     EV-250–EV-264
-EVIDENCE_LEDGER_265_ONWARD.md     EV-265–EV-273
-EVIDENCE_LEDGER_274_ONWARD.md     EV-274–EV-279
-EVIDENCE_LEDGER_280_ONWARD.md     EV-280–EV-282
-EVIDENCE_LEDGER_283_ONWARD.md     EV-283–EV-285
-EVIDENCE_LEDGER_286_ONWARD.md     EV-286 onward
+docs/archive/evidence/EVIDENCE_LEDGER.md                EV-001–EV-157
+docs/archive/evidence/EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
+docs/archive/evidence/EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
+docs/archive/evidence/EVIDENCE_LEDGER_232_ONWARD.md     EV-232–EV-249
+docs/archive/evidence/EVIDENCE_LEDGER_250_ONWARD.md     EV-250–EV-264
+docs/archive/evidence/EVIDENCE_LEDGER_265_ONWARD.md     EV-265–EV-268
+docs/archive/evidence/EVIDENCE_LEDGER_269_ONWARD.md     EV-269–EV-273
+docs/archive/evidence/EVIDENCE_LEDGER_274_ONWARD.md     EV-274–EV-279
+docs/archive/evidence/EVIDENCE_LEDGER_280_ONWARD.md     EV-280–EV-282
+docs/archive/evidence/EVIDENCE_LEDGER_283_ONWARD.md     EV-283–EV-285
+docs/archive/evidence/EVIDENCE_LEDGER_286_ONWARD.md     EV-286–EV-290
+docs/archive/evidence/EVIDENCE_LEDGER_291_ONWARD.md     EV-291–EV-308
+docs/EVIDENCE_LEDGER_309_ONWARD.md                      EV-309 onward (ACTIVE)
 ```
 
-These splits are storage/retrieval checkpoints only. They do **not** restart or reinterpret the global EV namespace. When a new continuation file is added, the preceding continuation's end boundary becomes the EV immediately before the new file's first ID.
+Exactly one ledger remains active under `docs/`. Closed volumes are cold proof history under `docs/archive/evidence/`. The splits are storage/retrieval checkpoints only; they do **not** restart or reinterpret the global EV namespace. New evidence appends only to the active ledger until the rotation transaction in `KNOWLEDGE_MAINTENANCE.md` closes it.
 
 The ledger files own the claims themselves.
 
