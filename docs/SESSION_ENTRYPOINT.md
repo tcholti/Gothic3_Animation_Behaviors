@@ -17,11 +17,11 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint = EV-322 RIGHT->OFF CORRECTION RUNTIME PASS; NEGATIVE + TRUE-POWER CONTROLS PENDING
+generic equipped Sprint = EV-322 POSITIVE + EV-323 NEGATIVE PASS; TRUE-POWER CONTROL PENDING
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-322
+latest completed evidence = EV-323
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: EV-322 closes the EV-320 RIGHT->OFF positive correction gate PASS under implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`. Next rerun the EV-321 BOTH-with-missing-LEFT negative control, then the EV-318 equipped true-Power protected control. Phase 4 remains held.
+Current responsibility: EV-322 positive RIGHT->OFF correction and EV-323 missing-LEFT/BOTH negative control both PASS under implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`. Run the EV-318 equipped true-Power protected control next; if it passes, the bounded continuation correction runtime acceptance is complete. Phase 4 remains held.
 
 ## Immediate responsibility
 
@@ -44,7 +44,8 @@ Current responsibility: EV-322 closes the EV-320 RIGHT->OFF positive correction 
 7. EV-321 Goblin BOTH missing LEFT = NEGATIVE PASS / native fallback preserved.
 8. Implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` = Normal Chat source-review PASS.
 9. EV-322 RIGHT->OFF positive correction runtime = PASS.
-10. Next: EV-321 BOTH-with-missing-LEFT negative rerun, then EV-318 true-Power protected control.
+10. EV-323 BOTH-with-missing-LEFT negative rerun = PASS.
+11. Next: EV-318 equipped 2H true-Power protected control.
 
 ## Current verified diagnostic product
 
