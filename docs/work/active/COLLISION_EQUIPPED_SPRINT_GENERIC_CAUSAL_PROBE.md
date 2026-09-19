@@ -1,6 +1,6 @@
 # Generic Equipped Sprint Causal Probe
 
-**Status:** ACTIVE — GOBLIN PASS + RAW8 SENTINEL PASS / RAW55 SENTINEL NEXT  
+**Status:** ACTIVE — GOBLIN + RAW8 + RAW55 PASS / TRUE-POWER SENTINEL NEXT  
 **Type:** Bounded diagnostic-only causal implementation  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and interprets runtime result.
@@ -321,14 +321,33 @@ A later same-C1 Action2/POWER replay of the same PowerAttack-named motion produc
 
 Next protected sentinel: raw55 Sprint-origin.
 
+### EV-317 — raw55 Sprint-origin sentinel PASS
+
+Four factual Troll Sprint-origin C1 generations (9, 21, 37, 58) preserved the permanent raw55 mechanism while this diagnostic seam was active:
+
+```text
+Action9 / SPRINT origin
+-> EquippedSprintProbe DELEGATE_NATIVE / FIST_MARKER_PRESENT
+-> permanent raw55 suppresses premature RIGHT 5 -> 7
+-> authored FIST at SP1 opens exact RIGHT 5 -> 7
+-> native damage to PC_Hero
+-> same-C1 Action9 -> Action2 continuation
+-> native cleanup 7 -> 5
+-> C1 final Outstanding=0
+```
+
+Whole-log checks found no contradiction, rejection or lifecycle failure. This is a protected-coexistence sentinel only; it does not broaden permanent raw55 scope or promote equipped Sprint.
+
+Next protected sentinel: one equipped true-Power route.
+
 ## Follow-up after first PASS
 
 Only after Normal Chat independently reviews a Goblin PASS:
 
 1. complete the existing protected sentinels required to prove no regression:
    - raw8 Sprint = PASS at EV-316;
-   - raw55 Sprint-origin = NEXT;
-   - one equipped true-Power route = PENDING;
+   - raw55 Sprint-origin = PASS at EV-317;
+   - one equipped true-Power route = NEXT;
 2. exercise additional factual equipped Sprint fixtures across other available equipped UseTypes/animation sets where possible (for example Orc/Demon/Ogre/Stalker families already used in regression);
 3. if RIGHT/LEFT/BOTH/OFF combinations cannot be exercised by vanilla actors, deliberately authored diagnostic fixtures may be designed later rather than narrowing the framework contract to vanilla limitations;
 4. only then decide whether permanent promotion is justified.
