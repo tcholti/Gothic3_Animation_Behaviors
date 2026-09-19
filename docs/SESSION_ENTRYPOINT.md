@@ -13,22 +13,24 @@
 
 ```text
 standalone collision regression = ACTIVE
-current subphase = Phase 1 player/Golem matrix
+human marker attack matrix = CLOSED/PASS
+Sabretooth single-marker + double-marker controls = CLOSED/PASS
+current subphase = Phase 2 Orc attack matrix
 focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-308
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
-Use the stable route: [COLLISION_TEST_PLAN.md — Phase 1 Golem matrix](COLLISION_TEST_PLAN.md#phase-1-golem).
+Phase 1 is closed: the EV-299–EV-306 runs tested human marked attack routes, with Golem used only as a consistent target fixture. Sabretooth marked single-marker compatibility/Quick support is already closed through EV-247–EV-249 and the two-marker same-C1 control passed at EV-307.
 
-Phase 1 remains open only for any prepared Golem setup not yet exercised. If none remain, explicitly close Phase 1 before entering Phase 2.
+Current route: `COLLISION_TEST_PLAN.md` §3.2 — Orc attack matrix.
 
 ## Immediate responsibility
 
-1. Use POP-01 before the next local test because remote documentation/validator state changed.
-2. Continue only any prepared remaining Golem setup under the Phase-1 matrix.
-3. If no prepared Golem setup remains, explicitly close Phase 1 before Orc Phase 2.
-4. Keep one complete log per setup and close every uploaded batch under POP-06 before another batch.
+1. Use POP-01 before the next local test because remote documentation state changed.
+2. Run the Orc matrix next: cover prepared 2H, Staff and raw8 Fist routes with enough attributable runs (expected approximately two or three complete logs).
+3. Keep one complete log per run/setup; a small batch of Orc logs may be uploaded together when attribution remains clear.
+4. Close the uploaded batch under POP-06 before starting the next validation batch.
 5. Do not reopen family-specific raw55 research without concrete contradictory evidence.
 
 ## Current verified diagnostic product

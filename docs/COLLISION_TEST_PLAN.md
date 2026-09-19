@@ -85,9 +85,11 @@ one complete runtime log per setup where attribution matters
 
 <a id="phase-1-golem"></a>
 
-### 3.1 Phase 1 — Player attack/setup matrix against Golem
+### 3.1 Phase 1 — Human marker attack matrix — CLOSED/PASS
 
-Current progress:
+Purpose: validate the prepared **human attack routes with authored markers**. Golem was used as the consistent target fixture across these runs; the phase was not a Golem-behavior test.
+
+Closed progress:
 
 ```text
 1H                         PASS — EV-299
@@ -99,18 +101,19 @@ human raw8 single FIST     PASS — EV-304
 human raw8 double FIST     PASS — EV-305
 1H+shield                  PASS — EV-306
 
-supplemental:
-Sabretooth double FIST     PASS — EV-307
-shield-bash LEFT/raw9      NEGATIVE CONTROL / DEFERRED — EV-308
+supplemental controls:
+Sabretooth marked/raw8 single-marker compatibility + Quick closure — EV-247–EV-249
+Sabretooth raw8 double FIST                                         PASS — EV-307
+shield-bash LEFT/raw9                                               NEGATIVE CONTROL / DEFERRED — EV-308
 ```
 
-Phase 1 remains open only for any prepared Golem setup not yet exercised. If none remain, explicitly close Phase 1 before Phase 2.
+The human marker matrix is complete. Sabretooth has also covered marked single-marker behavior and the later two-marker same-C1 control.
 
 The shield-bash negative control does not represent a regression failure: LEFT/raw9 physical activation/cleanup worked, but Gothic supplied no native damage route in the tested fixture. Shield-bash damage is deferred.
 
-### 3.2 Phase 2 — Orc mixed equipped + raw8 Fist
+### 3.2 Phase 2 — Orc attack matrix — NEXT
 
-Exercise approximately two or three attributable Orc runs covering:
+Exercise enough attributable Orc runs to cover the prepared routes, expected to require approximately two or three complete logs:
 
 ```text
 2H
@@ -118,9 +121,9 @@ Staff
 Fist/raw8
 ```
 
-Fist may share a run with a weapon case when disarming is needed to reach the unarmed route, provided source/family attribution remains clear.
+Fist may share a run with a weapon case when disarming is needed to reach the unarmed route, provided source/family attribution remains clear. Use fewer or more runs only as needed to keep each route factually attributable.
 
-Objective: cross-source/cross-family native NPC behavior under the mature collision system.
+Objective: validate marked Orc attack behavior across equipped and raw8 sources under the mature collision system.
 
 ### 3.3 Phase 3 — Other weapon-using creatures/NPCs
 
