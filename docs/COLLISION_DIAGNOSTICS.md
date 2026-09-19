@@ -351,15 +351,20 @@ Deep capture must not become a production prerequisite.
 
 ## 8. Closed Sprint Diagnostic Questions
 
-The earlier Sprint discovery questions are closed for both supported FIST mechanisms. Evidence established factual Action9/Sprint semantic identity, raw8 transport through the existing Power callback path, and raw55 Sprint-origin continuity across the proven same-C1 Action9 -> Action2 transition.
+The Sprint discovery questions are now closed for raw8 FIST, raw55 PhysicalFist and the generic equipped-marker causal mechanism.
 
-Retained limit:
+Evidence establishes:
+- factual Sprint identity is Action9 even when the transport/motion is Power-named;
+- raw8 Sprint uses the proven raw8 timing mechanism;
+- raw55 preserves immutable Sprint origin across the proven same-C1 Action9 -> Action2 continuation;
+- equipped Sprint can hand eligible authored RIGHT/LEFT/BOTH/OFF timing to the generic equipped marker mechanism;
+- missing required equipped sources fail closed with native fallback;
+- ordinary true Power remains outside Sprint-origin ownership;
+- the EV-320 same-C1 continuation gap is corrected and accepted through EV-322–EV-324.
 
-```text
-equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported without factual evidence
-```
+The temporary `EquippedSprintProbe` is no longer a current behavior authority. ADR-0003 approves production extraction into a permanent diagnostics-independent `EquippedSprintCollision` owner. Until that promotion task is implemented and accepted, the current behavior-only baseline still does not provide equipped Sprint support.
 
-If future equipped Sprint RIGHT/LEFT/BOTH/OFF marker evidence appears, reopen only that new mechanism question rather than either closed FIST route.
+Reopen Sprint diagnostics only for a genuinely new contradiction or deliberate scope extension, not to repeat the closed causal sequence.
 
 ---
 
@@ -449,6 +454,7 @@ architecture + diagnostic-volume audit             DONE
 Stage A behavior architecture refactor              DONE/PASS
 Stage B diagnostic refactor + compact sentinel      DONE/PASS
 raw8 Sprint discovery/production validation         DONE/PASS
+equipped Sprint causal research                     CLOSED/PASS through EV-324; production promotion pending
 native equipped-NPC / raw8 compatibility controls  DONE/PASS through later evidence
 raw55 family-specific causal research               CLOSED through EV-294
 focused permanent raw55 acceptance                  CLOSED/PASS through EV-298
