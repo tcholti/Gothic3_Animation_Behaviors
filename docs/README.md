@@ -1,7 +1,9 @@
 # Gothic 3 Animation Behaviors — Project Charter and Knowledge Map
 
 **Purpose:** Highest project-specific authority beneath CAM for the Gothic 3 project's **purpose, long-term direction, scope, authority topology, and retrieval model**. Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-19
+
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
 > **Understand the project authority structure before judging lower-level documents. For ordinary engineering, do not load every document by default: find the current responsibility, recover a compact model of the relevant subsystem when needed, open the smallest relevant authority/index, and broaden only when the question requires it.**
 
@@ -245,12 +247,14 @@ After state/orientation/reconstruction are known, retrieve only the exact EV, so
 - `PROJECT_OPERATING_PROCEDURES.md` — recurring operations, POP-10 formal review preflight, POP-11 continuity/recovery.
 - `WORK_IMPLEMENTATION_PROTOCOL.md` — bounded implementation only.
 
-### WARM — current architecture / subsystem plans
+### WARM — current reference / architecture / active plans
 
+- `COLLISION_REFERENCE.md` — compact established collision facts; ordinary collision lookup starts here.
 - `DESIGN.md` — overall intended architecture and implementation order.
-- `COLLISION_LIFECYCLE_PLAN.md` — collision lifecycle/cleanup authority.
-- `COLLISION_LOGGER_PLAN.md` — diagnostic architecture.
-- `COLLISION_TEST_PLAN.md` — validation posture and remaining collision gates.
+- `COLLISION_LIFECYCLE.md` — collision lifecycle/cleanup architecture.
+- `COLLISION_DIAGNOSTICS.md` — diagnostic architecture.
+- `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` — permanent PhysicalFist/raw55 behavior architecture.
+- `COLLISION_TEST_PLAN.md` — active validation posture and remaining collision gates.
 - `PROJECT_SCOPE_CONTEXT.md` — short factual engine-facing scope context.
 
 ### COLD — routing indexes
@@ -260,22 +264,9 @@ After state/orientation/reconstruction are known, retrieve only the exact EV, so
 
 ### COLD — canonical deep references
 
-Evidence ledgers share one global monotonic namespace:
+Closed evidence ledgers live under `archive/evidence/`; the only active ledger is `EVIDENCE_LEDGER_309_ONWARD.md`. `EVIDENCE_INDEX.md` maps every EV range to its volume. Do not load ledger volumes for ordinary settled questions.
 
-```text
-EVIDENCE_LEDGER.md                EV-001–EV-157
-EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
-EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
-EVIDENCE_LEDGER_232_ONWARD.md     EV-232–EV-249
-EVIDENCE_LEDGER_250_ONWARD.md     EV-250–EV-264
-EVIDENCE_LEDGER_265_ONWARD.md     EV-265–EV-273
-EVIDENCE_LEDGER_274_ONWARD.md     EV-274–EV-279
-EVIDENCE_LEDGER_280_ONWARD.md     EV-280–EV-282
-EVIDENCE_LEDGER_283_ONWARD.md     EV-283–EV-285
-EVIDENCE_LEDGER_286_ONWARD.md     EV-286 onward
-```
-
-File splits are retrieval/storage boundaries only; evidence numbering remains one global monotonic namespace.
+Closed probes, implementation contracts, audits and superseded work plans live under `archive/investigations/`. Active temporary work lives only under `work/active/`.
 
 Other deep references:
 
@@ -318,8 +309,8 @@ Ordinary documentation history belongs in Git; historical Git content never over
 | How is knowledge maintained? | `KNOWLEDGE_MAINTENANCE.md` | Registry for exact owner/update trigger |
 | Who owns this knowledge? | `KNOWLEDGE_REGISTRY.md` | owning authority named there |
 | Overall architecture? | `DESIGN.md` | evidence index if premise must be checked |
-| Current collision lifecycle? | `COLLISION_LIFECYCLE_PLAN.md` | cleanup map / EV |
-| Diagnostics? | `COLLISION_LOGGER_PLAN.md` | source + exact EV |
+| Current collision lifecycle? | `COLLISION_LIFECYCLE.md` | cleanup map / EV |
+| Diagnostics? | `COLLISION_DIAGNOSTICS.md` | source + exact EV |
 | Collision validation posture? | `SESSION_ENTRYPOINT.md` → `COLLISION_TEST_PLAN.md` | transient handoff only when active |
 | Is engine claim proven? | `EVIDENCE_INDEX.md` | exact ledger → raw/source |
 | Where did an archived evidence file move? | `EVIDENCE_PATH_MIGRATIONS.md` | exact historical EV/commit when needed |
@@ -334,7 +325,7 @@ Ordinary documentation history belongs in Git; historical Git content never over
 
 | Subsystem | Orientation route |
 |---|---|
-| frame collision / lifecycle | `DESIGN.md` collision sections → collision routes in `EVIDENCE_INDEX.md` → `COLLISION_LIFECYCLE_PLAN.md`; Source Guide/Cleanup Map only for source/hook/cleanup context |
+| frame collision / lifecycle | `DESIGN.md` collision sections → collision routes in `EVIDENCE_INDEX.md` → `COLLISION_LIFECYCLE.md`; Source Guide/Cleanup Map only for source/hook/cleanup context |
 | Raise | `DESIGN.md` Raise section → Raise route in `EVIDENCE_INDEX.md` → `ANIMATION_INDEX.md` for asset/selection questions |
 | playback speed | `DESIGN.md` speed section → speed evidence route → Source Guide when implementation/hook context matters |
 | animation semantics / selection | `ANIMATION_INDEX.md` → exact Rules/Catalog/data → relevant evidence only when behavioral interpretation matters |
@@ -413,11 +404,12 @@ Work should not reconstruct the whole project by default.
 | knowledge-maintenance process | `KNOWLEDGE_MAINTENANCE.md` |
 | knowledge ownership/update triggers | `KNOWLEDGE_REGISTRY.md` |
 | overall intended system architecture | `DESIGN.md` |
-| collision lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` |
-| diagnostic architecture | `COLLISION_LOGGER_PLAN.md` |
+| collision lifecycle architecture | `COLLISION_LIFECYCLE.md` |
+| diagnostic architecture | `COLLISION_DIAGNOSTICS.md` |
 | collision validation boundaries | `COLLISION_TEST_PLAN.md` |
 | release/diagnostic product architecture | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
-| exact evidence status/provenance | canonical evidence ledgers listed in §2 |
+| current established collision facts | `COLLISION_REFERENCE.md` |
+| exact evidence status/provenance | current ledger + archived ledger volumes routed by `EVIDENCE_INDEX.md` |
 | evidence/history lookup | `EVIDENCE_INDEX.md` |
 | evidence storage migration lookup | `EVIDENCE_PATH_MIGRATIONS.md` |
 | animation generalized semantics | `ANIMATION_RULES.md` |
@@ -445,7 +437,7 @@ Optimize retrieval through stable headings, indexes, evidence IDs, exact symbols
 
 ### Documentation
 
-Ordinary document history belongs in Git. Before deleting a current document as redundant, identify unique durable knowledge, move it to the correct surviving owner if necessary, update routes, then rely on Git history.
+Current reference/architecture/decision authorities stay in the ordinary retrieval surface. Active probes/tasks live under `work/active/`. When their question closes, promote every reusable conclusion and move the temporary document to `archive/investigations/`. Closed evidence-ledger volumes live under `archive/evidence/`. Git history remains the fallback for superseded wording.
 
 ### Runtime/source evidence
 
@@ -461,10 +453,10 @@ Do not delete or casually rename runtime/source evidence because Git versions it
 
 ## 9. Document-Creation Rule
 
-Create a new document only when it has a distinct retrieval/authority responsibility.
+Create a new permanent document only when it has a distinct retrieval/authority responsibility. Temporary probes, bounded implementation contracts and audits are allowed only under `work/active/` and must be archived after promotion when closed.
 
-Prefer an index when a large source is hard to navigate, a route when retrieval is the problem, a section when an existing authority owns the topic, an EV for a proven fact, and Git history for superseded ordinary documentation.
+Prefer current reference for established facts, an index when routing is the problem, a section when an existing authority owns the topic, an ADR for significant rationale, an EV for proof, and archive/Git for closed history.
 
-Avoid one document per experiment, another current-state document competing with `SESSION_ENTRYPOINT.md`, or persistent summary/history files duplicating canonical authorities/evidence.
+Avoid permanent one-document-per-experiment growth, another current-state document competing with `SESSION_ENTRYPOINT.md`, or persistent summary/history files duplicating canonical authorities/evidence.
 
 The objective is a repository that can be **deep without making every task carry that depth in active context**.
