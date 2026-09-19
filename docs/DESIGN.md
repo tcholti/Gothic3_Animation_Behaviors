@@ -101,6 +101,8 @@ marker
 
 Repeated source markers later in the same Hit author new contacts. OFF is an intra-Hit physical-source gap, not terminal cleanup.
 
+Equipped source activation is not itself proof of native damage eligibility for every UseType. EV-308 shows that a factual LEFT shield/raw9 can be selected by `LEFT`, transition `5 -> 7`, rearm, and cleanly return `7 -> 5`, while Gothic dispatches no damage in the tested Quick shield-bash fixture. Shield-bash damage is therefore outside the current supported collision feature set and is deferred to a separate future research responsibility.
+
 ### 4.3 Production raw-8 Fist
 
 `gEUseType_Fist` / raw 8 is body-contact damage, not a literal right-hand weapon source.
