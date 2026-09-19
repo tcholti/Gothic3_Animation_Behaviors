@@ -686,7 +686,11 @@ MarkerProcessResult CreateMarkerResult(
 
 MarkerProcessResult ProcessMarker(
     Entity &actor, MarkerOpcode markerOpcode, char const *effectName,
-    double elapsedMs)
+    double elapsedMs
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    , bool equippedSprintRightAuthorized
+#endif
+)
 {
     EquippedCollisionSources const sources =
         CollisionSources::GetEquippedCollisionSources(actor);
@@ -699,7 +703,12 @@ MarkerProcessResult ProcessMarker(
         return result;
     }
     if (family == AttackFamily_Sprint
-        && markerOpcode != MarkerOpcode_Fist)
+        && markerOpcode != MarkerOpcode_Fist
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+        && !(equippedSprintRightAuthorized
+             && markerOpcode == MarkerOpcode_Right)
+#endif
+       )
     {
         result.code = MarkerResult_RejectedUnsupportedHit;
         return result;

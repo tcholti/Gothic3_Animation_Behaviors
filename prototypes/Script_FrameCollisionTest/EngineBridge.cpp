@@ -10,6 +10,7 @@
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 #include "CollisionDiagnostics.h"
+#include "EquippedSprintProbe.h"
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include "CollisionDiagnosticsDeep.h"
@@ -221,6 +222,13 @@ DECLARE_SCRIPT_CALLBACK(OnAI_PowerAttack_FrameCollisionTest)
     FrameCollisionMarkers::AttackCallbackOwnershipResult ownership = {};
     if (EvaluateAttackCallback(SelfEntity, family, a_pSPU, &ownership))
         return GETrue;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    if (EquippedSprintProbe::ShouldSuppressNativeCallback(
+            SelfEntity, family, ownership))
+    {
+        return GETrue;
+    }
+#endif
     PhysicalFistCollision::NativeCallbackScope nativeScope = {};
     PhysicalFistCollision::BeginNativeCallbackScope(
         SelfEntity, family, ownership, a_pSPU, nativeScope);
@@ -341,8 +349,16 @@ static GELPVoid StartEffect_FrameCollisionTest(
             actor, markerOpcode, effectName, elapsedMs, result);
     if (!raw55MarkerOwned)
     {
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+        bool const equippedSprintRightAuthorized =
+            EquippedSprintProbe::AuthorizeRightMarker(actor, markerOpcode);
+        result = FrameCollisionMarkers::ProcessMarker(
+            actor, markerOpcode, effectName, elapsedMs,
+            equippedSprintRightAuthorized);
+#else
         result = FrameCollisionMarkers::ProcessMarker(
             actor, markerOpcode, effectName, elapsedMs);
+#endif
     }
     Raw8FistCollision::UpdateTimingPermissionFromMarker(actor, result);
 

@@ -80,4 +80,6 @@ target_tree_sources(
         CollisionDiagnostics.h
         CollisionDiagnosticsDeep.cpp
         CollisionDiagnosticsDeep.h
+        EquippedSprintProbe.cpp
+        EquippedSprintProbe.h
 )
