@@ -1,304 +1,91 @@
 # Collision Validation Plan
 
-**Status:** Current collision validation authority — architecture foundation COMPLETE through EV-215; equipped marker families CLOSED/PASS through EV-244; raw8 supported-family production controls CLOSED/PASS through EV-263; raw55 factual discovery + four-family causal closure CLOSED/PASS through EV-294; permanent raw55 implementation/core acceptance PASS; post-audit diagnostic/equipped sentinel PASS at EV-295; unmarked raw55 fallback PASS at EV-296; raw8 FIST coexistence PASS at EV-297; focused permanent raw55 acceptance CLOSED/PASS at EV-298; current gate = standalone collision regression  
-**Updated:** 2026-09-18
+**Status:** Current collision validation authority  
+**Updated:** 2026-09-19
 
 ## Purpose
 
-Define the standing validation rules and remaining collision-validation gates. This file owns **how future collision behavior is validated**, not implementation architecture, current transient state, or experiment chronology.
+Define the standing validation rules and the remaining collision-validation campaign.
+
+This file owns **what must still be tested and what counts as acceptance**. It does not own implementation architecture, settled collision facts, probe chronology, or exact evidence proof.
 
 Current state: `SESSION_ENTRYPOINT.md`.  
-Transient continuation: `BETWEEN_CHATS.md`.  
-Established collision facts: `COLLISION_REFERENCE.md`.  
-Overall architecture/order: `DESIGN.md`.  
-Lifecycle architecture: `COLLISION_LIFECYCLE.md`.  
-Diagnostic architecture: `COLLISION_DIAGNOSTICS.md`.  
-Exact proof: `EVIDENCE_INDEX.md` -> exact current/archived EV ledger.
+Established facts: `COLLISION_REFERENCE.md`.  
+Architecture: `DESIGN.md` / `COLLISION_LIFECYCLE.md` / `COLLISION_DIAGNOSTICS.md`.  
+Permanent raw55: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
+Proof: `EVIDENCE_INDEX.md`.
+
+The pre-compression validation history is preserved under `docs/archive/investigations/`.
 
 ---
 
-## 1. Standing Validation Rules
+## 1. Standing validation rules
 
-- Do not reopen closed C1-R1, Gate-4, equipped-family, raw8 Normal/Power/Quick/Sprint, or bounded raw55 conclusions without concrete contradictory evidence.
+- Do not reopen a closed causal gate without concrete contradictory evidence or a deliberate scope extension.
+- Factual native action/source/UseType identity outranks filename inference.
 - Native cleanup gets first opportunity.
-- Equipped RIGHT / LEFT / BOTH / OFF control the desired **physical equipped-source set**; they do not prove uniform native target/contact/effect eligibility across action families.
-- Raw-8 `FIST` is a separate native body-damage opportunity mechanism, not an equipped source/window.
-- Do not gate marker applicability by actor species or animation-family name when factual source/mechanism evidence supports a broader scope.
-- Native action identity outranks animation filename. A PowerAttack-named motion does not make `gEAction_SprintAttack` a PowerAttack.
-- The C1 monotonic generation remains the durable execution identity for marker occurrence/dedupe and equipped-source obligations.
-- Terminal repair may mutate only an exact owned outstanding equipped source after native cleanup opportunity and current-equipped liveness are established.
-- Keep diagnostics independent from behavior correctness; release behavior must not compile research diagnostics.
-- Never deploy diagnostic and behavior-only collision twins together.
-- Freeze one falsifiable question and minimum positive/negative controls before each new runtime investigation.
-- Preserve/publish/interpret/promote/archive runtime evidence under POP-05/POP-06 before advancing to a new causal question.
-- Do not grow a matrix after a gate closes unless a new responsibility or contradiction requires it.
-- Large regression/compatibility runs should use compact CORE diagnostics. Unknown/unsupported/anomalous events must automatically retain richer classification detail.
+- Equipped RIGHT / LEFT / BOTH / OFF control the desired physical equipped-source set; they do not guarantee uniform native target/contact/damage eligibility.
+- Raw8 FIST and raw55 PhysicalFist are separate mechanisms.
+- C1 monotonic generation remains the durable execution identity for marker occurrence/dedupe and equipped-source obligations.
+- C1-R1 may repair only an exact owned outstanding source after native cleanup opportunity and current-equipped liveness are established.
+- Diagnostics must not be required for behavior correctness.
+- Diagnostic and behavior-only collision twins are mutually exclusive at runtime.
+- Freeze one falsifiable question and minimum controls before a new causal investigation.
+- Large regression runs use compact CORE diagnostics; unknown/anomalous events must retain richer classification.
+- Every uploaded runtime batch closes fully under POP-06 before the next batch.
+- New reusable results are promoted to current reference before a temporary investigation is archived.
 
-Authoritative research products remain:
+Current research products:
 
 ```text
 Script_FrameCollisionTest
-= instrumented diagnostic twin
+  instrumented diagnostic twin
 
 Script_FrameCollisionBehaviorTest
-= diagnostics-free behavior twin
+  diagnostics-free behavior twin
 ```
 
 ---
 
-## 2. Closed Foundation
+## 2. Closed gates — do not reconstruct routinely
 
-```text
-C1-R1 exact-source lifecycle safety          CLOSED — EV-206–EV-207
-source/build separation                      CLOSED/PASS — EV-208
-CORE diagnostic sufficiency foundation       CLOSED/PASS — EV-209–EV-211
-behavior-only smoke                          CLOSED/PASS — EV-212
-C1-generation marker bookkeeping             CLOSED/PASS — EV-213
-literal EV-131 regression                    CLOSED/PASS — EV-214
-final behavior-only architecture smoke       CLOSED/PASS — EV-215
-```
+The following are already closed for their tested/evidence-bounded scope:
 
-Accepted terminal equipped-source repair remains exactly:
+| Area | Closure |
+|---|---|
+| C1-R1 exact-source lifecycle safety | EV-206–EV-207 |
+| behavior/diagnostic source separation | EV-208–EV-215 |
+| equipped Normal/Quick/full Whirl foundation | closed before EV-241 |
+| Power | EV-241 |
+| Pierce | EV-242 |
+| SimpleWhirl | EV-217–EV-220, EV-243 |
+| tested 2H/Staff Hack | EV-216, EV-244 |
+| raw8 Normal/Power | EV-221–EV-240 |
+| raw8 Quick | EV-247–EV-249 |
+| raw8 Sprint | EV-250–EV-251 |
+| raw55 factual discovery + four-family causal route | EV-262–EV-294 |
+| permanent raw55 focused acceptance | EV-295–EV-298 |
 
-```text
-outstanding exact source
-+ exact current equipped RIGHT/LEFT identity establishes liveness
-+ actual group == Item_Attack(7)
--> SetCollisionGroup(Item_Equipped) exactly once
--> no ClearTriggeredList()
--> verify Item_Equipped(5)
-```
-
-Retained evidence limits do not reopen the gate:
-
-```text
-no positive outstanding LivenessEstablished=0 / UNRESOLVED_NOT_EQUIPPED runtime case
-no positive NPC destructive-abandonment / physical-repair case claimed
-```
+Current semantics for these gates belong in `COLLISION_REFERENCE.md` and owning architecture. Use `EVIDENCE_INDEX.md` only when proof detail matters.
 
 ---
 
-## 3. Closed Supported Collision Scope
+## 3. Standalone collision regression campaign — ACTIVE
 
-Current proven equipped-family state:
+The broader collision campaign validates the mature feature across actors, sources, authoring patterns, separation mods and stress conditions.
 
-```text
-Normal / Quick / full Whirl foundation       CLOSED/PASS
-PowerAttack                                  CLOSED/PASS — EV-241
-PierceAttack                                 CLOSED/PASS — EV-242
-SimpleWhirl                                  CLOSED/PASS — EV-217–EV-220, EV-243
-HackAttack tested 2H/Staff scope             CLOSED/PASS — EV-216, EV-244
-```
-
-Important family qualifications:
-
-- Power physical source control is closed; native Power contact/target sensitivity remains native behavior.
-- Pierce physical marker-source timing is separate from native Pierce target/reaction semantics.
-- SimpleWhirl StatePosition `2` was tested and rejected as sufficient normalization. Final StatePosition remains `1`; native character-hit eligibility remains action-specific.
-- Hack callback identity is EV-216; actual 2H/Staff routing/source/marker validation is EV-244.
-
-### Production raw-8 Fist
-
-Current supported/proven raw8 FIST family scope for the tested fixtures is:
+Publication rule:
 
 ```text
-Normal + Power + Quick + Sprint
+one complete runtime log per setup where attribution matters
+-> User may upload small batches
+-> Normal Chat closes every uploaded batch under POP-06
+-> next batch only after evidence/reference/archive/current-state maintenance is complete
 ```
 
-Evidence progression:
+### 3.1 Phase 1 — Player attack/setup matrix against Golem
 
-```text
-human Normal/Power production                   EV-221–EV-240
-transformed Sabretooth Normal/Power             EV-247
-native Sabretooth + Quick mechanism proof       EV-248
-bounded Quick extension + two-direction PASS    EV-249
-Sprint transport/source/mechanism classification + production validation
-                                                 EV-250–EV-251
-```
-
-Validated contract for a supported/proven raw-8 Fist family:
-
-```text
-unmarked raw-8 Fist
--> completely native
-
-marked raw-8 Fist execution
--> initial SPU+0x164 close to 1 once per factual C1 generation
-
-accepted FIST
--> latch 1 -> 0
--> if real motion-0 time is below native threshold,
-   arm one exact bounded Game+0x16E180 timing permission
--> otherwise use native timing directly
-
-native Gothic path
--> owns target/contact/damage
--> successful opportunity self-closes latch to 1
-```
-
-Sprint qualification:
-
-```text
-factual gEAction_SprintAttack / Action 9
--> first-class AttackFamily_Sprint
--> existing OnAI_PowerAttack physical transport
--> actor routine Action 9 is semantic identity
--> FIST/raw8 only in current proven scope
--> marker-owned StatePosition 1
--> equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported
-```
-
-Production exclusions remain:
-
-```text
-NO authored FIST_OFF
-NO Fist ClearTriggeredList
-NO Fist-specific weapon callback suppression
-NO equipped Item_Attack/Item_Equipped window for Fist
-NO weapon C1 physical-cleanup obligation for Fist
-NO direct/custom Fist damage
-NO global animation-clock mutation
-NO raw55 generalization
-NO species/name-specific marker rule
-NO unproven attack-family extension merely because source is Fist
-NO Sprint -> Power semantic alias
-NO Sprint equipped-marker support without factual equipped Sprint evidence
-```
-
----
-
-## 4. PhysicalFist/raw55 Discovery / Permanent Acceptance — ACTIVE CLOSURE
-
-The original bounded discovery completed through EV-245–EV-246 without observing raw55. That historical result was later superseded by factual Troll/BlackTroll `TrollFist` / PhysicalFist raw55 discovery at EV-262 and the causal route through EV-294.
-
-Observed:
-
-```text
-Hero Wolf transformation       -> factual Fist / raw8
-Hero Sabretooth transformation -> factual Fist / raw8
-Boar/Wolf/Sabretooth/Bloodfly/Golem/Snapper/Minecrawler/Bison
-  -> factual Fist / raw8 / group0 / Game+0x16E348 body-damage route
-Demon  -> 2H/raw3
-Goblin -> 1H/raw2
-Ogre   -> Axe/raw52
-Dragon capture -> Cast/raw15 fireball; physical attack inconclusive
-raw55 -> not observed in the original EV-245–EV-246 survey
-```
-
-Current state after later factual discovery:
-
-```text
-EV-262             Troll/BlackTroll TrollFist/raw55 factual source confirmed
-EV-264–EV-273      Quick causal closure
-EV-274–EV-276      true Power first-contact closure
-EV-277–EV-292      Normal first/repeated-contact closure
-EV-280–EV-282,
-EV-294              Sprint-origin closure
-EV-293              true Power repeated-contact closure
-EV-295              permanent diagnostic-corrections control PASS + equipped sentinel PASS
-EV-296              unmarked raw55 native-fallback sentinel PASS
-EV-297              raw8 FIST coexistence sentinel PASS
-EV-298              focused permanent raw55 acceptance CLOSED/PASS
-```
-
-Permanent raw55 behavior is implemented under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`. Focused acceptance is CLOSED/PASS at EV-298, including four-family marked behavior, post-audit diagnostics, equipped-marker coexistence, unmarked raw55 native fallback and raw8 FIST coexistence. Do not reopen broad raw55 discovery or family-specific causal probing without concrete contradictory evidence.
-
----
-
-## 5. Architecture/Diagnostic Refactor Gate — CLOSED/PASS
-
-The parity-preserving architecture/diagnostic refactor and compact equivalence sentinel are complete through EV-250.
-
-Closed requirements included:
-
-```text
-raw8 FIST:
-  Sabretooth Normal + Quick + Power
-
-equipped marker:
-  ordinary marked weapon attack
-
-marker lifecycle:
-  established multi-marker / OFF / rearm fixture
-
-C1 safety:
-  established destructive bad-skip -> exact terminal repair
-```
-
-The sentinel preserved accepted marker semantics, factual source identities and physical transitions, raw8 latch/timing/native-damage contract, C1 generation/cleanup/repair behavior, and compact CORE sufficiency with no new invariant/repair divergence.
-
-Do not reopen Stage A/B merely for routine variation.
-
----
-
-## 6. SprintAttack Discovery / Support Gate — CLOSED/PASS
-
-Sprint was discovered as factual `gEAction_SprintAttack = 9` with a PowerAttack-named motion and raw8 Fist source. Transport research established that tested Sprint enters through the existing physical `OnAI_PowerAttack` hook while actor routine Action 9 is already factual at callback entry; SPU action 2 and the animation filename are transport/motion facts, not Sprint semantic identity.
-
-Production implementation uses first-class `AttackFamily_Sprint`, the existing Power callback transport, the proven raw8 FIST mechanism, and marker-owned StatePosition `1`.
-
-Focused EV-251 validation repeatedly confirmed:
-
-```text
-Action=9 Family=SPRINT Phase=1
-Raw8Fist=Fist Raw8UseType=8
-InitialClose=0->1
-Marker=FIST Result=ACCEPTED
-StatePosition=1
-Latch=1->0 LatchConfirmed=1
-OwnershipMatched=1
-bounded early timing permission armed/used when required
-clean C1 finalization with no equipped obligation
-```
-
-Whole-log targeted checks found no `REJECTED_UNSUPPORTED_HIT`, no `LIFECYCLE_ISSUE`, no surviving temporary `SPRINT_TRANSPORT` records, and clean unload.
-
-Current evidence-backed Sprint limit remains:
-
-```text
-raw8 FIST supported
-native Sabretooth fixture positively validated
-equipped Sprint RIGHT/LEFT/BOTH/OFF unevidenced and unsupported
-AI/distance selection rule intentionally unresolved because it is not needed for marker behavior
-```
-
-EV-251 did not independently add a positive `ONDAMAGE` sample with native Sabretooth Sprint as attacker; it added no contradictory damage-path evidence. Native target/contact/damage ownership remains outside the authored marker mechanism.
-
-Focused Sprint closure permits the broad compatibility matrix to resume.
-
----
-
-## 7. Diagnostic Requirements for Remaining Large Tests
-
-Default large tests should use compact CORE diagnostics under `COLLISION_DIAGNOSTICS.md`.
-
-CORE governing rule:
-
-```text
-known healthy path -> compact
-unknown/unsupported family or source -> detailed
-unexpected rejection/failure -> detailed
-C1 anomaly/repair/divergence -> detailed
-DEEP explicitly enabled -> full research detail
-```
-
-Unknown-family records must retain enough to classify numeric/resolved action, phase, StatePosition, current motion, marker, source/UseType/group, side association, rejection reason, and damage correlation when relevant.
-
-This rule is intended to discover any new unplanned family/source during larger tests without returning to huge research-era logs for every known execution.
-
----
-
-## 8. Standalone Collision Regression Campaign — ACTIVE
-
-The broader regression campaign prepared before the Troll/raw55 investigation is now resumed. The intervening raw55 work is CLOSED/PASS at EV-298 and is incorporated as one supported collision mechanism inside this campaign; it does not replace the previously prepared actor/weapon/mod coverage.
-
-The campaign is intentionally split into multiple logs/runs so factual source/action semantics remain attributable when a contradiction appears.
-
-**Campaign publication/closure rule:** the User may upload completed logs in small manageable batches (commonly 2–3 at a time). After every uploaded batch, Normal Chat must complete POP-06 interpretation, canonical evidence maintenance, required current-state/authority updates, archive cleanup and raw-inventory verification before requesting the next batch. Do not wait for the whole phase or whole campaign to finish before closing already-processed logs.
-
-### 8.1 Phase 1 — Player attack/setup matrix against Golem
-
-**Progress through EV-308:**
+Current progress:
 
 ```text
 1H                         PASS — EV-299
@@ -306,45 +93,22 @@ The campaign is intentionally split into multiple logs/runs so factual source/ac
 dual 1H                    PASS — EV-301
 2H                         PASS — EV-302
 Staff                      PASS — EV-303
-human Fist single marker   PASS — EV-304
-human Fist double markers  PASS — EV-305
-1H+shield                   PASS — EV-306
-remaining prepared Golem setups = OPEN if any
+human raw8 single FIST     PASS — EV-304
+human raw8 double FIST     PASS — EV-305
+1H+shield                  PASS — EV-306
 
-supplemental raw8 control:
-Sabretooth double markers   PASS — EV-307
-shield-bash LEFT/raw9        NEGATIVE CONTROL / DEFERRED — EV-308
+supplemental:
+Sabretooth double FIST     PASS — EV-307
+shield-bash LEFT/raw9      NEGATIVE CONTROL / DEFERRED — EV-308
 ```
 
-Completed Golem batches pass deliberate C1-R1/cleanup checks. 1H, 1H+torch, dual-1H, 2H and 1H+shield produce exact-source repair when a real stale group7 obligation survives; Staff bad-skip attempts instead finish cleanup before terminal repair is needed. EV-306 proves the LEFT shield/raw9 remains tracked but non-offensive and non-mutating while only the exact stale RIGHT sword is repaired. EV-304 proves intentionally unmarked raw8 Power P1 remains native and damaging; EV-305 proves two authored FIST markers can rearm two same-C1 human raw8 contacts; EV-307 independently confirms the same repeated-FIST mechanism on Sabretooth. EV-308 is a deliberate shield-bash negative control: LEFT/raw9 activation and cleanup work, but zero native damage is dispatched, so shield bash is not a supported current collision feature. No source change is required.
+Phase 1 remains open only for any prepared Golem setup not yet exercised. If none remain, explicitly close Phase 1 before Phase 2.
 
-The User attacks a Golem using the prepared marked animations across the different weapon types.
+The shield-bash negative control does not represent a regression failure: LEFT/raw9 physical activation/cleanup worked, but Gothic supplied no native damage route in the tested fixture. Shield-bash damage is deferred.
 
-Rules:
+### 3.2 Phase 2 — Orc mixed equipped + raw8 Fist
 
-```text
-one weapon/setup per runtime run
--> one complete log per weapon/setup
--> exercise several relevant attack families/markers for that setup
--> preserve factual source/UseType, marker decisions, physical group changes,
-   native damage, cleanup and C1 finalization
--> upload completed weapon logs in small batches (typically 2–3 at a time)
--> each uploaded batch closes fully under POP-06 before the next batch
-```
-
-Do not combine different weapon types into one log merely to reduce file count. This phase is the clean player-side equipped-source matrix.
-
-Use filenames of the form:
-
-```text
-research/raw/2026-09-18_regression_golem_<weapon-label>.log
-```
-
-where `<weapon-label>` names the actual tested weapon/setup in lowercase project style.
-
-### 8.2 Phase 2 — Orc mixed equipped + raw8 Fist coverage
-
-Run approximately two or three Orc logs because Orcs exercise multiple prepared families:
+Exercise approximately two or three attributable Orc runs covering:
 
 ```text
 2H
@@ -352,17 +116,15 @@ Staff
 Fist/raw8
 ```
 
-Fist may be combined with one of the weapon runs because reaching the Orc unarmed requires knocking it down/disarming it and allowing it to continue fighting without a weapon.
+Fist may share a run with a weapon case when disarming is needed to reach the unarmed route, provided source/family attribution remains clear.
 
-Keep enough separation that each factual source/UseType and family remains attributable. The objective is cross-source/cross-family native-NPC behavior, not one artificial attack per file.
+Objective: cross-source/cross-family native NPC behavior under the mature collision system.
 
-### 8.3 Phase 3 — Other weapon-using creatures/NPCs
+### 3.3 Phase 3 — Other weapon-using creatures/NPCs
 
-Exercise the prepared marked animations for additional weapon-using actors.
+Exercise prepared marked animations for additional weapon-using actors.
 
-Use separate runs where actor/source combinations would otherwise become ambiguous. Upload completed logs in manageable batches; each uploaded batch is a complete POP-06 evidence transaction before the next batch.
-
-Historical controls already closed and need not be repeated merely for duplication:
+Historical controls that need not be repeated merely for duplication:
 
 ```text
 Goblin / BlackGoblin -> factual 1H/raw2 — EV-252
@@ -370,84 +132,66 @@ Demon                -> factual 2H/raw3 — EV-253
 Ogre                 -> factual Axe/raw52 — EV-254
 ```
 
-New prepared actors extend coverage; they do not reopen those prior gates.
+New prepared actors extend coverage; they do not reopen those gates.
 
-### 8.4 Phase 4 — Non-weapon creatures
+### 3.4 Phase 4 — Non-weapon creatures
 
-Exercise the prepared FIST/body-damage marker animations for multiple creatures that do not use weapons.
+Exercise multiple creature/body-contact routes.
 
-Because this population is large:
+Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
-```text
-multiple creatures per collection phase
--> retain complete per-run logs
--> upload/review in manageable chunks
-```
+Permanent raw55 behavior applies only to its frozen factual contract. Ordinary raw8 behavior remains governed by the separate raw8 mechanism.
 
-Preserve factual raw source identity and UseType. Raw8, raw55 or another factual source class must be classified from runtime evidence rather than inferred from creature name.
+### 3.5 Phase 5 — 2H vs Axe separation-mod compatibility
 
-Permanent raw55 behavior applies only to its frozen factual marked raw55 contract; ordinary raw8 behavior remains governed by the existing raw8 mechanism.
-
-### 8.5 Phase 5 — 2H vs Axe separation-mod compatibility
-
-Vanilla/baseline Gothic 3 uses the ordinary 2H animation family for two-handed weapons other than the Staff/Spear/Halberd family. The prepared Axe-separation mod gives weapons defined as Axe their own animation family.
-
-Run this phase separately from native/baseline validation.
-
-Protect both sides of the separation:
+Under the prepared Axe-separation mod, verify both:
 
 ```text
 ordinary 2H route
 Axe-defined separated route
-authored markers
-factual equipped source/UseType
-native cleanup/finalization
-no ownership/anomaly regression
 ```
 
-Use several runs when needed to cover the prepared Axe/2H fixtures without making attribution ambiguous.
+Protect authored markers, factual equipped source/UseType, native cleanup/finalization and ownership diagnostics.
 
-### 8.6 Phase 6 — 1H vs Rapier separation-mod compatibility
+### 3.6 Phase 6 — 1H vs Rapier separation-mod compatibility
 
-Vanilla/baseline Gothic 3 uses the 1H animation family for one-handed weapons. The prepared Rapier-separation mod gives Rapiers their own animation family.
+Under the Rapier-separation mod, verify ordinary 1H and separated Rapier routes.
 
-Run ordinary 1H and separated Rapier routes under the mod and verify that collision still follows factual source/action semantics rather than relying on the old animation-family grouping.
+The objective is to prove collision follows factual runtime source/action semantics rather than old animation-family grouping assumptions.
 
-### 8.7 Phase 7 — Stress regression
+### 3.7 Phase 7 — Stress regression
 
-After the structured actor/weapon/mod phases are clean, run several stress tests.
-
-Stress runs may intentionally combine many already-supported collision routes. They are intended to expose:
+After structured phases pass, intentionally mix already-supported routes to expose:
 
 ```text
-unexpected ownership/anomaly classifications
+ownership/anomaly misclassification
 occurrence/dedupe leakage across C1 generations
 lost native cleanup
 unexpected terminal repair
 source replacement/liveness contradictions
 repeated-contact regressions
-raw8/raw55/equipped cross-mechanism interference
+raw8/raw55/equipped interference
 mixed actor/target sequencing problems
 ```
 
-Stress evidence is regression evidence, not permission to redesign from a single noisy event. Any failure must first be reduced to the smallest factual route before source changes are considered.
+A stress failure must first be reduced to the smallest factual route before source changes are considered.
 
 ---
 
-## 9. Regression Acceptance Invariants
+## 4. Regression acceptance invariants
 
-Across the complete campaign, protect at minimum:
+Across the complete campaign protect at minimum:
 
 ```text
 equipped RIGHT / LEFT / BOTH / OFF exact-set behavior
 repeated-contact ClearTriggeredList semantics
 Power / Pierce / SimpleWhirl / Hack behavior
-supported Sprint behavior
+supported raw8 Normal / Power / Quick / Sprint
+supported permanent raw55 Normal / Quick / Power / Sprint-origin
+unmarked raw55 native fallback
+raw8/raw55 coexistence
 C1 generation-scoped occurrence/dedupe
-C1-R1 exact-source terminal repair behavior
-supported raw8 FIST behavior
-supported permanent marked raw55 behavior
-unmarked/native raw55 fallback
+C1-R1 exact-source terminal repair
 native cleanup + outstanding-zero finalization
 one-live-collision-twin deployment invariant
 compact CORE anomaly discovery
@@ -455,110 +199,118 @@ Axe-separation compatibility
 Rapier-separation compatibility
 ```
 
-The regression is complete only when all seven phases have an explicit PASS/disposition and every published runtime artifact has been processed under POP-06.
-
-Do not broaden this campaign into Raise, speed, target acquisition, or AttackContinuationProtection. Those remain separate responsibilities.
+The standalone campaign is complete only when all seven phases have an explicit disposition and every published runtime artifact is closed under POP-06.
 
 ---
 
-## 10. AttackContinuationProtection — Separate Later Responsibility
+## 5. Diagnostic requirements
 
-`AttackContinuationProtection` remains separate from `CollisionLifecycleGuard`/C1-R1.
+Default regression uses compact CORE diagnostics under `COLLISION_DIAGNOSTICS.md`.
+
+```text
+known healthy path
+-> compact
+
+unknown / unsupported source or family
+-> richer classification
+
+unexpected rejection / failure
+-> richer classification
+
+C1 anomaly / repair / divergence
+-> richer classification
+
+DEEP explicitly enabled
+-> bounded research detail
+```
+
+Unknown-family records must preserve enough factual data to classify action, phase, StatePosition, motion, marker, source/UseType/group, side association, rejection reason and relevant damage correlation.
+
+Do not return to full research-era verbosity for every known successful execution.
+
+---
+
+## 6. Evidence / artifact boundary
+
+For each runtime run:
+
+```text
+freeze test + filename
+-> User runs locally
+-> publish unchanged raw artifact
+-> Normal Chat interprets
+-> concise canonical EV
+-> promote changed reusable fact to current reference/architecture
+-> archive processed runtime artifact when no active comparison remains
+-> archive closed temporary investigation contract when applicable
+-> run POP-12 validation
+-> only then next batch
+```
+
+`research/raw/` is active intake, not a history store.
+
+---
+
+## 7. New Balance exact distributed-bundle regression — after standalone
+
+After all seven standalone phases pass, test the exact New Balance 0.7 distributed bundle with relevant Jackydima collision components including `Script_AttackCollision` where applicable.
+
+Source-level preflight evidence is not sufficient final compatibility certification.
+
+Do not assume arbitrary same-function hook chaining or DLL load-order safety.
+
+---
+
+## 8. Production collision migration — after compatibility gate
+
+After standalone + New Balance compatibility pass:
+
+```text
+mature collision behavior
+-> migrate into src/Script_G3AnimationBehaviors
+-> diagnostics remain separate
+-> release-purity/integration validation
+```
+
+Do not migrate during the current standalone campaign.
+
+---
+
+## 9. AttackContinuationProtection — separate later responsibility
+
+`AttackContinuationProtection` remains separate from collision cleanup.
 
 Intended boundary:
 
 ```text
-AttackContinuationProtection.cpp
-= prevent the known destructive bad-skip route when its factual native timeout/decision becomes due during a real attack
+AttackContinuationProtection
+= prevent/defer the proven destructive bad-skip consequence at its factual native decision point
 
 CollisionLifecycleGuard / C1-R1
 = exact-source fail-safe if collision cleanup is nevertheless lost
 ```
 
-New Balance compatibility is a hard constraint. If New Balance prevents the relevant native destructive condition, our module should naturally remain inactive.
+Before implementation, prove the exact native timeout/consumer path and validate at least:
 
-Do not begin with an independent timer, polling loop, permanent watchdog, unconditional attack-state override, or resurrection after teardown.
+1. known bad-skip case;
+2. outside-attack control;
+3. legitimate reaction control;
+4. New Balance-enabled controls where New Balance already prevents the route.
 
-Before implementation prove:
+Do not start with an independent timer, polling loop, unconditional attack-state override or teardown resurrection.
 
-1. exact timeout/decision path leading to destructive FullStop/state replacement;
-2. whether the destructive consequence has legitimate responsibility while a real attack CombatMove is active;
-3. whether preventing/defering only that consequence lets the attack finish normally;
-4. outside-attack timeout remains native;
-5. legitimate reaction/interruption remains native;
-6. New Balance-covered attacks naturally produce no intervention;
-7. C1-R1 remains independent underlying fail-safe.
-
-Minimum validation: known bad-skip case, outside-attack control, legitimate reaction control, and New Balance-enabled controls where the route is already prevented.
+This work remains paused until deliberately reopened.
 
 ---
 
-## 11. Compatibility Gates
-
-### Compatibility Gate 1 — mature collision research assembly
-
-After AttackContinuationProtection and combined regression, validate:
+## 10. Current sequence
 
 ```text
-New Balance
-+ relevant Jackydima collision DLLs, including Script_AttackCollision where applicable
-```
-
-Do not assume arbitrary same-function hook chaining or load-order safety.
-
-EV-242 is Pierce-specific compatibility evidence only.
-
-### Compatibility Gate 2 — final Script_G3AnimationBehaviors
-
-After collision migration plus Raise and redesigned speed/configuration work, repeat compatibility/regression on the final production assembly before stable/release promotion.
-
----
-
-## 12. Evidence / Artifact Boundary
-
-Runtime evidence lifecycle:
-
-```text
-freeze test + raw filename
--> User runs locally
--> publish unchanged raw artifact
--> Normal Chat interprets
--> promote reusable conclusion to canonical EV
--> explicitly disposition every artifact
--> archive when fully processed and no active comparison remains
--> only then advance
-```
-
-`research/raw/` is active intake. `research/archive/` is processed provenance. `research/derived/` is a retrieval aid, not canonical evidence.
-
-EV-254 is the current native equipped-NPC trio closure checkpoint. Processed controls are archived as:
-
-```text
-research/archive/2026.09.11_goblin_1h_native_equipped_control.log
-research/archive/2026.09.11_demon_2h_native_equipped_control.log
-research/archive/2026.09.11_ogre_axe_native_equipped_control.log
-```
-
----
-
-## 13. Current Collision Validation Sequence
-
-```text
-production raw8 Normal/Power/Quick/Sprint            CLOSED/PASS through EV-263
-Power/Pierce/SimpleWhirl/Hack expansion              CLOSED/PASS for tested scope
-PhysicalFist/raw55 factual discovery + causal route  CLOSED/PASS through EV-294
-permanent raw55 implementation/core behavior         PASS
-post-audit diagnostic corrections control            PASS — EV-295
-equipped authored-marker sentinel                    PASS — EV-295
-unmarked raw55 native-fallback sentinel              PASS — EV-296
-raw8 FIST coexistence sentinel                       PASS — EV-297
-focused permanent raw55 acceptance                  CLOSED/PASS — EV-298
--> standalone collision regression
--> New Balance 0.7 exact distributed-bundle regression incl. AttackCollision
+standalone collision regression          CURRENT
+-> New Balance exact bundle regression
 -> production collision migration
--> diagnostics-free production integration validation
+-> diagnostics-free integration validation
 -> later Raise + Speed + Config
--> AttackContinuationProtection remains separate unless deliberately reopened
-```
 
-Exact immediate task remains owned by `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md`.
+AttackContinuationProtection remains separate unless deliberately reopened
+```
