@@ -173,12 +173,21 @@ def main() -> int:
         )
 
     if ACTIVE_WORK.exists():
+        session_text = read(DOCS / "SESSION_ENTRYPOINT.md") if (DOCS / "SESSION_ENTRYPOINT.md").exists() else ""
+        between_text = read(DOCS / "BETWEEN_CHATS.md") if (DOCS / "BETWEEN_CHATS.md").exists() else ""
+        current_state_text = session_text + "\n" + between_text
+
         for p in sorted(ACTIVE_WORK.glob("*.md")):
             if p.name == "README.md":
                 continue
             if "**Status:** ACTIVE" not in read(p):
                 errors.append(
                     f"active temporary document lacks '**Status:** ACTIVE': {p.relative_to(ROOT)}"
+                )
+            if p.name not in current_state_text:
+                errors.append(
+                    f"orphan active temporary document is not routed by SESSION_ENTRYPOINT.md "
+                    f"or BETWEEN_CHATS.md: {p.relative_to(ROOT)}"
                 )
 
     for p in ROUTE_FILES:
