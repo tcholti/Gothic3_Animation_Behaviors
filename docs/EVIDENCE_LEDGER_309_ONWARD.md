@@ -255,3 +255,32 @@ Provenance:
 Disposition:
 - PASS — permanent raw55 Sprint-origin behavior remains protected under the temporary generic equipped-Sprint diagnostic seam.
 - Active investigation advances to the final protected sentinel: one equipped true-Power route.
+
+### EV-318 — equipped true-Power protected sentinel PASS
+
+Observed:
+- The current generic equipped-Sprint diagnostic build was exercised with player 2H true Power using exact RIGHT `It_2H_Sword_Flamberge` / UseType 3 against Golem.
+- The log contains 19 explicit `CORE ATTACK_OWNERSHIP Actor=PC_Hero Family=POWER Action=2` callback-ownership records. Every one is `MarkerPresent=1 RequiredMask=1 FistMarkers=0 SuppressNative=1 Classification=ROUTINE`, confirming the established generic equipped-Power callback owner remains authoritative.
+- The run contains 25 distinct accepted factual `Action=2 / Family=POWER` RIGHT-marker C1 generations: 1, 3, 14, 21, 24, 34, 41, 46, 52, 58, 72, 77, 83, 89, 95, 101, 108, 114, 120, 126, 135, 139, 142, 146 and 150. Each accepted RIGHT marker activates the exact Flamberge source and each of those 25 C1 generations later records `C1 CLEANUP FULFILLED ... Group=5` and `C1_FINAL ... Outstanding=0` without repair.
+- Twelve factual true-Power contacts produce native `CORE ONDAMAGE Target=Golem` while the player remains `PlayerAction=2` in a PowerAttack Hit motion.
+- There are zero `CORE EQUIPPED_SPRINT_PROBE` records for `Actor=PC_Hero`. This matches hook ordering: existing `EvaluateAttackCallback(... AttackFamily_Power ...)` returns `suppressNativeCallback=true` for supported equipped Power and returns from the callback before the diagnostic Sprint probe is consulted. The Sprint diagnostic seam therefore does not participate in or reclassify these true-Power executions.
+- Whole-log checks found zero true-Power marker rejection, zero nonzero PC_Hero finalization, zero terminal repair, zero ownership contradiction, zero invariant warning, zero lifecycle issue, zero repair divergence and zero `ReplacedOutstanding=1`.
+
+Scope / limits:
+- Protected coexistence sentinel for the established equipped true-Power route while the temporary generic equipped-Sprint diagnostic seam is present.
+- Confirms that the Sprint diagnostic work does not steal or alter supported player 2H true-Power ownership.
+- This completes the three protected sentinels required after EV-315; it does not by itself prove additional equipped-Sprint UseTypes or LEFT/BOTH/OFF Sprint authoring.
+
+Provenance:
+- User upload branch state/head: `193c7d6548f1dbce8e8e28f6e66c173be4dde31b`.
+- Reviewed diagnostic implementation: `d2c6c8be0d56129ec6725571324a9066b181242c`.
+- Built/live diagnostic DLL SHA256: `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`.
+- Canonical archived log: `research/archive/2026-09-19_equipped_sprint_sentinel_equipped_true_power_2h.log`.
+- Git blob `4f27c15c7ad184126c382f2feb49c8efce6226be`; 335,919 characters / 1,395 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+- Comparison baseline: equipped Power support EV-241–EV-244 and current player 2H regression EV-302.
+
+Disposition:
+- PASS — established equipped true Power remains structurally and behaviorally isolated from the temporary equipped-Sprint diagnostic seam.
+- Protected sentinel stage is COMPLETE/PASS: raw8 Sprint EV-316, raw55 Sprint-origin EV-317, equipped true Power EV-318.
+- Active investigation advances to additional factual equipped-Sprint fixtures across other available equipped UseTypes/animation sets before any permanent-promotion decision.
