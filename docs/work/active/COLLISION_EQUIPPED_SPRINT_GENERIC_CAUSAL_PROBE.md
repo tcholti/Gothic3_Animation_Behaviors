@@ -1,6 +1,6 @@
 # Generic Equipped Sprint Causal Probe
 
-**Status:** ACTIVE  
+**Status:** ACTIVE — IMPLEMENTED / INDEPENDENT SOURCE REVIEW PASS / RUNTIME PENDING  
 **Type:** Bounded diagnostic-only causal implementation  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and interprets runtime result.
@@ -238,6 +238,25 @@ bound/current identity match
 ```
 
 Do not add deep logging unless the bounded causal result cannot be interpreted otherwise.
+
+## Current reviewed implementation
+
+Reviewed diagnostic runtime candidate:
+
+`d2c6c8be0d56129ec6725571324a9066b181242c`
+
+Normal Chat independently reviewed the published Work diff against this frozen contract on 2026-09-19. Result: **SOURCE REVIEW PASS** — no material contract violation identified. Build and runtime testing remain pending.
+
+The review specifically confirmed that:
+
+- RIGHT/raw2 fixture restrictions were removed;
+- complete-motion `requiredSourceMask` and generic `HasRequiredCollisionSources(...)` govern eligibility;
+- required RIGHT/LEFT source identity is bound according to that mask;
+- generic permission is limited to RIGHT / LEFT / BOTH / OFF;
+- FIST remains outside the generic Sprint permission path;
+- `FrameCollisionMarkers` still owns authored-marker validation, occurrence/dedupe, source activation/deactivation/rearm, windows, C1 behavior and StatePosition;
+- raw55 marker ownership still runs before the generic marker path;
+- true Power and behavior-only runtime semantics remain outside the diagnostic Sprint seam.
 
 ## First runtime fixture and pass criteria
 
