@@ -1,6 +1,6 @@
 # Equipped Sprint Origin-Continuation Correction
 
-**Status:** ACTIVE — FROZEN RESPONSIBILITY / WORK IMPLEMENTATION PENDING  
+**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / LOCAL BUILD+RUNTIME PENDING  
 **Type:** Bounded diagnostic-only correction  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime interpretation.
@@ -220,3 +220,33 @@ Report:
 - confirmation that ordinary true Power remains outside the seam;
 - build status;
 - any material contradiction.
+
+
+## Independent Normal Chat source review
+
+Reviewed implementation:
+
+`c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`
+
+Changed files:
+- `prototypes/Script_FrameCollisionTest/EquippedSprintProbe.cpp`
+- `prototypes/Script_FrameCollisionTest/FrameCollisionMarkers.cpp`
+
+Review result: **PASS**.
+
+Confirmed:
+- Sprint bindings are still created only from factual eligible Action9/SPRINT.
+- A current Action2/POWER callback can preserve an existing Sprint binding only when C1 generation, motion identity, complete-motion required-source mask, source availability and exact required source identities still match.
+- That Power continuation delegates native and introduces no new callback suppression.
+- Marker authorization admits Action2/POWER only when the same prior Sprint binding survives those identity checks.
+- The continuation is surfaced as `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION`.
+- Generic marker bookkeeping uses canonical Action9 identity only for a marker explicitly authorized by the diagnostic Sprint seam; factual `markerAction` remains unchanged for diagnostics.
+- Window identity, occurrence budget, duplicate identity and accepted-marker identity all use that same diagnostic-only canonical execution action.
+- `FRAME_COLLISION_DIAGNOSTICS` guards the new canonicalization; behavior-only semantics remain unchanged.
+- `EquippedSprintProbe` remains diagnostic-product-only in CMake.
+- Raw8/raw55 code, callback hook ownership and generic marker desired-set/source-operation semantics were not changed.
+- No species/UseType special case was introduced.
+- The EV-321 missing-LEFT/BOTH negative policy is structurally preserved.
+- The EV-318 true-Power route cannot create Sprint ownership; runtime remains required to confirm no stale-binding inheritance.
+
+Static review cannot replace the required runtime acceptance. Next gate is local build/deploy/startup, then EV-320 positive rerun, EV-321 negative rerun, and EV-318 true-Power protected control.
