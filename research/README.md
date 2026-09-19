@@ -3,6 +3,8 @@
 **Status:** Current research-layer usage map  
 **Updated:** 2026-09-18
 
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
+
 ## Purpose
 
 Define how non-authoritative source material and runtime/source artifacts move through `research/` without turning this directory into a competing evidence ledger, technical authority, or current-state history.
@@ -44,9 +46,10 @@ freeze test / expected artifact(s)
 → preserve produced source unchanged in research/raw
 → publish one test or small intentional batch
 → Normal Chat interprets EVERY uploaded artifact against frozen test + User observation
-→ represent every completed test/run in canonical Evidence Ledger evidence
+→ represent every completed test/run concisely in the single active Evidence Ledger
+→ promote any changed reusable fact to current reference/architecture
 → update EVIDENCE_INDEX only when retrieval changes
-→ perform smallest-owner technical/current-state maintenance
+→ perform smallest-owner current-state maintenance
 → assign explicit artifact disposition to every uploaded artifact
 → archive each processed artifact unchanged when no active comparison needs raw intake
 → verify research/raw + current-state pointers
@@ -65,8 +68,9 @@ Use these instead of maintaining a per-log historical table here:
 
 | Need | Authority |
 |---|---|
-| exact factual conclusion / evidence status | `docs/EVIDENCE_INDEX.md` → canonical Evidence Ledger |
-| evidence-ledger storage ranges | `docs/EVIDENCE_INDEX.md` plus the ledger continuation header |
+| current established collision conclusion | `docs/COLLISION_REFERENCE.md` |
+| exact proof / evidence status | `docs/EVIDENCE_INDEX.md` → exact current/archived Evidence Ledger |
+| evidence-ledger storage ranges | `docs/EVIDENCE_INDEX.md`; exactly one active ledger remains under `docs/`, closed volumes under `docs/archive/evidence/` |
 | deliberate raw/archive path move | `docs/EVIDENCE_PATH_MIGRATIONS.md` |
 | evidence closure / archive procedure | POP-06 in `docs/PROJECT_OPERATING_PROCEDURES.md` |
 | knowledge owner/update trigger after a result | `docs/KNOWLEDGE_MAINTENANCE.md` + `docs/KNOWLEDGE_REGISTRY.md` |
