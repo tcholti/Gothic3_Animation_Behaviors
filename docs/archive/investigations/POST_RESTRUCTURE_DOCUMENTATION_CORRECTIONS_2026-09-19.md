@@ -1,9 +1,26 @@
 # Post-Restructure Documentation Corrections
 
-**Status:** ACTIVE
+**Status:** CLOSED/PASS
 **Type:** Bounded documentation / validation implementation
 **Created:** 2026-09-19
 **Owner:** Work Chat implements; Normal Chat independently reviews before closure.
+
+**Closure result:** ACCEPTED after independent Normal Chat review.
+
+**Work implementation commit:** `cb5c7d6b6750fb4b2e1ec3e188e4565d8886308b`
+
+**Independent review:**
+
+- diff is exactly one commit from the frozen base;
+- changed files are limited to the eight authorized documentation/validator owners;
+- M-1 through M-5 match the frozen correction contract;
+- no Gothic source/CMake/runtime/evidence/archive/ADR files changed;
+- stale `§8.1`, obsolete raw55-current-probe wording, and architecture-owned live regression progress are absent from the corrected owners;
+- `phase-1-golem` is present and current-state links target it;
+- strengthened validator retains semantic/manual-review boundaries;
+- GitHub Knowledge state run `35452345601` passed on the exact Work commit.
+
+No build was required or attempted.
 
 ## Purpose
 

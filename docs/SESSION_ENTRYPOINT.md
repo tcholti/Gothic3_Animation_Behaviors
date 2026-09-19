@@ -12,29 +12,24 @@
 ## Current gate
 
 ```text
-post-restructure formal audit = CLOSED/PASS
-bounded documentation corrections M-1 through M-5 = ACTIVE
-active contract = docs/work/active/POST_RESTRUCTURE_DOCUMENTATION_CORRECTIONS.md
-technical standalone collision regression = TEMPORARILY HELD
+standalone collision regression = ACTIVE
+current subphase = Phase 1 player/Golem matrix
+focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-308
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
-The accepted restructure remains the baseline. Work must implement only the bounded audit corrections; no runtime/source/evidence work resumes until Normal Chat independently reviews and closes this task.
+Use the stable route: [COLLISION_TEST_PLAN.md — Phase 1 Golem matrix](COLLISION_TEST_PLAN.md#phase-1-golem).
 
-## Preserved technical state
-
-Focused raw55 acceptance is CLOSED/PASS at EV-298.
-
-Phase-1 player/Golem evidence is closed through EV-308. After the correction task closes, resume the preserved Phase-1 route in [COLLISION_TEST_PLAN.md — Phase 1 Golem matrix](COLLISION_TEST_PLAN.md#phase-1-golem): exercise any prepared remaining Golem setup, or explicitly close Phase 1 if none remain before entering Phase 2.
+Phase 1 remains open only for any prepared Golem setup not yet exercised. If none remain, explicitly close Phase 1 before entering Phase 2.
 
 ## Immediate responsibility
 
-1. Work Chat executes `docs/work/active/POST_RESTRUCTURE_DOCUMENTATION_CORRECTIONS.md`.
-2. No source/runtime/evidence changes and no build.
-3. Work publishes the bounded correction commit and STOPs.
-4. Normal Chat independently reviews the commit, validator result, and lifecycle consistency.
-5. Only after accepted closure may technical collision testing resume.
+1. Use POP-01 before the next local test because remote documentation/validator state changed.
+2. Continue only any prepared remaining Golem setup under the Phase-1 matrix.
+3. If no prepared Golem setup remains, explicitly close Phase 1 before Orc Phase 2.
+4. Keep one complete log per setup and close every uploaded batch under POP-06 before another batch.
+5. Do not reopen family-specific raw55 research without concrete contradictory evidence.
 
 ## Current verified diagnostic product
 
@@ -44,23 +39,31 @@ built/live DLL SHA256 = 68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C5
 build/deploy/startup = PASS
 ```
 
-Documentation/evidence-only commits do not require rebuild/redeploy by themselves.
+Documentation/evidence-only commits after that build do not require rebuild/redeploy by themselves.
 
 ## Read next by question
 
-- active correction responsibility → `docs/work/active/POST_RESTRUCTURE_DOCUMENTATION_CORRECTIONS.md`
-- settled collision fact → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
+- settled collision fact → `COLLISION_REFERENCE.md`
 - lifecycle/repair architecture → `COLLISION_LIFECYCLE.md`
 - diagnostics architecture → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
-- exact proof/provenance → `EVIDENCE_INDEX.md` → archived ledger/raw source
+- exact proof/provenance → `EVIDENCE_INDEX.md` → exact EV / archived provenance
 - short-lived handoff detail → `BETWEEN_CHATS.md`
+
+## Sequence after standalone collision regression
+
+```text
+complete seven standalone phases
+-> New Balance 0.7 exact distributed-bundle regression incl. AttackCollision
+-> mature collision migration into src/Script_G3AnimationBehaviors
+-> diagnostics-free integration validation
+-> later Raise/speed
+```
 
 ## Still paused
 
 ```text
-NO runtime collision continuation until correction review/closure
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
