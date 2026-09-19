@@ -147,7 +147,7 @@ For the supported raw8 FIST path, Sprint arrives through the existing physical `
 
 The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution.
 
-These FIST mechanisms do not establish equipped Sprint marker semantics. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported in the current production/behavior baseline. EV-315 proves the first Goblin Action9/SPRINT RIGHT/raw2 diagnostic handoff. EV-321 additionally proves the generic complete-motion required-source gate fails closed for Sprint BOTH when LEFT is absent and preserves native fallback. EV-320 shows the current diagnostic implementation still has one unresolved execution-identity gap: a marker-owned Sprint C1 may factually transition Action9 -> Action2 before a later authored marker such as OFF, causing the later marker to lose Sprint authorization and fail generic action-sensitive window identity. A bounded Sprint-origin continuation correction is required before any production-promotion decision.
+These FIST mechanisms do not establish equipped Sprint marker semantics. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported in the current production/behavior baseline. EV-315 proves the first Goblin Action9/SPRINT RIGHT/raw2 diagnostic handoff. EV-321 additionally proves the generic complete-motion required-source gate fails closed for Sprint BOTH when LEFT is absent and preserves native fallback. EV-320 exposed an execution-identity gap when a marker-owned Sprint C1 transitioned Action9 -> Action2 before later OFF. The bounded diagnostic correction was implemented at `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` and the exact RIGHT->OFF runtime repair passed at EV-322: later OFF remained factually Action2/POWER, was authorized as bound Sprint-origin continuation, accepted, closed the exact RIGHT source 7 -> 5 and finalized cleanly. The missing-LEFT/BOTH negative and true-Power protected controls still gate final closure.
 
 Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298 and protected sentinel EV-317; equipped Sprint boundary/diagnostic evidence EV-311, EV-315, EV-320–EV-321.
 
@@ -204,6 +204,7 @@ EV-318  equipped 2H true-Power sentinel  PASS
 EV-319  Ogre raw52 Sprint attempt          NOT EXERCISED / regression healthy
 EV-320  Goblin Sprint RIGHT->OFF            CONTINUATION GAP / correction required
 EV-321  Goblin Sprint BOTH missing LEFT     NEGATIVE PASS / native fallback
+EV-322  Goblin Sprint RIGHT->OFF correction  PASS
 ```
 
 Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. EV-311's equipped Sprint rejection exposed a new scope question; EV-315 passes the first diagnostic causal handoff for that Goblin fixture without changing production support.
