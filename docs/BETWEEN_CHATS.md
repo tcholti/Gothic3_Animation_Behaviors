@@ -10,7 +10,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **EV-320 Sprint-origin continuation correction implemented + independently reviewed PASS; local build/runtime pending.** Phase 4 remains held.
+Current gate: **Sprint-origin continuation correction — EV-322 positive PASS; negative + true-Power controls pending.** Phase 4 remains held.
 
 Active correction:
 
@@ -20,21 +20,20 @@ Reviewed implementation:
 
 `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`
 
-Source-review findings:
-- binding creation remains factual Action9/SPRINT only;
-- exact same bound C1/motion/mask/source identity may survive current Action2/POWER;
-- Power continuation delegates native and adds no new suppression;
-- authorized continuation markers keep generic bookkeeping canonical to Sprint origin while factual current action remains logged;
-- behavior-only semantics remain unchanged behind `FRAME_COLLISION_DIAGNOSTICS`;
-- EV-321 missing-LEFT/BOTH fail-closed path remains structurally intact;
-- ordinary true Power cannot create Sprint ownership.
+Evidence state:
 
-Required local acceptance order:
-1. build/deploy/startup diagnostic DLL;
-2. rerun EV-320 Goblin RIGHT -> OFF: OFF must be authorized as `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION`, accepted, and close exact RIGHT 7 -> 5;
-3. rerun EV-321 Goblin BOTH with LEFT absent: missing-source delegation + marker rejection + native fallback must remain;
-4. rerun EV-318 equipped 2H true Power: no Sprint-origin inheritance/authorization.
+```text
+EV-320 old RIGHT->OFF behavior                     CONTINUATION GAP
+EV-321 BOTH with LEFT absent                       NEGATIVE PASS baseline
+EV-322 corrected RIGHT->OFF runtime                PASS
+```
 
-Existing evidence through EV-321 remains authoritative. No new runtime evidence exists for `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` yet.
+EV-322 repeated six complete Goblin P0 sequences. RIGHT opened the exact club 5 -> 7 under Action9/SPRINT; after same-C1 Action9 -> Action2, OFF was authorized as `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION`, remained factually logged as Action2/POWER, returned `OFF_ACCEPTED`, closed 7 -> 5 at OFF timing and finalized `Outstanding=0`. No OFF rejection or generation inconsistency remained.
+
+Next runtime gates:
+1. rerun EV-321 BOTH with LEFT absent — must still delegate native on `REQUIRED_EQUIPPED_SOURCE_MISSING`, create no binding, reject BOTH, preserve native fallback and clean finalization;
+2. rerun EV-318 equipped 2H true Power — must remain outside Sprint-origin inheritance/authorization.
+
+Processed EV-322 raw log is archived; `research/raw/` should be clean except `Keep.txt`.
 
 Use `COLLISION_REFERENCE.md` for settled facts and `EVIDENCE_INDEX.md` for provenance.
