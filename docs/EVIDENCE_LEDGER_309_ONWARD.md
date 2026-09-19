@@ -226,3 +226,32 @@ Provenance:
 Disposition:
 - PASS — raw8 Sprint remains protected under the generic equipped-Sprint diagnostic seam, and FIST-marked Sprint is explicitly delegated rather than claimed.
 - Active investigation advances to the raw55 Sprint-origin protected sentinel.
+
+### EV-317 — Troll raw55 Sprint-origin protected sentinel PASS
+
+Observed:
+- The current equipped-Sprint diagnostic build captured four factual Troll raw55 Sprint-origin executions: C1 generations 9, 21, 37 and 58. Each used exact current RIGHT `TrollFist` / PhysicalFist raw55 with factual origin `Action=9 / Family=SPRINT`.
+- In all four Sprint-origin executions, the temporary equipped-Sprint probe explicitly records `DELEGATE_NATIVE Reason=FIST_MARKER_PRESENT`; it does not suppress or claim the FIST/raw55 callback path.
+- Permanent raw55 ownership remains intact: `RAW55_PHYSICAL_FIST_NATIVE_OPEN_SUPPRESSED` suppresses the premature exact RIGHT raw55 `5 -> 7` opening while the callback/state progression continues.
+- At the authored FIST in each sampled Sprint-origin C1, `RAW55_PHYSICAL_FIST_MARKER` records `OriginFamily=SPRINT`, `CurrentFamily=SPRINT`, `Action=9`, `StatePosition=1`, `GroupBefore=5`, `GroupAfter=7`, `EarlyOpeningSuppressed=1`, `GroupRequested=1`, `ClearTriggeredList=0`; the ordinary marker record is `FIST Result=ACCEPTED`.
+- Each sampled Sprint-origin execution produces native damage to `PC_Hero`, then continues within the same C1 after factual `Action9 -> Action2`; the temporary equipped-Sprint probe correctly reports `DELEGATE_NATIVE Reason=NOT_SPRINT_FAMILY` during the later Action2 tail while permanent raw55 Sprint-origin ownership remains the established semantic owner.
+- Gothic later performs native exact RIGHT cleanup `7 -> 5`; C1 generations 9, 21, 37 and 58 each record `C1 CLEANUP FULFILLED` and finalize with `Outstanding=0`, `Cleanup=1`, `PhysicalChanged=0`, `NO_OP_NO_OUTSTANDING`.
+- Whole-log scan found no contradiction, invariant warning, lifecycle issue, repair divergence, unresolved equipped-source outcome, rejected marker, or `ReplacedOutstanding=1`.
+
+Scope / limits:
+- Protected sentinel for permanent raw55 Sprint-origin behavior while the temporary generic equipped-Sprint diagnostic seam is present.
+- Confirms coexistence for the tested Troll RIGHT raw55 Sprint-origin route; it does not broaden raw55 production scope beyond the existing permanent architecture.
+- No production equipped-Sprint promotion follows from this sentinel alone.
+
+Provenance:
+- User upload commit `a505aee3ec70476fd8d034b4b314d262dd69b8a0`.
+- Reviewed diagnostic implementation: `d2c6c8be0d56129ec6725571324a9066b181242c`.
+- Built/live diagnostic DLL SHA256: `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`.
+- Canonical archived log: `research/archive/2026-09-19_equipped_sprint_sentinel_raw55_sprint_origin.log`.
+- Git blob `b83196b0bfd5f8770f26f06bcc4cd91694f35a55`; 177,635 characters / 680 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+- Comparison baseline: raw55 Sprint-origin closure EV-280–EV-285, EV-294 and permanent focused acceptance EV-298.
+
+Disposition:
+- PASS — permanent raw55 Sprint-origin behavior remains protected under the temporary generic equipped-Sprint diagnostic seam.
+- Active investigation advances to the final protected sentinel: one equipped true-Power route.
