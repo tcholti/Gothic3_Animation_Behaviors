@@ -17,11 +17,11 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint = EV-322 POSITIVE + EV-323 NEGATIVE PASS; TRUE-POWER CONTROL PENDING
+generic equipped Sprint = DIAGNOSTIC CAUSAL CASE ACCEPTED THROUGH EV-324; PRODUCTION-PROMOTION DECISION NEXT
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-323
+latest completed evidence = EV-324
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: EV-322 positive RIGHT->OFF correction and EV-323 missing-LEFT/BOTH negative control both PASS under implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`. Run the EV-318 equipped true-Power protected control next; if it passes, the bounded continuation correction runtime acceptance is complete. Phase 4 remains held.
+Current responsibility: EV-324 closes the final true-Power protected control PASS. The bounded EV-320 continuation correction is fully runtime-accepted through EV-322–EV-324. Next make the explicit parent-level production-promotion decision for generic equipped Sprint; do not change behavior-facing code implicitly. Phase 4 remains held until that decision.
 
 ## Immediate responsibility
 
@@ -45,21 +45,23 @@ Current responsibility: EV-322 positive RIGHT->OFF correction and EV-323 missing
 8. Implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` = Normal Chat source-review PASS.
 9. EV-322 RIGHT->OFF positive correction runtime = PASS.
 10. EV-323 BOTH-with-missing-LEFT negative rerun = PASS.
-11. Next: EV-318 equipped 2H true-Power protected control.
+11. EV-324 equipped 2H true-Power protected control = PASS.
+12. Next: explicit production-promotion decision for generic equipped Sprint.
 
 ## Current verified diagnostic product
 
 ```text
 reviewed Sprint continuation implementation = c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86
-built/live DLL SHA256 = A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7
+post-correction build/deploy/startup = PASS (exact corrected DLL SHA256 not captured in Normal Chat transcript)
 build/deploy/startup = PASS
 Goblin first causal fixture = PASS at EV-315
 Sabretooth raw8 Sprint sentinel = PASS at EV-316
 Troll raw55 Sprint-origin sentinel = PASS at EV-317
 equipped 2H true-Power sentinel = PASS at EV-318
+Sprint origin-continuation runtime acceptance = COMPLETE/PASS at EV-322–EV-324
 ```
 
-The live diagnostic product above remains the active sentinel-test binary. The earlier `1ae0731cd501e6d72bbbf6642188a3047d134805` RIGHT/raw2 implementation remains superseded. Later documentation/evidence-only commits do not require rebuild/redeploy by themselves.
+The corrected diagnostic product built from reviewed implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` is the accepted research product for EV-322–EV-324. Its exact DLL SHA256 was not captured in this chat transcript, so do not reuse the earlier `A421...` hash as corrected-binary identity. The earlier `1ae0731...` RIGHT/raw2 implementation remains superseded.
 
 ## Read next by question
 
