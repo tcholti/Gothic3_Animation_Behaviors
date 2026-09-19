@@ -5,6 +5,8 @@
 **Version:** 1.4  
 **Updated:** 2026-09-16
 
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
+
 ## Purpose
 
 Preserve recurring project conventions that must remain stable across Chat migrations, tools, research stages, and implementation cycles unless we deliberately decide to change them.
@@ -285,6 +287,32 @@ A typo or citation correction does not automatically require a semantic version 
 
 Git history remains the exact revision history.
 
+
+### 9.1 Documentation lifecycle convention
+
+Document role and lifecycle are stable project conventions; detailed promotion/archive mechanics are owned by `KNOWLEDGE_MAINTENANCE.md`.
+
+```text
+current reference / architecture / ADRs
+= active durable knowledge
+
+docs/work/active/
+= unresolved temporary probes, implementation contracts and audits
+
+docs/archive/investigations/
+= closed temporary work after promotion
+
+docs/EVIDENCE_LEDGER_<start>_ONWARD.md
+= exactly one current open evidence ledger
+
+docs/archive/evidence/
+= closed evidence-ledger volumes
+```
+
+Temporary research/task documents do not belong in root `docs/`. Closed temporary work is archived only after reusable facts/architecture/rationale are promoted. EV numbering remains global and monotonic across ledger rotation.
+
+The structural convention is checked by `python tools/knowledge/validate_knowledge_state.py` and CI.
+
 ---
 
 ## 10. Engine-Facing Validation Pipeline
@@ -327,10 +355,12 @@ controlled runtime/source test or small intentional batch
 → research/raw/ for active canonical intake
 → commit/publish unchanged artifact batch
 → Normal Chat interprets EVERY uploaded artifact
-→ canonical EV/result representation for every completed test/run
+→ concise canonical EV/result representation for every completed test/run
+→ promote any changed reusable fact to current reference/architecture
 → EVIDENCE_INDEX route only when retrieval changes
-→ smallest required technical/current-state maintenance
-→ research/archive/ immediately for each processed artifact no longer active
+→ smallest required current-state maintenance
+→ archive any closed temporary investigation after promotion
+→ research/archive/ immediately for each processed runtime artifact no longer active
 → verify research/raw/ contains only genuinely open/unprocessed inputs
 → only then begin the next test batch
 → research/derived/ only for deterministic retrieval/analysis aids when needed
@@ -385,7 +415,7 @@ A fresh Chat does not need to read this entire file on every start.
 - changing branch/state meaning;
 - changing validation/artifact flow.
 
-When such a convention matters, retrieve the relevant section and **preserve the established convention instead of inventing a new one**.
+When such a convention matters, retrieve the relevant section and **preserve the established convention instead of inventing a new one**. Documentation lifecycle questions route to `KNOWLEDGE_MAINTENANCE.md`; do not infer lifecycle from old archived task/probe documents.
 
 ---
 
