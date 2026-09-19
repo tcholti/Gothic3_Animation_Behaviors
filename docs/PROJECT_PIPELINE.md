@@ -131,27 +131,19 @@ Rules:
 - corrected/superseded evidence keeps its original ID and status/history rather than being silently replaced by a new meaning;
 - ledger splitting is storage/retrieval structure, not a new evidence namespace.
 
-Current storage boundaries:
+Storage convention:
 
 ```text
-docs/archive/evidence/EVIDENCE_LEDGER.md                EV-001–EV-157
-docs/archive/evidence/EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
-docs/archive/evidence/EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
-docs/archive/evidence/EVIDENCE_LEDGER_232_ONWARD.md     EV-232–EV-249
-docs/archive/evidence/EVIDENCE_LEDGER_250_ONWARD.md     EV-250–EV-264
-docs/archive/evidence/EVIDENCE_LEDGER_265_ONWARD.md     EV-265–EV-268
-docs/archive/evidence/EVIDENCE_LEDGER_269_ONWARD.md     EV-269–EV-273
-docs/archive/evidence/EVIDENCE_LEDGER_274_ONWARD.md     EV-274–EV-279
-docs/archive/evidence/EVIDENCE_LEDGER_280_ONWARD.md     EV-280–EV-282
-docs/archive/evidence/EVIDENCE_LEDGER_283_ONWARD.md     EV-283–EV-285
-docs/archive/evidence/EVIDENCE_LEDGER_286_ONWARD.md     EV-286–EV-290
-docs/archive/evidence/EVIDENCE_LEDGER_291_ONWARD.md     EV-291–EV-308
-docs/EVIDENCE_LEDGER_309_ONWARD.md                      EV-309 onward (ACTIVE)
+exactly one active ledger under docs/
+closed ledger volumes under docs/archive/evidence/
+EVIDENCE_INDEX.md = sole current route from EV range/topic to ledger storage
 ```
 
-Exactly one ledger remains active under `docs/`. Closed volumes are cold proof history under `docs/archive/evidence/`. The splits are storage/retrieval checkpoints only; they do **not** restart or reinterpret the global EV namespace. New evidence appends only to the active ledger until the rotation transaction in `KNOWLEDGE_MAINTENANCE.md` closes it.
+Do not duplicate the current ledger-volume map here. `EVIDENCE_INDEX.md` owns that retrieval mapping and may change when a ledger rotates; this pipeline owns only the stable numbering/storage convention.
 
-The ledger files own the claims themselves.
+The splits are storage/retrieval checkpoints only; they do **not** restart or reinterpret the global EV namespace. New evidence appends only to the active ledger until the rotation transaction in `KNOWLEDGE_MAINTENANCE.md` closes it.
+
+The ledger files own the proof entries themselves; current reusable facts belong in current reference/architecture.
 
 ---
 
