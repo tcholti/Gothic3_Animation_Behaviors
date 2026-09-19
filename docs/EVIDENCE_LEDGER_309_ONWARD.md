@@ -396,3 +396,32 @@ Provenance:
 Disposition:
 - Positive correction gate PASS.
 - Next required runtime gate: rerun EV-321 BOTH with LEFT absent and require the prior fail-closed/native-fallback behavior to remain intact.
+
+### EV-323 — equipped Sprint BOTH with missing LEFT negative rerun PASS after continuation correction
+
+Observed:
+- Runtime negative-control validation used correction implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` with the controlled Goblin P0 Sprint motion authored with `BOTH`.
+- Four factual P0 Action9/SPRINT executions scanned `RequiredMask=3` (RIGHT | LEFT): C1 generations 42, 51, 81 and 100. The Goblin had exact RIGHT `It_1H_Club_01` / raw2 and no LEFT source.
+- All four repeatedly delegated native at callback time with `REQUIRED_EQUIPPED_SOURCE_MISSING`; there were zero `SUPPRESS_NATIVE Reason=ELIGIBLE` decisions for `RequiredSourceMask=3` and zero `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION` authorizations for that mask.
+- C1 42, 81 and 100 reached BOTH while still factual Sprint: no Sprint binding existed, the probe logged `DENY_GENERIC_EQUIPPED Reason=NO_BOUND_EXECUTION`, and generic marker processing returned `REJECTED_UNSUPPORTED_HIT`.
+- C1 51 transitioned to factual Action2/POWER before BOTH. The probe continued to report `NO_BOUND_SPRINT_ORIGIN`; generic Power-family marker processing then rejected BOTH as `UNSUPPORTED_MISSING_SOURCE`. This is also fail-closed and does not create/inherit Sprint ownership.
+- In all four complete P0 executions, Gothic's delegated native path opened the exact RIGHT club `5 -> 7`, native damage to `PC_Hero` occurred, native cleanup returned the club `7 -> 5`, and the Goblin C1 finalized `Outstanding=0`.
+- Whole-log scan found zero nonzero Goblin finalizations, zero terminal repair, and no invariant/lifecycle/repair-divergence flag.
+
+Interpretation:
+- **NEGATIVE PASS.**
+- The EV-320 continuation correction did not weaken complete-motion required-source validation.
+- A Sprint motion requiring BOTH cannot acquire partial RIGHT-only marker ownership when LEFT is absent.
+- A later same-C1 Action2 state without a prior Sprint binding remains outside Sprint-origin continuation and is still rejected by missing-source validation.
+- Native fallback remains intact.
+
+Provenance:
+- User upload commit `ae09db4ef2ec610430c247976969abf9c27498ea`.
+- Reviewed correction implementation: `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`.
+- Canonical archived log: `research/archive/2026-09-19_sprint_origin_continuation_both_missing_left_negative_validation.log`.
+- Git blob `ebd813a2fabbd4a0f249652b66d69309711799d0`; 226,802 characters / 1,135 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- EV-321 negative-control semantics are preserved under the corrected implementation.
+- One required runtime gate remains before correction closure: the EV-318 equipped true-Power protected control.
