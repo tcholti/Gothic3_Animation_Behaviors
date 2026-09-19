@@ -63,7 +63,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | raw55 Quick causal closure | EV-264–EV-273 |
 | raw55 true Power causal closure | EV-274–EV-276, EV-293 |
 | raw55 Normal causal/repeated-contact closure | EV-277–EV-279, EV-286–EV-292 |
-| raw55 Sprint-origin closure | EV-280–EV-285, EV-294 |
+| raw55 Sprint-origin closure / current protected sentinel | EV-280–EV-285, EV-294, EV-317 |
 | New Balance 0.7 source compatibility preflight | EV-284 |
 | permanent raw55 implementation + focused sentinels | EV-295–EV-298 |
 | standalone collision regression | EV-299 onward |
