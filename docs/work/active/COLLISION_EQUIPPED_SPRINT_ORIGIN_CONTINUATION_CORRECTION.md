@@ -1,6 +1,6 @@
 # Equipped Sprint Origin-Continuation Correction
 
-**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / LOCAL BUILD+RUNTIME PENDING  
+**Status:** ACTIVE — EV-322 POSITIVE RUNTIME PASS / NEGATIVE + TRUE-POWER CONTROLS PENDING  
 **Type:** Bounded diagnostic-only correction  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime interpretation.
@@ -250,3 +250,28 @@ Confirmed:
 - The EV-318 true-Power route cannot create Sprint ownership; runtime remains required to confirm no stale-binding inheritance.
 
 Static review cannot replace the required runtime acceptance. Next gate is local build/deploy/startup, then EV-320 positive rerun, EV-321 negative rerun, and EV-318 true-Power protected control.
+
+
+## EV-322 runtime result
+
+Positive RIGHT -> OFF correction fixture: **PASS**.
+
+Six complete Goblin P0 Sprint-origin executions (C1 24, 34, 45, 84, 92, 101) repeated the required sequence:
+
+```text
+Action9 / SPRINT
+-> RIGHT authorized + accepted
+-> exact club 5 -> 7
+-> same C1/motion/source becomes current Action2 / POWER
+-> OFF AUTHORIZE_GENERIC_EQUIPPED
+   Reason=BOUND_SPRINT_ORIGIN_POWER_CONTINUATION
+-> OFF_ACCEPTED while diagnostics still show Action2 / POWER
+-> exact club 7 -> 5 at OFF timing
+-> C1 final Outstanding=0
+```
+
+Zero OFF rejection and zero `REJECTED_C1_GENERATION_INCONSISTENCY` occurred.
+
+EV-322 closes only the positive correction gate. Remaining required controls:
+1. EV-321 BOTH with LEFT absent negative rerun.
+2. EV-318 equipped true-Power protected control.
