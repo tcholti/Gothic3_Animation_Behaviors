@@ -867,8 +867,8 @@ finish current meaningful engineering step as far as actually completed
 -> update SESSION_ENTRYPOINT if immediate responsibility changed
 -> update BETWEEN_CHATS only when exact short-lived continuation detail is genuinely needed
 -> check once for completed work/results not yet durable
--> verify a fresh Chat following SESSION_ENTRYPOINT would begin at correct responsibility
--> give User a short starter instruction
+-> verify a fresh Chat entering through root README Start Here → SESSION_ENTRYPOINT would begin at correct responsibility
+-> give User a short starter instruction that points to the root README Start Here front door
 ```
 
 Do not perform broad documentation cleanup merely because a Chat is ending.
@@ -1016,7 +1016,7 @@ Ask the User only for information that cannot be recovered from repository state
 
 Before declaring recovery complete:
 
-> **If a fresh Normal Chat followed `SESSION_ENTRYPOINT.md` literally now, would it begin with the correct immediate responsibility, see only intentionally active raw inputs, and be able to retrieve the evidence and owning authorities needed for that responsibility?**
+> **If a fresh Normal Chat entered through the root `README.md` Start Here route now, would ordinary continuation reach the correct immediate responsibility, would interrupted recovery be discoverable without prior memory, would only intentionally active raw inputs remain, and could the Chat retrieve the evidence and owning authorities needed for that responsibility?**
 
 If no, recovery is not complete.
 
