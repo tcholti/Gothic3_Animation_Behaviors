@@ -1,4 +1,4 @@
-# Collision Lifecycle Diagnostic Architecture
+# Collision Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
 **Updated:** 2026-09-16
@@ -13,8 +13,8 @@ Define the smallest observational instrumentation needed to validate collision b
 
 Release/build separation: `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.  
 Behavior architecture: `DESIGN.md`.  
-Current redesign authority: `COLLISION_ARCHITECTURE_REDESIGN_PLAN.md`.  
-Lifecycle authority: `COLLISION_LIFECYCLE_PLAN.md`.  
+Established collision facts: `COLLISION_REFERENCE.md`.  
+Lifecycle authority: `COLLISION_LIFECYCLE.md`.  
 Validation authority: `COLLISION_TEST_PLAN.md`.  
 Evidence: `EVIDENCE_INDEX.md`.
 
@@ -78,7 +78,7 @@ This is an exact call-site permission transport, **not** a global `GetPlayTime` 
 
 Stage A moved raw8 feature state/policy into `Raw8FistCollision`; `EngineBridge` remains sole owner of the physical timing hook and delegates to that feature module.
 
-Current PhysicalFist/raw55 research follows the same ownership rule: `EngineBridge` owns shared low-level hooks such as `SetCollisionGroup` and the tested `eCTrigger_PS::ClearTriggeredList()` transport; `PhysicalFistProbe` owns raw55 research eligibility/state/decision/logging. A diagnostic intervention does not become permanent hook policy merely because the bridge physically enacts it.
+Permanent PhysicalFist/raw55 behavior follows the same ownership rule: `EngineBridge` owns shared low-level hook transport, while `PhysicalFistCollision` owns raw55 eligibility/state/behavior policy. Historical `PhysicalFistProbe` work is archived provenance and does not define current hook policy.
 
 ---
 
@@ -298,7 +298,7 @@ Do not hard-code the discovery contract around one previously unknown family.
 
 ## 6. Stage B Compaction Boundary
 
-The Stage B diagnostic refactor was frozen and implemented from `COLLISION_STAGE_B_DIAGNOSTIC_REFACTOR.md`; its historical contract remains useful for what belongs in CORE versus DEEP.
+The completed Stage B diagnostic refactor established the current CORE-versus-DEEP boundary. Its original bounded contract is archived historical provenance; this document owns the current diagnostic rule.
 
 The durable boundary is:
 
