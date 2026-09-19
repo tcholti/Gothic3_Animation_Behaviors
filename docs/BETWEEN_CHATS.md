@@ -57,13 +57,14 @@ EV-315 Goblin equipped Sprint/right/raw2 causal fixture PASS
 -> EV-316 Sabretooth raw8 Sprint sentinel PASS
 -> EV-317 Troll raw55 Sprint-origin sentinel PASS
 -> EV-318 equipped 2H true-Power sentinel PASS
--> additional factual equipped Sprint fixtures across available UseTypes/animation sets NEXT
+-> EV-319 Ogre/raw52 broader fixture NOT EXERCISED (no Action9; ordinary regression healthy)
+-> select next broader fixture from a route likely to factually enter Action9
 -> then decide permanent promotion
 ```
 
 Phase 4 remains held until this scope question is resolved.
 
-Latest closed evidence is EV-318. The protected sentinel stage is COMPLETE/PASS through EV-316–EV-318; the EV-318 processed raw log is archived unchanged. `research/raw/` should be clean except `Keep.txt` after this closure transaction.
+Latest closed evidence is EV-319. The protected sentinel stage is COMPLETE/PASS through EV-316–EV-318. EV-319 attempted Ogre/raw52 broader Sprint coverage but factual Action9 did not occur, so it is classified NOT EXERCISED while ordinary Ogre regression remains healthy. Its processed raw log is archived unchanged. `research/raw/` should be clean except `Keep.txt` after this closure transaction.
 
 The knowledge-lifecycle restructure, formal post-restructure audit, and bounded M-1 through M-5 corrections are CLOSED/PASS. Ordinary reference-first retrieval and automated knowledge-state validation are now the baseline.
 
