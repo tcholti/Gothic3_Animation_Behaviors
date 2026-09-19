@@ -2,8 +2,10 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.17  
+**Version:** 1.18  
 **Updated:** 2026-09-19
+
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
 ## Purpose
 
@@ -536,12 +538,14 @@ uploaded batch arrives
 -> inspect EVERY log in the batch
 -> correlate each log with its frozen fixture + User observation
 -> give every log an explicit result/disposition
--> record the reusable result in the canonical Evidence Ledger
+-> record the reusable result concisely in the single active Evidence Ledger
    (normally one EV per distinct test/run; a batch EV is allowed only when
     every included log/result is individually explicit and the batch answers
     one shared regression question)
+-> promote any changed reusable fact to current reference/architecture
 -> update EVIDENCE_INDEX only when routing materially changes
--> update the smallest affected technical/current-state authorities
+-> update the smallest affected current-state authorities
+-> if the causal question closed, archive its temporary docs/work/active contract after promotion
 -> archive each fully processed log immediately when no active comparison
    requires it to remain in research/raw/
 -> record path migration when required by POP-06
@@ -566,9 +570,11 @@ read committed evidence from GitHub
 -> correlate logger facts + User observations + frozen test contract
 -> decide narrow factual result and epistemic status
 -> assign every produced artifact an explicit disposition
--> promote reusable factual conclusion to canonical Evidence Ledger at correct global EV number
+-> promote concise factual result to the single active Evidence Ledger at the correct global EV number
+-> promote any changed reusable conclusion to current reference/architecture
 -> update EVIDENCE_INDEX only when routing materially changes
--> perform required technical/current-state maintenance at smallest owners
+-> perform required current-state maintenance at smallest owners
+-> archive the closed temporary investigation document after promotion when applicable
 -> archive fully processed artifact when no active comparison needs raw intake
 -> record path migration when historical raw paths would otherwise become ambiguous
 -> verify represented repository state matches actual tree
@@ -621,7 +627,7 @@ SESSION_ENTRYPOINT / BETWEEN_CHATS / current test authority agree on the next ga
 no current-state document relies on an unpromoted chat-only result
 ```
 
-A deterministic repository tool may later flag raw inventory, path existence, EV/index inconsistency, or stale processed-raw state. It may not auto-author conclusions or silently rewrite authorities.
+Run `python tools/knowledge/validate_knowledge_state.py` after lifecycle-sensitive documentation/evidence maintenance. CI runs the same structural validation. The tool checks document placement, active-ledger uniqueness, lifecycle routing and current Markdown links; it does not auto-author conclusions or decide evidence meaning.
 
 ### Planned vs failed Chat transition
 
@@ -867,6 +873,7 @@ finish current meaningful engineering step as far as actually completed
 -> update SESSION_ENTRYPOINT if immediate responsibility changed
 -> update BETWEEN_CHATS only when exact short-lived continuation detail is genuinely needed
 -> check once for completed work/results not yet durable
+-> run POP-12 knowledge-state validation
 -> verify a fresh Chat entering through root README Start Here → SESSION_ENTRYPOINT would begin at correct responsibility
 -> give User a short starter instruction that points to the root README Start Here front door
 ```
@@ -1020,11 +1027,33 @@ Before declaring recovery complete:
 
 If no, recovery is not complete.
 
-Only after this check may Recovery Lock end and normal technical work resume.
+Only after this check and a clean POP-12 knowledge-state validation may Recovery Lock end and normal technical work resume.
 
 ---
 
-## 14. Procedure Maintenance
+## 14. POP-12 — Knowledge-State Validation
+
+### Trigger
+
+Run after a lifecycle-sensitive documentation/evidence transaction, before promoting a documentation-restructure branch, before a planned Chat transition when documentation structure changed, and during interrupted recovery before releasing Recovery Lock.
+
+### Canonical command
+
+```text
+python tools/knowledge/validate_knowledge_state.py
+```
+
+Require `Knowledge-state validation PASS`.
+
+The validator mechanically checks the structural invariants owned by `KNOWLEDGE_MAINTENANCE.md`, including one active evidence ledger, temporary-document placement, required lifecycle routing, required archive/work paths and ordinary Markdown-link integrity.
+
+A validation failure is a **documentation-state stop condition**. Fix the owning structural problem before continuing. Do not weaken the validator merely to make a stale state pass.
+
+The validator does not judge technical evidence, decide architecture, or replace POP-10 review.
+
+---
+
+## 15. Procedure Maintenance
 
 The active procedure is the current best project-specific operationalization. Git history preserves old versions; the active document should not accumulate obsolete variants.
 
@@ -1064,6 +1093,7 @@ When a procedure becomes too long, ask whether stable detail can move into a reu
 | formal project review/audit | POP-10 |
 | planned Chat transition / context warning | POP-11 |
 | previous Chat failed / maxed context / became unusable | root `README.md` Start Here → POP-11 |
+| documentation/evidence lifecycle structural check | POP-12 |
 
 ## Core Procedure Rule
 
