@@ -298,6 +298,7 @@ G3AB_COL_OFF   -> exact active set {}
 Rules:
 
 - RIGHT/LEFT mean Gothic equipped slots, not filename R/L;
+- slot selection does not imply that Gothic has a native damage route for every equipped source type; EV-308 shows that LEFT can activate a shield/raw9 source `5 -> 7` and clean it back to `5`, yet the tested Quick shield-bash fixture produces no native damage;
 - use at most one collision command on an authored frame;
 - use BOTH rather than same-frame RIGHT + LEFT;
 - keep OFF and a later activation on separate frames;
@@ -306,6 +307,7 @@ Rules:
 - marker timing is per animation;
 - frame 0 is valid when the intended equipped collision window should begin immediately; EV-271 validates frame-0 2H Normal RIGHT activation, damage and cleanup;
 - do not invent action-specific RIGHT/LEFT/BOTH/OFF marker names.
+- current production authoring does **not** claim shield-bash damage support. Do not author `LEFT` on a shield expecting damage; a future shield-bash feature requires separate research into damage eligibility/dispatch.
 
 The animation author's general preference is often to place collision one authored frame before intended visual contact, but this is an authoring judgement, not an engine constant.
 
