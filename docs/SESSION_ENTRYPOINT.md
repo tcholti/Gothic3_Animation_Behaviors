@@ -12,44 +12,29 @@
 ## Current gate
 
 ```text
-post-restructure formal knowledge/documentation audit = ACTIVE
-audit contract = docs/work/active/POST_RESTRUCTURE_KNOWLEDGE_AUDIT.md
+post-restructure formal audit = CLOSED/PASS
+bounded documentation corrections M-1 through M-5 = ACTIVE
+active contract = docs/work/active/POST_RESTRUCTURE_DOCUMENTATION_CORRECTIONS.md
 technical standalone collision regression = TEMPORARILY HELD
-technical subphase when audit closes = COLLISION_TEST_PLAN.md §8.1
-focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-308
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
-The audit is read-only. Do not start a new runtime test, source implementation, evidence transaction, or documentation correction until the audit report returns to Normal Chat + User for interpretation.
+The accepted restructure remains the baseline. Work must implement only the bounded audit corrections; no runtime/source/evidence work resumes until Normal Chat independently reviews and closes this task.
 
 ## Preserved technical state
 
-Phase-1 player/Golem results already closed:
+Focused raw55 acceptance is CLOSED/PASS at EV-298.
 
-```text
-EV-299  1H                         PASS
-EV-300  1H+torch                   PASS
-EV-301  dual 1H                    PASS
-EV-302  2H                         PASS
-EV-303  Staff                      PASS
-EV-304  human raw8 single FIST     PASS
-EV-305  human raw8 double FIST     PASS
-EV-306  1H+shield                  PASS
-EV-307  Sabretooth double FIST     PASS (supplemental raw8 control)
-EV-308  shield-bash LEFT/raw9      NEGATIVE CONTROL / DEFERRED
-```
-
-EV-308 establishes that LEFT can physically activate/clean a shield/raw9 source but the tested shield-bash route dispatches no native damage. No current source change is justified.
-
-When the audit is closed, resume only the preserved collision gate: finish any remaining prepared Golem setup(s), or explicitly close Phase 1 before Orc Phase 2.
+Phase-1 player/Golem evidence is closed through EV-308. After the correction task closes, resume the preserved Phase-1 route in [COLLISION_TEST_PLAN.md — Phase 1 Golem matrix](COLLISION_TEST_PLAN.md#phase-1-golem): exercise any prepared remaining Golem setup, or explicitly close Phase 1 if none remain before entering Phase 2.
 
 ## Immediate responsibility
 
-1. Work Chat performs the formal read-only audit in `docs/work/active/POST_RESTRUCTURE_KNOWLEDGE_AUDIT.md`.
-2. Apply POP-10 before evaluating documents and POP-12/validator claims as an audit target.
-3. Do not implement findings. Return the complete audit report to User + Normal Chat.
-4. Normal Chat + User decide the smallest-owner corrections and close/archive the audit task before technical work resumes.
+1. Work Chat executes `docs/work/active/POST_RESTRUCTURE_DOCUMENTATION_CORRECTIONS.md`.
+2. No source/runtime/evidence changes and no build.
+3. Work publishes the bounded correction commit and STOPs.
+4. Normal Chat independently reviews the commit, validator result, and lifecycle consistency.
+5. Only after accepted closure may technical collision testing resume.
 
 ## Current verified diagnostic product
 
@@ -59,11 +44,11 @@ built/live DLL SHA256 = 68C750860ABB901B5F6E7D1291838ED7C50CC6E33D3A124E448D42C5
 build/deploy/startup = PASS
 ```
 
-Documentation/evidence-only commits after that build do not require rebuild/redeploy by themselves.
+Documentation/evidence-only commits do not require rebuild/redeploy by themselves.
 
 ## Read next by question
 
-- active audit responsibility → `docs/work/active/POST_RESTRUCTURE_KNOWLEDGE_AUDIT.md`
+- active correction responsibility → `docs/work/active/POST_RESTRUCTURE_DOCUMENTATION_CORRECTIONS.md`
 - settled collision fact → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
 - lifecycle/repair architecture → `COLLISION_LIFECYCLE.md`
@@ -72,19 +57,10 @@ Documentation/evidence-only commits after that build do not require rebuild/rede
 - exact proof/provenance → `EVIDENCE_INDEX.md` → archived ledger/raw source
 - short-lived handoff detail → `BETWEEN_CHATS.md`
 
-## Sequence after standalone collision regression
-
-```text
-complete seven standalone phases
--> New Balance 0.7 exact distributed-bundle regression incl. AttackCollision
--> mature collision migration into src/Script_G3AnimationBehaviors
--> later Raise/speed
-```
-
 ## Still paused
 
 ```text
-NO runtime collision continuation until post-restructure audit is interpreted/closed
+NO runtime collision continuation until correction review/closure
 NO New Balance final regression yet
 NO collision migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
