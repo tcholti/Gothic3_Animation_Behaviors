@@ -310,3 +310,59 @@ Provenance:
 Disposition:
 - Do not repeat this same Ogre setup merely to accumulate ordinary Power/Normal/Quick traffic.
 - Continue broader Sprint-fixture discovery using evidence for which actors/routes can factually enter Action9.
+
+### EV-320 — Goblin Sprint RIGHT -> OFF controlled fixture exposes origin-continuation gap
+
+Observed:
+- The controlled motion keeps the known factual Goblin Sprint route and authors `RIGHT` followed later by `OFF`; complete-motion scan remains `RequiredMask=1` because OFF is non-activating.
+- Four factual Goblin Action9/SPRINT executions accepted the authored RIGHT marker through the diagnostic Sprint handoff. In the three executions that reached the authored OFF (C1 6, 80 and 112), RIGHT was first authorized under factual Sprint and opened the exact club `5 -> 7`; native damage to `PC_Hero` occurred before OFF in the sampled sequences.
+- Before OFF fired, Gothic changed the same C1 and same PowerAttack-named motion from factual Action9/SPRINT to Action2/POWER.
+- At OFF, `EquippedSprintProbe` denied authorization with `NOT_FACTUAL_SPRINT_HIT` even though actor, C1 generation, motion, required-source mask and exact RIGHT source still belonged to the already-bound Sprint execution.
+- The generic marker layer then rejected OFF as `REJECTED_C1_GENERATION_INCONSISTENCY` because its marker-owned window/budget identity is action-sensitive: the window was opened under Action9 and OFF arrived under Action2.
+- Native cleanup later returned the club `7 -> 5`; the affected C1s finalized `Outstanding=0`.
+- User observation: Goblin damaged the player during the test.
+
+Interpretation:
+- RIGHT Sprint handoff remains confirmed.
+- The intended RIGHT -> OFF Sprint continuation is **not yet supported by the current diagnostic implementation**.
+- This is a real same-execution identity gap, not a malformed animation: the same C1/motion/source survives while Gothic changes factual action 9 -> 2 before the later marker.
+- The permanent raw55 architecture already has the relevant precedent: immutable Sprint origin may continue under current Power only when the same execution identity remains intact.
+- Do not solve this by weakening generic action identity globally. The correction must be bounded to an already-bound Sprint-origin execution and preserve exact C1/motion/source identity.
+
+Provenance:
+- User upload commit `11cec8b2cd285dd2a6cd09482dd893c97630fd62`.
+- Diagnostic implementation under test: `d2c6c8be0d56129ec6725571324a9066b181242c`.
+- Built/live DLL SHA256: `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`.
+- Canonical archived log: `research/archive/2026-09-19_sprint_goblin_on_off_marker_test.log`.
+- Git blob `4d6b386b74d466b5d2a83deddd87208807f05f6d`; 209,735 characters / 1,089 lines.
+
+Disposition:
+- TARGETED CORRECTION REQUIRED before production-promotion decision.
+- Freeze a bounded diagnostic-only Sprint-origin continuation correction; no further random vanilla fixture testing is useful until that gap is resolved.
+
+### EV-321 — Goblin Sprint BOTH with missing LEFT negative fixture PASS
+
+Observed:
+- The controlled Goblin Sprint motion authors `BOTH`, producing complete-motion `RequiredMask=3` (RIGHT | LEFT).
+- The Goblin has exact RIGHT `It_1H_Club_01` / raw2 and no LEFT source.
+- Factual Action9/SPRINT is captured repeatedly. At callback time the generic ownership diagnostic reports required sources unavailable and the Sprint probe repeatedly records `DELEGATE_NATIVE Reason=REQUIRED_EQUIPPED_SOURCE_MISSING`.
+- No Sprint binding is created. At the authored BOTH marker, the probe records `DENY_GENERIC_EQUIPPED Reason=NO_BOUND_EXECUTION`; the marker is rejected as `REJECTED_UNSUPPORTED_HIT`.
+- Because the diagnostic probe delegates instead of suppressing the native Power callback, Gothic opens the factual RIGHT club natively `5 -> 7`, can damage `PC_Hero`, and later cleans the club `7 -> 5`.
+- Three complete sampled Sprint C1s (8, 34, 45) show this reject/native-fallback/cleanup pattern and finalize `Outstanding=0`; a fourth Sprint C1 is interrupted before the authored marker.
+- The `Classification=CONTRADICTION` ownership diagnostic is expected in this deliberately malformed source-availability fixture: that logger defines a marked motion requiring an unavailable equipped source as a contradiction. It is the intended negative-test condition, not evidence that the fail-closed policy malfunctioned.
+- User observation: Goblin damaged the player with the BOTH-authored motion; runtime evidence confirms that damage came from the delegated native path rather than accepted BOTH marker ownership.
+
+Interpretation:
+- **NEGATIVE PASS.**
+- Complete-motion required-source validation prevents partial BOTH ownership when LEFT is missing.
+- Native fallback remains intact when the generic Sprint probe declines ownership.
+
+Provenance:
+- User upload commit `11cec8b2cd285dd2a6cd09482dd893c97630fd62`.
+- Diagnostic implementation under test: `d2c6c8be0d56129ec6725571324a9066b181242c`.
+- Built/live DLL SHA256: `A42176DC0309662932089324565CAFBEC77DCA51D9CCCF2D3958B31CBD33CFC7`.
+- Canonical archived log: `research/archive/2026-09-19_sprint_goblin_both_marker_test.log`.
+- Git blob `961a6b7a12dc44d9d8354246409b0d674967b73e`; 134,769 characters / 716 lines.
+
+Disposition:
+- PASS — the generic required-source gate fails closed and preserves native fallback for a Sprint BOTH motion when LEFT is absent.
