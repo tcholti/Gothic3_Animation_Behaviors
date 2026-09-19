@@ -9,18 +9,24 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Technical active branch: `docs/collision-source-evidence`  
-Current gate: standalone collision regression — Phase 1 player/Golem matrix.
+Current gate: standalone collision regression — **Phase 2 Orc attack matrix**.
 
-Stable route:
+Corrected closed state:
 
-[COLLISION_TEST_PLAN.md — Phase 1 Golem matrix](COLLISION_TEST_PLAN.md#phase-1-golem)
+```text
+human marked attack matrix = CLOSED/PASS
+Golem = consistent target fixture only, not the behavior under test
+Sabretooth marked single-marker route = CLOSED/PASS
+Sabretooth raw8 double-marker same-C1 control = CLOSED/PASS at EV-307
+```
 
 Immediate continuation:
 
 ```text
-exercise any prepared remaining Golem setup
-OR, if none remain, explicitly close Phase 1
--> then begin Orc Phase 2
+Orc marked attacks
+-> cover 2H / Staff / raw8 Fist
+-> expected approximately 2–3 complete attributable logs
+-> exact run count follows attribution needs
 ```
 
 Latest closed evidence remains EV-308. `research/raw/` is clean except `Keep.txt`.
