@@ -4,7 +4,9 @@
 
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-18
+**Updated:** 2026-09-19
+
+> **INTERRUPTED-CHAT ENTRY RULE:** If the previous Chat failed, hit max context, or became unusable, start at the repository root `README.md` **Start Here** recovery block. In that situation this file is a clue, not unquestioned truth, until POP-11 recovery reconciles it with the newest durable state.
 
 > **WORK BUILD RULE:** Unless a frozen task explicitly authorizes Work to build, Work must not invoke or probe build tooling. Source/static audit -> publish -> STOP. Local build belongs to User + Normal Chat after independent source review.
 
