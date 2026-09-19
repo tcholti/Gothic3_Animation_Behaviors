@@ -21,7 +21,7 @@ generic equipped Sprint causal probe = GOBLIN PASS EV-315 + PROTECTED SENTINELS 
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-318
+latest completed evidence = EV-319
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: EV-315 Goblin causal PASS and all three protected coexistence sentinels EV-316–EV-318 are closed PASS. Exercise additional factual equipped-Sprint fixtures across other available equipped UseTypes/animation sets before any permanent-promotion decision. Phase 4 remains held.
+Current responsibility: EV-315 Goblin causal PASS and all three protected coexistence sentinels EV-316–EV-318 are closed PASS. EV-319 Ogre/raw52 broader attempt was NOT EXERCISED because factual Action9 never occurred, while ordinary Ogre regression remained healthy. Select further broader fixtures from routes likely to factually enter Action9 before any permanent-promotion decision. Phase 4 remains held.
 
 ## Immediate responsibility
 
@@ -39,7 +39,8 @@ Current responsibility: EV-315 Goblin causal PASS and all three protected coexis
 2. EV-316 Sabretooth raw8 Sprint sentinel = PASS.
 3. EV-317 Troll raw55 Sprint-origin sentinel = PASS.
 4. EV-318 equipped 2H true-Power sentinel = PASS.
-5. Exercise additional factual equipped-Sprint fixtures across other available UseTypes/animation sets before deciding permanent promotion.
+5. EV-319 Ogre/raw52 Sprint attempt = NOT EXERCISED / ordinary regression healthy.
+6. Continue broader Sprint-fixture discovery using routes with evidence that factual Action9 can occur before deciding permanent promotion.
 
 ## Current verified diagnostic product
 
