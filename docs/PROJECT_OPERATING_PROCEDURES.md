@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.16  
-**Updated:** 2026-09-18
+**Version:** 1.17  
+**Updated:** 2026-09-19
 
 ## Purpose
 
@@ -840,6 +840,12 @@ Do not create another review-procedure document.
 
 ## 13. POP-11 — Normal Chat Continuity and Interrupted-Context Recovery
 
+### Entry-point ownership
+
+The repository root `README.md` **Start Here** section is the canonical discoverable first hop after an abrupt/max-context/unusable Chat. It contains the compact startup sequence and routes the recovering Chat here.
+
+POP-11 owns the **detailed continuity/recovery mechanics after that first hop**. Do not require a fresh Chat or the User to remember/search for POP-11 before finding the recovery route, and do not move the first-hop recovery entry away from the root README during routine review/audit. Changing that division is a deliberate project-retrieval decision, not ordinary procedure cleanup.
+
 ### Trigger
 
 Use when:
@@ -1056,7 +1062,8 @@ When a procedure becomes too long, ask whether stable detail can move into a reu
 | large static binary/reference material | POP-08 |
 | routine failure / Chat-safe output | POP-09 |
 | formal project review/audit | POP-10 |
-| planned Chat transition / context warning / previous Chat failed | POP-11 |
+| planned Chat transition / context warning | POP-11 |
+| previous Chat failed / maxed context / became unusable | root `README.md` Start Here → POP-11 |
 
 ## Core Procedure Rule
 
