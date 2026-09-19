@@ -31,7 +31,7 @@ Runtime claims remain evidence-bounded; native action/phase/source semantics out
 | frame 0–N sampled-frame convention | `ANIMATION_RULES.md` §8 |
 | equipped collision marker authoring | `ANIMATION_RULES.md` §9 |
 | human FIST marker authoring | `ANIMATION_RULES.md` §10 |
-| may I use FIST on raw55/monster animations? | **No, not yet**; `ANIMATION_RULES.md` §10; `DESIGN.md` PhysicalFist discovery |
+| may I use FIST on raw55/PhysicalFist animations? | Yes, within the proven raw55 contract; `ANIMATION_RULES.md` §10; `COLLISION_REFERENCE.md`; `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` |
 | supported family/native eligibility restrictions | `ANIMATION_RULES.md` §11; `EVIDENCE_INDEX.md` |
 | exact asset exists? | search `data/animation_names/all_animation_names.txt` |
 | author-curated exact notes | `data/animation_names/author_grouped_attacks_and_stumbles.txt` |
@@ -52,7 +52,7 @@ Map / Book                             -> Letter
 Lockpick                               -> Key
 ```
 
-`PhysicalFist -> Fist` is an **animation-token mapping only**. Current production collision `FIST` is proven for exact human raw 8 and must not be generalized to raw55 from this mapping.
+`PhysicalFist -> Fist` is an **animation-token mapping only**. Both raw8 Fist and raw55 PhysicalFist now have production `FIST` behavior, but runtime source identity selects two different mechanisms; never infer the mechanism from the serialized token alone.
 
 ---
 
@@ -74,9 +74,9 @@ Use catalog/evidence for exact physical source map, Power, SimpleWhirl and repea
 
 Use `ANIMATION_RULES.md` §10 for current authoring. Production raw-8 mechanism/proof routes through `DESIGN.md` and EV-221–EV-240.
 
-### PhysicalFist / transformed creatures
+### PhysicalFist / raw55
 
-No authoring contract is frozen. Route current research through `DESIGN.md` / `COLLISION_TEST_PLAN.md` bounded raw55 discovery. Do not infer production semantics from the serialized `Fist` token.
+A production authoring contract is now established for factual current RIGHT PhysicalFist/raw55 in supported Normal, Quick, true Power and Sprint-origin executions. Use `ANIMATION_RULES.md` §10 for marker rules and `COLLISION_REFERENCE.md` for current mechanism limits. Do not infer raw55 from the serialized `Fist` token alone.
 
 ---
 
@@ -113,7 +113,7 @@ Important distinctions:
 - repeated equipped markers rearm contact through `ClearTriggeredList()`;
 - OFF = equipped inactive gap, not terminal cleanup;
 - FIST is not an equipped source set and has no weapon ClearTriggeredList meaning;
-- raw55/PhysicalFist remains outside the author-facing collision vocabulary until separately proven.
+- raw55/PhysicalFist uses `FIST` under its separate proven production contract; do not apply raw8 latch semantics or equipped-source semantics to it.
 
 Detailed rules: `ANIMATION_RULES.md` §§9–11.
 
@@ -131,7 +131,8 @@ Detailed rules: `ANIMATION_RULES.md` §§9–11.
 | Hack callback identity | EV-216 |
 | Hack tested 2H/Staff marker/source closure | EV-244 |
 | production human raw-8 Fist | EV-221–EV-240 |
-| final production Fist acceptance | EV-240 |
+| final production raw8 Fist acceptance | EV-240 |
+| permanent raw55 PhysicalFist acceptance | EV-262–EV-298 |
 
 Use `EVIDENCE_INDEX.md` for exact routing/provenance.
 
