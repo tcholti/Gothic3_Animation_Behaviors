@@ -10,34 +10,35 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **generic equipped Sprint diagnostic causal case ACCEPTED through EV-324; explicit production-promotion decision next.** Phase 4 remains held.
+Current gate: **equipped Sprint production promotion APPROVED; permanent extraction implementation next.** Phase 4 remains held.
 
-Active parent investigation:
+Active Work contract:
 
-`docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md`
+`docs/work/active/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md`
 
-Closed correction archive:
+Decision rationale:
 
-`docs/archive/investigations/COLLISION_EQUIPPED_SPRINT_ORIGIN_CONTINUATION_CORRECTION.md`
+`docs/decisions/ADR-0003-promote-equipped-sprint-as-permanent-behavior.md`
 
-Accepted correction implementation:
+Closed causal investigation:
 
-`c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`
+`docs/archive/investigations/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md`
 
-Runtime closure:
+Accepted evidence:
 
 ```text
-EV-322 RIGHT -> OFF continuation positive      PASS
-EV-323 BOTH missing-LEFT negative rerun        PASS
-EV-324 ordinary equipped true-Power protection PASS
+EV-315  factual equipped Sprint RIGHT handoff                PASS
+EV-322  Action9 -> same-C1 Action2 RIGHT->OFF continuation  PASS
+EV-323  BOTH with LEFT missing fail-closed rerun             PASS
+EV-324  ordinary true-Power protected control               PASS
 ```
 
-EV-324 shows ordinary PC_Hero Action2/POWER remains entirely under existing equipped-Power ownership: 12 ownership records, 14 accepted Flamberge RIGHT markers, 8 Golem contacts, zero PC_Hero Sprint-probe records, zero continuation signatures, and clean finalization.
+Promotion rule: do not compile the temporary `EquippedSprintProbe` into behavior. Extract the proven policy/state into permanent `EquippedSprintCollision.cpp/.h`, include it in the shared behavior sources, let EngineBridge remain hook transport, and keep generic RIGHT/LEFT/BOTH/OFF semantics in `FrameCollisionMarkers`.
 
-Reusable conclusion: the diagnostic Sprint architecture is causally accepted, including exact same-C1 Action9 -> Action2 origin continuity and fail-closed missing-source behavior. Production equipped-Sprint support is still **not promoted**.
+The permanent owner must preserve exact Sprint-origin identity, allow only the proven same-C1 Action9 -> Action2 continuation, fail closed on missing required sources, never create Sprint origin from true Power, and remain mechanically independent of diagnostics.
 
-Next responsibility: make the explicit parent-level production-promotion decision. If promotion is chosen, freeze a separate bounded behavior-facing implementation task with release-purity/diagnostics-free validation; do not simply copy diagnostic code ad hoc.
+After Work publishes, Normal Chat independently reviews before any build. Required acceptance then includes both behavior-only and diagnostic twins, the compact EV-322/323/324 controls, and a diagnostics-free behavior smoke.
 
-Processed EV-324 raw log is archived; `research/raw/` should be clean except `Keep.txt`.
+Latest evidence = EV-324. `research/raw/` should contain only `Keep.txt`.
 
-Use `COLLISION_REFERENCE.md` for settled facts and `EVIDENCE_INDEX.md` for provenance.
+Use `COLLISION_REFERENCE.md` for current facts, `DESIGN.md` for intended architecture, and `EVIDENCE_INDEX.md` for provenance.
