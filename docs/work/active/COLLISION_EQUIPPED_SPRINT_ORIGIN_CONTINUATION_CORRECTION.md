@@ -1,6 +1,6 @@
 # Equipped Sprint Origin-Continuation Correction
 
-**Status:** FROZEN — WORK IMPLEMENTATION PENDING  
+**Status:** ACTIVE — FROZEN RESPONSIBILITY / WORK IMPLEMENTATION PENDING  
 **Type:** Bounded diagnostic-only correction  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime interpretation.
