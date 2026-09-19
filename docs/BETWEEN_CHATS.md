@@ -9,7 +9,7 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Technical active branch: `docs/collision-source-evidence`  
-Current gate: **equipped Sprint RIGHT/raw2 diagnostic causal probe**. Phase 4 non-weapon regression is temporarily held.
+Current gate: **generic equipped Sprint diagnostic causal probe**, with Goblin RIGHT/raw2 retained only as the first causal fixture. Phase 4 non-weapon regression is temporarily held.
 
 Corrected closed state:
 
@@ -44,11 +44,11 @@ Goblin/Demon/Ogre were deliberately rerun on the current post-raw55 build to pro
 
 Active frozen task:
 
-`docs/work/active/COLLISION_EQUIPPED_SPRINT_RIGHT_RAW2_CAUSAL_PROBE.md`
+`docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md`
 
-Question: can factual Action9/Sprint with exact current RIGHT 1H/raw2 use the established generic equipped RIGHT marker mechanism safely when the native early `OnAI_PowerAttack` callback timing is suppressed?
+Question: can factual Action9/Sprint use the established generic equipped RIGHT/LEFT/BOTH/OFF marker mechanism safely when native early `OnAI_PowerAttack` timing is suppressed, with ordinary complete-motion required-source validation deciding which equipped sources must exist? Goblin RIGHT/raw2 is the first test fixture only.
 
-Hard boundary: diagnostic-only temporary probe; no production promotion yet.
+Hard boundary: diagnostic-only temporary probe; no production promotion yet. Existing source commit `1ae0731cd501e6d72bbbf6642188a3047d134805` is the superseded narrow RIGHT/raw2 implementation and was not built/tested; do not build it before the generic replacement is independently reviewed.
 
 After independent source review, runtime order is:
 
