@@ -5,6 +5,8 @@
 **Version:** 1.0  
 **Updated:** 2026-09-12
 
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
+
 ## Purpose
 
 Define how new behavior is researched, tested, and promoted into production so the mod stays modular and proven subsystems do not have to be redesigned merely because research scaffolding was placed in the wrong module.
@@ -64,9 +66,10 @@ When runtime evidence reveals a new mechanism, classification, lifecycle, or fea
 1. **do not implement the experiment in the bridge;**
 2. **do not put it into an existing production feature module merely because the names are related;**
 3. create a narrow temporary probe/test module when behavior intervention is required;
-4. compile the probe only into the diagnostic/research target whenever practical;
-5. let the bridge expose only the smallest transport/delegation seam required by the probe;
-6. keep experiment-only state, causal interventions, logging, and hypotheses inside the probe.
+4. if a dedicated probe/task document is needed, place it under `docs/work/active/` with `**Status:** ACTIVE`; do not create a new temporary probe/task document in root `docs/`;
+5. compile the probe only into the diagnostic/research target whenever practical;
+6. let the bridge expose only the smallest transport/delegation seam required by the probe;
+7. keep experiment-only state, causal interventions, logging, and hypotheses inside the probe.
 
 Suggested naming pattern:
 
@@ -114,7 +117,8 @@ Before production implementation:
 5. move/rewrite only the minimal proven behavior needed by production;
 6. remove experiment-only branches, state, logs, guards, and scaffolding;
 7. keep the bridge limited to the smallest permanent delegation/transport seam;
-8. ensure diagnostics are not required for release behavior to work.
+8. ensure diagnostics are not required for release behavior to work;
+9. promote reusable factual conclusions to current reference, update owning architecture when responsibility changed, create an ADR only for significant rationale, and archive the closed temporary document under `docs/archive/investigations/`.
 
 Do **not** promote a temporary probe wholesale merely because it passed. Re-express the proven result as the minimum sufficient production design.
 
@@ -247,4 +251,4 @@ STOP for independent review/build/runtime validation
 
 ## Core Rule
 
-> **Unknown behavior is researched in an isolated probe, proven behavior is implemented in the module that truly owns it, hooks remain transport-only, temporary scaffolding is deleted rather than normalized, and final validation certifies the finished candidate rather than an earlier experimental architecture.**
+> **Unknown behavior is researched in an isolated probe; proven behavior is implemented in the module that truly owns it; hooks remain transport-only; reusable conclusions are promoted to current knowledge before the temporary probe/task is archived; temporary runtime scaffolding is deleted rather than normalized; and final validation certifies the finished candidate rather than an earlier experimental architecture.**
