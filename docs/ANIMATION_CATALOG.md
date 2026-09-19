@@ -219,16 +219,15 @@ Current production authoring is `FIST` only; no authored FIST_OFF.
 
 ---
 
-## 12. PhysicalFist / Monster Status
+## 12. PhysicalFist / raw55 Status
 
-`gEUseType_PhysicalFist` / raw 55 normalizes to the serialized animation token `Fist`, but no production collision mechanism is yet claimed.
+`gEUseType_PhysicalFist` / raw55 normalizes to the serialized animation token `Fist`, but runtime source identity remains distinct from raw8 `gEUseType_Fist`.
 
-Transformed animal/monster forms are the preferred next controlled discovery fixtures. Until that work is interpreted:
+Permanent authored `G3AB_COL_FIST` behavior is now established for the evidence-backed factual current-RIGHT raw55 scope across Normal, Quick, true Power and Sprint-origin executions, with one or two authored FIST contacts. The mechanism is separate from raw8 and must not be inferred from the serialized token alone.
 
-```text
-NO assumption raw55 == human raw8
-NO monster FIST authoring contract
-NO per-limb/body marker vocabulary
-```
+Current exclusions include LEFT raw55 generalization, mixed equipped-source + FIST authoring, more than two raw55 FIST markers, and custom/direct damage ownership.
 
-Route the active discovery contract through `DESIGN.md` / `COLLISION_TEST_PLAN.md`.
+Current authoring rules: `ANIMATION_RULES.md` §10.  
+Current collision facts: `COLLISION_REFERENCE.md`.  
+Permanent architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
+Evidence: EV-262–EV-298.
