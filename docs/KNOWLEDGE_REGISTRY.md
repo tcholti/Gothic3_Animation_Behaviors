@@ -3,168 +3,189 @@
 **Status:** Active authority/update-trigger registry  
 **Updated:** 2026-09-19
 
+<!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
+
 ## Purpose
 
-Define **where project knowledge/responsibility belongs** and what kinds of events should update each authority.
+Define **where current project knowledge belongs**, when each owner changes, and which material is only routing, temporary work, or archive.
 
-Use this registry during maintenance in `KNOWLEDGE_MAINTENANCE.md`, during formal review/audit preflight in POP-10, and during POP-11 interrupted-context recovery when a fresh Chat must re-establish which owner may legitimately be changed.
+This registry does not repeat the lifecycle. `KNOWLEDGE_MAINTENANCE.md` owns promotion/archive mechanics.
 
-This file owns authority/update routing. It does not repeat the project charter, maintenance procedure, recovery procedure, or review procedure itself.
-
-> **One responsibility should have one primary authority. Other documents route to it.**
-
-`docs/README.md` is the project charter and highest project-specific authority beneath CAM for purpose, long-term direction, scope, authority topology and retrieval model. The repository root `/README.md` owns the discoverable Start Here front door. This registry maps those distinct responsibilities and the specialist responsibilities beneath the charter.
+> **One responsibility should have one primary current owner. Evidence proves current statements; archive preserves history; neither silently becomes current architecture.**
 
 ---
 
-## 1. Authority Registry
-
-| Knowledge / project responsibility | Primary authority | Update when | Usually do NOT update when |
-|---|---|---|---|
-| project purpose / long-term direction / scope / authority topology / retrieval model / subsystem-orientation routes | `docs/README.md` project charter | User-authorized purpose/direction/scope/topology change, or durable retrieval-model/current-context reconstruction structure materially changes | technical/evidence content changes inside already-valid specialist owner; routine current-state movement |
-| repository front-door startup routing for ordinary continuation and abrupt/max-context Chat recovery | root `/README.md` **Start Here** | the discoverable first hop or compact startup route changes | detailed recovery mechanics change inside already-valid POP-11; current responsibility movement inside SESSION_ENTRYPOINT |
-| current active subsystem / causal gate / immediate next responsibility | `SESSION_ENTRYPOINT.md` | active gate/subsystem/immediate candidate/next responsibility changes, including material temporary prerequisite/safety/contradiction/recovery route | routine continuation inside same route |
-| transient Chat ↔ Work / context handoff | `BETWEEN_CHATS.md` | another context needs exact short-lived continuation detail not already durable | ordinary project facts already live in durable authorities |
-| project-specific collaboration behavior / participant-tool allocation / Gothic↔CAM operationalization | `COLLABORATION_RULES.md` | recurring Gothic-specific collaboration lesson changes participant allocation, authorization/interaction behavior, or project-local CAM operationalization | technical result with no collaboration consequence; project purpose/topology change belonging in charter |
-| stable operating conventions: branch/state meanings, gate/test IDs, evidence/procedure IDs, raw/derived naming, build identity, document versioning, validation/artifact flow | `PROJECT_PIPELINE.md` | accepted convention changes or a new convention responsibility/transition is defined | routine use of established convention |
-| recurring project-local operations: Git handoff/sync, build/deploy/load, runtime-artifact intake/publish/closure, large-log/static retrieval, formal review preflight, and detailed Normal Chat continuity/recovery mechanics after the root README first hop | `PROJECT_OPERATING_PROCEDURES.md` | repeated friction/mistake, one serious failure, clearly better recurring method, new recurring operation, or owned sequence changes | one-off command variation; front-door startup-routing change owned by root `/README.md`; review finding whose owner is another authority |
-| workstation-specific repository/build/runtime paths | `LOCAL_WORKSTATION_PATHS.md` | actual local path changes or another workstation path becomes operationally necessary | portable procedure semantics or branch/build conventions |
-| bounded Work execution contract | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work authority/preflight/publication/stop/review/bounded-execution model changes | participant allocation without Work-execution change; unrelated technical result |
-| knowledge maintenance / future-relevance / knowledge-health process | `KNOWLEDGE_MAINTENANCE.md` | maintenance transaction/event model, future-use routing, workaround reevaluation, audit-health/bloat process changes | ordinary technical result handled by existing process |
-| authority/update routing | `KNOWLEDGE_REGISTRY.md` | responsibility gains/moves/loses owner or update-trigger logic changes | underlying knowledge grows inside existing authority |
-| overall intended Raise/speed/frame-collision architecture | `DESIGN.md` | system responsibility/public behavior/major invariant/subsystem boundary/config model changes | experiment chronology, routine confirmation, build status |
-| release/diagnostic product separation | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` | release-vs-diagnostic responsibility, compilation separation, coexistence/load rule, final extraction model changes | diagnostic result confirms existing model |
-| collision execution/cleanup lifecycle architecture | `COLLISION_LIFECYCLE_PLAN.md` | ownership/lifetime/cleanup invariant or causal architecture changes | test confirms model without changing it |
-| collision diagnostic architecture | `COLLISION_LOGGER_PLAN.md` | hook ownership, diagnostic event model, CORE/deep boundary, or active probe responsibility changes | log adds evidence without changing diagnostic design |
-| current/future collision validation boundaries | `COLLISION_TEST_PLAN.md` | gate, acceptance criteria, control matrix, interpretation rule, or future required validation boundary changes | historical completed-test detail preserved by evidence |
-| exact evidence status/provenance | `EVIDENCE_LEDGER.md` + `EVIDENCE_LEDGER_STEP_B.md` + `EVIDENCE_LEDGER_199_ONWARD.md` + `EVIDENCE_LEDGER_232_ONWARD.md` + later numbered continuation ledgers through `EVIDENCE_LEDGER_286_ONWARD.md` | controlled/source fact established, qualified, contradicted, or materially reinterpreted | pure design preference without factual claim |
-| evidence topic / future-responsibility routing | `EVIDENCE_INDEX.md` | new evidence domain/range/search route is useful, existing route materially changes, or proven knowledge becomes materially relevant to another future responsibility | every new EV already covered by existing route |
-| deliberate canonical evidence storage-path migration lookup | `EVIDENCE_PATH_MIGRATIONS.md` | processed canonical evidence moves between repository storage layers and historical/current paths would otherwise be ambiguous | every evidence result; ordinary archive entry whose historical route remains unambiguous |
-| generalized animation semantics / authoring rules | `ANIMATION_RULES.md` | generalized filename/UseType/action/phase/pose/authoring semantic changes | one concrete asset/test that does not generalize |
-| concrete animation families/assets/fixtures | `ANIMATION_CATALOG.md` | reusable concrete family/asset/source annotation/fixture knowledge changes | runtime architecture result with no asset-level consequence |
-| animation question routing | `ANIMATION_INDEX.md` | new animation category or materially changed route | ordinary catalog detail reachable by current routes |
-| complete native animation filename existence | `data/animation_names/all_animation_names.txt` | authoritative inventory regenerated/replaced | interpretation of existing filenames |
-| author-grouped exact animation names/notes | `data/animation_names/author_grouped_attacks_and_stumbles.txt` | authoritative grouped source changes | generalized interpretation derived from source |
-| source/API/symbol/hook practical lookup | `SOURCE_HOOK_GUIDE.md` | reusable symbol/API/hook/address/search route established/revised | experiment chronology/one-off detail |
-| native collision cleanup callsites/stacks | `COLLISION_CLEANUP_CALLSITE_MAP.md` | tested cleanup RVA/stack/symbol/caller interpretation changes | higher-level lifecycle design with no callsite fact change |
-| project-wide engineering principles | `ENGINEERING_GUIDE.md` | durable technical principle generalizes beyond one subsystem while consistent with charter | local workaround/test detail; project-purpose change |
-| technical scope/context for engine-facing prompts | `PROJECT_SCOPE_CONTEXT.md` | factual engine-facing authorization/scope-context wording changes | ordinary technical evidence; charter-purpose change |
-| research-layer intake/processing usage map | `research/README.md` | research storage workflow, processing/retrieval routing, or directory-layer meaning changes | every new archived log; evidence result already owned by EV/index |
-| research chronology / why an older technical decision existed | `EVIDENCE_INDEX.md` → exact EV/provenance; Git history when exact historical wording/sequence is needed | evidence interpretation/retrieval route changes | ordinary chronology growth; do not maintain parallel milestone history |
-| active/unprocessed runtime/source artifact | `research/raw/` | new artifact remains active input to interpretation/comparison | artifact canonically processed |
-| processed runtime/source provenance | `research/archive/` | unchanged source artifact retains verification value after processing | active unresolved artifact; derived analysis |
-| deterministic retrieval/analysis aid | `research/derived/` | canonical raw/archive artifact needs reproducible retrieval package/extract | source artifact itself; hand-written substitute for canonical evidence |
-| superseded ordinary documentation wording/history | Git history | older wording/removed file must be recovered for historical reasoning | ordinary active retrieval; Git history is not competing current authority |
-
-Canonical evidence remains one global monotonic namespace:
+## 1. Governing hierarchy
 
 ```text
-EVIDENCE_LEDGER.md                EV-001–EV-157
-EVIDENCE_LEDGER_STEP_B.md         EV-158–EV-198
-EVIDENCE_LEDGER_199_ONWARD.md     EV-199–EV-231
-EVIDENCE_LEDGER_232_ONWARD.md     EV-232–EV-249
-EVIDENCE_LEDGER_250_ONWARD.md     EV-250–EV-264
-EVIDENCE_LEDGER_265_ONWARD.md     EV-265–EV-273
-EVIDENCE_LEDGER_274_ONWARD.md     EV-274–EV-279
-EVIDENCE_LEDGER_280_ONWARD.md     EV-280–EV-282
-EVIDENCE_LEDGER_283_ONWARD.md     EV-283–EV-285
-EVIDENCE_LEDGER_286_ONWARD.md     EV-286 onward
+CAM
+↓
+docs/README.md project charter
+↓
+specialist current authorities / references
+↓
+procedures / conventions / temporary work
+↓
+evidence and archive as supporting provenance
 ```
 
-Each continuation header is the final authority for its actual end boundary when another split is later added. The split files are storage/retrieval boundaries only; the EV namespace remains global and monotonic.
+The repository root `/README.md` owns the discoverable startup front door. It is not the project charter.
 
 ---
 
-## 2. Authority and Knowledge Direction
+## 2. Current authority registry
 
-Normative/operational direction:
-
-```text
-CAM constitutional collaboration layer
-        ↓
-README.md project charter
-        ↓
-specialist Gothic authorities within delegated domains
-        ↓
-recurring procedures / bounded protocols
-        ↓
-current task execution
-```
-
-Specialist authorities may be parallel. Ownership is determined by responsibility, not file size, age, detail or recency.
-
-Factual knowledge direction is mostly:
-
-```text
-raw/source observation
-        ↓
-canonical evidence
-        ↓
-canonical topic authority (only if meaning changes)
-        ↓
-index route (only if retrieval changes)
-        ↓
-current-state pointer (only if active responsibility changes)
-```
-
-Evidence may justify changes to normative/technical authority, but does not silently rewrite charter, architecture or procedure.
-
-Stable operating conventions, workstation paths, participant allocation and implementation procedure are orthogonal specialist responsibilities; do not create sideways dependency chains where every authority repeats every other authority.
-
----
-
-## 3. Interrupted-Context Ownership Rule
-
-POP-11 owns the recovery sequence. The Registry determines which owners that recovery may change.
-
-A recovering Chat must not infer ownership from whichever file appears newest or most detailed. Before documentation repair it should re-establish:
-
-```text
-README charter hierarchy
-→ this Registry's owner/update route
-→ KNOWLEDGE_MAINTENANCE transaction rule
-→ relevant specialist owner
-→ recent durable facts
-```
-
-If the durability gap is local, update only owners whose triggers actually fired.
-
-If ownership itself is unclear or recovery discovers broad cross-authority contradiction, ordinary recovery stops and POP-10 formal review preflight becomes mandatory before broader edits.
+| Responsibility | Primary current owner | Update trigger |
+|---|---|---|
+| project purpose / long-term direction / scope / authority topology / retrieval model | `docs/README.md` | deliberate project-level change |
+| ordinary + interrupted-Chat startup routing | root `/README.md` Start Here | startup/recovery route changes |
+| current active gate / immediate responsibility | `SESSION_ENTRYPOINT.md` | gate/next responsibility changes |
+| short-lived cross-context handoff | `BETWEEN_CHATS.md` | another context needs temporary continuation detail |
+| collaboration / participant-tool allocation / Gothic↔CAM operationalization | `COLLABORATION_RULES.md` | collaboration rule changes |
+| stable branch/test/evidence/procedure/artifact conventions | `PROJECT_PIPELINE.md` | convention changes |
+| recurring operational sequences | `PROJECT_OPERATING_PROCEDURES.md` | recurring procedure changes |
+| bounded Work execution behavior | `WORK_IMPLEMENTATION_PROTOCOL.md` | Work responsibility/execution rule changes |
+| feature research→promotion method | `FEATURE_DEVELOPMENT_METHOD.md` | feature-development method changes |
+| documentation/evidence promotion/archive lifecycle | `KNOWLEDGE_MAINTENANCE.md` | knowledge lifecycle changes |
+| authority/update routing | `KNOWLEDGE_REGISTRY.md` | ownership or trigger changes |
+| significant non-obvious decision rationale | `docs/decisions/` ADRs | accepted/superseded architectural/project decision |
+| workstation-specific paths | `LOCAL_WORKSTATION_PATHS.md` | actual local path changes |
+| overall behavior architecture / subsystem responsibilities | `DESIGN.md` | current intended architecture changes |
+| release vs diagnostic product separation | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` | product/build separation changes |
+| concise established collision facts | `COLLISION_REFERENCE.md` | reusable collision fact is established/qualified/contradicted |
+| collision lifecycle / cleanup / terminal repair architecture | `COLLISION_LIFECYCLE.md` | lifecycle invariant/ownership changes |
+| collision diagnostics architecture | `COLLISION_DIAGNOSTICS.md` | diagnostic ownership/event model changes |
+| current/future collision validation gates | `COLLISION_TEST_PLAN.md` | test gate/matrix/acceptance changes |
+| permanent PhysicalFist/raw55 behavior architecture | `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` | accepted raw55 production contract changes |
+| exact source/hook/API facts | `SOURCE_HOOK_GUIDE.md` | reusable hook/source fact changes |
+| exact collision cleanup callsite facts | `COLLISION_CLEANUP_CALLSITE_MAP.md` | cleanup callsite/stack fact changes |
+| generalized animation semantics / authoring rules | `ANIMATION_RULES.md` | generalized authoring/runtime semantic changes |
+| concrete animation families/assets/fixtures | `ANIMATION_CATALOG.md` | reusable asset-level fact changes |
+| animation question routing | `ANIMATION_INDEX.md` | route/category changes |
+| evidence topic/range routing | `EVIDENCE_INDEX.md` | EV range/topic route changes |
+| current open evidence entries | `EVIDENCE_LEDGER_309_ONWARD.md` | new evidence after EV-308 |
+| deliberate evidence-storage path migration lookup | `EVIDENCE_PATH_MIGRATIONS.md` | historical/current path would become ambiguous |
+| project engineering philosophy experiment | `ENGINEERING_GUIDE.md` | User accepts/revises the experimental engineering method |
+| small factual project-scope context | `PROJECT_SCOPE_CONTEXT.md` | factual project context changes |
 
 ---
 
-## 4. Cross-Responsibility Routing Rule
+## 3. Supporting/non-current material
 
-When proven knowledge becomes materially relevant to another future responsibility:
+### Active temporary work
 
 ```text
-keep fact in one owning authority/evidence record
-→ add smallest useful cross-route from future responsibility
-→ preserve original regression/invariant route if new knowledge may replace a workaround
+docs/work/active/
 ```
 
-Do not copy the narrative into several subsystem documents. Vague “might be useful someday” relationships do not justify cross-routes.
+Owns only currently unresolved probes, bounded implementation contracts, audit tasks and similar temporary work.
+
+It is **not** current architecture/reference. Every temporary document must declare `**Status:** ACTIVE`.
+
+### Closed investigations
+
+```text
+docs/archive/investigations/
+```
+
+Preserves completed probes, implementation contracts, audits and superseded work plans after reusable conclusions are promoted.
+
+### Closed evidence ledgers
+
+```text
+docs/archive/evidence/
+```
+
+Preserves completed EV volumes. They are proof history, not ordinary retrieval.
+
+### Runtime provenance
+
+```text
+research/raw/      open/unprocessed intake
+research/derived/  deterministic retrieval aids
+research/archive/  processed canonical runtime source
+```
 
 ---
 
-## 5. Registry Maintenance / New-Authority Rule
+## 4. Knowledge direction
 
-A noticed gap/refinement/future dependency is not automatically a reason for another document.
-
-Default order:
+A new runtime/source fact should flow:
 
 ```text
-noticed gap
-→ does charter already define domain?
-→ can existing specialist owner absorb it?
-→ can existing section be strengthened?
-→ can existing index/route solve retrieval?
-→ can existing procedure be refined?
-→ only then consider a genuinely new responsibility
+evidence
+-> current reference
+-> architecture consequence only when responsibility/invariant changes
+-> small routing/index update only when needed
 ```
 
-Create a new authority only when placing the responsibility in an existing owner would blur ownership, distort purpose, or materially worsen retrieval.
+A new design choice should flow:
 
-A full registry review is appropriate only when the knowledge schema itself changes, repeated maintenance reveals unclear ownership, or a health check shows material retrieval/document burden. Such a formal review must apply POP-10 before judging structure.
+```text
+User + Normal Chat decision
+-> owning architecture
+-> ADR only if rationale is significantly non-obvious/future-relevant
+-> bounded implementation contract under docs/work/active/ when implementation is needed
+```
 
-The event-by-event maintenance procedure belongs in `KNOWLEDGE_MAINTENANCE.md`, not here.
+A temporary work item closes:
+
+```text
+proof/result
+-> promotion to durable owner(s)
+-> current-state update if needed
+-> archive temporary document
+```
+
+Never reverse this direction by treating a closed probe/audit as the current system specification.
+
+---
+
+## 5. Evidence vs reference rule
+
+Evidence says **what was observed, where, and under what scope**.
+
+Current reference says **what we currently know**.
+
+Architecture says **how our system is designed around that knowledge**.
+
+Therefore:
+
+- ordinary settled questions begin from current reference/architecture;
+- exact proof questions route through `EVIDENCE_INDEX.md`;
+- contradictions descend to the exact EV/raw source;
+- a new EV that changes current knowledge must update the current owner before closure;
+- adding evidence does not require duplicating its full narrative into reference.
+
+---
+
+## 6. Current-state rule
+
+`SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` are pointers, not history.
+
+They must not become owners of:
+
+- completed campaign chronology;
+- long audit results;
+- detailed probe reasoning;
+- engine reference facts;
+- architectural explanations already owned elsewhere.
+
+When such material accumulates, promote it to the correct owner and compress the pointer.
+
+---
+
+## 7. Registry maintenance
+
+Create a new permanent authority only when a real responsibility has no suitable current owner.
+
+Before creating one, ask:
+
+1. Is this current fact, architecture, rationale, evidence, procedure, convention, routing, current state, or temporary work?
+2. Does an existing owner already cover it?
+3. Would a new document reduce retrieval ambiguity rather than add another copy?
+4. Can the result be expressed as a section in an existing owner instead?
+
+A new document without a distinct responsibility is duplication.
+
+The knowledge-state validator enforces structural parts of this registry; semantic ownership remains a review responsibility.
