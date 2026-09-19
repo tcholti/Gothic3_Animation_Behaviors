@@ -17,11 +17,11 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint = EV-320 continuation correction IMPLEMENTED/REVIEWED PASS; LOCAL BUILD+RUNTIME PENDING
+generic equipped Sprint = EV-322 RIGHT->OFF CORRECTION RUNTIME PASS; NEGATIVE + TRUE-POWER CONTROLS PENDING
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_GENERIC_CAUSAL_PROBE.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-321
+latest completed evidence = EV-322
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` for the EV-320 same-C1 Sprint-origin continuation correction passed independent Normal Chat source review. Build/deploy/startup the diagnostic product locally, then rerun the EV-320 RIGHT->OFF positive fixture, EV-321 BOTH-with-missing-LEFT negative control, and EV-318 equipped true-Power protected control. Phase 4 remains held.
+Current responsibility: EV-322 closes the EV-320 RIGHT->OFF positive correction gate PASS under implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86`. Next rerun the EV-321 BOTH-with-missing-LEFT negative control, then the EV-318 equipped true-Power protected control. Phase 4 remains held.
 
 ## Immediate responsibility
 
@@ -42,7 +42,9 @@ Current responsibility: implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86
 5. EV-319 Ogre/raw52 Sprint attempt = NOT EXERCISED / ordinary regression healthy.
 6. EV-320 Goblin RIGHT->OFF = continuation gap: Action9->Action2 same C1 breaks later OFF ownership.
 7. EV-321 Goblin BOTH missing LEFT = NEGATIVE PASS / native fallback preserved.
-8. Implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` = Normal Chat source-review PASS; local build/deploy/startup + three runtime acceptance controls NEXT.
+8. Implementation `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` = Normal Chat source-review PASS.
+9. EV-322 RIGHT->OFF positive correction runtime = PASS.
+10. Next: EV-321 BOTH-with-missing-LEFT negative rerun, then EV-318 true-Power protected control.
 
 ## Current verified diagnostic product
 
