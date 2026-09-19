@@ -86,6 +86,13 @@ static void LogDecision(
     std::fflush(log);
 }
 
+static char const *GetBoundExecutionIdentityMismatchReason(
+    BoundSprintExecution const &binding,
+    CollisionLifecycleGuard::GenerationToken const &generation,
+    std::string const &motionName,
+    CurrentMotionMarkerResult const &decision,
+    EquippedCollisionSources const &sources);
+
 bool ShouldSuppressNativeCallback(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &ownership)
@@ -100,9 +107,44 @@ bool ShouldSuppressNativeCallback(
     std::string const motionName = GetMotionName(actor);
     if (family != AttackFamily_Sprint)
     {
+        auto const found =
+            g_BoundSprintExecutionByActor.find(actorInstance);
+        bool const factualPowerHit = family == AttackFamily_Power
+            && ownership.attackHitEligible
+            && actor.Routine.GetProperty<PSRoutine::PropertyAction>()
+                == gEAction_PowerAttack;
+        if (found != g_BoundSprintExecutionByActor.end()
+            && factualPowerHit)
+        {
+            char const *const mismatchReason =
+                GetBoundExecutionIdentityMismatchReason(
+                    found->second, generation, motionName,
+                    ownership.decision, ownership.sources);
+            if (mismatchReason == nullptr)
+            {
+                LogDecision(
+                    "CALLBACK", "DELEGATE_NATIVE",
+                    "BOUND_SPRINT_ORIGIN_POWER_CONTINUATION", actor,
+                    family, MarkerOpcode_Invalid, generation,
+                    ownership.decision, ownership.sources,
+                    motionName.c_str(), 1);
+                return false;
+            }
+            g_BoundSprintExecutionByActor.erase(found);
+            LogDecision(
+                "CALLBACK", "DELEGATE_NATIVE", mismatchReason, actor,
+                family, MarkerOpcode_Invalid, generation,
+                ownership.decision, ownership.sources,
+                motionName.c_str(), 0);
+            return false;
+        }
+
         g_BoundSprintExecutionByActor.erase(actorInstance);
         LogDecision(
-            "CALLBACK", "DELEGATE_NATIVE", "NOT_SPRINT_FAMILY", actor,
+            "CALLBACK", "DELEGATE_NATIVE",
+            factualPowerHit ? "NO_BOUND_SPRINT_ORIGIN"
+                            : "NOT_SPRINT_OR_POWER_HIT",
+            actor,
             family, MarkerOpcode_Invalid, generation, ownership.decision,
             ownership.sources, motionName.c_str(), -1);
         return false;
@@ -198,6 +240,42 @@ static bool RequiredSourceIdentityMatches(
     return true;
 }
 
+static char const *GetBoundExecutionIdentityMismatchReason(
+    BoundSprintExecution const &binding,
+    CollisionLifecycleGuard::GenerationToken const &generation,
+    std::string const &motionName,
+    CurrentMotionMarkerResult const &decision,
+    EquippedCollisionSources const &sources)
+{
+    if (!generation.valid
+        || generation.generation != binding.c1Generation)
+    {
+        return "C1_GENERATION_MISMATCH";
+    }
+    if (binding.motionName != motionName)
+        return "MOTION_IDENTITY_MISMATCH";
+    if (!decision.foundMatchingMotion
+        || !decision.scanValid
+        || !decision.markerPresent)
+    {
+        return "MARKED_MOTION_NO_LONGER_VALID";
+    }
+    if (decision.hasFistMarkers)
+        return "FIST_MARKER_PRESENT";
+    if (decision.requiredSourceMask == SourceMask_None)
+        return "NO_ACTIVATING_EQUIPPED_MARKER";
+    if (decision.requiredSourceMask != binding.requiredSourceMask)
+        return "REQUIRED_SOURCE_MASK_MISMATCH";
+    if (!CollisionSources::HasRequiredCollisionSources(
+            sources, decision.requiredSourceMask))
+    {
+        return "REQUIRED_EQUIPPED_SOURCE_MISSING";
+    }
+    if (!RequiredSourceIdentityMatches(binding, sources))
+        return "REQUIRED_SOURCE_IDENTITY_MISMATCH";
+    return nullptr;
+}
+
 bool AuthorizeGenericEquippedMarker(
     Entity &actor, MarkerOpcode markerOpcode)
 {
@@ -214,12 +292,17 @@ bool AuthorizeGenericEquippedMarker(
         CollisionLifecycleGuard::CaptureCurrentGenerationToken(actorInstance);
     std::string const motionName = GetMotionName(actor);
     AttackFamily currentFamily = AttackFamily_Normal;
-    bool const factualSprintHit =
+    bool const attackHit =
         FrameCollisionMarkers::TryGetCurrentAttackHitFamily(
-            actor, currentFamily)
+            actor, currentFamily);
+    gEAction const currentAction =
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>();
+    bool const factualSprintHit = attackHit
         && currentFamily == AttackFamily_Sprint
-        && actor.Routine.GetProperty<PSRoutine::PropertyAction>()
-            == gEAction_SprintAttack;
+        && currentAction == gEAction_SprintAttack;
+    bool const factualPowerHit = attackHit
+        && currentFamily == AttackFamily_Power
+        && currentAction == gEAction_PowerAttack;
 
     auto const found = g_BoundSprintExecutionByActor.find(actorInstance);
     if (found == g_BoundSprintExecutionByActor.end())
@@ -235,53 +318,22 @@ bool AuthorizeGenericEquippedMarker(
     }
 
     BoundSprintExecution const binding = found->second;
-    char const *reason = "BOUND_EXECUTION_MATCHED";
-    bool authorized = factualSprintHit;
+    char const *reason = nullptr;
+    bool authorized = factualSprintHit || factualPowerHit;
     if (!authorized)
-        reason = "NOT_FACTUAL_SPRINT_HIT";
-    else if (!generation.valid
-             || generation.generation != binding.c1Generation)
+        reason = "NOT_SPRINT_OR_POWER_HIT";
+    else
     {
-        authorized = false;
-        reason = "C1_GENERATION_MISMATCH";
+        reason = GetBoundExecutionIdentityMismatchReason(
+            binding, generation, motionName, decision, sources);
+        authorized = reason == nullptr;
     }
-    else if (binding.motionName != motionName)
+
+    if (authorized)
     {
-        authorized = false;
-        reason = "MOTION_IDENTITY_MISMATCH";
-    }
-    else if (!decision.foundMatchingMotion
-             || !decision.scanValid
-             || !decision.markerPresent)
-    {
-        authorized = false;
-        reason = "MARKED_MOTION_NO_LONGER_VALID";
-    }
-    else if (decision.hasFistMarkers)
-    {
-        authorized = false;
-        reason = "FIST_MARKER_PRESENT";
-    }
-    else if (decision.requiredSourceMask == SourceMask_None)
-    {
-        authorized = false;
-        reason = "NO_ACTIVATING_EQUIPPED_MARKER";
-    }
-    else if (decision.requiredSourceMask != binding.requiredSourceMask)
-    {
-        authorized = false;
-        reason = "REQUIRED_SOURCE_MASK_MISMATCH";
-    }
-    else if (!CollisionSources::HasRequiredCollisionSources(
-                 sources, decision.requiredSourceMask))
-    {
-        authorized = false;
-        reason = "REQUIRED_EQUIPPED_SOURCE_MISSING";
-    }
-    else if (!RequiredSourceIdentityMatches(binding, sources))
-    {
-        authorized = false;
-        reason = "REQUIRED_SOURCE_IDENTITY_MISMATCH";
+        reason = factualPowerHit
+            ? "BOUND_SPRINT_ORIGIN_POWER_CONTINUATION"
+            : "BOUND_EXECUTION_MATCHED";
     }
 
     LogDecision(

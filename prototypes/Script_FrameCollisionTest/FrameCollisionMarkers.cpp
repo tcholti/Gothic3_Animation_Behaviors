@@ -752,6 +752,16 @@ MarkerProcessResult ProcessMarker(
         actor.Routine.GetProperty<PSRoutine::PropertyAction>());
     result.markerPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
     result.markerStateTime = actor.Routine.GetStateTime();
+    GEInt markerExecutionAction = result.markerAction;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    // Keep markerAction factual for diagnostics while the authorized probe
+    // keeps generic bookkeeping canonical to the bound Sprint origin.
+    if (equippedSprintAuthorized)
+    {
+        markerExecutionAction =
+            static_cast<GEInt>(gEAction_SprintAttack);
+    }
+#endif
 
     CollisionLifecycleGuard::GenerationToken const generation =
         CollisionLifecycleGuard::CaptureCurrentGenerationToken(
@@ -767,7 +777,7 @@ MarkerProcessResult ProcessMarker(
     if (!MarkerOwnedWindowIdentityIsConsistent(
             actor.GetInstance(), generation.generation,
             result.sources, result.currentAnimation.c_str(),
-            result.markerAction, result.markerPhase))
+            markerExecutionAction, result.markerPhase))
     {
         result.code = MarkerResult_RejectedGenerationInconsistency;
         return result;
@@ -776,7 +786,7 @@ MarkerProcessResult ProcessMarker(
     if (IsDuplicateSameUpdateMarker(
             actor.GetInstance(), generation.generation, result.sources,
             result.currentAnimation.c_str(), effectName,
-            result.markerAction, result.markerPhase,
+            markerExecutionAction, result.markerPhase,
             result.markerStateTime, elapsedMs,
             result.duplicateStateTimeDelta,
             result.duplicateElapsedMsDelta))
@@ -789,7 +799,8 @@ MarkerProcessResult ProcessMarker(
         TryConsumeAuthoredMarkerOccurrence(
             actor.GetInstance(), generation.generation, result.sources,
             result.currentAnimation.c_str(),
-            result.markerAction, result.markerPhase, result.markerStateTime,
+            markerExecutionAction, result.markerPhase,
+            result.markerStateTime,
             markerOpcode, result.decision, result.authoredMarkerCount,
             result.acceptedMarkerCountBefore,
             result.acceptedMarkerCountAfter,
@@ -809,7 +820,7 @@ MarkerProcessResult ProcessMarker(
         MarkerOwnedCollisionWindow *window = FindMatchingMarkerOwnedWindow(
             actor.GetInstance(), generation.generation, result.sources,
             result.currentAnimation.c_str(),
-            result.markerAction, result.markerPhase);
+            markerExecutionAction, result.markerPhase);
         result.ownedMask = window != nullptr
             ? window->activeSourceMask : SourceMask_None;
         if (window != nullptr)
@@ -838,7 +849,7 @@ MarkerProcessResult ProcessMarker(
         RememberAcceptedMarker(
             actor.GetInstance(), generation.generation, result.sources,
             result.currentAnimation.c_str(), effectName,
-            result.markerAction, result.markerPhase,
+            markerExecutionAction, result.markerPhase,
             result.markerStateTime, elapsedMs);
         result.code = result.ownedMask != SourceMask_None
             ? MarkerResult_OffAccepted : MarkerResult_OffNoWindow;
@@ -874,7 +885,7 @@ MarkerProcessResult ProcessMarker(
             FindMatchingMarkerOwnedWindow(
                 actor.GetInstance(), generation.generation, result.sources,
                 result.currentAnimation.c_str(),
-                result.markerAction, result.markerPhase);
+                markerExecutionAction, result.markerPhase);
         result.previousSourceMask = previousWindow != nullptr
             ? previousWindow->activeSourceMask : SourceMask_None;
         result.retiredSourceMask =
@@ -883,7 +894,7 @@ MarkerProcessResult ProcessMarker(
             actor.GetInstance(), generation.generation, result.sources,
             result.desiredSourceMask,
             result.currentAnimation.c_str(),
-            result.markerAction, result.markerPhase);
+            markerExecutionAction, result.markerPhase);
 
         unsigned int sourceMasks[2] =
             { SourceMask_Right, SourceMask_Left };
@@ -933,7 +944,7 @@ MarkerProcessResult ProcessMarker(
                 actor.GetInstance(), generation.generation, result.sources,
                 result.markerOwnedWeaponMask,
                 result.currentAnimation.c_str(),
-                result.markerAction, result.markerPhase);
+                markerExecutionAction, result.markerPhase);
         }
         else
         {
@@ -970,7 +981,7 @@ MarkerProcessResult ProcessMarker(
     RememberAcceptedMarker(
         actor.GetInstance(), generation.generation, result.sources,
         result.currentAnimation.c_str(), effectName,
-        result.markerAction, result.markerPhase,
+        markerExecutionAction, result.markerPhase,
         result.markerStateTime, elapsedMs);
     result.code = MarkerResult_Accepted;
     return result;
