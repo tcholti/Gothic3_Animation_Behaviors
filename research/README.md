@@ -91,15 +91,17 @@ EV-302 — Golem 2H regression PASS
 EV-303 — Golem Staff regression PASS
 EV-304 — Golem human raw8 Fist single-marker/native-fallback PASS
 EV-305 — Golem human raw8 Fist double-marker repeated-contact PASS
+EV-306 — Golem 1H+shield exact-source regression PASS
+EV-307 — Sabretooth raw8 double-FIST actor-general regression PASS
 ```
 
-The first two standalone-regression batches have been processed and archived byte-identically. Current expected active-intake baseline is:
+All standalone-regression batches through EV-307 have been processed and archived byte-identically. Current expected active-intake baseline is:
 
 ```text
 research/raw/Keep.txt
 ```
 
-That baseline has been verified again after closure of the EV-302–EV-305 batch.
+That baseline has been verified again after closure of the EV-306–EV-307 batch.
 
 A future artifact belongs in raw only while it is genuinely unprocessed or intentionally retained as an active comparison. After each uploaded test batch, POP-06 requires processed artifacts to be archived before the next batch is requested.
 
