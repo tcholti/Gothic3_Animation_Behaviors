@@ -11,9 +11,27 @@ Do not assume `main` contains the newest working implementation merely because i
 
 ## Start Here
 
-For ordinary continuation, use one first hop:
+This repository `README.md` is the **canonical front door** for both ordinary continuation and recovery after an interrupted/max-context Chat.
+
+### Ordinary continuation
+
+Use one first hop:
 
 1. [Session entry point](docs/SESSION_ENTRYPOINT.md) — read this first for the active branch, current responsibility, recovery cue, and exact next route.
+
+### If the previous Chat failed, hit max context, or became unusable
+
+Do **not** blindly follow the old `NEXT` pointer. Start here and enter **Recovery Lock**:
+
+1. do not start new implementation, freeze/run a new runtime experiment, or launch a new Work task;
+2. read [Session entry point](docs/SESSION_ENTRYPOINT.md) first as a **clue, not unquestioned truth**;
+3. orient only through the smallest necessary authority chain: [project charter](docs/README.md) §0 → [authority registry](docs/KNOWLEDGE_REGISTRY.md) → [knowledge maintenance](docs/KNOWLEDGE_MAINTENANCE.md) → the relevant specialist owner;
+4. confirm the active branch/newest remote tail and reconstruct only what happened after the last trusted durable checkpoint;
+5. close any missed POP-06 evidence transaction, perform missed smallest-owner maintenance, and repair stale `SESSION_ENTRYPOINT.md` / `BETWEEN_CHATS.md` pointers;
+6. if recovery exposes broad cross-authority drift, unclear ownership, or document-structure questions, stop bounded recovery and invoke POP-10 before broader review edits;
+7. verify that a fresh Chat starting from this README would now reach the correct responsibility with only intentionally active raw inputs, then release Recovery Lock.
+
+[POP-11](docs/PROJECT_OPERATING_PROCEDURES.md#13-pop-11--normal-chat-continuity-and-interrupted-context-recovery) owns the **detailed** continuity/recovery mechanics. This root README owns their discoverable first hop. A review/audit should preserve that division unless the User deliberately changes the project entry model.
 
 Only broaden when the current responsibility requires it:
 
