@@ -9,7 +9,7 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Technical active branch: `docs/collision-source-evidence`  
-Current gate: **generic equipped Sprint diagnostic causal probe**, with Goblin RIGHT/raw2 retained only as the first causal fixture. Phase 4 non-weapon regression is temporarily held.
+Current gate: **generic equipped Sprint diagnostic causal probe — SOURCE REVIEW PASS / BUILD+RUNTIME PENDING**, with Goblin RIGHT/raw2 retained only as the first causal fixture. Phase 4 non-weapon regression is temporarily held.
 
 Corrected closed state:
 
@@ -48,9 +48,9 @@ Active frozen task:
 
 Question: can factual Action9/Sprint use the established generic equipped RIGHT/LEFT/BOTH/OFF marker mechanism safely when native early `OnAI_PowerAttack` timing is suppressed, with ordinary complete-motion required-source validation deciding which equipped sources must exist? Goblin RIGHT/raw2 is the first test fixture only.
 
-Hard boundary: diagnostic-only temporary probe; no production promotion yet. Existing source commit `1ae0731cd501e6d72bbbf6642188a3047d134805` is the superseded narrow RIGHT/raw2 implementation and was not built/tested; do not build it before the generic replacement is independently reviewed.
+Hard boundary: diagnostic-only temporary probe; no production promotion yet. Generic implementation `d2c6c8be0d56129ec6725571324a9066b181242c` has passed independent Normal Chat source review and is the exact next build/runtime candidate. It is not yet built or runtime-tested. Existing `1ae0731cd501e6d72bbbf6642188a3047d134805` remains superseded.
 
-After independent source review, runtime order is:
+Runtime order is:
 
 ```text
 Goblin equipped Sprint/right/raw2 causal fixture FIRST
