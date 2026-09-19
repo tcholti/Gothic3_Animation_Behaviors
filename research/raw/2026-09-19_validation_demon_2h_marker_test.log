@@ -1,0 +1,432 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + Raw8FistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=28832.876 Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=28832.905 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=28833.278 Event=PERSISTED Actor=PC_Hero Generation=1 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=28833.312 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=29070.570 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=29070.598 Actor=PC_Hero Generation=1 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=29070.611 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=29088.198 Ordinal=1 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=29095.004 Actor=Demon Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=29095.014 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=29098.494 Event=PERSISTED Actor=Demon Generation=2 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=29322.716 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=29322.737 Actor=PC_Hero Generation=1 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=29322.757 Actor=PC_Hero Generation=1 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=29518.305 Actor=Demon Generation=2 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=29540.967 Actor=Demon Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=29540.979 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=29541.256 Event=PERSISTED Actor=Demon Generation=3 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=29541.277 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=29740.656 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=29740.684 Actor=Demon Generation=3 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=29740.697 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=3 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=29757.736 Ordinal=2 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_Shield_1H_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=29766.434 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=29766.447 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=29766.769 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=30052.121 Actor=PC_Hero Generation=4 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=30217.308 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=30217.329 Actor=Demon Generation=3 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=30217.350 Actor=Demon Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=31915.104 Actor=Demon Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=31915.117 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=31915.578 Event=PERSISTED Actor=Demon Generation=5 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=31915.601 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=32113.848 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=32113.875 Actor=Demon Generation=5 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=32113.887 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=32239.649 Ordinal=3 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P2_Ambient_Loop_N_Fwd_00_%_00_P2_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=32247.568 Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=32247.580 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=32378.784 Event=PERSISTED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=32591.936 Actor=PC_Hero Generation=6 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=32637.699 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=32637.719 Actor=Demon Generation=5 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=32637.740 Actor=Demon Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=34007.120 Actor=Demon Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=34007.136 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=34015.840 Event=PERSISTED Actor=Demon Generation=7 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=34015.885 Actor=Demon Family=QUICK Action=4 Phase=1 Motion=Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=34154.683 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=34154.714 Actor=Demon Generation=7 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=34154.728 Actor=Demon Action=4 Family=QUICK Phase=1 Motion=Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=7 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=34229.421 Ordinal=4 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P3_Ambient_Loop_N_Fwd_00_%_00_P3_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=34241.290 Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=34241.308 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=34241.811 Event=PERSISTED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=34510.924 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=34510.945 Actor=Demon Generation=7 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=34527.657 Actor=PC_Hero Generation=8 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=34601.502 Actor=Demon Generation=7 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=36573.452 Actor=Demon Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=36573.465 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=36579.526 Event=PERSISTED Actor=Demon Generation=9 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=36579.557 Actor=Demon Family=QUICK Action=5 Phase=1 Motion=Demon_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_150_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=36716.292 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=36716.321 Actor=Demon Generation=9 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=36716.334 Actor=Demon Action=5 Family=QUICK Phase=1 Motion=Demon_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_150_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=9 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=36841.167 Ordinal=5 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_Shield_1H_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=36849.922 Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=36849.935 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=36858.322 Event=PERSISTED Actor=PC_Hero Generation=10 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=37069.393 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=37069.413 Actor=Demon Generation=9 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=37150.722 Actor=PC_Hero Generation=10 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=37164.699 Actor=Demon Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=38346.285 Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=38346.300 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=38346.679 Event=PERSISTED Actor=PC_Hero Generation=11 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=38346.703 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_Shield_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=38595.165 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=38595.196 Actor=PC_Hero Generation=11 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=38595.208 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_Shield_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=11 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=38644.482 Ordinal=6 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_Shield_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=38648.940 Actor=Demon Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=38648.953 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=38652.321 Event=PERSISTED Actor=Demon Generation=12 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=38847.760 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=38847.780 Actor=PC_Hero Generation=11 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=38847.800 Actor=PC_Hero Generation=11 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=38883.647 Actor=Demon Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=38900.425 Actor=Demon Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=38900.438 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=38900.500 Event=PERSISTED Actor=Demon Generation=13 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=38900.516 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=39106.842 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=39106.870 Actor=Demon Generation=13 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=39106.882 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=13 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=39191.211 Ordinal=7 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_Shield_1H_P2_Attack_Recover_N_Fwd_00_%_00_P2_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=39196.086 Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=39196.096 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=39204.545 Event=PERSISTED Actor=PC_Hero Generation=14 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=39480.797 Actor=PC_Hero Generation=14 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=39599.835 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=39599.863 Actor=Demon Generation=13 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=39599.884 Actor=Demon Generation=13 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=40037.062 Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=40037.075 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=40037.140 Event=PERSISTED Actor=PC_Hero Generation=15 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=40037.156 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=40279.807 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=40279.835 Actor=PC_Hero Generation=15 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=40279.847 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=15 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=40311.221 Ordinal=8 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=40315.950 Actor=Demon Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=40315.961 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=40316.274 Event=PERSISTED Actor=Demon Generation=16 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=40541.810 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=40541.840 Actor=PC_Hero Generation=15 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=40541.863 Actor=PC_Hero Generation=15 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=40555.731 Actor=Demon Generation=16 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=41146.290 Actor=Demon Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=41146.302 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=41146.639 Event=PERSISTED Actor=Demon Generation=17 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=41611.064 Event=COMBAT_MOVE_REUSED Actor=Demon Generation=17 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=41611.543 Actor=Demon Family=POWER Action=2 Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=41758.361 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=41758.393 Actor=Demon Generation=17 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=41758.406 Actor=Demon Action=2 Family=POWER Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=17 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=41812.931 Ordinal=9 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=41822.594 Actor=PC_Hero Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=41822.950 Event=PERSISTED Actor=PC_Hero Generation=18 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=42104.773 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=42104.793 Actor=Demon Generation=17 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=42104.814 Actor=Demon Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=43334.523 Actor=Demon Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43334.536 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=43337.988 Event=PERSISTED Actor=Demon Generation=19 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=43690.635 Actor=PC_Hero Generation=18 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=43699.366 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=43699.394 Actor=PC_Hero Generation=20 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=43699.401 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=20 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=43699.404 Actor=PC_Hero Generation=20 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=43699.425 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=20 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=43794.161 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=43794.190 Actor=PC_Hero Generation=20 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_FINAL ElapsedMs=43901.419 Actor=Demon Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=44083.351 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=44083.372 Actor=PC_Hero Generation=20 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=44083.400 Actor=PC_Hero Generation=20 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=44222.467 Actor=Demon Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44222.479 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=21 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=44222.548 Event=PERSISTED Actor=Demon Generation=21 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=44367.657 Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=44367.670 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=44367.736 Event=PERSISTED Actor=PC_Hero Generation=22 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=44367.753 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_Shield_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=44608.049 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=44608.076 Actor=PC_Hero Generation=22 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=44608.087 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_Shield_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=22 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE C1_BIND ElapsedMs=44693.988 Event=COMBAT_MOVE_REUSED Actor=Demon Generation=21 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ONDAMAGE ElapsedMs=44726.516 Ordinal=10 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_Shield_1H_P1_Attack_Hit_N_Fwd_00_%_00_P2_119_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=44731.849 Actor=Demon Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=21 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44731.861 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=44731.929 Event=PERSISTED Actor=Demon Generation=23 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=44867.374 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=44867.402 Actor=PC_Hero Generation=22 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=44867.423 Actor=PC_Hero Generation=22 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=44969.242 Actor=Demon Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=45126.359 Actor=Demon Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45126.371 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=45126.434 Event=PERSISTED Actor=Demon Generation=24 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=45597.619 Event=COMBAT_MOVE_REUSED Actor=Demon Generation=24 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=45747.487 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=45747.518 Actor=Demon Generation=24 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=45747.530 Actor=Demon Action=2 Family=POWER Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=24 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=45814.152 Ordinal=11 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P2_Ambient_Loop_N_Fwd_00_%_00_P2_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=45823.240 Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=45823.598 Event=PERSISTED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=46083.300 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=46083.328 Actor=Demon Generation=24 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=46083.350 Actor=Demon Generation=24 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47327.345 Actor=Demon Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=47327.357 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=47327.420 Event=PERSISTED Actor=Demon Generation=26 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=47682.667 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=47689.692 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=47689.720 Actor=PC_Hero Generation=27 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=47689.727 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=27 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=47689.730 Actor=PC_Hero Generation=27 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=47689.747 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=27 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=47786.243 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=47788.569 Actor=PC_Hero Generation=27 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_FINAL ElapsedMs=47880.529 Actor=Demon Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=48076.516 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=48076.545 Actor=PC_Hero Generation=27 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=48076.575 Actor=PC_Hero Generation=27 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=48210.468 Actor=Demon Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=48210.481 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=48210.536 Event=PERSISTED Actor=Demon Generation=28 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=48210.552 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=48418.338 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=48418.367 Actor=Demon Generation=28 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=48418.379 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=28 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=48508.600 Ordinal=12 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=48518.202 Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=48518.216 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=48518.271 Event=PERSISTED Actor=PC_Hero Generation=29 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=48811.918 Actor=PC_Hero Generation=29 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=48907.910 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=48907.976 Actor=Demon Generation=28 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=48907.997 Actor=Demon Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49210.054 Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=49210.067 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=49216.454 Event=PERSISTED Actor=PC_Hero Generation=30 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=49252.983 Actor=PC_Hero Generation=30 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49256.673 Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=49256.687 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=49257.055 Event=PERSISTED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=49257.078 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_Shield_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=49440.430 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=49440.452 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=49440.465 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_Shield_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=31 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=49480.659 Ordinal=13 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_Shield_1H_P2_QuickAttackR_Hit_N_Fwd_00_%_00_P60_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=49486.798 Actor=Demon Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=49486.813 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=49486.886 Event=PERSISTED Actor=Demon Generation=32 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=49636.759 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=49636.780 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=49715.081 Actor=Demon Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=49733.806 Actor=PC_Hero Generation=31 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50564.497 Actor=Demon Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50564.511 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=50564.569 Event=PERSISTED Actor=Demon Generation=33 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=50772.782 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=50772.810 Actor=Demon Generation=33 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=50772.823 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=33 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=50870.962 Ordinal=14 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=50879.794 Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=50879.806 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=50880.134 Event=PERSISTED Actor=PC_Hero Generation=34 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=51170.583 Actor=PC_Hero Generation=34 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=51256.096 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=51256.125 Actor=Demon Generation=33 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=51256.147 Actor=Demon Generation=33 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52200.182 Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=52200.196 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=52200.611 Event=PERSISTED Actor=PC_Hero Generation=35 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=52236.841 Actor=PC_Hero Generation=35 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52240.677 Actor=PC_Hero Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=52240.690 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=52241.067 Event=PERSISTED Actor=PC_Hero Generation=36 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=52241.092 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_Shield_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=52424.605 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=52424.632 Actor=PC_Hero Generation=36 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=52424.645 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_Shield_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=36 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=52439.387 Ordinal=15 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_Shield_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=52444.595 Actor=Demon Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=52444.607 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=52444.920 Event=PERSISTED Actor=Demon Generation=37 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=52617.730 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=52617.751 Actor=PC_Hero Generation=36 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=52678.000 Actor=Demon Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52692.726 Actor=Demon Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=52692.738 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=52692.792 Event=PERSISTED Actor=Demon Generation=38 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=52712.439 Actor=PC_Hero Generation=36 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=53167.634 Event=COMBAT_MOVE_REUSED Actor=Demon Generation=38 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=53167.713 Actor=Demon Family=POWER Action=2 Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=53314.752 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=53314.783 Actor=Demon Generation=38 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=53314.797 Actor=Demon Action=2 Family=POWER Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=38 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=53381.476 Ordinal=16 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=53385.774 Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=53385.827 Event=PERSISTED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=53657.975 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=53658.004 Actor=Demon Generation=38 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=53658.027 Actor=Demon Generation=38 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=55251.188 Actor=PC_Hero Generation=39 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=55259.963 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=55259.992 Actor=PC_Hero Generation=40 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=55259.999 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=40 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=55260.003 Actor=PC_Hero Generation=40 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=55260.019 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=40 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE C1_START ElapsedMs=55273.950 Actor=Demon Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=55273.962 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=55274.029 Event=PERSISTED Actor=Demon Generation=41 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=55352.003 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=55352.032 Actor=PC_Hero Generation=40 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=55616.150 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=55616.180 Actor=PC_Hero Generation=40 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=55616.208 Actor=PC_Hero Generation=40 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=55805.588 Actor=Demon Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=56053.145 Actor=Demon Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56053.158 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=56053.216 Event=PERSISTED Actor=Demon Generation=42 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=56053.232 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=56253.889 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=56253.918 Actor=Demon Generation=42 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=56253.930 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=42 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=56348.374 Ordinal=17 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=8 PlayerMotion=Hero_Stand_Shield_1H_P1_Move_Walk_N_Right_00_%_00_P1_160.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=56357.930 Actor=PC_Hero Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=56357.943 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=56357.999 Event=PERSISTED Actor=PC_Hero Generation=43 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=56633.702 Actor=PC_Hero Generation=43 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=56723.193 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=56723.227 Actor=Demon Generation=42 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=56723.252 Actor=Demon Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58426.941 Actor=Demon Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58426.953 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=58437.695 Event=PERSISTED Actor=Demon Generation=44 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=58887.251 Event=COMBAT_MOVE_REUSED Actor=Demon Generation=44 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=58893.338 Actor=Demon Family=POWER Action=2 Phase=1 Motion=Demon_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_150_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=59032.259 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=59032.289 Actor=Demon Generation=44 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=59032.319 Actor=Demon Action=2 Family=POWER Phase=1 Motion=Demon_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_150_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=44 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=59108.460 Ordinal=18 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=59116.134 Actor=PC_Hero Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=59116.195 Event=PERSISTED Actor=PC_Hero Generation=45 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=59375.414 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=59375.434 Actor=Demon Generation=44 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=59375.460 Actor=Demon Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=60593.260 Actor=Demon Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=60593.273 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=60596.601 Event=PERSISTED Actor=Demon Generation=46 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=60950.227 Actor=PC_Hero Generation=45 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=61163.277 Actor=Demon Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=61171.586 Actor=Demon Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=61171.599 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=61171.659 Event=PERSISTED Actor=Demon Generation=47 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=61734.552 Actor=Demon Generation=47 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=61754.605 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=61754.633 Actor=PC_Hero Generation=48 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=61754.641 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=48 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=61754.645 Actor=PC_Hero Generation=48 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=61754.663 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=48 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=61850.355 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=61850.384 Actor=PC_Hero Generation=48 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=62142.472 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=62142.497 Actor=PC_Hero Generation=48 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=62142.552 Actor=PC_Hero Generation=48 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=62517.089 Actor=Demon Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=62517.102 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=62517.160 Event=PERSISTED Actor=Demon Generation=49 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=62517.176 Actor=Demon Family=QUICK Action=4 Phase=1 Motion=Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=62659.909 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=62659.971 Actor=Demon Generation=49 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=62659.986 Actor=Demon Action=4 Family=QUICK Phase=1 Motion=Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=49 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=62727.244 Ordinal=19 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=62737.494 Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=62737.507 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=62737.564 Event=PERSISTED Actor=PC_Hero Generation=50 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=63006.173 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=63006.202 Actor=Demon Generation=49 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=63024.358 Actor=PC_Hero Generation=50 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=63101.422 Actor=Demon Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=64600.516 Actor=PC_Hero Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=64600.529 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=51 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=64600.592 Event=PERSISTED Actor=PC_Hero Generation=51 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=64620.143 Actor=PC_Hero Generation=51 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=64624.501 Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=64624.514 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=64624.574 Event=PERSISTED Actor=PC_Hero Generation=52 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=64809.768 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=64809.796 Actor=PC_Hero Generation=52 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=64809.808 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_Shield_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=52 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=64817.357 Ordinal=20 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_Shield_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=64823.219 Actor=Demon Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=64823.230 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=64823.329 Event=PERSISTED Actor=Demon Generation=53 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=65003.432 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=65003.461 Actor=PC_Hero Generation=52 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=65053.441 Actor=Demon Generation=53 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=65068.359 Actor=Demon Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=65068.371 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=54 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=65068.427 Event=PERSISTED Actor=Demon Generation=54 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=65068.442 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_FINAL ElapsedMs=65094.899 Actor=PC_Hero Generation=52 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=65274.094 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=65274.124 Actor=Demon Generation=54 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=65274.136 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=54 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=65342.482 Ordinal=21 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_Shield_1H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=65346.701 Actor=PC_Hero Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=65346.710 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=65346.762 Event=PERSISTED Actor=PC_Hero Generation=55 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=65625.800 Actor=PC_Hero Generation=55 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=65742.314 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=65742.342 Actor=Demon Generation=54 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=65742.362 Actor=Demon Generation=54 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=65776.309 Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=65776.323 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=65776.707 Event=PERSISTED Actor=PC_Hero Generation=56 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=65776.731 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_Shield_1H_P2_Attack_Hit_N_Fwd_00_%_00_P3_115_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=66010.153 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=66010.182 Actor=PC_Hero Generation=56 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=66010.195 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_Shield_1H_P2_Attack_Hit_N_Fwd_00_%_00_P3_115_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=56 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=66066.648 Ordinal=22 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_Shield_1H_P2_Attack_Hit_N_Fwd_00_%_00_P3_115_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=66070.270 Actor=Demon Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66070.282 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=66070.335 Event=PERSISTED Actor=Demon Generation=57 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=66259.098 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=66259.118 Actor=PC_Hero Generation=56 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=66259.140 Actor=PC_Hero Generation=56 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=66292.859 Actor=Demon Generation=57 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=67428.533 Actor=Demon Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67428.545 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=58 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=67428.624 Event=CANCELLED_IMMEDIATE_RESULT Actor=Demon Generation=58 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=68856.317 Actor=Demon Generation=59 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=68856.330 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=59 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=68856.385 Event=PERSISTED Actor=Demon Generation=59 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=69048.222 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=69048.302 Actor=Demon Generation=59 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=69048.320 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=59 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=69124.237 Ordinal=23 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_Shield_1H_P3_Ambient_Loop_N_Fwd_00_%_00_P3_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=69128.257 Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_Shield_StewarkGreat Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=69128.266 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=69128.315 Event=PERSISTED Actor=PC_Hero Generation=60 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=69395.499 Actor=PC_Hero Generation=60 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_StewarkGreat Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=69506.907 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=69506.937 Actor=Demon Generation=59 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=69506.971 Actor=Demon Generation=59 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+Script_FrameCollisionTest unloading cleanly.

@@ -1,0 +1,320 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + Raw8FistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=23514.998 Actor=Ogre Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=23515.026 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=23520.326 Event=PERSISTED Actor=Ogre Generation=1 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=23848.011 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=1 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=23853.347 Actor=Ogre Family=POWER Action=2 Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=23955.039 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=23955.069 Actor=Ogre Generation=1 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=23955.083 Actor=Ogre Action=2 Family=POWER Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=23964.471 Ordinal=1 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=23972.911 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=23972.922 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=23973.242 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=24218.573 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=24218.594 Actor=Ogre Generation=1 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=24218.621 Actor=Ogre Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=24249.345 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=25456.143 Actor=Ogre Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=25456.155 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=25456.215 Event=PERSISTED Actor=Ogre Generation=3 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=25792.614 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=3 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=25891.307 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=25891.338 Actor=Ogre Generation=3 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=25891.352 Actor=Ogre Action=2 Family=POWER Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=3 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=25947.298 Ordinal=2 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=25955.056 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=25955.067 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=25955.125 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=26158.769 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=26158.799 Actor=Ogre Generation=3 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=26158.821 Actor=Ogre Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=26238.614 Actor=PC_Hero Generation=4 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=27385.693 Actor=Ogre Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=27385.706 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=27385.769 Event=PERSISTED Actor=Ogre Generation=5 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=27730.471 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=5 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=27837.952 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=27837.983 Actor=Ogre Generation=5 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=27837.996 Actor=Ogre Action=2 Family=POWER Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=27902.815 Ordinal=3 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_None_P0_Move_Turn90_N_Right_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=27912.789 Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=27912.800 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=27912.867 Event=PERSISTED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=28101.543 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=28101.573 Actor=Ogre Generation=5 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=28101.593 Actor=Ogre Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=28197.420 Actor=PC_Hero Generation=6 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=30136.922 Actor=Ogre Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=30136.935 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=30137.011 Event=CANCELLED_IMMEDIATE_RESULT Actor=Ogre Generation=7 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=31804.469 Actor=Ogre Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=31804.482 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=31804.545 Event=PERSISTED Actor=Ogre Generation=8 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=32160.132 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=8 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=32263.525 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=32263.566 Actor=Ogre Generation=8 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=32263.579 Actor=Ogre Action=2 Family=POWER Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=32284.651 Ordinal=4 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=8 PlayerMotion=Hero_Stand_1H_1H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=32294.462 Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=32301.229 Event=PERSISTED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=32535.814 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=32535.843 Actor=Ogre Generation=8 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=32535.866 Actor=Ogre Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=34156.986 Actor=PC_Hero Generation=9 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=34164.737 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=34164.769 Actor=PC_Hero Generation=10 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=34164.776 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=10 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=34164.780 Actor=PC_Hero Generation=10 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=34164.798 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=10 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=34261.635 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=34261.665 Actor=PC_Hero Generation=10 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=34265.807 Actor=Ogre Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=34265.863 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=34267.660 Event=PERSISTED Actor=Ogre Generation=11 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=34415.552 Ordinal=5 Target=Ogre Arg1=Ogre Arg2=Ogre Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_1H_1H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=34423.143 Actor=Ogre Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=11 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=34423.155 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=34424.938 Event=PERSISTED Actor=Ogre Generation=12 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=34553.654 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=34553.675 Actor=PC_Hero Generation=10 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=34553.707 Actor=PC_Hero Generation=10 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=34854.906 Actor=Ogre Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=35631.754 Actor=Ogre Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=35631.767 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=35631.817 Event=CANCELLED_IMMEDIATE_RESULT Actor=Ogre Generation=13 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=37023.984 Actor=Ogre Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=37023.998 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=37030.240 Event=PERSISTED Actor=Ogre Generation=14 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=37030.270 Actor=Ogre Family=NORMAL Action=1 Phase=1 Motion=Ogre_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=37177.998 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=37178.056 Actor=Ogre Generation=14 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=37178.070 Actor=Ogre Action=1 Family=NORMAL Phase=1 Motion=Ogre_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=14 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=37215.689 Ordinal=6 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=37223.628 Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=37223.640 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=37229.442 Event=PERSISTED Actor=PC_Hero Generation=15 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=37517.861 Actor=PC_Hero Generation=15 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=37558.315 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=37558.336 Actor=Ogre Generation=14 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=37558.363 Actor=Ogre Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=38170.411 Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=38170.425 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=38176.266 Event=PERSISTED Actor=PC_Hero Generation=16 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=38176.299 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=38339.382 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=38339.405 Actor=PC_Hero Generation=16 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=38339.417 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=16 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+CORE ONDAMAGE ElapsedMs=38349.172 Ordinal=7 Target=Ogre Arg1=Ogre Arg2=Ogre Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=38353.073 Actor=Ogre Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=38353.084 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=38354.822 Event=PERSISTED Actor=Ogre Generation=17 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=38542.215 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=38542.235 Actor=PC_Hero Generation=16 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=38629.052 Actor=PC_Hero Generation=16 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=38788.238 Actor=Ogre Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=39317.157 Actor=Ogre Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=39317.170 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=39317.226 Event=PERSISTED Actor=Ogre Generation=18 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=39673.250 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=18 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=39673.330 Actor=Ogre Family=POWER Action=2 Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=39778.786 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=39778.846 Actor=Ogre Generation=18 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=39778.861 Actor=Ogre Action=2 Family=POWER Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=18 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=39845.531 Ordinal=8 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_1H_1H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=39854.625 Actor=PC_Hero Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=39854.688 Event=PERSISTED Actor=PC_Hero Generation=19 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=40045.856 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=40045.885 Actor=Ogre Generation=18 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=40045.912 Actor=Ogre Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=41532.057 Actor=Ogre Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=41532.070 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=20 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=41532.134 Event=PERSISTED Actor=Ogre Generation=20 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=41702.602 Actor=PC_Hero Generation=19 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=41709.850 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=41709.877 Actor=PC_Hero Generation=21 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=41709.884 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=21 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=41709.887 Actor=PC_Hero Generation=21 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=41709.903 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=21 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=41802.016 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=41802.043 Actor=PC_Hero Generation=21 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=42073.385 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=42073.413 Actor=PC_Hero Generation=21 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=42073.442 Actor=PC_Hero Generation=21 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=42086.844 Actor=Ogre Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=42472.893 Actor=Ogre Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=42472.906 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=42472.940 Event=CANCELLED_IMMEDIATE_RESULT Actor=Ogre Generation=22 Status=CANDIDATE Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=42562.079 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=<unresolved> Slot=NONE Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=44303.255 Actor=Ogre Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=44303.269 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=44303.336 Event=PERSISTED Actor=Ogre Generation=23 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=44645.434 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=23 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=44749.565 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=44749.594 Actor=Ogre Generation=23 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=44749.607 Actor=Ogre Action=2 Family=POWER Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=23 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=44833.250 Ordinal=9 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=44843.179 Actor=PC_Hero Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=44851.494 Event=PERSISTED Actor=PC_Hero Generation=24 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=45023.933 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=45023.963 Actor=Ogre Generation=23 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=45023.986 Actor=Ogre Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=46363.615 Actor=Ogre Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=46363.628 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=46363.695 Event=PERSISTED Actor=Ogre Generation=25 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=46719.115 Actor=PC_Hero Generation=24 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=46727.633 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=46727.661 Actor=PC_Hero Generation=26 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=46727.668 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=26 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=46727.671 Actor=PC_Hero Generation=26 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=46727.687 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=26 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=46821.088 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=46821.172 Actor=PC_Hero Generation=26 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_FINAL ElapsedMs=46922.655 Actor=Ogre Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=47105.101 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=47105.130 Actor=PC_Hero Generation=26 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=47105.159 Actor=PC_Hero Generation=26 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47393.833 Actor=PC_Hero Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=47393.848 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=47402.441 Event=PERSISTED Actor=PC_Hero Generation=27 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=47402.475 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=47629.673 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=47629.703 Actor=PC_Hero Generation=27 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=47914.627 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=47914.648 Actor=PC_Hero Generation=27 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=47914.670 Actor=PC_Hero Generation=27 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47973.823 Actor=Ogre Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=47973.835 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=47973.896 Event=PERSISTED Actor=Ogre Generation=28 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=47973.911 Actor=Ogre Family=NORMAL Action=1 Phase=1 Motion=Ogre_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=48130.956 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=48130.985 Actor=Ogre Generation=28 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=48130.998 Actor=Ogre Action=1 Family=NORMAL Phase=1 Motion=Ogre_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=28 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=48144.686 Ordinal=10 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_1H_1H_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=48152.924 Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=48152.937 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=48160.146 Event=PERSISTED Actor=PC_Hero Generation=29 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=48441.094 Actor=PC_Hero Generation=29 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=48508.055 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=48508.084 Actor=Ogre Generation=28 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=48508.107 Actor=Ogre Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=48933.112 Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=48933.125 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=48942.027 Event=PERSISTED Actor=PC_Hero Generation=30 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=48942.076 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=49169.013 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=49169.044 Actor=PC_Hero Generation=30 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=LEFT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=49226.774 Ordinal=11 Target=Ogre Arg1=Ogre Arg2=Ogre Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=49231.284 Actor=Ogre Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=49231.297 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=49231.358 Event=PERSISTED Actor=Ogre Generation=31 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=49445.174 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=49445.194 Actor=PC_Hero Generation=30 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=LEFT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=49445.214 Actor=PC_Hero Generation=30 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=49657.268 Actor=Ogre Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50128.511 Actor=Ogre Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50128.524 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=50128.580 Event=PERSISTED Actor=Ogre Generation=32 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=50471.243 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=32 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=50471.320 Actor=Ogre Family=POWER Action=2 Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=50578.149 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=50578.178 Actor=Ogre Generation=32 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=50578.190 Actor=Ogre Action=2 Family=POWER Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=32 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=50646.568 Ordinal=12 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=50656.414 Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=50656.478 Event=PERSISTED Actor=PC_Hero Generation=33 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=50842.669 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=50842.698 Actor=Ogre Generation=32 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=50842.723 Actor=Ogre Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52294.619 Actor=Ogre Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=52294.632 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=52294.695 Event=PERSISTED Actor=Ogre Generation=34 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=52499.492 Actor=PC_Hero Generation=33 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=52508.883 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=52508.912 Actor=PC_Hero Generation=35 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=52508.919 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=35 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=52508.924 Actor=PC_Hero Generation=35 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=52508.947 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=35 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=52602.121 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=52602.149 Actor=PC_Hero Generation=35 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_FINAL ElapsedMs=52854.985 Actor=Ogre Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=52882.867 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=52882.895 Actor=PC_Hero Generation=35 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=52882.923 Actor=PC_Hero Generation=35 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=53244.932 Actor=Ogre Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=53244.944 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=53244.999 Event=PERSISTED Actor=Ogre Generation=36 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=53593.672 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=36 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=53696.460 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=53696.503 Actor=Ogre Generation=36 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=53696.534 Actor=Ogre Action=2 Family=POWER Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=36 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=53788.993 Ordinal=13 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=53797.768 Actor=PC_Hero Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_STATUS ElapsedMs=53797.830 Event=PERSISTED Actor=PC_Hero Generation=37 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=53969.793 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=53969.822 Actor=Ogre Generation=36 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=53969.848 Actor=Ogre Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=55439.251 Actor=Ogre Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=55439.264 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=55439.328 Event=PERSISTED Actor=Ogre Generation=38 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=55655.351 Actor=PC_Hero Generation=37 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=55663.370 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=55663.398 Actor=PC_Hero Generation=39 Status=OUTER_BOUND Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=7 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=55663.406 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=39 Status=OUTER_BOUND Outstanding=0 Source=It_1H_Sword_Rust_01 Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=55663.411 Actor=PC_Hero Generation=39 Status=OUTER_BOUND Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=55663.429 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=55758.705 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=55758.734 Actor=PC_Hero Generation=39 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_FINAL ElapsedMs=55997.844 Actor=Ogre Generation=38 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=56036.382 Source=It_1H_Sword_Rust_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=56036.414 Actor=PC_Hero Generation=39 Status=PERSISTED Source=It_1H_Sword_Rust_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=56036.445 Actor=PC_Hero Generation=39 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=56384.660 Actor=Ogre Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56384.672 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=56384.706 Event=CANCELLED_IMMEDIATE_RESULT Actor=Ogre Generation=40 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=57921.004 Actor=Ogre Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57921.030 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=57926.679 Event=PERSISTED Actor=Ogre Generation=41 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=57926.712 Actor=Ogre Family=QUICK Action=4 Phase=1 Motion=Ogre_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=57992.767 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=57992.795 Actor=Ogre Generation=41 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=57992.807 Actor=Ogre Action=4 Family=QUICK Phase=1 Motion=Ogre_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=41 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=58091.906 Ordinal=14 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_1H_1H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=58100.462 Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=58100.476 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=58100.532 Event=PERSISTED Actor=PC_Hero Generation=42 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=58297.300 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=58297.321 Actor=Ogre Generation=41 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=58380.476 Actor=PC_Hero Generation=42 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=58386.783 Actor=Ogre Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=59774.758 Actor=Ogre Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59774.771 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=59774.831 Event=PERSISTED Actor=Ogre Generation=43 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=59774.847 Actor=Ogre Family=NORMAL Action=1 Phase=1 Motion=Ogre_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=59924.649 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=59924.678 Actor=Ogre Generation=43 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=59924.689 Actor=Ogre Action=1 Family=NORMAL Phase=1 Motion=Ogre_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=43 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=60041.862 Ordinal=15 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_1H_1H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=60050.045 Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Group=5 Source[1]=It_1H_Sword_Rust_01 Side=LEFT Group=5
+CORE C1_BIND ElapsedMs=60050.058 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=60050.117 Event=PERSISTED Actor=PC_Hero Generation=44 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=60305.768 Source=It_Axe_OgreMorningStar_01 UseType=52 Owner=Ogre Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=60305.798 Actor=Ogre Generation=43 Status=PERSISTED Source=It_Axe_OgreMorningStar_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=60305.819 Actor=Ogre Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=60333.512 Actor=PC_Hero Generation=44 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Sword_Rust_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Sword_Rust_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=61902.491 Actor=Ogre Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OgreMorningStar_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=61902.505 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Ogre Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=61902.560 Event=PERSISTED Actor=Ogre Generation=45 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=62251.338 Event=COMBAT_MOVE_REUSED Actor=Ogre Generation=45 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=62251.418 Actor=Ogre Family=POWER Action=2 Phase=1 Motion=Ogre_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+Script_FrameCollisionTest unloading cleanly.
