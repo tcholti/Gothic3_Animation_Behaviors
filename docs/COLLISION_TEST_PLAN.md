@@ -298,7 +298,7 @@ The campaign is intentionally split into multiple logs/runs so factual source/ac
 
 ### 8.1 Phase 1 — Player attack/setup matrix against Golem
 
-**Progress through EV-307:**
+**Progress through EV-308:**
 
 ```text
 1H                         PASS — EV-299
@@ -313,9 +313,10 @@ remaining prepared Golem setups = OPEN if any
 
 supplemental raw8 control:
 Sabretooth double markers   PASS — EV-307
+shield-bash LEFT/raw9        NEGATIVE CONTROL / DEFERRED — EV-308
 ```
 
-Completed Golem batches pass deliberate C1-R1/cleanup checks. 1H, 1H+torch, dual-1H, 2H and 1H+shield produce exact-source repair when a real stale group7 obligation survives; Staff bad-skip attempts instead finish cleanup before terminal repair is needed. EV-306 proves the LEFT shield/raw9 remains tracked but non-offensive and non-mutating while only the exact stale RIGHT sword is repaired. EV-304 proves intentionally unmarked raw8 Power P1 remains native and damaging; EV-305 proves two authored FIST markers can rearm two same-C1 human raw8 contacts; EV-307 independently confirms the same repeated-FIST mechanism on Sabretooth. No source change is required.
+Completed Golem batches pass deliberate C1-R1/cleanup checks. 1H, 1H+torch, dual-1H, 2H and 1H+shield produce exact-source repair when a real stale group7 obligation survives; Staff bad-skip attempts instead finish cleanup before terminal repair is needed. EV-306 proves the LEFT shield/raw9 remains tracked but non-offensive and non-mutating while only the exact stale RIGHT sword is repaired. EV-304 proves intentionally unmarked raw8 Power P1 remains native and damaging; EV-305 proves two authored FIST markers can rearm two same-C1 human raw8 contacts; EV-307 independently confirms the same repeated-FIST mechanism on Sabretooth. EV-308 is a deliberate shield-bash negative control: LEFT/raw9 activation and cleanup work, but zero native damage is dispatched, so shield bash is not a supported current collision feature. No source change is required.
 
 The User attacks a Golem using the prepared marked animations across the different weapon types.
 
