@@ -147,9 +147,9 @@ For the supported raw8 FIST path, Sprint arrives through the existing physical `
 
 The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution.
 
-These FIST mechanisms do not establish equipped Sprint marker semantics. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported in the current production/behavior baseline. EV-311 provides the concrete Goblin Action9/SPRINT RIGHT 1H/raw2 boundary fixture. Under the temporary diagnostic-only generic Sprint handoff, EV-315 then proves that this first fixture can suppress the native early callback, remain group 5 until the authored RIGHT marker, activate 5 -> 7 through the existing generic marker mechanism, deliver native damage, clean 7 -> 5 and finalize Outstanding=0. EV-315 is causal research evidence, not production promotion and not proof of every marker/source combination.
+These FIST mechanisms do not establish equipped Sprint marker semantics. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported in the current production/behavior baseline. EV-315 proves the first Goblin Action9/SPRINT RIGHT/raw2 diagnostic handoff. EV-321 additionally proves the generic complete-motion required-source gate fails closed for Sprint BOTH when LEFT is absent and preserves native fallback. EV-320 shows the current diagnostic implementation still has one unresolved execution-identity gap: a marker-owned Sprint C1 may factually transition Action9 -> Action2 before a later authored marker such as OFF, causing the later marker to lose Sprint authorization and fail generic action-sensitive window identity. A bounded Sprint-origin continuation correction is required before any production-promotion decision.
 
-Evidence: raw8 Sprint EV-250–EV-251 and current protected sentinel EV-316; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298 and current protected sentinel EV-317; equipped Sprint boundary fixture EV-311; first diagnostic equipped-Sprint causal handoff EV-315.
+Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298 and protected sentinel EV-317; equipped Sprint boundary/diagnostic evidence EV-311, EV-315, EV-320–EV-321.
 
 ## 7. Shield / raw9 boundary
 
@@ -202,11 +202,13 @@ EV-316  Sabretooth raw8 Sprint sentinel PASS
 EV-317  Troll raw55 Sprint sentinel      PASS
 EV-318  equipped 2H true-Power sentinel  PASS
 EV-319  Ogre raw52 Sprint attempt          NOT EXERCISED / regression healthy
+EV-320  Goblin Sprint RIGHT->OFF            CONTINUATION GAP / correction required
+EV-321  Goblin Sprint BOTH missing LEFT     NEGATIVE PASS / native fallback
 ```
 
 Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. EV-311's equipped Sprint rejection exposed a new scope question; EV-315 passes the first diagnostic causal handoff for that Goblin fixture without changing production support.
 
-Phase 4 is temporarily held while the active equipped-Sprint investigation seeks additional factual equipped-Sprint fixtures. EV-319's Ogre/raw52 attempt did not enter Action9 and therefore does not broaden Sprint support. The protected coexistence sentinel stage is CLOSED/PASS: raw8 Sprint EV-316, raw55 Sprint-origin EV-317 and equipped true Power EV-318. Current validation plan: `COLLISION_TEST_PLAN.md`.
+Phase 4 is temporarily held while the active equipped-Sprint investigation resolves the EV-320 same-C1 Sprint-origin continuation gap. EV-319 did not exercise Action9; EV-321 closed the missing-LEFT BOTH negative path. The protected coexistence sentinel stage is CLOSED/PASS: raw8 Sprint EV-316, raw55 Sprint-origin EV-317 and equipped true Power EV-318. Current validation plan: `COLLISION_TEST_PLAN.md`.
 
 ## 10. Evidence escalation rule
 
