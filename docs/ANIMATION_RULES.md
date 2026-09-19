@@ -183,7 +183,7 @@ Raw engine UseType and serialized animation token are not always 1:1. Preserve t
 
 Use normalized animation categories for profile matching; do not blindly serialize raw enum spelling.
 
-**Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but the token does **not** identify the factual runtime source. EV-245–EV-246 found that tested Hero animal transformations and eight sampled native creature body attackers actually resolved `gEUseType_Fist` / raw 8; no raw55 source was observed in that initial survey. Later Troll/BlackTroll evidence EV-262 onward establishes factual `PhysicalFist` / raw55 and reopens it as a separate mechanism. Production `FIST` authoring remains governed by the exact evidence-backed source mechanism; do not infer raw8 vs raw55 from the serialized token alone.
+**Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but the token does **not** identify the factual runtime source. Raw8 `gEUseType_Fist` and raw55 `gEUseType_PhysicalFist` now both have accepted production behavior, but they remain separate mechanisms with different source/contact rules. Production `FIST` authoring is governed by factual runtime source identity and the evidence-backed family contract; never infer raw8 vs raw55 from the serialized token alone.
 
 ---
 
@@ -339,6 +339,8 @@ marked exact supported raw8 Fist Hit
 
 There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Gothic self-closes a successful raw8 Fist opportunity; the next `FIST` marker rearms the next intended contact.
 
+EV-305 directly confirms the multi-contact authoring meaning: two authored `FIST` markers in one supported raw8 Hit are accepted in the same C1, and on contacting executions they produce two native Golem damage contacts. Therefore repeat `FIST` only when the animation genuinely intends another body-contact hit.
+
 Do not apply weapon semantics to FIST:
 
 ```text
@@ -350,7 +352,7 @@ NO weapon C1 cleanup obligation
 
 Frame 0 is a valid raw8 FIST frame in the tested Sabretooth Quick mechanism, but it rearms the opportunity immediately. EV-271 observed more frame-0 misses than frame 1 despite correct marker acceptance/timing-permission use. For practical authoring, place FIST near the intended physical contact rather than at frame 0 merely because frame 0 is legal.
 
-Current proven raw8 family scope is tracked in `EVIDENCE_INDEX.md` / `COLLISION_TEST_PLAN.md`. Raw55/PhysicalFist is a separate reopened research mechanism and must not inherit raw8 behavior merely because both serialize as `Fist`.
+Current proven raw8 family scope is Normal/Power/Quick/Sprint and is tracked in `EVIDENCE_INDEX.md` / `COLLISION_TEST_PLAN.md`. Raw55/PhysicalFist is a separate permanent family-specific mechanism under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; it must not inherit raw8 latch semantics merely because both serialize as `Fist`.
 
 ---
 
