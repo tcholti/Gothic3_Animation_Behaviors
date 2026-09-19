@@ -2,7 +2,7 @@
 
 #include "FrameCollisionMarkers.h"
 
-namespace FrameCollision::EquippedSprintProbe
+namespace FrameCollision::EquippedSprintCollision
 {
 bool ShouldSuppressNativeCallback(
     Entity &actor, AttackFamily family,

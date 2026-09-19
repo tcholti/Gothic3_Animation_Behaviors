@@ -16,6 +16,8 @@ set(
     CollisionSources.h
     EngineBridge.cpp
     EngineBridge.h
+    EquippedSprintCollision.cpp
+    EquippedSprintCollision.h
     FrameCollisionMarkers.cpp
     FrameCollisionMarkers.h
     FrameCollisionShared.h
@@ -80,6 +82,4 @@ target_tree_sources(
         CollisionDiagnostics.h
         CollisionDiagnosticsDeep.cpp
         CollisionDiagnosticsDeep.h
-        EquippedSprintProbe.cpp
-        EquippedSprintProbe.h
 )

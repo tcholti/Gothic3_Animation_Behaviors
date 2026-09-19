@@ -1,15 +1,20 @@
-#include "EquippedSprintProbe.h"
+#include "EquippedSprintCollision.h"
 
-#include "CollisionDiagnostics.h"
 #include "CollisionLifecycleGuard.h"
 #include "CollisionSources.h"
+
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+#include "CollisionDiagnostics.h"
 #include "RuntimeClock.h"
 
 #include <cstdio>
+#endif
+
+#include <cstdint>
 #include <string>
 #include <unordered_map>
 
-namespace FrameCollision::EquippedSprintProbe
+namespace FrameCollision::EquippedSprintCollision
 {
 struct BoundSprintExecution
 {
@@ -18,6 +23,31 @@ struct BoundSprintExecution
     eCEntity *rightSourceInstance;
     eCEntity *leftSourceInstance;
     std::string motionName;
+};
+
+enum DecisionReason
+{
+    DecisionReason_None,
+    DecisionReason_Eligible,
+    DecisionReason_BoundExecutionMatched,
+    DecisionReason_BoundSprintOriginPowerContinuation,
+    DecisionReason_NotFactualSprintHit,
+    DecisionReason_MatchingMotionMissing,
+    DecisionReason_MotionScanInvalid,
+    DecisionReason_MarkerMissing,
+    DecisionReason_FistMarkerPresent,
+    DecisionReason_NoActivatingEquippedMarker,
+    DecisionReason_RequiredEquippedSourceMissing,
+    DecisionReason_NoCurrentC1Generation,
+    DecisionReason_MotionIdentityMissing,
+    DecisionReason_C1GenerationMismatch,
+    DecisionReason_MotionIdentityMismatch,
+    DecisionReason_MarkedMotionNoLongerValid,
+    DecisionReason_RequiredSourceMaskMismatch,
+    DecisionReason_RequiredSourceIdentityMismatch,
+    DecisionReason_NoBoundExecution,
+    DecisionReason_NoBoundSprintOrigin,
+    DecisionReason_NotSprintOrPowerHit
 };
 
 static std::unordered_map<eCEntity *, BoundSprintExecution>
@@ -37,6 +67,56 @@ static bool IsGenericEquippedMarker(MarkerOpcode markerOpcode)
         || markerOpcode == MarkerOpcode_Off;
 }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+static char const *GetDecisionReasonName(DecisionReason reason)
+{
+    switch (reason)
+    {
+        case DecisionReason_Eligible:
+            return "ELIGIBLE";
+        case DecisionReason_BoundExecutionMatched:
+            return "BOUND_EXECUTION_MATCHED";
+        case DecisionReason_BoundSprintOriginPowerContinuation:
+            return "BOUND_SPRINT_ORIGIN_POWER_CONTINUATION";
+        case DecisionReason_NotFactualSprintHit:
+            return "NOT_FACTUAL_SPRINT_HIT";
+        case DecisionReason_MatchingMotionMissing:
+            return "MATCHING_MOTION_MISSING";
+        case DecisionReason_MotionScanInvalid:
+            return "MOTION_SCAN_INVALID";
+        case DecisionReason_MarkerMissing:
+            return "MARKER_MISSING";
+        case DecisionReason_FistMarkerPresent:
+            return "FIST_MARKER_PRESENT";
+        case DecisionReason_NoActivatingEquippedMarker:
+            return "NO_ACTIVATING_EQUIPPED_MARKER";
+        case DecisionReason_RequiredEquippedSourceMissing:
+            return "REQUIRED_EQUIPPED_SOURCE_MISSING";
+        case DecisionReason_NoCurrentC1Generation:
+            return "NO_CURRENT_C1_GENERATION";
+        case DecisionReason_MotionIdentityMissing:
+            return "MOTION_IDENTITY_MISSING";
+        case DecisionReason_C1GenerationMismatch:
+            return "C1_GENERATION_MISMATCH";
+        case DecisionReason_MotionIdentityMismatch:
+            return "MOTION_IDENTITY_MISMATCH";
+        case DecisionReason_MarkedMotionNoLongerValid:
+            return "MARKED_MOTION_NO_LONGER_VALID";
+        case DecisionReason_RequiredSourceMaskMismatch:
+            return "REQUIRED_SOURCE_MASK_MISMATCH";
+        case DecisionReason_RequiredSourceIdentityMismatch:
+            return "REQUIRED_SOURCE_IDENTITY_MISMATCH";
+        case DecisionReason_NoBoundExecution:
+            return "NO_BOUND_EXECUTION";
+        case DecisionReason_NoBoundSprintOrigin:
+            return "NO_BOUND_SPRINT_ORIGIN";
+        case DecisionReason_NotSprintOrPowerHit:
+            return "NOT_SPRINT_OR_POWER_HIT";
+        default:
+            return "NONE";
+    }
+}
+
 static GEInt GetUseType(eCEntity *sourceInstance)
 {
     if (sourceInstance == nullptr)
@@ -49,7 +129,7 @@ static GEInt GetUseType(eCEntity *sourceInstance)
 }
 
 static void LogDecision(
-    char const *boundary, char const *decision, char const *reason,
+    char const *boundary, char const *decision, DecisionReason reason,
     Entity &actor, AttackFamily family, MarkerOpcode markerOpcode,
     CollisionLifecycleGuard::GenerationToken const &generation,
     CurrentMotionMarkerResult const &motionDecision,
@@ -61,12 +141,13 @@ static void LogDecision(
         return;
     std::fprintf(
         log,
-        "CORE EQUIPPED_SPRINT_PROBE Boundary=%s Decision=%s "
+        "CORE EQUIPPED_SPRINT_COLLISION Boundary=%s Decision=%s "
         "Reason=%s Actor=%s ActorAddress=%p Action=%d Phase=%d "
         "Family=%d C1Valid=%d C1Generation=%llu RequiredSourceMask=%u "
         "RightAddress=%p RightUseType=%d LeftAddress=%p LeftUseType=%d "
         "Marker=%s BoundIdentityMatch=%d Motion=%s ElapsedMs=%.3f\n",
-        boundary, decision, reason, actor.GetName().GetText(),
+        boundary, decision, GetDecisionReasonName(reason),
+        actor.GetName().GetText(),
         static_cast<void *>(actor.GetInstance()),
         static_cast<GEInt>(
             actor.Routine.GetProperty<PSRoutine::PropertyAction>()),
@@ -86,12 +167,63 @@ static void LogDecision(
     std::fflush(log);
 }
 
-static char const *GetBoundExecutionIdentityMismatchReason(
+#define EQUIPPED_SPRINT_LOG(...) LogDecision(__VA_ARGS__)
+#else
+#define EQUIPPED_SPRINT_LOG(...) ((void)0)
+#endif
+
+static bool RequiredSourceIdentityMatches(
+    BoundSprintExecution const &binding,
+    EquippedCollisionSources const &sources)
+{
+    if ((binding.requiredSourceMask & SourceMask_Right) != 0
+        && sources.rightInstance != binding.rightSourceInstance)
+    {
+        return false;
+    }
+    if ((binding.requiredSourceMask & SourceMask_Left) != 0
+        && sources.leftInstance != binding.leftSourceInstance)
+    {
+        return false;
+    }
+    return true;
+}
+
+static DecisionReason GetBoundExecutionIdentityMismatchReason(
     BoundSprintExecution const &binding,
     CollisionLifecycleGuard::GenerationToken const &generation,
     std::string const &motionName,
     CurrentMotionMarkerResult const &decision,
-    EquippedCollisionSources const &sources);
+    EquippedCollisionSources const &sources)
+{
+    if (!generation.valid
+        || generation.generation != binding.c1Generation)
+    {
+        return DecisionReason_C1GenerationMismatch;
+    }
+    if (binding.motionName != motionName)
+        return DecisionReason_MotionIdentityMismatch;
+    if (!decision.foundMatchingMotion
+        || !decision.scanValid
+        || !decision.markerPresent)
+    {
+        return DecisionReason_MarkedMotionNoLongerValid;
+    }
+    if (decision.hasFistMarkers)
+        return DecisionReason_FistMarkerPresent;
+    if (decision.requiredSourceMask == SourceMask_None)
+        return DecisionReason_NoActivatingEquippedMarker;
+    if (decision.requiredSourceMask != binding.requiredSourceMask)
+        return DecisionReason_RequiredSourceMaskMismatch;
+    if (!CollisionSources::HasRequiredCollisionSources(
+            sources, decision.requiredSourceMask))
+    {
+        return DecisionReason_RequiredEquippedSourceMissing;
+    }
+    if (!RequiredSourceIdentityMatches(binding, sources))
+        return DecisionReason_RequiredSourceIdentityMismatch;
+    return DecisionReason_None;
+}
 
 bool ShouldSuppressNativeCallback(
     Entity &actor, AttackFamily family,
@@ -116,22 +248,22 @@ bool ShouldSuppressNativeCallback(
         if (found != g_BoundSprintExecutionByActor.end()
             && factualPowerHit)
         {
-            char const *const mismatchReason =
+            DecisionReason const mismatchReason =
                 GetBoundExecutionIdentityMismatchReason(
                     found->second, generation, motionName,
                     ownership.decision, ownership.sources);
-            if (mismatchReason == nullptr)
+            if (mismatchReason == DecisionReason_None)
             {
-                LogDecision(
+                EQUIPPED_SPRINT_LOG(
                     "CALLBACK", "DELEGATE_NATIVE",
-                    "BOUND_SPRINT_ORIGIN_POWER_CONTINUATION", actor,
-                    family, MarkerOpcode_Invalid, generation,
+                    DecisionReason_BoundSprintOriginPowerContinuation,
+                    actor, family, MarkerOpcode_Invalid, generation,
                     ownership.decision, ownership.sources,
                     motionName.c_str(), 1);
                 return false;
             }
             g_BoundSprintExecutionByActor.erase(found);
-            LogDecision(
+            EQUIPPED_SPRINT_LOG(
                 "CALLBACK", "DELEGATE_NATIVE", mismatchReason, actor,
                 family, MarkerOpcode_Invalid, generation,
                 ownership.decision, ownership.sources,
@@ -140,69 +272,69 @@ bool ShouldSuppressNativeCallback(
         }
 
         g_BoundSprintExecutionByActor.erase(actorInstance);
-        LogDecision(
+        EQUIPPED_SPRINT_LOG(
             "CALLBACK", "DELEGATE_NATIVE",
-            factualPowerHit ? "NO_BOUND_SPRINT_ORIGIN"
-                            : "NOT_SPRINT_OR_POWER_HIT",
-            actor,
-            family, MarkerOpcode_Invalid, generation, ownership.decision,
-            ownership.sources, motionName.c_str(), -1);
+            factualPowerHit ? DecisionReason_NoBoundSprintOrigin
+                            : DecisionReason_NotSprintOrPowerHit,
+            actor, family, MarkerOpcode_Invalid, generation,
+            ownership.decision, ownership.sources,
+            motionName.c_str(), -1);
         return false;
     }
 
-    char const *reason = "ELIGIBLE";
+    DecisionReason reason = DecisionReason_Eligible;
     bool eligible = ownership.attackHitEligible
         && actor.Routine.GetProperty<PSRoutine::PropertyAction>()
             == gEAction_SprintAttack;
     if (!eligible)
-        reason = "NOT_FACTUAL_SPRINT_HIT";
+        reason = DecisionReason_NotFactualSprintHit;
     else if (!ownership.decision.foundMatchingMotion)
     {
         eligible = false;
-        reason = "MATCHING_MOTION_MISSING";
+        reason = DecisionReason_MatchingMotionMissing;
     }
     else if (!ownership.decision.scanValid)
     {
         eligible = false;
-        reason = "MOTION_SCAN_INVALID";
+        reason = DecisionReason_MotionScanInvalid;
     }
     else if (!ownership.decision.markerPresent)
     {
         eligible = false;
-        reason = "MARKER_MISSING";
+        reason = DecisionReason_MarkerMissing;
     }
     else if (ownership.decision.hasFistMarkers)
     {
         eligible = false;
-        reason = "FIST_MARKER_PRESENT";
+        reason = DecisionReason_FistMarkerPresent;
     }
     else if (ownership.decision.requiredSourceMask == SourceMask_None)
     {
         eligible = false;
-        reason = "NO_ACTIVATING_EQUIPPED_MARKER";
+        reason = DecisionReason_NoActivatingEquippedMarker;
     }
     else if (!CollisionSources::HasRequiredCollisionSources(
                  ownership.sources,
                  ownership.decision.requiredSourceMask))
     {
         eligible = false;
-        reason = "REQUIRED_EQUIPPED_SOURCE_MISSING";
+        reason = DecisionReason_RequiredEquippedSourceMissing;
     }
     else if (!generation.valid)
     {
         eligible = false;
-        reason = "NO_CURRENT_C1_GENERATION";
+        reason = DecisionReason_NoCurrentC1Generation;
     }
     else if (motionName.empty())
     {
         eligible = false;
-        reason = "MOTION_IDENTITY_MISSING";
+        reason = DecisionReason_MotionIdentityMissing;
     }
 
     if (!eligible)
     {
         g_BoundSprintExecutionByActor.erase(actorInstance);
-        LogDecision(
+        EQUIPPED_SPRINT_LOG(
             "CALLBACK", "DELEGATE_NATIVE", reason, actor,
             family, MarkerOpcode_Invalid, generation, ownership.decision,
             ownership.sources, motionName.c_str(), -1);
@@ -216,64 +348,11 @@ bool ShouldSuppressNativeCallback(
     binding.leftSourceInstance = ownership.sources.leftInstance;
     binding.motionName = motionName;
     g_BoundSprintExecutionByActor[actorInstance] = binding;
-    LogDecision(
-        "CALLBACK", "SUPPRESS_NATIVE", "ELIGIBLE", actor,
+    EQUIPPED_SPRINT_LOG(
+        "CALLBACK", "SUPPRESS_NATIVE", DecisionReason_Eligible, actor,
         family, MarkerOpcode_Invalid, generation, ownership.decision,
         ownership.sources, motionName.c_str(), 1);
     return true;
-}
-
-static bool RequiredSourceIdentityMatches(
-    BoundSprintExecution const &binding,
-    EquippedCollisionSources const &sources)
-{
-    if ((binding.requiredSourceMask & SourceMask_Right) != 0
-        && sources.rightInstance != binding.rightSourceInstance)
-    {
-        return false;
-    }
-    if ((binding.requiredSourceMask & SourceMask_Left) != 0
-        && sources.leftInstance != binding.leftSourceInstance)
-    {
-        return false;
-    }
-    return true;
-}
-
-static char const *GetBoundExecutionIdentityMismatchReason(
-    BoundSprintExecution const &binding,
-    CollisionLifecycleGuard::GenerationToken const &generation,
-    std::string const &motionName,
-    CurrentMotionMarkerResult const &decision,
-    EquippedCollisionSources const &sources)
-{
-    if (!generation.valid
-        || generation.generation != binding.c1Generation)
-    {
-        return "C1_GENERATION_MISMATCH";
-    }
-    if (binding.motionName != motionName)
-        return "MOTION_IDENTITY_MISMATCH";
-    if (!decision.foundMatchingMotion
-        || !decision.scanValid
-        || !decision.markerPresent)
-    {
-        return "MARKED_MOTION_NO_LONGER_VALID";
-    }
-    if (decision.hasFistMarkers)
-        return "FIST_MARKER_PRESENT";
-    if (decision.requiredSourceMask == SourceMask_None)
-        return "NO_ACTIVATING_EQUIPPED_MARKER";
-    if (decision.requiredSourceMask != binding.requiredSourceMask)
-        return "REQUIRED_SOURCE_MASK_MISMATCH";
-    if (!CollisionSources::HasRequiredCollisionSources(
-            sources, decision.requiredSourceMask))
-    {
-        return "REQUIRED_EQUIPPED_SOURCE_MISSING";
-    }
-    if (!RequiredSourceIdentityMatches(binding, sources))
-        return "REQUIRED_SOURCE_IDENTITY_MISMATCH";
-    return nullptr;
 }
 
 bool AuthorizeGenericEquippedMarker(
@@ -309,34 +388,35 @@ bool AuthorizeGenericEquippedMarker(
     {
         if (factualSprintHit)
         {
-            LogDecision(
+            EQUIPPED_SPRINT_LOG(
                 "MARKER", "DENY_GENERIC_EQUIPPED",
-                "NO_BOUND_EXECUTION", actor, currentFamily, markerOpcode,
-                generation, decision, sources, motionName.c_str(), 0);
+                DecisionReason_NoBoundExecution, actor, currentFamily,
+                markerOpcode, generation, decision, sources,
+                motionName.c_str(), 0);
         }
         return false;
     }
 
     BoundSprintExecution const binding = found->second;
-    char const *reason = nullptr;
+    DecisionReason reason = DecisionReason_None;
     bool authorized = factualSprintHit || factualPowerHit;
     if (!authorized)
-        reason = "NOT_SPRINT_OR_POWER_HIT";
+        reason = DecisionReason_NotSprintOrPowerHit;
     else
     {
         reason = GetBoundExecutionIdentityMismatchReason(
             binding, generation, motionName, decision, sources);
-        authorized = reason == nullptr;
+        authorized = reason == DecisionReason_None;
     }
 
     if (authorized)
     {
         reason = factualPowerHit
-            ? "BOUND_SPRINT_ORIGIN_POWER_CONTINUATION"
-            : "BOUND_EXECUTION_MATCHED";
+            ? DecisionReason_BoundSprintOriginPowerContinuation
+            : DecisionReason_BoundExecutionMatched;
     }
 
-    LogDecision(
+    EQUIPPED_SPRINT_LOG(
         "MARKER", authorized ? "AUTHORIZE_GENERIC_EQUIPPED"
                              : "DENY_GENERIC_EQUIPPED",
         reason, actor, currentFamily, markerOpcode, generation,
@@ -345,4 +425,6 @@ bool AuthorizeGenericEquippedMarker(
         g_BoundSprintExecutionByActor.erase(actorInstance);
     return authorized;
 }
+
+#undef EQUIPPED_SPRINT_LOG
 }

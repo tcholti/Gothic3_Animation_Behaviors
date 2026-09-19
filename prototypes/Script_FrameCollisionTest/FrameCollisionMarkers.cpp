@@ -686,11 +686,7 @@ MarkerProcessResult CreateMarkerResult(
 
 MarkerProcessResult ProcessMarker(
     Entity &actor, MarkerOpcode markerOpcode, char const *effectName,
-    double elapsedMs
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    , bool equippedSprintAuthorized
-#endif
-)
+    double elapsedMs, bool equippedSprintAuthorized)
 {
     EquippedCollisionSources const sources =
         CollisionSources::GetEquippedCollisionSources(actor);
@@ -704,9 +700,7 @@ MarkerProcessResult ProcessMarker(
     }
     if (family == AttackFamily_Sprint
         && markerOpcode != MarkerOpcode_Fist
-#ifdef FRAME_COLLISION_DIAGNOSTICS
         && !equippedSprintAuthorized
-#endif
        )
     {
         result.code = MarkerResult_RejectedUnsupportedHit;
@@ -753,15 +747,13 @@ MarkerProcessResult ProcessMarker(
     result.markerPhase = static_cast<GEInt>(actor.GetCurrentAniPhase());
     result.markerStateTime = actor.Routine.GetStateTime();
     GEInt markerExecutionAction = result.markerAction;
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    // Keep markerAction factual for diagnostics while the authorized probe
+    // Keep the factual action observable while permanent Sprint ownership
     // keeps generic bookkeeping canonical to the bound Sprint origin.
     if (equippedSprintAuthorized)
     {
         markerExecutionAction =
             static_cast<GEInt>(gEAction_SprintAttack);
     }
-#endif
 
     CollisionLifecycleGuard::GenerationToken const generation =
         CollisionLifecycleGuard::CaptureCurrentGenerationToken(

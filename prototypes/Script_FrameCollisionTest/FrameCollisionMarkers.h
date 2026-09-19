@@ -27,11 +27,7 @@ AttackCallbackOwnershipResult EvaluateAttackCallbackOwnership(
 
 MarkerProcessResult ProcessMarker(
     Entity &actor, MarkerOpcode markerOpcode, char const *effectName,
-    double elapsedMs
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    , bool equippedSprintAuthorized
-#endif
-);
+    double elapsedMs, bool equippedSprintAuthorized);
 MarkerProcessResult CreateMarkerResult(
     EquippedCollisionSources const &sources, MarkerOpcode opcode,
     char const *effectName, double elapsedMs);
