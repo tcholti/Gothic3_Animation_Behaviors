@@ -213,7 +213,7 @@ NO filename-based Power alias
 NO Sabretooth-specific branch
 ```
 
-A later same-C1 transition to Action2 matters only to the separate permanent raw55 Sprint-origin contract; it does not redefine Sprint as Power.
+For equipped markers, the diagnostic causal case is now accepted through EV-315 and EV-320–EV-324. ADR-0003 approves promotion into a permanent `EquippedSprintCollision` behavior owner, but the current behavior-only baseline does not gain that support until the active promotion task is implemented and accepted. The permanent rule must preserve immutable Sprint origin across only the exact same-C1 Action9 -> Action2 continuation; a new true-Power execution never becomes Sprint.
 
 ---
 
@@ -441,9 +441,13 @@ Script_G3AnimationBehaviors / research twin
 +-- FrameCollisionMarkers
 |    exact current-motion ownership
 |    action/phase marker-family resolution
-|    equipped RIGHT/LEFT/BOTH/OFF
+|    equipped RIGHT/LEFT/BOTH/OFF generic semantics
 |    marker occurrence bookkeeping
 |    production FIST dispatch into proven feature owner(s)
++-- EquippedSprintCollision [promotion task active]
+|    factual Sprint eligibility + bound Sprint-origin identity
+|    exact Action9 -> same-C1 Action2 continuation policy
+|    authorization into generic equipped marker semantics
 +-- CollisionSources
 |    factual source identities / UseTypes
 +-- CollisionSourceOperations
