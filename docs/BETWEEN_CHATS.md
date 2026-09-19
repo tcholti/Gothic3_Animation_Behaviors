@@ -8,8 +8,11 @@
 ## Current bridge
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
-Technical active branch: `docs/collision-source-evidence`  
-Current gate: standalone collision regression, `COLLISION_TEST_PLAN.md` §8.1.
+Current documentation-review branch: `docs/knowledge-lifecycle-restructure`  
+Technical branch held unchanged: `docs/collision-source-evidence`  
+Immediate responsibility: complete and validate the knowledge-lifecycle restructure in `docs/work/active/KNOWLEDGE_LIFECYCLE_RESTRUCTURE.md`.
+
+Do **not** resume runtime collision testing from this review branch. The preserved technical gate on `docs/collision-source-evidence` remains standalone collision regression, `COLLISION_TEST_PLAN.md` §8.1.
 
 Latest closed evidence:
 
