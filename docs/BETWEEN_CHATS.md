@@ -10,45 +10,92 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-350**. No active Work task.
+Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-350**.
 
-Agreed author-facing target:
+Active bounded Work task:
+
+`docs/work/active/COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md`
+
+## Agreed ownership / terminology
 
 ```text
-FIST opens one target-directed native body-contact / hit opportunity
--> until native hit/contact resolution occurs, opportunity remains available
--> first native hit/contact resolution consumes it for that target
--> block / parry / immunity / reactions / HP damage remain Gothic/behavior-owned
--> later FIST rearms it
--> C1 / Hit replacement or interruption closes any unused opportunity
+opportunity
+= authored logical OPEN / CLOSED / rearmed state
+
+collision/contact
+= native physical/contact resolution
+
+native hit/contact-resolution boundary
+= factual Gothic boundary under research
+
+damage
+= literal Gothic API/log name or HP result only
 ```
 
-Terminology discipline:
-- **opportunity** = the authored logical OPEN/CLOSED/rearmed state;
-- **collision/contact** = actual native physical/contact resolution;
-- **native hit/contact-resolution boundary** = factual Gothic boundary under research;
-- **damage** = reserve for literal Gothic API names/log labels or gameplay HP result, not collision ownership.
+The mod owns authored collision/contact opportunity and exact Hit/C1 lifetime. Gothic/behavior mods own block/parry/immunity/reactions/HP damage.
 
-## EV-347–EV-350
+## Why this probe
 
-- EV-347: native raw8 one-shot attempt closes the latch on both hit and miss.
-- EV-348: temporary post-miss latch rearm restored later native opportunity.
-- EV-349: Parade showed native contact-path resolution may occur with zero visible damage; temporary rearm also exposed cross-C1 lifetime leakage.
-- Collision-vs-damage audit: permanent collision behavior remained policy-neutral; drift was confined to research terminology / closed diagnostic probes.
-- EV-350: retired `Raw8FistWindowProbe` + EV-347 post-attempt OnDamage-counting instrumentation. Both twins built. Diagnostic deployment/startup PASS. Optional five-attack frame-3 Gargoyle control returned to one-shot baseline:
-  - C1 22 + 29 -> immediate `Game+0x16E348` native contact-path entries;
-  - C1 7 + 13 + 17 -> no later contact-path entry;
-  - no retired probe records;
-  - generic `CORE ONDAMAGE` observer retained.
+Physical weapon/raw55 evidence shows native target-specific contact bookkeeping:
 
-Current diagnostic DLL SHA256:
-`C33046D1AE139B5D905CF5E1004F725F07A5FE8CAC3A9705F11691497D7CD17D`.
+```text
+target contacted
+-> target enters visited/triggered bookkeeping
+-> ClearTriggeredList rearms same-target contact
+```
 
-Latest canonical log:
-`research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_4.log`  
-Git blob `06d1e22353f017f536d1c8c2d039e5fe34fd1e0b`.
+EV-233 proves raw8 `ClearTriggeredList()` is not its native control mechanism.
+
+Static raw8 route:
+
+```text
+timing threshold
+-> latch write at Game+0x16E1A3
+-> multiple further target/contact checks
+-> possible common exit Game+0x16E352
+-> final gCEntity::OnDamage call returns at Game+0x16E348
+```
+
+Therefore the latch write is too early to mean accepted contact.
+
+Candidate raw8-native TouchDamage boundaries already exist in the tested binary:
+
+- `gCTouchDamage_PS::CanBeActivatedNow` — `Game+0x692F0`;
+- `gCTouchDamage_PS::TriggerTarget` — `Game+0x693B0`.
+
+Their participation in the raw8 combat-loop path is **not proven**. Historical N2B had `DeepDiagnostics: DISABLED`.
+
+## Frozen observation
+
+Implement actor-general, exact-raw8, diagnostic-only observation of those two boundaries.
+
+No mutation:
+- no latch write;
+- no timing change;
+- no list clear;
+- no visited-state change;
+- no group change;
+- no suppression;
+- no custom damage;
+- no target change;
+- no lifecycle change.
+
+Correlate:
+- frame-3 FIST;
+- early timing opportunity;
+- CanBeActivatedNow;
+- TriggerTarget;
+- read-only visited state;
+- generic `CORE ONDAMAGE`;
+- C1 finalization.
+
+First runtime after review: same Gargoyle frame-3 fixture with close and far starts.
+
+If the two TouchDamage callbacks are absent even in close cases while `CORE ONDAMAGE` occurs, rule them out for this raw8 combat-loop route and return to the `Game+0x16E1A3 -> +0x16E348` branch region.
 
 ## Current stop gate
+
+The frozen task changed lifecycle-sensitive project state.
 
 Run:
 
@@ -62,10 +109,6 @@ Require:
 Knowledge-state validation PASS
 ```
 
-Do not freeze or launch the next causal task before that PASS.
-
-After PASS, Normal Chat should reason from the neutral baseline and freeze only the smallest next question:
-
-> What is the smallest factual native hit/contact-resolution boundary that can consume an authored raw8 opportunity independently of block/immunity/reaction/HP-damage policy, while any unused opportunity is forcibly bounded to the exact Hit/C1 lifetime?
+Only after PASS send the frozen task to Work.
 
 `research/raw/` should contain only `Keep.txt`.
