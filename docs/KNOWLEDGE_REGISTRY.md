@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-09-19
+**Updated:** 2026-09-20
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -56,6 +56,7 @@ The repository root `/README.md` owns the discoverable startup front door. It is
 | collision lifecycle / cleanup / terminal repair architecture | `COLLISION_LIFECYCLE.md` | lifecycle invariant/ownership changes |
 | collision diagnostics architecture | `COLLISION_DIAGNOSTICS.md` | diagnostic ownership/event model changes |
 | current/future collision validation gates | `COLLISION_TEST_PLAN.md` | test gate/matrix/acceptance changes |
+| permanent Fist/raw8 behavior architecture | `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` | accepted raw8 production contract changes |
 | permanent PhysicalFist/raw55 behavior architecture | `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` | accepted raw55 production contract changes |
 | exact source/hook/API facts | `SOURCE_HOOK_GUIDE.md` | reusable hook/source fact changes |
 | exact collision cleanup callsite facts | `COLLISION_CLEANUP_CALLSITE_MAP.md` | cleanup callsite/stack fact changes |
