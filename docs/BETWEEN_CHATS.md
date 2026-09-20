@@ -51,9 +51,11 @@ Require `Knowledge-state validation PASS`.
 
 Do not launch another Work task or runtime causal test before that PASS.
 
+After PASS, the first bounded Work responsibility is **retirement of the closed diagnostic-only `Raw8FistWindowProbe` and its bridge/CMake delegation**, restoring the diagnostic twin to a neutral baseline. Do not begin a new raw8 causal intervention before that cleanup is independently reviewed and locally built.
+
 After PASS, the next question is **not merely timing**:
 
-> Find the smallest factual native hit/contact-resolution boundary that consumes the authored opportunity independently of gameplay damage policy, while closing any unused authored opportunity at exact C1/Hit termination.
+> After the closed rearm probe is retired, find the smallest factual native hit/contact-resolution boundary that consumes the authored opportunity independently of gameplay damage policy, while closing any unused authored opportunity at exact C1/Hit termination.
 
 New Balance later gets a knocked-down/get-up compatibility control because the User reports it changes some of this behavior. The control verifies policy neutrality; this mod should not encode or override New Balance's damage/vulnerability rules.
 
