@@ -17,11 +17,11 @@ Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
 Phase 4 non-weapon creatures = PAUSED AT RAW8 FIST AUTHORING-SEMANTICS RESEARCH
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-350
+latest completed evidence = EV-351
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
-active Work implementation task = COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md — source review PASS / local build + runtime observation pending
-current stop gate = POP-12 validation of reviewed contact-boundary implementation state before runtime
+active Work implementation task = NONE
+current stop gate = POP-12 knowledge-state validation before next raw8 observation
 ```
 
 ## Current responsibility
@@ -47,24 +47,24 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**Work implementation `929bba9974788c873860f8e33f504c091f7aa524` is independently source-reviewed PASS. Before local runtime observation, POP-12 must validate this reviewed implementation-state handoff.**
+**EV-351 closes the TouchDamage virtual-boundary probe: exact raw8 `CanBeActivatedNow` / `TriggerTarget` records remained absent even in three close/contact cases that reached `Game+0x16E348`. Do not freeze the next observation until POP-12 validates this closure state.**
 
-Current bounded research question:
+Next bounded research question after POP-12 PASS:
 
-> Does exact raw8 reach `gCTouchDamage_PS::CanBeActivatedNow` and/or `TriggerTarget`, and do those native boundaries correlate with factual contact resolution independently of HP-damage policy?
+> Does the exact raw8 Fist TouchDamage source's inherited `EntitiesVisited` / `EntitiesVisitedCount` state change anywhere across the whole combat-move invocation for close contacts, while remaining unchanged for far misses?
 
-Frozen task: `docs/work/active/COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md`.
+This is the final minimal check of the physical-source visited-bookkeeping analogy before moving deeper into the `Game+0x16E1A3 -> +0x16E348` raw8 combat-loop region.
 
 ## Current runtime provenance
 
-Current neutral diagnostic baseline implementation:
+Latest reviewed diagnostic observation implementation:
 
-`ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3`
+`929bba9974788c873860f8e33f504c091f7aa524`
 
 Current diagnostic DLL:
 
 `Script_FrameCollisionTest.dll`  
-SHA256 `C33046D1AE139B5D905CF5E1004F725F07A5FE8CAC3A9705F11691497D7CD17D`
+SHA256 `F6EB69B1AFAFCB4C8F99FBE4C5CFDE1DC411FA074F109E7F5515D068E76096DD`
 
 Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 
@@ -74,7 +74,7 @@ Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 - exact short-lived continuation → `BETWEEN_CHATS.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
-- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347 / EV-348 / EV-349 / EV-350
+- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347 / EV-348 / EV-349 / EV-350 / EV-351
 - lifecycle/repair architecture → `COLLISION_LIFECYCLE.md`
 - diagnostics architecture → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
