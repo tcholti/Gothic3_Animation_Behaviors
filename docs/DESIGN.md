@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-19
+**Updated:** 2026-09-20
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -213,7 +213,7 @@ NO filename-based Power alias
 NO Sabretooth-specific branch
 ```
 
-For equipped markers, the diagnostic causal case is now accepted through EV-315 and EV-320–EV-324. ADR-0003 approves promotion into a permanent `EquippedSprintCollision` behavior owner, but the current behavior-only baseline does not gain that support until the active promotion task is implemented and accepted. The permanent rule must preserve immutable Sprint origin across only the exact same-C1 Action9 -> Action2 continuation; a new true-Power execution never becomes Sprint.
+For equipped markers, permanent `EquippedSprintCollision` support is CLOSED/PASS through EV-329 under ADR-0003. The rule preserves immutable Sprint origin across only the exact same-C1 Action9 -> Action2 continuation; a new true-Power execution never becomes Sprint. Complete-motion required-source validation remains fail-closed and generic RIGHT/LEFT/BOTH/OFF semantics remain owned by `FrameCollisionMarkers`.
 
 ---
 
@@ -444,7 +444,7 @@ Script_G3AnimationBehaviors / research twin
 |    equipped RIGHT/LEFT/BOTH/OFF generic semantics
 |    marker occurrence bookkeeping
 |    production FIST dispatch into proven feature owner(s)
-+-- EquippedSprintCollision [promotion task active]
++-- EquippedSprintCollision
 |    factual Sprint eligibility + bound Sprint-origin identity
 |    exact Action9 -> same-C1 Action2 continuation policy
 |    authorization into generic equipped marker semantics
