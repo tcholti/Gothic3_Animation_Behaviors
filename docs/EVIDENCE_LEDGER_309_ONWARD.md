@@ -570,3 +570,26 @@ Disposition:
 - **PASS.**
 - Ordinary equipped true Power remains isolated from the permanent Sprint owner after production extraction.
 - Together with EV-326 positive continuation and EV-327 missing-source negative control, all diagnostic runtime gates for the production promotion are now complete.
+
+### EV-329 — diagnostics-free behavior-only equipped Sprint smoke PASS
+
+Observed:
+- The already-built behavior-only twin `Script_FrameCollisionBehaviorTest.dll` was redeployed as the sole live collision twin.
+- Built/live SHA256 matched exactly: `FE31030B35868EBF30B9644650991D8136625C4DBFD6263403350DB612BDB250`.
+- Deployment reported `BEHAVIOR DEPLOYMENT PASS`.
+- The user then performed the known Goblin P0 Sprint gameplay fixture with the permanent diagnostics-free product and reported that all tested behavior appeared to work normally.
+
+Scope / limits:
+- This is the final diagnostics-free product smoke required by the production-promotion contract.
+- It is intentionally a user-observed gameplay smoke: the behavior-only twin produces no diagnostic log, so this entry does not claim new causal detail beyond the log-backed EV-326–EV-328 controls.
+- Exact positive/negative/true-Power causal semantics remain grounded in EV-326, EV-327 and EV-328 respectively.
+
+Provenance:
+- Permanent implementation: `218c7ab73815a9afc46fc3ea5ac7246998bc2b1b`.
+- Behavior-only DLL SHA256: `FE31030B35868EBF30B9644650991D8136625C4DBFD6263403350DB612BDB250`.
+- User runtime observation on 2026-09-20 after sole-live behavior deployment/hash verification.
+
+Disposition:
+- **PASS.**
+- Diagnostics-free product acceptance for permanent equipped Sprint is complete.
+- Together with source review, both builds/startups, EV-326 positive continuation, EV-327 missing-source negative, and EV-328 true-Power protection, this closes the production-promotion acceptance.
