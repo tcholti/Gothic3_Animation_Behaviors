@@ -10,7 +10,11 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-351**. No active Work task.
+Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-352**.
+
+Active bounded Work task:
+
+`docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`
 
 ## Agreed ownership / terminology
 
@@ -28,44 +32,63 @@ damage
 = literal Gothic API/log name or HP result only
 ```
 
-The mod owns authored collision/contact opportunity and exact Hit/C1 lifetime. Gothic/behavior mods own block/parry/immunity/reactions/HP damage.
+The mod owns authored collision/contact opportunity and exact Hit/C1 lifetime. Gothic/behavior mods own target selection, block/parry/immunity/reactions/HP damage.
 
-## EV-351
+## EV-351–EV-352
 
-Reviewed diagnostic implementation:
-`929bba9974788c873860f8e33f504c091f7aa524`
+EV-351:
+- exact raw8 `CanBeActivatedNow` / `TriggerTarget` callbacks absent on six Gargoyle frame-3 invocations;
+- three close cases still reached exact `Game+0x16E348`;
+- ordinary TouchDamage virtual trigger route is not the raw8 contact boundary on that path.
 
-Diagnostic DLL SHA256:
-`F6EB69B1AFAFCB4C8F99FBE4C5CFDE1DC411FA074F109E7F5515D068E76096DD`
+EV-352:
+- native human group-combat control with locked `ReddockOrcScoutLeader`;
+- 25 player Fist C1 starts;
+- eight exact raw8 `Game+0x16E348` entries;
+- all eight targeted only the locked leader;
+- zero exact Fist entries against deliberately interposed/adjacent non-target Orcs.
 
-Six Gargoyle factual raw8 Power frame-3 invocations:
-- C1 14, 24, 33 -> exact `Game+0x16E348` contact-path entry;
-- C1 4, 21, 36 -> no contact-path entry;
-- visual close-vs-far result matched;
-- exact raw8 `CORE RAW8_CONTACT_GATE` = 0;
-- exact raw8 `CORE RAW8_CONTACT_TARGET` = 0;
-- no anomalies or contradictions.
+Together with EV-233, do not reproduce weapon/raw55 per-target visited bookkeeping for raw8.
 
-Conclusion:
-- `gCTouchDamage_PS::CanBeActivatedNow` and `TriggerTarget` are not the contact-consumption boundary on this tested raw8 route;
-- the ordinary TouchDamage virtual trigger path is bypassed here;
-- this does **not** yet prove that inherited `EntitiesVisited` / `EntitiesVisitedCount` never change elsewhere.
+## Frozen causal model
 
-Canonical log:
-`research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_5.log`  
-Git blob `ffb6d7ca49ee05b79a98320e5cd32ddfc594e88b`.
+Use one pending token per exact marked actor/C1:
 
-## Next smallest question
+```text
+marked C1 start
+-> native latch CLOSED
 
-Before abandoning the physical-source bookkeeping analogy:
+accepted FIST
+-> token OPEN
+-> latch OPEN
+-> marker-time timing permission available
 
-> Observe the exact raw8 Fist TouchDamage source's inherited `EntitiesVisited` / `EntitiesVisitedCount` at whole-`AICombatMoveInstr` entry and exit. Do close/contact cases add the player while far misses do not?
+native attempt misses
+-> token remains OPEN
+-> re-open latch
+-> keep marker-time synthetic timing eligibility while still pre-threshold
 
-Observation must remain read-only.
+exact raw8 Game+0x16E348 dispatch entered
+-> token CONSUMED before native original
+-> do not inspect HP/block/immunity outcome
+-> no further rearm
 
-If visited bookkeeping remains unchanged in both cases, stop pursuing the trigger-list model and move deeper into the static raw8 `Game+0x16E1A3 -> +0x16E348` branch region.
+later FIST
+-> one token OPEN again, no stacking
+
+Hit/C1 ends or identity is replaced
+-> unused token CLOSED
+-> latch forced CLOSED
+-> no cross-C1 leak
+```
+
+This is not custom contact/damage. It repeatedly makes Gothic's already-proven one-shot raw8 mechanism eligible while the authored opportunity token remains pending.
+
+The exact `Game+0x16E348` path is treated only as native raw8 contact-resolution dispatch entry under strict caller/source/actor/C1 identity. EV-349 proves it can occur with zero visible HP damage.
 
 ## Current stop gate
+
+The frozen task changed lifecycle-sensitive project state.
 
 Run:
 
@@ -79,6 +102,6 @@ Require:
 Knowledge-state validation PASS
 ```
 
-Do not freeze or launch the next Work task before PASS.
+Only after PASS send the frozen task to Work.
 
 `research/raw/` should contain only `Keep.txt`.
