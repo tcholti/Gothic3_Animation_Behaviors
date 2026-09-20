@@ -202,6 +202,14 @@ comparison                                         Game +0x16E18C..+0x16E190
 below threshold -> common exit                    Game +0x16E352
 native attempt latch write = 1                    Game +0x16E1A3
 observed native gCEntity::OnDamage entry boundary   Game +0x16E348
+
+Between `Game+0x16E1A3` and the final call returning at `+0x16E348`, the tested binary performs multiple additional target/contact checks with branches to the common `+0x16E352` exit. Therefore `+0x16E1A3` is attempt/latch consumption, not accepted-contact consumption.
+
+Candidate TouchDamage observation surfaces:
+- `gCTouchDamage_PS::CanBeActivatedNow` — `Game+0x692F0`;
+- `gCTouchDamage_PS::TriggerTarget` — `Game+0x693B0`.
+
+Their participation in the raw8 combat-loop route is **not yet proven**. Historical N2B runtime had deep diagnostics disabled.
 ```
 
 Observed generic-human threshold multiplier is approximately `0.6000000238`; with the tested `0.6800000072` max time this produced ~`0.4080000205` seconds.
