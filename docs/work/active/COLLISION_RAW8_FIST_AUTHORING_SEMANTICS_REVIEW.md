@@ -221,4 +221,29 @@ EV-349 plus the authoring-boundary clarification establishes:
 
 No new Work implementation task is active. EV-350 restores the neutral diagnostic baseline. The next step is to identify the smallest factual native **hit/contact-resolution** boundary that can consume the authored opportunity without depending on gameplay damage outcome, **after POP-12 knowledge-state validation passes**.
 
+
+
+## Native contact-bookkeeping comparison — 2026-09-20
+
+Normal Chat compared the proven physical-source model with the raw8 route after EV-350.
+
+Physical source reference:
+- EV-106/EV-107/EV-111/EV-116 establish target-specific trigger/visited bookkeeping and authored same-target rearm through `ClearTriggeredList()`;
+- EV-290 directly observes the target present in the raw55 visited set after first contact, then absent after the native ALL clear, then eligible for later contact again.
+
+Raw8 separation:
+- EV-233 proves raw8 `ClearTriggeredList()` is unnecessary for the tested native combat-loop path, so the physical-source visited list must not be copied as raw8's control mechanism;
+- nevertheless the tested binary exposes `gCTouchDamage_PS::CanBeActivatedNow` at `Game+0x692F0` and `gCTouchDamage_PS::TriggerTarget` at `Game+0x693B0`;
+- `CanBeActivatedNow` is an eligibility gate; `TriggerTarget` receives concrete entity arguments and is therefore the stronger candidate if the raw8 combat-loop route actually reaches it;
+- the historical N2B log cannot answer this because that runtime had `DeepDiagnostics: DISABLED`.
+
+Static raw8 combat-loop fact:
+- after the one-shot latch write at `Game+0x16E1A3`, the path performs multiple additional target/contact checks and may branch to the common exit at `Game+0x16E352` before the final `gCEntity::OnDamage` call returning at `Game+0x16E348`;
+- therefore latch consumption is factually earlier than accepted contact resolution and cannot be the production opportunity-consumption boundary.
+
+Next bounded question:
+> During exact factual raw8 execution, do `CanBeActivatedNow` and/or `TriggerTarget` occur only when a concrete target/contact is resolved, and how do they order relative to the existing generic `CORE ONDAMAGE` observation?
+
+The first probe is observation-only. No rearm, timing, latch, damage, target, trigger-list or lifecycle mutation is permitted.
+
 Phase-4 broad regression remains paused until this research chain either proves a safe persistent-window mechanism or forces a design revision.
