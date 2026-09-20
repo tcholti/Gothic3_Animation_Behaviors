@@ -13,14 +13,16 @@ marked C1 starts
 -> raw8 authored opportunity CLOSED
 
 accepted FIST
--> authored body-contact damage opportunity OPEN
+-> authored body-contact / hit opportunity OPEN
 
 while OPEN
--> Gothic owns target/contact/damage
--> unsuccessful native contact attempt does not consume authored opportunity
+-> Gothic owns target/contact/block/immunity/reaction/damage
+-> our mod does not inspect or force gameplay damage
+-> no native hit/contact resolution yet -> authored opportunity remains available
 
-first successful native contact
+first native hit/contact resolution for the target
 -> authored opportunity CONSUMED/CLOSED
+-> resulting gameplay damage may be full, reduced, blocked or zero
 
 later accepted FIST
 -> authored opportunity OPEN again
@@ -66,9 +68,9 @@ Alternative authoring meaning under review:
 ```text
 FIST
 -> open/rearm a logical body-contact opportunity from this authored point
--> Gothic remains responsible for target/contact/damage
--> if the actor has not reached a valid target yet, eligibility remains available
--> successful contact consumes the authored opportunity
+-> Gothic remains responsible for target/contact/block/immunity/reaction/damage
+-> if no native hit/contact has been resolved yet, eligibility remains available
+-> first native hit/contact resolution consumes the authored opportunity regardless of HP damage outcome
 -> another FIST rearms another opportunity
 -> end of Hit / factual C1 replacement closes any remaining opportunity
 ```
@@ -181,9 +183,9 @@ Current status:
 2. **CLOSED FOR THE TESTED ROUTE — EV-347:** the existing post-original `AICombatMoveInstr` boundary plus exact same-invocation `Game+0x16E348` / source / actor identity distinguishes hit from miss without a new hook.
 3. **CLOSED FOR TESTED POWER ROUTE — EV-348:** one exact post-miss latch-only rearm can restore a later native opportunity without custom target/damage logic; 7/9 rearmed misses later produced exact native raw8 damage, while successful early hits remained consumed.
 4. Existing bridge transport was sufficient; no new hook was required.
-5. **REFINED BY EV-349:** timing is not the only remaining question. A future persistent opportunity must distinguish genuine no-contact from legitimate Gothic target-state rejection (for example knocked-down/get-up protection); visible health damage is not a valid success oracle.
+5. **REFINED BY EV-349 + authoring boundary clarification:** visible HP damage is not the consumption signal. The mod owns only authored collision/contact opportunity. A native hit/contact resolution consumes the opportunity even when Gothic or another behavior system blocks, suppresses or reduces gameplay damage; Parade is the concrete example.
 6. **LIFECYCLE REQUIREMENT CONFIRMED BY EV-349:** an unused rearmed latch can survive Hit-C1 replacement into Recover under the temporary probe. Final behavior must close any unused authored opportunity at the exact C1/Hit replacement/interruption boundary.
-7. **NEXT RESEARCH QUESTION:** find the smallest native factual boundary that distinguishes geometric/no-contact from target-state rejection while keeping Gothic in ownership of target/vulnerability/damage. Only after that boundary is understood should continuous-timing policy be finalized.
+7. **NEXT RESEARCH QUESTION:** identify the smallest factual native hit/contact-resolution boundary that means the authored opportunity has actually contacted/resolved against its target, without inspecting HP damage, block, immunity or reaction policy. If that boundary has not occurred, keep eligibility until it does or until Hit/C1 ends.
 8. FIST_OFF is **not part of the agreed raw8 design** absent future contradictory evidence.
 
 ## Gate
@@ -194,10 +196,12 @@ EV-347 closed the first bounded observation question: both hit and miss syntheti
 
 EV-348 closes the post-miss latch-rearm causal question. Latch-only recovery is causally sufficient to restore a later native opportunity on the tested Power route.
 
-EV-349 adds two constraints before any production design:
-- target-state rejection such as knockdown/get-up protection must not be mistaken for a collision miss merely because no visible damage occurs;
+EV-349 plus the authoring-boundary clarification establishes:
+- visible damage is outside collision ownership and is not the consumption criterion;
+- Parade/block can legitimately produce native hit/contact resolution with zero visible damage;
+- our mod must not special-case knockdown, get-up, block, immunity or other damage-policy states;
 - unused authored opportunity must be closed at exact C1/Hit termination because the temporary rearm can otherwise remain live into Recover.
 
-No new Work implementation task is active. The next step is to identify the smallest factual native distinction between genuine no-contact and legitimate target-state rejection, **after POP-12 knowledge-state validation passes**.
+No new Work implementation task is active. The next step is to identify the smallest factual native **hit/contact-resolution** boundary that can consume the authored opportunity without depending on gameplay damage outcome, **after POP-12 knowledge-state validation passes**.
 
 Phase-4 broad regression remains paused until this research chain either proves a safe persistent-window mechanism or forces a design revision.
