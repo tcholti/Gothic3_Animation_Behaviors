@@ -320,3 +320,49 @@ Provenance:
 Disposition:
 - **CLEANUP / NEUTRAL-BASELINE PASS.**
 - Closed raw8 damage-correlated research instrumentation is retired. Future raw8 research starts from this neutral baseline.
+
+
+### EV-351 — Raw8 TouchDamage virtual contact-boundary observation rules out exact callbacks on tested combat-loop route
+
+Observed:
+- Reviewed diagnostic-only implementation: `929bba9974788c873860f8e33f504c091f7aa524`.
+- Both collision twins built successfully locally.
+- Diagnostic deployment contained exactly one live collision twin: `Script_FrameCollisionTest.dll`.
+- Built/live SHA256 matched `F6EB69B1AFAFCB4C8F99FBE4C5CFDE1DC411FA074F109E7F5515D068E76096DD`.
+- Startup, hook installation and unload were clean.
+- Runtime fixture reused the factual Gargoyle `Action=2 / POWER`, exact RIGHT `Fist` / UseType8 frame-3 FIST control.
+- Six exact marked C1s were observed: 4, 14, 21, 24, 33 and 36.
+- All six accepted FIST and consumed the permanent early raw8 timing permission.
+- C1 14, 24 and 33 entered the generic exact raw8 `Game.dll+0x0016E348` `CORE ONDAMAGE` boundary approximately 0.145 ms, 0.141 ms and 0.132 ms after the synthetic timing opportunity respectively.
+- C1 4, 21 and 36 had no such native hit/contact-path entry before C1 finalization.
+- User visual observation matched the log split: attacks starting near enough connected; attacks needing more travel after frame 3 did not.
+- Across all six factual raw8 invocations:
+  - `CORE RAW8_CONTACT_GATE` count = 0;
+  - `CORE RAW8_CONTACT_TARGET` count = 0.
+- Therefore the exact current raw8 Fist TouchDamage source did not produce an observed `gCTouchDamage_PS::CanBeActivatedNow` or `gCTouchDamage_PS::TriggerTarget` boundary even in the three close/contact cases.
+- No anomaly, warning, contradiction, rejected marker, repair or divergence record appeared.
+
+Interpretation:
+- On the tested raw8 Gargoyle Power combat-loop route, the ordinary `gCTouchDamage_PS::CanBeActivatedNow` and `gCTouchDamage_PS::TriggerTarget` virtual boundaries are not the exact raw8 contact-consumption boundary.
+- This is a clean negative result because the exact actor/SPU/C1/raw8-source/TouchDamage invocation scope remained active around `AICombatMoveInstr`; had either virtual been reached on that exact source, the diagnostic record would have been emitted.
+- The three exact `Game+0x16E348` entries without either TouchDamage callback show that raw8 contact resolution on this route bypasses those ordinary virtual trigger callbacks.
+- The result does **not** yet prove that the raw8 source's inherited `EntitiesVisited` / `EntitiesVisitedCount` arrays never change elsewhere. Because the probe captured those arrays only at the two candidate virtual boundaries, their absence leaves direct invocation-level visited-state behavior unresolved.
+- Therefore the physical-source visited-list concept remains worth one smaller read-only check before abandoning it as a raw8 contact fact.
+
+Scope / limits:
+- Tested factual raw8 Gargoyle Power only.
+- Rules out the exact `Game+0x692F0` / `Game+0x693B0` callbacks as the contact boundary on this tested route.
+- Does not establish the final raw8 production consumption boundary.
+- Does not prove absence of inherited trigger bookkeeping through some other internal path.
+- Does not alter collision/opportunity behavior.
+
+Provenance:
+- Work implementation: `929bba9974788c873860f8e33f504c091f7aa524`.
+- Diagnostic DLL SHA256: `F6EB69B1AFAFCB4C8F99FBE4C5CFDE1DC411FA074F109E7F5515D068E76096DD`.
+- Canonical archived log: `research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_5.log`.
+- Git blob: `ffb6d7ca49ee05b79a98320e5cd32ddfc594e88b`.
+
+Disposition:
+- **OBSERVATION PASS / CANDIDATE CALLBACKS RULED OUT.**
+- Close the TouchDamage virtual-boundary probe.
+- Before moving deeper into `Game+0x16E1A3 -> +0x16E348`, perform one minimal read-only check of the exact raw8 TouchDamage source's inherited visited bookkeeping across the whole combat-move invocation.
