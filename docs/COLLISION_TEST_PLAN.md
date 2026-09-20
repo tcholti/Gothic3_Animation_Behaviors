@@ -168,11 +168,12 @@ Boar raw8 Normal + player 1H+shield                          PASS — EV-344
 Bison raw8 Normal + player 2H                                PASS — EV-345
 Gargoyle raw8 Power timing sweep                            DESIGN DISCOVERY — EV-346
 Gargoyle post-attempt latch hit/miss observation             CAUSAL PASS — EV-347
+Gargoyle post-miss latch-only rearm                          CAUSAL PASS — EV-348
 ```
 
 The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. EV-342 is an ordinary PASS: some correctly processed Minecrawler executions did not physically contact, which is normal runtime attack variance rather than a collision-system qualification.
 
-EV-346 is a material design discovery, not a creature-specific failure. Gargoyle factual raw8 Power showed that the current early-FIST mechanism is one-shot: frame-1 0/4, approximate frame-3 5/10, frame-6 8/8 and native 7/7 under a stationary-player fixture, while ownership/markers/finalization remained healthy. EV-347 then proved that the native latch closes to 1 after the attempt whether that exact synthetic invocation hits or misses. User + Normal Chat have chosen persistent opportunity-window semantics; broad Phase-4 certification remains paused while the smallest causal rearm mechanism is researched.
+EV-346 is a material design discovery, not a creature-specific failure. Gargoyle factual raw8 Power showed that the current early-FIST mechanism is one-shot: frame-1 0/4, approximate frame-3 5/10, frame-6 8/8 and native 7/7 under a stationary-player fixture, while ownership/markers/finalization remained healthy. EV-347 then proved that the native latch closes to 1 after the attempt whether that exact synthetic invocation hits or misses. EV-348 proved that one exact post-miss latch-only rearm can restore a later native opportunity: 7/9 rearmed misses later produced exact native raw8 damage, while successful early hits remained consumed. User + Normal Chat have chosen persistent opportunity-window semantics; broad Phase-4 certification remains paused while the remaining timing/continuous-eligibility question is resolved.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
