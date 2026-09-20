@@ -63,7 +63,7 @@ The repository root `/README.md` owns the discoverable startup front door. It is
 | concrete animation families/assets/fixtures | `ANIMATION_CATALOG.md` | reusable asset-level fact changes |
 | animation question routing | `ANIMATION_INDEX.md` | route/category changes |
 | evidence topic/range routing | `EVIDENCE_INDEX.md` | EV range/topic route changes |
-| current open evidence entries | `EVIDENCE_LEDGER_309_ONWARD.md` | new evidence after EV-308 |
+| current open evidence entries | `EVIDENCE_LEDGER_<start>_ONWARD.md` (exact active file routed by `EVIDENCE_INDEX.md`) | new EV entry or ledger rotation |
 | deliberate evidence-storage path migration lookup | `EVIDENCE_PATH_MIGRATIONS.md` | historical/current path would become ambiguous |
 | project engineering philosophy experiment | `ENGINEERING_GUIDE.md` | User accepts/revises the experimental engineering method |
 | small factual project-scope context | `PROJECT_SCOPE_CONTEXT.md` | factual project context changes |
