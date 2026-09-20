@@ -40,7 +40,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | frame effects / authored marker channel | EV-012–EV-018 |
 | ordinary native weapon reset / marker timing | EV-019–EV-023 |
 | Staff/NPC actor-general marker proof | EV-024–EV-028 |
-| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336–EV-340 |
+| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336–EV-340, EV-342–EV-345 |
 | player animation family / UseType / side semantics | EV-036–EV-065, EV-332–EV-335 |
 | Quick marker ownership / StatePosition | EV-066–EV-075 |
 | equipped dual-source RIGHT/LEFT mapping | EV-090–EV-094, EV-332 |
@@ -76,6 +76,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | Sabretooth raw8 same-C1 double-FIST | EV-307, EV-337 |
 | Wolf marked/unmarked raw8 + transformed symmetry | EV-339–EV-340 |
 | Phase-4 Troll raw55 single/double + Staff coexistence | EV-341 |
+| Phase-4 Minecrawler/Bloodfly/Boar/Bison factual raw8 expansion | EV-342–EV-345 |
 
 ## 3. Current collision closure landmarks
 
@@ -103,7 +104,7 @@ EV-315–EV-324  equipped Sprint causal/correction acceptance through promotion 
 EV-325–EV-329  permanent equipped Sprint promotion acceptance incl. behavior-only smoke
 EV-330–EV-331  current-build Whirl/repeated-contact + Orc raw8 + player 1H/torch corroboration
 EV-332–EV-336  mixed player/weapon-creature cross-source regression PASS before Phase 4
-EV-337–EV-341  Phase-4 Sabretooth/Wolf/Troll body-contact regression PASS
+EV-337–EV-345  Phase-4 Sabretooth/Wolf/Troll + Minecrawler/Bloodfly/Boar/Bison body-contact regression PASS/qualified PASS
 ```
 
 ## 4. Escalation order
