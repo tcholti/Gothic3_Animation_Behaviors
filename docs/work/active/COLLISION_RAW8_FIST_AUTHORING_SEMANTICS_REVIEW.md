@@ -247,3 +247,23 @@ Next bounded question:
 The first probe is observation-only. No rearm, timing, latch, damage, target, trigger-list or lifecycle mutation is permitted.
 
 Phase-4 broad regression remains paused until this research chain either proves a safe persistent-window mechanism or forces a design revision.
+
+
+## EV-351 — TouchDamage virtual-boundary result
+
+Runtime observation on six factual Gargoyle raw8 Power frame-3 invocations produced:
+
+```text
+6 accepted FIST / early raw8 opportunities
+3 close/contact cases -> exact Game+0x16E348 CORE ONDAMAGE
+3 far misses          -> no contact-path entry
+
+exact raw8 CanBeActivatedNow records = 0
+exact raw8 TriggerTarget records      = 0
+```
+
+Conclusion:
+- `gCTouchDamage_PS::CanBeActivatedNow` and `TriggerTarget` are not the exact raw8 contact-consumption boundary on this tested combat-loop route;
+- this does **not** yet prove the inherited `EntitiesVisited` arrays never change elsewhere;
+- before abandoning the physical-source bookkeeping analogy, perform one smaller read-only invocation-level snapshot of the exact raw8 source's visited state for close contacts versus far misses;
+- if visited state also remains unchanged, move inward to the static `Game+0x16E1A3 -> +0x16E348` checks.
