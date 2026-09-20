@@ -146,6 +146,8 @@ Stalker -> factual Axe/raw52               PASS — EV-314
 
 Goblin, Demon and Ogre were deliberately repeated after permanent raw55 integration even though earlier controls existed at EV-252–EV-254. Their established supported routes remain healthy, providing bounded regression evidence that the raw55 work did not disturb those equipped-NPC paths. Stalker extends the current coverage with another Axe/raw52 actor/source fixture.
 
+Before Phase 4, EV-332–EV-336 add a mixed player/enemy cross-source pass on the accepted current build: player dual-1H vs Ogre/raw52, 1H vs Orc Raider/raw52, 1H+shield vs Demon/raw3, 2H vs Stalker/raw52, and raw8 Fist vs Goblin/raw2. The batch also re-confirms dual-slot desired-set semantics, shield source isolation, 2H Whirl/Hack, raw8 timing, and permanent equipped Sprint under ordinary combat.
+
 EV-311 exposed the factual equipped Sprint/right/raw2 Goblin route that was subsequently researched and promoted. Permanent `EquippedSprintCollision` acceptance is now CLOSED/PASS through EV-329; Phase 3 remains closed and that scope no longer blocks Phase 4.
 
 ### 3.4 Phase 4 — Non-weapon creatures — NEXT
