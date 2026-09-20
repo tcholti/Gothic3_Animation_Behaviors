@@ -207,3 +207,39 @@ Provenance:
 Disposition:
 - **CAUSAL OBSERVATION PASS.**
 - Close the post-attempt observation probe. Next bounded question: whether one exact post-miss latch rearm, without timing rearm, preserves a later native opportunity while successful early contact remains consumed.
+
+
+### EV-348 — Gargoyle raw8 post-miss latch rearm restores later native opportunity
+
+Observed:
+- Runtime used reviewed diagnostic-only probe implementation `ea652e3324fffb07da013229a2fd374c4f3b1c6b` and diagnostic DLL SHA256 `63261A1A4778FF293BDA94495B57EE363546650A7D386507304CA3D5FD9AB3FC`.
+- Thirteen exact Gargoyle factual `Action=2 / POWER`, RIGHT `Fist` / UseType8 frame-3 synthetic attempts were observed.
+- Four close-range synthetic attempts produced exact same-invocation native raw8 damage at `Game.dll+0x0016E348`; all four correctly performed no probe rearm.
+- Nine synthetic attempts produced no exact same-invocation raw8 damage and met every post-miss identity condition; all nine performed one confirmed `SPU+0x164: 1 -> 0` rearm.
+- Seven of those nine rearmed misses later produced exact native `Fist -> PC_Hero` damage before the same C1 finalized, at approximately 100.6–109.8 ms after the rearm.
+- C1 22 and C1 43 rearmed successfully but produced no later native damage before C1 finalization.
+- User visual observation: all attacks appeared to connect except one case where distance was so large that the Gargoyle never reached the player by the end of the motion. The log nevertheless contains two rearmed/no-damage C1s, so the second visual/log discrepancy remains unassigned rather than guessed.
+- All probe identities matched; no anomaly, warning, contradiction, rejected marker, repair or divergence record appeared; every marked Gargoyle C1 finalized cleanly.
+
+Interpretation:
+- A single post-miss latch-only rearm is sufficient to restore a later native raw8 damage opportunity on the tested Gargoyle Power route.
+- Successful early native damage remains consumed: the exact-hit branch performs no rearm and no second same-C1 raw8 damage was observed.
+- Because the probe did not rearm synthetic timing, the restored opportunity occurs later under Gothic's ordinary timing path rather than by another synthetic early comparison.
+- This proves a smaller mechanism than a full timing redesign can recover later native opportunity after an early authored miss.
+- It does **not** yet prove continuous eligibility from the FIST marker until contact; transient contact before Gothic's later native timing remains an open semantic/mechanism question.
+
+Scope / limits:
+- Tested factual raw8 Power only.
+- Does not generalize the exact success detector or post-miss policy to Normal/Quick/Sprint yet.
+- Does not resolve the two rearmed/no-damage C1s beyond preserving their factual result.
+- Does not establish final production architecture.
+
+Provenance:
+- User-upload head: `40081c3e6994c895202713b5ccdd5997896ebef5`.
+- Diagnostic DLL SHA256: `63261A1A4778FF293BDA94495B57EE363546650A7D386507304CA3D5FD9AB3FC`.
+- Canonical archived log: `research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_2.log`.
+- Git blob: `b447d1a3995118e84b0884801c0347b49efd15d8`.
+
+Disposition:
+- **CAUSAL INTERVENTION PASS.**
+- The post-miss latch-rearm probe is closed. The next design/research question is whether the agreed FIST semantic requires eligibility throughout the interval from marker time to Gothic's later native threshold, or whether latch-only recovery at native timing is sufficient.
