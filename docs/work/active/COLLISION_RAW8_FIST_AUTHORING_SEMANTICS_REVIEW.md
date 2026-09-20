@@ -1,10 +1,53 @@
 # Raw8 FIST Authoring Semantics Review
 
-**Status:** ACTIVE — DESIGN / RESEARCH GATE  
+**Status:** ACTIVE — DESIGN AGREED / RESEARCH GATE  
 **Opened:** 2026-09-20  
 **Evidence trigger:** EV-346
 
-## Question
+## Agreed author-facing semantic
+
+User + Normal Chat agreed on 2026-09-20 that marked factual `gEUseType_Fist` / raw8 should use a persistent authored opportunity model:
+
+```text
+marked C1 starts
+-> raw8 authored opportunity CLOSED
+
+accepted FIST
+-> authored body-contact damage opportunity OPEN
+
+while OPEN
+-> Gothic owns target/contact/damage
+-> unsuccessful native contact attempt does not consume authored opportunity
+
+first successful native contact
+-> authored opportunity CONSUMED/CLOSED
+
+later accepted FIST
+-> authored opportunity OPEN again
+
+C1 / Hit termination, interruption or factual replacement
+-> any unused authored opportunity CLOSED
+```
+
+The marker defines the beginning of eligibility, not one exact frame on which contact must already exist.
+
+No arbitrary timeout is part of the desired semantic. The natural upper lifetime boundary is the factual attack/C1 lifetime.
+
+### FIST_OFF decision
+
+Do **not** add authored FIST_OFF for raw8 unless future evidence demonstrates a concrete unwanted-contact problem requiring it.
+
+The weapon OFF marker exists because a physically active weapon can damage unintended nearby actors during visually inactive frames. Existing raw8 evidence, including EV-082 and the User's allied-NPC control observation, instead supports target/focus-directed eligibility: unarmed attacks did not damage an allied NPC that could not be selected with weapons drawn, while weapon contact did.
+
+This supports the present design decision that raw8 does not need an OFF marker merely to mirror weapon vocabulary.
+
+### Raw55 follow-up
+
+The same author-facing FIST meaning should later be checked against permanent raw55/PhysicalFist behavior. Do not copy raw8 mechanics into raw55. The desired abstraction may be shared while the native mechanisms remain separate.
+
+The immediate research responsibility is raw8 only.
+
+## Historical question
 
 For marked factual `gEUseType_Fist` / raw8 attacks, what should an authored `G3AB_COL_FIST` mean?
 
@@ -143,6 +186,14 @@ Do not modify production behavior yet. The next causal work, if Option B is chos
 
 ## Gate
 
-No Work implementation task is active.
+The author-facing semantic is decided. Production redesign remains prohibited until the native mechanism is established causally.
 
-Phase-4 broad regression is paused at this design gate. Normal Chat + User must first choose the intended author-facing semantic. If persistent-window semantics are preferred, freeze one diagnostic causal question at a time under `FEATURE_DEVELOPMENT_METHOD.md` before any production redesign.
+First bounded research question:
+
+> After the current early synthetic raw8 opportunity executes, what is the factual post-native `SPU+0x164` latch state when no damage occurs versus when native damage occurs?
+
+The first implementation task is observation-only and is frozen in:
+
+`docs/work/active/COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md`
+
+Phase-4 broad regression remains paused until this research chain either proves a safe persistent-window mechanism or forces a design revision.
