@@ -243,3 +243,39 @@ Provenance:
 Disposition:
 - **CAUSAL INTERVENTION PASS.**
 - The post-miss latch-rearm probe is closed. The next design/research question is whether the agreed FIST semantic requires eligibility throughout the interval from marker time to Gothic's later native threshold, or whether latch-only recovery at native timing is sufficient.
+
+
+### EV-349 — Gargoyle rearm control exposes native knockdown rejection and cross-C1 opportunity leak
+
+Observed:
+- Runtime reused reviewed diagnostic-only latch-rearm probe implementation `ea652e3324fffb07da013229a2fd374c4f3b1c6b` and diagnostic DLL SHA256 `63261A1A4778FF293BDA94495B57EE363546650A7D386507304CA3D5FD9AB3FC`.
+- Twelve exact Gargoyle factual `Action=2 / POWER`, RIGHT `Fist` / UseType8 frame-3 synthetic attempts were observed.
+- Four attempts produced exact same-invocation native raw8 `Game.dll+0x0016E348` entries and correctly performed no latch rearm.
+- Eight attempts missed the exact synthetic invocation and all eight performed one confirmed `SPU+0x164: 1 -> 0` post-miss rearm.
+- Six of those eight rearms produced later exact native `Fist -> PC_Hero` `OnDamage` entries before the original Hit C1 was replaced/finalized, approximately 99.4–112.4 ms after rearm.
+- C1 5 rearmed successfully but produced no later `OnDamage` entry before finalization.
+- C1 55 rearmed at 109656.881 ms; the next Gargoyle C1 generation 57 replaced generation 55 at 109773.729 ms; an exact native `Fist -> PC_Hero` `OnDamage` entry then occurred at 109773.833 ms, after the generation replacement, while the player was `Action=31`, phase 1, motion `Hero_SitKnockDown_None_1H_P0_GetUpParade_Hit_N_Fwd_00_%_00_P0_0.xmot`.
+- User observed two attacks with no visible damage because the player was already knocked down / in the protected part of getting up. The log directly confirms one native `OnDamage` entry during `GetUpParade`; the C1 5 no-`OnDamage` case is temporally consistent with the other user-observed knocked-down rejection but does not itself log the player's exact action at that moment.
+- No anomaly, warning, contradiction, rejected marker, repair or divergence record appeared.
+
+Interpretation:
+- Visible health damage is not a valid collision-success oracle. Native target-state rules can suppress visible damage even when the native raw8 `OnDamage` boundary is entered, and can also prevent that boundary from being reached.
+- Therefore a future persistent raw8 opportunity mechanism must not treat every "no visible damage" outcome as a geometric miss that deserves forced recovery. Gothic must retain authority over knockdown/get-up vulnerability and other target-state rejection.
+- The temporary latch-only rearm also demonstrates a lifecycle hazard: an unused rearmed opportunity can remain live across the original Hit C1 replacement into Recover unless the future design explicitly closes it at the agreed C1/Hit lifetime boundary.
+- This directly reinforces the previously agreed invariant that any unused authored raw8 opportunity must terminate on C1/Hit replacement/interruption.
+
+Scope / limits:
+- Tested Gargoyle factual raw8 Power only under the diagnostic-only rearm probe.
+- The log does not identify the exact native branch that distinguishes geometric no-contact from knockdown/get-up target-state rejection.
+- It does not establish the final production success/consumption detector.
+- User reports that New Balance changes some knockdown/get-up behavior; that statement is retained as a future compatibility-test reason, not as a verified New Balance mechanism in this standalone run.
+
+Provenance:
+- User-upload head immediately before closure: current branch commit adding `research/raw/2026-09-20_observation_gargoyle_marker_frame_3_test_3.log`.
+- Diagnostic DLL SHA256: `63261A1A4778FF293BDA94495B57EE363546650A7D386507304CA3D5FD9AB3FC`.
+- Canonical archived log: `research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_3.log`.
+- Git blob: `9e46fa742d94d8e569226c51e509b224ac391ac1`.
+
+Disposition:
+- **CAUSAL CORROBORATION / NEW LIFECYCLE + TARGET-STATE DISCOVERY.**
+- Do not advance directly to production. The remaining research must distinguish genuine no-contact from legitimate native target-state rejection and must close any unused opportunity at the exact C1/Hit lifetime boundary.
