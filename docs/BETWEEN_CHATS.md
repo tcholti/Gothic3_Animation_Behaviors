@@ -78,20 +78,12 @@ Do not change:
 
 Expected correction diff: **one file only**.
 
-## Stop gate
+## Current gate
 
-Run:
+POP-12 knowledge-state validation: **PASS**.
 
-```text
-python tools/knowledge/validate_knowledge_state.py
-```
+The one-file generation-safe finalization correction is cleared for Work.
 
-Require:
-
-```text
-Knowledge-state validation PASS
-```
-
-Only after PASS send the one-file correction to Work.
+No build/runtime is authorized until Normal Chat independently reviews the correction commit.
 
 `research/raw/` should contain only `Keep.txt`.
