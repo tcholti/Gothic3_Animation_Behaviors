@@ -267,3 +267,71 @@ Conclusion:
 - this does **not** yet prove the inherited `EntitiesVisited` arrays never change elsewhere;
 - before abandoning the physical-source bookkeeping analogy, perform one smaller read-only invocation-level snapshot of the exact raw8 source's visited state for close contacts versus far misses;
 - if visited state also remains unchanged, move inward to the static `Game+0x16E1A3 -> +0x16E348` checks.
+
+
+## EV-352 — target-directed control and pending-opportunity architecture candidate
+
+Native human group-combat control:
+- 25 player Fist C1 starts;
+- eight exact raw8 `Game+0x16E348` dispatches;
+- all eight target only the locked `ReddockOrcScoutLeader`;
+- no exact raw8 dispatch targets deliberately interposed/adjacent non-target Orcs.
+
+Together with:
+- EV-233: raw8 same-target rearm does not require `ClearTriggeredList()`;
+- EV-351: raw8 bypasses the ordinary `CanBeActivatedNow` / `TriggerTarget` virtual route;
+- EV-349: exact `Game+0x16E348` dispatch can occur while Parade prevents visible HP damage;
+
+the next causal prototype should **not** reproduce weapon/raw55 per-target bookkeeping.
+
+Candidate state machine:
+
+```text
+exact marked raw8 C1 starts
+-> native latch CLOSED
+-> no authored opportunity yet
+
+accepted FIST
+-> one pending-opportunity token OPEN
+-> native latch OPEN
+-> marker-time timing permission available
+
+while token OPEN
+-> Gothic runs its ordinary raw8 target/contact checks
+-> if a one-shot attempt closes the latch but no exact raw8 contact dispatch occurs:
+     reopen latch
+     preserve marker-time synthetic timing eligibility while still pre-threshold
+-> repeat only through ordinary combat-loop invocations
+
+exact raw8 Game+0x16E348 dispatch entered
+-> consume token immediately
+-> do not inspect the result of OnDamage
+-> do not rearm latch
+-> Gothic/behavior mods own block/immunity/reaction/HP consequences
+
+later accepted FIST in same exact C1
+-> OPEN/rearm one token again
+-> never stack multiple hidden entitlements
+
+C1 / Hit replacement, interruption, source/animation identity loss
+-> close any unused token
+-> force latch CLOSED
+-> retire synthetic timing permission
+```
+
+The existing `Raw8FistMarkerExecution` identity already provides most of the required bookkeeping dimensions:
+- actor;
+- C1 generation;
+- exact Fist source;
+- SPU;
+- animation actor;
+- animation identity.
+
+The prototype therefore needs a **single pending bit/state**, not a target list.
+
+Important architectural wording:
+- the exact `Game+0x16E348` caller path is used as a **native raw8 contact-resolution dispatch boundary**;
+- its API name is `OnDamage`, but the collision feature must never use return/HP outcome as its criterion;
+- token consumption happens on exact dispatch entry, before gameplay consequences are interpreted.
+
+This architecture still requires causal runtime proof before production promotion.
