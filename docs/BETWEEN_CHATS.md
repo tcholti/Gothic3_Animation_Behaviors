@@ -93,22 +93,16 @@ First runtime after review: same Gargoyle frame-3 fixture with close and far sta
 
 If the two TouchDamage callbacks are absent even in close cases while `CORE ONDAMAGE` occurs, rule them out for this raw8 combat-loop route and return to the `Game+0x16E1A3 -> +0x16E348` branch region.
 
-## Current stop gate
+## Current gate
 
-The frozen task changed lifecycle-sensitive project state.
+POP-12 knowledge-state validation of this frozen task state: **PASS**.
 
-Run:
+The task is now cleared for bounded Work implementation.
 
-```text
-python tools/knowledge/validate_knowledge_state.py
-```
+Work must implement only:
 
-Require:
+`docs/work/active/COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md`
 
-```text
-Knowledge-state validation PASS
-```
-
-Only after PASS send the frozen task to Work.
+No runtime causal intervention or production behavior change is authorized.
 
 `research/raw/` should contain only `Keep.txt`.
