@@ -17,11 +17,11 @@ Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
 Phase 4 non-weapon creatures = PAUSED AT RAW8 FIST AUTHORING-SEMANTICS RESEARCH
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-352
+latest completed evidence = EV-353
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
-active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md
-current stop gate = POP-12 validation of reviewed raw8 token implementation before local build
+active Work implementation task = NONE
+current stop gate = POP-12 validation of EV-353 closure before production-architecture freeze
 ```
 
 ## Current responsibility
@@ -47,26 +47,26 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**Correction commit `015a3ef90bf135cf502ac6507fb68f7c8c962800` independently source-reviewed PASS. Before local build/runtime, POP-12 must validate this reviewed implementation state.**
+**EV-353 closes the diagnostic persistent-opportunity token model PASS: authored FIST survives native misses, consumes on first exact native raw8 contact dispatch, and closes on tested C1 finalization/replacement without observed cross-C1 leakage. No active Work task. POP-12 must validate this closure before freezing permanent raw8 architecture.**
 
 Current frozen causal question:
 
 > Can one exact marker-owned pending opportunity token keep Gothic's native raw8 one-shot mechanism eligible after misses, consume on the first exact `Game+0x16E348` contact-resolution dispatch, and close safely at exact Hit/C1 end?
 
-Frozen task: `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`.
+Closed probe archive: `docs/archive/investigations/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`.
 
-No per-target list is part of this probe.
+Parent review remains `docs/work/active/COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md`. Next responsibility is permanent raw8 architecture freeze; no production code change is authorized yet.
 
 ## Current runtime provenance
 
-Latest reviewed diagnostic observation implementation:
+Latest reviewed diagnostic implementation:
 
-`929bba9974788c873860f8e33f504c091f7aa524`
+`015a3ef90bf135cf502ac6507fb68f7c8c962800`
 
 Current diagnostic DLL:
 
 `Script_FrameCollisionTest.dll`  
-SHA256 `F6EB69B1AFAFCB4C8F99FBE4C5CFDE1DC411FA074F109E7F5515D068E76096DD`
+SHA256 `539282F9DAD4A690CFE5AA22B5C5A85066EDFC81C617859EEDDE5341CE869DD5`
 
 Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 
