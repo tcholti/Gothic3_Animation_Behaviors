@@ -22,7 +22,7 @@ active contract = none; standalone regression resumes under COLLISION_TEST_PLAN.
 Phase 4 non-weapon creatures = ACTIVE / PARTIAL PASS
 focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-341
-active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
+active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 ```
 
 Phase 1 is closed: the EV-299–EV-306 runs tested human marked attack routes, with Golem used only as a consistent target fixture. Sabretooth marked single-marker compatibility/Quick support is already closed through EV-247–EV-249 and the two-marker same-C1 control passed at EV-307.
