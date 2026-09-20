@@ -280,3 +280,43 @@ Provenance:
 Disposition:
 - **CAUSAL CORROBORATION / NEW LIFECYCLE + TARGET-STATE DISCOVERY.**
 - Do not advance directly to production. The remaining research must identify the smallest factual native hit/contact-resolution boundary, independent of gameplay damage policy, and must close any unused opportunity at the exact C1/Hit lifetime boundary.
+
+
+### EV-350 — Raw8 closed-research retirement neutral-baseline control PASS
+
+Observed:
+- Reviewed cleanup implementation: `ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3`.
+- Both collision twins built successfully locally.
+- Diagnostic deployment contained exactly one live collision twin: `Script_FrameCollisionTest.dll`.
+- Built/live SHA256 matched `C33046D1AE139B5D905CF5E1004F725F07A5FE8CAC3A9705F11691497D7CD17D`.
+- Diagnostic startup/unload was clean.
+- The User additionally repeated the frame-3 Gargoyle factual `Action=2 / POWER`, RIGHT `Fist` / UseType8 control after retirement.
+- Five marked C1s were observed: 7, 13, 17, 22 and 29.
+- All five accepted FIST, confirmed latch `1 -> 0`, armed early timing permission and consumed it with `SyntheticApplied=1`.
+- C1 22 and C1 29 entered the generic native `Game.dll+0x0016E348` `OnDamage` API boundary approximately 0.15 ms and 0.14 ms after the synthetic opportunity respectively.
+- C1 7, C1 13 and C1 17 had no such native hit/contact-path entry before their C1 finalized.
+- User runtime observation matched the old pre-probe behavior: close-starting Gargoyle attacks could make contact at the frame-3 opportunity; farther-starting attacks missed even when the motion later carried the Gargoyle into range.
+- No `RAW8_FIST_WINDOW_PROBE` record appeared.
+- No `RAW8_FIST_POST_ATTEMPT` record appeared.
+- Generic `CORE ONDAMAGE` observation remained present.
+- No anomaly, warning, contradiction, rejected marker, repair or divergence record appeared.
+
+Interpretation:
+- Retirement restored the diagnostic product to the intended neutral baseline without changing permanent raw8 marker/latch/timing behavior.
+- The temporary EV-348 post-miss rearm effect is gone; frame-3 raw8 again exhibits the previously proven one-shot authored-opportunity behavior.
+- Generic `OnDamage` logging remains observation only. The two entries in this control are treated as native hit/contact-path evidence, not as ownership of gameplay damage policy.
+
+Scope / limits:
+- This is a cleanup/runtime-equivalence control, not a new production mechanism proof.
+- It does not establish `Game+0x16E348` as the final production opportunity-consumption boundary.
+- It does not alter the agreed persistent-opportunity design target.
+
+Provenance:
+- Cleanup implementation: `ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3`.
+- Diagnostic DLL SHA256: `C33046D1AE139B5D905CF5E1004F725F07A5FE8CAC3A9705F11691497D7CD17D`.
+- Canonical archived log: `research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_4.log`.
+- Git blob: `06d1e22353f017f536d1c8c2d039e5fe34fd1e0b`.
+
+Disposition:
+- **CLEANUP / NEUTRAL-BASELINE PASS.**
+- Closed raw8 damage-correlated research instrumentation is retired. Future raw8 research starts from this neutral baseline.
