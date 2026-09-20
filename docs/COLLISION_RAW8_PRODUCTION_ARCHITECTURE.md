@@ -5,10 +5,10 @@
 
 ## Purpose
 
-Define the permanent diagnostics-independent behavior for factual `gEUseType_Fist` / raw8 after the EV-346–EV-353 causal campaign.
+Define the permanent diagnostics-independent behavior for factual `gEUseType_Fist` / raw8 after the EV-346–EV-354 causal and pre-Work sentinel closure.
 
 Ordinary factual lookup: `COLLISION_REFERENCE.md`.  
-Exact proof: `EVIDENCE_INDEX.md` → EV-346–EV-353.
+Exact proof: `EVIDENCE_INDEX.md` → EV-346–EV-354.
 
 ---
 
