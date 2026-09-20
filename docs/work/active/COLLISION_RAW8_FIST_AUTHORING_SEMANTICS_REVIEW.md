@@ -203,6 +203,8 @@ Result:
 
 This is classified as research-language / temporary-probe drift, not confirmed permanent behavior drift.
 
+EV-350 neutral-baseline retirement control: **PASS**. The closed `Raw8FistWindowProbe` and EV-347 post-attempt raw8 OnDamage-counting instrumentation are retired. Five frame-3 Gargoyle controls returned to the previously proven one-shot behavior (2 native hit/contact-path entries, 3 no later contact-path entry), while the generic `CORE ONDAMAGE` observer remained available as neutral context.
+
 ## Gate
 
 The author-facing semantic is decided. Production redesign remains prohibited until the native mechanism is established causally.
@@ -217,6 +219,6 @@ EV-349 plus the authoring-boundary clarification establishes:
 - our mod must not special-case knockdown, get-up, block, immunity or other damage-policy states;
 - unused authored opportunity must be closed at exact C1/Hit termination because the temporary rearm can otherwise remain live into Recover.
 
-No new Work implementation task is active. The next step is to identify the smallest factual native **hit/contact-resolution** boundary that can consume the authored opportunity without depending on gameplay damage outcome, **after POP-12 knowledge-state validation passes**.
+No new Work implementation task is active. EV-350 restores the neutral diagnostic baseline. The next step is to identify the smallest factual native **hit/contact-resolution** boundary that can consume the authored opportunity without depending on gameplay damage outcome, **after POP-12 knowledge-state validation passes**.
 
 Phase-4 broad regression remains paused until this research chain either proves a safe persistent-window mechanism or forces a design revision.
