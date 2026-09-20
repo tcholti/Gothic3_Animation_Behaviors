@@ -139,7 +139,7 @@ exact C1 finalization/replacement
 
 Gothic remains authoritative for target selection, contact geometry, block/parry, immunity, reactions and HP damage. The API transport happens to be `gCEntity::OnDamage`, but production raw8 uses only exact dispatch entry as the contact-resolution fact and never interprets the result as “damage succeeded.”
 
-The opportunity lifetime is actor/C1/source/SPU scoped. Timing persistence is a separate animation/timing substate and may retire without consuming the logical opportunity. Proven Sprint-origin Action9 -> Action2 continuation inside one C1 remains protected.
+The opportunity lifetime is actor/C1/source/SPU scoped. Timing persistence is a separate animation/timing substate and may retire without consuming the logical opportunity. EV-354 directly protects Sprint-origin Action9 -> Action2 continuation inside one C1; in the tested Sabretooth route both action states use the same PowerAttack-named motion rather than separate Sprint/Power animation assets.
 
 Production exclusions remain: no FIST_OFF, no `ClearTriggeredList`, no target/visited list, no collision-group window, no custom/direct damage, no species rules, no polling/timers, and no raw55/equipped mechanism sharing.
 
