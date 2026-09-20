@@ -46,11 +46,13 @@ Gothic retains target/contact/damage ownership.
 
 Raw55 must later be checked against the same author-facing abstraction without copying raw8 mechanics into raw55.
 
-## Active bounded Work task
+## Active raw8 probe
 
 `docs/work/active/COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md`
 
-Responsibility is diagnostics-only:
+Work implementation `4ab9a77557f9ad5057d158b7d26a3098db657b28` is independently source-reviewed **PASS**. Runtime validation is pending.
+
+Probe responsibility is diagnostics-only:
 
 > After the current early synthetic raw8 opportunity executes, observe the factual post-native `SPU+0x164` latch state and correlate it with native damage/no-damage.
 
@@ -74,10 +76,12 @@ Protected:
 
 Work build execution is PROHIBITED.
 
-After Work result:
-1. Normal Chat independently reviews the commit.
-2. User builds/deploys locally.
-3. Controlled runtime should include an early-FIST miss fixture and an early-FIST hit fixture so post-attempt latch state can be compared.
-4. Do not resume broad Phase 4 until this causal research chain closes or the design is revised.
+Next:
+1. User builds both `Script_FrameCollisionTest` and `Script_FrameCollisionBehaviorTest` locally; deploy diagnostic twin only.
+2. Verify one live collision DLL/twin and capture diagnostic SHA256.
+3. Use an isolated Gargoyle raw8 Power fixture with an early marker that produces `SyntheticApplied=1`; the approximate frame-3 fixture is preferred because the prior run naturally produced both hits and misses at identical authored timing.
+4. Capture enough attacks to obtain at least one synthetic miss and one synthetic hit.
+5. Correlate every `CORE RAW8_FIST_POST_ATTEMPT` OnDamage ordinal with the exact `ENTITY_ON_DAMAGE_ENTRY` record before interpreting hit/miss.
+6. Do not resume broad Phase 4 until this causal research chain closes or the design is revised.
 
 `research/raw/` currently contains only `Keep.txt`.
