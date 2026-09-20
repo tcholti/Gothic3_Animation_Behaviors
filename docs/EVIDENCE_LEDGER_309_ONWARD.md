@@ -593,3 +593,65 @@ Disposition:
 - **PASS.**
 - Diagnostics-free product acceptance for permanent equipped Sprint is complete.
 - Together with source review, both builds/startups, EV-326 positive continuation, EV-327 missing-source negative, and EV-328 true-Power protection, this closes the production-promotion acceptance.
+
+### EV-330 — current-build Orc Whirl RIGHT->OFF->RIGHT + player 1H spot-check PASS
+
+Observed:
+- Current diagnostic build rechecked Orc Staff-animation behavior on exact RIGHT `It_Halberd_Orc_01` / UseType 51.
+- Three complete factual Orc Whirl executions, C1 generations 12, 23 and 31, each authored:
+  `RIGHT -> OFF -> RIGHT`.
+- Every Whirl repeated the same physical sequence:
+  `5->7 -> 7->5 -> 5->7 -> 7->5`.
+- Each Whirl recorded two authored offense requests and finalized with the exact Halberd source `Outstanding=0 / Cleanup=1 / NO_OP_NO_OUTSTANDING`.
+- Native damage occurred in two of the three Whirls; the non-contact Whirl still executed the full authored source-window lifecycle correctly.
+- The same log also spot-checked player ordinary 1H/raw2 marker behavior against the Orc: Normal RIGHT was accepted, opened `It_1H_Sword_Rust_01` 5->7, damaged the Orc, cleaned 7->5 and finalized cleanly. A Quick-left motion also accepted RIGHT on the factual RIGHT sword source and cleaned correctly, although that particular swing did not contact.
+- Broader Orc Staff marker traffic in the same run remained accepted across Hack, Normal, Whirl and Power.
+- No contradiction, invariant, lifecycle, repair-divergence or unresolved equipped-source flag appeared.
+
+Scope / limits:
+- Current-build corroboration of already-established OFF-gap/reactivation semantics and ordinary player 1H source behavior.
+- This is not a new semantic extension: it confirms the present accepted build still implements previously proven RIGHT/OFF/repeated-contact behavior.
+- Lack of damage on an individual accepted opportunity is not treated as failure because contact/geometry remain Gothic-owned.
+
+Provenance:
+- User upload batch head: `e4642a2d662a82e1594d00a260dd438f2a6176dd`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_orc_current_build_whirl_marker_on_off_on_recheck.log`.
+- Git blob `6c6aadd7b7e7e357ee5b6f63606e042ccff1d0e9`; 86,975 characters / 458 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS / CORROBORATION.**
+- Current accepted build preserves Orc Whirl OFF-gap reactivation and ordinary player 1H marker behavior.
+
+### EV-331 — current-build Orc repeated-RIGHT Whirl + raw8 + player 1H+torch coexistence PASS
+
+Observed:
+- Four Orc Whirl C1s (7, 30, 39, 60) each authored two accepted RIGHT markers with no OFF between them.
+- The exact Halberd/raw51 source followed the established repeated-contact shape: first RIGHT opened 5->7; second RIGHT requested 7 while already at 7 and rearmed contact bookkeeping; native cleanup later returned the source 7->5. Every sampled Whirl finalized `Outstanding=0 / Cleanup=1`.
+- The repeated second RIGHT was therefore not deduped away merely because the source was already active.
+- Orc raw8 Fist also remained healthy: seven accepted FIST markers across Normal and Power produced seven native damage events to `PC_Hero`. The established raw8 early-permission path armed/consumed normally in sampled complete C1s and finalized without outstanding collision obligation.
+- Player raw8 Fist remained healthy in the same mixed run: three accepted player FIST executions produced native Orc damage and clean finalization.
+- Player 1H+torch marker behavior was sampled across Quick, Normal and Power. Sixteen accepted RIGHT-marker attack C1s used factual RIGHT `It_1H_Sword_Rust_01`; the sword opened/cleaned through the expected equipped path while `It_Torch_Burning` remained tracked as LEFT with no authored collision-group mutation in those RIGHT-only samples.
+- Every listed 1H+torch C1 finalized with sword and torch obligations at zero. Native Orc damage occurred on fourteen of the sixteen accepted marked attacks; two Quick opportunities did not contact, without lifecycle failure.
+- No contradiction, invariant, lifecycle, repair-divergence or unresolved equipped-source flag appeared.
+
+Scope / limits:
+- Current-build coexistence/regression corroboration for:
+  - repeated same-source RIGHT rearm during Whirl;
+  - Orc raw8 Normal/Power FIST;
+  - player raw8 FIST;
+  - player 1H+torch RIGHT marker ownership.
+- The torch observation is specific to RIGHT-authored samples in this log: it proves the tracked LEFT torch was not spuriously mutated by those RIGHT markers; it does not claim a new authored LEFT-torch feature.
+- No new collision mechanism is inferred from this corroboration run.
+
+Provenance:
+- User upload batch head: `e4642a2d662a82e1594d00a260dd438f2a6176dd`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_orc_current_build_whirl_marker_on_on_fist_recheck.log`.
+- Git blob `ddb59896124e491ed917890f37bb10bd20828285`; 325,662 characters / 1,158 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS / CORROBORATION.**
+- Current accepted build preserves repeated-RIGHT rearm, Orc/player raw8 behavior and 1H+torch source separation in the sampled routes.
