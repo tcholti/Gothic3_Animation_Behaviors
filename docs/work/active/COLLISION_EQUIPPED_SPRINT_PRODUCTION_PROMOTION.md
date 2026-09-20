@@ -1,6 +1,6 @@
 # Equipped Sprint Production Promotion
 
-**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / BUILD+RUNTIME PENDING  
+**Status:** ACTIVE — IMPLEMENTED / SOURCE REVIEW PASS / BOTH BUILDS PASS / STARTUP+RUNTIME PENDING  
 **Type:** Bounded production-behavior promotion  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime acceptance.
@@ -295,3 +295,21 @@ Next acceptance gate:
 4. run diagnostic EV-322/323/324 compact controls;
 5. run behavior-only Goblin Sprint smoke;
 6. only then close/archive this promotion contract and promote the behavior baseline to permanent equipped-Sprint production support.
+
+
+## Local build result
+
+User-local validation after source review:
+
+```text
+Knowledge-state validation PASS
+Script_FrameCollisionBehaviorTest build PASS
+Script_FrameCollisionTest build PASS
+```
+
+Interpretation:
+- the permanent shared `EquippedSprintCollision` extraction compiles in both product twins;
+- compile/link correctness for the changed production surface is established;
+- deployment/startup/runtime equivalence is not yet established.
+
+Next gate: deploy **only** `Script_FrameCollisionBehaviorTest.dll`, require POP-03 behavior deployment PASS, launch to main menu, exit normally, and require no startup/load crash. No diagnostic banner/log is expected for the behavior twin.
