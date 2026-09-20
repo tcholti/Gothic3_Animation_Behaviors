@@ -655,3 +655,156 @@ Provenance:
 Disposition:
 - **PASS / CORROBORATION.**
 - Current accepted build preserves repeated-RIGHT rearm, Orc/player raw8 behavior and 1H+torch source separation in the sampled routes.
+
+### EV-332 — mixed dual-1H player vs Ogre/raw52 regression PASS
+
+Observed:
+- The Ogre used factual RIGHT `It_Axe_OgreMorningStar_01` / raw52. Nineteen authored RIGHT markers were accepted across Power (12), Normal (4) and Quick (3).
+- Ogre source mutation remained balanced: 19 exact RIGHT 5->7 openings and 19 exact RIGHT 7->5 cleanups. Eighteen native damage events reached `PC_Hero`.
+- The player used two live `It_1H_Sword_Rust_01` instances, distinguished factually by RIGHT and LEFT equipped slots despite sharing the same item template.
+- Authored dual-wield coverage included Quick RIGHT/LEFT, Power BOTH/LEFT/RIGHT/OFF combinations, SimpleWhirl LEFT/RIGHT, Pierce LEFT/RIGHT, and Normal BOTH.
+- Forty-one ordinary authored marker events were accepted and six OFF events were accepted. Duplicate/replayed callbacks beyond the authored occurrence budget were fail-safe ignored as `AUTHORED_OCCURRENCE_BUDGET_IGNORED` or `DUPLICATE_SAME_UPDATE_IGNORED`; they did not create extra authored contacts.
+- Detailed Power samples prove desired-set semantics:
+  - BOTH opens both sword instances;
+  - BOTH -> LEFT retires RIGHT and rearms LEFT;
+  - BOTH -> RIGHT retires LEFT and rearms RIGHT;
+  - OFF closes the remaining active authored source;
+  - later BOTH reactivates both sources.
+- Across the whole player run, RIGHT physical openings/cleanups balance 47/47 and LEFT openings/cleanups balance 37/37; repeated active-source rearms appear as expected 7->7 operations.
+- Thirteen native damage events reached the Ogre from the player-side mixed route.
+- All tracked C1 finalizations in the fixture closed without outstanding collision obligation. No contradiction, invariant, lifecycle, repair-divergence or unresolved-source flag appeared.
+
+Scope / limits:
+- Mixed current-build regression for dual-1H slot identity, desired-set semantics, occurrence/dedupe protection and Ogre raw52 coexistence.
+- Some ordinary native/unmarked dual-wield attacks also appear in the log; they remain native and cleanly finalized.
+- Individual authored opportunities that do not contact are not failures because target/contact geometry remains Gothic-owned.
+
+Provenance:
+- User upload batch head: `b422ddd78804d852882bfdd1301f0698a9297cde`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_1h_1h_ogre_2h_marker_test.log`.
+- Git blob `8c6d43c2e79aad3bbae772407734f6d92562c3b8`; 235,935 characters / 1,175 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Dual-source equipped semantics and Ogre raw52 behavior remain healthy on the accepted current build.
+
+### EV-333 — player 1H vs Orc Raider/raw52 mixed regression PASS
+
+Observed:
+- `Montera_Orc_Raider_01` used factual RIGHT `It_Axe_Orc_01` / raw52.
+- Twenty Orc authored RIGHT markers were accepted across Normal (3), Hack (2), Power (3), Whirl (9) and Quick (3).
+- The Orc source produced 16 exact 5->7 openings, 16 exact 7->5 cleanups and four expected 7->7 repeated-marker rearms. Fourteen native damage events reached `PC_Hero`.
+- The player used factual RIGHT `It_1H_Sword_Rust_01` / raw2.
+- Twenty-nine player authored RIGHT markers were accepted across Normal (18), Quick (8), Power (2) and Pierce (1).
+- Player sword operations balanced 33 exact 5->7 openings with 33 exact 7->5 cleanups; eleven 7->7 operations reflect repeated/native rearm opportunities rather than stuck collision.
+- Twenty-four native damage events reached the Orc Raider.
+- All tracked player/Orc C1 obligations finalized cleanly; one source-less Orc reaction C1 is benign. No contradiction, invariant, lifecycle, repair-divergence or unresolved-source flag appeared.
+
+Scope / limits:
+- Current-build mixed regression for player 1H/raw2 against Orc Raider Axe/raw52, including the Orc Normal/Hack/Power/Whirl/Quick family set.
+- Confirms coexistence and lifecycle balance; it does not claim every accepted opportunity must make contact.
+
+Provenance:
+- User upload batch head: `b422ddd78804d852882bfdd1301f0698a9297cde`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_1h_orc_2h_marker_test.log`.
+- Git blob `385a979100595cb292653faf7528651369fad1f9`; 140,954 characters / 725 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Orc Raider raw52 and player 1H marker behavior coexist cleanly on the current build.
+
+### EV-334 — player 1H+shield vs Demon/raw3 source-separation regression PASS
+
+Observed:
+- Demon used factual RIGHT `It_2H_DemonSword_01` / raw3.
+- Thirty-two Demon authored RIGHT markers were accepted across Quick (8), Normal (14) and Power (10).
+- Demon source operations balance exactly: 32 5->7 openings and 32 7->5 cleanups. Twenty-six native damage events reached `PC_Hero`.
+- The player used factual RIGHT `It_1H_Sword_Rust_01` / raw2 while factual LEFT `It_Shield_StewarkGreat` remained equipped/tracked at group5.
+- Sixty-four player RIGHT markers were accepted across Normal (25), Quick (31), Power (4) and Pierce (4).
+- Player sword operations balance 74 exact 5->7 openings with 74 exact 7->5 cleanups; ten expected 7->7 rearm operations also occur.
+- There are **zero** collision-group mutations for `It_Shield_StewarkGreat` in the entire log. RIGHT-only authoring therefore does not spuriously activate or clean the tracked LEFT shield.
+- Thirty-eight native damage events reached the Demon from the player side.
+- Every tracked equipped obligation finalized cleanly; no contradiction, invariant, lifecycle, repair-divergence or unresolved-source flag appeared.
+
+Scope / limits:
+- Current-build source-separation regression for player 1H+shield against Demon 2H/raw3.
+- This confirms RIGHT marker isolation while a real LEFT shield/raw9 is equipped. It does not claim shield-bash damage support or authored LEFT-shield behavior beyond prior evidence.
+
+Provenance:
+- User upload batch head: `b422ddd78804d852882bfdd1301f0698a9297cde`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_1h_shield_demon_2h_marker_test.log`.
+- Git blob `d260baf4e12662c258591c4768af8cdba17275e3`; 326,977 characters / 1,628 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Demon raw3 and player 1H+shield source separation remain healthy.
+
+### EV-335 — player 2H vs Stalker/raw52 mixed regression PASS
+
+Observed:
+- Stalker used factual RIGHT `It_Axe_SpikedClub_01` / raw52.
+- Thirteen Stalker authored RIGHT markers were accepted across Power (6) and Normal (7).
+- Stalker source operations balance exactly: 13 5->7 openings and 13 7->5 cleanups. Ten native damage events reached `PC_Hero`.
+- The player used factual RIGHT `It_2H_Sword_Flamberge` / raw3.
+- Twenty-eight ordinary authored player markers were accepted across Normal (4), Quick (19), Power (2), Whirl RIGHT (2) and Hack (1), plus one accepted Whirl OFF.
+- The Whirl sample explicitly executes `RIGHT -> OFF -> RIGHT`; the extra replayed OFF/RIGHT callbacks are correctly filtered by occurrence/deduplication protection.
+- Player 2H source operations balance 34 exact 5->7 openings with 34 exact 7->5 cleanups; six expected 7->7 rearm operations occur.
+- Seventeen native damage events reached the Stalker.
+- All tracked C1 obligations finalized cleanly; no contradiction, invariant, lifecycle, repair-divergence or unresolved-source flag appeared.
+
+Scope / limits:
+- Current-build mixed regression for player 2H/raw3 Normal/Quick/Power/Whirl/Hack against Stalker Axe/raw52.
+- Corroborates Whirl OFF-gap semantics and the established 2H Hack path without creating new architecture.
+
+Provenance:
+- User upload batch head: `b422ddd78804d852882bfdd1301f0698a9297cde`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_2h_stalker_2h_marker_test.log`.
+- Git blob `0d726c1a05bcd7bd6c1d177f8fc1383324b83a8f`; 136,363 characters / 723 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Player 2H and Stalker raw52 routes remain healthy on the accepted current build.
+
+### EV-336 — player raw8 Fist vs Goblin/raw2 + permanent Sprint mixed regression PASS
+
+Observed:
+- Goblin used factual RIGHT `It_1H_Club_01` / raw2.
+- Forty-two Goblin authored RIGHT markers were accepted across Quick (14), Normal (16) and factual Sprint (12).
+- Goblin club operations balance exactly: 42 5->7 openings and 42 7->5 cleanups.
+- Thirty-six native damage events reached `PC_Hero` across the mixed Goblin attack run.
+- All twelve factual Goblin Sprint executions independently show the permanent `EquippedSprintCollision` path:
+  - eligible Action9/Sprint callback suppression;
+  - `BOUND_EXECUTION_MATCHED` marker authorization;
+  - RIGHT accepted;
+  - exact club 5->7;
+  - native damage to the player;
+  - exact club 7->5 cleanup;
+  - C1 finalization with `Outstanding=0`.
+- The player used factual raw8 `Fist`.
+- Fifty-six player FIST markers were accepted across 56 distinct C1s. All 56 armed the established raw8 early timing permission and all 56 consumed it; zero FIST markers were rejected.
+- Five native Fist damage events reached the Goblin. The lower contact count reflects native geometry/contact opportunity rather than marker/timing failure.
+- Player raw8 C1s finalized without outstanding collision obligation. No contradiction, invariant, lifecycle, repair-divergence or unresolved-source flag appeared.
+
+Scope / limits:
+- Mixed current-build regression for player raw8 Fist against Goblin 1H/raw2.
+- Provides strong post-promotion corroboration of permanent equipped Sprint in ordinary noisy combat, not a replacement for the controlled EV-326–EV-329 acceptance chain.
+- Raw8 marker acceptance opens native contact opportunity; it does not guarantee physical contact on every authored attempt.
+
+Provenance:
+- User upload batch head: `b422ddd78804d852882bfdd1301f0698a9297cde`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_fist_goblin_1h_marker_test.log`.
+- Git blob `3a27c94a9bc883d063debdcd907e7198664c3c5d`; 347,358 characters / 1,592 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Player raw8, Goblin raw2 and permanent equipped Sprint coexist cleanly on the accepted current build.
