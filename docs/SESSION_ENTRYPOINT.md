@@ -21,7 +21,7 @@ latest completed evidence = EV-352
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
 active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md
-current stop gate = corrected persistent-opportunity token probe cleared for Work
+current stop gate = source-review-blocked raw8 token finalization correction / POP-12 pending
 ```
 
 ## Current responsibility
@@ -47,7 +47,7 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**POP-12 validation of the corrected persistent-opportunity token probe: PASS. The bounded diagnostic-only task is cleared for Work. Token lifetime is exact C1/execution-scoped, not Action/family/phase/motion-scoped.**
+**Work implementation `e86c1ce03b36ef0ef7421a19284c5b38e58615ed` is source-review BLOCKED on one narrow issue: terminal `CloseForFinalization()` must revalidate that the current C1 generation still equals the captured pre-AISetState generation before writing latch `1`; changed/invalid generation must retire the stale token with no latch write. POP-12 must validate this correction handoff before Work.**
 
 Current frozen causal question:
 
