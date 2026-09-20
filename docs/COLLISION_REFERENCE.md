@@ -92,11 +92,11 @@ each accepted G3AB_COL_FIST
 -> successful opportunity self-closes latch
 ```
 
-A later FIST in the same C1 can rearm another native contact opportunity. The marked raw8 mechanism is proven across human, Sabretooth/transformed Sabretooth, Wolf/transformed Wolf and Orc fixtures; it is source/mechanism behavior, not a human/species special case. EV-340 pairs the marked Wolf proof with an unmarked Wolf control showing factual Fist/raw8 remains completely native when no FIST marker is authored.
+A later FIST in the same C1 can rearm another native contact opportunity. The marked raw8 mechanism is proven across human, Sabretooth/transformed Sabretooth, Wolf/transformed Wolf, Orc, Minecrawler, Bloodfly, Boar and Bison fixtures; it is source/mechanism behavior, not a human/species special case. EV-340 pairs the marked Wolf proof with an unmarked Wolf control showing factual Fist/raw8 remains completely native when no FIST marker is authored. EV-342–EV-345 further broaden native-creature coverage while preserving the same factual Fist/UseType8 rule.
 
 There is no production `FIST_OFF`, no raw8 equipped-source window, no raw8 `ClearTriggeredList()` mechanism, and no direct/custom raw8 damage.
 
-Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-340.
+Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-340, EV-342–EV-345.
 
 ## 5. PhysicalFist / raw55
 
