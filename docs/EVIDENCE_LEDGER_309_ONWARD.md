@@ -452,3 +452,93 @@ Provenance:
 Disposition:
 - PASS — bounded correction acceptance COMPLETE.
 - Next responsibility returns to the parent generic equipped-Sprint investigation: decide whether the now-proven diagnostic architecture should be promoted into production behavior, without performing that promotion implicitly.
+
+### EV-325 — promoted equipped Sprint intended RIGHT->OFF artifact NOT EXERCISED AS NAMED
+
+Observed:
+- The uploaded file named `2026-09-20_equipped_sprint_production_right_off_validation.log` did not contain the intended P0 RIGHT->OFF authored fixture.
+- Its P0 Sprint motion `Goblin_Stand_None_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot` scanned `RequiredMask=3` and emitted BOTH plus a later OFF while the Goblin had exact RIGHT `It_1H_Club_01` / raw2 and no LEFT source.
+- Complete P0 generations 22, 50, 62, 74 and 83 therefore followed the missing-source/native-fallback path: native RIGHT opened 5->7; BOTH and later OFF were rejected/fail-closed; native damage occurred; exact RIGHT cleaned 7->5; finalization ended `Outstanding=0`.
+- The same log also contains two separate P1 Sprint executions, C1 31 and 41, whose different P1 motion scanned `RequiredMask=1`; RIGHT was authorized/accepted and cleaned normally.
+- No accepted OFF occurs for the intended positive P0 fixture in this artifact. No generation-inconsistency, repair, lifecycle, or outstanding-finalization anomaly was observed.
+
+Scope / limits:
+- This artifact cannot be used as the promoted RIGHT->OFF positive acceptance control because the authored P0 marker shape does not match the filename/intended setup.
+- It is still valid runtime evidence for fail-closed malformed/missing-source behavior and for unrelated P1 RIGHT-only Sprint behavior.
+- The stronger EV-326 RIGHT->OFF->RIGHT run independently covers and exceeds the required positive continuation control, so no separate RIGHT->OFF rerun is required.
+
+Provenance:
+- Integrated uploaded batch head: `d54bbca1fd9b101b5d18b95d049169381426984a`.
+- Promoted implementation: `218c7ab73815a9afc46fc3ea5ac7246998bc2b1b`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_equipped_sprint_production_right_off_validation.log`.
+- Git blob `d7fc25da8b6239d59778c55fae98510dd0d57cc1`; 210,656 characters / 1,200 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **NOT EXERCISED AS NAMED / SAFE MIXED FIXTURE.**
+- Do not cite this artifact as a RIGHT->OFF positive pass.
+- No source correction is indicated.
+
+### EV-326 — promoted equipped Sprint RIGHT->OFF->RIGHT production control PASS
+
+Observed:
+- Seven complete factual Goblin P0 Sprint executions, C1 generations 10, 19, 27, 35, 48, 60 and 71, used exact RIGHT `It_1H_Club_01` / raw2 and `RequiredMask=1`.
+- Every execution repeated the same permanent production sequence:
+  - factual Action9/SPRINT callback -> `EQUIPPED_SPRINT_COLLISION SUPPRESS_NATIVE Reason=ELIGIBLE`;
+  - authored RIGHT -> `BOUND_EXECUTION_MATCHED`, RIGHT accepted, exact club 5->7;
+  - native damage to `PC_Hero`;
+  - same C1 becomes factual Action2/POWER;
+  - authored OFF -> `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION`, OFF accepted, exact club 7->5;
+  - later authored RIGHT under the same continuation -> authorized, accepted, exact club 5->7;
+  - native cleanup returns exact club 7->5;
+  - C1 finalizes `Outstanding=0 / NO_OP_NO_OUTSTANDING`.
+- All seven executions therefore show physical sequence `5->7 -> 7->5 -> 5->7 -> 7->5` with two offense requests and clean lifecycle closure.
+- No `REJECTED_C1_GENERATION_INCONSISTENCY`, marker rejection, repair, invariant, lifecycle, or nonzero-finalization failure appears in the relevant executions.
+
+Scope / limits:
+- Production-promotion diagnostic acceptance for the established Goblin P0 Sprint/right/raw2 fixture on the permanent `EquippedSprintCollision` implementation.
+- This run is stronger than the original EV-322 RIGHT->OFF control because it also proves same-C1 reactivation after OFF under immutable Sprint-origin continuation.
+- It does not replace the separate ordinary true-Power protected control.
+
+Provenance:
+- Integrated uploaded batch head: `d54bbca1fd9b101b5d18b95d049169381426984a`.
+- Promoted implementation: `218c7ab73815a9afc46fc3ea5ac7246998bc2b1b`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_equipped_sprint_production_right_off_right_validation.log`.
+- Git blob `faeb2aefc116d17a8523b8aaa705e2598843c679`; 159,514 characters / 716 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- The permanent promoted Sprint owner preserves exact Action9-origin continuity across Action2 and supports OFF plus later same-C1 reactivation through existing generic equipped semantics.
+- This closes the positive Sprint continuation runtime gate for production promotion.
+
+### EV-327 — promoted equipped Sprint BOTH with missing LEFT negative control PASS
+
+Observed:
+- Five complete factual Goblin P0 Sprint executions, C1 generations 15, 32, 42, 53 and 60, scanned `RequiredMask=3` with exact RIGHT `It_1H_Club_01` / raw2 present and LEFT absent.
+- The permanent Sprint owner repeatedly delegated native with `REQUIRED_EQUIPPED_SOURCE_MISSING`; no Sprint binding was created.
+- Native Gothic behavior opened RIGHT 5->7 and produced damage to `PC_Hero` in every sampled execution.
+- When BOTH arrived while current action was still Sprint (C1 15 and 42), the permanent owner denied `NO_BOUND_EXECUTION` and marker processing reported `REJECTED_UNSUPPORTED_HIT`.
+- When the same native execution had already become Action2/POWER before BOTH (C1 32, 53 and 60), no Sprint origin existed and generic processing reported `UNSUPPORTED_MISSING_SOURCE`.
+- All five executions later cleaned exact RIGHT 7->5 and finalized `Outstanding=0 / NO_OP_NO_OUTSTANDING`.
+- No partial authored RIGHT ownership, continuation authorization, generation-inconsistency, repair, invariant, lifecycle, or nonzero-finalization failure appeared.
+
+Scope / limits:
+- Negative production-promotion control for complete-motion BOTH requirements when LEFT is absent.
+- Confirms the permanent extraction preserves the EV-321/EV-323 fail-closed boundary and native fallback.
+- Does not test a real actor with both required equipped sources present.
+
+Provenance:
+- Integrated uploaded batch head: `d54bbca1fd9b101b5d18b95d049169381426984a`.
+- Promoted implementation: `218c7ab73815a9afc46fc3ea5ac7246998bc2b1b`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_equipped_sprint_production_both_validation.log`.
+- Git blob `60321380a1c975a311aa4b16dfb59a057b876a40`; 169,381 characters / 881 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **NEGATIVE PASS.**
+- Missing required LEFT cannot produce partial authored Sprint ownership; native fallback and cleanup remain intact.
+- This closes the missing-source negative runtime gate for production promotion.
