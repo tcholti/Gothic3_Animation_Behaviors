@@ -84,6 +84,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | raw8 closed-research retirement / neutral diagnostic baseline | EV-350 |
 | raw8 TouchDamage contact-boundary callbacks / negative result | EV-351 |
 | native human raw8 locked-target / non-target interception control | EV-352 |
+| raw8 persistent authored-opportunity token causal proof / lifecycle + target controls | EV-353 |
 
 ## 3. Current collision closure landmarks
 
@@ -119,6 +120,7 @@ EV-349         knockdown/get-up control separates target-state rejection from co
 EV-350         closed raw8 damage-correlated probes retired; neutral diagnostic baseline PASS
 EV-351         exact raw8 CanBeActivatedNow / TriggerTarget callbacks absent on tested contact route
 EV-352         native human raw8 resolves only against locked target in tested group-combat interception control
+EV-353         persistent raw8 FIST opportunity survives misses, consumes on native contact, closes on C1 end/replacement
 ```
 
 ## 4. Escalation order
