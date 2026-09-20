@@ -93,20 +93,14 @@ The exact `Game+0x16E348` path is treated only as native raw8 contact-resolution
 
 ## Current stop gate
 
-The frozen task was corrected after User review: token lifetime is C1/execution-scoped rather than Action-scoped. This correction changed lifecycle-sensitive project state.
+The frozen task was corrected after User review: token lifetime is C1/execution-scoped rather than Action-scoped.
 
-Run:
+POP-12 knowledge-state validation of this corrected frozen task state: **PASS**.
 
-```text
-python tools/knowledge/validate_knowledge_state.py
-```
+The task is now cleared for bounded Work implementation:
 
-Require:
+`docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`
 
-```text
-Knowledge-state validation PASS
-```
-
-Only after PASS send the **corrected** frozen task to Work.
+No broader raw8 redesign or production promotion is authorized.
 
 `research/raw/` should contain only `Keep.txt`.
