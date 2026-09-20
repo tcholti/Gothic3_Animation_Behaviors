@@ -76,9 +76,14 @@ exact raw8 Game+0x16E348 dispatch entered
 later FIST
 -> one token OPEN again, no stacking
 
-Hit/C1 ends or identity is replaced
+same C1 Action/family/phase transport
+-> token stays with the attack execution
+-> specifically preserve proven Sprint-origin Action9 -> Action2
+
+Hit/C1 execution genuinely ends or generation is replaced
 -> unused token CLOSED
 -> latch forced CLOSED
+-> timing helper retired
 -> no cross-C1 leak
 ```
 
@@ -88,7 +93,7 @@ The exact `Game+0x16E348` path is treated only as native raw8 contact-resolution
 
 ## Current stop gate
 
-The frozen task changed lifecycle-sensitive project state.
+The frozen task was corrected after User review: token lifetime is C1/execution-scoped rather than Action-scoped. This correction changed lifecycle-sensitive project state.
 
 Run:
 
@@ -102,6 +107,6 @@ Require:
 Knowledge-state validation PASS
 ```
 
-Only after PASS send the frozen task to Work.
+Only after PASS send the **corrected** frozen task to Work.
 
 `research/raw/` should contain only `Keep.txt`.
