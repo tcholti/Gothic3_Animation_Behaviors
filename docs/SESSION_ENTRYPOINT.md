@@ -17,11 +17,11 @@ Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
 Phase 4 non-weapon creatures = PAUSED AT RAW8 FIST AUTHORING-SEMANTICS RESEARCH
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-353
+latest completed evidence = EV-354
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = NONE
 active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md
-current stop gate = source-unchanged native Sabretooth single-FIST Sprint-origin Action9->Action2 token-survival runtime sentinel before Work
+current stop gate = POP-12 validation of EV-354-promoted permanent raw8 production task before Work
 ```
 
 ## Current responsibility
@@ -47,7 +47,7 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**EV-353 is promoted into `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`. Production task is frozen but NOT cleared for Work: first run the source-unchanged native Sabretooth single-FIST Sprint-origin sentinel and prove an already-open opportunity survives factual same-C1 Action9/SPRINT -> Action2/POWER until contact or real C1 closure.**
+**EV-354 closes the pre-Work Sabretooth Sprint-origin sentinel PASS: 20 opportunities opened under Action9/SPRINT and were consumed under Action2/POWER in the same C1 on the same PowerAttack-named motion; two also survived an earlier miss/rearm. Production task remains frozen; run POP-12 before Work.**
 
 Current frozen causal question:
 
