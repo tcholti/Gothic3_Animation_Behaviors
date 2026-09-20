@@ -265,3 +265,22 @@ Use the evidence chain only when needed:
 5. Raw/derived source only for disputed or missing details.
 
 A settled fact should not require chronological evidence reconstruction during ordinary work.
+
+
+### Raw8 pending-opportunity causal closure — EV-353
+
+Diagnostic causal proof now supports the intended marked raw8 semantic:
+
+```text
+marked execution begins -> native permission closed
+accepted FIST -> one target-directed opportunity OPEN
+native miss -> opportunity remains OPEN; native one-shot latch is rearmed
+first exact Game+0x16E348 raw8 contact dispatch -> opportunity CONSUMED
+later FIST -> one opportunity reopened, never stacked
+exact C1 finalization/replacement -> unused opportunity CLOSED
+unmarked raw8 -> native
+```
+
+Runtime causal accounting across Gargoyle Power and marked human Normal/Power produced 81 opens: 59 contact-consumed, 21 lifecycle-closed and one same-C1 FIST supersession. Eighteen contacts occurred only after one or more miss-rearms. Three already-open human opportunities closed on factual C1 generation replacement during reaction churn, with no old-opportunity contact before a later new FIST. Native and marked group-combat controls remained target-directed.
+
+This closes the **diagnostic causal model**, not production promotion. The temporary probe must not be treated as permanent architecture until a separate production review/freeze.
