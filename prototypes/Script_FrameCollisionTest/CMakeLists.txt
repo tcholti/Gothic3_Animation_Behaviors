@@ -82,6 +82,6 @@ target_tree_sources(
         CollisionDiagnostics.h
         CollisionDiagnosticsDeep.cpp
         CollisionDiagnosticsDeep.h
-        Raw8FistContactBoundaryProbe.cpp
-        Raw8FistContactBoundaryProbe.h
+        Raw8FistPersistentOpportunityProbe.cpp
+        Raw8FistPersistentOpportunityProbe.h
 )
