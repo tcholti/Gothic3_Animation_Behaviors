@@ -23,6 +23,10 @@ Use one first hop:
 
 ### If the previous Chat failed, hit max context, or became unusable
 
+**Paste into a fresh Chat when no reliable handoff was possible:**
+
+> Continue `Gothic3_Animation_Behaviors` in **NORMAL CHAT**. The previous Chat ended unexpectedly or reached maximum context before a reliable handoff could be prepared. Start from this README's interrupted-Chat **Recovery Lock**, treat `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` as clues until reconciled, reconstruct only the recent durable tail on `docs/collision-source-evidence`, and do not begin new implementation or runtime testing until recovery is closed.
+
 Do **not** blindly follow the old `NEXT` pointer. Start here and enter **Recovery Lock**:
 
 1. do not start new implementation, freeze/run a new runtime experiment, or launch a new Work task;
