@@ -15,13 +15,13 @@
 standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-Phase 4 non-weapon creatures = PAUSED PENDING PERMANENT RAW8 PRODUCTION IMPLEMENTATION + FOCUSED ACCEPTANCE
+Phase 4 non-weapon creatures = PAUSED PENDING RAW8 DIAGNOSTICS-ONLY REVIEW CORRECTION + FOCUSED PERMANENT ACCEPTANCE
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-354
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
-active temporary review = NONE
-active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md
-current stop gate = POP-12 validation of EV-354-promoted permanent raw8 production task before Work
+active temporary review = RAW8 PRODUCTION IMPLEMENTATION STATIC REVIEW COMPLETE: BEHAVIOR PASS / DIAGNOSTIC CORRECTION OPEN
+active Work implementation task = COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md
+current stop gate = POP-12 validation of review-maintained state, then bounded diagnostics-only correction before any build
 ```
 
 ## Current responsibility
@@ -49,21 +49,32 @@ EV-350 closes the retirement: both twins built, diagnostic deployment/startup pa
 
 **EV-354 closes the pre-Work Sabretooth Sprint-origin sentinel PASS: 20 opportunities opened under Action9/SPRINT and were consumed under Action2/POWER in the same C1 on the same PowerAttack-named motion; two also survived an earlier miss/rearm. Production task remains frozen; run POP-12 before Work.**
 
-Current frozen production responsibility:
+Production implementation `3426cede41c0087e43edc0d81c825ff167e8e034` has completed independent Normal Chat static review.
 
-> Promote the EV-353/EV-354-proven persistent raw8 opportunity mechanism into permanent `Raw8FistCollision`, retire the temporary probe, and preserve C1-owned opportunity lifetime across same-C1 Action/family transport. No new causal research is authorized by this handoff.
+Behavior/state-machine review: **PASS**. The implementation correctly promotes the EV-353/EV-354 mechanism into permanent `Raw8FistCollision`, makes the proven OnDamage/combat-move/timing/finalization transports behavior-required in both twins, preserves the C1 execution record after contact, and removes the temporary probe.
 
-Closed probe archive: `docs/archive/investigations/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`.
+Before build, one bounded diagnostics-only correction is required:
+
+- routine `RAW8_OPPORTUNITY_CLOSE` must represent only an actually unused pending opportunity, not later retirement of an already contact-consumed execution;
+- routine CORE opportunity records must not carry rich raw pointer-address fields reserved for DEEP/anomaly diagnostics.
+
+No raw8 behavior architecture is reopened.
 
 Permanent raw8 authority: `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
 
-Active implementation contract: `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`.
+Reviewed parent implementation contract: `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`.
+
+Active correction contract: `docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
 
 ## Current runtime provenance
 
-Latest reviewed diagnostic implementation:
+Latest runtime-reviewed diagnostic implementation:
 
 `015a3ef90bf135cf502ac6507fb68f7c8c962800`
+
+Current unbuilt permanent raw8 production source candidate:
+
+`3426cede41c0087e43edc0d81c825ff167e8e034` — behavior static review PASS; diagnostics-only correction pending
 
 Current diagnostic DLL:
 
@@ -74,7 +85,8 @@ Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 
 ## Read next by question
 
-- active raw8 production implementation gate → `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
+- active raw8 diagnostics-only review correction → `docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`
+- reviewed parent raw8 production implementation → `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
 - exact short-lived continuation → `BETWEEN_CHATS.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
