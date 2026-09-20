@@ -17,7 +17,7 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint = PERMANENT EXTRACTION IMPLEMENTED / SOURCE REVIEW PASS / BUILD+RUNTIME PENDING
+generic equipped Sprint = PERMANENT EXTRACTION / SOURCE REVIEW PASS / BOTH BUILDS PASS / STARTUP+RUNTIME PENDING
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: production extraction commit `218c7ab73815a9afc46fc3ea5ac7246998bc2b1b` passed independent Normal Chat source review. Permanent `EquippedSprintCollision` now replaces the temporary probe in shared behavior sources, but neither target has been built yet. Next session: build both twins, verify diagnostics-free behavior startup, rerun compact EV-322/323/324 controls on the diagnostic twin, then run a behavior-only Goblin Sprint smoke. Phase 4 remains held through promotion acceptance.
+Current responsibility: production extraction commit `218c7ab73815a9afc46fc3ea5ac7246998bc2b1b` passed independent source review and both behavior-only + diagnostic targets build successfully. Next: deploy only the behavior twin, verify diagnostics-free startup/load, then return to the diagnostic twin for compact EV-322/323/324 controls before the final behavior-only Goblin Sprint smoke. Phase 4 remains held through promotion acceptance.
 
 ## Immediate responsibility
 
@@ -48,7 +48,8 @@ Current responsibility: production extraction commit `218c7ab73815a9afc46fc3ea5a
 11. EV-324 equipped 2H true-Power protected control = PASS.
 12. Production promotion decision = APPROVED by ADR-0003.
 13. Permanent extraction implementation `218c7ab73815a9afc46fc3ea5ac7246998bc2b1b` = Normal Chat source-review PASS.
-14. Next: build both twins -> behavior-only startup purity -> diagnostic EV-322/323/324 controls -> behavior-only Goblin Sprint smoke.
+14. Both twins build = PASS.
+15. Next: behavior-only deployment/startup purity -> diagnostic EV-322/323/324 controls -> behavior-only Goblin Sprint smoke.
 
 ## Current verified diagnostic product
 
