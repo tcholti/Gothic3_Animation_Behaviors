@@ -146,7 +146,7 @@ Stalker -> factual Axe/raw52               PASS — EV-314
 
 Goblin, Demon and Ogre were deliberately repeated after permanent raw55 integration even though earlier controls existed at EV-252–EV-254. Their established supported routes remain healthy, providing bounded regression evidence that the raw55 work did not disturb those equipped-NPC paths. Stalker extends the current coverage with another Axe/raw52 actor/source fixture.
 
-EV-311 also exposes one concrete equipped Sprint/right/raw2 Goblin execution: factual Action9/SPRINT with an authored RIGHT marker is rejected under the current unsupported equipped-Sprint boundary. This is a deferred scope discovery, not a raw55 regression failure and not evidence of equipped Sprint marker support.
+EV-311 exposed the factual equipped Sprint/right/raw2 Goblin route that was subsequently researched and promoted. Permanent `EquippedSprintCollision` acceptance is now CLOSED/PASS through EV-329; Phase 3 remains closed and that scope no longer blocks Phase 4.
 
 ### 3.4 Phase 4 — Non-weapon creatures — NEXT
 
@@ -156,7 +156,7 @@ Do not repeat Troll/BlackTroll raw55 or Sabretooth raw8 merely for duplication: 
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
-Permanent raw55 behavior applies only to its frozen factual contract. Ordinary raw8 behavior remains governed by the separate raw8 mechanism.
+Permanent raw55 behavior applies only to its frozen factual contract. Ordinary raw8 behavior remains governed by the separate raw8 mechanism. Permanent equipped Sprint behavior is governed separately by `EquippedSprintCollision`; do not infer applicability from creature name or Power-named animation text.
 
 ### 3.5 Phase 5 — 2H vs Axe separation-mod compatibility
 
@@ -204,6 +204,7 @@ repeated-contact ClearTriggeredList semantics
 Power / Pierce / SimpleWhirl / Hack behavior
 supported raw8 Normal / Power / Quick / Sprint
 supported permanent raw55 Normal / Quick / Power / Sprint-origin
+supported permanent equipped Sprint RIGHT / LEFT / BOTH / OFF policy
 unmarked raw55 native fallback
 raw8/raw55 coexistence
 C1 generation-scoped occurrence/dedupe
