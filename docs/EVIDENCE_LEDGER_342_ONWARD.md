@@ -9,7 +9,7 @@ Record new evidence after EV-341 using a compact provenance-first format.
 
 This ledger is **proof history, not the normal knowledge interface**. Current established collision facts belong in `COLLISION_REFERENCE.md` and owning architecture/reference documents.
 
-The previous EV-309–EV-341 ledger is archived at `docs/archive/evidence/EVIDENCE_LEDGER_309_ONWARD.md`. Earlier ledger volumes are routed through `EVIDENCE_INDEX.md`.
+The previous EV-309–EV-341 ledger and all earlier closed volumes are routed through `EVIDENCE_INDEX.md`.
 
 ## Entry format
 
