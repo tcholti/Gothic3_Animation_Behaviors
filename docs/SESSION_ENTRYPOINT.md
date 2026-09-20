@@ -21,7 +21,7 @@ generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-32
 active contract = none; standalone regression resumes under COLLISION_TEST_PLAN.md
 Phase 4 non-weapon creatures = NEXT
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-331
+latest completed evidence = EV-336
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: equipped Sprint production promotion remains CLOSED/PASS through EV-329. EV-330–EV-331 then rechecked the accepted diagnostic build across Orc Whirl OFF-gap/reactivation, repeated-RIGHT rearm, Orc/player raw8, ordinary player 1H and player 1H+torch source separation; all are PASS/corroboration. Phase 4 non-weapon creature regression remains next under `COLLISION_TEST_PLAN.md`. No source implementation task is active.
+Current responsibility: equipped Sprint production promotion remains CLOSED/PASS through EV-329. EV-330–EV-331 rechecked Whirl/repeated-contact/raw8/1H+torch behavior, and EV-332–EV-336 then passed a five-fixture mixed player/weapon-creature regression across dual-1H, 1H, 1H+shield, 2H, raw8 Fist and enemy raw2/raw3/raw52 sources, including permanent equipped Sprint. Phase 4 non-weapon creature regression remains next under `COLLISION_TEST_PLAN.md`. No source implementation task is active.
 
 ## Immediate responsibility
 
@@ -59,7 +59,12 @@ Current responsibility: equipped Sprint production promotion remains CLOSED/PASS
 22. Equipped Sprint production promotion = CLOSED/PASS.
 23. EV-330 Orc Whirl RIGHT->OFF->RIGHT + player 1H recheck = PASS/corroboration.
 24. EV-331 repeated-RIGHT Whirl + Orc/player raw8 + player 1H+torch = PASS/corroboration.
-25. Next: resume Phase 4 non-weapon creature regression under `COLLISION_TEST_PLAN.md`.
+25. EV-332 dual-1H player vs Ogre/raw52 = PASS.
+26. EV-333 player 1H vs Orc Raider/raw52 = PASS.
+27. EV-334 player 1H+shield vs Demon/raw3 = PASS.
+28. EV-335 player 2H vs Stalker/raw52 = PASS.
+29. EV-336 player raw8 Fist vs Goblin/raw2 + permanent Sprint = PASS.
+30. Next: resume Phase 4 non-weapon creature regression under `COLLISION_TEST_PLAN.md`.
 
 ## Current verified diagnostic product
 
