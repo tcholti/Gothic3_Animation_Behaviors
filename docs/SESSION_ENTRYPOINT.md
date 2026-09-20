@@ -18,10 +18,10 @@ Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-active contract = raw8 post-miss latch-rearm causal probe — implementation reviewed PASS, runtime pending
+active contract = none — EV-348 closed; POP-12 validation pending before next causal task
 Phase 4 non-weapon creatures = PAUSED AT RAW8 AUTHORING-SEMANTICS GATE
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-347
+latest completed evidence = EV-348
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authoring-semantics gate. User + Normal Chat have now chosen the persistent authored opportunity-window semantic: FIST opens one target-directed native body-contact damage opportunity; an unsuccessful contact should not consume it; successful native contact consumes it; later FIST rearms; C1/Hit termination closes any unused opportunity; no raw8 FIST_OFF absent future contradictory evidence. EV-347 closes the observation stage: both successful and unsuccessful early synthetic Gargoyle raw8 Power attempts returned with `SPU+0x164 = 1`, proving attempt-level rather than success-only latch consumption. The observation probe is archived. The next bounded diagnostic-only causal task is `docs/work/active/COLLISION_RAW8_FIST_POST_MISS_LATCH_REARM_CAUSAL_PROBE.md`: after an exact synthetic miss, rearm only the latch once; do not rearm timing permission.
+Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authoring-semantics gate. User + Normal Chat have now chosen the persistent authored opportunity-window semantic: FIST opens one target-directed native body-contact damage opportunity; an unsuccessful contact should not consume it; successful native contact consumes it; later FIST rearms; C1/Hit termination closes any unused opportunity; no raw8 FIST_OFF absent future contradictory evidence. EV-347 proved attempt-level rather than success-only latch consumption. EV-348 then proved that one exact post-miss latch-only rearm can restore a later native opportunity on the tested Power route: 7/9 rearmed misses later produced exact native raw8 damage, while exact early hits remained consumed. The rearm probe is archived. No Work task is active. POP-12 validation must PASS before Normal Chat decides/freezes the remaining continuous-eligibility/timing question.
 
 ## Immediate responsibility
 
@@ -80,8 +80,10 @@ Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authorin
 43. EV-347 raw8 post-attempt observation = CAUSAL PASS: exact hit and exact miss synthetic attempts both return with latch 1.
 44. Closed observation probe archived under `docs/archive/investigations/`.
 45. Work implementation `ea652e3324fffb07da013229a2fd374c4f3b1c6b` = Normal Chat source-review PASS.
-46. Active runtime task: build both twins, deploy diagnostic twin only, then run close-range vs far-range Gargoyle frame-3 causal fixture.
-47. Expected: exact early hit -> no probe rearm; exact early miss -> one confirmed latch 1->0 rearm, then observe whether a later native-timed opportunity occurs.
+46. EV-348 post-miss latch-rearm runtime = CAUSAL PASS; 9 exact miss rearms, 7 later exact native hits, 2 no later damage.
+47. Closed rearm probe archived under `docs/archive/investigations/`.
+48. Current stop gate: POP-12 knowledge-state validation must PASS.
+49. After PASS: Normal Chat decides the remaining question — continuous eligibility from FIST to contact versus latch-only recovery at Gothic's later native timing.
 
 ## Current verified diagnostic product
 
