@@ -96,9 +96,9 @@ A later FIST in the same C1 can rearm another native contact opportunity. The ma
 
 There is no production `FIST_OFF`, no raw8 equipped-source window, no raw8 `ClearTriggeredList()` mechanism, and no direct/custom raw8 damage.
 
-EV-346–EV-347 expose an active design correction: an early synthetic attempt can miss before the moving body reaches its target, and EV-347 proves the latch still closes on that miss. EV-348 then proves that one exact post-miss latch-only rearm can restore a later native opportunity without rearming synthetic timing: 7/9 rearmed misses later produced exact native raw8 damage, while successful early hits remained consumed. The agreed future author-facing semantic is still a persistent target-directed opportunity from FIST until successful contact or C1 termination; whether production must preserve eligibility continuously before Gothic's later native timing remains under bounded research.
+EV-346–EV-347 expose an active design correction: an early synthetic attempt can miss before the moving body reaches its target, and EV-347 proves the latch still closes on that miss. EV-348 proves that one exact post-miss latch-only rearm can restore a later native opportunity without rearming synthetic timing. EV-349 adds two constraints: native target-state rules such as knockdown/get-up can reject visible damage independently of collision eligibility, and a diagnostic rearmed latch can remain live across Hit-C1 replacement into Recover unless explicitly closed. The agreed future author-facing semantic remains target-directed and Gothic-owned; research must distinguish genuine no-contact from legitimate target-state rejection and enforce C1/Hit-bounded lifetime.
 
-Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-348.
+Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-349.
 
 ## 5. PhysicalFist / raw55
 
