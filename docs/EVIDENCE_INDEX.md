@@ -39,10 +39,10 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | frame effects / authored marker channel | EV-012–EV-018 |
 | ordinary native weapon reset / marker timing | EV-019–EV-023 |
 | Staff/NPC actor-general marker proof | EV-024–EV-028 |
-| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085 |
-| player animation family / UseType / side semantics | EV-036–EV-065 |
+| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336 |
+| player animation family / UseType / side semantics | EV-036–EV-065, EV-332–EV-335 |
 | Quick marker ownership / StatePosition | EV-066–EV-075 |
-| equipped dual-source RIGHT/LEFT mapping | EV-090–EV-094 |
+| equipped dual-source RIGHT/LEFT mapping | EV-090–EV-094, EV-332 |
 | multi-target / OFF / repeated contact / ClearTriggeredList | EV-106–EV-116, EV-330–EV-331 |
 | marker occurrence/dedupe generation | EV-131–EV-144, EV-167, EV-213–EV-214 |
 | Whirl callback/action/source separation | EV-145–EV-147 |
@@ -68,7 +68,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | permanent raw55 implementation + focused sentinels | EV-295–EV-298 |
 | standalone collision regression | EV-299 onward |
 | Orc Phase-2 Staff/Fist/2H attack matrix / current-build rechecks | EV-309–EV-310, EV-330–EV-331 |
-| post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314 |
+| post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314, EV-332–EV-336 |
 | factual equipped Sprint handoff / continuation / permanent production acceptance | EV-311, EV-315, EV-320–EV-329 |
 | shield/raw9 LEFT physical activation without shield-bash damage | EV-306, EV-308 |
 | human raw8 same-C1 double-FIST | EV-305 |
@@ -99,6 +99,7 @@ EV-311–EV-314  Phase-3 weapon-using NPC/creature regression PASS; equipped Spr
 EV-315–EV-324  equipped Sprint causal/correction acceptance through promotion decision
 EV-325–EV-329  permanent equipped Sprint promotion acceptance incl. behavior-only smoke
 EV-330–EV-331  current-build Whirl/repeated-contact + Orc raw8 + player 1H/torch corroboration
+EV-332–EV-336  mixed player/weapon-creature cross-source regression PASS before Phase 4
 ```
 
 ## 4. Escalation order
