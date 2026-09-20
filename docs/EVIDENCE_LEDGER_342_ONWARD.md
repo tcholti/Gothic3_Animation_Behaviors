@@ -136,3 +136,37 @@ Provenance:
 Disposition:
 - **PASS.**
 - Bison extends current factual Fist/raw8 creature coverage with clean marker timing, native damage and finalization.
+
+
+### EV-346 — Gargoyle raw8 Power marker-time sweep exposes one-shot authoring semantics
+
+Observed:
+- All tested Gargoyle attacks in the four-run sweep are factual `Action=2 / Family=POWER` with exact RIGHT `Fist` / UseType 8. No factual Gargoyle Sprint/Action9 execution was observed.
+- Native/no-marker control: 7 observed Gargoyle Power attacks produced 7 native `Fist -> PC_Hero` damage events. The native damage point occurred about 200–210 ms after the Power callback's ordinary Fist timing/group-request point.
+- Approximate frame-3 FIST test: 10/10 FIST markers were accepted with exact raw8 ownership; all 10 used the bounded early timing permission, but only 5/10 produced native damage while the player stood still.
+- Frame-1 FIST test: 4/4 markers were accepted with exact raw8 ownership and all 4 used synthetic early timing; 0/4 produced native damage.
+- Frame-6 FIST test: 8/8 markers were accepted with exact raw8 ownership and 8/8 produced native damage. Marker timing was ~208–222 ms after the same callback point, and each consumed the permission with `SyntheticApplied=0 / Classification=NATIVE_TIMING`, i.e. the real animation clock had reached Gothic's native gate by the next exact comparison.
+- No anomaly, warning, contradiction, rejected marker, repair, divergence or nonzero-finalization record appeared in the four logs; every run unloaded cleanly.
+
+Interpretation:
+- The current production raw8 contract is functioning as designed: marked executions close native permission before the first FIST, and each accepted FIST rearms one native opportunity; when the marker is before Gothic's native threshold, one exact timing comparison is advanced synthetically.
+- Gargoyle demonstrates that an early accepted FIST is an authored **one-shot native contact opportunity**, not a persistent body-contact window. If that early opportunity occurs before the moving body reaches the target, Gothic can consume the opportunity without damage and no later native contact occurs in that C1 unless another authored FIST rearms it.
+- This does not contradict the existing raw8 implementation contract, but it exposes a material author-facing semantics question: whether FIST should remain a one-shot contact pulse or instead mean a window that remains eligible from the marker until contact/end-of-Hit, analogous to the broader marker-authoring model.
+
+Scope / limits:
+- The sweep establishes the current behavior for Gargoyle factual raw8 Power and demonstrates marker-time sensitivity under a stationary-player fixture.
+- It does not establish that Gargoyle can never use Sprint in other circumstances; only that no Action9 occurred in these tests.
+- No redesign mechanism is proven by this evidence. Persistent-window semantics, successful-contact detection, rearm rules and any FIST_OFF requirement remain open design/research questions.
+
+Provenance:
+- Gargoyle batch head including frame-6 run: `b7c83a7a55c31235e90a2f4187d05fae477d3673`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Archived logs:
+  - `research/archive/2026-09-20_validation_me_staff_npc_Gargoyle_marker_test.log` — blob `f67705c17ca5059867180823e61fc123aa3b730c`.
+  - `research/archive/2026-09-20_validation_me_staff_npc_gargoyle_marker_frame_1_test.log` — blob `e19f7d0a4ce0f12d255756e0817b8e5a3bfb3120`.
+  - `research/archive/2026-09-20_validation_me_staff_npc_gargoyle_marker_frame_6_test.log` — blob `e3e7bf3d7e233e9e4fe944a19b013e1aa98ed58e`.
+  - `research/archive/2026-09-20_validation_me_staff_npc_gargoyle_native_test.log` — blob `7dcddf757c4da80a95537ce9a09e245d86015623`.
+
+Disposition:
+- **CONFIRMED DESIGN DISCOVERY / RAW8 AUTHORING-SEMANTICS GATE OPEN.**
+- Pause broad Phase-4 certification until the project explicitly retains the one-shot FIST contract or freezes a bounded research path toward persistent-window semantics.
