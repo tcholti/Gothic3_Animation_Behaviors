@@ -97,12 +97,23 @@ If the two TouchDamage callbacks are absent even in close cases while `CORE ONDA
 
 POP-12 knowledge-state validation of this frozen task state: **PASS**.
 
-The task is now cleared for bounded Work implementation.
+Work implementation `929bba9974788c873860f8e33f504c091f7aa524` is independently source-reviewed **PASS**. Local build and runtime observation remain.
 
-Work must implement only:
+Reviewed source guarantees:
+- exact four-file scope;
+- behavior-only source set unchanged;
+- generic CORE ONDAMAGE unchanged;
+- one pass-through hook each at Game+0x692F0 and Game+0x693B0;
+- read-only visited-state observation;
+- no collision/opportunity or gameplay mutation.
 
-`docs/work/active/COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md`
+Before runtime, run POP-12 again on this reviewed implementation-state handoff.
 
-No runtime causal intervention or production behavior change is authorized.
+After PASS:
+1. build both twins;
+2. deploy diagnostic twin only and verify built/live SHA match;
+3. run the same Gargoyle frame-3 FIST fixture with several deliberately close-start and far-start attacks;
+4. push one log;
+5. do not run any intervention/rearm experiment.
 
 `research/raw/` should contain only `Keep.txt`.
