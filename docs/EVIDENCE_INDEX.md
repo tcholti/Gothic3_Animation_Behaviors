@@ -80,6 +80,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | Gargoyle raw8 Power marker-time sweep / FIST authoring-semantics gate | EV-346 |
 | raw8 post-attempt latch consumption / hit-vs-miss correlation | EV-347 |
 | raw8 post-miss latch-only rearm / later native opportunity | EV-348 |
+| raw8 knockdown/get-up target-state rejection + cross-C1 rearm lifetime | EV-349 |
 
 ## 3. Current collision closure landmarks
 
@@ -111,6 +112,7 @@ EV-337–EV-345  Phase-4 Sabretooth/Wolf/Troll + Minecrawler/Bloodfly/Boar/Bison
 EV-346         Gargoyle raw8 Power timing sweep confirms current one-shot FIST semantics; design gate OPEN
 EV-347         post-attempt observation proves latch closes after hit and miss alike
 EV-348         post-miss latch-only rearm restores later native opportunity on tested Power route
+EV-349         knockdown/get-up control separates target-state rejection from collision and exposes cross-C1 rearm lifetime
 ```
 
 ## 4. Escalation order
