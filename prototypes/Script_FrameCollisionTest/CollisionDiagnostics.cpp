@@ -1067,53 +1067,6 @@ void LogRaw8FistTimingPermissionRetired(
     std::fflush(g_pLog);
 }
 
-void LogRaw8FistPostAttempt(
-    eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    GEInt action, char const *animationName, bool syntheticApplied,
-    GEInt postAttemptLatch, bool spuActorMatch,
-    CollisionLifecycleGuard::GenerationToken const &currentGeneration,
-    bool currentGenerationMatch, bool currentSourceMatch,
-    bool currentAnimationMatch, GEBool combatMoveResult,
-    GEU32 firstOnDamageOrdinal, GEU32 lastOnDamageOrdinal,
-    GEU32 onDamageCount)
-{
-    if (g_pLog == nullptr)
-        return;
-
-    Entity fistSource(fistSourceInstance);
-    GEInt const raw8UseType = fistSource != None
-        ? static_cast<GEInt>(
-              CollisionSources::GetCollisionSourceUseType(fistSource))
-        : -1;
-    std::fprintf(
-        g_pLog,
-        "CORE RAW8_FIST_POST_ATTEMPT ElapsedMs=%.3f Actor=%s "
-        "ActorAddress=%p SPUAddress=%p Action=%d Family=%s Motion=%s "
-        "C1=%llu Raw8Fist=%s Raw8FistAddress=%p Raw8UseType=%d "
-        "PermissionConsumed=1 SyntheticApplied=%d PostAttemptLatch=%d "
-        "CombatMoveResult=%d FirstOnDamageOrdinal=%u "
-        "LastOnDamageOrdinal=%u OnDamageCount=%u SPUActorMatch=%d "
-        "CurrentC1Valid=%d CurrentC1=%llu C1Match=%d SourceMatch=%d "
-        "MotionMatch=%d\n",
-        RuntimeClock::GetElapsedMilliseconds(), EntityName(actorInstance),
-        static_cast<void *>(actorInstance), static_cast<void *>(spu), action,
-        AttackFamilyNameForAction(action),
-        animationName != nullptr ? animationName : "",
-        static_cast<unsigned long long>(c1Generation),
-        EntityName(fistSourceInstance), static_cast<void *>(fistSourceInstance),
-        raw8UseType, syntheticApplied ? 1 : 0, postAttemptLatch,
-        static_cast<GEInt>(combatMoveResult),
-        static_cast<unsigned int>(firstOnDamageOrdinal),
-        static_cast<unsigned int>(lastOnDamageOrdinal),
-        static_cast<unsigned int>(onDamageCount), spuActorMatch ? 1 : 0,
-        currentGeneration.valid ? 1 : 0,
-        static_cast<unsigned long long>(currentGeneration.generation),
-        currentGenerationMatch ? 1 : 0, currentSourceMatch ? 1 : 0,
-        currentAnimationMatch ? 1 : 0);
-    std::fflush(g_pLog);
-}
-
 void LogAttackCallbackOwnership(
     Entity &actor, AttackFamily family,
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result)

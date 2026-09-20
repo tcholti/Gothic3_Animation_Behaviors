@@ -11,7 +11,6 @@
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 #include "CollisionDiagnostics.h"
-#include "Raw8FistWindowProbe.h"
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include "CollisionDiagnosticsDeep.h"
@@ -158,17 +157,8 @@ static GEDouble GE_STDCALL Raw8FistTimingGateGetPlayTime_FrameCollisionTest(
 {
     GEDouble const realPlayTime =
         a_pAnimationActor->GetPlayTime(a_MotionType);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    GEDouble const returnedPlayTime =
-        Raw8FistCollision::ApplyTimingPermission(
-            a_pSPU, a_pAnimationActor, a_MotionType, realPlayTime);
-    Raw8FistWindowProbe::ObserveTimingResult(
-        a_pSPU, realPlayTime, returnedPlayTime);
-    return returnedPlayTime;
-#else
     return Raw8FistCollision::ApplyTimingPermission(
         a_pSPU, a_pAnimationActor, a_MotionType, realPlayTime);
-#endif
 }
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -642,20 +632,8 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     }
 #endif
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    Raw8FistCollision::PostAttemptObservationScope raw8PostAttempt = {};
-    Raw8FistWindowProbe::InvocationScope raw8WindowProbe = {};
-    Raw8FistCollision::BeginPostAttemptObservation(
-        a_pSPU, raw8PostAttempt);
-    Raw8FistWindowProbe::BeginInvocation(a_pSPU, raw8WindowProbe);
-#endif
     GEBool const result = Hook_AICombatMoveInstr.GetOriginalFunction(
         &AICombatMoveInstr_FrameCollisionTest)(a_pArgs, a_pSPU, a_bFullStop);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    Raw8FistCollision::CompletePostAttemptObservation(
-        raw8PostAttempt, result);
-    Raw8FistWindowProbe::CompleteInvocation(raw8WindowProbe, result);
-#endif
     CollisionLifecycleGuard::CompleteCombatMoveResult const complete =
         CollisionLifecycleGuard::CompleteCombatMoveCandidate(generation, result);
 #ifdef FRAME_COLLISION_DIAGNOSTICS
@@ -877,11 +855,6 @@ static void GE_STDCALL EntityOnDamage_FrameCollisionTest(
 {
     void *callerAddress = _ReturnAddress();
     ++g_EntityOnDamageEntryOrdinal;
-    Raw8FistCollision::ObservePostAttemptOnDamageEntry(
-        g_EntityOnDamageEntryOrdinal);
-    Raw8FistWindowProbe::ObserveOnDamage(
-        g_EntityOnDamageEntryOrdinal, callerAddress,
-        a_pEntity1, a_pEntity2);
     if (g_EntityOnDamageEntryOrdinal <= EntityOnDamageEntryLogCap)
     {
         CollisionDiagnostics::LogEntityOnDamageEntry(

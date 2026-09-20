@@ -41,74 +41,6 @@ struct Raw8FistPrimaryTiming
 static thread_local std::unordered_map<eCEntity *, Raw8FistMarkerExecution>
     g_Raw8FistMarkerExecutions;
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-static thread_local PostAttemptObservationScope
-    *g_pCurrentPostAttemptObservationScope = nullptr;
-
-void BeginPostAttemptObservation(
-    gCScriptProcessingUnit *spu, PostAttemptObservationScope &scope)
-{
-    scope = PostAttemptObservationScope{};
-    scope.previous = g_pCurrentPostAttemptObservationScope;
-    scope.spu = spu;
-    g_pCurrentPostAttemptObservationScope = &scope;
-}
-
-void ObservePostAttemptOnDamageEntry(GEU32 ordinal)
-{
-    PostAttemptObservationScope *const scope =
-        g_pCurrentPostAttemptObservationScope;
-    if (scope == nullptr || !scope->permissionConsumed)
-        return;
-    if (scope->onDamageCount == 0)
-        scope->firstOnDamageOrdinal = ordinal;
-    scope->lastOnDamageOrdinal = ordinal;
-    ++scope->onDamageCount;
-}
-
-void CompletePostAttemptObservation(
-    PostAttemptObservationScope &scope, GEBool combatMoveResult)
-{
-    if (g_pCurrentPostAttemptObservationScope != &scope)
-        return;
-    g_pCurrentPostAttemptObservationScope = scope.previous;
-    if (!scope.permissionConsumed || scope.spu == nullptr)
-        return;
-
-    eCEntity *const currentSPUActor = scope.spu->GetSelfEntity();
-    bool const spuActorMatch = currentSPUActor == scope.actorInstance;
-    volatile GEU8 const *const latchByte =
-        reinterpret_cast<volatile GEU8 const *>(scope.spu) + 0x164;
-    GEInt const postAttemptLatch = static_cast<GEInt>(*latchByte);
-
-    CollisionLifecycleGuard::GenerationToken const currentGeneration =
-        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
-            scope.actorInstance);
-    bool const currentGenerationMatch = currentGeneration.valid
-        && currentGeneration.generation == scope.c1Generation;
-
-    Entity actor(scope.actorInstance);
-    eCEntity *const currentFistSource = actor != None
-        ? CollisionSources::ResolveFistCollisionSource(actor) : nullptr;
-    bool const currentSourceMatch =
-        currentFistSource == scope.fistSourceInstance;
-    bCString const currentAnimation = actor != None
-        ? actor.NPC.GetCurrentMovementAni() : bCString();
-    char const *const currentAnimationText = currentAnimation.GetText();
-    bool const currentAnimationMatch = currentAnimationText != nullptr
-        && scope.animationName == currentAnimationText;
-
-    CollisionDiagnostics::LogRaw8FistPostAttempt(
-        scope.actorInstance, scope.fistSourceInstance, scope.spu,
-        scope.c1Generation, scope.action, scope.animationName.c_str(),
-        scope.syntheticApplied, postAttemptLatch, spuActorMatch,
-        currentGeneration, currentGenerationMatch, currentSourceMatch,
-        currentAnimationMatch, combatMoveResult,
-        scope.firstOnDamageOrdinal, scope.lastOnDamageOrdinal,
-        scope.onDamageCount);
-}
-#endif
-
 bool IsSupportedFamily(AttackFamily family)
 {
     return family == AttackFamily_Normal
@@ -423,19 +355,6 @@ GEDouble ApplyTimingPermission(
     }
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    PostAttemptObservationScope *const observation =
-        g_pCurrentPostAttemptObservationScope;
-    if (observation != nullptr && observation->spu == spu)
-    {
-        observation->actorInstance = state.actorInstance;
-        observation->fistSourceInstance = state.fistSourceInstance;
-        observation->c1Generation = state.c1Generation;
-        observation->action = static_cast<GEInt>(
-            actor.Routine.GetProperty<PSRoutine::PropertyAction>());
-        observation->animationName = state.animationName;
-        observation->permissionConsumed = true;
-        observation->syntheticApplied = syntheticApplied;
-    }
     std::uint64_t const c1Generation = state.c1Generation;
     GEDouble const maxTime = state.maxTime;
     GEDouble const nativeThresholdConstant = state.nativeThresholdConstant;

@@ -61,16 +61,6 @@ void LogRaw8FistTimingPermissionRetired(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *spu, void *animationActorAddress,
     char const *reason);
-void LogRaw8FistPostAttempt(
-    eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    GEInt action, char const *animationName, bool syntheticApplied,
-    GEInt postAttemptLatch, bool spuActorMatch,
-    CollisionLifecycleGuard::GenerationToken const &currentGeneration,
-    bool currentGenerationMatch, bool currentSourceMatch,
-    bool currentAnimationMatch, GEBool combatMoveResult,
-    GEU32 firstOnDamageOrdinal, GEU32 lastOnDamageOrdinal,
-    GEU32 onDamageCount);
 void LogNullMarker(char const *markerName);
 void LogMarkerResult(Entity &actor, MarkerProcessResult const &result);
 void LogSetCollisionGroup(
