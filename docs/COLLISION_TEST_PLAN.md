@@ -174,7 +174,7 @@ Raw8 closed-research retirement / neutral baseline           PASS — EV-350
 Raw8 TouchDamage virtual contact-boundary observation         NEGATIVE PASS — EV-351
 Native human raw8 locked-target interception control          PASS — EV-352
 Raw8 persistent authored-opportunity causal probe              CLOSED/PASS — EV-353
-Raw8 permanent persistent-opportunity implementation            FROZEN / PRE-WORK SABRETOOTH SPRINT-TRANSPORT SENTINEL PENDING
+Raw8 permanent persistent-opportunity implementation            FROZEN / PRE-WORK SPRINT-TRANSPORT SENTINEL PASS EV-354 / POP-12 PENDING
 ```
 
 The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. EV-342 is an ordinary PASS: some correctly processed Minecrawler executions did not physically contact, which is normal runtime attack variance rather than a collision-system qualification.
@@ -363,6 +363,8 @@ AttackContinuationProtection remains separate unless deliberately reopened
 
 
 ### Raw8 pre-Work Sprint-transport sentinel
+
+Pre-Work sentinel disposition: **PASS — EV-354**.
 
 Before production implementation, reproduce the EV-316 native Sabretooth same-C1 factual `Action9/SPRINT -> Action2/POWER` transport using the source-unchanged EV-353 persistent-opportunity diagnostic build.
 
