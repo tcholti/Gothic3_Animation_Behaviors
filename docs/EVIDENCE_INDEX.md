@@ -77,6 +77,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | Wolf marked/unmarked raw8 + transformed symmetry | EV-339–EV-340 |
 | Phase-4 Troll raw55 single/double + Staff coexistence | EV-341 |
 | Phase-4 Minecrawler/Bloodfly/Boar/Bison factual raw8 expansion | EV-342–EV-345 |
+| Gargoyle raw8 Power marker-time sweep / FIST authoring-semantics gate | EV-346 |
 
 ## 3. Current collision closure landmarks
 
@@ -105,6 +106,7 @@ EV-325–EV-329  permanent equipped Sprint promotion acceptance incl. behavior-o
 EV-330–EV-331  current-build Whirl/repeated-contact + Orc raw8 + player 1H/torch corroboration
 EV-332–EV-336  mixed player/weapon-creature cross-source regression PASS before Phase 4
 EV-337–EV-345  Phase-4 Sabretooth/Wolf/Troll + Minecrawler/Bloodfly/Boar/Bison body-contact regression PASS/qualified PASS
+EV-346         Gargoyle raw8 Power timing sweep confirms current one-shot FIST semantics; design gate OPEN
 ```
 
 ## 4. Escalation order
