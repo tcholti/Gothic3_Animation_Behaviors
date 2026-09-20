@@ -335,3 +335,42 @@ Important architectural wording:
 - token consumption happens on exact dispatch entry, before gameplay consequences are interpreted.
 
 This architecture still requires causal runtime proof before production promotion.
+
+
+## Opportunity-token lifecycle refinement — 2026-09-20
+
+The pending-opportunity token is **attack-execution/C1-scoped**, not Action-scoped.
+
+Protected evidence:
+- EV-316: raw8 Sabretooth Sprint can continue inside one exact C1 from factual Action9/SPRINT to factual Action2/POWER;
+- EV-322: equipped Sprint-origin continuation likewise proves Action9 -> Action2 may remain one authored attack execution;
+- EV-237: raw8 interruption safety is generation-scoped;
+- EV-349: a stale rearmed raw8 opportunity can leak into a replacement C1 if not explicitly closed.
+
+Therefore:
+
+```text
+same C1 generation
++ exact actor/source/SPU
+-> token survives Action/family/phase changes
+-> motion/timing helper may change independently
+
+factual C1 finalization/replacement
+-> close unused token
+-> force exact live latch CLOSED
+-> retire timing helper
+-> never carry opportunity into replacement generation
+```
+
+Do not use any of these as terminal authority by themselves:
+- Action change;
+- family change;
+- phase change;
+- Recover naming;
+- motion-name change;
+- FullStop;
+- callback return.
+
+A timing helper may retire on animation/timing identity change without consuming the logical opportunity token.
+
+Raw8 remains mechanically separate from equipped collision cleanup; only the execution-lifetime principle is shared.
