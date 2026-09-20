@@ -209,7 +209,7 @@ Candidate TouchDamage observation surfaces:
 - `gCTouchDamage_PS::CanBeActivatedNow` — `Game+0x692F0`;
 - `gCTouchDamage_PS::TriggerTarget` — `Game+0x693B0`.
 
-Their participation in the raw8 combat-loop route is **not yet proven**. Historical N2B runtime had deep diagnostics disabled.
+EV-351 runtime result: the exact current raw8 Fist source produced neither callback on six tested Gargoyle Power invocations, including three close/contact cases that reached the generic `Game+0x16E348` path. Therefore these two virtual boundaries are ruled out as the raw8 contact-consumption boundary on that tested route. Direct inherited `EntitiesVisited` behavior outside those callbacks remains unresolved.
 ```
 
 Observed generic-human threshold multiplier is approximately `0.6000000238`; with the tested `0.6800000072` max time this produced ~`0.4080000205` seconds.
