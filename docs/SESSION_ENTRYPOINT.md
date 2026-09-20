@@ -19,9 +19,9 @@ Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
 active contract = none; standalone regression resumes under COLLISION_TEST_PLAN.md
-Phase 4 non-weapon creatures = NEXT
+Phase 4 non-weapon creatures = ACTIVE / PARTIAL PASS
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-336
+latest completed evidence = EV-341
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: equipped Sprint production promotion remains CLOSED/PASS through EV-329. EV-330–EV-331 rechecked Whirl/repeated-contact/raw8/1H+torch behavior, and EV-332–EV-336 then passed a five-fixture mixed player/weapon-creature regression across dual-1H, 1H, 1H+shield, 2H, raw8 Fist and enemy raw2/raw3/raw52 sources, including permanent equipped Sprint. Phase 4 non-weapon creature regression remains next under `COLLISION_TEST_PLAN.md`. No source implementation task is active.
+Current responsibility: Phase 4 non-weapon creature regression is ACTIVE/PARTIAL PASS. EV-337–EV-341 passed Sabretooth raw8 double/single native+transformed fixtures, Wolf marked raw8 and paired unmarked native-fallback native+transformed fixtures, and Troll raw55 mixed single/double behavior with player Staff. More creature/animal fixtures remain planned before Phase 4 closes. No source implementation task is active.
 
 ## Immediate responsibility
 
@@ -64,7 +64,12 @@ Current responsibility: equipped Sprint production promotion remains CLOSED/PASS
 27. EV-334 player 1H+shield vs Demon/raw3 = PASS.
 28. EV-335 player 2H vs Stalker/raw52 = PASS.
 29. EV-336 player raw8 Fist vs Goblin/raw2 + permanent Sprint = PASS.
-30. Next: resume Phase 4 non-weapon creature regression under `COLLISION_TEST_PLAN.md`.
+30. EV-337 Sabretooth native+transformed double-FIST raw8 = PASS.
+31. EV-338 Sabretooth native+transformed single-FIST raw8 = PASS.
+32. EV-339 Wolf native+transformed marked raw8 = PASS.
+33. EV-340 Wolf native+transformed unmarked raw8 fallback = PASS.
+34. EV-341 Troll raw55 mixed single/double + player Staff = PASS.
+35. Next: continue Phase 4 with additional non-weapon creature/animal fixtures under `COLLISION_TEST_PLAN.md`.
 
 ## Current verified diagnostic product
 
