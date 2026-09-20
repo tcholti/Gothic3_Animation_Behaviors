@@ -808,3 +808,132 @@ Provenance:
 Disposition:
 - **PASS.**
 - Player raw8, Goblin raw2 and permanent equipped Sprint coexist cleanly on the accepted current build.
+
+### EV-337 — Sabretooth raw8 double-FIST native + transformed regression PASS
+
+Observed:
+- Native `Sabertooth` used factual `Fist` / UseType 8 under the production raw8 mechanism.
+- Nineteen Sabertooth C1s contained accepted FIST authoring in the double-marker fixture: sixteen reached both FIST markers; three were interrupted/replaced after the first marker before the second authored occurrence.
+- Across those C1s, 35 FIST markers were accepted. The first accepted FIST in each marked C1 armed/consumed the established bounded early timing permission; all sixteen C1s that reached the second FIST logged the later marker as `NATIVE_TIMING`.
+- The native Sabertooth side produced 15 native Fist damage events to `PC_Hero`. Covered families include Quick, Normal, Sprint and Power. Lack of contact on individual accepted opportunities is geometry/native-contact outcome, not marker failure.
+- `Transform_Sabertooth_Potion` independently exercised ten complete double-FIST C1s: all ten accepted two FIST markers, all ten armed/consumed the first-marker early permission, all ten accepted the second marker at native timing, and 14 native Fist damage events reached the native Sabertooth.
+- All recorded transformed C1 finals were clean. The three interrupted native Sabertooth C1s have no bad/nonzero final; whole-log finalization contains zero unresolved collision obligation and zero invariant/lifecycle/repair anomaly.
+
+Scope / limits:
+- Current-build actor-general regression for raw8 repeated-FIST semantics using native Sabertooth and player-transformed Sabertooth.
+- Confirms the mechanism follows factual raw8 source/family/runtime state rather than a human-only actor rule.
+- Interrupted executions are not counted as failed double-marker executions when the second authored marker was never reached.
+
+Provenance:
+- User upload batch head: `914b2b93bc8229b293503c0396148bd8a3768a14`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_sabertooth_npc_sabertooth_double_marker_test.log`.
+- Git blob `510c8f6b264afc6f44841deba616e596a79ae495`; 552,275 characters / 1,520 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Native and transformed Sabertooth preserve repeated-FIST raw8 behavior on the accepted current build.
+
+### EV-338 — Sabretooth raw8 single-FIST native + transformed regression PASS
+
+Observed:
+- Native `Sabertooth` exercised 30 distinct single-FIST C1s using factual `Fist` / UseType 8.
+- All 30 FIST markers were accepted; all 30 armed and consumed the established early timing permission; no second-marker native-timing path was present, as expected for a single-marker fixture.
+- Native Sabertooth covered Quick, Normal, Power and Sprint and produced 10 native Fist damage events to `PC_Hero`.
+- `Transform_Sabertooth_Potion` exercised 11 distinct single-FIST C1s across Normal, Quick and Power. All 11 markers were accepted, all 11 armed/consumed the raw8 timing permission, and 10 native Fist damage events reached the native Sabertooth.
+- Every marked C1 in this fixture finalized cleanly with zero outstanding collision obligation. No contradiction, invariant, lifecycle, repair-divergence or unresolved-source flag appeared.
+
+Scope / limits:
+- Current-build single-marker actor-general raw8 regression for native and player-transformed Sabertooth.
+- Contact count is not expected to equal marker count because Gothic owns geometry/contact/damage dispatch.
+
+Provenance:
+- User upload batch head: `914b2b93bc8229b293503c0396148bd8a3768a14`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_sabertooth_npc_sabertooth_marker_test.log`.
+- Git blob `8e90e2a6c4e97d64a4e50399adee3d607e2b4968`; 555,176 characters / 1,551 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Single-FIST raw8 semantics remain healthy for native and transformed Sabertooth.
+
+### EV-339 — Wolf marked raw8 native + transformed regression PASS
+
+Observed:
+- Native `Wolf` resolves a factual RIGHT `Fist` source with UseType 8 and uses the production raw8 mechanism when authored FIST markers are present.
+- Twenty-seven distinct Wolf marked C1s were observed across Normal, Power and Sprint. All 27 FIST markers were accepted; all 27 armed and consumed the established raw8 early timing permission.
+- Eight native Fist damage events reached `PC_Hero`.
+- Twenty-six of the 27 marked Wolf C1s have an ordinary clean final; the remaining marked C1 was interrupted/replaced before its final record. Whole-log finalization contains zero nonzero/outstanding failure.
+- `Transform_Wolf_Potion` exercised 15 distinct marked raw8 C1s across Normal and Power. All 15 FIST markers were accepted, all 15 timing permissions armed/consumed, all 15 C1s finalized cleanly, and 8 native Fist damage events reached the native Wolf.
+- No contradiction, invariant, lifecycle, repair-divergence or unresolved-source flag appeared.
+
+Scope / limits:
+- First current Phase-4 Wolf proof of the established raw8 mechanism across both native Wolf and player-transformed Wolf.
+- Confirms factual source identity, not animal name, governs applicability.
+
+Provenance:
+- User upload batch head: `914b2b93bc8229b293503c0396148bd8a3768a14`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_wolf_npc_wolf_marker_test.log`.
+- Git blob `e3fa6498735439bf85efc0dedc84803d22fa8276`; 554,454 characters / 1,607 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Marked Wolf raw8 behavior is healthy and actor-general across native/transformed use.
+
+### EV-340 — Wolf unmarked raw8 native-fallback control PASS
+
+Observed:
+- The unmarked Wolf fixture still exposes factual RIGHT `Fist` / UseType 8 in C1/source and callback facts.
+- The entire log contains zero authored collision markers, zero `RAW8_FIST_OWNERSHIP` records and zero `RAW8_FIST_TIMING` records.
+- Attack ownership remains `MarkerPresent=0 / FistMarkers=0 / SuppressNative=0`; the marker system therefore does not claim raw8 behavior merely because the factual source is UseType 8.
+- Native Wolf combat remains functional: 8 native Fist damage events reached `PC_Hero`.
+- Player-transformed Wolf also remains native without markers: 15 native Fist damage events reached the native Wolf with zero marker/timing intervention.
+- The log contains 47 native-Wolf and 17 transformed-Wolf C1 starts tracking factual Fist source state, with no unresolved collision obligation, contradiction, invariant, lifecycle or repair-divergence failure.
+
+Scope / limits:
+- Strong negative/native-fallback control paired directly with EV-339 on the same Wolf family.
+- Confirms raw8 authored behavior is explicit marker opt-in; factual raw8 alone does not enable the marker timing mechanism.
+
+Provenance:
+- User upload batch head: `914b2b93bc8229b293503c0396148bd8a3768a14`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_wolf_npc_wolf_without_marker_test.log`.
+- Git blob `523d16d494a456ddb352a81fcea1d3fb95440d3d`; 487,122 characters / 1,411 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **NEGATIVE/NATIVE-FALLBACK PASS.**
+- Unmarked Wolf raw8 remains completely native while marked Wolf in EV-339 opts into authored timing.
+
+### EV-341 — Troll raw55 mixed single/double FIST + player Staff regression PASS
+
+Observed:
+- Native `Troll` uses the separate permanent raw55 `TrollFist` / UseType 55 mechanism.
+- Twenty-five Troll C1s contained accepted permanent raw55 FIST behavior: sixteen single-marker C1s and nine complete double-marker C1s, for 34 accepted FIST markers total.
+- Family coverage in the marked raw55 set includes Normal (8 C1 / 8 FIST), Quick (13 C1 / 22 FIST) and Sprint-origin (4 C1 / 4 FIST).
+- Every first accepted FIST opened the exact RIGHT TrollFist path; 25 physical RIGHT 5->7 openings are matched by 25 exact 7->5 cleanups.
+- In all nine complete double-FIST Quick C1s, the later FIST is a contact rearm only: group remains 7->7, `GroupRequested=0`, and `ClearTriggeredList=1`. No second physical opening is requested.
+- Normal/Sprint routes show the evidence-backed premature native-opening suppression before authored activation. Seventeen native-open suppression records occur across the mixed run, including interrupted/marker-not-reached executions.
+- The 25 marked raw55 C1s produced 25 native damage events to `PC_Hero`. Five marked/intervened C1s were interrupted/replaced before an ordinary final line; whole-log finals contain zero nonzero outstanding obligation.
+- Player Staff used factual `Wrestling` equipped source and exercised Normal, Quick, Power, Hack and Whirl authoring. Staff physical operations balance 28 exact 5->7 openings with 28 exact 7->5 cleanups, plus four expected 7->7 repeated-marker rearms.
+- Player Whirl included accepted RIGHT/OFF behavior with replayed callbacks filtered by occurrence/deduplication protection. Twenty-seven native damage events reached the Troll.
+- No contradiction, invariant, lifecycle, repair-divergence or unresolved-source flag appeared.
+
+Scope / limits:
+- Current-build mixed regression for permanent raw55 single/double-FIST behavior plus player Staff equipped behavior.
+- Raw55 remains a distinct mechanism from raw8; this evidence must not be generalized by animation token alone.
+
+Provenance:
+- User upload batch head: `914b2b93bc8229b293503c0396148bd8a3768a14`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_validation_me_staff_npc_troll_marker_test.log`.
+- Git blob `a36829a795633f33360797934a9c6b5d4d09906a`; 268,001 characters / 1,108 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Permanent Troll raw55 and player Staff behavior remain healthy under mixed single/double-marker combat.
