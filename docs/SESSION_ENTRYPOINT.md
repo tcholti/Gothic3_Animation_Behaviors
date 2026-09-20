@@ -20,8 +20,8 @@ focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-349
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
-active Work implementation task = NONE — closed diagnostic rearm probe must be retired before new research
-current stop gate = POP-12 knowledge-state validation must PASS
+active Work implementation task = COLLISION_RAW8_CLOSED_RESEARCH_INSTRUMENTATION_RETIREMENT.md
+current stop gate = bounded closed-research instrumentation retirement before new causal research
 ```
 
 ## Current responsibility
@@ -47,7 +47,7 @@ Latest causal closure:
 
 No implementation task is active.
 
-**Do not start another runtime causal test or freeze/launch another Work task until POP-12 reports `Knowledge-state validation PASS`. After PASS, the first Work responsibility is retirement of the closed diagnostic-only `Raw8FistWindowProbe`, not new behavior research.**
+**POP-12 has PASSed. The only active Work responsibility is retirement of the closed raw8 damage-correlated research instrumentation. Do not start new causal research until that cleanup is independently reviewed and locally built.**
 
 After PASS, Normal Chat owns one narrow next research decision:
 
