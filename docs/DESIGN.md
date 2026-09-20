@@ -28,6 +28,7 @@ This file owns overall intended architecture and implementation order. Establish
 12. Known successful runtime behavior should log compactly in CORE; unknown, unsupported, contradictory, repair, or invariant behavior should become richer automatically. Detailed historical probes belong in opt-in DEEP diagnostics.
 13. A feature family is defined by factual Gothic action semantics, not by whatever animation filename happens to be playing.
 14. Unknown feature behavior is researched in a dedicated temporary probe/research module, not accumulated in `EngineBridge` or another stable owner. When the mechanism is proven, re-express only the proven responsibilities in their proper permanent modules and remove the research scaffolding.
+15. Collision markers author **collision/contact opportunity**, not gameplay damage policy. Marker systems may open, rearm and close native collision opportunities, but Gothic and other behavior systems remain authoritative for target validity, block/parry, immunity, knockdown/get-up vulnerability, reactions, damage amount and whether HP damage occurs at all. A native hit/contact can therefore consume an authored opportunity even when the resulting gameplay damage is zero.
 
 ---
 
@@ -105,7 +106,7 @@ Equipped source activation is not itself proof of native damage eligibility for 
 
 ### 4.3 Production raw-8 Fist
 
-`gEUseType_Fist` / raw 8 is body-contact damage, not a literal right-hand weapon source.
+`gEUseType_Fist` / raw 8 is a native body-contact opportunity mechanism, not a literal right-hand weapon source and not a custom damage system.
 
 The governing boundary is factual raw-8 source identity plus a supported/proven native attack-family mechanism and exact current Hit/marker context. Human/species identity and animation-family naming are not governing applicability rules.
 
@@ -140,8 +141,9 @@ EACH ACCEPTED FIST
 -> otherwise use native timing
 
 NATIVE GOTHIC PATH
--> owns target/contact/damage
--> successful opportunity self-closes latch to 1
+-> owns target/contact/block/immunity/reaction/damage
+-> authored collision code does not decide HP damage
+-> native hit/contact resolution consumes the opportunity; resulting damage may still be zero
 ```
 
 Timing permission is bound to exact actor/SPU/C1 generation/animation-actor/motion/callsite/current-animation identity and dies on factual identity/generation replacement.
