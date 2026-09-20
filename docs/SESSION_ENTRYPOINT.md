@@ -17,11 +17,11 @@ Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
 Phase 4 non-weapon creatures = PAUSED AT RAW8 FIST AUTHORING-SEMANTICS RESEARCH
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-349
+latest completed evidence = EV-350
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
-active Work implementation task = COLLISION_RAW8_CLOSED_RESEARCH_INSTRUMENTATION_RETIREMENT.md — source review PASS / local build-smoke pending
-current stop gate = bounded closed-research instrumentation retirement before new causal research
+active Work implementation task = NONE
+current stop gate = POP-12 knowledge-state validation before next causal research
 ```
 
 ## Current responsibility
@@ -45,9 +45,9 @@ Latest causal closure:
 - **EV-348:** one post-miss latch-only rearm can restore a later native opportunity.
 - **EV-349:** Parade shows native hit/contact resolution can occur with zero visible damage, while a temporary rearmed opportunity can survive Hit-C1 replacement into Recover unless explicitly closed.
 
-The retirement implementation is published and independently source-reviewed PASS; local build/smoke is pending.
+EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**The closed raw8 research instrumentation is retired in source at `ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3` and independently source-reviewed PASS. Do not start new causal research until both twins build and the diagnostic twin passes a neutral-baseline startup/smoke check.**
+**Do not start new causal research until POP-12 reports `Knowledge-state validation PASS` for the EV-350 closure state.**
 
 After PASS, Normal Chat owns one narrow next research decision:
 
@@ -55,14 +55,14 @@ After PASS, Normal Chat owns one narrow next research decision:
 
 ## Current runtime provenance
 
-Last reviewed causal implementation:
+Current neutral diagnostic baseline implementation:
 
-`ea652e3324fffb07da013229a2fd374c4f3b1c6b`
+`ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3`
 
-Last diagnostic DLL used for EV-348:
+Current diagnostic DLL:
 
 `Script_FrameCollisionTest.dll`  
-SHA256 `63261A1A4778FF293BDA94495B57EE363546650A7D386507304CA3D5FD9AB3FC`
+SHA256 `C33046D1AE139B5D905CF5E1004F725F07A5FE8CAC3A9705F11691497D7CD17D`
 
 Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 
@@ -72,7 +72,7 @@ Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 - exact short-lived continuation → `BETWEEN_CHATS.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
-- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347 / EV-348 / EV-349
+- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347 / EV-348 / EV-349 / EV-350
 - lifecycle/repair architecture → `COLLISION_LIFECYCLE.md`
 - diagnostics architecture → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
