@@ -19,9 +19,9 @@ Phase 4 non-weapon creatures = PAUSED AT RAW8 FIST AUTHORING-SEMANTICS RESEARCH
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-353
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
-active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
-active Work implementation task = NONE
-current stop gate = POP-12 validation of EV-353 closure before production-architecture freeze
+active temporary review = NONE
+active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md
+current stop gate = POP-12 validation of frozen permanent raw8 implementation task before Work
 ```
 
 ## Current responsibility
@@ -47,7 +47,7 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**EV-353 closes the diagnostic persistent-opportunity token model PASS: authored FIST survives native misses, consumes on first exact native raw8 contact dispatch, and closes on tested C1 finalization/replacement without observed cross-C1 leakage. No active Work task. POP-12 must validate this closure before freezing permanent raw8 architecture.**
+**EV-353 is promoted into `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`. The resolved semantics review is archived. Active Work task: `COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`. Do not send to Work until POP-12 validates this frozen production state.**
 
 Current frozen causal question:
 
@@ -55,7 +55,9 @@ Current frozen causal question:
 
 Closed probe archive: `docs/archive/investigations/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`.
 
-Parent review remains `docs/work/active/COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md`. Next responsibility is permanent raw8 architecture freeze; no production code change is authorized yet.
+Permanent raw8 authority: `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
+
+Active implementation contract: `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`.
 
 ## Current runtime provenance
 
