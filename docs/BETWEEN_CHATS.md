@@ -104,3 +104,25 @@ The task is now cleared for bounded Work implementation:
 No broader raw8 redesign or production promotion is authorized.
 
 `research/raw/` should contain only `Keep.txt`.
+
+
+## Source review of token implementation — BLOCKED
+
+Implementation reviewed:
+`e86c1ce03b36ef0ef7421a19284c5b38e58615ed`
+
+Most frozen invariants passed, but one exact lifecycle issue blocks build/runtime.
+
+At the post-native `AISetState` finalization seam, the probe's `CloseForFinalization()` checks stored-token == captured generation and revalidates actor/SPU/source, but does not verify that the **current** C1 generation still equals the captured generation before writing latch `1`.
+
+The permanent lifecycle guard already treats a generation change during native `AISetState` as `FinalizationGenerationChanged`. Raw8 must mirror that safety.
+
+Correction:
+- one file only: `Raw8FistPersistentOpportunityProbe.cpp`;
+- re-capture current C1 generation before terminal latch mutation;
+- same generation -> existing exact terminal close may write latch `1`;
+- invalid/changed generation -> retire stale logical token/timing only, log no-write reason, **no latch mutation**.
+
+Do not alter token Action/Sprint semantics, miss rearm, timing persistence, contact consumption or any permanent source.
+
+Run POP-12 before sending this correction to Work.
