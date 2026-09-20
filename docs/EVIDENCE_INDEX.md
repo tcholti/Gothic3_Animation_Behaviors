@@ -79,6 +79,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | Phase-4 Minecrawler/Bloodfly/Boar/Bison factual raw8 expansion | EV-342–EV-345 |
 | Gargoyle raw8 Power marker-time sweep / FIST authoring-semantics gate | EV-346 |
 | raw8 post-attempt latch consumption / hit-vs-miss correlation | EV-347 |
+| raw8 post-miss latch-only rearm / later native opportunity | EV-348 |
 
 ## 3. Current collision closure landmarks
 
@@ -109,6 +110,7 @@ EV-332–EV-336  mixed player/weapon-creature cross-source regression PASS befor
 EV-337–EV-345  Phase-4 Sabretooth/Wolf/Troll + Minecrawler/Bloodfly/Boar/Bison body-contact regression PASS
 EV-346         Gargoyle raw8 Power timing sweep confirms current one-shot FIST semantics; design gate OPEN
 EV-347         post-attempt observation proves latch closes after hit and miss alike
+EV-348         post-miss latch-only rearm restores later native opportunity on tested Power route
 ```
 
 ## 4. Escalation order
