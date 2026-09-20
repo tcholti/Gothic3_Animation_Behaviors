@@ -12,7 +12,9 @@ Branch: `docs/collision-source-evidence`
 
 Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-349**.
 
-Active bounded Work task: `docs/work/active/COLLISION_RAW8_CLOSED_RESEARCH_INSTRUMENTATION_RETIREMENT.md`.
+Active bounded cleanup: `docs/work/active/COLLISION_RAW8_CLOSED_RESEARCH_INSTRUMENTATION_RETIREMENT.md`.
+
+Work implementation `ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3` is independently source-reviewed **PASS**. Local build/smoke remains.
 
 Agreed author-facing target remains:
 
@@ -56,12 +58,14 @@ It preserves:
 - permanent raw8 ownership/latch/timing behavior and diagnostics;
 - all raw55/equipped/lifecycle behavior.
 
-After Work returns:
-1. Normal Chat independently reviews the source cleanup.
-2. User builds both twins.
-3. Deploy diagnostic twin only for a neutral-baseline startup/smoke confirmation.
-4. Run POP-12 closure.
-5. Only then freeze the next contact-resolution research question.
+Next:
+1. User builds both twins from the reviewed source state.
+2. Deploy diagnostic twin only.
+3. Confirm sole-live-twin SHA and clean startup/unload.
+4. A minimal startup/smoke is sufficient; no new causal fixture is required for this cleanup.
+5. Normal Chat closes/archives the cleanup contract.
+6. Run POP-12 closure.
+7. Only then freeze the next contact-resolution research question.
 
 After PASS, the next question is **not merely timing**:
 
