@@ -470,3 +470,8 @@ AttackContinuationProtection
 ```
 
 For each new causal question, use CORE if sufficient and enable only the smallest DEEP/probe surface needed for facts CORE cannot establish.
+
+
+## Collision vs gameplay-damage interpretation
+
+`OnDamage` / damage-named diagnostic records are observation labels inherited from the Gothic API and historical probes. They do not make gameplay damage part of collision ownership. EV-349 proves the native `Game+0x16E348` boundary can be entered while Parade/block prevents visible damage. Treat these records as evidence about the native hit/contact path unless a separate non-collision task explicitly studies gameplay damage policy.
