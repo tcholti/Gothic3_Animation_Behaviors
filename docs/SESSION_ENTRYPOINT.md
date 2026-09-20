@@ -21,7 +21,7 @@ latest completed evidence = EV-352
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
 active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md
-current stop gate = POP-12 validation of frozen persistent-opportunity token probe
+current stop gate = POP-12 validation of corrected persistent-opportunity token probe
 ```
 
 ## Current responsibility
@@ -47,7 +47,7 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**EV-352 adds a native human locked-target control supporting target-directed raw8 semantics. A diagnostic-only persistent-opportunity-token causal probe is now frozen. Do not send it to Work until POP-12 validates this frozen task state.**
+**The pending-opportunity probe has been lifecycle-corrected before Work: token lifetime follows exact C1 execution identity, not Action/family/phase/motion alone. Proven Sprint-origin Action9 -> Action2 continuation inside one C1 must survive. Exact C1 finalization/replacement must close any unused token. Do not send the corrected task to Work until POP-12 validates this state.**
 
 Current frozen causal question:
 
