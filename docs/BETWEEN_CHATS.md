@@ -10,13 +10,9 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-349**.
+Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-350**. No active Work task.
 
-Active bounded cleanup: `docs/work/active/COLLISION_RAW8_CLOSED_RESEARCH_INSTRUMENTATION_RETIREMENT.md`.
-
-Work implementation `ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3` is independently source-reviewed **PASS**. Local build/smoke remains.
-
-Agreed author-facing target remains:
+Agreed author-facing target:
 
 ```text
 FIST opens one target-directed native body-contact / hit opportunity
@@ -27,50 +23,49 @@ FIST opens one target-directed native body-contact / hit opportunity
 -> C1 / Hit replacement or interruption closes any unused opportunity
 ```
 
-No raw8 FIST_OFF absent future contradictory evidence.
+Terminology discipline:
+- **opportunity** = the authored logical OPEN/CLOSED/rearmed state;
+- **collision/contact** = actual native physical/contact resolution;
+- **native hit/contact-resolution boundary** = factual Gothic boundary under research;
+- **damage** = reserve for literal Gothic API names/log labels or gameplay HP result, not collision ownership.
 
-## EV-347–EV-349
+## EV-347–EV-350
 
-- EV-347: tested raw8 latch closes after both exact hit and exact miss attempts.
-- EV-348: one exact post-miss latch `1 -> 0` rearm restored later native opportunity without timing rearm.
-- EV-349: 12 Gargoyle frame-3 synthetic Power attempts; 4 immediate native entries; 8 post-miss rearms; 6 later native entries within the original Hit C1; 1 no later entry; 1 native entry only after Hit C1 55 was replaced by Recover C1 57.
-- That cross-C1 entry occurred while the player was `Action=31` / `GetUpParade`; User observed no visible damage. User also observed another no-damage attack while already knocked down.
-- Therefore visible health damage is not the opportunity-consumption signal. Parade can resolve native contact while damage is blocked.
-- Collision authoring must remain policy-neutral: do not inspect or override knockdown, get-up, block, immunity, reaction or HP-damage rules.
-- The temporary probe also proves exact C1/Hit termination cleanup is mandatory: an unused rearmed opportunity can otherwise remain live into Recover.
+- EV-347: native raw8 one-shot attempt closes the latch on both hit and miss.
+- EV-348: temporary post-miss latch rearm restored later native opportunity.
+- EV-349: Parade showed native contact-path resolution may occur with zero visible damage; temporary rearm also exposed cross-C1 lifetime leakage.
+- Collision-vs-damage audit: permanent collision behavior remained policy-neutral; drift was confined to research terminology / closed diagnostic probes.
+- EV-350: retired `Raw8FistWindowProbe` + EV-347 post-attempt OnDamage-counting instrumentation. Both twins built. Diagnostic deployment/startup PASS. Optional five-attack frame-3 Gargoyle control returned to one-shot baseline:
+  - C1 22 + 29 -> immediate `Game+0x16E348` native contact-path entries;
+  - C1 7 + 13 + 17 -> no later contact-path entry;
+  - no retired probe records;
+  - generic `CORE ONDAMAGE` observer retained.
 
-Canonical latest log:
-`research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_3.log`  
-Git blob `9e46fa742d94d8e569226c51e509b224ac391ac1`.
+Current diagnostic DLL SHA256:
+`C33046D1AE139B5D905CF5E1004F725F07A5FE8CAC3A9705F11691497D7CD17D`.
 
-## Current gate
+Latest canonical log:
+`research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_4.log`  
+Git blob `06d1e22353f017f536d1c8c2d039e5fe34fd1e0b`.
 
-POP-12 knowledge-state validation: **PASS**.
+## Current stop gate
 
-Implement only the active closed-research instrumentation retirement contract.
+Run:
 
-The cleanup retires:
-- `Raw8FistWindowProbe`;
-- EV-347 post-attempt raw8 OnDamage-counting scope/log.
+```text
+python tools/knowledge/validate_knowledge_state.py
+```
 
-It preserves:
-- generic `ENTITY_ON_DAMAGE_ENTRY` factual diagnostics;
-- permanent raw8 ownership/latch/timing behavior and diagnostics;
-- all raw55/equipped/lifecycle behavior.
+Require:
 
-Next:
-1. User builds both twins from the reviewed source state.
-2. Deploy diagnostic twin only.
-3. Confirm sole-live-twin SHA and clean startup/unload.
-4. A minimal startup/smoke is sufficient; no new causal fixture is required for this cleanup.
-5. Normal Chat closes/archives the cleanup contract.
-6. Run POP-12 closure.
-7. Only then freeze the next contact-resolution research question.
+```text
+Knowledge-state validation PASS
+```
 
-After PASS, the next question is **not merely timing**:
+Do not freeze or launch the next causal task before that PASS.
 
-> After the closed rearm probe is retired, find the smallest factual native hit/contact-resolution boundary that consumes the authored opportunity independently of gameplay damage policy, while closing any unused authored opportunity at exact C1/Hit termination.
+After PASS, Normal Chat should reason from the neutral baseline and freeze only the smallest next question:
 
-New Balance later gets a knocked-down/get-up compatibility control because the User reports it changes some of this behavior. The control verifies policy neutrality; this mod should not encode or override New Balance's damage/vulnerability rules.
+> What is the smallest factual native hit/contact-resolution boundary that can consume an authored raw8 opportunity independently of block/immunity/reaction/HP-damage policy, while any unused opportunity is forcibly bounded to the exact Hit/C1 lifetime?
 
 `research/raw/` should contain only `Keep.txt`.
