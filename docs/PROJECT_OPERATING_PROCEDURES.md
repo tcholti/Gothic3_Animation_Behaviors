@@ -632,6 +632,8 @@ no current-state document relies on an unpromoted chat-only result
 
 Run `python tools/knowledge/validate_knowledge_state.py` after lifecycle-sensitive documentation/evidence maintenance. CI runs the same structural validation. The tool checks document placement, active-ledger uniqueness, lifecycle routing and current Markdown links; it does not auto-author conclusions or decide evidence meaning.
 
+**Closure lock:** when POP-12 is triggered by the just-completed runtime/evidence transaction, `Knowledge-state validation PASS` is part of POP-06 closure. Do not issue the next runtime test, freeze/launch the next Work task, or advance to a new causal question until that PASS has been reported.
+
 ### Planned vs failed Chat transition
 
 The invariant above is strict for a **planned** transition: do not knowingly move Chats while completed evidence remains unclosed.
