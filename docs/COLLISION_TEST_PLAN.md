@@ -162,16 +162,17 @@ Sabretooth raw8 single-FIST, native + transformed player    PASS — EV-338
 Wolf marked raw8, native + transformed player               PASS — EV-339
 Wolf unmarked raw8 native-fallback control, both forms       PASS — EV-340
 Troll raw55 mixed single/double FIST + player Staff          PASS — EV-341
-Minecrawler raw8 Normal/Power/Quick + player 1H-family       PASS* — EV-342
+Minecrawler raw8 Normal/Power/Quick + player 1H-family       PASS — EV-342
 Bloodfly raw8 Normal/Power/Sprint + player 1H                PASS — EV-343
 Boar raw8 Normal + player 1H+shield                          PASS — EV-344
 Bison raw8 Normal + player 2H                                PASS — EV-345
 Gargoyle raw8 Power timing sweep                            DESIGN DISCOVERY — EV-346
+Gargoyle post-attempt latch hit/miss observation             CAUSAL PASS — EV-347
 ```
 
-The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. The Minecrawler asterisk is a contact qualification only: all 12 markers/ownership/timing paths were healthy and finalized cleanly, but one Power and three Normal executions produced no native ONDAMAGE in that capture; native contact/target/damage remain Gothic-owned.
+The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. EV-342 is an ordinary PASS: some correctly processed Minecrawler executions did not physically contact, which is normal runtime attack variance rather than a collision-system qualification.
 
-EV-346 is a material design discovery, not a creature-specific failure. Gargoyle factual raw8 Power showed that the current early-FIST mechanism is one-shot: frame-1 0/4, approximate frame-3 5/10, frame-6 8/8 and native 7/7 under a stationary-player fixture, while ownership/markers/finalization remained healthy. Broad Phase-4 certification is therefore paused under `docs/work/active/COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md` until the project explicitly retains pulse semantics or freezes a research path toward persistent-window semantics.
+EV-346 is a material design discovery, not a creature-specific failure. Gargoyle factual raw8 Power showed that the current early-FIST mechanism is one-shot: frame-1 0/4, approximate frame-3 5/10, frame-6 8/8 and native 7/7 under a stationary-player fixture, while ownership/markers/finalization remained healthy. EV-347 then proved that the native latch closes to 1 after the attempt whether that exact synthetic invocation hits or misses. User + Normal Chat have chosen persistent opportunity-window semantics; broad Phase-4 certification remains paused while the smallest causal rearm mechanism is researched.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
