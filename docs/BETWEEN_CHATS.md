@@ -10,7 +10,9 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-349**. No active Work task.
+Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-349**.
+
+Active bounded Work task: `docs/work/active/COLLISION_RAW8_CLOSED_RESEARCH_INSTRUMENTATION_RETIREMENT.md`.
 
 Agreed author-facing target remains:
 
@@ -39,19 +41,27 @@ Canonical latest log:
 `research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_3.log`  
 Git blob `9e46fa742d94d8e569226c51e509b224ac391ac1`.
 
-## Current stop gate
+## Current gate
 
-Run POP-12 after pulling the latest branch:
+POP-12 knowledge-state validation: **PASS**.
 
-```text
-python tools/knowledge/validate_knowledge_state.py
-```
+Implement only the active closed-research instrumentation retirement contract.
 
-Require `Knowledge-state validation PASS`.
+The cleanup retires:
+- `Raw8FistWindowProbe`;
+- EV-347 post-attempt raw8 OnDamage-counting scope/log.
 
-Do not launch another Work task or runtime causal test before that PASS.
+It preserves:
+- generic `ENTITY_ON_DAMAGE_ENTRY` factual diagnostics;
+- permanent raw8 ownership/latch/timing behavior and diagnostics;
+- all raw55/equipped/lifecycle behavior.
 
-After PASS, the first bounded Work responsibility is **retirement of the closed diagnostic-only `Raw8FistWindowProbe` and its bridge/CMake delegation**, restoring the diagnostic twin to a neutral baseline. Do not begin a new raw8 causal intervention before that cleanup is independently reviewed and locally built.
+After Work returns:
+1. Normal Chat independently reviews the source cleanup.
+2. User builds both twins.
+3. Deploy diagnostic twin only for a neutral-baseline startup/smoke confirmation.
+4. Run POP-12 closure.
+5. Only then freeze the next contact-resolution research question.
 
 After PASS, the next question is **not merely timing**:
 
