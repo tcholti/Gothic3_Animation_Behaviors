@@ -10,7 +10,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **equipped Sprint permanent extraction source-review PASS + BOTH BUILDS PASS; behavior-only startup purity next.** Phase 4 remains held.
+Current gate: **equipped Sprint permanent extraction source/build/startup gates PASS; diagnostic runtime controls next.**
 
 Active contract:
 
@@ -22,15 +22,18 @@ Reviewed implementation:
 
 Completed:
 - knowledge-state validator PASS;
-- `Script_FrameCollisionBehaviorTest` build PASS;
-- `Script_FrameCollisionTest` build PASS.
+- behavior-only build PASS;
+- diagnostic build PASS;
+- behavior-only sole-live deployment PASS;
+- behavior-only built/live SHA256 = `FE31030B35868EBF30B9644650991D8136625C4DBFD6263403350DB612BDB250`;
+- Gothic 3 reached main menu and exited normally with no startup/load crash.
 
 Next:
-1. deploy only `Script_FrameCollisionBehaviorTest.dll` using POP-03;
-2. require sole-live-twin + built/live SHA match + `BEHAVIOR DEPLOYMENT PASS`;
-3. launch Gothic 3 only to main menu and exit normally;
-4. behavior startup PASS = no load/startup crash; no diagnostic banner/log is expected;
-5. then switch back to the diagnostic twin for compact EV-322/323/324 runtime controls;
-6. finish with behavior-only Goblin Sprint smoke before closing production promotion.
+1. redeploy only `Script_FrameCollisionTest.dll`;
+2. verify diagnostic startup/load;
+3. rerun compact EV-322 RIGHT->OFF positive control;
+4. rerun EV-323 BOTH with LEFT absent negative control;
+5. rerun EV-324 ordinary true-Power protected control;
+6. then redeploy behavior-only twin and smoke the known Goblin Sprint fixture.
 
-Latest runtime evidence remains EV-324. `research/raw/` should contain only `Keep.txt`.
+Latest runtime evidence remains EV-324 until new logs are committed.
