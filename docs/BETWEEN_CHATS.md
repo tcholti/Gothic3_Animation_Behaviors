@@ -15,10 +15,10 @@ Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest complet
 Agreed author-facing target remains:
 
 ```text
-FIST opens one target-directed native body-contact opportunity
--> genuine no-contact should not consume it
--> native target/vulnerability/damage remain Gothic-owned
--> successful native resolution consumes it
+FIST opens one target-directed native body-contact / hit opportunity
+-> until native hit/contact resolution occurs, opportunity remains available
+-> first native hit/contact resolution consumes it for that target
+-> block / parry / immunity / reactions / HP damage remain Gothic/behavior-owned
 -> later FIST rearms it
 -> C1 / Hit replacement or interruption closes any unused opportunity
 ```
@@ -31,7 +31,8 @@ No raw8 FIST_OFF absent future contradictory evidence.
 - EV-348: one exact post-miss latch `1 -> 0` rearm restored later native opportunity without timing rearm.
 - EV-349: 12 Gargoyle frame-3 synthetic Power attempts; 4 immediate native entries; 8 post-miss rearms; 6 later native entries within the original Hit C1; 1 no later entry; 1 native entry only after Hit C1 55 was replaced by Recover C1 57.
 - That cross-C1 entry occurred while the player was `Action=31` / `GetUpParade`; User observed no visible damage. User also observed another no-damage attack while already knocked down.
-- Therefore visible health damage is not a collision-success oracle, and a future persistent opportunity must not override Gothic's knockdown/get-up target-state rules.
+- Therefore visible health damage is not the opportunity-consumption signal. Parade can resolve native contact while damage is blocked.
+- Collision authoring must remain policy-neutral: do not inspect or override knockdown, get-up, block, immunity, reaction or HP-damage rules.
 - The temporary probe also proves exact C1/Hit termination cleanup is mandatory: an unused rearmed opportunity can otherwise remain live into Recover.
 
 Canonical latest log:
@@ -52,8 +53,8 @@ Do not launch another Work task or runtime causal test before that PASS.
 
 After PASS, the next question is **not merely timing**:
 
-> Find the smallest factual native boundary that distinguishes genuine no-contact from legitimate target-state rejection, while keeping Gothic in ownership and closing any unused authored opportunity at exact C1/Hit termination.
+> Find the smallest factual native hit/contact-resolution boundary that consumes the authored opportunity independently of gameplay damage policy, while closing any unused authored opportunity at exact C1/Hit termination.
 
-New Balance later needs an explicit knocked-down/get-up compatibility control because the User reports it changes some of this behavior; exact New Balance behavior is not yet established.
+New Balance later gets a knocked-down/get-up compatibility control because the User reports it changes some of this behavior. The control verifies policy neutrality; this mod should not encode or override New Balance's damage/vulnerability rules.
 
 `research/raw/` should contain only `Keep.txt`.
