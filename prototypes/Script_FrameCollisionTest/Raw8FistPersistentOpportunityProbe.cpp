@@ -515,6 +515,20 @@ void CloseForFinalization(
     {
         return;
     }
+
+    CollisionLifecycleGuard::GenerationToken const currentGeneration =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            generation.actorInstance);
+    bool const sameGeneration = currentGeneration.valid
+        && currentGeneration.actorInstance == generation.actorInstance
+        && currentGeneration.generation == generation.generation;
+    if (!sameGeneration)
+    {
+        LogCloseAndErase(
+            found,
+            "FINALIZATION_GENERATION_CHANGED_NO_LATCH_WRITE", false);
+        return;
+    }
     LogCloseAndErase(found, "C1_FINALIZED", true);
 }
 }
