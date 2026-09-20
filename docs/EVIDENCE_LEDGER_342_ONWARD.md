@@ -407,3 +407,87 @@ Disposition:
 - **TARGET-DIRECTED RAW8 CONTROL PASS.**
 - Do not add weapon-style per-target hit bookkeeping to the next raw8 prototype.
 - Replace the planned standalone visited-list probe with the smaller pending-opportunity-token causal design.
+
+
+### EV-353 — Raw8 persistent authored-opportunity token causal probe PASS
+
+Runtime implementation:
+- diagnostic probe implementation `e86c1ce03b36ef0ef7421a19284c5b38e58615ed`;
+- generation-safe finalization correction `015a3ef90bf135cf502ac6507fb68f7c8c962800`;
+- behavior-only twin source set unchanged;
+- permanent `Raw8FistCollision.cpp/.h` unchanged.
+
+Build/deployment:
+- both collision twins built locally by the User;
+- diagnostic twin deployed alone;
+- built/live SHA256 both `539282F9DAD4A690CFE5AA22B5C5A85066EDFC81C617859EEDDE5341CE869DD5`;
+- diagnostic deployment PASS;
+- CORE profile, DEEP disabled;
+- hooks installed and diagnostic DLL unloaded cleanly.
+
+Marked-opportunity accounting across the four marked runtime logs:
+- 81 accepted FIST opportunity opens;
+- 59 exact `Game+0x16E348` raw8 contact-dispatch consumptions;
+- 21 unused opportunities closed by C1 lifecycle;
+- one earlier token ordinal was superseded by a later accepted FIST in the same C1, leaving one pending entitlement rather than stacking;
+- therefore all 81 opens are accounted for;
+- 614 exact miss-rearm writes were observed;
+- 361 bounded timing-hold observations were observed;
+- 41 contact-consumed tokens reached contact without a prior miss-rearm;
+- **18 contact-consumed tokens first underwent one or more miss-rearms and later reached exact native contact in the same C1**;
+- zero anomaly, contradiction, lifecycle-issue, repair-divergence or rejected-marker flags occurred in the five reviewed logs.
+
+Gargoyle frame-3 Power fixture:
+- test 6: 17 opportunities -> 15 exact contacts against `PC_Hero` + 2 clean `C1_FINALIZED` closes;
+- 9 of the 15 contacts followed one or more miss-rearms;
+- the two non-contact opportunities remained pending through 33 and 32 miss-rearms respectively, then closed at C1 finalization with confirmed latch `0 -> 1` and no contact;
+- test 7: 4 opportunities -> 4 exact contacts; one followed five miss-rearms;
+- additional Gargoyle attack executions deliberately interrupted by the User before frame-3 FIST acquired raw8 marked-execution ownership but never opened an opportunity token, as expected.
+- User visual result: Gargoyle connected from near through the extreme end of its attack travel whenever the player remained reachable; deliberately moving out of range could avoid the hit.
+
+Marked human group-combat control:
+- 24 FIST opens: 22 Normal + 2 Power;
+- 8 exact contact consumptions, all against `ReddockOrcScoutLeader`;
+- 15 lifecycle closes: 12 `C1_FINALIZED`, 3 `C1_GENERATION_REPLACED`;
+- one first token in C1 7 was superseded by a later FIST in the same C1; the replacement token then closed normally;
+- the three generation-replacement closures occurred after an opportunity was already pending and while the player entered reaction generations (including QuickStumble-shaped transitions);
+- each wrote the old pending latch `0 -> 1` with confirmed readback;
+- after each close, the next exact player raw8 contact occurred only after a later FIST opened a new token;
+- no old-opportunity cross-C1 contact leak occurred.
+- User visual result: nearby, behind and intervening non-target opponents were not hit; several knockdowns/reactions occurred during the group fight.
+
+Marked human one-on-one control:
+- 36 FIST opens: 29 Normal + 7 Power;
+- 32 exact contact consumptions against Golem: 25 Normal + 7 Power;
+- 4 unused Normal opportunities closed at C1 finalization;
+- 4 of the 32 contacts followed one or more miss-rearms;
+- User visual timing result: behavior appeared correct.
+
+Native unmarked human group-combat control:
+- zero persistent-opportunity probe records, as required;
+- 12 exact native Fist `Game+0x16E348` contacts;
+- targets were only the two opponents the User reports deliberately locking/switching between: `ReddockOrcScoutLeader` (8) and `ReddockOrcScout02` (4);
+- no non-target Fist contact was observed by the User despite opponents near, behind and between player and target.
+
+Interpretation:
+- **CAUSAL PASS.**
+- An authored raw8 FIST opportunity can persist across repeated native one-shot misses and later be consumed by the first exact native raw8 contact-resolution dispatch within the same attack execution.
+- Persistence does not force contact: moving fully out of reach leaves the opportunity pending until lifecycle closure.
+- Exact C1 finalization/replacement closes unused opportunity and prevents observed cross-C1 leakage.
+- Target selection/contact geometry remain Gothic-owned; the mechanism does not turn raw8 into weapon-style area collision.
+- Unmarked raw8 remains native.
+- The tested contact-consumption boundary remains policy-neutral with respect to HP outcome by design and prior EV-349 evidence; this batch did not add a dedicated Parade control.
+- The corrected `FINALIZATION_GENERATION_CHANGED_NO_LATCH_WRITE` branch was not observed in this batch; its safety remains source-reviewed rather than runtime-exercised.
+
+Provenance:
+- User deployment/startup report, 2026-09-20.
+- `research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_6.log`, blob `47d0eb29bd39b32b3397b74fb239dc5611723637`.
+- `research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_7.log`, blob `bc55cb657483663a5e918e2edb595899ba45fc7c`.
+- `research/archive/2026-09-20_observation_human_marked_fist_not_targeted_hit_test.log`, blob `d50beda22c7b49553818c19340efb03567dc296f`.
+- `research/archive/2026-09-20_observation_human_marked_fist_one_on_one_hit_test.log`, blob `5ef5749588476b99987ee1f042e0cca8bc6680ec`.
+- `research/archive/2026-09-20_observation_human_native_fist_not_targeted_hit_test2.log`, blob `5fc350209e2e2f9eba651993a89575e71bd1652a`.
+
+Disposition:
+- **RAW8 PERSISTENT OPPORTUNITY CAUSAL PROBE CLOSED/PASS.**
+- Do not run another exploratory contact-boundary/visited-list probe.
+- Next responsibility is Normal Chat production-architecture review/freeze; production promotion is not implied by this evidence entry.
