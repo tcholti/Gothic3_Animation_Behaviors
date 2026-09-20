@@ -39,7 +39,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | frame effects / authored marker channel | EV-012–EV-018 |
 | ordinary native weapon reset / marker timing | EV-019–EV-023 |
 | Staff/NPC actor-general marker proof | EV-024–EV-028 |
-| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336 |
+| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336–EV-340 |
 | player animation family / UseType / side semantics | EV-036–EV-065, EV-332–EV-335 |
 | Quick marker ownership / StatePosition | EV-066–EV-075 |
 | equipped dual-source RIGHT/LEFT mapping | EV-090–EV-094, EV-332 |
@@ -54,7 +54,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | human raw8 Fist production causal route | EV-221–EV-240 |
 | Power / Pierce / Hack equipped expansion / current true-Power sentinel | EV-241–EV-244, EV-318 |
 | original raw55-negative survey | EV-245–EV-246 |
-| raw8 transformed/native Sabretooth + Quick | EV-247–EV-249 |
+| raw8 transformed/native Sabretooth + Quick | EV-247–EV-249, EV-337–EV-338 |
 | architecture/diagnostic equivalence refactor | EV-249–EV-250 |
 | raw8 Sprint transport + production support / current protected sentinel | EV-250–EV-251, EV-316 |
 | native equipped NPC controls | EV-252–EV-254 |
@@ -65,14 +65,16 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | raw55 Normal causal/repeated-contact closure | EV-277–EV-279, EV-286–EV-292 |
 | raw55 Sprint-origin closure / current protected sentinel | EV-280–EV-285, EV-294, EV-317 |
 | New Balance 0.7 source compatibility preflight | EV-284 |
-| permanent raw55 implementation + focused sentinels | EV-295–EV-298 |
+| permanent raw55 implementation + focused/current regression | EV-295–EV-298, EV-341 |
 | standalone collision regression | EV-299 onward |
 | Orc Phase-2 Staff/Fist/2H attack matrix / current-build rechecks | EV-309–EV-310, EV-330–EV-331 |
 | post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314, EV-332–EV-336 |
 | factual equipped Sprint handoff / continuation / permanent production acceptance | EV-311, EV-315, EV-320–EV-329 |
 | shield/raw9 LEFT physical activation without shield-bash damage | EV-306, EV-308 |
 | human raw8 same-C1 double-FIST | EV-305 |
-| Sabretooth raw8 same-C1 double-FIST | EV-307 |
+| Sabretooth raw8 same-C1 double-FIST | EV-307, EV-337 |
+| Wolf marked/unmarked raw8 + transformed symmetry | EV-339–EV-340 |
+| Phase-4 Troll raw55 single/double + Staff coexistence | EV-341 |
 
 ## 3. Current collision closure landmarks
 
@@ -100,6 +102,7 @@ EV-315–EV-324  equipped Sprint causal/correction acceptance through promotion 
 EV-325–EV-329  permanent equipped Sprint promotion acceptance incl. behavior-only smoke
 EV-330–EV-331  current-build Whirl/repeated-contact + Orc raw8 + player 1H/torch corroboration
 EV-332–EV-336  mixed player/weapon-creature cross-source regression PASS before Phase 4
+EV-337–EV-341  Phase-4 Sabretooth/Wolf/Troll body-contact regression PASS
 ```
 
 ## 4. Escalation order
