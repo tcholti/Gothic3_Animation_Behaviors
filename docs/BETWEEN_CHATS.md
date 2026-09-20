@@ -10,7 +10,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **equipped Sprint permanent extraction source/build/both-startup gates PASS; runtime controls next.**
+Current gate: **permanent equipped Sprint positive + missing-source negative runtime controls PASS; true-Power protected control next.**
 
 Active contract:
 
@@ -30,19 +30,20 @@ diagnostic SHA256
 DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A
 ```
 
-Completed:
-- knowledge-state validator PASS;
+Promotion validation completed:
+- source review PASS;
 - both builds PASS;
-- behavior-only deployment/startup PASS;
-- diagnostic deployment/startup PASS;
-- CORE diagnostics, hooks installed, clean unload.
+- both startup gates PASS;
+- EV-326 RIGHT->OFF->RIGHT permanent Sprint control PASS across seven complete C1s;
+- EV-327 BOTH with LEFT absent NEGATIVE PASS across five complete P0 C1s;
+- EV-325 uploaded right-off-named file is NOT EXERCISED AS NAMED: its P0 motion was actually BOTH+OFF with missing LEFT; safe behavior only. No rerun needed because EV-326 is stronger.
 
-Minor deferred cleanup: diagnostic `BehaviorCore:` startup banner text is stale and does not enumerate permanent `EquippedSprintCollision`. Do not change source during acceptance; fix after promotion closure.
+Next:
+1. run ordinary equipped true-Power protected control on the same diagnostic DLL;
+2. if PASS, redeploy the already-built behavior-only twin;
+3. run known Goblin Sprint behavior-only smoke;
+4. then close production promotion and update permanent support.
 
-Runtime order:
-1. RIGHT -> OFF positive continuation control;
-2. BOTH with LEFT absent negative control;
-3. ordinary true-Power protected control;
-4. behavior-only known Goblin Sprint smoke.
+Processed EV-325–EV-327 raw logs are archived; `research/raw/` should contain only `Keep.txt`.
 
-Latest completed runtime evidence remains EV-324 until these promotion-validation logs are committed.
+Minor deferred cleanup: diagnostic `BehaviorCore:` startup banner text does not yet list permanent `EquippedSprintCollision`; fix only after promotion acceptance so current binary identity remains frozen.
