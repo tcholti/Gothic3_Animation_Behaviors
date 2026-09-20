@@ -1,6 +1,6 @@
 # Equipped Sprint Production Promotion
 
-**Status:** ACTIVE — IMPLEMENTED / SOURCE REVIEW PASS / BOTH BUILDS PASS / STARTUP+RUNTIME PENDING  
+**Status:** ACTIVE — IMPLEMENTED / SOURCE+BUILDS+BEHAVIOR STARTUP PASS / DIAGNOSTIC RUNTIME+BEHAVIOR SMOKE PENDING  
 **Type:** Bounded production-behavior promotion  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime acceptance.
@@ -313,3 +313,27 @@ Interpretation:
 - deployment/startup/runtime equivalence is not yet established.
 
 Next gate: deploy **only** `Script_FrameCollisionBehaviorTest.dll`, require POP-03 behavior deployment PASS, launch to main menu, exit normally, and require no startup/load crash. No diagnostic banner/log is expected for the behavior twin.
+
+
+## Behavior-only deployment and startup result
+
+Behavior twin deployment/startup: **PASS**.
+
+Observed:
+
+```text
+Selected live twin: Script_FrameCollisionBehaviorTest.dll
+Built SHA256: FE31030B35868EBF30B9644650991D8136625C4DBFD6263403350DB612BDB250
+Live  SHA256: FE31030B35868EBF30B9644650991D8136625C4DBFD6263403350DB612BDB250
+BEHAVIOR DEPLOYMENT PASS
+Gothic 3 reached main menu
+normal exit
+no startup/load crash
+```
+
+Interpretation:
+- diagnostics-free behavior twin compiles, deploys as sole live collision twin, and starts cleanly;
+- permanent `EquippedSprintCollision` has no startup-time dependency on diagnostic-only infrastructure;
+- runtime equivalence is not yet established.
+
+Next gate: redeploy the diagnostic twin and rerun the compact EV-322 / EV-323 / EV-324 acceptance controls from the same source state.
