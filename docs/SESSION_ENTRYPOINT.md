@@ -21,7 +21,7 @@ latest completed evidence = EV-350
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
 active Work implementation task = COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md
-current stop gate = POP-12 validation of frozen raw8 contact-boundary observation task
+current stop gate = frozen raw8 contact-boundary observation task cleared for Work
 ```
 
 ## Current responsibility
@@ -47,7 +47,7 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**EV-350 closure POP-12 passed. A new read-only raw8 contact-boundary observation task is frozen. Do not send it to Work until POP-12 validates this frozen task state.**
+**POP-12 validation of the frozen raw8 contact-boundary observation task: PASS. The task is cleared for bounded Work implementation.**
 
 Current bounded research question:
 
