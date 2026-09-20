@@ -17,73 +17,49 @@ Active task:
 
 `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`
 
-Raw8 remains mechanically separate from equipped collision. Shared principle only:
-
-```text
-state belongs to an exact attack execution / C1 generation
--> same-C1 Action/family/phase transport may continue
--> factual C1 finalization/replacement terminates it
-```
-
-Protected Sprint fact: Action9/SPRINT -> Action2/POWER can occur inside one C1.
-
-## Current source-review block
-
 Reviewed implementation:
-
 `e86c1ce03b36ef0ef7421a19284c5b38e58615ed`
 
-Most probe invariants PASS. One narrow lifecycle correction is required before build/runtime.
+Generation-safe correction:
+`015a3ef90bf135cf502ac6507fb68f7c8c962800`
 
-Current defect:
+Normal Chat independent source review: **PASS**.
 
-`CloseForFinalization()` runs after native `AISetState`. It verifies stored token == captured pre-call generation and revalidates actor/SPU/source, but does **not** verify that the actor's **current C1 generation still equals that captured generation** before writing `SPU+0x164 = 1`.
-
-Risk:
+## Frozen model
 
 ```text
-native AISetState creates/replaces C1
--> actor/SPU/Fist source remain reusable
--> old token cleanup could write latch 1 into new generation
+FIST -> one pending opportunity token
+miss -> keep token; restore native raw8 eligibility
+exact Game+0x16E348 contact dispatch -> consume token
+same-C1 Action/family transport -> preserve token
+factual C1 finalization/replacement -> close unused token
 ```
 
-That cross-C1 mutation is prohibited.
+Token lifetime is C1/execution-scoped, not Action-scoped. Proven Sprint Action9 -> Action2 continuation inside one C1 must survive.
 
-## Exact correction
+Finalization safety now requires:
+- current generation recaptured after native AISetState;
+- same captured/current generation -> exact terminal latch close allowed;
+- changed/invalid generation -> stale token retired with no latch write.
 
-Change only:
+## Next gate
 
-`prototypes/Script_FrameCollisionTest/Raw8FistPersistentOpportunityProbe.cpp`
+Run:
 
-Inside `CloseForFinalization(generation)`, before any latch write:
+```text
+python tools/knowledge/validate_knowledge_state.py
+```
 
-1. recapture `CollisionLifecycleGuard::CaptureCurrentGenerationToken(generation.actorInstance)`;
-2. if current generation is valid and equals captured generation:
-   - preserve existing exact terminal close;
-   - latch may be safely forced to `1`;
-3. if current generation is invalid or changed:
-   - retire/erase stale logical token and timing state only;
-   - log a factual no-write close reason;
-   - **do not write the latch**.
+Require:
 
-Do not change:
-- miss rearm;
-- timing persistence;
-- contact consumption;
-- accepted-FIST OPEN;
-- Action/Sprint lifetime semantics;
-- permanent raw8 source;
-- behavior-only source set;
-- raw55/equipped behavior.
+```text
+Knowledge-state validation PASS
+```
 
-Expected correction diff: **one file only**.
-
-## Current gate
-
-POP-12 knowledge-state validation: **PASS**.
-
-The one-file generation-safe finalization correction is cleared for Work.
-
-No build/runtime is authorized until Normal Chat independently reviews the correction commit.
+After PASS:
+1. build both collision twins;
+2. deploy diagnostic twin only and verify built/live SHA;
+3. run first Gargoyle causal fixture from the active task: close, medium/far, very far;
+4. do not add a second FIST or Parade/knockdown control yet.
 
 `research/raw/` should contain only `Keep.txt`.
