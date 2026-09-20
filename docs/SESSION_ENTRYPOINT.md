@@ -17,7 +17,7 @@ Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
 Phase 4 non-weapon creatures = PAUSED AT RAW8 FIST AUTHORING-SEMANTICS RESEARCH
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-348
+latest completed evidence = EV-349
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
 active Work implementation task = NONE
@@ -40,16 +40,17 @@ No raw8 `FIST_OFF` is part of the design absent future contradictory evidence.
 
 Latest causal closure:
 
-- **EV-347:** an early synthetic raw8 Power attempt returns with `SPU+0x164 = 1` whether the exact native attempt hits or misses.
-- **EV-348:** one exact post-miss latch-only `1 -> 0` rearm restored a later native opportunity on the tested Gargoyle Power route; 7/9 rearmed misses later produced exact native raw8 damage, while exact early hits remained consumed. No timing rearm was used.
+- **EV-347:** native raw8 closes the latch after both hit and miss attempts.
+- **EV-348:** one post-miss latch-only rearm can restore a later native opportunity.
+- **EV-349:** native knockdown/get-up state can suppress visible damage independently of collision, and the temporary rearmed opportunity can survive Hit-C1 replacement into Recover unless explicitly closed.
 
-The EV-348 probe is closed and archived. No implementation task is active.
+No implementation task is active.
 
 **Do not start another runtime causal test or freeze/launch another Work task until POP-12 reports `Knowledge-state validation PASS`.**
 
-After that PASS, Normal Chat owns one narrow next decision:
+After PASS, Normal Chat owns one narrow next research decision:
 
-> Must the agreed FIST semantic preserve eligibility continuously from marker time until successful contact, including transient contact before Gothic's later native threshold, or is post-miss latch recovery at the later native timing sufficient?
+> What is the smallest factual native boundary that distinguishes genuine no-contact from legitimate target-state rejection, while preserving Gothic's ownership of target/vulnerability/damage and enforcing exact C1/Hit-bounded opportunity lifetime?
 
 ## Current runtime provenance
 
@@ -70,7 +71,7 @@ Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 - exact short-lived continuation → `BETWEEN_CHATS.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
-- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347 / EV-348
+- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347 / EV-348 / EV-349
 - lifecycle/repair architecture → `COLLISION_LIFECYCLE.md`
 - diagnostics architecture → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
