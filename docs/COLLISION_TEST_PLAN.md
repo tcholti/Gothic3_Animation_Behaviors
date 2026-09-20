@@ -162,9 +162,13 @@ Sabretooth raw8 single-FIST, native + transformed player    PASS — EV-338
 Wolf marked raw8, native + transformed player               PASS — EV-339
 Wolf unmarked raw8 native-fallback control, both forms       PASS — EV-340
 Troll raw55 mixed single/double FIST + player Staff          PASS — EV-341
+Minecrawler raw8 Normal/Power/Quick + player 1H-family       PASS* — EV-342
+Bloodfly raw8 Normal/Power/Sprint + player 1H                PASS — EV-343
+Boar raw8 Normal + player 1H+shield                          PASS — EV-344
+Bison raw8 Normal + player 2H                                PASS — EV-345
 ```
 
-The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. Further Phase-4 coverage should now prioritize other non-weapon creature/body-contact fixtures unless a new contradiction specifically requires reopening Sabretooth/Troll.
+The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. The Minecrawler asterisk is a contact qualification only: all 12 markers/ownership/timing paths were healthy and finalized cleanly, but one Power and three Normal executions produced no native ONDAMAGE in that capture; native contact/target/damage remain Gothic-owned. Further Phase-4 coverage should continue prioritizing other non-weapon creature/body-contact fixtures unless a new contradiction specifically requires reopening an existing species.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
