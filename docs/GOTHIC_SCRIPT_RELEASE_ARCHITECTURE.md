@@ -1,7 +1,7 @@
 # Gothic 3 Script Release Architecture
 
 **Status:** Canonical project-wide release/build rule  
-**Updated:** 2026-08-30  
+**Updated:** 2026-09-20  
 **Scope:** All present and future Gothic 3 script/DLL systems in this project
 
 ## 1. Governing Rule
@@ -67,6 +67,15 @@ runtime switches whose only purpose is to enable hidden research diagnostics
 ```
 
 If a hook or state object is required for behavior correctness, it belongs to the behavior architecture and is not diagnostic merely because diagnostics also observe it.
+
+Permanent raw8 now has two behavior-required transports that diagnostics also observe:
+
+```text
+Game+0x16E180 exact GetPlayTime call-site
+gCEntity::OnDamage entry filtered to exact raw8 caller Game+0x16E348
+```
+
+The latter remains pass-through: behavior uses exact dispatch entry only to consume a pending raw8 contact opportunity, never to interpret or alter damage outcome.
 
 ### Diagnostic product
 
