@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 FIST Post-Miss Latch-Rearm Causal Probe
 
-**Status:** ACTIVE — BOUNDED DIAGNOSTIC-ONLY CAUSAL IMPLEMENTATION TASK
+**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / RUNTIME PENDING
 **Opened:** 2026-09-20
 **Evidence basis:** EV-346–EV-347
 **Production behavior change:** PROHIBITED
@@ -256,3 +256,31 @@ Report:
 - any material contradiction.
 
 Then STOP.
+
+
+## Implementation checkpoint — 2026-09-20
+
+Work implementation:
+
+`ea652e3324fffb07da013229a2fd374c4f3b1c6b`
+
+Parent:
+
+`33840f0e8970b169bb8532accc23f2807b21a06c`
+
+Normal Chat independent source review: **PASS**.
+
+Review findings:
+- exact four-file scope;
+- temporary `Raw8FistWindowProbe` owns intervention policy/state;
+- probe sources compile only into `Script_FrameCollisionTest`;
+- shared behavior source list is unchanged;
+- every EngineBridge probe reference is guarded by `FRAME_COLLISION_DIAGNOSTICS`;
+- no new hook is installed;
+- synthetic-attempt observation occurs only when existing `Raw8FistCollision::ApplyTimingPermission()` returns greater than real play time;
+- exact success classification requires `Game.dll+0x16E348` + exact fist source pointer + exact actor pointer;
+- the one latch write is post-original only, exact miss only, exact Power/raw8/current-identity only, latch 1 -> 0 with readback;
+- successful exact native damage branch cannot request the write;
+- no timing rearm, custom damage, target/contact mutation, trigger clear, collision-group mutation, species rule, raw55/equipped/Sprint change or production integration change was found.
+
+Runtime evidence is pending.
