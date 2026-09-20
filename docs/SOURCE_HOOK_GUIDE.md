@@ -200,7 +200,7 @@ native threshold multiplier double                Game +0x308308
 GetPlayTime(motion 0) exact call site             Game +0x16E180
 comparison                                         Game +0x16E18C..+0x16E190
 below threshold -> common exit                    Game +0x16E352
-native successful-opportunity latch write = 1     Game +0x16E1A3
+native attempt latch write = 1                    Game +0x16E1A3
 observed gCEntity::OnDamage caller return          Game +0x16E348
 ```
 
@@ -236,7 +236,7 @@ branch patch
 direct damage dispatch
 ```
 
-Marked-execution start closes `SPU+0x164 = 1`; each accepted FIST rearms `=0`; native success writes `=1` at `+0x16E1A3`.
+Marked-execution start closes `SPU+0x164 = 1`; each accepted FIST rearms `=0`. EV-347 proves the tested native attempt leaves the latch at `1` after the instruction returns whether or not `Game+0x16E348` damage occurred, so do not describe `+0x16E1A3` as success-only consumption.
 
 Evidence route: EV-221–EV-240 for human production, with later raw8 actor/family controls through EV-263. Raw8 production semantics must not be generalized to raw55 merely because both serialize through a `Fist` animation category.
 
