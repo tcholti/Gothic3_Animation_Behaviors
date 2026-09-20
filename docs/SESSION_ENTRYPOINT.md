@@ -20,7 +20,7 @@ focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-349
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
-active Work implementation task = COLLISION_RAW8_CLOSED_RESEARCH_INSTRUMENTATION_RETIREMENT.md
+active Work implementation task = COLLISION_RAW8_CLOSED_RESEARCH_INSTRUMENTATION_RETIREMENT.md — source review PASS / local build-smoke pending
 current stop gate = bounded closed-research instrumentation retirement before new causal research
 ```
 
@@ -45,9 +45,9 @@ Latest causal closure:
 - **EV-348:** one post-miss latch-only rearm can restore a later native opportunity.
 - **EV-349:** Parade shows native hit/contact resolution can occur with zero visible damage, while a temporary rearmed opportunity can survive Hit-C1 replacement into Recover unless explicitly closed.
 
-No implementation task is active.
+The retirement implementation is published and independently source-reviewed PASS; local build/smoke is pending.
 
-**POP-12 has PASSed. The only active Work responsibility is retirement of the closed raw8 damage-correlated research instrumentation. Do not start new causal research until that cleanup is independently reviewed and locally built.**
+**The closed raw8 research instrumentation is retired in source at `ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3` and independently source-reviewed PASS. Do not start new causal research until both twins build and the diagnostic twin passes a neutral-baseline startup/smoke check.**
 
 After PASS, Normal Chat owns one narrow next research decision:
 
