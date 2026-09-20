@@ -18,10 +18,10 @@ Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-active contract = raw8 post-attempt latch observation probe — implementation reviewed PASS, runtime pending
+active contract = raw8 post-miss latch-rearm causal probe
 Phase 4 non-weapon creatures = PAUSED AT RAW8 AUTHORING-SEMANTICS GATE
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-346
+latest completed evidence = EV-347
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authoring-semantics gate. User + Normal Chat have now chosen the persistent authored opportunity-window semantic: FIST opens one target-directed native body-contact damage opportunity; an unsuccessful contact should not consume it; successful native contact consumes it; later FIST rearms; C1/Hit termination closes any unused opportunity; no raw8 FIST_OFF absent future contradictory evidence. The first bounded diagnostic-only probe is implemented at `4ab9a77557f9ad5057d158b7d26a3098db657b28` and independently source-reviewed PASS. Runtime validation is pending under `docs/work/active/COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md`.
+Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authoring-semantics gate. User + Normal Chat have now chosen the persistent authored opportunity-window semantic: FIST opens one target-directed native body-contact damage opportunity; an unsuccessful contact should not consume it; successful native contact consumes it; later FIST rearms; C1/Hit termination closes any unused opportunity; no raw8 FIST_OFF absent future contradictory evidence. EV-347 closes the observation stage: both successful and unsuccessful early synthetic Gargoyle raw8 Power attempts returned with `SPU+0x164 = 1`, proving attempt-level rather than success-only latch consumption. The observation probe is archived. The next bounded diagnostic-only causal task is `docs/work/active/COLLISION_RAW8_FIST_POST_MISS_LATCH_REARM_CAUSAL_PROBE.md`: after an exact synthetic miss, rearm only the latch once; do not rearm timing permission.
 
 ## Immediate responsibility
 
@@ -69,16 +69,18 @@ Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authorin
 32. EV-339 Wolf native+transformed marked raw8 = PASS.
 33. EV-340 Wolf native+transformed unmarked raw8 fallback = PASS.
 34. EV-341 Troll raw55 mixed single/double + player Staff = PASS.
-35. EV-342 Minecrawler raw8 Normal/Power/Quick = PASS with native-contact qualification.
+35. EV-342 Minecrawler raw8 Normal/Power/Quick = PASS.
 36. EV-343 Bloodfly raw8 Normal/Power/Sprint = PASS.
 37. EV-344 Boar raw8 Normal = PASS.
 38. EV-345 Bison raw8 Normal = PASS.
 39. EV-346 Gargoyle raw8 Power marker-time sweep = DESIGN DISCOVERY; current one-shot FIST semantics confirmed.
 40. Phase 4 broad regression = PAUSED pending `docs/work/active/COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md`.
 41. Raw8 author-facing semantic = AGREED: persistent opportunity window, no FIST_OFF absent evidence.
-42. Active Work task: `COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md` — observation only; prove post-native latch state after an early synthetic attempt, correlated with native damage/no-damage.
-43. Work implementation `4ab9a77557f9ad5057d158b7d26a3098db657b28` = Normal Chat source-review PASS.
-44. Next: User local build of both twins, deploy diagnostic twin only, then controlled early-synthetic raw8 miss-vs-hit runtime probe.
+42. Observation Work implementation `4ab9a77557f9ad5057d158b7d26a3098db657b28` = Normal Chat source-review PASS.
+43. EV-347 raw8 post-attempt observation = CAUSAL PASS: exact hit and exact miss synthetic attempts both return with latch 1.
+44. Closed observation probe archived under `docs/archive/investigations/`.
+45. Active Work task: `COLLISION_RAW8_FIST_POST_MISS_LATCH_REARM_CAUSAL_PROBE.md` — after an exact synthetic Power miss, write latch 1->0 once; no timing rearm.
+46. Next after Work: Normal Chat source review -> User local build/deploy -> close-range vs far-range Gargoyle frame-3 causal runtime.
 
 ## Current verified diagnostic product
 
