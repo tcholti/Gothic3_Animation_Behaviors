@@ -3,7 +3,7 @@
 **Purpose:** Minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-19
+**Updated:** 2026-09-20
 
 > **INTERRUPTED-CHAT ENTRY RULE:** after an abrupt/max-context/unusable Chat, return to root `README.md` and enter Recovery Lock. This file is then a clue, not unquestioned truth, until POP-11 reconciliation.
 
@@ -17,11 +17,11 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint = ALL DIAGNOSTIC PROMOTION GATES PASS / BEHAVIOR-ONLY SMOKE PENDING
-active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md
-Phase 4 non-weapon creatures = TEMPORARILY HELD
+generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
+active contract = none; standalone regression resumes under COLLISION_TEST_PLAN.md
+Phase 4 non-weapon creatures = NEXT
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-328
+latest completed evidence = EV-329
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: permanent equipped-Sprint extraction has passed all diagnostic promotion controls on SHA `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`: EV-326 positive continuation PASS, EV-327 missing-LEFT negative PASS, EV-328 ordinary true-Power protected PASS. Next redeploy the already-built behavior-only twin SHA `FE31030B35868EBF30B9644650991D8136625C4DBFD6263403350DB612BDB250` and run the final bounded Goblin Sprint gameplay smoke.
+Current responsibility: equipped Sprint production promotion is CLOSED/PASS through EV-329. Permanent `EquippedSprintCollision` is accepted in both diagnostic and behavior-only products. Phase 4 non-weapon creature regression now resumes under `COLLISION_TEST_PLAN.md`. No new source implementation task is active.
 
 ## Immediate responsibility
 
@@ -55,7 +55,9 @@ Current responsibility: permanent equipped-Sprint extraction has passed all diag
 18. EV-326 RIGHT->OFF->RIGHT promoted production control = PASS.
 19. EV-327 BOTH/missing-LEFT promoted negative control = PASS.
 20. EV-328 ordinary true-Power protected control = PASS.
-21. Next: behavior-only Goblin Sprint smoke.
+21. EV-329 diagnostics-free behavior-only Goblin Sprint smoke = PASS.
+22. Equipped Sprint production promotion = CLOSED/PASS.
+23. Next: resume Phase 4 non-weapon creature regression under `COLLISION_TEST_PLAN.md`.
 
 ## Current verified diagnostic product
 
