@@ -15,7 +15,7 @@
 standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-Phase 4 non-weapon creatures = PAUSED AT RAW8 FIST AUTHORING-SEMANTICS RESEARCH
+Phase 4 non-weapon creatures = PAUSED PENDING PERMANENT RAW8 PRODUCTION IMPLEMENTATION + FOCUSED ACCEPTANCE
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-354
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
@@ -49,9 +49,9 @@ EV-350 closes the retirement: both twins built, diagnostic deployment/startup pa
 
 **EV-354 closes the pre-Work Sabretooth Sprint-origin sentinel PASS: 20 opportunities opened under Action9/SPRINT and were consumed under Action2/POWER in the same C1 on the same PowerAttack-named motion; two also survived an earlier miss/rearm. Production task remains frozen; run POP-12 before Work.**
 
-Current frozen causal question:
+Current frozen production responsibility:
 
-> Can one exact marker-owned pending opportunity token keep Gothic's native raw8 one-shot mechanism eligible after misses, consume on the first exact `Game+0x16E348` contact-resolution dispatch, and close safely at exact Hit/C1 end?
+> Promote the EV-353/EV-354-proven persistent raw8 opportunity mechanism into permanent `Raw8FistCollision`, retire the temporary probe, and preserve C1-owned opportunity lifetime across same-C1 Action/family transport. No new causal research is authorized by this handoff.
 
 Closed probe archive: `docs/archive/investigations/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`.
 
@@ -74,11 +74,11 @@ Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 
 ## Read next by question
 
-- active raw8 design/research gate → `docs/work/active/COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md`
+- active raw8 production implementation gate → `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
 - exact short-lived continuation → `BETWEEN_CHATS.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
-- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347 / EV-348 / EV-349 / EV-350 / EV-351
+- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-354
 - lifecycle/repair architecture → `COLLISION_LIFECYCLE.md`
 - diagnostics architecture → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
