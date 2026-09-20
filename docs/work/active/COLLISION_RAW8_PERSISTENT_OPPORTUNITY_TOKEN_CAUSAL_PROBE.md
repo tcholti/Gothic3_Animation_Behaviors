@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Persistent Opportunity Token Causal Probe
 
-**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT REVIEW BLOCKED / GENERATION-SAFE FINALIZATION CORRECTION REQUIRED  
+**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / LOCAL BUILD + RUNTIME CAUSAL PROBE PENDING  
 **Opened:** 2026-09-20  
 **Evidence basis:** EV-231, EV-233–EV-240, EV-346–EV-352  
 **Production behavior change:** PROHIBITED  
@@ -579,3 +579,29 @@ Verify:
 Work build execution remains PROHIBITED for this correction.
 
 After correction publication, Normal Chat must independently review again before local build.
+
+
+## Correction review checkpoint — 2026-09-20
+
+Correction commit:
+
+`015a3ef90bf135cf502ac6507fb68f7c8c962800`
+
+Parent:
+
+`b54749eeb6053044e3143977020fe98396cef02e`
+
+Normal Chat independent review: **PASS**.
+
+Verified:
+- exact one-file scope;
+- only `CloseForFinalization()` changed;
+- all code before that function is textually identical to the reviewed parent;
+- current generation is recaptured after native `AISetState`;
+- exact actor + generation equality is required before terminal latch mutation;
+- changed/invalid generation retires the stale token with `FINALIZATION_GENERATION_CHANGED_NO_LATCH_WRITE` and `forceLatchClosed=false`;
+- same-generation path preserves the existing `C1_FINALIZED` terminal close with `forceLatchClosed=true`;
+- miss rearm, contact consumption, timing persistence, marker OPEN, Action/Sprint semantics and FullStop handling are unchanged;
+- no permanent or behavior-only source changed.
+
+Local build/runtime remains pending.
