@@ -502,7 +502,7 @@ Fixture:
 - factual Sprint action uses the same PowerAttack-named Hit motion as Power in the tested Sabretooth route; this test concerns action/origin transport inside one motion/C1, not a Sprint-animation -> Power-animation asset change.
 
 Large-log provenance:
-- canonical raw: `research/raw/2026-09-20_observation_sabertooth_marker_power_sprint_transition_test.log`;
+- canonical raw: `research/archive/2026-09-20_observation_sabertooth_marker_power_sprint_transition_test.log`;
 - source SHA256: `B799B07228C83AE1A6D09928835A206DC7BDFAF77BBF8F5D8771D6EB3E4BE845`;
 - source size: 1,261,750 bytes / 4,068 lines;
 - deterministic POP-07 package: `research/derived/2026-09-20_observation_sabertooth_marker_power_sprint_transition_test_large_log/`;
