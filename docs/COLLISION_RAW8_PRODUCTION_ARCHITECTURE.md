@@ -42,7 +42,7 @@ No raw8 `FIST_OFF` is part of the production design.
 
 Reuse and extend the existing per-actor `Raw8FistMarkerExecution` in `Raw8FistCollision`. The execution record remains bound to actor instance, exact C1 generation, exact raw8 Fist source and exact SPU. It additionally owns a pending-opportunity bit/state and a separate timing-persistence substate.
 
-Action/family/phase/motion are not terminal lifetime authority. The logical opportunity may survive same-C1 transport, including the proven Sprint-origin `Action9 / SPRINT -> Action2 / POWER`. Animation/timing identity may retire only the timing helper without consuming the logical opportunity.
+Action/family/phase/motion are not terminal lifetime authority. The logical opportunity may survive same-C1 transport, including the proven Sprint-origin `Action9 / SPRINT -> Action2 / POWER`. In the tested raw8 Sabretooth route, Sprint is a factual Action9 state/origin that uses the same PowerAttack-named motion as Power; this is an action/family transition inside one motion/C1, not a Sprint-animation -> Power-animation asset transition. Animation/timing identity may retire only the timing helper without consuming the logical opportunity.
 
 ## 5. Marker-time behavior
 
@@ -127,6 +127,8 @@ Only after focused permanent acceptance may Phase 4 broad creature regression re
 
 ## 15. Evidence closure
 
-The architecture is justified by EV-346–EV-353: early pulse failure, latch hit/miss behavior, successful post-miss rearm, policy-neutral contact dispatch, virtual-callback negative result, target-directed control, and final persistent-opportunity causal proof.
+The architecture is justified by EV-346–EV-354: early pulse failure, latch hit/miss behavior, successful post-miss rearm, policy-neutral contact dispatch, virtual-callback negative result, target-directed control, persistent-opportunity causal proof, and direct same-C1 Sprint Action9 -> Power Action2 token-survival proof.
+
+EV-354 directly validates the protected Sprint-origin lifetime rule: 20 Sabretooth tokens opened under Action9/SPRINT on the PowerAttack-named motion and were consumed under Action2/POWER in the same C1; two of those tokens also survived an earlier native miss/rearm.
 
 Unknown future contradictions return to an isolated probe under `FEATURE_DEVELOPMENT_METHOD.md`.
