@@ -10,11 +10,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-350**.
-
-Active bounded Work task:
-
-`docs/work/active/COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md`
+Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-351**. No active Work task.
 
 ## Agreed ownership / terminology
 
@@ -34,86 +30,55 @@ damage
 
 The mod owns authored collision/contact opportunity and exact Hit/C1 lifetime. Gothic/behavior mods own block/parry/immunity/reactions/HP damage.
 
-## Why this probe
+## EV-351
 
-Physical weapon/raw55 evidence shows native target-specific contact bookkeeping:
+Reviewed diagnostic implementation:
+`929bba9974788c873860f8e33f504c091f7aa524`
+
+Diagnostic DLL SHA256:
+`F6EB69B1AFAFCB4C8F99FBE4C5CFDE1DC411FA074F109E7F5515D068E76096DD`
+
+Six Gargoyle factual raw8 Power frame-3 invocations:
+- C1 14, 24, 33 -> exact `Game+0x16E348` contact-path entry;
+- C1 4, 21, 36 -> no contact-path entry;
+- visual close-vs-far result matched;
+- exact raw8 `CORE RAW8_CONTACT_GATE` = 0;
+- exact raw8 `CORE RAW8_CONTACT_TARGET` = 0;
+- no anomalies or contradictions.
+
+Conclusion:
+- `gCTouchDamage_PS::CanBeActivatedNow` and `TriggerTarget` are not the contact-consumption boundary on this tested raw8 route;
+- the ordinary TouchDamage virtual trigger path is bypassed here;
+- this does **not** yet prove that inherited `EntitiesVisited` / `EntitiesVisitedCount` never change elsewhere.
+
+Canonical log:
+`research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_5.log`  
+Git blob `ffb6d7ca49ee05b79a98320e5cd32ddfc594e88b`.
+
+## Next smallest question
+
+Before abandoning the physical-source bookkeeping analogy:
+
+> Observe the exact raw8 Fist TouchDamage source's inherited `EntitiesVisited` / `EntitiesVisitedCount` at whole-`AICombatMoveInstr` entry and exit. Do close/contact cases add the player while far misses do not?
+
+Observation must remain read-only.
+
+If visited bookkeeping remains unchanged in both cases, stop pursuing the trigger-list model and move deeper into the static raw8 `Game+0x16E1A3 -> +0x16E348` branch region.
+
+## Current stop gate
+
+Run:
 
 ```text
-target contacted
--> target enters visited/triggered bookkeeping
--> ClearTriggeredList rearms same-target contact
+python tools/knowledge/validate_knowledge_state.py
 ```
 
-EV-233 proves raw8 `ClearTriggeredList()` is not its native control mechanism.
-
-Static raw8 route:
+Require:
 
 ```text
-timing threshold
--> latch write at Game+0x16E1A3
--> multiple further target/contact checks
--> possible common exit Game+0x16E352
--> final gCEntity::OnDamage call returns at Game+0x16E348
+Knowledge-state validation PASS
 ```
 
-Therefore the latch write is too early to mean accepted contact.
-
-Candidate raw8-native TouchDamage boundaries already exist in the tested binary:
-
-- `gCTouchDamage_PS::CanBeActivatedNow` — `Game+0x692F0`;
-- `gCTouchDamage_PS::TriggerTarget` — `Game+0x693B0`.
-
-Their participation in the raw8 combat-loop path is **not proven**. Historical N2B had `DeepDiagnostics: DISABLED`.
-
-## Frozen observation
-
-Implement actor-general, exact-raw8, diagnostic-only observation of those two boundaries.
-
-No mutation:
-- no latch write;
-- no timing change;
-- no list clear;
-- no visited-state change;
-- no group change;
-- no suppression;
-- no custom damage;
-- no target change;
-- no lifecycle change.
-
-Correlate:
-- frame-3 FIST;
-- early timing opportunity;
-- CanBeActivatedNow;
-- TriggerTarget;
-- read-only visited state;
-- generic `CORE ONDAMAGE`;
-- C1 finalization.
-
-First runtime after review: same Gargoyle frame-3 fixture with close and far starts.
-
-If the two TouchDamage callbacks are absent even in close cases while `CORE ONDAMAGE` occurs, rule them out for this raw8 combat-loop route and return to the `Game+0x16E1A3 -> +0x16E348` branch region.
-
-## Current gate
-
-POP-12 knowledge-state validation of this frozen task state: **PASS**.
-
-Work implementation `929bba9974788c873860f8e33f504c091f7aa524` is independently source-reviewed **PASS**. Local build and runtime observation remain.
-
-Reviewed source guarantees:
-- exact four-file scope;
-- behavior-only source set unchanged;
-- generic CORE ONDAMAGE unchanged;
-- one pass-through hook each at Game+0x692F0 and Game+0x693B0;
-- read-only visited-state observation;
-- no collision/opportunity or gameplay mutation.
-
-Before runtime, run POP-12 again on this reviewed implementation-state handoff.
-
-After PASS:
-1. build both twins;
-2. deploy diagnostic twin only and verify built/live SHA match;
-3. run the same Gargoyle frame-3 FIST fixture with several deliberately close-start and far-start attacks;
-4. push one log;
-5. do not run any intervention/rearm experiment.
+Do not freeze or launch the next Work task before PASS.
 
 `research/raw/` should contain only `Keep.txt`.
