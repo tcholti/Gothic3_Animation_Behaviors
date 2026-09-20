@@ -1,7 +1,7 @@
 # Collision Diagnostic Architecture
 
 **Status:** Current research-diagnostic authority  
-**Updated:** 2026-09-19
+**Updated:** 2026-09-20
 
 ## Purpose
 
@@ -66,13 +66,14 @@ Each built DLL has one physical owner per Gothic hook: `EngineBridge`.
 
 Established behavior hook surface includes the proven attack/collision/state/dispatch hooks already used by the collision core, including `StartEffect`, `SetCollisionGroup`, CombatMove/state/RunScriptFunction transport and the family callbacks required by supported marker adapters.
 
-Production raw-8 Fist uses one important behavior-required transport:
+Production raw8 uses two behavior-required transports:
 
 ```text
 exact Game +0x16E180 GetPlayTime(motion 0) call-site hook
+gCEntity::OnDamage entry filtered to exact caller Game+0x16E348
 ```
 
-This is an exact call-site permission transport, **not** a global `GetPlayTime` hook and not a diagnostic-only probe. Behavior may substitute threshold+epsilon only for one matching armed comparison. Diagnostics may observe the decision but cannot own it.
+The timing hook transports exact marker-owned threshold permission. The OnDamage hook transports exact native raw8 contact-dispatch entry so `Raw8FistCollision` can consume a pending opportunity. Both are behavior hooks; neither is diagnostic-only. The OnDamage original remains unchanged/exactly-once and diagnostics do not define consumption policy.
 
 `AIFullStop` remains diagnostic/deep for current behavior and is a proven explicit-this transport point that may later become behavior-required only if the evidence-backed `AttackContinuationProtection` design actually needs it.
 
@@ -162,17 +163,20 @@ Detailed START -> BINDING -> STATUS -> FINALIZATION chronology moves to DEEP or 
 
 Supported/proven raw8 FIST families currently include Normal + Power + Quick + Sprint for the tested scope.
 
-For a healthy known FIST execution, CORE preserves the behavioral facts without repeating all research-era arithmetic/addresses every time:
+For a healthy known FIST execution, CORE preserves the persistent-opportunity facts without repeating all research-era arithmetic/addresses every time:
 
 ```text
 actor / action-family / generation
 factual Fist/raw8 identity
-initial marked-execution close succeeded when applicable
-accepted FIST rearm succeeded
-timing path classification, e.g. NATIVE_TIMING vs EARLY_PERMISSION
-identity/ownership match
-native damage correlation when required by the test
+initial marked-execution close
+accepted FIST -> opportunity OPEN
+meaningful miss rearm
+exact native contact -> opportunity CONSUMED
+unused opportunity -> lifecycle CLOSE
+explicit identity/lifecycle contradiction
 ```
+
+Repeated healthy timing holds may be compacted. Contact logging describes native contact-dispatch entry, not HP-damage success.
 
 Full SPU addresses, animation-actor addresses, threshold arithmetic, exact real/max/returned play times, and repeated before/after snapshots are DEEP unless an anomaly or a new mechanism question requires them.
 
