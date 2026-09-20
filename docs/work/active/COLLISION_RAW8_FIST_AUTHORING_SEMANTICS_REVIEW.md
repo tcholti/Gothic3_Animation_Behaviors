@@ -181,8 +181,10 @@ Current status:
 2. **CLOSED FOR THE TESTED ROUTE — EV-347:** the existing post-original `AICombatMoveInstr` boundary plus exact same-invocation `Game+0x16E348` / source / actor identity distinguishes hit from miss without a new hook.
 3. **CLOSED FOR TESTED POWER ROUTE — EV-348:** one exact post-miss latch-only rearm can restore a later native opportunity without custom target/damage logic; 7/9 rearmed misses later produced exact native raw8 damage, while successful early hits remained consumed.
 4. Existing bridge transport was sufficient; no new hook was required.
-5. **NEXT DESIGN QUESTION:** whether the agreed author-facing semantic requires eligibility continuously from marker time until contact, including transient contact before Gothic's later native threshold, or whether latch-only recovery at native timing is sufficient. Repeated FIST and interruption behavior remain later validation responsibilities.
-6. FIST_OFF is **not part of the agreed raw8 design** absent future contradictory evidence.
+5. **REFINED BY EV-349:** timing is not the only remaining question. A future persistent opportunity must distinguish genuine no-contact from legitimate Gothic target-state rejection (for example knocked-down/get-up protection); visible health damage is not a valid success oracle.
+6. **LIFECYCLE REQUIREMENT CONFIRMED BY EV-349:** an unused rearmed latch can survive Hit-C1 replacement into Recover under the temporary probe. Final behavior must close any unused authored opportunity at the exact C1/Hit replacement/interruption boundary.
+7. **NEXT RESEARCH QUESTION:** find the smallest native factual boundary that distinguishes geometric/no-contact from target-state rejection while keeping Gothic in ownership of target/vulnerability/damage. Only after that boundary is understood should continuous-timing policy be finalized.
+8. FIST_OFF is **not part of the agreed raw8 design** absent future contradictory evidence.
 
 ## Gate
 
@@ -190,8 +192,12 @@ The author-facing semantic is decided. Production redesign remains prohibited un
 
 EV-347 closed the first bounded observation question: both hit and miss synthetic attempts return with `SPU+0x164 = 1`.
 
-EV-348 closes the post-miss latch-rearm causal question. Latch-only recovery is causally sufficient to restore a later native opportunity on the tested Power route, but it does not establish continuous eligibility during the interval before Gothic's later native timing.
+EV-348 closes the post-miss latch-rearm causal question. Latch-only recovery is causally sufficient to restore a later native opportunity on the tested Power route.
 
-No new Work implementation task is active. The next step is a Normal Chat design/research decision about that remaining timing interval, **after POP-12 knowledge-state validation passes**.
+EV-349 adds two constraints before any production design:
+- target-state rejection such as knockdown/get-up protection must not be mistaken for a collision miss merely because no visible damage occurs;
+- unused authored opportunity must be closed at exact C1/Hit termination because the temporary rearm can otherwise remain live into Recover.
+
+No new Work implementation task is active. The next step is to identify the smallest factual native distinction between genuine no-contact and legitimate target-state rejection, **after POP-12 knowledge-state validation passes**.
 
 Phase-4 broad regression remains paused until this research chain either proves a safe persistent-window mechanism or forces a design revision.
