@@ -366,3 +366,44 @@ Disposition:
 - **OBSERVATION PASS / CANDIDATE CALLBACKS RULED OUT.**
 - Close the TouchDamage virtual-boundary probe.
 - Before moving deeper into `Game+0x16E1A3 -> +0x16E348`, perform one minimal read-only check of the exact raw8 TouchDamage source's inherited visited bookkeeping across the whole combat-move invocation.
+
+
+### EV-352 — Native human raw8 Fist group-combat control supports target-directed single-opportunity model
+
+Observed:
+- Runtime reused reviewed diagnostic implementation `929bba9974788c873860f8e33f504c091f7aa524`.
+- The User entered group combat unarmed, locked onto `ReddockOrcScoutLeader`, and deliberately attempted native human Fist attacks with other opponents positioned between the player and the locked target, beside the target, and otherwise inside plausible body-swing geometry.
+- The User observed no Fist hits on any non-target opponent.
+- The complete log contains 25 player Fist C1 starts and eight exact native raw8 contact-path entries with:
+  - `Caller=Game.dll+0x0016E348`;
+  - `Arg1=Fist`;
+  - `Arg2=PC_Hero`;
+  - `Raw8UseType=8`.
+- All eight exact entries target only `ReddockOrcScoutLeader`.
+- No exact player-Fist `Game+0x16E348` entry targets any other Orc in the group.
+- The eight entries span both native human Normal-Fist left/right attack motions.
+- No `CORE RAW8_CONTACT_GATE` or `CORE RAW8_CONTACT_TARGET` record appears, consistent with EV-351's finding that this combat-loop route bypasses the ordinary TouchDamage virtual trigger callbacks.
+- No anomaly, warning, contradiction, rejected marker, repair or divergence record appeared.
+
+Interpretation:
+- This controlled runtime strongly supports treating the tested native raw8 combat-loop mechanism as **target-directed**, rather than as a weapon-like spatial collision volume capable of consuming separate opportunities against every body intersecting the swing.
+- Combined with EV-233 and EV-351, the result materially reduces the value of reproducing weapon/raw55 per-target visited-list bookkeeping for authored raw8.
+- A smaller authoring model is justified for the next causal prototype: one pending authored raw8 opportunity per exact marked actor/C1 execution, with Gothic retaining target selection and contact resolution.
+- The exact `Game+0x16E348` raw8 dispatch remains a contact-resolution candidate, not an HP-damage-success oracle. EV-349 already proves this boundary can be entered while Parade prevents visible damage.
+
+Scope / limits:
+- Native human Normal/Fist group-combat control only.
+- The User's locked-target condition is part of the runtime fixture.
+- This does not prove that no conceivable raw8 actor/family/state can ever resolve against a non-focused entity.
+- It does not itself establish the final production pending-opportunity mechanism.
+
+Provenance:
+- Diagnostic implementation: `929bba9974788c873860f8e33f504c091f7aa524`.
+- Canonical archived log: `research/archive/2026-09-20_observation_human_native_fist_not_targeted_hit_test.log`.
+- Git blob: `cfceadf106abb5d955d299077682d38bfecfde6a`.
+- User runtime observation: locked `ReddockOrcScoutLeader`; deliberate non-target interception attempts produced no observed Fist hits.
+
+Disposition:
+- **TARGET-DIRECTED RAW8 CONTROL PASS.**
+- Do not add weapon-style per-target hit bookkeeping to the next raw8 prototype.
+- Replace the planned standalone visited-list probe with the smaller pending-opportunity-token causal design.
