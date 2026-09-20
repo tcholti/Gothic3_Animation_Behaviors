@@ -298,7 +298,7 @@ Source-level preflight evidence is not sufficient final compatibility certificat
 
 Do not assume arbitrary same-function hook chaining or DLL load-order safety.
 
-When raw8 persistent-opportunity behavior is mature enough for this gate, include a knocked-down/get-up target-state control. EV-349 shows standalone Gothic can suppress visible damage in those states, and the User reports New Balance changes some of that behavior. Treat the latter as a compatibility-test reason, not a pre-proven New Balance rule.
+When raw8 persistent-opportunity behavior is mature enough for this gate, include a knocked-down/get-up compatibility control. The purpose is not to encode New Balance or Gothic vulnerability rules: verify instead that collision authoring remains policy-neutral — opportunity can open/rearm/close without forcing damage, while the installed behavior stack remains free to block, permit or alter the gameplay result. The User reports New Balance changes some knockdown/get-up behavior; treat that only as a reason to run the compatibility control.
 
 ---
 
