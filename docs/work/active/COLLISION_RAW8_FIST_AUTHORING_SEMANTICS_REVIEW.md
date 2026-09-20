@@ -179,9 +179,9 @@ Current status:
 
 1. **CLOSED — EV-347:** the tested native path closes `SPU+0x164` after both unsuccessful and successful early synthetic attempts.
 2. **CLOSED FOR THE TESTED ROUTE — EV-347:** the existing post-original `AICombatMoveInstr` boundary plus exact same-invocation `Game+0x16E348` / source / actor identity distinguishes hit from miss without a new hook.
-3. **NEXT:** test whether one exact post-miss latch rearm can preserve one damage per authored opportunity without custom target/damage logic.
-4. Existing bridge transport is sufficient for the next bounded diagnostic intervention; no new hook is currently justified.
-5. Still open after the latch-only probe: whether timing permission must also remain/rearm to achieve true continuous eligibility from the authored frame; repeated FIST and interruption behavior.
+3. **CLOSED FOR TESTED POWER ROUTE — EV-348:** one exact post-miss latch-only rearm can restore a later native opportunity without custom target/damage logic; 7/9 rearmed misses later produced exact native raw8 damage, while successful early hits remained consumed.
+4. Existing bridge transport was sufficient; no new hook was required.
+5. **NEXT DESIGN QUESTION:** whether the agreed author-facing semantic requires eligibility continuously from marker time until contact, including transient contact before Gothic's later native threshold, or whether latch-only recovery at native timing is sufficient. Repeated FIST and interruption behavior remain later validation responsibilities.
 6. FIST_OFF is **not part of the agreed raw8 design** absent future contradictory evidence.
 
 ## Gate
@@ -190,10 +190,8 @@ The author-facing semantic is decided. Production redesign remains prohibited un
 
 EV-347 closed the first bounded observation question: both hit and miss synthetic attempts return with `SPU+0x164 = 1`.
 
-The next bounded causal question is frozen in:
+EV-348 closes the post-miss latch-rearm causal question. Latch-only recovery is causally sufficient to restore a later native opportunity on the tested Power route, but it does not establish continuous eligibility during the interval before Gothic's later native timing.
 
-`docs/work/active/COLLISION_RAW8_FIST_POST_MISS_LATCH_REARM_CAUSAL_PROBE.md`
-
-It changes one variable only: after an exact synthetic raw8 Power attempt with no exact same-invocation native raw8 damage, write the latch back to `0` once. Do not rearm timing permission.
+No new Work implementation task is active. The next step is a Normal Chat design/research decision about that remaining timing interval, **after POP-12 knowledge-state validation passes**.
 
 Phase-4 broad regression remains paused until this research chain either proves a safe persistent-window mechanism or forces a design revision.
