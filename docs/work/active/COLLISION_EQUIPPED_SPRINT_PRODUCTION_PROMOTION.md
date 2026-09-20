@@ -1,6 +1,6 @@
 # Equipped Sprint Production Promotion
 
-**Status:** ACTIVE — POSITIVE+NEGATIVE SPRINT RUNTIME PASS / TRUE-POWER+BEHAVIOR SMOKE PENDING  
+**Status:** ACTIVE — ALL DIAGNOSTIC RUNTIME GATES PASS / BEHAVIOR-ONLY SMOKE PENDING  
 **Type:** Bounded production-behavior promotion  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime acceptance.
@@ -419,3 +419,28 @@ Still required:
 2. diagnostics-free behavior-only Goblin Sprint smoke.
 
 Do not close/archive this promotion contract until both pass.
+
+
+## EV-328 — ordinary equipped true-Power protected control
+
+Disposition: **PASS**.
+
+Observed on the same pinned diagnostic binary:
+- 9 ordinary `PC_Hero Action=2 / POWER` ownership records;
+- 9 accepted Flamberge RIGHT markers;
+- 9 native Golem damage events;
+- zero PC_Hero `EQUIPPED_SPRINT_COLLISION` records;
+- zero Sprint-origin continuation signatures;
+- zero true-Power marker rejection, repair or lifecycle failure.
+
+Interpretation:
+- a new true-Power execution still cannot create or inherit Sprint origin after permanent extraction;
+- ordinary equipped Power remains structurally upstream of permanent Sprint behavior;
+- all diagnostic runtime promotion controls are now complete.
+
+Remaining acceptance:
+1. redeploy the already-built behavior-only twin;
+2. run a bounded known Goblin Sprint smoke with the permanent behavior-only product;
+3. if gameplay is healthy, close/archive this promotion contract and promote equipped Sprint to permanent production support.
+
+Do not rebuild either twin before the behavior-only smoke; use the already-pinned behavior DLL SHA256 `FE31030B35868EBF30B9644650991D8136625C4DBFD6263403350DB612BDB250`.
