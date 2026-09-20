@@ -43,7 +43,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | player animation family / UseType / side semantics | EV-036–EV-065 |
 | Quick marker ownership / StatePosition | EV-066–EV-075 |
 | equipped dual-source RIGHT/LEFT mapping | EV-090–EV-094 |
-| multi-target / OFF / repeated contact / ClearTriggeredList | EV-106–EV-116 |
+| multi-target / OFF / repeated contact / ClearTriggeredList | EV-106–EV-116, EV-330–EV-331 |
 | marker occurrence/dedupe generation | EV-131–EV-144, EV-167, EV-213–EV-214 |
 | Whirl callback/action/source separation | EV-145–EV-147 |
 | New Balance / AttackCollision early compatibility | EV-035, EV-148–EV-150 |
@@ -67,7 +67,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | New Balance 0.7 source compatibility preflight | EV-284 |
 | permanent raw55 implementation + focused sentinels | EV-295–EV-298 |
 | standalone collision regression | EV-299 onward |
-| Orc Phase-2 Staff/Fist/2H attack matrix | EV-309–EV-310 |
+| Orc Phase-2 Staff/Fist/2H attack matrix / current-build rechecks | EV-309–EV-310, EV-330–EV-331 |
 | post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314 |
 | factual equipped Sprint handoff / continuation / permanent production acceptance | EV-311, EV-315, EV-320–EV-329 |
 | shield/raw9 LEFT physical activation without shield-bash damage | EV-306, EV-308 |
@@ -98,6 +98,7 @@ EV-309–EV-310  Orc Phase-2 Staff/Fist/2H regression PASS
 EV-311–EV-314  Phase-3 weapon-using NPC/creature regression PASS; equipped Sprint scope opened at EV-311
 EV-315–EV-324  equipped Sprint causal/correction acceptance through promotion decision
 EV-325–EV-329  permanent equipped Sprint promotion acceptance incl. behavior-only smoke
+EV-330–EV-331  current-build Whirl/repeated-contact + Orc raw8 + player 1H/torch corroboration
 ```
 
 ## 4. Escalation order
