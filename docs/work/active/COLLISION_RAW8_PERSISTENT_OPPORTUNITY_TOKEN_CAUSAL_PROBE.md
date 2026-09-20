@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Persistent Opportunity Token Causal Probe
 
-**Status:** ACTIVE — BOUNDED DIAGNOSTIC-ONLY CAUSAL INTERVENTION TASK  
+**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT REVIEW BLOCKED / GENERATION-SAFE FINALIZATION CORRECTION REQUIRED  
 **Opened:** 2026-09-20  
 **Evidence basis:** EV-231, EV-233–EV-240, EV-346–EV-352  
 **Production behavior change:** PROHIBITED  
@@ -497,3 +497,85 @@ Report:
 - any material contradiction.
 
 Then STOP.
+
+
+## Implementation review checkpoint — 2026-09-20
+
+Work implementation:
+
+`e86c1ce03b36ef0ef7421a19284c5b38e58615ed`
+
+Parent:
+
+`efe75dcdc7e368043d37891f11c87d4fc8a43f01`
+
+Normal Chat review result: **BLOCKED — ONE NARROW LIFECYCLE CORRECTION REQUIRED**.
+
+Confirmed clean:
+- exact six-path scope;
+- closed EV-351 files/hooks removed;
+- new probe diagnostic-only;
+- `FRAME_COLLISION_BEHAVIOR_SOURCES` unchanged;
+- permanent `Raw8FistCollision.cpp/.h` textually unchanged;
+- generic `OnDamage` original remains exactly-once/pass-through;
+- no target/list/group/custom-contact/custom-damage mutation;
+- token identity is actor/C1/raw8-source/SPU, not Action/family/phase/motion;
+- FullStop does not independently close the token;
+- timing substate retires independently;
+- same-C1 Action9 -> Action2 transport is not used as terminal authority.
+
+### Review defect — terminal latch write lacks current-generation revalidation
+
+`EngineBridge::AISetState_FrameCollisionTest` correctly captures the exact finalization generation before native `AISetState`, calls Gothic original first, then delegates `Raw8FistPersistentOpportunityProbe::CloseForFinalization(finalization)`.
+
+However the current `CloseForFinalization()` implementation:
+- confirms that the stored token generation equals the captured finalization generation;
+- revalidates live actor/SPU/raw8-source identity before writing the latch;
+- **does not revalidate that `CollisionLifecycleGuard::CaptureCurrentGenerationToken(actor)` is still that captured generation after native `AISetState` returned**.
+
+The existing `CollisionLifecycleGuard::FinalizeAfterAISetState()` explicitly refuses finalization when the current generation changed during the native call (`LifecycleIssue_FinalizationGenerationChanged`). The raw8 probe must preserve the same generation-safety property.
+
+Without this check, a nested/replacement generation created during native `AISetState` could share the same actor/SPU/Fist source and receive the old token's terminal `SPU+0x164 = 1` write.
+
+That is prohibited cross-C1 contamination.
+
+### Exact correction
+
+Change **only**:
+
+`prototypes/Script_FrameCollisionTest/Raw8FistPersistentOpportunityProbe.cpp`
+
+Inside `CloseForFinalization(generation)`, after finding an old token whose stored generation equals the captured finalization generation and **before any latch mutation**:
+
+1. capture the current generation with `CollisionLifecycleGuard::CaptureCurrentGenerationToken(generation.actorInstance)`;
+2. require:
+   - current generation valid;
+   - current actor matches;
+   - current generation number equals the captured finalization generation;
+3. if the current generation is invalid or changed:
+   - erase/close only the stale logical token;
+   - retire timing state;
+   - emit `CORE RAW8_OPPORTUNITY_CLOSE` with a factual reason such as `FINALIZATION_GENERATION_CHANGED_NO_LATCH_WRITE`;
+   - **do not write `SPU+0x164` at all**;
+4. only when the current generation still exactly equals the captured generation may the existing terminal close perform its revalidated live latch write `-> 1`.
+
+Do not move the close to Action/family/motion classification.
+Do not change the existing same-C1 Sprint behavior.
+Do not broaden source scope.
+
+Expected correction diff: **one file only**.
+
+### Correction static gate
+
+Verify:
+- only `Raw8FistPersistentOpportunityProbe.cpp` changes;
+- current C1 generation is checked before terminal finalization latch write;
+- changed/invalid generation path performs no latch write;
+- same-generation path preserves existing terminal close;
+- no changes to miss rearm, contact consumption, timing persistence or marker OPEN;
+- no behavior-only/permanent source changes;
+- `git diff --check` passes.
+
+Work build execution remains PROHIBITED for this correction.
+
+After correction publication, Normal Chat must independently review again before local build.
