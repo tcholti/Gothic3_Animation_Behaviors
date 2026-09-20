@@ -374,3 +374,59 @@ Do not use any of these as terminal authority by themselves:
 A timing helper may retire on animation/timing identity change without consuming the logical opportunity token.
 
 Raw8 remains mechanically separate from equipped collision cleanup; only the execution-lifetime principle is shared.
+
+
+## EV-353 — persistent-opportunity causal model CLOSED/PASS
+
+The diagnostic pending-opportunity architecture is now causally validated across:
+- Gargoyle marked raw8 Power at early frame-3 FIST;
+- marked human Normal and Power;
+- human group-combat target-direction control;
+- human one-on-one timing control;
+- native unmarked human fallback;
+- ordinary C1 finalization;
+- factual reaction-generation replacement after FIST.
+
+Aggregate marked accounting:
+- 81 FIST opens;
+- 59 contact-consumed;
+- 21 lifecycle-closed;
+- 1 earlier same-C1 token superseded by a later FIST;
+- 18 contacts occurred only after one or more miss-rearms;
+- 614 miss-rearm writes;
+- zero cross-C1 old-opportunity contact observed.
+
+The desired semantic is therefore no longer merely a design target:
+
+```text
+accepted FIST
+-> one pending target-directed opportunity
+
+miss
+-> preserve opportunity and restore native one-shot eligibility
+
+first exact native raw8 contact dispatch
+-> consume opportunity before gameplay result interpretation
+
+later FIST
+-> reopen one opportunity, no stacking
+
+exact C1 end/replacement
+-> close unused opportunity
+
+unmarked raw8
+-> native
+```
+
+Production constraints carried forward:
+- raw8 remains separate from equipped and raw55 mechanisms;
+- no visited/target list;
+- no FIST_OFF;
+- no custom target/contact/damage;
+- block/immunity/reaction/HP policy remains Gothic/behavior-owned;
+- C1 execution identity is terminal authority, not Action/family/phase/motion alone;
+- timing helper lifetime remains separate from logical opportunity lifetime;
+- same-C1 Sprint Action9 -> Action2 transport must remain protected;
+- stale old generation may never mutate a replacement generation.
+
+Next responsibility: freeze the smallest permanent raw8 implementation architecture from the proven diagnostic mechanism. Do not promote diagnostic logging/state wholesale.
