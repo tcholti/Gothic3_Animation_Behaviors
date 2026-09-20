@@ -45,30 +45,8 @@ C1 183/token43 and C1 207/token47 additionally missed and rearmed under Action9 
 This satisfies the pre-Work sentinel. The production task may proceed after POP-12 validates the promoted EV-354 state.
 
 
-Before this production task is sent to Work, run one source-unchanged diagnostic control using native Sabretooth single-FIST raw8.
+The former pre-Work sentinel contract is satisfied and closed by EV-354. Do not rerun it before Work unless later evidence creates a new contradiction.
 
-Evidence basis: EV-316 first exposed the same-C1 shape; EV-354 now directly proves pending-opportunity survival. In this tested route Sprint is factual Action9 using the PowerAttack-named motion, not a separate Sprint animation asset.
-
-Required question:
-
-```text
-FIST opens pending opportunity during Sprint-origin execution
--> early native attempt misses
--> same C1 later presents Action2/POWER
--> does the same pending opportunity survive that Action change
-   until native contact or true C1 finalization?
-```
-
-Use the existing EV-353 diagnostic build/source unchanged. Prefer a single FIST marker to avoid later-marker refresh/supersession confounding the result.
-
-Target controls:
-- medium spacing / brief retreat so FIST occurs before contact but Sabretooth can still reach the player later in the same attack;
-- some fully escaped attacks so pending opportunity should close at C1 end;
-- ordinary close contacts are useful baseline but do not by themselves prove cross-Action survival.
-
-Pass condition requires at least one factual same-C1 Action9 -> Action2 execution with a token that was already OPEN before the transition and remains the same logical opportunity afterward, ending only in exact native contact consumption or factual C1 close. No Action/family-change-only close is permitted.
-
-The sentinel is processed as EV-354. Do not send this production task to Work until POP-12 validates the resulting promoted state.
 
 ## Permanent ownership
 
