@@ -20,8 +20,8 @@ focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-350
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
-active Work implementation task = NONE
-current stop gate = POP-12 knowledge-state validation before next causal research
+active Work implementation task = COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md
+current stop gate = POP-12 validation of frozen raw8 contact-boundary observation task
 ```
 
 ## Current responsibility
@@ -47,11 +47,13 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**Do not start new causal research until POP-12 reports `Knowledge-state validation PASS` for the EV-350 closure state.**
+**EV-350 closure POP-12 passed. A new read-only raw8 contact-boundary observation task is frozen. Do not send it to Work until POP-12 validates this frozen task state.**
 
-After PASS, Normal Chat owns one narrow next research decision:
+Current bounded research question:
 
-> What is the smallest factual native hit/contact-resolution boundary that can consume the authored opportunity without depending on block, immunity, reaction or HP-damage policy, while enforcing exact C1/Hit-bounded lifetime?
+> Does exact raw8 reach `gCTouchDamage_PS::CanBeActivatedNow` and/or `TriggerTarget`, and do those native boundaries correlate with factual contact resolution independently of HP-damage policy?
+
+Frozen task: `docs/work/active/COLLISION_RAW8_TOUCHDAMAGE_CONTACT_BOUNDARY_OBSERVATION.md`.
 
 ## Current runtime provenance
 
