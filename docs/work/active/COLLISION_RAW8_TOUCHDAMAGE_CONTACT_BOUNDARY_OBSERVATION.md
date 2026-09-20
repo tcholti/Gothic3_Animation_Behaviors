@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 TouchDamage Contact-Boundary Observation
 
-**Status:** ACTIVE — BOUNDED DIAGNOSTIC-ONLY OBSERVATION TASK  
+**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / LOCAL BUILD + RUNTIME OBSERVATION PENDING  
 **Opened:** 2026-09-20  
 **Evidence basis:** EV-106–EV-116, EV-221–EV-240, EV-290, EV-346–EV-350  
 **Production behavior change:** PROHIBITED  
@@ -322,3 +322,34 @@ Report:
 - any material contradiction.
 
 Then STOP.
+
+## Implementation checkpoint — 2026-09-20
+
+Work implementation:
+
+`929bba9974788c873860f8e33f504c091f7aa524`
+
+Parent:
+
+`dec7f7d4e13f38f8c5fc6dabd620056907c4383d`
+
+Normal Chat independent source review: **PASS**.
+
+Review findings:
+- exactly one commit over the authorized parent;
+- exact four-file scope;
+- `FRAME_COLLISION_BEHAVIOR_SOURCES` is textually unchanged;
+- generic `EntityOnDamage_FrameCollisionTest` is textually unchanged;
+- exactly one `Game+0x692F0` hook and one original call;
+- exactly one `Game+0x693B0` hook and one original call;
+- both hooks are diagnostic-only under `FRAME_COLLISION_DIAGNOSTICS`;
+- old player-only DEEP delegation was replaced without duplicate physical hook ownership;
+- the temporary probe uses read-only `GetEntitiesVisited()` / `GetEntitiesVisitedCount()` access only;
+- no latch, timing, collision-group, trigger-list, visited-state, target, lifecycle or gameplay-damage mutation exists;
+- no damage-success terminology or classification exists;
+- invocation identity is actor/SPU/C1/exact raw8-source/TouchDamage bounded and supports nested scope restoration.
+
+Runtime interpretation note:
+- `TriggerTarget` may observe the target already present in visited bookkeeping on entry if base `eCTrigger_PS` bookkeeping occurs before the virtual call. The probe records both before and after specifically to determine ordering; do not assume insertion occurs inside `gCTouchDamage_PS::TriggerTarget`.
+
+Local build and runtime observation are pending.
