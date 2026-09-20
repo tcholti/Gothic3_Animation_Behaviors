@@ -82,6 +82,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | raw8 post-miss latch-only rearm / later native opportunity | EV-348 |
 | raw8 knockdown/get-up target-state rejection + cross-C1 rearm lifetime | EV-349 |
 | raw8 closed-research retirement / neutral diagnostic baseline | EV-350 |
+| raw8 TouchDamage contact-boundary callbacks / negative result | EV-351 |
 
 ## 3. Current collision closure landmarks
 
@@ -115,6 +116,7 @@ EV-347         post-attempt observation proves latch closes after hit and miss a
 EV-348         post-miss latch-only rearm restores later native opportunity on tested Power route
 EV-349         knockdown/get-up control separates target-state rejection from collision and exposes cross-C1 rearm lifetime
 EV-350         closed raw8 damage-correlated probes retired; neutral diagnostic baseline PASS
+EV-351         exact raw8 CanBeActivatedNow / TriggerTarget callbacks absent on tested contact route
 ```
 
 ## 4. Escalation order
