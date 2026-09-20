@@ -81,6 +81,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | raw8 post-attempt latch consumption / hit-vs-miss correlation | EV-347 |
 | raw8 post-miss latch-only rearm / later native opportunity | EV-348 |
 | raw8 knockdown/get-up target-state rejection + cross-C1 rearm lifetime | EV-349 |
+| raw8 closed-research retirement / neutral diagnostic baseline | EV-350 |
 
 ## 3. Current collision closure landmarks
 
@@ -113,6 +114,7 @@ EV-346         Gargoyle raw8 Power timing sweep confirms current one-shot FIST s
 EV-347         post-attempt observation proves latch closes after hit and miss alike
 EV-348         post-miss latch-only rearm restores later native opportunity on tested Power route
 EV-349         knockdown/get-up control separates target-state rejection from collision and exposes cross-C1 rearm lifetime
+EV-350         closed raw8 damage-correlated probes retired; neutral diagnostic baseline PASS
 ```
 
 ## 4. Escalation order
