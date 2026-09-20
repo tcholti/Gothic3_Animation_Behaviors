@@ -10,39 +10,40 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Latest completed evidence: **EV-354**.
+Latest completed runtime evidence: **EV-354**.
 
 Permanent raw8 architecture:
 `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`
 
-Frozen production task:
-`docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
+Published production implementation:
+`3426cede41c0087e43edc0d81c825ff167e8e034`
 
-## EV-354 pre-Work sentinel PASS
+Independent Normal Chat static review:
+- exact eight-path implementation scope: PASS;
+- permanent raw8 behavior/state-machine promotion: PASS;
+- temporary probe retirement: PASS;
+- behavior-vs-diagnostic separation: PASS;
+- no protected behavior module changed;
+- no material behavior contradiction found.
 
-Native Sabretooth single-FIST control used the source-unchanged EV-353 diagnostic mechanism.
+## Bounded review correction before build
 
-Whole run:
-- 55 opportunity opens;
-- 36 exact native contact consumptions;
-- 19 C1-finalization closes;
-- 824 miss rearms;
-- 0 rejection/contradiction/lifecycle/invariant flags.
+The implementation is not yet ready for build because two diagnostics-only contract mismatches were found:
 
-Decisive Sprint-origin result:
-- 20 tokens opened under factual Action9/SPRINT;
-- the same tokens were consumed under factual Action2/POWER in the same C1;
-- the tested route uses the same PowerAttack-named motion for both action states;
-- C1 183/token43 and C1 207/token47 also missed/rearmed before later Action2 contact.
+1. `CloseAndEraseExecution` currently emits `CORE RAW8_OPPORTUNITY_CLOSE` even when the opportunity was already contact-consumed. CORE semantics require:
+   - exact native contact -> `CONTACT_CONSUMED`;
+   - unused pending opportunity -> lifecycle `CLOSE`.
+2. Routine `CORE RAW8_OPPORTUNITY_*` identity currently includes raw actor/source/SPU and contact argument/caller addresses. Routine CORE must remain compact; rich raw addresses belong to DEEP/anomaly diagnostics.
 
-Therefore Action/family change alone does not terminate a pending raw8 opportunity.
+Frozen correction:
+`docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`
 
-Canonical source is archived; POP-07 derived package remains under `research/derived/`.
+The correction is diagnostics-only. It must not alter raw8 opportunity state, latch behavior, timing behavior, hooks, invocation identity or finalization.
 
 ## Stop gate
 
-Run `python tools/knowledge/validate_knowledge_state.py` and require `Knowledge-state validation PASS`.
+No build or runtime test yet.
 
-Only after PASS may the frozen production task be sent to Work.
+First require POP-12 validation of this maintained handoff state. Then execute/review the bounded diagnostics-only correction. After that, build both twins and begin the focused permanent raw8 acceptance matrix from `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
 
-`research/raw/` should contain only `Keep.txt`.
+`research/raw/` remains closed from EV-354 and should contain only `Keep.txt`.
