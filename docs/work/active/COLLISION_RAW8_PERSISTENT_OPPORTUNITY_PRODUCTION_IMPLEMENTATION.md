@@ -1,9 +1,10 @@
 # Gothic 3 — Raw8 Persistent Opportunity Production Implementation
 
-**Status:** ACTIVE — FROZEN PRODUCTION IMPLEMENTATION TASK / PRE-WORK SPRINT-TRANSPORT SENTINEL PENDING  
+**Status:** ACTIVE — FROZEN PRODUCTION IMPLEMENTATION TASK / PRE-WORK SPRINT-TRANSPORT SENTINEL PASS / POP-12 PENDING  
 **Opened:** 2026-09-20  
 **Architecture:** `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`  
 **Evidence closure:** EV-353  
+**Pre-Work Sprint transport sentinel:** EV-354 PASS  
 **Work build execution:** PROHIBITED
 
 ## Responsibility
@@ -28,9 +29,25 @@ Then inspect only the exact assigned source.
 
 ## Pre-Work runtime sentinel — required before Work
 
+### Sentinel result — EV-354 PASS
+
+The required source-unchanged Sabretooth single-FIST control is complete.
+
+EV-354 captured 20 exact opportunities that:
+- opened under factual Action9/SPRINT;
+- remained the same token/C1;
+- were consumed under factual Action2/POWER;
+- used the same PowerAttack-named motion throughout the tested transition;
+- never closed merely because Action/family changed.
+
+C1 183/token43 and C1 207/token47 additionally missed and rearmed under Action9 before the same token was consumed under Action2.
+
+This satisfies the pre-Work sentinel. The production task may proceed after POP-12 validates the promoted EV-354 state.
+
+
 Before this production task is sent to Work, run one source-unchanged diagnostic control using native Sabretooth single-FIST raw8.
 
-Evidence basis: EV-316 captured five Sabretooth Sprint-origin C1s (8, 34, 44, 55, 109) where the same PowerAttack-named motion began factual `Action=9 / SPRINT` and later continued factual `Action=2 / POWER` inside the same C1.
+Evidence basis: EV-316 first exposed the same-C1 shape; EV-354 now directly proves pending-opportunity survival. In this tested route Sprint is factual Action9 using the PowerAttack-named motion, not a separate Sprint animation asset.
 
 Required question:
 
@@ -51,7 +68,7 @@ Target controls:
 
 Pass condition requires at least one factual same-C1 Action9 -> Action2 execution with a token that was already OPEN before the transition and remains the same logical opportunity afterward, ending only in exact native contact consumption or factual C1 close. No Action/family-change-only close is permitted.
 
-Do not send this production task to Work until Normal Chat processes this sentinel and POP-12 validates the resulting state.
+The sentinel is processed as EV-354. Do not send this production task to Work until POP-12 validates the resulting promoted state.
 
 ## Permanent ownership
 
