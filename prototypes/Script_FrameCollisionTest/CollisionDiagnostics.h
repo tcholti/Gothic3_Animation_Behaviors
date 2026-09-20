@@ -51,7 +51,7 @@ void LogRaw8FistMarkerOpportunity(
     GEDouble nativeThresholdConstant, GEDouble computedThreshold,
     bool realBelowThreshold, bool ownershipMatched,
     bool timingPermissionArmed);
-void LogRaw8FistTimingPermissionConsumed(
+void LogRaw8FistTimingPermissionApplied(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
     GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
@@ -61,6 +61,28 @@ void LogRaw8FistTimingPermissionRetired(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *spu, void *animationActorAddress,
     char const *reason);
+void LogRaw8FistOpportunityOpen(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal, MarkerProcessResult const &result,
+    bool timingActive);
+void LogRaw8FistOpportunityMissRearm(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal, bool fullStop,
+    GEInt latchBefore, GEInt latchAfter, bool writeConfirmed);
+void LogRaw8FistOpportunityContactConsumed(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal, void *callerAddress,
+    eCEntity *entityArgument1, eCEntity *entityArgument2,
+    GEInt latchValue);
+void LogRaw8FistOpportunityClose(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal, bool opportunityPending,
+    char const *reason, GEInt latchBefore, GEInt latchAfter,
+    bool writeAttempted, bool writeConfirmed);
 void LogNullMarker(char const *markerName);
 void LogMarkerResult(Entity &actor, MarkerProcessResult const &result);
 void LogSetCollisionGroup(

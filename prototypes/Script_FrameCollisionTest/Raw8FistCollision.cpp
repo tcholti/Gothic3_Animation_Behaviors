@@ -1,6 +1,5 @@
 #include "Raw8FistCollision.h"
 
-#include "CollisionLifecycleGuard.h"
 #include "CollisionSources.h"
 #include "FrameCollisionMarkers.h"
 
@@ -10,7 +9,6 @@
 
 #include <cstdint>
 #include <cstring>
-#include <string>
 #include <unordered_map>
 #include <windows.h>
 
@@ -21,13 +19,17 @@ struct Raw8FistMarkerExecution
     eCEntity *actorInstance;
     eCEntity *fistSourceInstance;
     gCScriptProcessingUnit *spu;
-    eCWrapper_emfx2Actor *animationActor;
     std::uint64_t c1Generation;
-    std::string animationName;
-    bool timingPermissionArmed;
+    std::uint64_t opportunityOrdinal;
+    eCWrapper_emfx2Actor *timingAnimationActor;
+    eCWrapper_emfx2Actor::eEMotionType timingMotionType;
+    GEDouble forcedPlayTime;
     GEDouble maxTime;
     GEDouble nativeThresholdConstant;
     GEDouble computedThreshold;
+    bool timingActive;
+    bool timingApplicationLogged;
+    bool opportunityPending;
 };
 
 struct Raw8FistPrimaryTiming
@@ -38,8 +40,12 @@ struct Raw8FistPrimaryTiming
     GEDouble maxTime;
 };
 
-static thread_local std::unordered_map<eCEntity *, Raw8FistMarkerExecution>
-    g_Raw8FistMarkerExecutions;
+using ExecutionMap =
+    std::unordered_map<eCEntity *, Raw8FistMarkerExecution>;
+
+static thread_local ExecutionMap g_Raw8FistMarkerExecutions;
+static thread_local InvocationScope *g_pCurrentInvocation = nullptr;
+static thread_local std::uint64_t g_NextOpportunityOrdinal = 1;
 
 bool IsSupportedFamily(AttackFamily family)
 {
@@ -104,20 +110,115 @@ static bool IsExactRaw8FistSource(eCEntity *sourceInstance)
             == gEUseType_Fist;
 }
 
+static bool ResolveExactLiveTransport(
+    Raw8FistMarkerExecution const &state, Entity &actor)
+{
+    actor.AttachTo(state.actorInstance);
+    if (actor == None)
+        return false;
+
+    gCScriptRoutine_PS *const routinePS =
+        static_cast<gCScriptRoutine_PS *>(
+            actor.Routine.m_pEngineEntityPropertySet);
+    if (routinePS == nullptr || &routinePS->GetSPU() != state.spu)
+        return false;
+    if (state.spu == nullptr
+        || state.spu->GetSelfEntity() != state.actorInstance)
+    {
+        return false;
+    }
+    if (CollisionSources::ResolveFistCollisionSource(actor)
+        != state.fistSourceInstance)
+    {
+        return false;
+    }
+    return IsExactRaw8FistSource(state.fistSourceInstance);
+}
+
+static bool MatchesExactExecution(Raw8FistMarkerExecution const &state)
+{
+    Entity actor;
+    if (!ResolveExactLiveTransport(state, actor))
+        return false;
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            state.actorInstance);
+    return generation.valid
+        && generation.actorInstance == state.actorInstance
+        && generation.generation == state.c1Generation;
+}
+
+static bool MatchesPendingOpportunity(
+    Raw8FistMarkerExecution const &state)
+{
+    return state.opportunityPending && MatchesExactExecution(state);
+}
+
+static volatile GEU8 *ResolveExactLiveLatch(
+    Raw8FistMarkerExecution const &state)
+{
+    Entity actor;
+    if (!ResolveExactLiveTransport(state, actor))
+        return nullptr;
+    return reinterpret_cast<volatile GEU8 *>(state.spu) + 0x164;
+}
+
 static void RetireRaw8FistTimingPermission(
     Raw8FistMarkerExecution &state, char const *reason)
 {
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    if (state.timingPermissionArmed)
+    if (state.timingActive)
     {
         CollisionDiagnostics::LogRaw8FistTimingPermissionRetired(
             state.actorInstance, state.c1Generation, state.spu,
-            static_cast<void *>(state.animationActor), reason);
+            static_cast<void *>(state.timingAnimationActor), reason);
     }
 #else
     (void) reason;
 #endif
-    state.timingPermissionArmed = false;
+    state.timingActive = false;
+    state.timingApplicationLogged = false;
+    state.timingAnimationActor = nullptr;
+    state.forcedPlayTime = 0.0;
+}
+
+static void CloseAndEraseExecution(
+    ExecutionMap::iterator found, char const *reason,
+    bool forcePendingLatchClosed)
+{
+    Raw8FistMarkerExecution &state = found->second;
+    bool const wasPending = state.opportunityPending;
+    GEInt latchBefore = -1;
+    GEInt latchAfter = -1;
+    bool writeAttempted = false;
+    bool writeConfirmed = false;
+    if (forcePendingLatchClosed && wasPending)
+    {
+        volatile GEU8 *const latch = ResolveExactLiveLatch(state);
+        if (latch != nullptr)
+        {
+            latchBefore = static_cast<GEInt>(*latch);
+            writeAttempted = true;
+            *latch = 1;
+            latchAfter = static_cast<GEInt>(*latch);
+            writeConfirmed = latchAfter == 1;
+        }
+    }
+
+    RetireRaw8FistTimingPermission(state, reason);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogRaw8FistOpportunityClose(
+        state.actorInstance, state.fistSourceInstance, state.spu,
+        state.c1Generation, state.opportunityOrdinal, wasPending,
+        reason, latchBefore, latchAfter, writeAttempted, writeConfirmed);
+#else
+    (void) latchBefore;
+    (void) latchAfter;
+    (void) writeAttempted;
+    (void) writeConfirmed;
+#endif
+    state.opportunityPending = false;
+    g_Raw8FistMarkerExecutions.erase(found);
 }
 
 void UpdateMarkerOwnership(
@@ -136,9 +237,10 @@ void UpdateMarkerOwnership(
         && (!generation.valid
             || existing->second.c1Generation != generation.generation))
     {
-        RetireRaw8FistTimingPermission(
-            existing->second, "C1_GENERATION_CHANGED");
-        g_Raw8FistMarkerExecutions.erase(existing);
+        // A replacement generation must not inherit or be overwritten by
+        // stale raw8 state observed at callback ownership time.
+        CloseAndEraseExecution(
+            existing, "C1_GENERATION_CHANGED", false);
         existing = g_Raw8FistMarkerExecutions.end();
     }
 
@@ -159,8 +261,8 @@ void UpdateMarkerOwnership(
 
     if (existing != g_Raw8FistMarkerExecutions.end())
     {
-        // The C1 generation is the factual execution identity. Never repeat
-        // the initial close inside the same generation.
+        // C1 is the execution identity. Action/family/phase/motion changes do
+        // not create a new raw8 execution or repeat its initial close.
         return;
     }
 
@@ -184,15 +286,11 @@ void UpdateMarkerOwnership(
     if (!writeConfirmed)
         return;
 
-    bCString const animation = actor.NPC.GetCurrentMovementAni();
     Raw8FistMarkerExecution state = {};
     state.actorInstance = actorInstance;
     state.fistSourceInstance = ownership.fistSourceInstance;
     state.spu = spu;
-    state.animationActor = timing.animationActor;
     state.c1Generation = generation.generation;
-    state.animationName = animation.GetText() != nullptr
-        ? animation.GetText() : "";
     g_Raw8FistMarkerExecutions[actorInstance] = state;
 }
 
@@ -230,10 +328,31 @@ void UpdateTimingPermissionFromMarker(
         || result.opcode != MarkerOpcode_Fist
         || result.fistSourceUseType != static_cast<GEInt>(gEUseType_Fist)
         || !result.c1GenerationValid
-        || !result.fistLatchWriteConfirmed)
+        || !result.fistLatchWriteAttempted
+        || !result.fistLatchWriteConfirmed
+        || result.fistLatchAfter != 0)
     {
         return;
     }
+
+    eCEntity *const actorInstance = actor.GetInstance();
+    auto execution = g_Raw8FistMarkerExecutions.find(actorInstance);
+    if (execution == g_Raw8FistMarkerExecutions.end())
+        return;
+
+    Raw8FistMarkerExecution &state = execution->second;
+    bool const ownershipMatched =
+        state.c1Generation == result.c1Generation
+        && state.fistSourceInstance == result.fistSourceInstance
+        && state.spu == result.fistSPU
+        && MatchesExactExecution(state);
+    if (!ownershipMatched)
+        return;
+
+    RetireRaw8FistTimingPermission(
+        state, "SUPERSEDED_BY_ACCEPTED_FIST");
+    state.opportunityOrdinal = g_NextOpportunityOrdinal++;
+    state.opportunityPending = true;
 
     Raw8FistPrimaryTiming const timing =
         CaptureRaw8FistPrimaryTiming(actor);
@@ -249,27 +368,34 @@ void UpdateTimingPermissionFromMarker(
         realBelowThreshold = timing.playTime < computedThreshold;
     }
 
-    eCEntity *const actorInstance = actor.GetInstance();
-    auto execution = g_Raw8FistMarkerExecutions.find(actorInstance);
-    bool ownershipMatched = false;
-    if (execution != g_Raw8FistMarkerExecutions.end())
+    auto const primaryMotion =
+        static_cast<eCWrapper_emfx2Actor::eEMotionType>(0);
+    if (thresholdAvailable && realBelowThreshold)
     {
-        Raw8FistMarkerExecution &state = execution->second;
-        ownershipMatched =
-            state.c1Generation == result.c1Generation
-            && state.fistSourceInstance == result.fistSourceInstance
-            && state.spu == result.fistSPU
-            && state.animationActor == timing.animationActor
-            && state.animationName == result.currentAnimation;
-        RetireRaw8FistTimingPermission(
-            state, "SUPERSEDED_BY_ACCEPTED_FIST");
-        if (ownershipMatched && thresholdAvailable && realBelowThreshold)
-        {
-            state.timingPermissionArmed = true;
-            state.maxTime = timing.maxTime;
-            state.nativeThresholdConstant = nativeThresholdConstant;
-            state.computedThreshold = computedThreshold;
-        }
+        state.timingAnimationActor = timing.animationActor;
+        state.timingMotionType = primaryMotion;
+        state.forcedPlayTime = computedThreshold + 0.001;
+        if (state.forcedPlayTime > timing.maxTime)
+            state.forcedPlayTime = timing.maxTime;
+        state.maxTime = timing.maxTime;
+        state.nativeThresholdConstant = nativeThresholdConstant;
+        state.computedThreshold = computedThreshold;
+        state.timingActive = true;
+    }
+
+    // A FIST may open/refresh the opportunity inside the native invocation
+    // that will immediately attempt contact. Bind that live scope exactly.
+    if (g_pCurrentInvocation != nullptr
+        && g_pCurrentInvocation->actorInstance == actorInstance
+        && g_pCurrentInvocation->spu == result.fistSPU)
+    {
+        g_pCurrentInvocation->fistSourceInstance =
+            state.fistSourceInstance;
+        g_pCurrentInvocation->c1Generation = state.c1Generation;
+        g_pCurrentInvocation->opportunityOrdinal =
+            state.opportunityOrdinal;
+        g_pCurrentInvocation->contactConsumed = false;
+        g_pCurrentInvocation->active = true;
     }
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
@@ -277,8 +403,11 @@ void UpdateTimingPermissionFromMarker(
         actor, result, static_cast<void *>(timing.animationActor),
         timing.available, timing.playTime, timing.maxTime,
         nativeThresholdConstant, computedThreshold, realBelowThreshold,
-        ownershipMatched,
-        ownershipMatched && thresholdAvailable && realBelowThreshold);
+        true, state.timingActive);
+    CollisionDiagnostics::LogRaw8FistOpportunityOpen(
+        state.actorInstance, state.fistSourceInstance, state.spu,
+        state.c1Generation, state.opportunityOrdinal, result,
+        state.timingActive);
 #endif
 }
 
@@ -300,76 +429,212 @@ GEDouble ApplyTimingPermission(
             state.actorInstance);
     if (!generation.valid || generation.generation != state.c1Generation)
     {
-        RetireRaw8FistTimingPermission(state, "C1_GENERATION_CHANGED");
-        g_Raw8FistMarkerExecutions.erase(execution);
+        CloseAndEraseExecution(
+            execution, "C1_GENERATION_CHANGED", false);
         return realPlayTime;
     }
 
-    if (!state.timingPermissionArmed)
+    if (!state.opportunityPending || !state.timingActive)
         return realPlayTime;
-
-    auto const primaryMotion =
-        static_cast<eCWrapper_emfx2Actor::eEMotionType>(0);
-    bool const exactArmedCall =
-        spu == state.spu
-        && animationActor == state.animationActor
-        && motionType == primaryMotion;
-    if (!exactArmedCall)
-    {
-        RetireRaw8FistTimingPermission(state, "CALL_IDENTITY_CHANGED");
-        return realPlayTime;
-    }
-
-    Entity actor(state.actorInstance);
-    if (actor == None)
-    {
-        RetireRaw8FistTimingPermission(state, "ACTOR_IDENTITY_INVALID");
-        return realPlayTime;
-    }
-    if (CollisionSources::ResolveFistCollisionSource(actor)
-        != state.fistSourceInstance)
-    {
-        RetireRaw8FistTimingPermission(state, "FIST_SOURCE_CHANGED");
-        return realPlayTime;
-    }
-    bCString const currentAnimation = actor.NPC.GetCurrentMovementAni();
-    char const *currentAnimationText = currentAnimation.GetText();
-    if (currentAnimationText == nullptr
-        || state.animationName != currentAnimationText)
+    if (!MatchesExactExecution(state) || spu != state.spu)
     {
         RetireRaw8FistTimingPermission(
-            state, "ANIMATION_IDENTITY_CHANGED");
+            state, "EXECUTION_IDENTITY_CHANGED");
         return realPlayTime;
     }
 
-    bool const realBelowThreshold =
-        realPlayTime < state.computedThreshold;
-    GEDouble returnedPlayTime = realPlayTime;
-    bool syntheticApplied = false;
-    if (realBelowThreshold)
+    bool const exactTimingCall =
+        animationActor == state.timingAnimationActor
+        && motionType == state.timingMotionType;
+    if (!exactTimingCall)
     {
-        returnedPlayTime = state.computedThreshold + 0.001;
-        if (returnedPlayTime > state.maxTime)
-            returnedPlayTime = state.maxTime;
-        syntheticApplied = true;
+        RetireRaw8FistTimingPermission(
+            state, "TIMING_IDENTITY_CHANGED");
+        return realPlayTime;
+    }
+    if (realPlayTime >= state.forcedPlayTime)
+    {
+        RetireRaw8FistTimingPermission(
+            state, "REAL_TIME_REACHED_FORCED_VALUE");
+        return realPlayTime;
     }
 
+    GEDouble const returnedPlayTime = state.forcedPlayTime;
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    std::uint64_t const c1Generation = state.c1Generation;
-    GEDouble const maxTime = state.maxTime;
-    GEDouble const nativeThresholdConstant = state.nativeThresholdConstant;
-    GEDouble const computedThreshold = state.computedThreshold;
-#endif
-    state.timingPermissionArmed = false;
-
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogRaw8FistTimingPermissionConsumed(
-        actorInstance, c1Generation, spu,
-        static_cast<void *>(animationActor),
-        static_cast<GEInt>(motionType), realPlayTime, maxTime,
-        nativeThresholdConstant, computedThreshold, returnedPlayTime,
-        syntheticApplied);
+    if (!state.timingApplicationLogged)
+    {
+        CollisionDiagnostics::LogRaw8FistTimingPermissionApplied(
+            actorInstance, state.c1Generation, spu,
+            static_cast<void *>(animationActor),
+            static_cast<GEInt>(motionType), realPlayTime, state.maxTime,
+            state.nativeThresholdConstant, state.computedThreshold,
+            returnedPlayTime, true);
+        state.timingApplicationLogged = true;
+    }
 #endif
     return returnedPlayTime;
+}
+
+void BeginCombatMoveInvocation(
+    gCScriptProcessingUnit *spu, GEBool fullStop,
+    InvocationScope &scope)
+{
+    scope = InvocationScope{};
+    scope.previous = g_pCurrentInvocation;
+    scope.fullStop = fullStop == GETrue;
+    g_pCurrentInvocation = &scope;
+    if (spu == nullptr)
+        return;
+
+    eCEntity *const actorInstance = spu->GetSelfEntity();
+    scope.actorInstance = actorInstance;
+    scope.spu = spu;
+    auto found = g_Raw8FistMarkerExecutions.find(actorInstance);
+    if (found == g_Raw8FistMarkerExecutions.end())
+        return;
+
+    Raw8FistMarkerExecution const &state = found->second;
+    CollisionLifecycleGuard::GenerationToken const generation =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(actorInstance);
+    if (generation.valid
+        && generation.generation != state.c1Generation)
+    {
+        CloseAndEraseExecution(
+            found, "C1_GENERATION_REPLACED", true);
+        return;
+    }
+    if (!MatchesPendingOpportunity(state) || state.spu != spu)
+        return;
+
+    scope.actorInstance = state.actorInstance;
+    scope.fistSourceInstance = state.fistSourceInstance;
+    scope.spu = state.spu;
+    scope.c1Generation = state.c1Generation;
+    scope.opportunityOrdinal = state.opportunityOrdinal;
+    scope.active = true;
+}
+
+void CompleteCombatMoveInvocation(InvocationScope &scope)
+{
+    if (scope.active && !scope.contactConsumed)
+    {
+        auto found = g_Raw8FistMarkerExecutions.find(scope.actorInstance);
+        if (found != g_Raw8FistMarkerExecutions.end())
+        {
+            Raw8FistMarkerExecution &state = found->second;
+            bool const sameOpportunity = state.opportunityPending
+                && state.opportunityOrdinal == scope.opportunityOrdinal
+                && state.c1Generation == scope.c1Generation
+                && state.fistSourceInstance == scope.fistSourceInstance
+                && state.spu == scope.spu;
+            if (sameOpportunity && MatchesPendingOpportunity(state))
+            {
+                volatile GEU8 *const latch =
+                    ResolveExactLiveLatch(state);
+                if (latch != nullptr && *latch == 1)
+                {
+                    GEInt const latchBefore = static_cast<GEInt>(*latch);
+                    *latch = 0;
+                    GEInt const latchAfter = static_cast<GEInt>(*latch);
+                    bool const writeConfirmed = latchAfter == 0;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+                    CollisionDiagnostics::LogRaw8FistOpportunityMissRearm(
+                        state.actorInstance, state.fistSourceInstance,
+                        state.spu, state.c1Generation,
+                        state.opportunityOrdinal, scope.fullStop,
+                        latchBefore, latchAfter, writeConfirmed);
+#else
+                    (void) latchBefore;
+                    (void) latchAfter;
+                    (void) writeConfirmed;
+#endif
+                }
+            }
+        }
+    }
+
+    if (g_pCurrentInvocation == &scope)
+        g_pCurrentInvocation = scope.previous;
+}
+
+void ObserveContactResolutionDispatch(
+    void *callerAddress, eCEntity *entityArgument1,
+    eCEntity *entityArgument2)
+{
+    HMODULE const gameModule = ::GetModuleHandleA("Game.dll");
+    if (gameModule == nullptr
+        || callerAddress
+            != reinterpret_cast<void *>(
+                reinterpret_cast<std::uintptr_t>(gameModule)
+                + 0x0016E348))
+    {
+        return;
+    }
+
+    InvocationScope *const invocation = g_pCurrentInvocation;
+    if (invocation == nullptr || !invocation->active)
+        return;
+    auto found = g_Raw8FistMarkerExecutions.find(entityArgument2);
+    if (found == g_Raw8FistMarkerExecutions.end())
+        return;
+
+    Raw8FistMarkerExecution &state = found->second;
+    bool const exactInvocation = state.opportunityPending
+        && state.actorInstance == entityArgument2
+        && state.fistSourceInstance == entityArgument1
+        && state.actorInstance == invocation->actorInstance
+        && state.fistSourceInstance == invocation->fistSourceInstance
+        && state.spu == invocation->spu
+        && state.c1Generation == invocation->c1Generation
+        && state.opportunityOrdinal == invocation->opportunityOrdinal;
+    if (!exactInvocation || !MatchesPendingOpportunity(state))
+        return;
+
+    volatile GEU8 *const latch = ResolveExactLiveLatch(state);
+    GEInt const latchValue =
+        latch != nullptr ? static_cast<GEInt>(*latch) : -1;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    CollisionDiagnostics::LogRaw8FistOpportunityContactConsumed(
+        state.actorInstance, state.fistSourceInstance, state.spu,
+        state.c1Generation, state.opportunityOrdinal, callerAddress,
+        entityArgument1, entityArgument2, latchValue);
+#else
+    (void) latchValue;
+#endif
+
+    invocation->contactConsumed = true;
+    state.opportunityPending = false;
+    RetireRaw8FistTimingPermission(state, "CONTACT_CONSUMED");
+    // Keep the exact C1 execution record so a later accepted FIST in this
+    // generation can reopen a fresh opportunity.
+}
+
+void CloseForFinalization(
+    CollisionLifecycleGuard::GenerationToken const &generation)
+{
+    if (!generation.valid)
+        return;
+    auto found = g_Raw8FistMarkerExecutions.find(
+        generation.actorInstance);
+    if (found == g_Raw8FistMarkerExecutions.end()
+        || found->second.c1Generation != generation.generation)
+    {
+        return;
+    }
+
+    CollisionLifecycleGuard::GenerationToken const currentGeneration =
+        CollisionLifecycleGuard::CaptureCurrentGenerationToken(
+            generation.actorInstance);
+    bool const sameGeneration = currentGeneration.valid
+        && currentGeneration.actorInstance == generation.actorInstance
+        && currentGeneration.generation == generation.generation;
+    if (!sameGeneration)
+    {
+        CloseAndEraseExecution(
+            found,
+            "FINALIZATION_GENERATION_CHANGED_NO_LATCH_WRITE", false);
+        return;
+    }
+    CloseAndEraseExecution(found, "C1_FINALIZED", true);
 }
 }

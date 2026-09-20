@@ -908,7 +908,7 @@ void LogRaw8FistMarkerOpportunity(
     std::fflush(g_pLog);
 }
 
-void LogRaw8FistTimingPermissionConsumed(
+void LogRaw8FistTimingPermissionApplied(
     eCEntity *actorInstance, std::uint64_t c1Generation,
     gCScriptProcessingUnit *hookSPU, void *hookAnimationActorAddress,
     GEInt motionType, GEDouble realPlayTime, GEDouble maxTime,
@@ -937,13 +937,13 @@ void LogRaw8FistTimingPermissionConsumed(
             motion = movement.GetText();
     }
     char const *const classification = syntheticApplied
-        ? "EARLY_PERMISSION_USED" : "NATIVE_TIMING";
+        ? "EARLY_PERMISSION_APPLIED" : "NATIVE_TIMING";
     if (actor != None
         && raw8UseType == static_cast<GEInt>(gEUseType_Fist))
     {
         std::fprintf(
             g_pLog,
-            "CORE RAW8_FIST_TIMING ElapsedMs=%.3f Actor=%s Action=%d Family=%s Motion=%s C1=%llu Raw8Fist=%s Raw8UseType=%d PermissionConsumed=1 SyntheticApplied=%d Classification=%s\n",
+            "CORE RAW8_FIST_TIMING ElapsedMs=%.3f Actor=%s Action=%d Family=%s Motion=%s C1=%llu Raw8Fist=%s Raw8UseType=%d PermissionApplied=1 SyntheticApplied=%d Classification=%s\n",
             RuntimeClock::GetElapsedMilliseconds(), EntityName(actorInstance),
             action, AttackFamilyNameForAction(action), motion.c_str(),
             static_cast<unsigned long long>(c1Generation),
@@ -954,7 +954,7 @@ void LogRaw8FistTimingPermissionConsumed(
     {
         std::fprintf(g_pLog, "===== CORE RAW8 FIST TIMING ANOMALY =====\n");
         std::fprintf(g_pLog, "Classification: IDENTITY_MISMATCH\n");
-        std::fprintf(g_pLog, "Boundary: TIMING_PERMISSION_CONSUMED\n");
+        std::fprintf(g_pLog, "Boundary: TIMING_PERMISSION_APPLIED\n");
         std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
         std::fprintf(g_pLog, "Action: %d\n", action);
         std::fprintf(g_pLog, "Family: %s\n",
@@ -983,7 +983,7 @@ void LogRaw8FistTimingPermissionConsumed(
     }
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     std::fprintf(g_pLog, "===== DEEP RAW8 FIST TIMING PERMISSION =====\n");
-    std::fprintf(g_pLog, "Boundary: RAW8_FIST_TIMING_PERMISSION_CONSUMED\n");
+    std::fprintf(g_pLog, "Boundary: RAW8_FIST_TIMING_PERMISSION_APPLIED\n");
     std::fprintf(g_pLog, "ActorAddress: %p\n",
                  static_cast<void *>(actorInstance));
     std::fprintf(g_pLog, "HookSPUAddress: %p\n",
@@ -1023,26 +1023,13 @@ void LogRaw8FistTimingPermissionRetired(
     if (g_pLog == nullptr)
         return;
 
-    bool const routineRetirement = reason != nullptr
-        && (std::strcmp(reason, "SUPERSEDED_BY_ACCEPTED_FIST") == 0
-            || std::strcmp(reason, "C1_GENERATION_CHANGED") == 0);
-    if (!routineRetirement)
-    {
-        std::fprintf(g_pLog, "===== CORE RAW8 FIST TIMING ANOMALY =====\n");
-        std::fprintf(g_pLog, "Classification: IDENTITY_MISMATCH\n");
-        std::fprintf(g_pLog, "Boundary: TIMING_PERMISSION_RETIRED\n");
-        std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                     RuntimeClock::GetElapsedMilliseconds());
-        std::fprintf(g_pLog, "Actor: %s\n", EntityName(actorInstance));
-        std::fprintf(g_pLog, "C1Generation: %llu\n",
-                     static_cast<unsigned long long>(c1Generation));
-        std::fprintf(g_pLog, "Reason: %s\n",
-                     reason != nullptr ? reason : "<null>");
-        std::fprintf(g_pLog, "SPUAddress: %p\n", static_cast<void *>(spu));
-        std::fprintf(g_pLog, "AnimationActorAddress: %p\n",
-                     animationActorAddress);
-        std::fprintf(g_pLog, "=========================================\n\n");
-    }
+    std::fprintf(
+        g_pLog,
+        "CORE RAW8_FIST_TIMING ElapsedMs=%.3f Actor=%s C1=%llu "
+        "PermissionRetired=1 Reason=%s\n",
+        RuntimeClock::GetElapsedMilliseconds(), EntityName(actorInstance),
+        static_cast<unsigned long long>(c1Generation),
+        reason != nullptr ? reason : "<null>");
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     std::fprintf(g_pLog, "===== DEEP RAW8 FIST TIMING PERMISSION =====\n");
     std::fprintf(g_pLog, "Boundary: RAW8_FIST_TIMING_PERMISSION_RETIRED\n");
@@ -1064,6 +1051,169 @@ void LogRaw8FistTimingPermissionRetired(
     (void) spu;
     (void) animationActorAddress;
 #endif
+    std::fflush(g_pLog);
+}
+
+struct Raw8OpportunityContext
+{
+    GEInt action;
+    std::string motion;
+};
+
+static Raw8OpportunityContext CaptureRaw8OpportunityContext(
+    eCEntity *actorInstance)
+{
+    Raw8OpportunityContext context = {};
+    context.action = -1;
+    context.motion = "<unavailable>";
+    Entity actor(actorInstance);
+    if (actor == None)
+        return context;
+
+    context.action = static_cast<GEInt>(
+        actor.Routine.GetProperty<PSRoutine::PropertyAction>());
+    bCString const movement = actor.NPC.GetCurrentMovementAni();
+    if (movement.GetText() != nullptr)
+        context.motion = movement.GetText();
+    return context;
+}
+
+static void LogRaw8OpportunityIdentity(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal,
+    Raw8OpportunityContext const &context)
+{
+    char const *sourceName = "<unavailable>";
+    Entity actor(actorInstance);
+    if (actor != None
+        && CollisionSources::ResolveFistCollisionSource(actor)
+            == fistSourceInstance)
+    {
+        sourceName = EntityName(fistSourceInstance);
+    }
+    std::fprintf(
+        g_pLog,
+        " Actor=%s ActorAddress=%p Action=%d Family=%s Motion=%s "
+        "C1=%llu Raw8Fist=%s Raw8FistAddress=%p SPUAddress=%p "
+        "OpportunityOrdinal=%llu",
+        EntityName(actorInstance), static_cast<void *>(actorInstance),
+        context.action, AttackFamilyNameForAction(context.action),
+        context.motion.c_str(),
+        static_cast<unsigned long long>(c1Generation),
+        sourceName,
+        static_cast<void *>(fistSourceInstance), static_cast<void *>(spu),
+        static_cast<unsigned long long>(opportunityOrdinal));
+}
+
+void LogRaw8FistOpportunityOpen(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal, MarkerProcessResult const &result,
+    bool timingActive)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    Raw8OpportunityContext context = {};
+    context.action = result.markerAction;
+    context.motion = result.currentAnimation;
+    std::fprintf(
+        g_pLog, "CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=%.3f",
+        RuntimeClock::GetElapsedMilliseconds());
+    LogRaw8OpportunityIdentity(
+        actorInstance, fistSourceInstance, spu, c1Generation,
+        opportunityOrdinal, context);
+    std::fprintf(
+        g_pLog,
+        " Reason=ACCEPTED_FIST LatchBefore=%d LatchAfter=%d "
+        "LatchWriteAttempted=%d LatchWriteConfirmed=%d TimingActive=%d\n",
+        result.fistLatchBefore, result.fistLatchAfter,
+        result.fistLatchWriteAttempted ? 1 : 0,
+        result.fistLatchWriteConfirmed ? 1 : 0,
+        timingActive ? 1 : 0);
+    std::fflush(g_pLog);
+}
+
+void LogRaw8FistOpportunityMissRearm(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal, bool fullStop,
+    GEInt latchBefore, GEInt latchAfter, bool writeConfirmed)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    Raw8OpportunityContext const context =
+        CaptureRaw8OpportunityContext(actorInstance);
+    std::fprintf(
+        g_pLog, "CORE RAW8_OPPORTUNITY_MISS_REARM ElapsedMs=%.3f",
+        RuntimeClock::GetElapsedMilliseconds());
+    LogRaw8OpportunityIdentity(
+        actorInstance, fistSourceInstance, spu, c1Generation,
+        opportunityOrdinal, context);
+    std::fprintf(
+        g_pLog,
+        " Reason=NO_CONTACT_DISPATCH FullStop=%d LatchBefore=%d "
+        "LatchAfter=%d LatchWriteAttempted=1 LatchWriteConfirmed=%d\n",
+        fullStop ? 1 : 0, latchBefore, latchAfter,
+        writeConfirmed ? 1 : 0);
+    std::fflush(g_pLog);
+}
+
+void LogRaw8FistOpportunityContactConsumed(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal, void *callerAddress,
+    eCEntity *entityArgument1, eCEntity *entityArgument2,
+    GEInt latchValue)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    Raw8OpportunityContext const context =
+        CaptureRaw8OpportunityContext(actorInstance);
+    std::fprintf(
+        g_pLog,
+        "CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=%.3f",
+        RuntimeClock::GetElapsedMilliseconds());
+    LogRaw8OpportunityIdentity(
+        actorInstance, fistSourceInstance, spu, c1Generation,
+        opportunityOrdinal, context);
+    std::fprintf(
+        g_pLog,
+        " Reason=EXACT_NATIVE_CONTACT_DISPATCH CallerAddress=%p "
+        "Arg1Address=%p Arg2Address=%p LatchValue=%d\n",
+        callerAddress, static_cast<void *>(entityArgument1),
+        static_cast<void *>(entityArgument2), latchValue);
+    std::fflush(g_pLog);
+}
+
+void LogRaw8FistOpportunityClose(
+    eCEntity *actorInstance, eCEntity *fistSourceInstance,
+    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
+    std::uint64_t opportunityOrdinal, bool opportunityPending,
+    char const *reason, GEInt latchBefore, GEInt latchAfter,
+    bool writeAttempted, bool writeConfirmed)
+{
+    if (g_pLog == nullptr)
+        return;
+
+    Raw8OpportunityContext const context =
+        CaptureRaw8OpportunityContext(actorInstance);
+    std::fprintf(
+        g_pLog, "CORE RAW8_OPPORTUNITY_CLOSE ElapsedMs=%.3f",
+        RuntimeClock::GetElapsedMilliseconds());
+    LogRaw8OpportunityIdentity(
+        actorInstance, fistSourceInstance, spu, c1Generation,
+        opportunityOrdinal, context);
+    std::fprintf(
+        g_pLog,
+        " Reason=%s OpportunityPending=%d LatchBefore=%d LatchAfter=%d "
+        "LatchWriteAttempted=%d LatchWriteConfirmed=%d\n",
+        reason != nullptr ? reason : "<null>",
+        opportunityPending ? 1 : 0, latchBefore, latchAfter,
+        writeAttempted ? 1 : 0, writeConfirmed ? 1 : 0);
     std::fflush(g_pLog);
 }
 

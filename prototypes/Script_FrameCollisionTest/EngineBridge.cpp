@@ -11,7 +11,6 @@
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 #include "CollisionDiagnostics.h"
-#include "Raw8FistPersistentOpportunityProbe.h"
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 #include "CollisionDiagnosticsDeep.h"
@@ -50,9 +49,9 @@ static mCFunctionHook Hook_AISetState;
 static mCFunctionHook Hook_RunScriptFunction;
 static mCCallHook Hook_Raw8FistTimingGateGetPlayTime;
 static mCFunctionHook Hook_ClearTriggeredListAll;
+static mCFunctionHook Hook_EntityOnDamage;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-static mCFunctionHook Hook_EntityOnDamage;
 static GEU32 const EntityOnDamageEntryLogCap = 64;
 static GEU32 g_EntityOnDamageEntryOrdinal = 0;
 #endif
@@ -110,16 +109,8 @@ static GEDouble GE_STDCALL Raw8FistTimingGateGetPlayTime_FrameCollisionTest(
 {
     GEDouble const realPlayTime =
         a_pAnimationActor->GetPlayTime(a_MotionType);
-    GEDouble const permanentPlayTime =
-        Raw8FistCollision::ApplyTimingPermission(
+    return Raw8FistCollision::ApplyTimingPermission(
         a_pSPU, a_pAnimationActor, a_MotionType, realPlayTime);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    return Raw8FistPersistentOpportunityProbe::ApplyTimingPersistence(
-        a_pSPU, a_pAnimationActor, a_MotionType, realPlayTime,
-        permanentPlayTime);
-#else
-    return permanentPlayTime;
-#endif
 }
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -316,9 +307,6 @@ static GELPVoid StartEffect_FrameCollisionTest(
             equippedSprintAuthorized);
     }
     Raw8FistCollision::UpdateTimingPermissionFromMarker(actor, result);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    Raw8FistPersistentOpportunityProbe::ObserveAcceptedMarker(actor, result);
-#endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (result.code == MarkerResult_Accepted)
@@ -596,17 +584,13 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     }
 #endif
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    Raw8FistPersistentOpportunityProbe::InvocationScope raw8OpportunityScope = {};
-    Raw8FistPersistentOpportunityProbe::BeginCombatMoveInvocation(
+    Raw8FistCollision::InvocationScope raw8OpportunityScope = {};
+    Raw8FistCollision::BeginCombatMoveInvocation(
         a_pSPU, a_bFullStop, raw8OpportunityScope);
-#endif
     GEBool const result = Hook_AICombatMoveInstr.GetOriginalFunction(
         &AICombatMoveInstr_FrameCollisionTest)(a_pArgs, a_pSPU, a_bFullStop);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    Raw8FistPersistentOpportunityProbe::CompleteCombatMoveInvocation(
+    Raw8FistCollision::CompleteCombatMoveInvocation(
         raw8OpportunityScope);
-#endif
     CollisionLifecycleGuard::CompleteCombatMoveResult const complete =
         CollisionLifecycleGuard::CompleteCombatMoveCandidate(generation, result);
 #ifdef FRAME_COLLISION_DIAGNOSTICS
@@ -707,9 +691,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     Hook_AISetState.GetOriginalFunction(&AISetState_FrameCollisionTest)(
         a_pThis, a_State);
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
-    Raw8FistPersistentOpportunityProbe::CloseForFinalization(finalization);
-#endif
+    Raw8FistCollision::CloseForFinalization(finalization);
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (IsPlayerEntity(ownerEntity))
@@ -754,14 +736,14 @@ static void GE_STDCALL ClearTriggeredListAll_FrameCollisionTest(
     }
 }
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
 static void GE_STDCALL EntityOnDamage_FrameCollisionTest(
     gCEntity *a_pThis, eCEntity *a_pEntity1, eCEntity *a_pEntity2,
     GEInt a_iArg1, GEInt a_iArg2, eCContactIterator &a_rContactIterator)
 {
     void *callerAddress = _ReturnAddress();
-    Raw8FistPersistentOpportunityProbe::ObserveContactResolutionDispatch(
+    Raw8FistCollision::ObserveContactResolutionDispatch(
         callerAddress, a_pEntity1, a_pEntity2);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     ++g_EntityOnDamageEntryOrdinal;
     if (g_EntityOnDamageEntryOrdinal <= EntityOnDamageEntryLogCap)
     {
@@ -775,13 +757,13 @@ static void GE_STDCALL EntityOnDamage_FrameCollisionTest(
         CollisionDiagnostics::LogEntityOnDamageEntryCap(
             EntityOnDamageEntryLogCap);
     }
+#endif
 
     Hook_EntityOnDamage.GetOriginalFunction(
         &EntityOnDamage_FrameCollisionTest)(
             a_pThis, a_pEntity1, a_pEntity2, a_iArg1, a_iArg2,
             a_rContactIterator);
 }
-#endif
 
 static void GE_STDCALL SetCollisionGroup_FrameCollisionTest(
     eCEntity *a_pThis, eECollisionGroup a_Group)
@@ -1027,12 +1009,10 @@ void FrameCollision::EngineBridge::InstallHooks()
         .ThisCall()
         .Hook();
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS
     Hook_EntityOnDamage
         .Prepare(RVA_Game(0x668D0), &EntityOnDamage_FrameCollisionTest)
         .ThisCall()
         .Hook();
-#endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     gSScript const *onTickScript = GetScriptAdminExt().GetScript("OnTick");
