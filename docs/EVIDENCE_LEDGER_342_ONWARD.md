@@ -38,7 +38,7 @@ Keep interpretation concise. Long causal reasoning belongs in the active investi
 ## Entries
 
 
-### EV-342 — Minecrawler marked raw8 regression PASS with contact qualification
+### EV-342 — Minecrawler marked raw8 regression PASS
 
 Observed:
 - Native Minecrawler uses factual RIGHT `Fist` / UseType 8 and enters the ordinary production raw8 mechanism when authored FIST markers are present.
@@ -60,7 +60,7 @@ Provenance:
 - Diagnostic profile: CORE; DEEP disabled.
 
 Disposition:
-- **PASS with native-contact qualification.**
+- **PASS.**
 - Minecrawler broadens Phase-4 factual Fist/raw8 creature coverage without introducing species-specific behavior.
 
 ### EV-343 — Bloodfly marked raw8 Normal/Power/Sprint regression PASS
@@ -170,3 +170,40 @@ Provenance:
 Disposition:
 - **CONFIRMED DESIGN DISCOVERY / RAW8 AUTHORING-SEMANTICS GATE OPEN.**
 - Pause broad Phase-4 certification until the project explicitly retains the one-shot FIST contract or freezes a bounded research path toward persistent-window semantics.
+
+
+### EV-347 — Gargoyle raw8 post-attempt latch observation proves attempt-level latch consumption
+
+Observed:
+- Controlled runtime used the reviewed diagnostics-only implementation `4ab9a77557f9ad5057d158b7d26a3098db657b28` and diagnostic DLL SHA256 `3EDC9FC0B6BE0BC8B4ED3249D4CC6F99F613694FC32ECC867DF9B6396FFC5CD3`.
+- The frame-3 Gargoyle factual `Action=2 / POWER`, exact RIGHT `Fist` / UseType8 fixture produced four exact marked raw8 C1 observations with `SyntheticApplied=1`.
+- C1 6: no same-invocation native raw8 damage; post-original `SPU+0x164 = 1`.
+- C1 9: exact native raw8 damage occurred at `Game.dll+0x0016E348` with `Arg1=Fist`, `Arg2=Gargoyle`, `Target=PC_Hero`; post-original `SPU+0x164 = 1`.
+- C1 18: no same-invocation native raw8 damage; post-original `SPU+0x164 = 1`.
+- C1 50: exact native raw8 damage occurred at `Game.dll+0x0016E348` with `Arg1=Fist`, `Arg2=Gargoyle`, `Target=PC_Hero`; post-original `SPU+0x164 = 1`.
+- All four observations preserved exact SPU/actor/C1/source/motion identity (`SPUActorMatch=1 C1Match=1 SourceMatch=1 MotionMatch=1`).
+- User runtime observation matched the log: close-range frame-3 attacks hit; farther frame-3 attacks missed even though the Gargoyle later reached the player during the remaining attack motion.
+- Every marked Gargoyle C1 finalized at outstanding zero. No anomaly, warning, contradiction, rejected marker, repair or divergence record appeared; the diagnostic DLL unloaded cleanly.
+
+Interpretation:
+- On the tested raw8 Power route, Gothic closes `SPU+0x164` after the native contact **attempt**, not only after successful damage.
+- Therefore the current early synthetic FIST opportunity is consumed even when no native damage/contact result occurs.
+- The existing same-invocation `gCEntity::OnDamage` hook plus exact caller/source/actor identity provides a bounded factual success signal for this tested route.
+- This explains the EV-346 Gargoyle timing behavior and confirms the exact mismatch with the agreed persistent authored-opportunity semantic.
+
+Scope / limits:
+- Proves attempt-level latch consumption for the tested Gargoyle raw8 Power synthetic path.
+- Does not yet prove the final production success detector across every raw8 actor/family.
+- Does not prove that post-miss latch rearm alone is sufficient for the desired persistent opportunity; timing rearm remains deliberately untested.
+
+Provenance:
+- Work implementation: `4ab9a77557f9ad5057d158b7d26a3098db657b28`.
+- Normal Chat source review: PASS.
+- Local two-twin build: PASS.
+- Diagnostic deployment/startup: PASS; built/live SHA256 matched `3EDC9FC0B6BE0BC8B4ED3249D4CC6F99F613694FC32ECC867DF9B6396FFC5CD3`.
+- Canonical archived log: `research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test.log`.
+- Git blob: `7b2262ee2acf2d8e5da3fea4a3c5984eb849a9b8`.
+
+Disposition:
+- **CAUSAL OBSERVATION PASS.**
+- Close the post-attempt observation probe. Next bounded question: whether one exact post-miss latch rearm, without timing rearm, preserves a later native opportunity while successful early contact remains consumed.
