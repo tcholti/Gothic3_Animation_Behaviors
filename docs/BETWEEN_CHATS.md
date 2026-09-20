@@ -10,7 +10,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Latest completed evidence: **EV-353**.
+Latest completed evidence: **EV-354**.
 
 Permanent raw8 architecture:
 `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`
@@ -18,29 +18,31 @@ Permanent raw8 architecture:
 Frozen production task:
 `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
 
-**Do not send to Work yet.**
+## EV-354 pre-Work sentinel PASS
 
-## Current pre-Work sentinel
+Native Sabretooth single-FIST control used the source-unchanged EV-353 diagnostic mechanism.
 
-EV-316 previously captured five native Sabretooth raw8 Sprint C1s where the same PowerAttack-named motion began factual `Action9/SPRINT` and later continued factual `Action2/POWER` inside the same C1.
+Whole run:
+- 55 opportunity opens;
+- 36 exact native contact consumptions;
+- 19 C1-finalization closes;
+- 824 miss rearms;
+- 0 rejection/contradiction/lifecycle/invariant flags.
 
-Before production implementation, reproduce this with the current source-unchanged EV-353 persistent-opportunity diagnostic build and a **single FIST** fixture.
+Decisive Sprint-origin result:
+- 20 tokens opened under factual Action9/SPRINT;
+- the same tokens were consumed under factual Action2/POWER in the same C1;
+- the tested route uses the same PowerAttack-named motion for both action states;
+- C1 183/token43 and C1 207/token47 also missed/rearmed before later Action2 contact.
 
-Decisive sequence:
+Therefore Action/family change alone does not terminate a pending raw8 opportunity.
 
-```text
-Action9/SPRINT same C1
--> FIST -> token OPEN
--> early miss / MISS_REARM
--> same C1 becomes Action2/POWER
--> same opportunity remains pending
--> CONTACT_CONSUMED or true C1 CLOSE
-```
+Canonical source is archived; POP-07 derived package remains under `research/derived/`.
 
-Action/family change alone must never close or consume the token.
+## Stop gate
 
-Use medium spacing/brief retreat to encourage a pre-contact FIST with later reach; include some full escapes as no-contact closure controls. Close contacts are baseline only.
+Run `python tools/knowledge/validate_knowledge_state.py` and require `Knowledge-state validation PASS`.
 
-After logs are processed, update evidence/current state, run POP-12, and only then clear the frozen production task for Work.
+Only after PASS may the frozen production task be sent to Work.
 
-`research/raw/` should contain only `Keep.txt` before new uploads.
+`research/raw/` should contain only `Keep.txt`.
