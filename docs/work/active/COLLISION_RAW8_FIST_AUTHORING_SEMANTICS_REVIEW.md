@@ -188,6 +188,21 @@ Current status:
 7. **NEXT RESEARCH QUESTION:** identify the smallest factual native hit/contact-resolution boundary that means the authored opportunity has actually contacted/resolved against its target, without inspecting HP damage, block, immunity or reaction policy. If that boundary has not occurred, keep eligibility until it does or until Hit/C1 ends.
 8. FIST_OFF is **not part of the agreed raw8 design** absent future contradictory evidence.
 
+## Collision-vs-damage drift audit — 2026-09-20
+
+Normal Chat reviewed the current collision behavior owners after the EV-349 clarification.
+
+Result:
+
+- permanent `Raw8FistCollision` does not use HP-damage outcome to control production collision behavior;
+- permanent `PhysicalFistCollision`, equipped collision and `CollisionLifecycleGuard` likewise remain collision/contact/lifecycle-owned rather than damage-policy-owned;
+- `gCEntity::OnDamage` observation is diagnostics-only in the current bridge;
+- the closed temporary `Raw8FistWindowProbe` is the one place where an `ExactNativeDamageObserved` research classifier currently gates a diagnostic-only latch rearm;
+- that classifier was valid for the bounded EV-348 causal experiment but must **not** be promoted as the production semantic;
+- because the EV-348/EV-349 probe is closed, retire `Raw8FistWindowProbe` and its diagnostic bridge delegation before using the diagnostic twin as the baseline for new causal work.
+
+This is classified as research-language / temporary-probe drift, not confirmed permanent behavior drift.
+
 ## Gate
 
 The author-facing semantic is decided. Production redesign remains prohibited until the native mechanism is established causally.
