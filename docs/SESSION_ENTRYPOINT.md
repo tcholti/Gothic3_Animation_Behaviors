@@ -21,7 +21,7 @@ latest completed evidence = EV-352
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
 active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md
-current stop gate = one-file generation-safe finalization correction cleared for Work
+current stop gate = POP-12 validation of reviewed raw8 token implementation before local build
 ```
 
 ## Current responsibility
@@ -47,7 +47,7 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**POP-12 validation of the one-file generation-safe finalization correction handoff: PASS. The correction is cleared for bounded Work implementation.**
+**Correction commit `015a3ef90bf135cf502ac6507fb68f7c8c962800` independently source-reviewed PASS. Before local build/runtime, POP-12 must validate this reviewed implementation state.**
 
 Current frozen causal question:
 
