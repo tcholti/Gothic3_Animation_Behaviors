@@ -10,13 +10,11 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **Phase 4 broad regression PAUSED at EV-346 raw8 FIST authoring-semantics research.**
+Current gate: **Phase 4 broad regression PAUSED at raw8 persistent-opportunity causal research through EV-347.**
 
-Latest completed evidence: **EV-346**.
+Latest completed evidence: **EV-347**.
 
 ## Agreed raw8 design target
-
-User + Normal Chat agreed:
 
 ```text
 marked C1 starts
@@ -38,50 +36,78 @@ C1 / Hit termination, interruption or factual replacement
 -> any unused opportunity CLOSED
 ```
 
-No arbitrary timer.
-
-No authored raw8 FIST_OFF absent future evidence of a concrete unwanted-contact problem.
-
-Gothic retains target/contact/damage ownership.
+No arbitrary timer. No authored raw8 FIST_OFF absent future evidence of a concrete unwanted-contact problem. Gothic retains target/contact/damage ownership.
 
 Raw55 must later be checked against the same author-facing abstraction without copying raw8 mechanics into raw55.
 
-## Active raw8 probe
+## EV-347 closure
 
-`docs/work/active/COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md`
+Reviewed observation implementation:
 
-Work implementation `4ab9a77557f9ad5057d158b7d26a3098db657b28` is independently source-reviewed **PASS**. Runtime validation is pending.
+`4ab9a77557f9ad5057d158b7d26a3098db657b28`
 
-Probe responsibility is diagnostics-only:
+Diagnostic DLL:
 
-> After the current early synthetic raw8 opportunity executes, observe the factual post-native `SPU+0x164` latch state and correlate it with native damage/no-damage.
+`Script_FrameCollisionTest.dll`  
+SHA256 `3EDC9FC0B6BE0BC8B4ED3249D4CC6F99F613694FC32ECC867DF9B6396FFC5CD3`
 
-Preferred existing boundary:
-- current `EngineBridge` already wraps `AICombatMoveInstr`;
-- current `Game+0x16E180` timing transport already knows when synthetic permission is consumed;
-- if source facts support exact correlation, add only the smallest diagnostic state/record and read the latch after original `AICombatMoveInstr` returns;
-- do not add a new engine hook if the existing wrapper is sufficient;
-- if it is not sufficient, Work must report the contradiction and STOP rather than inventing a boundary.
+Build/deploy/startup: PASS.
 
-Protected:
-- zero new behavior;
-- no new latch writes;
-- no rearm;
-- no timing change;
-- no callback suppression;
-- no direct/custom damage;
-- no ClearTriggeredList;
-- no group mutation;
-- no raw55/equipped/Sprint change.
+Controlled frame-3 Gargoyle raw8 Power result:
+- four exact `SyntheticApplied=1` attempts;
+- C1 6 miss -> post-attempt latch 1;
+- C1 9 exact `Game+0x16E348` Fist/Gargoyle hit -> post-attempt latch 1;
+- C1 18 miss -> post-attempt latch 1;
+- C1 50 exact `Game+0x16E348` Fist/Gargoyle hit -> post-attempt latch 1;
+- all exact SPU/C1/source/motion identity checks matched;
+- all marked C1s finalized cleanly.
+
+Conclusion:
+
+> The tested native raw8 path closes the latch after the **attempt**, whether or not damage succeeds.
+
+The observation probe is CLOSED/PASS and archived.
+
+Canonical evidence:
+`research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test.log`  
+Git blob `7b2262ee2acf2d8e5da3fea4a3c5984eb849a9b8`.
+
+## Active bounded Work task
+
+`docs/work/active/COLLISION_RAW8_FIST_POST_MISS_LATCH_REARM_CAUSAL_PROBE.md`
+
+Single causal question:
+
+> After an exact marked raw8 Power synthetic attempt misses, can one exact post-original `SPU+0x164: 1 -> 0` write preserve a later native opportunity when the target is reached?
+
+Frozen intervention:
+- Power/raw8 only for this first causal probe;
+- exact actor/SPU/C1/source/motion identity;
+- exact synthetic permission consumed;
+- exact post-attempt latch 1;
+- no exact same-invocation native raw8 damage matching `Game+0x16E348` + exact fist source + exact actor;
+- then write latch 1->0 once;
+- do **not** rearm timing permission;
+- successful early hit branch performs no write.
+
+Architecture:
+- temporary `Raw8FistWindowProbe` module;
+- diagnostic twin only;
+- EngineBridge remains hook owner / minimal delegation;
+- no new hook;
+- no timer/polling;
+- no direct damage;
+- no target inference;
+- no FIST_OFF;
+- no raw55/equipped/Sprint changes.
 
 Work build execution is PROHIBITED.
 
-Next:
-1. User builds both `Script_FrameCollisionTest` and `Script_FrameCollisionBehaviorTest` locally; deploy diagnostic twin only.
-2. Verify one live collision DLL/twin and capture diagnostic SHA256.
-3. Use an isolated Gargoyle raw8 Power fixture with an early marker that produces `SyntheticApplied=1`; the approximate frame-3 fixture is preferred because the prior run naturally produced both hits and misses at identical authored timing.
-4. Capture enough attacks to obtain at least one synthetic miss and one synthetic hit.
-5. Correlate every `CORE RAW8_FIST_POST_ATTEMPT` OnDamage ordinal with the exact `ENTITY_ON_DAMAGE_ENTRY` record before interpreting hit/miss.
-6. Do not resume broad Phase 4 until this causal research chain closes or the design is revised.
+After Work result:
+1. Normal Chat independent source review.
+2. User builds both twins, deploys diagnostic twin only.
+3. Use same frame-3 Gargoyle fixture with close-range hits and far-range initial misses.
+4. Expected causal contrast: far synthetic miss gets one probe latch rearm then a later native opportunity; close synthetic hit gets no rearm and no second hit.
+5. This probe does not yet prove continuous eligibility between marker time and native threshold.
 
-`research/raw/` currently contains only `Keep.txt`.
+`research/raw/` should contain only `Keep.txt`.
