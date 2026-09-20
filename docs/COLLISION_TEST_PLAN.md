@@ -171,6 +171,7 @@ Gargoyle post-attempt latch hit/miss observation             CAUSAL PASS — EV-
 Gargoyle post-miss latch-only rearm                          CAUSAL PASS — EV-348
 Gargoyle knockdown/get-up + cross-C1 rearm control           DESIGN DISCOVERY — EV-349
 Raw8 closed-research retirement / neutral baseline           PASS — EV-350
+Raw8 TouchDamage virtual contact-boundary observation         NEGATIVE PASS — EV-351
 ```
 
 The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. EV-342 is an ordinary PASS: some correctly processed Minecrawler executions did not physically contact, which is normal runtime attack variance rather than a collision-system qualification.
