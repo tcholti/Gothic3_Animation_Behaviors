@@ -259,15 +259,16 @@ Observed:
 - No anomaly, warning, contradiction, rejected marker, repair or divergence record appeared.
 
 Interpretation:
-- Visible health damage is not a valid collision-success oracle. Native target-state rules can suppress visible damage even when the native raw8 `OnDamage` boundary is entered, and can also prevent that boundary from being reached.
-- Therefore a future persistent raw8 opportunity mechanism must not treat every "no visible damage" outcome as a geometric miss that deserves forced recovery. Gothic must retain authority over knockdown/get-up vulnerability and other target-state rejection.
+- Visible health damage is not a valid collision/contact-consumption oracle. The Parade case proves the native raw8 `OnDamage` boundary can be entered while the defensive stance prevents visible damage.
+- The collision feature should therefore remain policy-neutral: it authors when native collision/contact opportunity is open, rearmed or closed; Gothic and other behavior systems own block/parry, immunity, knockdown/get-up vulnerability, reactions and HP damage.
+- A future authored opportunity should be consumed by the factual native hit/contact-resolution event for its target, regardless of whether gameplay damage is full, reduced, blocked or zero. If no such native resolution occurs, the opportunity may remain pending only until the exact Hit/C1 lifetime ends.
+- The C1 5 case does not require the collision system to diagnose why no `OnDamage` boundary was reached; that reason may remain entirely within Gothic/behavior policy.
 - The temporary latch-only rearm also demonstrates a lifecycle hazard: an unused rearmed opportunity can remain live across the original Hit C1 replacement into Recover unless the future design explicitly closes it at the agreed C1/Hit lifetime boundary.
-- This directly reinforces the previously agreed invariant that any unused authored raw8 opportunity must terminate on C1/Hit replacement/interruption.
 
 Scope / limits:
 - Tested Gargoyle factual raw8 Power only under the diagnostic-only rearm probe.
-- The log does not identify the exact native branch that distinguishes geometric no-contact from knockdown/get-up target-state rejection.
-- It does not establish the final production success/consumption detector.
+- The log does not yet prove the smallest production-safe native hit/contact-resolution boundary. `Game+0x16E348` is a strong tested-route candidate but must not be equated with HP damage.
+- It does not establish the final production opportunity-consumption detector.
 - User reports that New Balance changes some knockdown/get-up behavior; that statement is retained as a future compatibility-test reason, not as a verified New Balance mechanism in this standalone run.
 
 Provenance:
@@ -278,4 +279,4 @@ Provenance:
 
 Disposition:
 - **CAUSAL CORROBORATION / NEW LIFECYCLE + TARGET-STATE DISCOVERY.**
-- Do not advance directly to production. The remaining research must distinguish genuine no-contact from legitimate native target-state rejection and must close any unused opportunity at the exact C1/Hit lifetime boundary.
+- Do not advance directly to production. The remaining research must identify the smallest factual native hit/contact-resolution boundary, independent of gameplay damage policy, and must close any unused opportunity at the exact C1/Hit lifetime boundary.
