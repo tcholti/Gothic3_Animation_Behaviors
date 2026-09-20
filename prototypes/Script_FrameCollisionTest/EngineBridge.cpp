@@ -632,8 +632,17 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     }
 #endif
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    Raw8FistCollision::PostAttemptObservationScope raw8PostAttempt = {};
+    Raw8FistCollision::BeginPostAttemptObservation(
+        a_pSPU, raw8PostAttempt);
+#endif
     GEBool const result = Hook_AICombatMoveInstr.GetOriginalFunction(
         &AICombatMoveInstr_FrameCollisionTest)(a_pArgs, a_pSPU, a_bFullStop);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    Raw8FistCollision::CompletePostAttemptObservation(
+        raw8PostAttempt, result);
+#endif
     CollisionLifecycleGuard::CompleteCombatMoveResult const complete =
         CollisionLifecycleGuard::CompleteCombatMoveCandidate(generation, result);
 #ifdef FRAME_COLLISION_DIAGNOSTICS
@@ -855,6 +864,8 @@ static void GE_STDCALL EntityOnDamage_FrameCollisionTest(
 {
     void *callerAddress = _ReturnAddress();
     ++g_EntityOnDamageEntryOrdinal;
+    Raw8FistCollision::ObservePostAttemptOnDamageEntry(
+        g_EntityOnDamageEntryOrdinal);
     if (g_EntityOnDamageEntryOrdinal <= EntityOnDamageEntryLogCap)
     {
         CollisionDiagnostics::LogEntityOnDamageEntry(
