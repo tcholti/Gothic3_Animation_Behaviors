@@ -17,11 +17,11 @@ Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
 Phase 4 non-weapon creatures = PAUSED AT RAW8 FIST AUTHORING-SEMANTICS RESEARCH
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-351
+latest completed evidence = EV-352
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md
-active Work implementation task = NONE
-current stop gate = POP-12 knowledge-state validation before next raw8 observation
+active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md
+current stop gate = POP-12 validation of frozen persistent-opportunity token probe
 ```
 
 ## Current responsibility
@@ -47,13 +47,15 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**EV-351 closes the TouchDamage virtual-boundary probe: exact raw8 `CanBeActivatedNow` / `TriggerTarget` records remained absent even in three close/contact cases that reached `Game+0x16E348`. Do not freeze the next observation until POP-12 validates this closure state.**
+**EV-352 adds a native human locked-target control supporting target-directed raw8 semantics. A diagnostic-only persistent-opportunity-token causal probe is now frozen. Do not send it to Work until POP-12 validates this frozen task state.**
 
-Next bounded research question after POP-12 PASS:
+Current frozen causal question:
 
-> Does the exact raw8 Fist TouchDamage source's inherited `EntitiesVisited` / `EntitiesVisitedCount` state change anywhere across the whole combat-move invocation for close contacts, while remaining unchanged for far misses?
+> Can one exact marker-owned pending opportunity token keep Gothic's native raw8 one-shot mechanism eligible after misses, consume on the first exact `Game+0x16E348` contact-resolution dispatch, and close safely at exact Hit/C1 end?
 
-This is the final minimal check of the physical-source visited-bookkeeping analogy before moving deeper into the `Game+0x16E1A3 -> +0x16E348` raw8 combat-loop region.
+Frozen task: `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`.
+
+No per-target list is part of this probe.
 
 ## Current runtime provenance
 
