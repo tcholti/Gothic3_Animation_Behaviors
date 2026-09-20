@@ -45,7 +45,6 @@ ALLOWED_DOC_ROOT_FILES = {
     "DESIGN.md",
     "ENGINEERING_GUIDE.md",
     "EVIDENCE_INDEX.md",
-    "EVIDENCE_LEDGER_309_ONWARD.md",
     "EVIDENCE_PATH_MIGRATIONS.md",
     "FEATURE_DEVELOPMENT_METHOD.md",
     "GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md",
@@ -117,8 +116,8 @@ REQUIRED_SNIPPETS = {
     ],
 }
 
-CLOSED_LEDGER_REF_PATTERN = re.compile(
-    r"EVIDENCE_LEDGER_(?!309_ONWARD\.md)(?:STEP_B|\d+_ONWARD)\.md"
+LEDGER_REF_PATTERN = re.compile(
+    r"EVIDENCE_LEDGER_(?:STEP_B|\d+_ONWARD)\.md"
 )
 
 
@@ -248,7 +247,10 @@ def main() -> int:
 
     root_md = sorted(p for p in DOCS.glob("*.md") if p.is_file())
     unexpected_root = sorted(
-        p.name for p in root_md if p.name not in ALLOWED_DOC_ROOT_FILES
+        p.name
+        for p in root_md
+        if p.name not in ALLOWED_DOC_ROOT_FILES
+        and not ACTIVE_LEDGER_PATTERN.fullmatch(p.name)
     )
     missing_root = sorted(
         name for name in ALLOWED_DOC_ROOT_FILES if not (DOCS / name).exists()
@@ -279,6 +281,10 @@ def main() -> int:
                 "docs-root allowlist file(s) lack a KNOWLEDGE_REGISTRY.md route: "
                 + ", ".join(missing_registry_routes)
             )
+        if "`EVIDENCE_LEDGER_<start>_ONWARD.md`" not in registry_text:
+            errors.append(
+                "active evidence-ledger pattern lacks a KNOWLEDGE_REGISTRY.md route"
+            )
 
     root_ledgers = sorted(p for p in DOCS.glob("EVIDENCE_LEDGER*.md") if p.is_file())
     active_ledgers = [p for p in root_ledgers if ACTIVE_LEDGER_PATTERN.fullmatch(p.name)]
@@ -287,10 +293,13 @@ def main() -> int:
             "docs/ must contain exactly one active evidence ledger named "
             "EVIDENCE_LEDGER_<start>_ONWARD.md; closed volumes belong in docs/archive/evidence/"
         )
-    elif active_ledgers[0].stat().st_size > 64 * 1024:
-        warnings.append(
-            f"active ledger is {active_ledgers[0].stat().st_size} bytes; rotate it before it becomes routine context burden"
-        )
+        active_ledger_name = None
+    else:
+        active_ledger_name = active_ledgers[0].name
+        if active_ledgers[0].stat().st_size > 64 * 1024:
+            warnings.append(
+                f"active ledger is {active_ledgers[0].stat().st_size} bytes; rotate it before it becomes routine context burden"
+            )
 
     bad_root = sorted(p.name for p in root_md if TEMP_ROOT_PATTERN.search(p.name))
     if bad_root:
@@ -407,13 +416,14 @@ def main() -> int:
         # themselves directly to old storage volumes. The index and migration
         # map are the intentional exceptions.
         if p.name not in {"EVIDENCE_INDEX.md", "EVIDENCE_PATH_MIGRATIONS.md"}:
-            match = CLOSED_LEDGER_REF_PATTERN.search(text)
-            if match:
-                errors.append(
-                    f"direct closed-ledger filename reference in current document "
-                    f"{p.relative_to(ROOT)}: {match.group(0)}; cite EV IDs and route "
-                    f"storage through EVIDENCE_INDEX.md"
-                )
+            for match in LEDGER_REF_PATTERN.finditer(text):
+                if match.group(0) != active_ledger_name:
+                    errors.append(
+                        f"direct closed-ledger filename reference in current document "
+                        f"{p.relative_to(ROOT)}: {match.group(0)}; cite EV IDs and route "
+                        f"storage through EVIDENCE_INDEX.md"
+                    )
+                    break
 
     # Validate ordinary/current Markdown links. Archive documents are provenance
     # and may retain historical paths deliberately.
