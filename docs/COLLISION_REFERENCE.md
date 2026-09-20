@@ -92,11 +92,11 @@ each accepted G3AB_COL_FIST
 -> successful opportunity self-closes latch
 ```
 
-A later FIST in the same C1 can rearm another native contact opportunity. The marked raw8 mechanism is proven across human, Sabretooth/transformed Sabretooth and Orc fixtures; it is source/mechanism behavior, not a human/species special case.
+A later FIST in the same C1 can rearm another native contact opportunity. The marked raw8 mechanism is proven across human, Sabretooth/transformed Sabretooth, Wolf/transformed Wolf and Orc fixtures; it is source/mechanism behavior, not a human/species special case. EV-340 pairs the marked Wolf proof with an unmarked Wolf control showing factual Fist/raw8 remains completely native when no FIST marker is authored.
 
 There is no production `FIST_OFF`, no raw8 equipped-source window, no raw8 `ClearTriggeredList()` mechanism, and no direct/custom raw8 damage.
 
-Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316.
+Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-340.
 
 ## 5. PhysicalFist / raw55
 
@@ -130,7 +130,7 @@ The current production scope is exact current RIGHT PhysicalFist/raw55, marker-o
 
 Normal has a proven special native between-contact ALL-clear interaction; the permanent module suppresses/replaces only the exact evidence-backed native clear needed to preserve authored repeated-contact semantics.
 
-Evidence: EV-262–EV-298, EV-317.  
+Evidence: EV-262–EV-298, EV-317, EV-341.  
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.
 
 ### Audit disposition
@@ -239,13 +239,18 @@ EV-333  player 1H vs Orc Raider/raw52 mixed regression PASS
 EV-334  player 1H+shield vs Demon/raw3 mixed regression PASS
 EV-335  player 2H vs Stalker/raw52 mixed regression PASS
 EV-336  player raw8 Fist vs Goblin/raw2 + Sprint mixed regression PASS
+EV-337  Sabretooth native+transformed double-FIST raw8 PASS
+EV-338  Sabretooth native+transformed single-FIST raw8 PASS
+EV-339  Wolf native+transformed marked raw8 PASS
+EV-340  Wolf native+transformed unmarked raw8 fallback PASS
+EV-341  Troll raw55 single/double + player Staff mixed regression PASS
 ```
 
 Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. The equipped-Sprint scope discovered at EV-311 is now CLOSED/PASS as permanent behavior through EV-329.
 
 EV-330–EV-331 additionally corroborate the accepted current build across Orc Whirl OFF-gap/reactivation, repeated-RIGHT rearm, Orc/player raw8, ordinary player 1H and player 1H+torch source separation. EV-332–EV-336 broaden that current-build regression across player dual-1H, single 1H, 1H+shield, 2H and raw8 Fist against Ogre/raw52, Orc Raider/raw52, Demon/raw3, Stalker/raw52 and Goblin/raw2, including permanent equipped Sprint under ordinary mixed combat. These are regression confirmations, not semantic extensions.
 
-Phase 4 non-weapon creature regression is the next active standalone validation phase. Current validation plan: `COLLISION_TEST_PLAN.md`.
+Phase 4 non-weapon creature regression is ACTIVE. EV-337–EV-341 establish the first current-build body-contact batch: Sabretooth raw8 single/double behavior in native and transformed-player form, Wolf marked raw8 plus paired unmarked native fallback in native/transformed form, and Troll permanent raw55 single/double behavior while the player uses Staff. More creature fixtures remain planned before Phase 4 closure. Current validation plan: `COLLISION_TEST_PLAN.md`.
 
 ## 10. Evidence escalation rule
 
