@@ -191,7 +191,17 @@ Raw55 repeated-contact timing is family-specific. Quick, Normal, true Power and 
 
 ## 7. Raw8 Fist and PhysicalFist/raw55 Separation
 
-Production `gEUseType_Fist` / raw 8 does **not** create an equipped `Item_Attack` obligation and does not use C1-R1 physical repair. Its native permission/latch mechanism is owned by the Fist behavior described in `DESIGN.md` and evidenced through the raw8 production chain.
+Production `gEUseType_Fist` / raw8 does **not** create an equipped `Item_Attack` obligation and does not use C1-R1 physical repair. Its pending-opportunity/latch mechanism is owned entirely by `Raw8FistCollision` under `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
+
+C1 lifecycle contributes only factual execution identity/finalization transport:
+
+```text
+same C1 generation -> raw8 opportunity may persist across Action/family transport
+exact C1 finalization/replacement -> Raw8FistCollision closes/retires its own pending state
+generation changed during native AISetState -> old raw8 state may retire, but must not write into the replacement generation
+```
+
+This is **not** C1-R1 equipped repair and must not be implemented through collision-group cleanup.
 
 `gEUseType_PhysicalFist` / raw 55 is now factually classified for tested Troll/BlackTroll attacks, but it remains a distinct mechanism:
 
@@ -264,7 +274,7 @@ unsupported bow/crossbow/magic negatives
 
 ## 10. Durable Downstream Order
 
-Lifecycle architecture and permanent raw55 ownership are closed. The durable downstream dependency order is:
+Lifecycle architecture and permanent raw55 ownership are closed; permanent raw8 opportunity architecture is frozen with focused implementation/acceptance pending. The durable downstream dependency order is:
 
 ```text
 closed collision behavior/lifecycle architecture
