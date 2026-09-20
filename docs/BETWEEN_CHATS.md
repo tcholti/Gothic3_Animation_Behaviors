@@ -10,7 +10,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **Phase 4 non-weapon creature regression ACTIVE / PARTIAL PASS through EV-341.**
+Current gate: **Phase 4 non-weapon creature regression ACTIVE / PARTIAL PASS through EV-345.**
 
 No active Work implementation contract.
 
@@ -22,22 +22,23 @@ SHA256 DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A
 ```
 
 Latest Phase-4 batch:
-- EV-337 Sabretooth raw8 double-FIST, native + transformed player = PASS;
-- EV-338 Sabretooth raw8 single-FIST, native + transformed player = PASS;
-- EV-339 Wolf marked raw8, native + transformed player = PASS;
-- EV-340 Wolf unmarked factual Fist/raw8 native-fallback control, native + transformed player = PASS;
-- EV-341 Troll permanent raw55 mixed single/double FIST + player Staff = PASS.
+- EV-342 Minecrawler factual Fist/raw8 Normal/Power/Quick = PASS with native-contact qualification;
+- EV-343 Bloodfly factual Fist/raw8 Normal/Power/Sprint = PASS;
+- EV-344 Boar factual Fist/raw8 Normal = PASS;
+- EV-345 Bison factual Fist/raw8 Normal = PASS.
 
 Important distinctions:
-- Sabretooth double-marker executions that reached both FISTs use first-marker early permission and later native-timing rearm; interrupted C1s that never reached marker2 are not failures.
-- Wolf proves the raw8 opt-in boundary directly: same factual Fist/UseType8 source, marked => authored timing; unmarked => zero raw8 ownership/timing intervention and native damage remains healthy.
-- Troll remains raw55, separate from raw8. Double-FIST Quick uses one physical opening plus contact rearm only on marker2; exact RIGHT cleanup remains native.
-- zero nonzero/outstanding finalization failures or lifecycle/invariant/repair contradictions across all five logs.
+- Minecrawler has 12 accepted/owned raw8 FIST C1s and clean timing/finalization throughout; 8 native Fist damage contacts reached the player. One Power and three Normal executions produced no ONDAMAGE, so EV-342 does not claim 12/12 physical contact.
+- Bloodfly 10/10, Boar 9/9 and Bison 12/12 marked raw8 C1s produced native Fist damage to the player and finalized cleanly.
+- Bloodfly Sprint remains factual raw8/FIST; `EquippedSprintCollision` correctly delegates native with `Reason=FIST_MARKER_PRESENT`.
+- Mixed player 1H-family, 1H+shield and 2H controls retained balanced equipped opening/cleanup with no cross-mechanism interference.
+- Across all four logs there are no anomaly, warning, contradiction, rejected-marker, repair, divergence or nonzero-finalization records.
 
 Phase 4 remains open because more animal/monster fixtures are planned.
 
 Next responsibility:
-- continue `docs/COLLISION_TEST_PLAN.md` Phase 4 with other non-weapon creature/body-contact fixtures;
-- prioritize new creature/source coverage rather than repeating Sabretooth/Troll unless a contradiction appears.
+- continue `docs/COLLISION_TEST_PLAN.md` Phase 4 with additional non-weapon creature/body-contact fixtures;
+- preserve factual runtime source/UseType and do not infer raw8/raw55 from species or animation names;
+- do not reopen source implementation unless a runtime contradiction appears.
 
 `research/raw/` should contain only `Keep.txt`.
