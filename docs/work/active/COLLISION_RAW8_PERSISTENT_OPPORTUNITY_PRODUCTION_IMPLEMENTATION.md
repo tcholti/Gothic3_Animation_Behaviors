@@ -1,11 +1,24 @@
 # Gothic 3 — Raw8 Persistent Opportunity Production Implementation
 
-**Status:** ACTIVE — FROZEN PRODUCTION IMPLEMENTATION TASK / PRE-WORK SPRINT-TRANSPORT SENTINEL PASS / POP-12 PENDING  
+**Status:** ACTIVE — IMPLEMENTED AT `3426cede41c0087e43edc0d81c825ff167e8e034` / INDEPENDENT REVIEW BEHAVIOR PASS / DIAGNOSTICS-ONLY CHILD CORRECTION OPEN  
 **Opened:** 2026-09-20  
 **Architecture:** `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`  
 **Evidence closure:** EV-353  
 **Pre-Work Sprint transport sentinel:** EV-354 PASS  
 **Work build execution:** PROHIBITED
+
+## Independent Normal Chat review — 2026-09-20
+
+Published implementation: `3426cede41c0087e43edc0d81c825ff167e8e034`  
+Parent: `ce4b4daee8bf74f29e85591cbfab5f6abc064cd4`
+
+Static independent review accepted the permanent behavior/state-machine promotion and exact eight-path scope.
+
+One bounded diagnostics-only follow-up is required before any build/runtime acceptance:
+
+`docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`
+
+The correction does not reopen raw8 behavior architecture. It fixes only CORE terminal-event semantics and routine diagnostic compactness.
 
 ## Responsibility
 
