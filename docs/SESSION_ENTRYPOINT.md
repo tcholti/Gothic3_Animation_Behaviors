@@ -18,7 +18,7 @@ Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-active contract = raw8 post-miss latch-rearm causal probe
+active contract = raw8 post-miss latch-rearm causal probe — implementation reviewed PASS, runtime pending
 Phase 4 non-weapon creatures = PAUSED AT RAW8 AUTHORING-SEMANTICS GATE
 focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-347
@@ -79,8 +79,9 @@ Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authorin
 42. Observation Work implementation `4ab9a77557f9ad5057d158b7d26a3098db657b28` = Normal Chat source-review PASS.
 43. EV-347 raw8 post-attempt observation = CAUSAL PASS: exact hit and exact miss synthetic attempts both return with latch 1.
 44. Closed observation probe archived under `docs/archive/investigations/`.
-45. Active Work task: `COLLISION_RAW8_FIST_POST_MISS_LATCH_REARM_CAUSAL_PROBE.md` — after an exact synthetic Power miss, write latch 1->0 once; no timing rearm.
-46. Next after Work: Normal Chat source review -> User local build/deploy -> close-range vs far-range Gargoyle frame-3 causal runtime.
+45. Work implementation `ea652e3324fffb07da013229a2fd374c4f3b1c6b` = Normal Chat source-review PASS.
+46. Active runtime task: build both twins, deploy diagnostic twin only, then run close-range vs far-range Gargoyle frame-3 causal fixture.
+47. Expected: exact early hit -> no probe rearm; exact early miss -> one confirmed latch 1->0 rearm, then observe whether a later native-timed opportunity occurs.
 
 ## Current verified diagnostic product
 
