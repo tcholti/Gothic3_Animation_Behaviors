@@ -491,3 +491,60 @@ Disposition:
 - **RAW8 PERSISTENT OPPORTUNITY CAUSAL PROBE CLOSED/PASS.**
 - Do not run another exploratory contact-boundary/visited-list probe.
 - Next responsibility is Normal Chat production-architecture review/freeze; production promotion is not implied by this evidence entry.
+
+
+### EV-354 — Sabretooth raw8 Sprint-origin Action9 -> Action2 pending-opportunity sentinel PASS
+
+Fixture:
+- native Sabretooth;
+- existing single-FIST marked raw8 fixture;
+- source-unchanged EV-353 diagnostic implementation;
+- factual Sprint action uses the same PowerAttack-named Hit motion as Power in the tested Sabretooth route; this test concerns action/origin transport inside one motion/C1, not a Sprint-animation -> Power-animation asset change.
+
+Large-log provenance:
+- canonical raw: `research/raw/2026-09-20_observation_sabertooth_marker_power_sprint_transition_test.log`;
+- source SHA256: `B799B07228C83AE1A6D09928835A206DC7BDFAF77BBF8F5D8771D6EB3E4BE845`;
+- source size: 1,261,750 bytes / 4,068 lines;
+- deterministic POP-07 package: `research/derived/2026-09-20_observation_sabertooth_marker_power_sprint_transition_test_large_log/`;
+- package contains 22 complete line-numbered full-source parts.
+
+Whole-run raw8 opportunity accounting:
+- 55 accepted single-FIST opportunities opened;
+- 36 exact native raw8 contact-dispatch consumptions;
+- 19 unused opportunities closed at `C1_FINALIZED`;
+- 824 miss-rearm writes;
+- 332 timing-hold observations;
+- therefore all 55 opens have exactly one terminal disposition;
+- zero marker rejection, contradiction, lifecycle-issue, repair-divergence, invariant-warning or generation-changed/no-write anomaly was found in the complete mirror.
+
+Decisive Sprint-origin transport:
+- **20 distinct tokens opened while factual `Action=9 / SPRINT` and were later consumed while factual `Action=2 / POWER` in the same C1**;
+- C1 generations: 36, 45, 55, 64, 75, 85, 94, 103, 114, 124, 134, 143, 153, 174, 183, 193, 207, 216, 229, 239;
+- every one kept the same token ordinal across the Action9 -> Action2 observation;
+- none was closed or consumed merely because Action/family changed;
+- all 20 ended in exact native `Game+0x16E348` contact consumption.
+
+Strong delayed-contact samples:
+- C1 183 / token 43:
+  - OPEN under Action9/SPRINT;
+  - pre-threshold timing permission;
+  - native miss -> confirmed latch `1 -> 0` rearm under Action9;
+  - same token remains live;
+  - exact contact consumption occurs under Action2/POWER using the same `Sabertooth_..._PowerAttack_...xmot` motion;
+  - immediate matching native `OnDamage` dispatch to `PC_Hero`.
+- C1 207 / token 47 shows the same sequence independently.
+
+User visual observation:
+- Sabretooth could hit whenever it should have during the long run; no visible failure was observed from the Sprint/Power action transition.
+
+Interpretation:
+- **PASS.**
+- Raw8 opportunity lifetime must be bound to factual C1 execution identity, not current Action/family.
+- In the tested native Sabretooth route, Sprint is an Action9 origin/state using the PowerAttack-named animation motion; the same motion later appears under Action2/POWER inside the same C1.
+- An already-open opportunity survives that factual Action9 -> Action2 change and remains available until exact native contact.
+- The result directly validates the permanent architecture's protected Sprint-origin lifecycle rule before production implementation.
+
+Disposition:
+- Pre-Work Sprint-transport sentinel CLOSED/PASS.
+- No source change is required from this sentinel.
+- The frozen permanent raw8 production implementation may proceed after current-state promotion and POP-12 validation.
