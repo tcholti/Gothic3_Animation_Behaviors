@@ -17,11 +17,11 @@ human marker attack matrix = CLOSED/PASS
 Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
-generic equipped Sprint = PROMOTED POSITIVE+NEGATIVE RUNTIME PASS / TRUE-POWER+BEHAVIOR SMOKE PENDING
+generic equipped Sprint = ALL DIAGNOSTIC PROMOTION GATES PASS / BEHAVIOR-ONLY SMOKE PENDING
 active contract = docs/work/active/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md
 Phase 4 non-weapon creatures = TEMPORARILY HELD
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-327
+latest completed evidence = EV-328
 active evidence ledger = EVIDENCE_LEDGER_309_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: permanent equipped-Sprint extraction has now passed promoted positive continuation and missing-source negative runtime controls on diagnostic SHA `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`. EV-326 RIGHT->OFF->RIGHT is PASS; EV-327 BOTH with LEFT absent is NEGATIVE PASS; EV-325 is a safe mixed fixture not exercised as named. Next run the ordinary equipped true-Power protected control, then the final diagnostics-free behavior-only Goblin Sprint smoke.
+Current responsibility: permanent equipped-Sprint extraction has passed all diagnostic promotion controls on SHA `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`: EV-326 positive continuation PASS, EV-327 missing-LEFT negative PASS, EV-328 ordinary true-Power protected PASS. Next redeploy the already-built behavior-only twin SHA `FE31030B35868EBF30B9644650991D8136625C4DBFD6263403350DB612BDB250` and run the final bounded Goblin Sprint gameplay smoke.
 
 ## Immediate responsibility
 
@@ -54,7 +54,8 @@ Current responsibility: permanent equipped-Sprint extraction has now passed prom
 17. EV-325 mixed intended RIGHT->OFF artifact = NOT EXERCISED AS NAMED / safe.
 18. EV-326 RIGHT->OFF->RIGHT promoted production control = PASS.
 19. EV-327 BOTH/missing-LEFT promoted negative control = PASS.
-20. Next: ordinary true-Power protected control -> behavior-only Goblin Sprint smoke.
+20. EV-328 ordinary true-Power protected control = PASS.
+21. Next: behavior-only Goblin Sprint smoke.
 
 ## Current verified diagnostic product
 
