@@ -264,7 +264,7 @@ After state/orientation/reconstruction are known, retrieve only the exact EV, so
 
 ### COLD — canonical deep references
 
-Closed evidence ledgers live under `archive/evidence/`; the only active ledger is `EVIDENCE_LEDGER_309_ONWARD.md`. `EVIDENCE_INDEX.md` maps every EV range to its volume. Do not load ledger volumes for ordinary settled questions.
+Closed evidence ledgers live under `archive/evidence/`; exactly one `EVIDENCE_LEDGER_<start>_ONWARD.md` remains active in `docs/`. `EVIDENCE_INDEX.md` maps every EV range to its current or archived volume. Do not load ledger volumes for ordinary settled questions.
 
 Closed probes, implementation contracts, audits and superseded work plans live under `archive/investigations/`. Active temporary work lives only under `work/active/`.
 
