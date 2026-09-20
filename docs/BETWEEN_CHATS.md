@@ -10,82 +10,50 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **Phase 4 broad regression PAUSED at raw8 persistent-opportunity research through EV-348.**
+Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-349**. No active Work task.
 
-Latest completed evidence: **EV-348**.
-
-No active Work implementation task.
-
-## Agreed raw8 design target
+Agreed author-facing target remains:
 
 ```text
-accepted FIST
--> one target-directed native body-contact damage opportunity OPEN
-
-unsuccessful native contact
--> opportunity remains OPEN
-
-successful native contact
--> opportunity CONSUMED/CLOSED
-
-later FIST
--> opportunity OPEN again
-
-C1 / Hit termination, interruption or factual replacement
--> any unused opportunity CLOSED
+FIST opens one target-directed native body-contact opportunity
+-> genuine no-contact should not consume it
+-> native target/vulnerability/damage remain Gothic-owned
+-> successful native resolution consumes it
+-> later FIST rearms it
+-> C1 / Hit replacement or interruption closes any unused opportunity
 ```
 
-No arbitrary timer. No raw8 FIST_OFF absent future contradictory evidence. Gothic retains target/contact/damage ownership.
+No raw8 FIST_OFF absent future contradictory evidence.
 
-## EV-347–EV-348 causal closure
+## EV-347–EV-349
 
-EV-347:
-- exact early synthetic hit and exact early synthetic miss both returned with `SPU+0x164 = 1`;
-- therefore Gothic consumes the latch after the attempt, not only successful damage.
+- EV-347: tested raw8 latch closes after both exact hit and exact miss attempts.
+- EV-348: one exact post-miss latch `1 -> 0` rearm restored later native opportunity without timing rearm.
+- EV-349: 12 Gargoyle frame-3 synthetic Power attempts; 4 immediate native entries; 8 post-miss rearms; 6 later native entries within the original Hit C1; 1 no later entry; 1 native entry only after Hit C1 55 was replaced by Recover C1 57.
+- That cross-C1 entry occurred while the player was `Action=31` / `GetUpParade`; User observed no visible damage. User also observed another no-damage attack while already knocked down.
+- Therefore visible health damage is not a collision-success oracle, and a future persistent opportunity must not override Gothic's knockdown/get-up target-state rules.
+- The temporary probe also proves exact C1/Hit termination cleanup is mandatory: an unused rearmed opportunity can otherwise remain live into Recover.
 
-EV-348:
-- reviewed probe implementation `ea652e3324fffb07da013229a2fd374c4f3b1c6b`;
-- diagnostic DLL SHA256 `63261A1A4778FF293BDA94495B57EE363546650A7D386507304CA3D5FD9AB3FC`;
-- 13 exact frame-3 Gargoyle synthetic Power attempts;
-- 4 exact early hits -> no rearm;
-- 9 exact early misses -> 9 confirmed latch `1 -> 0` rearms;
-- 7/9 rearmed misses -> later exact native raw8 damage before same-C1 finalization, ~100.6–109.8 ms after rearm;
-- 2/9 rearmed misses -> no later native damage;
-- User visually observed all attacks connect except one very-far case, so one of the two no-damage C1s cannot be reconciled to a specific visual case and remains unassigned;
-- all identities/finalization clean; no anomalies/warnings/repairs/divergence.
+Canonical latest log:
+`research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_3.log`  
+Git blob `9e46fa742d94d8e569226c51e509b224ac391ac1`.
 
-Conclusion:
+## Current stop gate
 
-> One post-miss latch-only rearm is causally sufficient to restore a later native raw8 opportunity on the tested Power route, without rearming timing permission.
-
-This does **not** prove continuous eligibility during the interval between authored FIST and Gothic's later native timing.
-
-Canonical evidence:
-`research/archive/2026-09-20_observation_gargoyle_marker_frame_3_test_2.log`  
-Git blob `b447d1a3995118e84b0884801c0347b49efd15d8`.
-
-The closed latch-rearm probe is archived under `docs/archive/investigations/`.
-
-## Current hard stop
-
-POP-12 knowledge-state validation is pending.
-
-Run:
+Run POP-12 after pulling the latest branch:
 
 ```text
 python tools/knowledge/validate_knowledge_state.py
 ```
 
-Require:
+Require `Knowledge-state validation PASS`.
 
-```text
-Knowledge-state validation PASS
-```
+Do not launch another Work task or runtime causal test before that PASS.
 
-Do not freeze/launch the next Work task or start another runtime causal test until this PASS is reported.
+After PASS, the next question is **not merely timing**:
 
-After PASS, Normal Chat should discuss/decide only the remaining narrow design question:
+> Find the smallest factual native boundary that distinguishes genuine no-contact from legitimate target-state rejection, while keeping Gothic in ownership and closing any unused authored opportunity at exact C1/Hit termination.
 
-> Does the agreed FIST semantic require eligibility continuously from marker time until successful contact, including transient contact before Gothic's later native threshold, or is latch-only recovery at the later native timing sufficient?
+New Balance later needs an explicit knocked-down/get-up compatibility control because the User reports it changes some of this behavior; exact New Balance behavior is not yet established.
 
 `research/raw/` should contain only `Keep.txt`.
