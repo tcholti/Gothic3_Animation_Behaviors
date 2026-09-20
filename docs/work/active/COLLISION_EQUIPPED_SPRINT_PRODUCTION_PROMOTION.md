@@ -1,6 +1,6 @@
 # Equipped Sprint Production Promotion
 
-**Status:** ACTIVE — SOURCE+BUILDS+BEHAVIOR+DIAGNOSTIC STARTUP PASS / RUNTIME CONTROLS+BEHAVIOR SMOKE PENDING  
+**Status:** ACTIVE — POSITIVE+NEGATIVE SPRINT RUNTIME PASS / TRUE-POWER+BEHAVIOR SMOKE PENDING  
 **Type:** Bounded production-behavior promotion  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime acceptance.
@@ -369,3 +369,53 @@ Minor non-blocking metadata note:
 - fix the banner in a later bounded diagnostic-metadata cleanup after promotion acceptance.
 
 Next gate: EV-322-equivalent RIGHT -> OFF positive runtime control on this exact diagnostic binary.
+
+
+## Promoted Sprint runtime control batch — EV-325–EV-327
+
+Diagnostic binary:
+
+`DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`
+
+### EV-325 — intended RIGHT->OFF artifact
+
+Disposition: **NOT EXERCISED AS NAMED / SAFE MIXED FIXTURE**.
+
+The P0 motion actually scanned `RequiredMask=3` and contained BOTH plus later OFF while LEFT was absent. P1 Sprint executions were separate RIGHT-only cases. The file therefore cannot serve as the intended positive RIGHT->OFF control. It showed safe fail-closed/native-fallback behavior and no lifecycle failure.
+
+No rerun is required because EV-326 exercises a stronger positive sequence.
+
+### EV-326 — RIGHT->OFF->RIGHT
+
+Disposition: **PASS**.
+
+Seven complete P0 Sprint C1s (10, 19, 27, 35, 48, 60, 71) repeat:
+
+```text
+Action9 Sprint bind
+-> RIGHT accepted / 5->7
+-> native damage
+-> same C1 Action2 continuation
+-> OFF accepted / 7->5
+-> later RIGHT accepted / 5->7
+-> native cleanup / 7->5
+-> Outstanding=0
+```
+
+This closes the positive continuation runtime gate for the permanent promoted owner and additionally proves same-C1 reactivation after OFF.
+
+### EV-327 — BOTH with LEFT absent
+
+Disposition: **NEGATIVE PASS**.
+
+Five complete P0 Sprint C1s (15, 32, 42, 53, 60) use `RequiredMask=3` with RIGHT present and LEFT absent. Permanent Sprint ownership is not acquired; native RIGHT fallback opens/damages/cleans, BOTH remains rejected, and every C1 finalizes `Outstanding=0`.
+
+This closes the required-source negative runtime gate for production promotion.
+
+### Remaining acceptance
+
+Still required:
+1. ordinary equipped true-Power protected control on the same diagnostic binary;
+2. diagnostics-free behavior-only Goblin Sprint smoke.
+
+Do not close/archive this promotion contract until both pass.
