@@ -1,7 +1,7 @@
 # Collision Reference
 
 **Status:** Current factual reference  
-**Updated:** 2026-09-19  
+**Updated:** 2026-09-20  
 **Purpose:** Compact projection of established Gothic 3 collision facts. Read this before opening evidence ledgers for an already-researched collision question.
 
 > This file states **what is currently established**. It is not the proof record. Each claim routes to EV evidence; open the ledger/raw source only when exact provenance, qualification, contradiction, or re-interpretation matters.
@@ -42,7 +42,7 @@ G3AB_COL_OFF   -> exact desired active set {}
 
 Repeated RIGHT/LEFT/BOTH later in the same Hit can author another contact by rearming the selected source through `ClearTriggeredList()`. OFF creates an intra-Hit inactive gap; it is not terminal cleanup.
 
-Supported/proven equipped attack scope currently includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl and tested 2H/Staff Hack routes. Family-specific native target/reaction behavior remains native and is not normalized merely by marker support.
+Supported/proven equipped attack scope currently includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack routes, and factual equipped Sprint under the permanent `EquippedSprintCollision` policy. Family-specific native target/reaction behavior remains native and is not normalized merely by marker support.
 
 Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318.
 
@@ -147,9 +147,29 @@ For the supported raw8 FIST path, Sprint arrives through the existing physical `
 
 The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution.
 
-These FIST mechanisms do not establish equipped Sprint marker semantics. Equipped Sprint RIGHT/LEFT/BOTH/OFF remains unsupported in the current production/behavior baseline. EV-315 proves the first Goblin Action9/SPRINT RIGHT/raw2 diagnostic handoff. EV-321 additionally proves the generic complete-motion required-source gate fails closed for Sprint BOTH when LEFT is absent and preserves native fallback. EV-320 exposed an execution-identity gap when a marker-owned Sprint C1 transitioned Action9 -> Action2 before later OFF. The bounded diagnostic correction was implemented at `c338d9224a4de6b81466ba5b9e2a3e3c8ba67f86` and the exact RIGHT->OFF runtime repair passed at EV-322: later OFF remained factually Action2/POWER, was authorized as bound Sprint-origin continuation, accepted, closed the exact RIGHT source 7 -> 5 and finalized cleanly. The missing-LEFT/BOTH negative rerun passed at EV-323 and the equipped true-Power protected control passed at EV-324. The bounded diagnostic Sprint-origin continuation correction is therefore runtime-accepted. Production promotion has now been explicitly approved by ADR-0003 and is frozen in `docs/work/active/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md`; the current behavior-only baseline still remains unsupported until that permanent extraction is implemented, independently reviewed and runtime-accepted.
+Equipped Sprint RIGHT/LEFT/BOTH/OFF is now permanent supported behavior through `EquippedSprintCollision`.
 
-Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298 and protected sentinel EV-317; equipped Sprint causal/continuation evidence EV-311, EV-315, EV-320–EV-324.
+Permanent equipped-Sprint rule:
+
+```text
+origin = factual Action9 / Sprint Hit only
+complete-motion activating markers required
+FIST-mixed motion excluded
+all sources required by the complete-motion mask must exist
+eligible Sprint callback -> suppress native early OnAI_PowerAttack timing
+authored RIGHT / LEFT / BOTH / OFF -> existing generic equipped marker semantics
+exact bound Sprint origin may continue across the proven same-C1 Action9 -> Action2 transition
+new ordinary true Power can never create or inherit Sprint origin
+target/contact/damage remain Gothic-owned
+```
+
+The bound continuation is exact-identity-only: same actor, C1 generation, motion, required-source mask, required-source availability and exact required source identities. Current Action2/POWER remains factual and observable; it is not reclassified globally as Sprint.
+
+Production acceptance is complete. EV-326 proves RIGHT->OFF->RIGHT across seven complete Goblin Sprint C1s on the permanent module; EV-327 proves missing-LEFT BOTH remains fail-closed with native fallback; EV-328 proves ordinary true Power remains isolated from Sprint ownership; EV-329 closes the diagnostics-free behavior-only product smoke. EV-325 is retained only as a safe mixed fixture that did not exercise its filename/intended RIGHT->OFF case.
+
+Architecture decision: ADR-0003. Permanent owner: `EquippedSprintCollision`. The former `EquippedSprintProbe` was research scaffolding and is no longer active source.
+
+Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298 and protected sentinel EV-317; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329.
 
 ## 7. Shield / raw9 boundary
 
@@ -207,11 +227,16 @@ EV-321  Goblin Sprint BOTH missing LEFT     NEGATIVE PASS / native fallback
 EV-322  Goblin Sprint RIGHT->OFF correction  PASS
 EV-323  Goblin Sprint BOTH missing LEFT rerun PASS
 EV-324  equipped 2H true-Power protected control PASS
+EV-325  promoted right-off-named mixed fixture      NOT EXERCISED AS NAMED / safe
+EV-326  promoted Sprint RIGHT->OFF->RIGHT           PASS
+EV-327  promoted Sprint BOTH missing LEFT           NEGATIVE PASS
+EV-328  promoted ordinary true-Power protection     PASS
+EV-329  diagnostics-free behavior-only Sprint smoke PASS
 ```
 
-Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. EV-311's equipped Sprint rejection exposed a new scope question; EV-315 passes the first diagnostic causal handoff for that Goblin fixture without changing production support.
+Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. The equipped-Sprint scope discovered at EV-311 is now CLOSED/PASS as permanent behavior through EV-329.
 
-Phase 4 is temporarily held while the approved equipped-Sprint production promotion is extracted from diagnostic research into permanent behavior. The diagnostic causal case is CLOSED/PASS through EV-324; current production support is still pending the active promotion task. Current validation plan: `COLLISION_TEST_PLAN.md`.
+Phase 4 non-weapon creature regression is the next active standalone validation phase. Current validation plan: `COLLISION_TEST_PLAN.md`.
 
 ## 10. Evidence escalation rule
 
