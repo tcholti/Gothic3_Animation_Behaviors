@@ -169,11 +169,12 @@ Bison raw8 Normal + player 2H                                PASS — EV-345
 Gargoyle raw8 Power timing sweep                            DESIGN DISCOVERY — EV-346
 Gargoyle post-attempt latch hit/miss observation             CAUSAL PASS — EV-347
 Gargoyle post-miss latch-only rearm                          CAUSAL PASS — EV-348
+Gargoyle knockdown/get-up + cross-C1 rearm control           DESIGN DISCOVERY — EV-349
 ```
 
 The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. EV-342 is an ordinary PASS: some correctly processed Minecrawler executions did not physically contact, which is normal runtime attack variance rather than a collision-system qualification.
 
-EV-346 is a material design discovery, not a creature-specific failure. Gargoyle factual raw8 Power showed that the current early-FIST mechanism is one-shot: frame-1 0/4, approximate frame-3 5/10, frame-6 8/8 and native 7/7 under a stationary-player fixture, while ownership/markers/finalization remained healthy. EV-347 then proved that the native latch closes to 1 after the attempt whether that exact synthetic invocation hits or misses. EV-348 proved that one exact post-miss latch-only rearm can restore a later native opportunity: 7/9 rearmed misses later produced exact native raw8 damage, while successful early hits remained consumed. User + Normal Chat have chosen persistent opportunity-window semantics; broad Phase-4 certification remains paused while the remaining timing/continuous-eligibility question is resolved.
+EV-346 is a material design discovery, not a creature-specific failure. Gargoyle factual raw8 Power showed that the current early-FIST mechanism is one-shot: frame-1 0/4, approximate frame-3 5/10, frame-6 8/8 and native 7/7 under a stationary-player fixture, while ownership/markers/finalization remained healthy. EV-347 proved that the native latch closes to 1 after the attempt whether that exact synthetic invocation hits or misses. EV-348 proved that one exact post-miss latch-only rearm can restore a later native opportunity. EV-349 then exposed two additional constraints: native knockdown/get-up target-state rules can suppress visible damage independently of collision, and the temporary rearmed latch can survive Hit-C1 replacement into Recover unless explicitly closed. User + Normal Chat still target persistent opportunity semantics, but broad Phase-4 certification remains paused until no-contact vs native target-state rejection and exact lifecycle closure are understood.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
@@ -296,6 +297,8 @@ After all seven standalone phases pass, test the exact New Balance 0.7 distribut
 Source-level preflight evidence is not sufficient final compatibility certification.
 
 Do not assume arbitrary same-function hook chaining or DLL load-order safety.
+
+When raw8 persistent-opportunity behavior is mature enough for this gate, include a knocked-down/get-up target-state control. EV-349 shows standalone Gothic can suppress visible damage in those states, and the User reports New Balance changes some of that behavior. Treat the latter as a compatibility-test reason, not a pre-proven New Balance rule.
 
 ---
 
