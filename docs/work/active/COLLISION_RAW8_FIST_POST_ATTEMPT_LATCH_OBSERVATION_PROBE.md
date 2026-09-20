@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 FIST Post-Attempt Latch Observation Probe
 
-**Status:** ACTIVE — BOUNDED DIAGNOSTIC-ONLY IMPLEMENTATION TASK  
+**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / RUNTIME PENDING  
 **Opened:** 2026-09-20  
 **Owner after implementation:** Normal Chat runtime/evidence interpretation  
 **Production behavior change:** PROHIBITED  
@@ -219,3 +219,31 @@ Report:
 - any material contradiction.
 
 Then STOP.
+
+## Implementation checkpoint — 2026-09-20
+
+Work implementation:
+
+`4ab9a77557f9ad5057d158b7d26a3098db657b28`
+
+Parent:
+
+`ac337baa44de61a69ed34919ff344e6719c5f220`
+
+Normal Chat independent source review: **PASS**.
+
+Review findings:
+- exact five-file scope only;
+- diagnostic observation state and bridge calls are compile-guarded by `FRAME_COLLISION_DIAGNOSTICS`;
+- existing raw8 timing return value and latch behavior are unchanged;
+- post-attempt latch is read after original `AICombatMoveInstr` returns and before lifecycle finalization;
+- no new hook, latch write, rearm, damage call, trigger clear, group mutation or suppression exists;
+- existing `ENTITY_ON_DAMAGE_ENTRY` remains the factual per-event record; the new scope records same-thread ordinals/count for correlation and must not be interpreted independently as exact raw8 damage ownership.
+
+Controlled runtime requirement:
+- use an isolated factual raw8 fixture;
+- obtain an early `SyntheticApplied=1` miss and an early `SyntheticApplied=1` hit;
+- correlate `CORE RAW8_FIST_POST_ATTEMPT` with the exact numbered `ENTITY_ON_DAMAGE_ENTRY` record;
+- compare `PostAttemptLatch` between miss and hit before deciding any intervention.
+
+Runtime evidence is not yet closed.
