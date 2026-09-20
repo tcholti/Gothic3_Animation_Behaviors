@@ -362,7 +362,7 @@ Evidence establishes:
 - ordinary true Power remains outside Sprint-origin ownership;
 - the EV-320 same-C1 continuation gap is corrected and accepted through EV-322–EV-324.
 
-The temporary `EquippedSprintProbe` is no longer a current behavior authority. ADR-0003 approves production extraction into a permanent diagnostics-independent `EquippedSprintCollision` owner. Until that promotion task is implemented and accepted, the current behavior-only baseline still does not provide equipped Sprint support.
+The temporary `EquippedSprintProbe` is no longer a current behavior authority. Permanent diagnostics-independent `EquippedSprintCollision` support is implemented and accepted through EV-329 under ADR-0003. The behavior-only and diagnostic twins share the same Sprint behavior authority; diagnostics only observe it.
 
 Reopen Sprint diagnostics only for a genuinely new contradiction or deliberate scope extension, not to repeat the closed causal sequence.
 
@@ -454,7 +454,7 @@ architecture + diagnostic-volume audit             DONE
 Stage A behavior architecture refactor              DONE/PASS
 Stage B diagnostic refactor + compact sentinel      DONE/PASS
 raw8 Sprint discovery/production validation         DONE/PASS
-equipped Sprint causal research                     CLOSED/PASS through EV-324; production promotion pending
+equipped Sprint causal research + production promotion CLOSED/PASS through EV-329
 native equipped-NPC / raw8 compatibility controls  DONE/PASS through later evidence
 raw55 family-specific causal research               CLOSED through EV-294
 focused permanent raw55 acceptance                  CLOSED/PASS through EV-298
