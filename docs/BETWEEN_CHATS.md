@@ -10,46 +10,74 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **Phase 4 broad regression PAUSED at raw8 FIST authoring-semantics review through EV-346.**
+Current gate: **Phase 4 broad regression PAUSED at EV-346 raw8 FIST authoring-semantics research.**
 
-No active Work implementation contract.
+Latest completed evidence: **EV-346**.
 
-Current diagnostic test product remains:
+## Agreed raw8 design target
+
+User + Normal Chat agreed:
 
 ```text
-Script_FrameCollisionTest.dll
-SHA256 DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A
+marked C1 starts
+-> authored raw8 opportunity CLOSED
+
+accepted FIST
+-> one target-directed native body-contact damage opportunity OPEN
+
+unsuccessful native contact
+-> opportunity remains OPEN
+
+successful native contact
+-> opportunity CONSUMED/CLOSED
+
+later FIST
+-> opportunity OPEN again
+
+C1 / Hit termination, interruption or factual replacement
+-> any unused opportunity CLOSED
 ```
 
-Design-discovery evidence:
-- Gargoyle attacks in all four runs were factual Action2 / POWER with RIGHT Fist / UseType8; no Action9/Sprint was observed.
-- native/no-marker: 7/7 attacks damaged;
-- approximate frame-3 FIST: 10 accepted markers, 5/10 damage;
-- frame-1 FIST: 4 accepted markers, 0/4 damage;
-- frame-6 FIST: 8 accepted markers, 8/8 damage;
-- frame-6 consumed at real native timing (`SyntheticApplied=0 / NATIVE_TIMING`);
-- ownership, marker acceptance, finalization and diagnostics remained clean in every run.
+No arbitrary timer.
 
-Current interpretation:
-- existing production raw8 behavior is functioning according to its frozen contract;
-- each FIST is currently one native opportunity/pulse, not a persistent contact window;
-- early synthetic timing can consume that opportunity before a moving body reaches the target;
-- this is a material author-facing semantics question, not a Gargoyle species rule or simple regression defect.
+No authored raw8 FIST_OFF absent future evidence of a concrete unwanted-contact problem.
 
-Active review:
-`docs/work/active/COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md`
+Gothic retains target/contact/damage ownership.
 
-Decision required before continuing broad Phase 4:
-1. retain/document one-shot pulse semantics; or
-2. choose persistent-window semantics in principle, then research the smallest native mechanism needed to keep an authored opportunity alive after an unsuccessful early contact attempt.
+Raw55 must later be checked against the same author-facing abstraction without copying raw8 mechanics into raw55.
 
-Non-negotiables for any redesign:
-- unmarked raw8 remains native;
-- factual source/UseType, never species/name;
-- native target/contact/damage remains Gothic-owned;
+## Active bounded Work task
+
+`docs/work/active/COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md`
+
+Responsibility is diagnostics-only:
+
+> After the current early synthetic raw8 opportunity executes, observe the factual post-native `SPU+0x164` latch state and correlate it with native damage/no-damage.
+
+Preferred existing boundary:
+- current `EngineBridge` already wraps `AICombatMoveInstr`;
+- current `Game+0x16E180` timing transport already knows when synthetic permission is consumed;
+- if source facts support exact correlation, add only the smallest diagnostic state/record and read the latch after original `AICombatMoveInstr` returns;
+- do not add a new engine hook if the existing wrapper is sufficient;
+- if it is not sufficient, Work must report the contradiction and STOP rather than inventing a boundary.
+
+Protected:
+- zero new behavior;
+- no new latch writes;
+- no rearm;
+- no timing change;
+- no callback suppression;
 - no direct/custom damage;
-- no pre-first-marker leak;
-- exact C1/source/animation identity and interruption safety;
-- raw55/equipped behavior unchanged.
+- no ClearTriggeredList;
+- no group mutation;
+- no raw55/equipped/Sprint change.
 
-`research/raw/` should contain only `Keep.txt`.
+Work build execution is PROHIBITED.
+
+After Work result:
+1. Normal Chat independently reviews the commit.
+2. User builds/deploys locally.
+3. Controlled runtime should include an early-FIST miss fixture and an early-FIST hit fixture so post-attempt latch state can be compared.
+4. Do not resume broad Phase 4 until this causal research chain closes or the design is revised.
+
+`research/raw/` currently contains only `Keep.txt`.
