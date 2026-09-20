@@ -125,13 +125,13 @@ Focused permanent acceptance must include:
 
 Only after focused permanent acceptance may Phase 4 broad creature regression resume.
 
-## 15. Implementation checkpoint
+## Implementation checkpoint
 
 Production behavior was promoted in `3426cede41c0087e43edc0d81c825ff167e8e034` and independently static-reviewed by Normal Chat on 2026-09-20.
 
 The behavior/state-machine implementation matches this architecture. A bounded diagnostics-only compaction/terminal-event correction remains open before build/runtime acceptance; it does not reopen behavior policy.
 
-## 16. Evidence closure
+## 15. Evidence closure
 
 The architecture is justified by EV-346–EV-354: early pulse failure, latch hit/miss behavior, successful post-miss rearm, policy-neutral contact dispatch, virtual-callback negative result, target-directed control, persistent-opportunity causal proof, and direct same-C1 Sprint Action9 -> Power Action2 token-survival proof.
 
