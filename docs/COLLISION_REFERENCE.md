@@ -234,11 +234,16 @@ EV-328  promoted ordinary true-Power protection     PASS
 EV-329  diagnostics-free behavior-only Sprint smoke PASS
 EV-330  Orc Whirl RIGHT->OFF->RIGHT + player 1H recheck PASS
 EV-331  Orc repeated-RIGHT/raw8 + player 1H+torch recheck PASS
+EV-332  dual-1H player vs Ogre/raw52 mixed regression PASS
+EV-333  player 1H vs Orc Raider/raw52 mixed regression PASS
+EV-334  player 1H+shield vs Demon/raw3 mixed regression PASS
+EV-335  player 2H vs Stalker/raw52 mixed regression PASS
+EV-336  player raw8 Fist vs Goblin/raw2 + Sprint mixed regression PASS
 ```
 
 Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. The equipped-Sprint scope discovered at EV-311 is now CLOSED/PASS as permanent behavior through EV-329.
 
-EV-330–EV-331 additionally corroborate the accepted current build across Orc Whirl OFF-gap/reactivation, repeated-RIGHT rearm, Orc/player raw8, ordinary player 1H and player 1H+torch source separation. These are regression confirmations, not semantic extensions.
+EV-330–EV-331 additionally corroborate the accepted current build across Orc Whirl OFF-gap/reactivation, repeated-RIGHT rearm, Orc/player raw8, ordinary player 1H and player 1H+torch source separation. EV-332–EV-336 broaden that current-build regression across player dual-1H, single 1H, 1H+shield, 2H and raw8 Fist against Ogre/raw52, Orc Raider/raw52, Demon/raw3, Stalker/raw52 and Goblin/raw2, including permanent equipped Sprint under ordinary mixed combat. These are regression confirmations, not semantic extensions.
 
 Phase 4 non-weapon creature regression is the next active standalone validation phase. Current validation plan: `COLLISION_TEST_PLAN.md`.
 
