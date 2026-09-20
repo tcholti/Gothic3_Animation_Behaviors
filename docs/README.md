@@ -253,6 +253,7 @@ After state/orientation/reconstruction are known, retrieve only the exact EV, so
 - `DESIGN.md` — overall intended architecture and implementation order.
 - `COLLISION_LIFECYCLE.md` — collision lifecycle/cleanup architecture.
 - `COLLISION_DIAGNOSTICS.md` — diagnostic architecture.
+- `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` — permanent Fist/raw8 opportunity behavior architecture.
 - `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` — permanent PhysicalFist/raw55 behavior architecture.
 - `COLLISION_TEST_PLAN.md` — active validation posture and remaining collision gates.
 - `PROJECT_SCOPE_CONTEXT.md` — short factual engine-facing scope context.
@@ -311,6 +312,7 @@ Ordinary documentation history belongs in Git; historical Git content never over
 | Who owns this knowledge? | `KNOWLEDGE_REGISTRY.md` | owning authority named there |
 | Overall architecture? | `DESIGN.md` | evidence index if premise must be checked |
 | Current collision lifecycle? | `COLLISION_LIFECYCLE.md` | cleanup map / EV |
+| Current raw8 production architecture? | `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` | `COLLISION_REFERENCE.md`; `EVIDENCE_INDEX.md` for proof |
 | Diagnostics? | `COLLISION_DIAGNOSTICS.md` | source + exact EV |
 | Collision validation posture? | `SESSION_ENTRYPOINT.md` → `COLLISION_TEST_PLAN.md` | transient handoff only when active |
 | Is engine claim proven? | `EVIDENCE_INDEX.md` | exact ledger → raw/source |
