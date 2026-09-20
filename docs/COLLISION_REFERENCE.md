@@ -284,3 +284,12 @@ unmarked raw8 -> native
 Runtime causal accounting across Gargoyle Power and marked human Normal/Power produced 81 opens: 59 contact-consumed, 21 lifecycle-closed and one same-C1 FIST supersession. Eighteen contacts occurred only after one or more miss-rearms. Three already-open human opportunities closed on factual C1 generation replacement during reaction churn, with no old-opportunity contact before a later new FIST. Native and marked group-combat controls remained target-directed.
 
 This closes the **diagnostic causal model**, not production promotion. The temporary probe must not be treated as permanent architecture until a separate production review/freeze.
+
+
+### Raw8 Sprint-origin action transport — EV-354
+
+For the tested native Sabretooth raw8 route, Sprint is a factual `Action9 / SPRINT` state/origin using the same PowerAttack-named Hit motion as Power. The same motion/C1 can later be observed as factual `Action2 / POWER`.
+
+EV-354 captured 20 single-FIST opportunities that opened under Action9/SPRINT and were later consumed under Action2/POWER in the same C1. Two decisive samples first missed/rearmed under Action9 before the same token contacted under Action2.
+
+Therefore raw8 authored-opportunity lifetime is C1/execution-scoped, not Action/family-scoped. Do not model this as a transition between separate Sprint and Power animation assets.
