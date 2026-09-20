@@ -21,7 +21,7 @@ generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-32
 active contract = none; standalone regression resumes under COLLISION_TEST_PLAN.md
 Phase 4 non-weapon creatures = ACTIVE / PARTIAL PASS
 focused raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-341
+latest completed evidence = EV-345
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 ```
 
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: Phase 4 non-weapon creature regression is ACTIVE/PARTIAL PASS. EV-337–EV-341 passed Sabretooth raw8 double/single native+transformed fixtures, Wolf marked raw8 and paired unmarked native-fallback native+transformed fixtures, and Troll raw55 mixed single/double behavior with player Staff. More creature/animal fixtures remain planned before Phase 4 closes. No source implementation task is active.
+Current responsibility: Phase 4 non-weapon creature regression is ACTIVE/PARTIAL PASS. EV-337–EV-345 now cover Sabretooth raw8 double/single native+transformed fixtures, Wolf marked raw8 plus paired unmarked fallback, Troll raw55 mixed single/double behavior, and new factual raw8 Minecrawler/Bloodfly/Boar/Bison fixtures. Minecrawler EV-342 is PASS with a native-contact qualification only; its marker/ownership/timing/finalization paths are clean. More creature/animal fixtures remain planned before Phase 4 closes. No source implementation task is active.
 
 ## Immediate responsibility
 
@@ -69,7 +69,11 @@ Current responsibility: Phase 4 non-weapon creature regression is ACTIVE/PARTIAL
 32. EV-339 Wolf native+transformed marked raw8 = PASS.
 33. EV-340 Wolf native+transformed unmarked raw8 fallback = PASS.
 34. EV-341 Troll raw55 mixed single/double + player Staff = PASS.
-35. Next: continue Phase 4 with additional non-weapon creature/animal fixtures under `COLLISION_TEST_PLAN.md`.
+35. EV-342 Minecrawler raw8 Normal/Power/Quick = PASS with native-contact qualification.
+36. EV-343 Bloodfly raw8 Normal/Power/Sprint = PASS.
+37. EV-344 Boar raw8 Normal = PASS.
+38. EV-345 Bison raw8 Normal = PASS.
+39. Next: continue Phase 4 with additional non-weapon creature/animal fixtures under `COLLISION_TEST_PLAN.md`.
 
 ## Current verified diagnostic product
 
