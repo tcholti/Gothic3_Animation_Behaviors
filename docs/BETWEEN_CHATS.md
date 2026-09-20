@@ -15,42 +15,32 @@ Latest completed evidence: **EV-353**.
 Permanent raw8 architecture:
 `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`
 
-Active Work task:
+Frozen production task:
 `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
 
-Resolved raw8 semantics review and causal probe are archived.
+**Do not send to Work yet.**
 
-## Frozen production responsibility
+## Current pre-Work sentinel
 
-`Raw8FistCollision` absorbs the proven pending-opportunity mechanism; the temporary `Raw8FistPersistentOpportunityProbe` is deleted.
+EV-316 previously captured five native Sabretooth raw8 Sprint C1s where the same PowerAttack-named motion began factual `Action9/SPRINT` and later continued factual `Action2/POWER` inside the same C1.
 
-Required semantic:
+Before production implementation, reproduce this with the current source-unchanged EV-353 persistent-opportunity diagnostic build and a **single FIST** fixture.
 
-```text
-marked C1 -> raw8 native opportunity closed
-FIST -> one pending opportunity
-miss -> restore native one-shot eligibility, keep pending
-exact Game+0x16E348 raw8 contact dispatch -> consume
-later FIST same C1 -> reopen one, no stacking
-same-C1 Action/family transport -> preserve
-exact C1 finalization/replacement -> close unused opportunity
-unmarked raw8 -> native
-```
-
-The behavior-only twin must include the exact pass-through `gCEntity::OnDamage` hook because contact consumption is production behavior. Damage outcome remains entirely Gothic-owned.
-
-Do not merge raw8 with equipped/raw55 or add FIST_OFF, target lists, ClearTriggeredList, custom damage, polling, species rules or Action/state cleanup taxonomy.
-
-Important focused regression after implementation: `marked pending -> replacement/interruption -> later unmarked raw8` must prove native fallback remains intact.
-
-## Stop gate
-
-Run:
+Decisive sequence:
 
 ```text
-python tools/knowledge/validate_knowledge_state.py
+Action9/SPRINT same C1
+-> FIST -> token OPEN
+-> early miss / MISS_REARM
+-> same C1 becomes Action2/POWER
+-> same opportunity remains pending
+-> CONTACT_CONSUMED or true C1 CLOSE
 ```
 
-Require `Knowledge-state validation PASS` before sending the production task to Work.
+Action/family change alone must never close or consume the token.
 
-`research/raw/` should contain only `Keep.txt`.
+Use medium spacing/brief retreat to encourage a pre-contact FIST with later reach; include some full escapes as no-contact closure controls. Close contacts are baseline only.
+
+After logs are processed, update evidence/current state, run POP-12, and only then clear the frozen production task for Work.
+
+`research/raw/` should contain only `Keep.txt` before new uploads.
