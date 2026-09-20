@@ -156,11 +156,23 @@ A token must bind:
 - exact C1 generation;
 - exact raw8 Fist source;
 - exact SPU;
-- animation actor if available;
-- current movement animation identity;
 - pending OPEN/CLOSED state;
-- persistent pre-threshold forced-play-time value if learned;
 - current invocation observation state as needed.
+
+The **opportunity token lifetime is C1/execution-scoped**, not Action/family/phase/motion-scoped.
+
+Action, family, phase and motion may be recorded for diagnostics, but none of them is terminal authority by itself.
+
+This is required by existing Sprint-origin evidence:
+- EV-316: factual raw8 Sprint can continue inside the same C1 from Action9/SPRINT to Action2/POWER;
+- EV-322: generic equipped Sprint-origin ownership likewise survives proven same-C1 Action9 -> Action2 continuation.
+
+A separate timing substate may bind:
+- animation actor;
+- motion identity/type;
+- stored forced-play-time value if learned.
+
+Timing-substate retirement does **not** consume/close the C1 opportunity token.
 
 No target list.
 
@@ -178,7 +190,9 @@ Open/refresh one token only when:
 - exact source UseType = raw8 `gEUseType_Fist`;
 - permanent FIST latch write was attempted and confirmed to `SPU+0x164 = 0`;
 - SPU/actor identity matches;
-- exact current generation/source/animation identity is capturable.
+- exact current C1/source identity is capturable.
+
+Capture current Action/family/motion for diagnostics, but do not make token OPEN depend on one immutable Action value.
 
 A later accepted FIST in the same C1 refreshes/reopens **one** token. It does not stack entitlements.
 
@@ -200,8 +214,8 @@ The probe may preserve the first exact synthetic returned play time as its marke
 
 While:
 - token pending;
-- actor/C1/source/SPU/animation identity exact;
-- current call is the exact primary-motion timing call;
+- actor/C1/source/SPU identity exact;
+- the timing substate still matches the exact animation actor/motion call that established the forced value;
 - real play time remains below the stored forced value;
 
 return a value sufficient to preserve the same already-proven marker-time native threshold permission.
@@ -212,21 +226,24 @@ Do not invent a new threshold constant if the permanent raw8 code did not alread
 
 Once real time naturally reaches/passes the stored value, return the permanent/native result unchanged.
 
+If animation/timing identity changes, retire only the timing substate. Do **not** close the pending opportunity token solely because Action, family, phase or motion changed inside the same C1.
+
 ### E. Whole combat-move invocation scope
 
 Around existing `AICombatMoveInstr_FrameCollisionTest` original execution, maintain a diagnostics-only nested invocation scope.
 
 Before the original:
-- validate any existing token;
-- if its C1/source/SPU/animation identity is stale or replaced, CLOSE it before native execution and force its old exact latch to `1`;
-- if `a_bFullStop == GETrue`, close the exact pending token for that actor and do not rearm it.
+- validate any existing token against actor/C1/source/SPU execution identity;
+- if factual C1 generation replacement is already visible, CLOSE the stale token before native execution and force its still-live exact latch to `1` only when SPU/actor/source identity is revalidated;
+- if only Action/family/phase/motion changed while the same exact C1 continues, preserve the token;
+- if `a_bFullStop == GETrue`, record it if useful but **do not close the token from FullStop alone**. FullStop is not terminal lifecycle authority.
 
 During the invocation:
 - mark whether the exact native contact-resolution dispatch consumed the token.
 
 After the original:
 - if the same exact token is still pending;
-- same C1/source/SPU/animation identity still holds;
+- same C1/source/SPU execution identity still holds;
 - no exact contact dispatch consumed it;
 
 then:
@@ -258,15 +275,53 @@ The token must be consumed on dispatch **entry**, not based on what the original
 
 Unused pending opportunity must not leak.
 
-Provide a diagnostic-only closure seam from the existing `AISetState_FrameCollisionTest` before its native original:
+**Terminal authority is the exact attack/C1 execution ending, not an Action value.**
 
-- if the owner has a pending exact token belonging to the current generation, force its exact latch to `1` and erase/close the token before the state transition;
-- do not touch unmarked raw8;
-- do not touch a different generation/source/SPU.
+The token must survive legitimate same-C1 transport such as the proven Sprint-origin:
 
-Also close stale token on factual new-generation detection before a new combat-move original executes.
+```text
+Action9 / SPRINT
+-> Action2 / POWER
+same C1 generation
+```
 
-This is specifically required by EV-349.
+Do not close from:
+- Action change alone;
+- family change alone;
+- phase change alone;
+- motion-name change alone;
+- Recover naming alone;
+- FullStop alone;
+- callback return alone.
+
+Use existing lifecycle execution identity/finalization surfaces.
+
+#### AISetState finalization seam
+
+The existing wrapper already captures a `CollisionLifecycleGuard::GenerationToken` before native `AISetState` and finalizes that exact C1 after the native original returns.
+
+For this diagnostic probe:
+- use that captured exact generation as the terminal ownership authority, not the requested state string;
+- if the pending raw8 token belongs to that exact captured generation, CLOSE it and force its exact still-live SPU latch to `1` at the bounded finalization seam;
+- do not inspect requested state name or current Action to decide whether to close;
+- do not touch another generation/source/SPU;
+- preserve existing equipped C1 finalization ordering/behavior.
+
+The implementation may place the raw8 close immediately before native `AISetState` **only if** it is keyed strictly to the already-captured exact generation that this wrapper will finalize, not to state/action classification. Otherwise perform it at the bounded post-original finalization seam while exact liveness is revalidated.
+
+#### Replacement / destructive-abandonment backup
+
+Also close a stale pending token when factual new-generation detection proves the original C1 has been replaced before another combat-move original executes.
+
+This is the fail-safe for interruption, knockdown, terrain/state replacement, bad continuation loss or another path that ends/replaces the Hit execution.
+
+When closing because the exact old execution ended:
+- force latch `1` only after actor/SPU/source liveness is revalidated;
+- erase the pending token;
+- retire any timing substate;
+- never allow the old opportunity to enter the new generation.
+
+This is specifically required by EV-237 and EV-349.
 
 ### H. Logging
 
@@ -310,6 +365,7 @@ This probe must not:
 - alter unmarked raw8;
 - alter raw55;
 - alter equipped collision/Sprint;
+- close a raw8 token merely because Action9 changed to Action2 within the same exact C1;
 - alter production integration;
 - add raw8 FIST_OFF;
 - change permanent `Raw8FistCollision` behavior source.
@@ -344,6 +400,10 @@ Before publication verify:
 - generic OnDamage original exactly once/pass-through;
 - no target/list/group/custom-damage mutation;
 - latch writes occur only for exact pending token OPEN/miss-rearm/close cases defined here;
+- token lifetime is keyed to C1 execution identity, not Action/family/phase/motion alone;
+- FullStop alone cannot close the token;
+- proven same-C1 Sprint-origin Action9 -> Action2 transport is preserved;
+- timing-substate retirement cannot by itself consume the opportunity token;
 - no species rules;
 - `git diff --check` passes.
 
@@ -382,6 +442,31 @@ OPEN
 Do not add a second FIST in the first runtime.
 
 Do not use Parade/knockdown as the first fixture; that is a later policy-neutrality control only if this mechanism passes.
+
+
+## Lifecycle clarification — frozen before Work
+
+The User explicitly required the raw8 token to inherit the project's universal **execution-lifetime principle** without mixing raw8 into equipped collision cleanup.
+
+Required invariant:
+
+```text
+same factual attack-Hit / same C1 generation
+-> token may survive internal Action/family/phase/motion transport
+
+factual Hit/C1 execution ends or is replaced
+-> token must close regardless of why:
+   ordinary completion
+   reaction / being hit
+   knockdown
+   terrain/state replacement
+   destructive/bad continuation loss
+   other factual C1 replacement
+```
+
+Action values are observations, never token lifetime authority.
+
+EV-316 is the protected raw8 Sprint sentinel: Action9/SPRINT -> Action2/POWER can occur inside the same C1. EV-322 proves the same origin-continuation principle in equipped Sprint. EV-237 proves raw8 interruption safety must remain generation-scoped. EV-349 proves stale rearmed raw8 permission may leak into a replacement C1 if not explicitly closed.
 
 ## Build / publication
 
