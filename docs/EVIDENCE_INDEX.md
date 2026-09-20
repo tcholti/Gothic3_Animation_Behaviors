@@ -27,7 +27,8 @@ Canonical evidence uses one global monotonic EV namespace. Closed ledger volumes
 | EV-283–EV-285 | `archive/evidence/EVIDENCE_LEDGER_283_ONWARD.md` |
 | EV-286–EV-290 | `archive/evidence/EVIDENCE_LEDGER_286_ONWARD.md` |
 | EV-291–EV-308 | `archive/evidence/EVIDENCE_LEDGER_291_ONWARD.md` |
-| EV-309 onward | `EVIDENCE_LEDGER_309_ONWARD.md` |
+| EV-309–EV-341 | `archive/evidence/EVIDENCE_LEDGER_309_ONWARD.md` |
+| EV-342 onward | `EVIDENCE_LEDGER_342_ONWARD.md` |
 
 The archived pre-compression version of this index is preserved as `archive/evidence/EVIDENCE_INDEX_2026-09-19_PRE_COMPRESSION.md` for historical retrieval routes.
 
@@ -131,4 +132,4 @@ research/archive/  processed canonical runtime provenance
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
-Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_309_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.
+Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_342_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.
