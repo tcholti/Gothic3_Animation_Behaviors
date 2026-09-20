@@ -101,13 +101,15 @@ Architecture:
 - no FIST_OFF;
 - no raw55/equipped/Sprint changes.
 
-Work build execution is PROHIBITED.
+Work implementation `ea652e3324fffb07da013229a2fd374c4f3b1c6b` is independently source-reviewed **PASS**.
 
-After Work result:
-1. Normal Chat independent source review.
-2. User builds both twins, deploys diagnostic twin only.
-3. Use same frame-3 Gargoyle fixture with close-range hits and far-range initial misses.
-4. Expected causal contrast: far synthetic miss gets one probe latch rearm then a later native opportunity; close synthetic hit gets no rearm and no second hit.
-5. This probe does not yet prove continuous eligibility between marker time and native threshold.
+Next:
+1. User builds both twins from the reviewed source state.
+2. Deploy diagnostic twin only and verify sole-live-twin + SHA256 + startup.
+3. Use the same frame-3 Gargoyle Power fixture.
+4. Deliberately include close-range attacks that hit at the synthetic opportunity and farther attacks that miss initially but reach the player later in the same motion.
+5. For close-range hits require `Decision=EXACT_NATIVE_DAMAGE_OBSERVED`, `RearmRequested=0`.
+6. For far initial misses require `Decision=POST_MISS_REARM_CONFIRMED`, latch `1 -> 0`, then inspect whether a later real/native-timed raw8 opportunity damages the player.
+7. This probe does not yet prove continuous eligibility between marker time and native threshold.
 
 `research/raw/` should contain only `Keep.txt`.
