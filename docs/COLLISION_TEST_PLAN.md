@@ -150,7 +150,7 @@ Before Phase 4, EV-332–EV-336 add a mixed player/enemy cross-source pass on th
 
 EV-311 exposed the factual equipped Sprint/right/raw2 Goblin route that was subsequently researched and promoted. Permanent `EquippedSprintCollision` acceptance is now CLOSED/PASS through EV-329; Phase 3 remains closed and that scope no longer blocks Phase 4.
 
-### 3.4 Phase 4 — Non-weapon creatures — ACTIVE / PARTIAL PASS
+### 3.4 Phase 4 — Non-weapon creatures — PAUSED AT RAW8 AUTHORING-SEMANTICS GATE
 
 Exercise multiple prepared creature/body-contact routes.
 
@@ -166,9 +166,12 @@ Minecrawler raw8 Normal/Power/Quick + player 1H-family       PASS* — EV-342
 Bloodfly raw8 Normal/Power/Sprint + player 1H                PASS — EV-343
 Boar raw8 Normal + player 1H+shield                          PASS — EV-344
 Bison raw8 Normal + player 2H                                PASS — EV-345
+Gargoyle raw8 Power timing sweep                            DESIGN DISCOVERY — EV-346
 ```
 
-The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. The Minecrawler asterisk is a contact qualification only: all 12 markers/ownership/timing paths were healthy and finalized cleanly, but one Power and three Normal executions produced no native ONDAMAGE in that capture; native contact/target/damage remain Gothic-owned. Further Phase-4 coverage should continue prioritizing other non-weapon creature/body-contact fixtures unless a new contradiction specifically requires reopening an existing species.
+The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. The Minecrawler asterisk is a contact qualification only: all 12 markers/ownership/timing paths were healthy and finalized cleanly, but one Power and three Normal executions produced no native ONDAMAGE in that capture; native contact/target/damage remain Gothic-owned.
+
+EV-346 is a material design discovery, not a creature-specific failure. Gargoyle factual raw8 Power showed that the current early-FIST mechanism is one-shot: frame-1 0/4, approximate frame-3 5/10, frame-6 8/8 and native 7/7 under a stationary-player fixture, while ownership/markers/finalization remained healthy. Broad Phase-4 certification is therefore paused under `docs/work/active/COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md` until the project explicitly retains pulse semantics or freezes a research path toward persistent-window semantics.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
