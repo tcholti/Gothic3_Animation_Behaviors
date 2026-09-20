@@ -8,7 +8,7 @@
 
 `Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. Active behavior domains are Raise-phase control, attack playback-speed control, and authored-frame collision control. Future independent domains may include target acquisition and climbing.
 
-This file owns overall intended architecture and implementation order. Established collision facts are projected in `COLLISION_REFERENCE.md`; collision lifecycle authority is `COLLISION_LIFECYCLE.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_DIAGNOSTICS.md`; permanent raw55 behavior is owned by `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
+This file owns overall intended architecture and implementation order. Established collision facts are projected in `COLLISION_REFERENCE.md`; collision lifecycle authority is `COLLISION_LIFECYCLE.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_DIAGNOSTICS.md`; permanent raw8 behavior is owned by `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`; permanent raw55 behavior is owned by `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
 
 ---
 
@@ -106,83 +106,44 @@ Equipped source activation is not itself proof of native damage eligibility for 
 
 ### 4.3 Production raw-8 Fist
 
-`gEUseType_Fist` / raw 8 is a native body-contact opportunity mechanism, not a literal right-hand weapon source and not a custom damage system.
+`gEUseType_Fist` / raw8 uses a native target-directed body-contact opportunity mechanism. The permanent owner is `Raw8FistCollision`.
 
-The governing boundary is factual raw-8 source identity plus a supported/proven native attack-family mechanism and exact current Hit/marker context. Human/species identity and animation-family naming are not governing applicability rules.
-
-Known relevant native route in the tested Game.dll:
+Current production architecture after EV-353:
 
 ```text
-gCScriptProcessingUnit::sAICombatMoveItlLoop = Game +0x16DD00
-SPU+0x164 gate check                         = Game +0x16DFB9
-GetMaxTime motion-0 arm                     = Game +0x16E160..+0x16E164
-GetPlayTime motion-0 call                   = Game +0x16E180
-threshold compare                           = Game +0x16E18C..+0x16E190
-native latch close SPU+0x164 = 1            = Game +0x16E1A3
-observed gCEntity::OnDamage caller return    = Game +0x16E348
-native threshold constant double             = Game +0x308308
-```
-
-The alternate timing sub-arm that writes the latch at `Game +0x16E13E` returns before the later `+0x16E348` damage dispatch and therefore cannot explain the tested damaging Quick route.
-
-Production semantics for a supported/proven raw-8 Fist attack family:
-
-```text
-UNMARKED RAW-8 FIST
+unmarked raw8
 -> completely native
 
-MARKED RAW-8 FIST EXECUTION
--> once per factual C1 generation, close SPU+0x164 to 1 before first FIST
+marked raw8 C1
+-> initial native opportunity CLOSED
 
-EACH ACCEPTED FIST
--> SPU+0x164 = 0
--> if real motion-0 play time is below threshold,
-   arm one exact one-shot permission for the Game+0x16E180 comparison
--> otherwise use native timing
+accepted FIST
+-> one pending authored opportunity OPEN
 
-NATIVE GOTHIC PATH
--> owns target/contact/block/immunity/reaction/damage
--> authored collision code does not decide HP damage
--> native hit/contact resolution consumes the opportunity; resulting damage may still be zero
+native miss while pending
+-> restore native one-shot eligibility
+-> keep authored opportunity pending
+
+first exact native Game+0x16E348 raw8 contact dispatch
+-> consume opportunity before gameplay outcome interpretation
+
+later FIST in same C1
+-> reopen one opportunity, never stack
+
+same-C1 Action/family/phase transport
+-> preserve opportunity
+
+exact C1 finalization/replacement
+-> close unused opportunity
 ```
 
-Timing permission is bound to exact actor/SPU/C1 generation/animation-actor/motion/callsite/current-animation identity and dies on factual identity/generation replacement.
+Gothic remains authoritative for target selection, contact geometry, block/parry, immunity, reactions and HP damage. The API transport happens to be `gCEntity::OnDamage`, but production raw8 uses only exact dispatch entry as the contact-resolution fact and never interprets the result as “damage succeeded.”
 
-Production exclusions:
+The opportunity lifetime is actor/C1/source/SPU scoped. Timing persistence is a separate animation/timing substate and may retire without consuming the logical opportunity. Proven Sprint-origin Action9 -> Action2 continuation inside one C1 remains protected.
 
-```text
-NO authored FIST_OFF
-NO Fist ClearTriggeredList
-NO Fist-specific weapon callback suppression
-NO equipped Item_Attack/Item_Equipped Fist window
-NO weapon C1 physical cleanup obligation
-NO direct/custom damage
-NO global animation-clock mutation
-NO dedicated Fist interruption repair
-NO raw55/PhysicalFist generalization
-NO species/name-based FIST special cases
-NO unproven attack-family extension merely because source token is Fist
-```
+Production exclusions remain: no FIST_OFF, no `ClearTriggeredList`, no target/visited list, no collision-group window, no custom/direct damage, no species rules, no polling/timers, and no raw55/equipped mechanism sharing.
 
-Evidence progression:
-
-```text
-human Normal + Power production acceptance                 EV-240
-transformed Sabretooth Normal + Power compatibility        EV-247
-native Sabretooth Normal + Power + Quick mechanism proof   EV-248
-bounded Quick family extension + two-direction validation  EV-249
-raw8 Sprint production support                              EV-251
-post-raw55 coexistence sentinel                             EV-297
-human single-marker/native fallback regression              EV-304
-human double-marker same-C1 repeated-contact regression     EV-305
-Sabretooth actor-general double-marker regression             EV-307
-```
-
-Supported/proven raw-8 FIST family set for the tested current scope:
-
-```text
-Normal + Power + Quick + Sprint
-```
+Full authority: `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
 
 ### 4.4 Current supported family boundary
 
