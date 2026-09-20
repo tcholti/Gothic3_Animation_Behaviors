@@ -21,7 +21,7 @@ latest completed evidence = EV-353
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = NONE
 active Work implementation task = COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md
-current stop gate = POP-12 validation of frozen permanent raw8 implementation task before Work
+current stop gate = source-unchanged native Sabretooth single-FIST Sprint-origin Action9->Action2 token-survival runtime sentinel before Work
 ```
 
 ## Current responsibility
@@ -47,7 +47,7 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**EV-353 is promoted into `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`. The resolved semantics review is archived. Active Work task: `COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`. Do not send to Work until POP-12 validates this frozen production state.**
+**EV-353 is promoted into `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`. Production task is frozen but NOT cleared for Work: first run the source-unchanged native Sabretooth single-FIST Sprint-origin sentinel and prove an already-open opportunity survives factual same-C1 Action9/SPRINT -> Action2/POWER until contact or real C1 closure.**
 
 Current frozen causal question:
 
