@@ -18,7 +18,7 @@ Sabretooth single-marker + double-marker controls = CLOSED/PASS
 Orc attack matrix = CLOSED/PASS at EV-309–EV-310
 weapon-using creature/NPC phase = CLOSED/PASS at EV-311–EV-314
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-active contract = raw8 post-attempt latch observation probe
+active contract = raw8 post-attempt latch observation probe — implementation reviewed PASS, runtime pending
 Phase 4 non-weapon creatures = PAUSED AT RAW8 AUTHORING-SEMANTICS GATE
 focused raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-346
@@ -31,7 +31,7 @@ Orc Phase 2 is closed: Staff-animation/Halberd raw51 and raw8 Fist passed at EV-
 
 Phase 3 is closed: current-DLL Goblin, Demon, Ogre and Stalker regression passes are recorded at EV-311–EV-314. EV-311 exposed a factual Goblin equipped-Sprint/right/raw2 route. User + Normal Chat deliberately reopened only that new scope question before Phase 4.
 
-Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authoring-semantics gate. User + Normal Chat have now chosen the persistent authored opportunity-window semantic: FIST opens one target-directed native body-contact damage opportunity; an unsuccessful contact should not consume it; successful native contact consumes it; later FIST rearms; C1/Hit termination closes any unused opportunity; no raw8 FIST_OFF absent future contradictory evidence. The first bounded diagnostic-only implementation task is active in `docs/work/active/COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md`.
+Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authoring-semantics gate. User + Normal Chat have now chosen the persistent authored opportunity-window semantic: FIST opens one target-directed native body-contact damage opportunity; an unsuccessful contact should not consume it; successful native contact consumes it; later FIST rearms; C1/Hit termination closes any unused opportunity; no raw8 FIST_OFF absent future contradictory evidence. The first bounded diagnostic-only probe is implemented at `4ab9a77557f9ad5057d158b7d26a3098db657b28` and independently source-reviewed PASS. Runtime validation is pending under `docs/work/active/COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md`.
 
 ## Immediate responsibility
 
@@ -77,7 +77,8 @@ Current responsibility: broad Phase 4 remains PAUSED at the EV-346 raw8 authorin
 40. Phase 4 broad regression = PAUSED pending `docs/work/active/COLLISION_RAW8_FIST_AUTHORING_SEMANTICS_REVIEW.md`.
 41. Raw8 author-facing semantic = AGREED: persistent opportunity window, no FIST_OFF absent evidence.
 42. Active Work task: `COLLISION_RAW8_FIST_POST_ATTEMPT_LATCH_OBSERVATION_PROBE.md` — observation only; prove post-native latch state after an early synthetic attempt, correlated with native damage/no-damage.
-43. Next after Work: Normal Chat independent source review -> User local build/deploy -> controlled runtime probe.
+43. Work implementation `4ab9a77557f9ad5057d158b7d26a3098db657b28` = Normal Chat source-review PASS.
+44. Next: User local build of both twins, deploy diagnostic twin only, then controlled early-synthetic raw8 miss-vs-hit runtime probe.
 
 ## Current verified diagnostic product
 
