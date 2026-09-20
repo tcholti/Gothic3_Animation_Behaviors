@@ -29,10 +29,11 @@ current stop gate = POP-12 knowledge-state validation must PASS
 User + Normal Chat have agreed on the desired raw8 author-facing semantic:
 
 ```text
-FIST opens one target-directed native body-contact damage opportunity
--> unsuccessful contact should leave the opportunity available
--> successful native contact consumes it
--> later FIST rearms it
+FIST opens one target-directed native body-contact / hit opportunity
+-> no native hit/contact resolution yet: opportunity remains available
+-> first native hit/contact resolution consumes it for that target
+-> block / immunity / reactions / HP damage remain outside this mod
+-> later FIST rearms another opportunity
 -> C1 / Hit termination closes any unused opportunity
 ```
 
@@ -42,7 +43,7 @@ Latest causal closure:
 
 - **EV-347:** native raw8 closes the latch after both hit and miss attempts.
 - **EV-348:** one post-miss latch-only rearm can restore a later native opportunity.
-- **EV-349:** native knockdown/get-up state can suppress visible damage independently of collision, and the temporary rearmed opportunity can survive Hit-C1 replacement into Recover unless explicitly closed.
+- **EV-349:** Parade shows native hit/contact resolution can occur with zero visible damage, while a temporary rearmed opportunity can survive Hit-C1 replacement into Recover unless explicitly closed.
 
 No implementation task is active.
 
@@ -50,7 +51,7 @@ No implementation task is active.
 
 After PASS, Normal Chat owns one narrow next research decision:
 
-> What is the smallest factual native boundary that distinguishes genuine no-contact from legitimate target-state rejection, while preserving Gothic's ownership of target/vulnerability/damage and enforcing exact C1/Hit-bounded opportunity lifetime?
+> What is the smallest factual native hit/contact-resolution boundary that can consume the authored opportunity without depending on block, immunity, reaction or HP-damage policy, while enforcing exact C1/Hit-bounded lifetime?
 
 ## Current runtime provenance
 
