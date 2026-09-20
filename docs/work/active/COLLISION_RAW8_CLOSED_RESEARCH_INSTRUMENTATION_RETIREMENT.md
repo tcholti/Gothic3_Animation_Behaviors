@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Closed Research Instrumentation Retirement
 
-**Status:** ACTIVE — BOUNDED DIAGNOSTIC-CLEANUP IMPLEMENTATION TASK  
+**Status:** ACTIVE — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / LOCAL BUILD-SMOKE PENDING  
 **Opened:** 2026-09-20  
 **Evidence basis:** EV-347–EV-349 + collision-vs-damage drift audit  
 **Production behavior change:** PROHIBITED  
@@ -14,9 +14,11 @@ Branch:
 
 `docs/collision-source-evidence`
 
-Required base HEAD:
+Original frozen-contract base: `c7706b7c66812cf0fc31b84a24b5a77bb6e38262`
 
-`c7706b7c66812cf0fc31b84a24b5a77bb6e38262`
+Authorized implementation parent used by Work: `6f83233e7c35ca809a5ed909bc8ae51a553f4c9c`
+
+The delta between those SHAs is documentation-only (`BETWEEN_CHATS.md`, `SESSION_ENTRYPOINT.md`, and creation of this contract); implementation source is identical.
 
 ## Read first
 
@@ -206,3 +208,30 @@ Report:
 - any material contradiction.
 
 Then STOP.
+
+## Implementation checkpoint — 2026-09-20
+
+Work implementation:
+
+`ac1373a88b17c1fc36f8c2b7e06ce394d2777cc3`
+
+Parent:
+
+`6f83233e7c35ca809a5ed909bc8ae51a553f4c9c`
+
+Normal Chat independent source review: **PASS**.
+
+Review findings:
+- exactly one commit over the authorized parent;
+- exactly eight expected paths;
+- 485 deletions / 0 additions;
+- `Raw8FistWindowProbe.cpp/.h` removed;
+- EV-347 `PostAttemptObservationScope` / OnDamage-counting API removed;
+- `CORE RAW8_FIST_POST_ATTEMPT` logger removed;
+- raw8 timing wrapper again directly returns `Raw8FistCollision::ApplyTimingPermission(...)`;
+- generic `EntityOnDamage_FrameCollisionTest`, ordinal/cap logging, `CollisionDiagnostics::LogEntityOnDamageEntry(...)`, and original Gothic call remain;
+- permanent raw8 ownership/latch/timing functions and assignments are unchanged except removal of closed diagnostic bookkeeping;
+- shared `FRAME_COLLISION_BEHAVIOR_SOURCES` is unchanged;
+- no new hook, state, policy, latch write, timing return, group mutation, trigger clear or production integration change was introduced.
+
+Local build/smoke is pending.
