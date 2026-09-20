@@ -542,3 +542,31 @@ Disposition:
 - **NEGATIVE PASS.**
 - Missing required LEFT cannot produce partial authored Sprint ownership; native fallback and cleanup remain intact.
 - This closes the missing-source negative runtime gate for production promotion.
+
+### EV-328 — promoted equipped Sprint ordinary true-Power protected control PASS
+
+Observed:
+- The promoted permanent equipped-Sprint diagnostic binary captured nine ordinary `PC_Hero Action=2 / Family=POWER` ownership records using exact RIGHT `It_2H_Sword_Flamberge` / UseType 3.
+- All nine ownership records remained under the established generic equipped-Power owner with `SuppressNative=1 / Classification=ROUTINE`.
+- Nine factual Power RIGHT markers were accepted and nine native `ONDAMAGE Target=Golem` events occurred while `PlayerAction=2`.
+- There were **zero** `EQUIPPED_SPRINT_COLLISION` records for `Actor=PC_Hero`.
+- There were **zero** `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION` signatures anywhere in the run.
+- There were zero true-Power marker rejections, zero PC_Hero nonzero finalizations, zero repair events, and no contradiction/invariant/lifecycle/repair-divergence flag.
+
+Scope / limits:
+- Production-promotion protected control for ordinary equipped true Power on the established player 2H/Flamberge/raw3 fixture.
+- Confirms the permanent Sprint extraction does not steal, fabricate or inherit Sprint ownership for a new true-Power execution.
+- Does not replace the final diagnostics-free behavior-only Goblin Sprint smoke.
+
+Provenance:
+- User upload commit/head `807a52cdaaae6ae56df06df285d340950ee00737`.
+- Promoted implementation: `218c7ab73815a9afc46fc3ea5ac7246998bc2b1b`.
+- Diagnostic DLL SHA256: `DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A`.
+- Canonical archived log: `research/archive/2026-09-20_equipped_sprint_production_true_power_protected_validation.log`.
+- Git blob `ddfdb72c1c9a3fed2dcc48a71e7134eb175b7c9e`; 180,803 characters / 693 lines.
+- Diagnostic profile: CORE; DEEP disabled.
+
+Disposition:
+- **PASS.**
+- Ordinary equipped true Power remains isolated from the permanent Sprint owner after production extraction.
+- Together with EV-326 positive continuation and EV-327 missing-source negative control, all diagnostic runtime gates for the production promotion are now complete.
