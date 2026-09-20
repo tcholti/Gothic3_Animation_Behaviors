@@ -1,7 +1,7 @@
 # Collision Validation Plan
 
 **Status:** Current collision validation authority  
-**Updated:** 2026-09-19
+**Updated:** 2026-09-20
 
 ## Purpose
 
@@ -150,15 +150,25 @@ Before Phase 4, EV-332–EV-336 add a mixed player/enemy cross-source pass on th
 
 EV-311 exposed the factual equipped Sprint/right/raw2 Goblin route that was subsequently researched and promoted. Permanent `EquippedSprintCollision` acceptance is now CLOSED/PASS through EV-329; Phase 3 remains closed and that scope no longer blocks Phase 4.
 
-### 3.4 Phase 4 — Non-weapon creatures — NEXT
+### 3.4 Phase 4 — Non-weapon creatures — ACTIVE / PARTIAL PASS
 
 Exercise multiple prepared creature/body-contact routes.
 
-Do not repeat Troll/BlackTroll raw55 or Sabretooth raw8 merely for duplication: both mechanisms already have current-DLL regression/acceptance evidence in the latest collision line (raw55 through EV-298; Sabretooth through EV-307). Reopen them only for a concrete contradiction or a deliberately different fixture.
+Current Phase-4 progress:
+
+```text
+Sabretooth raw8 double-FIST, native + transformed player    PASS — EV-337
+Sabretooth raw8 single-FIST, native + transformed player    PASS — EV-338
+Wolf marked raw8, native + transformed player               PASS — EV-339
+Wolf unmarked raw8 native-fallback control, both forms       PASS — EV-340
+Troll raw55 mixed single/double FIST + player Staff          PASS — EV-341
+```
+
+The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. Further Phase-4 coverage should now prioritize other non-weapon creature/body-contact fixtures unless a new contradiction specifically requires reopening Sabretooth/Troll.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
-Permanent raw55 behavior applies only to its frozen factual contract. Ordinary raw8 behavior remains governed by the separate raw8 mechanism. Permanent equipped Sprint behavior is governed separately by `EquippedSprintCollision`; do not infer applicability from creature name or Power-named animation text.
+Permanent raw55 behavior applies only to its frozen factual contract. Ordinary raw8 behavior remains governed by the separate raw8 mechanism. EV-339–EV-340 provide a paired Wolf control: factual Fist/UseType8 with markers enters raw8 authored timing; the same factual source without markers stays completely native. Permanent equipped Sprint behavior is governed separately by `EquippedSprintCollision`; do not infer applicability from creature name or Power-named animation text.
 
 ### 3.5 Phase 5 — 2H vs Axe separation-mod compatibility
 
