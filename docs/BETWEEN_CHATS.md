@@ -1,128 +1,97 @@
 # Between Chats
 
-**Purpose:** Exact short-lived continuation bridge. Replace rather than accumulate chronology.  
+**Purpose:** Short-lived exact continuation pointer. Replace, do not accumulate.  
 **Updated:** 2026-09-20
 
-> After an abrupt/max-context/unusable Chat, start at root `README.md`; this bridge is only a clue until POP-11 recovery verifies it.
+> After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
-## Current bridge
+## Current state
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Phase 4 remains paused at raw8 FIST authoring-semantics research. Latest completed evidence: **EV-352**.
+Phase 4 raw8 FIST authoring-semantics research remains active.  
+Latest completed evidence: **EV-352**.
 
-Active bounded Work task:
-
-`docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`
-
-## Agreed ownership / terminology
-
-```text
-opportunity
-= authored logical OPEN / CLOSED / rearmed state
-
-collision/contact
-= native physical/contact resolution
-
-native hit/contact-resolution boundary
-= factual Gothic boundary under research
-
-damage
-= literal Gothic API/log name or HP result only
-```
-
-The mod owns authored collision/contact opportunity and exact Hit/C1 lifetime. Gothic/behavior mods own target selection, block/parry/immunity/reactions/HP damage.
-
-## EV-351–EV-352
-
-EV-351:
-- exact raw8 `CanBeActivatedNow` / `TriggerTarget` callbacks absent on six Gargoyle frame-3 invocations;
-- three close cases still reached exact `Game+0x16E348`;
-- ordinary TouchDamage virtual trigger route is not the raw8 contact boundary on that path.
-
-EV-352:
-- native human group-combat control with locked `ReddockOrcScoutLeader`;
-- 25 player Fist C1 starts;
-- eight exact raw8 `Game+0x16E348` entries;
-- all eight targeted only the locked leader;
-- zero exact Fist entries against deliberately interposed/adjacent non-target Orcs.
-
-Together with EV-233, do not reproduce weapon/raw55 per-target visited bookkeeping for raw8.
-
-## Frozen causal model
-
-Use one pending token per exact marked actor/C1:
-
-```text
-marked C1 start
--> native latch CLOSED
-
-accepted FIST
--> token OPEN
--> latch OPEN
--> marker-time timing permission available
-
-native attempt misses
--> token remains OPEN
--> re-open latch
--> keep marker-time synthetic timing eligibility while still pre-threshold
-
-exact raw8 Game+0x16E348 dispatch entered
--> token CONSUMED before native original
--> do not inspect HP/block/immunity outcome
--> no further rearm
-
-later FIST
--> one token OPEN again, no stacking
-
-same C1 Action/family/phase transport
--> token stays with the attack execution
--> specifically preserve proven Sprint-origin Action9 -> Action2
-
-Hit/C1 execution genuinely ends or generation is replaced
--> unused token CLOSED
--> latch forced CLOSED
--> timing helper retired
--> no cross-C1 leak
-```
-
-This is not custom contact/damage. It repeatedly makes Gothic's already-proven one-shot raw8 mechanism eligible while the authored opportunity token remains pending.
-
-The exact `Game+0x16E348` path is treated only as native raw8 contact-resolution dispatch entry under strict caller/source/actor/C1 identity. EV-349 proves it can occur with zero visible HP damage.
-
-## Current stop gate
-
-The frozen task was corrected after User review: token lifetime is C1/execution-scoped rather than Action-scoped.
-
-POP-12 knowledge-state validation of this corrected frozen task state: **PASS**.
-
-The task is now cleared for bounded Work implementation:
+Active task:
 
 `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_TOKEN_CAUSAL_PROBE.md`
 
-No broader raw8 redesign or production promotion is authorized.
+Raw8 remains mechanically separate from equipped collision. Shared principle only:
 
-`research/raw/` should contain only `Keep.txt`.
+```text
+state belongs to an exact attack execution / C1 generation
+-> same-C1 Action/family/phase transport may continue
+-> factual C1 finalization/replacement terminates it
+```
 
+Protected Sprint fact: Action9/SPRINT -> Action2/POWER can occur inside one C1.
 
-## Source review of token implementation — BLOCKED
+## Current source-review block
 
-Implementation reviewed:
+Reviewed implementation:
+
 `e86c1ce03b36ef0ef7421a19284c5b38e58615ed`
 
-Most frozen invariants passed, but one exact lifecycle issue blocks build/runtime.
+Most probe invariants PASS. One narrow lifecycle correction is required before build/runtime.
 
-At the post-native `AISetState` finalization seam, the probe's `CloseForFinalization()` checks stored-token == captured generation and revalidates actor/SPU/source, but does not verify that the **current** C1 generation still equals the captured generation before writing latch `1`.
+Current defect:
 
-The permanent lifecycle guard already treats a generation change during native `AISetState` as `FinalizationGenerationChanged`. Raw8 must mirror that safety.
+`CloseForFinalization()` runs after native `AISetState`. It verifies stored token == captured pre-call generation and revalidates actor/SPU/source, but does **not** verify that the actor's **current C1 generation still equals that captured generation** before writing `SPU+0x164 = 1`.
 
-Correction:
-- one file only: `Raw8FistPersistentOpportunityProbe.cpp`;
-- re-capture current C1 generation before terminal latch mutation;
-- same generation -> existing exact terminal close may write latch `1`;
-- invalid/changed generation -> retire stale logical token/timing only, log no-write reason, **no latch mutation**.
+Risk:
 
-Do not alter token Action/Sprint semantics, miss rearm, timing persistence, contact consumption or any permanent source.
+```text
+native AISetState creates/replaces C1
+-> actor/SPU/Fist source remain reusable
+-> old token cleanup could write latch 1 into new generation
+```
 
-Run POP-12 before sending this correction to Work.
+That cross-C1 mutation is prohibited.
+
+## Exact correction
+
+Change only:
+
+`prototypes/Script_FrameCollisionTest/Raw8FistPersistentOpportunityProbe.cpp`
+
+Inside `CloseForFinalization(generation)`, before any latch write:
+
+1. recapture `CollisionLifecycleGuard::CaptureCurrentGenerationToken(generation.actorInstance)`;
+2. if current generation is valid and equals captured generation:
+   - preserve existing exact terminal close;
+   - latch may be safely forced to `1`;
+3. if current generation is invalid or changed:
+   - retire/erase stale logical token and timing state only;
+   - log a factual no-write close reason;
+   - **do not write the latch**.
+
+Do not change:
+- miss rearm;
+- timing persistence;
+- contact consumption;
+- accepted-FIST OPEN;
+- Action/Sprint lifetime semantics;
+- permanent raw8 source;
+- behavior-only source set;
+- raw55/equipped behavior.
+
+Expected correction diff: **one file only**.
+
+## Stop gate
+
+Run:
+
+```text
+python tools/knowledge/validate_knowledge_state.py
+```
+
+Require:
+
+```text
+Knowledge-state validation PASS
+```
+
+Only after PASS send the one-file correction to Work.
+
+`research/raw/` should contain only `Keep.txt`.
