@@ -188,7 +188,7 @@ Held Use2 / ~2500 ms is a test trigger, not collision ownership.
 
 ## 4. Production raw-8 Fist Lookup
 
-Raw-8 Fist is a native body-damage mechanism, separate from equipped `Item_Attack` collision and from raw55 PhysicalFist.
+Raw-8 Fist is a native body-contact / hit-opportunity mechanism, separate from equipped `Item_Attack` collision and from raw55 PhysicalFist. This project does not own gameplay damage policy.
 
 ### Generic-human static/runtime path
 
@@ -201,7 +201,7 @@ GetPlayTime(motion 0) exact call site             Game +0x16E180
 comparison                                         Game +0x16E18C..+0x16E190
 below threshold -> common exit                    Game +0x16E352
 native attempt latch write = 1                    Game +0x16E1A3
-observed gCEntity::OnDamage caller return          Game +0x16E348
+observed native gCEntity::OnDamage entry boundary   Game +0x16E348
 ```
 
 Observed generic-human threshold multiplier is approximately `0.6000000238`; with the tested `0.6800000072` max time this produced ~`0.4080000205` seconds.
@@ -236,7 +236,7 @@ branch patch
 direct damage dispatch
 ```
 
-Marked-execution start closes `SPU+0x164 = 1`; each accepted FIST rearms `=0`. EV-347 proves the tested native attempt leaves the latch at `1` after the instruction returns whether or not `Game+0x16E348` damage occurred, so do not describe `+0x16E1A3` as success-only consumption.
+Marked-execution start closes `SPU+0x164 = 1`; each accepted FIST rearms `=0`. EV-347 proves the tested native attempt leaves the latch at `1` after the instruction returns whether or not the `Game+0x16E348` boundary is entered, so do not describe `+0x16E1A3` as success-only consumption. EV-349 further shows that entering `+0x16E348` does not imply visible HP damage: Parade/block can still prevent the gameplay damage result. Treat `+0x16E348` as an observed native hit/contact-resolution candidate boundary, not as a damage-success oracle.
 
 Evidence route: EV-221–EV-240 for human production, with later raw8 actor/family controls through EV-263. Raw8 production semantics must not be generalized to raw55 merely because both serialize through a `Fist` animation category.
 
