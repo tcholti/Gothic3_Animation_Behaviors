@@ -1,6 +1,6 @@
 # Equipped Sprint Production Promotion
 
-**Status:** ACTIVE — IMPLEMENTED / SOURCE+BUILDS+BEHAVIOR STARTUP PASS / DIAGNOSTIC RUNTIME+BEHAVIOR SMOKE PENDING  
+**Status:** ACTIVE — SOURCE+BUILDS+BEHAVIOR+DIAGNOSTIC STARTUP PASS / RUNTIME CONTROLS+BEHAVIOR SMOKE PENDING  
 **Type:** Bounded production-behavior promotion  
 **Created:** 2026-09-19  
 **Owner:** Work Chat implements; Normal Chat independently reviews and owns runtime acceptance.
@@ -337,3 +337,35 @@ Interpretation:
 - runtime equivalence is not yet established.
 
 Next gate: redeploy the diagnostic twin and rerun the compact EV-322 / EV-323 / EV-324 acceptance controls from the same source state.
+
+
+## Diagnostic deployment and startup result
+
+Diagnostic twin deployment/startup: **PASS**.
+
+Observed:
+
+```text
+Selected live twin: Script_FrameCollisionTest.dll
+Built SHA256: DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A
+Live  SHA256: DAC9FFD8D4853947CEAD1F74569A6071E3C24AA716DC100064DBBC45086D7F3A
+DIAGNOSTIC DEPLOYMENT PASS
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+Hooks installed.
+Script_FrameCollisionTest unloading cleanly.
+```
+
+Startup interpretation:
+- diagnostic twin is the sole live collision product;
+- built/live binary identity matches;
+- CORE profile loads and installs behavior hooks;
+- clean unload observed.
+
+Minor non-blocking metadata note:
+- the diagnostic startup `BehaviorCore:` banner string does not yet enumerate permanent `EquippedSprintCollision`;
+- this is a stale descriptive banner only, not evidence that the module is absent from the built behavior core;
+- do not change source during this acceptance run, because that would invalidate the pinned diagnostic binary identity above;
+- fix the banner in a later bounded diagnostic-metadata cleanup after promotion acceptance.
+
+Next gate: EV-322-equivalent RIGHT -> OFF positive runtime control on this exact diagnostic binary.
