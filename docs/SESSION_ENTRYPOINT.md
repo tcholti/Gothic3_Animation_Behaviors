@@ -16,13 +16,13 @@ standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest runtime evidence = EV-360
+latest runtime evidence = EV-361
 Phase 4 = PAUSED pending focused permanent raw8 acceptance
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
 cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
 active Work task = NONE
-current stop gate = resume with final two focused raw8 controls
+current stop gate = resume with final replacement->unmarked fallback sentinel
 ```
 
 ## Current responsibility
@@ -73,7 +73,8 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 - **EV-357:** final post-cleanup diagnostic build/startup + targeted re-smoke PASS; C1 metadata retirement, raw8, raw55/equipped coexistence and compact Sprint CORE remained healthy.
 - **EV-358:** final post-cleanup diagnostics-free behavior parity smoke PASS; source frozen for focused acceptance.
 - **EV-359:** human Normal/Power, later-FIST reopening and ordinary no-contact finalization PASS; Gargoyle close/delayed PASS.
-- **EV-360:** Gargoyle far/no-contact, reaction/generation replacement and Sprint Action9→Action2 transport PASS; only focused items 6–7 remain open.
+- **EV-360:** Gargoyle far/no-contact, reaction/generation replacement and Sprint Action9→Action2 transport PASS.
+- **EV-361:** exact P1-left human Normal motion confirmed genuinely unmarked/native and target-directed in group combat; only focused item 6 remains open.
 
 Latest runtime-reviewed and frozen source:
 `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — EV-357–EV-359
@@ -85,13 +86,13 @@ Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C58
 ## Next sequence
 
 ```text
-finish focused items 6–7
+finish focused item 6
 -> close permanent raw8 acceptance
 -> comprehensive frozen-source release campaign
 -> remaining standalone collision regression
 ```
 
-Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8 acceptance is near-complete: items 1–5 and 8–10 are PASS; only item 6 replacement→later unmarked native fallback and item 7 native unmarked human target-directed control remain. After those close, run the frozen-source comprehensive release campaign in COLLISION_TEST_PLAN §3.8.
+Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8 acceptance is one sentinel from complete: items 1–5 and 7–10 are PASS; only item 6 replacement→later unmarked native fallback remains. After it closes, run the frozen-source comprehensive release campaign in COLLISION_TEST_PLAN §3.8.
 
 ## Read next by question
 
@@ -99,7 +100,7 @@ Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8
 - closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-360
+- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-361
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
