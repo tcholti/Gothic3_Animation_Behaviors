@@ -17,11 +17,12 @@ Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest runtime evidence = EV-356
-Phase 4 = PAUSED pending final cleanup + focused permanent raw8 acceptance
+Phase 4 = PAUSED pending post-cleanup build/re-smoke + focused permanent raw8 acceptance
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
-active Work task = COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md
-current stop gate = POP-12 PASS -> execute cleanup 2
+cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
+active Work task = NONE
+current stop gate = POP-12 PASS -> build both twins from final source candidate
 ```
 
 ## Current responsibility
@@ -56,17 +57,13 @@ Cleanup-1 implementation:
 
 It added exact-generation, metadata-only retirement for marker dedupe/budget state, equipped-Sprint binding state and raw55 execution state at the existing post-native AISetState seam. No physical collision/latch/group behavior changed.
 
-Active cleanup 2:
-`docs/work/active/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
+Completed cleanup 2:
+`docs/archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 
-Cleanup 2 owns only:
-- raw8 diagnostic-only state/work exclusion from the behavior twin;
-- dead closed TouchDamage diagnostic API retirement;
-- EquippedSprint CORE log compaction;
-- diagnostic startup behavior-core banner correction;
-- compact raw8 diagnostic signature cleanup.
+Cleanup-2 implementation:
+`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — independent Normal Chat static review **PASS**.
 
-No gameplay semantics, hooks, CMake membership, lifecycle policy or collision behavior may change.
+It compile-isolates diagnostic-only raw8 state/work from the behavior twin, removes dead TouchDamage research APIs, compacts EquippedSprint CORE logging, corrects startup behavior-core identity, and removes unused compact raw8 diagnostic parameters without changing gameplay semantics.
 
 ## Current evidence / runtime provenance
 
@@ -77,8 +74,8 @@ No gameplay semantics, hooks, CMake membership, lifecycle policy or collision be
 Latest runtime-reviewed source:
 `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
 
-Latest source after cleanup 1, not yet rebuilt:
-`9789254866bb47dcbadb145aeb9831c7c0e4e97f`
+Current final source candidate, not yet rebuilt:
+`f1f5d2aad3edc3564a9a8b40541840b94f8fa903`
 
 Last validated diagnostic DLL:
 `Script_FrameCollisionTest.dll`  
@@ -93,9 +90,7 @@ Both belonged to the pre-cleanup runtime candidate and passed their EV-355/EV-35
 ## Next sequence
 
 ```text
-cleanup 2 implementation
--> independent Normal Chat source review
--> maintain final source state + POP-12
+maintain final source state + POP-12
 -> build both twins once
 -> diagnostic deploy/startup + targeted re-smoke
 -> behavior-only parity re-smoke
@@ -109,7 +104,7 @@ Do not begin full focused/regression validation before cleanup 2 and the post-cl
 ## Read next by question
 
 - exact active continuation → `BETWEEN_CHATS.md`
-- active cleanup contract → `work/active/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
+- closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
 - proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-356
