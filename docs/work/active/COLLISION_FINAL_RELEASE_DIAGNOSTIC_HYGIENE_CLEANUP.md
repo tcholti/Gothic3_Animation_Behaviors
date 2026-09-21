@@ -1,6 +1,6 @@
 # Gothic 3 — Final Collision Release / Diagnostic Hygiene Cleanup
 
-**Status:** FROZEN — WAITING FOR C1 METADATA CLEANUP + INDEPENDENT REVIEW  
+**Status:** ACTIVE — FROZEN / BLOCKED WAITING FOR C1 METADATA CLEANUP + INDEPENDENT REVIEW  
 **Opened:** 2026-09-21  
 **Finding source:** archived final source-quality audit B-02–B-05 + C-01  
 **Behavior change intent:** NONE  
