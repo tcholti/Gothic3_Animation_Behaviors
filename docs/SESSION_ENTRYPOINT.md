@@ -19,9 +19,9 @@ Phase 4 non-weapon creatures = PAUSED PENDING FINAL CODE-QUALITY/MODULARITY AUDI
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-356
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
-active temporary review = FINAL COLLISION SOURCE QUALITY / MODULARITY AUDIT FROZEN
-active Work task = COLLISION_FINAL_SOURCE_QUALITY_MODULARITY_AUDIT.md — READ-ONLY FORMAL AUDIT
-current stop gate = POP-12 validation of EV-356 + frozen audit state, then launch read-only Work audit
+active temporary review = FINAL COLLISION SOURCE QUALITY / MODULARITY AUDIT CLOSED; ACCEPTED CLEANUP SPLIT INTO TWO BOUNDED TASKS
+active Work task = COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md
+current stop gate = POP-12 validation of audit-closure state, then bounded C1 metadata-retirement cleanup
 ```
 
 ## Current responsibility
@@ -63,6 +63,12 @@ Permanent raw8 authority: `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
 
 Reviewed parent implementation contract: `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`.
 
+Closed final audit: `docs/archive/investigations/COLLISION_FINAL_SOURCE_QUALITY_MODULARITY_AUDIT.md`.
+
+Active first cleanup: `docs/work/active/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md`.
+
+Frozen second cleanup (WAITING): `docs/work/active/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`.
+
 Closed correction contract: `docs/archive/investigations/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
 
 
@@ -80,6 +86,16 @@ diagnostics-only correction
 ```
 
 The final code-quality review is deliberately deferred until the smoke-tested candidate exists. Its purpose will be removal/ownership/modularity review, not redesign or new behavior.
+
+Final source-quality audit result:
+- no MUST-correct finding;
+- no material behavioral contradiction;
+- five SHOULD findings accepted by Normal Chat;
+- one optional raw8 diagnostic-signature cleanup promoted into the final pre-validation cleanup;
+- accepted work is split into two commits for fault isolation:
+  1. generation-qualified C1 metadata retirement;
+  2. release/diagnostic hygiene and compaction.
+- full focused/regression validation remains paused until both cleanups are reviewed, rebuilt and re-smoked.
 
 ## Current runtime provenance
 
