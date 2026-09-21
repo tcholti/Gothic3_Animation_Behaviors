@@ -15,13 +15,13 @@
 standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-Phase 4 non-weapon creatures = PAUSED PENDING RAW8 DIAGNOSTICS-ONLY REVIEW CORRECTION + FOCUSED PERMANENT ACCEPTANCE
+Phase 4 non-weapon creatures = PAUSED PENDING RAW8 BUILD/SMOKE + FINAL CODE-QUALITY AUDIT + FOCUSED PERMANENT ACCEPTANCE
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-354
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
-active temporary review = RAW8 PRODUCTION IMPLEMENTATION STATIC REVIEW COMPLETE: BEHAVIOR PASS / DIAGNOSTIC CORRECTION OPEN
-active Work implementation task = COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md
-current stop gate = POP-12 PASS; bounded diagnostics-only correction is authorized before any build
+active temporary review = RAW8 PRODUCTION SOURCE CANDIDATE STATIC REVIEW PASS
+active Work implementation task = NONE — next Work task deferred until post-smoke read-only code-quality/modularity audit
+current stop gate = build both twins, deploy/hash/startup gate, then small smoke/log check
 ```
 
 ## Current responsibility
@@ -53,18 +53,13 @@ Production implementation `3426cede41c0087e43edc0d81c825ff167e8e034` has complet
 
 Behavior/state-machine review: **PASS**. The implementation correctly promotes the EV-353/EV-354 mechanism into permanent `Raw8FistCollision`, makes the proven OnDamage/combat-move/timing/finalization transports behavior-required in both twins, preserves the C1 execution record after contact, and removes the temporary probe.
 
-Before build, one bounded diagnostics-only correction is required:
-
-- routine `RAW8_OPPORTUNITY_CLOSE` must represent only an actually unused pending opportunity, not later retirement of an already contact-consumed execution;
-- routine CORE opportunity records must not carry rich raw pointer-address fields reserved for DEEP/anomaly diagnostics.
-
-No raw8 behavior architecture is reopened.
+The bounded diagnostics-only correction was implemented at `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed **PASS**. `RAW8_OPPORTUNITY_CLOSE` now represents only an actually pending unused opportunity, and routine CORE opportunity records no longer carry rich pointer addresses. No raw8 behavior architecture was reopened.
 
 Permanent raw8 authority: `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
 
 Reviewed parent implementation contract: `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`.
 
-Active correction contract: `docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
+Closed correction contract: `docs/archive/investigations/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
 
 
 Agreed stabilization sequence before full collision regression:
@@ -90,7 +85,7 @@ Latest runtime-reviewed diagnostic implementation:
 
 Current unbuilt permanent raw8 production source candidate:
 
-`3426cede41c0087e43edc0d81c825ff167e8e034` — behavior static review PASS; diagnostics-only correction pending
+`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` — behavior + diagnostics static review PASS; build/smoke pending
 
 Current diagnostic DLL:
 
@@ -101,7 +96,6 @@ Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 
 ## Read next by question
 
-- active raw8 diagnostics-only review correction → `docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`
 - reviewed parent raw8 production implementation → `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
 - exact short-lived continuation → `BETWEEN_CHATS.md`
 - current collision facts → `COLLISION_REFERENCE.md`
