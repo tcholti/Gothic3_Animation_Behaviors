@@ -1,6 +1,6 @@
 # Permanent raw8 Fist Architecture
 
-**Status:** Frozen production architecture — behavior implementation promoted/static-reviewed; diagnostics correction + focused runtime acceptance pending  
+**Status:** Frozen production architecture — production source candidate static-reviewed; build/smoke + focused runtime acceptance pending  
 **Updated:** 2026-09-20
 
 ## Purpose
@@ -129,7 +129,7 @@ Only after focused permanent acceptance may Phase 4 broad creature regression re
 
 Production behavior was promoted in `3426cede41c0087e43edc0d81c825ff167e8e034` and independently static-reviewed by Normal Chat on 2026-09-20.
 
-The behavior/state-machine implementation matches this architecture. A bounded diagnostics-only compaction/terminal-event correction remains open before build/runtime acceptance; it does not reopen behavior policy.
+The behavior/state-machine implementation matches this architecture. The bounded diagnostics-only compaction/terminal-event correction was implemented in `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed PASS without reopening behavior policy. This commit is the current unbuilt production source candidate.
 
 ## 15. Evidence closure
 
