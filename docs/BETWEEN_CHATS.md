@@ -44,6 +44,6 @@ The correction is diagnostics-only. It must not alter raw8 opportunity state, la
 
 No build or runtime test yet.
 
-First require POP-12 validation of this maintained handoff state. Then execute/review the bounded diagnostics-only correction. After that, build both twins and begin the focused permanent raw8 acceptance matrix from `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
+POP-12 has returned `Knowledge-state validation PASS`. Execute/review the bounded diagnostics-only correction first. Then build both twins and run only a small smoke/log check. If that passes, freeze one bounded final code-quality/modularity review before the full acceptance matrix. Any source change from that review requires rebuild + small re-smoke before focused/full regression.
 
 `research/raw/` remains closed from EV-354 and should contain only `Keep.txt`.
