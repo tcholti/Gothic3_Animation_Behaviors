@@ -795,3 +795,76 @@ Provenance:
 Interpretation:
 - **PASS for focused items 2, 3 and 4; PARTIAL for item 1.**
 - No frozen-source contradiction exposed.
+
+
+### EV-360 — Focused permanent raw8 acceptance batch 2
+
+Source/runtime:
+- frozen source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- diagnostic DLL SHA256 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`;
+- User reported all four runs visually healthy.
+
+Gargoyle frame-3 far/no-contact:
+- 11 marked POWER opportunities opened;
+- 8 later contacted;
+- 3 ended without contact;
+- C1 6 / ordinal 2 survived 33 miss-rearms for ~262 ms and closed at `C1_FINALIZED`, exact latch `0->1`, confirmed;
+- C1 77 / ordinal 9 survived 33 miss-rearms for ~251 ms and closed at `C1_FINALIZED`, exact latch `0->1`, confirmed;
+- C1 115 / ordinal 11 survived 4 miss-rearms and closed on factual generation replacement with exact latch `0->1`, confirmed;
+- zero contradiction/rejection/invariant/repair/error.
+- Combined with EV-359 close/immediate + delayed-contact evidence, focused item 1 is PASS.
+
+Human reaction/replacement:
+- the dedicated reaction-replacement file exercised extensive marked human raw8 traffic against Wolf/Golem plus player Wrestling/UseType12 marker traffic, but it did not itself capture a raw8 `C1_GENERATION_REPLACED` terminal event;
+- no contradiction/rejection/invariant/repair/error occurred.
+- Therefore replacement acceptance is taken from the group-combat control below, not inferred from this file.
+
+Human group combat / replacement:
+- 56 marked human FIST opportunities were opened; this file is therefore **not** an unmarked/native control despite its filename;
+- 7 pending opportunities closed specifically as `C1_GENERATION_REPLACED`;
+- replacement actions were factual Action26 four times and Action29 three times, consistent with reaction/stumble/knockdown-style replacement traffic in the observed motions;
+- every replacement close wrote old pending latch `0->1` with confirmed readback;
+- no replaced old opportunity ordinal later produced `CONTACT_CONSUMED`;
+- player exact native raw8 contact-dispatch entries targeted only `ReddockOrcScoutLeader` (7) and `ReddockOrcWarrior01` (1); no Fist contact was logged against the other nearby Orcs;
+- User deliberately switched targets and reported being unable to hit non-target opponents despite trying;
+- Orc weapon traffic concurrently exercised factual Staff/halberd raw51 and Axe/raw52 Normal/Quick/Power/Whirl/Hack marker routes without collision/lifecycle contradiction.
+- Focused item 5 PASS: pending marked opportunities are closed on reaction/generation replacement and no old-opportunity cross-generation contact leak is observed.
+- Focused item 7 remains OPEN because the human attacks in this file were marked, not native/unmarked.
+- Focused item 6 remains OPEN: after the first two replacement closures, the next player raw8 contacts were preceded by a new accepted FIST; after the later replacement closures no later player raw8 contact occurred. Thus this batch does not prove replacement -> later **unmarked** native fallback.
+
+Sabretooth Sprint-origin transport:
+- native Sabretooth opened 57 raw8 opportunities: 40 SPRINT-origin, with 24 contacts and 33 closes overall;
+- **15 distinct opportunities opened under factual Action9/SPRINT and were later consumed under factual Action2/POWER in the same C1, same opportunity ordinal and same PowerAttack-named motion**;
+- transformed player `Transform_Sabertooth_Potion` separately opened 27 marked opportunities across Normal 10, Quick 12 and Power 5; all 27 were contact-consumed, with zero lifecycle close;
+- player concurrently exercised Rusty 1H/raw2 Normal + Quick marker traffic without contradiction.
+- Focused item 8 PASS on the frozen source.
+
+Additional side coverage:
+- Gargoyle run exercised player 2H Flamberge/UseType3 Normal + Quick marker traffic;
+- reaction run exercised player Wrestling/UseType12 Normal + Quick;
+- group-combat run exercised multiple Orc raw51/raw52 weapon families;
+- Sprint run exercised player Rusty 1H/raw2 and transformed-Sabretooth raw8;
+- all side routes were visually reported healthy and emitted no contradiction/rejection/invariant/repair/error.
+
+Focused acceptance status after EV-360:
+1. Gargoyle close/delayed/no-contact -> PASS EV-359 + EV-360.
+2. Human Normal/Power timing/contact -> PASS EV-359.
+3. Later FIST same C1 reopening -> PASS EV-359.
+4. Ordinary no-contact finalization -> PASS EV-359.
+5. Reaction/generation replacement -> PASS EV-360.
+6. Replacement -> later unmarked native fallback -> OPEN.
+7. Native unmarked human target-directed control -> OPEN.
+8. Sprint Action9 -> Action2 transport -> PASS EV-360.
+9. raw55 + equipped coexistence -> PASS EV-357.
+10. Diagnostic/behavior parity -> PASS EV-357 + EV-358.
+
+Provenance:
+- `research/archive/2026-09-21_raw8_final_acceptance_gargoyle_frame3_far_no_contact.log`, blob `c1b95f07bb78acd76329fb567da9b409f8d32f18`, 163,643 bytes / 782 lines;
+- `research/archive/2026-09-21_raw8_final_acceptance_human_reaction_replacement.log`, blob `6913d6ee4ef81ead30ab5e5511ce0aebd18812aa`, 781,802 bytes / 3,413 lines;
+- `research/archive/2026-09-21_raw8_final_acceptance_human_unmarked_target_control.log`, blob `41dd4d097b3d548e5e1b7021dc424ceff41907ba`, 808,102 bytes / 3,571 lines;
+- `research/archive/2026-09-21_raw8_final_acceptance_sabretooth_sprint_transport.log`, blob `eed08f55f979407cc805aaa4b71f4377cece107e`, 828,946 bytes / 3,309 lines.
+
+Interpretation:
+- **PASS for focused items 1, 5 and 8.**
+- Items 6 and 7 remain the only open focused raw8 acceptance responsibilities.
+- No frozen-source contradiction exposed.
