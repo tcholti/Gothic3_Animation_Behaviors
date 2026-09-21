@@ -10,56 +10,50 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Latest runtime evidence:
-- EV-355 diagnostic production-candidate smoke PASS;
-- EV-356 diagnostics-free behavior-twin smoke PASS.
-
-Final source-quality audit: CLOSED, no material behavioral contradiction, no MUST-correct findings.
-
-Final cleanup commits:
-- `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement; independent Normal Chat static review PASS.
-- `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene + CORE compaction; independent Normal Chat static review PASS.
-
-Current final source candidate:
+Final source candidate:
 `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`
 
-No Work implementation task is active.
+Final cleanup commits:
+- `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement; static review PASS.
+- `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene; static review PASS.
+
+Both twins rebuilt successfully after the combined cleanup.
+
+Latest runtime evidence:
+- EV-355 pre-cleanup broad diagnostic smoke PASS;
+- EV-356 pre-cleanup diagnostics-free behavior smoke PASS;
+- **EV-357 final post-cleanup diagnostic build/startup + targeted re-smoke PASS.**
+
+EV-357 confirmed:
+- diagnostic built/live SHA256 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`;
+- corrected startup BehaviorCore inventory;
+- raw8 30 completed Sabretooth opportunities each ended by exactly one terminal event; one final in-progress opportunity ended only because the test exited;
+- transformed-Sabretooth 8 opens -> 8 contacts;
+- compact EquippedSprint CORE retained factual bind/marker authorization and removed pointer-rich/no-bound spam;
+- Troll/raw55 repeated two-FIST Quick survived across 12 separate C1s;
+- generic player 1H1H/Staff marker traffic remained healthy;
+- all completed C1 finals had outstanding zero;
+- no rejection, generation inconsistency, identity contradiction, invariant, repair divergence or error.
+
+The three EV-357 logs are processed and archived; `research/raw/` should contain only `Keep.txt`.
 
 ## Next gate
 
-After pulling the maintained documentation state, run:
+Run POP-12 on the maintained state.
 
-`python tools/knowledge/validate_knowledge_state.py`
+Then deploy **only** the already-built `Script_FrameCollisionBehaviorTest.dll` with POP-03 sole-live/hash verification.
 
-Require exact:
+Run a small diagnostics-free functional parity smoke. No log is expected.
 
-`Knowledge-state validation PASS`
+Minimum useful checks:
+1. marked Sabretooth/raw8 — several attacks with at least one normal contact and preferably a miss; transformation/attack-back is useful but not mandatory;
+2. Troll/raw55 — observe repeated/two-contact Quick behavior;
+3. player marked weapon behavior — use familiar 1H1H and/or Staff against Troll or another familiar target;
+4. one positive mod discriminator such as Hack, authored dual-1H multi-contact, or corrected authored source ownership.
 
-Then build both twins once from the final source candidate:
+If visually normal and no crash:
+- close final behavior parity smoke;
+- freeze `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` as the source for focused permanent raw8 acceptance;
+- begin the focused matrix in `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
 
-```powershell
-cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
-cmake --build build --config Release --target Script_FrameCollisionTest
-```
-
-A successful build does not deploy.
-
-After both builds pass:
-1. deploy only the diagnostic twin using POP-03 sole-live/hash verification;
-2. run POP-04 main-menu startup/clean-unload;
-3. run a small targeted diagnostic re-smoke designed to exercise the two cleanup classes:
-   - raw8 marked opportunity/contact/miss/finalization;
-   - equipped Sprint material bind/Action9 -> Action2 continuation log path;
-   - raw55 repeated-FIST + generic equipped marker coexistence;
-   - generation-finalization churn sufficient to exercise the new metadata retirement without broad regression.
-4. analyze/close that evidence;
-5. deploy behavior-only twin and run a small functional parity re-smoke;
-6. if both pass, freeze source and begin focused permanent raw8 acceptance.
-
-Do not begin the full focused acceptance matrix before post-cleanup re-smoke closes.
-
-Closed cleanup contracts:
-- `docs/archive/investigations/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md`
-- `docs/archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
-
-`research/raw/` should contain only `Keep.txt` before the next runtime evidence capture.
+Do not alter source unless the behavior-only smoke exposes a contradiction.
