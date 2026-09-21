@@ -74,17 +74,10 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 - **EV-358:** final post-cleanup diagnostics-free behavior parity smoke PASS; source frozen for focused acceptance.
 - **EV-359:** focused raw8 acceptance closes human Normal/Power, later-FIST reopening and ordinary no-contact finalization; Gargoyle close/delayed PASS, true far/no-contact still open.
 
-Latest runtime-reviewed source:
-`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
+Latest runtime-reviewed and frozen source:
+`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — EV-357–EV-359
 
-Final source frozen for acceptance:
-`f1f5d2aad3edc3564a9a8b40541840b94f8fa903`
-
-Last validated diagnostic DLL:
-`Script_FrameCollisionTest.dll`  
-SHA256 `D257DEA36BFF74BFBCF00D54BD36E08769D19DCA794E96CCA93AD48169D0023A`
-
-Final validated diagnostic DLL SHA256: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313` — EV-357 PASS.
+Final validated diagnostic DLL SHA256: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313` — EV-357/EV-359.
 
 Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340` — EV-358 PASS.
 
