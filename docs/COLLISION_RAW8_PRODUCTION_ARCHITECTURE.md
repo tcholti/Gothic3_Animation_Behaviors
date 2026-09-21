@@ -1,14 +1,14 @@
 # Permanent raw8 Fist Architecture
 
-**Status:** Frozen production architecture — diagnostic + behavior smoke PASS; final audit + focused runtime acceptance pending  
-**Updated:** 2026-09-20
+**Status:** Frozen production architecture — final cleanup static review PASS; post-cleanup build/re-smoke + focused runtime acceptance pending  
+**Updated:** 2026-09-21
 
 ## Purpose
 
 Define the permanent diagnostics-independent behavior for factual `gEUseType_Fist` / raw8 after the EV-346–EV-354 causal and pre-Work sentinel closure.
 
 Ordinary factual lookup: `COLLISION_REFERENCE.md`.  
-Exact proof: `EVIDENCE_INDEX.md` → EV-346–EV-355.
+Exact proof: `EVIDENCE_INDEX.md` → EV-346–EV-356.
 
 ---
 
@@ -129,11 +129,17 @@ Only after focused permanent acceptance may Phase 4 broad creature regression re
 
 Production behavior was promoted in `3426cede41c0087e43edc0d81c825ff167e8e034` and independently static-reviewed by Normal Chat on 2026-09-20.
 
-The behavior/state-machine implementation matches this architecture. The bounded diagnostics-only compaction/terminal-event correction was implemented in `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed PASS without reopening behavior policy. This commit is the current production source candidate. Both twins built successfully; diagnostic deployment/startup and broad smoke passed at EV-355. Diagnostics-free behavior smoke also passed at EV-356. The planned read-only final source-quality audit and focused acceptance remain pending.
+The behavior/state-machine implementation matches this architecture. The bounded diagnostics-only compaction/terminal-event correction was implemented in `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed PASS without reopening behavior policy. Both twins then built successfully; diagnostic smoke passed at EV-355 and diagnostics-free behavior smoke passed at EV-356.
+
+The final read-only source-quality/modularity audit found no material behavioral contradiction and no MUST-correct issue. Its accepted cleanup was implemented in two independently reviewed commits:
+- `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement;
+- `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene and CORE compaction.
+
+The current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Post-cleanup build/re-smoke and focused acceptance remain pending.
 
 ## 15. Evidence closure
 
-The architecture is justified by EV-346–EV-355: early pulse failure, latch hit/miss behavior, successful post-miss rearm, policy-neutral contact dispatch, virtual-callback negative result, target-directed control, persistent-opportunity causal proof, and direct same-C1 Sprint Action9 -> Power Action2 token-survival proof.
+The architecture is justified by EV-346–EV-356: early pulse failure, latch hit/miss behavior, successful post-miss rearm, policy-neutral contact dispatch, virtual-callback negative result, target-directed control, persistent-opportunity causal proof, and direct same-C1 Sprint Action9 -> Power Action2 token-survival proof.
 
 EV-354 directly validates the protected Sprint-origin lifetime rule: 20 Sabretooth tokens opened under Action9/SPRINT on the PowerAttack-named motion and were consumed under Action2/POWER in the same C1; two of those tokens also survived an earlier native miss/rearm.
 
