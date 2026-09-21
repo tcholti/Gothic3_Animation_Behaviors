@@ -46,7 +46,6 @@ enum DecisionReason
     DecisionReason_RequiredSourceMaskMismatch,
     DecisionReason_RequiredSourceIdentityMismatch,
     DecisionReason_NoBoundExecution,
-    DecisionReason_NoBoundSprintOrigin,
     DecisionReason_NotSprintOrPowerHit
 };
 
@@ -108,8 +107,6 @@ static char const *GetDecisionReasonName(DecisionReason reason)
             return "REQUIRED_SOURCE_IDENTITY_MISMATCH";
         case DecisionReason_NoBoundExecution:
             return "NO_BOUND_EXECUTION";
-        case DecisionReason_NoBoundSprintOrigin:
-            return "NO_BOUND_SPRINT_ORIGIN";
         case DecisionReason_NotSprintOrPowerHit:
             return "NOT_SPRINT_OR_POWER_HIT";
         default:
@@ -142,13 +139,12 @@ static void LogDecision(
     std::fprintf(
         log,
         "CORE EQUIPPED_SPRINT_COLLISION Boundary=%s Decision=%s "
-        "Reason=%s Actor=%s ActorAddress=%p Action=%d Phase=%d "
+        "Reason=%s Actor=%s Action=%d Phase=%d "
         "Family=%d C1Valid=%d C1Generation=%llu RequiredSourceMask=%u "
-        "RightAddress=%p RightUseType=%d LeftAddress=%p LeftUseType=%d "
+        "RightUseType=%d LeftUseType=%d "
         "Marker=%s BoundIdentityMatch=%d Motion=%s ElapsedMs=%.3f\n",
         boundary, decision, GetDecisionReasonName(reason),
         actor.GetName().GetText(),
-        static_cast<void *>(actor.GetInstance()),
         static_cast<GEInt>(
             actor.Routine.GetProperty<PSRoutine::PropertyAction>()),
         static_cast<GEInt>(actor.GetCurrentAniPhase()),
@@ -156,15 +152,31 @@ static void LogDecision(
         generation.valid ? 1 : 0,
         static_cast<unsigned long long>(generation.generation),
         motionDecision.requiredSourceMask,
-        static_cast<void *>(sources.rightInstance),
         GetUseType(sources.rightInstance),
-        static_cast<void *>(sources.leftInstance),
         GetUseType(sources.leftInstance),
         FrameCollisionMarkers::GetMarkerOpcodeName(markerOpcode),
         boundIdentityMatch,
         motionName != nullptr ? motionName : "",
         RuntimeClock::GetElapsedMilliseconds());
     std::fflush(log);
+}
+
+static bool SameBinding(
+    BoundSprintExecution const &left, BoundSprintExecution const &right)
+{
+    return left.c1Generation == right.c1Generation
+        && left.requiredSourceMask == right.requiredSourceMask
+        && left.rightSourceInstance == right.rightSourceInstance
+        && left.leftSourceInstance == right.leftSourceInstance
+        && left.motionName == right.motionName;
+}
+
+static bool IsMaterialUnboundSprintDenial(DecisionReason reason)
+{
+    return reason == DecisionReason_MotionScanInvalid
+        || reason == DecisionReason_RequiredEquippedSourceMissing
+        || reason == DecisionReason_NoCurrentC1Generation
+        || reason == DecisionReason_MotionIdentityMissing;
 }
 
 #define EQUIPPED_SPRINT_LOG(...) LogDecision(__VA_ARGS__)
@@ -254,12 +266,6 @@ bool ShouldSuppressNativeCallback(
                     ownership.decision, ownership.sources);
             if (mismatchReason == DecisionReason_None)
             {
-                EQUIPPED_SPRINT_LOG(
-                    "CALLBACK", "DELEGATE_NATIVE",
-                    DecisionReason_BoundSprintOriginPowerContinuation,
-                    actor, family, MarkerOpcode_Invalid, generation,
-                    ownership.decision, ownership.sources,
-                    motionName.c_str(), 1);
                 return false;
             }
             g_BoundSprintExecutionByActor.erase(found);
@@ -271,14 +277,22 @@ bool ShouldSuppressNativeCallback(
             return false;
         }
 
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+        bool const boundExecutionPresent =
+            found != g_BoundSprintExecutionByActor.end();
+#endif
         g_BoundSprintExecutionByActor.erase(actorInstance);
-        EQUIPPED_SPRINT_LOG(
-            "CALLBACK", "DELEGATE_NATIVE",
-            factualPowerHit ? DecisionReason_NoBoundSprintOrigin
-                            : DecisionReason_NotSprintOrPowerHit,
-            actor, family, MarkerOpcode_Invalid, generation,
-            ownership.decision, ownership.sources,
-            motionName.c_str(), -1);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+        if (boundExecutionPresent)
+        {
+            EQUIPPED_SPRINT_LOG(
+                "CALLBACK", "DELEGATE_NATIVE",
+                DecisionReason_NotSprintOrPowerHit,
+                actor, family, MarkerOpcode_Invalid, generation,
+                ownership.decision, ownership.sources,
+                motionName.c_str(), 0);
+        }
+#endif
         return false;
     }
 
@@ -333,11 +347,22 @@ bool ShouldSuppressNativeCallback(
 
     if (!eligible)
     {
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+        bool const boundExecutionPresent =
+            g_BoundSprintExecutionByActor.find(actorInstance)
+                != g_BoundSprintExecutionByActor.end();
+#endif
         g_BoundSprintExecutionByActor.erase(actorInstance);
-        EQUIPPED_SPRINT_LOG(
-            "CALLBACK", "DELEGATE_NATIVE", reason, actor,
-            family, MarkerOpcode_Invalid, generation, ownership.decision,
-            ownership.sources, motionName.c_str(), -1);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+        if (boundExecutionPresent || IsMaterialUnboundSprintDenial(reason))
+        {
+            EQUIPPED_SPRINT_LOG(
+                "CALLBACK", "DELEGATE_NATIVE", reason, actor,
+                family, MarkerOpcode_Invalid, generation,
+                ownership.decision, ownership.sources,
+                motionName.c_str(), boundExecutionPresent ? 0 : -1);
+        }
+#endif
         return false;
     }
 
@@ -347,11 +372,24 @@ bool ShouldSuppressNativeCallback(
     binding.rightSourceInstance = ownership.sources.rightInstance;
     binding.leftSourceInstance = ownership.sources.leftInstance;
     binding.motionName = motionName;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    auto const existingBinding =
+        g_BoundSprintExecutionByActor.find(actorInstance);
+    bool const materialBinding =
+        existingBinding == g_BoundSprintExecutionByActor.end()
+        || !SameBinding(existingBinding->second, binding);
+#endif
     g_BoundSprintExecutionByActor[actorInstance] = binding;
-    EQUIPPED_SPRINT_LOG(
-        "CALLBACK", "SUPPRESS_NATIVE", DecisionReason_Eligible, actor,
-        family, MarkerOpcode_Invalid, generation, ownership.decision,
-        ownership.sources, motionName.c_str(), 1);
+#ifdef FRAME_COLLISION_DIAGNOSTICS
+    if (materialBinding)
+    {
+        EQUIPPED_SPRINT_LOG(
+            "CALLBACK", "SUPPRESS_NATIVE", DecisionReason_Eligible,
+            actor, family, MarkerOpcode_Invalid, generation,
+            ownership.decision, ownership.sources,
+            motionName.c_str(), 1);
+    }
+#endif
     return true;
 }
 

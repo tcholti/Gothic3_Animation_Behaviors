@@ -18,20 +18,6 @@ void LogAttackCallbackOwnership(
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &result);
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 void LogFistTriggerStateSnapshot(char const *boundary, Entity &actor);
-void LogFistCanBeActivatedNow(
-    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
-    gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument,
-    void *contactIteratorAddress, bool nativeResultAvailable,
-    GEBool nativeResult);
-void LogFistTriggerTarget(
-    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
-    gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument1,
-    eCEntity *entityArgument2, void *contactIteratorAddress);
-void LogFistHookEntry(
-    char const *hookKind, GEU32 ordinal, gCTouchDamage_PS *touchDamagePS,
-    Entity &player, eCEntity *resolverSourceInstance,
-    bool exactTouchDamageIdentityMatch);
-void LogFistHookEntryCap(char const *hookKind, GEU32 cap);
 #endif
 void LogEntityOnDamageEntry(
     GEU32 ordinal, void *callerAddress, gCEntity *thisEntity,
@@ -63,24 +49,20 @@ void LogRaw8FistTimingPermissionRetired(
     char const *reason);
 void LogRaw8FistOpportunityOpen(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal, MarkerProcessResult const &result,
-    bool timingActive);
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
+    MarkerProcessResult const &result, bool timingActive);
 void LogRaw8FistOpportunityMissRearm(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal, bool fullStop,
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
+    bool fullStop,
     GEInt latchBefore, GEInt latchAfter, bool writeConfirmed);
 void LogRaw8FistOpportunityContactConsumed(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal, void *callerAddress,
-    eCEntity *entityArgument1, eCEntity *entityArgument2,
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
     GEInt latchValue);
 void LogRaw8FistOpportunityClose(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal, bool opportunityPending,
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
     char const *reason, GEInt latchBefore, GEInt latchAfter,
     bool writeAttempted, bool writeConfirmed);
 void LogNullMarker(char const *markerName);

@@ -22,7 +22,9 @@ struct InvocationScope
     gCScriptProcessingUnit *spu;
     std::uint64_t c1Generation;
     std::uint64_t opportunityOrdinal;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     bool fullStop;
+#endif
     bool contactConsumed;
     bool active;
 };

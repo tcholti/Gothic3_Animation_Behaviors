@@ -24,11 +24,15 @@ struct Raw8FistMarkerExecution
     eCWrapper_emfx2Actor *timingAnimationActor;
     eCWrapper_emfx2Actor::eEMotionType timingMotionType;
     GEDouble forcedPlayTime;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     GEDouble maxTime;
     GEDouble nativeThresholdConstant;
     GEDouble computedThreshold;
+#endif
     bool timingActive;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     bool timingApplicationLogged;
+#endif
     bool opportunityPending;
 };
 
@@ -177,7 +181,9 @@ static void RetireRaw8FistTimingPermission(
     (void) reason;
 #endif
     state.timingActive = false;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     state.timingApplicationLogged = false;
+#endif
     state.timingAnimationActor = nullptr;
     state.forcedPlayTime = 0.0;
 }
@@ -210,10 +216,9 @@ static void CloseAndEraseExecution(
     if (wasPending)
     {
         CollisionDiagnostics::LogRaw8FistOpportunityClose(
-            state.actorInstance, state.fistSourceInstance, state.spu,
-            state.c1Generation, state.opportunityOrdinal, wasPending,
-            reason, latchBefore, latchAfter, writeAttempted,
-            writeConfirmed);
+            state.actorInstance, state.fistSourceInstance,
+            state.c1Generation, state.opportunityOrdinal, reason,
+            latchBefore, latchAfter, writeAttempted, writeConfirmed);
     }
 #else
     (void) latchBefore;
@@ -276,9 +281,9 @@ void UpdateMarkerOwnership(
     *latchByte = 1;
     GEInt const latchAfter = static_cast<GEInt>(*latchByte);
     bool const writeConfirmed = latchAfter == 1;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     Raw8FistPrimaryTiming const timing =
         CaptureRaw8FistPrimaryTiming(actor);
-#ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogRaw8FistMarkerOwnership(
         actor, family, generation.generation,
         ownership.fistSourceInstance, spu,
@@ -381,9 +386,11 @@ void UpdateTimingPermissionFromMarker(
         state.forcedPlayTime = computedThreshold + 0.001;
         if (state.forcedPlayTime > timing.maxTime)
             state.forcedPlayTime = timing.maxTime;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
         state.maxTime = timing.maxTime;
         state.nativeThresholdConstant = nativeThresholdConstant;
         state.computedThreshold = computedThreshold;
+#endif
         state.timingActive = true;
     }
 
@@ -409,9 +416,9 @@ void UpdateTimingPermissionFromMarker(
         nativeThresholdConstant, computedThreshold, realBelowThreshold,
         true, state.timingActive);
     CollisionDiagnostics::LogRaw8FistOpportunityOpen(
-        state.actorInstance, state.fistSourceInstance, state.spu,
-        state.c1Generation, state.opportunityOrdinal, result,
-        state.timingActive);
+        state.actorInstance, state.fistSourceInstance,
+        state.c1Generation, state.opportunityOrdinal,
+        result, state.timingActive);
 #endif
 }
 
@@ -485,7 +492,11 @@ void BeginCombatMoveInvocation(
 {
     scope = InvocationScope{};
     scope.previous = g_pCurrentInvocation;
+#ifdef FRAME_COLLISION_DIAGNOSTICS
     scope.fullStop = fullStop == GETrue;
+#else
+    (void) fullStop;
+#endif
     g_pCurrentInvocation = &scope;
     if (spu == nullptr)
         return;
@@ -544,8 +555,8 @@ void CompleteCombatMoveInvocation(InvocationScope &scope)
 #ifdef FRAME_COLLISION_DIAGNOSTICS
                     CollisionDiagnostics::LogRaw8FistOpportunityMissRearm(
                         state.actorInstance, state.fistSourceInstance,
-                        state.spu, state.c1Generation,
-                        state.opportunityOrdinal, scope.fullStop,
+                        state.c1Generation, state.opportunityOrdinal,
+                        scope.fullStop,
                         latchBefore, latchAfter, writeConfirmed);
 #else
                     (void) latchBefore;
@@ -599,9 +610,8 @@ void ObserveContactResolutionDispatch(
         latch != nullptr ? static_cast<GEInt>(*latch) : -1;
 #ifdef FRAME_COLLISION_DIAGNOSTICS
     CollisionDiagnostics::LogRaw8FistOpportunityContactConsumed(
-        state.actorInstance, state.fistSourceInstance, state.spu,
-        state.c1Generation, state.opportunityOrdinal, callerAddress,
-        entityArgument1, entityArgument2, latchValue);
+        state.actorInstance, state.fistSourceInstance,
+        state.c1Generation, state.opportunityOrdinal, latchValue);
 #else
     (void) latchValue;
 #endif

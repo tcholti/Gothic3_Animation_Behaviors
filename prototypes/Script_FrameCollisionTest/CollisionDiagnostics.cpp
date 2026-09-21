@@ -278,7 +278,7 @@ void OpenLog()
 #else
     std::fprintf(g_pLog, "DeepDiagnostics: DISABLED\n");
 #endif
-    std::fprintf(g_pLog, "BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + Raw8FistCollision + AttackMotionRouting + RuntimeClock\n");
+    std::fprintf(g_pLog, "BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + EquippedSprintCollision + Raw8FistCollision + PhysicalFistCollision + AttackMotionRouting + RuntimeClock\n");
     std::fprintf(g_pLog, "C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.\n");
     std::fprintf(g_pLog,
                  "MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint\n");
@@ -369,183 +369,6 @@ void LogFistTriggerStateSnapshot(char const *boundary, Entity &actor)
     std::fflush(g_pLog);
 }
 
-static bool LogFistGateDispatchContext(
-    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
-    gCTouchDamage_PS *touchDamagePS)
-{
-    if (g_pLog == nullptr || actor == None || fistSourceInstance == nullptr
-        || touchDamagePS == nullptr)
-    {
-        return false;
-    }
-
-    Entity fistSource(fistSourceInstance);
-    if (fistSource == None)
-        return false;
-
-    bCString currentAni = actor.NPC.GetCurrentMovementAni();
-    std::fprintf(g_pLog, "===== FIST GATE/DISPATCH TIMING =====\n");
-    std::fprintf(g_pLog, "Boundary: %s\n",
-                 boundary != nullptr ? boundary : "<null>");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "Actor: %s\n", actor.GetName().GetText());
-    std::fprintf(g_pLog, "ActorAddress: %p\n",
-                 static_cast<void *>(actor.GetInstance()));
-    std::fprintf(g_pLog, "Action: %d\n",
-                 static_cast<GEInt>(
-                     actor.Routine.GetProperty<PSRoutine::PropertyAction>()));
-    std::fprintf(g_pLog, "AniPhase: %d\n",
-                 static_cast<GEInt>(actor.GetCurrentAniPhase()));
-    std::fprintf(g_pLog, "StateTime: %.6f\n", actor.Routine.GetStateTime());
-    std::fprintf(g_pLog, "CurrentMovementAni: %s\n", currentAni.GetText());
-    std::fprintf(g_pLog, "FistSourceAddress: %p\n",
-                 static_cast<void *>(fistSourceInstance));
-    std::fprintf(g_pLog, "FistTouchDamageAddress: %p\n",
-                 static_cast<void *>(touchDamagePS));
-    std::fprintf(g_pLog, "FistUseType: %d\n",
-                 static_cast<GEInt>(
-                     CollisionSources::GetCollisionSourceUseType(fistSource)));
-    std::fprintf(g_pLog, "FistCollisionGroup: %d\n",
-                 static_cast<GEInt>(fistSource.GetCollisionGroup()));
-    std::fprintf(g_pLog, "DamageDisabled: %d\n",
-                 static_cast<GEInt>(touchDamagePS->GetDamageDisabled()));
-    return true;
-}
-
-void LogFistCanBeActivatedNow(
-    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
-    gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument,
-    void *contactIteratorAddress, bool nativeResultAvailable,
-    GEBool nativeResult)
-{
-    if (!LogFistGateDispatchContext(
-            boundary, actor, fistSourceInstance, touchDamagePS))
-    {
-        return;
-    }
-
-    std::fprintf(g_pLog, "EntityArgAddress: %p\n",
-                 static_cast<void *>(entityArgument));
-    std::fprintf(g_pLog, "EntityArgName: %s\n", EntityName(entityArgument));
-    std::fprintf(g_pLog, "ContactIteratorAddress: %p\n",
-                 contactIteratorAddress);
-    if (nativeResultAvailable)
-    {
-        std::fprintf(g_pLog, "NativeResult: %d\n",
-                     static_cast<GEInt>(nativeResult));
-    }
-    std::fprintf(g_pLog, "=====================================\n\n");
-    std::fflush(g_pLog);
-}
-
-void LogFistTriggerTarget(
-    char const *boundary, Entity &actor, eCEntity *fistSourceInstance,
-    gCTouchDamage_PS *touchDamagePS, eCEntity *entityArgument1,
-    eCEntity *entityArgument2, void *contactIteratorAddress)
-{
-    if (!LogFistGateDispatchContext(
-            boundary, actor, fistSourceInstance, touchDamagePS))
-    {
-        return;
-    }
-
-    std::fprintf(g_pLog, "EntityArg1Address: %p\n",
-                 static_cast<void *>(entityArgument1));
-    std::fprintf(g_pLog, "EntityArg1Name: %s\n",
-                 EntityName(entityArgument1));
-    std::fprintf(g_pLog, "EntityArg2Address: %p\n",
-                 static_cast<void *>(entityArgument2));
-    std::fprintf(g_pLog, "EntityArg2Name: %s\n",
-                 EntityName(entityArgument2));
-    std::fprintf(g_pLog, "ContactIteratorAddress: %p\n",
-                 contactIteratorAddress);
-    std::fprintf(g_pLog, "=====================================\n\n");
-    std::fflush(g_pLog);
-}
-
-void LogFistHookEntry(
-    char const *hookKind, GEU32 ordinal, gCTouchDamage_PS *touchDamagePS,
-    Entity &player, eCEntity *resolverSourceInstance,
-    bool exactTouchDamageIdentityMatch)
-{
-    if (g_pLog == nullptr)
-        return;
-
-    eCEntity *ownerInstance =
-        touchDamagePS != nullptr ? touchDamagePS->GetEntity() : nullptr;
-    Entity owner(ownerInstance);
-    GEInt const ownerUseType = owner != None
-        ? static_cast<GEInt>(
-              CollisionSources::GetCollisionSourceUseType(owner))
-        : -1;
-
-    GEInt playerAction = -1;
-    GEInt playerAniPhase = -1;
-    GEFloat playerStateTime = -1.0f;
-    std::string playerCurrentMovementAni = "<unavailable>";
-    if (player != None)
-    {
-        playerAction = static_cast<GEInt>(
-            player.Routine.GetProperty<PSRoutine::PropertyAction>());
-        playerAniPhase = static_cast<GEInt>(player.GetCurrentAniPhase());
-        playerStateTime = player.Routine.GetStateTime();
-        bCString currentAni = player.NPC.GetCurrentMovementAni();
-        if (currentAni.GetText() != nullptr)
-            playerCurrentMovementAni = currentAni.GetText();
-    }
-
-    std::fprintf(g_pLog, "===== FIST HOOK ENTRY =====\n");
-    std::fprintf(g_pLog, "HookKind: %s\n",
-                 hookKind != nullptr ? hookKind : "<null>");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "HookEntryOrdinal: %u\n",
-                 static_cast<unsigned int>(ordinal));
-    std::fprintf(g_pLog, "ThisTouchDamageAddress: %p\n",
-                 static_cast<void *>(touchDamagePS));
-    std::fprintf(g_pLog, "ThisOwnerEntityAddress: %p\n",
-                 static_cast<void *>(ownerInstance));
-    std::fprintf(g_pLog, "ThisOwnerEntityName: %s\n",
-                 EntityName(ownerInstance));
-    std::fprintf(g_pLog, "ThisOwnerUseType: %d\n", ownerUseType);
-    std::fprintf(g_pLog, "PlayerEntityAddress: %p\n",
-                 player != None
-                     ? static_cast<void *>(player.GetInstance())
-                     : nullptr);
-    std::fprintf(g_pLog, "ExistingResolverSourceAddress: %p\n",
-                 static_cast<void *>(resolverSourceInstance));
-    std::fprintf(g_pLog, "ExactTouchDamageIdentityMatch: %d\n",
-                 exactTouchDamageIdentityMatch ? 1 : 0);
-    std::fprintf(g_pLog, "PlayerAction: %d\n", playerAction);
-    std::fprintf(g_pLog, "PlayerAniPhase: %d\n", playerAniPhase);
-    std::fprintf(g_pLog, "PlayerStateTime: %.6f\n", playerStateTime);
-    std::fprintf(g_pLog, "PlayerCurrentMovementAni: %s\n",
-                 playerCurrentMovementAni.c_str());
-    std::fprintf(g_pLog, "DamageDisabled: %d\n",
-                 touchDamagePS != nullptr
-                     ? static_cast<GEInt>(touchDamagePS->GetDamageDisabled())
-                     : -1);
-    std::fprintf(g_pLog, "===========================\n\n");
-    std::fflush(g_pLog);
-}
-
-void LogFistHookEntryCap(char const *hookKind, GEU32 cap)
-{
-    if (g_pLog == nullptr)
-        return;
-
-    std::fprintf(g_pLog, "===== FIST HOOK ENTRY CAP =====\n");
-    std::fprintf(g_pLog, "HookKind: %s\n",
-                 hookKind != nullptr ? hookKind : "<null>");
-    std::fprintf(g_pLog, "ElapsedMs: %.3f\n",
-                 RuntimeClock::GetElapsedMilliseconds());
-    std::fprintf(g_pLog, "LoggedEntryCap: %u\n",
-                 static_cast<unsigned int>(cap));
-    std::fprintf(g_pLog, "FurtherEntriesSuppressed: 1\n");
-    std::fprintf(g_pLog, "===============================\n\n");
-    std::fflush(g_pLog);
-}
 #endif
 
 void LogEntityOnDamageEntry(
@@ -1080,8 +903,7 @@ static Raw8OpportunityContext CaptureRaw8OpportunityContext(
 
 static void LogRaw8OpportunityIdentity(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal,
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
     Raw8OpportunityContext const &context)
 {
     char const *sourceName = "<unavailable>";
@@ -1102,14 +924,12 @@ static void LogRaw8OpportunityIdentity(
         static_cast<unsigned long long>(c1Generation),
         sourceName,
         static_cast<unsigned long long>(opportunityOrdinal));
-    (void) spu;
 }
 
 void LogRaw8FistOpportunityOpen(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal, MarkerProcessResult const &result,
-    bool timingActive)
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
+    MarkerProcessResult const &result, bool timingActive)
 {
     if (g_pLog == nullptr)
         return;
@@ -1121,7 +941,7 @@ void LogRaw8FistOpportunityOpen(
         g_pLog, "CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=%.3f",
         RuntimeClock::GetElapsedMilliseconds());
     LogRaw8OpportunityIdentity(
-        actorInstance, fistSourceInstance, spu, c1Generation,
+        actorInstance, fistSourceInstance, c1Generation,
         opportunityOrdinal, context);
     std::fprintf(
         g_pLog,
@@ -1136,8 +956,8 @@ void LogRaw8FistOpportunityOpen(
 
 void LogRaw8FistOpportunityMissRearm(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal, bool fullStop,
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
+    bool fullStop,
     GEInt latchBefore, GEInt latchAfter, bool writeConfirmed)
 {
     if (g_pLog == nullptr)
@@ -1149,7 +969,7 @@ void LogRaw8FistOpportunityMissRearm(
         g_pLog, "CORE RAW8_OPPORTUNITY_MISS_REARM ElapsedMs=%.3f",
         RuntimeClock::GetElapsedMilliseconds());
     LogRaw8OpportunityIdentity(
-        actorInstance, fistSourceInstance, spu, c1Generation,
+        actorInstance, fistSourceInstance, c1Generation,
         opportunityOrdinal, context);
     std::fprintf(
         g_pLog,
@@ -1162,9 +982,7 @@ void LogRaw8FistOpportunityMissRearm(
 
 void LogRaw8FistOpportunityContactConsumed(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal, void *callerAddress,
-    eCEntity *entityArgument1, eCEntity *entityArgument2,
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
     GEInt latchValue)
 {
     if (g_pLog == nullptr)
@@ -1177,22 +995,18 @@ void LogRaw8FistOpportunityContactConsumed(
         "CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=%.3f",
         RuntimeClock::GetElapsedMilliseconds());
     LogRaw8OpportunityIdentity(
-        actorInstance, fistSourceInstance, spu, c1Generation,
+        actorInstance, fistSourceInstance, c1Generation,
         opportunityOrdinal, context);
     std::fprintf(
         g_pLog,
         " Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=%d\n",
         latchValue);
-    (void) callerAddress;
-    (void) entityArgument1;
-    (void) entityArgument2;
     std::fflush(g_pLog);
 }
 
 void LogRaw8FistOpportunityClose(
     eCEntity *actorInstance, eCEntity *fistSourceInstance,
-    gCScriptProcessingUnit *spu, std::uint64_t c1Generation,
-    std::uint64_t opportunityOrdinal, bool opportunityPending,
+    std::uint64_t c1Generation, std::uint64_t opportunityOrdinal,
     char const *reason, GEInt latchBefore, GEInt latchAfter,
     bool writeAttempted, bool writeConfirmed)
 {
@@ -1205,14 +1019,13 @@ void LogRaw8FistOpportunityClose(
         g_pLog, "CORE RAW8_OPPORTUNITY_CLOSE ElapsedMs=%.3f",
         RuntimeClock::GetElapsedMilliseconds());
     LogRaw8OpportunityIdentity(
-        actorInstance, fistSourceInstance, spu, c1Generation,
+        actorInstance, fistSourceInstance, c1Generation,
         opportunityOrdinal, context);
     std::fprintf(
         g_pLog,
-        " Reason=%s OpportunityPending=%d LatchBefore=%d LatchAfter=%d "
+        " Reason=%s LatchBefore=%d LatchAfter=%d "
         "LatchWriteAttempted=%d LatchWriteConfirmed=%d\n",
-        reason != nullptr ? reason : "<null>",
-        opportunityPending ? 1 : 0, latchBefore, latchAfter,
+        reason != nullptr ? reason : "<null>", latchBefore, latchAfter,
         writeAttempted ? 1 : 0, writeConfirmed ? 1 : 0);
     std::fflush(g_pLog);
 }
