@@ -16,13 +16,13 @@ standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest runtime evidence = EV-356
-Phase 4 = PAUSED pending post-cleanup build/re-smoke + focused permanent raw8 acceptance
+latest runtime evidence = EV-357
+Phase 4 = PAUSED pending behavior parity re-smoke + focused permanent raw8 acceptance
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
 cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
 active Work task = NONE
-current stop gate = POP-12 PASS -> build both twins from final source candidate
+current stop gate = POP-12 PASS -> deploy behavior twin + small parity re-smoke
 ```
 
 ## Current responsibility
@@ -69,7 +69,8 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 
 - **EV-354:** raw8 pending opportunity survives same-C1 Action9/SPRINT -> Action2/POWER transport.
 - **EV-355:** permanent candidate broad diagnostic smoke PASS; marked raw8, native fallback, raw55/equipped coexistence healthy.
-- **EV-356:** diagnostics-free behavior-twin broad functional smoke PASS with positive collision discriminators.
+- **EV-356:** pre-cleanup diagnostics-free behavior-twin broad functional smoke PASS with positive collision discriminators.
+- **EV-357:** final post-cleanup diagnostic build/startup + targeted re-smoke PASS; C1 metadata retirement, raw8, raw55/equipped coexistence and compact Sprint CORE remained healthy.
 
 Latest runtime-reviewed source:
 `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
@@ -85,15 +86,13 @@ Last validated behavior-only DLL:
 `Script_FrameCollisionBehaviorTest.dll`  
 SHA256 `14F1AFE65CBE78E75B73535E46A71E43BEA5CCC6E95BC58EFFF894EC2888B324`
 
-Both belonged to the pre-cleanup runtime candidate and passed their EV-355/EV-356 smoke gates.
+These hashes belong to the pre-cleanup runtime candidate. The final diagnostic candidate rebuilt successfully and passed EV-357 at SHA256 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`. Final behavior-only hash/parity re-smoke is still pending.
 
 ## Next sequence
 
 ```text
-maintain final source state + POP-12
--> build both twins once
--> diagnostic deploy/startup + targeted re-smoke
--> behavior-only parity re-smoke
+maintain EV-357 state + POP-12
+-> behavior-only deploy/hash + parity re-smoke
 -> if PASS, freeze source
 -> focused permanent raw8 acceptance
 -> remaining standalone collision regression
