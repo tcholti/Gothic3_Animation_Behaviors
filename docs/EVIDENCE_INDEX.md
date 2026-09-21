@@ -123,6 +123,7 @@ EV-351         exact raw8 CanBeActivatedNow / TriggerTarget callbacks absent on 
 EV-352         native human raw8 resolves only against locked target in tested group-combat interception control
 EV-353         persistent raw8 FIST opportunity survives misses, consumes on native contact, closes on C1 end/replacement
 EV-354         Sabretooth pending raw8 opportunity survives same-C1 Action9/SPRINT -> Action2/POWER transport
+EV-355         permanent raw8 production candidate broad diagnostic smoke PASS; native fallback/raw55/equipped coexistence healthy
 ```
 
 ## 4. Escalation order
