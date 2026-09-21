@@ -548,3 +548,71 @@ Disposition:
 - Pre-Work Sprint-transport sentinel CLOSED/PASS.
 - No source change is required from this sentinel.
 - The frozen permanent raw8 production implementation may proceed after current-state promotion and POP-12 validation.
+
+
+### EV-355 — Permanent raw8 production-candidate broad diagnostic smoke PASS
+
+Build/runtime identity:
+- local checkout before build: `95e8a24800dae778166788de36a31818933e3ff1`;
+- permanent raw8 source candidate: `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` (all later commits through the tested checkout were documentation-only);
+- both `Script_FrameCollisionBehaviorTest` and `Script_FrameCollisionTest` built successfully from the same checkout;
+- deployed diagnostic twin SHA256: `D257DEA36BFF74BFBCF00D54BD36E08769D19DCA794E96CCA93AD48169D0023A`;
+- POP-03 sole-live diagnostic deployment/hash gate PASS;
+- POP-04 diagnostic startup/hook-install/clean-unload gate PASS.
+
+Batch scope:
+- marked single-FIST Sabretooth, native creature then transformed-player symmetry;
+- unmarked Wolf/raw8, native creature then transformed-player symmetry;
+- marked single-FIST Wolf, native creature then transformed-player symmetry;
+- Troll/raw55 four-family coexistence plus player marked equipped attacks;
+- broad player marked equipped-weapon attacks against Golem;
+- previously untested `Nemora_TRex_01` / T-Rex ("Snorting Monster" animation set) as an unmarked raw8 creature while the player used marked 1H+shield attacks.
+
+Raw8 production accounting:
+- Sabretooth log: 29 accepted opportunities opened; 15 exact contact consumptions; 14 unused lifecycle closes; 460 miss-rearms; therefore all 29 opportunities reached exactly one terminal disposition and no contact-consumed opportunity later emitted `RAW8_OPPORTUNITY_CLOSE`.
+- Native Sabretooth contributed 22 opens -> 8 contact consumptions + 14 closes; transformed-Sabretooth contributed 7 opens -> 7 contact consumptions.
+- Marked Wolf log: 35 opens; 17 exact contact consumptions; 17 lifecycle closes; 515 miss-rearms. Every completed opportunity had exactly one terminal disposition. The sole unmatched final open was Wolf C1=47 / ordinal 35, opened and miss-rearmed three times immediately before normal DLL unload with no later C1-finalization event; it is bounded as test termination during an in-progress attack, not an observed continued-runtime leak.
+- Marked Wolf transformed-player route fully accounted: 11 opens -> 10 contact consumptions + 1 close.
+- All observed raw8 opportunity latch writes/rearms requiring confirmation were confirmed.
+- No opportunity emitted both `CONTACT_CONSUMED` and later routine `CLOSE`.
+- No same-opportunity Action9/SPRINT -> Action2/POWER transport happened naturally in this smoke; that lifetime rule remains directly proven by EV-354 rather than re-proven here.
+
+Native fallback / coexistence:
+- unmarked Wolf log contained zero `RAW8_FIST_OWNERSHIP`, zero `RAW8_OPPORTUNITY_*`, and zero authored marker events while native raw8 contacts continued; native fallback remained intact in both native/transformed portions of the run.
+- Troll/raw55 produced 37 accepted FIST marker observations across all permanent families: Quick 20, Normal 11, Power 2, Sprint 4. Existing selective native-open suppression and authored-FIST activation remained active without contradiction.
+- The same Troll coexistence run also accepted 33 player RIGHT equipped markers across factual UseTypes 2, 3 and 12, including Normal/Quick/Power/Hack/Pierce coverage.
+- The Golem-target run exercised player RIGHT/LEFT/BOTH/OFF markers across factual UseTypes 2, 3 and 12; routine duplicate/authored-occurrence-budget ignores remained diagnostic dedupe rather than rejection. One `ONDAMAGE_CAP` after 64 entries was normal diagnostic throttling.
+- The T-Rex run is **not** a marked-T-Rex raw8 proof: its own factual Fist/UseType8 attacks were unmarked/native. It adds compatibility confidence for an untested creature/animation set while 12 player 1H RIGHT markers were accepted against it with normal equipped cleanup.
+
+Whole-batch health:
+- zero marker rejection;
+- zero contradiction/invariant/error/failure diagnostics;
+- zero completed C1 final records with outstanding source obligations;
+- no behavior repair divergence observed;
+- all six logs ended with clean diagnostic DLL unload.
+
+User-observed setup:
+- Sabretooth and both Wolf runs let the creature attack first, then used god mode + transformation to attack back as that creature.
+- Troll/Golem target runs used multiple player weapons with marked animations.
+- T-Rex/Snorting-monster target run used player sword+shield marked attacks.
+- User intentionally broadened the smoke beyond the minimum frozen request to increase confidence before the final source-quality audit.
+
+Provenance:
+- uploaded in commits `82fbd5767d94ba6de2f87206623d14af2b886fc9` and `abb80f2b25b2e230b45f34cac8f9a3d03c79b4a1`;
+- `research/archive/2026-09-21_raw8prod_smoke_sabretooth_single_fist.log`, blob `88981e3d3c712c3e0b91cd919fb1fe8496bedd37`, 515,928 bytes / 1,548 lines;
+- `research/archive/2026-09-21_raw8prod_smoke_wolf_native_single_fist.log`, blob `618fa3d6ed49674fc5411d560e71e105f04d7dfb`, 319,486 bytes / 922 lines;
+- `research/archive/2026-09-21_raw8prod_smoke_wolf_marked_single_fist.log`, blob `3e267b5c3aa6870c99b1b97c4cc8df55f3a9605b`, 649,809 bytes / 1,946 lines;
+- `research/archive/2026-09-21_collision_smoke_native_fallback_raw55_coexistence.log`, blob `5e6c159a323ff68d5fc304563ce6d06353609ec6`, 355,749 bytes / 1,451 lines; this is the Troll/raw55 coexistence fixture;
+- `research/archive/2026-09-21_raw8prod_smoke_Troll_marked_single_fist.log`, blob `2e3e2bd06fe8645c361491997fb12e28c0470796`, 560,566 bytes / 2,211 lines; despite the filename, the recorded target fixture is Golem and the filename is preserved unchanged as raw provenance;
+- `research/archive/2026-09-21_raw8prod_smoke_Trex_marked_single_fist.log`, blob `283ca916dc6805a367538b1a12c5bfc664fb206c`, 198,800 bytes / 794 lines.
+
+Interpretation:
+- **PASS — BROAD DIAGNOSTIC SMOKE.**
+- The permanent raw8 source candidate behaves coherently under marked native/transformed raw8, unmarked native fallback, permanent raw55 coexistence, multiple equipped weapon sources, a familiar Golem target and a previously untested T-Rex target fixture.
+- The diagnostics-only compaction correction is runtime-consistent: contact-consumed opportunities do not later produce routine lifecycle CLOSE records.
+- No new causal or architecture question is opened by this batch.
+
+Disposition:
+- Diagnostic smoke gate CLOSED/PASS.
+- This batch does not replace the frozen focused permanent raw8 acceptance matrix and does not certify the new T-Rex as a marked raw8 route.
+- Next gate is a minimal diagnostics-free behavior-twin smoke from the already-built same-source binary, followed by the planned bounded read-only code-quality/modularity audit before any full acceptance campaign.
