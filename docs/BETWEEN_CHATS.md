@@ -5,55 +5,70 @@
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
-## Current state
+## Final frozen source
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Final source candidate:
+Frozen collision source:
 `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`
 
-Final cleanup commits:
-- `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement; static review PASS.
-- `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene; static review PASS.
+Final post-cleanup runtime gates:
+- EV-357 diagnostic build/startup + targeted re-smoke PASS.
+  Diagnostic SHA256: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`.
+- EV-358 diagnostics-free behavior parity smoke PASS.
+  Behavior SHA256: `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`.
 
-Both twins rebuilt successfully after the combined cleanup.
+Positive EV-358 behavior discriminators included:
+- marked Sabretooth raw8 contact;
+- Troll repeated/two-contact Quick;
+- 1H+torch authored right-hand collision on the first Normal attack;
+- 2H Hack;
+- Staff Hack;
+- all three authored dual-1H Power contacts.
 
-Latest runtime evidence:
-- EV-355 pre-cleanup broad diagnostic smoke PASS;
-- EV-356 pre-cleanup diagnostics-free behavior smoke PASS;
-- **EV-357 final post-cleanup diagnostic build/startup + targeted re-smoke PASS.**
+No further source cleanup is authorized absent newly demonstrated contradictory evidence.
 
-EV-357 confirmed:
-- diagnostic built/live SHA256 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`;
-- corrected startup BehaviorCore inventory;
-- raw8 30 completed Sabretooth opportunities each ended by exactly one terminal event; one final in-progress opportunity ended only because the test exited;
-- transformed-Sabretooth 8 opens -> 8 contacts;
-- compact EquippedSprint CORE retained factual bind/marker authorization and removed pointer-rich/no-bound spam;
-- Troll/raw55 repeated two-FIST Quick survived across 12 separate C1s;
-- generic player 1H1H/Staff marker traffic remained healthy;
-- all completed C1 finals had outstanding zero;
-- no rejection, generation inconsistency, identity contradiction, invariant, repair divergence or error.
+## Focused permanent raw8 acceptance
 
-The three EV-357 logs are processed and archived; `research/raw/` should contain only `Keep.txt`.
+Authority:
+`docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
 
-## Next gate
+Already satisfied on the **final frozen source**:
+- §14 item 9 raw55/equipped coexistence sentinel -> EV-357;
+- §14 item 10 behavior-only/diagnostic parity -> EV-357 + EV-358.
 
-Run POP-12 on the maintained state.
+Remaining acceptance responsibilities:
+1. Gargoyle frame-3 Power: close, delayed-contact and no-contact/far cases;
+2. marked human Normal and Power timing/contact;
+3. later FIST in the same C1 reopens one opportunity without stacking;
+4. ordinary no-contact C1 finalization;
+5. post-FIST reaction/generation replacement with no old-opportunity leak;
+6. marked pending -> replacement/interruption -> later unmarked raw8 native fallback;
+7. native unmarked human target-directed group control;
+8. raw8 Sprint-origin same-C1 Action9 -> Action2 sentinel on the frozen source.
 
-Then deploy **only** the already-built `Script_FrameCollisionBehaviorTest.dll` with POP-03 sole-live/hash verification.
+## Next batch — diagnostic twin
 
-Run a small diagnostics-free functional parity smoke. No log is expected.
+Deploy only the frozen diagnostic twin before capture.
 
-Minimum useful checks:
-1. marked Sabretooth/raw8 — several attacks with at least one normal contact and preferably a miss; transformation/attack-back is useful but not mandatory;
-2. Troll/raw55 — observe repeated/two-contact Quick behavior;
-3. player marked weapon behavior — use familiar 1H1H and/or Staff against Troll or another familiar target;
-4. one positive mod discriminator such as Hack, authored dual-1H multi-contact, or corrected authored source ownership.
+Freeze these exact raw filenames:
 
-If visually normal and no crash:
-- close final behavior parity smoke;
-- freeze `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` as the source for focused permanent raw8 acceptance;
-- begin the focused matrix in `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
+`research/raw/2026-09-21_raw8_final_acceptance_gargoyle_frame3_power.log`
+- marked Gargoyle Power using the established frame-3 FIST fixture;
+- capture at least: close/ordinary contact, delayed-contact if naturally possible, and deliberately far/no-contact;
+- allow attacks to finish so finalization is visible.
 
-Do not alter source unless the behavior-only smoke exposes a contradiction.
+`research/raw/2026-09-21_raw8_final_acceptance_human_normal_power.log`
+- marked human raw8 Normal + true Power;
+- include ordinary contact and deliberately missed/no-contact attacks;
+- if the prepared fixture has a later second FIST in the same C1, exercise it here to satisfy item 3 as well.
+
+Do not broaden into general regression in this batch.
+
+After the two logs are published:
+- Normal Chat interprets them;
+- close whichever §14 items are directly proven;
+- then freeze the smallest next batch for replacement/unmarked-fallback + Sprint transport + native target-directed control.
+
+`research/raw/` should contain only `Keep.txt` before these captures.
