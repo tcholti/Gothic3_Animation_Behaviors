@@ -14,60 +14,55 @@ Latest runtime evidence:
 - EV-355 diagnostic production-candidate smoke PASS;
 - EV-356 diagnostics-free behavior-twin smoke PASS.
 
-Permanent collision source candidate before final cleanup:
-`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
+Final source-quality audit is closed with no material behavioral contradiction and no MUST-correct findings.
 
-Final read-only source-quality/modularity audit is CLOSED.
+## Cleanup 1 — COMPLETE / REVIEW PASS
 
-Archived audit:
-`docs/archive/investigations/COLLISION_FINAL_SOURCE_QUALITY_MODULARITY_AUDIT.md`
+C1 metadata retirement implementation:
+`9789254866bb47dcbadb145aeb9831c7c0e4e97f`
 
-Audit disposition:
-- material behavioral contradiction: NO;
-- MUST CORRECT: 0;
-- five SHOULD findings accepted;
-- one optional raw8 compact-diagnostic signature cleanup also accepted now;
-- evidence-backed defensive/liveness logic classified KEEP remains protected.
+Parent:
+`dd3b5efd22c3403f18a942dac6040da240441648`
 
-## Cleanup sequence
+Independent Normal Chat static review: **PASS**.
 
-### 1. ACTIVE — C1 metadata retirement
+Verified exact behavior:
+- native AISetState original remains first;
+- existing raw8 finalization remains first post-native feature finalization;
+- marker dedupe/budget metadata retirement follows;
+- equipped Sprint binding retirement follows;
+- raw55 execution retirement follows;
+- existing generic lifecycle finalization remains last;
+- every new eraser requires exact actor + stored-generation == captured finalized generation;
+- replacement-generation state remains untouched;
+- no physical collision/latch/group/source-operation behavior changed.
 
-`docs/work/active/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md`
+Closed contract:
+`docs/archive/investigations/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md`
 
-This is the only current Work implementation responsibility.
-
-It adds generation-qualified, metadata-only retirement at the existing post-native AISetState finalization seam for:
-- FrameCollisionMarkers dedupe/occurrence-budget metadata;
-- EquippedSprintCollision bound execution;
-- PhysicalFistCollision execution.
-
-No physical collision/latch/group mutation is authorized.
-
-After Work publishes, Normal Chat must independently review this commit before task 2 may start.
-
-### 2. FROZEN / WAITING — release & diagnostic hygiene
+## Cleanup 2 — ACTIVE / AUTHORIZED
 
 `docs/work/active/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 
-Do not execute until task 1 has passed independent Normal Chat review and current state is advanced.
+This is now the sole authorized Work implementation task.
 
-It owns:
-- raw8 diagnostic-only state/work exclusion from behavior twin;
-- dead closed TouchDamage diagnostic API removal;
-- EquippedSprint CORE compaction;
-- diagnostic startup banner correction;
-- compact raw8 diagnostic signature cleanup.
+Scope:
+- exclude raw8 diagnostic-only state/work from the behavior twin;
+- delete dead closed TouchDamage diagnostic APIs;
+- compact EquippedSprint CORE logging without behavior changes;
+- correct diagnostic startup behavior-core inventory;
+- remove unused parameters from compact raw8 opportunity diagnostic APIs.
 
-## After both cleanup commits
+No gameplay semantics, hooks, CMake membership, raw8 timing calculation, raw55 behavior, marker behavior or lifecycle policy may change.
 
-Do not build between the two Work commits unless a contradiction requires it.
+After Work publishes cleanup 2:
+1. Normal Chat independently reviews exact five-file diff;
+2. if PASS, maintain final source-candidate state + POP-12;
+3. build both twins once from the combined final cleanup candidate;
+4. diagnostic deploy/startup + small targeted re-smoke;
+5. behavior-only deploy + small parity re-smoke;
+6. if PASS, freeze source for focused permanent acceptance + remaining full regression.
 
-After both have passed independent Normal Chat source review:
-1. POP-12 maintained final-cleanup state;
-2. build both twins;
-3. diagnostic deploy/startup + small targeted re-smoke;
-4. behavior-only deploy + small parity re-smoke;
-5. if PASS, freeze the source candidate for focused permanent acceptance + remaining full regression.
+Do not build between cleanup 1 and cleanup 2 unless a contradiction appears.
 
 `research/raw/` contains only `Keep.txt`.
