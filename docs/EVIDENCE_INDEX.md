@@ -128,6 +128,7 @@ EV-356         diagnostics-free behavior-twin broad functional smoke PASS; posit
 EV-357         final post-cleanup diagnostic build/startup + targeted re-smoke PASS; C1 retirement and compact diagnostics healthy
 EV-358         final post-cleanup diagnostics-free behavior parity smoke PASS; final source frozen for focused acceptance
 EV-359         focused raw8 acceptance: human Normal/Power + later-FIST + finalization PASS; Gargoyle close/delayed PASS, far/no-contact still open
+EV-360         focused raw8 acceptance: Gargoyle far/no-contact + reaction replacement + Sprint transport PASS; only unmarked fallback/target controls remain
 ```
 
 ## 4. Escalation order
