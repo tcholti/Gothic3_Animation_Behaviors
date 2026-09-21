@@ -21,7 +21,7 @@ latest completed evidence = EV-354
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = RAW8 PRODUCTION IMPLEMENTATION STATIC REVIEW COMPLETE: BEHAVIOR PASS / DIAGNOSTIC CORRECTION OPEN
 active Work implementation task = COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md
-current stop gate = POP-12 validation of review-maintained state, then bounded diagnostics-only correction before any build
+current stop gate = POP-12 PASS; bounded diagnostics-only correction is authorized before any build
 ```
 
 ## Current responsibility
@@ -65,6 +65,22 @@ Permanent raw8 authority: `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
 Reviewed parent implementation contract: `docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`.
 
 Active correction contract: `docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
+
+
+Agreed stabilization sequence before full collision regression:
+
+```text
+diagnostics-only correction
+-> independent Normal Chat review
+-> build both twins
+-> small diagnostic/behavior smoke + a few logs
+-> if smoke PASS, freeze and run one bounded final code-quality/modularity review
+-> apply only justified cleanup, if any
+-> rebuild + small re-smoke after any source change
+-> only then run focused permanent raw8 acceptance and the full remaining collision regression
+```
+
+The final code-quality review is deliberately deferred until the smoke-tested candidate exists. Its purpose will be removal/ownership/modularity review, not redesign or new behavior.
 
 ## Current runtime provenance
 
