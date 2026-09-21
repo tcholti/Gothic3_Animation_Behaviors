@@ -16,13 +16,13 @@ standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest runtime evidence = EV-358
+latest runtime evidence = EV-359
 Phase 4 = PAUSED pending focused permanent raw8 acceptance
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
 cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
 active Work task = NONE
-current stop gate = POP-12 PASS -> focused raw8 acceptance batch 1
+current stop gate = POP-12 PASS -> focused raw8 acceptance batch 2
 ```
 
 ## Current responsibility
@@ -72,6 +72,7 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 - **EV-356:** pre-cleanup diagnostics-free behavior-twin broad functional smoke PASS with positive collision discriminators.
 - **EV-357:** final post-cleanup diagnostic build/startup + targeted re-smoke PASS; C1 metadata retirement, raw8, raw55/equipped coexistence and compact Sprint CORE remained healthy.
 - **EV-358:** final post-cleanup diagnostics-free behavior parity smoke PASS; source frozen for focused acceptance.
+- **EV-359:** focused raw8 acceptance closes human Normal/Power, later-FIST reopening and ordinary no-contact finalization; Gargoyle close/delayed PASS, true far/no-contact still open.
 
 Latest runtime-reviewed source:
 `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
@@ -90,12 +91,12 @@ Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C58
 ## Next sequence
 
 ```text
-maintain EV-358/source-freeze state + POP-12
--> focused permanent raw8 acceptance
+maintain EV-359/source-freeze state + POP-12
+-> finish focused permanent raw8 acceptance
 -> remaining standalone collision regression
 ```
 
-Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8 acceptance may proceed; Phase 4 broad regression remains paused until that matrix closes.
+Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8 acceptance is in progress: items 2–4 and 9–10 are PASS; item 1 is partial; items 5–8 remain open. After focused acceptance, run the frozen-source comprehensive release campaign in COLLISION_TEST_PLAN §3.8 before New Balance compatibility.
 
 ## Read next by question
 
@@ -103,7 +104,7 @@ Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8
 - closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-358
+- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-359
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
