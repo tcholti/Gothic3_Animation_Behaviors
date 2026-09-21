@@ -13,78 +13,58 @@ Branch: `docs/collision-source-evidence`
 Frozen collision source:
 `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`
 
-Diagnostic DLL SHA256:
+Diagnostic SHA256:
 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`
 
-Behavior DLL SHA256:
+Behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-No source change is authorized absent newly demonstrated contradictory evidence.
+No source change is authorized absent contradictory evidence.
 
 ## Focused raw8 acceptance
 
-Authority:
-`docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
+Authority: `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
 
-Current frozen-source disposition:
+Current status after EV-360:
 
 ```text
-1. Gargoyle close/delayed/no-contact    PARTIAL — close + delayed PASS EV-359; far/no-contact open
+1. Gargoyle close/delayed/no-contact    PASS — EV-359 + EV-360
 2. Human Normal + true Power            PASS — EV-359
 3. Later FIST same-C1 reopening         PASS — EV-359
 4. Ordinary no-contact finalization     PASS — EV-359
-5. Reaction/generation replacement      OPEN
+5. Reaction/generation replacement      PASS — EV-360
 6. Replacement -> unmarked fallback     OPEN
-7. Unmarked human target-directed       OPEN
-8. Sprint Action9 -> Action2 transport  OPEN
+7. Native unmarked human target-control OPEN
+8. Sprint Action9 -> Action2 transport  PASS — EV-360
 9. raw55 + equipped coexistence         PASS — EV-357
 10. Diagnostic/behavior parity          PASS — EV-357 + EV-358
 ```
 
-EV-359 evidence details are in:
-- `docs/EVIDENCE_LEDGER_342_ONWARD.md`;
-- `docs/EVIDENCE_INDEX.md`;
-- `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
+EV-360 also confirmed healthy side coverage:
+- player 2H Flamberge/raw3;
+- Wrestling/raw12;
+- Orc Staff/raw51 + Axe/raw52 families;
+- Rusty 1H/raw2;
+- transformed Sabretooth Normal/Quick/Power: 27 opens -> 27 contacts.
 
-## Next proof batch
+The file named `human_unmarked_target_control` was factually still marked: 56 accepted human FIST markers/opportunities. It strongly corroborated target-directed behavior and supplied 7 generation-replacement closes, but it cannot satisfy items 6–7 as native/unmarked evidence.
 
-Keep the frozen diagnostic DLL deployed alone.
+## Next responsibility
 
-Freeze these exact filenames:
+Only two focused items remain. Prefer one deliberately prepared human fixture that can prove both:
 
-```text
-research/raw/2026-09-21_raw8_final_acceptance_gargoyle_frame3_far_no_contact.log
-research/raw/2026-09-21_raw8_final_acceptance_human_reaction_replacement.log
-research/raw/2026-09-21_raw8_final_acceptance_human_unmarked_target_control.log
-research/raw/2026-09-21_raw8_final_acceptance_sabretooth_sprint_transport.log
-```
+- keep one human raw8 family marked (for example Power) so a pending FIST opportunity can be interrupted/replaced;
+- keep another human raw8 family genuinely unmarked/native (for example Normal);
+- after a confirmed marked replacement, perform the unmarked attack and obtain ordinary native contact without any new FIST ownership/open;
+- in group combat, use the same unmarked route while switching locked targets with other opponents nearby/behind/between.
 
-Test intent:
+Freeze exact filenames when the next session begins rather than modifying source.
 
-- Gargoyle: frame-3 marked Power; open FIST, remain far enough for no contact, let C1 finish naturally.
-- Human replacement: reuse EV-353-style marked group combat; open FIST, then allow interruption/reaction/generation replacement; verify no old-opportunity contact leaks afterward.
-- Human unmarked control: reuse native target-directed group setup; no raw8 marker/opportunity records should appear and contacts should remain target-directed.
-- Sabretooth Sprint: reproduce same-C1 Action9/SPRINT open -> Action2/POWER contact on the same opportunity ordinal.
+After items 6–7 PASS:
+1. close focused permanent raw8 acceptance;
+2. begin `COLLISION_TEST_PLAN.md` §3.8 comprehensive final-source campaign:
+   animals/body-contact -> equipped coverage -> modded/custom animations -> mixed stress -> New Balance + AttackCollision.
 
-If a same-player unmarked raw8 attack is available immediately after a marked replacement, use it to help close item 6. Otherwise keep item 6 open for a dedicated control.
+Several logs per thematic batch are explicitly allowed.
 
-Multiple logs may be uploaded together.
-
-## After focused acceptance
-
-Run the comprehensive frozen-source release campaign defined in:
-`docs/COLLISION_TEST_PLAN.md` §3.8.
-
-Order:
-
-```text
-animals/body-contact
--> equipped coverage
--> modded/custom animations
--> mixed stress
--> New Balance + AttackCollision compatibility
-```
-
-Several logs per thematic batch are allowed. Broad failures must be reduced to the smallest factual route before any source change.
-
-`research/raw/` should contain only `Keep.txt` before the next captures.
+`research/raw/` should contain only `Keep.txt`.
