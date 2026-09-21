@@ -14,55 +14,52 @@ Latest runtime evidence:
 - EV-355 diagnostic production-candidate smoke PASS;
 - EV-356 diagnostics-free behavior-twin smoke PASS.
 
-Final source-quality audit is closed with no material behavioral contradiction and no MUST-correct findings.
+Final source-quality audit: CLOSED, no material behavioral contradiction, no MUST-correct findings.
 
-## Cleanup 1 — COMPLETE / REVIEW PASS
+Final cleanup commits:
+- `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement; independent Normal Chat static review PASS.
+- `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene + CORE compaction; independent Normal Chat static review PASS.
 
-C1 metadata retirement implementation:
-`9789254866bb47dcbadb145aeb9831c7c0e4e97f`
+Current final source candidate:
+`f1f5d2aad3edc3564a9a8b40541840b94f8fa903`
 
-Parent:
-`dd3b5efd22c3403f18a942dac6040da240441648`
+No Work implementation task is active.
 
-Independent Normal Chat static review: **PASS**.
+## Next gate
 
-Verified exact behavior:
-- native AISetState original remains first;
-- existing raw8 finalization remains first post-native feature finalization;
-- marker dedupe/budget metadata retirement follows;
-- equipped Sprint binding retirement follows;
-- raw55 execution retirement follows;
-- existing generic lifecycle finalization remains last;
-- every new eraser requires exact actor + stored-generation == captured finalized generation;
-- replacement-generation state remains untouched;
-- no physical collision/latch/group/source-operation behavior changed.
+After pulling the maintained documentation state, run:
 
-Closed contract:
-`docs/archive/investigations/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md`
+`python tools/knowledge/validate_knowledge_state.py`
 
-## Cleanup 2 — ACTIVE / AUTHORIZED
+Require exact:
 
-`docs/work/active/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
+`Knowledge-state validation PASS`
 
-This is now the sole authorized Work implementation task.
+Then build both twins once from the final source candidate:
 
-Scope:
-- exclude raw8 diagnostic-only state/work from the behavior twin;
-- delete dead closed TouchDamage diagnostic APIs;
-- compact EquippedSprint CORE logging without behavior changes;
-- correct diagnostic startup behavior-core inventory;
-- remove unused parameters from compact raw8 opportunity diagnostic APIs.
+```powershell
+cmake --build build --config Release --target Script_FrameCollisionBehaviorTest
+cmake --build build --config Release --target Script_FrameCollisionTest
+```
 
-No gameplay semantics, hooks, CMake membership, raw8 timing calculation, raw55 behavior, marker behavior or lifecycle policy may change.
+A successful build does not deploy.
 
-After Work publishes cleanup 2:
-1. Normal Chat independently reviews exact five-file diff;
-2. if PASS, maintain final source-candidate state + POP-12;
-3. build both twins once from the combined final cleanup candidate;
-4. diagnostic deploy/startup + small targeted re-smoke;
-5. behavior-only deploy + small parity re-smoke;
-6. if PASS, freeze source for focused permanent acceptance + remaining full regression.
+After both builds pass:
+1. deploy only the diagnostic twin using POP-03 sole-live/hash verification;
+2. run POP-04 main-menu startup/clean-unload;
+3. run a small targeted diagnostic re-smoke designed to exercise the two cleanup classes:
+   - raw8 marked opportunity/contact/miss/finalization;
+   - equipped Sprint material bind/Action9 -> Action2 continuation log path;
+   - raw55 repeated-FIST + generic equipped marker coexistence;
+   - generation-finalization churn sufficient to exercise the new metadata retirement without broad regression.
+4. analyze/close that evidence;
+5. deploy behavior-only twin and run a small functional parity re-smoke;
+6. if both pass, freeze source and begin focused permanent raw8 acceptance.
 
-Do not build between cleanup 1 and cleanup 2 unless a contradiction appears.
+Do not begin the full focused acceptance matrix before post-cleanup re-smoke closes.
 
-`research/raw/` contains only `Keep.txt`.
+Closed cleanup contracts:
+- `docs/archive/investigations/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md`
+- `docs/archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
+
+`research/raw/` should contain only `Keep.txt` before the next runtime evidence capture.
