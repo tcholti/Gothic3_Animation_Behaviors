@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Persistent Opportunity Production Implementation
 
-**Status:** ACTIVE — PRODUCTION SOURCE CANDIDATE STATIC REVIEW PASS / BUILD + SMOKE + FOCUSED ACCEPTANCE PENDING  
+**Status:** ACTIVE — DIAGNOSTIC SMOKE PASS / BEHAVIOR SMOKE + FINAL AUDIT + FOCUSED ACCEPTANCE PENDING  
 **Opened:** 2026-09-20  
 **Architecture:** `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`  
 **Evidence closure:** EV-353  
@@ -16,7 +16,7 @@ Static independent review accepted the permanent behavior/state-machine promotio
 
 The bounded diagnostics-only follow-up was implemented in `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed PASS. Its closed contract is archived at `docs/archive/investigations/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
 
-Current production source candidate is therefore `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`. Next gate is build both twins, then the agreed small smoke/log check before the final read-only code-quality/modularity audit.
+Current production source candidate is therefore `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`. Both twins built successfully from checkout `95e8a24800dae778166788de36a31818933e3ff1`; diagnostic sole-live deployment/startup and the broad smoke passed at EV-355. Next gate is a minimal behavior-only twin smoke, then the agreed read-only final code-quality/modularity audit before focused/full validation.
 
 ## Responsibility
 
