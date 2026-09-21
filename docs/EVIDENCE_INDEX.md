@@ -126,6 +126,7 @@ EV-354         Sabretooth pending raw8 opportunity survives same-C1 Action9/SPRI
 EV-355         permanent raw8 production candidate broad diagnostic smoke PASS; native fallback/raw55/equipped coexistence healthy
 EV-356         diagnostics-free behavior-twin broad functional smoke PASS; positive collision discriminators preserved
 EV-357         final post-cleanup diagnostic build/startup + targeted re-smoke PASS; C1 retirement and compact diagnostics healthy
+EV-358         final post-cleanup diagnostics-free behavior parity smoke PASS; final source frozen for focused acceptance
 ```
 
 ## 4. Escalation order
