@@ -174,7 +174,7 @@ Raw8 closed-research retirement / neutral baseline           PASS — EV-350
 Raw8 TouchDamage virtual contact-boundary observation         NEGATIVE PASS — EV-351
 Native human raw8 locked-target interception control          PASS — EV-352
 Raw8 persistent authored-opportunity causal probe              CLOSED/PASS — EV-353
-Raw8 permanent persistent-opportunity implementation            FINAL SOURCE FROZEN — EV-357–EV-358 / FOCUSED ACCEPTANCE PENDING
+Raw8 permanent persistent-opportunity implementation            FINAL SOURCE FROZEN — EV-357–EV-359 / FOCUSED ACCEPTANCE IN PROGRESS
 ```
 
 The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. EV-342 is an ordinary PASS: some correctly processed Minecrawler executions did not physically contact, which is normal runtime attack variance rather than a collision-system qualification.
@@ -218,6 +218,45 @@ mixed actor/target sequencing problems
 ```
 
 A stress failure must first be reduced to the smallest factual route before source changes are considered.
+
+### 3.8 Final frozen-source comprehensive release pass
+
+Focused acceptance is a causal gate, not a substitute for broad release validation.
+
+After the focused raw8 matrix closes, repeat a systematic final-source campaign on the exact frozen collision source. The purpose is to catch interaction, coverage and stability problems that narrow proof tests can miss.
+
+Run in this order:
+
+```text
+A. non-weapon/body-contact creatures
+-> several logs per batch are allowed
+-> revisit the prepared raw8/raw55 animal fixtures systematically
+-> vary player weapons between fixtures so creature collision and equipped collision coexist in the same runs
+
+B. equipped actors + player weapon matrix
+-> revisit player and NPC/creature equipped routes
+-> cover 1H, 1H+shield, 1H+torch, dual-1H, 2H, Staff and factual Axe/other supported sources
+-> include RIGHT/LEFT/BOTH/OFF, repeated contact, Power/Pierce/SimpleWhirl/Hack/Sprint as applicable
+
+C. modded/custom animation compatibility
+-> exercise the prepared Axe-separation and Rapier-separation routes
+-> include the User's fast/multi-contact authored animations and other collision-authoring fixtures
+-> use positive discriminators rather than relying only on native-vs-mod visual equivalence
+
+D. mixed stress
+-> deliberately interleave raw8, raw55 and equipped actors/routes
+-> switch targets/weapons/attack families and repeat C1 churn
+-> look for stale ownership, dedupe leakage, cleanup loss and cross-feature interference
+
+E. New Balance + AttackCollision compatibility
+-> only after standalone final-source stages A–D close
+-> test the exact distributed New Balance bundle and relevant AttackCollision DLL combination
+-> run several representative body-contact, equipped, modded-animation and stress cases rather than one smoke
+```
+
+This comprehensive pass is intentionally broader than the minimum causal matrix. Multiple thematically related logs may be uploaded together. Keep each raw artifact unchanged and identify the fixture in its filename.
+
+If a broad test exposes a failure, do not immediately patch the source. First reduce it to the smallest factual route under the feature-development method, then decide whether a new bounded source responsibility is justified.
 
 ---
 
