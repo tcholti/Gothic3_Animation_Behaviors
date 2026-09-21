@@ -20,8 +20,8 @@ focused permanent raw55 acceptance = CLOSED/PASS at EV-298
 latest completed evidence = EV-356
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
 active temporary review = FINAL COLLISION SOURCE QUALITY / MODULARITY AUDIT CLOSED; ACCEPTED CLEANUP SPLIT INTO TWO BOUNDED TASKS
-active Work task = COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md
-current stop gate = POP-12 validation of audit-closure state, then bounded C1 metadata-retirement cleanup
+active Work task = COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md
+current stop gate = POP-12 validation of task-1 closure / task-2 authorization, then bounded release-diagnostic hygiene cleanup
 ```
 
 ## Current responsibility
@@ -65,9 +65,9 @@ Reviewed parent implementation contract: `docs/work/active/COLLISION_RAW8_PERSIS
 
 Closed final audit: `docs/archive/investigations/COLLISION_FINAL_SOURCE_QUALITY_MODULARITY_AUDIT.md`.
 
-Active first cleanup: `docs/work/active/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md`.
+Completed first cleanup: `docs/archive/investigations/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md` — implemented at `9789254866bb47dcbadb145aeb9831c7c0e4e97f`, independent static review PASS.
 
-Frozen second cleanup (WAITING): `docs/work/active/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`.
+Active second cleanup: `docs/work/active/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`.
 
 Closed correction contract: `docs/archive/investigations/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
 
@@ -96,6 +96,8 @@ Final source-quality audit result:
   1. generation-qualified C1 metadata retirement;
   2. release/diagnostic hygiene and compaction.
 - full focused/regression validation remains paused until both cleanups are reviewed, rebuilt and re-smoked.
+
+C1 metadata retirement implementation `9789254866bb47dcbadb145aeb9831c7c0e4e97f`: independent Normal Chat static review **PASS**. Exact generation-qualified metadata-only retirement was added for marker dedupe/budget state, equipped Sprint binding state and raw55 execution state at the existing post-native AISetState seam. No physical collision/latch/group behavior changed.
 
 ## Current runtime provenance
 
