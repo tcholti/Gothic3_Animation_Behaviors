@@ -1,19 +1,16 @@
 # Gothic 3 — Final Collision Release / Diagnostic Hygiene Cleanup
 
-**Status:** ACTIVE — FROZEN / BLOCKED WAITING FOR C1 METADATA CLEANUP + INDEPENDENT REVIEW  
+**Status:** ACTIVE — AUTHORIZED BOUNDED IMPLEMENTATION  
 **Opened:** 2026-09-21  
 **Finding source:** archived final source-quality audit B-02–B-05 + C-01  
 **Behavior change intent:** NONE  
 **Work build execution:** PROHIBITED
 
-## Gate
+## Gate — SATISFIED
 
-Do not execute this task until:
-1. `COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md` is implemented;
-2. Normal Chat independently reviews that commit PASS;
-3. current-state pointers are advanced to this task.
+The prerequisite C1 metadata cleanup was implemented in `9789254866bb47dcbadb145aeb9831c7c0e4e97f` and independently reviewed PASS by Normal Chat.
 
-This task is frozen now only to preserve the accepted audit disposition.
+This release/diagnostic hygiene cleanup is now the sole authorized Work implementation responsibility.
 
 ## Responsibility
 
