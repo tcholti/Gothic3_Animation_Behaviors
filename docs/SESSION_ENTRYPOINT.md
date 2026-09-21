@@ -15,13 +15,13 @@
 standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-Phase 4 non-weapon creatures = PAUSED PENDING RAW8 BEHAVIOR SMOKE + FINAL CODE-QUALITY AUDIT + FOCUSED PERMANENT ACCEPTANCE
+Phase 4 non-weapon creatures = PAUSED PENDING FINAL CODE-QUALITY/MODULARITY AUDIT + FOCUSED PERMANENT ACCEPTANCE
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-355
+latest completed evidence = EV-356
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
-active temporary review = RAW8 PRODUCTION CANDIDATE DIAGNOSTIC SMOKE PASS
-active Work implementation task = NONE — next Work task deferred until post-smoke read-only code-quality/modularity audit
-current stop gate = minimal behavior-only twin smoke from the already-built same-source binary
+active temporary review = FINAL COLLISION SOURCE QUALITY / MODULARITY AUDIT FROZEN
+active Work task = COLLISION_FINAL_SOURCE_QUALITY_MODULARITY_AUDIT.md — READ-ONLY FORMAL AUDIT
+current stop gate = POP-12 validation of EV-356 + frozen audit state, then launch read-only Work audit
 ```
 
 ## Current responsibility
@@ -50,6 +50,8 @@ EV-350 closes the retirement: both twins built, diagnostic deployment/startup pa
 **EV-354 closes the pre-Work Sabretooth Sprint-origin sentinel PASS: 20 opportunities opened under Action9/SPRINT and were consumed under Action2/POWER in the same C1 on the same PowerAttack-named motion; two also survived an earlier miss/rearm.**
 
 **EV-355 closes the broad diagnostic smoke PASS:** marked Sabretooth/Wolf raw8 including transformed-player symmetry, unmarked Wolf native fallback, Troll/raw55 four-family coexistence, broad equipped/Golem coverage and a new unmarked T-Rex compatibility fixture all remained healthy. No full acceptance claim is made by this smoke.
+
+**EV-356 closes the diagnostics-free behavior-twin smoke PASS:** Wolf/Sabretooth/Golem/Troll and 1H/1H+torch/dual-1H/2H/Staff all remained functional; positive discriminators included Hack, Troll repeated Quick contact, authored right-hand correction for 1H+torch and all three authored dual-1H Power contacts.
 
 Production implementation `3426cede41c0087e43edc0d81c825ff167e8e034` has completed independent Normal Chat static review.
 
@@ -87,14 +89,14 @@ Latest runtime-reviewed diagnostic source candidate:
 
 Current permanent raw8 production source candidate:
 
-`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` — both twins built; diagnostic smoke PASS; behavior-only smoke pending
+`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` — both twins built; diagnostic smoke PASS EV-355; behavior-only smoke PASS EV-356; final read-only audit pending
 
 Current diagnostic DLL:
 
 `Script_FrameCollisionTest.dll`  
 SHA256 `D257DEA36BFF74BFBCF00D54BD36E08769D19DCA794E96CCA93AD48169D0023A`
 
-Build both twins: PASS. Sole-live diagnostic deployment/hash + startup/unload: PASS. Broad diagnostic smoke: PASS — EV-355.
+Build both twins: PASS. Sole-live diagnostic deployment/hash + startup/unload: PASS. Broad diagnostic smoke: PASS — EV-355. Diagnostics-free behavior deployment/hash + broad functional smoke: PASS — EV-356.
 
 ## Read next by question
 
@@ -102,7 +104,7 @@ Build both twins: PASS. Sole-live diagnostic deployment/hash + startup/unload: P
 - exact short-lived continuation → `BETWEEN_CHATS.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
-- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-355
+- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-356
 - lifecycle/repair architecture → `COLLISION_LIFECYCLE.md`
 - diagnostics architecture → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
