@@ -25,7 +25,7 @@ No source change is authorized absent contradictory evidence.
 
 Authority: `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
 
-Current status after EV-360:
+Status after EV-361:
 
 ```text
 1. Gargoyle close/delayed/no-contact    PASS — EV-359 + EV-360
@@ -34,37 +34,44 @@ Current status after EV-360:
 4. Ordinary no-contact finalization     PASS — EV-359
 5. Reaction/generation replacement      PASS — EV-360
 6. Replacement -> unmarked fallback     OPEN
-7. Native unmarked human target-control OPEN
+7. Native unmarked human target-control PASS — EV-361
 8. Sprint Action9 -> Action2 transport  PASS — EV-360
 9. raw55 + equipped coexistence         PASS — EV-357
 10. Diagnostic/behavior parity          PASS — EV-357 + EV-358
 ```
 
-EV-360 also confirmed healthy side coverage:
-- player 2H Flamberge/raw3;
-- Wrestling/raw12;
-- Orc Staff/raw51 + Axe/raw52 families;
-- Rusty 1H/raw2;
-- transformed Sabretooth Normal/Quick/Power: 27 opens -> 27 contacts.
+EV-361 correction:
+- exact motion `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot`;
+- 29 executions, all `MarkerPresent=0 / FistMarkers=0 / SuppressNative=0`;
+- zero raw8 ownership/open/consumed/FIST-marker records on that motion;
+- 2 exact native `Game+0x16E348` contacts, both to the locked `ReddockOrcScoutLeader`;
+- no unmarked left-hand contact against nearby non-target Orcs;
+- User deliberately switched targets and tried to hit bystanders.
 
-The file named `human_unmarked_target_control` was factually still marked: 56 accepted human FIST markers/opportunities. It strongly corroborated target-directed behavior and supplied 7 generation-replacement closes, but it cannot satisfy items 6–7 as native/unmarked evidence.
+The group-combat file is mixed marked + unmarked by design. File-wide marked traffic does not invalidate the exact unmarked P1-left control.
 
 ## Next responsibility
 
-Only two focused items remain. Prefer one deliberately prepared human fixture that can prove both:
+Only focused item 6 remains.
 
-- keep one human raw8 family marked (for example Power) so a pending FIST opportunity can be interrupted/replaced;
-- keep another human raw8 family genuinely unmarked/native (for example Normal);
-- after a confirmed marked replacement, perform the unmarked attack and obtain ordinary native contact without any new FIST ownership/open;
-- in group combat, use the same unmarked route while switching locked targets with other opponents nearby/behind/between.
+Next session, prepare one clean sentinel:
 
-Freeze exact filenames when the next session begins rather than modifying source.
+```text
+marked human raw8 opportunity pending
+-> factual reaction/interruption replaces generation
+-> old opportunity closes
+-> next relevant human raw8 attack is the genuinely unmarked P1-left Normal motion
+-> no intervening newly marked FIST opportunity
+-> unmarked attack follows native path; ordinary native contact is preferred
+```
 
-After items 6–7 PASS:
+Use the known unmarked motion above. The decisive point is **no new marked opportunity between replacement close and the unmarked fallback attack/contact**.
+
+After item 6 PASS:
 1. close focused permanent raw8 acceptance;
 2. begin `COLLISION_TEST_PLAN.md` §3.8 comprehensive final-source campaign:
    animals/body-contact -> equipped coverage -> modded/custom animations -> mixed stress -> New Balance + AttackCollision.
 
-Several logs per thematic batch are explicitly allowed.
+Sabretooth, Gargoyle and human Fist do not need automatic broad retesting after focused acceptance unless a later contradiction calls for them. Golem may be reused as a weapon target.
 
-`research/raw/` should contain only `Keep.txt`.
+`research/raw/` contains only `Keep.txt`.
