@@ -32,6 +32,8 @@ MarkerProcessResult CreateMarkerResult(
     EquippedCollisionSources const &sources, MarkerOpcode opcode,
     char const *effectName, double elapsedMs);
 
+void RetireFinalizedGeneration(
+    eCEntity *actorInstance, std::uint64_t c1Generation);
 GEInt RetireMarkerOwnedSource(eCEntity *sourceInstance);
 bool HasMarkerOwnedWindows();
 bool TryGetMarkerOwnedWindow(

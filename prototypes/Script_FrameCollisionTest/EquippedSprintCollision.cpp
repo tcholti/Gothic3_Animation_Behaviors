@@ -426,5 +426,16 @@ bool AuthorizeGenericEquippedMarker(
     return authorized;
 }
 
+void RetireFinalizedGeneration(
+    eCEntity *actorInstance, std::uint64_t c1Generation)
+{
+    auto found = g_BoundSprintExecutionByActor.find(actorInstance);
+    if (found != g_BoundSprintExecutionByActor.end()
+        && found->second.c1Generation == c1Generation)
+    {
+        g_BoundSprintExecutionByActor.erase(found);
+    }
+}
+
 #undef EQUIPPED_SPRINT_LOG
 }

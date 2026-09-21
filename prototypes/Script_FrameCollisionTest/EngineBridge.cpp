@@ -692,6 +692,15 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
         a_pThis, a_State);
 
     Raw8FistCollision::CloseForFinalization(finalization);
+    if (finalization.valid)
+    {
+        FrameCollisionMarkers::RetireFinalizedGeneration(
+            finalization.actorInstance, finalization.generation);
+        EquippedSprintCollision::RetireFinalizedGeneration(
+            finalization.actorInstance, finalization.generation);
+        PhysicalFistCollision::RetireFinalizedGeneration(
+            finalization.actorInstance, finalization.generation);
+    }
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     if (IsPlayerEntity(ownerEntity))

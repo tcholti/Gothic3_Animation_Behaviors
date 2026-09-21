@@ -696,4 +696,15 @@ bool ShouldSuppressNormalNativeTriggerClear(
 #endif
     return true;
 }
+
+void RetireFinalizedGeneration(
+    eCEntity *actorInstance, std::uint64_t c1Generation)
+{
+    auto found = g_Executions.find(actorInstance);
+    if (found != g_Executions.end()
+        && found->second.c1Generation == c1Generation)
+    {
+        g_Executions.erase(found);
+    }
+}
 }

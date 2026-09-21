@@ -9,4 +9,6 @@ bool ShouldSuppressNativeCallback(
     FrameCollisionMarkers::AttackCallbackOwnershipResult const &ownership);
 bool AuthorizeGenericEquippedMarker(
     Entity &actor, MarkerOpcode markerOpcode);
+void RetireFinalizedGeneration(
+    eCEntity *actorInstance, std::uint64_t c1Generation);
 }

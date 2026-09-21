@@ -979,6 +979,24 @@ MarkerProcessResult ProcessMarker(
     return result;
 }
 
+void RetireFinalizedGeneration(
+    eCEntity *actorInstance, std::uint64_t c1Generation)
+{
+    auto dispatch = g_LastAcceptedMarkerDispatchByActor.find(actorInstance);
+    if (dispatch != g_LastAcceptedMarkerDispatchByActor.end()
+        && dispatch->second.c1Generation == c1Generation)
+    {
+        g_LastAcceptedMarkerDispatchByActor.erase(dispatch);
+    }
+
+    auto budget = g_MarkerExecutionBudgetByActor.find(actorInstance);
+    if (budget != g_MarkerExecutionBudgetByActor.end()
+        && budget->second.c1Generation == c1Generation)
+    {
+        g_MarkerExecutionBudgetByActor.erase(budget);
+    }
+}
+
 bool HasMarkerOwnedWindows()
 {
     return !g_MarkerOwnedWindowByActor.empty();

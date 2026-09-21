@@ -31,4 +31,6 @@ bool ShouldSuppressNormalNativeTriggerClear(
 bool TryProcessMarker(
     Entity &actor, MarkerOpcode markerOpcode, char const *effectName,
     double elapsedMs, MarkerProcessResult &result);
+void RetireFinalizedGeneration(
+    eCEntity *actorInstance, std::uint64_t c1Generation);
 }
