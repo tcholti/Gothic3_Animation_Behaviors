@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Persistent Opportunity Production Implementation
 
-**Status:** ACTIVE — FINAL SOURCE FROZEN / FOCUSED ACCEPTANCE IN PROGRESS  
+**Status:** ACTIVE — FINAL SOURCE FROZEN / FOCUSED ACCEPTANCE NEAR-COMPLETE  
 **Opened:** 2026-09-20  
 **Architecture:** `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`  
 **Evidence closure:** EV-353  
@@ -24,7 +24,9 @@ The final read-only source-quality/modularity audit then closed with no material
 
 Current production source is `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both twins rebuilt successfully. Diagnostic deployment/startup and targeted post-cleanup re-smoke passed at EV-357; diagnostics-free behavior parity smoke passed at EV-358 with positive mod discriminators. The source is now **frozen** for the focused permanent raw8 acceptance matrix. No further source cleanup is authorized absent a newly demonstrated contradiction.
 
-EV-359 begins focused acceptance on the frozen source: human Normal/true-Power timing/contact, later-FIST same-C1 reopening and ordinary no-contact finalization are PASS; Gargoyle frame-3 close/immediate and delayed-contact are PASS, while the true far/no-contact Gargoyle case remains open. Remaining focused items are replacement/reaction, replacement-to-unmarked fallback, frozen-source unmarked-human target-directed control, and frozen-source Sprint Action9->Action2 transport.
+EV-359 begins focused acceptance on the frozen source: human Normal/true-Power timing/contact, later-FIST same-C1 reopening and ordinary no-contact finalization are PASS; Gargoyle frame-3 close/immediate and delayed-contact are PASS.
+
+EV-360 closes focused items 1, 5 and 8 on the frozen source: true Gargoyle far/no-contact lifecycle closure, human reaction/generation-replacement closure with no old-opportunity leak, and Sabretooth same-C1 Action9/SPRINT -> Action2/POWER transport all PASS. Only item 6 (replacement -> later unmarked native fallback) and item 7 (native unmarked human target-directed control) remain open.
 
 ## Responsibility
 
