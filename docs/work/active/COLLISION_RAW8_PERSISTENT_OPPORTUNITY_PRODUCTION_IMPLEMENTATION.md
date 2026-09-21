@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Persistent Opportunity Production Implementation
 
-**Status:** ACTIVE — FINAL SOURCE FROZEN / FOCUSED ACCEPTANCE NEAR-COMPLETE  
+**Status:** ACTIVE — FINAL SOURCE FROZEN / ONE FOCUSED ACCEPTANCE SENTINEL REMAINS  
 **Opened:** 2026-09-20  
 **Architecture:** `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`  
 **Evidence closure:** EV-353  
@@ -26,7 +26,9 @@ Current production source is `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both tw
 
 EV-359 begins focused acceptance on the frozen source: human Normal/true-Power timing/contact, later-FIST same-C1 reopening and ordinary no-contact finalization are PASS; Gargoyle frame-3 close/immediate and delayed-contact are PASS.
 
-EV-360 closes focused items 1, 5 and 8 on the frozen source: true Gargoyle far/no-contact lifecycle closure, human reaction/generation-replacement closure with no old-opportunity leak, and Sabretooth same-C1 Action9/SPRINT -> Action2/POWER transport all PASS. Only item 6 (replacement -> later unmarked native fallback) and item 7 (native unmarked human target-directed control) remain open.
+EV-360 closes focused items 1, 5 and 8 on the frozen source: true Gargoyle far/no-contact lifecycle closure, human reaction/generation-replacement closure with no old-opportunity leak, and Sabretooth same-C1 Action9/SPRINT -> Action2/POWER transport all PASS.
+
+EV-361 corrects the group-control interpretation by exact motion identity: `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot` is genuinely unmarked/native and passes the target-directed group-control sentinel. Only item 6, replacement -> later unmarked native fallback, remains open.
 
 ## Responsibility
 
