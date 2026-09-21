@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Persistent Opportunity Production Implementation
 
-**Status:** ACTIVE — FINAL CLEANUP STATIC REVIEW PASS / POST-CLEANUP BUILD + RE-SMOKE + FOCUSED ACCEPTANCE PENDING  
+**Status:** ACTIVE — FINAL DIAGNOSTIC RE-SMOKE PASS / BEHAVIOR PARITY RE-SMOKE + FOCUSED ACCEPTANCE PENDING  
 **Opened:** 2026-09-20  
 **Architecture:** `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`  
 **Evidence closure:** EV-353  
@@ -22,7 +22,7 @@ The final read-only source-quality/modularity audit then closed with no material
 - `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement, independent Normal Chat static review PASS;
 - `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene and compact diagnostic interfaces/logging, independent Normal Chat static review PASS.
 
-Current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Next gate is build both twins once from this combined candidate, then diagnostic + behavior-only targeted re-smoke before focused/full validation.
+Current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both twins rebuilt successfully. Diagnostic deployment/startup and targeted post-cleanup re-smoke passed at EV-357, including raw8 opportunity accounting, heavy C1 churn, compact EquippedSprint CORE output, raw55 repeated-FIST and generic equipped coexistence. Next gate is the diagnostics-free behavior-twin parity re-smoke before focused/full validation.
 
 ## Responsibility
 
