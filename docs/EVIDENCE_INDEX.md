@@ -125,6 +125,7 @@ EV-353         persistent raw8 FIST opportunity survives misses, consumes on nat
 EV-354         Sabretooth pending raw8 opportunity survives same-C1 Action9/SPRINT -> Action2/POWER transport
 EV-355         permanent raw8 production candidate broad diagnostic smoke PASS; native fallback/raw55/equipped coexistence healthy
 EV-356         diagnostics-free behavior-twin broad functional smoke PASS; positive collision discriminators preserved
+EV-357         final post-cleanup diagnostic build/startup + targeted re-smoke PASS; C1 retirement and compact diagnostics healthy
 ```
 
 ## 4. Escalation order
