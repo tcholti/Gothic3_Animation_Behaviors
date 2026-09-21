@@ -1094,16 +1094,15 @@ static void LogRaw8OpportunityIdentity(
     }
     std::fprintf(
         g_pLog,
-        " Actor=%s ActorAddress=%p Action=%d Family=%s Motion=%s "
-        "C1=%llu Raw8Fist=%s Raw8FistAddress=%p SPUAddress=%p "
-        "OpportunityOrdinal=%llu",
-        EntityName(actorInstance), static_cast<void *>(actorInstance),
+        " Actor=%s Action=%d Family=%s Motion=%s C1=%llu "
+        "Raw8Fist=%s OpportunityOrdinal=%llu",
+        EntityName(actorInstance),
         context.action, AttackFamilyNameForAction(context.action),
         context.motion.c_str(),
         static_cast<unsigned long long>(c1Generation),
         sourceName,
-        static_cast<void *>(fistSourceInstance), static_cast<void *>(spu),
         static_cast<unsigned long long>(opportunityOrdinal));
+    (void) spu;
 }
 
 void LogRaw8FistOpportunityOpen(
@@ -1182,10 +1181,11 @@ void LogRaw8FistOpportunityContactConsumed(
         opportunityOrdinal, context);
     std::fprintf(
         g_pLog,
-        " Reason=EXACT_NATIVE_CONTACT_DISPATCH CallerAddress=%p "
-        "Arg1Address=%p Arg2Address=%p LatchValue=%d\n",
-        callerAddress, static_cast<void *>(entityArgument1),
-        static_cast<void *>(entityArgument2), latchValue);
+        " Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=%d\n",
+        latchValue);
+    (void) callerAddress;
+    (void) entityArgument1;
+    (void) entityArgument2;
     std::fflush(g_pLog);
 }
 

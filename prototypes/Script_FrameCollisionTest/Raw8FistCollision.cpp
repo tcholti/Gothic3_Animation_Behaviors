@@ -207,10 +207,14 @@ static void CloseAndEraseExecution(
 
     RetireRaw8FistTimingPermission(state, reason);
 #ifdef FRAME_COLLISION_DIAGNOSTICS
-    CollisionDiagnostics::LogRaw8FistOpportunityClose(
-        state.actorInstance, state.fistSourceInstance, state.spu,
-        state.c1Generation, state.opportunityOrdinal, wasPending,
-        reason, latchBefore, latchAfter, writeAttempted, writeConfirmed);
+    if (wasPending)
+    {
+        CollisionDiagnostics::LogRaw8FistOpportunityClose(
+            state.actorInstance, state.fistSourceInstance, state.spu,
+            state.c1Generation, state.opportunityOrdinal, wasPending,
+            reason, latchBefore, latchAfter, writeAttempted,
+            writeConfirmed);
+    }
 #else
     (void) latchBefore;
     (void) latchAfter;
