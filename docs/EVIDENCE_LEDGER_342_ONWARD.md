@@ -751,3 +751,47 @@ Provenance:
 - behavior DLL SHA256 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`;
 - User visual runtime report on 2026-09-21;
 - no diagnostic artifact expected from behavior-only product.
+
+
+### EV-359 — Focused permanent raw8 acceptance batch 1
+
+Source/runtime:
+- frozen source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- diagnostic DLL SHA256 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`;
+- visual behavior reported normal.
+
+Gargoyle frame-3 Power:
+- 7 marked POWER opportunities opened and all 7 later contacted;
+- 78 miss-rearms;
+- six opportunities survived one or more misses before contact;
+- strongest delayed contacts were ~203 ms / 25 rearms and ~246 ms / 32 rearms after OPEN;
+- zero contradiction, rejection, invariant, repair divergence or error.
+- Acceptance item 1: close/immediate and delayed-contact PASS; true far/no-contact terminal case not observed because every opportunity eventually contacted.
+
+Marked human raw8:
+- NORMAL: 23 opens -> 18 contacts + 5 exact C1-finalization closes;
+- POWER: 53 opens -> 29 contacts + 15 exact C1-finalization closes + 9 first opportunities superseded by a later accepted FIST in the same C1;
+- 20 POWER C1s contained two accepted FIST opens;
+- 11 of those showed OPEN -> CONTACT -> later OPEN -> CONTACT in the same C1;
+- all 20 unused-opportunity closes were `C1_FINALIZED`, exact latch `0->1`, write-confirmed;
+- zero contradiction, rejection, invariant, generation inconsistency, repair divergence or error.
+
+Focused acceptance status:
+1. Gargoyle close/delayed/no-contact: PARTIAL — close + delayed PASS; far/no-contact still open.
+2. Human Normal/Power timing/contact: PASS.
+3. Later FIST same C1 reopening without stacking: PASS.
+4. Ordinary no-contact C1 finalization: PASS.
+5. Post-FIST reaction/generation replacement: OPEN.
+6. Replacement/interruption -> later unmarked raw8 native fallback: OPEN.
+7. Native unmarked human target-directed control on frozen source: OPEN.
+8. Sprint-origin same-C1 Action9 -> Action2 sentinel on frozen source: OPEN.
+9. raw55 + equipped coexistence: PASS EV-357.
+10. diagnostic/behavior parity: PASS EV-357 + EV-358.
+
+Provenance:
+- `research/archive/2026-09-21_raw8_final_acceptance_gargoyle_frame3_power.log`, blob `2ee001836dcd396593e2417f14a9a7f6757367ae`, 117,349 bytes / 570 lines;
+- `research/archive/2026-09-21_raw8_final_acceptance_human_normal_power.log`, blob `b010fbb2cc873eac1f64d1cc5e4047810ff6e660`, 690,945 bytes / 2,959 lines.
+
+Interpretation:
+- **PASS for focused items 2, 3 and 4; PARTIAL for item 1.**
+- No frozen-source contradiction exposed.
