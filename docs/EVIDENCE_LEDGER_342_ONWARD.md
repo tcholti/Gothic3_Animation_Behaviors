@@ -652,3 +652,64 @@ Disposition:
 - Behavior-only smoke gate CLOSED/PASS.
 - Diagnostic + behavior smoke prerequisites for the planned final source-quality/modularity audit are complete.
 - Next responsibility is the bounded read-only formal audit; no source cleanup is authorized by EV-356 itself.
+
+
+### EV-357 — Final post-cleanup diagnostic build/startup + targeted re-smoke PASS
+
+Source/build identity:
+- final source candidate: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- combined cleanup includes `9789254866bb47dcbadb145aeb9831c7c0e4e97f` generation-qualified C1 metadata retirement plus `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` release/diagnostic hygiene;
+- both twins built successfully from the maintained checkout after both cleanups;
+- deployed diagnostic SHA256 built/live: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`;
+- sole-live diagnostic deployment/hash: PASS;
+- CORE startup/hook installation/clean unload: PASS;
+- startup `BehaviorCore:` correctly includes permanent `EquippedSprintCollision` and `PhysicalFistCollision`.
+
+Raw8 Sabretooth re-smoke:
+- 31 marked opportunities opened;
+- 16 exact contact consumptions;
+- 14 exact C1-finalization closes;
+- 485 miss-rearms;
+- zero opportunity received both CONTACT_CONSUMED and CLOSE;
+- 30 completed opportunities therefore have exactly one terminal disposition;
+- the sole unmatched final opportunity was Sabretooth C1=44 / ordinal 31, opened under Action9/SPRINT and still actively miss-rearming immediately before normal DLL unload, with no later C1 finalization in the file; bounded as test termination during an in-progress attack, not continued-runtime stale state;
+- native Sabretooth portion: 23 opens, 8 contacts, 14 closes plus the final in-progress opportunity;
+- transformed-Sabretooth portion: 8 opens -> 8 contact consumptions;
+- all observed miss rearm writes remained 1->0 with confirmed readback;
+- no double-terminal, rejection, contradiction, invariant, repair or error record.
+
+Equipped-Sprint compact-CORE re-smoke:
+- Goblin/raw2 produced four factual Action9/SPRINT bindings and four corresponding generic RIGHT marker authorizations;
+- all eight material `CORE EQUIPPED_SPRINT_COLLISION` records are compact and pointer-free;
+- no routine `NO_BOUND_SPRINT_ORIGIN` or unrelated no-bound callback spam appeared;
+- all four marker authorizations were accepted;
+- this particular runtime sample did not naturally enter the same-C1 Action9 -> Action2 continuation, so EV-357 does not re-prove that already-closed behavior sentinel; static review confirms the material marker authorization path still emits `BOUND_SPRINT_ORIGIN_POWER_CONTINUATION` when factual Power continuation occurs;
+- the same log finalized 101 C1s at outstanding zero with no stale marker/binding contradiction.
+
+Raw55 + generic equipped re-smoke:
+- Troll/raw55 produced 36 accepted FIST marker events across Quick 26, Normal 6 and Sprint 4;
+- 12 separate Quick C1s each completed the authored two-FIST sequence: AcceptedFistCount 1 -> 2 in the same C1;
+- player marked attacks against Troll exercised 1H1H and Staff-related factual sources, with RIGHT/LEFT/BOTH/OFF traffic and factual UseTypes 2 and 12;
+- 78 total marker records: 62 ACCEPTED, 4 OFF_ACCEPTED, 8 AUTHORED_OCCURRENCE_BUDGET_IGNORED and 4 DUPLICATE_SAME_UPDATE_IGNORED;
+- the ignored occurrence/dedupe records were confined to their own finalized C1s; no generation/identity-inconsistent result occurred;
+- 94 C1 finals all ended at outstanding zero;
+- zero raw55 identity contradiction, marker rejection, lifecycle invariant, repair divergence or error.
+
+Whole-batch result:
+- visual behavior reported normal by the User;
+- raw8 persistent opportunity remains healthy after release-purity cleanup;
+- generation-qualified metadata retirement produced no stale-state or premature-retirement symptom across heavy C1 churn;
+- raw55 repeated-FIST same-C1 ownership survived;
+- generic equipped marker occurrence/dedupe state resets correctly across generations;
+- compact EquippedSprint CORE is materially quieter while retaining actual bind/authorization evidence;
+- startup identity correction is runtime-confirmed.
+
+Provenance:
+- `research/archive/2026-09-21_final_cleanup_resmoke_raw8_sabretooth.log`, blob `8cc386857e42484a9280b113adf06e7111a083ae`, 262,205 bytes / 965 lines;
+- `research/archive/2026-09-21_final_cleanup_resmoke_equipped_sprint.log`, blob `b0a9ac1e132149dc2dfba9bcec682be352cdfa9a`, 295,601 bytes / 1,266 lines;
+- `research/archive/2026-09-21_final_cleanup_resmoke_raw55_equipped.log`, blob `45bc70ffcf632c544e54ec4318531b51a8b51e8c`, 203,990 bytes / 971 lines.
+
+Interpretation:
+- **PASS — FINAL POST-CLEANUP DIAGNOSTIC RE-SMOKE.**
+- No source contradiction or new cleanup requirement was exposed.
+- Next gate is the diagnostics-free behavior-twin deployment/hash + small functional parity re-smoke from the already-built same-source binary.
