@@ -1,6 +1,6 @@
 # Permanent raw8 Fist Architecture
 
-**Status:** Frozen production architecture — final diagnostic re-smoke PASS; behavior parity re-smoke + focused runtime acceptance pending  
+**Status:** Frozen production architecture — FINAL SOURCE FROZEN at f1f5d2aa; focused runtime acceptance pending  
 **Updated:** 2026-09-21
 
 ## Purpose
@@ -135,7 +135,7 @@ The final read-only source-quality/modularity audit found no material behavioral
 - `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement;
 - `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene and CORE compaction.
 
-The current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both twins rebuilt successfully from the combined final candidate. Diagnostic sole-live deployment/startup and the targeted post-cleanup re-smoke passed at EV-357. Diagnostics-free behavior parity re-smoke and focused acceptance remain pending.
+The current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both twins rebuilt successfully from the combined final candidate. Diagnostic sole-live deployment/startup and the targeted post-cleanup re-smoke passed at EV-357. Diagnostics-free behavior parity re-smoke passed at EV-358. Source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` is frozen for the focused acceptance matrix; focused acceptance remains pending.
 
 ## 15. Evidence closure
 
