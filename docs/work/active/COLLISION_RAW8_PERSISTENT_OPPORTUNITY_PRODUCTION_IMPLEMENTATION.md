@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Persistent Opportunity Production Implementation
 
-**Status:** ACTIVE — IMPLEMENTED AT `3426cede41c0087e43edc0d81c825ff167e8e034` / INDEPENDENT REVIEW BEHAVIOR PASS / DIAGNOSTICS-ONLY CHILD CORRECTION OPEN  
+**Status:** ACTIVE — PRODUCTION SOURCE CANDIDATE STATIC REVIEW PASS / BUILD + SMOKE + FOCUSED ACCEPTANCE PENDING  
 **Opened:** 2026-09-20  
 **Architecture:** `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`  
 **Evidence closure:** EV-353  
@@ -14,11 +14,9 @@ Parent: `ce4b4daee8bf74f29e85591cbfab5f6abc064cd4`
 
 Static independent review accepted the permanent behavior/state-machine promotion and exact eight-path scope.
 
-One bounded diagnostics-only follow-up is required before any build/runtime acceptance:
+The bounded diagnostics-only follow-up was implemented in `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed PASS. Its closed contract is archived at `docs/archive/investigations/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
 
-`docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`
-
-The correction does not reopen raw8 behavior architecture. It fixes only CORE terminal-event semantics and routine diagnostic compactness.
+Current production source candidate is therefore `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`. Next gate is build both twins, then the agreed small smoke/log check before the final read-only code-quality/modularity audit.
 
 ## Responsibility
 
