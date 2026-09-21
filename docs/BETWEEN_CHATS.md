@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** Short-lived exact continuation pointer. Replace, do not accumulate.  
-**Updated:** 2026-09-20
+**Updated:** 2026-09-21
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -15,35 +15,38 @@ Latest completed runtime evidence: **EV-354**.
 Permanent raw8 architecture:
 `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`
 
-Published production implementation:
+Current unbuilt production source candidate:
+`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
+
+Parent production implementation:
 `3426cede41c0087e43edc0d81c825ff167e8e034`
 
-Independent Normal Chat static review:
-- exact eight-path implementation scope: PASS;
+Diagnostics-only correction:
+`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
+
+Independent Normal Chat review:
 - permanent raw8 behavior/state-machine promotion: PASS;
-- temporary probe retirement: PASS;
-- behavior-vs-diagnostic separation: PASS;
-- no protected behavior module changed;
+- exact production implementation scope/probe retirement: PASS;
+- diagnostics-only correction exact two-file scope: PASS;
+- pending-opportunity CLOSE semantics: PASS;
+- routine CORE pointer compaction: PASS;
 - no material behavior contradiction found.
 
-## Bounded review correction before build
+Closed correction contract:
+`docs/archive/investigations/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`
 
-The implementation is not yet ready for build because two diagnostics-only contract mismatches were found:
+## Next gate
 
-1. `CloseAndEraseExecution` currently emits `CORE RAW8_OPPORTUNITY_CLOSE` even when the opportunity was already contact-consumed. CORE semantics require:
-   - exact native contact -> `CONTACT_CONSUMED`;
-   - unused pending opportunity -> lifecycle `CLOSE`.
-2. Routine `CORE RAW8_OPPORTUNITY_*` identity currently includes raw actor/source/SPU and contact argument/caller addresses. Routine CORE must remain compact; rich raw addresses belong to DEEP/anomaly diagnostics.
+Build both twins from the current source candidate, then perform POP-03 deploy/hash/sole-live and startup/unload checks.
 
-Frozen correction:
-`docs/work/active/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`
+After a clean build/startup, run only the agreed small smoke/log set. Do **not** begin the full focused acceptance matrix yet.
 
-The correction is diagnostics-only. It must not alter raw8 opportunity state, latch behavior, timing behavior, hooks, invocation identity or finalization.
+If smoke passes:
+1. freeze a bounded **read-only** final code-quality/modularity audit for Work;
+2. Normal Chat decides whether any suggested cleanup is justified;
+3. any source change requires rebuild + small re-smoke;
+4. once source is frozen, run focused permanent raw8 acceptance and then the remaining full collision regression.
 
-## Stop gate
+The audit must review ownership/modularity/removability/bloat without redesigning behavior or deleting evidence-backed defensive logic merely to reduce line count.
 
-No build or runtime test yet.
-
-POP-12 has returned `Knowledge-state validation PASS`. Execute/review the bounded diagnostics-only correction first. Then build both twins and run only a small smoke/log check. If that passes, freeze one bounded final code-quality/modularity review before the full acceptance matrix. Any source change from that review requires rebuild + small re-smoke before focused/full regression.
-
-`research/raw/` remains closed from EV-354 and should contain only `Keep.txt`.
+`research/raw/` should contain only `Keep.txt` before the next runtime evidence capture.
