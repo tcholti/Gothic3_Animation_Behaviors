@@ -868,3 +868,64 @@ Interpretation:
 - **PASS for focused items 1, 5 and 8.**
 - Items 6 and 7 remain the only open focused raw8 acceptance responsibilities.
 - No frozen-source contradiction exposed.
+
+
+### EV-361 — Motion-specific correction: frozen-source native/unmarked human target-directed control PASS
+
+Reason for revisit:
+- The EV-360 group-combat log was initially classified too coarsely at file level because the same session contained many marked human FIST attacks.
+- The User clarified that `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot` had deliberately had its marker removed so marked and genuinely unmarked human raw8 attacks would coexist in one group-combat session.
+- Re-analysis was therefore performed by exact motion identity.
+
+Exact unmarked-motion evidence:
+- target motion: `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot`;
+- 29 `CORE ATTACK_OWNERSHIP` records for that motion;
+- all 29: `MarkerPresent=0`, `RequiredMask=0`, `FistMarkers=0`, `Raw8Fist=<none>`, `Raw8UseType=-1`, `SuppressNative=0`, `Classification=ROUTINE`;
+- zero `RAW8_FIST_OWNERSHIP` records on that motion;
+- zero `RAW8_OPPORTUNITY_OPEN` records on that motion;
+- zero `RAW8_OPPORTUNITY_CONTACT_CONSUMED` records on that motion;
+- zero authored FIST marker records on that motion.
+
+Native contact evidence:
+- 2 exact raw8 native contacts occurred while that exact unmarked motion was active;
+- both entered through caller `Game.dll+0x0016E348`;
+- both were factual `Arg1=Fist / Arg2=PC_Hero`;
+- both targeted `ReddockOrcScoutLeader`;
+- no unmarked left-hand Fist contact was observed against the other nearby Orcs.
+- The User reports deliberately switching targets and repeatedly trying to hit non-target opponents during the group fight, while only targeted opponents could be hit.
+
+Interpretation:
+- The exact P1-left human Normal motion remained fully native/unmarked in the frozen diagnostic build even though marked human Fist animations were exercised in the same session.
+- Its native contact path remained target-directed and did not become weapon-style area collision.
+- Focused §14 item 7, native unmarked human target-directed group control, is **PASS** on frozen source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`.
+
+Item 6 remains open:
+- the same group-combat run contains seven valid marked-opportunity `C1_GENERATION_REPLACED` closures;
+- however, the two observed unmarked P1-left contact events were not cleanly the first raw8 contacts after a replacement with no intervening newly marked opportunity;
+- therefore the stricter sentinel `marked pending -> replacement/interruption -> later unmarked raw8 native fallback` is not yet closed by this batch.
+
+Correction to EV-360 interpretation:
+- EV-360's file-level statement that the human control was not usable as unmarked/native evidence was too broad.
+- The file is mixed: marked P0/right human Fist routes coexist with a genuinely unmarked P1/left Normal route.
+- EV-360's replacement findings remain valid; EV-361 corrects only the unmarked-control disposition.
+
+Provenance:
+- same canonical archived log: `research/archive/2026-09-21_raw8_final_acceptance_human_unmarked_target_control.log`;
+- blob `41dd4d097b3d548e5e1b7021dc424ceff41907ba`;
+- User clarification on exact unmarked motion, 2026-09-21.
+
+Focused acceptance status after EV-361:
+1. Gargoyle close/delayed/no-contact -> PASS EV-359 + EV-360.
+2. Human Normal/Power timing/contact -> PASS EV-359.
+3. Later FIST same C1 reopening -> PASS EV-359.
+4. Ordinary no-contact finalization -> PASS EV-359.
+5. Reaction/generation replacement -> PASS EV-360.
+6. Replacement -> later unmarked native fallback -> OPEN.
+7. Native unmarked human target-directed control -> PASS EV-361.
+8. Sprint Action9 -> Action2 transport -> PASS EV-360.
+9. raw55 + equipped coexistence -> PASS EV-357.
+10. Diagnostic/behavior parity -> PASS EV-357 + EV-358.
+
+Interpretation:
+- **Only focused item 6 remains open.**
+- No frozen-source contradiction exposed.
