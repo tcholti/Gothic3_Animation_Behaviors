@@ -16,13 +16,13 @@ standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest runtime evidence = EV-357
-Phase 4 = PAUSED pending behavior parity re-smoke + focused permanent raw8 acceptance
+latest runtime evidence = EV-358
+Phase 4 = PAUSED pending focused permanent raw8 acceptance
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
 cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
 active Work task = NONE
-current stop gate = POP-12 PASS -> deploy behavior twin + small parity re-smoke
+current stop gate = POP-12 PASS -> focused raw8 acceptance batch 1
 ```
 
 ## Current responsibility
@@ -71,34 +71,31 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 - **EV-355:** permanent candidate broad diagnostic smoke PASS; marked raw8, native fallback, raw55/equipped coexistence healthy.
 - **EV-356:** pre-cleanup diagnostics-free behavior-twin broad functional smoke PASS with positive collision discriminators.
 - **EV-357:** final post-cleanup diagnostic build/startup + targeted re-smoke PASS; C1 metadata retirement, raw8, raw55/equipped coexistence and compact Sprint CORE remained healthy.
+- **EV-358:** final post-cleanup diagnostics-free behavior parity smoke PASS; source frozen for focused acceptance.
 
 Latest runtime-reviewed source:
 `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
 
-Current final source candidate, not yet rebuilt:
+Final source frozen for acceptance:
 `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`
 
 Last validated diagnostic DLL:
 `Script_FrameCollisionTest.dll`  
 SHA256 `D257DEA36BFF74BFBCF00D54BD36E08769D19DCA794E96CCA93AD48169D0023A`
 
-Last validated behavior-only DLL:
-`Script_FrameCollisionBehaviorTest.dll`  
-SHA256 `14F1AFE65CBE78E75B73535E46A71E43BEA5CCC6E95BC58EFFF894EC2888B324`
+Final validated diagnostic DLL SHA256: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313` — EV-357 PASS.
 
-These hashes belong to the pre-cleanup runtime candidate. The final diagnostic candidate rebuilt successfully and passed EV-357 at SHA256 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`. Final behavior-only hash/parity re-smoke is still pending.
+Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340` — EV-358 PASS.
 
 ## Next sequence
 
 ```text
-maintain EV-357 state + POP-12
--> behavior-only deploy/hash + parity re-smoke
--> if PASS, freeze source
+maintain EV-358/source-freeze state + POP-12
 -> focused permanent raw8 acceptance
 -> remaining standalone collision regression
 ```
 
-Do not begin full focused/regression validation before cleanup 2 and the post-cleanup re-smoke are closed.
+Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8 acceptance may proceed; Phase 4 broad regression remains paused until that matrix closes.
 
 ## Read next by question
 
@@ -106,7 +103,7 @@ Do not begin full focused/regression validation before cleanup 2 and the post-cl
 - closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-356
+- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-358
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
