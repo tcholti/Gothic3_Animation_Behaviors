@@ -713,3 +713,41 @@ Interpretation:
 - **PASS — FINAL POST-CLEANUP DIAGNOSTIC RE-SMOKE.**
 - No source contradiction or new cleanup requirement was exposed.
 - Next gate is the diagnostics-free behavior-twin deployment/hash + small functional parity re-smoke from the already-built same-source binary.
+
+
+### EV-358 — Final post-cleanup diagnostics-free behavior parity smoke PASS / source freeze
+
+Source/build identity:
+- final source candidate: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- both collision twins had rebuilt successfully from the same maintained checkout after the two accepted final cleanup commits;
+- deployed behavior twin: `Script_FrameCollisionBehaviorTest.dll`;
+- built/live SHA256: `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`;
+- POP-03 behavior sole-live deployment/hash gate: PASS;
+- diagnostics are absent by design; no runtime log is expected.
+
+User functional parity smoke:
+- marked Sabretooth/raw8 contacted the player normally;
+- Troll/raw55 Quick produced the authored repeated/two-contact result;
+- tested first Normal 1H+torch attack used the authored right-hand collision source rather than Gothic's known native left-hand mismatch on that animation;
+- 2H Hack worked;
+- Staff Hack worked;
+- dual-1H Power produced all three authored contacts;
+- ordinary marked 1H behavior was visually improved relative to the native timer on the User's fast authored animations, where the native collision opening can occur late enough to miss;
+- no crash or visible regression was reported.
+
+Interpretation:
+- **PASS — FINAL POST-CLEANUP DIAGNOSTICS-FREE BEHAVIOR PARITY SMOKE.**
+- The final release-purity cleanup did not remove behavior required by raw8, raw55, equipped markers, Hack or repeated-contact semantics.
+- The observations are positive mod discriminators rather than crash-only equivalence: several tested outcomes are known to differ from or improve on the native collision route for these authored fixtures.
+- Together EV-357 + EV-358 close the final post-audit re-smoke requirement for the combined cleanup source.
+
+Source-freeze disposition:
+- `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` is **SOURCE-FROZEN FOR FOCUSED PERMANENT RAW8 ACCEPTANCE**.
+- No further source cleanup is justified by the final audit/re-smoke sequence.
+- Any later source modification requires a newly demonstrated contradiction, a newly frozen bounded responsibility, rebuild of both twins, and revalidation of affected acceptance evidence.
+- Next gate is the focused permanent raw8 acceptance matrix in `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14 before Phase 4 broad regression resumes.
+
+Provenance:
+- behavior DLL SHA256 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`;
+- User visual runtime report on 2026-09-21;
+- no diagnostic artifact expected from behavior-only product.
