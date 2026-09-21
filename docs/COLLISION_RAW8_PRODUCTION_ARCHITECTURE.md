@@ -1,6 +1,6 @@
 # Permanent raw8 Fist Architecture
 
-**Status:** Frozen production architecture — diagnostic smoke PASS; behavior smoke + final audit + focused runtime acceptance pending  
+**Status:** Frozen production architecture — diagnostic + behavior smoke PASS; final audit + focused runtime acceptance pending  
 **Updated:** 2026-09-20
 
 ## Purpose
@@ -129,7 +129,7 @@ Only after focused permanent acceptance may Phase 4 broad creature regression re
 
 Production behavior was promoted in `3426cede41c0087e43edc0d81c825ff167e8e034` and independently static-reviewed by Normal Chat on 2026-09-20.
 
-The behavior/state-machine implementation matches this architecture. The bounded diagnostics-only compaction/terminal-event correction was implemented in `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed PASS without reopening behavior policy. This commit is the current production source candidate. Both twins built successfully; diagnostic deployment/startup and broad smoke passed at EV-355. Behavior-only smoke, the planned read-only final source-quality audit, and focused acceptance remain pending.
+The behavior/state-machine implementation matches this architecture. The bounded diagnostics-only compaction/terminal-event correction was implemented in `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed PASS without reopening behavior policy. This commit is the current production source candidate. Both twins built successfully; diagnostic deployment/startup and broad smoke passed at EV-355. Diagnostics-free behavior smoke also passed at EV-356. The planned read-only final source-quality audit and focused acceptance remain pending.
 
 ## 15. Evidence closure
 
@@ -137,6 +137,6 @@ The architecture is justified by EV-346–EV-355: early pulse failure, latch hit
 
 EV-354 directly validates the protected Sprint-origin lifetime rule: 20 Sabretooth tokens opened under Action9/SPRINT on the PowerAttack-named motion and were consumed under Action2/POWER in the same C1; two of those tokens also survived an earlier native miss/rearm.
 
-EV-355 broad-smoke validates the promoted candidate across marked native/transformed raw8, unmarked Wolf fallback, raw55/equipped coexistence, Golem target coverage and an unmarked T-Rex compatibility fixture. It is confidence evidence before final audit and does not replace §14 focused acceptance.
+EV-355 broad-smoke validates the promoted candidate across marked native/transformed raw8, unmarked Wolf fallback, raw55/equipped coexistence, Golem target coverage and an unmarked T-Rex compatibility fixture. EV-356 then validates diagnostics-free functional parity through broad visual behavior smoke and several positive collision discriminators. These are confidence gates before final audit and do not replace §14 focused acceptance.
 
 Unknown future contradictions return to an isolated probe under `FEATURE_DEVELOPMENT_METHOD.md`.
