@@ -231,7 +231,9 @@ Run in this order:
 ```text
 A. non-weapon/body-contact creatures
 -> several logs per batch are allowed
--> revisit the prepared raw8/raw55 animal fixtures systematically
+-> revisit prepared raw8/raw55 animal fixtures systematically, prioritizing routes not already exhaustively covered on the frozen source
+-> EV-359/EV-360 are comprehensive enough that Sabretooth, Gargoyle and human Fist do not need automatic repeat coverage unless a later contradiction specifically calls for them
+-> Golem may be reused opportunistically as a weapon-test target, but is not mandatory as another body-contact fixture
 -> vary player weapons between fixtures so creature collision and equipped collision coexist in the same runs
 
 B. equipped actors + player weapon matrix
