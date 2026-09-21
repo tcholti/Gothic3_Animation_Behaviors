@@ -616,3 +616,39 @@ Disposition:
 - Diagnostic smoke gate CLOSED/PASS.
 - This batch does not replace the frozen focused permanent raw8 acceptance matrix and does not certify the new T-Rex as a marked raw8 route.
 - Next gate is a minimal diagnostics-free behavior-twin smoke from the already-built same-source binary, followed by the planned bounded read-only code-quality/modularity audit before any full acceptance campaign.
+
+
+### EV-356 — Diagnostics-free behavior-twin broad functional smoke PASS
+
+Build/runtime identity:
+- source candidate: `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`;
+- both collision twins had already built successfully from the same checkout used for EV-355;
+- deployed behavior twin: `Script_FrameCollisionBehaviorTest.dll`;
+- SHA256 built/live: `14F1AFE65CBE78E75B73535E46A71E43BEA5CCC6E95BC58EFFF894EC2888B324`;
+- POP-03 behavior sole-live deployment/hash gate: PASS;
+- diagnostics are absent by design in this product; no diagnostic log is expected.
+
+User functional smoke:
+- opponents/fixtures included Wolf, Sabretooth, Golem and Troll;
+- player exercised 1H, 1H+torch, dual-1H, 2H and Staff marked attacks;
+- all tested behavior remained visually functional and no startup/runtime crash was observed.
+
+Useful positive discriminators observed by the User:
+- Hack attack behavior worked; this is a mod-provided route rather than a useful native fallback equivalence.
+- Troll Quick attack produced its authored repeated/two-contact behavior under the permanent raw55 system.
+- On the tested first normal 1H+torch attack, native Gothic places collision on the wrong/left hand relative to the authored right-hand strike; the authored RIGHT marker produced collision on the intended right-hand source.
+- On the tested dual-1H Power attack, native Gothic normally resolves only two contacts although the animation is authored for three; the marked behavior produced all three authored contacts.
+
+Interpretation:
+- **PASS — DIAGNOSTICS-FREE BEHAVIOR SMOKE.**
+- The behavior-only twin preserves intended collision behavior without `CollisionDiagnostics` compiled in, providing a direct release-purity/parity sentinel after the permanent raw8 promotion.
+- The positive-discriminator observations provide stronger confidence than a crash-only smoke because they exercise behavior that would visibly differ under native-only execution.
+- This remains a pre-audit smoke, not the full frozen acceptance/regression campaign.
+
+Future New Balance note:
+- New Balance fixes some useful vanilla collision mistakes, so later compatibility/regression should prefer deliberately authored positive discriminators (for example attacks authored for three Normal/Quick contacts) rather than relying on vanilla bugs remaining observable.
+
+Disposition:
+- Behavior-only smoke gate CLOSED/PASS.
+- Diagnostic + behavior smoke prerequisites for the planned final source-quality/modularity audit are complete.
+- Next responsibility is the bounded read-only formal audit; no source cleanup is authorized by EV-356 itself.
