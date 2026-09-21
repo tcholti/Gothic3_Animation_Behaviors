@@ -10,43 +10,51 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Latest completed runtime evidence: **EV-354**.
+Latest completed runtime evidence: **EV-355 — broad production-candidate diagnostic smoke PASS**.
 
 Permanent raw8 architecture:
 `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`
 
-Current unbuilt production source candidate:
+Current production source candidate:
 `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
 
-Parent production implementation:
-`3426cede41c0087e43edc0d81c825ff167e8e034`
+Tested checkout before runtime smoke:
+`95e8a24800dae778166788de36a31818933e3ff1`
+(all commits after the source candidate were documentation-only).
 
-Diagnostics-only correction:
-`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`
+Diagnostic DLL SHA256:
+`D257DEA36BFF74BFBCF00D54BD36E08769D19DCA794E96CCA93AD48169D0023A`
 
-Independent Normal Chat review:
+Independent/static gates:
 - permanent raw8 behavior/state-machine promotion: PASS;
-- exact production implementation scope/probe retirement: PASS;
-- diagnostics-only correction exact two-file scope: PASS;
-- pending-opportunity CLOSE semantics: PASS;
-- routine CORE pointer compaction: PASS;
-- no material behavior contradiction found.
+- diagnostics-only correction: PASS;
+- both twins built from same checkout: PASS;
+- diagnostic POP-03 deploy/hash/sole-live: PASS;
+- diagnostic POP-04 startup/hooks/clean unload: PASS;
+- broad diagnostic smoke: PASS — EV-355.
 
-Closed correction contract:
-`docs/archive/investigations/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`
+EV-355 covered:
+- marked Sabretooth raw8 + transformed-player symmetry;
+- unmarked Wolf native fallback + transformed-player symmetry;
+- marked Wolf raw8 + transformed-player symmetry;
+- Troll/raw55 Normal/Quick/Power/Sprint coexistence + player marked weapon routes;
+- broad marked player weapon coverage against Golem;
+- previously untested T-Rex/Snorting-monster target fixture, with its own raw8 remaining unmarked/native and player 1H+shield markers healthy.
+
+Important provenance note:
+`2026-09-21_raw8prod_smoke_Troll_marked_single_fist.log` contains the Golem fixture despite its filename. Preserve the filename; the EV-355 record identifies the actual content.
 
 ## Next gate
 
-Build both twins from the current source candidate, then perform POP-03 deploy/hash/sole-live and startup/unload checks.
+Run a **minimal diagnostics-free behavior-twin smoke** from the already-built same-source binary. No diagnostic log is expected.
 
-After a clean build/startup, run only the agreed small smoke/log set. Do **not** begin the full focused acceptance matrix yet.
-
-If smoke passes:
+If behavior smoke passes:
 1. freeze a bounded **read-only** final code-quality/modularity audit for Work;
-2. Normal Chat decides whether any suggested cleanup is justified;
-3. any source change requires rebuild + small re-smoke;
-4. once source is frozen, run focused permanent raw8 acceptance and then the remaining full collision regression.
+2. Work reports findings only — no edits/refactor during the audit;
+3. Normal Chat decides which, if any, cleanup is justified;
+4. any source change requires rebuild + small re-smoke;
+5. once source is frozen, run focused permanent raw8 acceptance and then the remaining full collision regression.
 
-The audit must review ownership/modularity/removability/bloat without redesigning behavior or deleting evidence-backed defensive logic merely to reduce line count.
+Do not begin the full acceptance matrix before the audit/cleanup decision is closed.
 
-`research/raw/` should contain only `Keep.txt` before the next runtime evidence capture.
+`research/raw/` should contain only `Keep.txt` after EV-355 archival.
