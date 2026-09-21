@@ -1,6 +1,6 @@
 # Gothic 3 — Raw8 Persistent Opportunity Production Implementation
 
-**Status:** ACTIVE — DIAGNOSTIC + BEHAVIOR SMOKE PASS / FINAL AUDIT + FOCUSED ACCEPTANCE PENDING  
+**Status:** ACTIVE — FINAL CLEANUP STATIC REVIEW PASS / POST-CLEANUP BUILD + RE-SMOKE + FOCUSED ACCEPTANCE PENDING  
 **Opened:** 2026-09-20  
 **Architecture:** `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`  
 **Evidence closure:** EV-353  
@@ -16,7 +16,13 @@ Static independent review accepted the permanent behavior/state-machine promotio
 
 The bounded diagnostics-only follow-up was implemented in `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` and independently reviewed PASS. Its closed contract is archived at `docs/archive/investigations/COLLISION_RAW8_PRODUCTION_DIAGNOSTIC_COMPACTION_CORRECTION.md`.
 
-Current production source candidate is therefore `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd`. Both twins built successfully from checkout `95e8a24800dae778166788de36a31818933e3ff1`; diagnostic sole-live deployment/startup and the broad smoke passed at EV-355. The diagnostics-free behavior twin then passed broad functional smoke at EV-356. The next gate is the frozen read-only final code-quality/modularity audit before focused/full validation.
+The pre-cleanup production candidate `7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` built successfully in both twins; diagnostic smoke passed at EV-355 and diagnostics-free behavior smoke passed at EV-356.
+
+The final read-only source-quality/modularity audit then closed with no material behavioral contradiction and no MUST-correct finding. Accepted cleanup was split for fault isolation:
+- `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement, independent Normal Chat static review PASS;
+- `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene and compact diagnostic interfaces/logging, independent Normal Chat static review PASS.
+
+Current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Next gate is build both twins once from this combined candidate, then diagnostic + behavior-only targeted re-smoke before focused/full validation.
 
 ## Responsibility
 
