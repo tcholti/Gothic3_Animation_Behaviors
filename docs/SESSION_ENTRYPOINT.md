@@ -3,7 +3,7 @@
 **Purpose:** Minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-20
+**Updated:** 2026-09-21
 
 > **INTERRUPTED-CHAT ENTRY RULE:** after an abrupt/max-context/unusable Chat, return to root `README.md` and enter Recovery Lock. This file is then a clue, not unquestioned truth, until POP-11 reconciliation.
 
@@ -15,13 +15,13 @@
 standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT PRODUCTION SUPPORT CLOSED/PASS THROUGH EV-329
-Phase 4 non-weapon creatures = PAUSED PENDING RAW8 BUILD/SMOKE + FINAL CODE-QUALITY AUDIT + FOCUSED PERMANENT ACCEPTANCE
+Phase 4 non-weapon creatures = PAUSED PENDING RAW8 BEHAVIOR SMOKE + FINAL CODE-QUALITY AUDIT + FOCUSED PERMANENT ACCEPTANCE
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest completed evidence = EV-354
+latest completed evidence = EV-355
 active evidence ledger = EVIDENCE_LEDGER_342_ONWARD.md
-active temporary review = RAW8 PRODUCTION SOURCE CANDIDATE STATIC REVIEW PASS
+active temporary review = RAW8 PRODUCTION CANDIDATE DIAGNOSTIC SMOKE PASS
 active Work implementation task = NONE — next Work task deferred until post-smoke read-only code-quality/modularity audit
-current stop gate = build both twins, deploy/hash/startup gate, then small smoke/log check
+current stop gate = minimal behavior-only twin smoke from the already-built same-source binary
 ```
 
 ## Current responsibility
@@ -47,7 +47,9 @@ Latest causal closure:
 
 EV-350 closes the retirement: both twins built, diagnostic deployment/startup passed, closed raw8 research instrumentation stayed absent, and the optional Gargoyle control returned to the expected one-shot baseline.
 
-**EV-354 closes the pre-Work Sabretooth Sprint-origin sentinel PASS: 20 opportunities opened under Action9/SPRINT and were consumed under Action2/POWER in the same C1 on the same PowerAttack-named motion; two also survived an earlier miss/rearm. Production task remains frozen; run POP-12 before Work.**
+**EV-354 closes the pre-Work Sabretooth Sprint-origin sentinel PASS: 20 opportunities opened under Action9/SPRINT and were consumed under Action2/POWER in the same C1 on the same PowerAttack-named motion; two also survived an earlier miss/rearm.**
+
+**EV-355 closes the broad diagnostic smoke PASS:** marked Sabretooth/Wolf raw8 including transformed-player symmetry, unmarked Wolf native fallback, Troll/raw55 four-family coexistence, broad equipped/Golem coverage and a new unmarked T-Rex compatibility fixture all remained healthy. No full acceptance claim is made by this smoke.
 
 Production implementation `3426cede41c0087e43edc0d81c825ff167e8e034` has completed independent Normal Chat static review.
 
@@ -79,20 +81,20 @@ The final code-quality review is deliberately deferred until the smoke-tested ca
 
 ## Current runtime provenance
 
-Latest runtime-reviewed diagnostic implementation:
+Latest runtime-reviewed diagnostic source candidate:
 
-`015a3ef90bf135cf502ac6507fb68f7c8c962800`
+`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` — broad diagnostic smoke PASS at EV-355
 
-Current unbuilt permanent raw8 production source candidate:
+Current permanent raw8 production source candidate:
 
-`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` — behavior + diagnostics static review PASS; build/smoke pending
+`7c9c9c2a4512b44ff64c09ef9866b7160f4d5cbd` — both twins built; diagnostic smoke PASS; behavior-only smoke pending
 
 Current diagnostic DLL:
 
 `Script_FrameCollisionTest.dll`  
-SHA256 `539282F9DAD4A690CFE5AA22B5C5A85066EDFC81C617859EEDDE5341CE869DD5`
+SHA256 `D257DEA36BFF74BFBCF00D54BD36E08769D19DCA794E96CCA93AD48169D0023A`
 
-Build, sole-live diagnostic deployment and startup/unload gate: PASS.
+Build both twins: PASS. Sole-live diagnostic deployment/hash + startup/unload: PASS. Broad diagnostic smoke: PASS — EV-355.
 
 ## Read next by question
 
@@ -100,7 +102,7 @@ Build, sole-live diagnostic deployment and startup/unload gate: PASS.
 - exact short-lived continuation → `BETWEEN_CHATS.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - current validation matrix → `COLLISION_TEST_PLAN.md`
-- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-354
+- exact proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-355
 - lifecycle/repair architecture → `COLLISION_LIFECYCLE.md`
 - diagnostics architecture → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
