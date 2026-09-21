@@ -123,6 +123,21 @@ Focused permanent acceptance must include:
 9. raw55 and equipped collision coexistence sentinels;
 10. behavior-only/diagnostic behavior parity for raw8.
 
+Focused acceptance progress on frozen source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`:
+
+```text
+1. Gargoyle close/delayed/no-contact    PARTIAL — close + delayed PASS EV-359; true far/no-contact still open
+2. Human Normal + true Power            PASS — EV-359
+3. Later FIST same C1 reopen            PASS — EV-359
+4. Ordinary no-contact finalization     PASS — EV-359
+5. Reaction/generation replacement      OPEN
+6. Replacement -> unmarked fallback     OPEN
+7. Unmarked human target-directed       OPEN on frozen source
+8. Sprint Action9 -> Action2 transport  OPEN on frozen source
+9. raw55 + equipped coexistence         PASS — EV-357
+10. Diagnostic/behavior parity          PASS — EV-357 + EV-358
+```
+
 Only after focused permanent acceptance may Phase 4 broad creature regression resume.
 
 ## Implementation checkpoint
@@ -135,7 +150,7 @@ The final read-only source-quality/modularity audit found no material behavioral
 - `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement;
 - `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene and CORE compaction.
 
-The current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both twins rebuilt successfully from the combined final candidate. Diagnostic sole-live deployment/startup and the targeted post-cleanup re-smoke passed at EV-357. Diagnostics-free behavior parity re-smoke passed at EV-358. Source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` is frozen for the focused acceptance matrix; focused acceptance remains pending.
+The current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both twins rebuilt successfully from the combined final candidate. Diagnostic sole-live deployment/startup and the targeted post-cleanup re-smoke passed at EV-357. Diagnostics-free behavior parity re-smoke passed at EV-358. Source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` is frozen for the focused acceptance matrix; focused acceptance is in progress; EV-359 closes items 2–4 and the close/delayed portions of item 1.
 
 ## 15. Evidence closure
 
