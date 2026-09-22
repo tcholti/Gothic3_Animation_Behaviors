@@ -1,7 +1,7 @@
 # Collision Validation Plan
 
 **Status:** Current collision validation authority  
-**Updated:** 2026-09-20
+**Updated:** 2026-09-22
 
 ## Purpose
 
@@ -150,7 +150,7 @@ Before Phase 4, EV-332–EV-336 add a mixed player/enemy cross-source pass on th
 
 EV-311 exposed the factual equipped Sprint/right/raw2 Goblin route that was subsequently researched and promoted. Permanent `EquippedSprintCollision` acceptance is now CLOSED/PASS through EV-329; Phase 3 remains closed and that scope no longer blocks Phase 4.
 
-### 3.4 Phase 4 — Non-weapon creatures — PAUSED AT RAW8 AUTHORING-SEMANTICS GATE
+### 3.4 Phase 4 — Non-weapon creatures — RESUMED / FINAL FROZEN-SOURCE COMPREHENSIVE PASS
 
 Exercise multiple prepared creature/body-contact routes.
 
@@ -174,13 +174,13 @@ Raw8 closed-research retirement / neutral baseline           PASS — EV-350
 Raw8 TouchDamage virtual contact-boundary observation         NEGATIVE PASS — EV-351
 Native human raw8 locked-target interception control          PASS — EV-352
 Raw8 persistent authored-opportunity causal probe              CLOSED/PASS — EV-353
-Raw8 permanent persistent-opportunity implementation            FINAL SOURCE FROZEN — EV-357–EV-361 / ONE FOCUSED SENTINEL REMAINS
-Focused acceptance: items 1–5 and 7–10 PASS; only replacement->unmarked fallback remains — EV-359–EV-361
+Raw8 permanent persistent-opportunity implementation            FINAL SOURCE FROZEN — FOCUSED ACCEPTANCE COMPLETE EV-357–EV-364
+Focused acceptance: all ten §14 requirements PASS — EV-359–EV-364
 ```
 
 The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. EV-342 is an ordinary PASS: some correctly processed Minecrawler executions did not physically contact, which is normal runtime attack variance rather than a collision-system qualification.
 
-EV-346–EV-349 opened the raw8 authoring-semantics problem: early FIST was one-shot, native hit and miss both closed the latch, post-miss rearm could restore opportunity, visible damage was not a reliable contact oracle, and C1 replacement required explicit lifecycle closure. EV-353 then causally closed the persistent-opportunity model, EV-354 proved same-C1 Sprint-origin transport, and the permanent implementation was promoted and source-frozen after EV-357–EV-358. EV-359 begins focused acceptance on that frozen source: human Normal/Power, later-FIST reopening and ordinary no-contact finalization are PASS; Gargoyle immediate/delayed contact is PASS while true far/no-contact remains to be observed. Phase 4 remains paused only until the §14 focused acceptance matrix closes.
+EV-346–EV-349 opened the raw8 authoring-semantics problem: early FIST was one-shot, native hit and miss both closed the latch, post-miss rearm could restore opportunity, visible damage was not a reliable contact oracle, and C1 replacement required explicit lifecycle closure. EV-353 then causally closed the persistent-opportunity model, EV-354 proved same-C1 Sprint-origin transport, and the permanent implementation was promoted and source-frozen after EV-357–EV-358. EV-359–EV-364 complete the focused permanent raw8 acceptance matrix on the frozen source. Human timing/contact, later-FIST reopening, no-contact closure, reaction replacement, replacement-to-unmarked fallback, native unmarked target-directed control, Gargoyle immediate/delayed/far cases, Sprint Action9->Action2 transport, raw55/equipped coexistence and diagnostic/behavior parity all PASS. Phase 4 may now resume under §3.8 comprehensive final-source validation.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
@@ -414,4 +414,4 @@ The decisive sample must have one single-FIST opportunity already pending before
 
 ### Raw8 permanent focused acceptance gate
 
-Before Phase 4 broad creature regression resumes, the permanent raw8 candidate must pass the focused acceptance matrix in `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14, including the explicit marked-pending -> replacement/interruption -> later unmarked raw8 native-fallback sentinel and behavior-only/diagnostic parity.
+Permanent raw8 focused acceptance in `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14 is **CLOSED/PASS at EV-364**. Phase 4 broad/comprehensive frozen-source regression is authorized to resume.
