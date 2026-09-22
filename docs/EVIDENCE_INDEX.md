@@ -70,8 +70,8 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | permanent raw55 implementation + focused/current regression | EV-295–EV-298, EV-341, EV-366 |
 | standalone collision regression | EV-299 onward |
 | Orc Phase-2 Staff/Fist/2H attack matrix / current-build rechecks | EV-309–EV-310, EV-330–EV-331 |
-| post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314, EV-332–EV-336 |
-| factual equipped Sprint handoff / continuation / permanent production acceptance | EV-311, EV-315, EV-320–EV-329 |
+| post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314, EV-332–EV-336, EV-368 |
+| factual equipped Sprint handoff / continuation / permanent production acceptance | EV-311, EV-315, EV-320–EV-329, EV-368 |
 | shield/raw9 LEFT physical activation without shield-bash damage | EV-306, EV-308 |
 | human raw8 same-C1 double-FIST | EV-305 |
 | Sabretooth raw8 same-C1 double-FIST | EV-307, EV-337 |
@@ -137,6 +137,7 @@ EV-364         final focused raw8 sentinel PASS: replacement->genuinely-unmarked
 EV-365         final-source Stage-A batch 1 PASS; Wolf marked/unmarked control + Minecrawler/Bloodfly/Boar/Bison + equipped coexistence
 EV-366         final-source Stage-A extension PASS; Ripper/ScorpionKing/Snapper/TRex/Troll/Waran; Stage A actually CLOSED
 EV-367         destructive bad-skip / C1-R1 stress PASS; 10 exact owned group7 -> group5 repairs, zero divergence
+EV-368         final frozen-source Stage-B equipped-opponent + cumulative player matrix PASS
 ```
 
 ## 4. Escalation order

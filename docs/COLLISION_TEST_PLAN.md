@@ -241,7 +241,7 @@ A. non-weapon/body-contact creatures — CLOSED/PASS EV-365–EV-366
 -> final-source closure: EV-365–EV-366
 -> supplemental targeted bad-skip C1-R1 safety stress: PASS EV-367 (does not close Stage D / AttackContinuationProtection)
 
-B. equipped actors + cumulative player weapon matrix — CURRENT
+B. equipped actors + cumulative player weapon matrix — CLOSED/PASS EV-368
 -> do NOT require a second isolated player-only pass when the same frozen-source weapon/attack set already has its standalone no-opponent run plus live-combat coverage from Stage A
 -> count coverage cumulatively across the final-source campaign: clean standalone weapon execution + combat coexistence may jointly satisfy the player side of the matrix
 -> prioritize equipped NPC/creature opponents and genuine uncovered player/source/side/family gaps rather than repeating already-covered player attacks
@@ -249,8 +249,11 @@ B. equipped actors + cumulative player weapon matrix — CURRENT
 -> still ensure the complete campaign covers 1H, 1H+shield, 1H+torch, dual-1H, 2H, Staff and factual Axe/other supported sources
 -> include RIGHT/LEFT/BOTH/OFF, repeated contact, Power/Pierce/SimpleWhirl/Hack/Sprint where applicable
 -> if a player configuration is already complete, pair subsequent tests around opponent/source coverage instead of rerunning the player matrix
+-> final-source equipped-opponent closure: EV-368
 
-C. modded/custom animation compatibility
+C. modded/custom animation compatibility — CURRENT
+-> first fixture: the User-selected zombie animation-separation mod. In original Gothic 3 the tested zombie actors are expected to share ordinary human animation assets; this mod supplies zombie-specific attack animations. Treat that as the test premise and verify the actual runtime motion names/source/action facts from the logs rather than relying on filename assumptions.
+-> exercise several zombie variants and their factual equipped sources/attack families; verify authored markers, cleanup/finalization and player-weapon coexistence continue to follow runtime semantics when the animation assets are no longer the ordinary human set
 -> exercise the prepared Axe-separation and Rapier-separation routes
 -> include the User's fast/multi-contact authored animations and other collision-authoring fixtures
 -> use positive discriminators rather than relying only on native-vs-mod visual equivalence

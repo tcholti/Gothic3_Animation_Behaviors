@@ -21,70 +21,53 @@ Behavior SHA256:
 
 No source change is authorized absent newly demonstrated contradictory evidence.
 
-## Stage-A final-source closure
+## Comprehensive final-source status
 
-Comprehensive frozen-source Stage A is now **genuinely CLOSED/PASS across EV-365–EV-366**.
+```text
+Stage A — non-weapon/body-contact       CLOSED/PASS EV-365–EV-366
+supplemental bad-skip C1-R1 stress      PASS EV-367
+Stage B — equipped/cumulative matrix    CLOSED/PASS EV-368
+Stage C — modded/custom compatibility   CURRENT
+```
 
-EV-365 batch:
-- Wolf marked raw8 + transformed-player symmetry;
-- Wolf fully unmarked/native control;
-- Minecrawler;
-- Bloodfly;
-- Boar;
-- Bison.
+EV-368 closes the equipped-opponent set selected by the User:
+- Goblin factual 1H/raw2, including 5 accepted Sprint executions;
+- Demon factual 2H/raw3;
+- Ogre factual Axe/raw52;
+- Stalker factual Axe/raw52;
+- Orc Raider factual Axe/raw52;
+- Orc factual Staff/raw51 + raw8 Fist.
 
-EV-366 final ordinary unequipped extension:
-- Ripper;
-- ScorpionKing;
-- Snapper;
-- TRex;
-- Troll/raw55;
-- Waran.
+Player coverage is compositional across the campaign. The User's pattern is a clean no-opponent/full-attack pass for each tested player weapon followed by real-combat use. EV-365–EV-368 therefore jointly cover the player matrix rather than requiring another weapon-only repetition.
 
-EV-365's earlier “Stage A CLOSED” wording was premature only as workflow state: the User still had prepared normal unequipped fixtures. Its technical results remain valid. EV-366 is the actual final ordinary Stage-A closure.
+All six EV-368 logs were free of C1 repair/divergence, marker anomaly/discovery, invariant/contradiction/error/failure, and unloaded cleanly. All physical equipped sources returned from group7 to group5 with balanced accounting. No source change is justified.
 
-Across the extension:
-- marked raw8 opportunity accounting closed through exact native contact or factual C1 closure;
-- Troll stayed correctly on permanent raw55 with exact 5->7 / repeated 7->7 / native 7->5 behavior;
-- dual-1H, Staff and 2H player coexistence remained healthy;
-- no source contradiction, invariant/generation contradiction, repair divergence, marker anomaly, explicit error/failure or unload problem was found.
+## Current responsibility — Stage C
 
-## Supplemental bad-skip stress
+The next fixture is the User-selected **zombie animation-separation mod**.
 
-EV-367 is **PASS**.
+Test premise supplied by the User:
+- original Gothic 3 zombies use the same animation set as ordinary humans;
+- this first separation mod gives zombies their own unique animations.
 
-The deliberate bad-skip log produced 10 genuine C1-R1 physical repairs:
-- plain 1H RIGHT: 2;
-- 1H+torch RIGHT: 3;
-- dual-1H RIGHT: 1;
-- dual-1H LEFT: 2;
-- Staff RIGHT: 1;
-- 2H RIGHT: 1.
+Treat that premise as something to verify from runtime motion identity during the test. The compatibility question is:
 
-Every exact owned source was group7 before repair and verified group5 afterward. Zero divergence/unresolved-equipped outcome occurred. Fourteen late marker callbacks were rejected fail-closed at Action0 / no valid C1 with sources already group5.
+```text
+When zombie attacks move onto zombie-specific animation assets,
+does collision behavior continue to follow factual runtime
+action/source/UseType + authored marker semantics,
+without depending on the old shared-human animation filenames?
+```
 
-This validates collision cleanup safety only. It does not prevent the destructive continuation loss; `AttackContinuationProtection` remains separate and paused.
+Use several zombie variants as planned. Do not infer source/UseType or supported family from the word “Zombie” or from the new animation filename; let the diagnostic log classify each factual route.
 
-## Current responsibility
+Continue the User's efficient combined-testing pattern:
+- exercise the zombie/opponent's attacks;
+- rotate a useful player weapon through its own attack set in the same combat run;
+- let one log validate both the mod-separated opponent route and player coexistence where factual coverage exists.
 
-Continue `docs/COLLISION_TEST_PLAN.md` §3.8 Stage B by **reconciling cumulative coverage first**, not by repeating the player matrix.
-
-User execution pattern:
-- for each player weapon being tested, perform one clean no-opponent/full-attack pass;
-- then use that weapon through its attacks in real combat against the opponent fixtures;
-- the two layers jointly provide player weapon evidence.
-
-Therefore EV-365–EV-367 combat evidence is part of the Stage-B player matrix, not merely incidental coexistence. Current final-source combat coverage already includes:
-- 1H;
-- 1H+torch;
-- dual-1H, including RIGHT/LEFT/BOTH/OFF;
-- Staff, including applicable Hack/Whirl and OFF;
-- 2H, including applicable Hack/Whirl and OFF.
-
-Do not schedule separate repeat tests for those player routes merely to satisfy the Stage-B label. Next runtime work should target **equipped NPC/creature opponents and any genuinely uncovered player/source/side/family configuration**, with 1H+shield checked explicitly if it has not yet received its corresponding final-source standalone+combat pair.
-
-The complete campaign still needs factual equipped-opponent/source coverage including 1H/raw2, 2H/raw3, Axe/raw52 and other supported equipped sources as applicable.
+The prepared Axe-separation and Rapier-separation fixtures remain later Stage-C compatibility checks unless deliberately reprioritized.
 
 Broad failures must be reduced to the smallest factual route before any source change.
 
-After EV-366/EV-367 closure, `research/raw/` contains only `Keep.txt`.
+After EV-368 closure, `research/raw/` contains only `Keep.txt`.

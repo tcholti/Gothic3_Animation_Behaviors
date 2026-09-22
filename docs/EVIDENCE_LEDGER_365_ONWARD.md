@@ -127,3 +127,34 @@ Disposition:
 - Existing lifecycle architecture is corroborated; no architecture/source change is justified.
 - `AttackContinuationProtection` remains paused and separate.
 
+### EV-368 — Final frozen-source equipped-opponent / cumulative player matrix PASS
+
+Observed:
+- Demon / factual 2H raw3: 26 exact `It_2H_DemonSword_01` 5->7 openings matched 26 exact 7->5 cleanups across Quick/Normal/Power. Player 2H Flamberge simultaneously exercised Quick/Normal/Power/Hack/Whirl with 43 openings and 43 cleanups plus expected repeated 7->7 requests.
+- Goblin / factual 1H raw2: two factual club sources remained balanced (`It_1H_Club_01` 13/13 and `It_1H_Club_Summon` 16/16 openings/cleanups). Five factual Action9/Sprint executions each produced one eligible native-open suppression and one matching generic RIGHT authorization. Player 1H remained balanced 19/19.
+- Ogre / factual Axe raw52: `It_Axe_OgreMorningStar_01` produced 19 openings and 19 cleanups across Normal/Power/Quick. Player 1H simultaneously produced 43 openings and 43 cleanups across Quick/Normal/Pierce/Power.
+- Orc Raider / factual Axe raw52: `It_Axe_Orc_01` produced 19 openings, 19 cleanups and 7 expected repeated 7->7 requests across Quick/Power/Hack/Normal/Whirl. Player 1H+shield produced 24 openings and 24 cleanups across Normal/Quick/Power/Pierce.
+- Orc Staff + Fist: factual `It_Halberd_Orc_01` / raw51 produced 17 openings, 17 cleanups and 5 expected 7->7 repeats across Whirl/Quick/Power/Hack/Normal. Raw8 Fist coexistence remained fully accounted: 16 opportunities total (13 Orc, 3 player) -> 11 exact-contact consumptions + 5 factual Orc lifecycle closes. Player 1H+shield/Fist traffic remained healthy.
+- Stalker / factual Axe raw52: `It_Axe_SpikedClub_01` produced 16 openings and 16 cleanups across Normal/Quick/Power. Player 1H+shield produced 24 openings and 24 cleanups.
+- Across all six logs, every marked attack-ownership observation was accepted in its supported path; there were zero C1 repair/divergence events, zero marker anomaly/discovery records, zero invariant/contradiction/error/failure records, and every DLL instance unloaded cleanly.
+
+Scope / limits:
+- This closes §3.8 Stage B using the campaign's compositional coverage rule. The User's standing pattern is one no-opponent/full-attack pass per tested player weapon followed by live-combat use; final-source Stage-A/EV-367 combat evidence already supplied dual-1H, 1H+torch, Staff, 2H and lifecycle-stress coverage, while this batch adds/reinforces 1H, 1H+shield, 2H and the equipped-opponent source matrix.
+- The User reports this batch completes all equipped opponents they intended to include in the comprehensive release pass.
+- This is regression/compatibility evidence, not a new causal claim about damage policy or animation naming.
+- No source modification is justified.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- uploaded raw-evidence commit: `16ab72bec38da4ab9beb0169e0aef164014ac533`;
+- `research/archive/2026-09-22_demon_2h_marked_hero_2h_marked_test.log` — blob `bf4e2ade83be54d4e7dfd09f9da1158bb000df3c`, 210,741 bytes;
+- `research/archive/2026-09-22_goblin_1h_marked_hero_1h_marked_test.log` — blob `bf50b476616da1bccf15c9118002eaa826f3798c`, 147,091 bytes;
+- `research/archive/2026-09-22_ogre_2h_marked_hero_1h_marked_test.log` — blob `77533879f220b115d03b6e5e0979bef5a793a4db`, 168,952 bytes;
+- `research/archive/2026-09-22_orc_2h_marked_hero_1h_shield_marked_test.log` — blob `6f3aab25739e89764a09471465b750d81b9fc62a`, 126,592 bytes;
+- `research/archive/2026-09-22_orc_staff_fist_marked_hero_1h_shield_fist_marked_test.log` — blob `3f267a6abfd3b51c2ac2f92395c428225c8d736f`, 222,050 bytes;
+- `research/archive/2026-09-22_stalker_2h_marked_hero_1h_shield_marked_test.log` — blob `b1ee30163d7ae4f1b432cca2c6da83923078ff42`, 129,977 bytes.
+
+Disposition:
+- **PASS — comprehensive frozen-source Stage B CLOSED.**
+- Continue §3.8 Stage C modded/custom animation compatibility.
+
