@@ -132,6 +132,7 @@ EV-360         focused raw8 acceptance: Gargoyle far/no-contact + reaction repla
 EV-361         motion-specific correction: native/unmarked human P1-left target-directed control PASS; only replacement->unmarked fallback remains
 EV-362         final focused fallback sentinel attempt: marked/unmarked fixture correct and native P0 fallback healthy; required pending replacement chronology not captured
 EV-363         final focused fallback sentinel: replacement timing captured twice, but intended P0 fallback remained marked at runtime; fixture-state mismatch, no source contradiction
+EV-364         final focused raw8 sentinel PASS: replacement->genuinely-unmarked native fallback proven; §14 permanent raw8 acceptance COMPLETE
 ```
 
 ## 4. Escalation order
