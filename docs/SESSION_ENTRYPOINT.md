@@ -3,7 +3,7 @@
 **Purpose:** Minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-21
+**Updated:** 2026-09-22
 
 > **INTERRUPTED-CHAT ENTRY RULE:** after an abrupt/max-context/unusable Chat, return to root `README.md` and enter Recovery Lock. This file is then a clue, not unquestioned truth, until POP-11 reconciliation.
 
@@ -16,13 +16,13 @@ standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest runtime evidence = EV-363
-Phase 4 = PAUSED pending focused permanent raw8 acceptance
+latest runtime evidence = EV-364
+Phase 4 = RESUMED — comprehensive frozen-source release validation
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
 cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
 active Work task = NONE
-current stop gate = verify P0-right runtime marker removal -> rerun final fallback sentinel
+current stop gate = POP-12 PASS -> comprehensive final-source Stage A animals/body-contact
 ```
 
 ## Current responsibility
@@ -43,8 +43,8 @@ No raw8 `FIST_OFF`. Collision/opportunity only; target selection, damage outcome
 Permanent raw8 authority:
 `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`
 
-Parent production task:
-`docs/work/active/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
+Closed raw8 production task:
+`docs/archive/investigations/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
 
 Closed final audit:
 `docs/archive/investigations/COLLISION_FINAL_SOURCE_QUALITY_MODULARITY_AUDIT.md`
@@ -77,9 +77,10 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 - **EV-361:** exact P1-left human Normal motion confirmed genuinely unmarked/native and target-directed in group combat; only focused item 6 remains open.
 - **EV-362:** prior marked/unmarked arrangement healthy but missed pending-replacement timing.
 - **EV-363:** interruption timing captured twice, but intended P0-right fallback still resolved marked at runtime; fixture-state mismatch, no source contradiction.
+- **EV-364:** corrected fixture proves marked-pending → generation replacement → genuinely unmarked native fallback; all ten focused raw8 acceptance requirements PASS.
 
 Latest runtime-reviewed and frozen source:
-`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — EV-357–EV-359
+`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — focused acceptance COMPLETE through EV-364
 
 Final validated diagnostic DLL SHA256: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313` — EV-357/EV-359.
 
@@ -88,13 +89,14 @@ Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C58
 ## Next sequence
 
 ```text
-finish focused item 6
--> close permanent raw8 acceptance
--> comprehensive frozen-source release campaign
--> remaining standalone collision regression
+comprehensive frozen-source release campaign Stage A
+-> equipped coverage
+-> modded/custom animations
+-> mixed stress
+-> New Balance + AttackCollision
 ```
 
-Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8 acceptance is one sentinel from complete: items 1–5 and 7–10 are PASS; only item 6 replacement→later unmarked native fallback remains. After it closes, run the frozen-source comprehensive release campaign in COLLISION_TEST_PLAN §3.8.
+Final cleanup, both post-cleanup re-smokes, and permanent raw8 focused acceptance are CLOSED/PASS. Run the frozen-source comprehensive release campaign in COLLISION_TEST_PLAN §3.8. Sabretooth, Gargoyle and human Fist do not need automatic repeat coverage unless later evidence calls for them.
 
 ## Read next by question
 
@@ -102,7 +104,7 @@ Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8
 - closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-363
+- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-364
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
