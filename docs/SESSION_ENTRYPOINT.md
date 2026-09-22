@@ -16,7 +16,7 @@ standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest runtime evidence = EV-361
+latest runtime evidence = EV-362
 Phase 4 = PAUSED pending focused permanent raw8 acceptance
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
@@ -75,6 +75,7 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 - **EV-359:** human Normal/Power, later-FIST reopening and ordinary no-contact finalization PASS; Gargoyle close/delayed PASS.
 - **EV-360:** Gargoyle far/no-contact, reaction/generation replacement and Sprint Action9→Action2 transport PASS.
 - **EV-361:** exact P1-left human Normal motion confirmed genuinely unmarked/native and target-directed in group combat; only focused item 6 remains open.
+- **EV-362:** reversed marked/unmarked Normal fixture verified; P0-right native fallback healthy, but no pending marked opportunity was generation-replaced in that run.
 
 Latest runtime-reviewed and frozen source:
 `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — EV-357–EV-359
@@ -100,7 +101,7 @@ Final cleanup and both post-cleanup re-smokes are closed. Focused permanent raw8
 - closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-361
+- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-362
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
