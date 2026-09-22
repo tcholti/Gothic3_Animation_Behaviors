@@ -1044,3 +1044,66 @@ Focused acceptance disposition:
 Provenance:
 - raw blob `50a70ac6611dde6dfc2da3afa95c803132e43912`;
 - derived package retained under `research/derived/2026-09-22_human_fist_marked_unmarked_test2_large_log/`.
+
+
+### EV-364 — Final focused raw8 sentinel PASS / §14 acceptance COMPLETE
+
+Source/runtime:
+- frozen source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- diagnostic DLL remains the frozen-source diagnostic twin;
+- source log `2026-09-22_human_fist_marked_unmarked_test3.log`, blob `16cdaa4f5dad7af0a249cb1b3d784b7a57b0a449`, 798,665 bytes / 3,735 lines;
+- User corrected the fixture so only P1 Normal was marked and P0 Normal was genuinely unmarked.
+
+Fixture identity:
+- marked: `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot`;
+- unmarked/native: `Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot`.
+
+Unmarked P0 runtime proof:
+- 25 ATTACK_OWNERSHIP observations;
+- all 25 `MarkerPresent=0`;
+- all 25 `FistMarkers=0`;
+- all 25 `Raw8Fist=<none> / Raw8UseType=-1 / SuppressNative=0`;
+- zero `RAW8_FIST_OWNERSHIP` records on P0;
+- zero `RAW8_OPPORTUNITY_OPEN` records on P0;
+- zero `RAW8_OPPORTUNITY_CONTACT_CONSUMED` records on P0;
+- 3 exact native Fist contacts through `Game.dll+0x0016E348`, targeting `ReddockOrcScoutLeader`, `ReddockOrcWarrior01`, and `ReddockOrcScout02`.
+
+Decisive marked-replacement -> unmarked-fallback proof:
+- 8 marked P1 opportunities closed by `Reason=C1_GENERATION_REPLACED`;
+- all 8 replacement closes wrote latch `0->1`, with `LatchWriteAttempted=1 / LatchWriteConfirmed=1`;
+- for all 8 replacement closures, the next relevant human Normal ATTACK_OWNERSHIP was the exact P0 unmarked motion;
+- for all 8, there were **zero intervening raw8 opportunity opens** between replacement close and the P0 attack;
+- the P0 attack remained fully native/unmarked and created no raw8 ownership/opportunity state.
+
+Representative exact sequences:
+- C1=53 / opportunity 5: P1 OPEN 63507.203 ms -> generation-replaced CLOSE 63696.051 ms -> P0 unmarked ATTACK_OWNERSHIP 65023.856 ms, zero intervening opens;
+- C1=65 / opportunity 7: P1 OPEN 67014.047 -> generation-replaced CLOSE 67397.334 -> P0 unmarked 74403.785, zero intervening opens;
+- C1=227 / opportunity 13: P1 OPEN 134511.556 -> generation-replaced CLOSE 134537.502 -> P0 unmarked 135096.836, zero intervening opens;
+- C1=379 / opportunity 24: P1 OPEN 192586.165 -> generation-replaced CLOSE 192848.853 -> P0 unmarked 193247.298, zero intervening opens.
+
+Diagnostics/invariants:
+- zero C1 finalization anomaly/repair records;
+- zero C1 invariant warnings;
+- zero repair divergence;
+- zero generation inconsistency;
+- zero contradiction;
+- zero explicit error/exception/failure;
+- clean DLL unload.
+
+Focused §14 final disposition:
+1. Gargoyle close/delayed/no-contact -> PASS EV-359 + EV-360.
+2. Human Normal/Power timing/contact -> PASS EV-359.
+3. Later FIST same C1 reopening -> PASS EV-359.
+4. Ordinary no-contact finalization -> PASS EV-359.
+5. Reaction/generation replacement -> PASS EV-360.
+6. Replacement -> later unmarked native fallback -> **PASS EV-364**.
+7. Native unmarked human target-directed control -> PASS EV-361.
+8. Sprint Action9 -> Action2 transport -> PASS EV-360.
+9. raw55 + equipped coexistence -> PASS EV-357.
+10. Diagnostic/behavior parity -> PASS EV-357 + EV-358.
+
+Interpretation:
+- **PASS — PERMANENT RAW8 FOCUSED ACCEPTANCE COMPLETE.**
+- The frozen source satisfies all ten §14 acceptance requirements.
+- No source contradiction was exposed.
+- Phase 4 broad/comprehensive frozen-source regression may resume under `COLLISION_TEST_PLAN.md` §3.8.
