@@ -28,7 +28,9 @@ EV-359 begins focused acceptance on the frozen source: human Normal/true-Power t
 
 EV-360 closes focused items 1, 5 and 8 on the frozen source: true Gargoyle far/no-contact lifecycle closure, human reaction/generation-replacement closure with no old-opportunity leak, and Sabretooth same-C1 Action9/SPRINT -> Action2/POWER transport all PASS.
 
-EV-361 corrects the group-control interpretation by exact motion identity: `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot` is genuinely unmarked/native and passes the target-directed group-control sentinel. Only item 6, replacement -> later unmarked native fallback, remains open.
+EV-361 corrects the group-control interpretation by exact motion identity and closes native unmarked target-directed control. Only item 6 remains open.
+
+EV-362 confirms the final sentinel fixture polarity is correct after marker reversal: P1-left is marked and P0-right is fully native/unmarked, with seven exact native contacts and no raw8 opportunity ownership on the P0 motion. The run did not capture a pending marked P1 opportunity being generation-replaced, so item 6 remains open as a test-window gap rather than a contradiction.
 
 ## Responsibility
 
