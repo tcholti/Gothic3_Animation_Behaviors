@@ -17,8 +17,6 @@ Diagnostic SHA256:
 Behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-No source change absent new contradictory evidence.
-
 ## Current campaign
 
 ```text
@@ -26,48 +24,33 @@ Stage A body-contact                 PASS EV-365–EV-366
 bad-skip C1-R1 stress               PASS EV-367
 Stage B equipped/cumulative         PASS EV-368
 Stage C modded/custom               ACTIVE
-  native zombie baseline            PASS EV-369
-  zombie separation                 PASS EV-370
-  Axe separation                    NEXT
+  zombie separation                PASS EV-370
+  Axe separation                   PASS EV-371
+  Rapier separation                PASS EV-372
+  custom/multi-contact             NEXT
 ```
 
-## EV-369 -> EV-370 comparison
+## EV-371 Axe separation
 
-Native zombie baseline:
-- Mummy = Fist/raw8
-- BenSala Zombie = `It_Pickaxe` / Axe raw52 on native shared 2H animation set
-- UndeadPriest = Staff/raw12
-- Gotha 1H+shield control added with EV-370 batch
-- native motion identities = `Hero_...`
+- Hero Axe: `Hero_..._Axe_...`, factual `It_Axe_Bardiche / UseType52`; clean no-target + combat coverage; marked Normal/Quick/Power/Whirl/Hack.
+- Ogre/Orc/Stalker controls from EV-368 used `*_2H_*`; separation runs use `*_Axe_*` with the same factual raw52 sources.
+- Ogre had 2 genuinely unmarked Quick executions; they stayed native and source state still balanced.
+- all four Axe logs: zero anomaly/repair/divergence/error; clean unload.
 
-Zombie separation:
-- motion identities become `Zombie_...`
-- factual sources remain the same
-- Mummy: 39 raw8 opportunities -> 23 contacts + 16 closes
-- Zombie Pickaxe/raw52: 47 openings = 47 cleanups
-- UndeadPriest Staff/raw12: 49 openings = 49 cleanups
-- 1H+shield: same RIGHT sword + LEFT shield topology; sword 41 openings = 41 cleanups; RIGHT markers never spuriously activate shield
-- unmarked separated assets remain native
-- zero anomaly/repair/divergence/error; clean unloads
+## EV-372 Rapier separation
 
-Disposition: **zombie separation PASS, no source change.**
+- Hero Rapier: `Hero_..._Rapier_...`, factual `It_1H_Epee_01 / UseType2`.
+- clean no-target + Golem combat run.
+- 48/48 player ownership observations marked: Normal/Quick/Power/Pierce.
+- Epee: 53 openings = 53 cleanups; zero anomaly/repair/divergence/error; clean unload.
+- Golem remained unmarked/native control.
 
-## Separation-mod environment constraint
-
-Zombie separation and Axe separation conflict when stacked: Axe separation prevents zombie-separation 2H animations from working.
-
-The User reproduced the same conflict **with Gothic3_Animation_Behaviors absent**. Therefore the incompatibility is between those two third-party separation mods themselves, not caused by our mod and not a compatibility target for this project. Validate independently:
-
-```text
-G3 Animation Behaviors + zombie separation
-G3 Animation Behaviors + Axe separation
-G3 Animation Behaviors + Rapier separation
-```
-
-Do not stack zombie separation with Axe separation for acceptance or describe their mutual incompatibility as something Gothic3_Animation_Behaviors should solve.
+Third-party constraint remains: Zombie Separation and Axe Separation conflict even without our DLL, so never use them as a combined acceptance environment.
 
 ## Next
 
-Disable zombie separation and test **Axe separation alone**. Compare factual Axe/raw52 behavior against the established native shared-2H baseline, then continue Rapier separation and custom/multi-contact fixtures.
+Continue Stage C with the User's **fast/multi-contact authored animations and any remaining custom collision-authoring fixtures**. Then Stage D mixed stress.
 
-`research/raw/` contains only `Keep.txt`.
+No source change is authorized from EV-371/EV-372.
+
+After closure, `research/raw/` contains only `Keep.txt`.

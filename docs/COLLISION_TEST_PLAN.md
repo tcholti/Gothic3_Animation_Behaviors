@@ -189,7 +189,7 @@ Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature n
 
 Permanent raw55 behavior applies only to its frozen factual contract. Ordinary raw8 behavior remains governed by the separate raw8 mechanism. EV-339–EV-340 provide a paired Wolf control: factual Fist/UseType8 with markers enters raw8 authored timing; the same factual source without markers stays completely native. Permanent equipped Sprint behavior is governed separately by `EquippedSprintCollision`; do not infer applicability from creature name or Power-named animation text.
 
-### 3.5 Phase 5 — 2H vs Axe separation-mod compatibility
+### 3.5 Phase 5 — 2H vs Axe separation-mod compatibility — CLOSED/PASS EV-371
 
 Under the prepared Axe-separation mod, verify both:
 
@@ -200,11 +200,15 @@ Axe-defined separated route
 
 Protect authored markers, factual equipped source/UseType, native cleanup/finalization and ownership diagnostics.
 
-### 3.6 Phase 6 — 1H vs Rapier separation-mod compatibility
+Final-source result: **PASS EV-371**. Native Ogre/Orc/Stalker Axe users moved from their shared `2H` motion families to `Axe` motion families while the exact raw52 sources stayed unchanged; player Bardiche/raw52 also remained clean.
+
+### 3.6 Phase 6 — 1H vs Rapier separation-mod compatibility — CLOSED/PASS EV-372
 
 Under the Rapier-separation mod, verify ordinary 1H and separated Rapier routes.
 
 The objective is to prove collision follows factual runtime source/action semantics rather than old animation-family grouping assumptions.
+
+Final-source result: **PASS EV-372**. `Hero_..._Rapier_...` marked Normal/Quick/Power/Pierce motions drove the factual `It_1H_Epee_01 / UseType2` source cleanly.
 
 ### 3.7 Phase 7 — Stress regression
 
@@ -253,11 +257,11 @@ B. equipped actors + cumulative player weapon matrix — CLOSED/PASS EV-368
 
 C. modded/custom animation compatibility — CURRENT
 -> native zombie baseline/control CLOSED/PASS EV-369
--> zombie animation-separation compatibility CLOSED/PASS EV-370: Mummy raw8, Zombie Axe/raw52, UndeadPriest Staff/raw12 and a direct 1H+shield native/modded pair remain healthy while runtime motion identity changes from `Hero_...` to `Zombie_...`
--> separated assets without authored markers correctly remain native; do not treat marker absence in a replacement asset as a collision failure
--> NEXT: exercise the prepared Axe-separation route independently; its purpose is to move factual Axe/raw52 away from the native shared 2H animation set onto Axe-specific animations
--> environment constraint: zombie separation and Axe separation conflict with each other (Axe separation prevents zombie-separation 2H animations from working). The User reproduced this with Gothic3_Animation_Behaviors absent, so the incompatibility is between the two third-party separation mods themselves. Do not stack them for acceptance; our responsibility is only compatibility with each separation mod independently.
--> then exercise Rapier-separation and the User's fast/multi-contact authored/custom collision fixtures
+-> zombie animation-separation CLOSED/PASS EV-370
+-> Axe separation CLOSED/PASS EV-371: native shared `*_2H_*` Axe routes become `*_Axe_*` while factual Axe/raw52 sources remain stable; genuinely unmarked replacement assets fall back native
+-> Rapier separation CLOSED/PASS EV-372: `Hero_..._Rapier_...` marked Normal/Quick/Power/Pierce drives factual `It_1H_Epee_01 / UseType2` cleanly
+-> third-party environment constraint remains: Zombie Separation and Axe Separation conflict even without Gothic3_Animation_Behaviors, so they are not stacked for acceptance
+-> NEXT: exercise the User's fast/multi-contact authored animations and any remaining custom collision-authoring fixtures
 -> use positive discriminators rather than relying only on native-vs-mod visual equivalence
 
 D. mixed stress

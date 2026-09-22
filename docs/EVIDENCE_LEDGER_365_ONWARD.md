@@ -220,3 +220,57 @@ Disposition:
 - EV-369 remains the native zombie baseline; EV-370 is the separated comparison.
 - Continue Stage C with Axe separation tested independently of zombie separation.
 
+### EV-371 — Axe-separation compatibility PASS
+
+Observed:
+- The Axe-separation mod was active. Player Axe motion identity changed from the native shared 2H family to `Hero_..._Axe_...` while the factual player source remained `It_Axe_Bardiche / UseType52`.
+- The Demon fixture contained a clean no-target player Axe pass followed by live combat. Player coverage: 32/32 marked attack-ownership observations across Normal (16), Quick (8), Power (4), Whirl (2) and Hack (2). The Bardiche produced 32 exact 5->7 openings and 32 exact 7->5 cleanups plus 2 expected repeated 7->7 requests. Demon ordinary 2H behavior coexisted cleanly.
+- Direct native-vs-separated opponent comparison is available from EV-368 controls:
+  - Ogre: native `Ogre_..._2H_...` -> separated `Ogre_..._Axe_...`, exact source unchanged at `It_Axe_OgreMorningStar_01 / UseType52`. Ten observed attacks: 8 marked, 2 genuinely unmarked Quick fallbacks; physical source state balanced 13 openings / 13 cleanups.
+  - Orc Raider: native `Orc_..._2H_...` -> separated `Orc_..._Axe_...`, exact source unchanged at `It_Axe_Orc_01 / UseType52`. All 12 observed attacks marked across Normal/Quick/Power/Whirl/Hack; 15 openings / 15 cleanups plus one expected 7->7 repeat.
+  - Stalker: native `Stalker_..._2H_...` -> separated `Stalker_..._Axe_...`, exact source unchanged at `It_Axe_SpikedClub_01 / UseType52`. All 9 observed attacks marked across Normal/Quick/Power; 15 openings / 15 cleanups.
+- Player Axe coexistence in the Ogre/Orc/Stalker fights remained healthy; all observed player attack ownership was marked and every Bardiche physical route returned to group5.
+- Across all four Axe logs there were zero marker anomaly/discovery records, zero C1 repair/divergence events, zero invariant/generation contradictions, zero explicit error/exception/failure records, and every DLL instance unloaded cleanly.
+
+Scope / limits:
+- This directly validates the separation premise: animation-family identity may move from native shared 2H to Axe-specific assets while factual Axe source classification remains UseType52 and collision still follows authored markers/source ownership correctly.
+- The two unmarked Ogre Quick executions are not failures. They remained native (`MarkerPresent=0 / RequiredMask=0 / SuppressNative=0`) and their source still converged cleanly.
+- Zombie Separation was not part of this acceptance environment. The two third-party separation mods are independently incompatible even without Gothic3_Animation_Behaviors and are intentionally tested separately.
+- No source change is justified.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- uploaded raw-evidence commit: `6d844389dd56d2af4a5708f8526321fbbfe487a5`;
+- `research/archive/2026-09-22_demon_2h_marked_hero_axe_marked_test.log` — blob `45b9ef083ad406cd074133ad08e9fbf1a03f8a7c`, 120,711 bytes;
+- `research/archive/2026-09-22_ogre_axe_marked_hero_axe_marked_test.log` — blob `2cae2c091b726455fec5ea1606de1468d37c69fd`, 111,030 bytes;
+- `research/archive/2026-09-22_orc_axe_marked_hero_axe_marked_test.log` — blob `ad0705db1d7ce26307cb6c75d54154e153a1de14`, 99,827 bytes;
+- `research/archive/2026-09-22_stalker_axe_marked_hero_axe_marked_test.log` — blob `0f210d9d98f5b8f2b086821ffa2fb8098b4dd7db`, 131,428 bytes.
+
+Disposition:
+- **PASS — Axe-separation compatibility CLOSED.**
+- Continue Stage C with Rapier separation / remaining custom fixtures.
+
+### EV-372 — Rapier-separation compatibility PASS
+
+Observed:
+- The Rapier-separation mod was active. Player motion identity was `Hero_..._Rapier_...` while the factual equipped source remained `It_1H_Epee_01 / UseType2`, proving separation from the ordinary 1H animation family without changing factual source classification.
+- The fixture contained a clean no-target Rapier attack pass followed by live combat against a Golem.
+- All 48 player attack-ownership observations were marked across Normal (20), Quick (13), Power (12) and Pierce (3).
+- The Epee produced 53 exact 5->7 openings and 53 exact 7->5 cleanups plus 5 expected repeated 7->7 requests.
+- The Golem remained an unmarked native body-contact control: 8 attack-ownership observations across Sprint/Normal were all `MarkerPresent=0 / RequiredMask=0 / SuppressNative=0`.
+- There were zero marker anomaly/discovery records, zero C1 repair/divergence events, zero invariant/generation contradictions, zero explicit error/exception/failure records, all C1 finals had zero outstanding obligations, and the DLL unloaded cleanly.
+
+Scope / limits:
+- This validates that a Rapier-specific animation family can drive the ordinary factual 1H/Epee source semantics without collision ownership depending on the old `1H` animation token.
+- The test proves the prepared Rapier separation fixture and its marked Normal/Quick/Power/Pierce routes. It does not claim compatibility with arbitrary unrelated Rapier mods.
+- No source change is justified.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- uploaded raw-evidence commit: `6d844389dd56d2af4a5708f8526321fbbfe487a5`;
+- `research/archive/2026-09-22_golem_marked_hero_rapier_marked_test.log` — blob `bad1fd8019b053a1a1f75fc07389f8f11cd8312a`, 185,639 bytes.
+
+Disposition:
+- **PASS — Rapier-separation compatibility CLOSED.**
+- Stage C remains active only for the User's fast/multi-contact and other custom animation-authoring fixtures.
+
