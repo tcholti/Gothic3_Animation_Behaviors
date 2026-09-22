@@ -1,7 +1,7 @@
 # Collision Reference
 
 **Status:** Current factual reference  
-**Updated:** 2026-09-20  
+**Updated:** 2026-09-22  
 **Purpose:** Compact projection of established Gothic 3 collision facts. Read this before opening evidence ledgers for an already-researched collision question.
 
 > This file states **what is currently established**. It is not the proof record. Each claim routes to EV evidence; open the ledger/raw source only when exact provenance, qualification, contradiction, or re-interpretation matters.
@@ -44,7 +44,7 @@ Repeated RIGHT/LEFT/BOTH later in the same Hit can author another contact by rea
 
 Supported/proven equipped attack scope currently includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack routes, and factual equipped Sprint under the permanent `EquippedSprintCollision` policy. Family-specific native target/reaction behavior remains native and is not normalized merely by marker support.
 
-Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318.
+Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-372.
 
 ## 3. Equipped lifecycle / terminal repair
 
@@ -183,7 +183,38 @@ Therefore current collision authoring does not claim shield-bash damage support.
 
 Evidence: EV-306, EV-308.
 
-## 8. Key engine / hook facts
+## 8. Animation-family separation compatibility
+
+Authored collision markers are not tied to the original Gothic animation-family token.
+
+Final-source compatibility tests establish all of the following:
+
+```text
+marker present on separated animation
+-> marker is detected on that animation
+-> factual actor/action/source/UseType remains authoritative
+-> supported ownership is accepted
+-> exact equipped source activates/rearms according to the marker
+-> ordinary cleanup returns the source to group 5
+
+separated animation has no marker
+-> no authored ownership is inferred from the old/native counterpart
+-> native collision behavior remains in control
+```
+
+This has been proven across three independent separation environments:
+
+- **Zombie Separation:** native `Hero_...` routes move to `Zombie_...` assets while factual Fist/raw8, Axe/raw52, Staff/raw12 and 1H+shield source semantics remain correct.
+- **Axe Separation:** native Axe users move from shared `*_2H_*` motions to `*_Axe_*` motions while their factual Axe/UseType52 sources remain unchanged.
+- **Rapier Separation:** `Hero_..._Rapier_...` motions drive the factual `It_1H_Epee_01 / UseType2` source correctly across Normal/Quick/Power/Pierce.
+
+No tested case showed an authored marker present on a separated animation but ignored or misapplied by the collision system. Genuinely unmarked replacement assets correctly stayed native.
+
+The User separately proved that Zombie Separation and Axe Separation conflict with each other even when Gothic3_Animation_Behaviors is absent. Their mutual incompatibility is therefore not a collision-mod compatibility responsibility; test those third-party separation mods independently.
+
+Evidence: EV-369–EV-372.
+
+## 9. Key engine / hook facts
 
 | Surface | Established role | Evidence / owner |
 |---|---|---|
@@ -196,7 +227,7 @@ Evidence: EV-306, EV-308.
 
 For exact RVAs, call stacks, hook signatures, and build-specific source facts, use `SOURCE_HOOK_GUIDE.md` and `COLLISION_CLEANUP_CALLSITE_MAP.md` before opening ledger prose.
 
-## 9. Validation status
+## 10. Validation status
 
 Focused raw55 acceptance is CLOSED/PASS at EV-298.
 
@@ -254,7 +285,7 @@ EV-330–EV-331 additionally corroborate the accepted current build across Orc W
 
 Phase 4 non-weapon creature regression is ACTIVE. EV-337–EV-341 establish the first current-build body-contact batch: Sabretooth raw8 single/double behavior in native and transformed-player form, Wolf marked raw8 plus paired unmarked native fallback in native/transformed form, and Troll permanent raw55 single/double behavior while the player uses Staff. More creature fixtures remain planned before Phase 4 closure. Current validation plan: `COLLISION_TEST_PLAN.md`.
 
-## 10. Evidence escalation rule
+## 11. Evidence escalation rule
 
 Use the evidence chain only when needed:
 
