@@ -67,22 +67,23 @@ This validates collision cleanup safety only. It does not prevent the destructiv
 
 ## Current responsibility
 
-Continue `docs/COLLISION_TEST_PLAN.md` §3.8 at:
+Continue `docs/COLLISION_TEST_PLAN.md` §3.8 Stage B by **reconciling cumulative coverage first**, not by repeating the player matrix.
 
-```text
-B. equipped actors + player weapon matrix
--> 1H
--> 1H+shield
--> 1H+torch
--> dual-1H
--> 2H
--> Staff
--> factual Axe / other supported equipped sources
-```
+User execution pattern:
+- for each player weapon being tested, perform one clean no-opponent/full-attack pass;
+- then use that weapon through its attacks in real combat against the opponent fixtures;
+- the two layers jointly provide player weapon evidence.
 
-Across the matrix include RIGHT/LEFT/BOTH/OFF, repeated contact and Power/Pierce/SimpleWhirl/Hack/Sprint where applicable.
+Therefore EV-365–EV-367 combat evidence is part of the Stage-B player matrix, not merely incidental coexistence. Current final-source combat coverage already includes:
+- 1H;
+- 1H+torch;
+- dual-1H, including RIGHT/LEFT/BOTH/OFF;
+- Staff, including applicable Hack/Whirl and OFF;
+- 2H, including applicable Hack/Whirl and OFF.
 
-EV-365–EV-367 contain useful equipped coexistence and lifecycle corroboration, but they do not replace the dedicated Stage-B matrix.
+Do not schedule separate repeat tests for those player routes merely to satisfy the Stage-B label. Next runtime work should target **equipped NPC/creature opponents and any genuinely uncovered player/source/side/family configuration**, with 1H+shield checked explicitly if it has not yet received its corresponding final-source standalone+combat pair.
+
+The complete campaign still needs factual equipped-opponent/source coverage including 1H/raw2, 2H/raw3, Axe/raw52 and other supported equipped sources as applicable.
 
 Broad failures must be reduced to the smallest factual route before any source change.
 

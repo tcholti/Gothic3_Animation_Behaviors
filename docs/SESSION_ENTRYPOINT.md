@@ -23,7 +23,7 @@ final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
 cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
 active Work task = NONE
-current stop gate = EV-367 POP-12 PASS -> comprehensive final-source Stage B equipped coverage
+current stop gate = EV-367 POP-12 PASS -> Stage B cumulative coverage reconciliation + equipped-opponent gaps
 ```
 
 ## Current responsibility
@@ -95,13 +95,13 @@ Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C58
 ```text
 comprehensive frozen-source release campaign Stage A CLOSED/PASS EV-365–EV-366
 -> supplemental bad-skip C1-R1 regression PASS EV-367
--> Stage B equipped coverage CURRENT
+-> Stage B cumulative equipped coverage CURRENT — reuse Stage-A player coverage; test only genuine gaps/equipped opponents
 -> modded/custom animations
 -> mixed stress
 -> New Balance + AttackCollision
 ```
 
-Final cleanup, both post-cleanup re-smokes, permanent raw8 focused acceptance, and comprehensive Stage A are CLOSED/PASS. Continue the frozen-source campaign at Stage B in COLLISION_TEST_PLAN §3.8.
+Final cleanup, both post-cleanup re-smokes, permanent raw8 focused acceptance, and comprehensive Stage A are CLOSED/PASS. Continue at §3.8 Stage B using cumulative coverage: existing no-opponent player runs plus EV-365–EV-367 combat coverage count; do not repeat already-covered player matrices solely because they occurred during Stage A.
 
 ## Read next by question
 

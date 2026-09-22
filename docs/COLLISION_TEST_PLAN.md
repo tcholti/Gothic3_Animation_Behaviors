@@ -241,10 +241,14 @@ A. non-weapon/body-contact creatures — CLOSED/PASS EV-365–EV-366
 -> final-source closure: EV-365–EV-366
 -> supplemental targeted bad-skip C1-R1 safety stress: PASS EV-367 (does not close Stage D / AttackContinuationProtection)
 
-B. equipped actors + player weapon matrix — CURRENT
--> revisit player and NPC/creature equipped routes
--> cover 1H, 1H+shield, 1H+torch, dual-1H, 2H, Staff and factual Axe/other supported sources
--> include RIGHT/LEFT/BOTH/OFF, repeated contact, Power/Pierce/SimpleWhirl/Hack/Sprint as applicable
+B. equipped actors + cumulative player weapon matrix — CURRENT
+-> do NOT require a second isolated player-only pass when the same frozen-source weapon/attack set already has its standalone no-opponent run plus live-combat coverage from Stage A
+-> count coverage cumulatively across the final-source campaign: clean standalone weapon execution + combat coexistence may jointly satisfy the player side of the matrix
+-> prioritize equipped NPC/creature opponents and genuine uncovered player/source/side/family gaps rather than repeating already-covered player attacks
+-> player live-combat coverage already present in EV-365–EV-367 includes 1H, 1H+torch, dual-1H, 2H and Staff; dual-1H exercised RIGHT/LEFT/BOTH/OFF, while Staff/2H included OFF and their applicable Hack/Whirl routes
+-> still ensure the complete campaign covers 1H, 1H+shield, 1H+torch, dual-1H, 2H, Staff and factual Axe/other supported sources
+-> include RIGHT/LEFT/BOTH/OFF, repeated contact, Power/Pierce/SimpleWhirl/Hack/Sprint where applicable
+-> if a player configuration is already complete, pair subsequent tests around opponent/source coverage instead of rerunning the player matrix
 
 C. modded/custom animation compatibility
 -> exercise the prepared Axe-separation and Rapier-separation routes
@@ -263,6 +267,8 @@ E. New Balance + AttackCollision compatibility
 ```
 
 This comprehensive pass is intentionally broader than the minimum causal matrix. Multiple thematically related logs may be uploaded together. Keep each raw artifact unchanged and identify the fixture in its filename.
+
+Coverage is **compositional rather than phase-isolated**. A run performed for body-contact/opponent validation may simultaneously satisfy equipped-player coverage when the exact frozen-source weapon, marker sides/families and cleanup behavior are actually exercised. Likewise, an equipped-opponent run may close remaining player gaps. Do not schedule a redundant repeat merely because the evidence was gathered under an earlier stage label. The User's standing execution pattern is to perform a clean no-opponent/full-attack pass for each player weapon being tested, then exercise that weapon again in combat; use those two evidence layers together.
 
 If a broad test exposes a failure, do not immediately patch the source. First reduce it to the smallest factual route under the feature-development method, then decide whether a new bounded source responsibility is justified.
 
