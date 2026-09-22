@@ -16,14 +16,14 @@ standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest runtime evidence = EV-365
+latest runtime evidence = EV-367
 Phase 4 = ACTIVE — comprehensive frozen-source release validation
-Stage A animals/body-contact = CLOSED/PASS EV-365
+Stage A animals/body-contact = CLOSED/PASS EV-365–EV-366
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
 cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
 active Work task = NONE
-current stop gate = EV-365 POP-12 PASS -> comprehensive final-source Stage B equipped coverage
+current stop gate = EV-367 POP-12 PASS -> comprehensive final-source Stage B equipped coverage
 ```
 
 ## Current responsibility
@@ -79,10 +79,12 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 - **EV-362:** prior marked/unmarked arrangement healthy but missed pending-replacement timing.
 - **EV-363:** interruption timing captured twice, but intended P0-right fallback still resolved marked at runtime; fixture-state mismatch, no source contradiction.
 - **EV-364:** corrected fixture proves marked-pending → generation replacement → genuinely unmarked native fallback; all ten focused raw8 acceptance requirements PASS.
-- **EV-365:** final-source Stage-A body-contact batch PASS: marked/unmarked Wolf control plus Minecrawler, Bloodfly, Boar and Bison; marked raw8 accounting closed cleanly, native fallback remained native, equipped coexistence stayed healthy, and the one observed exact-source C1 repair converged 7→5 without divergence.
+- **EV-365:** first final-source Stage-A body-contact batch PASS: marked/unmarked Wolf control plus Minecrawler, Bloodfly, Boar and Bison; technical results remain valid, but its Stage-A closure wording was premature because more ordinary fixtures remained.
+- **EV-366:** final unequipped-opponent extension PASS: Ripper, ScorpionKing, Snapper, TRex and Waran raw8 plus Troll/raw55, with dual-1H/Staff/2H coexistence; Stage A now actually CLOSED.
+- **EV-367:** deliberate destructive bad-skip lifecycle stress PASS: 10 exact owned group7→group5 C1-R1 repairs across 1H, 1H+torch, dual-1H, Staff and 2H; zero repair divergence. AttackContinuationProtection remains separate/paused.
 
 Latest runtime-reviewed and frozen source:
-`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — Stage-A comprehensive release validation PASS through EV-365
+`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — Stage-A comprehensive release validation PASS through EV-366; C1-R1 bad-skip regression PASS EV-367
 
 Final validated diagnostic DLL SHA256: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313` — EV-357/EV-359.
 
@@ -91,7 +93,8 @@ Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C58
 ## Next sequence
 
 ```text
-comprehensive frozen-source release campaign Stage A CLOSED/PASS EV-365
+comprehensive frozen-source release campaign Stage A CLOSED/PASS EV-365–EV-366
+-> supplemental bad-skip C1-R1 regression PASS EV-367
 -> Stage B equipped coverage CURRENT
 -> modded/custom animations
 -> mixed stress
@@ -106,7 +109,7 @@ Final cleanup, both post-cleanup re-smokes, permanent raw8 focused acceptance, a
 - closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-365
+- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-367
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`

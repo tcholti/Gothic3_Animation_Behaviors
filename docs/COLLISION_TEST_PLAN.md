@@ -176,11 +176,14 @@ Native human raw8 locked-target interception control          PASS — EV-352
 Raw8 persistent authored-opportunity causal probe              CLOSED/PASS — EV-353
 Raw8 permanent persistent-opportunity implementation            FINAL SOURCE FROZEN — FOCUSED ACCEPTANCE COMPLETE EV-357–EV-364
 Focused acceptance: all ten §14 requirements PASS — EV-359–EV-364
+Final-source comprehensive batch 1: Wolf marked/unmarked + Minecrawler/Bloodfly/Boar/Bison      PASS — EV-365
+Final-source unequipped extension: Ripper/ScorpionKing/Snapper/TRex/Troll/Waran                PASS — EV-366
+Supplemental destructive bad-skip / C1-R1 lifecycle stress                                     PASS — EV-367
 ```
 
 The Sabretooth/Troll reruns above were deliberate differentiated fixtures rather than duplication: they added transformed-player symmetry, single-vs-double marker comparison, and mixed current-build coexistence. EV-342–EV-345 then broaden factual Fist/raw8 coverage to Minecrawler, Bloodfly, Boar and Bison. EV-342 is an ordinary PASS: some correctly processed Minecrawler executions did not physically contact, which is normal runtime attack variance rather than a collision-system qualification.
 
-EV-346–EV-349 opened the raw8 authoring-semantics problem: early FIST was one-shot, native hit and miss both closed the latch, post-miss rearm could restore opportunity, visible damage was not a reliable contact oracle, and C1 replacement required explicit lifecycle closure. EV-353 then causally closed the persistent-opportunity model, EV-354 proved same-C1 Sprint-origin transport, and the permanent implementation was promoted and source-frozen after EV-357–EV-358. EV-359–EV-364 complete the focused permanent raw8 acceptance matrix on the frozen source. Human timing/contact, later-FIST reopening, no-contact closure, reaction replacement, replacement-to-unmarked fallback, native unmarked target-directed control, Gargoyle immediate/delayed/far cases, Sprint Action9->Action2 transport, raw55/equipped coexistence and diagnostic/behavior parity all PASS. Phase 4 may now resume under §3.8 comprehensive final-source validation.
+EV-346–EV-349 opened the raw8 authoring-semantics problem: early FIST was one-shot, native hit and miss both closed the latch, post-miss rearm could restore opportunity, visible damage was not a reliable contact oracle, and C1 replacement required explicit lifecycle closure. EV-353 then causally closed the persistent-opportunity model, EV-354 proved same-C1 Sprint-origin transport, and the permanent implementation was promoted and source-frozen after EV-357–EV-358. EV-359–EV-364 complete the focused permanent raw8 acceptance matrix on the frozen source. Human timing/contact, later-FIST reopening, no-contact closure, reaction replacement, replacement-to-unmarked fallback, native unmarked target-directed control, Gargoyle immediate/delayed/far cases, Sprint Action9->Action2 transport, raw55/equipped coexistence and diagnostic/behavior parity all PASS. Phase 4 may now resume under §3.8 comprehensive final-source validation. EV-365–EV-366 then close the comprehensive final-source non-weapon/body-contact stage across Wolf marked/unmarked control plus Minecrawler, Bloodfly, Boar, Bison, Ripper, ScorpionKing, Snapper, TRex, Troll and Waran. EV-367 additionally revalidates C1-R1 under deliberately induced destructive bad skips; it is a lifecycle safety regression, not AttackContinuationProtection and not a substitute for Phase-7 mixed stress.
 
 Preserve factual runtime source/UseType. Do not infer raw8/raw55 from creature name or animation token.
 
@@ -229,12 +232,14 @@ After the focused raw8 matrix closes, repeat a systematic final-source campaign 
 Run in this order:
 
 ```text
-A. non-weapon/body-contact creatures — CLOSED/PASS EV-365
+A. non-weapon/body-contact creatures — CLOSED/PASS EV-365–EV-366
 -> several logs per batch are allowed
 -> revisit prepared raw8/raw55 animal fixtures systematically, prioritizing routes not already exhaustively covered on the frozen source
 -> EV-359/EV-360 are comprehensive enough that Sabretooth, Gargoyle and human Fist do not need automatic repeat coverage unless a later contradiction specifically calls for them
 -> Golem may be reused opportunistically as a weapon-test target, but is not mandatory as another body-contact fixture
 -> vary player weapons between fixtures so creature collision and equipped collision coexist in the same runs
+-> final-source closure: EV-365–EV-366
+-> supplemental targeted bad-skip C1-R1 safety stress: PASS EV-367 (does not close Stage D / AttackContinuationProtection)
 
 B. equipped actors + player weapon matrix — CURRENT
 -> revisit player and NPC/creature equipped routes

@@ -23,25 +23,47 @@ No source change is authorized absent newly demonstrated contradictory evidence.
 
 ## Stage-A final-source closure
 
-Comprehensive frozen-source Stage A is **CLOSED/PASS at EV-365**.
+Comprehensive frozen-source Stage A is now **genuinely CLOSED/PASS across EV-365–EV-366**.
 
-The six-log batch covered:
-- Wolf marked raw8, including native Wolf + transformed-player symmetry;
+EV-365 batch:
+- Wolf marked raw8 + transformed-player symmetry;
 - Wolf fully unmarked/native control;
-- Minecrawler marked raw8 with player 1H coexistence;
-- Bloodfly marked raw8 with player 1H+torch coexistence;
-- Boar marked raw8 with player 1H+torch coexistence;
-- Bison marked raw8 with player 1H+torch coexistence.
+- Minecrawler;
+- Bloodfly;
+- Boar;
+- Bison.
 
-Important details:
-- the uploaded filename `2026-09-22_wolf_fist_marked_hero_1h_marked_test.log` contains the Minecrawler fixture; preserve the original basename as provenance;
-- marked raw8 opportunities balanced to exact native contact consumption or factual C1 closure in every run;
-- unmarked Wolf produced zero raw8 ownership/open/consume/marker state while native Fist contacts remained present;
-- two late player QuickAttack RIGHT callbacks in the Minecrawler run were rejected fail-closed at Action0 / no valid C1 with the weapon already group5;
-- one Minecrawler-run player 1H lifecycle backup repaired exact outstanding group7 -> group5 with no repair divergence;
-- no source contradiction, invariant/generation contradiction, repair divergence, explicit error/failure, or unload problem was found.
+EV-366 final ordinary unequipped extension:
+- Ripper;
+- ScorpionKing;
+- Snapper;
+- TRex;
+- Troll/raw55;
+- Waran.
 
-Stage A therefore does not justify a source change.
+EV-365's earlier “Stage A CLOSED” wording was premature only as workflow state: the User still had prepared normal unequipped fixtures. Its technical results remain valid. EV-366 is the actual final ordinary Stage-A closure.
+
+Across the extension:
+- marked raw8 opportunity accounting closed through exact native contact or factual C1 closure;
+- Troll stayed correctly on permanent raw55 with exact 5->7 / repeated 7->7 / native 7->5 behavior;
+- dual-1H, Staff and 2H player coexistence remained healthy;
+- no source contradiction, invariant/generation contradiction, repair divergence, marker anomaly, explicit error/failure or unload problem was found.
+
+## Supplemental bad-skip stress
+
+EV-367 is **PASS**.
+
+The deliberate bad-skip log produced 10 genuine C1-R1 physical repairs:
+- plain 1H RIGHT: 2;
+- 1H+torch RIGHT: 3;
+- dual-1H RIGHT: 1;
+- dual-1H LEFT: 2;
+- Staff RIGHT: 1;
+- 2H RIGHT: 1.
+
+Every exact owned source was group7 before repair and verified group5 afterward. Zero divergence/unresolved-equipped outcome occurred. Fourteen late marker callbacks were rejected fail-closed at Action0 / no valid C1 with sources already group5.
+
+This validates collision cleanup safety only. It does not prevent the destructive continuation loss; `AttackContinuationProtection` remains separate and paused.
 
 ## Current responsibility
 
@@ -60,8 +82,8 @@ B. equipped actors + player weapon matrix
 
 Across the matrix include RIGHT/LEFT/BOTH/OFF, repeated contact and Power/Pierce/SimpleWhirl/Hack/Sprint where applicable.
 
-Stage-B evidence should use positive collision discriminators where native and authored behavior could otherwise look visually identical.
+EV-365–EV-367 contain useful equipped coexistence and lifecycle corroboration, but they do not replace the dedicated Stage-B matrix.
 
 Broad failures must be reduced to the smallest factual route before any source change.
 
-After EV-365 closure, `research/raw/` contains only `Keep.txt`.
+After EV-366/EV-367 closure, `research/raw/` contains only `Keep.txt`.

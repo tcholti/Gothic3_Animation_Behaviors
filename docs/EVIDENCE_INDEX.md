@@ -41,7 +41,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | frame effects / authored marker channel | EV-012–EV-018 |
 | ordinary native weapon reset / marker timing | EV-019–EV-023 |
 | Staff/NPC actor-general marker proof | EV-024–EV-028 |
-| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336–EV-340, EV-342–EV-345, EV-365 |
+| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336–EV-340, EV-342–EV-345, EV-365–EV-366 |
 | player animation family / UseType / side semantics | EV-036–EV-065, EV-332–EV-335 |
 | Quick marker ownership / StatePosition | EV-066–EV-075 |
 | equipped dual-source RIGHT/LEFT mapping | EV-090–EV-094, EV-332 |
@@ -50,7 +50,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | Whirl callback/action/source separation | EV-145–EV-147 |
 | New Balance / AttackCollision early compatibility | EV-035, EV-148–EV-150 |
 | stale collision / destructive continuation loss | EV-151–EV-156, EV-181, EV-187, EV-190, EV-197–EV-198, EV-202–EV-207 |
-| lifecycle/C1-R1 exact-source repair | EV-180–EV-215 |
+| lifecycle/C1-R1 exact-source repair | EV-180–EV-215, EV-367 |
 | Hack callback identity | EV-216 |
 | SimpleWhirl StatePosition/target semantics | EV-217–EV-220, EV-243 |
 | human raw8 Fist production causal route | EV-221–EV-240 |
@@ -67,7 +67,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | raw55 Normal causal/repeated-contact closure | EV-277–EV-279, EV-286–EV-292 |
 | raw55 Sprint-origin closure / current protected sentinel | EV-280–EV-285, EV-294, EV-317 |
 | New Balance 0.7 source compatibility preflight | EV-284 |
-| permanent raw55 implementation + focused/current regression | EV-295–EV-298, EV-341 |
+| permanent raw55 implementation + focused/current regression | EV-295–EV-298, EV-341, EV-366 |
 | standalone collision regression | EV-299 onward |
 | Orc Phase-2 Staff/Fist/2H attack matrix / current-build rechecks | EV-309–EV-310, EV-330–EV-331 |
 | post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314, EV-332–EV-336 |
@@ -134,7 +134,9 @@ EV-361         motion-specific correction: native/unmarked human P1-left target-
 EV-362         final focused fallback sentinel attempt: marked/unmarked fixture correct and native P0 fallback healthy; required pending replacement chronology not captured
 EV-363         final focused fallback sentinel: replacement timing captured twice, but intended P0 fallback remained marked at runtime; fixture-state mismatch, no source contradiction
 EV-364         final focused raw8 sentinel PASS: replacement->genuinely-unmarked native fallback proven; §14 permanent raw8 acceptance COMPLETE
-EV-365         final frozen-source Stage-A body-contact batch PASS; Wolf marked/unmarked control + Minecrawler/Bloodfly/Boar/Bison + equipped coexistence
+EV-365         final-source Stage-A batch 1 PASS; Wolf marked/unmarked control + Minecrawler/Bloodfly/Boar/Bison + equipped coexistence
+EV-366         final-source Stage-A extension PASS; Ripper/ScorpionKing/Snapper/TRex/Troll/Waran; Stage A actually CLOSED
+EV-367         destructive bad-skip / C1-R1 stress PASS; 10 exact owned group7 -> group5 repairs, zero divergence
 ```
 
 ## 4. Escalation order
