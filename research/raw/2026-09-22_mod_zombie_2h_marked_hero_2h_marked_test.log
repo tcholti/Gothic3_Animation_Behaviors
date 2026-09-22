@@ -1,0 +1,852 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + EquippedSprintCollision + Raw8FistCollision + PhysicalFistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=42797.243 Actor=BenSala_Zombie_02 Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=42797.270 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=42803.549 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=1 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=42803.602 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=43121.334 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=43121.362 Actor=BenSala_Zombie_02 Generation=1 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=43121.374 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=43123.210 Ordinal=1 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=43131.525 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=43131.535 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=43131.848 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=43403.094 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE COLLISION_GROUP ElapsedMs=43437.680 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=43437.700 Actor=BenSala_Zombie_02 Generation=1 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=43437.727 Actor=BenSala_Zombie_02 Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=43444.032 Actor=BenSala_Zombie_02 Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43444.043 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=43450.443 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=3 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=43450.474 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=43818.172 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=43818.204 Actor=BenSala_Zombie_02 Generation=3 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=43818.217 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=3 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=44043.290 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=44043.310 Actor=BenSala_Zombie_02 Generation=3 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=44043.334 Actor=BenSala_Zombie_02 Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=44265.333 Actor=BenSala_Zombie_02 Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44265.346 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=44265.427 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=4 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=44366.992 Actor=BenSala_Zombie_02 Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44367.004 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=44367.075 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=5 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=44367.090 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=44713.794 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=44713.824 Actor=BenSala_Zombie_02 Generation=5 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=44713.837 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=44734.742 Ordinal=2 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=6 PlayerMotion=Hero_Stand_None_2H_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=44742.725 Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44742.736 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=44743.145 Event=PERSISTED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=45019.046 Actor=PC_Hero Generation=6 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=45030.642 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=45030.669 Actor=BenSala_Zombie_02 Generation=5 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=45030.690 Actor=BenSala_Zombie_02 Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=45039.279 Actor=BenSala_Zombie_02 Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45039.293 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=45044.518 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=7 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=45595.377 Actor=BenSala_Zombie_02 Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=7 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45595.389 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=45601.930 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=8 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=45601.962 Actor=BenSala_Zombie_02 Family=WHIRL Action=10 Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=45858.260 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=45858.288 Actor=BenSala_Zombie_02 Generation=8 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=45858.302 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=46169.323 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=46169.351 Actor=BenSala_Zombie_02 Generation=8 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=46169.361 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=8 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=46490.067 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=46490.094 Actor=BenSala_Zombie_02 Generation=8 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=46490.106 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=46500.539 Ordinal=3 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=46510.398 Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=46510.732 Event=PERSISTED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=46672.027 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=46672.047 Actor=BenSala_Zombie_02 Generation=8 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=46672.094 Actor=BenSala_Zombie_02 Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=46678.687 Actor=BenSala_Zombie_02 Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=46678.699 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=46685.119 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=10 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=47521.700 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=10 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=47527.110 Actor=BenSala_Zombie_02 Family=HACK Action=14 Phase=1 Motion=Zombie_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=47527.148 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=47527.157 Actor=BenSala_Zombie_02 Generation=10 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=47954.812 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=47954.831 Actor=BenSala_Zombie_02 Generation=10 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=47954.844 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=10 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=48276.223 Actor=PC_Hero Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=48728.063 Actor=BenSala_Zombie_02 Generation=10 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=49214.099 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=49214.126 Actor=PC_Hero Generation=11 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=49214.132 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=11 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=49214.136 Actor=PC_Hero Generation=11 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=49214.217 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=11 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=49310.562 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=49310.631 Actor=PC_Hero Generation=11 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=49414.717 Actor=It_2H_Sword_Flamberge Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=49414.790 Event=CANCELLED_IMMEDIATE_RESULT Actor=It_2H_Sword_Flamberge Generation=12 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=49420.349 Actor=BenSala_Zombie_02 Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=49420.360 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_ParadeStumble
+CORE C1_STATUS ElapsedMs=49426.996 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=13 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=49576.153 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=49576.173 Actor=PC_Hero Generation=11 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=49576.204 Actor=PC_Hero Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=50297.468 Actor=BenSala_Zombie_02 Generation=13 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50304.257 Actor=BenSala_Zombie_02 Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50304.269 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=50310.072 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=14 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=50825.789 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=14 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=50831.881 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=51065.549 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=51065.578 Actor=BenSala_Zombie_02 Generation=14 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=51065.592 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=14 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=51094.019 Ordinal=4 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=51101.362 Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=51101.848 Event=PERSISTED Actor=PC_Hero Generation=15 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=51192.727 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=51192.746 Actor=BenSala_Zombie_02 Generation=14 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=51192.771 Actor=BenSala_Zombie_02 Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=51200.333 Actor=BenSala_Zombie_02 Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=51200.345 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=51206.880 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=16 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=51723.092 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=16 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=51728.325 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=51996.415 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=51996.444 Actor=BenSala_Zombie_02 Generation=16 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=51996.457 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=16 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=52153.328 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=52153.348 Actor=BenSala_Zombie_02 Generation=16 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=52153.375 Actor=BenSala_Zombie_02 Generation=16 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52165.126 Actor=BenSala_Zombie_02 Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=52165.137 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=52165.192 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=17 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=52679.887 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=17 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=52679.969 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_FINAL ElapsedMs=52883.728 Actor=PC_Hero Generation=15 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=52892.615 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=52892.673 Actor=PC_Hero Generation=18 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=52892.679 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=18 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=52892.683 Actor=PC_Hero Generation=18 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=52892.701 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=18 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=52920.559 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=52920.586 Actor=BenSala_Zombie_02 Generation=17 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=52920.599 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=17 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=52981.762 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=52981.790 Actor=PC_Hero Generation=18 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=53039.403 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=53039.431 Actor=BenSala_Zombie_02 Generation=17 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=53039.454 Actor=BenSala_Zombie_02 Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=53046.146 Actor=BenSala_Zombie_02 Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=53046.159 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=53046.224 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=19 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=53249.936 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=53249.963 Actor=PC_Hero Generation=18 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=53250.024 Actor=PC_Hero Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=53596.042 Actor=BenSala_Zombie_02 Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=19 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=53596.054 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=20 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=53596.129 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=20 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=53596.150 Actor=BenSala_Zombie_02 Family=WHIRL Action=10 Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=53683.413 Actor=PC_Hero Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=53683.751 Event=PERSISTED Actor=PC_Hero Generation=21 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=53825.784 Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=21 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=53825.797 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=53826.151 Event=PERSISTED Actor=PC_Hero Generation=22 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=53826.172 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=53838.686 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=53838.714 Actor=BenSala_Zombie_02 Generation=20 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=53838.727 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=20 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=53857.164 Ordinal=5 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=53867.706 Actor=PC_Hero Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=22 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=53867.769 Event=PERSISTED Actor=PC_Hero Generation=23 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=54161.755 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=54161.783 Actor=BenSala_Zombie_02 Generation=20 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=54161.795 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=20 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=54474.269 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=54474.296 Actor=BenSala_Zombie_02 Generation=20 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=54474.308 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=20 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=54650.579 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=54650.609 Actor=BenSala_Zombie_02 Generation=20 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=54650.630 Actor=BenSala_Zombie_02 Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=54659.409 Actor=BenSala_Zombie_02 Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=54659.420 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=54659.488 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=24 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=55180.614 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=24 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=55180.751 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=55419.638 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=55419.667 Actor=BenSala_Zombie_02 Generation=24 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=55419.679 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=24 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=55533.323 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=55533.351 Actor=BenSala_Zombie_02 Generation=24 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=55533.374 Actor=BenSala_Zombie_02 Generation=24 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=55630.985 Actor=PC_Hero Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=55639.776 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=55639.804 Actor=PC_Hero Generation=25 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=55639.810 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=25 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=55639.815 Actor=PC_Hero Generation=25 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=55639.832 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=55728.034 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=55728.062 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=55831.372 Ordinal=6 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=55834.911 Actor=BenSala_Zombie_02 Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=55834.923 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=55841.083 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=26 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=56000.122 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=56000.149 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=56000.181 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=56121.000 Actor=BenSala_Zombie_02 Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=56135.639 Actor=BenSala_Zombie_02 Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56135.650 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=56135.755 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=27 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=56691.574 Actor=PC_Hero Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56691.586 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=56692.069 Event=PERSISTED Actor=PC_Hero Generation=28 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=56692.092 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=56944.094 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=56944.122 Actor=PC_Hero Generation=28 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=56944.136 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=28 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=56995.234 Ordinal=7 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=57005.433 Actor=BenSala_Zombie_02 Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=27 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57005.444 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=57010.575 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=29 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=57128.687 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=57128.707 Actor=PC_Hero Generation=28 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=57219.657 Actor=PC_Hero Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=57284.568 Actor=BenSala_Zombie_02 Generation=29 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=57298.733 Actor=BenSala_Zombie_02 Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57298.745 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=57298.823 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=30 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=57402.257 Actor=BenSala_Zombie_02 Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57402.269 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=57402.327 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=31 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=57402.342 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=57808.638 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=57808.738 Actor=BenSala_Zombie_02 Generation=31 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=57808.754 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=31 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=57835.233 Ordinal=8 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_2H_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=57842.944 Actor=PC_Hero Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57842.956 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=57843.344 Event=PERSISTED Actor=PC_Hero Generation=32 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=58075.719 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=58075.747 Actor=BenSala_Zombie_02 Generation=31 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=58075.774 Actor=BenSala_Zombie_02 Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58083.784 Actor=BenSala_Zombie_02 Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58083.796 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=58083.849 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=33 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=58119.489 Actor=PC_Hero Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=58611.088 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=33 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=58611.173 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=58859.792 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=58859.821 Actor=BenSala_Zombie_02 Generation=33 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=58859.834 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=33 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=58879.055 Ordinal=9 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=58888.737 Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=58888.799 Event=PERSISTED Actor=PC_Hero Generation=34 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=58976.340 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=58976.370 Actor=BenSala_Zombie_02 Generation=33 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=58976.429 Actor=BenSala_Zombie_02 Generation=33 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58984.306 Actor=BenSala_Zombie_02 Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58984.318 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=58984.387 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=35 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=59543.374 Actor=BenSala_Zombie_02 Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=35 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59543.385 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=59543.516 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=36 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=59543.539 Actor=BenSala_Zombie_02 Family=WHIRL Action=10 Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=59787.503 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=59787.532 Actor=BenSala_Zombie_02 Generation=36 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=59787.545 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=36 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=60106.270 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=60106.297 Actor=BenSala_Zombie_02 Generation=36 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=60106.308 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=36 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=60433.767 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=60433.845 Actor=BenSala_Zombie_02 Generation=36 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=60433.857 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=36 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=60618.172 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=60618.201 Actor=BenSala_Zombie_02 Generation=36 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=60618.260 Actor=BenSala_Zombie_02 Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=60692.346 Actor=PC_Hero Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=65516.466 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=65516.511 Actor=PC_Hero Generation=37 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=65516.517 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=37 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=65516.533 Actor=PC_Hero Generation=37 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=65516.550 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=37 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=65606.929 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=65606.959 Actor=PC_Hero Generation=37 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=65890.331 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=65890.362 Actor=PC_Hero Generation=37 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=65890.389 Actor=PC_Hero Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=66238.618 Actor=BenSala_Zombie_02 Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66238.630 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=66238.707 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=38 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=66336.785 Actor=BenSala_Zombie_02 Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66336.798 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=66336.906 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=39 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=66399.542 Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=66399.614 Event=PERSISTED Actor=PC_Hero Generation=40 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=66547.577 Actor=PC_Hero Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=40 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66547.589 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=66547.654 Event=PERSISTED Actor=PC_Hero Generation=41 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=66547.670 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=66797.228 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=66797.255 Actor=PC_Hero Generation=41 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=66797.267 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=41 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=66849.725 Ordinal=10 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=66853.402 Actor=BenSala_Zombie_02 Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=39 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66853.414 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=66853.487 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=42 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=66989.633 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=66989.654 Actor=PC_Hero Generation=41 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=66989.674 Actor=PC_Hero Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=67133.933 Actor=BenSala_Zombie_02 Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=67149.166 Actor=BenSala_Zombie_02 Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67149.177 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=67149.238 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=43 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=67650.065 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=43 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=67650.151 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=67927.956 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=67927.985 Actor=BenSala_Zombie_02 Generation=43 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=67927.999 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=43 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=68065.364 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=68065.390 Actor=BenSala_Zombie_02 Generation=43 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=68065.414 Actor=BenSala_Zombie_02 Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=68071.361 Actor=BenSala_Zombie_02 Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=68071.373 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=68071.432 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=44 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=68071.447 Actor=BenSala_Zombie_02 Family=WHIRL Action=10 Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=68306.959 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=68306.991 Actor=BenSala_Zombie_02 Generation=44 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=68307.003 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=44 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=68334.830 Ordinal=11 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=68340.776 Actor=PC_Hero Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=68340.836 Event=PERSISTED Actor=PC_Hero Generation=45 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=68612.983 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=68613.012 Actor=BenSala_Zombie_02 Generation=44 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=68613.024 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=44 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=68917.333 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=68917.362 Actor=BenSala_Zombie_02 Generation=44 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=68917.375 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=44 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=69093.185 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=69093.213 Actor=BenSala_Zombie_02 Generation=44 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=69093.235 Actor=BenSala_Zombie_02 Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=69102.425 Actor=BenSala_Zombie_02 Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=69102.437 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=69102.525 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=46 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=69339.462 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=69339.491 Actor=BenSala_Zombie_02 Generation=46 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=69339.555 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=46 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=69639.568 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=69639.596 Actor=BenSala_Zombie_02 Generation=46 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=69639.607 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=46 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=69950.268 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=69950.297 Actor=BenSala_Zombie_02 Generation=46 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=69950.309 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=46 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_FINAL ElapsedMs=70051.500 Actor=PC_Hero Generation=45 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=70057.217 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=70057.314 Actor=PC_Hero Generation=47 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=70057.322 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=47 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=70057.326 Actor=PC_Hero Generation=47 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=70057.345 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=47 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=70132.296 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=70132.337 Actor=BenSala_Zombie_02 Generation=46 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=70132.358 Actor=BenSala_Zombie_02 Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=70146.629 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=70146.657 Actor=PC_Hero Generation=47 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=70407.656 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=70407.688 Actor=PC_Hero Generation=47 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=70407.839 Actor=PC_Hero Generation=47 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=70498.334 Actor=BenSala_Zombie_02 Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=70498.359 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=70498.422 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=48 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=70598.415 Actor=BenSala_Zombie_02 Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=70598.427 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=70598.547 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=49 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=71117.674 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=49 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=71117.798 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=71357.138 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=71357.167 Actor=BenSala_Zombie_02 Generation=49 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=71357.181 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=49 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=71474.378 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=71474.406 Actor=BenSala_Zombie_02 Generation=49 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=71474.430 Actor=BenSala_Zombie_02 Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=71482.047 Actor=BenSala_Zombie_02 Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71482.058 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=71482.135 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=50 Status=CANDIDATE Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=71571.404 Source=It_Pickaxe UseType=52 Owner=<unresolved> Slot=NONE Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=71585.723 Actor=BenSala_Zombie_02 Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=71585.735 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=51 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=71585.800 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=51 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=71585.820 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=71657.281 Ordinal=12 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=8 PlayerMotion=Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=71664.942 Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71664.956 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=71665.072 Event=PERSISTED Actor=PC_Hero Generation=52 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=71938.028 Actor=PC_Hero Generation=52 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=71995.886 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=71995.915 Actor=BenSala_Zombie_02 Generation=51 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=71995.928 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=51 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=72244.167 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=72244.231 Actor=BenSala_Zombie_02 Generation=51 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=72244.254 Actor=BenSala_Zombie_02 Generation=51 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=72250.534 Actor=BenSala_Zombie_02 Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72250.545 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=72250.615 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=53 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=72250.631 Actor=BenSala_Zombie_02 Family=WHIRL Action=10 Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=72421.327 Actor=PC_Hero Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=72421.400 Event=PERSISTED Actor=PC_Hero Generation=54 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=72483.707 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=72483.733 Actor=BenSala_Zombie_02 Generation=53 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=72483.745 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=53 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=72556.048 Actor=PC_Hero Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=54 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72556.059 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=72556.131 Event=PERSISTED Actor=PC_Hero Generation=55 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=72791.647 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=72791.677 Actor=BenSala_Zombie_02 Generation=53 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=72791.688 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=53 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=72791.783 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=72791.795 Actor=PC_Hero Generation=55 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=72791.806 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=55 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=72801.705 Ordinal=13 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=72805.944 Actor=BenSala_Zombie_02 Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=53 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72805.956 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=56 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=72806.023 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=56 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=72968.030 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=72968.058 Actor=PC_Hero Generation=55 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=72968.080 Actor=PC_Hero Generation=55 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=73064.774 Actor=BenSala_Zombie_02 Generation=56 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=73078.832 Actor=BenSala_Zombie_02 Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=73078.844 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=73078.879 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=57 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=73169.621 Actor=BenSala_Zombie_02 Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=73169.633 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=58 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=73169.697 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=58 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=73693.046 Actor=BenSala_Zombie_02 Generation=59 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=58 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=73693.057 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=59 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=73693.163 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=59 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=74503.199 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=59 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=74503.329 Actor=BenSala_Zombie_02 Family=HACK Action=14 Phase=1 Motion=Zombie_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_BIND ElapsedMs=74907.468 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=59 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_START ElapsedMs=75064.783 Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=75065.124 Event=PERSISTED Actor=PC_Hero Generation=60 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=75201.569 Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=60 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=75201.581 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=75201.943 Event=PERSISTED Actor=PC_Hero Generation=61 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=75201.967 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=75433.439 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=75433.468 Actor=PC_Hero Generation=61 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=75433.480 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=61 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=75437.095 Ordinal=14 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=75441.561 Actor=BenSala_Zombie_02 Generation=62 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=59 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=75441.572 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=62 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=75441.641 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=62 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=75605.659 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=75605.680 Actor=PC_Hero Generation=61 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=75605.703 Actor=PC_Hero Generation=61 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=75703.978 Actor=BenSala_Zombie_02 Generation=62 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=75719.601 Actor=BenSala_Zombie_02 Generation=63 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=75719.630 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=63 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=75719.708 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=63 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=76213.982 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=63 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=76214.095 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=76450.050 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=76450.077 Actor=BenSala_Zombie_02 Generation=63 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=76450.089 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=63 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=76475.444 Ordinal=15 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=76481.608 Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=76481.725 Event=PERSISTED Actor=PC_Hero Generation=64 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=76555.613 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=76555.640 Actor=BenSala_Zombie_02 Generation=63 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=76555.661 Actor=BenSala_Zombie_02 Generation=63 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=76561.755 Actor=BenSala_Zombie_02 Generation=65 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76561.767 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=65 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=76561.855 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=65 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=76561.889 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=76957.655 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=76957.706 Actor=BenSala_Zombie_02 Generation=65 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=76957.727 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=65 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=77216.317 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=77216.348 Actor=BenSala_Zombie_02 Generation=65 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=77216.372 Actor=BenSala_Zombie_02 Generation=65 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=77223.441 Actor=BenSala_Zombie_02 Generation=66 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77223.454 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=66 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=77223.530 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=66 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=77223.547 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=77574.189 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=77574.218 Actor=BenSala_Zombie_02 Generation=66 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=77574.231 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=66 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=77874.596 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=77874.626 Actor=BenSala_Zombie_02 Generation=66 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=77874.648 Actor=BenSala_Zombie_02 Generation=66 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=77882.994 Actor=BenSala_Zombie_02 Generation=67 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77883.046 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=67 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=77883.113 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=67 Status=CANDIDATE Outstanding=0
+CORE C1_FINAL ElapsedMs=78215.326 Actor=PC_Hero Generation=64 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=78220.541 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=78220.568 Actor=PC_Hero Generation=68 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=78220.573 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=68 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=78220.577 Actor=PC_Hero Generation=68 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=78220.592 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=68 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=78304.723 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=78304.761 Actor=PC_Hero Generation=68 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=78328.935 Actor=BenSala_Zombie_02 Generation=69 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78328.946 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=69 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=78328.981 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=69 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=78420.501 Actor=BenSala_Zombie_02 Generation=70 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78420.513 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=70 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=78420.549 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=70 Status=CANDIDATE Outstanding=0
+CORE ONDAMAGE ElapsedMs=78423.879 Ordinal=16 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=78555.516 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=78555.542 Actor=PC_Hero Generation=68 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=78555.572 Actor=PC_Hero Generation=68 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=92206.244 Actor=BenSala_Zombie_02 Generation=71 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=92206.256 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=71 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=92206.318 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=71 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=92206.332 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=92545.928 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=92545.959 Actor=BenSala_Zombie_02 Generation=71 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=92545.971 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=71 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=92566.543 Ordinal=17 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=10 PlayerMotion=Hero_Stand_None_2H_P0_Move_Sprint_N_Left_00_%_00_P0_400.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=92576.075 Actor=PC_Hero Generation=72 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=92576.087 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=72 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=92576.145 Event=PERSISTED Actor=PC_Hero Generation=72 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=92853.856 Actor=PC_Hero Generation=72 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=92860.521 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=92860.548 Actor=BenSala_Zombie_02 Generation=71 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=92860.569 Actor=BenSala_Zombie_02 Generation=71 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=92869.412 Actor=BenSala_Zombie_02 Generation=73 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=92869.424 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=73 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=92869.457 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=73 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=92967.200 Actor=BenSala_Zombie_02 Generation=74 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=92967.212 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=74 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=92967.273 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=74 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=92967.288 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=93364.871 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=93364.898 Actor=BenSala_Zombie_02 Generation=74 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=93364.912 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=74 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=93365.148 Ordinal=18 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=8 PlayerMotion=Hero_Stand_None_2H_P0_Move_Walk_N_Fwd_00_%_00_P0_160.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=93372.622 Actor=PC_Hero Generation=75 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=93372.633 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=75 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=93372.690 Event=PERSISTED Actor=PC_Hero Generation=75 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=93615.968 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=93615.995 Actor=BenSala_Zombie_02 Generation=74 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=93616.017 Actor=BenSala_Zombie_02 Generation=74 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=93622.483 Actor=BenSala_Zombie_02 Generation=76 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=93622.494 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=76 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=93622.562 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=76 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=93637.523 Actor=PC_Hero Generation=75 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=94139.986 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=76 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=94140.066 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=94379.009 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=94379.038 Actor=BenSala_Zombie_02 Generation=76 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=94379.055 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=76 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=94382.526 Ordinal=19 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=8 PlayerMotion=Hero_Stand_None_2H_P0_Move_Walk_N_Left_00_%_00_P0_160.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=94392.048 Actor=PC_Hero Generation=77 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=94392.109 Event=PERSISTED Actor=PC_Hero Generation=77 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=94495.310 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=94495.339 Actor=BenSala_Zombie_02 Generation=76 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=94495.369 Actor=BenSala_Zombie_02 Generation=76 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=94502.941 Actor=BenSala_Zombie_02 Generation=78 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=94502.954 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=78 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=94503.024 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=78 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=95049.103 Actor=BenSala_Zombie_02 Generation=79 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=78 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=95049.116 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=79 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=95049.189 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=79 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=95049.205 Actor=BenSala_Zombie_02 Family=WHIRL Action=10 Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=95290.494 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=95290.523 Actor=BenSala_Zombie_02 Generation=79 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=95290.549 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=79 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=95610.082 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=95610.109 Actor=BenSala_Zombie_02 Generation=79 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=95610.120 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=79 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=95915.006 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=95915.033 Actor=BenSala_Zombie_02 Generation=79 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=95915.044 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=79 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=96093.090 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=96093.117 Actor=BenSala_Zombie_02 Generation=79 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=96093.139 Actor=BenSala_Zombie_02 Generation=79 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=96143.480 Actor=PC_Hero Generation=77 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=97463.590 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=97463.620 Actor=PC_Hero Generation=80 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=97463.626 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=80 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=97463.630 Actor=PC_Hero Generation=80 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=97463.648 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=80 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=97550.965 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=97550.993 Actor=PC_Hero Generation=80 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=97806.805 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=97806.834 Actor=PC_Hero Generation=80 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=97806.868 Actor=PC_Hero Generation=80 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=98391.827 Actor=BenSala_Zombie_02 Generation=81 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=98391.840 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=81 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=98391.877 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=81 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=99175.113 Actor=BenSala_Zombie_02 Generation=82 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=99175.185 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=82 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=99175.287 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=82 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=99993.058 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=82 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=99993.188 Actor=BenSala_Zombie_02 Family=HACK Action=14 Phase=1 Motion=Zombie_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=99993.216 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=99993.225 Actor=BenSala_Zombie_02 Generation=82 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=100400.083 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=100400.124 Actor=BenSala_Zombie_02 Generation=82 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=100400.156 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=82 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=101147.094 Actor=BenSala_Zombie_02 Generation=82 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=101153.648 Actor=BenSala_Zombie_02 Generation=83 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=101153.659 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=83 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=101153.724 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=83 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=101153.740 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=101536.824 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=101536.854 Actor=BenSala_Zombie_02 Generation=83 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=101536.866 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=83 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=101540.299 Ordinal=20 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=8 PlayerMotion=Hero_Stand_None_2H_P1_Move_Walk_N_Fwd_00_%_00_P0_160.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=101549.740 Actor=PC_Hero Generation=84 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=101549.751 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=84 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=101550.054 Event=PERSISTED Actor=PC_Hero Generation=84 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=101786.171 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=101786.199 Actor=BenSala_Zombie_02 Generation=83 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=101786.268 Actor=BenSala_Zombie_02 Generation=83 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=101793.327 Actor=BenSala_Zombie_02 Generation=85 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=101793.340 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=85 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=101793.449 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=85 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=101819.057 Actor=PC_Hero Generation=84 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=102611.700 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=85 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=102611.861 Actor=BenSala_Zombie_02 Family=HACK Action=14 Phase=1 Motion=Zombie_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=102611.889 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=102611.898 Actor=BenSala_Zombie_02 Generation=85 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=102701.255 Actor=PC_Hero Generation=86 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=102701.329 Event=PERSISTED Actor=PC_Hero Generation=86 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=102758.781 Ordinal=21 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=0 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=102768.851 Actor=PC_Hero Generation=87 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=86 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=102768.913 Event=PERSISTED Actor=PC_Hero Generation=87 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=103023.846 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=103023.874 Actor=BenSala_Zombie_02 Generation=85 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=103023.887 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=85 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=103773.670 Actor=BenSala_Zombie_02 Generation=85 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=103782.825 Actor=BenSala_Zombie_02 Generation=88 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=103782.836 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=88 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=103782.873 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=88 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=103874.257 Actor=BenSala_Zombie_02 Generation=89 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=103874.269 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=89 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=103874.337 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=89 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=103874.352 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=104258.204 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=104258.234 Actor=BenSala_Zombie_02 Generation=89 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=104258.247 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=89 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_FINAL ElapsedMs=104474.847 Actor=PC_Hero Generation=87 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=104481.137 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=104481.162 Actor=PC_Hero Generation=90 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=104481.168 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=90 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=104481.171 Actor=PC_Hero Generation=90 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=104481.187 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=90 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=104506.631 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=104506.659 Actor=BenSala_Zombie_02 Generation=89 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=104506.677 Actor=BenSala_Zombie_02 Generation=89 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE ONDAMAGE ElapsedMs=104521.429 Ordinal=22 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=104524.260 Actor=BenSala_Zombie_02 Generation=91 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=104524.270 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=91 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=104530.629 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=91 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=104568.398 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=104568.425 Actor=PC_Hero Generation=90 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=104633.235 Ordinal=23 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_BIND ElapsedMs=104637.807 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=91 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE COLLISION_GROUP ElapsedMs=104825.452 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=104825.480 Actor=PC_Hero Generation=90 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=104825.508 Actor=PC_Hero Generation=90 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=104905.904 Actor=BenSala_Zombie_02 Generation=91 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=104918.959 Actor=BenSala_Zombie_02 Generation=92 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=104918.971 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=92 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=104919.038 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=92 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=104919.053 Actor=BenSala_Zombie_02 Family=WHIRL Action=10 Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=105153.245 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=105153.274 Actor=BenSala_Zombie_02 Generation=92 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=105153.286 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=92 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=105170.980 Ordinal=24 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_SitKnockDown_None_2H_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=105177.889 Actor=PC_Hero Generation=93 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=105177.981 Event=PERSISTED Actor=PC_Hero Generation=93 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=105460.329 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=105460.359 Actor=BenSala_Zombie_02 Generation=92 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=105460.369 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=92 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=105761.925 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=105761.954 Actor=BenSala_Zombie_02 Generation=92 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=105761.966 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=92 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=105936.391 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=105936.420 Actor=BenSala_Zombie_02 Generation=92 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=105936.441 Actor=BenSala_Zombie_02 Generation=92 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=105943.182 Actor=BenSala_Zombie_02 Generation=94 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=105943.193 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=94 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=105943.252 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=94 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=106176.305 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=106176.333 Actor=BenSala_Zombie_02 Generation=94 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=106176.345 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=94 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=106482.458 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=106482.485 Actor=BenSala_Zombie_02 Generation=94 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=106482.496 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=94 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=106784.215 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=106784.273 Actor=BenSala_Zombie_02 Generation=94 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=106784.286 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=94 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_FINAL ElapsedMs=106882.435 Actor=PC_Hero Generation=93 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=106965.070 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=106965.098 Actor=BenSala_Zombie_02 Generation=94 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=106965.117 Actor=BenSala_Zombie_02 Generation=94 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=107941.461 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=107941.489 Actor=PC_Hero Generation=95 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=107941.495 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=95 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=107941.499 Actor=PC_Hero Generation=95 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=107941.564 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=95 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=108029.140 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=108029.165 Actor=PC_Hero Generation=95 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=108148.099 Actor=It_2H_Sword_Flamberge Generation=96 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=108148.144 Event=CANCELLED_IMMEDIATE_RESULT Actor=It_2H_Sword_Flamberge Generation=96 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=108152.636 Actor=BenSala_Zombie_02 Generation=97 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=108152.647 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=97 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_ParadeStumble
+CORE C1_STATUS ElapsedMs=108152.704 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=97 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=108286.320 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=108286.349 Actor=PC_Hero Generation=95 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=108286.379 Actor=PC_Hero Generation=95 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=109014.593 Actor=BenSala_Zombie_02 Generation=97 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=109020.986 Actor=BenSala_Zombie_02 Generation=98 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=109020.998 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=98 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=109021.097 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=98 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=109866.149 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=98 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=109866.280 Actor=BenSala_Zombie_02 Family=HACK Action=14 Phase=1 Motion=Zombie_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=109866.309 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=109866.317 Actor=BenSala_Zombie_02 Generation=98 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=110080.711 Ordinal=25 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=110088.258 Actor=PC_Hero Generation=99 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=110088.320 Event=PERSISTED Actor=PC_Hero Generation=99 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=110289.414 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=110289.444 Actor=BenSala_Zombie_02 Generation=98 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=110289.458 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=98 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=111070.574 Actor=BenSala_Zombie_02 Generation=98 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=111077.149 Actor=BenSala_Zombie_02 Generation=100 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=111077.161 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=100 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=111077.227 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=100 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=111077.242 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=111470.782 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=111470.811 Actor=BenSala_Zombie_02 Generation=100 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=111470.823 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=100 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=111733.090 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=111733.116 Actor=BenSala_Zombie_02 Generation=100 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=111733.135 Actor=BenSala_Zombie_02 Generation=100 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=111846.769 Actor=PC_Hero Generation=99 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=111855.409 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=111855.436 Actor=PC_Hero Generation=101 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=111855.443 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=101 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=111855.447 Actor=PC_Hero Generation=101 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=111855.464 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=101 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=111945.967 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=111945.995 Actor=PC_Hero Generation=101 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=112050.280 Ordinal=26 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=112053.824 Actor=BenSala_Zombie_02 Generation=102 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=112053.835 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=102 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=112053.891 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=102 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=112207.922 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=112207.953 Actor=PC_Hero Generation=101 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=112207.985 Actor=PC_Hero Generation=101 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=112321.973 Actor=BenSala_Zombie_02 Generation=102 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=112336.826 Actor=BenSala_Zombie_02 Generation=103 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=112336.837 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=103 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=112336.900 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=103 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=112336.915 Actor=BenSala_Zombie_02 Family=WHIRL Action=10 Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=112574.004 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=112574.030 Actor=BenSala_Zombie_02 Generation=103 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=112574.043 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=103 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=112885.895 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=112885.923 Actor=BenSala_Zombie_02 Generation=103 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=112885.934 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=103 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE C1_START ElapsedMs=113105.447 Actor=PC_Hero Generation=104 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=113105.570 Event=PERSISTED Actor=PC_Hero Generation=104 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=113204.712 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=113204.741 Actor=BenSala_Zombie_02 Generation=103 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=113204.753 Actor=BenSala_Zombie_02 Action=10 Family=WHIRL Phase=1 Motion=Zombie_Parade_None_2H_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=103 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=113229.409 Ordinal=27 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=0 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=113239.101 Actor=PC_Hero Generation=105 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=104 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=113239.165 Event=PERSISTED Actor=PC_Hero Generation=105 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=113381.194 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=113381.221 Actor=BenSala_Zombie_02 Generation=103 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=113381.240 Actor=BenSala_Zombie_02 Generation=103 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=113387.576 Actor=BenSala_Zombie_02 Generation=106 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=113387.588 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=106 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=113387.655 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=106 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=113897.793 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=106 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=113897.878 Actor=BenSala_Zombie_02 Family=POWER Action=2 Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=114133.299 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=114133.400 Actor=BenSala_Zombie_02 Generation=106 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=114133.417 Actor=BenSala_Zombie_02 Action=2 Family=POWER Phase=1 Motion=Zombie_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=106 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=114244.129 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=114244.188 Actor=BenSala_Zombie_02 Generation=106 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=114244.213 Actor=BenSala_Zombie_02 Generation=106 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=114252.045 Actor=BenSala_Zombie_02 Generation=107 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=114252.057 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=107 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=114252.114 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=107 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=114785.053 Actor=BenSala_Zombie_02 Generation=108 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=107 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=114785.065 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=108 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=114785.177 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=108 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=114964.279 Actor=PC_Hero Generation=105 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=115604.000 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=108 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=115604.123 Actor=BenSala_Zombie_02 Family=HACK Action=14 Phase=1 Motion=Zombie_Parade_None_2H_P0_FinishingAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_BIND ElapsedMs=116026.783 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=108 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE COLLISION_GROUP ElapsedMs=116527.182 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=116527.212 Actor=PC_Hero Generation=109 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=116527.219 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=109 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=116527.224 Actor=PC_Hero Generation=109 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=116527.241 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=109 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=116618.094 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=116618.124 Actor=PC_Hero Generation=109 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_FINAL ElapsedMs=116806.945 Actor=BenSala_Zombie_02 Generation=108 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=116815.253 Actor=BenSala_Zombie_02 Generation=110 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=116815.264 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=110 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=116815.299 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=110 Status=CANDIDATE Outstanding=0
+CORE ONDAMAGE ElapsedMs=116853.031 Ordinal=28 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=116857.652 Actor=BenSala_Zombie_02 Generation=111 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=116857.663 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=111 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=116857.733 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=111 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=116892.451 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=116892.478 Actor=PC_Hero Generation=109 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=116892.513 Actor=PC_Hero Generation=109 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=117135.708 Actor=BenSala_Zombie_02 Generation=111 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=117150.898 Actor=BenSala_Zombie_02 Generation=112 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=117150.910 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=112 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=117151.016 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=112 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=117981.729 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=112 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE COLLISION_GROUP ElapsedMs=117981.865 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=117981.876 Actor=BenSala_Zombie_02 Generation=112 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=118157.420 Ordinal=29 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_2H_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=118167.939 Actor=PC_Hero Generation=113 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=118168.004 Event=PERSISTED Actor=PC_Hero Generation=113 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=118399.943 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=118400.000 Actor=BenSala_Zombie_02 Generation=112 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=118400.013 Event=COMBAT_MOVE_REUSED Actor=BenSala_Zombie_02 Generation=112 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=119166.398 Actor=BenSala_Zombie_02 Generation=112 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=119174.705 Actor=BenSala_Zombie_02 Generation=114 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=119174.717 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=114 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=119174.753 Event=CANCELLED_IMMEDIATE_RESULT Actor=BenSala_Zombie_02 Generation=114 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=119272.416 Actor=BenSala_Zombie_02 Generation=115 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Pickaxe Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=119272.428 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=BenSala_Zombie_02 Generation=115 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=119272.507 Event=PERSISTED Actor=BenSala_Zombie_02 Generation=115 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=119272.525 Actor=BenSala_Zombie_02 Family=NORMAL Action=1 Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=119670.397 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=119670.425 Actor=BenSala_Zombie_02 Generation=115 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=119670.439 Actor=BenSala_Zombie_02 Action=1 Family=NORMAL Phase=1 Motion=Zombie_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=115 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_FINAL ElapsedMs=119934.064 Actor=PC_Hero Generation=113 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=119942.109 Source=It_Pickaxe UseType=52 Owner=BenSala_Zombie_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=119942.139 Actor=BenSala_Zombie_02 Generation=115 Status=PERSISTED Source=It_Pickaxe Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=119942.161 Actor=BenSala_Zombie_02 Generation=115 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Pickaxe Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=119942.281 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=119942.293 Actor=PC_Hero Generation=116 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=119942.299 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=116 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=119942.303 Actor=PC_Hero Generation=116 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=119942.319 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=116 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=120041.376 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=120041.406 Actor=PC_Hero Generation=116 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=120105.309 Ordinal=30 Target=BenSala_Zombie_02 Arg1=BenSala_Zombie_02 Arg2=BenSala_Zombie_02 Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=120312.241 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=120312.268 Actor=PC_Hero Generation=116 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=120312.383 Actor=PC_Hero Generation=116 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+Script_FrameCollisionTest unloading cleanly.
