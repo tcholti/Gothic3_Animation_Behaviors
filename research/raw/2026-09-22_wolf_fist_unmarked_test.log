@@ -1,0 +1,311 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + EquippedSprintCollision + Raw8FistCollision + PhysicalFistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=23494.176 Actor=Wolf Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=23494.202 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=23494.622 Event=PERSISTED Actor=Wolf Generation=1 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=23946.703 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=1 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=23948.563 Actor=Wolf Family=POWER Action=2 Phase=1 Motion=Wolf_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=23948.614 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=24166.892 Ordinal=1 Target=PC_Hero Arg1=Fist Arg2=Wolf Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_None_P0_Move_Turn90_N_Left_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=24171.868 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=24171.875 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=24172.187 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=24309.784 Actor=Wolf Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=24444.233 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=25548.572 Actor=Wolf Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=25548.584 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=25548.728 Event=PERSISTED Actor=Wolf Generation=3 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=25986.787 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=3 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=25986.867 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=26194.328 Ordinal=2 Target=PC_Hero Arg1=Fist Arg2=Wolf Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_00_%_10_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=26198.331 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=26198.337 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=26198.389 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=26330.089 Actor=Wolf Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=26466.274 Actor=PC_Hero Generation=4 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=27562.811 Actor=Wolf Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=27562.824 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=27562.888 Event=PERSISTED Actor=Wolf Generation=5 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=28005.586 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=5 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=28005.670 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=28219.030 Ordinal=3 Target=PC_Hero Arg1=Fist Arg2=Wolf Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=28223.003 Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=28223.010 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=28223.063 Event=PERSISTED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=28359.919 Actor=Wolf Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=28495.140 Actor=PC_Hero Generation=6 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=29569.816 Actor=Wolf Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=29569.828 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=29569.892 Event=PERSISTED Actor=Wolf Generation=7 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=30008.020 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=7 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=30008.105 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=30214.405 Ordinal=4 Target=PC_Hero Arg1=Fist Arg2=Wolf Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=30218.766 Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=30218.773 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=30218.826 Event=PERSISTED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=30354.235 Actor=Wolf Generation=7 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=30491.040 Actor=PC_Hero Generation=8 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=31581.037 Actor=Wolf Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=31581.050 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=31581.118 Event=PERSISTED Actor=Wolf Generation=9 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=32016.220 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=9 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=32016.299 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=32225.766 Ordinal=5 Target=PC_Hero Arg1=Fist Arg2=Wolf Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=32230.467 Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=32230.475 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=32230.556 Event=PERSISTED Actor=PC_Hero Generation=10 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=32366.441 Actor=Wolf Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=32502.906 Actor=PC_Hero Generation=10 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=33588.785 Actor=Wolf Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=33588.798 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=33588.861 Event=PERSISTED Actor=Wolf Generation=11 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=34032.116 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=11 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=34032.210 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=34247.994 Ordinal=6 Target=PC_Hero Arg1=Fist Arg2=Wolf Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=34252.922 Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=34252.929 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=34252.982 Event=PERSISTED Actor=PC_Hero Generation=12 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=34383.236 Actor=Wolf Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=34520.265 Actor=PC_Hero Generation=12 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=35596.224 Actor=Wolf Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=35596.236 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=35596.297 Event=PERSISTED Actor=Wolf Generation=13 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=36048.519 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=13 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=36048.644 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=36413.337 Actor=Wolf Generation=13 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=37599.606 Actor=Wolf Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=37599.618 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=37601.444 Event=PERSISTED Actor=Wolf Generation=14 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=37601.467 Actor=Wolf Family=NORMAL Action=1 Phase=1 Motion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=37816.122 Ordinal=7 Target=PC_Hero Arg1=Fist Arg2=Wolf Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_01_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=37820.296 Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=37820.304 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=37820.357 Event=PERSISTED Actor=PC_Hero Generation=15 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=37824.013 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=37963.760 Actor=Wolf Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=38097.630 Actor=PC_Hero Generation=15 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=39182.043 Actor=Wolf Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=39182.056 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=39182.119 Event=PERSISTED Actor=Wolf Generation=16 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=39634.119 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=16 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=39634.198 Actor=Wolf Family=POWER Action=2 Phase=1 Motion=Wolf_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=39634.214 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=39851.304 Ordinal=8 Target=PC_Hero Arg1=Fist Arg2=Wolf Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_02_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=39855.324 Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=39855.331 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=39855.382 Event=PERSISTED Actor=PC_Hero Generation=17 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=39985.925 Actor=Wolf Generation=16 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=40133.082 Actor=PC_Hero Generation=17 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=41195.764 Actor=Wolf Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=41195.777 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=41195.895 Event=PERSISTED Actor=Wolf Generation=18 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=41651.140 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=18 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=41651.224 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=42008.271 Actor=Wolf Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=43199.924 Actor=Wolf Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=43199.936 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=43200.000 Event=PERSISTED Actor=Wolf Generation=19 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=43200.015 Actor=Wolf Family=NORMAL Action=1 Phase=1 Motion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=43428.334 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=43560.424 Actor=Wolf Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=44784.938 Actor=Wolf Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=44784.950 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=20 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=44785.014 Event=PERSISTED Actor=Wolf Generation=20 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=45016.857 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=45155.148 Actor=Wolf Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=46366.887 Actor=Wolf Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=46366.899 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=21 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=46367.017 Event=PERSISTED Actor=Wolf Generation=21 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=46592.480 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=46721.831 Actor=Wolf Generation=21 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47157.301 Actor=Transform_Wolf_Potion Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=47157.313 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=47157.377 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=22 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=47157.392 Actor=Transform_Wolf_Potion Family=NORMAL Action=1 Phase=1 Motion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=47170.054 Actor=Wolf Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=47170.066 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=47170.394 Event=PERSISTED Actor=Wolf Generation=23 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=47374.786 Ordinal=9 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=47380.275 Actor=Wolf Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=23 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=47380.285 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=47380.772 Event=PERSISTED Actor=Wolf Generation=24 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=47385.941 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=47512.070 Actor=Transform_Wolf_Potion Generation=22 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=47659.405 Actor=Wolf Generation=24 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47961.608 Actor=Wolf Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=47961.619 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=47961.727 Event=PERSISTED Actor=Wolf Generation=25 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=48100.816 Actor=Transform_Wolf_Potion Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=48100.828 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=48100.890 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=26 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=48187.792 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=48317.759 Ordinal=10 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=48323.048 Actor=Wolf Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=25 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=48323.059 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=48323.119 Event=PERSISTED Actor=Wolf Generation=27 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=48330.218 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=48460.056 Actor=Transform_Wolf_Potion Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=48594.282 Actor=Wolf Generation=27 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=48609.632 Actor=Wolf Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=48609.643 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=48609.690 Event=PERSISTED Actor=Wolf Generation=28 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=49060.775 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=28 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=49060.851 Actor=Wolf Family=SPRINT Action=9 Phase=1 Motion=Wolf_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=49060.866 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=49109.023 Actor=Transform_Wolf_Potion Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=49109.034 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=49109.094 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=29 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=49294.433 Actor=Wolf Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49301.844 Actor=Wolf Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=49301.856 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=49301.916 Event=PERSISTED Actor=Wolf Generation=30 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=49319.414 Ordinal=11 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE COLLISION_GROUP ElapsedMs=49335.016 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=49464.131 Actor=Transform_Wolf_Potion Generation=29 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=49757.851 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=30 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=49757.932 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=49988.322 Actor=Wolf Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49996.559 Actor=Wolf Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=49996.570 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=49996.629 Event=PERSISTED Actor=Wolf Generation=31 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=50179.422 Actor=Transform_Wolf_Potion Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=50179.435 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=50179.499 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=32 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=50388.747 Ordinal=12 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE COLLISION_GROUP ElapsedMs=50394.593 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_BIND ElapsedMs=50431.484 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=31 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=50431.567 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=50520.335 Actor=Transform_Wolf_Potion Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=50661.088 Actor=Wolf Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50672.896 Actor=Wolf Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=50672.907 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=50672.970 Event=PERSISTED Actor=Wolf Generation=33 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=51101.841 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=33 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=51101.922 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=51136.369 Actor=Transform_Wolf_Potion Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=51136.382 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=51136.440 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=34 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=51332.704 Actor=Wolf Generation=33 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=51341.193 Actor=Wolf Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=51341.205 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=51341.267 Event=PERSISTED Actor=Wolf Generation=35 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=51565.484 Event=COMBAT_MOVE_REUSED Actor=Transform_Wolf_Potion Generation=34 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=51565.563 Actor=Transform_Wolf_Potion Family=POWER Action=2 Phase=1 Motion=Wolf_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=51565.594 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_BIND ElapsedMs=51765.760 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=35 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=51765.840 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=51765.996 Ordinal=13 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_FINAL ElapsedMs=51902.792 Actor=Transform_Wolf_Potion Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=51994.016 Actor=Wolf Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=51999.800 Actor=Wolf Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=51999.812 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=51999.873 Event=PERSISTED Actor=Wolf Generation=36 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=52345.056 Actor=Transform_Wolf_Potion Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=52345.068 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=52345.128 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=37 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=52422.817 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=36 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=52422.897 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=52654.230 Actor=Wolf Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52662.728 Actor=Wolf Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=52662.740 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=52662.801 Event=PERSISTED Actor=Wolf Generation=38 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=52774.570 Event=COMBAT_MOVE_REUSED Actor=Transform_Wolf_Potion Generation=37 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=52774.660 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE ONDAMAGE ElapsedMs=52979.781 Ordinal=14 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_BIND ElapsedMs=53090.492 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=38 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=53090.606 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=53112.218 Actor=Transform_Wolf_Potion Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=53316.501 Actor=Wolf Generation=38 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=53657.669 Actor=Transform_Wolf_Potion Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=53657.682 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=53657.743 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=39 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=53663.376 Actor=Wolf Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=53663.388 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=53663.450 Event=PERSISTED Actor=Wolf Generation=40 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=54083.694 Event=COMBAT_MOVE_REUSED Actor=Transform_Wolf_Potion Generation=39 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=54083.784 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_BIND ElapsedMs=54090.588 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=40 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=54090.753 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=54317.957 Actor=Wolf Generation=40 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=54328.100 Actor=Wolf Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=54328.112 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=54328.176 Event=PERSISTED Actor=Wolf Generation=41 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=54422.285 Actor=Transform_Wolf_Potion Generation=39 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=54749.176 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=41 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=54749.260 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=54986.697 Actor=Wolf Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=54992.230 Actor=Wolf Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=54992.241 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=54992.301 Event=PERSISTED Actor=Wolf Generation=42 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=55417.896 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=42 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=55417.980 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=55653.777 Actor=Wolf Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=55679.471 Actor=Transform_Wolf_Potion Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=55679.483 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=55679.584 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=43 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=55687.599 Actor=Wolf Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=55687.611 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=55687.677 Event=PERSISTED Actor=Wolf Generation=44 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=55708.256 Actor=Transform_Wolf_Potion Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=55709.030 Actor=Transform_Wolf_Potion Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=55709.039 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=55709.143 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=45 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=55709.160 Actor=Transform_Wolf_Potion Family=NORMAL Action=1 Phase=1 Motion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=55918.457 Ordinal=15 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE COLLISION_GROUP ElapsedMs=55926.298 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=56055.889 Actor=Transform_Wolf_Potion Generation=45 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=56129.879 Event=COMBAT_MOVE_REUSED Actor=Wolf Generation=44 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=56129.978 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=56360.611 Actor=Wolf Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=57576.509 Actor=Wolf Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=57576.522 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=57576.587 Event=PERSISTED Actor=Wolf Generation=46 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=57576.604 Actor=Wolf Family=NORMAL Action=1 Phase=1 Motion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=57799.785 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=57931.725 Actor=Wolf Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58290.853 Actor=Transform_Wolf_Potion Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=58290.865 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=58290.928 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=47 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=58305.175 Actor=Wolf Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=58305.187 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=58305.264 Event=PERSISTED Actor=Wolf Generation=48 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=58498.292 Ordinal=16 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=58503.660 Actor=Wolf Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=48 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=58503.671 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=58503.731 Event=PERSISTED Actor=Wolf Generation=49 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=58503.869 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=58634.573 Actor=Transform_Wolf_Potion Generation=47 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=58765.401 Actor=Wolf Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=59193.067 Actor=Wolf Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=59193.078 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=59193.134 Event=PERSISTED Actor=Wolf Generation=50 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=59405.571 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=59533.523 Actor=Wolf Generation=50 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=59751.402 Actor=Transform_Wolf_Potion Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=59751.414 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Transform_Wolf_Potion Generation=51 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=59751.476 Event=PERSISTED Actor=Transform_Wolf_Potion Generation=51 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=59764.943 Actor=Wolf Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=59764.955 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=59765.017 Event=PERSISTED Actor=Wolf Generation=52 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=59958.309 Ordinal=17 Target=Wolf Arg1=Fist Arg2=Transform_Wolf_Potion Caller=Game.dll+0x0016E348 PlayerAction=1 PlayerPhase=1 PlayerMotion=Wolf_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_200_L.xmot Raw8Fist=Fist Raw8UseType=8 Raw8Group=0
+CORE C1_START ElapsedMs=59964.295 Actor=Wolf Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=52 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=59964.306 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=59964.394 Event=PERSISTED Actor=Wolf Generation=53 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=59967.391 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=60098.132 Actor=Transform_Wolf_Potion Generation=51 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=60227.980 Actor=Wolf Generation=53 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=60761.138 Actor=Wolf Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=60761.149 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Wolf Generation=54 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=60761.205 Event=PERSISTED Actor=Wolf Generation=54 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=60979.214 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=61109.119 Actor=Wolf Generation=54 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+Script_FrameCollisionTest unloading cleanly.
