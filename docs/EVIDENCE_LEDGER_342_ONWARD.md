@@ -929,3 +929,61 @@ Focused acceptance status after EV-361:
 Interpretation:
 - **Only focused item 6 remains open.**
 - No frozen-source contradiction exposed.
+
+
+### EV-362 — Final focused fallback sentinel attempt: fixture correct, decisive replacement sequence not captured
+
+Source/runtime:
+- frozen source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- diagnostic DLL unchanged from frozen-source acceptance campaign;
+- User intentionally reversed marker polarity for the human Normal pair:
+  - marked: `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot`;
+  - unmarked/native: `Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot`.
+- visual behavior reported normal.
+
+Marked P1-left route:
+- 38 attack-ownership observations and 39 accepted FIST markers;
+- 39 exact raw8 opportunities opened;
+- 31 contact consumptions;
+- 8 ordinary `C1_FINALIZED` closes;
+- terminal accounting therefore complete for all 39 opens;
+- zero marked-opportunity `C1_GENERATION_REPLACED` close occurred in this run.
+
+Unmarked P0-right route:
+- 39 attack-ownership observations;
+- every observed execution: `MarkerPresent=0 / RequiredMask=0 / FistMarkers=0 / Raw8Fist=<none> / Raw8UseType=-1 / SuppressNative=0 / Classification=ROUTINE`;
+- zero raw8 ownership records on the motion;
+- zero raw8 opportunity opens on the motion;
+- zero raw8 opportunity-consumption records on the motion;
+- zero authored FIST markers on the motion;
+- 7 exact native raw8 contacts through `Game.dll+0x0016E348`;
+- native contacts targeted the currently engaged Orc routes: `ReddockOrcScoutLeader`, `ReddockOrcWarrior01`, and `ReddockOrcScout01`.
+
+Replacement analysis:
+- the log contains 16 factual `C1_START ... ReplacedGeneration=...` events for the player;
+- **none** of those replaced-generation ids intersects a C1 that had an open marked P1-left opportunity;
+- therefore the required sequence `marked pending -> generation replacement -> later unmarked native fallback` did not occur;
+- this is a test-window miss, not a behavioral contradiction.
+
+Diagnostics:
+- zero contradiction;
+- zero invariant warning;
+- zero generation inconsistency;
+- zero repair divergence;
+- zero explicit error/failure/rejection record;
+- clean runtime behavior reported by the User.
+
+Focused acceptance disposition:
+- item 6 remains OPEN solely because the decisive pending-marked replacement chronology was not observed;
+- item 7 remains PASS and is independently reinforced by the healthy unmarked P0-right route in this run;
+- no source change is justified.
+
+Provenance:
+- `research/archive/2026-09-22_human_fist_marked_unmarked_test.log`;
+- blob `6052582be2139d16bf13fdff0ecd879fc2e507de`;
+- 429,381 bytes.
+
+Interpretation:
+- **INFORMATIVE / NO CONTRADICTION.**
+- Fixture polarity is now correct for the final sentinel.
+- The next attempt should focus only on getting an opponent reaction/interruption during the short interval after the marked P1-left FIST has opened and before that opportunity contacts or finalizes.
