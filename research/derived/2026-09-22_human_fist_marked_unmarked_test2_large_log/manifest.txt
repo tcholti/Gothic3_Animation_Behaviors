@@ -1,0 +1,77 @@
+CHAT-FRIENDLY LARGE LOG PACKAGE
+ToolVersion: 1
+SourceInput: E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\research\raw\2026-09-22_human_fist_marked_unmarked_test2.log
+SourceFileName: 2026-09-22_human_fist_marked_unmarked_test2.log
+SourceSHA256: 1176CF999FBDAAE70C4D1AACD8730A3F917CAE86A66006F99E2FD4F91D1440AB
+SourceBytes: 1791903
+SourceLineCount: 7726
+DistinctEventTypes: 1
+EventTimelineRows: 2
+SignalMatches: 1782
+MaxOutputPartBytes: 60000
+FullSourceParts: 32
+EventTimelineParts: 1
+SignalParts: 7
+
+SignalPatterns:
+- C1_INVARIANT_WARNING = C1 INVARIANT WARNING
+- WOULD_REPAIR = WOULD_REPAIR
+- WARNING = (?i)\bWARNING\b
+- ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
+- MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
+- OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
+- RAW55_CALLBACK_BOUNDARY = RAW55_[A-Z0-9_]*CALLBACK_BOUNDARY
+- RAW55_GROUP_SUPPRESSION = RAW55_[A-Z0-9_]*GROUP_SUPPRESSION
+- FIST_ACTIVATION = (?i)ACTIVATE_FIST\s*[:=]\s*1
+- AUTHORED_FIST_MARKER = G3AB_COL_FIST
+- CLEAR_TRIGGERED_LIST = (?i)CLEARTRIGGEREDLIST|ClearTriggeredList
+- ON_DAMAGE = (?i)\bONDAMAGE\b|OnDamage
+- COLLISION_GROUP = CORE COLLISION_GROUP
+- C1_CLEANUP_FULFILLED = C1 CLEANUP FULFILLED
+- C1_FINAL = C1_FINAL|C1 FINAL
+- REPAIRED_TO_ITEM_EQUIPPED = REPAIRED_TO_ITEM_EQUIPPED
+- REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
+
+Files:
+- event_counts.tsv
+- full_source_index.tsv
+- event_timeline_part_001.tsv
+- signals_part_001.tsv
+- signals_part_002.tsv
+- signals_part_003.tsv
+- signals_part_004.tsv
+- signals_part_005.tsv
+- signals_part_006.tsv
+- signals_part_007.tsv
+- full_source_part_001.txt
+- full_source_part_002.txt
+- full_source_part_003.txt
+- full_source_part_004.txt
+- full_source_part_005.txt
+- full_source_part_006.txt
+- full_source_part_007.txt
+- full_source_part_008.txt
+- full_source_part_009.txt
+- full_source_part_010.txt
+- full_source_part_011.txt
+- full_source_part_012.txt
+- full_source_part_013.txt
+- full_source_part_014.txt
+- full_source_part_015.txt
+- full_source_part_016.txt
+- full_source_part_017.txt
+- full_source_part_018.txt
+- full_source_part_019.txt
+- full_source_part_020.txt
+- full_source_part_021.txt
+- full_source_part_022.txt
+- full_source_part_023.txt
+- full_source_part_024.txt
+- full_source_part_025.txt
+- full_source_part_026.txt
+- full_source_part_027.txt
+- full_source_part_028.txt
+- full_source_part_029.txt
+- full_source_part_030.txt
+- full_source_part_031.txt
+- full_source_part_032.txt
