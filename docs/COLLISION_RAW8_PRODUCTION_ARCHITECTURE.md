@@ -1,6 +1,6 @@
 # Permanent raw8 Fist Architecture
 
-**Status:** Frozen production architecture — FINAL SOURCE FROZEN at f1f5d2aa; focused runtime acceptance pending  
+**Status:** Frozen production architecture — FINAL SOURCE FROZEN at f1f5d2aa; focused runtime acceptance COMPLETE  
 **Updated:** 2026-09-21
 
 ## Purpose
@@ -131,7 +131,7 @@ Focused acceptance progress on frozen source `f1f5d2aad3edc3564a9a8b40541840b94f
 3. Later FIST same C1 reopen            PASS — EV-359
 4. Ordinary no-contact finalization     PASS — EV-359
 5. Reaction/generation replacement      PASS — EV-360
-6. Replacement -> unmarked fallback     OPEN
+6. Replacement -> unmarked fallback     PASS — EV-364
 7. Unmarked human target-directed       PASS — EV-361
 8. Sprint Action9 -> Action2 transport  PASS — EV-360
 9. raw55 + equipped coexistence         PASS — EV-357
@@ -150,7 +150,7 @@ The final read-only source-quality/modularity audit found no material behavioral
 - `9789254866bb47dcbadb145aeb9831c7c0e4e97f` — exact-generation C1 metadata retirement;
 - `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — release/diagnostic hygiene and CORE compaction.
 
-The current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both twins rebuilt successfully from the combined final candidate. Diagnostic sole-live deployment/startup and the targeted post-cleanup re-smoke passed at EV-357. Diagnostics-free behavior parity re-smoke passed at EV-358. Source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` is frozen for the focused acceptance matrix; focused acceptance is near-complete; EV-359–EV-361 close items 1–5 and 7–10. Only item 6 remains open.
+The current production source candidate is therefore `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`. Both twins rebuilt successfully from the combined final candidate. Diagnostic sole-live deployment/startup and the targeted post-cleanup re-smoke passed at EV-357. Diagnostics-free behavior parity re-smoke passed at EV-358. Source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903` is frozen for the focused acceptance matrix; focused acceptance is COMPLETE; EV-359–EV-364 close all ten §14 requirements.
 
 ## 15. Evidence closure
 
