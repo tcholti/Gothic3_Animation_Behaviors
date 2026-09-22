@@ -1,0 +1,700 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + EquippedSprintCollision + Raw8FistCollision + PhysicalFistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=31522.808 Actor=Stalker Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=31522.835 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=31527.872 Event=PERSISTED Actor=Stalker Generation=1 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=31527.910 Actor=Stalker Family=NORMAL Action=1 Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=31662.239 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=31662.268 Actor=Stalker Generation=1 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=31662.280 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=31664.558 Ordinal=1 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Loop_N_Fwd_00_%_02_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=31673.180 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=31673.190 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=31673.554 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=31946.680 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE COLLISION_GROUP ElapsedMs=32030.102 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=32030.122 Actor=Stalker Generation=1 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=32030.146 Actor=Stalker Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=33373.849 Actor=Stalker Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=33373.861 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=33373.952 Event=CANCELLED_IMMEDIATE_RESULT Actor=Stalker Generation=3 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=34023.412 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=34023.424 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=34023.855 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=34023.878 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=34278.162 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=34278.191 Actor=PC_Hero Generation=4 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=34278.202 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=4 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=34645.719 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=34645.740 Actor=PC_Hero Generation=4 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=34645.760 Actor=PC_Hero Generation=4 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=35163.046 Actor=Stalker Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=35163.058 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=35169.435 Event=PERSISTED Actor=Stalker Generation=5 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=35169.465 Actor=Stalker Family=QUICK Action=4 Phase=1 Motion=Stalker_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=35249.122 Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=35249.134 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=35249.520 Event=PERSISTED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=35249.541 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=35267.616 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=35267.644 Actor=Stalker Generation=5 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=35267.658 Actor=Stalker Action=4 Family=QUICK Phase=1 Motion=Stalker_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=35288.807 Ordinal=2 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=35296.487 Actor=PC_Hero Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=6 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=35296.499 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=35296.815 Event=PERSISTED Actor=PC_Hero Generation=7 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=35547.826 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=35547.846 Actor=Stalker Generation=5 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=35606.049 Actor=PC_Hero Generation=7 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=35625.630 Actor=Stalker Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=35840.914 Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=35840.926 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=35840.999 Event=PERSISTED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=35841.015 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=36098.493 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=36098.523 Actor=PC_Hero Generation=8 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=36098.535 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=36199.751 Ordinal=3 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=36203.470 Actor=Stalker Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=36203.482 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=36210.851 Event=PERSISTED Actor=Stalker Generation=9 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=36463.495 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=36463.524 Actor=PC_Hero Generation=8 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=36463.548 Actor=PC_Hero Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=36487.992 Actor=Stalker Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=37057.401 Actor=Stalker Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=37057.413 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=37057.454 Event=CANCELLED_IMMEDIATE_RESULT Actor=Stalker Generation=10 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=37391.987 Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=37391.999 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=37392.071 Event=PERSISTED Actor=PC_Hero Generation=11 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=37392.088 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=37593.928 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=37593.957 Actor=PC_Hero Generation=11 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=37593.969 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=11 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=37683.763 Ordinal=4 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=37689.740 Actor=Stalker Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=37689.752 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=37694.961 Event=PERSISTED Actor=Stalker Generation=12 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=37955.394 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=37955.414 Actor=PC_Hero Generation=11 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=37955.434 Actor=PC_Hero Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=37977.919 Actor=Stalker Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=38717.842 Actor=Stalker Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=38717.869 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=38717.964 Event=PERSISTED Actor=Stalker Generation=13 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=38816.875 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=38816.938 Actor=Stalker Generation=13 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=38816.952 Actor=Stalker Action=4 Family=QUICK Phase=1 Motion=Stalker_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=13 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=39073.573 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=39073.601 Actor=Stalker Generation=13 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=39165.991 Actor=Stalker Generation=13 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=39291.099 Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=39291.112 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=39291.462 Event=PERSISTED Actor=PC_Hero Generation=14 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=39291.485 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=39540.867 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=39540.894 Actor=PC_Hero Generation=14 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=39540.907 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=14 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=39602.111 Ordinal=5 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=39605.929 Actor=Stalker Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=39605.941 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=39606.005 Event=PERSISTED Actor=Stalker Generation=15 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=39826.504 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=39826.524 Actor=PC_Hero Generation=14 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=39883.174 Actor=Stalker Generation=15 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=39917.481 Actor=PC_Hero Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=40411.853 Actor=Stalker Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=40411.866 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=40411.908 Event=CANCELLED_IMMEDIATE_RESULT Actor=Stalker Generation=16 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=41233.671 Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=41233.684 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=41234.071 Event=PERSISTED Actor=PC_Hero Generation=17 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=41269.110 Actor=PC_Hero Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=41273.493 Actor=PC_Hero Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=41273.505 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=41273.866 Event=PERSISTED Actor=PC_Hero Generation=18 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=41273.888 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=41487.626 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=41487.650 Actor=PC_Hero Generation=18 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=41487.664 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=18 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=41704.076 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=41704.095 Actor=PC_Hero Generation=18 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=41793.585 Actor=PC_Hero Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=41877.075 Actor=PC_Hero Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=41877.088 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=41877.164 Event=PERSISTED Actor=PC_Hero Generation=19 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=41877.181 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=42127.675 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=42127.710 Actor=PC_Hero Generation=19 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=42127.726 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=19 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=42190.148 Ordinal=6 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=42193.473 Actor=Stalker Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=42193.485 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=20 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=42193.556 Event=PERSISTED Actor=Stalker Generation=20 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=42473.127 Actor=Stalker Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=42492.276 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=42492.303 Actor=PC_Hero Generation=19 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=42492.326 Actor=PC_Hero Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=42859.981 Actor=PC_Hero Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=42859.995 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=21 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=42860.069 Event=PERSISTED Actor=PC_Hero Generation=21 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=42860.087 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=43043.590 Actor=Stalker Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43043.602 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=43043.664 Event=PERSISTED Actor=Stalker Generation=22 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=43043.680 Actor=Stalker Family=NORMAL Action=1 Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=43055.504 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=43055.531 Actor=PC_Hero Generation=21 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=43055.543 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=21 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=43140.226 Ordinal=7 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=43145.168 Actor=Stalker Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=22 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43145.180 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=43145.255 Event=PERSISTED Actor=Stalker Generation=23 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=43432.805 Actor=Stalker Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=43435.799 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=43435.816 Actor=PC_Hero Generation=21 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=43435.838 Actor=PC_Hero Generation=21 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=43448.719 Actor=Stalker Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43448.731 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=43448.774 Event=CANCELLED_IMMEDIATE_RESULT Actor=Stalker Generation=24 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=43840.758 Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43840.771 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=43841.127 Event=PERSISTED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=44364.553 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=44365.005 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=44612.453 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=44612.481 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=44612.495 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=25 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=44670.021 Ordinal=8 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=44673.495 Actor=Stalker Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44673.507 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=44673.622 Event=PERSISTED Actor=Stalker Generation=26 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=44769.813 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=44769.865 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=44769.901 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=44951.945 Actor=Stalker Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=44967.371 Actor=Stalker Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=44967.383 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=44967.443 Event=PERSISTED Actor=Stalker Generation=27 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=45116.472 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=45116.501 Actor=Stalker Generation=27 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=45116.513 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=27 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=45202.774 Ordinal=9 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=45210.245 Actor=PC_Hero Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45210.257 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=45210.324 Event=PERSISTED Actor=PC_Hero Generation=28 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=45477.441 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=45477.468 Actor=Stalker Generation=27 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=45477.489 Actor=Stalker Generation=27 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=45487.395 Actor=PC_Hero Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=45502.642 Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45502.654 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=45502.770 Event=PERSISTED Actor=PC_Hero Generation=29 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=46015.383 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=29 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=46242.017 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=46242.046 Actor=PC_Hero Generation=29 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=46242.059 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=29 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=46298.545 Ordinal=10 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=46301.478 Actor=Stalker Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=46301.489 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=46301.550 Event=PERSISTED Actor=Stalker Generation=30 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=46386.676 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=46386.704 Actor=PC_Hero Generation=29 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=46386.724 Actor=PC_Hero Generation=29 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=46572.575 Actor=Stalker Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=46643.154 Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=46643.167 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=46643.547 Event=PERSISTED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=47146.340 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=47146.729 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=47279.918 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=47279.947 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=47279.961 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=31 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=47560.597 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=47560.623 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=47560.646 Actor=PC_Hero Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=47653.242 Actor=Stalker Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=47653.253 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=47659.745 Event=PERSISTED Actor=Stalker Generation=32 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=48085.267 Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=48085.279 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=48085.630 Event=PERSISTED Actor=PC_Hero Generation=33 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=48090.154 Actor=PC_Hero Generation=33 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=48090.785 Event=COMBAT_MOVE_REUSED Actor=Stalker Generation=32 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=48096.092 Actor=Stalker Family=POWER Action=2 Phase=1 Motion=Stalker_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=48099.216 Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=48099.225 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=48099.563 Event=PERSISTED Actor=PC_Hero Generation=34 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=48099.585 Actor=PC_Hero Family=WHIRL Action=10 Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=48188.620 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=48188.648 Actor=Stalker Generation=32 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=48188.662 Actor=Stalker Action=2 Family=POWER Phase=1 Motion=Stalker_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=32 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=48206.783 Ordinal=11 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=10 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=48216.272 Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=34 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=48216.637 Event=PERSISTED Actor=PC_Hero Generation=35 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=48440.238 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=48440.264 Actor=Stalker Generation=32 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=48440.291 Actor=Stalker Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49605.694 Actor=Stalker Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=49605.706 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=49611.908 Event=PERSISTED Actor=Stalker Generation=36 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=49931.420 Actor=PC_Hero Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=49937.328 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=49937.355 Actor=PC_Hero Generation=37 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=49937.361 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=37 Status=OUTER_BOUND Outstanding=0 Source=It_Axe_Bardiche Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=49937.366 Actor=PC_Hero Generation=37 Status=OUTER_BOUND Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=49937.383 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=37 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE C1_FINAL ElapsedMs=49954.813 Actor=Stalker Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=49961.128 Actor=Stalker Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=49961.141 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=49961.208 Event=PERSISTED Actor=Stalker Generation=38 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=50030.152 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=50030.181 Actor=PC_Hero Generation=37 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=50282.998 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=50283.020 Actor=PC_Hero Generation=37 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=50283.052 Actor=PC_Hero Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=50301.929 Actor=Stalker Generation=38 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50402.235 Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50402.248 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=50402.327 Event=PERSISTED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=50716.733 Actor=PC_Hero Generation=39 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50723.835 Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50723.848 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=50723.962 Event=PERSISTED Actor=PC_Hero Generation=40 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=50997.285 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=50997.314 Actor=PC_Hero Generation=40 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=50997.327 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=40 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=51273.713 Ordinal=12 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=10 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=51338.887 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=51338.929 Actor=PC_Hero Generation=40 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=51338.940 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=40 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE C1_FINAL ElapsedMs=51412.497 Actor=PC_Hero Generation=40 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=55812.645 Actor=Stalker Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=55812.659 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=55812.733 Event=PERSISTED Actor=Stalker Generation=41 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=56243.503 Event=COMBAT_MOVE_REUSED Actor=Stalker Generation=41 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=56243.592 Actor=Stalker Family=POWER Action=2 Phase=1 Motion=Stalker_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=56346.107 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=56346.136 Actor=Stalker Generation=41 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=56346.149 Actor=Stalker Action=2 Family=POWER Phase=1 Motion=Stalker_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=41 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=56347.432 Ordinal=13 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=56351.850 Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=56351.921 Event=PERSISTED Actor=PC_Hero Generation=42 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=56591.403 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=56591.431 Actor=Stalker Generation=41 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=56591.453 Actor=Stalker Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=57768.195 Actor=Stalker Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57768.221 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=57768.284 Event=PERSISTED Actor=Stalker Generation=43 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=58099.352 Actor=PC_Hero Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=58106.985 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=58107.013 Actor=PC_Hero Generation=44 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=58107.031 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=44 Status=OUTER_BOUND Outstanding=0 Source=It_Axe_Bardiche Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=58107.035 Actor=PC_Hero Generation=44 Status=OUTER_BOUND Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=58107.051 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=44 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE C1_FINAL ElapsedMs=58117.431 Actor=Stalker Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58126.196 Actor=Stalker Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58126.209 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=58126.306 Event=PERSISTED Actor=Stalker Generation=45 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=58198.820 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=58198.849 Actor=PC_Hero Generation=44 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=58462.317 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=58462.388 Actor=PC_Hero Generation=44 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=58462.426 Actor=PC_Hero Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=58480.689 Actor=Stalker Generation=45 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58648.084 Actor=PC_Hero Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58648.096 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=58648.168 Event=PERSISTED Actor=PC_Hero Generation=46 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=58667.281 Actor=PC_Hero Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58672.623 Actor=PC_Hero Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58672.635 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=58672.707 Event=PERSISTED Actor=PC_Hero Generation=47 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=58672.724 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=58873.630 Actor=Stalker Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58873.642 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=58873.707 Event=PERSISTED Actor=Stalker Generation=48 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=58873.723 Actor=Stalker Family=NORMAL Action=1 Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=58885.190 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=58885.219 Actor=PC_Hero Generation=47 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=58885.231 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=47 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=59021.266 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=59021.293 Actor=Stalker Generation=48 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=59021.306 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=48 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=59069.041 Ordinal=14 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=59075.432 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=59075.463 Actor=PC_Hero Generation=47 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=59076.725 Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=47 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59076.733 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=59077.075 Event=PERSISTED Actor=PC_Hero Generation=49 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=59346.058 Actor=PC_Hero Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=59371.868 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=59371.897 Actor=Stalker Generation=48 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=59371.916 Actor=Stalker Generation=48 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=59526.204 Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59526.217 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=59526.291 Event=PERSISTED Actor=PC_Hero Generation=50 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=59526.308 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=59772.018 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=59772.046 Actor=PC_Hero Generation=50 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=59772.059 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=50 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=59853.359 Ordinal=15 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=59856.315 Actor=Stalker Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59856.326 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=51 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=59856.389 Event=PERSISTED Actor=Stalker Generation=51 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=60052.826 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=60052.854 Actor=PC_Hero Generation=50 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=60132.620 Actor=Stalker Generation=51 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=60142.825 Actor=PC_Hero Generation=50 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=60535.347 Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=60535.359 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=60535.450 Event=PERSISTED Actor=PC_Hero Generation=52 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=60552.573 Actor=PC_Hero Generation=52 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=60556.437 Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=60556.449 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=60556.522 Event=PERSISTED Actor=PC_Hero Generation=53 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=60556.539 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=60690.193 Actor=Stalker Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=60690.205 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=54 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=60690.268 Event=PERSISTED Actor=Stalker Generation=54 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=60763.654 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=60763.683 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=60763.696 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=53 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=60793.744 Ordinal=16 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=60796.746 Actor=Stalker Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=54 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=60796.757 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=60796.830 Event=PERSISTED Actor=Stalker Generation=55 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=60986.598 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=60986.625 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=61077.021 Actor=Stalker Generation=55 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=61080.082 Actor=PC_Hero Generation=53 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=61092.921 Actor=Stalker Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=61092.933 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=56 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=61092.975 Event=CANCELLED_IMMEDIATE_RESULT Actor=Stalker Generation=56 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=62866.933 Actor=Stalker Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=62866.944 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=62867.014 Event=PERSISTED Actor=Stalker Generation=57 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=63318.760 Event=COMBAT_MOVE_REUSED Actor=Stalker Generation=57 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=63318.935 Actor=Stalker Family=POWER Action=2 Phase=1 Motion=Stalker_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=63424.525 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=63424.553 Actor=Stalker Generation=57 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=63424.566 Actor=Stalker Action=2 Family=POWER Phase=1 Motion=Stalker_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=57 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=63540.374 Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=63540.386 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=63540.457 Event=PERSISTED Actor=PC_Hero Generation=58 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=63540.474 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=63683.031 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=63683.059 Actor=Stalker Generation=57 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=63683.082 Actor=Stalker Generation=57 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=63784.808 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=63784.840 Actor=PC_Hero Generation=58 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=63784.858 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=58 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=63838.749 Ordinal=17 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=63843.698 Actor=Stalker Generation=59 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=63843.710 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=59 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=63859.174 Event=PERSISTED Actor=Stalker Generation=59 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=64089.109 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=64089.135 Actor=PC_Hero Generation=58 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=64141.924 Actor=Stalker Generation=59 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=64181.071 Actor=PC_Hero Generation=58 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=64727.181 Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=64727.194 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=64727.279 Event=PERSISTED Actor=PC_Hero Generation=60 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=64748.995 Actor=PC_Hero Generation=60 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=64753.033 Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=64753.045 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=64753.117 Event=PERSISTED Actor=PC_Hero Generation=61 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=64753.134 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=64962.910 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=64962.938 Actor=PC_Hero Generation=61 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=64962.952 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=61 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=64988.821 Ordinal=18 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=64992.659 Actor=Stalker Generation=62 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=64992.670 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=62 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=64992.732 Event=PERSISTED Actor=Stalker Generation=62 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=65179.577 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=65179.607 Actor=PC_Hero Generation=61 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=65270.024 Actor=Stalker Generation=62 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=65273.666 Actor=PC_Hero Generation=61 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=65284.766 Actor=Stalker Generation=63 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=65284.781 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=63 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=65284.847 Event=PERSISTED Actor=Stalker Generation=63 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=65284.863 Actor=Stalker Family=NORMAL Action=1 Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=65435.385 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=65435.415 Actor=Stalker Generation=63 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=65435.427 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=63 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=65493.726 Ordinal=19 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackL_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=65501.814 Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=65501.825 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=65501.891 Event=PERSISTED Actor=PC_Hero Generation=64 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=65779.900 Actor=PC_Hero Generation=64 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=65806.130 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=65806.159 Actor=Stalker Generation=63 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=65806.185 Actor=Stalker Generation=63 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=65866.817 Actor=PC_Hero Generation=65 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=65866.830 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=65 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=65866.905 Event=PERSISTED Actor=PC_Hero Generation=65 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=65866.922 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=66120.425 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=66120.452 Actor=PC_Hero Generation=65 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=66120.464 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=65 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=66223.671 Ordinal=20 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=66227.734 Actor=Stalker Generation=66 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66227.746 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=66 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=66227.810 Event=PERSISTED Actor=Stalker Generation=66 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=66485.372 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=66485.402 Actor=PC_Hero Generation=65 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=66485.425 Actor=PC_Hero Generation=65 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=66511.726 Actor=Stalker Generation=66 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=67059.113 Actor=PC_Hero Generation=67 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67059.126 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=67 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=67059.202 Event=PERSISTED Actor=PC_Hero Generation=67 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=67059.221 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=67264.234 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=67264.266 Actor=PC_Hero Generation=67 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=67264.282 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=67 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=67343.682 Ordinal=21 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=67348.708 Actor=Stalker Generation=68 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67348.719 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=68 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=67348.866 Event=PERSISTED Actor=Stalker Generation=68 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=67630.478 Actor=Stalker Generation=68 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=67633.577 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=67633.593 Actor=PC_Hero Generation=67 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=67633.614 Actor=PC_Hero Generation=67 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=67645.479 Actor=Stalker Generation=69 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67645.491 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=69 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=67645.556 Event=PERSISTED Actor=Stalker Generation=69 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=67799.878 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=67799.906 Actor=Stalker Generation=69 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=67799.917 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=69 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=67887.132 Ordinal=22 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=67895.160 Actor=PC_Hero Generation=70 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67895.172 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=70 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=67895.239 Event=PERSISTED Actor=PC_Hero Generation=70 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=68162.194 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=68162.222 Actor=Stalker Generation=69 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=68162.246 Actor=Stalker Generation=69 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=68182.764 Actor=PC_Hero Generation=70 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=68365.266 Actor=PC_Hero Generation=71 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=68365.278 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=71 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=68365.363 Event=PERSISTED Actor=PC_Hero Generation=71 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=68365.380 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=68621.323 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=68621.351 Actor=PC_Hero Generation=71 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=68621.363 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=71 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=68992.689 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=68992.717 Actor=PC_Hero Generation=71 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=68992.737 Actor=PC_Hero Generation=71 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=69409.617 Actor=Stalker Generation=72 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=69409.648 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=72 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=69409.735 Event=PERSISTED Actor=Stalker Generation=72 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=69561.502 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=69561.530 Actor=Stalker Generation=72 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=69561.542 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=72 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=69570.922 Actor=PC_Hero Generation=73 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=69570.934 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=73 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=69571.014 Event=PERSISTED Actor=PC_Hero Generation=73 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=69571.035 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=69620.373 Ordinal=23 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=69625.851 Actor=PC_Hero Generation=74 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=73 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=69625.862 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=74 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=69625.924 Event=PERSISTED Actor=PC_Hero Generation=74 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=69912.481 Actor=PC_Hero Generation=74 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=69927.939 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=69927.968 Actor=Stalker Generation=72 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=69927.990 Actor=Stalker Generation=72 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=70130.534 Actor=PC_Hero Generation=75 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=70130.547 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=75 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=70130.622 Event=PERSISTED Actor=PC_Hero Generation=75 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=70130.639 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=70385.001 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=70385.030 Actor=PC_Hero Generation=75 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=70385.043 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=75 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=70441.454 Ordinal=24 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=70446.717 Actor=Stalker Generation=76 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=70446.728 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=76 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=70446.793 Event=PERSISTED Actor=Stalker Generation=76 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=70731.414 Actor=Stalker Generation=76 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=70757.484 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=70757.510 Actor=PC_Hero Generation=75 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=70757.533 Actor=PC_Hero Generation=75 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=71312.286 Actor=Stalker Generation=77 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71312.299 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=77 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=71312.511 Event=PERSISTED Actor=Stalker Generation=77 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=71373.040 Actor=PC_Hero Generation=78 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71373.053 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=78 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=71373.132 Event=PERSISTED Actor=PC_Hero Generation=78 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=71373.151 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=71571.316 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=71571.342 Actor=PC_Hero Generation=78 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=71571.354 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=78 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=71643.137 Ordinal=25 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=71647.909 Actor=Stalker Generation=79 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=77 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71647.920 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=79 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=71647.992 Event=PERSISTED Actor=Stalker Generation=79 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=71930.192 Actor=Stalker Generation=79 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=71939.411 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=71939.434 Actor=PC_Hero Generation=78 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=71939.453 Actor=PC_Hero Generation=78 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=72620.770 Actor=Stalker Generation=80 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72620.796 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=80 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=72620.890 Event=PERSISTED Actor=Stalker Generation=80 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=72769.203 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=72769.231 Actor=Stalker Generation=80 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=72769.244 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=80 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=72849.054 Ordinal=26 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=72855.547 Actor=PC_Hero Generation=81 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72855.558 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=81 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=72855.618 Event=PERSISTED Actor=PC_Hero Generation=81 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=73137.306 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=73137.333 Actor=Stalker Generation=80 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=73137.353 Actor=Stalker Generation=80 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=73137.976 Actor=PC_Hero Generation=81 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=74508.270 Actor=Stalker Generation=82 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=74508.282 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=82 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=74508.346 Event=PERSISTED Actor=Stalker Generation=82 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=74655.877 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=74658.946 Actor=Stalker Generation=82 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=74659.077 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=82 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=75027.231 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=75027.259 Actor=Stalker Generation=82 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=75027.280 Actor=Stalker Generation=82 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=76693.482 Actor=Stalker Generation=83 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76693.494 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=83 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=76693.568 Event=PERSISTED Actor=Stalker Generation=83 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=76843.901 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=76843.930 Actor=Stalker Generation=83 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=76843.942 Actor=Stalker Action=1 Family=NORMAL Phase=1 Motion=Stalker_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=83 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=76906.975 Ordinal=27 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=76916.004 Actor=PC_Hero Generation=84 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76916.015 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=84 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=76916.079 Event=PERSISTED Actor=PC_Hero Generation=84 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=77189.093 Actor=PC_Hero Generation=84 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=77202.319 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=77202.346 Actor=Stalker Generation=83 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=77202.364 Actor=Stalker Generation=83 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=77364.744 Actor=PC_Hero Generation=85 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77364.757 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=85 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=77364.834 Event=PERSISTED Actor=PC_Hero Generation=85 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=77364.852 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=77611.393 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=77611.422 Actor=PC_Hero Generation=85 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=77611.435 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=85 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=77664.219 Ordinal=28 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=77667.555 Actor=Stalker Generation=86 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77667.567 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=86 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=77667.632 Event=PERSISTED Actor=Stalker Generation=86 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=77903.105 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=77903.132 Actor=PC_Hero Generation=85 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=77945.862 Actor=Stalker Generation=86 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=77993.342 Actor=PC_Hero Generation=85 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=78516.447 Actor=Stalker Generation=87 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78516.458 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=87 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=78516.501 Event=CANCELLED_IMMEDIATE_RESULT Actor=Stalker Generation=87 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=79959.143 Actor=Stalker Generation=88 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=79959.155 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=88 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=79959.223 Event=PERSISTED Actor=Stalker Generation=88 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=79959.240 Actor=Stalker Family=QUICK Action=4 Phase=1 Motion=Stalker_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=80063.205 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=80063.234 Actor=Stalker Generation=88 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=80063.246 Actor=Stalker Action=4 Family=QUICK Phase=1 Motion=Stalker_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=88 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=80308.659 Source=It_Axe_SpikedClub_01 UseType=52 Owner=Stalker Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=80308.691 Actor=Stalker Generation=88 Status=PERSISTED Source=It_Axe_SpikedClub_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=80394.848 Actor=Stalker Generation=88 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=80592.136 Actor=PC_Hero Generation=89 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80592.148 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=89 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=80592.224 Event=PERSISTED Actor=PC_Hero Generation=89 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=80592.240 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=80783.219 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=80783.248 Actor=PC_Hero Generation=89 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=80783.261 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=89 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=80804.453 Ordinal=29 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=80807.345 Actor=Stalker Generation=90 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80807.356 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=90 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=80807.432 Event=PERSISTED Actor=Stalker Generation=90 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=81080.842 Actor=Stalker Generation=90 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=81143.969 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=81143.998 Actor=PC_Hero Generation=89 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=81144.021 Actor=PC_Hero Generation=89 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=81292.089 Actor=PC_Hero Generation=91 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=81292.101 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=91 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=81292.175 Event=PERSISTED Actor=PC_Hero Generation=91 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=81799.355 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=91 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=81799.441 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=82041.003 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=82041.030 Actor=PC_Hero Generation=91 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=82041.048 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=91 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=82185.127 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=82185.154 Actor=PC_Hero Generation=91 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=82185.176 Actor=PC_Hero Generation=91 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=82541.395 Actor=Stalker Generation=92 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=82541.407 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=92 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=82541.470 Event=PERSISTED Actor=Stalker Generation=92 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=82550.724 Actor=PC_Hero Generation=93 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=82550.736 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=93 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=82550.811 Event=PERSISTED Actor=PC_Hero Generation=93 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=82550.828 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=82747.358 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=82747.398 Actor=PC_Hero Generation=93 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=82747.411 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=93 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=82797.732 Ordinal=30 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=82800.596 Actor=Stalker Generation=94 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=92 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=82800.607 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=94 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=82800.679 Event=PERSISTED Actor=Stalker Generation=94 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=83067.169 Actor=Stalker Generation=94 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=83090.747 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=83090.775 Actor=PC_Hero Generation=93 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=83090.799 Actor=PC_Hero Generation=93 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=83256.415 Actor=PC_Hero Generation=95 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=83256.427 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=95 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=83256.501 Event=PERSISTED Actor=PC_Hero Generation=95 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=83256.517 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=83496.416 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=83496.445 Actor=PC_Hero Generation=95 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=83496.458 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=95 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=83622.785 Actor=Stalker Generation=96 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=83622.797 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=96 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=83622.838 Event=CANCELLED_IMMEDIATE_RESULT Actor=Stalker Generation=96 Status=CANDIDATE Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=83851.500 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=83851.527 Actor=PC_Hero Generation=95 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=83851.546 Actor=PC_Hero Generation=95 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=84026.679 Actor=PC_Hero Generation=97 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=84026.692 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=97 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=84026.765 Event=PERSISTED Actor=PC_Hero Generation=97 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=84043.910 Actor=PC_Hero Generation=97 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=84049.331 Actor=PC_Hero Generation=98 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=84049.342 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=98 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=84049.414 Event=PERSISTED Actor=PC_Hero Generation=98 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=84049.430 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=84255.456 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=84255.489 Actor=PC_Hero Generation=98 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=84255.517 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=98 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=84262.231 Ordinal=31 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=84267.475 Actor=Stalker Generation=99 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=84267.486 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Stalker Generation=99 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=84267.558 Event=PERSISTED Actor=Stalker Generation=99 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=84461.259 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=84461.287 Actor=PC_Hero Generation=98 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=84526.011 Actor=Stalker Generation=99 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_SpikedClub_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=84551.189 Actor=PC_Hero Generation=98 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=84669.308 Actor=PC_Hero Generation=100 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=84669.321 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=100 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=84669.397 Event=PERSISTED Actor=PC_Hero Generation=100 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=84669.414 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=84913.148 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=84913.177 Actor=PC_Hero Generation=100 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=84913.190 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=100 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=84974.417 Ordinal=32 Target=Stalker Arg1=Stalker Arg2=Stalker Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=85254.797 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=85254.825 Actor=PC_Hero Generation=100 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=85254.894 Actor=PC_Hero Generation=100 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+Script_FrameCollisionTest unloading cleanly.

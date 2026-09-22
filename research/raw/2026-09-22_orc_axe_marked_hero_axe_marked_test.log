@@ -1,0 +1,515 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + EquippedSprintCollision + Raw8FistCollision + PhysicalFistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=45922.717 Actor=Montera_Orc_Raider_01 Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45922.743 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=45928.243 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=1 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=46315.080 Event=COMBAT_MOVE_REUSED Actor=Montera_Orc_Raider_01 Generation=1 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=46320.170 Actor=Montera_Orc_Raider_01 Family=POWER Action=2 Phase=1 Motion=Orc_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=46602.196 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=46602.218 Actor=Montera_Orc_Raider_01 Generation=1 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=46602.230 Actor=Montera_Orc_Raider_01 Action=2 Family=POWER Phase=1 Motion=Orc_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=46618.397 Ordinal=1 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=12 PlayerMotion=Hero_Stand_None_None_P0_Ambient_Ambient_N_Fwd_00_%_10_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=46626.855 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=46626.868 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=46627.414 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=46896.915 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE COLLISION_GROUP ElapsedMs=47119.700 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=47119.720 Actor=Montera_Orc_Raider_01 Generation=1 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=47119.745 Actor=Montera_Orc_Raider_01 Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=48422.703 Actor=Montera_Orc_Raider_01 Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=48422.715 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=48428.051 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=3 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=48428.081 Actor=Montera_Orc_Raider_01 Family=NORMAL Action=1 Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=48614.917 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=48614.945 Actor=Montera_Orc_Raider_01 Generation=3 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=48614.957 Actor=Montera_Orc_Raider_01 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=3 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=48736.144 Actor=It_Axe_Orc_01 Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=48741.267 Event=PERSISTED Actor=It_Axe_Orc_01 Generation=4 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=48741.333 Ordinal=2 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Parade_None_Axe_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=48744.909 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=48744.937 Actor=Montera_Orc_Raider_01 Generation=3 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=48751.846 Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=48751.857 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=48752.223 Event=PERSISTED Actor=PC_Hero Generation=5 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=48752.243 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=48927.735 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=48927.757 Actor=Montera_Orc_Raider_01 Generation=3 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=48927.777 Actor=Montera_Orc_Raider_01 Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=48934.002 Actor=Montera_Orc_Raider_01 Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=48934.014 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=48940.372 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=6 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=48990.858 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=48990.886 Actor=PC_Hero Generation=5 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=48990.903 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=49058.491 Ordinal=3 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=49061.670 Actor=Montera_Orc_Raider_01 Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=6 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=49061.677 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=49071.296 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=7 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=49248.143 Actor=Montera_Orc_Raider_01 Generation=7 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=49284.866 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=49284.888 Actor=PC_Hero Generation=5 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=49370.001 Actor=PC_Hero Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50341.648 Actor=Montera_Orc_Raider_01 Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50341.660 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=50348.319 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=8 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=50348.350 Actor=Montera_Orc_Raider_01 Family=QUICK Action=5 Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=50443.395 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=50443.423 Actor=Montera_Orc_Raider_01 Generation=8 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=50443.436 Actor=Montera_Orc_Raider_01 Action=5 Family=QUICK Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=50528.687 Ordinal=4 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=50533.628 Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50533.640 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=50547.510 Event=PERSISTED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=50704.227 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=50704.247 Actor=Montera_Orc_Raider_01 Generation=8 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=50788.680 Actor=Montera_Orc_Raider_01 Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=50809.503 Actor=PC_Hero Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=51227.454 Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=51227.467 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=51228.087 Event=PERSISTED Actor=PC_Hero Generation=10 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=51228.110 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=51423.482 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=51423.510 Actor=PC_Hero Generation=10 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=51423.522 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=10 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=51577.493 Ordinal=5 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=51582.457 Actor=Montera_Orc_Raider_01 Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=51582.469 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=51590.940 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=11 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=51761.265 Actor=Montera_Orc_Raider_01 Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=51781.730 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=51781.749 Actor=PC_Hero Generation=10 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=51781.770 Actor=PC_Hero Generation=10 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=52122.675 Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=52122.687 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=52123.177 Event=PERSISTED Actor=PC_Hero Generation=12 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=52123.200 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=52359.972 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=52360.001 Actor=PC_Hero Generation=12 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=52360.013 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=12 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=52446.047 Actor=It_Axe_Bardiche Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=52446.413 Event=PERSISTED Actor=It_Axe_Bardiche Generation=13 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=52446.470 Ordinal=6 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=52449.424 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=52449.648 Actor=PC_Hero Generation=12 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=52978.243 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=52978.277 Actor=PC_Hero Generation=12 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=52978.302 Actor=PC_Hero Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=53514.065 Actor=Montera_Orc_Raider_01 Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=53514.078 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=53514.158 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=14 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=53514.175 Actor=Montera_Orc_Raider_01 Family=NORMAL Action=1 Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=53701.538 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=53701.566 Actor=Montera_Orc_Raider_01 Generation=14 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=53701.579 Actor=Montera_Orc_Raider_01 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=14 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=53787.889 Ordinal=7 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=53792.693 Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=53792.705 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=53793.022 Event=PERSISTED Actor=PC_Hero Generation=15 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=54059.161 Actor=PC_Hero Generation=15 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=54102.464 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=54102.493 Actor=Montera_Orc_Raider_01 Generation=14 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=54102.514 Actor=Montera_Orc_Raider_01 Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=54292.760 Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=54292.774 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=54292.914 Event=PERSISTED Actor=PC_Hero Generation=16 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=54537.712 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=54537.741 Actor=PC_Hero Generation=16 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=54537.754 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=16 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=54595.055 Ordinal=8 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=54599.341 Actor=Montera_Orc_Raider_01 Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=54599.352 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=54599.420 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=17 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=54773.358 Actor=Montera_Orc_Raider_01 Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=54889.446 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=54889.476 Actor=PC_Hero Generation=16 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=54889.502 Actor=PC_Hero Generation=16 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=55421.035 Actor=PC_Hero Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=55421.046 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=55421.128 Event=PERSISTED Actor=PC_Hero Generation=18 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=55421.144 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=55614.421 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=55614.450 Actor=PC_Hero Generation=18 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=55614.463 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=18 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=55798.505 Actor=Montera_Orc_Raider_01 Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=55798.531 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=55798.677 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=19 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=55963.836 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=55963.865 Actor=PC_Hero Generation=18 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=55963.890 Actor=PC_Hero Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=55991.767 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=55991.796 Actor=Montera_Orc_Raider_01 Generation=19 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=55991.808 Actor=Montera_Orc_Raider_01 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=19 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=56109.517 Ordinal=9 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Recover_N_Fwd_00_%_00_P0_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=56113.911 Actor=PC_Hero Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56113.924 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=20 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=56114.247 Event=PERSISTED Actor=PC_Hero Generation=20 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=56378.233 Actor=PC_Hero Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=56384.193 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=56384.221 Actor=Montera_Orc_Raider_01 Generation=19 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=56384.239 Actor=Montera_Orc_Raider_01 Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=56428.770 Actor=PC_Hero Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56428.782 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=21 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=56428.863 Event=PERSISTED Actor=PC_Hero Generation=21 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=56428.880 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=56671.764 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=56671.793 Actor=PC_Hero Generation=21 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=56671.805 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=21 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=56741.801 Ordinal=10 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=56746.277 Actor=Montera_Orc_Raider_01 Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=56746.289 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=56746.354 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=22 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=56918.437 Actor=Montera_Orc_Raider_01 Generation=22 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=57019.999 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=57020.028 Actor=PC_Hero Generation=21 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=57020.048 Actor=PC_Hero Generation=21 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=57381.224 Actor=PC_Hero Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57381.236 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=57381.368 Event=PERSISTED Actor=PC_Hero Generation=23 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=57381.389 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=57572.419 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=57572.449 Actor=PC_Hero Generation=23 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=57572.462 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=23 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=57625.851 Ordinal=11 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=57631.489 Actor=Montera_Orc_Raider_01 Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57631.501 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=57631.567 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=24 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=57799.773 Actor=Montera_Orc_Raider_01 Generation=24 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=57915.722 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=57915.751 Actor=PC_Hero Generation=23 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=57915.774 Actor=PC_Hero Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58178.479 Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58178.491 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=58178.625 Event=PERSISTED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=58178.643 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=58418.508 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=58418.537 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=58418.550 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=25 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=58763.803 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=58763.833 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=58763.857 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=59075.772 Actor=PC_Hero Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59075.785 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=59076.301 Event=PERSISTED Actor=PC_Hero Generation=26 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=59533.367 Actor=Montera_Orc_Raider_01 Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=59533.379 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=59533.455 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=27 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=59576.261 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=26 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=59576.649 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=59709.318 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=59709.346 Actor=PC_Hero Generation=26 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=59709.358 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=26 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=59723.170 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=59723.200 Actor=Montera_Orc_Raider_01 Generation=27 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=59723.212 Actor=Montera_Orc_Raider_01 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=27 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=59729.331 Ordinal=12 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=59733.768 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=59733.789 Actor=Montera_Orc_Raider_01 Generation=27 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=59734.339 Actor=Montera_Orc_Raider_01 Generation=27 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=<not-live> Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=59993.394 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=59993.415 Actor=PC_Hero Generation=26 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=59993.437 Actor=PC_Hero Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=63704.439 Actor=Montera_Orc_Raider_01 Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=63704.451 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=63704.586 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=28 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=63704.601 Actor=Montera_Orc_Raider_01 Family=NORMAL Action=1 Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=63889.429 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=63889.460 Actor=Montera_Orc_Raider_01 Generation=28 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=63889.472 Actor=Montera_Orc_Raider_01 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=28 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=63898.094 Ordinal=13 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=63904.654 Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=63904.664 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=63904.727 Event=PERSISTED Actor=PC_Hero Generation=29 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=64167.062 Actor=PC_Hero Generation=29 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=64297.760 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=64297.790 Actor=Montera_Orc_Raider_01 Generation=28 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=64297.811 Actor=Montera_Orc_Raider_01 Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=65895.881 Actor=Montera_Orc_Raider_01 Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=65895.894 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=65895.969 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=30 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=65895.989 Actor=Montera_Orc_Raider_01 Family=QUICK Action=5 Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=65995.126 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=65995.154 Actor=Montera_Orc_Raider_01 Generation=30 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=65995.167 Actor=Montera_Orc_Raider_01 Action=5 Family=QUICK Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=30 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=66049.228 Ordinal=14 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=66053.380 Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66053.393 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=66059.863 Event=PERSISTED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=66253.640 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=66253.670 Actor=Montera_Orc_Raider_01 Generation=30 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=66332.673 Actor=PC_Hero Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=66343.853 Actor=Montera_Orc_Raider_01 Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=66387.686 Actor=PC_Hero Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66387.699 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=66387.815 Event=PERSISTED Actor=PC_Hero Generation=32 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=66387.834 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=66586.490 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=66586.519 Actor=PC_Hero Generation=32 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=66586.532 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=32 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=66713.080 Ordinal=15 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=66718.212 Actor=Montera_Orc_Raider_01 Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66718.223 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=66718.288 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=33 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=66905.104 Actor=Montera_Orc_Raider_01 Generation=33 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=66965.400 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=66965.428 Actor=PC_Hero Generation=32 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=66965.447 Actor=PC_Hero Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=68070.156 Actor=Montera_Orc_Raider_01 Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=68070.168 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=68070.352 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=34 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=68474.850 Event=COMBAT_MOVE_REUSED Actor=Montera_Orc_Raider_01 Generation=34 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=68475.051 Actor=Montera_Orc_Raider_01 Family=POWER Action=2 Phase=1 Motion=Orc_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=68782.973 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=68782.997 Actor=Montera_Orc_Raider_01 Generation=34 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=68783.010 Actor=Montera_Orc_Raider_01 Action=2 Family=POWER Phase=1 Motion=Orc_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=34 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=68898.772 Ordinal=16 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=68905.268 Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=68905.637 Event=PERSISTED Actor=PC_Hero Generation=35 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=69306.698 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=69306.726 Actor=Montera_Orc_Raider_01 Generation=34 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=69306.888 Actor=Montera_Orc_Raider_01 Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=70742.758 Actor=PC_Hero Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=70750.285 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=70750.314 Actor=PC_Hero Generation=36 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=70750.321 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=36 Status=OUTER_BOUND Outstanding=0 Source=It_Axe_Bardiche Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=70750.325 Actor=PC_Hero Generation=36 Status=OUTER_BOUND Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=70750.343 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=36 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=70846.448 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=70846.477 Actor=PC_Hero Generation=36 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=71117.038 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=71117.059 Actor=PC_Hero Generation=36 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=71117.088 Actor=PC_Hero Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=71521.500 Actor=Montera_Orc_Raider_01 Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71521.511 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=71521.575 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=37 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=71521.591 Actor=Montera_Orc_Raider_01 Family=QUICK Action=5 Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=71537.561 Actor=PC_Hero Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71537.573 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=71537.652 Event=PERSISTED Actor=PC_Hero Generation=38 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=71627.616 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=71627.643 Actor=Montera_Orc_Raider_01 Generation=37 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=71627.655 Actor=Montera_Orc_Raider_01 Action=5 Family=QUICK Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=37 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=71718.153 Ordinal=17 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=71723.009 Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=38 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71723.020 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=71723.083 Event=PERSISTED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=71885.973 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=71886.001 Actor=Montera_Orc_Raider_01 Generation=37 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=71977.562 Actor=Montera_Orc_Raider_01 Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=72001.588 Actor=PC_Hero Generation=39 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=72184.316 Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72184.327 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=72184.499 Event=PERSISTED Actor=PC_Hero Generation=40 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=72383.375 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=72383.403 Actor=PC_Hero Generation=40 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=72383.415 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=40 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=72494.187 Ordinal=18 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=72499.142 Actor=Montera_Orc_Raider_01 Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72499.154 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=72499.220 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=41 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=72684.316 Actor=Montera_Orc_Raider_01 Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=72752.350 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=72752.379 Actor=PC_Hero Generation=40 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=72752.407 Actor=PC_Hero Generation=40 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=74484.897 Actor=Montera_Orc_Raider_01 Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=74484.909 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=74490.114 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=42 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=74490.144 Actor=Montera_Orc_Raider_01 Family=WHIRL Action=10 Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=74552.609 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=74552.650 Actor=Montera_Orc_Raider_01 Generation=42 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=74552.664 Actor=Montera_Orc_Raider_01 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=42 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=74744.738 Ordinal=19 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=74749.553 Actor=PC_Hero Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=74749.565 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=74749.661 Event=PERSISTED Actor=PC_Hero Generation=43 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=74802.923 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=74802.950 Actor=Montera_Orc_Raider_01 Generation=42 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=74802.961 Actor=Montera_Orc_Raider_01 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=42 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=74872.690 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=74872.719 Actor=Montera_Orc_Raider_01 Generation=42 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=74872.732 Actor=Montera_Orc_Raider_01 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=42 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=75031.064 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=75031.129 Actor=Montera_Orc_Raider_01 Generation=42 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=75031.157 Actor=Montera_Orc_Raider_01 Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=75031.762 Actor=PC_Hero Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=75271.602 Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=75271.614 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=75271.710 Event=PERSISTED Actor=PC_Hero Generation=44 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=75271.726 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=75516.363 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=75516.391 Actor=PC_Hero Generation=44 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=75516.405 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=44 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=75613.701 Actor=It_Axe_Bardiche Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=13 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=75613.776 Event=PERSISTED Actor=It_Axe_Bardiche Generation=45 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=75613.811 Ordinal=20 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=76174.155 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=76174.181 Actor=PC_Hero Generation=44 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=76270.658 Actor=PC_Hero Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=76643.554 Actor=Montera_Orc_Raider_01 Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76643.567 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=76643.643 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=46 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=76643.660 Actor=Montera_Orc_Raider_01 Family=NORMAL Action=1 Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=76847.125 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=76847.219 Actor=Montera_Orc_Raider_01 Generation=46 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=76847.236 Actor=Montera_Orc_Raider_01 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=46 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=76980.991 Ordinal=21 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=76986.294 Actor=PC_Hero Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76986.306 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=76986.372 Event=PERSISTED Actor=PC_Hero Generation=47 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=77273.676 Actor=PC_Hero Generation=47 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=77282.422 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=77282.448 Actor=Montera_Orc_Raider_01 Generation=46 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=77282.467 Actor=Montera_Orc_Raider_01 Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=77398.822 Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77398.835 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=77398.913 Event=PERSISTED Actor=PC_Hero Generation=48 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=77398.930 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=77663.568 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=77663.596 Actor=PC_Hero Generation=48 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=77663.609 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=48 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=77717.836 Ordinal=22 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=77725.007 Actor=Montera_Orc_Raider_01 Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77725.031 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=77725.132 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=49 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=77906.740 Actor=Montera_Orc_Raider_01 Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=78042.029 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=78042.071 Actor=PC_Hero Generation=48 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=78042.135 Actor=PC_Hero Generation=48 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=78762.831 Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78762.843 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=78762.920 Event=PERSISTED Actor=PC_Hero Generation=50 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=78762.936 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=78965.410 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=78965.438 Actor=PC_Hero Generation=50 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=78965.451 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=50 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=79022.255 Actor=It_Axe_Bardiche Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=45 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=79022.336 Event=PERSISTED Actor=It_Axe_Bardiche Generation=51 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=79022.364 Ordinal=23 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=79027.684 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=79027.711 Actor=PC_Hero Generation=50 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=79030.711 Actor=It_Axe_Bardiche Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=51 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=79030.802 Event=PERSISTED Actor=It_Axe_Bardiche Generation=52 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=79030.835 Ordinal=24 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=79591.164 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=79591.194 Actor=PC_Hero Generation=50 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=79591.221 Actor=PC_Hero Generation=50 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=79699.972 Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=79699.984 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=79700.066 Event=PERSISTED Actor=PC_Hero Generation=53 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=79904.991 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=79905.019 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=79905.032 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=53 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=79926.775 Actor=It_Axe_Bardiche Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=52 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=79926.881 Event=PERSISTED Actor=It_Axe_Bardiche Generation=54 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=79926.946 Ordinal=25 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=79931.195 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=79931.223 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=80312.443 Actor=Montera_Orc_Raider_01 Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80312.455 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=80312.532 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=55 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=80312.549 Actor=Montera_Orc_Raider_01 Family=QUICK Action=5 Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=80415.168 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=80415.196 Actor=Montera_Orc_Raider_01 Generation=55 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=80415.245 Actor=Montera_Orc_Raider_01 Action=5 Family=QUICK Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=55 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=80441.001 Ordinal=26 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=80447.028 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=80447.059 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=80448.690 Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=53 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80448.698 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=80448.765 Event=PERSISTED Actor=PC_Hero Generation=56 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=80684.640 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=80684.670 Actor=Montera_Orc_Raider_01 Generation=55 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=80737.200 Actor=PC_Hero Generation=56 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=80777.335 Actor=Montera_Orc_Raider_01 Generation=55 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=80977.624 Actor=PC_Hero Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80977.636 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=80977.987 Event=PERSISTED Actor=PC_Hero Generation=57 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=80992.854 Actor=PC_Hero Generation=57 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=80995.387 Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80995.398 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=80995.755 Event=PERSISTED Actor=PC_Hero Generation=58 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=80995.779 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=81204.980 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=81205.006 Actor=PC_Hero Generation=58 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=81205.019 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=58 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=81239.712 Ordinal=27 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=81245.113 Actor=Montera_Orc_Raider_01 Generation=59 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=81245.136 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=59 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=81245.204 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=59 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=81430.357 Actor=Montera_Orc_Raider_01 Generation=59 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=81430.915 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=81430.928 Actor=PC_Hero Generation=58 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=81528.115 Actor=PC_Hero Generation=58 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=81655.632 Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=81655.643 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=81655.717 Event=PERSISTED Actor=PC_Hero Generation=60 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=81655.733 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=81914.850 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=81914.878 Actor=PC_Hero Generation=60 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=81914.890 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=60 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=81995.619 Ordinal=28 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=82000.918 Actor=Montera_Orc_Raider_01 Generation=61 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=82000.928 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=61 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+CORE C1_STATUS ElapsedMs=82000.995 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=61 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=82188.555 Actor=Montera_Orc_Raider_01 Generation=61 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=82292.538 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=82292.566 Actor=PC_Hero Generation=60 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=82292.586 Actor=PC_Hero Generation=60 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=83135.894 Actor=PC_Hero Generation=62 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=83135.907 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=62 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=83135.988 Event=PERSISTED Actor=PC_Hero Generation=62 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=83667.055 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=62 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=83667.148 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=83807.613 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=83807.641 Actor=PC_Hero Generation=62 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=83807.655 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=62 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE C1_START ElapsedMs=83847.711 Actor=It_Axe_Bardiche Generation=63 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=54 ReplacedOutstanding=0
+CORE C1_STATUS ElapsedMs=83848.046 Event=PERSISTED Actor=It_Axe_Bardiche Generation=63 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=83848.088 Ordinal=29 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_PowerAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=84497.149 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=84497.178 Actor=PC_Hero Generation=62 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=84497.200 Actor=PC_Hero Generation=62 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=84612.813 Actor=Montera_Orc_Raider_01 Generation=64 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Orc_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=84612.825 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Montera_Orc_Raider_01 Generation=64 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=84619.073 Event=PERSISTED Actor=Montera_Orc_Raider_01 Generation=64 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=85124.779 Event=COMBAT_MOVE_REUSED Actor=Montera_Orc_Raider_01 Generation=64 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=85130.899 Actor=Montera_Orc_Raider_01 Family=HACK Action=14 Phase=1 Motion=Orc_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_50.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=85248.725 Actor=PC_Hero Generation=65 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=85248.738 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=65 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=85248.821 Event=PERSISTED Actor=PC_Hero Generation=65 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=85248.840 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=85448.972 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=85449.000 Actor=Montera_Orc_Raider_01 Generation=64 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=85449.012 Actor=Montera_Orc_Raider_01 Action=14 Family=HACK Phase=1 Motion=Orc_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_50.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=64 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=85452.547 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=85452.561 Actor=PC_Hero Generation=65 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=85452.571 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=65 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=85460.262 Ordinal=30 Target=Montera_Orc_Raider_01 Arg1=Montera_Orc_Raider_01 Arg2=Montera_Orc_Raider_01 Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE ONDAMAGE ElapsedMs=85460.458 Ordinal=31 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=85468.626 Source=It_Axe_Orc_01 UseType=52 Owner=Montera_Orc_Raider_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=85468.647 Actor=Montera_Orc_Raider_01 Generation=64 Status=PERSISTED Source=It_Axe_Orc_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=85469.020 Actor=Montera_Orc_Raider_01 Generation=64 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=<not-live> Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=85472.193 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=85472.210 Actor=PC_Hero Generation=65 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=85473.489 Actor=PC_Hero Generation=66 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=65 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=85473.829 Event=PERSISTED Actor=PC_Hero Generation=66 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=87297.151 Actor=PC_Hero Generation=66 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=87306.025 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=87306.053 Actor=PC_Hero Generation=67 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=87306.059 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=67 Status=OUTER_BOUND Outstanding=0 Source=It_Axe_Bardiche Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=87306.063 Actor=PC_Hero Generation=67 Status=OUTER_BOUND Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=87306.085 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=67 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=87391.725 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=87391.755 Actor=PC_Hero Generation=67 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=87649.747 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=87649.776 Actor=PC_Hero Generation=67 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=87649.806 Actor=PC_Hero Generation=67 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+Script_FrameCollisionTest unloading cleanly.

@@ -1,0 +1,643 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + EquippedSprintCollision + Raw8FistCollision + PhysicalFistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=40796.051 Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=40796.079 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=40802.546 Event=PERSISTED Actor=PC_Hero Generation=1 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=40802.589 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=41040.940 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=41040.968 Actor=PC_Hero Generation=1 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=41040.980 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=41418.246 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=41418.266 Actor=PC_Hero Generation=1 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=41418.287 Actor=PC_Hero Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=42123.393 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=42123.405 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=42130.248 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=42130.282 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=42314.180 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=42314.207 Actor=PC_Hero Generation=2 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=42314.219 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=2 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=42668.669 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=42668.690 Actor=PC_Hero Generation=2 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=42668.761 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=43654.970 Actor=PC_Hero Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=43654.982 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=43661.158 Event=PERSISTED Actor=PC_Hero Generation=3 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=43661.190 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=43893.530 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=43893.559 Actor=PC_Hero Generation=3 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=43893.571 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=3 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=44201.370 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=44201.390 Actor=PC_Hero Generation=3 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=44270.150 Actor=PC_Hero Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=45007.402 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45007.414 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=45018.862 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=45036.239 Actor=PC_Hero Generation=4 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=45039.918 Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45039.930 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=45045.383 Event=PERSISTED Actor=PC_Hero Generation=5 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=45045.413 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=45247.196 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=45247.224 Actor=PC_Hero Generation=5 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=45247.241 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=45493.971 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=45494.011 Actor=PC_Hero Generation=5 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=45557.039 Actor=PC_Hero Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=46303.266 Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=46303.278 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=46309.152 Event=PERSISTED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=46814.114 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=46820.272 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=47053.440 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=47053.470 Actor=PC_Hero Generation=6 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=47053.482 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=6 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=47209.316 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=47209.334 Actor=PC_Hero Generation=6 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=47209.354 Actor=PC_Hero Generation=6 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=48116.838 Actor=PC_Hero Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=48116.851 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=48280.353 Event=PERSISTED Actor=PC_Hero Generation=7 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=48709.748 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=7 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=48715.092 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=48842.345 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=48842.378 Actor=PC_Hero Generation=7 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=48842.394 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=7 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=49156.218 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=49156.238 Actor=PC_Hero Generation=7 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=49156.258 Actor=PC_Hero Generation=7 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=51981.054 Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=51981.066 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=51986.463 Event=PERSISTED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=51986.493 Actor=PC_Hero Family=WHIRL Action=10 Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=52252.968 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=52252.997 Actor=PC_Hero Generation=8 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=52253.009 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=52593.019 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=52593.050 Actor=PC_Hero Generation=8 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=52593.062 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=8 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE C1_FINAL ElapsedMs=52826.967 Actor=PC_Hero Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=54468.325 Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=54468.338 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=54473.371 Event=PERSISTED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=55291.472 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=55297.067 Actor=PC_Hero Family=HACK Action=14 Phase=1 Motion=Hero_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=55531.156 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=55531.184 Actor=PC_Hero Generation=9 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=55531.196 Actor=PC_Hero Action=14 Family=HACK Phase=1 Motion=Hero_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=9 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=55715.579 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=55715.598 Actor=PC_Hero Generation=9 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=55715.616 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=56465.033 Actor=PC_Hero Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=57474.730 Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=57474.743 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=57474.818 Event=PERSISTED Actor=PC_Hero Generation=10 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=57474.835 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=57712.919 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=57712.947 Actor=PC_Hero Generation=10 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=57712.960 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=10 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=57992.099 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=57992.128 Actor=PC_Hero Generation=10 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=58078.070 Actor=PC_Hero Generation=10 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58589.867 Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58589.880 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=58589.960 Event=PERSISTED Actor=PC_Hero Generation=11 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=58635.641 Actor=PC_Hero Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=58640.173 Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=58640.214 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=58640.324 Event=PERSISTED Actor=PC_Hero Generation=12 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=58640.355 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=58843.878 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=58843.920 Actor=PC_Hero Generation=12 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=58843.933 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=12 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=59054.008 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=59054.038 Actor=PC_Hero Generation=12 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=59141.633 Actor=PC_Hero Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=66751.195 Actor=PC_Hero Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66751.208 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=66751.288 Event=PERSISTED Actor=PC_Hero Generation=13 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=66751.305 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=67000.518 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=67000.546 Actor=PC_Hero Generation=13 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=67000.558 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=13 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=67025.313 Ordinal=1 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=67032.478 Actor=Demon Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=67032.488 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=67032.917 Event=PERSISTED Actor=Demon Generation=14 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=67350.696 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=67352.952 Actor=PC_Hero Generation=13 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=67352.981 Actor=PC_Hero Generation=13 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=67436.905 Actor=Demon Generation=14 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=67470.100 Actor=Demon Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67470.112 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=67470.524 Event=PERSISTED Actor=Demon Generation=15 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=67470.562 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=67658.346 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=67658.375 Actor=Demon Generation=15 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=67658.388 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=15 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=67675.835 Ordinal=2 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=67684.681 Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=67684.693 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=67837.928 Event=PERSISTED Actor=PC_Hero Generation=16 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=68063.510 Actor=PC_Hero Generation=16 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=68205.763 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=68205.784 Actor=Demon Generation=15 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=68205.806 Actor=Demon Generation=15 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=68651.563 Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=68651.575 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=68657.709 Event=PERSISTED Actor=PC_Hero Generation=17 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=68657.746 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=68888.565 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=68888.587 Actor=PC_Hero Generation=17 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=68888.599 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=17 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=68936.929 Ordinal=3 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=68937.047 Actor=Demon Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=68937.054 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=68937.361 Event=PERSISTED Actor=Demon Generation=18 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=69155.400 Actor=Demon Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=69190.032 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=69190.059 Actor=PC_Hero Generation=17 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=69286.241 Actor=PC_Hero Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=69727.818 Actor=Demon Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=69727.830 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=69728.191 Event=PERSISTED Actor=Demon Generation=19 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=70181.684 Event=COMBAT_MOVE_REUSED Actor=Demon Generation=19 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=70182.291 Actor=Demon Family=POWER Action=2 Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=70322.975 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=70323.005 Actor=Demon Generation=19 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=70323.055 Actor=Demon Action=2 Family=POWER Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=19 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=70380.991 Ordinal=4 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=70382.426 Actor=PC_Hero Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=70387.909 Event=PERSISTED Actor=PC_Hero Generation=20 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=70652.079 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=70652.099 Actor=Demon Generation=19 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=70652.121 Actor=Demon Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=72149.468 Actor=PC_Hero Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=72300.463 Actor=Demon Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72300.475 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=21 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=72300.820 Event=PERSISTED Actor=Demon Generation=21 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=72830.075 Actor=Demon Generation=21 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=72838.963 Actor=Demon Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72838.974 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=72839.512 Event=PERSISTED Actor=Demon Generation=22 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=73361.359 Actor=Demon Generation=22 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=74084.708 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=74084.738 Actor=PC_Hero Generation=23 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=74084.745 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=23 Status=OUTER_BOUND Outstanding=0 Source=It_Axe_Bardiche Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=74084.749 Actor=PC_Hero Generation=23 Status=OUTER_BOUND Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=74084.768 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=23 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=74182.571 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=74182.599 Actor=PC_Hero Generation=23 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=74463.165 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=74463.184 Actor=PC_Hero Generation=23 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=74463.221 Actor=PC_Hero Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=74867.729 Actor=Demon Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=74867.741 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=74867.829 Event=CANCELLED_IMMEDIATE_RESULT Actor=Demon Generation=24 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=74923.728 Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=74923.740 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=74923.819 Event=PERSISTED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=74923.835 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=75128.013 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=75128.041 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=75128.052 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=25 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=75505.584 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=75505.609 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=75505.633 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=76075.018 Actor=PC_Hero Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76075.030 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=76075.110 Event=PERSISTED Actor=PC_Hero Generation=26 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=76075.126 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=76342.089 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=76342.119 Actor=PC_Hero Generation=26 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=76342.131 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=26 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=76420.706 Ordinal=5 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=76424.610 Actor=Demon Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=76424.621 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=76425.053 Event=PERSISTED Actor=Demon Generation=27 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=76658.413 Actor=Demon Generation=27 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=76718.376 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=76718.405 Actor=PC_Hero Generation=26 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=76718.425 Actor=PC_Hero Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=77467.050 Actor=Demon Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77467.061 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=77467.129 Event=PERSISTED Actor=Demon Generation=28 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=77467.145 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=77673.178 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=77673.206 Actor=Demon Generation=28 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=77673.219 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=28 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE C1_START ElapsedMs=77739.624 Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77739.636 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=77739.746 Event=PERSISTED Actor=PC_Hero Generation=29 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=77739.793 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=77749.233 Ordinal=6 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=77757.428 Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=29 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=77757.439 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=77757.512 Event=PERSISTED Actor=PC_Hero Generation=30 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=78046.871 Actor=PC_Hero Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=78162.046 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=78162.075 Actor=Demon Generation=28 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=78162.098 Actor=Demon Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=78400.655 Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78400.668 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=78400.746 Event=PERSISTED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=78400.762 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=78666.484 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=78666.511 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=78666.523 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=31 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=78737.883 Ordinal=7 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=78744.019 Actor=Demon Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78744.031 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=78744.344 Event=PERSISTED Actor=Demon Generation=32 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=78975.349 Actor=Demon Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=79042.459 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=79042.487 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=79042.528 Actor=PC_Hero Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=79789.306 Actor=Demon Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=79789.318 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=33 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=79789.394 Event=PERSISTED Actor=Demon Generation=33 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=80142.541 Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80142.554 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=80142.632 Event=PERSISTED Actor=PC_Hero Generation=34 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=80146.721 Actor=PC_Hero Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=80150.329 Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80150.340 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=80150.415 Event=PERSISTED Actor=PC_Hero Generation=35 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=80150.431 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_BIND ElapsedMs=80259.223 Event=COMBAT_MOVE_REUSED Actor=Demon Generation=33 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=80259.316 Actor=Demon Family=POWER Action=2 Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=80357.980 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=80358.004 Actor=PC_Hero Generation=35 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=80358.015 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=35 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=80402.005 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=80402.033 Actor=Demon Generation=33 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=80402.046 Actor=Demon Action=2 Family=POWER Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=33 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=80412.677 Ordinal=8 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=80416.893 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=80416.920 Actor=Demon Generation=33 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_START ElapsedMs=80416.942 Actor=Demon Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=33 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80416.948 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=80417.465 Event=PERSISTED Actor=Demon Generation=36 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=80653.500 Actor=Demon Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=80737.435 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=80737.478 Actor=PC_Hero Generation=35 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=80737.501 Actor=PC_Hero Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=81427.186 Actor=Demon Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=81427.198 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=81427.247 Event=CANCELLED_IMMEDIATE_RESULT Actor=Demon Generation=37 Status=CANDIDATE Outstanding=0
+CORE C1_START ElapsedMs=83040.068 Actor=Demon Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=83040.080 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=83040.676 Event=PERSISTED Actor=Demon Generation=38 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=83040.697 Actor=Demon Family=QUICK Action=4 Phase=1 Motion=Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=83188.554 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=83188.583 Actor=Demon Generation=38 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=83188.595 Actor=Demon Action=4 Family=QUICK Phase=1 Motion=Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=38 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=83247.824 Ordinal=9 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Axe_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=83257.811 Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=83257.822 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=83263.317 Event=PERSISTED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=83527.827 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=83527.848 Actor=Demon Generation=38 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=83552.199 Actor=PC_Hero Generation=39 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=83622.730 Actor=Demon Generation=38 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=83923.568 Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=83923.580 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=83923.659 Event=PERSISTED Actor=PC_Hero Generation=40 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=83923.677 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=84186.190 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=84186.218 Actor=PC_Hero Generation=40 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=84186.231 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=40 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=84290.812 Ordinal=10 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=84296.182 Actor=Demon Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=84296.193 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=84296.264 Event=PERSISTED Actor=Demon Generation=41 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=84526.823 Actor=Demon Generation=41 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=84561.385 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=84561.412 Actor=PC_Hero Generation=40 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=84561.432 Actor=PC_Hero Generation=40 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=85018.624 Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=85018.636 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=85018.712 Event=PERSISTED Actor=PC_Hero Generation=42 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=85018.729 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=85222.682 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=85222.713 Actor=PC_Hero Generation=42 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=85222.725 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=42 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=85600.849 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=85600.875 Actor=PC_Hero Generation=42 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=85600.898 Actor=PC_Hero Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=86265.107 Actor=Demon Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=86265.118 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=86265.183 Event=PERSISTED Actor=Demon Generation=43 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=86265.198 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=86291.939 Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=86291.964 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=86292.056 Event=PERSISTED Actor=PC_Hero Generation=44 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=86292.087 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=86471.432 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=86471.461 Actor=Demon Generation=43 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=86471.473 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=43 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=86513.991 Ordinal=11 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=86524.217 Actor=PC_Hero Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=44 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=86524.228 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=86524.294 Event=PERSISTED Actor=PC_Hero Generation=45 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=86811.508 Actor=PC_Hero Generation=45 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=86956.409 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=86956.438 Actor=Demon Generation=43 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=86956.461 Actor=Demon Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=87127.589 Actor=PC_Hero Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=87127.601 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=87127.679 Event=PERSISTED Actor=PC_Hero Generation=46 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=87127.695 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=87383.287 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=87383.314 Actor=PC_Hero Generation=46 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=87383.327 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=46 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=87411.097 Ordinal=12 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P1_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=87415.505 Actor=Demon Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=87415.517 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=87415.585 Event=PERSISTED Actor=Demon Generation=47 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=87643.991 Actor=Demon Generation=47 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=87682.421 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=87682.448 Actor=PC_Hero Generation=46 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=87778.677 Actor=PC_Hero Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=88249.394 Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=88249.406 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=88249.489 Event=PERSISTED Actor=PC_Hero Generation=48 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=88249.512 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=88451.164 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=88451.191 Actor=PC_Hero Generation=48 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=88451.204 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=48 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=88831.731 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=88831.759 Actor=PC_Hero Generation=48 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=88831.778 Actor=PC_Hero Generation=48 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=89097.265 Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=89097.278 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=89097.357 Event=PERSISTED Actor=PC_Hero Generation=49 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=89097.375 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=89354.632 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=89354.661 Actor=PC_Hero Generation=49 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=89354.672 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=49 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=89734.171 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=89734.199 Actor=PC_Hero Generation=49 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=89734.219 Actor=PC_Hero Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=89954.130 Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=89954.142 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=89954.219 Event=PERSISTED Actor=PC_Hero Generation=50 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=89954.236 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=89983.539 Actor=Demon Generation=51 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=89983.550 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=51 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=89983.620 Event=PERSISTED Actor=Demon Generation=51 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=90155.531 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=90155.559 Actor=PC_Hero Generation=50 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=90155.571 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=50 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=90172.020 Ordinal=13 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=90176.036 Actor=Demon Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=51 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=90176.047 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=90176.124 Event=PERSISTED Actor=Demon Generation=52 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=90405.137 Actor=Demon Generation=52 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=90534.543 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=90534.572 Actor=PC_Hero Generation=50 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=90534.592 Actor=PC_Hero Generation=50 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=90683.369 Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=90683.382 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=90683.462 Event=PERSISTED Actor=PC_Hero Generation=53 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=90683.480 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=90946.270 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=90946.298 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=90946.311 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=53 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=91316.395 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=91316.427 Actor=PC_Hero Generation=53 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=91316.447 Actor=PC_Hero Generation=53 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=91558.621 Actor=Demon Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=91558.634 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=54 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=91558.757 Event=PERSISTED Actor=Demon Generation=54 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=91626.268 Actor=PC_Hero Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=91626.281 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=91626.362 Event=PERSISTED Actor=PC_Hero Generation=55 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=91626.380 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=91830.163 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=91830.189 Actor=PC_Hero Generation=55 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=91830.201 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=55 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=91862.356 Ordinal=14 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=91866.466 Actor=Demon Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=54 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=91866.476 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=56 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=91866.549 Event=PERSISTED Actor=Demon Generation=56 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=92093.384 Actor=Demon Generation=56 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=92208.500 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=92208.529 Actor=PC_Hero Generation=55 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=92208.551 Actor=PC_Hero Generation=55 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=92511.066 Actor=PC_Hero Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=92511.079 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=92511.166 Event=PERSISTED Actor=PC_Hero Generation=57 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=92511.187 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=92683.981 Actor=Demon Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=92683.993 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=58 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=92684.059 Event=PERSISTED Actor=Demon Generation=58 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=92774.961 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=92774.990 Actor=PC_Hero Generation=57 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=92775.002 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=57 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=92846.649 Ordinal=15 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=92850.489 Actor=Demon Generation=59 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=58 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=92850.501 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=59 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=92850.577 Event=PERSISTED Actor=Demon Generation=59 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=93082.165 Actor=Demon Generation=59 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=93150.441 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=93150.469 Actor=PC_Hero Generation=57 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=93150.492 Actor=PC_Hero Generation=57 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=93221.198 Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=93221.211 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=93221.285 Event=PERSISTED Actor=PC_Hero Generation=60 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=93768.433 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=60 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=93768.550 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=93907.495 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=93907.527 Actor=PC_Hero Generation=60 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=93907.540 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=60 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE COLLISION_GROUP ElapsedMs=94212.900 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=94212.929 Actor=PC_Hero Generation=60 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=94212.947 Actor=PC_Hero Generation=60 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=94515.648 Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=94515.660 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=61 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=94515.735 Event=PERSISTED Actor=PC_Hero Generation=61 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=94834.583 Actor=Demon Generation=62 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=94834.595 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=62 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=94834.664 Event=PERSISTED Actor=Demon Generation=62 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=95038.824 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=95038.851 Actor=Demon Generation=62 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=95038.862 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=62 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE C1_BIND ElapsedMs=95057.980 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=61 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=95058.068 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=95089.173 Ordinal=16 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=95097.939 Actor=PC_Hero Generation=63 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=61 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=95097.950 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=63 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=95098.017 Event=PERSISTED Actor=PC_Hero Generation=63 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=95379.407 Actor=PC_Hero Generation=63 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=95518.534 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=95518.565 Actor=Demon Generation=62 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=95518.587 Actor=Demon Generation=62 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=95703.863 Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=95703.875 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=95703.951 Event=PERSISTED Actor=PC_Hero Generation=64 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=96257.235 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=64 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE COLLISION_GROUP ElapsedMs=96511.544 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=96511.570 Actor=PC_Hero Generation=64 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=96511.583 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=64 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=96534.824 Ordinal=17 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=96540.677 Actor=Demon Generation=65 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=96540.687 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=65 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=96540.750 Event=PERSISTED Actor=Demon Generation=65 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=96662.851 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=96662.878 Actor=PC_Hero Generation=64 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=96662.899 Actor=PC_Hero Generation=64 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=96770.610 Actor=Demon Generation=65 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=96787.987 Actor=Demon Generation=66 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=96788.000 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=66 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=96788.105 Event=PERSISTED Actor=Demon Generation=66 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=97258.621 Event=COMBAT_MOVE_REUSED Actor=Demon Generation=66 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=97258.710 Actor=Demon Family=POWER Action=2 Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=97295.344 Actor=PC_Hero Generation=67 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=97295.356 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=67 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=97295.436 Event=PERSISTED Actor=PC_Hero Generation=67 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=97331.006 Actor=PC_Hero Generation=67 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=97338.821 Actor=PC_Hero Generation=68 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=97338.832 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=68 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=97338.905 Event=PERSISTED Actor=PC_Hero Generation=68 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=97338.920 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=97405.345 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=97405.376 Actor=Demon Generation=66 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=97405.390 Actor=Demon Action=2 Family=POWER Phase=1 Motion=Demon_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=66 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=97458.685 Ordinal=18 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Axe_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=97467.382 Actor=PC_Hero Generation=69 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=68 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=97467.457 Event=PERSISTED Actor=PC_Hero Generation=69 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=97743.050 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=97743.079 Actor=Demon Generation=66 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=97743.102 Actor=Demon Generation=66 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=99326.453 Actor=PC_Hero Generation=69 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=99334.485 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=99334.513 Actor=PC_Hero Generation=70 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=99334.518 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=70 Status=OUTER_BOUND Outstanding=0 Source=It_Axe_Bardiche Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=99334.522 Actor=PC_Hero Generation=70 Status=OUTER_BOUND Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=99334.542 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=70 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=99430.359 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=99430.388 Actor=PC_Hero Generation=70 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=99476.882 Actor=Demon Generation=71 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=99476.894 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=71 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=99477.361 Event=PERSISTED Actor=Demon Generation=71 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=99477.383 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_150_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=99556.865 Ordinal=19 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_Axe_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=99561.314 Actor=Demon Generation=72 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=71 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=99561.337 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=72 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=99561.409 Event=PERSISTED Actor=Demon Generation=72 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=99709.376 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=99709.405 Actor=PC_Hero Generation=70 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=99709.434 Actor=PC_Hero Generation=70 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=99795.804 Actor=Demon Generation=72 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=100014.795 Actor=Demon Generation=73 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=100014.807 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=73 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=100014.876 Event=PERSISTED Actor=Demon Generation=73 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=100014.893 Actor=Demon Family=QUICK Action=4 Phase=1 Motion=Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=100116.140 Actor=PC_Hero Generation=74 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=100116.152 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=74 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=100116.231 Event=PERSISTED Actor=PC_Hero Generation=74 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=100160.155 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=100160.185 Actor=Demon Generation=73 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=100160.198 Actor=Demon Action=4 Family=QUICK Phase=1 Motion=Demon_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=73 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=100210.884 Ordinal=20 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=16 PlayerPhase=4 PlayerMotion=Hero_Stand_None_Axe_P1_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=100220.512 Actor=PC_Hero Generation=75 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=74 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=100220.539 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=75 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=100220.629 Event=PERSISTED Actor=PC_Hero Generation=75 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=100502.754 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=100502.783 Actor=Demon Generation=73 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=100505.899 Actor=PC_Hero Generation=75 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=100522.886 Actor=PC_Hero Generation=76 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=100522.897 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=76 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=100522.974 Event=PERSISTED Actor=PC_Hero Generation=76 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=100526.726 Actor=PC_Hero Generation=76 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=100530.392 Actor=PC_Hero Generation=77 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=100530.403 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=77 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=100530.476 Event=PERSISTED Actor=PC_Hero Generation=77 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=100530.492 Actor=PC_Hero Family=WHIRL Action=10 Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_FINAL ElapsedMs=100601.798 Actor=Demon Generation=73 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=100821.374 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=100821.402 Actor=PC_Hero Generation=77 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=100821.414 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=77 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=100861.266 Ordinal=21 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=10 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=100865.429 Actor=Demon Generation=78 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=100865.440 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=78 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=100865.507 Event=PERSISTED Actor=Demon Generation=78 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=101100.320 Actor=Demon Generation=78 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=101189.980 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=101190.007 Actor=PC_Hero Generation=77 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=101190.018 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=77 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE C1_FINAL ElapsedMs=101268.743 Actor=PC_Hero Generation=77 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=101277.859 Actor=PC_Hero Generation=79 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=101277.871 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=79 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=101277.947 Event=PERSISTED Actor=PC_Hero Generation=79 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=101566.402 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=101566.431 Actor=PC_Hero Generation=79 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=101566.444 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=79 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=101597.757 Ordinal=22 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=10 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=101601.652 Actor=Demon Generation=80 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=101601.664 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=80 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=101601.732 Event=PERSISTED Actor=Demon Generation=80 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=101833.050 Actor=Demon Generation=80 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=101941.351 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=101941.382 Actor=PC_Hero Generation=79 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=101941.427 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=79 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+CORE C1_FINAL ElapsedMs=102019.675 Actor=PC_Hero Generation=79 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=102202.853 Actor=PC_Hero Generation=81 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=102202.866 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=81 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=102202.946 Event=PERSISTED Actor=PC_Hero Generation=81 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=102420.103 Actor=Demon Generation=82 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=102420.115 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=82 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=102420.180 Event=PERSISTED Actor=Demon Generation=82 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=102420.195 Actor=Demon Family=NORMAL Action=1 Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=102626.290 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=102626.317 Actor=Demon Generation=82 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=102626.330 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=82 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=102697.835 Ordinal=23 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=14 PlayerPhase=0 PlayerMotion=Hero_Parade_None_Axe_P0_HackAttack_Raise_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=102701.900 Actor=PC_Hero Generation=83 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=81 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=102701.908 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=83 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=102701.967 Event=PERSISTED Actor=PC_Hero Generation=83 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=102988.019 Actor=PC_Hero Generation=83 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=103110.182 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=103110.211 Actor=Demon Generation=82 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=103110.238 Actor=Demon Generation=82 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=103329.888 Actor=PC_Hero Generation=84 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=103329.900 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=84 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=103329.977 Event=PERSISTED Actor=PC_Hero Generation=84 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=104219.785 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=84 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=104219.876 Actor=PC_Hero Family=HACK Action=14 Phase=1 Motion=Hero_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=104476.037 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=104476.065 Actor=PC_Hero Generation=84 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=104476.079 Actor=PC_Hero Action=14 Family=HACK Phase=1 Motion=Hero_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=84 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+CORE ONDAMAGE ElapsedMs=104491.391 Ordinal=24 Target=Demon Arg1=Demon Arg2=Demon Caller=Game.dll+0x00069484 PlayerAction=14 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=104495.616 Actor=Demon Generation=85 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=104495.628 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=85 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=104495.700 Event=PERSISTED Actor=Demon Generation=85 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=104667.620 Source=It_Axe_Bardiche UseType=52 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=104667.648 Actor=PC_Hero Generation=84 Status=PERSISTED Source=It_Axe_Bardiche Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=104667.667 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=84 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=104728.633 Actor=Demon Generation=85 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=104744.473 Actor=Demon Generation=86 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=104744.485 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Demon Generation=86 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=104744.558 Event=PERSISTED Actor=Demon Generation=86 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=104954.136 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=104954.162 Actor=Demon Generation=86 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=104954.179 Actor=Demon Action=1 Family=NORMAL Phase=1 Motion=Demon_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=86 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+CORE ONDAMAGE ElapsedMs=105021.161 Ordinal=25 Target=PC_Hero Arg1=PC_Hero Arg2=PC_Hero Caller=Game.dll+0x00069484 PlayerAction=14 PlayerPhase=3 PlayerMotion=Hero_Parade_None_Axe_P1_HackAttack_Recover_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=105031.542 Actor=PC_Hero Generation=87 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=84 ReplacedOutstanding=0 Source[0]=It_Axe_Bardiche Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=105031.553 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=87 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=105031.620 Event=PERSISTED Actor=PC_Hero Generation=87 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=105318.940 Actor=PC_Hero Generation=87 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_Bardiche Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=105434.087 Source=It_2H_DemonSword_01 UseType=3 Owner=Demon Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=105434.115 Actor=Demon Generation=86 Status=PERSISTED Source=It_2H_DemonSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=105434.136 Actor=Demon Generation=86 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_DemonSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+Script_FrameCollisionTest unloading cleanly.
