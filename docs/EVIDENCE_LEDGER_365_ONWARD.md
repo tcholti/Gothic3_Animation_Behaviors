@@ -158,3 +158,30 @@ Disposition:
 - **PASS — comprehensive frozen-source Stage B CLOSED.**
 - Continue §3.8 Stage C modded/custom animation compatibility.
 
+### EV-369 — Zombie animation-separation compatibility batch PASS
+
+Observed:
+- The User ran the zombie-separation mod and reported the modded zombie/mummy animations active. The diagnostic runtime nevertheless continued to expose `Hero_...` CurrentMovementAni identifiers for all three actor classes; therefore the logs prove functional compatibility under the modded runtime but do not independently prove a zombie-specific runtime motion-name namespace.
+- Mummy / factual raw8 Fist UseType8: 28 marked attack ownership observations across Normal and Power. Thirty-three accepted FIST opportunities occurred because five Power C1s accepted a later FIST that superseded the prior still-open opportunity. The current opportunities then resolved as 15 exact native-contact consumptions + 13 factual lifecycle closes (11 C1_FINALIZED, 2 C1_GENERATION_REPLACED), with all C1 finals at outstanding zero. Player 2H coexistence remained healthy.
+- BenSala_Zombie_02 / factual `It_Pickaxe` UseType52 (Axe/raw52): 42 marked supported attack observations across Quick/Power/Whirl/Normal/Hack plus one genuinely unmarked FinishingAttack-classified Hack fallback. The Pickaxe produced 62 exact 5->7 openings and 62 exact 7->5 cleanups. Marker traffic included expected RIGHT/OFF, authored-occurrence-budget ignores and same-update duplicate ignores without anomaly. Player 2H coexistence remained balanced.
+- UndeadPriest / factual `It_Staff_Quarterstaff_01` UseType12: 51 marked attack observations across Power/Whirl/Quick/Normal/Hack. The Quarterstaff produced 64 exact 5->7 openings and 64 exact 7->5 cleanups. Expected RIGHT/OFF + occurrence-budget/dedupe behavior remained healthy. Player 2H coexistence produced 24 openings and 24 cleanups.
+- All three logs loaded and unloaded cleanly. There were zero marker anomaly/discovery records, zero C1 repair/divergence events, zero invariant/generation contradictions, and zero explicit error/exception/failure records.
+
+Scope / limits:
+- Compatibility result: **PASS** for the tested zombie-separation mod/runtime. Collision behavior continued to follow factual actor/action/source/UseType and authored marker semantics across raw8, Axe/raw52 and Staff/raw12 routes while the modded animations were active.
+- Runtime diagnostics still named the motions with the ordinary `Hero_...` identifiers. Therefore EV-369 does **not** establish that Gothic exposes distinct zombie-specific motion names or file paths to this diagnostic layer, and it must not be cited as proof of filename-level separation.
+- BenSala_Zombie_02 demonstrates why factual runtime source classification outranks test filename or visual weapon-family assumptions: the exact source was `It_Pickaxe` / UseType52.
+- The single unmarked zombie FinishingAttack observation remained native (`MarkerPresent=0 / SuppressNative=0`) and is useful fallback corroboration.
+- No source change is justified.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- uploaded raw-evidence commit: `961bee8f212c86510e962aef3a13ce71cf8aea06`;
+- `research/archive/2026-09-22_mummy_fist_marked_hero_2h_marked_test.log` — blob `a6437b1275bd3164bde3d890d29847498e54bcce`, 310,750 bytes;
+- `research/archive/2026-09-22_zombie_2h_marked_hero_2h_marked_test.log` — blob `5df784d4dc4ebf7e4b0bc4bc6b7a4f26bc76399f`, 177,749 bytes;
+- `research/archive/2026-09-22_zombie_staff_marked_hero_2h_marked_test.log` — blob `c94e569360cfa522e0f015b69e0bf8e87312fc08`, 249,686 bytes.
+
+Disposition:
+- **PASS — Stage-C zombie-separation fixture CLOSED.**
+- Stage C remains active for the remaining modded/custom compatibility fixtures.
+

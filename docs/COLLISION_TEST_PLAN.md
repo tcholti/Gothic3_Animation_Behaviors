@@ -252,9 +252,9 @@ B. equipped actors + cumulative player weapon matrix — CLOSED/PASS EV-368
 -> final-source equipped-opponent closure: EV-368
 
 C. modded/custom animation compatibility — CURRENT
--> first fixture: the User-selected zombie animation-separation mod. In original Gothic 3 the tested zombie actors are expected to share ordinary human animation assets; this mod supplies zombie-specific attack animations. Treat that as the test premise and verify the actual runtime motion names/source/action facts from the logs rather than relying on filename assumptions.
--> exercise several zombie variants and their factual equipped sources/attack families; verify authored markers, cleanup/finalization and player-weapon coexistence continue to follow runtime semantics when the animation assets are no longer the ordinary human set
--> exercise the prepared Axe-separation and Rapier-separation routes
+-> zombie animation-separation fixture CLOSED/PASS EV-369: Mummy raw8, BenSala Zombie factual Pickaxe/Axe raw52 and UndeadPriest Staff/raw12 all remained healthy under the modded runtime
+-> observability qualification: the User reported the separated zombie animations active, but diagnostic CurrentMovementAni still exposed ordinary `Hero_...` identifiers; treat EV-369 as compatibility proof, not proof of a distinct zombie runtime motion-name/file namespace
+-> exercise the remaining prepared separation/custom routes, including Axe-separation and Rapier-separation
 -> include the User's fast/multi-contact authored animations and other collision-authoring fixtures
 -> use positive discriminators rather than relying only on native-vs-mod visual equivalence
 

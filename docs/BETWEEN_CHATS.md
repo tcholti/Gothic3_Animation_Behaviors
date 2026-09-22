@@ -27,47 +27,40 @@ No source change is authorized absent newly demonstrated contradictory evidence.
 Stage A — non-weapon/body-contact       CLOSED/PASS EV-365–EV-366
 supplemental bad-skip C1-R1 stress      PASS EV-367
 Stage B — equipped/cumulative matrix    CLOSED/PASS EV-368
-Stage C — modded/custom compatibility   CURRENT
+Stage C — modded/custom compatibility   ACTIVE
+  zombie separation fixture             CLOSED/PASS EV-369
 ```
 
-EV-368 closes the equipped-opponent set selected by the User:
-- Goblin factual 1H/raw2, including 5 accepted Sprint executions;
-- Demon factual 2H/raw3;
-- Ogre factual Axe/raw52;
-- Stalker factual Axe/raw52;
-- Orc Raider factual Axe/raw52;
-- Orc factual Staff/raw51 + raw8 Fist.
+## EV-369 zombie-separation result
 
-Player coverage is compositional across the campaign. The User's pattern is a clean no-opponent/full-attack pass for each tested player weapon followed by real-combat use. EV-365–EV-368 therefore jointly cover the player matrix rather than requiring another weapon-only repetition.
+User reports the zombie-separation mod was active and supplied distinct zombie/mummy animation behavior.
 
-All six EV-368 logs were free of C1 repair/divergence, marker anomaly/discovery, invariant/contradiction/error/failure, and unloaded cleanly. All physical equipped sources returned from group7 to group5 with balanced accounting. No source change is justified.
+Runtime facts:
+- Mummy: factual raw8 Fist / UseType8, marked Normal + Power; 33 FIST opportunities across 28 attacks, including five later-FIST reopens; current opportunities fully resolved by 15 exact contacts + 13 lifecycle closes after those five earlier opportunities were superseded.
+- BenSala_Zombie_02: exact `It_Pickaxe` / UseType52 (Axe/raw52), not raw3. Quick/Power/Whirl/Normal/Hack marker traffic balanced; 62 exact 5->7 openings = 62 exact 7->5 cleanups. One unmarked FinishingAttack-classified Hack stayed native.
+- UndeadPriest: exact `It_Staff_Quarterstaff_01` / UseType12. Power/Whirl/Quick/Normal/Hack marker traffic balanced; 64 exact openings = 64 exact cleanups.
+- player 2H coexistence remained clean in all three fixtures.
+- zero marker anomaly/discovery, C1 repair/divergence, invariant/generation contradiction, explicit error/failure or unload problem.
 
-## Current responsibility — Stage C
+Important observability qualification:
+- despite the modded zombie behavior being active, diagnostic `CurrentMovementAni` still reports `Hero_...` motion identifiers for Mummy, Zombie and UndeadPriest;
+- therefore EV-369 proves compatibility under the modded runtime but does not prove that Gothic exposes a separate zombie runtime motion-name/file namespace to this diagnostic layer.
 
-The next fixture is the User-selected **zombie animation-separation mod**.
+No source change is justified.
 
-Test premise supplied by the User:
-- original Gothic 3 zombies use the same animation set as ordinary humans;
-- this first separation mod gives zombies their own unique animations.
+## Current responsibility — remaining Stage C
 
-Treat that premise as something to verify from runtime motion identity during the test. The compatibility question is:
+Continue the User's planned mod/separation compatibility sequence. Prepared routes still include:
+- Axe-separation;
+- Rapier-separation;
+- fast/multi-contact authored animations / other custom collision-authoring fixtures.
 
-```text
-When zombie attacks move onto zombie-specific animation assets,
-does collision behavior continue to follow factual runtime
-action/source/UseType + authored marker semantics,
-without depending on the old shared-human animation filenames?
-```
+Use the same compositional test method:
+- run the modded actor/source attacks;
+- rotate useful player weapon attacks in the same combat;
+- let diagnostics classify factual Action/family/source/UseType;
+- do not infer semantics from the mod name or animation filename.
 
-Use several zombie variants as planned. Do not infer source/UseType or supported family from the word “Zombie” or from the new animation filename; let the diagnostic log classify each factual route.
+A Stage-C failure must first be reduced to the smallest factual route before any source change.
 
-Continue the User's efficient combined-testing pattern:
-- exercise the zombie/opponent's attacks;
-- rotate a useful player weapon through its own attack set in the same combat run;
-- let one log validate both the mod-separated opponent route and player coexistence where factual coverage exists.
-
-The prepared Axe-separation and Rapier-separation fixtures remain later Stage-C compatibility checks unless deliberately reprioritized.
-
-Broad failures must be reduced to the smallest factual route before any source change.
-
-After EV-368 closure, `research/raw/` contains only `Keep.txt`.
+After EV-369 closure, `research/raw/` contains only `Keep.txt`.

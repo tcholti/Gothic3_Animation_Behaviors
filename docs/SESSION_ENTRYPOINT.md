@@ -16,14 +16,14 @@ standalone collision regression = ACTIVE
 Phases 1–3 = CLOSED/PASS
 generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
 focused permanent raw55 acceptance = CLOSED/PASS at EV-298
-latest runtime evidence = EV-368
+latest runtime evidence = EV-369
 Phase 4 = ACTIVE — comprehensive frozen-source release validation
 Stage A animals/body-contact = CLOSED/PASS EV-365–EV-366
 final source-quality/modularity audit = CLOSED
 cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
 cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
 active Work task = NONE
-current stop gate = EV-368 POP-12 PASS -> Stage C zombie animation-separation compatibility
+current stop gate = EV-369 POP-12 PASS -> Stage C remaining separation/custom compatibility fixtures
 ```
 
 ## Current responsibility
@@ -83,9 +83,10 @@ It compile-isolates diagnostic-only raw8 state/work from the behavior twin, remo
 - **EV-366:** final unequipped-opponent extension PASS: Ripper, ScorpionKing, Snapper, TRex and Waran raw8 plus Troll/raw55, with dual-1H/Staff/2H coexistence; Stage A now actually CLOSED.
 - **EV-367:** deliberate destructive bad-skip lifecycle stress PASS: 10 exact owned group7→group5 C1-R1 repairs across 1H, 1H+torch, dual-1H, Staff and 2H; zero repair divergence. AttackContinuationProtection remains separate/paused.
 - **EV-368:** final frozen-source equipped-opponent/cumulative player matrix PASS: Goblin raw2 incl. Sprint, Demon raw3, Ogre/Stalker/Orc Axe raw52, Orc Staff raw51 + raw8 Fist, with player 1H/1H+shield/2H and prior cumulative weapon coverage; Stage B CLOSED.
+- **EV-369:** zombie-separation mod compatibility PASS: Mummy raw8, BenSala Zombie exact Pickaxe/Axe raw52 and UndeadPriest Staff/raw12 remained clean. User reports separated zombie animations active, while diagnostics still expose `Hero_...` motion identifiers; compatibility is proven, filename-level separation is not.
 
 Latest runtime-reviewed and frozen source:
-`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — Stage A PASS EV-365–EV-366; bad-skip C1-R1 PASS EV-367; Stage B equipped matrix PASS EV-368
+`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — Stage A PASS EV-365–EV-366; bad-skip C1-R1 PASS EV-367; Stage B PASS EV-368; zombie-separation compatibility PASS EV-369
 
 Final validated diagnostic DLL SHA256: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313` — EV-357/EV-359.
 
@@ -97,12 +98,12 @@ Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C58
 comprehensive frozen-source release campaign Stage A CLOSED/PASS EV-365–EV-366
 -> supplemental bad-skip C1-R1 regression PASS EV-367
 -> Stage B cumulative equipped coverage CLOSED/PASS EV-368
--> Stage C modded/custom animations CURRENT — zombie animation-separation fixture first
+-> Stage C modded/custom animations CURRENT — zombie-separation fixture PASS EV-369; remaining separation/custom fixtures next
 -> mixed stress
 -> New Balance + AttackCollision
 ```
 
-Final cleanup, both post-cleanup re-smokes, permanent raw8 focused acceptance, comprehensive Stage A, and cumulative Stage B equipped coverage are CLOSED/PASS. Continue at §3.8 Stage C. First compatibility fixture is the User-selected zombie animation-separation mod; verify actual runtime motions and factual equipped sources rather than assuming the mod's naming/asset split.
+Final cleanup, both post-cleanup re-smokes, permanent raw8 focused acceptance, comprehensive Stage A, and cumulative Stage B equipped coverage are CLOSED/PASS. Stage C remains current. Zombie-separation compatibility is PASS at EV-369 with a motion-name observability qualification; continue with the remaining separation/custom fixtures.
 
 ## Read next by question
 
@@ -110,7 +111,7 @@ Final cleanup, both post-cleanup re-smokes, permanent raw8 focused acceptance, c
 - closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
 - current collision facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-368
+- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-369
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 - permanent raw55 → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
