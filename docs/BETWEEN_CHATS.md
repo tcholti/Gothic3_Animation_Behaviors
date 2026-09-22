@@ -27,42 +27,68 @@ Only item 6 remains open:
 
 ```text
 marked pending opportunity
--> factual generation replacement / interruption
+-> factual generation replacement
 -> old opportunity closes
--> later genuinely unmarked human raw8 attack
+-> next relevant human raw8 attack is genuinely unmarked
 -> no intervening newly marked FIST opportunity
 -> unmarked route remains native
 ```
 
 All other §14 focused items PASS through EV-361.
 
-## EV-362 final-sentinel attempt
+## EV-363 result
 
-Fixture polarity was corrected intentionally:
+The combat timing is now good enough.
 
-Marked:
-`Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot`
+Two exact sequences were captured:
 
-Unmarked/native:
+```text
+P1-left marked OPEN
+-> C1_GENERATION_REPLACED close
+-> next relevant P0-right attack
+-> zero intervening raw8 opens
+```
+
+But the P0-right runtime motion was still marked.
+
+Intended unmarked motion:
 `Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot`
 
-Results:
-- marked P1-left: 39 opens -> 31 contacts + 8 ordinary C1-finalization closes;
-- unmarked P0-right: 39 executions, zero FIST ownership/open/consumed records, 7 exact native contacts;
-- 16 player generation replacements occurred elsewhere in the run;
-- none replaced a C1 that had a pending marked P1-left opportunity;
-- therefore the exact item-6 chronology was not captured;
-- no contradiction, invariant, generation inconsistency, repair divergence, explicit error/failure or rejection.
+Observed across the run:
+- 60 ATTACK_OWNERSHIP records;
+- all 60 `MarkerPresent=1`;
+- all 60 `FistMarkers=1`;
+- zero `MarkerPresent=0`;
+- P0-right opened raw8 opportunities and therefore was behaviorally marked.
 
-Interpretation:
-- fixture is correct;
-- native fallback route is healthy;
-- remaining gap is only getting an interruption during the short pending interval after marked FIST opens.
+P1-left was also marked as intended.
 
-Next attempt should reuse the same marker setup and focus only on timing the interruption while the marked P1 opportunity is pending. Do not change source.
+Therefore item 6 remains open solely because the live P0-right asset did not reflect the intended marker removal.
+
+The run also contained two successful generic equipped lifecycle repairs for Orc raw52 weapon sources, each group7 -> group5 with `REPAIRED_TO_ITEM_EQUIPPED`; no repair divergence was observed.
+
+## Next responsibility
+
+Before another combat attempt, verify that the **actual game-loaded** P0-right motion resolves:
+
+```text
+MarkerPresent=0
+FistMarkers=0
+Raw8Fist=<none>
+SuppressNative=0
+```
+
+Do not change source code.
+
+Once P0-right is truly unmarked, repeat the same group-combat setup. The interruption timing already succeeded twice, so no new test design is required.
 
 After item 6 PASS:
 1. close focused permanent raw8 acceptance;
 2. begin `COLLISION_TEST_PLAN.md` §3.8 comprehensive final-source campaign.
+
+Large-log provenance:
+- archived raw: `research/archive/2026-09-22_human_fist_marked_unmarked_test2.log`;
+- source SHA256: `1176CF999FBDAAE70C4D1AACD8730A3F917CAE86A66006F99E2FD4F91D1440AB`;
+- retained derived package: `research/derived/2026-09-22_human_fist_marked_unmarked_test2_large_log/`.
 
 `research/raw/` contains only `Keep.txt`.
