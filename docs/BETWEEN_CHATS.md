@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** Short-lived exact continuation pointer. Replace, do not accumulate.  
-**Updated:** 2026-09-21
+**Updated:** 2026-09-22
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -23,55 +23,46 @@ No source change is authorized absent contradictory evidence.
 
 ## Focused raw8 acceptance
 
-Authority: `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` §14.
-
-Status after EV-361:
+Only item 6 remains open:
 
 ```text
-1. Gargoyle close/delayed/no-contact    PASS — EV-359 + EV-360
-2. Human Normal + true Power            PASS — EV-359
-3. Later FIST same-C1 reopening         PASS — EV-359
-4. Ordinary no-contact finalization     PASS — EV-359
-5. Reaction/generation replacement      PASS — EV-360
-6. Replacement -> unmarked fallback     OPEN
-7. Native unmarked human target-control PASS — EV-361
-8. Sprint Action9 -> Action2 transport  PASS — EV-360
-9. raw55 + equipped coexistence         PASS — EV-357
-10. Diagnostic/behavior parity          PASS — EV-357 + EV-358
-```
-
-EV-361 correction:
-- exact motion `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot`;
-- 29 executions, all `MarkerPresent=0 / FistMarkers=0 / SuppressNative=0`;
-- zero raw8 ownership/open/consumed/FIST-marker records on that motion;
-- 2 exact native `Game+0x16E348` contacts, both to the locked `ReddockOrcScoutLeader`;
-- no unmarked left-hand contact against nearby non-target Orcs;
-- User deliberately switched targets and tried to hit bystanders.
-
-The group-combat file is mixed marked + unmarked by design. File-wide marked traffic does not invalidate the exact unmarked P1-left control.
-
-## Next responsibility
-
-Only focused item 6 remains.
-
-Next session, prepare one clean sentinel:
-
-```text
-marked human raw8 opportunity pending
--> factual reaction/interruption replaces generation
+marked pending opportunity
+-> factual generation replacement / interruption
 -> old opportunity closes
--> next relevant human raw8 attack is the genuinely unmarked P1-left Normal motion
+-> later genuinely unmarked human raw8 attack
 -> no intervening newly marked FIST opportunity
--> unmarked attack follows native path; ordinary native contact is preferred
+-> unmarked route remains native
 ```
 
-Use the known unmarked motion above. The decisive point is **no new marked opportunity between replacement close and the unmarked fallback attack/contact**.
+All other §14 focused items PASS through EV-361.
+
+## EV-362 final-sentinel attempt
+
+Fixture polarity was corrected intentionally:
+
+Marked:
+`Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot`
+
+Unmarked/native:
+`Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot`
+
+Results:
+- marked P1-left: 39 opens -> 31 contacts + 8 ordinary C1-finalization closes;
+- unmarked P0-right: 39 executions, zero FIST ownership/open/consumed records, 7 exact native contacts;
+- 16 player generation replacements occurred elsewhere in the run;
+- none replaced a C1 that had a pending marked P1-left opportunity;
+- therefore the exact item-6 chronology was not captured;
+- no contradiction, invariant, generation inconsistency, repair divergence, explicit error/failure or rejection.
+
+Interpretation:
+- fixture is correct;
+- native fallback route is healthy;
+- remaining gap is only getting an interruption during the short pending interval after marked FIST opens.
+
+Next attempt should reuse the same marker setup and focus only on timing the interruption while the marked P1 opportunity is pending. Do not change source.
 
 After item 6 PASS:
 1. close focused permanent raw8 acceptance;
-2. begin `COLLISION_TEST_PLAN.md` §3.8 comprehensive final-source campaign:
-   animals/body-contact -> equipped coverage -> modded/custom animations -> mixed stress -> New Balance + AttackCollision.
-
-Sabretooth, Gargoyle and human Fist do not need automatic broad retesting after focused acceptance unless a later contradiction calls for them. Golem may be reused as a weapon target.
+2. begin `COLLISION_TEST_PLAN.md` §3.8 comprehensive final-source campaign.
 
 `research/raw/` contains only `Keep.txt`.
