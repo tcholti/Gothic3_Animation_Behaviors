@@ -252,10 +252,11 @@ B. equipped actors + cumulative player weapon matrix — CLOSED/PASS EV-368
 -> final-source equipped-opponent closure: EV-368
 
 C. modded/custom animation compatibility — CURRENT
--> zombie animation-separation fixture CLOSED/PASS EV-369: Mummy raw8, BenSala Zombie factual Pickaxe/Axe raw52 and UndeadPriest Staff/raw12 all remained healthy under the modded runtime
--> observability qualification: the User reported the separated zombie animations active, but diagnostic CurrentMovementAni still exposed ordinary `Hero_...` identifiers; treat EV-369 as compatibility proof, not proof of a distinct zombie runtime motion-name/file namespace
--> exercise the remaining prepared separation/custom routes, including Axe-separation and Rapier-separation
--> include the User's fast/multi-contact authored animations and other collision-authoring fixtures
+-> native zombie baseline/control CLOSED/PASS EV-369: Mummy raw8, BenSala Zombie factual Pickaxe/Axe raw52 and UndeadPriest Staff/raw12 were tested **before** enabling zombie separation
+-> native expectation confirmed: zombie routes expose ordinary `Hero_...` animation identifiers; factual Axe/UseType52 may ride the shared native 2H animation set, while Staff uses its own animation set
+-> NEXT: enable the zombie animation-separation mod and repeat representative Mummy/Zombie/UndeadPriest routes so the modded behavior can be compared directly against EV-369
+-> after zombie separation, exercise the prepared Axe-separation route; its purpose is to move factual Axe/raw52 away from the native shared 2H animation set onto Axe-specific animations
+-> then exercise Rapier-separation and the User's fast/multi-contact authored/custom collision fixtures
 -> use positive discriminators rather than relying only on native-vs-mod visual equivalence
 
 D. mixed stress

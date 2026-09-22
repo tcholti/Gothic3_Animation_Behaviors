@@ -28,39 +28,39 @@ Stage A — non-weapon/body-contact       CLOSED/PASS EV-365–EV-366
 supplemental bad-skip C1-R1 stress      PASS EV-367
 Stage B — equipped/cumulative matrix    CLOSED/PASS EV-368
 Stage C — modded/custom compatibility   ACTIVE
-  zombie separation fixture             CLOSED/PASS EV-369
+  native zombie baseline/control        CLOSED/PASS EV-369
+  zombie separation mod                 NEXT / NOT YET RUN
 ```
 
-## EV-369 zombie-separation result
+## EV-369 correction and baseline
 
-User reports the zombie-separation mod was active and supplied distinct zombie/mummy animation behavior.
+EV-369 was initially misclassified by Normal Chat as a zombie-separation-mod run. The User clarified that **no zombie separation mod was enabled**. The three logs are the native control baseline for the upcoming separation test.
 
-Runtime facts:
-- Mummy: factual raw8 Fist / UseType8, marked Normal + Power; 33 FIST opportunities across 28 attacks, including five later-FIST reopens; current opportunities fully resolved by 15 exact contacts + 13 lifecycle closes after those five earlier opportunities were superseded.
-- BenSala_Zombie_02: exact `It_Pickaxe` / UseType52 (Axe/raw52), not raw3. Quick/Power/Whirl/Normal/Hack marker traffic balanced; 62 exact 5->7 openings = 62 exact 7->5 cleanups. One unmarked FinishingAttack-classified Hack stayed native.
-- UndeadPriest: exact `It_Staff_Quarterstaff_01` / UseType12. Power/Whirl/Quick/Normal/Hack marker traffic balanced; 64 exact openings = 64 exact cleanups.
-- player 2H coexistence remained clean in all three fixtures.
+Native runtime facts:
+- Mummy: factual raw8 Fist / UseType8; marked Normal + Power healthy.
+- BenSala_Zombie_02: exact `It_Pickaxe` / UseType52 (Axe/raw52); Quick/Power/Whirl/Normal/Hack healthy; 62 exact openings = 62 exact cleanups; one unmarked FinishingAttack/Hack stayed native.
+- UndeadPriest: exact `It_Staff_Quarterstaff_01` / UseType12; Power/Whirl/Quick/Normal/Hack healthy; 64 exact openings = 64 exact cleanups.
+- player 2H coexistence remained clean.
 - zero marker anomaly/discovery, C1 repair/divergence, invariant/generation contradiction, explicit error/failure or unload problem.
 
-Important observability qualification:
-- despite the modded zombie behavior being active, diagnostic `CurrentMovementAni` still reports `Hero_...` motion identifiers for Mummy, Zombie and UndeadPriest;
-- therefore EV-369 proves compatibility under the modded runtime but does not prove that Gothic exposes a separate zombie runtime motion-name/file namespace to this diagnostic layer.
+Native animation-set rule supplied by the User and consistent with established evidence:
+- native non-Staff two-handed weapons use the ordinary 2H animation set;
+- factual Axe/UseType52 therefore appearing with `Hero_..._2H_...` motion identity is expected, not a mismatch;
+- Staff uses its own animation set;
+- a later Axe-separation mod will deliberately give Axe a unique animation set.
 
-No source change is justified.
+The native zombie actors likewise use ordinary human animation assets. EV-369 therefore establishes the exact baseline against which the forthcoming zombie-separation mod should be compared.
 
-## Current responsibility — remaining Stage C
+## Current responsibility — Stage C zombie separation
 
-Continue the User's planned mod/separation compatibility sequence. Prepared routes still include:
-- Axe-separation;
-- Rapier-separation;
-- fast/multi-contact authored animations / other custom collision-authoring fixtures.
+NEXT:
+- enable the zombie animation-separation mod;
+- repeat representative Mummy/Fist, Zombie Axe/raw52 and UndeadPriest Staff/raw12 combat routes where the mod provides separated assets;
+- continue rotating a useful player weapon in the same runs;
+- compare factual actor/action/source/UseType, marker acceptance, physical opening/cleanup, raw8 opportunity accounting and fallback behavior against EV-369.
 
-Use the same compositional test method:
-- run the modded actor/source attacks;
-- rotate useful player weapon attacks in the same combat;
-- let diagnostics classify factual Action/family/source/UseType;
-- do not infer semantics from the mod name or animation filename.
+After the zombie-separation comparison, continue the prepared Axe-separation, Rapier-separation and fast/multi-contact custom-animation fixtures.
 
 A Stage-C failure must first be reduced to the smallest factual route before any source change.
 
-After EV-369 closure, `research/raw/` contains only `Keep.txt`.
+`research/raw/` contains only `Keep.txt`.
