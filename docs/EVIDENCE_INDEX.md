@@ -130,6 +130,7 @@ EV-358         final post-cleanup diagnostics-free behavior parity smoke PASS; f
 EV-359         focused raw8 acceptance: human Normal/Power + later-FIST + finalization PASS; Gargoyle close/delayed PASS, far/no-contact still open
 EV-360         focused raw8 acceptance: Gargoyle far/no-contact + reaction replacement + Sprint transport PASS; unmarked-control interpretation later corrected by EV-361
 EV-361         motion-specific correction: native/unmarked human P1-left target-directed control PASS; only replacement->unmarked fallback remains
+EV-362         final focused fallback sentinel attempt: marked/unmarked fixture correct and native P0 fallback healthy; required pending replacement chronology not captured
 ```
 
 ## 4. Escalation order
