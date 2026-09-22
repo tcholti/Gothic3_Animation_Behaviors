@@ -61,10 +61,10 @@ Final validated behavior DLL SHA256:
 - **EV-369:** native zombie control PASS. Native zombies use ordinary `Hero_...` animation sets; factual Axe/raw52 can use the shared native 2H set; Staff has its own set.
 - **EV-370:** zombie-separation compatibility PASS. Opponent motion identity changes `Hero_...` -> `Zombie_...` while factual Fist/raw8, Axe/raw52, Staff/raw12 and 1H+shield source semantics remain healthy. Unmarked replacement assets stay native.
 
-User-reported environment constraint:
+Environment constraint:
 - zombie separation and Axe separation conflict when stacked;
-- this is a third-party composition constraint, not a Gothic3_Animation_Behaviors failure;
-- test each separation mod independently.
+- the User reproduced the conflict with Gothic3_Animation_Behaviors absent, so it is intrinsic to those two third-party mods rather than caused by our mod;
+- do not treat their combined use as a Gothic3_Animation_Behaviors compatibility target; test each separation mod independently.
 
 ## Next sequence
 

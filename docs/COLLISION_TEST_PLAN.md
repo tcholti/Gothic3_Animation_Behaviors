@@ -256,7 +256,7 @@ C. modded/custom animation compatibility — CURRENT
 -> zombie animation-separation compatibility CLOSED/PASS EV-370: Mummy raw8, Zombie Axe/raw52, UndeadPriest Staff/raw12 and a direct 1H+shield native/modded pair remain healthy while runtime motion identity changes from `Hero_...` to `Zombie_...`
 -> separated assets without authored markers correctly remain native; do not treat marker absence in a replacement asset as a collision failure
 -> NEXT: exercise the prepared Axe-separation route independently; its purpose is to move factual Axe/raw52 away from the native shared 2H animation set onto Axe-specific animations
--> environment constraint: the User reports zombie separation and Axe separation conflict with each other (Axe separation prevents zombie-separation 2H animations from working). Do not stack them for acceptance. Our compatibility requirement is Gothic3_Animation_Behaviors + each separation mod independently, not cross-compatibility between those third-party separation mods.
+-> environment constraint: zombie separation and Axe separation conflict with each other (Axe separation prevents zombie-separation 2H animations from working). The User reproduced this with Gothic3_Animation_Behaviors absent, so the incompatibility is between the two third-party separation mods themselves. Do not stack them for acceptance; our responsibility is only compatibility with each separation mod independently.
 -> then exercise Rapier-separation and the User's fast/multi-contact authored/custom collision fixtures
 -> use positive discriminators rather than relying only on native-vs-mod visual equivalence
 

@@ -54,9 +54,9 @@ Disposition: **zombie separation PASS, no source change.**
 
 ## Separation-mod environment constraint
 
-User reports zombie separation and Axe separation conflict when stacked: Axe separation prevents zombie-separation 2H animations from working.
+Zombie separation and Axe separation conflict when stacked: Axe separation prevents zombie-separation 2H animations from working.
 
-This is outside our collision-mod acceptance responsibility. Validate independently:
+The User reproduced the same conflict **with Gothic3_Animation_Behaviors absent**. Therefore the incompatibility is between those two third-party separation mods themselves, not caused by our mod and not a compatibility target for this project. Validate independently:
 
 ```text
 G3 Animation Behaviors + zombie separation
@@ -64,7 +64,7 @@ G3 Animation Behaviors + Axe separation
 G3 Animation Behaviors + Rapier separation
 ```
 
-Do not stack zombie separation with Axe separation for acceptance.
+Do not stack zombie separation with Axe separation for acceptance or describe their mutual incompatibility as something Gothic3_Animation_Behaviors should solve.
 
 ## Next
 
