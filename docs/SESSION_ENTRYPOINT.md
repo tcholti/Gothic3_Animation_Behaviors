@@ -13,115 +13,86 @@
 
 ```text
 standalone collision regression = ACTIVE
-Phases 1–3 = CLOSED/PASS
-generic equipped Sprint = PERMANENT SUPPORT CLOSED/PASS through EV-329
-focused permanent raw55 acceptance = CLOSED/PASS at EV-298
+frozen source = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
 latest runtime evidence = EV-370
-Phase 4 = ACTIVE — comprehensive frozen-source release validation
-Stage A animals/body-contact = CLOSED/PASS EV-365–EV-366
-final source-quality/modularity audit = CLOSED
-cleanup 1 C1 metadata retirement = IMPLEMENTED / STATIC REVIEW PASS
-cleanup 2 release/diagnostic hygiene = IMPLEMENTED / STATIC REVIEW PASS
+Stage A body-contact = CLOSED/PASS EV-365–EV-366
+bad-skip C1-R1 stress = PASS EV-367
+Stage B equipped/cumulative matrix = CLOSED/PASS EV-368
+Stage C modded/custom compatibility = ACTIVE
+  native zombie baseline = PASS EV-369
+  zombie separation = PASS EV-370
+  Axe separation = NEXT, tested independently
 active Work task = NONE
-current stop gate = EV-370 POP-12 PASS -> Stage C Axe-separation compatibility test (independent environment)
 ```
 
-## Current responsibility
+## Frozen behavior
 
-Permanent raw8 semantic remains:
-
+Permanent raw8:
 ```text
-accepted FIST -> one target-directed native opportunity OPEN
-native miss -> opportunity remains OPEN and latch is rearmed
-first exact native contact-resolution dispatch -> opportunity CONSUMED
-later FIST in same C1 -> another opportunity may OPEN
-exact C1 finalization/replacement -> unused opportunity CLOSED
+accepted FIST -> one target-directed opportunity OPEN
+native miss -> stays OPEN + latch rearm
+first exact native contact -> CONSUMED
+later FIST in same C1 -> may OPEN another opportunity
+C1 finalization/replacement -> unused opportunity CLOSED
 unmarked raw8 -> native
 ```
 
-No raw8 `FIST_OFF`. Collision/opportunity only; target selection, damage outcome, block/immunity and reactions remain Gothic-owned.
+No raw8 `FIST_OFF`. Damage/target/block/reaction policy remains Gothic-owned.
 
-Permanent raw8 authority:
-`docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`
+Permanent authorities:
+- `COLLISION_REFERENCE.md`
+- `COLLISION_LIFECYCLE.md`
+- `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`
+- `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
+- `COLLISION_TEST_PLAN.md`
 
-Closed raw8 production task:
-`docs/archive/investigations/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
+Final validated diagnostic DLL SHA256:
+`5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`
 
-Closed final audit:
-`docs/archive/investigations/COLLISION_FINAL_SOURCE_QUALITY_MODULARITY_AUDIT.md`
+Final validated behavior DLL SHA256:
+`A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-Completed cleanup 1:
-`docs/archive/investigations/COLLISION_FINAL_C1_METADATA_RETIREMENT_CLEANUP.md`
+## Latest evidence
 
-Cleanup-1 implementation:
-`9789254866bb47dcbadb145aeb9831c7c0e4e97f` — independent Normal Chat static review **PASS**.
+- **EV-364:** focused permanent raw8 acceptance complete.
+- **EV-365–EV-366:** final-source body-contact campaign PASS.
+- **EV-367:** 10/10 deliberate bad-skip C1-R1 repairs converged group7 -> group5; AttackContinuationProtection remains separate.
+- **EV-368:** equipped-opponent + cumulative player matrix PASS.
+- **EV-369:** native zombie control PASS. Native zombies use ordinary `Hero_...` animation sets; factual Axe/raw52 can use the shared native 2H set; Staff has its own set.
+- **EV-370:** zombie-separation compatibility PASS. Opponent motion identity changes `Hero_...` -> `Zombie_...` while factual Fist/raw8, Axe/raw52, Staff/raw12 and 1H+shield source semantics remain healthy. Unmarked replacement assets stay native.
 
-It added exact-generation, metadata-only retirement for marker dedupe/budget state, equipped-Sprint binding state and raw55 execution state at the existing post-native AISetState seam. No physical collision/latch/group behavior changed.
-
-Completed cleanup 2:
-`docs/archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
-
-Cleanup-2 implementation:
-`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — independent Normal Chat static review **PASS**.
-
-It compile-isolates diagnostic-only raw8 state/work from the behavior twin, removes dead TouchDamage research APIs, compacts EquippedSprint CORE logging, corrects startup behavior-core identity, and removes unused compact raw8 diagnostic parameters without changing gameplay semantics.
-
-## Current evidence / runtime provenance
-
-- **EV-354:** raw8 pending opportunity survives same-C1 Action9/SPRINT -> Action2/POWER transport.
-- **EV-355:** permanent candidate broad diagnostic smoke PASS; marked raw8, native fallback, raw55/equipped coexistence healthy.
-- **EV-356:** pre-cleanup diagnostics-free behavior-twin broad functional smoke PASS with positive collision discriminators.
-- **EV-357:** final post-cleanup diagnostic build/startup + targeted re-smoke PASS; C1 metadata retirement, raw8, raw55/equipped coexistence and compact Sprint CORE remained healthy.
-- **EV-358:** final post-cleanup diagnostics-free behavior parity smoke PASS; source frozen for focused acceptance.
-- **EV-359:** human Normal/Power, later-FIST reopening and ordinary no-contact finalization PASS; Gargoyle close/delayed PASS.
-- **EV-360:** Gargoyle far/no-contact, reaction/generation replacement and Sprint Action9→Action2 transport PASS.
-- **EV-361:** exact P1-left human Normal motion confirmed genuinely unmarked/native and target-directed in group combat; only focused item 6 remains open.
-- **EV-362:** prior marked/unmarked arrangement healthy but missed pending-replacement timing.
-- **EV-363:** interruption timing captured twice, but intended P0-right fallback still resolved marked at runtime; fixture-state mismatch, no source contradiction.
-- **EV-364:** corrected fixture proves marked-pending → generation replacement → genuinely unmarked native fallback; all ten focused raw8 acceptance requirements PASS.
-- **EV-365:** first final-source Stage-A body-contact batch PASS: marked/unmarked Wolf control plus Minecrawler, Bloodfly, Boar and Bison; technical results remain valid, but its Stage-A closure wording was premature because more ordinary fixtures remained.
-- **EV-366:** final unequipped-opponent extension PASS: Ripper, ScorpionKing, Snapper, TRex and Waran raw8 plus Troll/raw55, with dual-1H/Staff/2H coexistence; Stage A now actually CLOSED.
-- **EV-367:** deliberate destructive bad-skip lifecycle stress PASS: 10 exact owned group7→group5 C1-R1 repairs across 1H, 1H+torch, dual-1H, Staff and 2H; zero repair divergence. AttackContinuationProtection remains separate/paused.
-- **EV-368:** final frozen-source equipped-opponent/cumulative player matrix PASS: Goblin raw2 incl. Sprint, Demon raw3, Ogre/Stalker/Orc Axe raw52, Orc Staff raw51 + raw8 Fist, with player 1H/1H+shield/2H and prior cumulative weapon coverage; Stage B CLOSED.
-- **EV-369:** native zombie baseline/control PASS: Mummy raw8, BenSala Zombie exact Pickaxe/Axe raw52 and UndeadPriest Staff/raw12 remained clean before enabling the separation mod. Native `Hero_...` identities are expected; factual Axe/raw52 uses the native shared 2H animation set, while Staff has its own set.
-- **EV-370:** zombie animation-separation PASS: opponent runtime motions switch to `Zombie_...` while factual Fist/raw8, Axe/raw52, Staff/raw12 and 1H+shield sources remain stable; marked assets stay controlled, genuinely unmarked separated assets stay native, and all physical equipped routes clean up. User-reported Axe-separation/zombie-separation conflict is a third-party composition constraint, not a collision-mod failure.
-
-Latest runtime-reviewed and frozen source:
-`f1f5d2aad3edc3564a9a8b40541840b94f8fa903` — Stage A PASS EV-365–EV-366; bad-skip C1-R1 PASS EV-367; Stage B PASS EV-368; native zombie control PASS EV-369; zombie separation PASS EV-370
-
-Final validated diagnostic DLL SHA256: `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313` — EV-357/EV-359.
-
-Final validated behavior-only DLL SHA256: `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340` — EV-358 PASS.
+User-reported environment constraint:
+- zombie separation and Axe separation conflict when stacked;
+- this is a third-party composition constraint, not a Gothic3_Animation_Behaviors failure;
+- test each separation mod independently.
 
 ## Next sequence
 
 ```text
-comprehensive frozen-source release campaign Stage A CLOSED/PASS EV-365–EV-366
--> supplemental bad-skip C1-R1 regression PASS EV-367
--> Stage B cumulative equipped coverage CLOSED/PASS EV-368
--> Stage C modded/custom animations CURRENT — zombie separation PASS EV-370; Axe separation NEXT (test independently)
+Stage C CURRENT
+-> Axe separation independently
+-> Rapier separation
+-> fast/multi-contact + other custom animation fixtures
 -> mixed stress
 -> New Balance + AttackCollision
 ```
 
-Final cleanup, both post-cleanup re-smokes, permanent raw8 focused acceptance, comprehensive Stage A, and cumulative Stage B equipped coverage are CLOSED/PASS. Stage C remains current. EV-369 is the native zombie baseline and EV-370 closes zombie-separation compatibility. Next is Axe separation in its own environment; do not stack it with zombie separation because the two third-party separation mods conflict.
+No source change is authorized absent newly demonstrated contradictory evidence.
 
 ## Read next by question
 
-- exact active continuation → `BETWEEN_CHATS.md`
-- closed cleanup 2 → `archive/investigations/COLLISION_FINAL_RELEASE_DIAGNOSTIC_HYGIENE_CLEANUP.md`
-- current collision facts → `COLLISION_REFERENCE.md`
+- exact continuation → `BETWEEN_CHATS.md`
+- current facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- proof/provenance → `EVIDENCE_INDEX.md` → EV-347–EV-370
+- evidence proof → `EVIDENCE_INDEX.md` → EV-347–EV-370
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
-- permanent raw55 → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
 
 ## Still paused
 
 ```text
 NO New Balance final regression yet
-NO collision migration into src/Script_G3AnimationBehaviors yet
+NO migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
 NO AttackContinuationProtection work
 ```
