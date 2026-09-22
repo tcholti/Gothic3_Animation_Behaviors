@@ -30,7 +30,9 @@ EV-360 closes focused items 1, 5 and 8 on the frozen source: true Gargoyle far/n
 
 EV-361 corrects the group-control interpretation by exact motion identity and closes native unmarked target-directed control. Only item 6 remains open.
 
-EV-362 confirms the final sentinel fixture polarity is correct after marker reversal: P1-left is marked and P0-right is fully native/unmarked, with seven exact native contacts and no raw8 opportunity ownership on the P0 motion. The run did not capture a pending marked P1 opportunity being generation-replaced, so item 6 remains open as a test-window gap rather than a contradiction.
+EV-362 verified a prior marked/unmarked arrangement but missed the pending-replacement timing window.
+
+EV-363 captures the difficult interruption timing twice: marked P1-left pending opportunities are closed by `C1_GENERATION_REPLACED` and the next relevant attack is P0-right with no intervening opportunity. However, the runtime reports P0-right itself as `MarkerPresent=1 / FistMarkers=1` throughout the run, so it is not a valid unmarked fallback. Item 6 remains open solely on fixture state. No source change is justified.
 
 ## Responsibility
 
