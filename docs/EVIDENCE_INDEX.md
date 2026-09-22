@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-09-20
+**Updated:** 2026-09-22
 
 ## Purpose
 
@@ -28,7 +28,8 @@ Canonical evidence uses one global monotonic EV namespace. Closed ledger volumes
 | EV-286–EV-290 | `archive/evidence/EVIDENCE_LEDGER_286_ONWARD.md` |
 | EV-291–EV-308 | `archive/evidence/EVIDENCE_LEDGER_291_ONWARD.md` |
 | EV-309–EV-341 | `archive/evidence/EVIDENCE_LEDGER_309_ONWARD.md` |
-| EV-342 onward | `EVIDENCE_LEDGER_342_ONWARD.md` |
+| EV-342–EV-364 | `archive/evidence/EVIDENCE_LEDGER_342_ONWARD.md` |
+| EV-365 onward | `EVIDENCE_LEDGER_365_ONWARD.md` |
 
 The archived pre-compression version of this index is preserved as `archive/evidence/EVIDENCE_INDEX_2026-09-19_PRE_COMPRESSION.md` for historical retrieval routes.
 
@@ -40,7 +41,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | frame effects / authored marker channel | EV-012–EV-018 |
 | ordinary native weapon reset / marker timing | EV-019–EV-023 |
 | Staff/NPC actor-general marker proof | EV-024–EV-028 |
-| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336–EV-340, EV-342–EV-345 |
+| raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-336–EV-340, EV-342–EV-345, EV-365 |
 | player animation family / UseType / side semantics | EV-036–EV-065, EV-332–EV-335 |
 | Quick marker ownership / StatePosition | EV-066–EV-075 |
 | equipped dual-source RIGHT/LEFT mapping | EV-090–EV-094, EV-332 |
@@ -133,6 +134,7 @@ EV-361         motion-specific correction: native/unmarked human P1-left target-
 EV-362         final focused fallback sentinel attempt: marked/unmarked fixture correct and native P0 fallback healthy; required pending replacement chronology not captured
 EV-363         final focused fallback sentinel: replacement timing captured twice, but intended P0 fallback remained marked at runtime; fixture-state mismatch, no source contradiction
 EV-364         final focused raw8 sentinel PASS: replacement->genuinely-unmarked native fallback proven; §14 permanent raw8 acceptance COMPLETE
+EV-365         final frozen-source Stage-A body-contact batch PASS; Wolf marked/unmarked control + Minecrawler/Bloodfly/Boar/Bison + equipped coexistence
 ```
 
 ## 4. Escalation order
@@ -161,4 +163,4 @@ research/archive/  processed canonical runtime provenance
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
-Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_342_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.
+Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_365_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.

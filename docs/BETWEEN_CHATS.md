@@ -21,60 +21,47 @@ Behavior SHA256:
 
 No source change is authorized absent newly demonstrated contradictory evidence.
 
-## Permanent raw8 status
+## Stage-A final-source closure
 
-Focused §14 acceptance is **CLOSED/PASS at EV-364**.
+Comprehensive frozen-source Stage A is **CLOSED/PASS at EV-365**.
 
-Final sentinel EV-364:
-- P1-left marked opportunity;
-- 8 exact `C1_GENERATION_REPLACED` closes;
-- all 8 latch `0->1`, write-confirmed;
-- after every replacement, next relevant human Normal attack was P0-right;
-- zero intervening raw8 opens;
-- P0-right was genuinely unmarked/native: 25/25 `MarkerPresent=0 / FistMarkers=0`;
-- zero raw8 ownership/open/consume state on P0;
-- 3 exact native P0 contacts in the run;
-- zero invariant/contradiction/generation/repair/error records.
+The six-log batch covered:
+- Wolf marked raw8, including native Wolf + transformed-player symmetry;
+- Wolf fully unmarked/native control;
+- Minecrawler marked raw8 with player 1H coexistence;
+- Bloodfly marked raw8 with player 1H+torch coexistence;
+- Boar marked raw8 with player 1H+torch coexistence;
+- Bison marked raw8 with player 1H+torch coexistence.
 
-Raw8 production implementation task is archived:
-`docs/archive/investigations/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
+Important details:
+- the uploaded filename `2026-09-22_wolf_fist_marked_hero_1h_marked_test.log` contains the Minecrawler fixture; preserve the original basename as provenance;
+- marked raw8 opportunities balanced to exact native contact consumption or factual C1 closure in every run;
+- unmarked Wolf produced zero raw8 ownership/open/consume/marker state while native Fist contacts remained present;
+- two late player QuickAttack RIGHT callbacks in the Minecrawler run were rejected fail-closed at Action0 / no valid C1 with the weapon already group5;
+- one Minecrawler-run player 1H lifecycle backup repaired exact outstanding group7 -> group5 with no repair divergence;
+- no source contradiction, invariant/generation contradiction, repair divergence, explicit error/failure, or unload problem was found.
+
+Stage A therefore does not justify a source change.
 
 ## Current responsibility
 
-Resume the comprehensive frozen-source release campaign:
-`docs/COLLISION_TEST_PLAN.md` §3.8.
+Continue `docs/COLLISION_TEST_PLAN.md` §3.8 at:
 
-Current stage:
 ```text
-A. animals/body-contact
--> B. equipped coverage
--> C. modded/custom animations
--> D. mixed stress
--> E. New Balance + AttackCollision
+B. equipped actors + player weapon matrix
+-> 1H
+-> 1H+shield
+-> 1H+torch
+-> dual-1H
+-> 2H
+-> Staff
+-> factual Axe / other supported equipped sources
 ```
 
-Stage A should prioritize final-source coverage not already exhaustive in EV-359–EV-364.
+Across the matrix include RIGHT/LEFT/BOTH/OFF, repeated contact and Power/Pierce/SimpleWhirl/Hack/Sprint where applicable.
 
-Do **not** automatically repeat:
-- Sabretooth;
-- Gargoyle;
-- human Fist.
-
-Golem is optional as a weapon-test target, not required as a body-contact fixture.
-
-Good first Stage-A fixtures:
-- Wolf marked raw8;
-- Wolf unmarked/native control;
-- Minecrawler;
-- Bloodfly;
-- Boar;
-- Bison;
-- other prepared non-weapon creatures not yet strongly covered on the frozen source.
-
-Vary player weapons between creature runs so body-contact and equipped-marker behavior are exercised together. Several logs may be uploaded in one thematic batch.
-
-Troll/raw55 already has strong final-source coverage at EV-357 and does not need to be the first repeat unless useful for weapon coexistence.
+Stage-B evidence should use positive collision discriminators where native and authored behavior could otherwise look visually identical.
 
 Broad failures must be reduced to the smallest factual route before any source change.
 
-`research/raw/` contains only `Keep.txt`.
+After EV-365 closure, `research/raw/` contains only `Keep.txt`.

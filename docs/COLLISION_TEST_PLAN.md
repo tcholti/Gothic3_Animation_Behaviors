@@ -229,14 +229,14 @@ After the focused raw8 matrix closes, repeat a systematic final-source campaign 
 Run in this order:
 
 ```text
-A. non-weapon/body-contact creatures
+A. non-weapon/body-contact creatures — CLOSED/PASS EV-365
 -> several logs per batch are allowed
 -> revisit prepared raw8/raw55 animal fixtures systematically, prioritizing routes not already exhaustively covered on the frozen source
 -> EV-359/EV-360 are comprehensive enough that Sabretooth, Gargoyle and human Fist do not need automatic repeat coverage unless a later contradiction specifically calls for them
 -> Golem may be reused opportunistically as a weapon-test target, but is not mandatory as another body-contact fixture
 -> vary player weapons between fixtures so creature collision and equipped collision coexist in the same runs
 
-B. equipped actors + player weapon matrix
+B. equipped actors + player weapon matrix — CURRENT
 -> revisit player and NPC/creature equipped routes
 -> cover 1H, 1H+shield, 1H+torch, dual-1H, 2H, Staff and factual Axe/other supported sources
 -> include RIGHT/LEFT/BOTH/OFF, repeated contact, Power/Pierce/SimpleWhirl/Hack/Sprint as applicable
