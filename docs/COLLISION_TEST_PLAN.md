@@ -252,10 +252,11 @@ B. equipped actors + cumulative player weapon matrix — CLOSED/PASS EV-368
 -> final-source equipped-opponent closure: EV-368
 
 C. modded/custom animation compatibility — CURRENT
--> native zombie baseline/control CLOSED/PASS EV-369: Mummy raw8, BenSala Zombie factual Pickaxe/Axe raw52 and UndeadPriest Staff/raw12 were tested **before** enabling zombie separation
--> native expectation confirmed: zombie routes expose ordinary `Hero_...` animation identifiers; factual Axe/UseType52 may ride the shared native 2H animation set, while Staff uses its own animation set
--> NEXT: enable the zombie animation-separation mod and repeat representative Mummy/Zombie/UndeadPriest routes so the modded behavior can be compared directly against EV-369
--> after zombie separation, exercise the prepared Axe-separation route; its purpose is to move factual Axe/raw52 away from the native shared 2H animation set onto Axe-specific animations
+-> native zombie baseline/control CLOSED/PASS EV-369
+-> zombie animation-separation compatibility CLOSED/PASS EV-370: Mummy raw8, Zombie Axe/raw52, UndeadPriest Staff/raw12 and a direct 1H+shield native/modded pair remain healthy while runtime motion identity changes from `Hero_...` to `Zombie_...`
+-> separated assets without authored markers correctly remain native; do not treat marker absence in a replacement asset as a collision failure
+-> NEXT: exercise the prepared Axe-separation route independently; its purpose is to move factual Axe/raw52 away from the native shared 2H animation set onto Axe-specific animations
+-> environment constraint: the User reports zombie separation and Axe separation conflict with each other (Axe separation prevents zombie-separation 2H animations from working). Do not stack them for acceptance. Our compatibility requirement is Gothic3_Animation_Behaviors + each separation mod independently, not cross-compatibility between those third-party separation mods.
 -> then exercise Rapier-separation and the User's fast/multi-contact authored/custom collision fixtures
 -> use positive discriminators rather than relying only on native-vs-mod visual equivalence
 

@@ -188,3 +188,35 @@ Disposition:
 - Zombie animation-separation compatibility remains OPEN/NEXT in Stage C.
 - Stage C remains active for the zombie-separation run and subsequent Axe/Rapier/custom fixtures.
 
+### EV-370 — Zombie animation-separation compatibility PASS + 1H/shield control pair
+
+Observed:
+- The zombie animation-separation mod was enabled for the four modded runs. Unlike the EV-369 native controls, opponent CurrentMovementAni identities now factualize as `Zombie_...` rather than `Hero_...`, directly confirming that the separated animation assets are active at the diagnostic layer.
+- Mummy / factual raw8 Fist UseType8: all 37 attack-ownership observations were marked across Normal/Power and used `Zombie_Stand_None_Fist_...` motions. 39 authored opportunities opened and all 39 reached a terminal disposition: 23 exact native-contact consumptions + 16 C1-finalization closes. Player 2H coexistence remained balanced.
+- BenSala_Zombie_02 / factual `It_Pickaxe` UseType52 (Axe/raw52): the factual source stayed unchanged while motion identity moved from native `Hero_..._2H_...` in EV-369 to `Zombie_..._2H_...`. Across 37 attack-ownership observations, 31 were marked and 6 were genuinely unmarked `Zombie_Parade_None_2H_P0_FinishingAttack...` Hack/Action14 fallbacks. Pickaxe collision remained balanced at 47 exact 5->7 openings and 47 exact 7->5 cleanups, with one expected repeated 7->7 request.
+- UndeadPriest / factual `It_Staff_Quarterstaff_01` UseType12: source identity stayed unchanged while motions moved from native `Hero_..._Staff_...` to `Zombie_..._Staff_...`. Across 49 attack-ownership observations, 37 were marked and 12 were genuinely unmarked `Zombie_Parade_None_Staff_P0_FinishingAttack...` Hack/Action14 fallbacks. Quarterstaff collision remained balanced at 49 openings and 49 cleanups.
+- New 1H+shield native control: Gotha_SlaveZombie_02 tracked exact RIGHT `It_1H_Sword_Rust_01` / UseType2 plus LEFT `It_Shield_Skeleton_02`; native motion identity was `Hero_..._Shield_1H_...`. All 17 observed zombie attacks were marked and the sword produced 16 openings / 16 cleanups. The shield remained a tracked LEFT source and was not spuriously activated by RIGHT-only markers.
+- Matching modded 1H+shield run: the same factual sword+shield source topology remained intact while opponent motion identity changed to `Zombie_..._Shield_1H_...`. Of 39 attack-ownership observations, 26 were marked and 13 separated Normal/Power assets were genuinely unmarked. Those unmarked assets correctly stayed native (`RequiredMask=0 / SuppressNative=0`); marked assets used the generic equipped path. The sword remained fully balanced at 41 openings / 41 cleanups and the shield was not spuriously activated.
+- Across all five new logs there were zero marker anomaly/discovery records, zero C1 repair/divergence events, zero invariant/generation contradictions, zero explicit error/exception/failure records, and every DLL instance unloaded cleanly.
+
+Scope / limits:
+- **PASS for collision compatibility with the tested zombie animation-separation mod.** The decisive comparison is EV-369 native `Hero_...` motion identity -> EV-370 separated `Zombie_...` motion identity while factual actor/source/UseType semantics remain stable and collision ownership/cleanup remain correct.
+- Genuinely unmarked separated assets are not failures. They demonstrate the intended fallback rule: a new animation asset without authored collision markers remains native rather than inheriting marker ownership from the old human animation it conceptually replaces.
+- Native non-Staff two-handed weapon routes may use the shared 2H animation set while factual Axe remains UseType52; the zombie-separation result does not change that source classification.
+- The User reports that the zombie-separation and Axe-separation mods conflict with each other: enabling Axe separation prevents the zombie-separation 2H animations from working. This is treated as a **third-party separation-mod composition constraint**, not a failure of Gothic3_Animation_Behaviors. Compatibility scope is our collision mod against each separation mod in its own working environment; cross-compatibility between unrelated separation mods is not required unless deliberately opened as a separate goal.
+- No source change is justified.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- uploaded raw-evidence commit: `3db414e6e3be3d3ac4916aa817b50abc3566acf7`;
+- `research/archive/2026-09-22_mod_mummy_fist_marked_hero_2h_marked_test.log` — blob `0ca31c892884068fbe26fa9545d30ec75b471d3c`, 330,301 bytes;
+- `research/archive/2026-09-22_mod_zombie_1h_shield_marked_hero_2h_marked_test.log` — blob `779534aea5f7ed3efaecefee6000551f2bd738e6`, 167,262 bytes;
+- `research/archive/2026-09-22_mod_zombie_2h_marked_hero_2h_marked_test.log` — blob `0e740545c9f68d464f058353bc3413f0286d839b`, 164,224 bytes;
+- `research/archive/2026-09-22_mod_zombie_staff_marked_hero_2h_marked_test.log` — blob `61f483cde31221a9608b111602a128696b2a6aa9`, 279,562 bytes;
+- `research/archive/2026-09-22_zombie_1h_shield_marked_hero_2h_marked_test.log` — native control extension, blob `f69f5795fa52a71f04ddda3f9bae9ea77875a27d`, 85,822 bytes.
+
+Disposition:
+- **PASS — Stage-C zombie animation-separation fixture CLOSED.**
+- EV-369 remains the native zombie baseline; EV-370 is the separated comparison.
+- Continue Stage C with Axe separation tested independently of zombie separation.
+

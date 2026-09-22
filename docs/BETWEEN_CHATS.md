@@ -28,39 +28,57 @@ Stage A — non-weapon/body-contact       CLOSED/PASS EV-365–EV-366
 supplemental bad-skip C1-R1 stress      PASS EV-367
 Stage B — equipped/cumulative matrix    CLOSED/PASS EV-368
 Stage C — modded/custom compatibility   ACTIVE
-  native zombie baseline/control        CLOSED/PASS EV-369
-  zombie separation mod                 NEXT / NOT YET RUN
+  native zombie baseline/control        PASS EV-369
+  zombie animation separation           PASS EV-370
+  Axe animation separation              NEXT
 ```
 
-## EV-369 correction and baseline
+## EV-370 zombie-separation result
 
-EV-369 was initially misclassified by Normal Chat as a zombie-separation-mod run. The User clarified that **no zombie separation mod was enabled**. The three logs are the native control baseline for the upcoming separation test.
+Direct native/modded evidence now exists.
 
-Native runtime facts:
-- Mummy: factual raw8 Fist / UseType8; marked Normal + Power healthy.
-- BenSala_Zombie_02: exact `It_Pickaxe` / UseType52 (Axe/raw52); Quick/Power/Whirl/Normal/Hack healthy; 62 exact openings = 62 exact cleanups; one unmarked FinishingAttack/Hack stayed native.
-- UndeadPriest: exact `It_Staff_Quarterstaff_01` / UseType12; Power/Whirl/Quick/Normal/Hack healthy; 64 exact openings = 64 exact cleanups.
-- player 2H coexistence remained clean.
+Native baseline:
+- EV-369 Mummy, Zombie Axe/raw52 and UndeadPriest Staff/raw12 use ordinary `Hero_...` animation identities.
+- EV-370 adds the missing Gotha_SlaveZombie_02 1H+shield native control: RIGHT `It_1H_Sword_Rust_01` / UseType2 + LEFT skeleton shield, with `Hero_..._Shield_1H_...` motions.
+
+With zombie separation enabled:
+- Mummy keeps factual Fist/raw8 but motions become `Zombie_..._Fist_...`; 39 opportunities -> 23 exact contacts + 16 finalization closes.
+- BenSala_Zombie_02 keeps factual `It_Pickaxe` / UseType52 but motions become `Zombie_..._2H_...`; 47 openings = 47 cleanups.
+- UndeadPriest keeps factual Quarterstaff / UseType12 but motions become `Zombie_..._Staff_...`; 49 openings = 49 cleanups.
+- Gotha_SlaveZombie_02 keeps the same sword+shield source topology but motions become `Zombie_..._Shield_1H_...`; sword physical state remains balanced at 41 openings = 41 cleanups and RIGHT-only marker traffic never spuriously activates the shield.
+- genuinely unmarked separated assets correctly stay native instead of inheriting ownership from their old human-animation counterparts.
+- player 2H coexistence remains healthy.
 - zero marker anomaly/discovery, C1 repair/divergence, invariant/generation contradiction, explicit error/failure or unload problem.
 
-Native animation-set rule supplied by the User and consistent with established evidence:
-- native non-Staff two-handed weapons use the ordinary 2H animation set;
-- factual Axe/UseType52 therefore appearing with `Hero_..._2H_...` motion identity is expected, not a mismatch;
-- Staff uses its own animation set;
-- a later Axe-separation mod will deliberately give Axe a unique animation set.
+Disposition: **PASS.** No collision source change.
 
-The native zombie actors likewise use ordinary human animation assets. EV-369 therefore establishes the exact baseline against which the forthcoming zombie-separation mod should be compared.
+## Third-party separation-mod composition constraint
 
-## Current responsibility — Stage C zombie separation
+The User reports:
+- zombie animation separation and Axe animation separation cannot be used together cleanly;
+- when Axe separation is enabled, the zombie-separation 2H animations do not work.
+
+This is outside the current collision-mod responsibility. The acceptance goal is:
+
+```text
+Gothic3_Animation_Behaviors + zombie separation   -> validate
+Gothic3_Animation_Behaviors + Axe separation      -> validate
+Gothic3_Animation_Behaviors + Rapier separation   -> validate
+```
+
+It is **not** required that independent third-party separation mods work when stacked with each other. Do not combine zombie separation with Axe separation for the Axe acceptance run.
+
+## Current responsibility — Axe separation
 
 NEXT:
-- enable the zombie animation-separation mod;
-- repeat representative Mummy/Fist, Zombie Axe/raw52 and UndeadPriest Staff/raw12 combat routes where the mod provides separated assets;
-- continue rotating a useful player weapon in the same runs;
-- compare factual actor/action/source/UseType, marker acceptance, physical opening/cleanup, raw8 opportunity accounting and fallback behavior against EV-369.
+- disable zombie separation;
+- enable the Axe-separation mod in its intended standalone environment;
+- compare factual Axe/raw52 behavior against the established native shared-2H baseline;
+- verify the separated Axe animation identities/markers drive the same factual equipped source correctly;
+- continue player-weapon coexistence as useful.
 
-After the zombie-separation comparison, continue the prepared Axe-separation, Rapier-separation and fast/multi-contact custom-animation fixtures.
+After Axe separation, continue Rapier separation and fast/multi-contact/custom authoring fixtures.
 
 A Stage-C failure must first be reduced to the smallest factual route before any source change.
 
-`research/raw/` contains only `Keep.txt`.
+After EV-370 closure, `research/raw/` contains only `Keep.txt`.

@@ -70,6 +70,7 @@ The archived pre-compression version of this index is preserved as `archive/evid
 | permanent raw55 implementation + focused/current regression | EV-295–EV-298, EV-341, EV-366 |
 | standalone collision regression | EV-299 onward |
 | native zombie animation-set baseline/control | EV-369 |
+| zombie animation-separation mod compatibility | EV-370 |
 | Orc Phase-2 Staff/Fist/2H attack matrix / current-build rechecks | EV-309–EV-310, EV-330–EV-331 |
 | post-raw55 equipped-NPC regression: Goblin/Demon/Ogre/Stalker | EV-311–EV-314, EV-332–EV-336, EV-368 |
 | factual equipped Sprint handoff / continuation / permanent production acceptance | EV-311, EV-315, EV-320–EV-329, EV-368 |
@@ -140,6 +141,7 @@ EV-366         final-source Stage-A extension PASS; Ripper/ScorpionKing/Snapper/
 EV-367         destructive bad-skip / C1-R1 stress PASS; 10 exact owned group7 -> group5 repairs, zero divergence
 EV-368         final frozen-source Stage-B equipped-opponent + cumulative player matrix PASS
 EV-369         native zombie baseline/control PASS; Mummy raw8 + Zombie Axe/raw52 on native shared 2H animation set + UndeadPriest Staff/raw12; separation mod not yet enabled
+EV-370         zombie-separation compatibility PASS; runtime motions switch Hero_* -> Zombie_* with factual sources stable; 1H+shield control pair included
 ```
 
 ## 4. Escalation order
