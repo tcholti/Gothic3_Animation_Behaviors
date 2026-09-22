@@ -987,3 +987,60 @@ Interpretation:
 - **INFORMATIVE / NO CONTRADICTION.**
 - Fixture polarity is now correct for the final sentinel.
 - The next attempt should focus only on getting an opponent reaction/interruption during the short interval after the marked P1-left FIST has opened and before that opportunity contacts or finalizes.
+
+
+### EV-363 — Final focused fallback sentinel: replacement timing captured, but intended fallback motion remained marked at runtime
+
+Source/runtime:
+- frozen source `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- source log `2026-09-22_human_fist_marked_unmarked_test2.log`;
+- source SHA256 `1176CF999FBDAAE70C4D1AACD8730A3F917CAE86A66006F99E2FD4F91D1440AB`;
+- 1,791,903 bytes / 7,726 source lines;
+- analyzed losslessly through the deterministic `Prepare-Log.cmd` package in `research/derived/2026-09-22_human_fist_marked_unmarked_test2_large_log/`.
+
+Intended fixture:
+- marked P1-left: `Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L.xmot`;
+- intended unmarked P0-right: `Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot`.
+
+Observed runtime marker state:
+- P1-left: 60 ATTACK_OWNERSHIP observations, all `MarkerPresent=1 / FistMarkers=1`;
+- P0-right: 60 ATTACK_OWNERSHIP observations, all `MarkerPresent=1 / FistMarkers=1`;
+- P0-right therefore remained a marked raw8 route at runtime rather than the intended native/unmarked fallback;
+- P0-right opened 91 raw8 opportunities and emitted raw8 contact/finalization/replacement behavior, confirming the marker was behaviorally active rather than a stale display field.
+
+Decisive timing was nevertheless captured twice:
+1. P1-left C1=8 / opportunity 4:
+   - marked opportunity OPEN at 41758.757 ms;
+   - `C1_GENERATION_REPLACED` close at 41972.990 ms;
+   - next relevant P0-right ATTACK_OWNERSHIP at 42764.795 ms;
+   - zero intervening raw8 opportunity opens;
+   - but P0-right reported `MarkerPresent=1 / FistMarkers=1`, so it was not native fallback.
+
+2. P1-left C1=219 / opportunity 44:
+   - marked opportunity OPEN at 137271.170 ms;
+   - `C1_GENERATION_REPLACED` close at 137391.387 ms;
+   - next relevant P0-right ATTACK_OWNERSHIP at 137724.533 ms;
+   - zero intervening raw8 opportunity opens;
+   - P0-right again reported `MarkerPresent=1 / FistMarkers=1`.
+
+Thus the difficult interruption chronology is now proven reproducible. The only missing condition for focused item 6 is a truly unmarked P0-right runtime asset.
+
+Additional lifecycle evidence:
+- the large-log package surfaced two `CORE C1 FINALIZATION ANOMALY / REPAIR` events;
+- both belong to Orc equipped weapon sources, not raw8:
+  - `ReddockOrcWarrior01 / It_Axe_OrcSword_02 / raw52`;
+  - `ReddockOrcScout02 / It_Axe_OrcSword_01 / raw52`;
+- both had factual outstanding Item_Attack group7 state and were repaired to Item_Equipped group5;
+- both report `REPAIRED_TO_ITEM_EQUIPPED`, actual group after repair 5 and physical collision changed;
+- no repair-divergence evidence is present;
+- these are successful generic lifecycle-backup repairs under interruption/churn, not a raw8 contradiction.
+
+Focused acceptance disposition:
+- item 6 remains OPEN because the intended fallback motion was still marked at runtime;
+- this run is **INFORMATIVE / FIXTURE-STATE MISMATCH, NO SOURCE CONTRADICTION**;
+- no source change is justified;
+- next retry should first verify that the actual game-loaded P0-right motion resolves `MarkerPresent=0 / FistMarkers=0`, then repeat the same group-combat setup. The interruption timing itself already succeeded twice.
+
+Provenance:
+- raw blob `50a70ac6611dde6dfc2da3afa95c803132e43912`;
+- derived package retained under `research/derived/2026-09-22_human_fist_marked_unmarked_test2_large_log/`.
