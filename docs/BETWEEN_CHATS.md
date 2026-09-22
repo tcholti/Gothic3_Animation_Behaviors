@@ -5,12 +5,12 @@
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
-## Frozen source
+## Frozen collision source
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Frozen collision source:
+Source:
 `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`
 
 Diagnostic SHA256:
@@ -19,76 +19,62 @@ Diagnostic SHA256:
 Behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-No source change is authorized absent contradictory evidence.
+No source change is authorized absent newly demonstrated contradictory evidence.
 
-## Focused raw8 acceptance
+## Permanent raw8 status
 
-Only item 6 remains open:
+Focused §14 acceptance is **CLOSED/PASS at EV-364**.
 
+Final sentinel EV-364:
+- P1-left marked opportunity;
+- 8 exact `C1_GENERATION_REPLACED` closes;
+- all 8 latch `0->1`, write-confirmed;
+- after every replacement, next relevant human Normal attack was P0-right;
+- zero intervening raw8 opens;
+- P0-right was genuinely unmarked/native: 25/25 `MarkerPresent=0 / FistMarkers=0`;
+- zero raw8 ownership/open/consume state on P0;
+- 3 exact native P0 contacts in the run;
+- zero invariant/contradiction/generation/repair/error records.
+
+Raw8 production implementation task is archived:
+`docs/archive/investigations/COLLISION_RAW8_PERSISTENT_OPPORTUNITY_PRODUCTION_IMPLEMENTATION.md`
+
+## Current responsibility
+
+Resume the comprehensive frozen-source release campaign:
+`docs/COLLISION_TEST_PLAN.md` §3.8.
+
+Current stage:
 ```text
-marked pending opportunity
--> factual generation replacement
--> old opportunity closes
--> next relevant human raw8 attack is genuinely unmarked
--> no intervening newly marked FIST opportunity
--> unmarked route remains native
+A. animals/body-contact
+-> B. equipped coverage
+-> C. modded/custom animations
+-> D. mixed stress
+-> E. New Balance + AttackCollision
 ```
 
-All other §14 focused items PASS through EV-361.
+Stage A should prioritize final-source coverage not already exhaustive in EV-359–EV-364.
 
-## EV-363 result
+Do **not** automatically repeat:
+- Sabretooth;
+- Gargoyle;
+- human Fist.
 
-The combat timing is now good enough.
+Golem is optional as a weapon-test target, not required as a body-contact fixture.
 
-Two exact sequences were captured:
+Good first Stage-A fixtures:
+- Wolf marked raw8;
+- Wolf unmarked/native control;
+- Minecrawler;
+- Bloodfly;
+- Boar;
+- Bison;
+- other prepared non-weapon creatures not yet strongly covered on the frozen source.
 
-```text
-P1-left marked OPEN
--> C1_GENERATION_REPLACED close
--> next relevant P0-right attack
--> zero intervening raw8 opens
-```
+Vary player weapons between creature runs so body-contact and equipped-marker behavior are exercised together. Several logs may be uploaded in one thematic batch.
 
-But the P0-right runtime motion was still marked.
+Troll/raw55 already has strong final-source coverage at EV-357 and does not need to be the first repeat unless useful for weapon coexistence.
 
-Intended unmarked motion:
-`Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R.xmot`
-
-Observed across the run:
-- 60 ATTACK_OWNERSHIP records;
-- all 60 `MarkerPresent=1`;
-- all 60 `FistMarkers=1`;
-- zero `MarkerPresent=0`;
-- P0-right opened raw8 opportunities and therefore was behaviorally marked.
-
-P1-left was also marked as intended.
-
-Therefore item 6 remains open solely because the live P0-right asset did not reflect the intended marker removal.
-
-The run also contained two successful generic equipped lifecycle repairs for Orc raw52 weapon sources, each group7 -> group5 with `REPAIRED_TO_ITEM_EQUIPPED`; no repair divergence was observed.
-
-## Next responsibility
-
-Before another combat attempt, verify that the **actual game-loaded** P0-right motion resolves:
-
-```text
-MarkerPresent=0
-FistMarkers=0
-Raw8Fist=<none>
-SuppressNative=0
-```
-
-Do not change source code.
-
-Once P0-right is truly unmarked, repeat the same group-combat setup. The interruption timing already succeeded twice, so no new test design is required.
-
-After item 6 PASS:
-1. close focused permanent raw8 acceptance;
-2. begin `COLLISION_TEST_PLAN.md` §3.8 comprehensive final-source campaign.
-
-Large-log provenance:
-- archived raw: `research/archive/2026-09-22_human_fist_marked_unmarked_test2.log`;
-- source SHA256: `1176CF999FBDAAE70C4D1AACD8730A3F917CAE86A66006F99E2FD4F91D1440AB`;
-- retained derived package: `research/derived/2026-09-22_human_fist_marked_unmarked_test2_large_log/`.
+Broad failures must be reduced to the smallest factual route before any source change.
 
 `research/raw/` contains only `Keep.txt`.
