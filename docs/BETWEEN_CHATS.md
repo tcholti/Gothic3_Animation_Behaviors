@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** Short-lived exact continuation pointer. Replace, do not accumulate.  
-**Updated:** 2026-09-22
+**Updated:** 2026-09-23
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -17,40 +17,39 @@ Diagnostic SHA256:
 Behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
+No source change absent new contradictory evidence.
+
 ## Current campaign
 
 ```text
 Stage A body-contact                 PASS EV-365–EV-366
 bad-skip C1-R1 stress               PASS EV-367
 Stage B equipped/cumulative         PASS EV-368
-Stage C modded/custom               ACTIVE
-  zombie separation                PASS EV-370
-  Axe separation                   PASS EV-371
-  Rapier separation                PASS EV-372
-  custom/multi-contact             NEXT
+Stage C separation compatibility    PASS EV-369–EV-372
+Stage D mixed stress                ACTIVE
+  broad natural gameplay run 1      PASS EV-373
 ```
 
-## EV-371 Axe separation
+## EV-373 broad mixed stress
 
-- Hero Axe: `Hero_..._Axe_...`, factual `It_Axe_Bardiche / UseType52`; clean no-target + combat coverage; marked Normal/Quick/Power/Whirl/Hack.
-- Ogre/Orc/Stalker controls from EV-368 used `*_2H_*`; separation runs use `*_Axe_*` with the same factual raw52 sources.
-- Ogre had 2 genuinely unmarked Quick executions; they stayed native and source state still balanced.
-- all four Axe logs: zero anomaly/repair/divergence/error; clean unload.
+User performed one long natural gameplay session with mixed combat/travel/weapon-source churn and reported everything looked/worked normally.
 
-## EV-372 Rapier separation
+POP-07 package:
+- raw SHA256 `0B5596584ED39571CA89CE7CBD90BA7065DF134CF4274BB3C4ADFA7CA5782652`
+- 3,424,951 bytes / 16,693 lines
+- exactly 6 anomaly-class timeline events
 
-- Hero Rapier: `Hero_..._Rapier_...`, factual `It_1H_Epee_01 / UseType2`.
-- clean no-target + Golem combat run.
-- 48/48 player ownership observations marked: Normal/Quick/Power/Pierce.
-- Epee: 53 openings = 53 cleanups; zero anomaly/repair/divergence/error; clean unload.
-- Golem remained unmarked/native control.
+Disposition of those six:
+- 4 C1-R1 finalization repairs: all exact live outstanding sources converged group7 -> group5; observed routes included player Staff/Halberd, Stalker Axe/raw52, ordinary 1H sword and a small-axe source with factual UseType2.
+- 2 marker anomaly/discovery records: unsupported late/unknown callbacks failed closed (Action0/no valid C1; Action68/no live source); no stale activation.
+- final observed combat cleanup returned player 1H RIGHT 7 -> 5; final obligations zero; diagnostic DLL unloaded cleanly.
 
-Third-party constraint remains: Zombie Separation and Axe Separation conflict even without our DLL, so never use them as a combined acceptance environment.
+Result: **PASS EV-373. No source change.** This corroborates C1-R1/fail-closed behavior under unscripted mixed gameplay.
 
 ## Next
 
-Continue Stage C with the User's **fast/multi-contact authored animations and any remaining custom collision-authoring fixtures**. Then Stage D mixed stress.
+Do not automatically schedule another test. In the next session decide deliberately whether EV-373 plus the previous structured coverage is sufficient to close Stage D, or whether one more differentiated broad stress run would add useful evidence. If Stage D closes, proceed to the planned New Balance + AttackCollision compatibility gate.
 
-No source change is authorized from EV-371/EV-372.
+The EV-365–EV-372 ledger has been rotated to archive; current evidence begins at `EVIDENCE_LEDGER_373_ONWARD.md`.
 
-After closure, `research/raw/` contains only `Keep.txt`.
+After EV-373 closure, `research/raw/` contains only `Keep.txt`.

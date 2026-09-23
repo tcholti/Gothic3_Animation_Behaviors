@@ -3,7 +3,7 @@
 **Purpose:** Minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-22
+**Updated:** 2026-09-23
 
 > **INTERRUPTED-CHAT ENTRY RULE:** after an abrupt/max-context/unusable Chat, return to root `README.md` and enter Recovery Lock. This file is then a clue, not unquestioned truth, until POP-11 reconciliation.
 
@@ -14,16 +14,14 @@
 ```text
 standalone collision regression = ACTIVE
 frozen source = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
-latest runtime evidence = EV-372
+latest runtime evidence = EV-373
+current ledger = EVIDENCE_LEDGER_373_ONWARD.md
 Stage A body-contact = PASS EV-365–EV-366
 bad-skip C1-R1 stress = PASS EV-367
 Stage B equipped/cumulative = PASS EV-368
-Stage C modded/custom = ACTIVE
-  zombie baseline = PASS EV-369
-  zombie separation = PASS EV-370
-  Axe separation = PASS EV-371
-  Rapier separation = PASS EV-372
-  fast/multi-contact + remaining custom = NEXT
+Stage C separation compatibility = PASS EV-369–EV-372
+Stage D mixed stress = ACTIVE
+  broad natural gameplay run 1 = PASS EV-373
 active Work task = NONE
 ```
 
@@ -49,22 +47,17 @@ Final behavior SHA256:
 
 ## Latest evidence
 
-- **EV-368:** equipped-opponent + cumulative player matrix PASS.
-- **EV-369–EV-370:** native zombie control + zombie separation PASS.
-- **EV-371:** Axe Separation PASS. Native Axe users move from shared `*_2H_*` motions to `*_Axe_*` while exact raw52 sources remain stable. Player Bardiche/raw52 full marked family pass also clean.
-- **EV-372:** Rapier Separation PASS. `Hero_..._Rapier_...` Normal/Quick/Power/Pierce stays on factual `It_1H_Epee_01 / UseType2` and cleans up correctly.
+- **EV-369–EV-372:** native zombie baseline + Zombie/Axe/Rapier separation compatibility PASS.
+- **EV-373:** first broad mixed-gameplay stress PASS. 3.42 MB / 16,693-line natural run; 4 exact C1-R1 repairs all converged group7 -> group5; 2 unsupported late/unknown marker callbacks failed closed; final obligations zero; clean unload. User observed normal gameplay throughout.
 
-Third-party constraint:
-- Zombie Separation and Axe Separation conflict even with Gothic3_Animation_Behaviors absent.
-- Their combined use is not our compatibility target; test each independently.
+Third-party constraint remains: Zombie Separation and Axe Separation conflict even without Gothic3_Animation_Behaviors; their combined use is not our compatibility target.
 
 ## Next sequence
 
 ```text
-Stage C CURRENT
--> fast/multi-contact + remaining custom animation fixtures
--> Stage D mixed stress
--> New Balance + AttackCollision
+Stage D CURRENT
+-> next session decide whether EV-373 is sufficient broad stress or whether one more differentiated stress run is useful
+-> when Stage D deliberately closes: New Balance + AttackCollision compatibility
 ```
 
 No source change absent newly demonstrated contradictory evidence.
@@ -74,14 +67,14 @@ No source change absent newly demonstrated contradictory evidence.
 - exact continuation → `BETWEEN_CHATS.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation matrix → `COLLISION_TEST_PLAN.md`
-- evidence proof → `EVIDENCE_INDEX.md` → EV-347–EV-372
+- evidence proof → `EVIDENCE_INDEX.md` → current EV-373 ledger
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 
 ## Still paused
 
 ```text
-NO New Balance final regression yet
+NO New Balance final regression until Stage D closes
 NO migration into src/Script_G3AnimationBehaviors yet
 NO Raise/speed work yet
 NO AttackContinuationProtection work
