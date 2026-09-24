@@ -13,12 +13,13 @@
 
 ```text
 frozen collision source = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
-latest runtime evidence = EV-375
+latest runtime evidence = EV-376
 current ledger = EVIDENCE_LEDGER_373_ONWARD.md
 
 standalone final-source collision regression = CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy = PASS EV-375
-New Balance full intended-stack compatibility = CURRENT
+New Balance full intended-stack compatibility = OPEN/BLOCKED EV-376
+current responsibility = bounded raw55 Power/Sprint-origin SP2 compatibility correction
 active Work task = NONE
 ```
 
@@ -45,7 +46,40 @@ Final behavior SHA256:
 ## Latest evidence
 
 - **EV-373–EV-374:** two broad mixed-gameplay stress runs PASS; Stage D and standalone final-source regression CLOSED.
-- **EV-375:** proposed Zombie+Axe asset-gap remedy verified. Copied zombie `2H` assets renamed to `Axe` resolve as `Zombie_..._Axe_...` for `BenSala_Zombie_02`, preserve factual `It_Pickaxe / UseType52`, accept marked Normal/Power/Whirl including Whirl `RIGHT -> OFF -> RIGHT`, clean to group5/zero outstanding, and unload cleanly. The earlier combined-mod problem is therefore an animation asset-coverage/naming issue on the tested route, not fundamental Zombie/Axe separation incompatibility.
+- **EV-375:** Zombie+Axe copied/renamed asset-gap remedy PASS on the tested factual zombie Pickaxe/raw52 route.
+- **EV-376:** the intended New Balance/AttackCollision stack exposes one deterministic compatibility contradiction in the frozen raw55 Power/Sprint-origin state gate. Single-FIST true Power may reach its only FIST at `StatePosition=2` and be rejected. With two FIST markers, marker1 at SP1 is accepted and can damage, while marker2 at SP2 is rejected instead of performing the established rearm. Sprint-origin repeats the same boundary after same-C1 `Action9/SP1 -> Action2/SP2`. Equipped/raw8 controls remain healthy. Source is still unchanged.
+
+## Exact next route
+
+Before implementation:
+
+```text
+1. read BETWEEN_CHATS.md
+2. read COLLISION_REFERENCE.md §5–§6
+3. read COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md
+4. read COLLISION_TEST_PLAN.md §4.4
+5. use EV-376 only for exact proof/provenance
+6. freeze one bounded Work task before source editing
+```
+
+Required implementation boundary from EV-376:
+
+```text
+true Power raw55 first/second FIST:
+  preserve SP1
+  additionally accept SP2 only inside the exact already-matched raw55 execution
+
+Sprint-origin raw55:
+  first FIST remains factual Sprint/Action9/SP1
+  later same-C1 marker may be current Power at SP1 or SP2
+
+Normal/Quick/raw8/generic equipped/C1/native cleanup:
+  unchanged
+```
+
+Do not generalize to `StatePosition >= 1`, species/name gates, filename inference, new hooks, timers/polling, or AttackCollision detection.
+
+The current New Balance logs remain active comparison evidence under `research/raw/` until focused remediation acceptance closes.
 
 ## Current intended New Balance environment
 
@@ -60,24 +94,13 @@ New Balance 0.7 as distributed
 + exactly one Gothic3_Animation_Behaviors collision twin
 ```
 
-Representative gate coverage:
-
-```text
-equipped marker combat
-raw8 incl. knockdown/get-up control
-raw55 PhysicalFist/Troll
-representative separation coexistence incl. fixed Zombie+Axe route
-mixed gameplay stress
-```
-
-No source change absent newly demonstrated contradictory evidence.
-
 ## Read next by question
 
 - exact continuation → `BETWEEN_CHATS.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md`
-- evidence proof → `EVIDENCE_INDEX.md` → current EV-373-onward ledger
+- raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
+- evidence proof → `EVIDENCE_INDEX.md` → EV-376
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 
